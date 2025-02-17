@@ -1,0 +1,13 @@
+# ListOrderRefundsLinks
+
+Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
+
+
+## Fields
+
+| Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `self`                                                                                               | [Optional\<ListOrderRefundsSelf>](../../models/operations/ListOrderRefundsSelf.md)                   | :heavy_minus_sign:                                                                                   | The URL to the current set of items.                                                                 |
+| `previous`                                                                                           | [JsonNullable\<ListOrderRefundsPrevious>](../../models/operations/ListOrderRefundsPrevious.md)       | :heavy_minus_sign:                                                                                   | The previous set of items, if available.                                                             |
+| `next`                                                                                               | [JsonNullable\<ListOrderRefundsNext>](../../models/operations/ListOrderRefundsNext.md)               | :heavy_minus_sign:                                                                                   | The next set of items, if available.                                                                 |
+| `documentation`                                                                                      | [Optional\<ListOrderRefundsDocumentation>](../../models/operations/ListOrderRefundsDocumentation.md) | :heavy_minus_sign:                                                                                   | In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.           |

@@ -1,0 +1,9 @@
+# UpdateCustomerRequest
+
+
+## Fields
+
+| Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  | Example                                                                                      |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `id`                                                                                         | *String*                                                                                     | :heavy_check_mark:                                                                           | Provide the ID of the item you want to perform this operation on.                            | cst_8wmqcHMN4U                                                                               |
+| `requestBody`                                                                                | [Optional\<UpdateCustomerRequestBody>](../../models/operations/UpdateCustomerRequestBody.md) | :heavy_minus_sign:                                                                           | N/A                                                                                          |                                                                                              |

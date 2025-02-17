@@ -1,0 +1,8 @@
+# CreateClientLinkClientLinksAPILinks
+
+
+## Fields
+
+| Field                                                                                                                        | Type                                                                                                                         | Required                                                                                                                     | Description                                                                                                                  |
+| ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `documentation`                                                                                                              | [Optional\<CreateClientLinkClientLinksAPIDocumentation>](../../models/errors/CreateClientLinkClientLinksAPIDocumentation.md) | :heavy_minus_sign:                                                                                                           | The URL to the generic Mollie API error handling guide.                                                                      |

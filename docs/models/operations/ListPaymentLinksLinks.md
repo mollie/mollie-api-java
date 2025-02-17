@@ -1,0 +1,13 @@
+# ListPaymentLinksLinks
+
+Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
+
+
+## Fields
+
+| Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `self`                                                                                               | [Optional\<ListPaymentLinksSelf>](../../models/operations/ListPaymentLinksSelf.md)                   | :heavy_minus_sign:                                                                                   | The URL to the current set of items.                                                                 |
+| `previous`                                                                                           | [JsonNullable\<ListPaymentLinksPrevious>](../../models/operations/ListPaymentLinksPrevious.md)       | :heavy_minus_sign:                                                                                   | The previous set of items, if available.                                                             |
+| `next`                                                                                               | [JsonNullable\<ListPaymentLinksNext>](../../models/operations/ListPaymentLinksNext.md)               | :heavy_minus_sign:                                                                                   | The next set of items, if available.                                                                 |
+| `documentation`                                                                                      | [Optional\<ListPaymentLinksDocumentation>](../../models/operations/ListPaymentLinksDocumentation.md) | :heavy_minus_sign:                                                                                   | In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.           |

@@ -1,0 +1,18 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    Mollie API:
+        inputs:
+            - location: ../../openapi-specs/mol-public-api/v2/specs.yaml
+        registry:
+            location: registry.speakeasyapi.dev/mollie-oom/mollie/mollie-api
+targets:
+    mollie:
+        target: java
+        source: Mollie API
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/mollie-oom/mollie/mollie-api-java-code-samples
+            labelOverride:
+                fixedValue: Java (SDK)
+            blocking: false

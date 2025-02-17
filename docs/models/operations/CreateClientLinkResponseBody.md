@@ -1,0 +1,12 @@
+# CreateClientLinkResponseBody
+
+The newly created client link object.
+
+
+## Fields
+
+| Field                                                                                                                 | Type                                                                                                                  | Required                                                                                                              | Description                                                                                                           |
+| --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `resource`                                                                                                            | *Optional\<String>*                                                                                                   | :heavy_minus_sign:                                                                                                    | Indicates the response contains a client link object. Will always contain the string `client-link` for this<br/>endpoint. |
+| `id`                                                                                                                  | *Optional\<String>*                                                                                                   | :heavy_minus_sign:                                                                                                    | The identifier uniquely referring to this client link. Example: `cl_vZCnNQsV2UtfXxYifWKWH`.                           |
+| `links`                                                                                                               | [Optional\<CreateClientLinkLinks>](../../models/operations/CreateClientLinkLinks.md)                                  | :heavy_minus_sign:                                                                                                    | An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.                     |

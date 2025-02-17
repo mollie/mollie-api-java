@@ -1,0 +1,12 @@
+# UpdatePaymentLinkLinks
+
+An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+
+
+## Fields
+
+| Field                                                                                                      | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `self`                                                                                                     | [Optional\<UpdatePaymentLinkSelf>](../../models/operations/UpdatePaymentLinkSelf.md)                       | :heavy_minus_sign:                                                                                         | In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.                 |
+| `paymentLink`                                                                                              | [Optional\<UpdatePaymentLinkPaymentLink>](../../models/operations/UpdatePaymentLinkPaymentLink.md)         | :heavy_minus_sign:                                                                                         | The URL your customer should visit to make the payment. This is where you should redirect the customer to. |
+| `documentation`                                                                                            | [Optional\<UpdatePaymentLinkDocumentation>](../../models/operations/UpdatePaymentLinkDocumentation.md)     | :heavy_minus_sign:                                                                                         | In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.                 |

@@ -1,0 +1,9 @@
+# CreateMandateRequest
+
+
+## Fields
+
+| Field                                                                                      | Type                                                                                       | Required                                                                                   | Description                                                                                | Example                                                                                    |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `customerId`                                                                               | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the related customer.                                                    | cst_8wmqcHMN4U                                                                             |
+| `requestBody`                                                                              | [Optional\<CreateMandateRequestBody>](../../models/operations/CreateMandateRequestBody.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |                                                                                            |

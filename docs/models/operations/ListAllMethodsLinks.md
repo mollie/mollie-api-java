@@ -1,0 +1,9 @@
+# ListAllMethodsLinks
+
+
+## Fields
+
+| Field                                                                                            | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `self`                                                                                           | [Optional\<ListAllMethodsSelf>](../../models/operations/ListAllMethodsSelf.md)                   | :heavy_minus_sign:                                                                               | In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.       |
+| `documentation`                                                                                  | [Optional\<ListAllMethodsDocumentation>](../../models/operations/ListAllMethodsDocumentation.md) | :heavy_minus_sign:                                                                               | In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.       |

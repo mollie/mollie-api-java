@@ -1,0 +1,8 @@
+# CreatePaymentPaymentsAPILinks
+
+
+## Fields
+
+| Field                                                                                                            | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      |
+| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `documentation`                                                                                                  | [Optional\<CreatePaymentPaymentsAPIDocumentation>](../../models/errors/CreatePaymentPaymentsAPIDocumentation.md) | :heavy_minus_sign:                                                                                               | The URL to the generic Mollie API error handling guide.                                                          |

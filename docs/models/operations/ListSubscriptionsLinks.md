@@ -1,0 +1,13 @@
+# ListSubscriptionsLinks
+
+Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
+
+
+## Fields
+
+| Field                                                                                                  | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `self`                                                                                                 | [Optional\<ListSubscriptionsSelf>](../../models/operations/ListSubscriptionsSelf.md)                   | :heavy_minus_sign:                                                                                     | The URL to the current set of items.                                                                   |
+| `previous`                                                                                             | [JsonNullable\<ListSubscriptionsPrevious>](../../models/operations/ListSubscriptionsPrevious.md)       | :heavy_minus_sign:                                                                                     | The previous set of items, if available.                                                               |
+| `next`                                                                                                 | [JsonNullable\<ListSubscriptionsNext>](../../models/operations/ListSubscriptionsNext.md)               | :heavy_minus_sign:                                                                                     | The next set of items, if available.                                                                   |
+| `documentation`                                                                                        | [Optional\<ListSubscriptionsDocumentation>](../../models/operations/ListSubscriptionsDocumentation.md) | :heavy_minus_sign:                                                                                     | In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.             |
