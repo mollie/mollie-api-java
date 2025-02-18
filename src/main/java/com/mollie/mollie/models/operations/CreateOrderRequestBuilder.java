@@ -11,19 +11,12 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreateOrderRequestBuilder {
 
-    private CreateOrderSecurity security;
     private JsonNullable<String> embed = JsonNullable.undefined();
     private Optional<? extends CreateOrderRequestBody> requestBody = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCreateOrder sdk;
 
     public CreateOrderRequestBuilder(SDKMethodInterfaces.MethodCallCreateOrder sdk) {
         this.sdk = sdk;
-    }
-
-    public CreateOrderRequestBuilder security(CreateOrderSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public CreateOrderRequestBuilder embed(String embed) {
@@ -52,8 +45,7 @@ public class CreateOrderRequestBuilder {
 
     public CreateOrderResponse call() throws Exception {
 
-        return sdk.create(
-            security,
+        return sdk.createOrder(
             embed,
             requestBody);
     }

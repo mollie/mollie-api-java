@@ -15,6 +15,6 @@ public class GetOnboardingStatusRequestBuilder {
 
     public GetOnboardingStatusResponse call() throws Exception {
 
-        return sdk.getDirect();
+        return sdk.getOnboardingStatusDirect();
     }
 }

@@ -14,8 +14,7 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * UpdateOrderLineVatAmount - Required when a `quantity`, `unitPrice`, `discountAmount`, `totalAmount`, or `vatRate` is also provided
- * in the same request.
+ * UpdateOrderLineVatAmount - Required when a `quantity`, `unitPrice`, `discountAmount`, `totalAmount`, or `vatRate` is also provided in the same request.
  */
 
 public class UpdateOrderLineVatAmount {

@@ -13,7 +13,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListCustomerPaymentsRequestBuilder {
 
-    private ListCustomerPaymentsSecurity security;
     private String customerId;
     private JsonNullable<String> profileId = JsonNullable.undefined();
     private JsonNullable<Boolean> testmode = Utils.readDefaultOrConstValue(
@@ -24,12 +23,6 @@ public class ListCustomerPaymentsRequestBuilder {
 
     public ListCustomerPaymentsRequestBuilder(SDKMethodInterfaces.MethodCallListCustomerPayments sdk) {
         this.sdk = sdk;
-    }
-
-    public ListCustomerPaymentsRequestBuilder security(ListCustomerPaymentsSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public ListCustomerPaymentsRequestBuilder customerId(String customerId) {
@@ -66,8 +59,7 @@ public class ListCustomerPaymentsRequestBuilder {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.listPayments(
-            security,
+        return sdk.listCustomerPayments(
             customerId,
             profileId,
             testmode);

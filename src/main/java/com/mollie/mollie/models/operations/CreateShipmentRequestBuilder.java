@@ -10,19 +10,12 @@ import java.util.Optional;
 
 public class CreateShipmentRequestBuilder {
 
-    private CreateShipmentSecurity security;
     private String orderId;
     private Optional<? extends CreateShipmentRequestBody> requestBody = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCreateShipment sdk;
 
     public CreateShipmentRequestBuilder(SDKMethodInterfaces.MethodCallCreateShipment sdk) {
         this.sdk = sdk;
-    }
-
-    public CreateShipmentRequestBuilder security(CreateShipmentSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public CreateShipmentRequestBuilder orderId(String orderId) {
@@ -45,8 +38,7 @@ public class CreateShipmentRequestBuilder {
 
     public CreateShipmentResponse call() throws Exception {
 
-        return sdk.create(
-            security,
+        return sdk.createShipment(
             orderId,
             requestBody);
     }

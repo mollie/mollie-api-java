@@ -17,8 +17,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * GetChargebackSettlement - The API resource URL of the [settlement](get-settlement) this chargeback has been settled with. Not present if
- * not yet settled.
+ * GetChargebackSettlement - The API resource URL of the [settlement](get-settlement) this chargeback has been settled with. Not present if not yet settled.
  */
 
 public class GetChargebackSettlement {

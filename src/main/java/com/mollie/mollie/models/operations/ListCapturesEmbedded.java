@@ -22,8 +22,7 @@ import java.util.Optional;
 public class ListCapturesEmbedded {
 
     /**
-     * An array of capture objects. For a complete reference of
-     * the capture object, refer to the [Get capture endpoint](get-capture) documentation.
+     * An array of capture objects. For a complete reference of the capture object, refer to the [Get capture endpoint](get-capture) documentation.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("captures")
@@ -41,8 +40,7 @@ public class ListCapturesEmbedded {
     }
 
     /**
-     * An array of capture objects. For a complete reference of
-     * the capture object, refer to the [Get capture endpoint](get-capture) documentation.
+     * An array of capture objects. For a complete reference of the capture object, refer to the [Get capture endpoint](get-capture) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -55,8 +53,7 @@ public class ListCapturesEmbedded {
     }
 
     /**
-     * An array of capture objects. For a complete reference of
-     * the capture object, refer to the [Get capture endpoint](get-capture) documentation.
+     * An array of capture objects. For a complete reference of the capture object, refer to the [Get capture endpoint](get-capture) documentation.
      */
     public ListCapturesEmbedded withCaptures(List<ListCapturesCaptures> captures) {
         Utils.checkNotNull(captures, "captures");
@@ -65,8 +62,7 @@ public class ListCapturesEmbedded {
     }
 
     /**
-     * An array of capture objects. For a complete reference of
-     * the capture object, refer to the [Get capture endpoint](get-capture) documentation.
+     * An array of capture objects. For a complete reference of the capture object, refer to the [Get capture endpoint](get-capture) documentation.
      */
     public ListCapturesEmbedded withCaptures(Optional<? extends List<ListCapturesCaptures>> captures) {
         Utils.checkNotNull(captures, "captures");
@@ -108,8 +104,7 @@ public class ListCapturesEmbedded {
         }
 
         /**
-         * An array of capture objects. For a complete reference of
-         * the capture object, refer to the [Get capture endpoint](get-capture) documentation.
+         * An array of capture objects. For a complete reference of the capture object, refer to the [Get capture endpoint](get-capture) documentation.
          */
         public Builder captures(List<ListCapturesCaptures> captures) {
             Utils.checkNotNull(captures, "captures");
@@ -118,8 +113,7 @@ public class ListCapturesEmbedded {
         }
 
         /**
-         * An array of capture objects. For a complete reference of
-         * the capture object, refer to the [Get capture endpoint](get-capture) documentation.
+         * An array of capture objects. For a complete reference of the capture object, refer to the [Get capture endpoint](get-capture) documentation.
          */
         public Builder captures(Optional<? extends List<ListCapturesCaptures>> captures) {
             Utils.checkNotNull(captures, "captures");

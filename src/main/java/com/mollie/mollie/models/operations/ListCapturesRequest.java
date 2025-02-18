@@ -29,8 +29,7 @@ public class ListCapturesRequest {
     private String paymentId;
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     * result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
     private Optional<String> from;
@@ -42,8 +41,7 @@ public class ListCapturesRequest {
     private JsonNullable<Long> limit;
 
     /**
-     * This endpoint allows you to include additional information via the
-     * `include` query string parameter.
+     * This endpoint allows you to include additional information via the `include` query string parameter.
      * 
      * * `payment`: Include the payments that the captures were created for.
      */
@@ -51,9 +49,7 @@ public class ListCapturesRequest {
     private JsonNullable<String> include;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -93,8 +89,7 @@ public class ListCapturesRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     * result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      */
     @JsonIgnore
     public Optional<String> from() {
@@ -110,8 +105,7 @@ public class ListCapturesRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the
-     * `include` query string parameter.
+     * This endpoint allows you to include additional information via the `include` query string parameter.
      * 
      * * `payment`: Include the payments that the captures were created for.
      */
@@ -121,9 +115,7 @@ public class ListCapturesRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -146,8 +138,7 @@ public class ListCapturesRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     * result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      */
     public ListCapturesRequest withFrom(String from) {
         Utils.checkNotNull(from, "from");
@@ -156,8 +147,7 @@ public class ListCapturesRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     * result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      */
     public ListCapturesRequest withFrom(Optional<String> from) {
         Utils.checkNotNull(from, "from");
@@ -184,8 +174,7 @@ public class ListCapturesRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the
-     * `include` query string parameter.
+     * This endpoint allows you to include additional information via the `include` query string parameter.
      * 
      * * `payment`: Include the payments that the captures were created for.
      */
@@ -196,8 +185,7 @@ public class ListCapturesRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the
-     * `include` query string parameter.
+     * This endpoint allows you to include additional information via the `include` query string parameter.
      * 
      * * `payment`: Include the payments that the captures were created for.
      */
@@ -208,9 +196,7 @@ public class ListCapturesRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -221,9 +207,7 @@ public class ListCapturesRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -296,8 +280,7 @@ public class ListCapturesRequest {
         }
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-         * result set.
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
          */
         public Builder from(String from) {
             Utils.checkNotNull(from, "from");
@@ -306,8 +289,7 @@ public class ListCapturesRequest {
         }
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-         * result set.
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
          */
         public Builder from(Optional<String> from) {
             Utils.checkNotNull(from, "from");
@@ -334,8 +316,7 @@ public class ListCapturesRequest {
         }
 
         /**
-         * This endpoint allows you to include additional information via the
-         * `include` query string parameter.
+         * This endpoint allows you to include additional information via the `include` query string parameter.
          * 
          * * `payment`: Include the payments that the captures were created for.
          */
@@ -346,8 +327,7 @@ public class ListCapturesRequest {
         }
 
         /**
-         * This endpoint allows you to include additional information via the
-         * `include` query string parameter.
+         * This endpoint allows you to include additional information via the `include` query string parameter.
          * 
          * * `payment`: Include the payments that the captures were created for.
          */
@@ -358,9 +338,7 @@ public class ListCapturesRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-         * setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
          * 
          * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -371,9 +349,7 @@ public class ListCapturesRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-         * setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
          * 
          * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */

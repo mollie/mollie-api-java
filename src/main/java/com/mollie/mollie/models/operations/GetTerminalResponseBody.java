@@ -42,15 +42,15 @@ public class GetTerminalResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
+     * 
+     * Possible values: `live` `test`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<? extends GetTerminalMode> mode;
+    private Optional<String> mode;
 
     /**
-     * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the
-     * description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it
-     * may be visible on the device itself depending on the device.
+     * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it may be visible on the device itself depending on the device.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
@@ -59,11 +59,9 @@ public class GetTerminalResponseBody {
     /**
      * The status of the terminal:
      * 
-     * * `pending`: The device has been linked to your account, but has not yet been activated. If you ordered a terminal
-     *   from us, it may already become visible in your account with this status.
+     * * `pending`: The device has been linked to your account, but has not yet been activated. If you ordered a terminal from us, it may already become visible in your account with this status.
      * * `active`: The terminal is fully configured and ready to accept payments.
-     * * `inactive`: The terminal has been deactivated. Deactivation happens for example if you returned the device to
-     *   Mollie, or if you requested to move it to another profile or organization.
+     * * `inactive`: The terminal has been deactivated. Deactivation happens for example if you returned the device to Mollie, or if you requested to move it to another profile or organization.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
@@ -91,8 +89,7 @@ public class GetTerminalResponseBody {
     private JsonNullable<String> serialNumber;
 
     /**
-     * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a
-     * specific currency, chosen during setup.
+     * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a specific currency, chosen during setup.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
@@ -101,9 +98,7 @@ public class GetTerminalResponseBody {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
-     * required.
+     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("profileId")
@@ -127,7 +122,7 @@ public class GetTerminalResponseBody {
     public GetTerminalResponseBody(
             @JsonProperty("resource") Optional<String> resource,
             @JsonProperty("id") Optional<String> id,
-            @JsonProperty("mode") Optional<? extends GetTerminalMode> mode,
+            @JsonProperty("mode") Optional<String> mode,
             @JsonProperty("description") Optional<String> description,
             @JsonProperty("status") Optional<String> status,
             @JsonProperty("brand") JsonNullable<String> brand,
@@ -185,17 +180,16 @@ public class GetTerminalResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
+     * 
+     * Possible values: `live` `test`
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetTerminalMode> mode() {
-        return (Optional<GetTerminalMode>) mode;
+    public Optional<String> mode() {
+        return mode;
     }
 
     /**
-     * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the
-     * description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it
-     * may be visible on the device itself depending on the device.
+     * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it may be visible on the device itself depending on the device.
      */
     @JsonIgnore
     public Optional<String> description() {
@@ -205,11 +199,9 @@ public class GetTerminalResponseBody {
     /**
      * The status of the terminal:
      * 
-     * * `pending`: The device has been linked to your account, but has not yet been activated. If you ordered a terminal
-     *   from us, it may already become visible in your account with this status.
+     * * `pending`: The device has been linked to your account, but has not yet been activated. If you ordered a terminal from us, it may already become visible in your account with this status.
      * * `active`: The terminal is fully configured and ready to accept payments.
-     * * `inactive`: The terminal has been deactivated. Deactivation happens for example if you returned the device to
-     *   Mollie, or if you requested to move it to another profile or organization.
+     * * `inactive`: The terminal has been deactivated. Deactivation happens for example if you returned the device to Mollie, or if you requested to move it to another profile or organization.
      */
     @JsonIgnore
     public Optional<String> status() {
@@ -241,8 +233,7 @@ public class GetTerminalResponseBody {
     }
 
     /**
-     * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a
-     * specific currency, chosen during setup.
+     * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a specific currency, chosen during setup.
      */
     @JsonIgnore
     public JsonNullable<String> currency() {
@@ -252,9 +243,7 @@ public class GetTerminalResponseBody {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
-     * required.
+     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     @JsonIgnore
     public JsonNullable<String> profileId() {
@@ -320,8 +309,10 @@ public class GetTerminalResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
+     * 
+     * Possible values: `live` `test`
      */
-    public GetTerminalResponseBody withMode(GetTerminalMode mode) {
+    public GetTerminalResponseBody withMode(String mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = Optional.ofNullable(mode);
         return this;
@@ -329,17 +320,17 @@ public class GetTerminalResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
+     * 
+     * Possible values: `live` `test`
      */
-    public GetTerminalResponseBody withMode(Optional<? extends GetTerminalMode> mode) {
+    public GetTerminalResponseBody withMode(Optional<String> mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
     }
 
     /**
-     * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the
-     * description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it
-     * may be visible on the device itself depending on the device.
+     * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it may be visible on the device itself depending on the device.
      */
     public GetTerminalResponseBody withDescription(String description) {
         Utils.checkNotNull(description, "description");
@@ -348,9 +339,7 @@ public class GetTerminalResponseBody {
     }
 
     /**
-     * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the
-     * description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it
-     * may be visible on the device itself depending on the device.
+     * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it may be visible on the device itself depending on the device.
      */
     public GetTerminalResponseBody withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
@@ -361,11 +350,9 @@ public class GetTerminalResponseBody {
     /**
      * The status of the terminal:
      * 
-     * * `pending`: The device has been linked to your account, but has not yet been activated. If you ordered a terminal
-     *   from us, it may already become visible in your account with this status.
+     * * `pending`: The device has been linked to your account, but has not yet been activated. If you ordered a terminal from us, it may already become visible in your account with this status.
      * * `active`: The terminal is fully configured and ready to accept payments.
-     * * `inactive`: The terminal has been deactivated. Deactivation happens for example if you returned the device to
-     *   Mollie, or if you requested to move it to another profile or organization.
+     * * `inactive`: The terminal has been deactivated. Deactivation happens for example if you returned the device to Mollie, or if you requested to move it to another profile or organization.
      */
     public GetTerminalResponseBody withStatus(String status) {
         Utils.checkNotNull(status, "status");
@@ -376,11 +363,9 @@ public class GetTerminalResponseBody {
     /**
      * The status of the terminal:
      * 
-     * * `pending`: The device has been linked to your account, but has not yet been activated. If you ordered a terminal
-     *   from us, it may already become visible in your account with this status.
+     * * `pending`: The device has been linked to your account, but has not yet been activated. If you ordered a terminal from us, it may already become visible in your account with this status.
      * * `active`: The terminal is fully configured and ready to accept payments.
-     * * `inactive`: The terminal has been deactivated. Deactivation happens for example if you returned the device to
-     *   Mollie, or if you requested to move it to another profile or organization.
+     * * `inactive`: The terminal has been deactivated. Deactivation happens for example if you returned the device to Mollie, or if you requested to move it to another profile or organization.
      */
     public GetTerminalResponseBody withStatus(Optional<String> status) {
         Utils.checkNotNull(status, "status");
@@ -443,8 +428,7 @@ public class GetTerminalResponseBody {
     }
 
     /**
-     * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a
-     * specific currency, chosen during setup.
+     * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a specific currency, chosen during setup.
      */
     public GetTerminalResponseBody withCurrency(String currency) {
         Utils.checkNotNull(currency, "currency");
@@ -453,8 +437,7 @@ public class GetTerminalResponseBody {
     }
 
     /**
-     * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a
-     * specific currency, chosen during setup.
+     * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a specific currency, chosen during setup.
      */
     public GetTerminalResponseBody withCurrency(JsonNullable<String> currency) {
         Utils.checkNotNull(currency, "currency");
@@ -465,9 +448,7 @@ public class GetTerminalResponseBody {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
-     * required.
+     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     public GetTerminalResponseBody withProfileId(String profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -478,9 +459,7 @@ public class GetTerminalResponseBody {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
-     * required.
+     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     public GetTerminalResponseBody withProfileId(JsonNullable<String> profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -588,7 +567,7 @@ public class GetTerminalResponseBody {
  
         private Optional<String> id = Optional.empty();
  
-        private Optional<? extends GetTerminalMode> mode = Optional.empty();
+        private Optional<String> mode = Optional.empty();
  
         private Optional<String> description = Optional.empty();
  
@@ -650,8 +629,10 @@ public class GetTerminalResponseBody {
 
         /**
          * Whether this entity was created in live mode or in test mode.
+         * 
+         * Possible values: `live` `test`
          */
-        public Builder mode(GetTerminalMode mode) {
+        public Builder mode(String mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = Optional.ofNullable(mode);
             return this;
@@ -659,17 +640,17 @@ public class GetTerminalResponseBody {
 
         /**
          * Whether this entity was created in live mode or in test mode.
+         * 
+         * Possible values: `live` `test`
          */
-        public Builder mode(Optional<? extends GetTerminalMode> mode) {
+        public Builder mode(Optional<String> mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
         }
 
         /**
-         * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the
-         * description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it
-         * may be visible on the device itself depending on the device.
+         * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it may be visible on the device itself depending on the device.
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
@@ -678,9 +659,7 @@ public class GetTerminalResponseBody {
         }
 
         /**
-         * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the
-         * description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it
-         * may be visible on the device itself depending on the device.
+         * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it may be visible on the device itself depending on the device.
          */
         public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
@@ -691,11 +670,9 @@ public class GetTerminalResponseBody {
         /**
          * The status of the terminal:
          * 
-         * * `pending`: The device has been linked to your account, but has not yet been activated. If you ordered a terminal
-         *   from us, it may already become visible in your account with this status.
+         * * `pending`: The device has been linked to your account, but has not yet been activated. If you ordered a terminal from us, it may already become visible in your account with this status.
          * * `active`: The terminal is fully configured and ready to accept payments.
-         * * `inactive`: The terminal has been deactivated. Deactivation happens for example if you returned the device to
-         *   Mollie, or if you requested to move it to another profile or organization.
+         * * `inactive`: The terminal has been deactivated. Deactivation happens for example if you returned the device to Mollie, or if you requested to move it to another profile or organization.
          */
         public Builder status(String status) {
             Utils.checkNotNull(status, "status");
@@ -706,11 +683,9 @@ public class GetTerminalResponseBody {
         /**
          * The status of the terminal:
          * 
-         * * `pending`: The device has been linked to your account, but has not yet been activated. If you ordered a terminal
-         *   from us, it may already become visible in your account with this status.
+         * * `pending`: The device has been linked to your account, but has not yet been activated. If you ordered a terminal from us, it may already become visible in your account with this status.
          * * `active`: The terminal is fully configured and ready to accept payments.
-         * * `inactive`: The terminal has been deactivated. Deactivation happens for example if you returned the device to
-         *   Mollie, or if you requested to move it to another profile or organization.
+         * * `inactive`: The terminal has been deactivated. Deactivation happens for example if you returned the device to Mollie, or if you requested to move it to another profile or organization.
          */
         public Builder status(Optional<String> status) {
             Utils.checkNotNull(status, "status");
@@ -773,8 +748,7 @@ public class GetTerminalResponseBody {
         }
 
         /**
-         * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a
-         * specific currency, chosen during setup.
+         * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a specific currency, chosen during setup.
          */
         public Builder currency(String currency) {
             Utils.checkNotNull(currency, "currency");
@@ -783,8 +757,7 @@ public class GetTerminalResponseBody {
         }
 
         /**
-         * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a
-         * specific currency, chosen during setup.
+         * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a specific currency, chosen during setup.
          */
         public Builder currency(JsonNullable<String> currency) {
             Utils.checkNotNull(currency, "currency");
@@ -795,9 +768,7 @@ public class GetTerminalResponseBody {
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
-         * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-         * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
-         * required.
+         * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
          */
         public Builder profileId(String profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -808,9 +779,7 @@ public class GetTerminalResponseBody {
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
-         * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-         * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
-         * required.
+         * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
          */
         public Builder profileId(JsonNullable<String> profileId) {
             Utils.checkNotNull(profileId, "profileId");

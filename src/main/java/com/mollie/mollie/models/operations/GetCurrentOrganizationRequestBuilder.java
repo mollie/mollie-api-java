@@ -15,6 +15,6 @@ public class GetCurrentOrganizationRequestBuilder {
 
     public GetCurrentOrganizationResponse call() throws Exception {
 
-        return sdk.getCurrentDirect();
+        return sdk.getCurrentOrganizationDirect();
     }
 }

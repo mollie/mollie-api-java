@@ -37,8 +37,7 @@ public class ListChargebacksResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * A list of chargeback objects. For a complete reference of the chargeback object, refer to the
-     * [Get chargeback endpoint](get-chargeback) documentation.
+     * A list of chargeback objects. For a complete reference of the chargeback object, refer to the [Get chargeback endpoint](get-chargeback) documentation.
      */
     private Optional<? extends ListChargebacksResponseBody> object;
 
@@ -90,8 +89,7 @@ public class ListChargebacksResponse implements Response {
     }
 
     /**
-     * A list of chargeback objects. For a complete reference of the chargeback object, refer to the
-     * [Get chargeback endpoint](get-chargeback) documentation.
+     * A list of chargeback objects. For a complete reference of the chargeback object, refer to the [Get chargeback endpoint](get-chargeback) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -131,8 +129,7 @@ public class ListChargebacksResponse implements Response {
     }
 
     /**
-     * A list of chargeback objects. For a complete reference of the chargeback object, refer to the
-     * [Get chargeback endpoint](get-chargeback) documentation.
+     * A list of chargeback objects. For a complete reference of the chargeback object, refer to the [Get chargeback endpoint](get-chargeback) documentation.
      */
     public ListChargebacksResponse withObject(ListChargebacksResponseBody object) {
         Utils.checkNotNull(object, "object");
@@ -141,8 +138,7 @@ public class ListChargebacksResponse implements Response {
     }
 
     /**
-     * A list of chargeback objects. For a complete reference of the chargeback object, refer to the
-     * [Get chargeback endpoint](get-chargeback) documentation.
+     * A list of chargeback objects. For a complete reference of the chargeback object, refer to the [Get chargeback endpoint](get-chargeback) documentation.
      */
     public ListChargebacksResponse withObject(Optional<? extends ListChargebacksResponseBody> object) {
         Utils.checkNotNull(object, "object");
@@ -226,8 +222,7 @@ public class ListChargebacksResponse implements Response {
         }
 
         /**
-         * A list of chargeback objects. For a complete reference of the chargeback object, refer to the
-         * [Get chargeback endpoint](get-chargeback) documentation.
+         * A list of chargeback objects. For a complete reference of the chargeback object, refer to the [Get chargeback endpoint](get-chargeback) documentation.
          */
         public Builder object(ListChargebacksResponseBody object) {
             Utils.checkNotNull(object, "object");
@@ -236,8 +231,7 @@ public class ListChargebacksResponse implements Response {
         }
 
         /**
-         * A list of chargeback objects. For a complete reference of the chargeback object, refer to the
-         * [Get chargeback endpoint](get-chargeback) documentation.
+         * A list of chargeback objects. For a complete reference of the chargeback object, refer to the [Get chargeback endpoint](get-chargeback) documentation.
          */
         public Builder object(Optional<? extends ListChargebacksResponseBody> object) {
             Utils.checkNotNull(object, "object");

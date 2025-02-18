@@ -1,7 +1,6 @@
 # GetOrderShippingAddress
 
-The customer's shipping address details. We advise to provide these details to improve fraud protection and
-conversion. This is particularly relevant for card payments.
+The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion. This is particularly relevant for card payments.
 
 
 ## Fields

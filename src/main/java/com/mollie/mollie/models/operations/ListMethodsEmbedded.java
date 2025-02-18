@@ -22,10 +22,7 @@ import java.util.Optional;
 public class ListMethodsEmbedded {
 
     /**
-     * An array of payment method objects. For a complete
-     * reference of the payment method object, refer
-     * to the [Get payment method endpoint](get-method)
-     * documentation.
+     * An array of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("methods")
@@ -43,10 +40,7 @@ public class ListMethodsEmbedded {
     }
 
     /**
-     * An array of payment method objects. For a complete
-     * reference of the payment method object, refer
-     * to the [Get payment method endpoint](get-method)
-     * documentation.
+     * An array of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -59,10 +53,7 @@ public class ListMethodsEmbedded {
     }
 
     /**
-     * An array of payment method objects. For a complete
-     * reference of the payment method object, refer
-     * to the [Get payment method endpoint](get-method)
-     * documentation.
+     * An array of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
      */
     public ListMethodsEmbedded withMethods(List<ListMethodsMethods> methods) {
         Utils.checkNotNull(methods, "methods");
@@ -71,10 +62,7 @@ public class ListMethodsEmbedded {
     }
 
     /**
-     * An array of payment method objects. For a complete
-     * reference of the payment method object, refer
-     * to the [Get payment method endpoint](get-method)
-     * documentation.
+     * An array of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
      */
     public ListMethodsEmbedded withMethods(Optional<? extends List<ListMethodsMethods>> methods) {
         Utils.checkNotNull(methods, "methods");
@@ -116,10 +104,7 @@ public class ListMethodsEmbedded {
         }
 
         /**
-         * An array of payment method objects. For a complete
-         * reference of the payment method object, refer
-         * to the [Get payment method endpoint](get-method)
-         * documentation.
+         * An array of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
          */
         public Builder methods(List<ListMethodsMethods> methods) {
             Utils.checkNotNull(methods, "methods");
@@ -128,10 +113,7 @@ public class ListMethodsEmbedded {
         }
 
         /**
-         * An array of payment method objects. For a complete
-         * reference of the payment method object, refer
-         * to the [Get payment method endpoint](get-method)
-         * documentation.
+         * An array of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
          */
         public Builder methods(Optional<? extends List<ListMethodsMethods>> methods) {
             Utils.checkNotNull(methods, "methods");

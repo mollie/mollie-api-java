@@ -14,8 +14,7 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * ResultAmount - The final amount that was moved to or from the balance. If the transaction moves funds away from the balance, for
- * example when it concerns a refund, the amount will be negative.
+ * ResultAmount - The final amount that was moved to or from the balance. If the transaction moves funds away from the balance, for example when it concerns a refund, the amount will be negative.
  */
 
 public class ResultAmount {

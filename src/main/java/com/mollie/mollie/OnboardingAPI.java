@@ -44,19 +44,27 @@ public class OnboardingAPI implements
     /**
      * Get onboarding status
      * Retrieve the onboarding status of the currently authenticated organization.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **onboarding.read**](/reference/authentication)
      * @return The call builder
      */
-    public GetOnboardingStatusRequestBuilder get() {
+    public GetOnboardingStatusRequestBuilder getOnboardingStatus() {
         return new GetOnboardingStatusRequestBuilder(this);
     }
 
     /**
      * Get onboarding status
      * Retrieve the onboarding status of the currently authenticated organization.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **onboarding.read**](/reference/authentication)
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetOnboardingStatusResponse getDirect() throws Exception {
+    public GetOnboardingStatusResponse getOnboardingStatusDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -165,49 +173,55 @@ public class OnboardingAPI implements
 
     /**
      * Submit onboarding data
-     * **⚠️ We no longer recommend implementing this endpoint. Please refer to the Client Links API instead to kick off the
-     * onboarding process for your merchants.**
+     * **⚠️ We no longer recommend implementing this endpoint. Please refer to the Client Links API instead to kick off the onboarding process for your merchants.**
      * 
-     * Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the
-     * onboarding status is `needs-data`. Information that the merchant has entered in their dashboard will not be
+     * Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the onboarding status is `needs-data`. Information that the merchant has entered in their dashboard will not be
      * 
      * overwritten.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **onboarding.write**](/reference/authentication)
      * @return The call builder
      */
-    public SubmitOnboardingDataRequestBuilder create() {
+    public SubmitOnboardingDataRequestBuilder submitOnboardingData() {
         return new SubmitOnboardingDataRequestBuilder(this);
     }
 
     /**
      * Submit onboarding data
-     * **⚠️ We no longer recommend implementing this endpoint. Please refer to the Client Links API instead to kick off the
-     * onboarding process for your merchants.**
+     * **⚠️ We no longer recommend implementing this endpoint. Please refer to the Client Links API instead to kick off the onboarding process for your merchants.**
      * 
-     * Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the
-     * onboarding status is `needs-data`. Information that the merchant has entered in their dashboard will not be
+     * Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the onboarding status is `needs-data`. Information that the merchant has entered in their dashboard will not be
      * 
      * overwritten.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **onboarding.write**](/reference/authentication)
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public SubmitOnboardingDataResponse createDirect() throws Exception {
-        return create(Optional.empty());
+    public SubmitOnboardingDataResponse submitOnboardingDataDirect() throws Exception {
+        return submitOnboardingData(Optional.empty());
     }
     
     /**
      * Submit onboarding data
-     * **⚠️ We no longer recommend implementing this endpoint. Please refer to the Client Links API instead to kick off the
-     * onboarding process for your merchants.**
+     * **⚠️ We no longer recommend implementing this endpoint. Please refer to the Client Links API instead to kick off the onboarding process for your merchants.**
      * 
-     * Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the
-     * onboarding status is `needs-data`. Information that the merchant has entered in their dashboard will not be
+     * Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the onboarding status is `needs-data`. Information that the merchant has entered in their dashboard will not be
      * 
      * overwritten.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **onboarding.write**](/reference/authentication)
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public SubmitOnboardingDataResponse create(
+    public SubmitOnboardingDataResponse submitOnboardingData(
             Optional<? extends SubmitOnboardingDataRequestBody> request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(

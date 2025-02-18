@@ -80,7 +80,7 @@ public class ListBalanceTransactionsRequestBuilder {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.listTransactions(
+        return sdk.listBalanceTransactions(
             balanceId,
             from,
             limit,

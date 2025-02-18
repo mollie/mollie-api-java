@@ -22,8 +22,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class ListInvoicesRequest {
 
     /**
-     * Filter for an invoice with a specific invoice reference, for example
-     * `2024.10000`.
+     * Filter for an invoice with a specific invoice reference, for example `2024.10000`.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=reference")
     private JsonNullable<String> reference;
@@ -35,8 +34,7 @@ public class ListInvoicesRequest {
     private JsonNullable<String> year;
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     * result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
     private Optional<String> from;
@@ -68,8 +66,7 @@ public class ListInvoicesRequest {
     }
 
     /**
-     * Filter for an invoice with a specific invoice reference, for example
-     * `2024.10000`.
+     * Filter for an invoice with a specific invoice reference, for example `2024.10000`.
      */
     @JsonIgnore
     public JsonNullable<String> reference() {
@@ -85,8 +82,7 @@ public class ListInvoicesRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     * result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      */
     @JsonIgnore
     public Optional<String> from() {
@@ -106,8 +102,7 @@ public class ListInvoicesRequest {
     }
 
     /**
-     * Filter for an invoice with a specific invoice reference, for example
-     * `2024.10000`.
+     * Filter for an invoice with a specific invoice reference, for example `2024.10000`.
      */
     public ListInvoicesRequest withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
@@ -116,8 +111,7 @@ public class ListInvoicesRequest {
     }
 
     /**
-     * Filter for an invoice with a specific invoice reference, for example
-     * `2024.10000`.
+     * Filter for an invoice with a specific invoice reference, for example `2024.10000`.
      */
     public ListInvoicesRequest withReference(JsonNullable<String> reference) {
         Utils.checkNotNull(reference, "reference");
@@ -144,8 +138,7 @@ public class ListInvoicesRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     * result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      */
     public ListInvoicesRequest withFrom(String from) {
         Utils.checkNotNull(from, "from");
@@ -154,8 +147,7 @@ public class ListInvoicesRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     * result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      */
     public ListInvoicesRequest withFrom(Optional<String> from) {
         Utils.checkNotNull(from, "from");
@@ -230,8 +222,7 @@ public class ListInvoicesRequest {
         }
 
         /**
-         * Filter for an invoice with a specific invoice reference, for example
-         * `2024.10000`.
+         * Filter for an invoice with a specific invoice reference, for example `2024.10000`.
          */
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
@@ -240,8 +231,7 @@ public class ListInvoicesRequest {
         }
 
         /**
-         * Filter for an invoice with a specific invoice reference, for example
-         * `2024.10000`.
+         * Filter for an invoice with a specific invoice reference, for example `2024.10000`.
          */
         public Builder reference(JsonNullable<String> reference) {
             Utils.checkNotNull(reference, "reference");
@@ -268,8 +258,7 @@ public class ListInvoicesRequest {
         }
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-         * result set.
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
          */
         public Builder from(String from) {
             Utils.checkNotNull(from, "from");
@@ -278,8 +267,7 @@ public class ListInvoicesRequest {
         }
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-         * result set.
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
          */
         public Builder from(Optional<String> from) {
             Utils.checkNotNull(from, "from");

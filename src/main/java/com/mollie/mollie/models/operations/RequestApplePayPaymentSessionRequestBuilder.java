@@ -10,7 +10,6 @@ import java.util.Optional;
 public class RequestApplePayPaymentSessionRequestBuilder {
 
     private Optional<? extends RequestApplePayPaymentSessionRequestBody> request = Optional.empty();
-    private RequestApplePayPaymentSessionSecurity security;
     private final SDKMethodInterfaces.MethodCallRequestApplePayPaymentSession sdk;
 
     public RequestApplePayPaymentSessionRequestBuilder(SDKMethodInterfaces.MethodCallRequestApplePayPaymentSession sdk) {
@@ -29,16 +28,9 @@ public class RequestApplePayPaymentSessionRequestBuilder {
         return this;
     }
 
-    public RequestApplePayPaymentSessionRequestBuilder security(RequestApplePayPaymentSessionSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
-    }
-
     public RequestApplePayPaymentSessionResponse call() throws Exception {
 
         return sdk.requestApplePayPaymentSession(
-            request,
-            security);
+            request);
     }
 }

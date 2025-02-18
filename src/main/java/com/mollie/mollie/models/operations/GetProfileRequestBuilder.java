@@ -46,7 +46,7 @@ public class GetProfileRequestBuilder {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.get(
+        return sdk.getProfile(
             id,
             testmode);
     }

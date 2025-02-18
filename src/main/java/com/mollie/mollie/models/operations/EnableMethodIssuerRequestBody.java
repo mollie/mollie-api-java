@@ -20,11 +20,9 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class EnableMethodIssuerRequestBody {
 
     /**
-     * When enabling a voucher issuer, an inbetween party may be involved which you have a contract with.
-     * Provide the contract ID for the first time you enable an issuer via this contractor.
+     * When enabling a voucher issuer, an inbetween party may be involved which you have a contract with. Provide the contract ID for the first time you enable an issuer via this contractor.
      * 
-     * You can update the contract ID as long as it is not approved yet, by repeating the API call with a
-     * different contract ID.
+     * You can update the contract ID as long as it is not approved yet, by repeating the API call with a different contract ID.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("contractId")
@@ -42,11 +40,9 @@ public class EnableMethodIssuerRequestBody {
     }
 
     /**
-     * When enabling a voucher issuer, an inbetween party may be involved which you have a contract with.
-     * Provide the contract ID for the first time you enable an issuer via this contractor.
+     * When enabling a voucher issuer, an inbetween party may be involved which you have a contract with. Provide the contract ID for the first time you enable an issuer via this contractor.
      * 
-     * You can update the contract ID as long as it is not approved yet, by repeating the API call with a
-     * different contract ID.
+     * You can update the contract ID as long as it is not approved yet, by repeating the API call with a different contract ID.
      */
     @JsonIgnore
     public JsonNullable<String> contractId() {
@@ -58,11 +54,9 @@ public class EnableMethodIssuerRequestBody {
     }
 
     /**
-     * When enabling a voucher issuer, an inbetween party may be involved which you have a contract with.
-     * Provide the contract ID for the first time you enable an issuer via this contractor.
+     * When enabling a voucher issuer, an inbetween party may be involved which you have a contract with. Provide the contract ID for the first time you enable an issuer via this contractor.
      * 
-     * You can update the contract ID as long as it is not approved yet, by repeating the API call with a
-     * different contract ID.
+     * You can update the contract ID as long as it is not approved yet, by repeating the API call with a different contract ID.
      */
     public EnableMethodIssuerRequestBody withContractId(String contractId) {
         Utils.checkNotNull(contractId, "contractId");
@@ -71,11 +65,9 @@ public class EnableMethodIssuerRequestBody {
     }
 
     /**
-     * When enabling a voucher issuer, an inbetween party may be involved which you have a contract with.
-     * Provide the contract ID for the first time you enable an issuer via this contractor.
+     * When enabling a voucher issuer, an inbetween party may be involved which you have a contract with. Provide the contract ID for the first time you enable an issuer via this contractor.
      * 
-     * You can update the contract ID as long as it is not approved yet, by repeating the API call with a
-     * different contract ID.
+     * You can update the contract ID as long as it is not approved yet, by repeating the API call with a different contract ID.
      */
     public EnableMethodIssuerRequestBody withContractId(JsonNullable<String> contractId) {
         Utils.checkNotNull(contractId, "contractId");
@@ -117,11 +109,9 @@ public class EnableMethodIssuerRequestBody {
         }
 
         /**
-         * When enabling a voucher issuer, an inbetween party may be involved which you have a contract with.
-         * Provide the contract ID for the first time you enable an issuer via this contractor.
+         * When enabling a voucher issuer, an inbetween party may be involved which you have a contract with. Provide the contract ID for the first time you enable an issuer via this contractor.
          * 
-         * You can update the contract ID as long as it is not approved yet, by repeating the API call with a
-         * different contract ID.
+         * You can update the contract ID as long as it is not approved yet, by repeating the API call with a different contract ID.
          */
         public Builder contractId(String contractId) {
             Utils.checkNotNull(contractId, "contractId");
@@ -130,11 +120,9 @@ public class EnableMethodIssuerRequestBody {
         }
 
         /**
-         * When enabling a voucher issuer, an inbetween party may be involved which you have a contract with.
-         * Provide the contract ID for the first time you enable an issuer via this contractor.
+         * When enabling a voucher issuer, an inbetween party may be involved which you have a contract with. Provide the contract ID for the first time you enable an issuer via this contractor.
          * 
-         * You can update the contract ID as long as it is not approved yet, by repeating the API call with a
-         * different contract ID.
+         * You can update the contract ID as long as it is not approved yet, by repeating the API call with a different contract ID.
          */
         public Builder contractId(JsonNullable<String> contractId) {
             Utils.checkNotNull(contractId, "contractId");

@@ -30,7 +30,7 @@ public class SubmitOnboardingDataRequestBuilder {
 
     public SubmitOnboardingDataResponse call() throws Exception {
 
-        return sdk.create(
+        return sdk.submitOnboardingData(
             request);
     }
 }

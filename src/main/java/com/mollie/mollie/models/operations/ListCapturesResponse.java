@@ -37,8 +37,7 @@ public class ListCapturesResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * A list of capture objects. For a complete reference of the capture
-     * object, refer to the [Get capture endpoint](get-capture) documentation.
+     * A list of capture objects. For a complete reference of the capture object, refer to the [Get capture endpoint](get-capture) documentation.
      */
     private Optional<? extends ListCapturesResponseBody> object;
 
@@ -90,8 +89,7 @@ public class ListCapturesResponse implements Response {
     }
 
     /**
-     * A list of capture objects. For a complete reference of the capture
-     * object, refer to the [Get capture endpoint](get-capture) documentation.
+     * A list of capture objects. For a complete reference of the capture object, refer to the [Get capture endpoint](get-capture) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -131,8 +129,7 @@ public class ListCapturesResponse implements Response {
     }
 
     /**
-     * A list of capture objects. For a complete reference of the capture
-     * object, refer to the [Get capture endpoint](get-capture) documentation.
+     * A list of capture objects. For a complete reference of the capture object, refer to the [Get capture endpoint](get-capture) documentation.
      */
     public ListCapturesResponse withObject(ListCapturesResponseBody object) {
         Utils.checkNotNull(object, "object");
@@ -141,8 +138,7 @@ public class ListCapturesResponse implements Response {
     }
 
     /**
-     * A list of capture objects. For a complete reference of the capture
-     * object, refer to the [Get capture endpoint](get-capture) documentation.
+     * A list of capture objects. For a complete reference of the capture object, refer to the [Get capture endpoint](get-capture) documentation.
      */
     public ListCapturesResponse withObject(Optional<? extends ListCapturesResponseBody> object) {
         Utils.checkNotNull(object, "object");
@@ -226,8 +222,7 @@ public class ListCapturesResponse implements Response {
         }
 
         /**
-         * A list of capture objects. For a complete reference of the capture
-         * object, refer to the [Get capture endpoint](get-capture) documentation.
+         * A list of capture objects. For a complete reference of the capture object, refer to the [Get capture endpoint](get-capture) documentation.
          */
         public Builder object(ListCapturesResponseBody object) {
             Utils.checkNotNull(object, "object");
@@ -236,8 +231,7 @@ public class ListCapturesResponse implements Response {
         }
 
         /**
-         * A list of capture objects. For a complete reference of the capture
-         * object, refer to the [Get capture endpoint](get-capture) documentation.
+         * A list of capture objects. For a complete reference of the capture object, refer to the [Get capture endpoint](get-capture) documentation.
          */
         public Builder object(Optional<? extends ListCapturesResponseBody> object) {
             Utils.checkNotNull(object, "object");

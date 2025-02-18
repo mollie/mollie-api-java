@@ -28,9 +28,7 @@ public class CancelOrderLinesLines {
     private String id;
 
     /**
-     * The number of items that should be canceled for this order line. When this parameter is omitted,
-     * the whole order line will be canceled. When part of the line has been shipped, the remaining
-     * quantity will be canceled and the order line will be marked `completed`.
+     * The number of items that should be canceled for this order line. When this parameter is omitted, the whole order line will be canceled. When part of the line has been shipped, the remaining quantity will be canceled and the order line will be marked `completed`.
      * 
      * Must be less than the number of items already shipped or canceled for this order line.
      */
@@ -39,20 +37,15 @@ public class CancelOrderLinesLines {
     private JsonNullable<Long> quantity;
 
     /**
-     * The amount that you want to cancel. In almost all cases, Mollie can determine the amount
-     * automatically.
+     * The amount that you want to cancel. In almost all cases, Mollie can determine the amount automatically.
      * 
-     * The amount is required only if you are *partially* canceling an order line which has a non-zero
-     * `discountAmount`.
+     * The amount is required only if you are *partially* canceling an order line which has a non-zero `discountAmount`.
      * 
-     * The amount you can cancel depends on various properties of the order line and the cancel order
-     * lines request. The maximum that can be canceled is `unit price x quantity to cancel`.
+     * The amount you can cancel depends on various properties of the order line and the cancel order lines request. The maximum that can be canceled is `unit price x quantity to cancel`.
      * 
-     * The minimum amount depends on the discount applied to the line, the quantity already shipped or
-     * canceled, the amounts already shipped or canceled and the quantity you want to cancel.
+     * The minimum amount depends on the discount applied to the line, the quantity already shipped or canceled, the amounts already shipped or canceled and the quantity you want to cancel.
      * 
-     * If you do not send an amount, Mollie will determine the amount automatically or respond with an
-     * error if the amount cannot be determined automatically.
+     * If you do not send an amount, Mollie will determine the amount automatically or respond with an error if the amount cannot be determined automatically.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
@@ -85,9 +78,7 @@ public class CancelOrderLinesLines {
     }
 
     /**
-     * The number of items that should be canceled for this order line. When this parameter is omitted,
-     * the whole order line will be canceled. When part of the line has been shipped, the remaining
-     * quantity will be canceled and the order line will be marked `completed`.
+     * The number of items that should be canceled for this order line. When this parameter is omitted, the whole order line will be canceled. When part of the line has been shipped, the remaining quantity will be canceled and the order line will be marked `completed`.
      * 
      * Must be less than the number of items already shipped or canceled for this order line.
      */
@@ -97,20 +88,15 @@ public class CancelOrderLinesLines {
     }
 
     /**
-     * The amount that you want to cancel. In almost all cases, Mollie can determine the amount
-     * automatically.
+     * The amount that you want to cancel. In almost all cases, Mollie can determine the amount automatically.
      * 
-     * The amount is required only if you are *partially* canceling an order line which has a non-zero
-     * `discountAmount`.
+     * The amount is required only if you are *partially* canceling an order line which has a non-zero `discountAmount`.
      * 
-     * The amount you can cancel depends on various properties of the order line and the cancel order
-     * lines request. The maximum that can be canceled is `unit price x quantity to cancel`.
+     * The amount you can cancel depends on various properties of the order line and the cancel order lines request. The maximum that can be canceled is `unit price x quantity to cancel`.
      * 
-     * The minimum amount depends on the discount applied to the line, the quantity already shipped or
-     * canceled, the amounts already shipped or canceled and the quantity you want to cancel.
+     * The minimum amount depends on the discount applied to the line, the quantity already shipped or canceled, the amounts already shipped or canceled and the quantity you want to cancel.
      * 
-     * If you do not send an amount, Mollie will determine the amount automatically or respond with an
-     * error if the amount cannot be determined automatically.
+     * If you do not send an amount, Mollie will determine the amount automatically or respond with an error if the amount cannot be determined automatically.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -132,9 +118,7 @@ public class CancelOrderLinesLines {
     }
 
     /**
-     * The number of items that should be canceled for this order line. When this parameter is omitted,
-     * the whole order line will be canceled. When part of the line has been shipped, the remaining
-     * quantity will be canceled and the order line will be marked `completed`.
+     * The number of items that should be canceled for this order line. When this parameter is omitted, the whole order line will be canceled. When part of the line has been shipped, the remaining quantity will be canceled and the order line will be marked `completed`.
      * 
      * Must be less than the number of items already shipped or canceled for this order line.
      */
@@ -145,9 +129,7 @@ public class CancelOrderLinesLines {
     }
 
     /**
-     * The number of items that should be canceled for this order line. When this parameter is omitted,
-     * the whole order line will be canceled. When part of the line has been shipped, the remaining
-     * quantity will be canceled and the order line will be marked `completed`.
+     * The number of items that should be canceled for this order line. When this parameter is omitted, the whole order line will be canceled. When part of the line has been shipped, the remaining quantity will be canceled and the order line will be marked `completed`.
      * 
      * Must be less than the number of items already shipped or canceled for this order line.
      */
@@ -158,20 +140,15 @@ public class CancelOrderLinesLines {
     }
 
     /**
-     * The amount that you want to cancel. In almost all cases, Mollie can determine the amount
-     * automatically.
+     * The amount that you want to cancel. In almost all cases, Mollie can determine the amount automatically.
      * 
-     * The amount is required only if you are *partially* canceling an order line which has a non-zero
-     * `discountAmount`.
+     * The amount is required only if you are *partially* canceling an order line which has a non-zero `discountAmount`.
      * 
-     * The amount you can cancel depends on various properties of the order line and the cancel order
-     * lines request. The maximum that can be canceled is `unit price x quantity to cancel`.
+     * The amount you can cancel depends on various properties of the order line and the cancel order lines request. The maximum that can be canceled is `unit price x quantity to cancel`.
      * 
-     * The minimum amount depends on the discount applied to the line, the quantity already shipped or
-     * canceled, the amounts already shipped or canceled and the quantity you want to cancel.
+     * The minimum amount depends on the discount applied to the line, the quantity already shipped or canceled, the amounts already shipped or canceled and the quantity you want to cancel.
      * 
-     * If you do not send an amount, Mollie will determine the amount automatically or respond with an
-     * error if the amount cannot be determined automatically.
+     * If you do not send an amount, Mollie will determine the amount automatically or respond with an error if the amount cannot be determined automatically.
      */
     public CancelOrderLinesLines withAmount(CancelOrderLinesAmount amount) {
         Utils.checkNotNull(amount, "amount");
@@ -180,20 +157,15 @@ public class CancelOrderLinesLines {
     }
 
     /**
-     * The amount that you want to cancel. In almost all cases, Mollie can determine the amount
-     * automatically.
+     * The amount that you want to cancel. In almost all cases, Mollie can determine the amount automatically.
      * 
-     * The amount is required only if you are *partially* canceling an order line which has a non-zero
-     * `discountAmount`.
+     * The amount is required only if you are *partially* canceling an order line which has a non-zero `discountAmount`.
      * 
-     * The amount you can cancel depends on various properties of the order line and the cancel order
-     * lines request. The maximum that can be canceled is `unit price x quantity to cancel`.
+     * The amount you can cancel depends on various properties of the order line and the cancel order lines request. The maximum that can be canceled is `unit price x quantity to cancel`.
      * 
-     * The minimum amount depends on the discount applied to the line, the quantity already shipped or
-     * canceled, the amounts already shipped or canceled and the quantity you want to cancel.
+     * The minimum amount depends on the discount applied to the line, the quantity already shipped or canceled, the amounts already shipped or canceled and the quantity you want to cancel.
      * 
-     * If you do not send an amount, Mollie will determine the amount automatically or respond with an
-     * error if the amount cannot be determined automatically.
+     * If you do not send an amount, Mollie will determine the amount automatically or respond with an error if the amount cannot be determined automatically.
      */
     public CancelOrderLinesLines withAmount(JsonNullable<? extends CancelOrderLinesAmount> amount) {
         Utils.checkNotNull(amount, "amount");
@@ -254,9 +226,7 @@ public class CancelOrderLinesLines {
         }
 
         /**
-         * The number of items that should be canceled for this order line. When this parameter is omitted,
-         * the whole order line will be canceled. When part of the line has been shipped, the remaining
-         * quantity will be canceled and the order line will be marked `completed`.
+         * The number of items that should be canceled for this order line. When this parameter is omitted, the whole order line will be canceled. When part of the line has been shipped, the remaining quantity will be canceled and the order line will be marked `completed`.
          * 
          * Must be less than the number of items already shipped or canceled for this order line.
          */
@@ -267,9 +237,7 @@ public class CancelOrderLinesLines {
         }
 
         /**
-         * The number of items that should be canceled for this order line. When this parameter is omitted,
-         * the whole order line will be canceled. When part of the line has been shipped, the remaining
-         * quantity will be canceled and the order line will be marked `completed`.
+         * The number of items that should be canceled for this order line. When this parameter is omitted, the whole order line will be canceled. When part of the line has been shipped, the remaining quantity will be canceled and the order line will be marked `completed`.
          * 
          * Must be less than the number of items already shipped or canceled for this order line.
          */
@@ -280,20 +248,15 @@ public class CancelOrderLinesLines {
         }
 
         /**
-         * The amount that you want to cancel. In almost all cases, Mollie can determine the amount
-         * automatically.
+         * The amount that you want to cancel. In almost all cases, Mollie can determine the amount automatically.
          * 
-         * The amount is required only if you are *partially* canceling an order line which has a non-zero
-         * `discountAmount`.
+         * The amount is required only if you are *partially* canceling an order line which has a non-zero `discountAmount`.
          * 
-         * The amount you can cancel depends on various properties of the order line and the cancel order
-         * lines request. The maximum that can be canceled is `unit price x quantity to cancel`.
+         * The amount you can cancel depends on various properties of the order line and the cancel order lines request. The maximum that can be canceled is `unit price x quantity to cancel`.
          * 
-         * The minimum amount depends on the discount applied to the line, the quantity already shipped or
-         * canceled, the amounts already shipped or canceled and the quantity you want to cancel.
+         * The minimum amount depends on the discount applied to the line, the quantity already shipped or canceled, the amounts already shipped or canceled and the quantity you want to cancel.
          * 
-         * If you do not send an amount, Mollie will determine the amount automatically or respond with an
-         * error if the amount cannot be determined automatically.
+         * If you do not send an amount, Mollie will determine the amount automatically or respond with an error if the amount cannot be determined automatically.
          */
         public Builder amount(CancelOrderLinesAmount amount) {
             Utils.checkNotNull(amount, "amount");
@@ -302,20 +265,15 @@ public class CancelOrderLinesLines {
         }
 
         /**
-         * The amount that you want to cancel. In almost all cases, Mollie can determine the amount
-         * automatically.
+         * The amount that you want to cancel. In almost all cases, Mollie can determine the amount automatically.
          * 
-         * The amount is required only if you are *partially* canceling an order line which has a non-zero
-         * `discountAmount`.
+         * The amount is required only if you are *partially* canceling an order line which has a non-zero `discountAmount`.
          * 
-         * The amount you can cancel depends on various properties of the order line and the cancel order
-         * lines request. The maximum that can be canceled is `unit price x quantity to cancel`.
+         * The amount you can cancel depends on various properties of the order line and the cancel order lines request. The maximum that can be canceled is `unit price x quantity to cancel`.
          * 
-         * The minimum amount depends on the discount applied to the line, the quantity already shipped or
-         * canceled, the amounts already shipped or canceled and the quantity you want to cancel.
+         * The minimum amount depends on the discount applied to the line, the quantity already shipped or canceled, the amounts already shipped or canceled and the quantity you want to cancel.
          * 
-         * If you do not send an amount, Mollie will determine the amount automatically or respond with an
-         * error if the amount cannot be determined automatically.
+         * If you do not send an amount, Mollie will determine the amount automatically or respond with an error if the amount cannot be determined automatically.
          */
         public Builder amount(JsonNullable<? extends CancelOrderLinesAmount> amount) {
             Utils.checkNotNull(amount, "amount");

@@ -1,7 +1,6 @@
 # GetChargebackSettlement
 
-The API resource URL of the [settlement](get-settlement) this chargeback has been settled with. Not present if
-not yet settled.
+The API resource URL of the [settlement](get-settlement) this chargeback has been settled with. Not present if not yet settled.
 
 
 ## Fields

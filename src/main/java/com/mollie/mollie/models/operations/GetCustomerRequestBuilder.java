@@ -13,7 +13,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetCustomerRequestBuilder {
 
-    private GetCustomerSecurity security;
     private String id;
     private JsonNullable<Boolean> testmode = Utils.readDefaultOrConstValue(
                             "testmode",
@@ -23,12 +22,6 @@ public class GetCustomerRequestBuilder {
 
     public GetCustomerRequestBuilder(SDKMethodInterfaces.MethodCallGetCustomer sdk) {
         this.sdk = sdk;
-    }
-
-    public GetCustomerRequestBuilder security(GetCustomerSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public GetCustomerRequestBuilder id(String id) {
@@ -53,8 +46,7 @@ public class GetCustomerRequestBuilder {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.get(
-            security,
+        return sdk.getCustomer(
             id,
             testmode);
     }

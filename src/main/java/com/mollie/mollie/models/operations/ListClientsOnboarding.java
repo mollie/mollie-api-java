@@ -24,8 +24,7 @@ import java.util.Optional;
 public class ListClientsOnboarding {
 
     /**
-     * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this
-     * resource type.
+     * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this resource type.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
@@ -44,10 +43,12 @@ public class ListClientsOnboarding {
      * * `needs-data` — The merchant needs to provide additional information
      * * `in-review` — The merchant provided all information, awaiting review from Mollie
      * * `completed` — The onboarding is completed
+     * 
+     * Possible values: `needs-data` `in-review` `completed`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends ListClientsStatus> status;
+    private Optional<String> status;
 
     /**
      * Whether the organization can receive payments.
@@ -81,7 +82,7 @@ public class ListClientsOnboarding {
     public ListClientsOnboarding(
             @JsonProperty("resource") Optional<String> resource,
             @JsonProperty("name") Optional<String> name,
-            @JsonProperty("status") Optional<? extends ListClientsStatus> status,
+            @JsonProperty("status") Optional<String> status,
             @JsonProperty("canReceivePayments") Optional<Boolean> canReceivePayments,
             @JsonProperty("canReceiveSettlements") Optional<Boolean> canReceiveSettlements,
             @JsonProperty("signedUpAt") Optional<String> signedUpAt,
@@ -107,8 +108,7 @@ public class ListClientsOnboarding {
     }
 
     /**
-     * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this
-     * resource type.
+     * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this resource type.
      */
     @JsonIgnore
     public Optional<String> resource() {
@@ -129,11 +129,12 @@ public class ListClientsOnboarding {
      * * `needs-data` — The merchant needs to provide additional information
      * * `in-review` — The merchant provided all information, awaiting review from Mollie
      * * `completed` — The onboarding is completed
+     * 
+     * Possible values: `needs-data` `in-review` `completed`
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListClientsStatus> status() {
-        return (Optional<ListClientsStatus>) status;
+    public Optional<String> status() {
+        return status;
     }
 
     /**
@@ -174,8 +175,7 @@ public class ListClientsOnboarding {
     }
 
     /**
-     * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this
-     * resource type.
+     * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this resource type.
      */
     public ListClientsOnboarding withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -184,8 +184,7 @@ public class ListClientsOnboarding {
     }
 
     /**
-     * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this
-     * resource type.
+     * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this resource type.
      */
     public ListClientsOnboarding withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
@@ -217,8 +216,10 @@ public class ListClientsOnboarding {
      * * `needs-data` — The merchant needs to provide additional information
      * * `in-review` — The merchant provided all information, awaiting review from Mollie
      * * `completed` — The onboarding is completed
+     * 
+     * Possible values: `needs-data` `in-review` `completed`
      */
-    public ListClientsOnboarding withStatus(ListClientsStatus status) {
+    public ListClientsOnboarding withStatus(String status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -230,8 +231,10 @@ public class ListClientsOnboarding {
      * * `needs-data` — The merchant needs to provide additional information
      * * `in-review` — The merchant provided all information, awaiting review from Mollie
      * * `completed` — The onboarding is completed
+     * 
+     * Possible values: `needs-data` `in-review` `completed`
      */
-    public ListClientsOnboarding withStatus(Optional<? extends ListClientsStatus> status) {
+    public ListClientsOnboarding withStatus(Optional<String> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -358,7 +361,7 @@ public class ListClientsOnboarding {
  
         private Optional<String> name = Optional.empty();
  
-        private Optional<? extends ListClientsStatus> status = Optional.empty();
+        private Optional<String> status = Optional.empty();
  
         private Optional<Boolean> canReceivePayments = Optional.empty();
  
@@ -373,8 +376,7 @@ public class ListClientsOnboarding {
         }
 
         /**
-         * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this
-         * resource type.
+         * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this resource type.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -383,8 +385,7 @@ public class ListClientsOnboarding {
         }
 
         /**
-         * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this
-         * resource type.
+         * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this resource type.
          */
         public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
@@ -416,8 +417,10 @@ public class ListClientsOnboarding {
          * * `needs-data` — The merchant needs to provide additional information
          * * `in-review` — The merchant provided all information, awaiting review from Mollie
          * * `completed` — The onboarding is completed
+         * 
+         * Possible values: `needs-data` `in-review` `completed`
          */
-        public Builder status(ListClientsStatus status) {
+        public Builder status(String status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -429,8 +432,10 @@ public class ListClientsOnboarding {
          * * `needs-data` — The merchant needs to provide additional information
          * * `in-review` — The merchant provided all information, awaiting review from Mollie
          * * `completed` — The onboarding is completed
+         * 
+         * Possible values: `needs-data` `in-review` `completed`
          */
-        public Builder status(Optional<? extends ListClientsStatus> status) {
+        public Builder status(Optional<String> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

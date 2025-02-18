@@ -10,7 +10,6 @@ import java.util.Optional;
 public class CreatePaymentLinkRequestBuilder {
 
     private Optional<? extends CreatePaymentLinkRequestBody> request = Optional.empty();
-    private CreatePaymentLinkSecurity security;
     private final SDKMethodInterfaces.MethodCallCreatePaymentLink sdk;
 
     public CreatePaymentLinkRequestBuilder(SDKMethodInterfaces.MethodCallCreatePaymentLink sdk) {
@@ -29,16 +28,9 @@ public class CreatePaymentLinkRequestBuilder {
         return this;
     }
 
-    public CreatePaymentLinkRequestBuilder security(CreatePaymentLinkSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
-    }
-
     public CreatePaymentLinkResponse call() throws Exception {
 
-        return sdk.create(
-            request,
-            security);
+        return sdk.createPaymentLink(
+            request);
     }
 }

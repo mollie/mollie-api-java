@@ -22,8 +22,7 @@ import java.util.Optional;
 public class Embedded {
 
     /**
-     * An array of balance objects. For a complete reference of
-     * the balance object, refer to the [Get balance endpoint](get-balance) documentation.
+     * An array of balance objects. For a complete reference of the balance object, refer to the [Get balance endpoint](get-balance) documentation.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("balances")
@@ -41,8 +40,7 @@ public class Embedded {
     }
 
     /**
-     * An array of balance objects. For a complete reference of
-     * the balance object, refer to the [Get balance endpoint](get-balance) documentation.
+     * An array of balance objects. For a complete reference of the balance object, refer to the [Get balance endpoint](get-balance) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -55,8 +53,7 @@ public class Embedded {
     }
 
     /**
-     * An array of balance objects. For a complete reference of
-     * the balance object, refer to the [Get balance endpoint](get-balance) documentation.
+     * An array of balance objects. For a complete reference of the balance object, refer to the [Get balance endpoint](get-balance) documentation.
      */
     public Embedded withBalances(List<Balances> balances) {
         Utils.checkNotNull(balances, "balances");
@@ -65,8 +62,7 @@ public class Embedded {
     }
 
     /**
-     * An array of balance objects. For a complete reference of
-     * the balance object, refer to the [Get balance endpoint](get-balance) documentation.
+     * An array of balance objects. For a complete reference of the balance object, refer to the [Get balance endpoint](get-balance) documentation.
      */
     public Embedded withBalances(Optional<? extends List<Balances>> balances) {
         Utils.checkNotNull(balances, "balances");
@@ -108,8 +104,7 @@ public class Embedded {
         }
 
         /**
-         * An array of balance objects. For a complete reference of
-         * the balance object, refer to the [Get balance endpoint](get-balance) documentation.
+         * An array of balance objects. For a complete reference of the balance object, refer to the [Get balance endpoint](get-balance) documentation.
          */
         public Builder balances(List<Balances> balances) {
             Utils.checkNotNull(balances, "balances");
@@ -118,8 +113,7 @@ public class Embedded {
         }
 
         /**
-         * An array of balance objects. For a complete reference of
-         * the balance object, refer to the [Get balance endpoint](get-balance) documentation.
+         * An array of balance objects. For a complete reference of the balance object, refer to the [Get balance endpoint](get-balance) documentation.
          */
         public Builder balances(Optional<? extends List<Balances>> balances) {
             Utils.checkNotNull(balances, "balances");

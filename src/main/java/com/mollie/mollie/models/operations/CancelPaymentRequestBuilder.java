@@ -13,8 +13,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CancelPaymentRequestBuilder {
 
-    private CancelPaymentSecurity security;
-    private String id;
+    private String paymentId;
     private JsonNullable<Boolean> testmode = Utils.readDefaultOrConstValue(
                             "testmode",
                             "false",
@@ -25,15 +24,9 @@ public class CancelPaymentRequestBuilder {
         this.sdk = sdk;
     }
 
-    public CancelPaymentRequestBuilder security(CancelPaymentSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
-    }
-
-    public CancelPaymentRequestBuilder id(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public CancelPaymentRequestBuilder paymentId(String paymentId) {
+        Utils.checkNotNull(paymentId, "paymentId");
+        this.paymentId = paymentId;
         return this;
     }
 
@@ -53,9 +46,8 @@ public class CancelPaymentRequestBuilder {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.cancel(
-            security,
-            id,
+        return sdk.cancelPayment(
+            paymentId,
             testmode);
     }
 

@@ -28,20 +28,16 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class EnableMethodResponseBody {
 
     /**
-     * Indicates the response contains a payment method object. Will always contain the string `method` for this
-     * endpoint.
+     * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
     private Optional<String> resource;
 
     /**
-     * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment
-     * method selection screen will be skipped.
+     * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
      * 
-     * Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik`
-     * `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow`
-     * `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
+     * Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
@@ -64,8 +60,7 @@ public class EnableMethodResponseBody {
     private Optional<? extends EnableMethodMinimumAmount> minimumAmount;
 
     /**
-     * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
-     * is returned instead.
+     * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("maximumAmount")
@@ -83,13 +78,10 @@ public class EnableMethodResponseBody {
      * 
      * Possible values:
      * * `activated`: The payment method is activated and ready for use.
-     * * `pending-boarding`: Mollie is waiting for you to finish onboarding in the Merchant Dashboard before the payment
-     *   method can be activated.
+     * * `pending-boarding`: Mollie is waiting for you to finish onboarding in the Merchant Dashboard before the payment method can be activated.
      * * `pending-review`: Mollie needs to review your request for this payment method before it can be activated.
-     * * `pending-external`: Activation of this payment method relies on you taking action with an external party, for
-     *   example signing up with PayPal or a giftcard issuer.
-     * * `rejected`: Your request for this payment method was rejected. Whenever Mollie rejects such a request, you will
-     *   always be informed via email.
+     * * `pending-external`: Activation of this payment method relies on you taking action with an external party, for example signing up with PayPal or a giftcard issuer.
+     * * `rejected`: Your request for this payment method was rejected. Whenever Mollie rejects such a request, you will always be informed via email.
      * * `null`: This payment method was not requested.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -97,16 +89,14 @@ public class EnableMethodResponseBody {
     private Optional<String> status;
 
     /**
-     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on
-     * your account.
+     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pricing")
     private Optional<? extends List<EnableMethodPricing>> pricing;
 
     /**
-     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
-     * for iDEAL, KBC/CBC, gift cards, and vouchers.
+     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("issuers")
@@ -158,8 +148,7 @@ public class EnableMethodResponseBody {
     }
 
     /**
-     * Indicates the response contains a payment method object. Will always contain the string `method` for this
-     * endpoint.
+     * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
      */
     @JsonIgnore
     public Optional<String> resource() {
@@ -167,12 +156,9 @@ public class EnableMethodResponseBody {
     }
 
     /**
-     * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment
-     * method selection screen will be skipped.
+     * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
      * 
-     * Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik`
-     * `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow`
-     * `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
+     * Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
      */
     @JsonIgnore
     public Optional<String> id() {
@@ -199,8 +185,7 @@ public class EnableMethodResponseBody {
     }
 
     /**
-     * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
-     * is returned instead.
+     * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -222,13 +207,10 @@ public class EnableMethodResponseBody {
      * 
      * Possible values:
      * * `activated`: The payment method is activated and ready for use.
-     * * `pending-boarding`: Mollie is waiting for you to finish onboarding in the Merchant Dashboard before the payment
-     *   method can be activated.
+     * * `pending-boarding`: Mollie is waiting for you to finish onboarding in the Merchant Dashboard before the payment method can be activated.
      * * `pending-review`: Mollie needs to review your request for this payment method before it can be activated.
-     * * `pending-external`: Activation of this payment method relies on you taking action with an external party, for
-     *   example signing up with PayPal or a giftcard issuer.
-     * * `rejected`: Your request for this payment method was rejected. Whenever Mollie rejects such a request, you will
-     *   always be informed via email.
+     * * `pending-external`: Activation of this payment method relies on you taking action with an external party, for example signing up with PayPal or a giftcard issuer.
+     * * `rejected`: Your request for this payment method was rejected. Whenever Mollie rejects such a request, you will always be informed via email.
      * * `null`: This payment method was not requested.
      */
     @JsonIgnore
@@ -237,8 +219,7 @@ public class EnableMethodResponseBody {
     }
 
     /**
-     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on
-     * your account.
+     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -247,8 +228,7 @@ public class EnableMethodResponseBody {
     }
 
     /**
-     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
-     * for iDEAL, KBC/CBC, gift cards, and vouchers.
+     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -270,8 +250,7 @@ public class EnableMethodResponseBody {
     }
 
     /**
-     * Indicates the response contains a payment method object. Will always contain the string `method` for this
-     * endpoint.
+     * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
      */
     public EnableMethodResponseBody withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -280,8 +259,7 @@ public class EnableMethodResponseBody {
     }
 
     /**
-     * Indicates the response contains a payment method object. Will always contain the string `method` for this
-     * endpoint.
+     * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
      */
     public EnableMethodResponseBody withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
@@ -290,12 +268,9 @@ public class EnableMethodResponseBody {
     }
 
     /**
-     * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment
-     * method selection screen will be skipped.
+     * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
      * 
-     * Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik`
-     * `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow`
-     * `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
+     * Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
      */
     public EnableMethodResponseBody withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -304,12 +279,9 @@ public class EnableMethodResponseBody {
     }
 
     /**
-     * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment
-     * method selection screen will be skipped.
+     * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
      * 
-     * Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik`
-     * `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow`
-     * `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
+     * Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
      */
     public EnableMethodResponseBody withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
@@ -358,8 +330,7 @@ public class EnableMethodResponseBody {
     }
 
     /**
-     * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
-     * is returned instead.
+     * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
      */
     public EnableMethodResponseBody withMaximumAmount(EnableMethodMaximumAmount maximumAmount) {
         Utils.checkNotNull(maximumAmount, "maximumAmount");
@@ -368,8 +339,7 @@ public class EnableMethodResponseBody {
     }
 
     /**
-     * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
-     * is returned instead.
+     * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
      */
     public EnableMethodResponseBody withMaximumAmount(JsonNullable<? extends EnableMethodMaximumAmount> maximumAmount) {
         Utils.checkNotNull(maximumAmount, "maximumAmount");
@@ -400,13 +370,10 @@ public class EnableMethodResponseBody {
      * 
      * Possible values:
      * * `activated`: The payment method is activated and ready for use.
-     * * `pending-boarding`: Mollie is waiting for you to finish onboarding in the Merchant Dashboard before the payment
-     *   method can be activated.
+     * * `pending-boarding`: Mollie is waiting for you to finish onboarding in the Merchant Dashboard before the payment method can be activated.
      * * `pending-review`: Mollie needs to review your request for this payment method before it can be activated.
-     * * `pending-external`: Activation of this payment method relies on you taking action with an external party, for
-     *   example signing up with PayPal or a giftcard issuer.
-     * * `rejected`: Your request for this payment method was rejected. Whenever Mollie rejects such a request, you will
-     *   always be informed via email.
+     * * `pending-external`: Activation of this payment method relies on you taking action with an external party, for example signing up with PayPal or a giftcard issuer.
+     * * `rejected`: Your request for this payment method was rejected. Whenever Mollie rejects such a request, you will always be informed via email.
      * * `null`: This payment method was not requested.
      */
     public EnableMethodResponseBody withStatus(String status) {
@@ -420,13 +387,10 @@ public class EnableMethodResponseBody {
      * 
      * Possible values:
      * * `activated`: The payment method is activated and ready for use.
-     * * `pending-boarding`: Mollie is waiting for you to finish onboarding in the Merchant Dashboard before the payment
-     *   method can be activated.
+     * * `pending-boarding`: Mollie is waiting for you to finish onboarding in the Merchant Dashboard before the payment method can be activated.
      * * `pending-review`: Mollie needs to review your request for this payment method before it can be activated.
-     * * `pending-external`: Activation of this payment method relies on you taking action with an external party, for
-     *   example signing up with PayPal or a giftcard issuer.
-     * * `rejected`: Your request for this payment method was rejected. Whenever Mollie rejects such a request, you will
-     *   always be informed via email.
+     * * `pending-external`: Activation of this payment method relies on you taking action with an external party, for example signing up with PayPal or a giftcard issuer.
+     * * `rejected`: Your request for this payment method was rejected. Whenever Mollie rejects such a request, you will always be informed via email.
      * * `null`: This payment method was not requested.
      */
     public EnableMethodResponseBody withStatus(Optional<String> status) {
@@ -436,8 +400,7 @@ public class EnableMethodResponseBody {
     }
 
     /**
-     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on
-     * your account.
+     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
      */
     public EnableMethodResponseBody withPricing(List<EnableMethodPricing> pricing) {
         Utils.checkNotNull(pricing, "pricing");
@@ -446,8 +409,7 @@ public class EnableMethodResponseBody {
     }
 
     /**
-     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on
-     * your account.
+     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
      */
     public EnableMethodResponseBody withPricing(Optional<? extends List<EnableMethodPricing>> pricing) {
         Utils.checkNotNull(pricing, "pricing");
@@ -456,8 +418,7 @@ public class EnableMethodResponseBody {
     }
 
     /**
-     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
-     * for iDEAL, KBC/CBC, gift cards, and vouchers.
+     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
      */
     public EnableMethodResponseBody withIssuers(List<EnableMethodIssuers> issuers) {
         Utils.checkNotNull(issuers, "issuers");
@@ -466,8 +427,7 @@ public class EnableMethodResponseBody {
     }
 
     /**
-     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
-     * for iDEAL, KBC/CBC, gift cards, and vouchers.
+     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
      */
     public EnableMethodResponseBody withIssuers(Optional<? extends List<EnableMethodIssuers>> issuers) {
         Utils.checkNotNull(issuers, "issuers");
@@ -572,8 +532,7 @@ public class EnableMethodResponseBody {
         }
 
         /**
-         * Indicates the response contains a payment method object. Will always contain the string `method` for this
-         * endpoint.
+         * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -582,8 +541,7 @@ public class EnableMethodResponseBody {
         }
 
         /**
-         * Indicates the response contains a payment method object. Will always contain the string `method` for this
-         * endpoint.
+         * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
          */
         public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
@@ -592,12 +550,9 @@ public class EnableMethodResponseBody {
         }
 
         /**
-         * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment
-         * method selection screen will be skipped.
+         * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
          * 
-         * Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik`
-         * `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow`
-         * `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
+         * Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -606,12 +561,9 @@ public class EnableMethodResponseBody {
         }
 
         /**
-         * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment
-         * method selection screen will be skipped.
+         * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
          * 
-         * Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik`
-         * `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow`
-         * `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
+         * Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
          */
         public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
@@ -660,8 +612,7 @@ public class EnableMethodResponseBody {
         }
 
         /**
-         * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
-         * is returned instead.
+         * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
          */
         public Builder maximumAmount(EnableMethodMaximumAmount maximumAmount) {
             Utils.checkNotNull(maximumAmount, "maximumAmount");
@@ -670,8 +621,7 @@ public class EnableMethodResponseBody {
         }
 
         /**
-         * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
-         * is returned instead.
+         * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
          */
         public Builder maximumAmount(JsonNullable<? extends EnableMethodMaximumAmount> maximumAmount) {
             Utils.checkNotNull(maximumAmount, "maximumAmount");
@@ -702,13 +652,10 @@ public class EnableMethodResponseBody {
          * 
          * Possible values:
          * * `activated`: The payment method is activated and ready for use.
-         * * `pending-boarding`: Mollie is waiting for you to finish onboarding in the Merchant Dashboard before the payment
-         *   method can be activated.
+         * * `pending-boarding`: Mollie is waiting for you to finish onboarding in the Merchant Dashboard before the payment method can be activated.
          * * `pending-review`: Mollie needs to review your request for this payment method before it can be activated.
-         * * `pending-external`: Activation of this payment method relies on you taking action with an external party, for
-         *   example signing up with PayPal or a giftcard issuer.
-         * * `rejected`: Your request for this payment method was rejected. Whenever Mollie rejects such a request, you will
-         *   always be informed via email.
+         * * `pending-external`: Activation of this payment method relies on you taking action with an external party, for example signing up with PayPal or a giftcard issuer.
+         * * `rejected`: Your request for this payment method was rejected. Whenever Mollie rejects such a request, you will always be informed via email.
          * * `null`: This payment method was not requested.
          */
         public Builder status(String status) {
@@ -722,13 +669,10 @@ public class EnableMethodResponseBody {
          * 
          * Possible values:
          * * `activated`: The payment method is activated and ready for use.
-         * * `pending-boarding`: Mollie is waiting for you to finish onboarding in the Merchant Dashboard before the payment
-         *   method can be activated.
+         * * `pending-boarding`: Mollie is waiting for you to finish onboarding in the Merchant Dashboard before the payment method can be activated.
          * * `pending-review`: Mollie needs to review your request for this payment method before it can be activated.
-         * * `pending-external`: Activation of this payment method relies on you taking action with an external party, for
-         *   example signing up with PayPal or a giftcard issuer.
-         * * `rejected`: Your request for this payment method was rejected. Whenever Mollie rejects such a request, you will
-         *   always be informed via email.
+         * * `pending-external`: Activation of this payment method relies on you taking action with an external party, for example signing up with PayPal or a giftcard issuer.
+         * * `rejected`: Your request for this payment method was rejected. Whenever Mollie rejects such a request, you will always be informed via email.
          * * `null`: This payment method was not requested.
          */
         public Builder status(Optional<String> status) {
@@ -738,8 +682,7 @@ public class EnableMethodResponseBody {
         }
 
         /**
-         * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on
-         * your account.
+         * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
          */
         public Builder pricing(List<EnableMethodPricing> pricing) {
             Utils.checkNotNull(pricing, "pricing");
@@ -748,8 +691,7 @@ public class EnableMethodResponseBody {
         }
 
         /**
-         * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on
-         * your account.
+         * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
          */
         public Builder pricing(Optional<? extends List<EnableMethodPricing>> pricing) {
             Utils.checkNotNull(pricing, "pricing");
@@ -758,8 +700,7 @@ public class EnableMethodResponseBody {
         }
 
         /**
-         * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
-         * for iDEAL, KBC/CBC, gift cards, and vouchers.
+         * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
          */
         public Builder issuers(List<EnableMethodIssuers> issuers) {
             Utils.checkNotNull(issuers, "issuers");
@@ -768,8 +709,7 @@ public class EnableMethodResponseBody {
         }
 
         /**
-         * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
-         * for iDEAL, KBC/CBC, gift cards, and vouchers.
+         * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
          */
         public Builder issuers(Optional<? extends List<EnableMethodIssuers>> issuers) {
             Utils.checkNotNull(issuers, "issuers");

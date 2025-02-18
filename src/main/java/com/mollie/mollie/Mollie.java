@@ -189,16 +189,15 @@ public class Mollie {
             this.sdkConfiguration.defaultClient = client;
             return this;
         }
+        
         /**
-         * Configures the SDK security to use the provided secret.
+         * Configures the SDK to use the provided security details.
          *
-         * @param oAuth The secret to use for all requests.
+         * @param security The security details to use for all requests.
          * @return The builder instance.
          */
-        public Builder oAuth(String oAuth) {
-            this.sdkConfiguration.securitySource = SecuritySource.of(com.mollie.mollie.models.components.Security.builder()
-              .oAuth(oAuth)
-              .build());
+        public Builder security(com.mollie.mollie.models.components.Security security) {
+            this.sdkConfiguration.securitySource = SecuritySource.of(security);
             return this;
         }
 

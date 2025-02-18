@@ -24,7 +24,7 @@ public class DeleteProfileRequestBuilder {
 
     public DeleteProfileResponse call() throws Exception {
 
-        return sdk.delete(
+        return sdk.deleteProfile(
             id);
     }
 }

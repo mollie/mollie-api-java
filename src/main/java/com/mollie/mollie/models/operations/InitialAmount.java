@@ -14,8 +14,7 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * InitialAmount - The amount that was to be moved to or from the balance, excluding deductions. If the transaction moves funds away
- * from the balance, for example when it concerns a refund, the amount will be negative.
+ * InitialAmount - The amount that was to be moved to or from the balance, excluding deductions. If the transaction moves funds away from the balance, for example when it concerns a refund, the amount will be negative.
  */
 
 public class InitialAmount {

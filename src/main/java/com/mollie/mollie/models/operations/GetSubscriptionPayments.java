@@ -17,8 +17,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * GetSubscriptionPayments - The API resource URL of the [payments](list-payments) created for this subscription. Omitted if no such
- * payments exist (yet).
+ * GetSubscriptionPayments - The API resource URL of the [payments](list-payments) created for this subscription. Omitted if no such payments exist (yet).
  */
 
 public class GetSubscriptionPayments {

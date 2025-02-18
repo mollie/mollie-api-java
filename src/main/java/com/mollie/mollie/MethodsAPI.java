@@ -12,38 +12,31 @@ import com.mollie.mollie.models.errors.GetMethodMethodsAPIResponseBody;
 import com.mollie.mollie.models.operations.DisableMethodIssuerRequest;
 import com.mollie.mollie.models.operations.DisableMethodIssuerRequestBuilder;
 import com.mollie.mollie.models.operations.DisableMethodIssuerResponse;
-import com.mollie.mollie.models.operations.DisableMethodIssuerSecurity;
 import com.mollie.mollie.models.operations.DisableMethodRequest;
 import com.mollie.mollie.models.operations.DisableMethodRequestBuilder;
 import com.mollie.mollie.models.operations.DisableMethodResponse;
-import com.mollie.mollie.models.operations.DisableMethodSecurity;
 import com.mollie.mollie.models.operations.EnableMethodIssuerRequest;
 import com.mollie.mollie.models.operations.EnableMethodIssuerRequestBody;
 import com.mollie.mollie.models.operations.EnableMethodIssuerRequestBuilder;
 import com.mollie.mollie.models.operations.EnableMethodIssuerResponse;
 import com.mollie.mollie.models.operations.EnableMethodIssuerResponseBody;
-import com.mollie.mollie.models.operations.EnableMethodIssuerSecurity;
 import com.mollie.mollie.models.operations.EnableMethodRequest;
 import com.mollie.mollie.models.operations.EnableMethodRequestBuilder;
 import com.mollie.mollie.models.operations.EnableMethodResponse;
 import com.mollie.mollie.models.operations.EnableMethodResponseBody;
-import com.mollie.mollie.models.operations.EnableMethodSecurity;
 import com.mollie.mollie.models.operations.GetMethodRequest;
 import com.mollie.mollie.models.operations.GetMethodRequestBuilder;
 import com.mollie.mollie.models.operations.GetMethodResponse;
 import com.mollie.mollie.models.operations.GetMethodResponseBody;
-import com.mollie.mollie.models.operations.GetMethodSecurity;
 import com.mollie.mollie.models.operations.ListAllMethodsQueryParamAmount;
 import com.mollie.mollie.models.operations.ListAllMethodsRequest;
 import com.mollie.mollie.models.operations.ListAllMethodsRequestBuilder;
 import com.mollie.mollie.models.operations.ListAllMethodsResponse;
 import com.mollie.mollie.models.operations.ListAllMethodsResponseBody;
-import com.mollie.mollie.models.operations.ListAllMethodsSecurity;
 import com.mollie.mollie.models.operations.ListMethodsRequest;
 import com.mollie.mollie.models.operations.ListMethodsRequestBuilder;
 import com.mollie.mollie.models.operations.ListMethodsResponse;
 import com.mollie.mollie.models.operations.ListMethodsResponseBody;
-import com.mollie.mollie.models.operations.ListMethodsSecurity;
 import com.mollie.mollie.models.operations.SDKMethodInterfaces.*;
 import com.mollie.mollie.utils.HTTPClient;
 import com.mollie.mollie.utils.HTTPRequest;
@@ -81,54 +74,50 @@ public class MethodsAPI implements
 
     /**
      * List payment methods
-     * Retrieve all enabled payment methods. The results of this endpoint are
-     * **not** paginated — unlike most other list endpoints in our API.
+     * Retrieve all enabled payment methods. The results of this endpoint are **not** paginated — unlike most other list endpoints in our API.
      * 
-     * For test mode, all pending and enabled payment methods are returned. If no
-     * payment methods are requested yet, the most popular payment methods are returned in the test mode. For live
-     * mode, only fully enabled payment methods are returned.
+     * For test mode, all pending and enabled payment methods are returned. If no payment methods are requested yet, the most popular payment methods are returned in the test mode. For live mode, only fully enabled payment methods are returned.
      * 
-     * Payment methods can be requested and enabled via the Mollie Dashboard, or
-     * via the [Enable payment method endpoint](enable-method) of the Profiles API.
+     * Payment methods can be requested and enabled via the Mollie Dashboard, or via the [Enable payment method endpoint](enable-method) of the Profiles API.
      * 
-     * The list can optionally be filtered using a number of parameters described
-     * below.
+     * The list can optionally be filtered using a number of parameters described below.
      * 
-     * By default, only payment methods for the Euro currency are returned. If you
-     * wish to retrieve payment methods which exclusively support other currencies (e.g. Twint), you need to use the
-     * `amount` parameters.
+     * By default, only payment methods for the Euro currency are returned. If you wish to retrieve payment methods which exclusively support other currencies (e.g. Twint), you need to use the `amount` parameters.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.read**](/reference/authentication)
      * @return The call builder
      */
-    public ListMethodsRequestBuilder list() {
+    public ListMethodsRequestBuilder listMethods() {
         return new ListMethodsRequestBuilder(this);
     }
 
     /**
      * List payment methods
-     * Retrieve all enabled payment methods. The results of this endpoint are
-     * **not** paginated — unlike most other list endpoints in our API.
+     * Retrieve all enabled payment methods. The results of this endpoint are **not** paginated — unlike most other list endpoints in our API.
      * 
-     * For test mode, all pending and enabled payment methods are returned. If no
-     * payment methods are requested yet, the most popular payment methods are returned in the test mode. For live
-     * mode, only fully enabled payment methods are returned.
+     * For test mode, all pending and enabled payment methods are returned. If no payment methods are requested yet, the most popular payment methods are returned in the test mode. For live mode, only fully enabled payment methods are returned.
      * 
-     * Payment methods can be requested and enabled via the Mollie Dashboard, or
-     * via the [Enable payment method endpoint](enable-method) of the Profiles API.
+     * Payment methods can be requested and enabled via the Mollie Dashboard, or via the [Enable payment method endpoint](enable-method) of the Profiles API.
      * 
-     * The list can optionally be filtered using a number of parameters described
-     * below.
+     * The list can optionally be filtered using a number of parameters described below.
      * 
-     * By default, only payment methods for the Euro currency are returned. If you
-     * wish to retrieve payment methods which exclusively support other currencies (e.g. Twint), you need to use the
-     * `amount` parameters.
+     * By default, only payment methods for the Euro currency are returned. If you wish to retrieve payment methods which exclusively support other currencies (e.g. Twint), you need to use the `amount` parameters.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.read**](/reference/authentication)
      * @param request The request object containing all of the parameters for the API call.
-     * @param security The security details to use for authentication.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListMethodsResponse list(
-            ListMethodsRequest request,
-            ListMethodsSecurity security) throws Exception {
+    public ListMethodsResponse listMethods(
+            ListMethodsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -144,11 +133,9 @@ public class MethodsAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -260,56 +247,62 @@ public class MethodsAPI implements
 
     /**
      * List all payment methods
-     * Retrieve all payment methods that Mollie offers, regardless of the eligibility of the organization for the specific
-     * method. The results of this endpoint are **not** paginated — unlike most other list endpoints in our API.
+     * Retrieve all payment methods that Mollie offers, regardless of the eligibility of the organization for the specific method. The results of this endpoint are **not** paginated — unlike most other list endpoints in our API.
      * 
      * The list can optionally be filtered using a number of parameters described below.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.read**](/reference/authentication)
      * @return The call builder
      */
-    public ListAllMethodsRequestBuilder listAll() {
+    public ListAllMethodsRequestBuilder listAllMethods() {
         return new ListAllMethodsRequestBuilder(this);
     }
 
     /**
      * List all payment methods
-     * Retrieve all payment methods that Mollie offers, regardless of the eligibility of the organization for the specific
-     * method. The results of this endpoint are **not** paginated — unlike most other list endpoints in our API.
+     * Retrieve all payment methods that Mollie offers, regardless of the eligibility of the organization for the specific method. The results of this endpoint are **not** paginated — unlike most other list endpoints in our API.
      * 
      * The list can optionally be filtered using a number of parameters described below.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.read**](/reference/authentication)
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListAllMethodsResponse listAll(
-            ListAllMethodsSecurity security) throws Exception {
-        return listAll(security, Optional.empty(), Optional.empty(), JsonNullable.undefined());
+    public ListAllMethodsResponse listAllMethodsDirect() throws Exception {
+        return listAllMethods(Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
     
     /**
      * List all payment methods
-     * Retrieve all payment methods that Mollie offers, regardless of the eligibility of the organization for the specific
-     * method. The results of this endpoint are **not** paginated — unlike most other list endpoints in our API.
+     * Retrieve all payment methods that Mollie offers, regardless of the eligibility of the organization for the specific method. The results of this endpoint are **not** paginated — unlike most other list endpoints in our API.
      * 
      * The list can optionally be filtered using a number of parameters described below.
-     * @param security The security details to use for authentication.
-     * @param locale Passing a locale will sort the payment methods in the preferred order
-    for the country, and translate the payment method names in the corresponding language.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.read**](/reference/authentication)
+     * @param locale Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
 
-    Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH`
-    `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV`
-    `lt_LT`
+    Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
      * @param amount In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     * @param include This endpoint allows you to include additional information via the
-    `include` query string parameter.
+     * @param include This endpoint allows you to include additional information via the `include` query string parameter.
 
-    * `issuers`: Include issuer details such as which iDEAL or gift card
-    issuers are available.
+    * `issuers`: Include issuer details such as which iDEAL or gift card issuers are available.
     * `pricing`: Include pricing for each payment method.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListAllMethodsResponse listAll(
-            ListAllMethodsSecurity security,
+    public ListAllMethodsResponse listAllMethods(
             Optional<String> locale,
             Optional<? extends ListAllMethodsQueryParamAmount> amount,
             JsonNullable<String> include) throws Exception {
@@ -336,11 +329,9 @@ public class MethodsAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -454,19 +445,20 @@ public class MethodsAPI implements
      * Get payment method
      * Retrieve a single payment method by its ID.
      * 
-     * If a method is not available on this profile, a `404 Not Found` response is
-     * returned. If the method is available but not enabled yet, a status `403 Forbidden` is returned. You can enable
-     * payments methods via the [Enable payment method endpoint](enable-method) of the Profiles API, or via
-     * the Mollie Dashboard.
+     * If a method is not available on this profile, a `404 Not Found` response is returned. If the method is available but not enabled yet, a status `403 Forbidden` is returned. You can enable payments methods via the [Enable payment method endpoint](enable-method) of the Profiles API, or via the Mollie Dashboard.
      * 
-     * If you do not know the method's ID, you can use the [methods list
-     * endpoint](list-methods) to retrieve all payment methods that are available.
+     * If you do not know the method's ID, you can use the [methods list endpoint](list-methods) to retrieve all payment methods that are available.
      * 
-     * Additionally, it is possible to check if wallet methods such as Apple Pay
-     * are enabled by passing the wallet ID (`applepay`) as the method ID.
+     * Additionally, it is possible to check if wallet methods such as Apple Pay are enabled by passing the wallet ID (`applepay`) as the method ID.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.read**](/reference/authentication)
      * @return The call builder
      */
-    public GetMethodRequestBuilder get() {
+    public GetMethodRequestBuilder getMethod() {
         return new GetMethodRequestBuilder(this);
     }
 
@@ -474,24 +466,23 @@ public class MethodsAPI implements
      * Get payment method
      * Retrieve a single payment method by its ID.
      * 
-     * If a method is not available on this profile, a `404 Not Found` response is
-     * returned. If the method is available but not enabled yet, a status `403 Forbidden` is returned. You can enable
-     * payments methods via the [Enable payment method endpoint](enable-method) of the Profiles API, or via
-     * the Mollie Dashboard.
+     * If a method is not available on this profile, a `404 Not Found` response is returned. If the method is available but not enabled yet, a status `403 Forbidden` is returned. You can enable payments methods via the [Enable payment method endpoint](enable-method) of the Profiles API, or via the Mollie Dashboard.
      * 
-     * If you do not know the method's ID, you can use the [methods list
-     * endpoint](list-methods) to retrieve all payment methods that are available.
+     * If you do not know the method's ID, you can use the [methods list endpoint](list-methods) to retrieve all payment methods that are available.
      * 
-     * Additionally, it is possible to check if wallet methods such as Apple Pay
-     * are enabled by passing the wallet ID (`applepay`) as the method ID.
+     * Additionally, it is possible to check if wallet methods such as Apple Pay are enabled by passing the wallet ID (`applepay`) as the method ID.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.read**](/reference/authentication)
      * @param request The request object containing all of the parameters for the API call.
-     * @param security The security details to use for authentication.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetMethodResponse get(
-            GetMethodRequest request,
-            GetMethodSecurity security) throws Exception {
+    public GetMethodResponse getMethod(
+            GetMethodRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 GetMethodRequest.class,
@@ -509,11 +500,9 @@ public class MethodsAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -643,14 +632,17 @@ public class MethodsAPI implements
      * Enable payment method
      * Enable a payment method on a specific profile.
      * 
-     * When using a profile-specific API credential, the alias `me` can be used
-     * instead of the profile ID to refer to the current profile.
+     * When using a profile-specific API credential, the alias `me` can be used instead of the profile ID to refer to the current profile.
      * 
-     * Some payment methods require extra steps in order to be activated. In cases
-     * where a step at the payment method provider needs to be completed first, the status will be set to
-     * `pending-external` and the response will contain a link to complete the activation at the provider.
+     * Some payment methods require extra steps in order to be activated. In cases where a step at the payment method provider needs to be completed first, the status will be set to `pending-external` and the response will contain a link to complete the activation at the provider.
      * 
      * To enable voucher or gift card issuers, refer to the [Enable payment method issuer](enable-method-issuer) endpoint.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **profiles.write**](/reference/authentication)
      * @return The call builder
      */
     public EnableMethodRequestBuilder enableMethod() {
@@ -661,22 +653,23 @@ public class MethodsAPI implements
      * Enable payment method
      * Enable a payment method on a specific profile.
      * 
-     * When using a profile-specific API credential, the alias `me` can be used
-     * instead of the profile ID to refer to the current profile.
+     * When using a profile-specific API credential, the alias `me` can be used instead of the profile ID to refer to the current profile.
      * 
-     * Some payment methods require extra steps in order to be activated. In cases
-     * where a step at the payment method provider needs to be completed first, the status will be set to
-     * `pending-external` and the response will contain a link to complete the activation at the provider.
+     * Some payment methods require extra steps in order to be activated. In cases where a step at the payment method provider needs to be completed first, the status will be set to `pending-external` and the response will contain a link to complete the activation at the provider.
      * 
      * To enable voucher or gift card issuers, refer to the [Enable payment method issuer](enable-method-issuer) endpoint.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **profiles.write**](/reference/authentication)
      * @param profileId Provide the ID of the related profile.
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public EnableMethodResponse enableMethod(
-            EnableMethodSecurity security,
             String profileId,
             String id) throws Exception {
         EnableMethodRequest request =
@@ -698,11 +691,9 @@ public class MethodsAPI implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -816,8 +807,13 @@ public class MethodsAPI implements
      * Disable payment method
      * Disable a payment method on a specific profile.
      * 
-     * When using a profile-specific API credential, the alias `me` can be used
-     * instead of the profile ID to refer to the current profile.
+     * When using a profile-specific API credential, the alias `me` can be used instead of the profile ID to refer to the current profile.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **profiles.write**](/reference/authentication)
      * @return The call builder
      */
     public DisableMethodRequestBuilder disableMethod() {
@@ -828,16 +824,19 @@ public class MethodsAPI implements
      * Disable payment method
      * Disable a payment method on a specific profile.
      * 
-     * When using a profile-specific API credential, the alias `me` can be used
-     * instead of the profile ID to refer to the current profile.
-     * @param security The security details to use for authentication.
+     * When using a profile-specific API credential, the alias `me` can be used instead of the profile ID to refer to the current profile.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **profiles.write**](/reference/authentication)
      * @param profileId Provide the ID of the related profile.
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DisableMethodResponse disableMethod(
-            DisableMethodSecurity security,
             String profileId,
             String id) throws Exception {
         DisableMethodRequest request =
@@ -859,11 +858,9 @@ public class MethodsAPI implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -979,8 +976,13 @@ public class MethodsAPI implements
      * 
      * Currently only the payment methods `voucher` and `giftcard` are supported.
      * 
-     * When using a profile-specific API credential, the alias `me` can be used instead of the profile ID to refer to the
-     * current profile.
+     * When using a profile-specific API credential, the alias `me` can be used instead of the profile ID to refer to the current profile.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **profiles.write**](/reference/authentication)
      * @return The call builder
      */
     public EnableMethodIssuerRequestBuilder enableMethodIssuer() {
@@ -993,9 +995,13 @@ public class MethodsAPI implements
      * 
      * Currently only the payment methods `voucher` and `giftcard` are supported.
      * 
-     * When using a profile-specific API credential, the alias `me` can be used instead of the profile ID to refer to the
-     * current profile.
-     * @param security The security details to use for authentication.
+     * When using a profile-specific API credential, the alias `me` can be used instead of the profile ID to refer to the current profile.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **profiles.write**](/reference/authentication)
      * @param profileId Provide the ID of the related profile.
      * @param methodId Provide the ID of the related payment method.
      * @param id Provide the ID of the item you want to perform this operation on.
@@ -1003,11 +1009,10 @@ public class MethodsAPI implements
      * @throws Exception if the API call fails
      */
     public EnableMethodIssuerResponse enableMethodIssuer(
-            EnableMethodIssuerSecurity security,
             String profileId,
             String methodId,
             String id) throws Exception {
-        return enableMethodIssuer(security, profileId, methodId, id, Optional.empty());
+        return enableMethodIssuer(profileId, methodId, id, Optional.empty());
     }
     
     /**
@@ -1016,9 +1021,13 @@ public class MethodsAPI implements
      * 
      * Currently only the payment methods `voucher` and `giftcard` are supported.
      * 
-     * When using a profile-specific API credential, the alias `me` can be used instead of the profile ID to refer to the
-     * current profile.
-     * @param security The security details to use for authentication.
+     * When using a profile-specific API credential, the alias `me` can be used instead of the profile ID to refer to the current profile.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **profiles.write**](/reference/authentication)
      * @param profileId Provide the ID of the related profile.
      * @param methodId Provide the ID of the related payment method.
      * @param id Provide the ID of the item you want to perform this operation on.
@@ -1027,7 +1036,6 @@ public class MethodsAPI implements
      * @throws Exception if the API call fails
      */
     public EnableMethodIssuerResponse enableMethodIssuer(
-            EnableMethodIssuerSecurity security,
             String profileId,
             String methodId,
             String id,
@@ -1063,11 +1071,9 @@ public class MethodsAPI implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1183,8 +1189,13 @@ public class MethodsAPI implements
      * 
      * Currently only the payment methods `voucher` and `giftcard` are supported.
      * 
-     * When using a profile-specific API credential, the alias `me` can be used instead of the profile ID to refer to the
-     * current profile.
+     * When using a profile-specific API credential, the alias `me` can be used instead of the profile ID to refer to the current profile.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **profiles.write**](/reference/authentication)
      * @return The call builder
      */
     public DisableMethodIssuerRequestBuilder disableMethodIssuer() {
@@ -1197,9 +1208,13 @@ public class MethodsAPI implements
      * 
      * Currently only the payment methods `voucher` and `giftcard` are supported.
      * 
-     * When using a profile-specific API credential, the alias `me` can be used instead of the profile ID to refer to the
-     * current profile.
-     * @param security The security details to use for authentication.
+     * When using a profile-specific API credential, the alias `me` can be used instead of the profile ID to refer to the current profile.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **profiles.write**](/reference/authentication)
      * @param profileId Provide the ID of the related profile.
      * @param methodId Provide the ID of the related payment method.
      * @param id Provide the ID of the item you want to perform this operation on.
@@ -1207,7 +1222,6 @@ public class MethodsAPI implements
      * @throws Exception if the API call fails
      */
     public DisableMethodIssuerResponse disableMethodIssuer(
-            DisableMethodIssuerSecurity security,
             String profileId,
             String methodId,
             String id) throws Exception {
@@ -1231,11 +1245,9 @@ public class MethodsAPI implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()

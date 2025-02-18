@@ -20,19 +20,15 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class ListAllMethodsRequest {
 
     /**
-     * Passing a locale will sort the payment methods in the preferred order
-     * for the country, and translate the payment method names in the corresponding language.
+     * Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
      * 
-     * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH`
-     * `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV`
-     * `lt_LT`
+     * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=locale")
     private Optional<String> locale;
 
     /**
-     * If supplied, only payment methods that support the amount and currency
-     * are returned.
+     * If supplied, only payment methods that support the amount and currency are returned.
      * 
      * Example: `/v2/methods/all?amount[value]=100.00&amp;amount[currency]=USD`
      */
@@ -40,11 +36,9 @@ public class ListAllMethodsRequest {
     private Optional<? extends ListAllMethodsQueryParamAmount> amount;
 
     /**
-     * This endpoint allows you to include additional information via the
-     * `include` query string parameter.
+     * This endpoint allows you to include additional information via the `include` query string parameter.
      * 
-     * * `issuers`: Include issuer details such as which iDEAL or gift card
-     * issuers are available.
+     * * `issuers`: Include issuer details such as which iDEAL or gift card issuers are available.
      * * `pricing`: Include pricing for each payment method.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=include")
@@ -68,12 +62,9 @@ public class ListAllMethodsRequest {
     }
 
     /**
-     * Passing a locale will sort the payment methods in the preferred order
-     * for the country, and translate the payment method names in the corresponding language.
+     * Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
      * 
-     * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH`
-     * `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV`
-     * `lt_LT`
+     * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
      */
     @JsonIgnore
     public Optional<String> locale() {
@@ -81,8 +72,7 @@ public class ListAllMethodsRequest {
     }
 
     /**
-     * If supplied, only payment methods that support the amount and currency
-     * are returned.
+     * If supplied, only payment methods that support the amount and currency are returned.
      * 
      * Example: `/v2/methods/all?amount[value]=100.00&amp;amount[currency]=USD`
      */
@@ -93,11 +83,9 @@ public class ListAllMethodsRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the
-     * `include` query string parameter.
+     * This endpoint allows you to include additional information via the `include` query string parameter.
      * 
-     * * `issuers`: Include issuer details such as which iDEAL or gift card
-     * issuers are available.
+     * * `issuers`: Include issuer details such as which iDEAL or gift card issuers are available.
      * * `pricing`: Include pricing for each payment method.
      */
     @JsonIgnore
@@ -110,12 +98,9 @@ public class ListAllMethodsRequest {
     }
 
     /**
-     * Passing a locale will sort the payment methods in the preferred order
-     * for the country, and translate the payment method names in the corresponding language.
+     * Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
      * 
-     * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH`
-     * `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV`
-     * `lt_LT`
+     * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
      */
     public ListAllMethodsRequest withLocale(String locale) {
         Utils.checkNotNull(locale, "locale");
@@ -124,12 +109,9 @@ public class ListAllMethodsRequest {
     }
 
     /**
-     * Passing a locale will sort the payment methods in the preferred order
-     * for the country, and translate the payment method names in the corresponding language.
+     * Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
      * 
-     * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH`
-     * `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV`
-     * `lt_LT`
+     * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
      */
     public ListAllMethodsRequest withLocale(Optional<String> locale) {
         Utils.checkNotNull(locale, "locale");
@@ -138,8 +120,7 @@ public class ListAllMethodsRequest {
     }
 
     /**
-     * If supplied, only payment methods that support the amount and currency
-     * are returned.
+     * If supplied, only payment methods that support the amount and currency are returned.
      * 
      * Example: `/v2/methods/all?amount[value]=100.00&amp;amount[currency]=USD`
      */
@@ -150,8 +131,7 @@ public class ListAllMethodsRequest {
     }
 
     /**
-     * If supplied, only payment methods that support the amount and currency
-     * are returned.
+     * If supplied, only payment methods that support the amount and currency are returned.
      * 
      * Example: `/v2/methods/all?amount[value]=100.00&amp;amount[currency]=USD`
      */
@@ -162,11 +142,9 @@ public class ListAllMethodsRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the
-     * `include` query string parameter.
+     * This endpoint allows you to include additional information via the `include` query string parameter.
      * 
-     * * `issuers`: Include issuer details such as which iDEAL or gift card
-     * issuers are available.
+     * * `issuers`: Include issuer details such as which iDEAL or gift card issuers are available.
      * * `pricing`: Include pricing for each payment method.
      */
     public ListAllMethodsRequest withInclude(String include) {
@@ -176,11 +154,9 @@ public class ListAllMethodsRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the
-     * `include` query string parameter.
+     * This endpoint allows you to include additional information via the `include` query string parameter.
      * 
-     * * `issuers`: Include issuer details such as which iDEAL or gift card
-     * issuers are available.
+     * * `issuers`: Include issuer details such as which iDEAL or gift card issuers are available.
      * * `pricing`: Include pricing for each payment method.
      */
     public ListAllMethodsRequest withInclude(JsonNullable<String> include) {
@@ -233,12 +209,9 @@ public class ListAllMethodsRequest {
         }
 
         /**
-         * Passing a locale will sort the payment methods in the preferred order
-         * for the country, and translate the payment method names in the corresponding language.
+         * Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
          * 
-         * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH`
-         * `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV`
-         * `lt_LT`
+         * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
          */
         public Builder locale(String locale) {
             Utils.checkNotNull(locale, "locale");
@@ -247,12 +220,9 @@ public class ListAllMethodsRequest {
         }
 
         /**
-         * Passing a locale will sort the payment methods in the preferred order
-         * for the country, and translate the payment method names in the corresponding language.
+         * Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
          * 
-         * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH`
-         * `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV`
-         * `lt_LT`
+         * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
          */
         public Builder locale(Optional<String> locale) {
             Utils.checkNotNull(locale, "locale");
@@ -261,8 +231,7 @@ public class ListAllMethodsRequest {
         }
 
         /**
-         * If supplied, only payment methods that support the amount and currency
-         * are returned.
+         * If supplied, only payment methods that support the amount and currency are returned.
          * 
          * Example: `/v2/methods/all?amount[value]=100.00&amp;amount[currency]=USD`
          */
@@ -273,8 +242,7 @@ public class ListAllMethodsRequest {
         }
 
         /**
-         * If supplied, only payment methods that support the amount and currency
-         * are returned.
+         * If supplied, only payment methods that support the amount and currency are returned.
          * 
          * Example: `/v2/methods/all?amount[value]=100.00&amp;amount[currency]=USD`
          */
@@ -285,11 +253,9 @@ public class ListAllMethodsRequest {
         }
 
         /**
-         * This endpoint allows you to include additional information via the
-         * `include` query string parameter.
+         * This endpoint allows you to include additional information via the `include` query string parameter.
          * 
-         * * `issuers`: Include issuer details such as which iDEAL or gift card
-         * issuers are available.
+         * * `issuers`: Include issuer details such as which iDEAL or gift card issuers are available.
          * * `pricing`: Include pricing for each payment method.
          */
         public Builder include(String include) {
@@ -299,11 +265,9 @@ public class ListAllMethodsRequest {
         }
 
         /**
-         * This endpoint allows you to include additional information via the
-         * `include` query string parameter.
+         * This endpoint allows you to include additional information via the `include` query string parameter.
          * 
-         * * `issuers`: Include issuer details such as which iDEAL or gift card
-         * issuers are available.
+         * * `issuers`: Include issuer details such as which iDEAL or gift card issuers are available.
          * * `pricing`: Include pricing for each payment method.
          */
         public Builder include(JsonNullable<String> include) {

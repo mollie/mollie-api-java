@@ -17,8 +17,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * GetOrderBillingAddress - The customer's billing address details. The billing address is required, unless a fast checkout method like
- * PayPal Express Checkout is providing the billing address.
+ * GetOrderBillingAddress - The customer's billing address details. The billing address is required, unless a fast checkout method like PayPal Express Checkout is providing the billing address.
  */
 
 public class GetOrderBillingAddress {

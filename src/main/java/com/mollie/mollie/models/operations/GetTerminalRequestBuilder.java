@@ -13,7 +13,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetTerminalRequestBuilder {
 
-    private GetTerminalSecurity security;
     private String id;
     private JsonNullable<Boolean> testmode = Utils.readDefaultOrConstValue(
                             "testmode",
@@ -23,12 +22,6 @@ public class GetTerminalRequestBuilder {
 
     public GetTerminalRequestBuilder(SDKMethodInterfaces.MethodCallGetTerminal sdk) {
         this.sdk = sdk;
-    }
-
-    public GetTerminalRequestBuilder security(GetTerminalSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public GetTerminalRequestBuilder id(String id) {
@@ -53,8 +46,7 @@ public class GetTerminalRequestBuilder {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.get(
-            security,
+        return sdk.getTerminal(
             id,
             testmode);
     }

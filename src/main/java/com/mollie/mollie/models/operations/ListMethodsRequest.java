@@ -23,24 +23,25 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class ListMethodsRequest {
 
     /**
-     * Set this parameter to `first` to only return the enabled methods that
-     * can be used for the first payment of a recurring sequence.
+     * Set this parameter to `first` to only return the enabled methods that can be used for the first payment of a recurring sequence.
      * 
      * Set it to `recurring` to only return enabled methods that can be used for recurring payments or subscriptions.
+     * 
+     * Possible values: `oneoff` `first` `recurring` (default: `oneoff`)
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sequenceType")
-    private Optional<? extends QueryParamSequenceType> sequenceType;
+    private Optional<String> sequenceType;
 
     /**
-     * Passing a locale will sort the payment methods in the preferred order
-     * for the country, and translate the payment method names in the corresponding language.
+     * Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
+     * 
+     * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=locale")
-    private Optional<? extends QueryParamLocale> locale;
+    private Optional<String> locale;
 
     /**
-     * If supplied, only payment methods that support the amount and currency
-     * are returned.
+     * If supplied, only payment methods that support the amount and currency are returned.
      * 
      * Example: `/v2/methods?amount[value]=100.00&amp;amount[currency]=USD`
      */
@@ -48,18 +49,17 @@ public class ListMethodsRequest {
     private Optional<? extends QueryParamAmount> amount;
 
     /**
-     * Indicate if you will use the result for the [Create order](create-order)
-     * or the [Create payment](create-payment) endpoint.
+     * Indicate if you will use the result for the [Create order](create-order) or the [Create payment](create-payment) endpoint.
      * 
-     * When passing the value `orders`, the result will include payment methods
-     * that are only available for payments created via the Orders API.
+     * When passing the value `orders`, the result will include payment methods that are only available for payments created via the Orders API.
+     * 
+     * Possible values: `payments` `orders` (default: `payments`)
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=resource")
-    private Optional<? extends Resource> resource;
+    private Optional<String> resource;
 
     /**
-     * The country taken from your customer's billing address in ISO 3166-1 alpha-2 format. This parameter can be used
-     * to check whether your customer is eligible for certain payment methods, for example for Klarna.
+     * The country taken from your customer's billing address in ISO 3166-1 alpha-2 format. This parameter can be used to check whether your customer is eligible for certain payment methods, for example for Klarna.
      * 
      * Example: `/v2/methods?resource=orders&amp;billingCountry=DE`
      */
@@ -67,15 +67,15 @@ public class ListMethodsRequest {
     private Optional<String> billingCountry;
 
     /**
-     * A comma-separated list of the wallets you support in your checkout. Wallets often require wallet specific code
-     * to check if they are available on the shoppers device, hence the need to indicate your support.
+     * A comma-separated list of the wallets you support in your checkout. Wallets often require wallet specific code to check if they are available on the shoppers device, hence the need to indicate your support.
+     * 
+     * Possible values: `applepay`
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeWallets")
-    private Optional<? extends IncludeWallets> includeWallets;
+    private Optional<String> includeWallets;
 
     /**
-     * A comma-separated list of the order line categories you support in your
-     * checkout. The available categories can be found in the [Create order endpoint](create-order) documentation.
+     * A comma-separated list of the order line categories you support in your checkout. The available categories can be found in the [Create order endpoint](create-order) documentation.
      * 
      * Example: `/v2/methods?resource=orders&amp;orderLineCategories=eco,meal`
      */
@@ -83,32 +83,24 @@ public class ListMethodsRequest {
     private Optional<String> orderLineCategories;
 
     /**
-     * The identifier referring to the [profile](get-profile) you wish to
-     * retrieve the payment methods for.
+     * The identifier referring to the [profile](get-profile) you wish to retrieve the payment methods for.
      * 
-     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=profileId")
     private Optional<String> profileId;
 
     /**
-     * This endpoint allows you to include additional information via the
-     * `include` query string parameter.
+     * This endpoint allows you to include additional information via the `include` query string parameter.
      * 
-     * * `issuers`: Include issuer details such as which iDEAL or gift card
-     * issuers are available.
-     * * `pricing`: **⚠️ Deprecated: for up-to-date pricing data, use [List all methods](list-all-methods).⚠️**
-     * &lt;br /&gt; Include pricing information for each payment method, based on a snapshot of data last updated in
-     * November 2023.
+     * * `issuers`: Include issuer details such as which iDEAL or gift card issuers are available.
+     * * `pricing`: **⚠️ Deprecated: for up-to-date pricing data, use [List all methods](list-all-methods).⚠️** &lt;br /&gt; Include pricing information for each payment method, based on a snapshot of data last updated in November 2023.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=include")
     private JsonNullable<String> include;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -117,12 +109,12 @@ public class ListMethodsRequest {
 
     @JsonCreator
     public ListMethodsRequest(
-            Optional<? extends QueryParamSequenceType> sequenceType,
-            Optional<? extends QueryParamLocale> locale,
+            Optional<String> sequenceType,
+            Optional<String> locale,
             Optional<? extends QueryParamAmount> amount,
-            Optional<? extends Resource> resource,
+            Optional<String> resource,
             Optional<String> billingCountry,
-            Optional<? extends IncludeWallets> includeWallets,
+            Optional<String> includeWallets,
             Optional<String> orderLineCategories,
             Optional<String> profileId,
             JsonNullable<String> include,
@@ -154,30 +146,29 @@ public class ListMethodsRequest {
     }
 
     /**
-     * Set this parameter to `first` to only return the enabled methods that
-     * can be used for the first payment of a recurring sequence.
+     * Set this parameter to `first` to only return the enabled methods that can be used for the first payment of a recurring sequence.
      * 
      * Set it to `recurring` to only return enabled methods that can be used for recurring payments or subscriptions.
+     * 
+     * Possible values: `oneoff` `first` `recurring` (default: `oneoff`)
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<QueryParamSequenceType> sequenceType() {
-        return (Optional<QueryParamSequenceType>) sequenceType;
+    public Optional<String> sequenceType() {
+        return sequenceType;
     }
 
     /**
-     * Passing a locale will sort the payment methods in the preferred order
-     * for the country, and translate the payment method names in the corresponding language.
+     * Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
+     * 
+     * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<QueryParamLocale> locale() {
-        return (Optional<QueryParamLocale>) locale;
+    public Optional<String> locale() {
+        return locale;
     }
 
     /**
-     * If supplied, only payment methods that support the amount and currency
-     * are returned.
+     * If supplied, only payment methods that support the amount and currency are returned.
      * 
      * Example: `/v2/methods?amount[value]=100.00&amp;amount[currency]=USD`
      */
@@ -188,21 +179,19 @@ public class ListMethodsRequest {
     }
 
     /**
-     * Indicate if you will use the result for the [Create order](create-order)
-     * or the [Create payment](create-payment) endpoint.
+     * Indicate if you will use the result for the [Create order](create-order) or the [Create payment](create-payment) endpoint.
      * 
-     * When passing the value `orders`, the result will include payment methods
-     * that are only available for payments created via the Orders API.
+     * When passing the value `orders`, the result will include payment methods that are only available for payments created via the Orders API.
+     * 
+     * Possible values: `payments` `orders` (default: `payments`)
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Resource> resource() {
-        return (Optional<Resource>) resource;
+    public Optional<String> resource() {
+        return resource;
     }
 
     /**
-     * The country taken from your customer's billing address in ISO 3166-1 alpha-2 format. This parameter can be used
-     * to check whether your customer is eligible for certain payment methods, for example for Klarna.
+     * The country taken from your customer's billing address in ISO 3166-1 alpha-2 format. This parameter can be used to check whether your customer is eligible for certain payment methods, for example for Klarna.
      * 
      * Example: `/v2/methods?resource=orders&amp;billingCountry=DE`
      */
@@ -212,18 +201,17 @@ public class ListMethodsRequest {
     }
 
     /**
-     * A comma-separated list of the wallets you support in your checkout. Wallets often require wallet specific code
-     * to check if they are available on the shoppers device, hence the need to indicate your support.
+     * A comma-separated list of the wallets you support in your checkout. Wallets often require wallet specific code to check if they are available on the shoppers device, hence the need to indicate your support.
+     * 
+     * Possible values: `applepay`
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<IncludeWallets> includeWallets() {
-        return (Optional<IncludeWallets>) includeWallets;
+    public Optional<String> includeWallets() {
+        return includeWallets;
     }
 
     /**
-     * A comma-separated list of the order line categories you support in your
-     * checkout. The available categories can be found in the [Create order endpoint](create-order) documentation.
+     * A comma-separated list of the order line categories you support in your checkout. The available categories can be found in the [Create order endpoint](create-order) documentation.
      * 
      * Example: `/v2/methods?resource=orders&amp;orderLineCategories=eco,meal`
      */
@@ -233,11 +221,9 @@ public class ListMethodsRequest {
     }
 
     /**
-     * The identifier referring to the [profile](get-profile) you wish to
-     * retrieve the payment methods for.
+     * The identifier referring to the [profile](get-profile) you wish to retrieve the payment methods for.
      * 
-     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     @JsonIgnore
     public Optional<String> profileId() {
@@ -245,14 +231,10 @@ public class ListMethodsRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the
-     * `include` query string parameter.
+     * This endpoint allows you to include additional information via the `include` query string parameter.
      * 
-     * * `issuers`: Include issuer details such as which iDEAL or gift card
-     * issuers are available.
-     * * `pricing`: **⚠️ Deprecated: for up-to-date pricing data, use [List all methods](list-all-methods).⚠️**
-     * &lt;br /&gt; Include pricing information for each payment method, based on a snapshot of data last updated in
-     * November 2023.
+     * * `issuers`: Include issuer details such as which iDEAL or gift card issuers are available.
+     * * `pricing`: **⚠️ Deprecated: for up-to-date pricing data, use [List all methods](list-all-methods).⚠️** &lt;br /&gt; Include pricing information for each payment method, based on a snapshot of data last updated in November 2023.
      */
     @JsonIgnore
     public JsonNullable<String> include() {
@@ -260,9 +242,7 @@ public class ListMethodsRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -276,52 +256,55 @@ public class ListMethodsRequest {
     }
 
     /**
-     * Set this parameter to `first` to only return the enabled methods that
-     * can be used for the first payment of a recurring sequence.
+     * Set this parameter to `first` to only return the enabled methods that can be used for the first payment of a recurring sequence.
      * 
      * Set it to `recurring` to only return enabled methods that can be used for recurring payments or subscriptions.
+     * 
+     * Possible values: `oneoff` `first` `recurring` (default: `oneoff`)
      */
-    public ListMethodsRequest withSequenceType(QueryParamSequenceType sequenceType) {
+    public ListMethodsRequest withSequenceType(String sequenceType) {
         Utils.checkNotNull(sequenceType, "sequenceType");
         this.sequenceType = Optional.ofNullable(sequenceType);
         return this;
     }
 
     /**
-     * Set this parameter to `first` to only return the enabled methods that
-     * can be used for the first payment of a recurring sequence.
+     * Set this parameter to `first` to only return the enabled methods that can be used for the first payment of a recurring sequence.
      * 
      * Set it to `recurring` to only return enabled methods that can be used for recurring payments or subscriptions.
+     * 
+     * Possible values: `oneoff` `first` `recurring` (default: `oneoff`)
      */
-    public ListMethodsRequest withSequenceType(Optional<? extends QueryParamSequenceType> sequenceType) {
+    public ListMethodsRequest withSequenceType(Optional<String> sequenceType) {
         Utils.checkNotNull(sequenceType, "sequenceType");
         this.sequenceType = sequenceType;
         return this;
     }
 
     /**
-     * Passing a locale will sort the payment methods in the preferred order
-     * for the country, and translate the payment method names in the corresponding language.
+     * Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
+     * 
+     * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
      */
-    public ListMethodsRequest withLocale(QueryParamLocale locale) {
+    public ListMethodsRequest withLocale(String locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = Optional.ofNullable(locale);
         return this;
     }
 
     /**
-     * Passing a locale will sort the payment methods in the preferred order
-     * for the country, and translate the payment method names in the corresponding language.
+     * Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
+     * 
+     * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
      */
-    public ListMethodsRequest withLocale(Optional<? extends QueryParamLocale> locale) {
+    public ListMethodsRequest withLocale(Optional<String> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
     }
 
     /**
-     * If supplied, only payment methods that support the amount and currency
-     * are returned.
+     * If supplied, only payment methods that support the amount and currency are returned.
      * 
      * Example: `/v2/methods?amount[value]=100.00&amp;amount[currency]=USD`
      */
@@ -332,8 +315,7 @@ public class ListMethodsRequest {
     }
 
     /**
-     * If supplied, only payment methods that support the amount and currency
-     * are returned.
+     * If supplied, only payment methods that support the amount and currency are returned.
      * 
      * Example: `/v2/methods?amount[value]=100.00&amp;amount[currency]=USD`
      */
@@ -344,34 +326,33 @@ public class ListMethodsRequest {
     }
 
     /**
-     * Indicate if you will use the result for the [Create order](create-order)
-     * or the [Create payment](create-payment) endpoint.
+     * Indicate if you will use the result for the [Create order](create-order) or the [Create payment](create-payment) endpoint.
      * 
-     * When passing the value `orders`, the result will include payment methods
-     * that are only available for payments created via the Orders API.
+     * When passing the value `orders`, the result will include payment methods that are only available for payments created via the Orders API.
+     * 
+     * Possible values: `payments` `orders` (default: `payments`)
      */
-    public ListMethodsRequest withResource(Resource resource) {
+    public ListMethodsRequest withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = Optional.ofNullable(resource);
         return this;
     }
 
     /**
-     * Indicate if you will use the result for the [Create order](create-order)
-     * or the [Create payment](create-payment) endpoint.
+     * Indicate if you will use the result for the [Create order](create-order) or the [Create payment](create-payment) endpoint.
      * 
-     * When passing the value `orders`, the result will include payment methods
-     * that are only available for payments created via the Orders API.
+     * When passing the value `orders`, the result will include payment methods that are only available for payments created via the Orders API.
+     * 
+     * Possible values: `payments` `orders` (default: `payments`)
      */
-    public ListMethodsRequest withResource(Optional<? extends Resource> resource) {
+    public ListMethodsRequest withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
     }
 
     /**
-     * The country taken from your customer's billing address in ISO 3166-1 alpha-2 format. This parameter can be used
-     * to check whether your customer is eligible for certain payment methods, for example for Klarna.
+     * The country taken from your customer's billing address in ISO 3166-1 alpha-2 format. This parameter can be used to check whether your customer is eligible for certain payment methods, for example for Klarna.
      * 
      * Example: `/v2/methods?resource=orders&amp;billingCountry=DE`
      */
@@ -382,8 +363,7 @@ public class ListMethodsRequest {
     }
 
     /**
-     * The country taken from your customer's billing address in ISO 3166-1 alpha-2 format. This parameter can be used
-     * to check whether your customer is eligible for certain payment methods, for example for Klarna.
+     * The country taken from your customer's billing address in ISO 3166-1 alpha-2 format. This parameter can be used to check whether your customer is eligible for certain payment methods, for example for Klarna.
      * 
      * Example: `/v2/methods?resource=orders&amp;billingCountry=DE`
      */
@@ -394,28 +374,29 @@ public class ListMethodsRequest {
     }
 
     /**
-     * A comma-separated list of the wallets you support in your checkout. Wallets often require wallet specific code
-     * to check if they are available on the shoppers device, hence the need to indicate your support.
+     * A comma-separated list of the wallets you support in your checkout. Wallets often require wallet specific code to check if they are available on the shoppers device, hence the need to indicate your support.
+     * 
+     * Possible values: `applepay`
      */
-    public ListMethodsRequest withIncludeWallets(IncludeWallets includeWallets) {
+    public ListMethodsRequest withIncludeWallets(String includeWallets) {
         Utils.checkNotNull(includeWallets, "includeWallets");
         this.includeWallets = Optional.ofNullable(includeWallets);
         return this;
     }
 
     /**
-     * A comma-separated list of the wallets you support in your checkout. Wallets often require wallet specific code
-     * to check if they are available on the shoppers device, hence the need to indicate your support.
+     * A comma-separated list of the wallets you support in your checkout. Wallets often require wallet specific code to check if they are available on the shoppers device, hence the need to indicate your support.
+     * 
+     * Possible values: `applepay`
      */
-    public ListMethodsRequest withIncludeWallets(Optional<? extends IncludeWallets> includeWallets) {
+    public ListMethodsRequest withIncludeWallets(Optional<String> includeWallets) {
         Utils.checkNotNull(includeWallets, "includeWallets");
         this.includeWallets = includeWallets;
         return this;
     }
 
     /**
-     * A comma-separated list of the order line categories you support in your
-     * checkout. The available categories can be found in the [Create order endpoint](create-order) documentation.
+     * A comma-separated list of the order line categories you support in your checkout. The available categories can be found in the [Create order endpoint](create-order) documentation.
      * 
      * Example: `/v2/methods?resource=orders&amp;orderLineCategories=eco,meal`
      */
@@ -426,8 +407,7 @@ public class ListMethodsRequest {
     }
 
     /**
-     * A comma-separated list of the order line categories you support in your
-     * checkout. The available categories can be found in the [Create order endpoint](create-order) documentation.
+     * A comma-separated list of the order line categories you support in your checkout. The available categories can be found in the [Create order endpoint](create-order) documentation.
      * 
      * Example: `/v2/methods?resource=orders&amp;orderLineCategories=eco,meal`
      */
@@ -438,11 +418,9 @@ public class ListMethodsRequest {
     }
 
     /**
-     * The identifier referring to the [profile](get-profile) you wish to
-     * retrieve the payment methods for.
+     * The identifier referring to the [profile](get-profile) you wish to retrieve the payment methods for.
      * 
-     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     public ListMethodsRequest withProfileId(String profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -451,11 +429,9 @@ public class ListMethodsRequest {
     }
 
     /**
-     * The identifier referring to the [profile](get-profile) you wish to
-     * retrieve the payment methods for.
+     * The identifier referring to the [profile](get-profile) you wish to retrieve the payment methods for.
      * 
-     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     public ListMethodsRequest withProfileId(Optional<String> profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -464,14 +440,10 @@ public class ListMethodsRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the
-     * `include` query string parameter.
+     * This endpoint allows you to include additional information via the `include` query string parameter.
      * 
-     * * `issuers`: Include issuer details such as which iDEAL or gift card
-     * issuers are available.
-     * * `pricing`: **⚠️ Deprecated: for up-to-date pricing data, use [List all methods](list-all-methods).⚠️**
-     * &lt;br /&gt; Include pricing information for each payment method, based on a snapshot of data last updated in
-     * November 2023.
+     * * `issuers`: Include issuer details such as which iDEAL or gift card issuers are available.
+     * * `pricing`: **⚠️ Deprecated: for up-to-date pricing data, use [List all methods](list-all-methods).⚠️** &lt;br /&gt; Include pricing information for each payment method, based on a snapshot of data last updated in November 2023.
      */
     public ListMethodsRequest withInclude(String include) {
         Utils.checkNotNull(include, "include");
@@ -480,14 +452,10 @@ public class ListMethodsRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the
-     * `include` query string parameter.
+     * This endpoint allows you to include additional information via the `include` query string parameter.
      * 
-     * * `issuers`: Include issuer details such as which iDEAL or gift card
-     * issuers are available.
-     * * `pricing`: **⚠️ Deprecated: for up-to-date pricing data, use [List all methods](list-all-methods).⚠️**
-     * &lt;br /&gt; Include pricing information for each payment method, based on a snapshot of data last updated in
-     * November 2023.
+     * * `issuers`: Include issuer details such as which iDEAL or gift card issuers are available.
+     * * `pricing`: **⚠️ Deprecated: for up-to-date pricing data, use [List all methods](list-all-methods).⚠️** &lt;br /&gt; Include pricing information for each payment method, based on a snapshot of data last updated in November 2023.
      */
     public ListMethodsRequest withInclude(JsonNullable<String> include) {
         Utils.checkNotNull(include, "include");
@@ -496,9 +464,7 @@ public class ListMethodsRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -509,9 +475,7 @@ public class ListMethodsRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -575,17 +539,17 @@ public class ListMethodsRequest {
     
     public final static class Builder {
  
-        private Optional<? extends QueryParamSequenceType> sequenceType;
+        private Optional<String> sequenceType = Optional.empty();
  
-        private Optional<? extends QueryParamLocale> locale = Optional.empty();
+        private Optional<String> locale = Optional.empty();
  
         private Optional<? extends QueryParamAmount> amount = Optional.empty();
  
-        private Optional<? extends Resource> resource;
+        private Optional<String> resource = Optional.empty();
  
         private Optional<String> billingCountry = Optional.empty();
  
-        private Optional<? extends IncludeWallets> includeWallets = Optional.empty();
+        private Optional<String> includeWallets = Optional.empty();
  
         private Optional<String> orderLineCategories = Optional.empty();
  
@@ -600,52 +564,55 @@ public class ListMethodsRequest {
         }
 
         /**
-         * Set this parameter to `first` to only return the enabled methods that
-         * can be used for the first payment of a recurring sequence.
+         * Set this parameter to `first` to only return the enabled methods that can be used for the first payment of a recurring sequence.
          * 
          * Set it to `recurring` to only return enabled methods that can be used for recurring payments or subscriptions.
+         * 
+         * Possible values: `oneoff` `first` `recurring` (default: `oneoff`)
          */
-        public Builder sequenceType(QueryParamSequenceType sequenceType) {
+        public Builder sequenceType(String sequenceType) {
             Utils.checkNotNull(sequenceType, "sequenceType");
             this.sequenceType = Optional.ofNullable(sequenceType);
             return this;
         }
 
         /**
-         * Set this parameter to `first` to only return the enabled methods that
-         * can be used for the first payment of a recurring sequence.
+         * Set this parameter to `first` to only return the enabled methods that can be used for the first payment of a recurring sequence.
          * 
          * Set it to `recurring` to only return enabled methods that can be used for recurring payments or subscriptions.
+         * 
+         * Possible values: `oneoff` `first` `recurring` (default: `oneoff`)
          */
-        public Builder sequenceType(Optional<? extends QueryParamSequenceType> sequenceType) {
+        public Builder sequenceType(Optional<String> sequenceType) {
             Utils.checkNotNull(sequenceType, "sequenceType");
             this.sequenceType = sequenceType;
             return this;
         }
 
         /**
-         * Passing a locale will sort the payment methods in the preferred order
-         * for the country, and translate the payment method names in the corresponding language.
+         * Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
+         * 
+         * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
          */
-        public Builder locale(QueryParamLocale locale) {
+        public Builder locale(String locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = Optional.ofNullable(locale);
             return this;
         }
 
         /**
-         * Passing a locale will sort the payment methods in the preferred order
-         * for the country, and translate the payment method names in the corresponding language.
+         * Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
+         * 
+         * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
          */
-        public Builder locale(Optional<? extends QueryParamLocale> locale) {
+        public Builder locale(Optional<String> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;
         }
 
         /**
-         * If supplied, only payment methods that support the amount and currency
-         * are returned.
+         * If supplied, only payment methods that support the amount and currency are returned.
          * 
          * Example: `/v2/methods?amount[value]=100.00&amp;amount[currency]=USD`
          */
@@ -656,8 +623,7 @@ public class ListMethodsRequest {
         }
 
         /**
-         * If supplied, only payment methods that support the amount and currency
-         * are returned.
+         * If supplied, only payment methods that support the amount and currency are returned.
          * 
          * Example: `/v2/methods?amount[value]=100.00&amp;amount[currency]=USD`
          */
@@ -668,34 +634,33 @@ public class ListMethodsRequest {
         }
 
         /**
-         * Indicate if you will use the result for the [Create order](create-order)
-         * or the [Create payment](create-payment) endpoint.
+         * Indicate if you will use the result for the [Create order](create-order) or the [Create payment](create-payment) endpoint.
          * 
-         * When passing the value `orders`, the result will include payment methods
-         * that are only available for payments created via the Orders API.
+         * When passing the value `orders`, the result will include payment methods that are only available for payments created via the Orders API.
+         * 
+         * Possible values: `payments` `orders` (default: `payments`)
          */
-        public Builder resource(Resource resource) {
+        public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = Optional.ofNullable(resource);
             return this;
         }
 
         /**
-         * Indicate if you will use the result for the [Create order](create-order)
-         * or the [Create payment](create-payment) endpoint.
+         * Indicate if you will use the result for the [Create order](create-order) or the [Create payment](create-payment) endpoint.
          * 
-         * When passing the value `orders`, the result will include payment methods
-         * that are only available for payments created via the Orders API.
+         * When passing the value `orders`, the result will include payment methods that are only available for payments created via the Orders API.
+         * 
+         * Possible values: `payments` `orders` (default: `payments`)
          */
-        public Builder resource(Optional<? extends Resource> resource) {
+        public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
         }
 
         /**
-         * The country taken from your customer's billing address in ISO 3166-1 alpha-2 format. This parameter can be used
-         * to check whether your customer is eligible for certain payment methods, for example for Klarna.
+         * The country taken from your customer's billing address in ISO 3166-1 alpha-2 format. This parameter can be used to check whether your customer is eligible for certain payment methods, for example for Klarna.
          * 
          * Example: `/v2/methods?resource=orders&amp;billingCountry=DE`
          */
@@ -706,8 +671,7 @@ public class ListMethodsRequest {
         }
 
         /**
-         * The country taken from your customer's billing address in ISO 3166-1 alpha-2 format. This parameter can be used
-         * to check whether your customer is eligible for certain payment methods, for example for Klarna.
+         * The country taken from your customer's billing address in ISO 3166-1 alpha-2 format. This parameter can be used to check whether your customer is eligible for certain payment methods, for example for Klarna.
          * 
          * Example: `/v2/methods?resource=orders&amp;billingCountry=DE`
          */
@@ -718,28 +682,29 @@ public class ListMethodsRequest {
         }
 
         /**
-         * A comma-separated list of the wallets you support in your checkout. Wallets often require wallet specific code
-         * to check if they are available on the shoppers device, hence the need to indicate your support.
+         * A comma-separated list of the wallets you support in your checkout. Wallets often require wallet specific code to check if they are available on the shoppers device, hence the need to indicate your support.
+         * 
+         * Possible values: `applepay`
          */
-        public Builder includeWallets(IncludeWallets includeWallets) {
+        public Builder includeWallets(String includeWallets) {
             Utils.checkNotNull(includeWallets, "includeWallets");
             this.includeWallets = Optional.ofNullable(includeWallets);
             return this;
         }
 
         /**
-         * A comma-separated list of the wallets you support in your checkout. Wallets often require wallet specific code
-         * to check if they are available on the shoppers device, hence the need to indicate your support.
+         * A comma-separated list of the wallets you support in your checkout. Wallets often require wallet specific code to check if they are available on the shoppers device, hence the need to indicate your support.
+         * 
+         * Possible values: `applepay`
          */
-        public Builder includeWallets(Optional<? extends IncludeWallets> includeWallets) {
+        public Builder includeWallets(Optional<String> includeWallets) {
             Utils.checkNotNull(includeWallets, "includeWallets");
             this.includeWallets = includeWallets;
             return this;
         }
 
         /**
-         * A comma-separated list of the order line categories you support in your
-         * checkout. The available categories can be found in the [Create order endpoint](create-order) documentation.
+         * A comma-separated list of the order line categories you support in your checkout. The available categories can be found in the [Create order endpoint](create-order) documentation.
          * 
          * Example: `/v2/methods?resource=orders&amp;orderLineCategories=eco,meal`
          */
@@ -750,8 +715,7 @@ public class ListMethodsRequest {
         }
 
         /**
-         * A comma-separated list of the order line categories you support in your
-         * checkout. The available categories can be found in the [Create order endpoint](create-order) documentation.
+         * A comma-separated list of the order line categories you support in your checkout. The available categories can be found in the [Create order endpoint](create-order) documentation.
          * 
          * Example: `/v2/methods?resource=orders&amp;orderLineCategories=eco,meal`
          */
@@ -762,11 +726,9 @@ public class ListMethodsRequest {
         }
 
         /**
-         * The identifier referring to the [profile](get-profile) you wish to
-         * retrieve the payment methods for.
+         * The identifier referring to the [profile](get-profile) you wish to retrieve the payment methods for.
          * 
-         * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-         * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+         * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
          */
         public Builder profileId(String profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -775,11 +737,9 @@ public class ListMethodsRequest {
         }
 
         /**
-         * The identifier referring to the [profile](get-profile) you wish to
-         * retrieve the payment methods for.
+         * The identifier referring to the [profile](get-profile) you wish to retrieve the payment methods for.
          * 
-         * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-         * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+         * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
          */
         public Builder profileId(Optional<String> profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -788,14 +748,10 @@ public class ListMethodsRequest {
         }
 
         /**
-         * This endpoint allows you to include additional information via the
-         * `include` query string parameter.
+         * This endpoint allows you to include additional information via the `include` query string parameter.
          * 
-         * * `issuers`: Include issuer details such as which iDEAL or gift card
-         * issuers are available.
-         * * `pricing`: **⚠️ Deprecated: for up-to-date pricing data, use [List all methods](list-all-methods).⚠️**
-         * &lt;br /&gt; Include pricing information for each payment method, based on a snapshot of data last updated in
-         * November 2023.
+         * * `issuers`: Include issuer details such as which iDEAL or gift card issuers are available.
+         * * `pricing`: **⚠️ Deprecated: for up-to-date pricing data, use [List all methods](list-all-methods).⚠️** &lt;br /&gt; Include pricing information for each payment method, based on a snapshot of data last updated in November 2023.
          */
         public Builder include(String include) {
             Utils.checkNotNull(include, "include");
@@ -804,14 +760,10 @@ public class ListMethodsRequest {
         }
 
         /**
-         * This endpoint allows you to include additional information via the
-         * `include` query string parameter.
+         * This endpoint allows you to include additional information via the `include` query string parameter.
          * 
-         * * `issuers`: Include issuer details such as which iDEAL or gift card
-         * issuers are available.
-         * * `pricing`: **⚠️ Deprecated: for up-to-date pricing data, use [List all methods](list-all-methods).⚠️**
-         * &lt;br /&gt; Include pricing information for each payment method, based on a snapshot of data last updated in
-         * November 2023.
+         * * `issuers`: Include issuer details such as which iDEAL or gift card issuers are available.
+         * * `pricing`: **⚠️ Deprecated: for up-to-date pricing data, use [List all methods](list-all-methods).⚠️** &lt;br /&gt; Include pricing information for each payment method, based on a snapshot of data last updated in November 2023.
          */
         public Builder include(JsonNullable<String> include) {
             Utils.checkNotNull(include, "include");
@@ -820,9 +772,7 @@ public class ListMethodsRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-         * setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
          * 
          * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -833,9 +783,7 @@ public class ListMethodsRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-         * setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
          * 
          * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -846,12 +794,6 @@ public class ListMethodsRequest {
         }
         
         public ListMethodsRequest build() {
-            if (sequenceType == null) {
-                sequenceType = _SINGLETON_VALUE_SequenceType.value();
-            }
-            if (resource == null) {
-                resource = _SINGLETON_VALUE_Resource.value();
-            }
             if (testmode == null) {
                 testmode = _SINGLETON_VALUE_Testmode.value();
             }            return new ListMethodsRequest(
@@ -866,18 +808,6 @@ public class ListMethodsRequest {
                 include,
                 testmode);
         }
-
-        private static final LazySingletonValue<Optional<? extends QueryParamSequenceType>> _SINGLETON_VALUE_SequenceType =
-                new LazySingletonValue<>(
-                        "sequenceType",
-                        "\"oneoff\"",
-                        new TypeReference<Optional<? extends QueryParamSequenceType>>() {});
-
-        private static final LazySingletonValue<Optional<? extends Resource>> _SINGLETON_VALUE_Resource =
-                new LazySingletonValue<>(
-                        "resource",
-                        "\"payments\"",
-                        new TypeReference<Optional<? extends Resource>>() {});
 
         private static final LazySingletonValue<JsonNullable<Boolean>> _SINGLETON_VALUE_Testmode =
                 new LazySingletonValue<>(

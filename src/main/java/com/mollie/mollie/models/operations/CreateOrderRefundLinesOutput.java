@@ -37,8 +37,7 @@ public class CreateOrderRefundLinesOutput {
     private Optional<String> orderId;
 
     /**
-     * The number of items that should be refunded for this order line. When this parameter is omitted, the whole
-     * order line will be refunded.
+     * The number of items that should be refunded for this order line. When this parameter is omitted, the whole order line will be refunded.
      * 
      * Must be less than the number of items already refunded for this order line.
      */
@@ -105,8 +104,7 @@ public class CreateOrderRefundLinesOutput {
     }
 
     /**
-     * The number of items that should be refunded for this order line. When this parameter is omitted, the whole
-     * order line will be refunded.
+     * The number of items that should be refunded for this order line. When this parameter is omitted, the whole order line will be refunded.
      * 
      * Must be less than the number of items already refunded for this order line.
      */
@@ -180,8 +178,7 @@ public class CreateOrderRefundLinesOutput {
     }
 
     /**
-     * The number of items that should be refunded for this order line. When this parameter is omitted, the whole
-     * order line will be refunded.
+     * The number of items that should be refunded for this order line. When this parameter is omitted, the whole order line will be refunded.
      * 
      * Must be less than the number of items already refunded for this order line.
      */
@@ -192,8 +189,7 @@ public class CreateOrderRefundLinesOutput {
     }
 
     /**
-     * The number of items that should be refunded for this order line. When this parameter is omitted, the whole
-     * order line will be refunded.
+     * The number of items that should be refunded for this order line. When this parameter is omitted, the whole order line will be refunded.
      * 
      * Must be less than the number of items already refunded for this order line.
      */
@@ -340,8 +336,7 @@ public class CreateOrderRefundLinesOutput {
         }
 
         /**
-         * The number of items that should be refunded for this order line. When this parameter is omitted, the whole
-         * order line will be refunded.
+         * The number of items that should be refunded for this order line. When this parameter is omitted, the whole order line will be refunded.
          * 
          * Must be less than the number of items already refunded for this order line.
          */
@@ -352,8 +347,7 @@ public class CreateOrderRefundLinesOutput {
         }
 
         /**
-         * The number of items that should be refunded for this order line. When this parameter is omitted, the whole
-         * order line will be refunded.
+         * The number of items that should be refunded for this order line. When this parameter is omitted, the whole order line will be refunded.
          * 
          * Must be less than the number of items already refunded for this order line.
          */

@@ -13,7 +13,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetOrderRequestBuilder {
 
-    private GetOrderSecurity security;
     private String id;
     private JsonNullable<String> embed = JsonNullable.undefined();
     private JsonNullable<Boolean> testmode = Utils.readDefaultOrConstValue(
@@ -24,12 +23,6 @@ public class GetOrderRequestBuilder {
 
     public GetOrderRequestBuilder(SDKMethodInterfaces.MethodCallGetOrder sdk) {
         this.sdk = sdk;
-    }
-
-    public GetOrderRequestBuilder security(GetOrderSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public GetOrderRequestBuilder id(String id) {
@@ -66,8 +59,7 @@ public class GetOrderRequestBuilder {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.get(
-            security,
+        return sdk.getOrder(
             id,
             embed,
             testmode);

@@ -37,8 +37,7 @@ public class ListMandatesResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * A list of mandate objects. For a complete reference of the mandate object, refer to the
-     * [Get mandate endpoint](get-mandate) documentation.
+     * A list of mandate objects. For a complete reference of the mandate object, refer to the [Get mandate endpoint](get-mandate) documentation.
      */
     private Optional<? extends ListMandatesResponseBody> object;
 
@@ -90,8 +89,7 @@ public class ListMandatesResponse implements Response {
     }
 
     /**
-     * A list of mandate objects. For a complete reference of the mandate object, refer to the
-     * [Get mandate endpoint](get-mandate) documentation.
+     * A list of mandate objects. For a complete reference of the mandate object, refer to the [Get mandate endpoint](get-mandate) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -131,8 +129,7 @@ public class ListMandatesResponse implements Response {
     }
 
     /**
-     * A list of mandate objects. For a complete reference of the mandate object, refer to the
-     * [Get mandate endpoint](get-mandate) documentation.
+     * A list of mandate objects. For a complete reference of the mandate object, refer to the [Get mandate endpoint](get-mandate) documentation.
      */
     public ListMandatesResponse withObject(ListMandatesResponseBody object) {
         Utils.checkNotNull(object, "object");
@@ -141,8 +138,7 @@ public class ListMandatesResponse implements Response {
     }
 
     /**
-     * A list of mandate objects. For a complete reference of the mandate object, refer to the
-     * [Get mandate endpoint](get-mandate) documentation.
+     * A list of mandate objects. For a complete reference of the mandate object, refer to the [Get mandate endpoint](get-mandate) documentation.
      */
     public ListMandatesResponse withObject(Optional<? extends ListMandatesResponseBody> object) {
         Utils.checkNotNull(object, "object");
@@ -226,8 +222,7 @@ public class ListMandatesResponse implements Response {
         }
 
         /**
-         * A list of mandate objects. For a complete reference of the mandate object, refer to the
-         * [Get mandate endpoint](get-mandate) documentation.
+         * A list of mandate objects. For a complete reference of the mandate object, refer to the [Get mandate endpoint](get-mandate) documentation.
          */
         public Builder object(ListMandatesResponseBody object) {
             Utils.checkNotNull(object, "object");
@@ -236,8 +231,7 @@ public class ListMandatesResponse implements Response {
         }
 
         /**
-         * A list of mandate objects. For a complete reference of the mandate object, refer to the
-         * [Get mandate endpoint](get-mandate) documentation.
+         * A list of mandate objects. For a complete reference of the mandate object, refer to the [Get mandate endpoint](get-mandate) documentation.
          */
         public Builder object(Optional<? extends ListMandatesResponseBody> object) {
             Utils.checkNotNull(object, "object");

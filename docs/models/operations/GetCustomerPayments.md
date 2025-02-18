@@ -1,7 +1,6 @@
 # GetCustomerPayments
 
-The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments
-exist (yet).
+The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments exist (yet).
 
 
 ## Fields

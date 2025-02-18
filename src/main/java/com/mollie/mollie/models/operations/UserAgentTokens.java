@@ -35,8 +35,7 @@ public class UserAgentTokens {
     private Optional<String> startsAt;
 
     /**
-     * The date until when the token will be active, in ISO 8601 format. Will be `null` if the token
-     * does not have an end date (yet).
+     * The date until when the token will be active, in ISO 8601 format. Will be `null` if the token does not have an end date (yet).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("endsAt")
@@ -76,8 +75,7 @@ public class UserAgentTokens {
     }
 
     /**
-     * The date until when the token will be active, in ISO 8601 format. Will be `null` if the token
-     * does not have an end date (yet).
+     * The date until when the token will be active, in ISO 8601 format. Will be `null` if the token does not have an end date (yet).
      */
     @JsonIgnore
     public JsonNullable<String> endsAt() {
@@ -125,8 +123,7 @@ public class UserAgentTokens {
     }
 
     /**
-     * The date until when the token will be active, in ISO 8601 format. Will be `null` if the token
-     * does not have an end date (yet).
+     * The date until when the token will be active, in ISO 8601 format. Will be `null` if the token does not have an end date (yet).
      */
     public UserAgentTokens withEndsAt(String endsAt) {
         Utils.checkNotNull(endsAt, "endsAt");
@@ -135,8 +132,7 @@ public class UserAgentTokens {
     }
 
     /**
-     * The date until when the token will be active, in ISO 8601 format. Will be `null` if the token
-     * does not have an end date (yet).
+     * The date until when the token will be active, in ISO 8601 format. Will be `null` if the token does not have an end date (yet).
      */
     public UserAgentTokens withEndsAt(JsonNullable<String> endsAt) {
         Utils.checkNotNull(endsAt, "endsAt");
@@ -224,8 +220,7 @@ public class UserAgentTokens {
         }
 
         /**
-         * The date until when the token will be active, in ISO 8601 format. Will be `null` if the token
-         * does not have an end date (yet).
+         * The date until when the token will be active, in ISO 8601 format. Will be `null` if the token does not have an end date (yet).
          */
         public Builder endsAt(String endsAt) {
             Utils.checkNotNull(endsAt, "endsAt");
@@ -234,8 +229,7 @@ public class UserAgentTokens {
         }
 
         /**
-         * The date until when the token will be active, in ISO 8601 format. Will be `null` if the token
-         * does not have an end date (yet).
+         * The date until when the token will be active, in ISO 8601 format. Will be `null` if the token does not have an end date (yet).
          */
         public Builder endsAt(JsonNullable<String> endsAt) {
             Utils.checkNotNull(endsAt, "endsAt");

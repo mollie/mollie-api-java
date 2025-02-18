@@ -13,7 +13,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class DeleteCustomerRequestBuilder {
 
-    private DeleteCustomerSecurity security;
     private String id;
     private JsonNullable<Boolean> testmode = Utils.readDefaultOrConstValue(
                             "testmode",
@@ -23,12 +22,6 @@ public class DeleteCustomerRequestBuilder {
 
     public DeleteCustomerRequestBuilder(SDKMethodInterfaces.MethodCallDeleteCustomer sdk) {
         this.sdk = sdk;
-    }
-
-    public DeleteCustomerRequestBuilder security(DeleteCustomerSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public DeleteCustomerRequestBuilder id(String id) {
@@ -53,8 +46,7 @@ public class DeleteCustomerRequestBuilder {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.delete(
-            security,
+        return sdk.deleteCustomer(
             id,
             testmode);
     }

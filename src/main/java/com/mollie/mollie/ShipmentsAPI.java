@@ -14,23 +14,19 @@ import com.mollie.mollie.models.operations.CreateShipmentRequest;
 import com.mollie.mollie.models.operations.CreateShipmentRequestBody;
 import com.mollie.mollie.models.operations.CreateShipmentRequestBuilder;
 import com.mollie.mollie.models.operations.CreateShipmentResponse;
-import com.mollie.mollie.models.operations.CreateShipmentSecurity;
 import com.mollie.mollie.models.operations.GetShipmentRequest;
 import com.mollie.mollie.models.operations.GetShipmentRequestBuilder;
 import com.mollie.mollie.models.operations.GetShipmentResponse;
 import com.mollie.mollie.models.operations.GetShipmentResponseBody;
-import com.mollie.mollie.models.operations.GetShipmentSecurity;
 import com.mollie.mollie.models.operations.ListShipmentsRequest;
 import com.mollie.mollie.models.operations.ListShipmentsRequestBuilder;
 import com.mollie.mollie.models.operations.ListShipmentsResponse;
 import com.mollie.mollie.models.operations.ListShipmentsResponseBody;
-import com.mollie.mollie.models.operations.ListShipmentsSecurity;
 import com.mollie.mollie.models.operations.SDKMethodInterfaces.*;
 import com.mollie.mollie.models.operations.UpdateShipmentRequest;
 import com.mollie.mollie.models.operations.UpdateShipmentRequestBody;
 import com.mollie.mollie.models.operations.UpdateShipmentRequestBuilder;
 import com.mollie.mollie.models.operations.UpdateShipmentResponse;
-import com.mollie.mollie.models.operations.UpdateShipmentSecurity;
 import com.mollie.mollie.utils.HTTPClient;
 import com.mollie.mollie.utils.HTTPRequest;
 import com.mollie.mollie.utils.Hook.AfterErrorContextImpl;
@@ -66,65 +62,70 @@ public class ShipmentsAPI implements
 
     /**
      * Create shipment
-     * **⚠️ We no longer recommend implementing the Shipments API. Please refer to the Captures API instead. We are
-     * actively working on adding support for line-specific captures to the Captures API.**
+     * **⚠️ We no longer recommend implementing the Shipments API. Please refer to the Captures API instead. We are actively working on adding support for line-specific captures to the Captures API.**
      * 
      * Create a shipment for specific order lines of an order.
      * 
-     * When using Klarna, using this endpoint is mandatory for the order amount to be captured. A [capture](get-capture)
-     * will automatically be created for the shipment.
+     * When using Klarna, using this endpoint is mandatory for the order amount to be captured. A [capture](get-capture) will automatically be created for the shipment.
      * 
-     * The word 'shipment' is used in the figurative sense here. It can also mean that a service was provided or digital
-     * content was delivered.
+     * The word 'shipment' is used in the figurative sense here. It can also mean that a service was provided or digital content was delivered.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **shipments.write**](/reference/authentication)
      * @return The call builder
      */
-    public CreateShipmentRequestBuilder create() {
+    public CreateShipmentRequestBuilder createShipment() {
         return new CreateShipmentRequestBuilder(this);
     }
 
     /**
      * Create shipment
-     * **⚠️ We no longer recommend implementing the Shipments API. Please refer to the Captures API instead. We are
-     * actively working on adding support for line-specific captures to the Captures API.**
+     * **⚠️ We no longer recommend implementing the Shipments API. Please refer to the Captures API instead. We are actively working on adding support for line-specific captures to the Captures API.**
      * 
      * Create a shipment for specific order lines of an order.
      * 
-     * When using Klarna, using this endpoint is mandatory for the order amount to be captured. A [capture](get-capture)
-     * will automatically be created for the shipment.
+     * When using Klarna, using this endpoint is mandatory for the order amount to be captured. A [capture](get-capture) will automatically be created for the shipment.
      * 
-     * The word 'shipment' is used in the figurative sense here. It can also mean that a service was provided or digital
-     * content was delivered.
-     * @param security The security details to use for authentication.
+     * The word 'shipment' is used in the figurative sense here. It can also mean that a service was provided or digital content was delivered.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **shipments.write**](/reference/authentication)
      * @param orderId Provide the ID of the related order.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateShipmentResponse create(
-            CreateShipmentSecurity security,
+    public CreateShipmentResponse createShipment(
             String orderId) throws Exception {
-        return create(security, orderId, Optional.empty());
+        return createShipment(orderId, Optional.empty());
     }
     
     /**
      * Create shipment
-     * **⚠️ We no longer recommend implementing the Shipments API. Please refer to the Captures API instead. We are
-     * actively working on adding support for line-specific captures to the Captures API.**
+     * **⚠️ We no longer recommend implementing the Shipments API. Please refer to the Captures API instead. We are actively working on adding support for line-specific captures to the Captures API.**
      * 
      * Create a shipment for specific order lines of an order.
      * 
-     * When using Klarna, using this endpoint is mandatory for the order amount to be captured. A [capture](get-capture)
-     * will automatically be created for the shipment.
+     * When using Klarna, using this endpoint is mandatory for the order amount to be captured. A [capture](get-capture) will automatically be created for the shipment.
      * 
-     * The word 'shipment' is used in the figurative sense here. It can also mean that a service was provided or digital
-     * content was delivered.
-     * @param security The security details to use for authentication.
+     * The word 'shipment' is used in the figurative sense here. It can also mean that a service was provided or digital content was delivered.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **shipments.write**](/reference/authentication)
      * @param orderId Provide the ID of the related order.
      * @param requestBody
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateShipmentResponse create(
-            CreateShipmentSecurity security,
+    public CreateShipmentResponse createShipment(
             String orderId,
             Optional<? extends CreateShipmentRequestBody> requestBody) throws Exception {
         CreateShipmentRequest request =
@@ -156,11 +157,9 @@ public class ShipmentsAPI implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -215,19 +214,8 @@ public class ShipmentsAPI implements
         CreateShipmentResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
+            // no content 
+            return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
@@ -288,60 +276,68 @@ public class ShipmentsAPI implements
 
     /**
      * List shipments
-     * **⚠️ We no longer recommend implementing the Shipments API. Please refer to the Captures API instead. We are
-     * actively working on adding support for line-specific captures to the Captures API.**
+     * **⚠️ We no longer recommend implementing the Shipments API. Please refer to the Captures API instead. We are actively working on adding support for line-specific captures to the Captures API.**
      * 
      * Retrieve a list of all shipments created for a specific order.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **shipments.read**](/reference/authentication)
      * @return The call builder
      */
-    public ListShipmentsRequestBuilder list() {
+    public ListShipmentsRequestBuilder listShipments() {
         return new ListShipmentsRequestBuilder(this);
     }
 
     /**
      * List shipments
-     * **⚠️ We no longer recommend implementing the Shipments API. Please refer to the Captures API instead. We are
-     * actively working on adding support for line-specific captures to the Captures API.**
+     * **⚠️ We no longer recommend implementing the Shipments API. Please refer to the Captures API instead. We are actively working on adding support for line-specific captures to the Captures API.**
      * 
      * Retrieve a list of all shipments created for a specific order.
      * 
      * The results are paginated.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **shipments.read**](/reference/authentication)
      * @param orderId Provide the ID of the related order.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListShipmentsResponse list(
-            ListShipmentsSecurity security,
+    public ListShipmentsResponse listShipments(
             String orderId) throws Exception {
-        return list(security, orderId, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        return listShipments(orderId, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
     }
     
     /**
      * List shipments
-     * **⚠️ We no longer recommend implementing the Shipments API. Please refer to the Captures API instead. We are
-     * actively working on adding support for line-specific captures to the Captures API.**
+     * **⚠️ We no longer recommend implementing the Shipments API. Please refer to the Captures API instead. We are actively working on adding support for line-specific captures to the Captures API.**
      * 
      * Retrieve a list of all shipments created for a specific order.
      * 
      * The results are paginated.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **shipments.read**](/reference/authentication)
      * @param orderId Provide the ID of the related order.
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-    result set.
+     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListShipmentsResponse list(
-            ListShipmentsSecurity security,
+    public ListShipmentsResponse listShipments(
             String orderId,
             Optional<String> from,
             JsonNullable<Long> limit,
@@ -372,11 +368,9 @@ public class ShipmentsAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -504,54 +498,63 @@ public class ShipmentsAPI implements
 
     /**
      * Get shipment
-     * **⚠️ We no longer recommend implementing the Shipments API. Please refer to the Captures API instead. We are
-     * actively working on adding support for line-specific captures to the Captures API.**
+     * **⚠️ We no longer recommend implementing the Shipments API. Please refer to the Captures API instead. We are actively working on adding support for line-specific captures to the Captures API.**
      * 
      * Retrieve a single shipment by its ID and the ID of its parent order.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **shipments.read**](/reference/authentication)
      * @return The call builder
      */
-    public GetShipmentRequestBuilder get() {
+    public GetShipmentRequestBuilder getShipment() {
         return new GetShipmentRequestBuilder(this);
     }
 
     /**
      * Get shipment
-     * **⚠️ We no longer recommend implementing the Shipments API. Please refer to the Captures API instead. We are
-     * actively working on adding support for line-specific captures to the Captures API.**
+     * **⚠️ We no longer recommend implementing the Shipments API. Please refer to the Captures API instead. We are actively working on adding support for line-specific captures to the Captures API.**
      * 
      * Retrieve a single shipment by its ID and the ID of its parent order.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **shipments.read**](/reference/authentication)
      * @param orderId Provide the ID of the related order.
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetShipmentResponse get(
-            GetShipmentSecurity security,
+    public GetShipmentResponse getShipment(
             String orderId,
             String id) throws Exception {
-        return get(security, orderId, id, JsonNullable.undefined());
+        return getShipment(orderId, id, JsonNullable.undefined());
     }
     
     /**
      * Get shipment
-     * **⚠️ We no longer recommend implementing the Shipments API. Please refer to the Captures API instead. We are
-     * actively working on adding support for line-specific captures to the Captures API.**
+     * **⚠️ We no longer recommend implementing the Shipments API. Please refer to the Captures API instead. We are actively working on adding support for line-specific captures to the Captures API.**
      * 
      * Retrieve a single shipment by its ID and the ID of its parent order.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **shipments.read**](/reference/authentication)
      * @param orderId Provide the ID of the related order.
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetShipmentResponse get(
-            GetShipmentSecurity security,
+    public GetShipmentResponse getShipment(
             String orderId,
             String id,
             JsonNullable<Boolean> testmode) throws Exception {
@@ -580,11 +583,9 @@ public class ShipmentsAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -696,61 +697,70 @@ public class ShipmentsAPI implements
 
     /**
      * Update shipment
-     * **⚠️ We no longer recommend implementing the Shipments API. Please refer to the Captures API instead. We are
-     * actively working on adding support for line-specific captures to the Captures API.**
+     * **⚠️ We no longer recommend implementing the Shipments API. Please refer to the Captures API instead. We are actively working on adding support for line-specific captures to the Captures API.**
      * 
      * Update the tracking information on a shipment.
      * 
      * For an in-depth explanation of each parameter, refer to the [Create shipment](create-shipment) endpoint.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **shipments.write**](/reference/authentication)
      * @return The call builder
      */
-    public UpdateShipmentRequestBuilder update() {
+    public UpdateShipmentRequestBuilder updateShipment() {
         return new UpdateShipmentRequestBuilder(this);
     }
 
     /**
      * Update shipment
-     * **⚠️ We no longer recommend implementing the Shipments API. Please refer to the Captures API instead. We are
-     * actively working on adding support for line-specific captures to the Captures API.**
+     * **⚠️ We no longer recommend implementing the Shipments API. Please refer to the Captures API instead. We are actively working on adding support for line-specific captures to the Captures API.**
      * 
      * Update the tracking information on a shipment.
      * 
      * For an in-depth explanation of each parameter, refer to the [Create shipment](create-shipment) endpoint.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **shipments.write**](/reference/authentication)
      * @param orderId Provide the ID of the related order.
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdateShipmentResponse update(
-            UpdateShipmentSecurity security,
+    public UpdateShipmentResponse updateShipment(
             String orderId,
             String id) throws Exception {
-        return update(security, orderId, id, JsonNullable.undefined(), Optional.empty());
+        return updateShipment(orderId, id, JsonNullable.undefined(), Optional.empty());
     }
     
     /**
      * Update shipment
-     * **⚠️ We no longer recommend implementing the Shipments API. Please refer to the Captures API instead. We are
-     * actively working on adding support for line-specific captures to the Captures API.**
+     * **⚠️ We no longer recommend implementing the Shipments API. Please refer to the Captures API instead. We are actively working on adding support for line-specific captures to the Captures API.**
      * 
      * Update the tracking information on a shipment.
      * 
      * For an in-depth explanation of each parameter, refer to the [Create shipment](create-shipment) endpoint.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **shipments.write**](/reference/authentication)
      * @param orderId Provide the ID of the related order.
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param requestBody
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdateShipmentResponse update(
-            UpdateShipmentSecurity security,
+    public UpdateShipmentResponse updateShipment(
             String orderId,
             String id,
             JsonNullable<Boolean> testmode,
@@ -791,11 +801,9 @@ public class ShipmentsAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -850,19 +858,8 @@ public class ShipmentsAPI implements
         UpdateShipmentResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
+            // no content 
+            return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {

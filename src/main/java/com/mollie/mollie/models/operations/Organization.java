@@ -43,8 +43,7 @@ public class Organization {
     private Optional<String> registrationNumber;
 
     /**
-     * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT
-     * numbers are verified against the international registry *VIES*.
+     * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are verified against the international registry *VIES*.
      * 
      * The field can be omitted for merchants residing in other countries.
      */
@@ -53,14 +52,15 @@ public class Organization {
     private JsonNullable<String> vatNumber;
 
     /**
-     * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in
-     * The United Kingdom, and shifted VAT for merchants in the European Union.
+     * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in The United Kingdom, and shifted VAT for merchants in the European Union.
      * 
      * The field can be omitted for merchants residing in other countries.
+     * 
+     * Possible values: `dutch` `british` `shifted`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatRegulation")
-    private JsonNullable<? extends VatRegulation> vatRegulation;
+    private JsonNullable<String> vatRegulation;
 
     @JsonCreator
     public Organization(
@@ -68,7 +68,7 @@ public class Organization {
             @JsonProperty("address") Optional<? extends Address> address,
             @JsonProperty("registrationNumber") Optional<String> registrationNumber,
             @JsonProperty("vatNumber") JsonNullable<String> vatNumber,
-            @JsonProperty("vatRegulation") JsonNullable<? extends VatRegulation> vatRegulation) {
+            @JsonProperty("vatRegulation") JsonNullable<String> vatRegulation) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(address, "address");
         Utils.checkNotNull(registrationNumber, "registrationNumber");
@@ -111,8 +111,7 @@ public class Organization {
     }
 
     /**
-     * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT
-     * numbers are verified against the international registry *VIES*.
+     * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are verified against the international registry *VIES*.
      * 
      * The field can be omitted for merchants residing in other countries.
      */
@@ -122,15 +121,15 @@ public class Organization {
     }
 
     /**
-     * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in
-     * The United Kingdom, and shifted VAT for merchants in the European Union.
+     * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in The United Kingdom, and shifted VAT for merchants in the European Union.
      * 
      * The field can be omitted for merchants residing in other countries.
+     * 
+     * Possible values: `dutch` `british` `shifted`
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<VatRegulation> vatRegulation() {
-        return (JsonNullable<VatRegulation>) vatRegulation;
+    public JsonNullable<String> vatRegulation() {
+        return vatRegulation;
     }
 
     public final static Builder builder() {
@@ -192,8 +191,7 @@ public class Organization {
     }
 
     /**
-     * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT
-     * numbers are verified against the international registry *VIES*.
+     * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are verified against the international registry *VIES*.
      * 
      * The field can be omitted for merchants residing in other countries.
      */
@@ -204,8 +202,7 @@ public class Organization {
     }
 
     /**
-     * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT
-     * numbers are verified against the international registry *VIES*.
+     * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are verified against the international registry *VIES*.
      * 
      * The field can be omitted for merchants residing in other countries.
      */
@@ -216,24 +213,26 @@ public class Organization {
     }
 
     /**
-     * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in
-     * The United Kingdom, and shifted VAT for merchants in the European Union.
+     * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in The United Kingdom, and shifted VAT for merchants in the European Union.
      * 
      * The field can be omitted for merchants residing in other countries.
+     * 
+     * Possible values: `dutch` `british` `shifted`
      */
-    public Organization withVatRegulation(VatRegulation vatRegulation) {
+    public Organization withVatRegulation(String vatRegulation) {
         Utils.checkNotNull(vatRegulation, "vatRegulation");
         this.vatRegulation = JsonNullable.of(vatRegulation);
         return this;
     }
 
     /**
-     * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in
-     * The United Kingdom, and shifted VAT for merchants in the European Union.
+     * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in The United Kingdom, and shifted VAT for merchants in the European Union.
      * 
      * The field can be omitted for merchants residing in other countries.
+     * 
+     * Possible values: `dutch` `british` `shifted`
      */
-    public Organization withVatRegulation(JsonNullable<? extends VatRegulation> vatRegulation) {
+    public Organization withVatRegulation(JsonNullable<String> vatRegulation) {
         Utils.checkNotNull(vatRegulation, "vatRegulation");
         this.vatRegulation = vatRegulation;
         return this;
@@ -286,7 +285,7 @@ public class Organization {
  
         private JsonNullable<String> vatNumber = JsonNullable.undefined();
  
-        private JsonNullable<? extends VatRegulation> vatRegulation = JsonNullable.undefined();  
+        private JsonNullable<String> vatRegulation = JsonNullable.undefined();  
         
         private Builder() {
           // force use of static builder() method
@@ -347,8 +346,7 @@ public class Organization {
         }
 
         /**
-         * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT
-         * numbers are verified against the international registry *VIES*.
+         * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are verified against the international registry *VIES*.
          * 
          * The field can be omitted for merchants residing in other countries.
          */
@@ -359,8 +357,7 @@ public class Organization {
         }
 
         /**
-         * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT
-         * numbers are verified against the international registry *VIES*.
+         * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are verified against the international registry *VIES*.
          * 
          * The field can be omitted for merchants residing in other countries.
          */
@@ -371,24 +368,26 @@ public class Organization {
         }
 
         /**
-         * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in
-         * The United Kingdom, and shifted VAT for merchants in the European Union.
+         * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in The United Kingdom, and shifted VAT for merchants in the European Union.
          * 
          * The field can be omitted for merchants residing in other countries.
+         * 
+         * Possible values: `dutch` `british` `shifted`
          */
-        public Builder vatRegulation(VatRegulation vatRegulation) {
+        public Builder vatRegulation(String vatRegulation) {
             Utils.checkNotNull(vatRegulation, "vatRegulation");
             this.vatRegulation = JsonNullable.of(vatRegulation);
             return this;
         }
 
         /**
-         * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in
-         * The United Kingdom, and shifted VAT for merchants in the European Union.
+         * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in The United Kingdom, and shifted VAT for merchants in the European Union.
          * 
          * The field can be omitted for merchants residing in other countries.
+         * 
+         * Possible values: `dutch` `british` `shifted`
          */
-        public Builder vatRegulation(JsonNullable<? extends VatRegulation> vatRegulation) {
+        public Builder vatRegulation(JsonNullable<String> vatRegulation) {
             Utils.checkNotNull(vatRegulation, "vatRegulation");
             this.vatRegulation = vatRegulation;
             return this;

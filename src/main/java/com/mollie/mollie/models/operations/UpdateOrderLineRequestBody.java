@@ -45,16 +45,14 @@ public class UpdateOrderLineRequestBody {
     private JsonNullable<String> metadata;
 
     /**
-     * Required when a `unitPrice`, `discountAmount`, `totalAmount`, `vatAmount`, or `vatRate` is also provided
-     * in the same request.
+     * Required when a `unitPrice`, `discountAmount`, `totalAmount`, `vatAmount`, or `vatRate` is also provided in the same request.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("quantity")
     private JsonNullable<Long> quantity;
 
     /**
-     * Required when a `quantity`, `discountAmount`, `totalAmount`, `vatAmount`, or `vatRate` is also provided
-     * in the same request.
+     * Required when a `quantity`, `discountAmount`, `totalAmount`, `vatAmount`, or `vatRate` is also provided in the same request.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("unitPrice")
@@ -68,32 +66,28 @@ public class UpdateOrderLineRequestBody {
     private JsonNullable<? extends UpdateOrderLineDiscountAmount> discountAmount;
 
     /**
-     * Required when a `quantity`, `unitPrice`, `discountAmount`, `vatAmount`, or `vatRate` is also provided
-     * in the same request.
+     * Required when a `quantity`, `unitPrice`, `discountAmount`, `vatAmount`, or `vatRate` is also provided in the same request.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("totalAmount")
     private JsonNullable<? extends UpdateOrderLineTotalAmount> totalAmount;
 
     /**
-     * Required when a `quantity`, `unitPrice`, `discountAmount`, `totalAmount`, or `vatRate` is also provided
-     * in the same request.
+     * Required when a `quantity`, `unitPrice`, `discountAmount`, `totalAmount`, or `vatRate` is also provided in the same request.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatAmount")
     private JsonNullable<? extends UpdateOrderLineVatAmount> vatAmount;
 
     /**
-     * Required when a `quantity`, `unitPrice`, `discountAmount`, `totalAmount`, or `vatAmount` is also
-     * provided in the same request.
+     * Required when a `quantity`, `unitPrice`, `discountAmount`, `totalAmount`, or `vatAmount` is also provided in the same request.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatRate")
     private JsonNullable<String> vatRate;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
-     * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -171,8 +165,7 @@ public class UpdateOrderLineRequestBody {
     }
 
     /**
-     * Required when a `unitPrice`, `discountAmount`, `totalAmount`, `vatAmount`, or `vatRate` is also provided
-     * in the same request.
+     * Required when a `unitPrice`, `discountAmount`, `totalAmount`, `vatAmount`, or `vatRate` is also provided in the same request.
      */
     @JsonIgnore
     public JsonNullable<Long> quantity() {
@@ -180,8 +173,7 @@ public class UpdateOrderLineRequestBody {
     }
 
     /**
-     * Required when a `quantity`, `discountAmount`, `totalAmount`, `vatAmount`, or `vatRate` is also provided
-     * in the same request.
+     * Required when a `quantity`, `discountAmount`, `totalAmount`, `vatAmount`, or `vatRate` is also provided in the same request.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -199,8 +191,7 @@ public class UpdateOrderLineRequestBody {
     }
 
     /**
-     * Required when a `quantity`, `unitPrice`, `discountAmount`, `vatAmount`, or `vatRate` is also provided
-     * in the same request.
+     * Required when a `quantity`, `unitPrice`, `discountAmount`, `vatAmount`, or `vatRate` is also provided in the same request.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -209,8 +200,7 @@ public class UpdateOrderLineRequestBody {
     }
 
     /**
-     * Required when a `quantity`, `unitPrice`, `discountAmount`, `totalAmount`, or `vatRate` is also provided
-     * in the same request.
+     * Required when a `quantity`, `unitPrice`, `discountAmount`, `totalAmount`, or `vatRate` is also provided in the same request.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -219,8 +209,7 @@ public class UpdateOrderLineRequestBody {
     }
 
     /**
-     * Required when a `quantity`, `unitPrice`, `discountAmount`, `totalAmount`, or `vatAmount` is also
-     * provided in the same request.
+     * Required when a `quantity`, `unitPrice`, `discountAmount`, `totalAmount`, or `vatAmount` is also provided in the same request.
      */
     @JsonIgnore
     public JsonNullable<String> vatRate() {
@@ -228,8 +217,7 @@ public class UpdateOrderLineRequestBody {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
-     * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -303,8 +291,7 @@ public class UpdateOrderLineRequestBody {
     }
 
     /**
-     * Required when a `unitPrice`, `discountAmount`, `totalAmount`, `vatAmount`, or `vatRate` is also provided
-     * in the same request.
+     * Required when a `unitPrice`, `discountAmount`, `totalAmount`, `vatAmount`, or `vatRate` is also provided in the same request.
      */
     public UpdateOrderLineRequestBody withQuantity(long quantity) {
         Utils.checkNotNull(quantity, "quantity");
@@ -313,8 +300,7 @@ public class UpdateOrderLineRequestBody {
     }
 
     /**
-     * Required when a `unitPrice`, `discountAmount`, `totalAmount`, `vatAmount`, or `vatRate` is also provided
-     * in the same request.
+     * Required when a `unitPrice`, `discountAmount`, `totalAmount`, `vatAmount`, or `vatRate` is also provided in the same request.
      */
     public UpdateOrderLineRequestBody withQuantity(JsonNullable<Long> quantity) {
         Utils.checkNotNull(quantity, "quantity");
@@ -323,8 +309,7 @@ public class UpdateOrderLineRequestBody {
     }
 
     /**
-     * Required when a `quantity`, `discountAmount`, `totalAmount`, `vatAmount`, or `vatRate` is also provided
-     * in the same request.
+     * Required when a `quantity`, `discountAmount`, `totalAmount`, `vatAmount`, or `vatRate` is also provided in the same request.
      */
     public UpdateOrderLineRequestBody withUnitPrice(UpdateOrderLineUnitPrice unitPrice) {
         Utils.checkNotNull(unitPrice, "unitPrice");
@@ -333,8 +318,7 @@ public class UpdateOrderLineRequestBody {
     }
 
     /**
-     * Required when a `quantity`, `discountAmount`, `totalAmount`, `vatAmount`, or `vatRate` is also provided
-     * in the same request.
+     * Required when a `quantity`, `discountAmount`, `totalAmount`, `vatAmount`, or `vatRate` is also provided in the same request.
      */
     public UpdateOrderLineRequestBody withUnitPrice(JsonNullable<? extends UpdateOrderLineUnitPrice> unitPrice) {
         Utils.checkNotNull(unitPrice, "unitPrice");
@@ -361,8 +345,7 @@ public class UpdateOrderLineRequestBody {
     }
 
     /**
-     * Required when a `quantity`, `unitPrice`, `discountAmount`, `vatAmount`, or `vatRate` is also provided
-     * in the same request.
+     * Required when a `quantity`, `unitPrice`, `discountAmount`, `vatAmount`, or `vatRate` is also provided in the same request.
      */
     public UpdateOrderLineRequestBody withTotalAmount(UpdateOrderLineTotalAmount totalAmount) {
         Utils.checkNotNull(totalAmount, "totalAmount");
@@ -371,8 +354,7 @@ public class UpdateOrderLineRequestBody {
     }
 
     /**
-     * Required when a `quantity`, `unitPrice`, `discountAmount`, `vatAmount`, or `vatRate` is also provided
-     * in the same request.
+     * Required when a `quantity`, `unitPrice`, `discountAmount`, `vatAmount`, or `vatRate` is also provided in the same request.
      */
     public UpdateOrderLineRequestBody withTotalAmount(JsonNullable<? extends UpdateOrderLineTotalAmount> totalAmount) {
         Utils.checkNotNull(totalAmount, "totalAmount");
@@ -381,8 +363,7 @@ public class UpdateOrderLineRequestBody {
     }
 
     /**
-     * Required when a `quantity`, `unitPrice`, `discountAmount`, `totalAmount`, or `vatRate` is also provided
-     * in the same request.
+     * Required when a `quantity`, `unitPrice`, `discountAmount`, `totalAmount`, or `vatRate` is also provided in the same request.
      */
     public UpdateOrderLineRequestBody withVatAmount(UpdateOrderLineVatAmount vatAmount) {
         Utils.checkNotNull(vatAmount, "vatAmount");
@@ -391,8 +372,7 @@ public class UpdateOrderLineRequestBody {
     }
 
     /**
-     * Required when a `quantity`, `unitPrice`, `discountAmount`, `totalAmount`, or `vatRate` is also provided
-     * in the same request.
+     * Required when a `quantity`, `unitPrice`, `discountAmount`, `totalAmount`, or `vatRate` is also provided in the same request.
      */
     public UpdateOrderLineRequestBody withVatAmount(JsonNullable<? extends UpdateOrderLineVatAmount> vatAmount) {
         Utils.checkNotNull(vatAmount, "vatAmount");
@@ -401,8 +381,7 @@ public class UpdateOrderLineRequestBody {
     }
 
     /**
-     * Required when a `quantity`, `unitPrice`, `discountAmount`, `totalAmount`, or `vatAmount` is also
-     * provided in the same request.
+     * Required when a `quantity`, `unitPrice`, `discountAmount`, `totalAmount`, or `vatAmount` is also provided in the same request.
      */
     public UpdateOrderLineRequestBody withVatRate(String vatRate) {
         Utils.checkNotNull(vatRate, "vatRate");
@@ -411,8 +390,7 @@ public class UpdateOrderLineRequestBody {
     }
 
     /**
-     * Required when a `quantity`, `unitPrice`, `discountAmount`, `totalAmount`, or `vatAmount` is also
-     * provided in the same request.
+     * Required when a `quantity`, `unitPrice`, `discountAmount`, `totalAmount`, or `vatAmount` is also provided in the same request.
      */
     public UpdateOrderLineRequestBody withVatRate(JsonNullable<String> vatRate) {
         Utils.checkNotNull(vatRate, "vatRate");
@@ -421,8 +399,7 @@ public class UpdateOrderLineRequestBody {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
-     * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -433,8 +410,7 @@ public class UpdateOrderLineRequestBody {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
-     * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -593,8 +569,7 @@ public class UpdateOrderLineRequestBody {
         }
 
         /**
-         * Required when a `unitPrice`, `discountAmount`, `totalAmount`, `vatAmount`, or `vatRate` is also provided
-         * in the same request.
+         * Required when a `unitPrice`, `discountAmount`, `totalAmount`, `vatAmount`, or `vatRate` is also provided in the same request.
          */
         public Builder quantity(long quantity) {
             Utils.checkNotNull(quantity, "quantity");
@@ -603,8 +578,7 @@ public class UpdateOrderLineRequestBody {
         }
 
         /**
-         * Required when a `unitPrice`, `discountAmount`, `totalAmount`, `vatAmount`, or `vatRate` is also provided
-         * in the same request.
+         * Required when a `unitPrice`, `discountAmount`, `totalAmount`, `vatAmount`, or `vatRate` is also provided in the same request.
          */
         public Builder quantity(JsonNullable<Long> quantity) {
             Utils.checkNotNull(quantity, "quantity");
@@ -613,8 +587,7 @@ public class UpdateOrderLineRequestBody {
         }
 
         /**
-         * Required when a `quantity`, `discountAmount`, `totalAmount`, `vatAmount`, or `vatRate` is also provided
-         * in the same request.
+         * Required when a `quantity`, `discountAmount`, `totalAmount`, `vatAmount`, or `vatRate` is also provided in the same request.
          */
         public Builder unitPrice(UpdateOrderLineUnitPrice unitPrice) {
             Utils.checkNotNull(unitPrice, "unitPrice");
@@ -623,8 +596,7 @@ public class UpdateOrderLineRequestBody {
         }
 
         /**
-         * Required when a `quantity`, `discountAmount`, `totalAmount`, `vatAmount`, or `vatRate` is also provided
-         * in the same request.
+         * Required when a `quantity`, `discountAmount`, `totalAmount`, `vatAmount`, or `vatRate` is also provided in the same request.
          */
         public Builder unitPrice(JsonNullable<? extends UpdateOrderLineUnitPrice> unitPrice) {
             Utils.checkNotNull(unitPrice, "unitPrice");
@@ -651,8 +623,7 @@ public class UpdateOrderLineRequestBody {
         }
 
         /**
-         * Required when a `quantity`, `unitPrice`, `discountAmount`, `vatAmount`, or `vatRate` is also provided
-         * in the same request.
+         * Required when a `quantity`, `unitPrice`, `discountAmount`, `vatAmount`, or `vatRate` is also provided in the same request.
          */
         public Builder totalAmount(UpdateOrderLineTotalAmount totalAmount) {
             Utils.checkNotNull(totalAmount, "totalAmount");
@@ -661,8 +632,7 @@ public class UpdateOrderLineRequestBody {
         }
 
         /**
-         * Required when a `quantity`, `unitPrice`, `discountAmount`, `vatAmount`, or `vatRate` is also provided
-         * in the same request.
+         * Required when a `quantity`, `unitPrice`, `discountAmount`, `vatAmount`, or `vatRate` is also provided in the same request.
          */
         public Builder totalAmount(JsonNullable<? extends UpdateOrderLineTotalAmount> totalAmount) {
             Utils.checkNotNull(totalAmount, "totalAmount");
@@ -671,8 +641,7 @@ public class UpdateOrderLineRequestBody {
         }
 
         /**
-         * Required when a `quantity`, `unitPrice`, `discountAmount`, `totalAmount`, or `vatRate` is also provided
-         * in the same request.
+         * Required when a `quantity`, `unitPrice`, `discountAmount`, `totalAmount`, or `vatRate` is also provided in the same request.
          */
         public Builder vatAmount(UpdateOrderLineVatAmount vatAmount) {
             Utils.checkNotNull(vatAmount, "vatAmount");
@@ -681,8 +650,7 @@ public class UpdateOrderLineRequestBody {
         }
 
         /**
-         * Required when a `quantity`, `unitPrice`, `discountAmount`, `totalAmount`, or `vatRate` is also provided
-         * in the same request.
+         * Required when a `quantity`, `unitPrice`, `discountAmount`, `totalAmount`, or `vatRate` is also provided in the same request.
          */
         public Builder vatAmount(JsonNullable<? extends UpdateOrderLineVatAmount> vatAmount) {
             Utils.checkNotNull(vatAmount, "vatAmount");
@@ -691,8 +659,7 @@ public class UpdateOrderLineRequestBody {
         }
 
         /**
-         * Required when a `quantity`, `unitPrice`, `discountAmount`, `totalAmount`, or `vatAmount` is also
-         * provided in the same request.
+         * Required when a `quantity`, `unitPrice`, `discountAmount`, `totalAmount`, or `vatAmount` is also provided in the same request.
          */
         public Builder vatRate(String vatRate) {
             Utils.checkNotNull(vatRate, "vatRate");
@@ -701,8 +668,7 @@ public class UpdateOrderLineRequestBody {
         }
 
         /**
-         * Required when a `quantity`, `unitPrice`, `discountAmount`, `totalAmount`, or `vatAmount` is also
-         * provided in the same request.
+         * Required when a `quantity`, `unitPrice`, `discountAmount`, `totalAmount`, or `vatAmount` is also provided in the same request.
          */
         public Builder vatRate(JsonNullable<String> vatRate) {
             Utils.checkNotNull(vatRate, "vatRate");
@@ -711,8 +677,7 @@ public class UpdateOrderLineRequestBody {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
-         * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
          * 
          * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -723,8 +688,7 @@ public class UpdateOrderLineRequestBody {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
-         * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
          * 
          * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */

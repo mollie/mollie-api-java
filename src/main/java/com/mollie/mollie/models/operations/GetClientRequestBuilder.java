@@ -38,7 +38,7 @@ public class GetClientRequestBuilder {
 
     public GetClientResponse call() throws Exception {
 
-        return sdk.get(
+        return sdk.getClient(
             id,
             embed);
     }

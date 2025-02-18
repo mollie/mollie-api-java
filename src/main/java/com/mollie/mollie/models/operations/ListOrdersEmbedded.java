@@ -22,8 +22,7 @@ import java.util.Optional;
 public class ListOrdersEmbedded {
 
     /**
-     * An array of order objects. For a complete reference of the order object, refer to the
-     * [Get order endpoint](get-order) documentation.
+     * An array of order objects. For a complete reference of the order object, refer to the [Get order endpoint](get-order) documentation.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("orders")
@@ -41,8 +40,7 @@ public class ListOrdersEmbedded {
     }
 
     /**
-     * An array of order objects. For a complete reference of the order object, refer to the
-     * [Get order endpoint](get-order) documentation.
+     * An array of order objects. For a complete reference of the order object, refer to the [Get order endpoint](get-order) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -55,8 +53,7 @@ public class ListOrdersEmbedded {
     }
 
     /**
-     * An array of order objects. For a complete reference of the order object, refer to the
-     * [Get order endpoint](get-order) documentation.
+     * An array of order objects. For a complete reference of the order object, refer to the [Get order endpoint](get-order) documentation.
      */
     public ListOrdersEmbedded withOrders(List<Orders> orders) {
         Utils.checkNotNull(orders, "orders");
@@ -65,8 +62,7 @@ public class ListOrdersEmbedded {
     }
 
     /**
-     * An array of order objects. For a complete reference of the order object, refer to the
-     * [Get order endpoint](get-order) documentation.
+     * An array of order objects. For a complete reference of the order object, refer to the [Get order endpoint](get-order) documentation.
      */
     public ListOrdersEmbedded withOrders(Optional<? extends List<Orders>> orders) {
         Utils.checkNotNull(orders, "orders");
@@ -108,8 +104,7 @@ public class ListOrdersEmbedded {
         }
 
         /**
-         * An array of order objects. For a complete reference of the order object, refer to the
-         * [Get order endpoint](get-order) documentation.
+         * An array of order objects. For a complete reference of the order object, refer to the [Get order endpoint](get-order) documentation.
          */
         public Builder orders(List<Orders> orders) {
             Utils.checkNotNull(orders, "orders");
@@ -118,8 +113,7 @@ public class ListOrdersEmbedded {
         }
 
         /**
-         * An array of order objects. For a complete reference of the order object, refer to the
-         * [Get order endpoint](get-order) documentation.
+         * An array of order objects. For a complete reference of the order object, refer to the [Get order endpoint](get-order) documentation.
          */
         public Builder orders(Optional<? extends List<Orders>> orders) {
             Utils.checkNotNull(orders, "orders");

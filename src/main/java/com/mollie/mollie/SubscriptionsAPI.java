@@ -14,38 +14,31 @@ import com.mollie.mollie.models.errors.UpdateSubscriptionResponseBody;
 import com.mollie.mollie.models.operations.CancelSubscriptionRequest;
 import com.mollie.mollie.models.operations.CancelSubscriptionRequestBuilder;
 import com.mollie.mollie.models.operations.CancelSubscriptionResponse;
-import com.mollie.mollie.models.operations.CancelSubscriptionSecurity;
 import com.mollie.mollie.models.operations.CreateSubscriptionRequest;
 import com.mollie.mollie.models.operations.CreateSubscriptionRequestBody;
 import com.mollie.mollie.models.operations.CreateSubscriptionRequestBuilder;
 import com.mollie.mollie.models.operations.CreateSubscriptionResponse;
-import com.mollie.mollie.models.operations.CreateSubscriptionSecurity;
 import com.mollie.mollie.models.operations.GetSubscriptionRequest;
 import com.mollie.mollie.models.operations.GetSubscriptionRequestBuilder;
 import com.mollie.mollie.models.operations.GetSubscriptionResponse;
 import com.mollie.mollie.models.operations.GetSubscriptionResponseBody;
-import com.mollie.mollie.models.operations.GetSubscriptionSecurity;
 import com.mollie.mollie.models.operations.ListAllSubscriptionsRequest;
 import com.mollie.mollie.models.operations.ListAllSubscriptionsRequestBuilder;
 import com.mollie.mollie.models.operations.ListAllSubscriptionsResponse;
 import com.mollie.mollie.models.operations.ListAllSubscriptionsResponseBody;
-import com.mollie.mollie.models.operations.ListAllSubscriptionsSecurity;
 import com.mollie.mollie.models.operations.ListSubscriptionPaymentsRequest;
 import com.mollie.mollie.models.operations.ListSubscriptionPaymentsRequestBuilder;
 import com.mollie.mollie.models.operations.ListSubscriptionPaymentsResponse;
 import com.mollie.mollie.models.operations.ListSubscriptionPaymentsResponseBody;
-import com.mollie.mollie.models.operations.ListSubscriptionPaymentsSecurity;
 import com.mollie.mollie.models.operations.ListSubscriptionsRequest;
 import com.mollie.mollie.models.operations.ListSubscriptionsRequestBuilder;
 import com.mollie.mollie.models.operations.ListSubscriptionsResponse;
 import com.mollie.mollie.models.operations.ListSubscriptionsResponseBody;
-import com.mollie.mollie.models.operations.ListSubscriptionsSecurity;
 import com.mollie.mollie.models.operations.SDKMethodInterfaces.*;
 import com.mollie.mollie.models.operations.UpdateSubscriptionRequest;
 import com.mollie.mollie.models.operations.UpdateSubscriptionRequestBody;
 import com.mollie.mollie.models.operations.UpdateSubscriptionRequestBuilder;
 import com.mollie.mollie.models.operations.UpdateSubscriptionResponse;
-import com.mollie.mollie.models.operations.UpdateSubscriptionSecurity;
 import com.mollie.mollie.utils.HTTPClient;
 import com.mollie.mollie.utils.HTTPRequest;
 import com.mollie.mollie.utils.Hook.AfterErrorContextImpl;
@@ -86,26 +79,26 @@ public class SubscriptionsAPI implements
      * Create subscription
      * With subscriptions, you can schedule recurring payments to take place at regular intervals.
      * 
-     * For example, by simply specifying an `amount` and an `interval`, you can create an endless subscription to charge a
-     * monthly fee, until you cancel the subscription.
+     * For example, by simply specifying an `amount` and an `interval`, you can create an endless subscription to charge a monthly fee, until you cancel the subscription.
      * 
-     * Or, you could use the times parameter to only charge a limited number of times, for example to split a big
-     * transaction in multiple parts.
+     * Or, you could use the times parameter to only charge a limited number of times, for example to split a big transaction in multiple parts.
      * 
      * A few example usages:
      * 
-     * `amount[currency]="EUR"` `amount[value]="5.00"` `interval="2 weeks"`
-     * Your customer will be charged €5 once every two weeks.
+     * `amount[currency]="EUR"` `amount[value]="5.00"` `interval="2 weeks"` Your customer will be charged €5 once every two weeks.
      * 
-     * `amount[currency]="EUR"` `amount[value]="20.00"` `interval="1 day" times=5`
-     * Your customer will be charged €20 every day, for five consecutive days.
+     * `amount[currency]="EUR"` `amount[value]="20.00"` `interval="1 day" times=5` Your customer will be charged €20 every day, for five consecutive days.
      * 
-     * `amount[currency]="EUR"` `amount[value]="10.00"` `interval="1 month"`
-     * `startDate="2018-04-30"`
-     * Your customer will be charged €10 on the last day of each month, starting in April 2018.
+     * `amount[currency]="EUR"` `amount[value]="10.00"` `interval="1 month"` `startDate="2018-04-30"` Your customer will be charged €10 on the last day of each month, starting in April 2018.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **subscriptions.write**](/reference/authentication)
      * @return The call builder
      */
-    public CreateSubscriptionRequestBuilder create() {
+    public CreateSubscriptionRequestBuilder createSubscription() {
         return new CreateSubscriptionRequestBuilder(this);
     }
 
@@ -113,63 +106,59 @@ public class SubscriptionsAPI implements
      * Create subscription
      * With subscriptions, you can schedule recurring payments to take place at regular intervals.
      * 
-     * For example, by simply specifying an `amount` and an `interval`, you can create an endless subscription to charge a
-     * monthly fee, until you cancel the subscription.
+     * For example, by simply specifying an `amount` and an `interval`, you can create an endless subscription to charge a monthly fee, until you cancel the subscription.
      * 
-     * Or, you could use the times parameter to only charge a limited number of times, for example to split a big
-     * transaction in multiple parts.
+     * Or, you could use the times parameter to only charge a limited number of times, for example to split a big transaction in multiple parts.
      * 
      * A few example usages:
      * 
-     * `amount[currency]="EUR"` `amount[value]="5.00"` `interval="2 weeks"`
-     * Your customer will be charged €5 once every two weeks.
+     * `amount[currency]="EUR"` `amount[value]="5.00"` `interval="2 weeks"` Your customer will be charged €5 once every two weeks.
      * 
-     * `amount[currency]="EUR"` `amount[value]="20.00"` `interval="1 day" times=5`
-     * Your customer will be charged €20 every day, for five consecutive days.
+     * `amount[currency]="EUR"` `amount[value]="20.00"` `interval="1 day" times=5` Your customer will be charged €20 every day, for five consecutive days.
      * 
-     * `amount[currency]="EUR"` `amount[value]="10.00"` `interval="1 month"`
-     * `startDate="2018-04-30"`
-     * Your customer will be charged €10 on the last day of each month, starting in April 2018.
-     * @param security The security details to use for authentication.
+     * `amount[currency]="EUR"` `amount[value]="10.00"` `interval="1 month"` `startDate="2018-04-30"` Your customer will be charged €10 on the last day of each month, starting in April 2018.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **subscriptions.write**](/reference/authentication)
      * @param customerId Provide the ID of the related customer.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateSubscriptionResponse create(
-            CreateSubscriptionSecurity security,
+    public CreateSubscriptionResponse createSubscription(
             String customerId) throws Exception {
-        return create(security, customerId, Optional.empty());
+        return createSubscription(customerId, Optional.empty());
     }
     
     /**
      * Create subscription
      * With subscriptions, you can schedule recurring payments to take place at regular intervals.
      * 
-     * For example, by simply specifying an `amount` and an `interval`, you can create an endless subscription to charge a
-     * monthly fee, until you cancel the subscription.
+     * For example, by simply specifying an `amount` and an `interval`, you can create an endless subscription to charge a monthly fee, until you cancel the subscription.
      * 
-     * Or, you could use the times parameter to only charge a limited number of times, for example to split a big
-     * transaction in multiple parts.
+     * Or, you could use the times parameter to only charge a limited number of times, for example to split a big transaction in multiple parts.
      * 
      * A few example usages:
      * 
-     * `amount[currency]="EUR"` `amount[value]="5.00"` `interval="2 weeks"`
-     * Your customer will be charged €5 once every two weeks.
+     * `amount[currency]="EUR"` `amount[value]="5.00"` `interval="2 weeks"` Your customer will be charged €5 once every two weeks.
      * 
-     * `amount[currency]="EUR"` `amount[value]="20.00"` `interval="1 day" times=5`
-     * Your customer will be charged €20 every day, for five consecutive days.
+     * `amount[currency]="EUR"` `amount[value]="20.00"` `interval="1 day" times=5` Your customer will be charged €20 every day, for five consecutive days.
      * 
-     * `amount[currency]="EUR"` `amount[value]="10.00"` `interval="1 month"`
-     * `startDate="2018-04-30"`
-     * Your customer will be charged €10 on the last day of each month, starting in April 2018.
-     * @param security The security details to use for authentication.
+     * `amount[currency]="EUR"` `amount[value]="10.00"` `interval="1 month"` `startDate="2018-04-30"` Your customer will be charged €10 on the last day of each month, starting in April 2018.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **subscriptions.write**](/reference/authentication)
      * @param customerId Provide the ID of the related customer.
      * @param requestBody
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateSubscriptionResponse create(
-            CreateSubscriptionSecurity security,
+    public CreateSubscriptionResponse createSubscription(
             String customerId,
             Optional<? extends CreateSubscriptionRequestBody> requestBody) throws Exception {
         CreateSubscriptionRequest request =
@@ -201,11 +190,9 @@ public class SubscriptionsAPI implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -260,19 +247,8 @@ public class SubscriptionsAPI implements
         CreateSubscriptionResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
+            // no content 
+            return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
@@ -320,9 +296,15 @@ public class SubscriptionsAPI implements
      * Retrieve all subscriptions of a customer.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **subscriptions.read**](/reference/authentication)
      * @return The call builder
      */
-    public ListSubscriptionsRequestBuilder list() {
+    public ListSubscriptionsRequestBuilder listSubscriptions() {
         return new ListSubscriptionsRequestBuilder(this);
     }
 
@@ -331,15 +313,19 @@ public class SubscriptionsAPI implements
      * Retrieve all subscriptions of a customer.
      * 
      * The results are paginated.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **subscriptions.read**](/reference/authentication)
      * @param customerId Provide the ID of the related customer.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListSubscriptionsResponse list(
-            ListSubscriptionsSecurity security,
+    public ListSubscriptionsResponse listSubscriptions(
             String customerId) throws Exception {
-        return list(security, customerId, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        return listSubscriptions(customerId, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
     }
     
     /**
@@ -347,21 +333,22 @@ public class SubscriptionsAPI implements
      * Retrieve all subscriptions of a customer.
      * 
      * The results are paginated.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **subscriptions.read**](/reference/authentication)
      * @param customerId Provide the ID of the related customer.
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-    result set.
+     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListSubscriptionsResponse list(
-            ListSubscriptionsSecurity security,
+    public ListSubscriptionsResponse listSubscriptions(
             String customerId,
             Optional<String> from,
             JsonNullable<Long> limit,
@@ -392,11 +379,9 @@ public class SubscriptionsAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -525,44 +510,56 @@ public class SubscriptionsAPI implements
     /**
      * Get subscription
      * Retrieve a single subscription by its ID and the ID of its parent customer.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **subscriptions.read**](/reference/authentication)
      * @return The call builder
      */
-    public GetSubscriptionRequestBuilder get() {
+    public GetSubscriptionRequestBuilder getSubscription() {
         return new GetSubscriptionRequestBuilder(this);
     }
 
     /**
      * Get subscription
      * Retrieve a single subscription by its ID and the ID of its parent customer.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **subscriptions.read**](/reference/authentication)
      * @param customerId Provide the ID of the related customer.
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetSubscriptionResponse get(
-            GetSubscriptionSecurity security,
+    public GetSubscriptionResponse getSubscription(
             String customerId,
             String id) throws Exception {
-        return get(security, customerId, id, JsonNullable.undefined());
+        return getSubscription(customerId, id, JsonNullable.undefined());
     }
     
     /**
      * Get subscription
      * Retrieve a single subscription by its ID and the ID of its parent customer.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **subscriptions.read**](/reference/authentication)
      * @param customerId Provide the ID of the related customer.
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetSubscriptionResponse get(
-            GetSubscriptionSecurity security,
+    public GetSubscriptionResponse getSubscription(
             String customerId,
             String id,
             JsonNullable<Boolean> testmode) throws Exception {
@@ -591,11 +588,9 @@ public class SubscriptionsAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -712,9 +707,15 @@ public class SubscriptionsAPI implements
      * Canceled subscriptions cannot be updated.
      * 
      * For an in-depth explanation of each parameter, refer to the [Create subscription](create-subscription) endpoint.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **subscriptions.write**](/reference/authentication)
      * @return The call builder
      */
-    public UpdateSubscriptionRequestBuilder update() {
+    public UpdateSubscriptionRequestBuilder updateSubscription() {
         return new UpdateSubscriptionRequestBuilder(this);
     }
 
@@ -725,17 +726,21 @@ public class SubscriptionsAPI implements
      * Canceled subscriptions cannot be updated.
      * 
      * For an in-depth explanation of each parameter, refer to the [Create subscription](create-subscription) endpoint.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **subscriptions.write**](/reference/authentication)
      * @param customerId Provide the ID of the related customer.
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdateSubscriptionResponse update(
-            UpdateSubscriptionSecurity security,
+    public UpdateSubscriptionResponse updateSubscription(
             String customerId,
             String id) throws Exception {
-        return update(security, customerId, id, JsonNullable.undefined(), Optional.empty());
+        return updateSubscription(customerId, id, JsonNullable.undefined(), Optional.empty());
     }
     
     /**
@@ -745,20 +750,22 @@ public class SubscriptionsAPI implements
      * Canceled subscriptions cannot be updated.
      * 
      * For an in-depth explanation of each parameter, refer to the [Create subscription](create-subscription) endpoint.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **subscriptions.write**](/reference/authentication)
      * @param customerId Provide the ID of the related customer.
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param requestBody
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdateSubscriptionResponse update(
-            UpdateSubscriptionSecurity security,
+    public UpdateSubscriptionResponse updateSubscription(
             String customerId,
             String id,
             JsonNullable<Boolean> testmode,
@@ -799,11 +806,9 @@ public class SubscriptionsAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -858,19 +863,8 @@ public class SubscriptionsAPI implements
         UpdateSubscriptionResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
+            // no content 
+            return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
@@ -916,44 +910,56 @@ public class SubscriptionsAPI implements
     /**
      * Cancel subscription
      * Cancel an existing subscription. Canceling a subscription has no effect on the mandates of the customer.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **subscriptions.write**](/reference/authentication)
      * @return The call builder
      */
-    public CancelSubscriptionRequestBuilder cancel() {
+    public CancelSubscriptionRequestBuilder cancelSubscription() {
         return new CancelSubscriptionRequestBuilder(this);
     }
 
     /**
      * Cancel subscription
      * Cancel an existing subscription. Canceling a subscription has no effect on the mandates of the customer.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **subscriptions.write**](/reference/authentication)
      * @param customerId Provide the ID of the related customer.
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CancelSubscriptionResponse cancel(
-            CancelSubscriptionSecurity security,
+    public CancelSubscriptionResponse cancelSubscription(
             String customerId,
             String id) throws Exception {
-        return cancel(security, customerId, id, JsonNullable.undefined());
+        return cancelSubscription(customerId, id, JsonNullable.undefined());
     }
     
     /**
      * Cancel subscription
      * Cancel an existing subscription. Canceling a subscription has no effect on the mandates of the customer.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **subscriptions.write**](/reference/authentication)
      * @param customerId Provide the ID of the related customer.
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CancelSubscriptionResponse cancel(
-            CancelSubscriptionSecurity security,
+    public CancelSubscriptionResponse cancelSubscription(
             String customerId,
             String id,
             JsonNullable<Boolean> testmode) throws Exception {
@@ -982,11 +988,9 @@ public class SubscriptionsAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1041,19 +1045,8 @@ public class SubscriptionsAPI implements
         CancelSubscriptionResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
+            // no content 
+            return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
@@ -1101,9 +1094,15 @@ public class SubscriptionsAPI implements
      * Retrieve all subscriptions initiated across all your customers.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **subscriptions.read**](/reference/authentication)
      * @return The call builder
      */
-    public ListAllSubscriptionsRequestBuilder listAll() {
+    public ListAllSubscriptionsRequestBuilder listAllSubscriptions() {
         return new ListAllSubscriptionsRequestBuilder(this);
     }
 
@@ -1112,13 +1111,17 @@ public class SubscriptionsAPI implements
      * Retrieve all subscriptions initiated across all your customers.
      * 
      * The results are paginated.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **subscriptions.read**](/reference/authentication)
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListAllSubscriptionsResponse listAll(
-            ListAllSubscriptionsSecurity security) throws Exception {
-        return listAll(security, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+    public ListAllSubscriptionsResponse listAllSubscriptionsDirect() throws Exception {
+        return listAllSubscriptions(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
     
     /**
@@ -1126,26 +1129,26 @@ public class SubscriptionsAPI implements
      * Retrieve all subscriptions initiated across all your customers.
      * 
      * The results are paginated.
-     * @param security The security details to use for authentication.
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-    result set.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **subscriptions.read**](/reference/authentication)
+     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
      * @param profileId The identifier referring to the [profile](get-profile) you wish to retrieve subscriptions for.
 
     Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
 
-    To retrieve all subscriptions across the organization, use an organization-level API credential and omit the
-    `profileId` parameter.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+    To retrieve all subscriptions across the organization, use an organization-level API credential and omit the `profileId` parameter.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListAllSubscriptionsResponse listAll(
-            ListAllSubscriptionsSecurity security,
+    public ListAllSubscriptionsResponse listAllSubscriptions(
             Optional<String> from,
             JsonNullable<Long> limit,
             JsonNullable<String> profileId,
@@ -1174,11 +1177,9 @@ public class SubscriptionsAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1309,9 +1310,15 @@ public class SubscriptionsAPI implements
      * Retrieve all payments of a specific subscription.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **subscriptions.read** **payments.read**](/reference/authentication)
      * @return The call builder
      */
-    public ListSubscriptionPaymentsRequestBuilder listPayments() {
+    public ListSubscriptionPaymentsRequestBuilder listSubscriptionPayments() {
         return new ListSubscriptionPaymentsRequestBuilder(this);
     }
 
@@ -1320,14 +1327,18 @@ public class SubscriptionsAPI implements
      * Retrieve all payments of a specific subscription.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **subscriptions.read** **payments.read**](/reference/authentication)
      * @param request The request object containing all of the parameters for the API call.
-     * @param security The security details to use for authentication.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListSubscriptionPaymentsResponse listPayments(
-            ListSubscriptionPaymentsRequest request,
-            ListSubscriptionPaymentsSecurity security) throws Exception {
+    public ListSubscriptionPaymentsResponse listSubscriptionPayments(
+            ListSubscriptionPaymentsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 ListSubscriptionPaymentsRequest.class,
@@ -1345,11 +1356,9 @@ public class SubscriptionsAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()

@@ -37,8 +37,7 @@ public class ListOrderRefundsResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * A list of refund objects. For a complete reference of the refund object, refer to the
-     * [Create order refund endpoint](create-order-refund) documentation.
+     * A list of refund objects. For a complete reference of the refund object, refer to the [Create order refund endpoint](create-order-refund) documentation.
      */
     private Optional<? extends ListOrderRefundsResponseBody> object;
 
@@ -90,8 +89,7 @@ public class ListOrderRefundsResponse implements Response {
     }
 
     /**
-     * A list of refund objects. For a complete reference of the refund object, refer to the
-     * [Create order refund endpoint](create-order-refund) documentation.
+     * A list of refund objects. For a complete reference of the refund object, refer to the [Create order refund endpoint](create-order-refund) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -131,8 +129,7 @@ public class ListOrderRefundsResponse implements Response {
     }
 
     /**
-     * A list of refund objects. For a complete reference of the refund object, refer to the
-     * [Create order refund endpoint](create-order-refund) documentation.
+     * A list of refund objects. For a complete reference of the refund object, refer to the [Create order refund endpoint](create-order-refund) documentation.
      */
     public ListOrderRefundsResponse withObject(ListOrderRefundsResponseBody object) {
         Utils.checkNotNull(object, "object");
@@ -141,8 +138,7 @@ public class ListOrderRefundsResponse implements Response {
     }
 
     /**
-     * A list of refund objects. For a complete reference of the refund object, refer to the
-     * [Create order refund endpoint](create-order-refund) documentation.
+     * A list of refund objects. For a complete reference of the refund object, refer to the [Create order refund endpoint](create-order-refund) documentation.
      */
     public ListOrderRefundsResponse withObject(Optional<? extends ListOrderRefundsResponseBody> object) {
         Utils.checkNotNull(object, "object");
@@ -226,8 +222,7 @@ public class ListOrderRefundsResponse implements Response {
         }
 
         /**
-         * A list of refund objects. For a complete reference of the refund object, refer to the
-         * [Create order refund endpoint](create-order-refund) documentation.
+         * A list of refund objects. For a complete reference of the refund object, refer to the [Create order refund endpoint](create-order-refund) documentation.
          */
         public Builder object(ListOrderRefundsResponseBody object) {
             Utils.checkNotNull(object, "object");
@@ -236,8 +231,7 @@ public class ListOrderRefundsResponse implements Response {
         }
 
         /**
-         * A list of refund objects. For a complete reference of the refund object, refer to the
-         * [Create order refund endpoint](create-order-refund) documentation.
+         * A list of refund objects. For a complete reference of the refund object, refer to the [Create order refund endpoint](create-order-refund) documentation.
          */
         public Builder object(Optional<? extends ListOrderRefundsResponseBody> object) {
             Utils.checkNotNull(object, "object");

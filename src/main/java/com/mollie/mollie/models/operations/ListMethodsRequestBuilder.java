@@ -9,7 +9,6 @@ import com.mollie.mollie.utils.Utils;
 public class ListMethodsRequestBuilder {
 
     private ListMethodsRequest request;
-    private ListMethodsSecurity security;
     private final SDKMethodInterfaces.MethodCallListMethods sdk;
 
     public ListMethodsRequestBuilder(SDKMethodInterfaces.MethodCallListMethods sdk) {
@@ -22,16 +21,9 @@ public class ListMethodsRequestBuilder {
         return this;
     }
 
-    public ListMethodsRequestBuilder security(ListMethodsSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
-    }
-
     public ListMethodsResponse call() throws Exception {
 
-        return sdk.list(
-            request,
-            security);
+        return sdk.listMethods(
+            request);
     }
 }

@@ -38,8 +38,7 @@ public class GetSettlementChargebacksResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * A list of refund objects. For a complete reference of the response, refer to the
-     * [List chargebacks](list-chargebacks) endpoint documentation.
+     * A list of refund objects. For a complete reference of the response, refer to the [List chargebacks](list-chargebacks) endpoint documentation.
      */
     private Optional<? extends Object> any;
 
@@ -91,8 +90,7 @@ public class GetSettlementChargebacksResponse implements Response {
     }
 
     /**
-     * A list of refund objects. For a complete reference of the response, refer to the
-     * [List chargebacks](list-chargebacks) endpoint documentation.
+     * A list of refund objects. For a complete reference of the response, refer to the [List chargebacks](list-chargebacks) endpoint documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -132,8 +130,7 @@ public class GetSettlementChargebacksResponse implements Response {
     }
 
     /**
-     * A list of refund objects. For a complete reference of the response, refer to the
-     * [List chargebacks](list-chargebacks) endpoint documentation.
+     * A list of refund objects. For a complete reference of the response, refer to the [List chargebacks](list-chargebacks) endpoint documentation.
      */
     public GetSettlementChargebacksResponse withAny(Object any) {
         Utils.checkNotNull(any, "any");
@@ -142,8 +139,7 @@ public class GetSettlementChargebacksResponse implements Response {
     }
 
     /**
-     * A list of refund objects. For a complete reference of the response, refer to the
-     * [List chargebacks](list-chargebacks) endpoint documentation.
+     * A list of refund objects. For a complete reference of the response, refer to the [List chargebacks](list-chargebacks) endpoint documentation.
      */
     public GetSettlementChargebacksResponse withAny(Optional<? extends Object> any) {
         Utils.checkNotNull(any, "any");
@@ -227,8 +223,7 @@ public class GetSettlementChargebacksResponse implements Response {
         }
 
         /**
-         * A list of refund objects. For a complete reference of the response, refer to the
-         * [List chargebacks](list-chargebacks) endpoint documentation.
+         * A list of refund objects. For a complete reference of the response, refer to the [List chargebacks](list-chargebacks) endpoint documentation.
          */
         public Builder any(Object any) {
             Utils.checkNotNull(any, "any");
@@ -237,8 +232,7 @@ public class GetSettlementChargebacksResponse implements Response {
         }
 
         /**
-         * A list of refund objects. For a complete reference of the response, refer to the
-         * [List chargebacks](list-chargebacks) endpoint documentation.
+         * A list of refund objects. For a complete reference of the response, refer to the [List chargebacks](list-chargebacks) endpoint documentation.
          */
         public Builder any(Optional<? extends Object> any) {
             Utils.checkNotNull(any, "any");

@@ -22,8 +22,7 @@ import java.util.Optional;
 public class ListPermissionsEmbedded {
 
     /**
-     * An array of permission objects. For a complete reference of the permission object, refer to the
-     * [Get permission endpoint](get-permission) documentation.
+     * An array of permission objects. For a complete reference of the permission object, refer to the [Get permission endpoint](get-permission) documentation.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("permissions")
@@ -41,8 +40,7 @@ public class ListPermissionsEmbedded {
     }
 
     /**
-     * An array of permission objects. For a complete reference of the permission object, refer to the
-     * [Get permission endpoint](get-permission) documentation.
+     * An array of permission objects. For a complete reference of the permission object, refer to the [Get permission endpoint](get-permission) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -55,8 +53,7 @@ public class ListPermissionsEmbedded {
     }
 
     /**
-     * An array of permission objects. For a complete reference of the permission object, refer to the
-     * [Get permission endpoint](get-permission) documentation.
+     * An array of permission objects. For a complete reference of the permission object, refer to the [Get permission endpoint](get-permission) documentation.
      */
     public ListPermissionsEmbedded withPermissions(List<Permissions> permissions) {
         Utils.checkNotNull(permissions, "permissions");
@@ -65,8 +62,7 @@ public class ListPermissionsEmbedded {
     }
 
     /**
-     * An array of permission objects. For a complete reference of the permission object, refer to the
-     * [Get permission endpoint](get-permission) documentation.
+     * An array of permission objects. For a complete reference of the permission object, refer to the [Get permission endpoint](get-permission) documentation.
      */
     public ListPermissionsEmbedded withPermissions(Optional<? extends List<Permissions>> permissions) {
         Utils.checkNotNull(permissions, "permissions");
@@ -108,8 +104,7 @@ public class ListPermissionsEmbedded {
         }
 
         /**
-         * An array of permission objects. For a complete reference of the permission object, refer to the
-         * [Get permission endpoint](get-permission) documentation.
+         * An array of permission objects. For a complete reference of the permission object, refer to the [Get permission endpoint](get-permission) documentation.
          */
         public Builder permissions(List<Permissions> permissions) {
             Utils.checkNotNull(permissions, "permissions");
@@ -118,8 +113,7 @@ public class ListPermissionsEmbedded {
         }
 
         /**
-         * An array of permission objects. For a complete reference of the permission object, refer to the
-         * [Get permission endpoint](get-permission) documentation.
+         * An array of permission objects. For a complete reference of the permission object, refer to the [Get permission endpoint](get-permission) documentation.
          */
         public Builder permissions(Optional<? extends List<Permissions>> permissions) {
             Utils.checkNotNull(permissions, "permissions");

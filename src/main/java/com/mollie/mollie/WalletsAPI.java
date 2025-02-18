@@ -6,11 +6,10 @@ package com.mollie.mollie;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.models.errors.APIException;
+import com.mollie.mollie.models.errors.RequestApplePayPaymentSessionResponseBody;
 import com.mollie.mollie.models.operations.RequestApplePayPaymentSessionRequestBody;
 import com.mollie.mollie.models.operations.RequestApplePayPaymentSessionRequestBuilder;
 import com.mollie.mollie.models.operations.RequestApplePayPaymentSessionResponse;
-import com.mollie.mollie.models.operations.RequestApplePayPaymentSessionResponseBody;
-import com.mollie.mollie.models.operations.RequestApplePayPaymentSessionSecurity;
 import com.mollie.mollie.models.operations.SDKMethodInterfaces.*;
 import com.mollie.mollie.utils.HTTPClient;
 import com.mollie.mollie.utils.HTTPRequest;
@@ -41,25 +40,21 @@ public class WalletsAPI implements
 
     /**
      * Request Apple Pay payment session
-     * When integrating Apple Pay in your own checkout on the web, you need to
-     * [provide merchant validation](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api/providing_merchant_validation).
-     * This is normally done using Apple's
-     * [Requesting an Apple Pay Session](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session).
-     * The merchant validation proves to Apple that a validated merchant is calling the Apple Pay Javascript APIs.
+     * When integrating Apple Pay in your own checkout on the web, you need to [provide merchant validation](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api/providing_merchant_validation). This is normally done using Apple's [Requesting an Apple Pay Session](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session). The merchant validation proves to Apple that a validated merchant is calling the Apple Pay Javascript APIs.
      * 
-     * To integrate Apple Pay via Mollie, you will have to call the Mollie API instead of Apple's API. The response of this
-     * API call can then be passed as-is to the completion method, `completeMerchantValidation`.
+     * To integrate Apple Pay via Mollie, you will have to call the Mollie API instead of Apple's API. The response of this API call can then be passed as-is to the completion method, `completeMerchantValidation`.
      * 
-     * Before requesting an Apple Pay Payment Session, you must place the domain validation file on your server at:
-     * `https://[domain]/.well-known/apple-developer-merchantid-domain-association`. Without this file, it will not be
-     * possible to use Apple Pay on your domain.
+     * Before requesting an Apple Pay Payment Session, you must place the domain validation file on your server at: `https://[domain]/.well-known/apple-developer-merchantid-domain-association`. Without this file, it will not be possible to use Apple Pay on your domain.
      * 
-     * Each new transaction requires a new payment session object. Merchant session objects are not reusable, and they
-     * expire after five minutes.
+     * Each new transaction requires a new payment session object. Merchant session objects are not reusable, and they expire after five minutes.
      * 
-     * Payment sessions cannot be requested directly from the browser. The request must be sent from your server. For the
-     * full documentation, see the official
-     * [Apple Pay JS API](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api) documentation.
+     * Payment sessions cannot be requested directly from the browser. The request must be sent from your server. For the full documentation, see the official [Apple Pay JS API](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api) documentation.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.write**](/reference/authentication)
      * @return The call builder
      */
     public RequestApplePayPaymentSessionRequestBuilder requestApplePayPaymentSession() {
@@ -68,63 +63,51 @@ public class WalletsAPI implements
 
     /**
      * Request Apple Pay payment session
-     * When integrating Apple Pay in your own checkout on the web, you need to
-     * [provide merchant validation](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api/providing_merchant_validation).
-     * This is normally done using Apple's
-     * [Requesting an Apple Pay Session](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session).
-     * The merchant validation proves to Apple that a validated merchant is calling the Apple Pay Javascript APIs.
+     * When integrating Apple Pay in your own checkout on the web, you need to [provide merchant validation](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api/providing_merchant_validation). This is normally done using Apple's [Requesting an Apple Pay Session](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session). The merchant validation proves to Apple that a validated merchant is calling the Apple Pay Javascript APIs.
      * 
-     * To integrate Apple Pay via Mollie, you will have to call the Mollie API instead of Apple's API. The response of this
-     * API call can then be passed as-is to the completion method, `completeMerchantValidation`.
+     * To integrate Apple Pay via Mollie, you will have to call the Mollie API instead of Apple's API. The response of this API call can then be passed as-is to the completion method, `completeMerchantValidation`.
      * 
-     * Before requesting an Apple Pay Payment Session, you must place the domain validation file on your server at:
-     * `https://[domain]/.well-known/apple-developer-merchantid-domain-association`. Without this file, it will not be
-     * possible to use Apple Pay on your domain.
+     * Before requesting an Apple Pay Payment Session, you must place the domain validation file on your server at: `https://[domain]/.well-known/apple-developer-merchantid-domain-association`. Without this file, it will not be possible to use Apple Pay on your domain.
      * 
-     * Each new transaction requires a new payment session object. Merchant session objects are not reusable, and they
-     * expire after five minutes.
+     * Each new transaction requires a new payment session object. Merchant session objects are not reusable, and they expire after five minutes.
      * 
-     * Payment sessions cannot be requested directly from the browser. The request must be sent from your server. For the
-     * full documentation, see the official
-     * [Apple Pay JS API](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api) documentation.
-     * @param security The security details to use for authentication.
+     * Payment sessions cannot be requested directly from the browser. The request must be sent from your server. For the full documentation, see the official [Apple Pay JS API](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api) documentation.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.write**](/reference/authentication)
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public RequestApplePayPaymentSessionResponse requestApplePayPaymentSession(
-            RequestApplePayPaymentSessionSecurity security) throws Exception {
-        return requestApplePayPaymentSession(Optional.empty(), security);
+    public RequestApplePayPaymentSessionResponse requestApplePayPaymentSessionDirect() throws Exception {
+        return requestApplePayPaymentSession(Optional.empty());
     }
     
     /**
      * Request Apple Pay payment session
-     * When integrating Apple Pay in your own checkout on the web, you need to
-     * [provide merchant validation](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api/providing_merchant_validation).
-     * This is normally done using Apple's
-     * [Requesting an Apple Pay Session](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session).
-     * The merchant validation proves to Apple that a validated merchant is calling the Apple Pay Javascript APIs.
+     * When integrating Apple Pay in your own checkout on the web, you need to [provide merchant validation](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api/providing_merchant_validation). This is normally done using Apple's [Requesting an Apple Pay Session](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session). The merchant validation proves to Apple that a validated merchant is calling the Apple Pay Javascript APIs.
      * 
-     * To integrate Apple Pay via Mollie, you will have to call the Mollie API instead of Apple's API. The response of this
-     * API call can then be passed as-is to the completion method, `completeMerchantValidation`.
+     * To integrate Apple Pay via Mollie, you will have to call the Mollie API instead of Apple's API. The response of this API call can then be passed as-is to the completion method, `completeMerchantValidation`.
      * 
-     * Before requesting an Apple Pay Payment Session, you must place the domain validation file on your server at:
-     * `https://[domain]/.well-known/apple-developer-merchantid-domain-association`. Without this file, it will not be
-     * possible to use Apple Pay on your domain.
+     * Before requesting an Apple Pay Payment Session, you must place the domain validation file on your server at: `https://[domain]/.well-known/apple-developer-merchantid-domain-association`. Without this file, it will not be possible to use Apple Pay on your domain.
      * 
-     * Each new transaction requires a new payment session object. Merchant session objects are not reusable, and they
-     * expire after five minutes.
+     * Each new transaction requires a new payment session object. Merchant session objects are not reusable, and they expire after five minutes.
      * 
-     * Payment sessions cannot be requested directly from the browser. The request must be sent from your server. For the
-     * full documentation, see the official
-     * [Apple Pay JS API](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api) documentation.
+     * Payment sessions cannot be requested directly from the browser. The request must be sent from your server. For the full documentation, see the official [Apple Pay JS API](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api) documentation.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.write**](/reference/authentication)
      * @param request The request object containing all of the parameters for the API call.
-     * @param security The security details to use for authentication.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public RequestApplePayPaymentSessionResponse requestApplePayPaymentSession(
-            Optional<? extends RequestApplePayPaymentSessionRequestBody> request,
-            RequestApplePayPaymentSessionSecurity security) throws Exception {
+            Optional<? extends RequestApplePayPaymentSessionRequestBody> request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -145,11 +128,9 @@ public class WalletsAPI implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -204,25 +185,14 @@ public class WalletsAPI implements
         RequestApplePayPaymentSessionResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
+            // no content 
+            return _res;
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "422")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
                 RequestApplePayPaymentSessionResponseBody _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<RequestApplePayPaymentSessionResponseBody>() {});
-                _res.withObject(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "422")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                com.mollie.mollie.models.errors.RequestApplePayPaymentSessionResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.mollie.mollie.models.errors.RequestApplePayPaymentSessionResponseBody>() {});
                     _out.withRawResponse(Optional.ofNullable(_httpRes));
                 
                 throw _out;

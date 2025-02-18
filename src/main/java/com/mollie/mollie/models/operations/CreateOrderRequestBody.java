@@ -42,8 +42,7 @@ public class CreateOrderRequestBody {
     /**
      * The amount that you want to charge, e.g. `{currency:"EUR", value:"1000.00"}` if you would want to charge €1000.00.
      * 
-     * You can find the minimum and maximum amounts per payment method in our help center. Additionally, they can be
-     * retrieved using the Get method endpoint.
+     * You can find the minimum and maximum amounts per payment method in our help center. Additionally, they can be retrieved using the Get method endpoint.
      */
     @JsonProperty("amount")
     private Amount amount;
@@ -51,23 +50,18 @@ public class CreateOrderRequestBody {
     /**
      * The URL your customer will be redirected to after the payment process.
      * 
-     * It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
-     * right page referencing the order when your customer returns.
+     * It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the right page referencing the order when your customer returns.
      * 
-     * The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for
-     * Apple Pay payments with an `applePayPaymentToken`.
+     * The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("redirectUrl")
     private JsonNullable<String> redirectUrl;
 
     /**
-     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not
-     * provided, the customer will be redirected to the `redirectUrl` instead — see above.
+     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not provided, the customer will be redirected to the `redirectUrl` instead — see above.
      * 
-     * Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is
-     * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle
-     * payment cancellations.
+     * Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle payment cancellations.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cancelUrl")
@@ -78,59 +72,48 @@ public class CreateOrderRequestBody {
      * 
      * The webhookUrl is optional, but without a webhook you will miss out on important status changes to your order.
      * 
-     * The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
-     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
-     * local machine.
+     * The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your local machine.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("webhookUrl")
     private JsonNullable<String> webhookUrl;
 
     /**
-     * The customer's billing address details. The billing address is required, unless a fast checkout method like
-     * PayPal Express Checkout is providing the billing address.
+     * The customer's billing address details. The billing address is required, unless a fast checkout method like PayPal Express Checkout is providing the billing address.
      */
     @JsonProperty("billingAddress")
     private BillingAddress billingAddress;
 
     /**
-     * The customer's shipping address details. We advise to provide these details to improve fraud protection and
-     * conversion. This is particularly relevant for card payments.
+     * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion. This is particularly relevant for card payments.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shippingAddress")
     private Optional<? extends ShippingAddress> shippingAddress;
 
     /**
-     * Allows you to preset the language to be used in the hosted payment pages shown to the customer. Setting a locale
-     * is highly recommended and will greatly improve your conversion rate. When this parameter is omitted the browser
-     * language will be used instead if supported by the payment method. You can provide any `xx_XX` format ISO 15897
-     * locale, but our hosted payment pages currently only support the specified languages.
+     * Allows you to preset the language to be used in the hosted payment pages shown to the customer. Setting a locale is highly recommended and will greatly improve your conversion rate. When this parameter is omitted the browser language will be used instead if supported by the payment method. You can provide any `xx_XX` format ISO 15897 locale, but our hosted payment pages currently only support the specified languages.
      * 
-     * For bank transfer payments specifically, the locale will determine the target bank account the customer has to
-     * transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the
-     * customer use a local bank account greatly increases the conversion and speed of payment.
+     * For bank transfer payments specifically, the locale will determine the target bank account the customer has to transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the customer use a local bank account greatly increases the conversion and speed of payment.
+     * 
+     * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `fr_FR` `fr_BE` `de_DE` `de_AT` `de_CH` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
      */
     @JsonProperty("locale")
-    private CreateOrderLocale locale;
+    private String locale;
 
     /**
-     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-     * method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
-     * parameter enables you to fully integrate the payment method selection into your website.
+     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment method and your customer will skip the selection screen and is sent directly to the chosen payment method. The parameter enables you to fully integrate the payment method selection into your website.
      * 
-     * You can also specify the methods in an array. By doing so we will still show the payment method selection screen
-     * but will only show the methods specified in the array. For example, you can use this functionality to only show
-     * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
+     * You can also specify the methods in an array. By doing so we will still show the payment method selection screen but will only show the methods specified in the array. For example, you can use this functionality to only show payment methods from a specific country to your customer `['bancontact', 'belfius']`.
+     * 
+     * Possible values: `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("method")
-    private JsonNullable<? extends Method> method;
+    private JsonNullable<String> method;
 
     /**
-     * For digital goods, you must make sure to apply the VAT rate from your customer's country in most jurisdictions.
-     * You can use this parameter to restrict the payment methods available to your customer to methods from the billing
-     * country only.
+     * For digital goods, you must make sure to apply the VAT rate from your customer's country in most jurisdictions. You can use this parameter to restrict the payment methods available to your customer to methods from the billing country only.
      * 
      * This field is similar to the `restrictPaymentMethodsToCountry` field in the Payments API.
      */
@@ -139,16 +122,14 @@ public class CreateOrderRequestBody {
     private Optional<Boolean> shopperCountryMustMatchBillingCountry;
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends CreateOrderMetadata> metadata;
 
     /**
-     * Any payment specific properties (for example, the `dueDate` for bank transfer payments) can be passed here. See
-     * [method-specific parameters](extra-payment-parameters) for all the possible fields.
+     * Any payment specific properties (for example, the `dueDate` for bank transfer payments) can be passed here. See [method-specific parameters](extra-payment-parameters) for all the possible fields.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment")
@@ -157,20 +138,16 @@ public class CreateOrderRequestBody {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
-     * required.
+     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("profileId")
     private JsonNullable<String> profileId;
 
     /**
-     * The date the order should expire in `YYYY-MM-DD` format. The minimum date is tomorrow and the maximum date is 100
-     * days after tomorrow.
+     * The date the order should expire in `YYYY-MM-DD` format. The minimum date is tomorrow and the maximum date is 100 days after tomorrow.
      * 
-     * It is not possible to use Klarna when your expiry date is more than 28 days in the future, unless you agreed on a
-     * different maximum with Klarna.
+     * It is not possible to use Klarna when your expiry date is more than 28 days in the future, unless you agreed on a different maximum with Klarna.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("expiresAt")
@@ -179,9 +156,7 @@ public class CreateOrderRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
-     * `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("testmode")
@@ -197,8 +172,8 @@ public class CreateOrderRequestBody {
             @JsonProperty("webhookUrl") JsonNullable<String> webhookUrl,
             @JsonProperty("billingAddress") BillingAddress billingAddress,
             @JsonProperty("shippingAddress") Optional<? extends ShippingAddress> shippingAddress,
-            @JsonProperty("locale") CreateOrderLocale locale,
-            @JsonProperty("method") JsonNullable<? extends Method> method,
+            @JsonProperty("locale") String locale,
+            @JsonProperty("method") JsonNullable<String> method,
             @JsonProperty("shopperCountryMustMatchBillingCountry") Optional<Boolean> shopperCountryMustMatchBillingCountry,
             @JsonProperty("metadata") JsonNullable<? extends CreateOrderMetadata> metadata,
             @JsonProperty("payment") JsonNullable<? extends Payment> payment,
@@ -244,7 +219,7 @@ public class CreateOrderRequestBody {
             List<Lines> lines,
             Amount amount,
             BillingAddress billingAddress,
-            CreateOrderLocale locale) {
+            String locale) {
         this(orderNumber, lines, amount, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), billingAddress, Optional.empty(), locale, JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
@@ -269,8 +244,7 @@ public class CreateOrderRequestBody {
     /**
      * The amount that you want to charge, e.g. `{currency:"EUR", value:"1000.00"}` if you would want to charge €1000.00.
      * 
-     * You can find the minimum and maximum amounts per payment method in our help center. Additionally, they can be
-     * retrieved using the Get method endpoint.
+     * You can find the minimum and maximum amounts per payment method in our help center. Additionally, they can be retrieved using the Get method endpoint.
      */
     @JsonIgnore
     public Amount amount() {
@@ -280,11 +254,9 @@ public class CreateOrderRequestBody {
     /**
      * The URL your customer will be redirected to after the payment process.
      * 
-     * It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
-     * right page referencing the order when your customer returns.
+     * It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the right page referencing the order when your customer returns.
      * 
-     * The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for
-     * Apple Pay payments with an `applePayPaymentToken`.
+     * The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
      */
     @JsonIgnore
     public JsonNullable<String> redirectUrl() {
@@ -292,12 +264,9 @@ public class CreateOrderRequestBody {
     }
 
     /**
-     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not
-     * provided, the customer will be redirected to the `redirectUrl` instead — see above.
+     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not provided, the customer will be redirected to the `redirectUrl` instead — see above.
      * 
-     * Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is
-     * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle
-     * payment cancellations.
+     * Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle payment cancellations.
      */
     @JsonIgnore
     public JsonNullable<String> cancelUrl() {
@@ -309,9 +278,7 @@ public class CreateOrderRequestBody {
      * 
      * The webhookUrl is optional, but without a webhook you will miss out on important status changes to your order.
      * 
-     * The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
-     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
-     * local machine.
+     * The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your local machine.
      */
     @JsonIgnore
     public JsonNullable<String> webhookUrl() {
@@ -319,8 +286,7 @@ public class CreateOrderRequestBody {
     }
 
     /**
-     * The customer's billing address details. The billing address is required, unless a fast checkout method like
-     * PayPal Express Checkout is providing the billing address.
+     * The customer's billing address details. The billing address is required, unless a fast checkout method like PayPal Express Checkout is providing the billing address.
      */
     @JsonIgnore
     public BillingAddress billingAddress() {
@@ -328,8 +294,7 @@ public class CreateOrderRequestBody {
     }
 
     /**
-     * The customer's shipping address details. We advise to provide these details to improve fraud protection and
-     * conversion. This is particularly relevant for card payments.
+     * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion. This is particularly relevant for card payments.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -338,39 +303,31 @@ public class CreateOrderRequestBody {
     }
 
     /**
-     * Allows you to preset the language to be used in the hosted payment pages shown to the customer. Setting a locale
-     * is highly recommended and will greatly improve your conversion rate. When this parameter is omitted the browser
-     * language will be used instead if supported by the payment method. You can provide any `xx_XX` format ISO 15897
-     * locale, but our hosted payment pages currently only support the specified languages.
+     * Allows you to preset the language to be used in the hosted payment pages shown to the customer. Setting a locale is highly recommended and will greatly improve your conversion rate. When this parameter is omitted the browser language will be used instead if supported by the payment method. You can provide any `xx_XX` format ISO 15897 locale, but our hosted payment pages currently only support the specified languages.
      * 
-     * For bank transfer payments specifically, the locale will determine the target bank account the customer has to
-     * transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the
-     * customer use a local bank account greatly increases the conversion and speed of payment.
+     * For bank transfer payments specifically, the locale will determine the target bank account the customer has to transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the customer use a local bank account greatly increases the conversion and speed of payment.
+     * 
+     * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `fr_FR` `fr_BE` `de_DE` `de_AT` `de_CH` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
      */
     @JsonIgnore
-    public CreateOrderLocale locale() {
+    public String locale() {
         return locale;
     }
 
     /**
-     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-     * method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
-     * parameter enables you to fully integrate the payment method selection into your website.
+     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment method and your customer will skip the selection screen and is sent directly to the chosen payment method. The parameter enables you to fully integrate the payment method selection into your website.
      * 
-     * You can also specify the methods in an array. By doing so we will still show the payment method selection screen
-     * but will only show the methods specified in the array. For example, you can use this functionality to only show
-     * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
+     * You can also specify the methods in an array. By doing so we will still show the payment method selection screen but will only show the methods specified in the array. For example, you can use this functionality to only show payment methods from a specific country to your customer `['bancontact', 'belfius']`.
+     * 
+     * Possible values: `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Method> method() {
-        return (JsonNullable<Method>) method;
+    public JsonNullable<String> method() {
+        return method;
     }
 
     /**
-     * For digital goods, you must make sure to apply the VAT rate from your customer's country in most jurisdictions.
-     * You can use this parameter to restrict the payment methods available to your customer to methods from the billing
-     * country only.
+     * For digital goods, you must make sure to apply the VAT rate from your customer's country in most jurisdictions. You can use this parameter to restrict the payment methods available to your customer to methods from the billing country only.
      * 
      * This field is similar to the `restrictPaymentMethodsToCountry` field in the Payments API.
      */
@@ -380,8 +337,7 @@ public class CreateOrderRequestBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -390,8 +346,7 @@ public class CreateOrderRequestBody {
     }
 
     /**
-     * Any payment specific properties (for example, the `dueDate` for bank transfer payments) can be passed here. See
-     * [method-specific parameters](extra-payment-parameters) for all the possible fields.
+     * Any payment specific properties (for example, the `dueDate` for bank transfer payments) can be passed here. See [method-specific parameters](extra-payment-parameters) for all the possible fields.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -402,9 +357,7 @@ public class CreateOrderRequestBody {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
-     * required.
+     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     @JsonIgnore
     public JsonNullable<String> profileId() {
@@ -412,11 +365,9 @@ public class CreateOrderRequestBody {
     }
 
     /**
-     * The date the order should expire in `YYYY-MM-DD` format. The minimum date is tomorrow and the maximum date is 100
-     * days after tomorrow.
+     * The date the order should expire in `YYYY-MM-DD` format. The minimum date is tomorrow and the maximum date is 100 days after tomorrow.
      * 
-     * It is not possible to use Klarna when your expiry date is more than 28 days in the future, unless you agreed on a
-     * different maximum with Klarna.
+     * It is not possible to use Klarna when your expiry date is more than 28 days in the future, unless you agreed on a different maximum with Klarna.
      */
     @JsonIgnore
     public JsonNullable<String> expiresAt() {
@@ -426,9 +377,7 @@ public class CreateOrderRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
-     * `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      */
     @JsonIgnore
     public JsonNullable<Boolean> testmode() {
@@ -462,8 +411,7 @@ public class CreateOrderRequestBody {
     /**
      * The amount that you want to charge, e.g. `{currency:"EUR", value:"1000.00"}` if you would want to charge €1000.00.
      * 
-     * You can find the minimum and maximum amounts per payment method in our help center. Additionally, they can be
-     * retrieved using the Get method endpoint.
+     * You can find the minimum and maximum amounts per payment method in our help center. Additionally, they can be retrieved using the Get method endpoint.
      */
     public CreateOrderRequestBody withAmount(Amount amount) {
         Utils.checkNotNull(amount, "amount");
@@ -474,11 +422,9 @@ public class CreateOrderRequestBody {
     /**
      * The URL your customer will be redirected to after the payment process.
      * 
-     * It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
-     * right page referencing the order when your customer returns.
+     * It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the right page referencing the order when your customer returns.
      * 
-     * The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for
-     * Apple Pay payments with an `applePayPaymentToken`.
+     * The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
      */
     public CreateOrderRequestBody withRedirectUrl(String redirectUrl) {
         Utils.checkNotNull(redirectUrl, "redirectUrl");
@@ -489,11 +435,9 @@ public class CreateOrderRequestBody {
     /**
      * The URL your customer will be redirected to after the payment process.
      * 
-     * It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
-     * right page referencing the order when your customer returns.
+     * It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the right page referencing the order when your customer returns.
      * 
-     * The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for
-     * Apple Pay payments with an `applePayPaymentToken`.
+     * The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
      */
     public CreateOrderRequestBody withRedirectUrl(JsonNullable<String> redirectUrl) {
         Utils.checkNotNull(redirectUrl, "redirectUrl");
@@ -502,12 +446,9 @@ public class CreateOrderRequestBody {
     }
 
     /**
-     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not
-     * provided, the customer will be redirected to the `redirectUrl` instead — see above.
+     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not provided, the customer will be redirected to the `redirectUrl` instead — see above.
      * 
-     * Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is
-     * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle
-     * payment cancellations.
+     * Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle payment cancellations.
      */
     public CreateOrderRequestBody withCancelUrl(String cancelUrl) {
         Utils.checkNotNull(cancelUrl, "cancelUrl");
@@ -516,12 +457,9 @@ public class CreateOrderRequestBody {
     }
 
     /**
-     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not
-     * provided, the customer will be redirected to the `redirectUrl` instead — see above.
+     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not provided, the customer will be redirected to the `redirectUrl` instead — see above.
      * 
-     * Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is
-     * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle
-     * payment cancellations.
+     * Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle payment cancellations.
      */
     public CreateOrderRequestBody withCancelUrl(JsonNullable<String> cancelUrl) {
         Utils.checkNotNull(cancelUrl, "cancelUrl");
@@ -534,9 +472,7 @@ public class CreateOrderRequestBody {
      * 
      * The webhookUrl is optional, but without a webhook you will miss out on important status changes to your order.
      * 
-     * The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
-     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
-     * local machine.
+     * The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your local machine.
      */
     public CreateOrderRequestBody withWebhookUrl(String webhookUrl) {
         Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -549,9 +485,7 @@ public class CreateOrderRequestBody {
      * 
      * The webhookUrl is optional, but without a webhook you will miss out on important status changes to your order.
      * 
-     * The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
-     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
-     * local machine.
+     * The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your local machine.
      */
     public CreateOrderRequestBody withWebhookUrl(JsonNullable<String> webhookUrl) {
         Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -560,8 +494,7 @@ public class CreateOrderRequestBody {
     }
 
     /**
-     * The customer's billing address details. The billing address is required, unless a fast checkout method like
-     * PayPal Express Checkout is providing the billing address.
+     * The customer's billing address details. The billing address is required, unless a fast checkout method like PayPal Express Checkout is providing the billing address.
      */
     public CreateOrderRequestBody withBillingAddress(BillingAddress billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
@@ -570,8 +503,7 @@ public class CreateOrderRequestBody {
     }
 
     /**
-     * The customer's shipping address details. We advise to provide these details to improve fraud protection and
-     * conversion. This is particularly relevant for card payments.
+     * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion. This is particularly relevant for card payments.
      */
     public CreateOrderRequestBody withShippingAddress(ShippingAddress shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
@@ -580,8 +512,7 @@ public class CreateOrderRequestBody {
     }
 
     /**
-     * The customer's shipping address details. We advise to provide these details to improve fraud protection and
-     * conversion. This is particularly relevant for card payments.
+     * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion. This is particularly relevant for card payments.
      */
     public CreateOrderRequestBody withShippingAddress(Optional<? extends ShippingAddress> shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
@@ -590,55 +521,46 @@ public class CreateOrderRequestBody {
     }
 
     /**
-     * Allows you to preset the language to be used in the hosted payment pages shown to the customer. Setting a locale
-     * is highly recommended and will greatly improve your conversion rate. When this parameter is omitted the browser
-     * language will be used instead if supported by the payment method. You can provide any `xx_XX` format ISO 15897
-     * locale, but our hosted payment pages currently only support the specified languages.
+     * Allows you to preset the language to be used in the hosted payment pages shown to the customer. Setting a locale is highly recommended and will greatly improve your conversion rate. When this parameter is omitted the browser language will be used instead if supported by the payment method. You can provide any `xx_XX` format ISO 15897 locale, but our hosted payment pages currently only support the specified languages.
      * 
-     * For bank transfer payments specifically, the locale will determine the target bank account the customer has to
-     * transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the
-     * customer use a local bank account greatly increases the conversion and speed of payment.
+     * For bank transfer payments specifically, the locale will determine the target bank account the customer has to transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the customer use a local bank account greatly increases the conversion and speed of payment.
+     * 
+     * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `fr_FR` `fr_BE` `de_DE` `de_AT` `de_CH` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
      */
-    public CreateOrderRequestBody withLocale(CreateOrderLocale locale) {
+    public CreateOrderRequestBody withLocale(String locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
     }
 
     /**
-     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-     * method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
-     * parameter enables you to fully integrate the payment method selection into your website.
+     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment method and your customer will skip the selection screen and is sent directly to the chosen payment method. The parameter enables you to fully integrate the payment method selection into your website.
      * 
-     * You can also specify the methods in an array. By doing so we will still show the payment method selection screen
-     * but will only show the methods specified in the array. For example, you can use this functionality to only show
-     * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
+     * You can also specify the methods in an array. By doing so we will still show the payment method selection screen but will only show the methods specified in the array. For example, you can use this functionality to only show payment methods from a specific country to your customer `['bancontact', 'belfius']`.
+     * 
+     * Possible values: `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
      */
-    public CreateOrderRequestBody withMethod(Method method) {
+    public CreateOrderRequestBody withMethod(String method) {
         Utils.checkNotNull(method, "method");
         this.method = JsonNullable.of(method);
         return this;
     }
 
     /**
-     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-     * method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
-     * parameter enables you to fully integrate the payment method selection into your website.
+     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment method and your customer will skip the selection screen and is sent directly to the chosen payment method. The parameter enables you to fully integrate the payment method selection into your website.
      * 
-     * You can also specify the methods in an array. By doing so we will still show the payment method selection screen
-     * but will only show the methods specified in the array. For example, you can use this functionality to only show
-     * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
+     * You can also specify the methods in an array. By doing so we will still show the payment method selection screen but will only show the methods specified in the array. For example, you can use this functionality to only show payment methods from a specific country to your customer `['bancontact', 'belfius']`.
+     * 
+     * Possible values: `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
      */
-    public CreateOrderRequestBody withMethod(JsonNullable<? extends Method> method) {
+    public CreateOrderRequestBody withMethod(JsonNullable<String> method) {
         Utils.checkNotNull(method, "method");
         this.method = method;
         return this;
     }
 
     /**
-     * For digital goods, you must make sure to apply the VAT rate from your customer's country in most jurisdictions.
-     * You can use this parameter to restrict the payment methods available to your customer to methods from the billing
-     * country only.
+     * For digital goods, you must make sure to apply the VAT rate from your customer's country in most jurisdictions. You can use this parameter to restrict the payment methods available to your customer to methods from the billing country only.
      * 
      * This field is similar to the `restrictPaymentMethodsToCountry` field in the Payments API.
      */
@@ -649,9 +571,7 @@ public class CreateOrderRequestBody {
     }
 
     /**
-     * For digital goods, you must make sure to apply the VAT rate from your customer's country in most jurisdictions.
-     * You can use this parameter to restrict the payment methods available to your customer to methods from the billing
-     * country only.
+     * For digital goods, you must make sure to apply the VAT rate from your customer's country in most jurisdictions. You can use this parameter to restrict the payment methods available to your customer to methods from the billing country only.
      * 
      * This field is similar to the `restrictPaymentMethodsToCountry` field in the Payments API.
      */
@@ -662,8 +582,7 @@ public class CreateOrderRequestBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     public CreateOrderRequestBody withMetadata(CreateOrderMetadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -672,8 +591,7 @@ public class CreateOrderRequestBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     public CreateOrderRequestBody withMetadata(JsonNullable<? extends CreateOrderMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -682,8 +600,7 @@ public class CreateOrderRequestBody {
     }
 
     /**
-     * Any payment specific properties (for example, the `dueDate` for bank transfer payments) can be passed here. See
-     * [method-specific parameters](extra-payment-parameters) for all the possible fields.
+     * Any payment specific properties (for example, the `dueDate` for bank transfer payments) can be passed here. See [method-specific parameters](extra-payment-parameters) for all the possible fields.
      */
     public CreateOrderRequestBody withPayment(Payment payment) {
         Utils.checkNotNull(payment, "payment");
@@ -692,8 +609,7 @@ public class CreateOrderRequestBody {
     }
 
     /**
-     * Any payment specific properties (for example, the `dueDate` for bank transfer payments) can be passed here. See
-     * [method-specific parameters](extra-payment-parameters) for all the possible fields.
+     * Any payment specific properties (for example, the `dueDate` for bank transfer payments) can be passed here. See [method-specific parameters](extra-payment-parameters) for all the possible fields.
      */
     public CreateOrderRequestBody withPayment(JsonNullable<? extends Payment> payment) {
         Utils.checkNotNull(payment, "payment");
@@ -704,9 +620,7 @@ public class CreateOrderRequestBody {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
-     * required.
+     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     public CreateOrderRequestBody withProfileId(String profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -717,9 +631,7 @@ public class CreateOrderRequestBody {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
-     * required.
+     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     public CreateOrderRequestBody withProfileId(JsonNullable<String> profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -728,11 +640,9 @@ public class CreateOrderRequestBody {
     }
 
     /**
-     * The date the order should expire in `YYYY-MM-DD` format. The minimum date is tomorrow and the maximum date is 100
-     * days after tomorrow.
+     * The date the order should expire in `YYYY-MM-DD` format. The minimum date is tomorrow and the maximum date is 100 days after tomorrow.
      * 
-     * It is not possible to use Klarna when your expiry date is more than 28 days in the future, unless you agreed on a
-     * different maximum with Klarna.
+     * It is not possible to use Klarna when your expiry date is more than 28 days in the future, unless you agreed on a different maximum with Klarna.
      */
     public CreateOrderRequestBody withExpiresAt(String expiresAt) {
         Utils.checkNotNull(expiresAt, "expiresAt");
@@ -741,11 +651,9 @@ public class CreateOrderRequestBody {
     }
 
     /**
-     * The date the order should expire in `YYYY-MM-DD` format. The minimum date is tomorrow and the maximum date is 100
-     * days after tomorrow.
+     * The date the order should expire in `YYYY-MM-DD` format. The minimum date is tomorrow and the maximum date is 100 days after tomorrow.
      * 
-     * It is not possible to use Klarna when your expiry date is more than 28 days in the future, unless you agreed on a
-     * different maximum with Klarna.
+     * It is not possible to use Klarna when your expiry date is more than 28 days in the future, unless you agreed on a different maximum with Klarna.
      */
     public CreateOrderRequestBody withExpiresAt(JsonNullable<String> expiresAt) {
         Utils.checkNotNull(expiresAt, "expiresAt");
@@ -756,9 +664,7 @@ public class CreateOrderRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
-     * `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      */
     public CreateOrderRequestBody withTestmode(boolean testmode) {
         Utils.checkNotNull(testmode, "testmode");
@@ -769,9 +675,7 @@ public class CreateOrderRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
-     * `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      */
     public CreateOrderRequestBody withTestmode(JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(testmode, "testmode");
@@ -867,9 +771,9 @@ public class CreateOrderRequestBody {
  
         private Optional<? extends ShippingAddress> shippingAddress = Optional.empty();
  
-        private CreateOrderLocale locale;
+        private String locale;
  
-        private JsonNullable<? extends Method> method = JsonNullable.undefined();
+        private JsonNullable<String> method = JsonNullable.undefined();
  
         private Optional<Boolean> shopperCountryMustMatchBillingCountry = Optional.empty();
  
@@ -910,8 +814,7 @@ public class CreateOrderRequestBody {
         /**
          * The amount that you want to charge, e.g. `{currency:"EUR", value:"1000.00"}` if you would want to charge €1000.00.
          * 
-         * You can find the minimum and maximum amounts per payment method in our help center. Additionally, they can be
-         * retrieved using the Get method endpoint.
+         * You can find the minimum and maximum amounts per payment method in our help center. Additionally, they can be retrieved using the Get method endpoint.
          */
         public Builder amount(Amount amount) {
             Utils.checkNotNull(amount, "amount");
@@ -922,11 +825,9 @@ public class CreateOrderRequestBody {
         /**
          * The URL your customer will be redirected to after the payment process.
          * 
-         * It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
-         * right page referencing the order when your customer returns.
+         * It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the right page referencing the order when your customer returns.
          * 
-         * The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for
-         * Apple Pay payments with an `applePayPaymentToken`.
+         * The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
          */
         public Builder redirectUrl(String redirectUrl) {
             Utils.checkNotNull(redirectUrl, "redirectUrl");
@@ -937,11 +838,9 @@ public class CreateOrderRequestBody {
         /**
          * The URL your customer will be redirected to after the payment process.
          * 
-         * It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
-         * right page referencing the order when your customer returns.
+         * It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the right page referencing the order when your customer returns.
          * 
-         * The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for
-         * Apple Pay payments with an `applePayPaymentToken`.
+         * The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
          */
         public Builder redirectUrl(JsonNullable<String> redirectUrl) {
             Utils.checkNotNull(redirectUrl, "redirectUrl");
@@ -950,12 +849,9 @@ public class CreateOrderRequestBody {
         }
 
         /**
-         * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not
-         * provided, the customer will be redirected to the `redirectUrl` instead — see above.
+         * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not provided, the customer will be redirected to the `redirectUrl` instead — see above.
          * 
-         * Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is
-         * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle
-         * payment cancellations.
+         * Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle payment cancellations.
          */
         public Builder cancelUrl(String cancelUrl) {
             Utils.checkNotNull(cancelUrl, "cancelUrl");
@@ -964,12 +860,9 @@ public class CreateOrderRequestBody {
         }
 
         /**
-         * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not
-         * provided, the customer will be redirected to the `redirectUrl` instead — see above.
+         * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not provided, the customer will be redirected to the `redirectUrl` instead — see above.
          * 
-         * Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is
-         * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle
-         * payment cancellations.
+         * Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle payment cancellations.
          */
         public Builder cancelUrl(JsonNullable<String> cancelUrl) {
             Utils.checkNotNull(cancelUrl, "cancelUrl");
@@ -982,9 +875,7 @@ public class CreateOrderRequestBody {
          * 
          * The webhookUrl is optional, but without a webhook you will miss out on important status changes to your order.
          * 
-         * The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
-         * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
-         * local machine.
+         * The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your local machine.
          */
         public Builder webhookUrl(String webhookUrl) {
             Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -997,9 +888,7 @@ public class CreateOrderRequestBody {
          * 
          * The webhookUrl is optional, but without a webhook you will miss out on important status changes to your order.
          * 
-         * The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
-         * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
-         * local machine.
+         * The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your local machine.
          */
         public Builder webhookUrl(JsonNullable<String> webhookUrl) {
             Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -1008,8 +897,7 @@ public class CreateOrderRequestBody {
         }
 
         /**
-         * The customer's billing address details. The billing address is required, unless a fast checkout method like
-         * PayPal Express Checkout is providing the billing address.
+         * The customer's billing address details. The billing address is required, unless a fast checkout method like PayPal Express Checkout is providing the billing address.
          */
         public Builder billingAddress(BillingAddress billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
@@ -1018,8 +906,7 @@ public class CreateOrderRequestBody {
         }
 
         /**
-         * The customer's shipping address details. We advise to provide these details to improve fraud protection and
-         * conversion. This is particularly relevant for card payments.
+         * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion. This is particularly relevant for card payments.
          */
         public Builder shippingAddress(ShippingAddress shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
@@ -1028,8 +915,7 @@ public class CreateOrderRequestBody {
         }
 
         /**
-         * The customer's shipping address details. We advise to provide these details to improve fraud protection and
-         * conversion. This is particularly relevant for card payments.
+         * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion. This is particularly relevant for card payments.
          */
         public Builder shippingAddress(Optional<? extends ShippingAddress> shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
@@ -1038,55 +924,46 @@ public class CreateOrderRequestBody {
         }
 
         /**
-         * Allows you to preset the language to be used in the hosted payment pages shown to the customer. Setting a locale
-         * is highly recommended and will greatly improve your conversion rate. When this parameter is omitted the browser
-         * language will be used instead if supported by the payment method. You can provide any `xx_XX` format ISO 15897
-         * locale, but our hosted payment pages currently only support the specified languages.
+         * Allows you to preset the language to be used in the hosted payment pages shown to the customer. Setting a locale is highly recommended and will greatly improve your conversion rate. When this parameter is omitted the browser language will be used instead if supported by the payment method. You can provide any `xx_XX` format ISO 15897 locale, but our hosted payment pages currently only support the specified languages.
          * 
-         * For bank transfer payments specifically, the locale will determine the target bank account the customer has to
-         * transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the
-         * customer use a local bank account greatly increases the conversion and speed of payment.
+         * For bank transfer payments specifically, the locale will determine the target bank account the customer has to transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the customer use a local bank account greatly increases the conversion and speed of payment.
+         * 
+         * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `fr_FR` `fr_BE` `de_DE` `de_AT` `de_CH` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
          */
-        public Builder locale(CreateOrderLocale locale) {
+        public Builder locale(String locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;
         }
 
         /**
-         * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-         * method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
-         * parameter enables you to fully integrate the payment method selection into your website.
+         * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment method and your customer will skip the selection screen and is sent directly to the chosen payment method. The parameter enables you to fully integrate the payment method selection into your website.
          * 
-         * You can also specify the methods in an array. By doing so we will still show the payment method selection screen
-         * but will only show the methods specified in the array. For example, you can use this functionality to only show
-         * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
+         * You can also specify the methods in an array. By doing so we will still show the payment method selection screen but will only show the methods specified in the array. For example, you can use this functionality to only show payment methods from a specific country to your customer `['bancontact', 'belfius']`.
+         * 
+         * Possible values: `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
          */
-        public Builder method(Method method) {
+        public Builder method(String method) {
             Utils.checkNotNull(method, "method");
             this.method = JsonNullable.of(method);
             return this;
         }
 
         /**
-         * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-         * method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
-         * parameter enables you to fully integrate the payment method selection into your website.
+         * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment method and your customer will skip the selection screen and is sent directly to the chosen payment method. The parameter enables you to fully integrate the payment method selection into your website.
          * 
-         * You can also specify the methods in an array. By doing so we will still show the payment method selection screen
-         * but will only show the methods specified in the array. For example, you can use this functionality to only show
-         * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
+         * You can also specify the methods in an array. By doing so we will still show the payment method selection screen but will only show the methods specified in the array. For example, you can use this functionality to only show payment methods from a specific country to your customer `['bancontact', 'belfius']`.
+         * 
+         * Possible values: `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
          */
-        public Builder method(JsonNullable<? extends Method> method) {
+        public Builder method(JsonNullable<String> method) {
             Utils.checkNotNull(method, "method");
             this.method = method;
             return this;
         }
 
         /**
-         * For digital goods, you must make sure to apply the VAT rate from your customer's country in most jurisdictions.
-         * You can use this parameter to restrict the payment methods available to your customer to methods from the billing
-         * country only.
+         * For digital goods, you must make sure to apply the VAT rate from your customer's country in most jurisdictions. You can use this parameter to restrict the payment methods available to your customer to methods from the billing country only.
          * 
          * This field is similar to the `restrictPaymentMethodsToCountry` field in the Payments API.
          */
@@ -1097,9 +974,7 @@ public class CreateOrderRequestBody {
         }
 
         /**
-         * For digital goods, you must make sure to apply the VAT rate from your customer's country in most jurisdictions.
-         * You can use this parameter to restrict the payment methods available to your customer to methods from the billing
-         * country only.
+         * For digital goods, you must make sure to apply the VAT rate from your customer's country in most jurisdictions. You can use this parameter to restrict the payment methods available to your customer to methods from the billing country only.
          * 
          * This field is similar to the `restrictPaymentMethodsToCountry` field in the Payments API.
          */
@@ -1110,8 +985,7 @@ public class CreateOrderRequestBody {
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
         public Builder metadata(CreateOrderMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -1120,8 +994,7 @@ public class CreateOrderRequestBody {
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
         public Builder metadata(JsonNullable<? extends CreateOrderMetadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -1130,8 +1003,7 @@ public class CreateOrderRequestBody {
         }
 
         /**
-         * Any payment specific properties (for example, the `dueDate` for bank transfer payments) can be passed here. See
-         * [method-specific parameters](extra-payment-parameters) for all the possible fields.
+         * Any payment specific properties (for example, the `dueDate` for bank transfer payments) can be passed here. See [method-specific parameters](extra-payment-parameters) for all the possible fields.
          */
         public Builder payment(Payment payment) {
             Utils.checkNotNull(payment, "payment");
@@ -1140,8 +1012,7 @@ public class CreateOrderRequestBody {
         }
 
         /**
-         * Any payment specific properties (for example, the `dueDate` for bank transfer payments) can be passed here. See
-         * [method-specific parameters](extra-payment-parameters) for all the possible fields.
+         * Any payment specific properties (for example, the `dueDate` for bank transfer payments) can be passed here. See [method-specific parameters](extra-payment-parameters) for all the possible fields.
          */
         public Builder payment(JsonNullable<? extends Payment> payment) {
             Utils.checkNotNull(payment, "payment");
@@ -1152,9 +1023,7 @@ public class CreateOrderRequestBody {
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
-         * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-         * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
-         * required.
+         * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
          */
         public Builder profileId(String profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -1165,9 +1034,7 @@ public class CreateOrderRequestBody {
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
-         * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-         * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
-         * required.
+         * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
          */
         public Builder profileId(JsonNullable<String> profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -1176,11 +1043,9 @@ public class CreateOrderRequestBody {
         }
 
         /**
-         * The date the order should expire in `YYYY-MM-DD` format. The minimum date is tomorrow and the maximum date is 100
-         * days after tomorrow.
+         * The date the order should expire in `YYYY-MM-DD` format. The minimum date is tomorrow and the maximum date is 100 days after tomorrow.
          * 
-         * It is not possible to use Klarna when your expiry date is more than 28 days in the future, unless you agreed on a
-         * different maximum with Klarna.
+         * It is not possible to use Klarna when your expiry date is more than 28 days in the future, unless you agreed on a different maximum with Klarna.
          */
         public Builder expiresAt(String expiresAt) {
             Utils.checkNotNull(expiresAt, "expiresAt");
@@ -1189,11 +1054,9 @@ public class CreateOrderRequestBody {
         }
 
         /**
-         * The date the order should expire in `YYYY-MM-DD` format. The minimum date is tomorrow and the maximum date is 100
-         * days after tomorrow.
+         * The date the order should expire in `YYYY-MM-DD` format. The minimum date is tomorrow and the maximum date is 100 days after tomorrow.
          * 
-         * It is not possible to use Klarna when your expiry date is more than 28 days in the future, unless you agreed on a
-         * different maximum with Klarna.
+         * It is not possible to use Klarna when your expiry date is more than 28 days in the future, unless you agreed on a different maximum with Klarna.
          */
         public Builder expiresAt(JsonNullable<String> expiresAt) {
             Utils.checkNotNull(expiresAt, "expiresAt");
@@ -1204,9 +1067,7 @@ public class CreateOrderRequestBody {
         /**
          * Whether to create the entity in test mode or live mode.
          * 
-         * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
-         * `testmode` to `true`.
+         * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
          */
         public Builder testmode(boolean testmode) {
             Utils.checkNotNull(testmode, "testmode");
@@ -1217,9 +1078,7 @@ public class CreateOrderRequestBody {
         /**
          * Whether to create the entity in test mode or live mode.
          * 
-         * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
-         * `testmode` to `true`.
+         * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
          */
         public Builder testmode(JsonNullable<Boolean> testmode) {
             Utils.checkNotNull(testmode, "testmode");

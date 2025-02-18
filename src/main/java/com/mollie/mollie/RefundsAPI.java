@@ -15,38 +15,31 @@ import com.mollie.mollie.models.errors.ListRefundsRefundsAPIResponseBody;
 import com.mollie.mollie.models.operations.CancelRefundRequest;
 import com.mollie.mollie.models.operations.CancelRefundRequestBuilder;
 import com.mollie.mollie.models.operations.CancelRefundResponse;
-import com.mollie.mollie.models.operations.CancelRefundSecurity;
 import com.mollie.mollie.models.operations.CreateOrderRefundRequest;
 import com.mollie.mollie.models.operations.CreateOrderRefundRequestBody;
 import com.mollie.mollie.models.operations.CreateOrderRefundRequestBuilder;
 import com.mollie.mollie.models.operations.CreateOrderRefundResponse;
 import com.mollie.mollie.models.operations.CreateOrderRefundResponseBody;
-import com.mollie.mollie.models.operations.CreateOrderRefundSecurity;
 import com.mollie.mollie.models.operations.CreateRefundRequest;
 import com.mollie.mollie.models.operations.CreateRefundRequestBody;
 import com.mollie.mollie.models.operations.CreateRefundRequestBuilder;
 import com.mollie.mollie.models.operations.CreateRefundResponse;
-import com.mollie.mollie.models.operations.CreateRefundSecurity;
 import com.mollie.mollie.models.operations.GetRefundRequest;
 import com.mollie.mollie.models.operations.GetRefundRequestBuilder;
 import com.mollie.mollie.models.operations.GetRefundResponse;
 import com.mollie.mollie.models.operations.GetRefundResponseBody;
-import com.mollie.mollie.models.operations.GetRefundSecurity;
 import com.mollie.mollie.models.operations.ListAllRefundsRequest;
 import com.mollie.mollie.models.operations.ListAllRefundsRequestBuilder;
 import com.mollie.mollie.models.operations.ListAllRefundsResponse;
 import com.mollie.mollie.models.operations.ListAllRefundsResponseBody;
-import com.mollie.mollie.models.operations.ListAllRefundsSecurity;
 import com.mollie.mollie.models.operations.ListOrderRefundsRequest;
 import com.mollie.mollie.models.operations.ListOrderRefundsRequestBuilder;
 import com.mollie.mollie.models.operations.ListOrderRefundsResponse;
 import com.mollie.mollie.models.operations.ListOrderRefundsResponseBody;
-import com.mollie.mollie.models.operations.ListOrderRefundsSecurity;
 import com.mollie.mollie.models.operations.ListRefundsRequest;
 import com.mollie.mollie.models.operations.ListRefundsRequestBuilder;
 import com.mollie.mollie.models.operations.ListRefundsResponse;
 import com.mollie.mollie.models.operations.ListRefundsResponseBody;
-import com.mollie.mollie.models.operations.ListRefundsSecurity;
 import com.mollie.mollie.models.operations.SDKMethodInterfaces.*;
 import com.mollie.mollie.utils.HTTPClient;
 import com.mollie.mollie.utils.HTTPRequest;
@@ -85,41 +78,52 @@ public class RefundsAPI implements
 
     /**
      * Create payment refund
-     * Creates a refund for a specific payment. The refunded amount is credited to your customer usually either via a bank
-     * transfer or by refunding the amount to your customer's credit card.
+     * Creates a refund for a specific payment. The refunded amount is credited to your customer usually either via a bank transfer or by refunding the amount to your customer's credit card.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **refunds.write**](/reference/authentication)
      * @return The call builder
      */
-    public CreateRefundRequestBuilder create() {
+    public CreateRefundRequestBuilder createRefund() {
         return new CreateRefundRequestBuilder(this);
     }
 
     /**
      * Create payment refund
-     * Creates a refund for a specific payment. The refunded amount is credited to your customer usually either via a bank
-     * transfer or by refunding the amount to your customer's credit card.
-     * @param security The security details to use for authentication.
+     * Creates a refund for a specific payment. The refunded amount is credited to your customer usually either via a bank transfer or by refunding the amount to your customer's credit card.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **refunds.write**](/reference/authentication)
      * @param paymentId Provide the ID of the related payment.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateRefundResponse create(
-            CreateRefundSecurity security,
+    public CreateRefundResponse createRefund(
             String paymentId) throws Exception {
-        return create(security, paymentId, Optional.empty());
+        return createRefund(paymentId, Optional.empty());
     }
     
     /**
      * Create payment refund
-     * Creates a refund for a specific payment. The refunded amount is credited to your customer usually either via a bank
-     * transfer or by refunding the amount to your customer's credit card.
-     * @param security The security details to use for authentication.
+     * Creates a refund for a specific payment. The refunded amount is credited to your customer usually either via a bank transfer or by refunding the amount to your customer's credit card.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **refunds.write**](/reference/authentication)
      * @param paymentId Provide the ID of the related payment.
      * @param requestBody
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateRefundResponse create(
-            CreateRefundSecurity security,
+    public CreateRefundResponse createRefund(
             String paymentId,
             Optional<? extends CreateRefundRequestBody> requestBody) throws Exception {
         CreateRefundRequest request =
@@ -151,11 +155,9 @@ public class RefundsAPI implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -210,19 +212,8 @@ public class RefundsAPI implements
         CreateRefundResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
+            // no content 
+            return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
@@ -302,9 +293,15 @@ public class RefundsAPI implements
      * Retrieve a list of all refunds created for a specific payment.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **refunds.read**](/reference/authentication)
      * @return The call builder
      */
-    public ListRefundsRequestBuilder list() {
+    public ListRefundsRequestBuilder listRefunds() {
         return new ListRefundsRequestBuilder(this);
     }
 
@@ -313,14 +310,18 @@ public class RefundsAPI implements
      * Retrieve a list of all refunds created for a specific payment.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **refunds.read**](/reference/authentication)
      * @param request The request object containing all of the parameters for the API call.
-     * @param security The security details to use for authentication.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListRefundsResponse list(
-            ListRefundsRequest request,
-            ListRefundsSecurity security) throws Exception {
+    public ListRefundsResponse listRefunds(
+            ListRefundsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 ListRefundsRequest.class,
@@ -338,11 +339,9 @@ public class RefundsAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -471,47 +470,59 @@ public class RefundsAPI implements
     /**
      * Get payment refund
      * Retrieve a single payment refund by its ID and the ID of its parent payment.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **refunds.read**](/reference/authentication)
      * @return The call builder
      */
-    public GetRefundRequestBuilder get() {
+    public GetRefundRequestBuilder getRefund() {
         return new GetRefundRequestBuilder(this);
     }
 
     /**
      * Get payment refund
      * Retrieve a single payment refund by its ID and the ID of its parent payment.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **refunds.read**](/reference/authentication)
      * @param paymentId Provide the ID of the related payment.
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetRefundResponse get(
-            GetRefundSecurity security,
+    public GetRefundResponse getRefund(
             String paymentId,
             String id) throws Exception {
-        return get(security, paymentId, id, JsonNullable.undefined(), JsonNullable.undefined());
+        return getRefund(paymentId, id, JsonNullable.undefined(), JsonNullable.undefined());
     }
     
     /**
      * Get payment refund
      * Retrieve a single payment refund by its ID and the ID of its parent payment.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **refunds.read**](/reference/authentication)
      * @param paymentId Provide the ID of the related payment.
      * @param id Provide the ID of the item you want to perform this operation on.
      * @param include This endpoint allows you to include additional information via the `include` query string parameter.
 
     * `payment`: Include the payment this refund was created for.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetRefundResponse get(
-            GetRefundSecurity security,
+    public GetRefundResponse getRefund(
             String paymentId,
             String id,
             JsonNullable<String> include,
@@ -542,11 +553,9 @@ public class RefundsAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -658,57 +667,63 @@ public class RefundsAPI implements
 
     /**
      * Cancel payment refund
-     * Refunds will be executed with a delay of two hours. Until that time, refunds may be canceled manually via the
-     * Mollie Dashboard, or by using this endpoint.
+     * Refunds will be executed with a delay of two hours. Until that time, refunds may be canceled manually via the Mollie Dashboard, or by using this endpoint.
      * 
-     * A refund can only be canceled while its `status` field is either `queued` or `pending`. See the
-     * [Get refund endpoint](get-refund) for more information.
+     * A refund can only be canceled while its `status` field is either `queued` or `pending`. See the [Get refund endpoint](get-refund) for more information.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **refunds.write**](/reference/authentication)
      * @return The call builder
      */
-    public CancelRefundRequestBuilder cancel() {
+    public CancelRefundRequestBuilder cancelRefund() {
         return new CancelRefundRequestBuilder(this);
     }
 
     /**
      * Cancel payment refund
-     * Refunds will be executed with a delay of two hours. Until that time, refunds may be canceled manually via the
-     * Mollie Dashboard, or by using this endpoint.
+     * Refunds will be executed with a delay of two hours. Until that time, refunds may be canceled manually via the Mollie Dashboard, or by using this endpoint.
      * 
-     * A refund can only be canceled while its `status` field is either `queued` or `pending`. See the
-     * [Get refund endpoint](get-refund) for more information.
-     * @param security The security details to use for authentication.
+     * A refund can only be canceled while its `status` field is either `queued` or `pending`. See the [Get refund endpoint](get-refund) for more information.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **refunds.write**](/reference/authentication)
      * @param paymentId Provide the ID of the related payment.
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CancelRefundResponse cancel(
-            CancelRefundSecurity security,
+    public CancelRefundResponse cancelRefund(
             String paymentId,
             String id) throws Exception {
-        return cancel(security, paymentId, id, JsonNullable.undefined());
+        return cancelRefund(paymentId, id, JsonNullable.undefined());
     }
     
     /**
      * Cancel payment refund
-     * Refunds will be executed with a delay of two hours. Until that time, refunds may be canceled manually via the
-     * Mollie Dashboard, or by using this endpoint.
+     * Refunds will be executed with a delay of two hours. Until that time, refunds may be canceled manually via the Mollie Dashboard, or by using this endpoint.
      * 
-     * A refund can only be canceled while its `status` field is either `queued` or `pending`. See the
-     * [Get refund endpoint](get-refund) for more information.
-     * @param security The security details to use for authentication.
+     * A refund can only be canceled while its `status` field is either `queued` or `pending`. See the [Get refund endpoint](get-refund) for more information.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **refunds.write**](/reference/authentication)
      * @param paymentId Provide the ID of the related payment.
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CancelRefundResponse cancel(
-            CancelRefundSecurity security,
+    public CancelRefundResponse cancelRefund(
             String paymentId,
             String id,
             JsonNullable<Boolean> testmode) throws Exception {
@@ -737,11 +752,9 @@ public class RefundsAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -855,14 +868,18 @@ public class RefundsAPI implements
      * Create order refund
      * When using the Orders API, refunds should be made for a specific order.
      * 
-     * If you want to refund arbitrary amounts, however, you can also use the
-     * [Create payment refund endpoint](create-refund) by creating a refund on the payment itself.
+     * If you want to refund arbitrary amounts, however, you can also use the [Create payment refund endpoint](create-refund) by creating a refund on the payment itself.
      * 
-     * If an order line is still in the `authorized` state, it cannot be refunded. You should cancel it instead. Order
-     * lines that are `paid`, `shipping` or `completed` can be refunded.
+     * If an order line is still in the `authorized` state, it cannot be refunded. You should cancel it instead. Order lines that are `paid`, `shipping` or `completed` can be refunded.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **refunds.write**](/reference/authentication)
      * @return The call builder
      */
-    public CreateOrderRefundRequestBuilder createOrder() {
+    public CreateOrderRefundRequestBuilder createOrderRefund() {
         return new CreateOrderRefundRequestBuilder(this);
     }
 
@@ -870,39 +887,43 @@ public class RefundsAPI implements
      * Create order refund
      * When using the Orders API, refunds should be made for a specific order.
      * 
-     * If you want to refund arbitrary amounts, however, you can also use the
-     * [Create payment refund endpoint](create-refund) by creating a refund on the payment itself.
+     * If you want to refund arbitrary amounts, however, you can also use the [Create payment refund endpoint](create-refund) by creating a refund on the payment itself.
      * 
-     * If an order line is still in the `authorized` state, it cannot be refunded. You should cancel it instead. Order
-     * lines that are `paid`, `shipping` or `completed` can be refunded.
-     * @param security The security details to use for authentication.
+     * If an order line is still in the `authorized` state, it cannot be refunded. You should cancel it instead. Order lines that are `paid`, `shipping` or `completed` can be refunded.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **refunds.write**](/reference/authentication)
      * @param orderId Provide the ID of the related order.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateOrderRefundResponse createOrder(
-            CreateOrderRefundSecurity security,
+    public CreateOrderRefundResponse createOrderRefund(
             String orderId) throws Exception {
-        return createOrder(security, orderId, Optional.empty());
+        return createOrderRefund(orderId, Optional.empty());
     }
     
     /**
      * Create order refund
      * When using the Orders API, refunds should be made for a specific order.
      * 
-     * If you want to refund arbitrary amounts, however, you can also use the
-     * [Create payment refund endpoint](create-refund) by creating a refund on the payment itself.
+     * If you want to refund arbitrary amounts, however, you can also use the [Create payment refund endpoint](create-refund) by creating a refund on the payment itself.
      * 
-     * If an order line is still in the `authorized` state, it cannot be refunded. You should cancel it instead. Order
-     * lines that are `paid`, `shipping` or `completed` can be refunded.
-     * @param security The security details to use for authentication.
+     * If an order line is still in the `authorized` state, it cannot be refunded. You should cancel it instead. Order lines that are `paid`, `shipping` or `completed` can be refunded.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **refunds.write**](/reference/authentication)
      * @param orderId Provide the ID of the related order.
      * @param requestBody
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateOrderRefundResponse createOrder(
-            CreateOrderRefundSecurity security,
+    public CreateOrderRefundResponse createOrderRefund(
             String orderId,
             Optional<? extends CreateOrderRefundRequestBody> requestBody) throws Exception {
         CreateOrderRefundRequest request =
@@ -934,11 +955,9 @@ public class RefundsAPI implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1069,9 +1088,15 @@ public class RefundsAPI implements
      * Retrieve a list of all refunds created for a specific order.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **refunds.read**](/reference/authentication)
      * @return The call builder
      */
-    public ListOrderRefundsRequestBuilder listOrder() {
+    public ListOrderRefundsRequestBuilder listOrderRefunds() {
         return new ListOrderRefundsRequestBuilder(this);
     }
 
@@ -1080,14 +1105,18 @@ public class RefundsAPI implements
      * Retrieve a list of all refunds created for a specific order.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **refunds.read**](/reference/authentication)
      * @param request The request object containing all of the parameters for the API call.
-     * @param security The security details to use for authentication.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListOrderRefundsResponse listOrder(
-            ListOrderRefundsRequest request,
-            ListOrderRefundsSecurity security) throws Exception {
+    public ListOrderRefundsResponse listOrderRefunds(
+            ListOrderRefundsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 ListOrderRefundsRequest.class,
@@ -1105,11 +1134,9 @@ public class RefundsAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1224,9 +1251,15 @@ public class RefundsAPI implements
      * Retrieve a list of all of your refunds.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **refunds.read**](/reference/authentication)
      * @return The call builder
      */
-    public ListAllRefundsRequestBuilder listAll() {
+    public ListAllRefundsRequestBuilder listAllRefunds() {
         return new ListAllRefundsRequestBuilder(this);
     }
 
@@ -1235,14 +1268,18 @@ public class RefundsAPI implements
      * Retrieve a list of all of your refunds.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **refunds.read**](/reference/authentication)
      * @param request The request object containing all of the parameters for the API call.
-     * @param security The security details to use for authentication.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListAllRefundsResponse listAll(
-            ListAllRefundsRequest request,
-            ListAllRefundsSecurity security) throws Exception {
+    public ListAllRefundsResponse listAllRefunds(
+            ListAllRefundsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -1258,11 +1295,9 @@ public class RefundsAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()

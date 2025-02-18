@@ -21,8 +21,7 @@ import java.util.Optional;
 public class Pricing {
 
     /**
-     * A description of what the pricing applies to. For example, a specific country (`The Netherlands`) or a
-     * category of cards (`American Express`). If a `locale` is provided, the description may be translated.
+     * A description of what the pricing applies to. For example, a specific country (`The Netherlands`) or a category of cards (`American Express`). If a `locale` is provided, the description may be translated.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
@@ -43,8 +42,7 @@ public class Pricing {
     private Optional<String> variable;
 
     /**
-     * Only present for credit card pricing. It will correspond with the `feeRegion` of credit card payments as
-     * returned in the [Payments API](get-payment).
+     * Only present for credit card pricing. It will correspond with the `feeRegion` of credit card payments as returned in the [Payments API](get-payment).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("feeRegion")
@@ -71,8 +69,7 @@ public class Pricing {
     }
 
     /**
-     * A description of what the pricing applies to. For example, a specific country (`The Netherlands`) or a
-     * category of cards (`American Express`). If a `locale` is provided, the description may be translated.
+     * A description of what the pricing applies to. For example, a specific country (`The Netherlands`) or a category of cards (`American Express`). If a `locale` is provided, the description may be translated.
      */
     @JsonIgnore
     public Optional<String> description() {
@@ -97,8 +94,7 @@ public class Pricing {
     }
 
     /**
-     * Only present for credit card pricing. It will correspond with the `feeRegion` of credit card payments as
-     * returned in the [Payments API](get-payment).
+     * Only present for credit card pricing. It will correspond with the `feeRegion` of credit card payments as returned in the [Payments API](get-payment).
      */
     @JsonIgnore
     public Optional<String> feeRegion() {
@@ -110,8 +106,7 @@ public class Pricing {
     }
 
     /**
-     * A description of what the pricing applies to. For example, a specific country (`The Netherlands`) or a
-     * category of cards (`American Express`). If a `locale` is provided, the description may be translated.
+     * A description of what the pricing applies to. For example, a specific country (`The Netherlands`) or a category of cards (`American Express`). If a `locale` is provided, the description may be translated.
      */
     public Pricing withDescription(String description) {
         Utils.checkNotNull(description, "description");
@@ -120,8 +115,7 @@ public class Pricing {
     }
 
     /**
-     * A description of what the pricing applies to. For example, a specific country (`The Netherlands`) or a
-     * category of cards (`American Express`). If a `locale` is provided, the description may be translated.
+     * A description of what the pricing applies to. For example, a specific country (`The Netherlands`) or a category of cards (`American Express`). If a `locale` is provided, the description may be translated.
      */
     public Pricing withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
@@ -166,8 +160,7 @@ public class Pricing {
     }
 
     /**
-     * Only present for credit card pricing. It will correspond with the `feeRegion` of credit card payments as
-     * returned in the [Payments API](get-payment).
+     * Only present for credit card pricing. It will correspond with the `feeRegion` of credit card payments as returned in the [Payments API](get-payment).
      */
     public Pricing withFeeRegion(String feeRegion) {
         Utils.checkNotNull(feeRegion, "feeRegion");
@@ -176,8 +169,7 @@ public class Pricing {
     }
 
     /**
-     * Only present for credit card pricing. It will correspond with the `feeRegion` of credit card payments as
-     * returned in the [Payments API](get-payment).
+     * Only present for credit card pricing. It will correspond with the `feeRegion` of credit card payments as returned in the [Payments API](get-payment).
      */
     public Pricing withFeeRegion(Optional<String> feeRegion) {
         Utils.checkNotNull(feeRegion, "feeRegion");
@@ -234,8 +226,7 @@ public class Pricing {
         }
 
         /**
-         * A description of what the pricing applies to. For example, a specific country (`The Netherlands`) or a
-         * category of cards (`American Express`). If a `locale` is provided, the description may be translated.
+         * A description of what the pricing applies to. For example, a specific country (`The Netherlands`) or a category of cards (`American Express`). If a `locale` is provided, the description may be translated.
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
@@ -244,8 +235,7 @@ public class Pricing {
         }
 
         /**
-         * A description of what the pricing applies to. For example, a specific country (`The Netherlands`) or a
-         * category of cards (`American Express`). If a `locale` is provided, the description may be translated.
+         * A description of what the pricing applies to. For example, a specific country (`The Netherlands`) or a category of cards (`American Express`). If a `locale` is provided, the description may be translated.
          */
         public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
@@ -290,8 +280,7 @@ public class Pricing {
         }
 
         /**
-         * Only present for credit card pricing. It will correspond with the `feeRegion` of credit card payments as
-         * returned in the [Payments API](get-payment).
+         * Only present for credit card pricing. It will correspond with the `feeRegion` of credit card payments as returned in the [Payments API](get-payment).
          */
         public Builder feeRegion(String feeRegion) {
             Utils.checkNotNull(feeRegion, "feeRegion");
@@ -300,8 +289,7 @@ public class Pricing {
         }
 
         /**
-         * Only present for credit card pricing. It will correspond with the `feeRegion` of credit card payments as
-         * returned in the [Payments API](get-payment).
+         * Only present for credit card pricing. It will correspond with the `feeRegion` of credit card payments as returned in the [Payments API](get-payment).
          */
         public Builder feeRegion(Optional<String> feeRegion) {
             Utils.checkNotNull(feeRegion, "feeRegion");

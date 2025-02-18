@@ -22,8 +22,7 @@ import java.util.Optional;
 public class ListProfilesEmbedded {
 
     /**
-     * An array of profile objects. For a complete reference of the profile object, refer to the
-     * [Get profile endpoint](get-profile) documentation.
+     * An array of profile objects. For a complete reference of the profile object, refer to the [Get profile endpoint](get-profile) documentation.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("profiles")
@@ -41,8 +40,7 @@ public class ListProfilesEmbedded {
     }
 
     /**
-     * An array of profile objects. For a complete reference of the profile object, refer to the
-     * [Get profile endpoint](get-profile) documentation.
+     * An array of profile objects. For a complete reference of the profile object, refer to the [Get profile endpoint](get-profile) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -55,8 +53,7 @@ public class ListProfilesEmbedded {
     }
 
     /**
-     * An array of profile objects. For a complete reference of the profile object, refer to the
-     * [Get profile endpoint](get-profile) documentation.
+     * An array of profile objects. For a complete reference of the profile object, refer to the [Get profile endpoint](get-profile) documentation.
      */
     public ListProfilesEmbedded withProfiles(List<Profiles> profiles) {
         Utils.checkNotNull(profiles, "profiles");
@@ -65,8 +62,7 @@ public class ListProfilesEmbedded {
     }
 
     /**
-     * An array of profile objects. For a complete reference of the profile object, refer to the
-     * [Get profile endpoint](get-profile) documentation.
+     * An array of profile objects. For a complete reference of the profile object, refer to the [Get profile endpoint](get-profile) documentation.
      */
     public ListProfilesEmbedded withProfiles(Optional<? extends List<Profiles>> profiles) {
         Utils.checkNotNull(profiles, "profiles");
@@ -108,8 +104,7 @@ public class ListProfilesEmbedded {
         }
 
         /**
-         * An array of profile objects. For a complete reference of the profile object, refer to the
-         * [Get profile endpoint](get-profile) documentation.
+         * An array of profile objects. For a complete reference of the profile object, refer to the [Get profile endpoint](get-profile) documentation.
          */
         public Builder profiles(List<Profiles> profiles) {
             Utils.checkNotNull(profiles, "profiles");
@@ -118,8 +113,7 @@ public class ListProfilesEmbedded {
         }
 
         /**
-         * An array of profile objects. For a complete reference of the profile object, refer to the
-         * [Get profile endpoint](get-profile) documentation.
+         * An array of profile objects. For a complete reference of the profile object, refer to the [Get profile endpoint](get-profile) documentation.
          */
         public Builder profiles(Optional<? extends List<Profiles>> profiles) {
             Utils.checkNotNull(profiles, "profiles");

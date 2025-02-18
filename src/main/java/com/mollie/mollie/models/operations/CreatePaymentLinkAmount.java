@@ -14,8 +14,7 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * CreatePaymentLinkAmount - The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an
- * amount.
+ * CreatePaymentLinkAmount - The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an amount.
  */
 
 public class CreatePaymentLinkAmount {

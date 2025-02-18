@@ -13,7 +13,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetCaptureRequestBuilder {
 
-    private GetCaptureSecurity security;
     private String paymentId;
     private String id;
     private JsonNullable<String> include = JsonNullable.undefined();
@@ -25,12 +24,6 @@ public class GetCaptureRequestBuilder {
 
     public GetCaptureRequestBuilder(SDKMethodInterfaces.MethodCallGetCapture sdk) {
         this.sdk = sdk;
-    }
-
-    public GetCaptureRequestBuilder security(GetCaptureSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public GetCaptureRequestBuilder paymentId(String paymentId) {
@@ -73,8 +66,7 @@ public class GetCaptureRequestBuilder {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.get(
-            security,
+        return sdk.getCapture(
             paymentId,
             id,
             include,

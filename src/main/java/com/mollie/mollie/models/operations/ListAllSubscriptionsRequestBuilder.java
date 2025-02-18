@@ -15,7 +15,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListAllSubscriptionsRequestBuilder {
 
-    private ListAllSubscriptionsSecurity security;
     private Optional<String> from = Optional.empty();
     private JsonNullable<Long> limit = Utils.readDefaultOrConstValue(
                             "limit",
@@ -30,12 +29,6 @@ public class ListAllSubscriptionsRequestBuilder {
 
     public ListAllSubscriptionsRequestBuilder(SDKMethodInterfaces.MethodCallListAllSubscriptions sdk) {
         this.sdk = sdk;
-    }
-
-    public ListAllSubscriptionsRequestBuilder security(ListAllSubscriptionsSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
                 
     public ListAllSubscriptionsRequestBuilder from(String from) {
@@ -93,8 +86,7 @@ public class ListAllSubscriptionsRequestBuilder {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.listAll(
-            security,
+        return sdk.listAllSubscriptions(
             from,
             limit,
             profileId,

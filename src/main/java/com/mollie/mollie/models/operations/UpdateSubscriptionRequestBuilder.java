@@ -14,7 +14,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class UpdateSubscriptionRequestBuilder {
 
-    private UpdateSubscriptionSecurity security;
     private String customerId;
     private String id;
     private JsonNullable<Boolean> testmode = Utils.readDefaultOrConstValue(
@@ -26,12 +25,6 @@ public class UpdateSubscriptionRequestBuilder {
 
     public UpdateSubscriptionRequestBuilder(SDKMethodInterfaces.MethodCallUpdateSubscription sdk) {
         this.sdk = sdk;
-    }
-
-    public UpdateSubscriptionRequestBuilder security(UpdateSubscriptionSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public UpdateSubscriptionRequestBuilder customerId(String customerId) {
@@ -74,8 +67,7 @@ public class UpdateSubscriptionRequestBuilder {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.update(
-            security,
+        return sdk.updateSubscription(
             customerId,
             id,
             testmode,

@@ -22,8 +22,7 @@ import java.util.Optional;
 public class ListOrderRefundsEmbedded {
 
     /**
-     * An array of refund objects. For a complete reference of the refund object, refer to the
-     * [Create order refund endpoint](create-order-refund) documentation.
+     * An array of refund objects. For a complete reference of the refund object, refer to the [Create order refund endpoint](create-order-refund) documentation.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("refunds")
@@ -41,8 +40,7 @@ public class ListOrderRefundsEmbedded {
     }
 
     /**
-     * An array of refund objects. For a complete reference of the refund object, refer to the
-     * [Create order refund endpoint](create-order-refund) documentation.
+     * An array of refund objects. For a complete reference of the refund object, refer to the [Create order refund endpoint](create-order-refund) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -55,8 +53,7 @@ public class ListOrderRefundsEmbedded {
     }
 
     /**
-     * An array of refund objects. For a complete reference of the refund object, refer to the
-     * [Create order refund endpoint](create-order-refund) documentation.
+     * An array of refund objects. For a complete reference of the refund object, refer to the [Create order refund endpoint](create-order-refund) documentation.
      */
     public ListOrderRefundsEmbedded withRefunds(List<ListOrderRefundsRefunds> refunds) {
         Utils.checkNotNull(refunds, "refunds");
@@ -65,8 +62,7 @@ public class ListOrderRefundsEmbedded {
     }
 
     /**
-     * An array of refund objects. For a complete reference of the refund object, refer to the
-     * [Create order refund endpoint](create-order-refund) documentation.
+     * An array of refund objects. For a complete reference of the refund object, refer to the [Create order refund endpoint](create-order-refund) documentation.
      */
     public ListOrderRefundsEmbedded withRefunds(Optional<? extends List<ListOrderRefundsRefunds>> refunds) {
         Utils.checkNotNull(refunds, "refunds");
@@ -108,8 +104,7 @@ public class ListOrderRefundsEmbedded {
         }
 
         /**
-         * An array of refund objects. For a complete reference of the refund object, refer to the
-         * [Create order refund endpoint](create-order-refund) documentation.
+         * An array of refund objects. For a complete reference of the refund object, refer to the [Create order refund endpoint](create-order-refund) documentation.
          */
         public Builder refunds(List<ListOrderRefundsRefunds> refunds) {
             Utils.checkNotNull(refunds, "refunds");
@@ -118,8 +113,7 @@ public class ListOrderRefundsEmbedded {
         }
 
         /**
-         * An array of refund objects. For a complete reference of the refund object, refer to the
-         * [Create order refund endpoint](create-order-refund) documentation.
+         * An array of refund objects. For a complete reference of the refund object, refer to the [Create order refund endpoint](create-order-refund) documentation.
          */
         public Builder refunds(Optional<? extends List<ListOrderRefundsRefunds>> refunds) {
             Utils.checkNotNull(refunds, "refunds");

@@ -43,17 +43,17 @@ public class GetShipmentResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
+     * 
+     * Possible values: `live` `test`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<? extends GetShipmentMode> mode;
+    private Optional<String> mode;
 
     /**
-     * The order lines that are being fulfilled with this shipment. If left blank, all open order lines will be
-     * considered fulfilled.
+     * The order lines that are being fulfilled with this shipment. If left blank, all open order lines will be considered fulfilled.
      * 
-     * For an in-depth explanation of all order line properties, refer to the `lines` parameter of the
-     * [Create order](create-order) endpoint.
+     * For an in-depth explanation of all order line properties, refer to the `lines` parameter of the [Create order](create-order) endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lines")
@@ -91,7 +91,7 @@ public class GetShipmentResponseBody {
     public GetShipmentResponseBody(
             @JsonProperty("resource") Optional<String> resource,
             @JsonProperty("id") Optional<String> id,
-            @JsonProperty("mode") Optional<? extends GetShipmentMode> mode,
+            @JsonProperty("mode") Optional<String> mode,
             @JsonProperty("lines") JsonNullable<? extends List<GetShipmentLines>> lines,
             @JsonProperty("tracking") JsonNullable<? extends GetShipmentTracking> tracking,
             @JsonProperty("orderId") Optional<String> orderId,
@@ -137,19 +137,18 @@ public class GetShipmentResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
+     * 
+     * Possible values: `live` `test`
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetShipmentMode> mode() {
-        return (Optional<GetShipmentMode>) mode;
+    public Optional<String> mode() {
+        return mode;
     }
 
     /**
-     * The order lines that are being fulfilled with this shipment. If left blank, all open order lines will be
-     * considered fulfilled.
+     * The order lines that are being fulfilled with this shipment. If left blank, all open order lines will be considered fulfilled.
      * 
-     * For an in-depth explanation of all order line properties, refer to the `lines` parameter of the
-     * [Create order](create-order) endpoint.
+     * For an in-depth explanation of all order line properties, refer to the `lines` parameter of the [Create order](create-order) endpoint.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -233,8 +232,10 @@ public class GetShipmentResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
+     * 
+     * Possible values: `live` `test`
      */
-    public GetShipmentResponseBody withMode(GetShipmentMode mode) {
+    public GetShipmentResponseBody withMode(String mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = Optional.ofNullable(mode);
         return this;
@@ -242,19 +243,19 @@ public class GetShipmentResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
+     * 
+     * Possible values: `live` `test`
      */
-    public GetShipmentResponseBody withMode(Optional<? extends GetShipmentMode> mode) {
+    public GetShipmentResponseBody withMode(Optional<String> mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
     }
 
     /**
-     * The order lines that are being fulfilled with this shipment. If left blank, all open order lines will be
-     * considered fulfilled.
+     * The order lines that are being fulfilled with this shipment. If left blank, all open order lines will be considered fulfilled.
      * 
-     * For an in-depth explanation of all order line properties, refer to the `lines` parameter of the
-     * [Create order](create-order) endpoint.
+     * For an in-depth explanation of all order line properties, refer to the `lines` parameter of the [Create order](create-order) endpoint.
      */
     public GetShipmentResponseBody withLines(List<GetShipmentLines> lines) {
         Utils.checkNotNull(lines, "lines");
@@ -263,11 +264,9 @@ public class GetShipmentResponseBody {
     }
 
     /**
-     * The order lines that are being fulfilled with this shipment. If left blank, all open order lines will be
-     * considered fulfilled.
+     * The order lines that are being fulfilled with this shipment. If left blank, all open order lines will be considered fulfilled.
      * 
-     * For an in-depth explanation of all order line properties, refer to the `lines` parameter of the
-     * [Create order](create-order) endpoint.
+     * For an in-depth explanation of all order line properties, refer to the `lines` parameter of the [Create order](create-order) endpoint.
      */
     public GetShipmentResponseBody withLines(JsonNullable<? extends List<GetShipmentLines>> lines) {
         Utils.checkNotNull(lines, "lines");
@@ -399,7 +398,7 @@ public class GetShipmentResponseBody {
  
         private Optional<String> id = Optional.empty();
  
-        private Optional<? extends GetShipmentMode> mode = Optional.empty();
+        private Optional<String> mode = Optional.empty();
  
         private JsonNullable<? extends List<GetShipmentLines>> lines = JsonNullable.undefined();
  
@@ -453,8 +452,10 @@ public class GetShipmentResponseBody {
 
         /**
          * Whether this entity was created in live mode or in test mode.
+         * 
+         * Possible values: `live` `test`
          */
-        public Builder mode(GetShipmentMode mode) {
+        public Builder mode(String mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = Optional.ofNullable(mode);
             return this;
@@ -462,19 +463,19 @@ public class GetShipmentResponseBody {
 
         /**
          * Whether this entity was created in live mode or in test mode.
+         * 
+         * Possible values: `live` `test`
          */
-        public Builder mode(Optional<? extends GetShipmentMode> mode) {
+        public Builder mode(Optional<String> mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
         }
 
         /**
-         * The order lines that are being fulfilled with this shipment. If left blank, all open order lines will be
-         * considered fulfilled.
+         * The order lines that are being fulfilled with this shipment. If left blank, all open order lines will be considered fulfilled.
          * 
-         * For an in-depth explanation of all order line properties, refer to the `lines` parameter of the
-         * [Create order](create-order) endpoint.
+         * For an in-depth explanation of all order line properties, refer to the `lines` parameter of the [Create order](create-order) endpoint.
          */
         public Builder lines(List<GetShipmentLines> lines) {
             Utils.checkNotNull(lines, "lines");
@@ -483,11 +484,9 @@ public class GetShipmentResponseBody {
         }
 
         /**
-         * The order lines that are being fulfilled with this shipment. If left blank, all open order lines will be
-         * considered fulfilled.
+         * The order lines that are being fulfilled with this shipment. If left blank, all open order lines will be considered fulfilled.
          * 
-         * For an in-depth explanation of all order line properties, refer to the `lines` parameter of the
-         * [Create order](create-order) endpoint.
+         * For an in-depth explanation of all order line properties, refer to the `lines` parameter of the [Create order](create-order) endpoint.
          */
         public Builder lines(JsonNullable<? extends List<GetShipmentLines>> lines) {
             Utils.checkNotNull(lines, "lines");

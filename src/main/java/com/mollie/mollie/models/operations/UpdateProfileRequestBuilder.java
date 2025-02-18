@@ -31,7 +31,7 @@ public class UpdateProfileRequestBuilder {
 
     public UpdateProfileResponse call() throws Exception {
 
-        return sdk.update(
+        return sdk.updateProfile(
             id,
             requestBody);
     }

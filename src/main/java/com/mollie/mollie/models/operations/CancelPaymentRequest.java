@@ -21,15 +21,13 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class CancelPaymentRequest {
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related payment.
      */
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
-    private String id;
+    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=paymentId")
+    private String paymentId;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -38,31 +36,29 @@ public class CancelPaymentRequest {
 
     @JsonCreator
     public CancelPaymentRequest(
-            String id,
+            String paymentId,
             JsonNullable<Boolean> testmode) {
-        Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(paymentId, "paymentId");
         Utils.checkNotNull(testmode, "testmode");
-        this.id = id;
+        this.paymentId = paymentId;
         this.testmode = testmode;
     }
     
     public CancelPaymentRequest(
-            String id) {
-        this(id, JsonNullable.undefined());
+            String paymentId) {
+        this(paymentId, JsonNullable.undefined());
     }
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related payment.
      */
     @JsonIgnore
-    public String id() {
-        return id;
+    public String paymentId() {
+        return paymentId;
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -76,18 +72,16 @@ public class CancelPaymentRequest {
     }
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related payment.
      */
-    public CancelPaymentRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public CancelPaymentRequest withPaymentId(String paymentId) {
+        Utils.checkNotNull(paymentId, "paymentId");
+        this.paymentId = paymentId;
         return this;
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -98,9 +92,7 @@ public class CancelPaymentRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -120,27 +112,27 @@ public class CancelPaymentRequest {
         }
         CancelPaymentRequest other = (CancelPaymentRequest) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.paymentId, other.paymentId) &&
             Objects.deepEquals(this.testmode, other.testmode);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
-            id,
+            paymentId,
             testmode);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CancelPaymentRequest.class,
-                "id", id,
+                "paymentId", paymentId,
                 "testmode", testmode);
     }
     
     public final static class Builder {
  
-        private String id;
+        private String paymentId;
  
         private JsonNullable<Boolean> testmode;  
         
@@ -149,18 +141,16 @@ public class CancelPaymentRequest {
         }
 
         /**
-         * Provide the ID of the item you want to perform this operation on.
+         * Provide the ID of the related payment.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder paymentId(String paymentId) {
+            Utils.checkNotNull(paymentId, "paymentId");
+            this.paymentId = paymentId;
             return this;
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-         * setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
          * 
          * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -171,9 +161,7 @@ public class CancelPaymentRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-         * setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
          * 
          * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -187,7 +175,7 @@ public class CancelPaymentRequest {
             if (testmode == null) {
                 testmode = _SINGLETON_VALUE_Testmode.value();
             }            return new CancelPaymentRequest(
-                id,
+                paymentId,
                 testmode);
         }
 

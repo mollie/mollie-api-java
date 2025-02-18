@@ -15,7 +15,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListCustomersRequestBuilder {
 
-    private ListCustomersSecurity security;
     private Optional<String> from = Optional.empty();
     private JsonNullable<Long> limit = Utils.readDefaultOrConstValue(
                             "limit",
@@ -29,12 +28,6 @@ public class ListCustomersRequestBuilder {
 
     public ListCustomersRequestBuilder(SDKMethodInterfaces.MethodCallListCustomers sdk) {
         this.sdk = sdk;
-    }
-
-    public ListCustomersRequestBuilder security(ListCustomersSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
                 
     public ListCustomersRequestBuilder from(String from) {
@@ -80,8 +73,7 @@ public class ListCustomersRequestBuilder {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.list(
-            security,
+        return sdk.listCustomers(
             from,
             limit,
             testmode);

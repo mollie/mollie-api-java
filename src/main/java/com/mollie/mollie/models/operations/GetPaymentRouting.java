@@ -36,8 +36,7 @@ public class GetPaymentRouting {
     private Optional<? extends GetPaymentDestination> destination;
 
     /**
-     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
-     * date must be given in `YYYY-MM-DD` format.
+     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
      * 
      * If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
      */
@@ -81,8 +80,7 @@ public class GetPaymentRouting {
     }
 
     /**
-     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
-     * date must be given in `YYYY-MM-DD` format.
+     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
      * 
      * If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
      */
@@ -132,8 +130,7 @@ public class GetPaymentRouting {
     }
 
     /**
-     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
-     * date must be given in `YYYY-MM-DD` format.
+     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
      * 
      * If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
      */
@@ -144,8 +141,7 @@ public class GetPaymentRouting {
     }
 
     /**
-     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
-     * date must be given in `YYYY-MM-DD` format.
+     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
      * 
      * If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
      */
@@ -235,8 +231,7 @@ public class GetPaymentRouting {
         }
 
         /**
-         * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
-         * date must be given in `YYYY-MM-DD` format.
+         * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
          * 
          * If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
          */
@@ -247,8 +242,7 @@ public class GetPaymentRouting {
         }
 
         /**
-         * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
-         * date must be given in `YYYY-MM-DD` format.
+         * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
          * 
          * If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
          */

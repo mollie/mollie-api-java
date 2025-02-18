@@ -20,8 +20,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class CreateOrderRequest {
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
-     * parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
      * 
      * * `payments`: Include all payments created for this order.
      */
@@ -46,8 +45,7 @@ public class CreateOrderRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
-     * parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
      * 
      * * `payments`: Include all payments created for this order.
      */
@@ -67,8 +65,7 @@ public class CreateOrderRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
-     * parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
      * 
      * * `payments`: Include all payments created for this order.
      */
@@ -79,8 +76,7 @@ public class CreateOrderRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
-     * parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
      * 
      * * `payments`: Include all payments created for this order.
      */
@@ -141,8 +137,7 @@ public class CreateOrderRequest {
         }
 
         /**
-         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
-         * parameter.
+         * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
          * 
          * * `payments`: Include all payments created for this order.
          */
@@ -153,8 +148,7 @@ public class CreateOrderRequest {
         }
 
         /**
-         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
-         * parameter.
+         * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
          * 
          * * `payments`: Include all payments created for this order.
          */

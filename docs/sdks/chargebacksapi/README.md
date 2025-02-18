@@ -5,15 +5,21 @@
 
 ### Available Operations
 
-* [list](#list) - List payment chargebacks
-* [get](#get) - Get payment chargeback
-* [listAll](#listall) - List all chargebacks
+* [listChargebacks](#listchargebacks) - List payment chargebacks
+* [getChargeback](#getchargeback) - Get payment chargeback
+* [listAllChargebacks](#listallchargebacks) - List all chargebacks
 
-## list
+## listChargebacks
 
 Retrieve the chargebacks initiated for a specific payment.
 
 The results are paginated.
+
+> 🔑 Access with
+>
+> [API key](/reference/authentication)
+>
+> [Access token with **payments.read**](/reference/authentication)
 
 ### Example Usage
 
@@ -21,11 +27,11 @@ The results are paginated.
 package hello.world;
 
 import com.mollie.mollie.Mollie;
+import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ListChargebacksChargebacksAPIResponseBody;
 import com.mollie.mollie.models.errors.ListChargebacksResponseBody;
 import com.mollie.mollie.models.operations.ListChargebacksRequest;
 import com.mollie.mollie.models.operations.ListChargebacksResponse;
-import com.mollie.mollie.models.operations.ListChargebacksSecurity;
 import java.lang.Exception;
 
 public class Application {
@@ -33,6 +39,9 @@ public class Application {
     public static void main(String[] args) throws ListChargebacksResponseBody, ListChargebacksChargebacksAPIResponseBody, Exception {
 
         Mollie sdk = Mollie.builder()
+                .security(Security.builder()
+                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
             .build();
 
         ListChargebacksRequest req = ListChargebacksRequest.builder()
@@ -41,11 +50,8 @@ public class Application {
                 .include("payment")
                 .build();
 
-        ListChargebacksResponse res = sdk.chargebacksAPI().list()
+        ListChargebacksResponse res = sdk.chargebacksAPI().listChargebacks()
                 .request(req)
-                .security(ListChargebacksSecurity.builder()
-                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .call();
 
         if (res.object().isPresent()) {
@@ -57,10 +63,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
-| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                         | [ListChargebacksRequest](../../models/operations/ListChargebacksRequest.md)                                       | :heavy_check_mark:                                                                                                | The request object to use for the request.                                                                        |
-| `security`                                                                                                        | [com.mollie.mollie.models.operations.ListChargebacksSecurity](../../models/operations/ListChargebacksSecurity.md) | :heavy_check_mark:                                                                                                | The security requirements to use for the request.                                                                 |
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [ListChargebacksRequest](../../models/operations/ListChargebacksRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
 
 ### Response
 
@@ -74,9 +79,15 @@ public class Application {
 | models/errors/ListChargebacksChargebacksAPIResponseBody | 404                                                     | application/hal+json                                    |
 | models/errors/APIException                              | 4XX, 5XX                                                | \*/\*                                                   |
 
-## get
+## getChargeback
 
 Retrieve a single payment chargeback by its ID and the ID of its parent payment.
+
+> 🔑 Access with
+>
+> [API key](/reference/authentication)
+>
+> [Access token with **payments.read**](/reference/authentication)
 
 ### Example Usage
 
@@ -84,9 +95,9 @@ Retrieve a single payment chargeback by its ID and the ID of its parent payment.
 package hello.world;
 
 import com.mollie.mollie.Mollie;
+import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.GetChargebackResponseBody;
 import com.mollie.mollie.models.operations.GetChargebackResponse;
-import com.mollie.mollie.models.operations.GetChargebackSecurity;
 import java.lang.Exception;
 
 public class Application {
@@ -94,12 +105,12 @@ public class Application {
     public static void main(String[] args) throws GetChargebackResponseBody, Exception {
 
         Mollie sdk = Mollie.builder()
-            .build();
-
-        GetChargebackResponse res = sdk.chargebacksAPI().get()
-                .security(GetChargebackSecurity.builder()
+                .security(Security.builder()
                     .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
+            .build();
+
+        GetChargebackResponse res = sdk.chargebacksAPI().getChargeback()
                 .paymentId("tr_5B8cwPMGnU6qLbRvo7qEZo")
                 .id("chb_n9z0tp")
                 .include("payment")
@@ -117,11 +128,10 @@ public class Application {
 
 | Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                                                                                                                                                                                                                                                                                             | [com.mollie.mollie.models.operations.GetChargebackSecurity](../../models/operations/GetChargebackSecurity.md)                                                                                                                                                                                                                                                                          | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | The security requirements to use for the request.                                                                                                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `paymentId`                                                                                                                                                                                                                                                                                                                                                                            | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related payment.                                                                                                                                                                                                                                                                                                                                                 | tr_5B8cwPMGnU6qLbRvo7qEZo                                                                                                                                                                                                                                                                                                                                                              |
 | `id`                                                                                                                                                                                                                                                                                                                                                                                   | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the item you want to perform this operation on.                                                                                                                                                                                                                                                                                                                      | chb_n9z0tp                                                                                                                                                                                                                                                                                                                                                                             |
 | `include`                                                                                                                                                                                                                                                                                                                                                                              | *JsonNullable\<String>*                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows you to include additional information via the `include` query string parameter.<br/><br/>* `payment`: Include the payment this chargeback was issued for.                                                                                                                                                                                                         | payment                                                                                                                                                                                                                                                                                                                                                                                |
-| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
+| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Response
 
@@ -134,11 +144,17 @@ public class Application {
 | models/errors/GetChargebackResponseBody | 404                                     | application/hal+json                    |
 | models/errors/APIException              | 4XX, 5XX                                | \*/\*                                   |
 
-## listAll
+## listAllChargebacks
 
 Retrieve all chargebacks initiated for all your payments.
 
 The results are paginated.
+
+> 🔑 Access with
+>
+> [API key](/reference/authentication)
+>
+> [Access token with **payments.read**](/reference/authentication)
 
 ### Example Usage
 
@@ -146,11 +162,11 @@ The results are paginated.
 package hello.world;
 
 import com.mollie.mollie.Mollie;
+import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ListAllChargebacksChargebacksAPIResponseBody;
 import com.mollie.mollie.models.errors.ListAllChargebacksResponseBody;
 import com.mollie.mollie.models.operations.ListAllChargebacksRequest;
 import com.mollie.mollie.models.operations.ListAllChargebacksResponse;
-import com.mollie.mollie.models.operations.ListAllChargebacksSecurity;
 import java.lang.Exception;
 
 public class Application {
@@ -158,6 +174,9 @@ public class Application {
     public static void main(String[] args) throws ListAllChargebacksResponseBody, ListAllChargebacksChargebacksAPIResponseBody, Exception {
 
         Mollie sdk = Mollie.builder()
+                .security(Security.builder()
+                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
             .build();
 
         ListAllChargebacksRequest req = ListAllChargebacksRequest.builder()
@@ -166,11 +185,8 @@ public class Application {
                 .profileId("pfl_QkEhN94Ba")
                 .build();
 
-        ListAllChargebacksResponse res = sdk.chargebacksAPI().listAll()
+        ListAllChargebacksResponse res = sdk.chargebacksAPI().listAllChargebacks()
                 .request(req)
-                .security(ListAllChargebacksSecurity.builder()
-                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .call();
 
         if (res.object().isPresent()) {
@@ -182,10 +198,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
-| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                               | [ListAllChargebacksRequest](../../models/operations/ListAllChargebacksRequest.md)                                       | :heavy_check_mark:                                                                                                      | The request object to use for the request.                                                                              |
-| `security`                                                                                                              | [com.mollie.mollie.models.operations.ListAllChargebacksSecurity](../../models/operations/ListAllChargebacksSecurity.md) | :heavy_check_mark:                                                                                                      | The security requirements to use for the request.                                                                       |
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `request`                                                                         | [ListAllChargebacksRequest](../../models/operations/ListAllChargebacksRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
 
 ### Response
 

@@ -9,7 +9,6 @@ import com.mollie.mollie.utils.Utils;
 public class ListCapturesRequestBuilder {
 
     private ListCapturesRequest request;
-    private ListCapturesSecurity security;
     private final SDKMethodInterfaces.MethodCallListCaptures sdk;
 
     public ListCapturesRequestBuilder(SDKMethodInterfaces.MethodCallListCaptures sdk) {
@@ -22,16 +21,9 @@ public class ListCapturesRequestBuilder {
         return this;
     }
 
-    public ListCapturesRequestBuilder security(ListCapturesSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
-    }
-
     public ListCapturesResponse call() throws Exception {
 
-        return sdk.list(
-            request,
-            security);
+        return sdk.listCaptures(
+            request);
     }
 }

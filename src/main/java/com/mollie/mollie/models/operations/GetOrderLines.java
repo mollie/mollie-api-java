@@ -33,8 +33,7 @@ public class GetOrderLines {
     private Optional<String> resource;
 
     /**
-     * The identifier uniquely referring to this order line. Mollie assigns this identifier at order line creation time.
-     * Example: `odl_jp31jz`.
+     * The identifier uniquely referring to this order line. Mollie assigns this identifier at order line creation time. Example: `odl_jp31jz`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
@@ -42,10 +41,12 @@ public class GetOrderLines {
 
     /**
      * The type of product purchased. For example, a physical or a digital product.
+     * 
+     * Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` (default: `physical`)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<? extends GetOrderType> type;
+    private Optional<String> type;
 
     /**
      * A description of the line item. For example *LEGO 4440 Forest Police Station*.
@@ -79,8 +80,7 @@ public class GetOrderLines {
     private GetOrderUnitPrice unitPrice;
 
     /**
-     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
-     * type.
+     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("discountAmount")
@@ -97,21 +97,18 @@ public class GetOrderLines {
     private GetOrderTotalAmount totalAmount;
 
     /**
-     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
-     * not as a float, to ensure the correct number of decimals are passed.
+     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatRate")
     private Optional<String> vatRate;
 
     /**
-     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
-     * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
      * 
      * Any deviations from this will result in an error.
      * 
-     * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
-     * `SEK 100.00 × (25 / 125) = SEK 20.00`.
+     * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatAmount")
@@ -125,19 +122,22 @@ public class GetOrderLines {
     private Optional<String> sku;
 
     /**
-     * The voucher category, in case of an order line eligible for a voucher. See the
-     * [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * The voucher category, in case of an order line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * 
+     * Possible values: `meal` `eco` `gift` `sport_culture`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("category")
-    private JsonNullable<? extends GetOrderCategory> category;
+    private JsonNullable<String> category;
 
     /**
      * The status of the order line.
+     * 
+     * Possible values: `created` `authorized` `paid` `shipping` `completed` `canceled`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends GetOrderOrdersAPIStatus> status;
+    private Optional<String> status;
 
     /**
      * Whether the order line can still be canceled.
@@ -147,8 +147,7 @@ public class GetOrderLines {
     private Optional<Boolean> isCancelable;
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
@@ -179,7 +178,7 @@ public class GetOrderLines {
     public GetOrderLines(
             @JsonProperty("resource") Optional<String> resource,
             @JsonProperty("id") Optional<String> id,
-            @JsonProperty("type") Optional<? extends GetOrderType> type,
+            @JsonProperty("type") Optional<String> type,
             @JsonProperty("name") String name,
             @JsonProperty("quantity") long quantity,
             @JsonProperty("quantityUnit") Optional<String> quantityUnit,
@@ -189,8 +188,8 @@ public class GetOrderLines {
             @JsonProperty("vatRate") Optional<String> vatRate,
             @JsonProperty("vatAmount") Optional<? extends GetOrderVatAmount> vatAmount,
             @JsonProperty("sku") Optional<String> sku,
-            @JsonProperty("category") JsonNullable<? extends GetOrderCategory> category,
-            @JsonProperty("status") Optional<? extends GetOrderOrdersAPIStatus> status,
+            @JsonProperty("category") JsonNullable<String> category,
+            @JsonProperty("status") Optional<String> status,
             @JsonProperty("isCancelable") Optional<Boolean> isCancelable,
             @JsonProperty("metadata") JsonNullable<? extends GetOrderOrdersAPIMetadata> metadata,
             @JsonProperty("orderId") Optional<String> orderId,
@@ -253,8 +252,7 @@ public class GetOrderLines {
     }
 
     /**
-     * The identifier uniquely referring to this order line. Mollie assigns this identifier at order line creation time.
-     * Example: `odl_jp31jz`.
+     * The identifier uniquely referring to this order line. Mollie assigns this identifier at order line creation time. Example: `odl_jp31jz`.
      */
     @JsonIgnore
     public Optional<String> id() {
@@ -263,11 +261,12 @@ public class GetOrderLines {
 
     /**
      * The type of product purchased. For example, a physical or a digital product.
+     * 
+     * Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` (default: `physical`)
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetOrderType> type() {
-        return (Optional<GetOrderType>) type;
+    public Optional<String> type() {
+        return type;
     }
 
     /**
@@ -309,8 +308,7 @@ public class GetOrderLines {
     }
 
     /**
-     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
-     * type.
+     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -331,8 +329,7 @@ public class GetOrderLines {
     }
 
     /**
-     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
-     * not as a float, to ensure the correct number of decimals are passed.
+     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
      */
     @JsonIgnore
     public Optional<String> vatRate() {
@@ -340,13 +337,11 @@ public class GetOrderLines {
     }
 
     /**
-     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
-     * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
      * 
      * Any deviations from this will result in an error.
      * 
-     * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
-     * `SEK 100.00 × (25 / 125) = SEK 20.00`.
+     * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -363,22 +358,23 @@ public class GetOrderLines {
     }
 
     /**
-     * The voucher category, in case of an order line eligible for a voucher. See the
-     * [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * The voucher category, in case of an order line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * 
+     * Possible values: `meal` `eco` `gift` `sport_culture`
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<GetOrderCategory> category() {
-        return (JsonNullable<GetOrderCategory>) category;
+    public JsonNullable<String> category() {
+        return category;
     }
 
     /**
      * The status of the order line.
+     * 
+     * Possible values: `created` `authorized` `paid` `shipping` `completed` `canceled`
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetOrderOrdersAPIStatus> status() {
-        return (Optional<GetOrderOrdersAPIStatus>) status;
+    public Optional<String> status() {
+        return status;
     }
 
     /**
@@ -390,8 +386,7 @@ public class GetOrderLines {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -447,8 +442,7 @@ public class GetOrderLines {
     }
 
     /**
-     * The identifier uniquely referring to this order line. Mollie assigns this identifier at order line creation time.
-     * Example: `odl_jp31jz`.
+     * The identifier uniquely referring to this order line. Mollie assigns this identifier at order line creation time. Example: `odl_jp31jz`.
      */
     public GetOrderLines withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -457,8 +451,7 @@ public class GetOrderLines {
     }
 
     /**
-     * The identifier uniquely referring to this order line. Mollie assigns this identifier at order line creation time.
-     * Example: `odl_jp31jz`.
+     * The identifier uniquely referring to this order line. Mollie assigns this identifier at order line creation time. Example: `odl_jp31jz`.
      */
     public GetOrderLines withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
@@ -468,8 +461,10 @@ public class GetOrderLines {
 
     /**
      * The type of product purchased. For example, a physical or a digital product.
+     * 
+     * Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` (default: `physical`)
      */
-    public GetOrderLines withType(GetOrderType type) {
+    public GetOrderLines withType(String type) {
         Utils.checkNotNull(type, "type");
         this.type = Optional.ofNullable(type);
         return this;
@@ -477,8 +472,10 @@ public class GetOrderLines {
 
     /**
      * The type of product purchased. For example, a physical or a digital product.
+     * 
+     * Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` (default: `physical`)
      */
-    public GetOrderLines withType(Optional<? extends GetOrderType> type) {
+    public GetOrderLines withType(Optional<String> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -536,8 +533,7 @@ public class GetOrderLines {
     }
 
     /**
-     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
-     * type.
+     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
      */
     public GetOrderLines withDiscountAmount(GetOrderDiscountAmount discountAmount) {
         Utils.checkNotNull(discountAmount, "discountAmount");
@@ -546,8 +542,7 @@ public class GetOrderLines {
     }
 
     /**
-     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
-     * type.
+     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
      */
     public GetOrderLines withDiscountAmount(Optional<? extends GetOrderDiscountAmount> discountAmount) {
         Utils.checkNotNull(discountAmount, "discountAmount");
@@ -569,8 +564,7 @@ public class GetOrderLines {
     }
 
     /**
-     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
-     * not as a float, to ensure the correct number of decimals are passed.
+     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
      */
     public GetOrderLines withVatRate(String vatRate) {
         Utils.checkNotNull(vatRate, "vatRate");
@@ -579,8 +573,7 @@ public class GetOrderLines {
     }
 
     /**
-     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
-     * not as a float, to ensure the correct number of decimals are passed.
+     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
      */
     public GetOrderLines withVatRate(Optional<String> vatRate) {
         Utils.checkNotNull(vatRate, "vatRate");
@@ -589,13 +582,11 @@ public class GetOrderLines {
     }
 
     /**
-     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
-     * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
      * 
      * Any deviations from this will result in an error.
      * 
-     * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
-     * `SEK 100.00 × (25 / 125) = SEK 20.00`.
+     * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
      */
     public GetOrderLines withVatAmount(GetOrderVatAmount vatAmount) {
         Utils.checkNotNull(vatAmount, "vatAmount");
@@ -604,13 +595,11 @@ public class GetOrderLines {
     }
 
     /**
-     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
-     * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
      * 
      * Any deviations from this will result in an error.
      * 
-     * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
-     * `SEK 100.00 × (25 / 125) = SEK 20.00`.
+     * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
      */
     public GetOrderLines withVatAmount(Optional<? extends GetOrderVatAmount> vatAmount) {
         Utils.checkNotNull(vatAmount, "vatAmount");
@@ -637,20 +626,22 @@ public class GetOrderLines {
     }
 
     /**
-     * The voucher category, in case of an order line eligible for a voucher. See the
-     * [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * The voucher category, in case of an order line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * 
+     * Possible values: `meal` `eco` `gift` `sport_culture`
      */
-    public GetOrderLines withCategory(GetOrderCategory category) {
+    public GetOrderLines withCategory(String category) {
         Utils.checkNotNull(category, "category");
         this.category = JsonNullable.of(category);
         return this;
     }
 
     /**
-     * The voucher category, in case of an order line eligible for a voucher. See the
-     * [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * The voucher category, in case of an order line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * 
+     * Possible values: `meal` `eco` `gift` `sport_culture`
      */
-    public GetOrderLines withCategory(JsonNullable<? extends GetOrderCategory> category) {
+    public GetOrderLines withCategory(JsonNullable<String> category) {
         Utils.checkNotNull(category, "category");
         this.category = category;
         return this;
@@ -658,8 +649,10 @@ public class GetOrderLines {
 
     /**
      * The status of the order line.
+     * 
+     * Possible values: `created` `authorized` `paid` `shipping` `completed` `canceled`
      */
-    public GetOrderLines withStatus(GetOrderOrdersAPIStatus status) {
+    public GetOrderLines withStatus(String status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -667,8 +660,10 @@ public class GetOrderLines {
 
     /**
      * The status of the order line.
+     * 
+     * Possible values: `created` `authorized` `paid` `shipping` `completed` `canceled`
      */
-    public GetOrderLines withStatus(Optional<? extends GetOrderOrdersAPIStatus> status) {
+    public GetOrderLines withStatus(Optional<String> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -693,8 +688,7 @@ public class GetOrderLines {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     public GetOrderLines withMetadata(GetOrderOrdersAPIMetadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -703,8 +697,7 @@ public class GetOrderLines {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     public GetOrderLines withMetadata(JsonNullable<? extends GetOrderOrdersAPIMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -851,7 +844,7 @@ public class GetOrderLines {
  
         private Optional<String> id = Optional.empty();
  
-        private Optional<? extends GetOrderType> type;
+        private Optional<String> type = Optional.empty();
  
         private String name;
  
@@ -871,9 +864,9 @@ public class GetOrderLines {
  
         private Optional<String> sku = Optional.empty();
  
-        private JsonNullable<? extends GetOrderCategory> category = JsonNullable.undefined();
+        private JsonNullable<String> category = JsonNullable.undefined();
  
-        private Optional<? extends GetOrderOrdersAPIStatus> status = Optional.empty();
+        private Optional<String> status = Optional.empty();
  
         private Optional<Boolean> isCancelable = Optional.empty();
  
@@ -908,8 +901,7 @@ public class GetOrderLines {
         }
 
         /**
-         * The identifier uniquely referring to this order line. Mollie assigns this identifier at order line creation time.
-         * Example: `odl_jp31jz`.
+         * The identifier uniquely referring to this order line. Mollie assigns this identifier at order line creation time. Example: `odl_jp31jz`.
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -918,8 +910,7 @@ public class GetOrderLines {
         }
 
         /**
-         * The identifier uniquely referring to this order line. Mollie assigns this identifier at order line creation time.
-         * Example: `odl_jp31jz`.
+         * The identifier uniquely referring to this order line. Mollie assigns this identifier at order line creation time. Example: `odl_jp31jz`.
          */
         public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
@@ -929,8 +920,10 @@ public class GetOrderLines {
 
         /**
          * The type of product purchased. For example, a physical or a digital product.
+         * 
+         * Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` (default: `physical`)
          */
-        public Builder type(GetOrderType type) {
+        public Builder type(String type) {
             Utils.checkNotNull(type, "type");
             this.type = Optional.ofNullable(type);
             return this;
@@ -938,8 +931,10 @@ public class GetOrderLines {
 
         /**
          * The type of product purchased. For example, a physical or a digital product.
+         * 
+         * Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` (default: `physical`)
          */
-        public Builder type(Optional<? extends GetOrderType> type) {
+        public Builder type(Optional<String> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
@@ -997,8 +992,7 @@ public class GetOrderLines {
         }
 
         /**
-         * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
-         * type.
+         * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
          */
         public Builder discountAmount(GetOrderDiscountAmount discountAmount) {
             Utils.checkNotNull(discountAmount, "discountAmount");
@@ -1007,8 +1001,7 @@ public class GetOrderLines {
         }
 
         /**
-         * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
-         * type.
+         * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
          */
         public Builder discountAmount(Optional<? extends GetOrderDiscountAmount> discountAmount) {
             Utils.checkNotNull(discountAmount, "discountAmount");
@@ -1030,8 +1023,7 @@ public class GetOrderLines {
         }
 
         /**
-         * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
-         * not as a float, to ensure the correct number of decimals are passed.
+         * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
          */
         public Builder vatRate(String vatRate) {
             Utils.checkNotNull(vatRate, "vatRate");
@@ -1040,8 +1032,7 @@ public class GetOrderLines {
         }
 
         /**
-         * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
-         * not as a float, to ensure the correct number of decimals are passed.
+         * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
          */
         public Builder vatRate(Optional<String> vatRate) {
             Utils.checkNotNull(vatRate, "vatRate");
@@ -1050,13 +1041,11 @@ public class GetOrderLines {
         }
 
         /**
-         * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
-         * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+         * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
          * 
          * Any deviations from this will result in an error.
          * 
-         * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
-         * `SEK 100.00 × (25 / 125) = SEK 20.00`.
+         * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
          */
         public Builder vatAmount(GetOrderVatAmount vatAmount) {
             Utils.checkNotNull(vatAmount, "vatAmount");
@@ -1065,13 +1054,11 @@ public class GetOrderLines {
         }
 
         /**
-         * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
-         * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+         * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
          * 
          * Any deviations from this will result in an error.
          * 
-         * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
-         * `SEK 100.00 × (25 / 125) = SEK 20.00`.
+         * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
          */
         public Builder vatAmount(Optional<? extends GetOrderVatAmount> vatAmount) {
             Utils.checkNotNull(vatAmount, "vatAmount");
@@ -1098,20 +1085,22 @@ public class GetOrderLines {
         }
 
         /**
-         * The voucher category, in case of an order line eligible for a voucher. See the
-         * [Integrating Vouchers](integrating-vouchers) guide for more information.
+         * The voucher category, in case of an order line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+         * 
+         * Possible values: `meal` `eco` `gift` `sport_culture`
          */
-        public Builder category(GetOrderCategory category) {
+        public Builder category(String category) {
             Utils.checkNotNull(category, "category");
             this.category = JsonNullable.of(category);
             return this;
         }
 
         /**
-         * The voucher category, in case of an order line eligible for a voucher. See the
-         * [Integrating Vouchers](integrating-vouchers) guide for more information.
+         * The voucher category, in case of an order line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+         * 
+         * Possible values: `meal` `eco` `gift` `sport_culture`
          */
-        public Builder category(JsonNullable<? extends GetOrderCategory> category) {
+        public Builder category(JsonNullable<String> category) {
             Utils.checkNotNull(category, "category");
             this.category = category;
             return this;
@@ -1119,8 +1108,10 @@ public class GetOrderLines {
 
         /**
          * The status of the order line.
+         * 
+         * Possible values: `created` `authorized` `paid` `shipping` `completed` `canceled`
          */
-        public Builder status(GetOrderOrdersAPIStatus status) {
+        public Builder status(String status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -1128,8 +1119,10 @@ public class GetOrderLines {
 
         /**
          * The status of the order line.
+         * 
+         * Possible values: `created` `authorized` `paid` `shipping` `completed` `canceled`
          */
-        public Builder status(Optional<? extends GetOrderOrdersAPIStatus> status) {
+        public Builder status(Optional<String> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -1154,8 +1147,7 @@ public class GetOrderLines {
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
         public Builder metadata(GetOrderOrdersAPIMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -1164,8 +1156,7 @@ public class GetOrderLines {
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
         public Builder metadata(JsonNullable<? extends GetOrderOrdersAPIMetadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -1230,9 +1221,6 @@ public class GetOrderLines {
         public GetOrderLines build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
-            }
-            if (type == null) {
-                type = _SINGLETON_VALUE_Type.value();
             }            return new GetOrderLines(
                 resource,
                 id,
@@ -1260,12 +1248,6 @@ public class GetOrderLines {
                         "resource",
                         "\"orderline\"",
                         new TypeReference<Optional<String>>() {});
-
-        private static final LazySingletonValue<Optional<? extends GetOrderType>> _SINGLETON_VALUE_Type =
-                new LazySingletonValue<>(
-                        "type",
-                        "\"physical\"",
-                        new TypeReference<Optional<? extends GetOrderType>>() {});
     }
 }
 

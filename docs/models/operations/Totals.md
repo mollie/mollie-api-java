@@ -1,7 +1,6 @@
 # Totals
 
-Totals are grouped according to the chosen grouping rule. The example response should give a good idea of what a
-typical grouping looks like.
+Totals are grouped according to the chosen grouping rule. The example response should give a good idea of what a typical grouping looks like.
 
 If grouping `status-balances` is chosen, the main grouping is as follows:
 
@@ -11,8 +10,7 @@ If grouping `status-balances` is chosen, the main grouping is as follows:
 If grouping `transaction-categories` is chosen, the main grouping is as follows:
 
 * `open` and `close` groups, each containing a `pending` and `available` sub-group
-* Transaction type groups such as `payments` or `refunds`, each containing a `pending`, `movedToAvailable`, and
-`immediatelyAvailable` sub-group
+* Transaction type groups such as `payments` or `refunds`, each containing a `pending`, `movedToAvailable`, and `immediatelyAvailable` sub-group
 
 Each sub-group typically has:
 

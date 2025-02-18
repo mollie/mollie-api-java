@@ -14,8 +14,7 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * GetOrderDiscountAmount - Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
- * type.
+ * GetOrderDiscountAmount - Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
  */
 
 public class GetOrderDiscountAmount {

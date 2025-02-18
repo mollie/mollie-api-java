@@ -16,8 +16,7 @@ import java.util.Objects;
 /**
  * GetOrderAmount - The amount that you want to charge, e.g. `{currency:"EUR", value:"1000.00"}` if you would want to charge €1000.00.
  * 
- * You can find the minimum and maximum amounts per payment method in our help center. Additionally, they can be
- * retrieved using the Get method endpoint.
+ * You can find the minimum and maximum amounts per payment method in our help center. Additionally, they can be retrieved using the Get method endpoint.
  */
 
 public class GetOrderAmount {

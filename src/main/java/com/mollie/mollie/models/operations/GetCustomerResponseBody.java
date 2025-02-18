@@ -42,10 +42,12 @@ public class GetCustomerResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
+     * 
+     * Possible values: `live` `test`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<? extends GetCustomerMode> mode;
+    private Optional<String> mode;
 
     /**
      * The full name of the customer.
@@ -62,16 +64,16 @@ public class GetCustomerResponseBody {
     private JsonNullable<String> email;
 
     /**
-     * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if
-     * absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
+     * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
+     * 
+     * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `fr_FR` `fr_BE` `de_DE` `de_AT` `de_CH` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("locale")
-    private JsonNullable<? extends GetCustomerLocale> locale;
+    private JsonNullable<String> locale;
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
@@ -95,10 +97,10 @@ public class GetCustomerResponseBody {
     public GetCustomerResponseBody(
             @JsonProperty("resource") Optional<String> resource,
             @JsonProperty("id") Optional<String> id,
-            @JsonProperty("mode") Optional<? extends GetCustomerMode> mode,
+            @JsonProperty("mode") Optional<String> mode,
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("email") JsonNullable<String> email,
-            @JsonProperty("locale") JsonNullable<? extends GetCustomerLocale> locale,
+            @JsonProperty("locale") JsonNullable<String> locale,
             @JsonProperty("metadata") JsonNullable<? extends GetCustomerMetadata> metadata,
             @JsonProperty("createdAt") Optional<String> createdAt,
             @JsonProperty("_links") Optional<? extends GetCustomerLinks> links) {
@@ -144,11 +146,12 @@ public class GetCustomerResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
+     * 
+     * Possible values: `live` `test`
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetCustomerMode> mode() {
-        return (Optional<GetCustomerMode>) mode;
+    public Optional<String> mode() {
+        return mode;
     }
 
     /**
@@ -168,18 +171,17 @@ public class GetCustomerResponseBody {
     }
 
     /**
-     * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if
-     * absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
+     * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
+     * 
+     * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `fr_FR` `fr_BE` `de_DE` `de_AT` `de_CH` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<GetCustomerLocale> locale() {
-        return (JsonNullable<GetCustomerLocale>) locale;
+    public JsonNullable<String> locale() {
+        return locale;
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -246,8 +248,10 @@ public class GetCustomerResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
+     * 
+     * Possible values: `live` `test`
      */
-    public GetCustomerResponseBody withMode(GetCustomerMode mode) {
+    public GetCustomerResponseBody withMode(String mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = Optional.ofNullable(mode);
         return this;
@@ -255,8 +259,10 @@ public class GetCustomerResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
+     * 
+     * Possible values: `live` `test`
      */
-    public GetCustomerResponseBody withMode(Optional<? extends GetCustomerMode> mode) {
+    public GetCustomerResponseBody withMode(Optional<String> mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
@@ -299,28 +305,29 @@ public class GetCustomerResponseBody {
     }
 
     /**
-     * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if
-     * absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
+     * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
+     * 
+     * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `fr_FR` `fr_BE` `de_DE` `de_AT` `de_CH` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
      */
-    public GetCustomerResponseBody withLocale(GetCustomerLocale locale) {
+    public GetCustomerResponseBody withLocale(String locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = JsonNullable.of(locale);
         return this;
     }
 
     /**
-     * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if
-     * absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
+     * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
+     * 
+     * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `fr_FR` `fr_BE` `de_DE` `de_AT` `de_CH` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
      */
-    public GetCustomerResponseBody withLocale(JsonNullable<? extends GetCustomerLocale> locale) {
+    public GetCustomerResponseBody withLocale(JsonNullable<String> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     public GetCustomerResponseBody withMetadata(GetCustomerMetadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -329,8 +336,7 @@ public class GetCustomerResponseBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     public GetCustomerResponseBody withMetadata(JsonNullable<? extends GetCustomerMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -429,13 +435,13 @@ public class GetCustomerResponseBody {
  
         private Optional<String> id = Optional.empty();
  
-        private Optional<? extends GetCustomerMode> mode = Optional.empty();
+        private Optional<String> mode = Optional.empty();
  
         private JsonNullable<String> name = JsonNullable.undefined();
  
         private JsonNullable<String> email = JsonNullable.undefined();
  
-        private JsonNullable<? extends GetCustomerLocale> locale = JsonNullable.undefined();
+        private JsonNullable<String> locale = JsonNullable.undefined();
  
         private JsonNullable<? extends GetCustomerMetadata> metadata = JsonNullable.undefined();
  
@@ -485,8 +491,10 @@ public class GetCustomerResponseBody {
 
         /**
          * Whether this entity was created in live mode or in test mode.
+         * 
+         * Possible values: `live` `test`
          */
-        public Builder mode(GetCustomerMode mode) {
+        public Builder mode(String mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = Optional.ofNullable(mode);
             return this;
@@ -494,8 +502,10 @@ public class GetCustomerResponseBody {
 
         /**
          * Whether this entity was created in live mode or in test mode.
+         * 
+         * Possible values: `live` `test`
          */
-        public Builder mode(Optional<? extends GetCustomerMode> mode) {
+        public Builder mode(Optional<String> mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
@@ -538,28 +548,29 @@ public class GetCustomerResponseBody {
         }
 
         /**
-         * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if
-         * absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
+         * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
+         * 
+         * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `fr_FR` `fr_BE` `de_DE` `de_AT` `de_CH` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
          */
-        public Builder locale(GetCustomerLocale locale) {
+        public Builder locale(String locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = JsonNullable.of(locale);
             return this;
         }
 
         /**
-         * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if
-         * absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
+         * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
+         * 
+         * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `fr_FR` `fr_BE` `de_DE` `de_AT` `de_CH` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
          */
-        public Builder locale(JsonNullable<? extends GetCustomerLocale> locale) {
+        public Builder locale(JsonNullable<String> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
         public Builder metadata(GetCustomerMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -568,8 +579,7 @@ public class GetCustomerResponseBody {
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
         public Builder metadata(JsonNullable<? extends GetCustomerMetadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");

@@ -17,8 +17,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * ClientLink - The link you can send your customer to, where they can either log in and link their account, or sign up and
- * proceed with onboarding.
+ * ClientLink - The link you can send your customer to, where they can either log in and link their account, or sign up and proceed with onboarding.
  */
 
 public class ClientLink {

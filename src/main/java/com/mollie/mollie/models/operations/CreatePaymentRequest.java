@@ -22,8 +22,7 @@ public class CreatePaymentRequest {
     /**
      * This endpoint allows you to include additional information via the `include` query string parameter.
      * 
-     * * `details.qrCode`: Include a QR code object. Only available for iDEAL,
-     * Bancontact and bank transfer payments.
+     * * `details.qrCode`: Include a QR code object. Only available for iDEAL, Bancontact and bank transfer payments.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=include")
     private JsonNullable<String> include;
@@ -48,8 +47,7 @@ public class CreatePaymentRequest {
     /**
      * This endpoint allows you to include additional information via the `include` query string parameter.
      * 
-     * * `details.qrCode`: Include a QR code object. Only available for iDEAL,
-     * Bancontact and bank transfer payments.
+     * * `details.qrCode`: Include a QR code object. Only available for iDEAL, Bancontact and bank transfer payments.
      */
     @JsonIgnore
     public JsonNullable<String> include() {
@@ -69,8 +67,7 @@ public class CreatePaymentRequest {
     /**
      * This endpoint allows you to include additional information via the `include` query string parameter.
      * 
-     * * `details.qrCode`: Include a QR code object. Only available for iDEAL,
-     * Bancontact and bank transfer payments.
+     * * `details.qrCode`: Include a QR code object. Only available for iDEAL, Bancontact and bank transfer payments.
      */
     public CreatePaymentRequest withInclude(String include) {
         Utils.checkNotNull(include, "include");
@@ -81,8 +78,7 @@ public class CreatePaymentRequest {
     /**
      * This endpoint allows you to include additional information via the `include` query string parameter.
      * 
-     * * `details.qrCode`: Include a QR code object. Only available for iDEAL,
-     * Bancontact and bank transfer payments.
+     * * `details.qrCode`: Include a QR code object. Only available for iDEAL, Bancontact and bank transfer payments.
      */
     public CreatePaymentRequest withInclude(JsonNullable<String> include) {
         Utils.checkNotNull(include, "include");
@@ -143,8 +139,7 @@ public class CreatePaymentRequest {
         /**
          * This endpoint allows you to include additional information via the `include` query string parameter.
          * 
-         * * `details.qrCode`: Include a QR code object. Only available for iDEAL,
-         * Bancontact and bank transfer payments.
+         * * `details.qrCode`: Include a QR code object. Only available for iDEAL, Bancontact and bank transfer payments.
          */
         public Builder include(String include) {
             Utils.checkNotNull(include, "include");
@@ -155,8 +150,7 @@ public class CreatePaymentRequest {
         /**
          * This endpoint allows you to include additional information via the `include` query string parameter.
          * 
-         * * `details.qrCode`: Include a QR code object. Only available for iDEAL,
-         * Bancontact and bank transfer payments.
+         * * `details.qrCode`: Include a QR code object. Only available for iDEAL, Bancontact and bank transfer payments.
          */
         public Builder include(JsonNullable<String> include) {
             Utils.checkNotNull(include, "include");

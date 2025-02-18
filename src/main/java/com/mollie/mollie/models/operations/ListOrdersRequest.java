@@ -15,7 +15,6 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -24,8 +23,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class ListOrdersRequest {
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     * result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
     private Optional<String> from;
@@ -37,27 +35,25 @@ public class ListOrdersRequest {
     private JsonNullable<Long> limit;
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
-     * newest to oldest.
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
+     * 
+     * Possible values: `asc` `desc` (default: `desc`)
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
-    private JsonNullable<? extends Sort> sort;
+    private JsonNullable<String> sort;
 
     /**
      * The identifier referring to the [profile](get-profile) you wish to retrieve orders for.
      * 
      * Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
      * 
-     * To retrieve all orders across the organization, use an organization-level API credential and omit the
-     * `profileId` parameter.
+     * To retrieve all orders across the organization, use an organization-level API credential and omit the `profileId` parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=profileId")
     private JsonNullable<String> profileId;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -68,7 +64,7 @@ public class ListOrdersRequest {
     public ListOrdersRequest(
             Optional<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<? extends Sort> sort,
+            JsonNullable<String> sort,
             JsonNullable<String> profileId,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(from, "from");
@@ -88,8 +84,7 @@ public class ListOrdersRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     * result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      */
     @JsonIgnore
     public Optional<String> from() {
@@ -105,13 +100,13 @@ public class ListOrdersRequest {
     }
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
-     * newest to oldest.
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
+     * 
+     * Possible values: `asc` `desc` (default: `desc`)
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Sort> sort() {
-        return (JsonNullable<Sort>) sort;
+    public JsonNullable<String> sort() {
+        return sort;
     }
 
     /**
@@ -119,8 +114,7 @@ public class ListOrdersRequest {
      * 
      * Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
      * 
-     * To retrieve all orders across the organization, use an organization-level API credential and omit the
-     * `profileId` parameter.
+     * To retrieve all orders across the organization, use an organization-level API credential and omit the `profileId` parameter.
      */
     @JsonIgnore
     public JsonNullable<String> profileId() {
@@ -128,9 +122,7 @@ public class ListOrdersRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -144,8 +136,7 @@ public class ListOrdersRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     * result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      */
     public ListOrdersRequest withFrom(String from) {
         Utils.checkNotNull(from, "from");
@@ -154,8 +145,7 @@ public class ListOrdersRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     * result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      */
     public ListOrdersRequest withFrom(Optional<String> from) {
         Utils.checkNotNull(from, "from");
@@ -182,20 +172,22 @@ public class ListOrdersRequest {
     }
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
-     * newest to oldest.
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
+     * 
+     * Possible values: `asc` `desc` (default: `desc`)
      */
-    public ListOrdersRequest withSort(Sort sort) {
+    public ListOrdersRequest withSort(String sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = JsonNullable.of(sort);
         return this;
     }
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
-     * newest to oldest.
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
+     * 
+     * Possible values: `asc` `desc` (default: `desc`)
      */
-    public ListOrdersRequest withSort(JsonNullable<? extends Sort> sort) {
+    public ListOrdersRequest withSort(JsonNullable<String> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;
@@ -206,8 +198,7 @@ public class ListOrdersRequest {
      * 
      * Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
      * 
-     * To retrieve all orders across the organization, use an organization-level API credential and omit the
-     * `profileId` parameter.
+     * To retrieve all orders across the organization, use an organization-level API credential and omit the `profileId` parameter.
      */
     public ListOrdersRequest withProfileId(String profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -220,8 +211,7 @@ public class ListOrdersRequest {
      * 
      * Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
      * 
-     * To retrieve all orders across the organization, use an organization-level API credential and omit the
-     * `profileId` parameter.
+     * To retrieve all orders across the organization, use an organization-level API credential and omit the `profileId` parameter.
      */
     public ListOrdersRequest withProfileId(JsonNullable<String> profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -230,9 +220,7 @@ public class ListOrdersRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -243,9 +231,7 @@ public class ListOrdersRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -298,7 +284,7 @@ public class ListOrdersRequest {
  
         private JsonNullable<Long> limit;
  
-        private JsonNullable<? extends Sort> sort;
+        private JsonNullable<String> sort = JsonNullable.undefined();
  
         private JsonNullable<String> profileId = JsonNullable.undefined();
  
@@ -309,8 +295,7 @@ public class ListOrdersRequest {
         }
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-         * result set.
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
          */
         public Builder from(String from) {
             Utils.checkNotNull(from, "from");
@@ -319,8 +304,7 @@ public class ListOrdersRequest {
         }
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-         * result set.
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
          */
         public Builder from(Optional<String> from) {
             Utils.checkNotNull(from, "from");
@@ -347,20 +331,22 @@ public class ListOrdersRequest {
         }
 
         /**
-         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
-         * newest to oldest.
+         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
+         * 
+         * Possible values: `asc` `desc` (default: `desc`)
          */
-        public Builder sort(Sort sort) {
+        public Builder sort(String sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = JsonNullable.of(sort);
             return this;
         }
 
         /**
-         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
-         * newest to oldest.
+         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
+         * 
+         * Possible values: `asc` `desc` (default: `desc`)
          */
-        public Builder sort(JsonNullable<? extends Sort> sort) {
+        public Builder sort(JsonNullable<String> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = sort;
             return this;
@@ -371,8 +357,7 @@ public class ListOrdersRequest {
          * 
          * Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
          * 
-         * To retrieve all orders across the organization, use an organization-level API credential and omit the
-         * `profileId` parameter.
+         * To retrieve all orders across the organization, use an organization-level API credential and omit the `profileId` parameter.
          */
         public Builder profileId(String profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -385,8 +370,7 @@ public class ListOrdersRequest {
          * 
          * Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
          * 
-         * To retrieve all orders across the organization, use an organization-level API credential and omit the
-         * `profileId` parameter.
+         * To retrieve all orders across the organization, use an organization-level API credential and omit the `profileId` parameter.
          */
         public Builder profileId(JsonNullable<String> profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -395,9 +379,7 @@ public class ListOrdersRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-         * setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
          * 
          * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -408,9 +390,7 @@ public class ListOrdersRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-         * setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
          * 
          * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -423,9 +403,6 @@ public class ListOrdersRequest {
         public ListOrdersRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
-            }
-            if (sort == null) {
-                sort = _SINGLETON_VALUE_Sort.value();
             }
             if (testmode == null) {
                 testmode = _SINGLETON_VALUE_Testmode.value();
@@ -442,12 +419,6 @@ public class ListOrdersRequest {
                         "limit",
                         "50",
                         new TypeReference<JsonNullable<Long>>() {});
-
-        private static final LazySingletonValue<JsonNullable<? extends Sort>> _SINGLETON_VALUE_Sort =
-                new LazySingletonValue<>(
-                        "sort",
-                        "\"desc\"",
-                        new TypeReference<JsonNullable<? extends Sort>>() {});
 
         private static final LazySingletonValue<JsonNullable<Boolean>> _SINGLETON_VALUE_Testmode =
                 new LazySingletonValue<>(

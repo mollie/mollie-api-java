@@ -24,7 +24,7 @@ public class GetSettlementRequestBuilder {
 
     public GetSettlementResponse call() throws Exception {
 
-        return sdk.get(
+        return sdk.getSettlement(
             id);
     }
 }

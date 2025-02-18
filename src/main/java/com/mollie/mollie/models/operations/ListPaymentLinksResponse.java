@@ -37,8 +37,7 @@ public class ListPaymentLinksResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * A list of payment link objects. For a complete reference of the payment link object, refer to the
-     * [Get payment link endpoint](get-payment-link) documentation.
+     * A list of payment link objects. For a complete reference of the payment link object, refer to the [Get payment link endpoint](get-payment-link) documentation.
      */
     private Optional<? extends ListPaymentLinksResponseBody> object;
 
@@ -90,8 +89,7 @@ public class ListPaymentLinksResponse implements Response {
     }
 
     /**
-     * A list of payment link objects. For a complete reference of the payment link object, refer to the
-     * [Get payment link endpoint](get-payment-link) documentation.
+     * A list of payment link objects. For a complete reference of the payment link object, refer to the [Get payment link endpoint](get-payment-link) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -131,8 +129,7 @@ public class ListPaymentLinksResponse implements Response {
     }
 
     /**
-     * A list of payment link objects. For a complete reference of the payment link object, refer to the
-     * [Get payment link endpoint](get-payment-link) documentation.
+     * A list of payment link objects. For a complete reference of the payment link object, refer to the [Get payment link endpoint](get-payment-link) documentation.
      */
     public ListPaymentLinksResponse withObject(ListPaymentLinksResponseBody object) {
         Utils.checkNotNull(object, "object");
@@ -141,8 +138,7 @@ public class ListPaymentLinksResponse implements Response {
     }
 
     /**
-     * A list of payment link objects. For a complete reference of the payment link object, refer to the
-     * [Get payment link endpoint](get-payment-link) documentation.
+     * A list of payment link objects. For a complete reference of the payment link object, refer to the [Get payment link endpoint](get-payment-link) documentation.
      */
     public ListPaymentLinksResponse withObject(Optional<? extends ListPaymentLinksResponseBody> object) {
         Utils.checkNotNull(object, "object");
@@ -226,8 +222,7 @@ public class ListPaymentLinksResponse implements Response {
         }
 
         /**
-         * A list of payment link objects. For a complete reference of the payment link object, refer to the
-         * [Get payment link endpoint](get-payment-link) documentation.
+         * A list of payment link objects. For a complete reference of the payment link object, refer to the [Get payment link endpoint](get-payment-link) documentation.
          */
         public Builder object(ListPaymentLinksResponseBody object) {
             Utils.checkNotNull(object, "object");
@@ -236,8 +231,7 @@ public class ListPaymentLinksResponse implements Response {
         }
 
         /**
-         * A list of payment link objects. For a complete reference of the payment link object, refer to the
-         * [Get payment link endpoint](get-payment-link) documentation.
+         * A list of payment link objects. For a complete reference of the payment link object, refer to the [Get payment link endpoint](get-payment-link) documentation.
          */
         public Builder object(Optional<? extends ListPaymentLinksResponseBody> object) {
             Utils.checkNotNull(object, "object");

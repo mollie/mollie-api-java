@@ -27,8 +27,7 @@ import java.util.Optional;
 public class GetPermissionResponseBody {
 
     /**
-     * Indicates the response contains a permission object. Will always contain the string `permission` for this
-     * endpoint.
+     * Indicates the response contains a permission object. Will always contain the string `permission` for this endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
@@ -86,8 +85,7 @@ public class GetPermissionResponseBody {
     }
 
     /**
-     * Indicates the response contains a permission object. Will always contain the string `permission` for this
-     * endpoint.
+     * Indicates the response contains a permission object. Will always contain the string `permission` for this endpoint.
      */
     @JsonIgnore
     public Optional<String> resource() {
@@ -132,8 +130,7 @@ public class GetPermissionResponseBody {
     }
 
     /**
-     * Indicates the response contains a permission object. Will always contain the string `permission` for this
-     * endpoint.
+     * Indicates the response contains a permission object. Will always contain the string `permission` for this endpoint.
      */
     public GetPermissionResponseBody withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -142,8 +139,7 @@ public class GetPermissionResponseBody {
     }
 
     /**
-     * Indicates the response contains a permission object. Will always contain the string `permission` for this
-     * endpoint.
+     * Indicates the response contains a permission object. Will always contain the string `permission` for this endpoint.
      */
     public GetPermissionResponseBody withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
@@ -277,8 +273,7 @@ public class GetPermissionResponseBody {
         }
 
         /**
-         * Indicates the response contains a permission object. Will always contain the string `permission` for this
-         * endpoint.
+         * Indicates the response contains a permission object. Will always contain the string `permission` for this endpoint.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -287,8 +282,7 @@ public class GetPermissionResponseBody {
         }
 
         /**
-         * Indicates the response contains a permission object. Will always contain the string `permission` for this
-         * endpoint.
+         * Indicates the response contains a permission object. Will always contain the string `permission` for this endpoint.
          */
         public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");

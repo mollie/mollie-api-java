@@ -9,19 +9,12 @@ import java.lang.String;
 
 public class EnableMethodRequestBuilder {
 
-    private EnableMethodSecurity security;
     private String profileId;
     private String id;
     private final SDKMethodInterfaces.MethodCallEnableMethod sdk;
 
     public EnableMethodRequestBuilder(SDKMethodInterfaces.MethodCallEnableMethod sdk) {
         this.sdk = sdk;
-    }
-
-    public EnableMethodRequestBuilder security(EnableMethodSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public EnableMethodRequestBuilder profileId(String profileId) {
@@ -39,7 +32,6 @@ public class EnableMethodRequestBuilder {
     public EnableMethodResponse call() throws Exception {
 
         return sdk.enableMethod(
-            security,
             profileId,
             id);
     }

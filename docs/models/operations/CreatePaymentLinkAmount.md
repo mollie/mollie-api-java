@@ -1,7 +1,6 @@
 # CreatePaymentLinkAmount
 
-The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an
-amount.
+The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an amount.
 
 
 ## Fields

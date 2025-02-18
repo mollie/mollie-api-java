@@ -13,7 +13,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetPaymentLinkRequestBuilder {
 
-    private GetPaymentLinkSecurity security;
     private String id;
     private JsonNullable<Boolean> testmode = Utils.readDefaultOrConstValue(
                             "testmode",
@@ -23,12 +22,6 @@ public class GetPaymentLinkRequestBuilder {
 
     public GetPaymentLinkRequestBuilder(SDKMethodInterfaces.MethodCallGetPaymentLink sdk) {
         this.sdk = sdk;
-    }
-
-    public GetPaymentLinkRequestBuilder security(GetPaymentLinkSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public GetPaymentLinkRequestBuilder id(String id) {
@@ -53,8 +46,7 @@ public class GetPaymentLinkRequestBuilder {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.get(
-            security,
+        return sdk.getPaymentLink(
             id,
             testmode);
     }

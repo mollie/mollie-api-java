@@ -29,20 +29,20 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class GetPartnerStatusResponseBody {
 
     /**
-     * Indicates the response contains a partner status object. Will always contain the string `partner` for
-     * this endpoint.
+     * Indicates the response contains a partner status object. Will always contain the string `partner` for this endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
     private Optional<String> resource;
 
     /**
-     * Indicates the type of partner. Will be `null` if the currently authenticated organization is not
-     * enrolled as a partner.
+     * Indicates the type of partner. Will be `null` if the currently authenticated organization is not enrolled as a partner.
+     * 
+     * Possible values: `oauth` `signuplink` `useragent`
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("partnerType")
-    private Optional<? extends PartnerType> partnerType;
+    private Optional<String> partnerType;
 
     /**
      * Whether the current organization is receiving commissions.
@@ -52,16 +52,14 @@ public class GetPartnerStatusResponseBody {
     private Optional<Boolean> isCommissionPartner;
 
     /**
-     * Array of User-Agent token objects. Present if the organization is a partner of type `useragent`, or if
-     * they were in the past.
+     * Array of User-Agent token objects. Present if the organization is a partner of type `useragent`, or if they were in the past.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("userAgentTokens")
     private Optional<? extends List<UserAgentTokens>> userAgentTokens;
 
     /**
-     * The date the partner contract was signed, in ISO 8601 format. Omitted if no contract has been signed
-     * (yet).
+     * The date the partner contract was signed, in ISO 8601 format. Omitted if no contract has been signed (yet).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("partnerContractSignedAt")
@@ -75,8 +73,7 @@ public class GetPartnerStatusResponseBody {
     private Optional<Boolean> partnerContractUpdateAvailable;
 
     /**
-     * The expiration date of the signed partner contract, in ISO 8601 format. Omitted if contract has no
-     * expiration date (yet).
+     * The expiration date of the signed partner contract, in ISO 8601 format. Omitted if contract has no expiration date (yet).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("partnerContractExpiresAt")
@@ -92,7 +89,7 @@ public class GetPartnerStatusResponseBody {
     @JsonCreator
     public GetPartnerStatusResponseBody(
             @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("partnerType") Optional<? extends PartnerType> partnerType,
+            @JsonProperty("partnerType") Optional<String> partnerType,
             @JsonProperty("isCommissionPartner") Optional<Boolean> isCommissionPartner,
             @JsonProperty("userAgentTokens") Optional<? extends List<UserAgentTokens>> userAgentTokens,
             @JsonProperty("partnerContractSignedAt") JsonNullable<String> partnerContractSignedAt,
@@ -122,8 +119,7 @@ public class GetPartnerStatusResponseBody {
     }
 
     /**
-     * Indicates the response contains a partner status object. Will always contain the string `partner` for
-     * this endpoint.
+     * Indicates the response contains a partner status object. Will always contain the string `partner` for this endpoint.
      */
     @JsonIgnore
     public Optional<String> resource() {
@@ -131,13 +127,13 @@ public class GetPartnerStatusResponseBody {
     }
 
     /**
-     * Indicates the type of partner. Will be `null` if the currently authenticated organization is not
-     * enrolled as a partner.
+     * Indicates the type of partner. Will be `null` if the currently authenticated organization is not enrolled as a partner.
+     * 
+     * Possible values: `oauth` `signuplink` `useragent`
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PartnerType> partnerType() {
-        return (Optional<PartnerType>) partnerType;
+    public Optional<String> partnerType() {
+        return partnerType;
     }
 
     /**
@@ -149,8 +145,7 @@ public class GetPartnerStatusResponseBody {
     }
 
     /**
-     * Array of User-Agent token objects. Present if the organization is a partner of type `useragent`, or if
-     * they were in the past.
+     * Array of User-Agent token objects. Present if the organization is a partner of type `useragent`, or if they were in the past.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -159,8 +154,7 @@ public class GetPartnerStatusResponseBody {
     }
 
     /**
-     * The date the partner contract was signed, in ISO 8601 format. Omitted if no contract has been signed
-     * (yet).
+     * The date the partner contract was signed, in ISO 8601 format. Omitted if no contract has been signed (yet).
      */
     @JsonIgnore
     public JsonNullable<String> partnerContractSignedAt() {
@@ -176,8 +170,7 @@ public class GetPartnerStatusResponseBody {
     }
 
     /**
-     * The expiration date of the signed partner contract, in ISO 8601 format. Omitted if contract has no
-     * expiration date (yet).
+     * The expiration date of the signed partner contract, in ISO 8601 format. Omitted if contract has no expiration date (yet).
      */
     @JsonIgnore
     public Optional<String> partnerContractExpiresAt() {
@@ -198,8 +191,7 @@ public class GetPartnerStatusResponseBody {
     }
 
     /**
-     * Indicates the response contains a partner status object. Will always contain the string `partner` for
-     * this endpoint.
+     * Indicates the response contains a partner status object. Will always contain the string `partner` for this endpoint.
      */
     public GetPartnerStatusResponseBody withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -208,8 +200,7 @@ public class GetPartnerStatusResponseBody {
     }
 
     /**
-     * Indicates the response contains a partner status object. Will always contain the string `partner` for
-     * this endpoint.
+     * Indicates the response contains a partner status object. Will always contain the string `partner` for this endpoint.
      */
     public GetPartnerStatusResponseBody withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
@@ -218,20 +209,22 @@ public class GetPartnerStatusResponseBody {
     }
 
     /**
-     * Indicates the type of partner. Will be `null` if the currently authenticated organization is not
-     * enrolled as a partner.
+     * Indicates the type of partner. Will be `null` if the currently authenticated organization is not enrolled as a partner.
+     * 
+     * Possible values: `oauth` `signuplink` `useragent`
      */
-    public GetPartnerStatusResponseBody withPartnerType(PartnerType partnerType) {
+    public GetPartnerStatusResponseBody withPartnerType(String partnerType) {
         Utils.checkNotNull(partnerType, "partnerType");
         this.partnerType = Optional.ofNullable(partnerType);
         return this;
     }
 
     /**
-     * Indicates the type of partner. Will be `null` if the currently authenticated organization is not
-     * enrolled as a partner.
+     * Indicates the type of partner. Will be `null` if the currently authenticated organization is not enrolled as a partner.
+     * 
+     * Possible values: `oauth` `signuplink` `useragent`
      */
-    public GetPartnerStatusResponseBody withPartnerType(Optional<? extends PartnerType> partnerType) {
+    public GetPartnerStatusResponseBody withPartnerType(Optional<String> partnerType) {
         Utils.checkNotNull(partnerType, "partnerType");
         this.partnerType = partnerType;
         return this;
@@ -256,8 +249,7 @@ public class GetPartnerStatusResponseBody {
     }
 
     /**
-     * Array of User-Agent token objects. Present if the organization is a partner of type `useragent`, or if
-     * they were in the past.
+     * Array of User-Agent token objects. Present if the organization is a partner of type `useragent`, or if they were in the past.
      */
     public GetPartnerStatusResponseBody withUserAgentTokens(List<UserAgentTokens> userAgentTokens) {
         Utils.checkNotNull(userAgentTokens, "userAgentTokens");
@@ -266,8 +258,7 @@ public class GetPartnerStatusResponseBody {
     }
 
     /**
-     * Array of User-Agent token objects. Present if the organization is a partner of type `useragent`, or if
-     * they were in the past.
+     * Array of User-Agent token objects. Present if the organization is a partner of type `useragent`, or if they were in the past.
      */
     public GetPartnerStatusResponseBody withUserAgentTokens(Optional<? extends List<UserAgentTokens>> userAgentTokens) {
         Utils.checkNotNull(userAgentTokens, "userAgentTokens");
@@ -276,8 +267,7 @@ public class GetPartnerStatusResponseBody {
     }
 
     /**
-     * The date the partner contract was signed, in ISO 8601 format. Omitted if no contract has been signed
-     * (yet).
+     * The date the partner contract was signed, in ISO 8601 format. Omitted if no contract has been signed (yet).
      */
     public GetPartnerStatusResponseBody withPartnerContractSignedAt(String partnerContractSignedAt) {
         Utils.checkNotNull(partnerContractSignedAt, "partnerContractSignedAt");
@@ -286,8 +276,7 @@ public class GetPartnerStatusResponseBody {
     }
 
     /**
-     * The date the partner contract was signed, in ISO 8601 format. Omitted if no contract has been signed
-     * (yet).
+     * The date the partner contract was signed, in ISO 8601 format. Omitted if no contract has been signed (yet).
      */
     public GetPartnerStatusResponseBody withPartnerContractSignedAt(JsonNullable<String> partnerContractSignedAt) {
         Utils.checkNotNull(partnerContractSignedAt, "partnerContractSignedAt");
@@ -314,8 +303,7 @@ public class GetPartnerStatusResponseBody {
     }
 
     /**
-     * The expiration date of the signed partner contract, in ISO 8601 format. Omitted if contract has no
-     * expiration date (yet).
+     * The expiration date of the signed partner contract, in ISO 8601 format. Omitted if contract has no expiration date (yet).
      */
     public GetPartnerStatusResponseBody withPartnerContractExpiresAt(String partnerContractExpiresAt) {
         Utils.checkNotNull(partnerContractExpiresAt, "partnerContractExpiresAt");
@@ -324,8 +312,7 @@ public class GetPartnerStatusResponseBody {
     }
 
     /**
-     * The expiration date of the signed partner contract, in ISO 8601 format. Omitted if contract has no
-     * expiration date (yet).
+     * The expiration date of the signed partner contract, in ISO 8601 format. Omitted if contract has no expiration date (yet).
      */
     public GetPartnerStatusResponseBody withPartnerContractExpiresAt(Optional<String> partnerContractExpiresAt) {
         Utils.checkNotNull(partnerContractExpiresAt, "partnerContractExpiresAt");
@@ -401,7 +388,7 @@ public class GetPartnerStatusResponseBody {
  
         private Optional<String> resource;
  
-        private Optional<? extends PartnerType> partnerType = Optional.empty();
+        private Optional<String> partnerType = Optional.empty();
  
         private Optional<Boolean> isCommissionPartner = Optional.empty();
  
@@ -420,8 +407,7 @@ public class GetPartnerStatusResponseBody {
         }
 
         /**
-         * Indicates the response contains a partner status object. Will always contain the string `partner` for
-         * this endpoint.
+         * Indicates the response contains a partner status object. Will always contain the string `partner` for this endpoint.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -430,8 +416,7 @@ public class GetPartnerStatusResponseBody {
         }
 
         /**
-         * Indicates the response contains a partner status object. Will always contain the string `partner` for
-         * this endpoint.
+         * Indicates the response contains a partner status object. Will always contain the string `partner` for this endpoint.
          */
         public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
@@ -440,20 +425,22 @@ public class GetPartnerStatusResponseBody {
         }
 
         /**
-         * Indicates the type of partner. Will be `null` if the currently authenticated organization is not
-         * enrolled as a partner.
+         * Indicates the type of partner. Will be `null` if the currently authenticated organization is not enrolled as a partner.
+         * 
+         * Possible values: `oauth` `signuplink` `useragent`
          */
-        public Builder partnerType(PartnerType partnerType) {
+        public Builder partnerType(String partnerType) {
             Utils.checkNotNull(partnerType, "partnerType");
             this.partnerType = Optional.ofNullable(partnerType);
             return this;
         }
 
         /**
-         * Indicates the type of partner. Will be `null` if the currently authenticated organization is not
-         * enrolled as a partner.
+         * Indicates the type of partner. Will be `null` if the currently authenticated organization is not enrolled as a partner.
+         * 
+         * Possible values: `oauth` `signuplink` `useragent`
          */
-        public Builder partnerType(Optional<? extends PartnerType> partnerType) {
+        public Builder partnerType(Optional<String> partnerType) {
             Utils.checkNotNull(partnerType, "partnerType");
             this.partnerType = partnerType;
             return this;
@@ -478,8 +465,7 @@ public class GetPartnerStatusResponseBody {
         }
 
         /**
-         * Array of User-Agent token objects. Present if the organization is a partner of type `useragent`, or if
-         * they were in the past.
+         * Array of User-Agent token objects. Present if the organization is a partner of type `useragent`, or if they were in the past.
          */
         public Builder userAgentTokens(List<UserAgentTokens> userAgentTokens) {
             Utils.checkNotNull(userAgentTokens, "userAgentTokens");
@@ -488,8 +474,7 @@ public class GetPartnerStatusResponseBody {
         }
 
         /**
-         * Array of User-Agent token objects. Present if the organization is a partner of type `useragent`, or if
-         * they were in the past.
+         * Array of User-Agent token objects. Present if the organization is a partner of type `useragent`, or if they were in the past.
          */
         public Builder userAgentTokens(Optional<? extends List<UserAgentTokens>> userAgentTokens) {
             Utils.checkNotNull(userAgentTokens, "userAgentTokens");
@@ -498,8 +483,7 @@ public class GetPartnerStatusResponseBody {
         }
 
         /**
-         * The date the partner contract was signed, in ISO 8601 format. Omitted if no contract has been signed
-         * (yet).
+         * The date the partner contract was signed, in ISO 8601 format. Omitted if no contract has been signed (yet).
          */
         public Builder partnerContractSignedAt(String partnerContractSignedAt) {
             Utils.checkNotNull(partnerContractSignedAt, "partnerContractSignedAt");
@@ -508,8 +492,7 @@ public class GetPartnerStatusResponseBody {
         }
 
         /**
-         * The date the partner contract was signed, in ISO 8601 format. Omitted if no contract has been signed
-         * (yet).
+         * The date the partner contract was signed, in ISO 8601 format. Omitted if no contract has been signed (yet).
          */
         public Builder partnerContractSignedAt(JsonNullable<String> partnerContractSignedAt) {
             Utils.checkNotNull(partnerContractSignedAt, "partnerContractSignedAt");
@@ -536,8 +519,7 @@ public class GetPartnerStatusResponseBody {
         }
 
         /**
-         * The expiration date of the signed partner contract, in ISO 8601 format. Omitted if contract has no
-         * expiration date (yet).
+         * The expiration date of the signed partner contract, in ISO 8601 format. Omitted if contract has no expiration date (yet).
          */
         public Builder partnerContractExpiresAt(String partnerContractExpiresAt) {
             Utils.checkNotNull(partnerContractExpiresAt, "partnerContractExpiresAt");
@@ -546,8 +528,7 @@ public class GetPartnerStatusResponseBody {
         }
 
         /**
-         * The expiration date of the signed partner contract, in ISO 8601 format. Omitted if contract has no
-         * expiration date (yet).
+         * The expiration date of the signed partner contract, in ISO 8601 format. Omitted if contract has no expiration date (yet).
          */
         public Builder partnerContractExpiresAt(Optional<String> partnerContractExpiresAt) {
             Utils.checkNotNull(partnerContractExpiresAt, "partnerContractExpiresAt");

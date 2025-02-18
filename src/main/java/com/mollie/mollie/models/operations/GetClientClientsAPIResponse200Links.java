@@ -21,8 +21,7 @@ import java.util.Optional;
 public class GetClientClientsAPIResponse200Links {
 
     /**
-     * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.
-     * For example, where necessary documents are to be uploaded.
+     * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled. For example, where necessary documents are to be uploaded.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("dashboard")
@@ -40,8 +39,7 @@ public class GetClientClientsAPIResponse200Links {
     }
 
     /**
-     * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.
-     * For example, where necessary documents are to be uploaded.
+     * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled. For example, where necessary documents are to be uploaded.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -54,8 +52,7 @@ public class GetClientClientsAPIResponse200Links {
     }
 
     /**
-     * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.
-     * For example, where necessary documents are to be uploaded.
+     * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled. For example, where necessary documents are to be uploaded.
      */
     public GetClientClientsAPIResponse200Links withDashboard(GetClientClientsAPIResponseDashboard dashboard) {
         Utils.checkNotNull(dashboard, "dashboard");
@@ -64,8 +61,7 @@ public class GetClientClientsAPIResponse200Links {
     }
 
     /**
-     * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.
-     * For example, where necessary documents are to be uploaded.
+     * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled. For example, where necessary documents are to be uploaded.
      */
     public GetClientClientsAPIResponse200Links withDashboard(Optional<? extends GetClientClientsAPIResponseDashboard> dashboard) {
         Utils.checkNotNull(dashboard, "dashboard");
@@ -107,8 +103,7 @@ public class GetClientClientsAPIResponse200Links {
         }
 
         /**
-         * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.
-         * For example, where necessary documents are to be uploaded.
+         * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled. For example, where necessary documents are to be uploaded.
          */
         public Builder dashboard(GetClientClientsAPIResponseDashboard dashboard) {
             Utils.checkNotNull(dashboard, "dashboard");
@@ -117,8 +112,7 @@ public class GetClientClientsAPIResponse200Links {
         }
 
         /**
-         * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.
-         * For example, where necessary documents are to be uploaded.
+         * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled. For example, where necessary documents are to be uploaded.
          */
         public Builder dashboard(Optional<? extends GetClientClientsAPIResponseDashboard> dashboard) {
             Utils.checkNotNull(dashboard, "dashboard");

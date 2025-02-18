@@ -37,8 +37,7 @@ public class ListPermissionsResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * A list of permission objects. For a complete reference of the permission object, refer to the
-     * [Get permission endpoint](get-permission) documentation.
+     * A list of permission objects. For a complete reference of the permission object, refer to the [Get permission endpoint](get-permission) documentation.
      */
     private Optional<? extends ListPermissionsResponseBody> object;
 
@@ -90,8 +89,7 @@ public class ListPermissionsResponse implements Response {
     }
 
     /**
-     * A list of permission objects. For a complete reference of the permission object, refer to the
-     * [Get permission endpoint](get-permission) documentation.
+     * A list of permission objects. For a complete reference of the permission object, refer to the [Get permission endpoint](get-permission) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -131,8 +129,7 @@ public class ListPermissionsResponse implements Response {
     }
 
     /**
-     * A list of permission objects. For a complete reference of the permission object, refer to the
-     * [Get permission endpoint](get-permission) documentation.
+     * A list of permission objects. For a complete reference of the permission object, refer to the [Get permission endpoint](get-permission) documentation.
      */
     public ListPermissionsResponse withObject(ListPermissionsResponseBody object) {
         Utils.checkNotNull(object, "object");
@@ -141,8 +138,7 @@ public class ListPermissionsResponse implements Response {
     }
 
     /**
-     * A list of permission objects. For a complete reference of the permission object, refer to the
-     * [Get permission endpoint](get-permission) documentation.
+     * A list of permission objects. For a complete reference of the permission object, refer to the [Get permission endpoint](get-permission) documentation.
      */
     public ListPermissionsResponse withObject(Optional<? extends ListPermissionsResponseBody> object) {
         Utils.checkNotNull(object, "object");
@@ -226,8 +222,7 @@ public class ListPermissionsResponse implements Response {
         }
 
         /**
-         * A list of permission objects. For a complete reference of the permission object, refer to the
-         * [Get permission endpoint](get-permission) documentation.
+         * A list of permission objects. For a complete reference of the permission object, refer to the [Get permission endpoint](get-permission) documentation.
          */
         public Builder object(ListPermissionsResponseBody object) {
             Utils.checkNotNull(object, "object");
@@ -236,8 +231,7 @@ public class ListPermissionsResponse implements Response {
         }
 
         /**
-         * A list of permission objects. For a complete reference of the permission object, refer to the
-         * [Get permission endpoint](get-permission) documentation.
+         * A list of permission objects. For a complete reference of the permission object, refer to the [Get permission endpoint](get-permission) documentation.
          */
         public Builder object(Optional<? extends ListPermissionsResponseBody> object) {
             Utils.checkNotNull(object, "object");

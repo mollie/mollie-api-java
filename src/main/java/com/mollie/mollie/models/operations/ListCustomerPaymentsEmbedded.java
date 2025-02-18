@@ -22,8 +22,7 @@ import java.util.Optional;
 public class ListCustomerPaymentsEmbedded {
 
     /**
-     * An array of payment objects. For a complete reference of the payment object, refer to the
-     * [Get payment endpoint](get-payment) documentation.
+     * An array of payment objects. For a complete reference of the payment object, refer to the [Get payment endpoint](get-payment) documentation.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payments")
@@ -41,8 +40,7 @@ public class ListCustomerPaymentsEmbedded {
     }
 
     /**
-     * An array of payment objects. For a complete reference of the payment object, refer to the
-     * [Get payment endpoint](get-payment) documentation.
+     * An array of payment objects. For a complete reference of the payment object, refer to the [Get payment endpoint](get-payment) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -55,8 +53,7 @@ public class ListCustomerPaymentsEmbedded {
     }
 
     /**
-     * An array of payment objects. For a complete reference of the payment object, refer to the
-     * [Get payment endpoint](get-payment) documentation.
+     * An array of payment objects. For a complete reference of the payment object, refer to the [Get payment endpoint](get-payment) documentation.
      */
     public ListCustomerPaymentsEmbedded withPayments(List<ListCustomerPaymentsPayments> payments) {
         Utils.checkNotNull(payments, "payments");
@@ -65,8 +62,7 @@ public class ListCustomerPaymentsEmbedded {
     }
 
     /**
-     * An array of payment objects. For a complete reference of the payment object, refer to the
-     * [Get payment endpoint](get-payment) documentation.
+     * An array of payment objects. For a complete reference of the payment object, refer to the [Get payment endpoint](get-payment) documentation.
      */
     public ListCustomerPaymentsEmbedded withPayments(Optional<? extends List<ListCustomerPaymentsPayments>> payments) {
         Utils.checkNotNull(payments, "payments");
@@ -108,8 +104,7 @@ public class ListCustomerPaymentsEmbedded {
         }
 
         /**
-         * An array of payment objects. For a complete reference of the payment object, refer to the
-         * [Get payment endpoint](get-payment) documentation.
+         * An array of payment objects. For a complete reference of the payment object, refer to the [Get payment endpoint](get-payment) documentation.
          */
         public Builder payments(List<ListCustomerPaymentsPayments> payments) {
             Utils.checkNotNull(payments, "payments");
@@ -118,8 +113,7 @@ public class ListCustomerPaymentsEmbedded {
         }
 
         /**
-         * An array of payment objects. For a complete reference of the payment object, refer to the
-         * [Get payment endpoint](get-payment) documentation.
+         * An array of payment objects. For a complete reference of the payment object, refer to the [Get payment endpoint](get-payment) documentation.
          */
         public Builder payments(Optional<? extends List<ListCustomerPaymentsPayments>> payments) {
             Utils.checkNotNull(payments, "payments");

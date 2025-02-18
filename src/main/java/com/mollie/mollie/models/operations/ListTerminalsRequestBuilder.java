@@ -15,7 +15,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListTerminalsRequestBuilder {
 
-    private ListTerminalsSecurity security;
     private Optional<String> from = Optional.empty();
     private JsonNullable<Long> limit = Utils.readDefaultOrConstValue(
                             "limit",
@@ -29,12 +28,6 @@ public class ListTerminalsRequestBuilder {
 
     public ListTerminalsRequestBuilder(SDKMethodInterfaces.MethodCallListTerminals sdk) {
         this.sdk = sdk;
-    }
-
-    public ListTerminalsRequestBuilder security(ListTerminalsSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
                 
     public ListTerminalsRequestBuilder from(String from) {
@@ -80,8 +73,7 @@ public class ListTerminalsRequestBuilder {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.list(
-            security,
+        return sdk.listTerminals(
             from,
             limit,
             testmode);

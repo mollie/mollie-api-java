@@ -10,19 +10,12 @@ import java.util.Optional;
 
 public class CancelOrderLinesRequestBuilder {
 
-    private CancelOrderLinesSecurity security;
     private String orderId;
     private Optional<? extends CancelOrderLinesRequestBody> requestBody = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCancelOrderLines sdk;
 
     public CancelOrderLinesRequestBuilder(SDKMethodInterfaces.MethodCallCancelOrderLines sdk) {
         this.sdk = sdk;
-    }
-
-    public CancelOrderLinesRequestBuilder security(CancelOrderLinesSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public CancelOrderLinesRequestBuilder orderId(String orderId) {
@@ -45,8 +38,7 @@ public class CancelOrderLinesRequestBuilder {
 
     public CancelOrderLinesResponse call() throws Exception {
 
-        return sdk.cancelLines(
-            security,
+        return sdk.cancelOrderLines(
             orderId,
             requestBody);
     }

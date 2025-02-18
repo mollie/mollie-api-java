@@ -23,7 +23,7 @@ public class CreateProfileRequestBuilder {
 
     public CreateProfileResponse call() throws Exception {
 
-        return sdk.create(
+        return sdk.createProfile(
             request);
     }
 }

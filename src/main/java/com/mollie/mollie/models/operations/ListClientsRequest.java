@@ -22,22 +22,17 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class ListClientsRequest {
 
     /**
-     * This endpoint allows embedding related API items by appending the
-     * following values via the `embed` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
      * 
-     * * `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth`
-     *   partners with the `organizations.read` scope.
-     * * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth`
-     *   partners with the `onboarding.read` scope.
-     * * `capabilities`: Include the [capabilities](list-capabilities) of the client organization.
-     *   Available for *oauth* partners with the `onboarding.read` scope.
+     * * `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth` partners with the `organizations.read` scope.
+     * * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth` partners with the `onboarding.read` scope.
+     * * `capabilities`: Include the [capabilities](list-capabilities) of the client organization. Available for *oauth* partners with the `onboarding.read` scope.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=embed")
     private JsonNullable<String> embed;
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     * result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
     private Optional<String> from;
@@ -66,15 +61,11 @@ public class ListClientsRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the
-     * following values via the `embed` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
      * 
-     * * `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth`
-     *   partners with the `organizations.read` scope.
-     * * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth`
-     *   partners with the `onboarding.read` scope.
-     * * `capabilities`: Include the [capabilities](list-capabilities) of the client organization.
-     *   Available for *oauth* partners with the `onboarding.read` scope.
+     * * `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth` partners with the `organizations.read` scope.
+     * * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth` partners with the `onboarding.read` scope.
+     * * `capabilities`: Include the [capabilities](list-capabilities) of the client organization. Available for *oauth* partners with the `onboarding.read` scope.
      */
     @JsonIgnore
     public JsonNullable<String> embed() {
@@ -82,8 +73,7 @@ public class ListClientsRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     * result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      */
     @JsonIgnore
     public Optional<String> from() {
@@ -103,15 +93,11 @@ public class ListClientsRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the
-     * following values via the `embed` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
      * 
-     * * `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth`
-     *   partners with the `organizations.read` scope.
-     * * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth`
-     *   partners with the `onboarding.read` scope.
-     * * `capabilities`: Include the [capabilities](list-capabilities) of the client organization.
-     *   Available for *oauth* partners with the `onboarding.read` scope.
+     * * `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth` partners with the `organizations.read` scope.
+     * * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth` partners with the `onboarding.read` scope.
+     * * `capabilities`: Include the [capabilities](list-capabilities) of the client organization. Available for *oauth* partners with the `onboarding.read` scope.
      */
     public ListClientsRequest withEmbed(String embed) {
         Utils.checkNotNull(embed, "embed");
@@ -120,15 +106,11 @@ public class ListClientsRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the
-     * following values via the `embed` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
      * 
-     * * `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth`
-     *   partners with the `organizations.read` scope.
-     * * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth`
-     *   partners with the `onboarding.read` scope.
-     * * `capabilities`: Include the [capabilities](list-capabilities) of the client organization.
-     *   Available for *oauth* partners with the `onboarding.read` scope.
+     * * `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth` partners with the `organizations.read` scope.
+     * * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth` partners with the `onboarding.read` scope.
+     * * `capabilities`: Include the [capabilities](list-capabilities) of the client organization. Available for *oauth* partners with the `onboarding.read` scope.
      */
     public ListClientsRequest withEmbed(JsonNullable<String> embed) {
         Utils.checkNotNull(embed, "embed");
@@ -137,8 +119,7 @@ public class ListClientsRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     * result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      */
     public ListClientsRequest withFrom(String from) {
         Utils.checkNotNull(from, "from");
@@ -147,8 +128,7 @@ public class ListClientsRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     * result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      */
     public ListClientsRequest withFrom(Optional<String> from) {
         Utils.checkNotNull(from, "from");
@@ -218,15 +198,11 @@ public class ListClientsRequest {
         }
 
         /**
-         * This endpoint allows embedding related API items by appending the
-         * following values via the `embed` query string parameter.
+         * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
          * 
-         * * `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth`
-         *   partners with the `organizations.read` scope.
-         * * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth`
-         *   partners with the `onboarding.read` scope.
-         * * `capabilities`: Include the [capabilities](list-capabilities) of the client organization.
-         *   Available for *oauth* partners with the `onboarding.read` scope.
+         * * `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth` partners with the `organizations.read` scope.
+         * * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth` partners with the `onboarding.read` scope.
+         * * `capabilities`: Include the [capabilities](list-capabilities) of the client organization. Available for *oauth* partners with the `onboarding.read` scope.
          */
         public Builder embed(String embed) {
             Utils.checkNotNull(embed, "embed");
@@ -235,15 +211,11 @@ public class ListClientsRequest {
         }
 
         /**
-         * This endpoint allows embedding related API items by appending the
-         * following values via the `embed` query string parameter.
+         * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
          * 
-         * * `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth`
-         *   partners with the `organizations.read` scope.
-         * * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth`
-         *   partners with the `onboarding.read` scope.
-         * * `capabilities`: Include the [capabilities](list-capabilities) of the client organization.
-         *   Available for *oauth* partners with the `onboarding.read` scope.
+         * * `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth` partners with the `organizations.read` scope.
+         * * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth` partners with the `onboarding.read` scope.
+         * * `capabilities`: Include the [capabilities](list-capabilities) of the client organization. Available for *oauth* partners with the `onboarding.read` scope.
          */
         public Builder embed(JsonNullable<String> embed) {
             Utils.checkNotNull(embed, "embed");
@@ -252,8 +224,7 @@ public class ListClientsRequest {
         }
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-         * result set.
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
          */
         public Builder from(String from) {
             Utils.checkNotNull(from, "from");
@@ -262,8 +233,7 @@ public class ListClientsRequest {
         }
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-         * result set.
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
          */
         public Builder from(Optional<String> from) {
             Utils.checkNotNull(from, "from");

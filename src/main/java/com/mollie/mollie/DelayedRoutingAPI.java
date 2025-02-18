@@ -11,12 +11,10 @@ import com.mollie.mollie.models.operations.PaymentCreateRouteRequestBody;
 import com.mollie.mollie.models.operations.PaymentCreateRouteRequestBuilder;
 import com.mollie.mollie.models.operations.PaymentCreateRouteResponse;
 import com.mollie.mollie.models.operations.PaymentCreateRouteResponseBody;
-import com.mollie.mollie.models.operations.PaymentCreateRouteSecurity;
 import com.mollie.mollie.models.operations.PaymentListRoutesRequest;
 import com.mollie.mollie.models.operations.PaymentListRoutesRequestBuilder;
 import com.mollie.mollie.models.operations.PaymentListRoutesResponse;
 import com.mollie.mollie.models.operations.PaymentListRoutesResponseBody;
-import com.mollie.mollie.models.operations.PaymentListRoutesSecurity;
 import com.mollie.mollie.models.operations.SDKMethodInterfaces.*;
 import com.mollie.mollie.utils.HTTPClient;
 import com.mollie.mollie.utils.HTTPRequest;
@@ -48,41 +46,46 @@ public class DelayedRoutingAPI implements
 
     /**
      * Create a delayed route
-     * Create a route for a specific payment.
-     * The routed amount is credited to the account of your customer.
+     * Create a route for a specific payment. The routed amount is credited to the account of your customer.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
      * @return The call builder
      */
-    public PaymentCreateRouteRequestBuilder create() {
+    public PaymentCreateRouteRequestBuilder paymentCreateRoute() {
         return new PaymentCreateRouteRequestBuilder(this);
     }
 
     /**
      * Create a delayed route
-     * Create a route for a specific payment.
-     * The routed amount is credited to the account of your customer.
-     * @param security The security details to use for authentication.
+     * Create a route for a specific payment. The routed amount is credited to the account of your customer.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
      * @param paymentId Provide the ID of the related payment.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PaymentCreateRouteResponse create(
-            PaymentCreateRouteSecurity security,
+    public PaymentCreateRouteResponse paymentCreateRoute(
             String paymentId) throws Exception {
-        return create(security, paymentId, Optional.empty());
+        return paymentCreateRoute(paymentId, Optional.empty());
     }
     
     /**
      * Create a delayed route
-     * Create a route for a specific payment.
-     * The routed amount is credited to the account of your customer.
-     * @param security The security details to use for authentication.
+     * Create a route for a specific payment. The routed amount is credited to the account of your customer.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
      * @param paymentId Provide the ID of the related payment.
      * @param requestBody
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PaymentCreateRouteResponse create(
-            PaymentCreateRouteSecurity security,
+    public PaymentCreateRouteResponse paymentCreateRoute(
             String paymentId,
             Optional<? extends PaymentCreateRouteRequestBody> requestBody) throws Exception {
         PaymentCreateRouteRequest request =
@@ -114,11 +117,9 @@ public class DelayedRoutingAPI implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -231,22 +232,28 @@ public class DelayedRoutingAPI implements
     /**
      * List payment routes
      * Retrieve a list of all routes created for a specific payment.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
      * @return The call builder
      */
-    public PaymentListRoutesRequestBuilder list() {
+    public PaymentListRoutesRequestBuilder paymentListRoutes() {
         return new PaymentListRoutesRequestBuilder(this);
     }
 
     /**
      * List payment routes
      * Retrieve a list of all routes created for a specific payment.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
      * @param paymentId Provide the ID of the related payment.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PaymentListRoutesResponse list(
-            PaymentListRoutesSecurity security,
+    public PaymentListRoutesResponse paymentListRoutes(
             String paymentId) throws Exception {
         PaymentListRoutesRequest request =
             PaymentListRoutesRequest
@@ -266,11 +273,9 @@ public class DelayedRoutingAPI implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()

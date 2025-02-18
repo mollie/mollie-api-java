@@ -46,9 +46,13 @@ public class PermissionsAPI implements
      * Retrieve a list of all permissions available to the current access token.
      * 
      * The results are **not** paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token](/reference/authentication)
      * @return The call builder
      */
-    public ListPermissionsRequestBuilder list() {
+    public ListPermissionsRequestBuilder listPermissions() {
         return new ListPermissionsRequestBuilder(this);
     }
 
@@ -57,10 +61,14 @@ public class PermissionsAPI implements
      * Retrieve a list of all permissions available to the current access token.
      * 
      * The results are **not** paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token](/reference/authentication)
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListPermissionsResponse listDirect() throws Exception {
+    public ListPermissionsResponse listPermissionsDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -186,37 +194,47 @@ public class PermissionsAPI implements
     /**
      * Get permission
      * Retrieve a single permission by its ID, and see if the permission is granted to the current access token.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token](/reference/authentication)
      * @return The call builder
      */
-    public GetPermissionRequestBuilder get() {
+    public GetPermissionRequestBuilder getPermission() {
         return new GetPermissionRequestBuilder(this);
     }
 
     /**
      * Get permission
      * Retrieve a single permission by its ID, and see if the permission is granted to the current access token.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetPermissionResponse get(
+    public GetPermissionResponse getPermission(
             String id) throws Exception {
-        return get(id, JsonNullable.undefined());
+        return getPermission(id, JsonNullable.undefined());
     }
     
     /**
      * Get permission
      * Retrieve a single permission by its ID, and see if the permission is granted to the current access token.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetPermissionResponse get(
+    public GetPermissionResponse getPermission(
             String id,
             JsonNullable<Boolean> testmode) throws Exception {
         GetPermissionRequest request =

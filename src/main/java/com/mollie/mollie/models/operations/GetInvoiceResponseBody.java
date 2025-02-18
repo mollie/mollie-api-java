@@ -61,10 +61,12 @@ public class GetInvoiceResponseBody {
      * * `open` — The invoice is not paid yet.
      * * `paid` — The invoice is paid.
      * * `overdue` — Payment of the invoice is overdue.
+     * 
+     * Possible values: `open` `paid` `overdue`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends GetInvoiceStatus> status;
+    private Optional<String> status;
 
     /**
      * Total amount of the invoice, excluding VAT.
@@ -74,9 +76,7 @@ public class GetInvoiceResponseBody {
     private Optional<? extends NetAmount> netAmount;
 
     /**
-     * VAT amount of the invoice. Only applicable to merchants registered in the Netherlands. For EU merchants, VAT will
-     * be shifted to the recipient (as per article 44 and 196 in the EU VAT Directive 2006/112). For merchants outside
-     * the EU, no VAT will be charged.
+     * VAT amount of the invoice. Only applicable to merchants registered in the Netherlands. For EU merchants, VAT will be shifted to the recipient (as per article 44 and 196 in the EU VAT Directive 2006/112). For merchants outside the EU, no VAT will be charged.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatAmount")
@@ -130,7 +130,7 @@ public class GetInvoiceResponseBody {
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("reference") Optional<String> reference,
             @JsonProperty("vatNumber") JsonNullable<String> vatNumber,
-            @JsonProperty("status") Optional<? extends GetInvoiceStatus> status,
+            @JsonProperty("status") Optional<String> status,
             @JsonProperty("netAmount") Optional<? extends NetAmount> netAmount,
             @JsonProperty("vatAmount") Optional<? extends GetInvoiceVatAmount> vatAmount,
             @JsonProperty("grossAmount") Optional<? extends GrossAmount> grossAmount,
@@ -209,11 +209,12 @@ public class GetInvoiceResponseBody {
      * * `open` — The invoice is not paid yet.
      * * `paid` — The invoice is paid.
      * * `overdue` — Payment of the invoice is overdue.
+     * 
+     * Possible values: `open` `paid` `overdue`
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetInvoiceStatus> status() {
-        return (Optional<GetInvoiceStatus>) status;
+    public Optional<String> status() {
+        return status;
     }
 
     /**
@@ -226,9 +227,7 @@ public class GetInvoiceResponseBody {
     }
 
     /**
-     * VAT amount of the invoice. Only applicable to merchants registered in the Netherlands. For EU merchants, VAT will
-     * be shifted to the recipient (as per article 44 and 196 in the EU VAT Directive 2006/112). For merchants outside
-     * the EU, no VAT will be charged.
+     * VAT amount of the invoice. Only applicable to merchants registered in the Netherlands. For EU merchants, VAT will be shifted to the recipient (as per article 44 and 196 in the EU VAT Directive 2006/112). For merchants outside the EU, no VAT will be charged.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -369,8 +368,10 @@ public class GetInvoiceResponseBody {
      * * `open` — The invoice is not paid yet.
      * * `paid` — The invoice is paid.
      * * `overdue` — Payment of the invoice is overdue.
+     * 
+     * Possible values: `open` `paid` `overdue`
      */
-    public GetInvoiceResponseBody withStatus(GetInvoiceStatus status) {
+    public GetInvoiceResponseBody withStatus(String status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -382,8 +383,10 @@ public class GetInvoiceResponseBody {
      * * `open` — The invoice is not paid yet.
      * * `paid` — The invoice is paid.
      * * `overdue` — Payment of the invoice is overdue.
+     * 
+     * Possible values: `open` `paid` `overdue`
      */
-    public GetInvoiceResponseBody withStatus(Optional<? extends GetInvoiceStatus> status) {
+    public GetInvoiceResponseBody withStatus(Optional<String> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -408,9 +411,7 @@ public class GetInvoiceResponseBody {
     }
 
     /**
-     * VAT amount of the invoice. Only applicable to merchants registered in the Netherlands. For EU merchants, VAT will
-     * be shifted to the recipient (as per article 44 and 196 in the EU VAT Directive 2006/112). For merchants outside
-     * the EU, no VAT will be charged.
+     * VAT amount of the invoice. Only applicable to merchants registered in the Netherlands. For EU merchants, VAT will be shifted to the recipient (as per article 44 and 196 in the EU VAT Directive 2006/112). For merchants outside the EU, no VAT will be charged.
      */
     public GetInvoiceResponseBody withVatAmount(GetInvoiceVatAmount vatAmount) {
         Utils.checkNotNull(vatAmount, "vatAmount");
@@ -419,9 +420,7 @@ public class GetInvoiceResponseBody {
     }
 
     /**
-     * VAT amount of the invoice. Only applicable to merchants registered in the Netherlands. For EU merchants, VAT will
-     * be shifted to the recipient (as per article 44 and 196 in the EU VAT Directive 2006/112). For merchants outside
-     * the EU, no VAT will be charged.
+     * VAT amount of the invoice. Only applicable to merchants registered in the Netherlands. For EU merchants, VAT will be shifted to the recipient (as per article 44 and 196 in the EU VAT Directive 2006/112). For merchants outside the EU, no VAT will be charged.
      */
     public GetInvoiceResponseBody withVatAmount(Optional<? extends GetInvoiceVatAmount> vatAmount) {
         Utils.checkNotNull(vatAmount, "vatAmount");
@@ -608,7 +607,7 @@ public class GetInvoiceResponseBody {
  
         private JsonNullable<String> vatNumber = JsonNullable.undefined();
  
-        private Optional<? extends GetInvoiceStatus> status = Optional.empty();
+        private Optional<String> status = Optional.empty();
  
         private Optional<? extends NetAmount> netAmount = Optional.empty();
  
@@ -708,8 +707,10 @@ public class GetInvoiceResponseBody {
          * * `open` — The invoice is not paid yet.
          * * `paid` — The invoice is paid.
          * * `overdue` — Payment of the invoice is overdue.
+         * 
+         * Possible values: `open` `paid` `overdue`
          */
-        public Builder status(GetInvoiceStatus status) {
+        public Builder status(String status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -721,8 +722,10 @@ public class GetInvoiceResponseBody {
          * * `open` — The invoice is not paid yet.
          * * `paid` — The invoice is paid.
          * * `overdue` — Payment of the invoice is overdue.
+         * 
+         * Possible values: `open` `paid` `overdue`
          */
-        public Builder status(Optional<? extends GetInvoiceStatus> status) {
+        public Builder status(Optional<String> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -747,9 +750,7 @@ public class GetInvoiceResponseBody {
         }
 
         /**
-         * VAT amount of the invoice. Only applicable to merchants registered in the Netherlands. For EU merchants, VAT will
-         * be shifted to the recipient (as per article 44 and 196 in the EU VAT Directive 2006/112). For merchants outside
-         * the EU, no VAT will be charged.
+         * VAT amount of the invoice. Only applicable to merchants registered in the Netherlands. For EU merchants, VAT will be shifted to the recipient (as per article 44 and 196 in the EU VAT Directive 2006/112). For merchants outside the EU, no VAT will be charged.
          */
         public Builder vatAmount(GetInvoiceVatAmount vatAmount) {
             Utils.checkNotNull(vatAmount, "vatAmount");
@@ -758,9 +759,7 @@ public class GetInvoiceResponseBody {
         }
 
         /**
-         * VAT amount of the invoice. Only applicable to merchants registered in the Netherlands. For EU merchants, VAT will
-         * be shifted to the recipient (as per article 44 and 196 in the EU VAT Directive 2006/112). For merchants outside
-         * the EU, no VAT will be charged.
+         * VAT amount of the invoice. Only applicable to merchants registered in the Netherlands. For EU merchants, VAT will be shifted to the recipient (as per article 44 and 196 in the EU VAT Directive 2006/112). For merchants outside the EU, no VAT will be charged.
          */
         public Builder vatAmount(Optional<? extends GetInvoiceVatAmount> vatAmount) {
             Utils.checkNotNull(vatAmount, "vatAmount");

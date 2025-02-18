@@ -28,49 +28,38 @@ public class GetMethodRequest {
     private String id;
 
     /**
-     * Passing a locale will translate the payment method name in the
-     * corresponding language.
+     * Passing a locale will translate the payment method name in the corresponding language.
      * 
-     * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH`
-     * `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV`
-     * `lt_LT`
+     * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=locale")
     private Optional<String> locale;
 
     /**
-     * If provided, the `minimumAmount` and `maximumAmount` will be converted
-     * to the given currency. An error is returned if the currency is not supported by the payment method.
+     * If provided, the `minimumAmount` and `maximumAmount` will be converted to the given currency. An error is returned if the currency is not supported by the payment method.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=currency")
     private Optional<String> currency;
 
     /**
-     * The identifier referring to the [profile](get-profile) you wish to
-     * retrieve the payment method for.
+     * The identifier referring to the [profile](get-profile) you wish to retrieve the payment method for.
      * 
-     * Most API credentials are linked to a single profile. In these cases the
-     * `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the
-     * `profileId` parameter is required.
+     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=profileId")
     private Optional<String> profileId;
 
     /**
-     * This endpoint allows you to include additional information via the
-     * `include` query string parameter.
+     * This endpoint allows you to include additional information via the `include` query string parameter.
      * 
-     * * `issuers`: Include issuer details such as which iDEAL or gift card
-     * issuers are available.
+     * * `issuers`: Include issuer details such as which iDEAL or gift card issuers are available.
      * * `pricing`: Include pricing for the payment method.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=include")
     private JsonNullable<String> include;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -113,12 +102,9 @@ public class GetMethodRequest {
     }
 
     /**
-     * Passing a locale will translate the payment method name in the
-     * corresponding language.
+     * Passing a locale will translate the payment method name in the corresponding language.
      * 
-     * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH`
-     * `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV`
-     * `lt_LT`
+     * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
      */
     @JsonIgnore
     public Optional<String> locale() {
@@ -126,8 +112,7 @@ public class GetMethodRequest {
     }
 
     /**
-     * If provided, the `minimumAmount` and `maximumAmount` will be converted
-     * to the given currency. An error is returned if the currency is not supported by the payment method.
+     * If provided, the `minimumAmount` and `maximumAmount` will be converted to the given currency. An error is returned if the currency is not supported by the payment method.
      */
     @JsonIgnore
     public Optional<String> currency() {
@@ -135,12 +120,9 @@ public class GetMethodRequest {
     }
 
     /**
-     * The identifier referring to the [profile](get-profile) you wish to
-     * retrieve the payment method for.
+     * The identifier referring to the [profile](get-profile) you wish to retrieve the payment method for.
      * 
-     * Most API credentials are linked to a single profile. In these cases the
-     * `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the
-     * `profileId` parameter is required.
+     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     @JsonIgnore
     public Optional<String> profileId() {
@@ -148,11 +130,9 @@ public class GetMethodRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the
-     * `include` query string parameter.
+     * This endpoint allows you to include additional information via the `include` query string parameter.
      * 
-     * * `issuers`: Include issuer details such as which iDEAL or gift card
-     * issuers are available.
+     * * `issuers`: Include issuer details such as which iDEAL or gift card issuers are available.
      * * `pricing`: Include pricing for the payment method.
      */
     @JsonIgnore
@@ -161,9 +141,7 @@ public class GetMethodRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -186,12 +164,9 @@ public class GetMethodRequest {
     }
 
     /**
-     * Passing a locale will translate the payment method name in the
-     * corresponding language.
+     * Passing a locale will translate the payment method name in the corresponding language.
      * 
-     * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH`
-     * `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV`
-     * `lt_LT`
+     * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
      */
     public GetMethodRequest withLocale(String locale) {
         Utils.checkNotNull(locale, "locale");
@@ -200,12 +175,9 @@ public class GetMethodRequest {
     }
 
     /**
-     * Passing a locale will translate the payment method name in the
-     * corresponding language.
+     * Passing a locale will translate the payment method name in the corresponding language.
      * 
-     * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH`
-     * `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV`
-     * `lt_LT`
+     * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
      */
     public GetMethodRequest withLocale(Optional<String> locale) {
         Utils.checkNotNull(locale, "locale");
@@ -214,8 +186,7 @@ public class GetMethodRequest {
     }
 
     /**
-     * If provided, the `minimumAmount` and `maximumAmount` will be converted
-     * to the given currency. An error is returned if the currency is not supported by the payment method.
+     * If provided, the `minimumAmount` and `maximumAmount` will be converted to the given currency. An error is returned if the currency is not supported by the payment method.
      */
     public GetMethodRequest withCurrency(String currency) {
         Utils.checkNotNull(currency, "currency");
@@ -224,8 +195,7 @@ public class GetMethodRequest {
     }
 
     /**
-     * If provided, the `minimumAmount` and `maximumAmount` will be converted
-     * to the given currency. An error is returned if the currency is not supported by the payment method.
+     * If provided, the `minimumAmount` and `maximumAmount` will be converted to the given currency. An error is returned if the currency is not supported by the payment method.
      */
     public GetMethodRequest withCurrency(Optional<String> currency) {
         Utils.checkNotNull(currency, "currency");
@@ -234,12 +204,9 @@ public class GetMethodRequest {
     }
 
     /**
-     * The identifier referring to the [profile](get-profile) you wish to
-     * retrieve the payment method for.
+     * The identifier referring to the [profile](get-profile) you wish to retrieve the payment method for.
      * 
-     * Most API credentials are linked to a single profile. In these cases the
-     * `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the
-     * `profileId` parameter is required.
+     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     public GetMethodRequest withProfileId(String profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -248,12 +215,9 @@ public class GetMethodRequest {
     }
 
     /**
-     * The identifier referring to the [profile](get-profile) you wish to
-     * retrieve the payment method for.
+     * The identifier referring to the [profile](get-profile) you wish to retrieve the payment method for.
      * 
-     * Most API credentials are linked to a single profile. In these cases the
-     * `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the
-     * `profileId` parameter is required.
+     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     public GetMethodRequest withProfileId(Optional<String> profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -262,11 +226,9 @@ public class GetMethodRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the
-     * `include` query string parameter.
+     * This endpoint allows you to include additional information via the `include` query string parameter.
      * 
-     * * `issuers`: Include issuer details such as which iDEAL or gift card
-     * issuers are available.
+     * * `issuers`: Include issuer details such as which iDEAL or gift card issuers are available.
      * * `pricing`: Include pricing for the payment method.
      */
     public GetMethodRequest withInclude(String include) {
@@ -276,11 +238,9 @@ public class GetMethodRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the
-     * `include` query string parameter.
+     * This endpoint allows you to include additional information via the `include` query string parameter.
      * 
-     * * `issuers`: Include issuer details such as which iDEAL or gift card
-     * issuers are available.
+     * * `issuers`: Include issuer details such as which iDEAL or gift card issuers are available.
      * * `pricing`: Include pricing for the payment method.
      */
     public GetMethodRequest withInclude(JsonNullable<String> include) {
@@ -290,9 +250,7 @@ public class GetMethodRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -303,9 +261,7 @@ public class GetMethodRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -383,12 +339,9 @@ public class GetMethodRequest {
         }
 
         /**
-         * Passing a locale will translate the payment method name in the
-         * corresponding language.
+         * Passing a locale will translate the payment method name in the corresponding language.
          * 
-         * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH`
-         * `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV`
-         * `lt_LT`
+         * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
          */
         public Builder locale(String locale) {
             Utils.checkNotNull(locale, "locale");
@@ -397,12 +350,9 @@ public class GetMethodRequest {
         }
 
         /**
-         * Passing a locale will translate the payment method name in the
-         * corresponding language.
+         * Passing a locale will translate the payment method name in the corresponding language.
          * 
-         * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH`
-         * `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV`
-         * `lt_LT`
+         * Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
          */
         public Builder locale(Optional<String> locale) {
             Utils.checkNotNull(locale, "locale");
@@ -411,8 +361,7 @@ public class GetMethodRequest {
         }
 
         /**
-         * If provided, the `minimumAmount` and `maximumAmount` will be converted
-         * to the given currency. An error is returned if the currency is not supported by the payment method.
+         * If provided, the `minimumAmount` and `maximumAmount` will be converted to the given currency. An error is returned if the currency is not supported by the payment method.
          */
         public Builder currency(String currency) {
             Utils.checkNotNull(currency, "currency");
@@ -421,8 +370,7 @@ public class GetMethodRequest {
         }
 
         /**
-         * If provided, the `minimumAmount` and `maximumAmount` will be converted
-         * to the given currency. An error is returned if the currency is not supported by the payment method.
+         * If provided, the `minimumAmount` and `maximumAmount` will be converted to the given currency. An error is returned if the currency is not supported by the payment method.
          */
         public Builder currency(Optional<String> currency) {
             Utils.checkNotNull(currency, "currency");
@@ -431,12 +379,9 @@ public class GetMethodRequest {
         }
 
         /**
-         * The identifier referring to the [profile](get-profile) you wish to
-         * retrieve the payment method for.
+         * The identifier referring to the [profile](get-profile) you wish to retrieve the payment method for.
          * 
-         * Most API credentials are linked to a single profile. In these cases the
-         * `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the
-         * `profileId` parameter is required.
+         * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
          */
         public Builder profileId(String profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -445,12 +390,9 @@ public class GetMethodRequest {
         }
 
         /**
-         * The identifier referring to the [profile](get-profile) you wish to
-         * retrieve the payment method for.
+         * The identifier referring to the [profile](get-profile) you wish to retrieve the payment method for.
          * 
-         * Most API credentials are linked to a single profile. In these cases the
-         * `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the
-         * `profileId` parameter is required.
+         * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
          */
         public Builder profileId(Optional<String> profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -459,11 +401,9 @@ public class GetMethodRequest {
         }
 
         /**
-         * This endpoint allows you to include additional information via the
-         * `include` query string parameter.
+         * This endpoint allows you to include additional information via the `include` query string parameter.
          * 
-         * * `issuers`: Include issuer details such as which iDEAL or gift card
-         * issuers are available.
+         * * `issuers`: Include issuer details such as which iDEAL or gift card issuers are available.
          * * `pricing`: Include pricing for the payment method.
          */
         public Builder include(String include) {
@@ -473,11 +413,9 @@ public class GetMethodRequest {
         }
 
         /**
-         * This endpoint allows you to include additional information via the
-         * `include` query string parameter.
+         * This endpoint allows you to include additional information via the `include` query string parameter.
          * 
-         * * `issuers`: Include issuer details such as which iDEAL or gift card
-         * issuers are available.
+         * * `issuers`: Include issuer details such as which iDEAL or gift card issuers are available.
          * * `pricing`: Include pricing for the payment method.
          */
         public Builder include(JsonNullable<String> include) {
@@ -487,9 +425,7 @@ public class GetMethodRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-         * setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
          * 
          * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -500,9 +436,7 @@ public class GetMethodRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-         * setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
          * 
          * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */

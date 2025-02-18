@@ -22,8 +22,7 @@ import java.util.Optional;
 public class ListShipmentsEmbedded {
 
     /**
-     * An array of shipment objects. For a complete reference of the shipment object, refer to the
-     * [Get shipment endpoint](get-shipment) documentation.
+     * An array of shipment objects. For a complete reference of the shipment object, refer to the [Get shipment endpoint](get-shipment) documentation.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shipments")
@@ -41,8 +40,7 @@ public class ListShipmentsEmbedded {
     }
 
     /**
-     * An array of shipment objects. For a complete reference of the shipment object, refer to the
-     * [Get shipment endpoint](get-shipment) documentation.
+     * An array of shipment objects. For a complete reference of the shipment object, refer to the [Get shipment endpoint](get-shipment) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -55,8 +53,7 @@ public class ListShipmentsEmbedded {
     }
 
     /**
-     * An array of shipment objects. For a complete reference of the shipment object, refer to the
-     * [Get shipment endpoint](get-shipment) documentation.
+     * An array of shipment objects. For a complete reference of the shipment object, refer to the [Get shipment endpoint](get-shipment) documentation.
      */
     public ListShipmentsEmbedded withShipments(List<Shipments> shipments) {
         Utils.checkNotNull(shipments, "shipments");
@@ -65,8 +62,7 @@ public class ListShipmentsEmbedded {
     }
 
     /**
-     * An array of shipment objects. For a complete reference of the shipment object, refer to the
-     * [Get shipment endpoint](get-shipment) documentation.
+     * An array of shipment objects. For a complete reference of the shipment object, refer to the [Get shipment endpoint](get-shipment) documentation.
      */
     public ListShipmentsEmbedded withShipments(Optional<? extends List<Shipments>> shipments) {
         Utils.checkNotNull(shipments, "shipments");
@@ -108,8 +104,7 @@ public class ListShipmentsEmbedded {
         }
 
         /**
-         * An array of shipment objects. For a complete reference of the shipment object, refer to the
-         * [Get shipment endpoint](get-shipment) documentation.
+         * An array of shipment objects. For a complete reference of the shipment object, refer to the [Get shipment endpoint](get-shipment) documentation.
          */
         public Builder shipments(List<Shipments> shipments) {
             Utils.checkNotNull(shipments, "shipments");
@@ -118,8 +113,7 @@ public class ListShipmentsEmbedded {
         }
 
         /**
-         * An array of shipment objects. For a complete reference of the shipment object, refer to the
-         * [Get shipment endpoint](get-shipment) documentation.
+         * An array of shipment objects. For a complete reference of the shipment object, refer to the [Get shipment endpoint](get-shipment) documentation.
          */
         public Builder shipments(Optional<? extends List<Shipments>> shipments) {
             Utils.checkNotNull(shipments, "shipments");

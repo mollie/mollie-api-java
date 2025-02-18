@@ -13,7 +13,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class DeletePaymentLinkRequestBuilder {
 
-    private DeletePaymentLinkSecurity security;
     private String id;
     private JsonNullable<Boolean> testmode = Utils.readDefaultOrConstValue(
                             "testmode",
@@ -23,12 +22,6 @@ public class DeletePaymentLinkRequestBuilder {
 
     public DeletePaymentLinkRequestBuilder(SDKMethodInterfaces.MethodCallDeletePaymentLink sdk) {
         this.sdk = sdk;
-    }
-
-    public DeletePaymentLinkRequestBuilder security(DeletePaymentLinkSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public DeletePaymentLinkRequestBuilder id(String id) {
@@ -53,8 +46,7 @@ public class DeletePaymentLinkRequestBuilder {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.delete(
-            security,
+        return sdk.deletePaymentLink(
             id,
             testmode);
     }

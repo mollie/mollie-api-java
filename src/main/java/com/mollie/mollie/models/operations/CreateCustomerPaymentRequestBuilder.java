@@ -10,19 +10,12 @@ import java.util.Optional;
 
 public class CreateCustomerPaymentRequestBuilder {
 
-    private CreateCustomerPaymentSecurity security;
     private String customerId;
     private Optional<? extends CreateCustomerPaymentRequestBody> requestBody = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCreateCustomerPayment sdk;
 
     public CreateCustomerPaymentRequestBuilder(SDKMethodInterfaces.MethodCallCreateCustomerPayment sdk) {
         this.sdk = sdk;
-    }
-
-    public CreateCustomerPaymentRequestBuilder security(CreateCustomerPaymentSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public CreateCustomerPaymentRequestBuilder customerId(String customerId) {
@@ -45,8 +38,7 @@ public class CreateCustomerPaymentRequestBuilder {
 
     public CreateCustomerPaymentResponse call() throws Exception {
 
-        return sdk.createPayment(
-            security,
+        return sdk.createCustomerPayment(
             customerId,
             requestBody);
     }

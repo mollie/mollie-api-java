@@ -37,8 +37,7 @@ public class ListMethodsResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * A list of payment method objects. For a complete reference of the
-     * payment method object, refer to the [Get payment method endpoint](get-method) documentation.
+     * A list of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
      */
     private Optional<? extends ListMethodsResponseBody> object;
 
@@ -90,8 +89,7 @@ public class ListMethodsResponse implements Response {
     }
 
     /**
-     * A list of payment method objects. For a complete reference of the
-     * payment method object, refer to the [Get payment method endpoint](get-method) documentation.
+     * A list of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -131,8 +129,7 @@ public class ListMethodsResponse implements Response {
     }
 
     /**
-     * A list of payment method objects. For a complete reference of the
-     * payment method object, refer to the [Get payment method endpoint](get-method) documentation.
+     * A list of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
      */
     public ListMethodsResponse withObject(ListMethodsResponseBody object) {
         Utils.checkNotNull(object, "object");
@@ -141,8 +138,7 @@ public class ListMethodsResponse implements Response {
     }
 
     /**
-     * A list of payment method objects. For a complete reference of the
-     * payment method object, refer to the [Get payment method endpoint](get-method) documentation.
+     * A list of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
      */
     public ListMethodsResponse withObject(Optional<? extends ListMethodsResponseBody> object) {
         Utils.checkNotNull(object, "object");
@@ -226,8 +222,7 @@ public class ListMethodsResponse implements Response {
         }
 
         /**
-         * A list of payment method objects. For a complete reference of the
-         * payment method object, refer to the [Get payment method endpoint](get-method) documentation.
+         * A list of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
          */
         public Builder object(ListMethodsResponseBody object) {
             Utils.checkNotNull(object, "object");
@@ -236,8 +231,7 @@ public class ListMethodsResponse implements Response {
         }
 
         /**
-         * A list of payment method objects. For a complete reference of the
-         * payment method object, refer to the [Get payment method endpoint](get-method) documentation.
+         * A list of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
          */
         public Builder object(Optional<? extends ListMethodsResponseBody> object) {
             Utils.checkNotNull(object, "object");

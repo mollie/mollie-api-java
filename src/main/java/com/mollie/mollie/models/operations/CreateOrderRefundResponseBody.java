@@ -35,8 +35,7 @@ public class CreateOrderRefundResponseBody {
     private Optional<String> resource;
 
     /**
-     * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie
-     * will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
+     * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
@@ -44,10 +43,12 @@ public class CreateOrderRefundResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
+     * 
+     * Possible values: `live` `test`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<? extends CreateOrderRefundMode> mode;
+    private Optional<String> mode;
 
     /**
      * The description of the refund that may be shown to your customer, depending on the payment method used.
@@ -59,41 +60,35 @@ public class CreateOrderRefundResponseBody {
     /**
      * A refund can optionally be linked to specific order lines.
      * 
-     * The lines will show the `quantity`, `discountAmount`, `vatAmount`, and `totalAmount` refunded. If the line was
-     * partially refunded, these values will be different from the values in response from the [Get payment](get-payment)
-     * endpoint.
+     * The lines will show the `quantity`, `discountAmount`, `vatAmount`, and `totalAmount` refunded. If the line was partially refunded, these values will be different from the values in response from the [Get payment](get-payment) endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lines")
     private Optional<? extends List<CreateOrderRefundLinesOutput>> lines;
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends CreateOrderRefundRefundsAPIMetadata> metadata;
 
     /**
-     * The unique identifier of the order this refund was created for. For example: `ord_8wmqcHMN4U`. Not present if the
-     * refund was not created for an order.
+     * The unique identifier of the order this refund was created for. For example: `ord_8wmqcHMN4U`. Not present if the refund was not created for an order.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("orderId")
     private Optional<String> orderId;
 
     /**
-     * The identifier referring to the settlement this refund was settled with. For example, `stl_BkEjN2eBb`. This field
-     * is omitted if the refund is not settled (yet).
+     * The identifier referring to the settlement this refund was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the refund is not settled (yet).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlementId")
     private JsonNullable<String> settlementId;
 
     /**
-     * Refunds may take some time to get confirmed. For a full overview of possible states, see the guide on refund
-     * statuses.
+     * Refunds may take some time to get confirmed. For a full overview of possible states, see the guide on refund statuses.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
@@ -117,7 +112,7 @@ public class CreateOrderRefundResponseBody {
     public CreateOrderRefundResponseBody(
             @JsonProperty("resource") Optional<String> resource,
             @JsonProperty("id") Optional<String> id,
-            @JsonProperty("mode") Optional<? extends CreateOrderRefundMode> mode,
+            @JsonProperty("mode") Optional<String> mode,
             @JsonProperty("description") Optional<String> description,
             @JsonProperty("lines") Optional<? extends List<CreateOrderRefundLinesOutput>> lines,
             @JsonProperty("metadata") JsonNullable<? extends CreateOrderRefundRefundsAPIMetadata> metadata,
@@ -163,8 +158,7 @@ public class CreateOrderRefundResponseBody {
     }
 
     /**
-     * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie
-     * will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
+     * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
      */
     @JsonIgnore
     public Optional<String> id() {
@@ -173,11 +167,12 @@ public class CreateOrderRefundResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
+     * 
+     * Possible values: `live` `test`
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateOrderRefundMode> mode() {
-        return (Optional<CreateOrderRefundMode>) mode;
+    public Optional<String> mode() {
+        return mode;
     }
 
     /**
@@ -191,9 +186,7 @@ public class CreateOrderRefundResponseBody {
     /**
      * A refund can optionally be linked to specific order lines.
      * 
-     * The lines will show the `quantity`, `discountAmount`, `vatAmount`, and `totalAmount` refunded. If the line was
-     * partially refunded, these values will be different from the values in response from the [Get payment](get-payment)
-     * endpoint.
+     * The lines will show the `quantity`, `discountAmount`, `vatAmount`, and `totalAmount` refunded. If the line was partially refunded, these values will be different from the values in response from the [Get payment](get-payment) endpoint.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -202,8 +195,7 @@ public class CreateOrderRefundResponseBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -212,8 +204,7 @@ public class CreateOrderRefundResponseBody {
     }
 
     /**
-     * The unique identifier of the order this refund was created for. For example: `ord_8wmqcHMN4U`. Not present if the
-     * refund was not created for an order.
+     * The unique identifier of the order this refund was created for. For example: `ord_8wmqcHMN4U`. Not present if the refund was not created for an order.
      */
     @JsonIgnore
     public Optional<String> orderId() {
@@ -221,8 +212,7 @@ public class CreateOrderRefundResponseBody {
     }
 
     /**
-     * The identifier referring to the settlement this refund was settled with. For example, `stl_BkEjN2eBb`. This field
-     * is omitted if the refund is not settled (yet).
+     * The identifier referring to the settlement this refund was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the refund is not settled (yet).
      */
     @JsonIgnore
     public JsonNullable<String> settlementId() {
@@ -230,8 +220,7 @@ public class CreateOrderRefundResponseBody {
     }
 
     /**
-     * Refunds may take some time to get confirmed. For a full overview of possible states, see the guide on refund
-     * statuses.
+     * Refunds may take some time to get confirmed. For a full overview of possible states, see the guide on refund statuses.
      */
     @JsonIgnore
     public Optional<String> status() {
@@ -278,8 +267,7 @@ public class CreateOrderRefundResponseBody {
     }
 
     /**
-     * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie
-     * will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
+     * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
      */
     public CreateOrderRefundResponseBody withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -288,8 +276,7 @@ public class CreateOrderRefundResponseBody {
     }
 
     /**
-     * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie
-     * will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
+     * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
      */
     public CreateOrderRefundResponseBody withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
@@ -299,8 +286,10 @@ public class CreateOrderRefundResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
+     * 
+     * Possible values: `live` `test`
      */
-    public CreateOrderRefundResponseBody withMode(CreateOrderRefundMode mode) {
+    public CreateOrderRefundResponseBody withMode(String mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = Optional.ofNullable(mode);
         return this;
@@ -308,8 +297,10 @@ public class CreateOrderRefundResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
+     * 
+     * Possible values: `live` `test`
      */
-    public CreateOrderRefundResponseBody withMode(Optional<? extends CreateOrderRefundMode> mode) {
+    public CreateOrderRefundResponseBody withMode(Optional<String> mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
@@ -336,9 +327,7 @@ public class CreateOrderRefundResponseBody {
     /**
      * A refund can optionally be linked to specific order lines.
      * 
-     * The lines will show the `quantity`, `discountAmount`, `vatAmount`, and `totalAmount` refunded. If the line was
-     * partially refunded, these values will be different from the values in response from the [Get payment](get-payment)
-     * endpoint.
+     * The lines will show the `quantity`, `discountAmount`, `vatAmount`, and `totalAmount` refunded. If the line was partially refunded, these values will be different from the values in response from the [Get payment](get-payment) endpoint.
      */
     public CreateOrderRefundResponseBody withLines(List<CreateOrderRefundLinesOutput> lines) {
         Utils.checkNotNull(lines, "lines");
@@ -349,9 +338,7 @@ public class CreateOrderRefundResponseBody {
     /**
      * A refund can optionally be linked to specific order lines.
      * 
-     * The lines will show the `quantity`, `discountAmount`, `vatAmount`, and `totalAmount` refunded. If the line was
-     * partially refunded, these values will be different from the values in response from the [Get payment](get-payment)
-     * endpoint.
+     * The lines will show the `quantity`, `discountAmount`, `vatAmount`, and `totalAmount` refunded. If the line was partially refunded, these values will be different from the values in response from the [Get payment](get-payment) endpoint.
      */
     public CreateOrderRefundResponseBody withLines(Optional<? extends List<CreateOrderRefundLinesOutput>> lines) {
         Utils.checkNotNull(lines, "lines");
@@ -360,8 +347,7 @@ public class CreateOrderRefundResponseBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     public CreateOrderRefundResponseBody withMetadata(CreateOrderRefundRefundsAPIMetadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -370,8 +356,7 @@ public class CreateOrderRefundResponseBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     public CreateOrderRefundResponseBody withMetadata(JsonNullable<? extends CreateOrderRefundRefundsAPIMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -380,8 +365,7 @@ public class CreateOrderRefundResponseBody {
     }
 
     /**
-     * The unique identifier of the order this refund was created for. For example: `ord_8wmqcHMN4U`. Not present if the
-     * refund was not created for an order.
+     * The unique identifier of the order this refund was created for. For example: `ord_8wmqcHMN4U`. Not present if the refund was not created for an order.
      */
     public CreateOrderRefundResponseBody withOrderId(String orderId) {
         Utils.checkNotNull(orderId, "orderId");
@@ -390,8 +374,7 @@ public class CreateOrderRefundResponseBody {
     }
 
     /**
-     * The unique identifier of the order this refund was created for. For example: `ord_8wmqcHMN4U`. Not present if the
-     * refund was not created for an order.
+     * The unique identifier of the order this refund was created for. For example: `ord_8wmqcHMN4U`. Not present if the refund was not created for an order.
      */
     public CreateOrderRefundResponseBody withOrderId(Optional<String> orderId) {
         Utils.checkNotNull(orderId, "orderId");
@@ -400,8 +383,7 @@ public class CreateOrderRefundResponseBody {
     }
 
     /**
-     * The identifier referring to the settlement this refund was settled with. For example, `stl_BkEjN2eBb`. This field
-     * is omitted if the refund is not settled (yet).
+     * The identifier referring to the settlement this refund was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the refund is not settled (yet).
      */
     public CreateOrderRefundResponseBody withSettlementId(String settlementId) {
         Utils.checkNotNull(settlementId, "settlementId");
@@ -410,8 +392,7 @@ public class CreateOrderRefundResponseBody {
     }
 
     /**
-     * The identifier referring to the settlement this refund was settled with. For example, `stl_BkEjN2eBb`. This field
-     * is omitted if the refund is not settled (yet).
+     * The identifier referring to the settlement this refund was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the refund is not settled (yet).
      */
     public CreateOrderRefundResponseBody withSettlementId(JsonNullable<String> settlementId) {
         Utils.checkNotNull(settlementId, "settlementId");
@@ -420,8 +401,7 @@ public class CreateOrderRefundResponseBody {
     }
 
     /**
-     * Refunds may take some time to get confirmed. For a full overview of possible states, see the guide on refund
-     * statuses.
+     * Refunds may take some time to get confirmed. For a full overview of possible states, see the guide on refund statuses.
      */
     public CreateOrderRefundResponseBody withStatus(String status) {
         Utils.checkNotNull(status, "status");
@@ -430,8 +410,7 @@ public class CreateOrderRefundResponseBody {
     }
 
     /**
-     * Refunds may take some time to get confirmed. For a full overview of possible states, see the guide on refund
-     * statuses.
+     * Refunds may take some time to get confirmed. For a full overview of possible states, see the guide on refund statuses.
      */
     public CreateOrderRefundResponseBody withStatus(Optional<String> status) {
         Utils.checkNotNull(status, "status");
@@ -536,7 +515,7 @@ public class CreateOrderRefundResponseBody {
  
         private Optional<String> id = Optional.empty();
  
-        private Optional<? extends CreateOrderRefundMode> mode = Optional.empty();
+        private Optional<String> mode = Optional.empty();
  
         private Optional<String> description = Optional.empty();
  
@@ -577,8 +556,7 @@ public class CreateOrderRefundResponseBody {
         }
 
         /**
-         * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie
-         * will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
+         * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -587,8 +565,7 @@ public class CreateOrderRefundResponseBody {
         }
 
         /**
-         * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie
-         * will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
+         * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
          */
         public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
@@ -598,8 +575,10 @@ public class CreateOrderRefundResponseBody {
 
         /**
          * Whether this entity was created in live mode or in test mode.
+         * 
+         * Possible values: `live` `test`
          */
-        public Builder mode(CreateOrderRefundMode mode) {
+        public Builder mode(String mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = Optional.ofNullable(mode);
             return this;
@@ -607,8 +586,10 @@ public class CreateOrderRefundResponseBody {
 
         /**
          * Whether this entity was created in live mode or in test mode.
+         * 
+         * Possible values: `live` `test`
          */
-        public Builder mode(Optional<? extends CreateOrderRefundMode> mode) {
+        public Builder mode(Optional<String> mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
@@ -635,9 +616,7 @@ public class CreateOrderRefundResponseBody {
         /**
          * A refund can optionally be linked to specific order lines.
          * 
-         * The lines will show the `quantity`, `discountAmount`, `vatAmount`, and `totalAmount` refunded. If the line was
-         * partially refunded, these values will be different from the values in response from the [Get payment](get-payment)
-         * endpoint.
+         * The lines will show the `quantity`, `discountAmount`, `vatAmount`, and `totalAmount` refunded. If the line was partially refunded, these values will be different from the values in response from the [Get payment](get-payment) endpoint.
          */
         public Builder lines(List<CreateOrderRefundLinesOutput> lines) {
             Utils.checkNotNull(lines, "lines");
@@ -648,9 +627,7 @@ public class CreateOrderRefundResponseBody {
         /**
          * A refund can optionally be linked to specific order lines.
          * 
-         * The lines will show the `quantity`, `discountAmount`, `vatAmount`, and `totalAmount` refunded. If the line was
-         * partially refunded, these values will be different from the values in response from the [Get payment](get-payment)
-         * endpoint.
+         * The lines will show the `quantity`, `discountAmount`, `vatAmount`, and `totalAmount` refunded. If the line was partially refunded, these values will be different from the values in response from the [Get payment](get-payment) endpoint.
          */
         public Builder lines(Optional<? extends List<CreateOrderRefundLinesOutput>> lines) {
             Utils.checkNotNull(lines, "lines");
@@ -659,8 +636,7 @@ public class CreateOrderRefundResponseBody {
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
         public Builder metadata(CreateOrderRefundRefundsAPIMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -669,8 +645,7 @@ public class CreateOrderRefundResponseBody {
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
         public Builder metadata(JsonNullable<? extends CreateOrderRefundRefundsAPIMetadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -679,8 +654,7 @@ public class CreateOrderRefundResponseBody {
         }
 
         /**
-         * The unique identifier of the order this refund was created for. For example: `ord_8wmqcHMN4U`. Not present if the
-         * refund was not created for an order.
+         * The unique identifier of the order this refund was created for. For example: `ord_8wmqcHMN4U`. Not present if the refund was not created for an order.
          */
         public Builder orderId(String orderId) {
             Utils.checkNotNull(orderId, "orderId");
@@ -689,8 +663,7 @@ public class CreateOrderRefundResponseBody {
         }
 
         /**
-         * The unique identifier of the order this refund was created for. For example: `ord_8wmqcHMN4U`. Not present if the
-         * refund was not created for an order.
+         * The unique identifier of the order this refund was created for. For example: `ord_8wmqcHMN4U`. Not present if the refund was not created for an order.
          */
         public Builder orderId(Optional<String> orderId) {
             Utils.checkNotNull(orderId, "orderId");
@@ -699,8 +672,7 @@ public class CreateOrderRefundResponseBody {
         }
 
         /**
-         * The identifier referring to the settlement this refund was settled with. For example, `stl_BkEjN2eBb`. This field
-         * is omitted if the refund is not settled (yet).
+         * The identifier referring to the settlement this refund was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the refund is not settled (yet).
          */
         public Builder settlementId(String settlementId) {
             Utils.checkNotNull(settlementId, "settlementId");
@@ -709,8 +681,7 @@ public class CreateOrderRefundResponseBody {
         }
 
         /**
-         * The identifier referring to the settlement this refund was settled with. For example, `stl_BkEjN2eBb`. This field
-         * is omitted if the refund is not settled (yet).
+         * The identifier referring to the settlement this refund was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the refund is not settled (yet).
          */
         public Builder settlementId(JsonNullable<String> settlementId) {
             Utils.checkNotNull(settlementId, "settlementId");
@@ -719,8 +690,7 @@ public class CreateOrderRefundResponseBody {
         }
 
         /**
-         * Refunds may take some time to get confirmed. For a full overview of possible states, see the guide on refund
-         * statuses.
+         * Refunds may take some time to get confirmed. For a full overview of possible states, see the guide on refund statuses.
          */
         public Builder status(String status) {
             Utils.checkNotNull(status, "status");
@@ -729,8 +699,7 @@ public class CreateOrderRefundResponseBody {
         }
 
         /**
-         * Refunds may take some time to get confirmed. For a full overview of possible states, see the guide on refund
-         * statuses.
+         * Refunds may take some time to get confirmed. For a full overview of possible states, see the guide on refund statuses.
          */
         public Builder status(Optional<String> status) {
             Utils.checkNotNull(status, "status");

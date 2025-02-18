@@ -37,8 +37,7 @@ public class ListOrdersResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * A list of order objects. For a complete reference of the order object, refer to the
-     * [Get order endpoint](get-order) documentation.
+     * A list of order objects. For a complete reference of the order object, refer to the [Get order endpoint](get-order) documentation.
      */
     private Optional<? extends ListOrdersResponseBody> object;
 
@@ -90,8 +89,7 @@ public class ListOrdersResponse implements Response {
     }
 
     /**
-     * A list of order objects. For a complete reference of the order object, refer to the
-     * [Get order endpoint](get-order) documentation.
+     * A list of order objects. For a complete reference of the order object, refer to the [Get order endpoint](get-order) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -131,8 +129,7 @@ public class ListOrdersResponse implements Response {
     }
 
     /**
-     * A list of order objects. For a complete reference of the order object, refer to the
-     * [Get order endpoint](get-order) documentation.
+     * A list of order objects. For a complete reference of the order object, refer to the [Get order endpoint](get-order) documentation.
      */
     public ListOrdersResponse withObject(ListOrdersResponseBody object) {
         Utils.checkNotNull(object, "object");
@@ -141,8 +138,7 @@ public class ListOrdersResponse implements Response {
     }
 
     /**
-     * A list of order objects. For a complete reference of the order object, refer to the
-     * [Get order endpoint](get-order) documentation.
+     * A list of order objects. For a complete reference of the order object, refer to the [Get order endpoint](get-order) documentation.
      */
     public ListOrdersResponse withObject(Optional<? extends ListOrdersResponseBody> object) {
         Utils.checkNotNull(object, "object");
@@ -226,8 +222,7 @@ public class ListOrdersResponse implements Response {
         }
 
         /**
-         * A list of order objects. For a complete reference of the order object, refer to the
-         * [Get order endpoint](get-order) documentation.
+         * A list of order objects. For a complete reference of the order object, refer to the [Get order endpoint](get-order) documentation.
          */
         public Builder object(ListOrdersResponseBody object) {
             Utils.checkNotNull(object, "object");
@@ -236,8 +231,7 @@ public class ListOrdersResponse implements Response {
         }
 
         /**
-         * A list of order objects. For a complete reference of the order object, refer to the
-         * [Get order endpoint](get-order) documentation.
+         * A list of order objects. For a complete reference of the order object, refer to the [Get order endpoint](get-order) documentation.
          */
         public Builder object(Optional<? extends ListOrdersResponseBody> object) {
             Utils.checkNotNull(object, "object");

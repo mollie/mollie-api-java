@@ -23,8 +23,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class ListAllRefundsRequest {
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     * result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
     private Optional<String> from;
@@ -36,8 +35,7 @@ public class ListAllRefundsRequest {
     private JsonNullable<Long> limit;
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
-     * parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
      * 
      * * `payment`: Embed the payment related to this refund.
      */
@@ -49,16 +47,13 @@ public class ListAllRefundsRequest {
      * 
      * Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
      * 
-     * To retrieve all refunds across the organization, use an organization-level API credential and omit the
-     * `profileId` parameter.
+     * To retrieve all refunds across the organization, use an organization-level API credential and omit the `profileId` parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=profileId")
     private Optional<String> profileId;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -89,8 +84,7 @@ public class ListAllRefundsRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     * result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      */
     @JsonIgnore
     public Optional<String> from() {
@@ -106,8 +100,7 @@ public class ListAllRefundsRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
-     * parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
      * 
      * * `payment`: Embed the payment related to this refund.
      */
@@ -121,8 +114,7 @@ public class ListAllRefundsRequest {
      * 
      * Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
      * 
-     * To retrieve all refunds across the organization, use an organization-level API credential and omit the
-     * `profileId` parameter.
+     * To retrieve all refunds across the organization, use an organization-level API credential and omit the `profileId` parameter.
      */
     @JsonIgnore
     public Optional<String> profileId() {
@@ -130,9 +122,7 @@ public class ListAllRefundsRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -146,8 +136,7 @@ public class ListAllRefundsRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     * result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      */
     public ListAllRefundsRequest withFrom(String from) {
         Utils.checkNotNull(from, "from");
@@ -156,8 +145,7 @@ public class ListAllRefundsRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     * result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      */
     public ListAllRefundsRequest withFrom(Optional<String> from) {
         Utils.checkNotNull(from, "from");
@@ -184,8 +172,7 @@ public class ListAllRefundsRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
-     * parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
      * 
      * * `payment`: Embed the payment related to this refund.
      */
@@ -196,8 +183,7 @@ public class ListAllRefundsRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
-     * parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
      * 
      * * `payment`: Embed the payment related to this refund.
      */
@@ -212,8 +198,7 @@ public class ListAllRefundsRequest {
      * 
      * Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
      * 
-     * To retrieve all refunds across the organization, use an organization-level API credential and omit the
-     * `profileId` parameter.
+     * To retrieve all refunds across the organization, use an organization-level API credential and omit the `profileId` parameter.
      */
     public ListAllRefundsRequest withProfileId(String profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -226,8 +211,7 @@ public class ListAllRefundsRequest {
      * 
      * Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
      * 
-     * To retrieve all refunds across the organization, use an organization-level API credential and omit the
-     * `profileId` parameter.
+     * To retrieve all refunds across the organization, use an organization-level API credential and omit the `profileId` parameter.
      */
     public ListAllRefundsRequest withProfileId(Optional<String> profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -236,9 +220,7 @@ public class ListAllRefundsRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -249,9 +231,7 @@ public class ListAllRefundsRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -315,8 +295,7 @@ public class ListAllRefundsRequest {
         }
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-         * result set.
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
          */
         public Builder from(String from) {
             Utils.checkNotNull(from, "from");
@@ -325,8 +304,7 @@ public class ListAllRefundsRequest {
         }
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-         * result set.
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
          */
         public Builder from(Optional<String> from) {
             Utils.checkNotNull(from, "from");
@@ -353,8 +331,7 @@ public class ListAllRefundsRequest {
         }
 
         /**
-         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
-         * parameter.
+         * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
          * 
          * * `payment`: Embed the payment related to this refund.
          */
@@ -365,8 +342,7 @@ public class ListAllRefundsRequest {
         }
 
         /**
-         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
-         * parameter.
+         * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
          * 
          * * `payment`: Embed the payment related to this refund.
          */
@@ -381,8 +357,7 @@ public class ListAllRefundsRequest {
          * 
          * Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
          * 
-         * To retrieve all refunds across the organization, use an organization-level API credential and omit the
-         * `profileId` parameter.
+         * To retrieve all refunds across the organization, use an organization-level API credential and omit the `profileId` parameter.
          */
         public Builder profileId(String profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -395,8 +370,7 @@ public class ListAllRefundsRequest {
          * 
          * Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
          * 
-         * To retrieve all refunds across the organization, use an organization-level API credential and omit the
-         * `profileId` parameter.
+         * To retrieve all refunds across the organization, use an organization-level API credential and omit the `profileId` parameter.
          */
         public Builder profileId(Optional<String> profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -405,9 +379,7 @@ public class ListAllRefundsRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-         * setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
          * 
          * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -418,9 +390,7 @@ public class ListAllRefundsRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-         * setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
          * 
          * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */

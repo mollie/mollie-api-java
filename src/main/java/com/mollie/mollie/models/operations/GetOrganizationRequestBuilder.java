@@ -46,7 +46,7 @@ public class GetOrganizationRequestBuilder {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.get(
+        return sdk.getOrganization(
             id,
             testmode);
     }

@@ -10,19 +10,12 @@ import java.util.Optional;
 
 public class UpdateOrderRequestBuilder {
 
-    private UpdateOrderSecurity security;
     private String id;
     private Optional<? extends UpdateOrderRequestBody> requestBody = Optional.empty();
     private final SDKMethodInterfaces.MethodCallUpdateOrder sdk;
 
     public UpdateOrderRequestBuilder(SDKMethodInterfaces.MethodCallUpdateOrder sdk) {
         this.sdk = sdk;
-    }
-
-    public UpdateOrderRequestBuilder security(UpdateOrderSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public UpdateOrderRequestBuilder id(String id) {
@@ -45,8 +38,7 @@ public class UpdateOrderRequestBuilder {
 
     public UpdateOrderResponse call() throws Exception {
 
-        return sdk.update(
-            security,
+        return sdk.updateOrder(
             id,
             requestBody);
     }

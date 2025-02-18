@@ -48,8 +48,7 @@ public class GetClientResponseBody {
     private JsonNullable<? extends Commission> commission;
 
     /**
-     * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format.
+     * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("organizationCreatedAt")
@@ -118,8 +117,7 @@ public class GetClientResponseBody {
     }
 
     /**
-     * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format.
+     * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
     @JsonIgnore
     public Optional<String> organizationCreatedAt() {
@@ -200,8 +198,7 @@ public class GetClientResponseBody {
     }
 
     /**
-     * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format.
+     * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
     public GetClientResponseBody withOrganizationCreatedAt(String organizationCreatedAt) {
         Utils.checkNotNull(organizationCreatedAt, "organizationCreatedAt");
@@ -210,8 +207,7 @@ public class GetClientResponseBody {
     }
 
     /**
-     * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format.
+     * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
     public GetClientResponseBody withOrganizationCreatedAt(Optional<String> organizationCreatedAt) {
         Utils.checkNotNull(organizationCreatedAt, "organizationCreatedAt");
@@ -362,8 +358,7 @@ public class GetClientResponseBody {
         }
 
         /**
-         * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-         * format.
+         * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
          */
         public Builder organizationCreatedAt(String organizationCreatedAt) {
             Utils.checkNotNull(organizationCreatedAt, "organizationCreatedAt");
@@ -372,8 +367,7 @@ public class GetClientResponseBody {
         }
 
         /**
-         * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-         * format.
+         * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
          */
         public Builder organizationCreatedAt(Optional<String> organizationCreatedAt) {
             Utils.checkNotNull(organizationCreatedAt, "organizationCreatedAt");

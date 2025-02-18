@@ -32,24 +32,21 @@ public class GetCustomerLinks {
     private Optional<? extends GetCustomerSelf> self;
 
     /**
-     * The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments
-     * exist (yet).
+     * The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments exist (yet).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payments")
     private JsonNullable<? extends GetCustomerPayments> payments;
 
     /**
-     * The API resource URL of the [mandates](list-mandates) linked to this customer. Omitted if no such mandates
-     * exist (yet).
+     * The API resource URL of the [mandates](list-mandates) linked to this customer. Omitted if no such mandates exist (yet).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mandates")
     private JsonNullable<? extends Mandates> mandates;
 
     /**
-     * The API resource URL of the [subscriptions](list-subscriptions) linked to this customer. Omitted if no such
-     * subscriptions exist (yet).
+     * The API resource URL of the [subscriptions](list-subscriptions) linked to this customer. Omitted if no such subscriptions exist (yet).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subscriptions")
@@ -95,8 +92,7 @@ public class GetCustomerLinks {
     }
 
     /**
-     * The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments
-     * exist (yet).
+     * The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments exist (yet).
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -105,8 +101,7 @@ public class GetCustomerLinks {
     }
 
     /**
-     * The API resource URL of the [mandates](list-mandates) linked to this customer. Omitted if no such mandates
-     * exist (yet).
+     * The API resource URL of the [mandates](list-mandates) linked to this customer. Omitted if no such mandates exist (yet).
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -115,8 +110,7 @@ public class GetCustomerLinks {
     }
 
     /**
-     * The API resource URL of the [subscriptions](list-subscriptions) linked to this customer. Omitted if no such
-     * subscriptions exist (yet).
+     * The API resource URL of the [subscriptions](list-subscriptions) linked to this customer. Omitted if no such subscriptions exist (yet).
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -156,8 +150,7 @@ public class GetCustomerLinks {
     }
 
     /**
-     * The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments
-     * exist (yet).
+     * The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments exist (yet).
      */
     public GetCustomerLinks withPayments(GetCustomerPayments payments) {
         Utils.checkNotNull(payments, "payments");
@@ -166,8 +159,7 @@ public class GetCustomerLinks {
     }
 
     /**
-     * The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments
-     * exist (yet).
+     * The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments exist (yet).
      */
     public GetCustomerLinks withPayments(JsonNullable<? extends GetCustomerPayments> payments) {
         Utils.checkNotNull(payments, "payments");
@@ -176,8 +168,7 @@ public class GetCustomerLinks {
     }
 
     /**
-     * The API resource URL of the [mandates](list-mandates) linked to this customer. Omitted if no such mandates
-     * exist (yet).
+     * The API resource URL of the [mandates](list-mandates) linked to this customer. Omitted if no such mandates exist (yet).
      */
     public GetCustomerLinks withMandates(Mandates mandates) {
         Utils.checkNotNull(mandates, "mandates");
@@ -186,8 +177,7 @@ public class GetCustomerLinks {
     }
 
     /**
-     * The API resource URL of the [mandates](list-mandates) linked to this customer. Omitted if no such mandates
-     * exist (yet).
+     * The API resource URL of the [mandates](list-mandates) linked to this customer. Omitted if no such mandates exist (yet).
      */
     public GetCustomerLinks withMandates(JsonNullable<? extends Mandates> mandates) {
         Utils.checkNotNull(mandates, "mandates");
@@ -196,8 +186,7 @@ public class GetCustomerLinks {
     }
 
     /**
-     * The API resource URL of the [subscriptions](list-subscriptions) linked to this customer. Omitted if no such
-     * subscriptions exist (yet).
+     * The API resource URL of the [subscriptions](list-subscriptions) linked to this customer. Omitted if no such subscriptions exist (yet).
      */
     public GetCustomerLinks withSubscriptions(Subscriptions subscriptions) {
         Utils.checkNotNull(subscriptions, "subscriptions");
@@ -206,8 +195,7 @@ public class GetCustomerLinks {
     }
 
     /**
-     * The API resource URL of the [subscriptions](list-subscriptions) linked to this customer. Omitted if no such
-     * subscriptions exist (yet).
+     * The API resource URL of the [subscriptions](list-subscriptions) linked to this customer. Omitted if no such subscriptions exist (yet).
      */
     public GetCustomerLinks withSubscriptions(JsonNullable<? extends Subscriptions> subscriptions) {
         Utils.checkNotNull(subscriptions, "subscriptions");
@@ -305,8 +293,7 @@ public class GetCustomerLinks {
         }
 
         /**
-         * The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments
-         * exist (yet).
+         * The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments exist (yet).
          */
         public Builder payments(GetCustomerPayments payments) {
             Utils.checkNotNull(payments, "payments");
@@ -315,8 +302,7 @@ public class GetCustomerLinks {
         }
 
         /**
-         * The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments
-         * exist (yet).
+         * The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments exist (yet).
          */
         public Builder payments(JsonNullable<? extends GetCustomerPayments> payments) {
             Utils.checkNotNull(payments, "payments");
@@ -325,8 +311,7 @@ public class GetCustomerLinks {
         }
 
         /**
-         * The API resource URL of the [mandates](list-mandates) linked to this customer. Omitted if no such mandates
-         * exist (yet).
+         * The API resource URL of the [mandates](list-mandates) linked to this customer. Omitted if no such mandates exist (yet).
          */
         public Builder mandates(Mandates mandates) {
             Utils.checkNotNull(mandates, "mandates");
@@ -335,8 +320,7 @@ public class GetCustomerLinks {
         }
 
         /**
-         * The API resource URL of the [mandates](list-mandates) linked to this customer. Omitted if no such mandates
-         * exist (yet).
+         * The API resource URL of the [mandates](list-mandates) linked to this customer. Omitted if no such mandates exist (yet).
          */
         public Builder mandates(JsonNullable<? extends Mandates> mandates) {
             Utils.checkNotNull(mandates, "mandates");
@@ -345,8 +329,7 @@ public class GetCustomerLinks {
         }
 
         /**
-         * The API resource URL of the [subscriptions](list-subscriptions) linked to this customer. Omitted if no such
-         * subscriptions exist (yet).
+         * The API resource URL of the [subscriptions](list-subscriptions) linked to this customer. Omitted if no such subscriptions exist (yet).
          */
         public Builder subscriptions(Subscriptions subscriptions) {
             Utils.checkNotNull(subscriptions, "subscriptions");
@@ -355,8 +338,7 @@ public class GetCustomerLinks {
         }
 
         /**
-         * The API resource URL of the [subscriptions](list-subscriptions) linked to this customer. Omitted if no such
-         * subscriptions exist (yet).
+         * The API resource URL of the [subscriptions](list-subscriptions) linked to this customer. Omitted if no such subscriptions exist (yet).
          */
         public Builder subscriptions(JsonNullable<? extends Subscriptions> subscriptions) {
             Utils.checkNotNull(subscriptions, "subscriptions");

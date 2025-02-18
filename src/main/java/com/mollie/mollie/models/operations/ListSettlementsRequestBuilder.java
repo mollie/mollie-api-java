@@ -66,7 +66,7 @@ public class ListSettlementsRequestBuilder {
         if (limit == null) {
             limit = _SINGLETON_VALUE_Limit.value();
         }
-        return sdk.list(
+        return sdk.listSettlements(
             from,
             limit,
             balanceId);

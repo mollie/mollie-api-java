@@ -15,6 +15,6 @@ public class GetOpenSettlementRequestBuilder {
 
     public GetOpenSettlementResponse call() throws Exception {
 
-        return sdk.getOpenDirect();
+        return sdk.getOpenSettlementDirect();
     }
 }

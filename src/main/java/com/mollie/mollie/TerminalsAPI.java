@@ -10,12 +10,10 @@ import com.mollie.mollie.models.operations.GetTerminalRequest;
 import com.mollie.mollie.models.operations.GetTerminalRequestBuilder;
 import com.mollie.mollie.models.operations.GetTerminalResponse;
 import com.mollie.mollie.models.operations.GetTerminalResponseBody;
-import com.mollie.mollie.models.operations.GetTerminalSecurity;
 import com.mollie.mollie.models.operations.ListTerminalsRequest;
 import com.mollie.mollie.models.operations.ListTerminalsRequestBuilder;
 import com.mollie.mollie.models.operations.ListTerminalsResponse;
 import com.mollie.mollie.models.operations.ListTerminalsResponseBody;
-import com.mollie.mollie.models.operations.ListTerminalsSecurity;
 import com.mollie.mollie.models.operations.SDKMethodInterfaces.*;
 import com.mollie.mollie.utils.HTTPClient;
 import com.mollie.mollie.utils.HTTPRequest;
@@ -50,9 +48,15 @@ public class TerminalsAPI implements
      * Retrieve a list of all physical point-of-sale devices.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **terminals.read**](/reference/authentication)
      * @return The call builder
      */
-    public ListTerminalsRequestBuilder list() {
+    public ListTerminalsRequestBuilder listTerminals() {
         return new ListTerminalsRequestBuilder(this);
     }
 
@@ -61,13 +65,17 @@ public class TerminalsAPI implements
      * Retrieve a list of all physical point-of-sale devices.
      * 
      * The results are paginated.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **terminals.read**](/reference/authentication)
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListTerminalsResponse list(
-            ListTerminalsSecurity security) throws Exception {
-        return list(security, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+    public ListTerminalsResponse listTerminalsDirect() throws Exception {
+        return listTerminals(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
     }
     
     /**
@@ -75,20 +83,21 @@ public class TerminalsAPI implements
      * Retrieve a list of all physical point-of-sale devices.
      * 
      * The results are paginated.
-     * @param security The security details to use for authentication.
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-    result set.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **terminals.read**](/reference/authentication)
+     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListTerminalsResponse list(
-            ListTerminalsSecurity security,
+    public ListTerminalsResponse listTerminals(
             Optional<String> from,
             JsonNullable<Long> limit,
             JsonNullable<Boolean> testmode) throws Exception {
@@ -115,11 +124,9 @@ public class TerminalsAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -232,41 +239,53 @@ public class TerminalsAPI implements
     /**
      * Get terminal
      * Retrieve a single terminal by its ID.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **terminals.read**](/reference/authentication)
      * @return The call builder
      */
-    public GetTerminalRequestBuilder get() {
+    public GetTerminalRequestBuilder getTerminal() {
         return new GetTerminalRequestBuilder(this);
     }
 
     /**
      * Get terminal
      * Retrieve a single terminal by its ID.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **terminals.read**](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetTerminalResponse get(
-            GetTerminalSecurity security,
+    public GetTerminalResponse getTerminal(
             String id) throws Exception {
-        return get(security, id, JsonNullable.undefined());
+        return getTerminal(id, JsonNullable.undefined());
     }
     
     /**
      * Get terminal
      * Retrieve a single terminal by its ID.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **terminals.read**](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetTerminalResponse get(
-            GetTerminalSecurity security,
+    public GetTerminalResponse getTerminal(
             String id,
             JsonNullable<Boolean> testmode) throws Exception {
         GetTerminalRequest request =
@@ -293,11 +312,9 @@ public class TerminalsAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()

@@ -22,8 +22,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class ListSettlementsRequest {
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     * result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
     private Optional<String> from;
@@ -35,8 +34,7 @@ public class ListSettlementsRequest {
     private JsonNullable<Long> limit;
 
     /**
-     * Provide the token of the balance to filter the settlements by. This is
-     * the balance token that the settlement was settled to.
+     * Provide the token of the balance to filter the settlements by. This is the balance token that the settlement was settled to.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=balanceId")
     private JsonNullable<String> balanceId;
@@ -59,8 +57,7 @@ public class ListSettlementsRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     * result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      */
     @JsonIgnore
     public Optional<String> from() {
@@ -76,8 +73,7 @@ public class ListSettlementsRequest {
     }
 
     /**
-     * Provide the token of the balance to filter the settlements by. This is
-     * the balance token that the settlement was settled to.
+     * Provide the token of the balance to filter the settlements by. This is the balance token that the settlement was settled to.
      */
     @JsonIgnore
     public JsonNullable<String> balanceId() {
@@ -89,8 +85,7 @@ public class ListSettlementsRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     * result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      */
     public ListSettlementsRequest withFrom(String from) {
         Utils.checkNotNull(from, "from");
@@ -99,8 +94,7 @@ public class ListSettlementsRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     * result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      */
     public ListSettlementsRequest withFrom(Optional<String> from) {
         Utils.checkNotNull(from, "from");
@@ -127,8 +121,7 @@ public class ListSettlementsRequest {
     }
 
     /**
-     * Provide the token of the balance to filter the settlements by. This is
-     * the balance token that the settlement was settled to.
+     * Provide the token of the balance to filter the settlements by. This is the balance token that the settlement was settled to.
      */
     public ListSettlementsRequest withBalanceId(String balanceId) {
         Utils.checkNotNull(balanceId, "balanceId");
@@ -137,8 +130,7 @@ public class ListSettlementsRequest {
     }
 
     /**
-     * Provide the token of the balance to filter the settlements by. This is
-     * the balance token that the settlement was settled to.
+     * Provide the token of the balance to filter the settlements by. This is the balance token that the settlement was settled to.
      */
     public ListSettlementsRequest withBalanceId(JsonNullable<String> balanceId) {
         Utils.checkNotNull(balanceId, "balanceId");
@@ -190,8 +182,7 @@ public class ListSettlementsRequest {
         }
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-         * result set.
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
          */
         public Builder from(String from) {
             Utils.checkNotNull(from, "from");
@@ -200,8 +191,7 @@ public class ListSettlementsRequest {
         }
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-         * result set.
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
          */
         public Builder from(Optional<String> from) {
             Utils.checkNotNull(from, "from");
@@ -228,8 +218,7 @@ public class ListSettlementsRequest {
         }
 
         /**
-         * Provide the token of the balance to filter the settlements by. This is
-         * the balance token that the settlement was settled to.
+         * Provide the token of the balance to filter the settlements by. This is the balance token that the settlement was settled to.
          */
         public Builder balanceId(String balanceId) {
             Utils.checkNotNull(balanceId, "balanceId");
@@ -238,8 +227,7 @@ public class ListSettlementsRequest {
         }
 
         /**
-         * Provide the token of the balance to filter the settlements by. This is
-         * the balance token that the settlement was settled to.
+         * Provide the token of the balance to filter the settlements by. This is the balance token that the settlement was settled to.
          */
         public Builder balanceId(JsonNullable<String> balanceId) {
             Utils.checkNotNull(balanceId, "balanceId");

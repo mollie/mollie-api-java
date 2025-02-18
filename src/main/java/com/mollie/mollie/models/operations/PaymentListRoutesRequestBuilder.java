@@ -9,18 +9,11 @@ import java.lang.String;
 
 public class PaymentListRoutesRequestBuilder {
 
-    private PaymentListRoutesSecurity security;
     private String paymentId;
     private final SDKMethodInterfaces.MethodCallPaymentListRoutes sdk;
 
     public PaymentListRoutesRequestBuilder(SDKMethodInterfaces.MethodCallPaymentListRoutes sdk) {
         this.sdk = sdk;
-    }
-
-    public PaymentListRoutesRequestBuilder security(PaymentListRoutesSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public PaymentListRoutesRequestBuilder paymentId(String paymentId) {
@@ -31,8 +24,7 @@ public class PaymentListRoutesRequestBuilder {
 
     public PaymentListRoutesResponse call() throws Exception {
 
-        return sdk.list(
-            security,
+        return sdk.paymentListRoutes(
             paymentId);
     }
 }

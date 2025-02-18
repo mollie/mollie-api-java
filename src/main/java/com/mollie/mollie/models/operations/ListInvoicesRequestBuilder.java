@@ -79,7 +79,7 @@ public class ListInvoicesRequestBuilder {
         if (limit == null) {
             limit = _SINGLETON_VALUE_Limit.value();
         }
-        return sdk.list(
+        return sdk.listInvoices(
             reference,
             year,
             from,

@@ -11,19 +11,12 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreatePaymentRequestBuilder {
 
-    private CreatePaymentSecurity security;
     private JsonNullable<String> include = JsonNullable.undefined();
     private Optional<? extends CreatePaymentRequestBody> requestBody = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCreatePayment sdk;
 
     public CreatePaymentRequestBuilder(SDKMethodInterfaces.MethodCallCreatePayment sdk) {
         this.sdk = sdk;
-    }
-
-    public CreatePaymentRequestBuilder security(CreatePaymentSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public CreatePaymentRequestBuilder include(String include) {
@@ -52,8 +45,7 @@ public class CreatePaymentRequestBuilder {
 
     public CreatePaymentResponse call() throws Exception {
 
-        return sdk.create(
-            security,
+        return sdk.createPayment(
             include,
             requestBody);
     }

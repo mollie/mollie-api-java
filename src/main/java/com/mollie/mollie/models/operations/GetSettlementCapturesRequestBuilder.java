@@ -24,7 +24,7 @@ public class GetSettlementCapturesRequestBuilder {
 
     public GetSettlementCapturesResponse call() throws Exception {
 
-        return sdk.getCaptures(
+        return sdk.getSettlementCaptures(
             settlementId);
     }
 }

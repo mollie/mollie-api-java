@@ -15,16 +15,12 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListPaymentsRequestBuilder {
 
-    private ListPaymentsSecurity security;
     private Optional<String> from = Optional.empty();
     private JsonNullable<Long> limit = Utils.readDefaultOrConstValue(
                             "limit",
                             "50",
                             new TypeReference<JsonNullable<Long>>() {});
-    private JsonNullable<? extends QueryParamSort> sort = Utils.readDefaultOrConstValue(
-                            "sort",
-                            "\"desc\"",
-                            new TypeReference<JsonNullable<? extends QueryParamSort>>() {});
+    private JsonNullable<String> sort = JsonNullable.undefined();
     private JsonNullable<Boolean> testmode = Utils.readDefaultOrConstValue(
                             "testmode",
                             "false",
@@ -33,12 +29,6 @@ public class ListPaymentsRequestBuilder {
 
     public ListPaymentsRequestBuilder(SDKMethodInterfaces.MethodCallListPayments sdk) {
         this.sdk = sdk;
-    }
-
-    public ListPaymentsRequestBuilder security(ListPaymentsSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
                 
     public ListPaymentsRequestBuilder from(String from) {
@@ -65,13 +55,13 @@ public class ListPaymentsRequestBuilder {
         return this;
     }
 
-    public ListPaymentsRequestBuilder sort(QueryParamSort sort) {
+    public ListPaymentsRequestBuilder sort(String sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = JsonNullable.of(sort);
         return this;
     }
 
-    public ListPaymentsRequestBuilder sort(JsonNullable<? extends QueryParamSort> sort) {
+    public ListPaymentsRequestBuilder sort(JsonNullable<String> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;
@@ -93,14 +83,10 @@ public class ListPaymentsRequestBuilder {
         if (limit == null) {
             limit = _SINGLETON_VALUE_Limit.value();
         }
-        if (sort == null) {
-            sort = _SINGLETON_VALUE_Sort.value();
-        }
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.list(
-            security,
+        return sdk.listPayments(
             from,
             limit,
             sort,
@@ -112,12 +98,6 @@ public class ListPaymentsRequestBuilder {
                     "limit",
                     "50",
                     new TypeReference<JsonNullable<Long>>() {});
-
-    private static final LazySingletonValue<JsonNullable<? extends QueryParamSort>> _SINGLETON_VALUE_Sort =
-            new LazySingletonValue<>(
-                    "sort",
-                    "\"desc\"",
-                    new TypeReference<JsonNullable<? extends QueryParamSort>>() {});
 
     private static final LazySingletonValue<JsonNullable<Boolean>> _SINGLETON_VALUE_Testmode =
             new LazySingletonValue<>(

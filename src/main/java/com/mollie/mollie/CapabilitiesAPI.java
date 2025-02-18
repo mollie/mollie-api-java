@@ -46,12 +46,14 @@ public class CapabilitiesAPI implements
      * 
      * Capabilities are at the organization level, indicating if the organization can perform a given capability.
      * 
-     * For payments, regardless them being at the profile level, the capability is listed at the organization level.
-     * This means that if at least one of the clients's profiles can receive payments,
-     * the payments capability is enabled, communicating that the organization can indeed receive payments.
+     * For payments, regardless them being at the profile level, the capability is listed at the organization level. This means that if at least one of the clients's profiles can receive payments, the payments capability is enabled, communicating that the organization can indeed receive payments.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **onboarding.read**](/reference/authentication)
      * @return The call builder
      */
-    public ListCapabilitiesRequestBuilder list() {
+    public ListCapabilitiesRequestBuilder listCapabilities() {
         return new ListCapabilitiesRequestBuilder(this);
     }
 
@@ -67,13 +69,15 @@ public class CapabilitiesAPI implements
      * 
      * Capabilities are at the organization level, indicating if the organization can perform a given capability.
      * 
-     * For payments, regardless them being at the profile level, the capability is listed at the organization level.
-     * This means that if at least one of the clients's profiles can receive payments,
-     * the payments capability is enabled, communicating that the organization can indeed receive payments.
+     * For payments, regardless them being at the profile level, the capability is listed at the organization level. This means that if at least one of the clients's profiles can receive payments, the payments capability is enabled, communicating that the organization can indeed receive payments.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **onboarding.read**](/reference/authentication)
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListCapabilitiesResponse listDirect() throws Exception {
+    public ListCapabilitiesResponse listCapabilitiesDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,

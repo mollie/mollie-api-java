@@ -17,8 +17,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * Settlement - The API resource URL of the [settlement](get-settlement) this payment has been settled with.
- * Not present if not yet settled.
+ * Settlement - The API resource URL of the [settlement](get-settlement) this payment has been settled with. Not present if not yet settled.
  */
 
 public class Settlement {

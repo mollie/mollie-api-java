@@ -2,11 +2,9 @@
 
 The amount that you want to ship. In almost all cases, Mollie can determine the amount automatically.
 
-The amount is required only if you are *partially* fulfilling an order line which has a non-zero
-`discountAmount`.
+The amount is required only if you are *partially* fulfilling an order line which has a non-zero `discountAmount`.
 
-If you do not send an amount, Mollie will determine the amount automatically or respond with an
-error if the amount cannot be determined automatically.
+If you do not send an amount, Mollie will determine the amount automatically or respond with an error if the amount cannot be determined automatically.
 
 
 ## Fields

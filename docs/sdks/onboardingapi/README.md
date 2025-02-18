@@ -5,12 +5,16 @@
 
 ### Available Operations
 
-* [get](#get) - Get onboarding status
-* [create](#create) - Submit onboarding data
+* [getOnboardingStatus](#getonboardingstatus) - Get onboarding status
+* [submitOnboardingData](#submitonboardingdata) - Submit onboarding data
 
-## get
+## getOnboardingStatus
 
 Retrieve the onboarding status of the currently authenticated organization.
+
+> 🔑 Access with
+>
+> [Access token with **onboarding.read**](/reference/authentication)
 
 ### Example Usage
 
@@ -18,6 +22,7 @@ Retrieve the onboarding status of the currently authenticated organization.
 package hello.world;
 
 import com.mollie.mollie.Mollie;
+import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.operations.GetOnboardingStatusResponse;
 import java.lang.Exception;
 
@@ -26,10 +31,12 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Mollie sdk = Mollie.builder()
-                .oAuth("<YOUR_O_AUTH_HERE>")
+                .security(Security.builder()
+                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
             .build();
 
-        GetOnboardingStatusResponse res = sdk.onboardingAPI().get()
+        GetOnboardingStatusResponse res = sdk.onboardingAPI().getOnboardingStatus()
                 .call();
 
         if (res.object().isPresent()) {
@@ -49,15 +56,17 @@ public class Application {
 | -------------------------- | -------------------------- | -------------------------- |
 | models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
 
-## create
+## submitOnboardingData
 
-**⚠️ We no longer recommend implementing this endpoint. Please refer to the Client Links API instead to kick off the
-onboarding process for your merchants.**
+**⚠️ We no longer recommend implementing this endpoint. Please refer to the Client Links API instead to kick off the onboarding process for your merchants.**
 
-Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the
-onboarding status is `needs-data`. Information that the merchant has entered in their dashboard will not be
+Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the onboarding status is `needs-data`. Information that the merchant has entered in their dashboard will not be
 
 overwritten.
+
+> 🔑 Access with
+>
+> [Access token with **onboarding.write**](/reference/authentication)
 
 ### Example Usage
 
@@ -65,6 +74,7 @@ overwritten.
 package hello.world;
 
 import com.mollie.mollie.Mollie;
+import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.operations.SubmitOnboardingDataRequestBody;
 import com.mollie.mollie.models.operations.SubmitOnboardingDataResponse;
 import java.lang.Exception;
@@ -74,13 +84,15 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Mollie sdk = Mollie.builder()
-                .oAuth("<YOUR_O_AUTH_HERE>")
+                .security(Security.builder()
+                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
             .build();
 
         SubmitOnboardingDataRequestBody req = SubmitOnboardingDataRequestBody.builder()
                 .build();
 
-        SubmitOnboardingDataResponse res = sdk.onboardingAPI().create()
+        SubmitOnboardingDataResponse res = sdk.onboardingAPI().submitOnboardingData()
                 .request(req)
                 .call();
 

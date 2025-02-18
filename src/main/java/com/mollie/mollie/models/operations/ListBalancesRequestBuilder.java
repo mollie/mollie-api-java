@@ -86,7 +86,7 @@ public class ListBalancesRequestBuilder {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.list(
+        return sdk.listBalances(
             currency,
             from,
             limit,

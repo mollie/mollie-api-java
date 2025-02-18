@@ -22,8 +22,7 @@ import java.util.Optional;
 public class ListAllSubscriptionsEmbedded {
 
     /**
-     * A list of subscription objects. For a complete reference of the subscription object, refer to the
-     * [Get subscription endpoint](get-subscription) documentation.
+     * A list of subscription objects. For a complete reference of the subscription object, refer to the [Get subscription endpoint](get-subscription) documentation.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subscriptions")
@@ -41,8 +40,7 @@ public class ListAllSubscriptionsEmbedded {
     }
 
     /**
-     * A list of subscription objects. For a complete reference of the subscription object, refer to the
-     * [Get subscription endpoint](get-subscription) documentation.
+     * A list of subscription objects. For a complete reference of the subscription object, refer to the [Get subscription endpoint](get-subscription) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -55,8 +53,7 @@ public class ListAllSubscriptionsEmbedded {
     }
 
     /**
-     * A list of subscription objects. For a complete reference of the subscription object, refer to the
-     * [Get subscription endpoint](get-subscription) documentation.
+     * A list of subscription objects. For a complete reference of the subscription object, refer to the [Get subscription endpoint](get-subscription) documentation.
      */
     public ListAllSubscriptionsEmbedded withSubscriptions(List<ListAllSubscriptionsSubscriptions> subscriptions) {
         Utils.checkNotNull(subscriptions, "subscriptions");
@@ -65,8 +62,7 @@ public class ListAllSubscriptionsEmbedded {
     }
 
     /**
-     * A list of subscription objects. For a complete reference of the subscription object, refer to the
-     * [Get subscription endpoint](get-subscription) documentation.
+     * A list of subscription objects. For a complete reference of the subscription object, refer to the [Get subscription endpoint](get-subscription) documentation.
      */
     public ListAllSubscriptionsEmbedded withSubscriptions(Optional<? extends List<ListAllSubscriptionsSubscriptions>> subscriptions) {
         Utils.checkNotNull(subscriptions, "subscriptions");
@@ -108,8 +104,7 @@ public class ListAllSubscriptionsEmbedded {
         }
 
         /**
-         * A list of subscription objects. For a complete reference of the subscription object, refer to the
-         * [Get subscription endpoint](get-subscription) documentation.
+         * A list of subscription objects. For a complete reference of the subscription object, refer to the [Get subscription endpoint](get-subscription) documentation.
          */
         public Builder subscriptions(List<ListAllSubscriptionsSubscriptions> subscriptions) {
             Utils.checkNotNull(subscriptions, "subscriptions");
@@ -118,8 +113,7 @@ public class ListAllSubscriptionsEmbedded {
         }
 
         /**
-         * A list of subscription objects. For a complete reference of the subscription object, refer to the
-         * [Get subscription endpoint](get-subscription) documentation.
+         * A list of subscription objects. For a complete reference of the subscription object, refer to the [Get subscription endpoint](get-subscription) documentation.
          */
         public Builder subscriptions(Optional<? extends List<ListAllSubscriptionsSubscriptions>> subscriptions) {
             Utils.checkNotNull(subscriptions, "subscriptions");

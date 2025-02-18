@@ -9,7 +9,6 @@ import com.mollie.mollie.utils.Utils;
 public class GetPaymentLinkPaymentsRequestBuilder {
 
     private GetPaymentLinkPaymentsRequest request;
-    private GetPaymentLinkPaymentsSecurity security;
     private final SDKMethodInterfaces.MethodCallGetPaymentLinkPayments sdk;
 
     public GetPaymentLinkPaymentsRequestBuilder(SDKMethodInterfaces.MethodCallGetPaymentLinkPayments sdk) {
@@ -22,16 +21,9 @@ public class GetPaymentLinkPaymentsRequestBuilder {
         return this;
     }
 
-    public GetPaymentLinkPaymentsRequestBuilder security(GetPaymentLinkPaymentsSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
-    }
-
     public GetPaymentLinkPaymentsResponse call() throws Exception {
 
-        return sdk.getPayments(
-            request,
-            security);
+        return sdk.getPaymentLinkPayments(
+            request);
     }
 }

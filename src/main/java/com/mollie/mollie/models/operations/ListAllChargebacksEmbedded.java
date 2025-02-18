@@ -22,8 +22,7 @@ import java.util.Optional;
 public class ListAllChargebacksEmbedded {
 
     /**
-     * A list of chargeback objects. For a complete reference of
-     * the chargeback object, refer to the [Get chargeback endpoint](get-chargeback) documentation.
+     * A list of chargeback objects. For a complete reference of the chargeback object, refer to the [Get chargeback endpoint](get-chargeback) documentation.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("chargebacks")
@@ -41,8 +40,7 @@ public class ListAllChargebacksEmbedded {
     }
 
     /**
-     * A list of chargeback objects. For a complete reference of
-     * the chargeback object, refer to the [Get chargeback endpoint](get-chargeback) documentation.
+     * A list of chargeback objects. For a complete reference of the chargeback object, refer to the [Get chargeback endpoint](get-chargeback) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -55,8 +53,7 @@ public class ListAllChargebacksEmbedded {
     }
 
     /**
-     * A list of chargeback objects. For a complete reference of
-     * the chargeback object, refer to the [Get chargeback endpoint](get-chargeback) documentation.
+     * A list of chargeback objects. For a complete reference of the chargeback object, refer to the [Get chargeback endpoint](get-chargeback) documentation.
      */
     public ListAllChargebacksEmbedded withChargebacks(List<ListAllChargebacksChargebacks> chargebacks) {
         Utils.checkNotNull(chargebacks, "chargebacks");
@@ -65,8 +62,7 @@ public class ListAllChargebacksEmbedded {
     }
 
     /**
-     * A list of chargeback objects. For a complete reference of
-     * the chargeback object, refer to the [Get chargeback endpoint](get-chargeback) documentation.
+     * A list of chargeback objects. For a complete reference of the chargeback object, refer to the [Get chargeback endpoint](get-chargeback) documentation.
      */
     public ListAllChargebacksEmbedded withChargebacks(Optional<? extends List<ListAllChargebacksChargebacks>> chargebacks) {
         Utils.checkNotNull(chargebacks, "chargebacks");
@@ -108,8 +104,7 @@ public class ListAllChargebacksEmbedded {
         }
 
         /**
-         * A list of chargeback objects. For a complete reference of
-         * the chargeback object, refer to the [Get chargeback endpoint](get-chargeback) documentation.
+         * A list of chargeback objects. For a complete reference of the chargeback object, refer to the [Get chargeback endpoint](get-chargeback) documentation.
          */
         public Builder chargebacks(List<ListAllChargebacksChargebacks> chargebacks) {
             Utils.checkNotNull(chargebacks, "chargebacks");
@@ -118,8 +113,7 @@ public class ListAllChargebacksEmbedded {
         }
 
         /**
-         * A list of chargeback objects. For a complete reference of
-         * the chargeback object, refer to the [Get chargeback endpoint](get-chargeback) documentation.
+         * A list of chargeback objects. For a complete reference of the chargeback object, refer to the [Get chargeback endpoint](get-chargeback) documentation.
          */
         public Builder chargebacks(Optional<? extends List<ListAllChargebacksChargebacks>> chargebacks) {
             Utils.checkNotNull(chargebacks, "chargebacks");

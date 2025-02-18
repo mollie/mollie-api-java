@@ -27,8 +27,7 @@ public class GetOrderRequest {
     private String id;
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
-     * parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
      * 
      * * `payments`: Include all payments created for this order.
      * * `refunds`: Include all refunds created for this order.
@@ -38,9 +37,7 @@ public class GetOrderRequest {
     private JsonNullable<String> embed;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -74,8 +71,7 @@ public class GetOrderRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
-     * parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
      * 
      * * `payments`: Include all payments created for this order.
      * * `refunds`: Include all refunds created for this order.
@@ -87,9 +83,7 @@ public class GetOrderRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -112,8 +106,7 @@ public class GetOrderRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
-     * parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
      * 
      * * `payments`: Include all payments created for this order.
      * * `refunds`: Include all refunds created for this order.
@@ -126,8 +119,7 @@ public class GetOrderRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
-     * parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
      * 
      * * `payments`: Include all payments created for this order.
      * * `refunds`: Include all refunds created for this order.
@@ -140,9 +132,7 @@ public class GetOrderRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -153,9 +143,7 @@ public class GetOrderRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -218,8 +206,7 @@ public class GetOrderRequest {
         }
 
         /**
-         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
-         * parameter.
+         * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
          * 
          * * `payments`: Include all payments created for this order.
          * * `refunds`: Include all refunds created for this order.
@@ -232,8 +219,7 @@ public class GetOrderRequest {
         }
 
         /**
-         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
-         * parameter.
+         * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
          * 
          * * `payments`: Include all payments created for this order.
          * * `refunds`: Include all refunds created for this order.
@@ -246,9 +232,7 @@ public class GetOrderRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-         * setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
          * 
          * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -259,9 +243,7 @@ public class GetOrderRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-         * setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
          * 
          * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */

@@ -10,7 +10,6 @@ import java.util.Optional;
 
 public class EnableMethodIssuerRequestBuilder {
 
-    private EnableMethodIssuerSecurity security;
     private String profileId;
     private String methodId;
     private String id;
@@ -19,12 +18,6 @@ public class EnableMethodIssuerRequestBuilder {
 
     public EnableMethodIssuerRequestBuilder(SDKMethodInterfaces.MethodCallEnableMethodIssuer sdk) {
         this.sdk = sdk;
-    }
-
-    public EnableMethodIssuerRequestBuilder security(EnableMethodIssuerSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public EnableMethodIssuerRequestBuilder profileId(String profileId) {
@@ -60,7 +53,6 @@ public class EnableMethodIssuerRequestBuilder {
     public EnableMethodIssuerResponse call() throws Exception {
 
         return sdk.enableMethodIssuer(
-            security,
             profileId,
             methodId,
             id,

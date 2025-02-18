@@ -45,45 +45,52 @@ public class InvoicesAPI implements
 
     /**
      * List invoices
-     * Retrieve a list of all your invoices, optionally filtered by year or by
-     * invoice reference.
+     * Retrieve a list of all your invoices, optionally filtered by year or by invoice reference.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **invoices.read**](/reference/authentication)
      * @return The call builder
      */
-    public ListInvoicesRequestBuilder list() {
+    public ListInvoicesRequestBuilder listInvoices() {
         return new ListInvoicesRequestBuilder(this);
     }
 
     /**
      * List invoices
-     * Retrieve a list of all your invoices, optionally filtered by year or by
-     * invoice reference.
+     * Retrieve a list of all your invoices, optionally filtered by year or by invoice reference.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **invoices.read**](/reference/authentication)
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListInvoicesResponse listDirect() throws Exception {
-        return list(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
+    public ListInvoicesResponse listInvoicesDirect() throws Exception {
+        return listInvoices(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
     }
     
     /**
      * List invoices
-     * Retrieve a list of all your invoices, optionally filtered by year or by
-     * invoice reference.
+     * Retrieve a list of all your invoices, optionally filtered by year or by invoice reference.
      * 
      * The results are paginated.
-     * @param reference Filter for an invoice with a specific invoice reference, for example
-    `2024.10000`.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **invoices.read**](/reference/authentication)
+     * @param reference Filter for an invoice with a specific invoice reference, for example `2024.10000`.
      * @param year Filter for invoices of a specific year, for example `2024`.
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-    result set.
+     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListInvoicesResponse list(
+    public ListInvoicesResponse listInvoices(
             JsonNullable<String> reference,
             JsonNullable<String> year,
             Optional<String> from,
@@ -244,11 +251,14 @@ public class InvoicesAPI implements
      * Get invoice
      * Retrieve a single invoice by its ID.
      * 
-     * If you want to retrieve the details of an invoice by its invoice number,
-     * call the [List invoices](list-invoices) endpoint with the `reference` parameter.
+     * If you want to retrieve the details of an invoice by its invoice number, call the [List invoices](list-invoices) endpoint with the `reference` parameter.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **invoices.read**](/reference/authentication)
      * @return The call builder
      */
-    public GetInvoiceRequestBuilder get() {
+    public GetInvoiceRequestBuilder getInvoice() {
         return new GetInvoiceRequestBuilder(this);
     }
 
@@ -256,13 +266,16 @@ public class InvoicesAPI implements
      * Get invoice
      * Retrieve a single invoice by its ID.
      * 
-     * If you want to retrieve the details of an invoice by its invoice number,
-     * call the [List invoices](list-invoices) endpoint with the `reference` parameter.
+     * If you want to retrieve the details of an invoice by its invoice number, call the [List invoices](list-invoices) endpoint with the `reference` parameter.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **invoices.read**](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetInvoiceResponse get(
+    public GetInvoiceResponse getInvoice(
             String id) throws Exception {
         GetInvoiceRequest request =
             GetInvoiceRequest

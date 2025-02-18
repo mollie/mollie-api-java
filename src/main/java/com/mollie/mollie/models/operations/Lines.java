@@ -10,8 +10,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
@@ -26,10 +24,12 @@ public class Lines {
 
     /**
      * The type of product purchased. For example, a physical or a digital product.
+     * 
+     * Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` (default: `physical`)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<? extends Type> type;
+    private Optional<String> type;
 
     /**
      * A description of the line item. For example *LEGO 4440 Forest Police Station*.
@@ -63,8 +63,7 @@ public class Lines {
     private UnitPrice unitPrice;
 
     /**
-     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
-     * type.
+     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("discountAmount")
@@ -81,21 +80,18 @@ public class Lines {
     private TotalAmount totalAmount;
 
     /**
-     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
-     * not as a float, to ensure the correct number of decimals are passed.
+     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatRate")
     private Optional<String> vatRate;
 
     /**
-     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
-     * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
      * 
      * Any deviations from this will result in an error.
      * 
-     * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
-     * `SEK 100.00 × (25 / 125) = SEK 20.00`.
+     * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatAmount")
@@ -109,16 +105,16 @@ public class Lines {
     private Optional<String> sku;
 
     /**
-     * The voucher category, in case of an order line eligible for a voucher. See the
-     * [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * The voucher category, in case of an order line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * 
+     * Possible values: `meal` `eco` `gift` `sport_culture`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("category")
-    private JsonNullable<? extends Category> category;
+    private JsonNullable<String> category;
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
@@ -140,7 +136,7 @@ public class Lines {
 
     @JsonCreator
     public Lines(
-            @JsonProperty("type") Optional<? extends Type> type,
+            @JsonProperty("type") Optional<String> type,
             @JsonProperty("name") String name,
             @JsonProperty("quantity") long quantity,
             @JsonProperty("quantityUnit") Optional<String> quantityUnit,
@@ -150,7 +146,7 @@ public class Lines {
             @JsonProperty("vatRate") Optional<String> vatRate,
             @JsonProperty("vatAmount") Optional<? extends VatAmount> vatAmount,
             @JsonProperty("sku") Optional<String> sku,
-            @JsonProperty("category") JsonNullable<? extends Category> category,
+            @JsonProperty("category") JsonNullable<String> category,
             @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata,
             @JsonProperty("imageUrl") Optional<String> imageUrl,
             @JsonProperty("productUrl") Optional<String> productUrl) {
@@ -194,11 +190,12 @@ public class Lines {
 
     /**
      * The type of product purchased. For example, a physical or a digital product.
+     * 
+     * Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` (default: `physical`)
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Type> type() {
-        return (Optional<Type>) type;
+    public Optional<String> type() {
+        return type;
     }
 
     /**
@@ -240,8 +237,7 @@ public class Lines {
     }
 
     /**
-     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
-     * type.
+     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -262,8 +258,7 @@ public class Lines {
     }
 
     /**
-     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
-     * not as a float, to ensure the correct number of decimals are passed.
+     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
      */
     @JsonIgnore
     public Optional<String> vatRate() {
@@ -271,13 +266,11 @@ public class Lines {
     }
 
     /**
-     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
-     * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
      * 
      * Any deviations from this will result in an error.
      * 
-     * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
-     * `SEK 100.00 × (25 / 125) = SEK 20.00`.
+     * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -294,18 +287,17 @@ public class Lines {
     }
 
     /**
-     * The voucher category, in case of an order line eligible for a voucher. See the
-     * [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * The voucher category, in case of an order line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * 
+     * Possible values: `meal` `eco` `gift` `sport_culture`
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Category> category() {
-        return (JsonNullable<Category>) category;
+    public JsonNullable<String> category() {
+        return category;
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -335,8 +327,10 @@ public class Lines {
 
     /**
      * The type of product purchased. For example, a physical or a digital product.
+     * 
+     * Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` (default: `physical`)
      */
-    public Lines withType(Type type) {
+    public Lines withType(String type) {
         Utils.checkNotNull(type, "type");
         this.type = Optional.ofNullable(type);
         return this;
@@ -344,8 +338,10 @@ public class Lines {
 
     /**
      * The type of product purchased. For example, a physical or a digital product.
+     * 
+     * Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` (default: `physical`)
      */
-    public Lines withType(Optional<? extends Type> type) {
+    public Lines withType(Optional<String> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -403,8 +399,7 @@ public class Lines {
     }
 
     /**
-     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
-     * type.
+     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
      */
     public Lines withDiscountAmount(DiscountAmount discountAmount) {
         Utils.checkNotNull(discountAmount, "discountAmount");
@@ -413,8 +408,7 @@ public class Lines {
     }
 
     /**
-     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
-     * type.
+     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
      */
     public Lines withDiscountAmount(Optional<? extends DiscountAmount> discountAmount) {
         Utils.checkNotNull(discountAmount, "discountAmount");
@@ -436,8 +430,7 @@ public class Lines {
     }
 
     /**
-     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
-     * not as a float, to ensure the correct number of decimals are passed.
+     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
      */
     public Lines withVatRate(String vatRate) {
         Utils.checkNotNull(vatRate, "vatRate");
@@ -446,8 +439,7 @@ public class Lines {
     }
 
     /**
-     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
-     * not as a float, to ensure the correct number of decimals are passed.
+     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
      */
     public Lines withVatRate(Optional<String> vatRate) {
         Utils.checkNotNull(vatRate, "vatRate");
@@ -456,13 +448,11 @@ public class Lines {
     }
 
     /**
-     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
-     * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
      * 
      * Any deviations from this will result in an error.
      * 
-     * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
-     * `SEK 100.00 × (25 / 125) = SEK 20.00`.
+     * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
      */
     public Lines withVatAmount(VatAmount vatAmount) {
         Utils.checkNotNull(vatAmount, "vatAmount");
@@ -471,13 +461,11 @@ public class Lines {
     }
 
     /**
-     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
-     * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
      * 
      * Any deviations from this will result in an error.
      * 
-     * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
-     * `SEK 100.00 × (25 / 125) = SEK 20.00`.
+     * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
      */
     public Lines withVatAmount(Optional<? extends VatAmount> vatAmount) {
         Utils.checkNotNull(vatAmount, "vatAmount");
@@ -504,28 +492,29 @@ public class Lines {
     }
 
     /**
-     * The voucher category, in case of an order line eligible for a voucher. See the
-     * [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * The voucher category, in case of an order line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * 
+     * Possible values: `meal` `eco` `gift` `sport_culture`
      */
-    public Lines withCategory(Category category) {
+    public Lines withCategory(String category) {
         Utils.checkNotNull(category, "category");
         this.category = JsonNullable.of(category);
         return this;
     }
 
     /**
-     * The voucher category, in case of an order line eligible for a voucher. See the
-     * [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * The voucher category, in case of an order line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * 
+     * Possible values: `meal` `eco` `gift` `sport_culture`
      */
-    public Lines withCategory(JsonNullable<? extends Category> category) {
+    public Lines withCategory(JsonNullable<String> category) {
         Utils.checkNotNull(category, "category");
         this.category = category;
         return this;
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     public Lines withMetadata(Metadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -534,8 +523,7 @@ public class Lines {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     public Lines withMetadata(JsonNullable<? extends Metadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -645,7 +633,7 @@ public class Lines {
     
     public final static class Builder {
  
-        private Optional<? extends Type> type;
+        private Optional<String> type = Optional.empty();
  
         private String name;
  
@@ -665,7 +653,7 @@ public class Lines {
  
         private Optional<String> sku = Optional.empty();
  
-        private JsonNullable<? extends Category> category = JsonNullable.undefined();
+        private JsonNullable<String> category = JsonNullable.undefined();
  
         private JsonNullable<? extends Metadata> metadata = JsonNullable.undefined();
  
@@ -679,8 +667,10 @@ public class Lines {
 
         /**
          * The type of product purchased. For example, a physical or a digital product.
+         * 
+         * Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` (default: `physical`)
          */
-        public Builder type(Type type) {
+        public Builder type(String type) {
             Utils.checkNotNull(type, "type");
             this.type = Optional.ofNullable(type);
             return this;
@@ -688,8 +678,10 @@ public class Lines {
 
         /**
          * The type of product purchased. For example, a physical or a digital product.
+         * 
+         * Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` (default: `physical`)
          */
-        public Builder type(Optional<? extends Type> type) {
+        public Builder type(Optional<String> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
@@ -747,8 +739,7 @@ public class Lines {
         }
 
         /**
-         * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
-         * type.
+         * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
          */
         public Builder discountAmount(DiscountAmount discountAmount) {
             Utils.checkNotNull(discountAmount, "discountAmount");
@@ -757,8 +748,7 @@ public class Lines {
         }
 
         /**
-         * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
-         * type.
+         * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
          */
         public Builder discountAmount(Optional<? extends DiscountAmount> discountAmount) {
             Utils.checkNotNull(discountAmount, "discountAmount");
@@ -780,8 +770,7 @@ public class Lines {
         }
 
         /**
-         * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
-         * not as a float, to ensure the correct number of decimals are passed.
+         * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
          */
         public Builder vatRate(String vatRate) {
             Utils.checkNotNull(vatRate, "vatRate");
@@ -790,8 +779,7 @@ public class Lines {
         }
 
         /**
-         * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
-         * not as a float, to ensure the correct number of decimals are passed.
+         * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
          */
         public Builder vatRate(Optional<String> vatRate) {
             Utils.checkNotNull(vatRate, "vatRate");
@@ -800,13 +788,11 @@ public class Lines {
         }
 
         /**
-         * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
-         * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+         * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
          * 
          * Any deviations from this will result in an error.
          * 
-         * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
-         * `SEK 100.00 × (25 / 125) = SEK 20.00`.
+         * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
          */
         public Builder vatAmount(VatAmount vatAmount) {
             Utils.checkNotNull(vatAmount, "vatAmount");
@@ -815,13 +801,11 @@ public class Lines {
         }
 
         /**
-         * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
-         * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+         * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
          * 
          * Any deviations from this will result in an error.
          * 
-         * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
-         * `SEK 100.00 × (25 / 125) = SEK 20.00`.
+         * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
          */
         public Builder vatAmount(Optional<? extends VatAmount> vatAmount) {
             Utils.checkNotNull(vatAmount, "vatAmount");
@@ -848,28 +832,29 @@ public class Lines {
         }
 
         /**
-         * The voucher category, in case of an order line eligible for a voucher. See the
-         * [Integrating Vouchers](integrating-vouchers) guide for more information.
+         * The voucher category, in case of an order line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+         * 
+         * Possible values: `meal` `eco` `gift` `sport_culture`
          */
-        public Builder category(Category category) {
+        public Builder category(String category) {
             Utils.checkNotNull(category, "category");
             this.category = JsonNullable.of(category);
             return this;
         }
 
         /**
-         * The voucher category, in case of an order line eligible for a voucher. See the
-         * [Integrating Vouchers](integrating-vouchers) guide for more information.
+         * The voucher category, in case of an order line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+         * 
+         * Possible values: `meal` `eco` `gift` `sport_culture`
          */
-        public Builder category(JsonNullable<? extends Category> category) {
+        public Builder category(JsonNullable<String> category) {
             Utils.checkNotNull(category, "category");
             this.category = category;
             return this;
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
         public Builder metadata(Metadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -878,8 +863,7 @@ public class Lines {
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
         public Builder metadata(JsonNullable<? extends Metadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -924,9 +908,7 @@ public class Lines {
         }
         
         public Lines build() {
-            if (type == null) {
-                type = _SINGLETON_VALUE_Type.value();
-            }            return new Lines(
+            return new Lines(
                 type,
                 name,
                 quantity,
@@ -942,12 +924,6 @@ public class Lines {
                 imageUrl,
                 productUrl);
         }
-
-        private static final LazySingletonValue<Optional<? extends Type>> _SINGLETON_VALUE_Type =
-                new LazySingletonValue<>(
-                        "type",
-                        "\"physical\"",
-                        new TypeReference<Optional<? extends Type>>() {});
     }
 }
 

@@ -5,19 +5,17 @@
 
 ### Available Operations
 
-* [create](#create) - Create client link
+* [createClientLink](#createclientlink) - Create client link
 
-## create
+## createClientLink
 
 > 🚧 Open beta
 >
 > This feature is currently in open beta, and the final specification may still change.
 
-Link a new or existing organization to your OAuth application, in effect creating a new client. The response
-contains a `clientLink` where you should redirect your customer to.
+Link a new or existing organization to your OAuth application, in effect creating a new client. The response contains a `clientLink` where you should redirect your customer to.
 
-The `clientLink` URL behaves similar to the regular OAuth authorization URL. It supports the following parameters
-from the [Authorize](authorize) endpoint:
+The `clientLink` URL behaves similar to the regular OAuth authorization URL. It supports the following parameters from the [Authorize](authorize) endpoint:
 
 * `client_id`
 * `state`
@@ -26,8 +24,11 @@ from the [Authorize](authorize) endpoint:
 
 We recommend at least requesting the scopes `onboarding.read onboarding.write` this way.
 
-Error handling is also dealt with similar to the [Authorize](authorize) endpoint: the customer is redirected back to
-your app's redirect URL with the `error` and `error_description` parameters added to the URL.
+Error handling is also dealt with similar to the [Authorize](authorize) endpoint: the customer is redirected back to your app's redirect URL with the `error` and `error_description` parameters added to the URL.
+
+> 🔑 Access with
+>
+> [Access token with **clients.write**](/reference/authentication)
 
 ### Example Usage
 
@@ -35,6 +36,7 @@ your app's redirect URL with the `error` and `error_description` parameters adde
 package hello.world;
 
 import com.mollie.mollie.Mollie;
+import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.CreateClientLinkClientLinksAPIResponseBody;
 import com.mollie.mollie.models.errors.CreateClientLinkResponseBody;
 import com.mollie.mollie.models.operations.CreateClientLinkAddress;
@@ -48,22 +50,24 @@ public class Application {
     public static void main(String[] args) throws CreateClientLinkResponseBody, CreateClientLinkClientLinksAPIResponseBody, Exception {
 
         Mollie sdk = Mollie.builder()
-                .oAuth("<YOUR_O_AUTH_HERE>")
+                .security(Security.builder()
+                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
             .build();
 
         CreateClientLinkRequestBody req = CreateClientLinkRequestBody.builder()
                 .owner(Owner.builder()
-                    .email("Loyal79@yahoo.com")
+                    .email("Israel.Christiansen@yahoo.com")
                     .givenName("<value>")
                     .familyName("<value>")
                     .build())
                 .name("<value>")
                 .address(CreateClientLinkAddress.builder()
-                    .country("Afghanistan")
+                    .country("Egypt")
                     .build())
                 .build();
 
-        CreateClientLinkResponse res = sdk.clientLinksAPI().create()
+        CreateClientLinkResponse res = sdk.clientLinksAPI().createClientLink()
                 .request(req)
                 .call();
 

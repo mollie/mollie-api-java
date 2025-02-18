@@ -48,9 +48,13 @@ public class ClientsAPI implements
      * Retrieve a list of all clients linked to your account.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **clients.read**](/reference/authentication)
      * @return The call builder
      */
-    public ListClientsRequestBuilder list() {
+    public ListClientsRequestBuilder listClients() {
         return new ListClientsRequestBuilder(this);
     }
 
@@ -59,11 +63,15 @@ public class ClientsAPI implements
      * Retrieve a list of all clients linked to your account.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **clients.read**](/reference/authentication)
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListClientsResponse listDirect() throws Exception {
-        return list(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
+    public ListClientsResponse listClientsDirect() throws Exception {
+        return listClients(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
     }
     
     /**
@@ -71,22 +79,21 @@ public class ClientsAPI implements
      * Retrieve a list of all clients linked to your account.
      * 
      * The results are paginated.
-     * @param embed This endpoint allows embedding related API items by appending the
-    following values via the `embed` query string parameter.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **clients.read**](/reference/authentication)
+     * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
 
-    * `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth`
-      partners with the `organizations.read` scope.
-    * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth`
-      partners with the `onboarding.read` scope.
-    * `capabilities`: Include the [capabilities](list-capabilities) of the client organization.
-      Available for *oauth* partners with the `onboarding.read` scope.
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-    result set.
+    * `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth` partners with the `organizations.read` scope.
+    * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth` partners with the `onboarding.read` scope.
+    * `capabilities`: Include the [capabilities](list-capabilities) of the client organization. Available for *oauth* partners with the `onboarding.read` scope.
+     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListClientsResponse list(
+    public ListClientsResponse listClients(
             JsonNullable<String> embed,
             Optional<String> from,
             JsonNullable<Long> limit) throws Exception {
@@ -244,41 +251,49 @@ public class ClientsAPI implements
     /**
      * Get client
      * Retrieve a single client by its ID.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **clients.read**](/reference/authentication)
      * @return The call builder
      */
-    public GetClientRequestBuilder get() {
+    public GetClientRequestBuilder getClient() {
         return new GetClientRequestBuilder(this);
     }
 
     /**
      * Get client
      * Retrieve a single client by its ID.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **clients.read**](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetClientResponse get(
+    public GetClientResponse getClient(
             String id) throws Exception {
-        return get(id, JsonNullable.undefined());
+        return getClient(id, JsonNullable.undefined());
     }
     
     /**
      * Get client
      * Retrieve a single client by its ID.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **clients.read**](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string
-    parameter.
+     * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
 
-    * `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth`
-      partners with the `organizations.read` scope.
-    * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth`
-      partners with the `onboarding.read` scope.
-    * `capabilities`: Include the [capabilities](list-capabilities) of the client organization.
-      Available for *oauth* partners with the `onboarding.read` scope.
+    * `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth` partners with the `organizations.read` scope.
+    * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth` partners with the `onboarding.read` scope.
+    * `capabilities`: Include the [capabilities](list-capabilities) of the client organization. Available for *oauth* partners with the `onboarding.read` scope.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetClientResponse get(
+    public GetClientResponse getClient(
             String id,
             JsonNullable<String> embed) throws Exception {
         GetClientRequest request =

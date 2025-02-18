@@ -23,20 +23,16 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class CreateCustomerPaymentRequestBody {
 
     /**
-     * The identifier referring to the [profile](get-profile) this
-     * entity belongs to.
+     * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * Most API credentials are linked to a single profile. In these
-     * cases the `profileId` can be omitted in the creation request. For organization-level credentials such as
-     * OAuth access tokens however, the `profileId` parameter is required.
+     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("profileId")
     private JsonNullable<String> profileId;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
-     * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -59,12 +55,9 @@ public class CreateCustomerPaymentRequestBody {
     }
 
     /**
-     * The identifier referring to the [profile](get-profile) this
-     * entity belongs to.
+     * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * Most API credentials are linked to a single profile. In these
-     * cases the `profileId` can be omitted in the creation request. For organization-level credentials such as
-     * OAuth access tokens however, the `profileId` parameter is required.
+     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     @JsonIgnore
     public JsonNullable<String> profileId() {
@@ -72,8 +65,7 @@ public class CreateCustomerPaymentRequestBody {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
-     * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -87,12 +79,9 @@ public class CreateCustomerPaymentRequestBody {
     }
 
     /**
-     * The identifier referring to the [profile](get-profile) this
-     * entity belongs to.
+     * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * Most API credentials are linked to a single profile. In these
-     * cases the `profileId` can be omitted in the creation request. For organization-level credentials such as
-     * OAuth access tokens however, the `profileId` parameter is required.
+     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     public CreateCustomerPaymentRequestBody withProfileId(String profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -101,12 +90,9 @@ public class CreateCustomerPaymentRequestBody {
     }
 
     /**
-     * The identifier referring to the [profile](get-profile) this
-     * entity belongs to.
+     * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * Most API credentials are linked to a single profile. In these
-     * cases the `profileId` can be omitted in the creation request. For organization-level credentials such as
-     * OAuth access tokens however, the `profileId` parameter is required.
+     * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     public CreateCustomerPaymentRequestBody withProfileId(JsonNullable<String> profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -115,8 +101,7 @@ public class CreateCustomerPaymentRequestBody {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
-     * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -127,8 +112,7 @@ public class CreateCustomerPaymentRequestBody {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
-     * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -177,12 +161,9 @@ public class CreateCustomerPaymentRequestBody {
         }
 
         /**
-         * The identifier referring to the [profile](get-profile) this
-         * entity belongs to.
+         * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
-         * Most API credentials are linked to a single profile. In these
-         * cases the `profileId` can be omitted in the creation request. For organization-level credentials such as
-         * OAuth access tokens however, the `profileId` parameter is required.
+         * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
          */
         public Builder profileId(String profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -191,12 +172,9 @@ public class CreateCustomerPaymentRequestBody {
         }
 
         /**
-         * The identifier referring to the [profile](get-profile) this
-         * entity belongs to.
+         * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
-         * Most API credentials are linked to a single profile. In these
-         * cases the `profileId` can be omitted in the creation request. For organization-level credentials such as
-         * OAuth access tokens however, the `profileId` parameter is required.
+         * Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
          */
         public Builder profileId(JsonNullable<String> profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -205,8 +183,7 @@ public class CreateCustomerPaymentRequestBody {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
-         * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
          * 
          * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -217,8 +194,7 @@ public class CreateCustomerPaymentRequestBody {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
-         * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
          * 
          * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */

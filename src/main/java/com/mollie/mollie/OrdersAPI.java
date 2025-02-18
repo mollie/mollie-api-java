@@ -21,46 +21,37 @@ import com.mollie.mollie.models.operations.CancelOrderLinesRequest;
 import com.mollie.mollie.models.operations.CancelOrderLinesRequestBody;
 import com.mollie.mollie.models.operations.CancelOrderLinesRequestBuilder;
 import com.mollie.mollie.models.operations.CancelOrderLinesResponse;
-import com.mollie.mollie.models.operations.CancelOrderLinesSecurity;
 import com.mollie.mollie.models.operations.CancelOrderRequest;
 import com.mollie.mollie.models.operations.CancelOrderRequestBuilder;
 import com.mollie.mollie.models.operations.CancelOrderResponse;
-import com.mollie.mollie.models.operations.CancelOrderSecurity;
 import com.mollie.mollie.models.operations.CreateOrderPaymentRequest;
 import com.mollie.mollie.models.operations.CreateOrderPaymentRequestBuilder;
 import com.mollie.mollie.models.operations.CreateOrderPaymentResponse;
-import com.mollie.mollie.models.operations.CreateOrderPaymentSecurity;
 import com.mollie.mollie.models.operations.CreateOrderRequest;
 import com.mollie.mollie.models.operations.CreateOrderRequestBody;
 import com.mollie.mollie.models.operations.CreateOrderRequestBuilder;
 import com.mollie.mollie.models.operations.CreateOrderResponse;
-import com.mollie.mollie.models.operations.CreateOrderSecurity;
 import com.mollie.mollie.models.operations.GetOrderRequest;
 import com.mollie.mollie.models.operations.GetOrderRequestBuilder;
 import com.mollie.mollie.models.operations.GetOrderResponse;
 import com.mollie.mollie.models.operations.GetOrderResponseBody;
-import com.mollie.mollie.models.operations.GetOrderSecurity;
 import com.mollie.mollie.models.operations.ListOrdersRequest;
 import com.mollie.mollie.models.operations.ListOrdersRequestBuilder;
 import com.mollie.mollie.models.operations.ListOrdersResponse;
 import com.mollie.mollie.models.operations.ListOrdersResponseBody;
-import com.mollie.mollie.models.operations.ListOrdersSecurity;
 import com.mollie.mollie.models.operations.ManageOrderLinesRequest;
 import com.mollie.mollie.models.operations.ManageOrderLinesRequestBody;
 import com.mollie.mollie.models.operations.ManageOrderLinesRequestBuilder;
 import com.mollie.mollie.models.operations.ManageOrderLinesResponse;
-import com.mollie.mollie.models.operations.ManageOrderLinesSecurity;
 import com.mollie.mollie.models.operations.SDKMethodInterfaces.*;
 import com.mollie.mollie.models.operations.UpdateOrderLineRequest;
 import com.mollie.mollie.models.operations.UpdateOrderLineRequestBody;
 import com.mollie.mollie.models.operations.UpdateOrderLineRequestBuilder;
 import com.mollie.mollie.models.operations.UpdateOrderLineResponse;
-import com.mollie.mollie.models.operations.UpdateOrderLineSecurity;
 import com.mollie.mollie.models.operations.UpdateOrderRequest;
 import com.mollie.mollie.models.operations.UpdateOrderRequestBody;
 import com.mollie.mollie.models.operations.UpdateOrderRequestBuilder;
 import com.mollie.mollie.models.operations.UpdateOrderResponse;
-import com.mollie.mollie.models.operations.UpdateOrderSecurity;
 import com.mollie.mollie.utils.HTTPClient;
 import com.mollie.mollie.utils.HTTPRequest;
 import com.mollie.mollie.utils.Hook.AfterErrorContextImpl;
@@ -100,66 +91,64 @@ public class OrdersAPI implements
 
     /**
      * Create order
-     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively
-     * working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
+     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
      * 
-     * When creating an order, a payment will automatically be created to allow your customer to pay for the order. You can
-     * then redirect your customer to the URL in the `_links.checkout` property from the response, similar to the Payments
-     * API.
+     * When creating an order, a payment will automatically be created to allow your customer to pay for the order. You can then redirect your customer to the URL in the `_links.checkout` property from the response, similar to the Payments API.
      * 
-     * Unlike the Payments API, if a payment fails, expires, or is canceled, you can create a new payment under the same
-     * order using the [Create order payment endpoint](create-order-payment). This is only possible for orders that still
-     * have the `created` status.
+     * Unlike the Payments API, if a payment fails, expires, or is canceled, you can create a new payment under the same order using the [Create order payment endpoint](create-order-payment). This is only possible for orders that still have the `created` status.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **orders.write**](/reference/authentication)
      * @return The call builder
      */
-    public CreateOrderRequestBuilder create() {
+    public CreateOrderRequestBuilder createOrder() {
         return new CreateOrderRequestBuilder(this);
     }
 
     /**
      * Create order
-     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively
-     * working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
+     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
      * 
-     * When creating an order, a payment will automatically be created to allow your customer to pay for the order. You can
-     * then redirect your customer to the URL in the `_links.checkout` property from the response, similar to the Payments
-     * API.
+     * When creating an order, a payment will automatically be created to allow your customer to pay for the order. You can then redirect your customer to the URL in the `_links.checkout` property from the response, similar to the Payments API.
      * 
-     * Unlike the Payments API, if a payment fails, expires, or is canceled, you can create a new payment under the same
-     * order using the [Create order payment endpoint](create-order-payment). This is only possible for orders that still
-     * have the `created` status.
-     * @param security The security details to use for authentication.
+     * Unlike the Payments API, if a payment fails, expires, or is canceled, you can create a new payment under the same order using the [Create order payment endpoint](create-order-payment). This is only possible for orders that still have the `created` status.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **orders.write**](/reference/authentication)
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateOrderResponse create(
-            CreateOrderSecurity security) throws Exception {
-        return create(security, JsonNullable.undefined(), Optional.empty());
+    public CreateOrderResponse createOrderDirect() throws Exception {
+        return createOrder(JsonNullable.undefined(), Optional.empty());
     }
     
     /**
      * Create order
-     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively
-     * working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
+     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
      * 
-     * When creating an order, a payment will automatically be created to allow your customer to pay for the order. You can
-     * then redirect your customer to the URL in the `_links.checkout` property from the response, similar to the Payments
-     * API.
+     * When creating an order, a payment will automatically be created to allow your customer to pay for the order. You can then redirect your customer to the URL in the `_links.checkout` property from the response, similar to the Payments API.
      * 
-     * Unlike the Payments API, if a payment fails, expires, or is canceled, you can create a new payment under the same
-     * order using the [Create order payment endpoint](create-order-payment). This is only possible for orders that still
-     * have the `created` status.
-     * @param security The security details to use for authentication.
-     * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string
-    parameter.
+     * Unlike the Payments API, if a payment fails, expires, or is canceled, you can create a new payment under the same order using the [Create order payment endpoint](create-order-payment). This is only possible for orders that still have the `created` status.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **orders.write**](/reference/authentication)
+     * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
 
     * `payments`: Include all payments created for this order.
      * @param requestBody
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateOrderResponse create(
-            CreateOrderSecurity security,
+    public CreateOrderResponse createOrder(
             JsonNullable<String> embed,
             Optional<? extends CreateOrderRequestBody> requestBody) throws Exception {
         CreateOrderRequest request =
@@ -194,11 +183,9 @@ public class OrdersAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -253,19 +240,8 @@ public class OrdersAPI implements
         CreateOrderResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
+            // no content 
+            return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "422")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
@@ -310,34 +286,42 @@ public class OrdersAPI implements
 
     /**
      * List orders
-     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively
-     * working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
+     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
      * 
      * Retrieve all orders.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **orders.read**](/reference/authentication)
      * @return The call builder
      */
-    public ListOrdersRequestBuilder list() {
+    public ListOrdersRequestBuilder listOrders() {
         return new ListOrdersRequestBuilder(this);
     }
 
     /**
      * List orders
-     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively
-     * working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
+     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
      * 
      * Retrieve all orders.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **orders.read**](/reference/authentication)
      * @param request The request object containing all of the parameters for the API call.
-     * @param security The security details to use for authentication.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListOrdersResponse list(
-            ListOrdersRequest request,
-            ListOrdersSecurity security) throws Exception {
+    public ListOrdersResponse listOrders(
+            ListOrdersRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -353,11 +337,9 @@ public class OrdersAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -469,60 +451,65 @@ public class OrdersAPI implements
 
     /**
      * Get order
-     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the
-     * Payments API instead. We are actively
-     * working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
+     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
      * 
      * Retrieve a single order object by its ID.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **orders.read**](/reference/authentication)
      * @return The call builder
      */
-    public GetOrderRequestBuilder get() {
+    public GetOrderRequestBuilder getOrder() {
         return new GetOrderRequestBuilder(this);
     }
 
     /**
      * Get order
-     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the
-     * Payments API instead. We are actively
-     * working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
+     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
      * 
      * Retrieve a single order object by its ID.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **orders.read**](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetOrderResponse get(
-            GetOrderSecurity security,
+    public GetOrderResponse getOrder(
             String id) throws Exception {
-        return get(security, id, JsonNullable.undefined(), JsonNullable.undefined());
+        return getOrder(id, JsonNullable.undefined(), JsonNullable.undefined());
     }
     
     /**
      * Get order
-     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the
-     * Payments API instead. We are actively
-     * working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
+     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
      * 
      * Retrieve a single order object by its ID.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **orders.read**](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string
-    parameter.
+     * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
 
     * `payments`: Include all payments created for this order.
     * `refunds`: Include all refunds created for this order.
     * `shipments`: Include all shipments created for this order.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetOrderResponse get(
-            GetOrderSecurity security,
+    public GetOrderResponse getOrder(
             String id,
             JsonNullable<String> embed,
             JsonNullable<Boolean> testmode) throws Exception {
@@ -551,11 +538,9 @@ public class OrdersAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -667,53 +652,64 @@ public class OrdersAPI implements
 
     /**
      * Update order
-     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively
-     * working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
+     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
      * 
      * Certain details of an existing order can be updated.
      * 
      * For an in-depth explanation of each parameter, see [Create order](create-order).
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **orders.write**](/reference/authentication)
      * @return The call builder
      */
-    public UpdateOrderRequestBuilder update() {
+    public UpdateOrderRequestBuilder updateOrder() {
         return new UpdateOrderRequestBuilder(this);
     }
 
     /**
      * Update order
-     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively
-     * working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
+     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
      * 
      * Certain details of an existing order can be updated.
      * 
      * For an in-depth explanation of each parameter, see [Create order](create-order).
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **orders.write**](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdateOrderResponse update(
-            UpdateOrderSecurity security,
+    public UpdateOrderResponse updateOrder(
             String id) throws Exception {
-        return update(security, id, Optional.empty());
+        return updateOrder(id, Optional.empty());
     }
     
     /**
      * Update order
-     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively
-     * working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
+     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
      * 
      * Certain details of an existing order can be updated.
      * 
      * For an in-depth explanation of each parameter, see [Create order](create-order).
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **orders.write**](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
      * @param requestBody
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdateOrderResponse update(
-            UpdateOrderSecurity security,
+    public UpdateOrderResponse updateOrder(
             String id,
             Optional<? extends UpdateOrderRequestBody> requestBody) throws Exception {
         UpdateOrderRequest request =
@@ -745,11 +741,9 @@ public class OrdersAPI implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -804,19 +798,8 @@ public class OrdersAPI implements
         UpdateOrderResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
+            // no content 
+            return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
@@ -877,72 +860,72 @@ public class OrdersAPI implements
 
     /**
      * Cancel order
-     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively
-     * working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
+     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
      * 
-     * An open order may be canceled if it does not have any open payments yet, and while its status is either `created`,
-     * `authorized`, or `shipping`.
+     * An open order may be canceled if it does not have any open payments yet, and while its status is either `created`, `authorized`, or `shipping`.
      * 
      * If the order was already authorized, the authorization will be released.
      * 
-     * For an order with status `shipping`, only the order lines that were still pending will be canceled if possible. If a
-     * payment method was used that does not support authorizations, cancelation is no longer possible. You will have to
-     * issue a refund instead.
+     * For an order with status `shipping`, only the order lines that were still pending will be canceled if possible. If a payment method was used that does not support authorizations, cancelation is no longer possible. You will have to issue a refund instead.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **orders.write**](/reference/authentication)
      * @return The call builder
      */
-    public CancelOrderRequestBuilder cancel() {
+    public CancelOrderRequestBuilder cancelOrder() {
         return new CancelOrderRequestBuilder(this);
     }
 
     /**
      * Cancel order
-     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively
-     * working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
+     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
      * 
-     * An open order may be canceled if it does not have any open payments yet, and while its status is either `created`,
-     * `authorized`, or `shipping`.
+     * An open order may be canceled if it does not have any open payments yet, and while its status is either `created`, `authorized`, or `shipping`.
      * 
      * If the order was already authorized, the authorization will be released.
      * 
-     * For an order with status `shipping`, only the order lines that were still pending will be canceled if possible. If a
-     * payment method was used that does not support authorizations, cancelation is no longer possible. You will have to
-     * issue a refund instead.
-     * @param security The security details to use for authentication.
+     * For an order with status `shipping`, only the order lines that were still pending will be canceled if possible. If a payment method was used that does not support authorizations, cancelation is no longer possible. You will have to issue a refund instead.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **orders.write**](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CancelOrderResponse cancel(
-            CancelOrderSecurity security,
+    public CancelOrderResponse cancelOrder(
             String id) throws Exception {
-        return cancel(security, id, JsonNullable.undefined());
+        return cancelOrder(id, JsonNullable.undefined());
     }
     
     /**
      * Cancel order
-     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively
-     * working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
+     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
      * 
-     * An open order may be canceled if it does not have any open payments yet, and while its status is either `created`,
-     * `authorized`, or `shipping`.
+     * An open order may be canceled if it does not have any open payments yet, and while its status is either `created`, `authorized`, or `shipping`.
      * 
      * If the order was already authorized, the authorization will be released.
      * 
-     * For an order with status `shipping`, only the order lines that were still pending will be canceled if possible. If a
-     * payment method was used that does not support authorizations, cancelation is no longer possible. You will have to
-     * issue a refund instead.
-     * @param security The security details to use for authentication.
+     * For an order with status `shipping`, only the order lines that were still pending will be canceled if possible. If a payment method was used that does not support authorizations, cancelation is no longer possible. You will have to issue a refund instead.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **orders.write**](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CancelOrderResponse cancel(
-            CancelOrderSecurity security,
+    public CancelOrderResponse cancelOrder(
             String id,
             JsonNullable<Boolean> testmode) throws Exception {
         CancelOrderRequest request =
@@ -969,11 +952,9 @@ public class OrdersAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1028,19 +1009,8 @@ public class OrdersAPI implements
         CancelOrderResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
+            // no content 
+            return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
@@ -1101,14 +1071,11 @@ public class OrdersAPI implements
 
     /**
      * Manage order lines
-     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively
-     * working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
+     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
      * 
-     * Use this endpoint to update, cancel, or add one or more order lines of a `created`, `pending`, or `authorized`
-     * order.
+     * Use this endpoint to update, cancel, or add one or more order lines of a `created`, `pending`, or `authorized` order.
      * 
-     * For an already authorized order, updating the order lines will trigger an additional authorization request to the
-     * payment method provider.
+     * For an already authorized order, updating the order lines will trigger an additional authorization request to the payment method provider.
      * 
      * For example, your customer placed an order that contains two order lines:
      * 
@@ -1117,9 +1084,7 @@ public class OrdersAPI implements
      * 
      * The order total is €90.00.
      * 
-     * You only have one item of type A left, and therefore contact your customer to find another solution. The customer
-     * opts to replace one of order line A's items with item C. Item C costs €40.00, however, discount B does not apply to
-     * item C.
+     * You only have one item of type A left, and therefore contact your customer to find another solution. The customer opts to replace one of order line A's items with item C. Item C costs €40.00, however, discount B does not apply to item C.
      * 
      * Using this endpoint, you can create a request to update the order lines, where:
      * 
@@ -1128,22 +1093,25 @@ public class OrdersAPI implements
      * * Order line C is added with amount €40.00.
      * 
      * The updated order totals €85.00.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **orders.write**](/reference/authentication)
      * @return The call builder
      */
-    public ManageOrderLinesRequestBuilder manageLines() {
+    public ManageOrderLinesRequestBuilder manageOrderLines() {
         return new ManageOrderLinesRequestBuilder(this);
     }
 
     /**
      * Manage order lines
-     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively
-     * working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
+     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
      * 
-     * Use this endpoint to update, cancel, or add one or more order lines of a `created`, `pending`, or `authorized`
-     * order.
+     * Use this endpoint to update, cancel, or add one or more order lines of a `created`, `pending`, or `authorized` order.
      * 
-     * For an already authorized order, updating the order lines will trigger an additional authorization request to the
-     * payment method provider.
+     * For an already authorized order, updating the order lines will trigger an additional authorization request to the payment method provider.
      * 
      * For example, your customer placed an order that contains two order lines:
      * 
@@ -1152,9 +1120,7 @@ public class OrdersAPI implements
      * 
      * The order total is €90.00.
      * 
-     * You only have one item of type A left, and therefore contact your customer to find another solution. The customer
-     * opts to replace one of order line A's items with item C. Item C costs €40.00, however, discount B does not apply to
-     * item C.
+     * You only have one item of type A left, and therefore contact your customer to find another solution. The customer opts to replace one of order line A's items with item C. Item C costs €40.00, however, discount B does not apply to item C.
      * 
      * Using this endpoint, you can create a request to update the order lines, where:
      * 
@@ -1163,27 +1129,28 @@ public class OrdersAPI implements
      * * Order line C is added with amount €40.00.
      * 
      * The updated order totals €85.00.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **orders.write**](/reference/authentication)
      * @param orderId Provide the ID of the related order.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ManageOrderLinesResponse manageLines(
-            ManageOrderLinesSecurity security,
+    public ManageOrderLinesResponse manageOrderLines(
             String orderId) throws Exception {
-        return manageLines(security, orderId, Optional.empty());
+        return manageOrderLines(orderId, Optional.empty());
     }
     
     /**
      * Manage order lines
-     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively
-     * working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
+     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
      * 
-     * Use this endpoint to update, cancel, or add one or more order lines of a `created`, `pending`, or `authorized`
-     * order.
+     * Use this endpoint to update, cancel, or add one or more order lines of a `created`, `pending`, or `authorized` order.
      * 
-     * For an already authorized order, updating the order lines will trigger an additional authorization request to the
-     * payment method provider.
+     * For an already authorized order, updating the order lines will trigger an additional authorization request to the payment method provider.
      * 
      * For example, your customer placed an order that contains two order lines:
      * 
@@ -1192,9 +1159,7 @@ public class OrdersAPI implements
      * 
      * The order total is €90.00.
      * 
-     * You only have one item of type A left, and therefore contact your customer to find another solution. The customer
-     * opts to replace one of order line A's items with item C. Item C costs €40.00, however, discount B does not apply to
-     * item C.
+     * You only have one item of type A left, and therefore contact your customer to find another solution. The customer opts to replace one of order line A's items with item C. Item C costs €40.00, however, discount B does not apply to item C.
      * 
      * Using this endpoint, you can create a request to update the order lines, where:
      * 
@@ -1203,14 +1168,18 @@ public class OrdersAPI implements
      * * Order line C is added with amount €40.00.
      * 
      * The updated order totals €85.00.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **orders.write**](/reference/authentication)
      * @param orderId Provide the ID of the related order.
      * @param requestBody
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ManageOrderLinesResponse manageLines(
-            ManageOrderLinesSecurity security,
+    public ManageOrderLinesResponse manageOrderLines(
             String orderId,
             Optional<? extends ManageOrderLinesRequestBody> requestBody) throws Exception {
         ManageOrderLinesRequest request =
@@ -1242,11 +1211,9 @@ public class OrdersAPI implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1301,19 +1268,8 @@ public class OrdersAPI implements
         ManageOrderLinesResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
+            // no content 
+            return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
@@ -1358,14 +1314,11 @@ public class OrdersAPI implements
 
     /**
      * Cancel order lines
-     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively
-     * working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
+     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
      * 
-     * Cancel one or more order lines that were previously authorized. To cancel the entire order, please refer to the
-     * [Cancel order](cancel-order) endpoint instead.
+     * Cancel one or more order lines that were previously authorized. To cancel the entire order, please refer to the [Cancel order](cancel-order) endpoint instead.
      * 
-     * Canceling or partially canceling an order line will immediately release the authorization held for that amount. You
-     * should cancel an order line if you do not intend to (fully) ship it.
+     * Canceling or partially canceling an order line will immediately release the authorization held for that amount. You should cancel an order line if you do not intend to (fully) ship it.
      * 
      * If the order line was already authorized, the authorization will be released.
      * 
@@ -1373,24 +1326,26 @@ public class OrdersAPI implements
      * 
      * Afterwards, the order line will be marked `completed`.
      * 
-     * If the order line is `paid` or already `completed`, you can create a refund using the
-     * [Create order refund](create-order-refund) endpoint instead.
+     * If the order line is `paid` or already `completed`, you can create a refund using the [Create order refund](create-order-refund) endpoint instead.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **orders.write**](/reference/authentication)
      * @return The call builder
      */
-    public CancelOrderLinesRequestBuilder cancelLines() {
+    public CancelOrderLinesRequestBuilder cancelOrderLines() {
         return new CancelOrderLinesRequestBuilder(this);
     }
 
     /**
      * Cancel order lines
-     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively
-     * working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
+     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
      * 
-     * Cancel one or more order lines that were previously authorized. To cancel the entire order, please refer to the
-     * [Cancel order](cancel-order) endpoint instead.
+     * Cancel one or more order lines that were previously authorized. To cancel the entire order, please refer to the [Cancel order](cancel-order) endpoint instead.
      * 
-     * Canceling or partially canceling an order line will immediately release the authorization held for that amount. You
-     * should cancel an order line if you do not intend to (fully) ship it.
+     * Canceling or partially canceling an order line will immediately release the authorization held for that amount. You should cancel an order line if you do not intend to (fully) ship it.
      * 
      * If the order line was already authorized, the authorization will be released.
      * 
@@ -1398,29 +1353,29 @@ public class OrdersAPI implements
      * 
      * Afterwards, the order line will be marked `completed`.
      * 
-     * If the order line is `paid` or already `completed`, you can create a refund using the
-     * [Create order refund](create-order-refund) endpoint instead.
-     * @param security The security details to use for authentication.
+     * If the order line is `paid` or already `completed`, you can create a refund using the [Create order refund](create-order-refund) endpoint instead.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **orders.write**](/reference/authentication)
      * @param orderId Provide the ID of the related order.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CancelOrderLinesResponse cancelLines(
-            CancelOrderLinesSecurity security,
+    public CancelOrderLinesResponse cancelOrderLines(
             String orderId) throws Exception {
-        return cancelLines(security, orderId, Optional.empty());
+        return cancelOrderLines(orderId, Optional.empty());
     }
     
     /**
      * Cancel order lines
-     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively
-     * working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
+     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
      * 
-     * Cancel one or more order lines that were previously authorized. To cancel the entire order, please refer to the
-     * [Cancel order](cancel-order) endpoint instead.
+     * Cancel one or more order lines that were previously authorized. To cancel the entire order, please refer to the [Cancel order](cancel-order) endpoint instead.
      * 
-     * Canceling or partially canceling an order line will immediately release the authorization held for that amount. You
-     * should cancel an order line if you do not intend to (fully) ship it.
+     * Canceling or partially canceling an order line will immediately release the authorization held for that amount. You should cancel an order line if you do not intend to (fully) ship it.
      * 
      * If the order line was already authorized, the authorization will be released.
      * 
@@ -1428,16 +1383,19 @@ public class OrdersAPI implements
      * 
      * Afterwards, the order line will be marked `completed`.
      * 
-     * If the order line is `paid` or already `completed`, you can create a refund using the
-     * [Create order refund](create-order-refund) endpoint instead.
-     * @param security The security details to use for authentication.
+     * If the order line is `paid` or already `completed`, you can create a refund using the [Create order refund](create-order-refund) endpoint instead.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **orders.write**](/reference/authentication)
      * @param orderId Provide the ID of the related order.
      * @param requestBody
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CancelOrderLinesResponse cancelLines(
-            CancelOrderLinesSecurity security,
+    public CancelOrderLinesResponse cancelOrderLines(
             String orderId,
             Optional<? extends CancelOrderLinesRequestBody> requestBody) throws Exception {
         CancelOrderLinesRequest request =
@@ -1469,11 +1427,9 @@ public class OrdersAPI implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1601,83 +1557,79 @@ public class OrdersAPI implements
 
     /**
      * Update order line
-     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively
-     * working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
+     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
      * 
-     * Update an order line belonging to an order. Only lines with status `created`, `pending`, or `authorized` can be
-     * updated.
+     * Update an order line belonging to an order. Only lines with status `created`, `pending`, or `authorized` can be updated.
      * 
-     * This endpoint is useful for cases where specific details of an order line are changed. For example, if a customer
-     * changes a red shirt for a blue one of the same model. In this case only specific properties of the order line need
-     * to be updated, such as the `name`, the `imageUrl`, and perhaps the `amount`.
+     * This endpoint is useful for cases where specific details of an order line are changed. For example, if a customer changes a red shirt for a blue one of the same model. In this case only specific properties of the order line need to be updated, such as the `name`, the `imageUrl`, and perhaps the `amount`.
      * 
-     * To swap out an order line for an entirely new order line, use the [Manage order lines](manage-order-lines) endpoint
-     * instead.
+     * To swap out an order line for an entirely new order line, use the [Manage order lines](manage-order-lines) endpoint instead.
      * 
-     * For an in-depth explanation of each parameter, refer to the `lines` parameter of the [Create order](create-order)
-     * endpoint.
+     * For an in-depth explanation of each parameter, refer to the `lines` parameter of the [Create order](create-order) endpoint.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **orders.write**](/reference/authentication)
      * @return The call builder
      */
-    public UpdateOrderLineRequestBuilder updateLine() {
+    public UpdateOrderLineRequestBuilder updateOrderLine() {
         return new UpdateOrderLineRequestBuilder(this);
     }
 
     /**
      * Update order line
-     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively
-     * working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
+     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
      * 
-     * Update an order line belonging to an order. Only lines with status `created`, `pending`, or `authorized` can be
-     * updated.
+     * Update an order line belonging to an order. Only lines with status `created`, `pending`, or `authorized` can be updated.
      * 
-     * This endpoint is useful for cases where specific details of an order line are changed. For example, if a customer
-     * changes a red shirt for a blue one of the same model. In this case only specific properties of the order line need
-     * to be updated, such as the `name`, the `imageUrl`, and perhaps the `amount`.
+     * This endpoint is useful for cases where specific details of an order line are changed. For example, if a customer changes a red shirt for a blue one of the same model. In this case only specific properties of the order line need to be updated, such as the `name`, the `imageUrl`, and perhaps the `amount`.
      * 
-     * To swap out an order line for an entirely new order line, use the [Manage order lines](manage-order-lines) endpoint
-     * instead.
+     * To swap out an order line for an entirely new order line, use the [Manage order lines](manage-order-lines) endpoint instead.
      * 
-     * For an in-depth explanation of each parameter, refer to the `lines` parameter of the [Create order](create-order)
-     * endpoint.
-     * @param security The security details to use for authentication.
+     * For an in-depth explanation of each parameter, refer to the `lines` parameter of the [Create order](create-order) endpoint.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **orders.write**](/reference/authentication)
      * @param orderId Provide the ID of the related order.
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdateOrderLineResponse updateLine(
-            UpdateOrderLineSecurity security,
+    public UpdateOrderLineResponse updateOrderLine(
             String orderId,
             String id) throws Exception {
-        return updateLine(security, orderId, id, Optional.empty());
+        return updateOrderLine(orderId, id, Optional.empty());
     }
     
     /**
      * Update order line
-     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively
-     * working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
+     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
      * 
-     * Update an order line belonging to an order. Only lines with status `created`, `pending`, or `authorized` can be
-     * updated.
+     * Update an order line belonging to an order. Only lines with status `created`, `pending`, or `authorized` can be updated.
      * 
-     * This endpoint is useful for cases where specific details of an order line are changed. For example, if a customer
-     * changes a red shirt for a blue one of the same model. In this case only specific properties of the order line need
-     * to be updated, such as the `name`, the `imageUrl`, and perhaps the `amount`.
+     * This endpoint is useful for cases where specific details of an order line are changed. For example, if a customer changes a red shirt for a blue one of the same model. In this case only specific properties of the order line need to be updated, such as the `name`, the `imageUrl`, and perhaps the `amount`.
      * 
-     * To swap out an order line for an entirely new order line, use the [Manage order lines](manage-order-lines) endpoint
-     * instead.
+     * To swap out an order line for an entirely new order line, use the [Manage order lines](manage-order-lines) endpoint instead.
      * 
-     * For an in-depth explanation of each parameter, refer to the `lines` parameter of the [Create order](create-order)
-     * endpoint.
-     * @param security The security details to use for authentication.
+     * For an in-depth explanation of each parameter, refer to the `lines` parameter of the [Create order](create-order) endpoint.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **orders.write**](/reference/authentication)
      * @param orderId Provide the ID of the related order.
      * @param id Provide the ID of the item you want to perform this operation on.
      * @param requestBody
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdateOrderLineResponse updateLine(
-            UpdateOrderLineSecurity security,
+    public UpdateOrderLineResponse updateOrderLine(
             String orderId,
             String id,
             Optional<? extends UpdateOrderLineRequestBody> requestBody) throws Exception {
@@ -1711,11 +1663,9 @@ public class OrdersAPI implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1770,19 +1720,8 @@ public class OrdersAPI implements
         UpdateOrderLineResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
+            // no content 
+            return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
@@ -1843,80 +1782,76 @@ public class OrdersAPI implements
 
     /**
      * Create order payment
-     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively
-     * working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
+     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
      * 
-     * An order has an automatically created payment that your customer can use to pay for the order. When the payment
-     * expires you can create a new payment for the order using this endpoint. A maximum of 25 payments can be created for
-     * an order.
+     * An order has an automatically created payment that your customer can use to pay for the order. When the payment expires you can create a new payment for the order using this endpoint. A maximum of 25 payments can be created for an order.
      * 
-     * A new payment can only be created while the status of the order is `created`, and when the status of the existing
-     * payment is either `expired`, `canceled` or `failed`.
+     * A new payment can only be created while the status of the order is `created`, and when the status of the existing payment is either `expired`, `canceled` or `failed`.
      * 
-     * The endpoint accepts virtually all parameters accepted by the regular [Create payment](create-payment) endpoint.
-     * Please refer to that endpoint for the full documentation of all parameters.
+     * The endpoint accepts virtually all parameters accepted by the regular [Create payment](create-payment) endpoint. Please refer to that endpoint for the full documentation of all parameters.
      * 
-     * The payment inherits certain properties, such as the `amount` and `webhookUrl`, directly from the order. These
-     * cannot be changed via this endpoint.
+     * The payment inherits certain properties, such as the `amount` and `webhookUrl`, directly from the order. These cannot be changed via this endpoint.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.write**](/reference/authentication)
      * @return The call builder
      */
-    public CreateOrderPaymentRequestBuilder createPayment() {
+    public CreateOrderPaymentRequestBuilder createOrderPayment() {
         return new CreateOrderPaymentRequestBuilder(this);
     }
 
     /**
      * Create order payment
-     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively
-     * working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
+     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
      * 
-     * An order has an automatically created payment that your customer can use to pay for the order. When the payment
-     * expires you can create a new payment for the order using this endpoint. A maximum of 25 payments can be created for
-     * an order.
+     * An order has an automatically created payment that your customer can use to pay for the order. When the payment expires you can create a new payment for the order using this endpoint. A maximum of 25 payments can be created for an order.
      * 
-     * A new payment can only be created while the status of the order is `created`, and when the status of the existing
-     * payment is either `expired`, `canceled` or `failed`.
+     * A new payment can only be created while the status of the order is `created`, and when the status of the existing payment is either `expired`, `canceled` or `failed`.
      * 
-     * The endpoint accepts virtually all parameters accepted by the regular [Create payment](create-payment) endpoint.
-     * Please refer to that endpoint for the full documentation of all parameters.
+     * The endpoint accepts virtually all parameters accepted by the regular [Create payment](create-payment) endpoint. Please refer to that endpoint for the full documentation of all parameters.
      * 
-     * The payment inherits certain properties, such as the `amount` and `webhookUrl`, directly from the order. These
-     * cannot be changed via this endpoint.
-     * @param security The security details to use for authentication.
+     * The payment inherits certain properties, such as the `amount` and `webhookUrl`, directly from the order. These cannot be changed via this endpoint.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.write**](/reference/authentication)
      * @param orderId Provide the ID of the related order.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateOrderPaymentResponse createPayment(
-            CreateOrderPaymentSecurity security,
+    public CreateOrderPaymentResponse createOrderPayment(
             String orderId) throws Exception {
-        return createPayment(security, orderId, Optional.empty());
+        return createOrderPayment(orderId, Optional.empty());
     }
     
     /**
      * Create order payment
-     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively
-     * working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
+     * **⚠️ We no longer recommend implementing the Orders API. Please refer to the Payments API instead. We are actively working on adding support for Klarna, Billie, in3 and Vouchers to the Payments API later this year.**
      * 
-     * An order has an automatically created payment that your customer can use to pay for the order. When the payment
-     * expires you can create a new payment for the order using this endpoint. A maximum of 25 payments can be created for
-     * an order.
+     * An order has an automatically created payment that your customer can use to pay for the order. When the payment expires you can create a new payment for the order using this endpoint. A maximum of 25 payments can be created for an order.
      * 
-     * A new payment can only be created while the status of the order is `created`, and when the status of the existing
-     * payment is either `expired`, `canceled` or `failed`.
+     * A new payment can only be created while the status of the order is `created`, and when the status of the existing payment is either `expired`, `canceled` or `failed`.
      * 
-     * The endpoint accepts virtually all parameters accepted by the regular [Create payment](create-payment) endpoint.
-     * Please refer to that endpoint for the full documentation of all parameters.
+     * The endpoint accepts virtually all parameters accepted by the regular [Create payment](create-payment) endpoint. Please refer to that endpoint for the full documentation of all parameters.
      * 
-     * The payment inherits certain properties, such as the `amount` and `webhookUrl`, directly from the order. These
-     * cannot be changed via this endpoint.
-     * @param security The security details to use for authentication.
+     * The payment inherits certain properties, such as the `amount` and `webhookUrl`, directly from the order. These cannot be changed via this endpoint.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.write**](/reference/authentication)
      * @param orderId Provide the ID of the related order.
      * @param requestBody
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateOrderPaymentResponse createPayment(
-            CreateOrderPaymentSecurity security,
+    public CreateOrderPaymentResponse createOrderPayment(
             String orderId,
             Optional<? extends Object> requestBody) throws Exception {
         CreateOrderPaymentRequest request =
@@ -1948,11 +1883,9 @@ public class OrdersAPI implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -2007,19 +1940,8 @@ public class OrdersAPI implements
         CreateOrderPaymentResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
+            // no content 
+            return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {

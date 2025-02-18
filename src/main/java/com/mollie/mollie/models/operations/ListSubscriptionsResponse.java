@@ -37,8 +37,7 @@ public class ListSubscriptionsResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * A list of subscription objects. For a complete reference of the subscription object, refer to the
-     * [Get subscription endpoint](get-subscription) documentation.
+     * A list of subscription objects. For a complete reference of the subscription object, refer to the [Get subscription endpoint](get-subscription) documentation.
      */
     private Optional<? extends ListSubscriptionsResponseBody> object;
 
@@ -90,8 +89,7 @@ public class ListSubscriptionsResponse implements Response {
     }
 
     /**
-     * A list of subscription objects. For a complete reference of the subscription object, refer to the
-     * [Get subscription endpoint](get-subscription) documentation.
+     * A list of subscription objects. For a complete reference of the subscription object, refer to the [Get subscription endpoint](get-subscription) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -131,8 +129,7 @@ public class ListSubscriptionsResponse implements Response {
     }
 
     /**
-     * A list of subscription objects. For a complete reference of the subscription object, refer to the
-     * [Get subscription endpoint](get-subscription) documentation.
+     * A list of subscription objects. For a complete reference of the subscription object, refer to the [Get subscription endpoint](get-subscription) documentation.
      */
     public ListSubscriptionsResponse withObject(ListSubscriptionsResponseBody object) {
         Utils.checkNotNull(object, "object");
@@ -141,8 +138,7 @@ public class ListSubscriptionsResponse implements Response {
     }
 
     /**
-     * A list of subscription objects. For a complete reference of the subscription object, refer to the
-     * [Get subscription endpoint](get-subscription) documentation.
+     * A list of subscription objects. For a complete reference of the subscription object, refer to the [Get subscription endpoint](get-subscription) documentation.
      */
     public ListSubscriptionsResponse withObject(Optional<? extends ListSubscriptionsResponseBody> object) {
         Utils.checkNotNull(object, "object");
@@ -226,8 +222,7 @@ public class ListSubscriptionsResponse implements Response {
         }
 
         /**
-         * A list of subscription objects. For a complete reference of the subscription object, refer to the
-         * [Get subscription endpoint](get-subscription) documentation.
+         * A list of subscription objects. For a complete reference of the subscription object, refer to the [Get subscription endpoint](get-subscription) documentation.
          */
         public Builder object(ListSubscriptionsResponseBody object) {
             Utils.checkNotNull(object, "object");
@@ -236,8 +231,7 @@ public class ListSubscriptionsResponse implements Response {
         }
 
         /**
-         * A list of subscription objects. For a complete reference of the subscription object, refer to the
-         * [Get subscription endpoint](get-subscription) documentation.
+         * A list of subscription objects. For a complete reference of the subscription object, refer to the [Get subscription endpoint](get-subscription) documentation.
          */
         public Builder object(Optional<? extends ListSubscriptionsResponseBody> object) {
             Utils.checkNotNull(object, "object");

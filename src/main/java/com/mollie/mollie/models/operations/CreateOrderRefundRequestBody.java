@@ -35,16 +35,13 @@ public class CreateOrderRefundRequestBody {
     /**
      * A refund can optionally be linked to specific order lines.
      * 
-     * The lines will show the `quantity`, `discountAmount`, `vatAmount`, and `totalAmount` refunded. If the line was
-     * partially refunded, these values will be different from the values in response from the [Get payment](get-payment)
-     * endpoint.
+     * The lines will show the `quantity`, `discountAmount`, `vatAmount`, and `totalAmount` refunded. If the line was partially refunded, these values will be different from the values in response from the [Get payment](get-payment) endpoint.
      */
     @JsonProperty("lines")
     private List<CreateOrderRefundLines> lines;
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
@@ -53,9 +50,7 @@ public class CreateOrderRefundRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
-     * `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("testmode")
@@ -93,9 +88,7 @@ public class CreateOrderRefundRequestBody {
     /**
      * A refund can optionally be linked to specific order lines.
      * 
-     * The lines will show the `quantity`, `discountAmount`, `vatAmount`, and `totalAmount` refunded. If the line was
-     * partially refunded, these values will be different from the values in response from the [Get payment](get-payment)
-     * endpoint.
+     * The lines will show the `quantity`, `discountAmount`, `vatAmount`, and `totalAmount` refunded. If the line was partially refunded, these values will be different from the values in response from the [Get payment](get-payment) endpoint.
      */
     @JsonIgnore
     public List<CreateOrderRefundLines> lines() {
@@ -103,8 +96,7 @@ public class CreateOrderRefundRequestBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -115,9 +107,7 @@ public class CreateOrderRefundRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
-     * `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      */
     @JsonIgnore
     public JsonNullable<Boolean> testmode() {
@@ -149,9 +139,7 @@ public class CreateOrderRefundRequestBody {
     /**
      * A refund can optionally be linked to specific order lines.
      * 
-     * The lines will show the `quantity`, `discountAmount`, `vatAmount`, and `totalAmount` refunded. If the line was
-     * partially refunded, these values will be different from the values in response from the [Get payment](get-payment)
-     * endpoint.
+     * The lines will show the `quantity`, `discountAmount`, `vatAmount`, and `totalAmount` refunded. If the line was partially refunded, these values will be different from the values in response from the [Get payment](get-payment) endpoint.
      */
     public CreateOrderRefundRequestBody withLines(List<CreateOrderRefundLines> lines) {
         Utils.checkNotNull(lines, "lines");
@@ -160,8 +148,7 @@ public class CreateOrderRefundRequestBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     public CreateOrderRefundRequestBody withMetadata(CreateOrderRefundMetadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -170,8 +157,7 @@ public class CreateOrderRefundRequestBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     public CreateOrderRefundRequestBody withMetadata(JsonNullable<? extends CreateOrderRefundMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -182,9 +168,7 @@ public class CreateOrderRefundRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
-     * `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      */
     public CreateOrderRefundRequestBody withTestmode(boolean testmode) {
         Utils.checkNotNull(testmode, "testmode");
@@ -195,9 +179,7 @@ public class CreateOrderRefundRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
-     * `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      */
     public CreateOrderRefundRequestBody withTestmode(JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(testmode, "testmode");
@@ -274,9 +256,7 @@ public class CreateOrderRefundRequestBody {
         /**
          * A refund can optionally be linked to specific order lines.
          * 
-         * The lines will show the `quantity`, `discountAmount`, `vatAmount`, and `totalAmount` refunded. If the line was
-         * partially refunded, these values will be different from the values in response from the [Get payment](get-payment)
-         * endpoint.
+         * The lines will show the `quantity`, `discountAmount`, `vatAmount`, and `totalAmount` refunded. If the line was partially refunded, these values will be different from the values in response from the [Get payment](get-payment) endpoint.
          */
         public Builder lines(List<CreateOrderRefundLines> lines) {
             Utils.checkNotNull(lines, "lines");
@@ -285,8 +265,7 @@ public class CreateOrderRefundRequestBody {
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
         public Builder metadata(CreateOrderRefundMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -295,8 +274,7 @@ public class CreateOrderRefundRequestBody {
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
         public Builder metadata(JsonNullable<? extends CreateOrderRefundMetadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -307,9 +285,7 @@ public class CreateOrderRefundRequestBody {
         /**
          * Whether to create the entity in test mode or live mode.
          * 
-         * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
-         * `testmode` to `true`.
+         * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
          */
         public Builder testmode(boolean testmode) {
             Utils.checkNotNull(testmode, "testmode");
@@ -320,9 +296,7 @@ public class CreateOrderRefundRequestBody {
         /**
          * Whether to create the entity in test mode or live mode.
          * 
-         * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
-         * `testmode` to `true`.
+         * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
          */
         public Builder testmode(JsonNullable<Boolean> testmode) {
             Utils.checkNotNull(testmode, "testmode");

@@ -31,8 +31,7 @@ public class GetPartnerStatusLinks {
     private Optional<? extends GetPartnerStatusSelf> self;
 
     /**
-     * The URL that can be used to have new organizations sign up and be automatically linked to this
-     * partner. Will be omitted if the partner is not of type `signuplink`.
+     * The URL that can be used to have new organizations sign up and be automatically linked to this partner. Will be omitted if the partner is not of type `signuplink`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("signuplink")
@@ -72,8 +71,7 @@ public class GetPartnerStatusLinks {
     }
 
     /**
-     * The URL that can be used to have new organizations sign up and be automatically linked to this
-     * partner. Will be omitted if the partner is not of type `signuplink`.
+     * The URL that can be used to have new organizations sign up and be automatically linked to this partner. Will be omitted if the partner is not of type `signuplink`.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -113,8 +111,7 @@ public class GetPartnerStatusLinks {
     }
 
     /**
-     * The URL that can be used to have new organizations sign up and be automatically linked to this
-     * partner. Will be omitted if the partner is not of type `signuplink`.
+     * The URL that can be used to have new organizations sign up and be automatically linked to this partner. Will be omitted if the partner is not of type `signuplink`.
      */
     public GetPartnerStatusLinks withSignuplink(Signuplink signuplink) {
         Utils.checkNotNull(signuplink, "signuplink");
@@ -123,8 +120,7 @@ public class GetPartnerStatusLinks {
     }
 
     /**
-     * The URL that can be used to have new organizations sign up and be automatically linked to this
-     * partner. Will be omitted if the partner is not of type `signuplink`.
+     * The URL that can be used to have new organizations sign up and be automatically linked to this partner. Will be omitted if the partner is not of type `signuplink`.
      */
     public GetPartnerStatusLinks withSignuplink(Optional<? extends Signuplink> signuplink) {
         Utils.checkNotNull(signuplink, "signuplink");
@@ -212,8 +208,7 @@ public class GetPartnerStatusLinks {
         }
 
         /**
-         * The URL that can be used to have new organizations sign up and be automatically linked to this
-         * partner. Will be omitted if the partner is not of type `signuplink`.
+         * The URL that can be used to have new organizations sign up and be automatically linked to this partner. Will be omitted if the partner is not of type `signuplink`.
          */
         public Builder signuplink(Signuplink signuplink) {
             Utils.checkNotNull(signuplink, "signuplink");
@@ -222,8 +217,7 @@ public class GetPartnerStatusLinks {
         }
 
         /**
-         * The URL that can be used to have new organizations sign up and be automatically linked to this
-         * partner. Will be omitted if the partner is not of type `signuplink`.
+         * The URL that can be used to have new organizations sign up and be automatically linked to this partner. Will be omitted if the partner is not of type `signuplink`.
          */
         public Builder signuplink(Optional<? extends Signuplink> signuplink) {
             Utils.checkNotNull(signuplink, "signuplink");

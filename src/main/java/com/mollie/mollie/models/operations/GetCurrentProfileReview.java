@@ -13,28 +13,27 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Objects;
 import java.util.Optional;
 
 /**
- * GetCurrentProfileReview - Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
- * automatically, unless a switch to a live profile has been requested. The review object will therefore usually be
- * `null` in test mode.
+ * GetCurrentProfileReview - Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved automatically, unless a switch to a live profile has been requested. The review object will therefore usually be `null` in test mode.
  */
 
 public class GetCurrentProfileReview {
 
     /**
      * The status of the requested changes.
+     * 
+     * Possible values: `pending` `rejected`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends GetCurrentProfileProfilesAPIStatus> status;
+    private Optional<String> status;
 
     @JsonCreator
     public GetCurrentProfileReview(
-            @JsonProperty("status") Optional<? extends GetCurrentProfileProfilesAPIStatus> status) {
+            @JsonProperty("status") Optional<String> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
     }
@@ -45,11 +44,12 @@ public class GetCurrentProfileReview {
 
     /**
      * The status of the requested changes.
+     * 
+     * Possible values: `pending` `rejected`
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetCurrentProfileProfilesAPIStatus> status() {
-        return (Optional<GetCurrentProfileProfilesAPIStatus>) status;
+    public Optional<String> status() {
+        return status;
     }
 
     public final static Builder builder() {
@@ -58,8 +58,10 @@ public class GetCurrentProfileReview {
 
     /**
      * The status of the requested changes.
+     * 
+     * Possible values: `pending` `rejected`
      */
-    public GetCurrentProfileReview withStatus(GetCurrentProfileProfilesAPIStatus status) {
+    public GetCurrentProfileReview withStatus(String status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -67,8 +69,10 @@ public class GetCurrentProfileReview {
 
     /**
      * The status of the requested changes.
+     * 
+     * Possible values: `pending` `rejected`
      */
-    public GetCurrentProfileReview withStatus(Optional<? extends GetCurrentProfileProfilesAPIStatus> status) {
+    public GetCurrentProfileReview withStatus(Optional<String> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -101,7 +105,7 @@ public class GetCurrentProfileReview {
     
     public final static class Builder {
  
-        private Optional<? extends GetCurrentProfileProfilesAPIStatus> status = Optional.empty();  
+        private Optional<String> status = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -109,8 +113,10 @@ public class GetCurrentProfileReview {
 
         /**
          * The status of the requested changes.
+         * 
+         * Possible values: `pending` `rejected`
          */
-        public Builder status(GetCurrentProfileProfilesAPIStatus status) {
+        public Builder status(String status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -118,8 +124,10 @@ public class GetCurrentProfileReview {
 
         /**
          * The status of the requested changes.
+         * 
+         * Possible values: `pending` `rejected`
          */
-        public Builder status(Optional<? extends GetCurrentProfileProfilesAPIStatus> status) {
+        public Builder status(Optional<String> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

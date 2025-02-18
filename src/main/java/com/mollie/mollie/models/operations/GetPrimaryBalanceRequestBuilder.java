@@ -15,6 +15,6 @@ public class GetPrimaryBalanceRequestBuilder {
 
     public GetPrimaryBalanceResponse call() throws Exception {
 
-        return sdk.getPrimaryDirect();
+        return sdk.getPrimaryBalanceDirect();
     }
 }

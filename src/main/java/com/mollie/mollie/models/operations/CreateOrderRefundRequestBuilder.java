@@ -10,19 +10,12 @@ import java.util.Optional;
 
 public class CreateOrderRefundRequestBuilder {
 
-    private CreateOrderRefundSecurity security;
     private String orderId;
     private Optional<? extends CreateOrderRefundRequestBody> requestBody = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCreateOrderRefund sdk;
 
     public CreateOrderRefundRequestBuilder(SDKMethodInterfaces.MethodCallCreateOrderRefund sdk) {
         this.sdk = sdk;
-    }
-
-    public CreateOrderRefundRequestBuilder security(CreateOrderRefundSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public CreateOrderRefundRequestBuilder orderId(String orderId) {
@@ -45,8 +38,7 @@ public class CreateOrderRefundRequestBuilder {
 
     public CreateOrderRefundResponse call() throws Exception {
 
-        return sdk.createOrder(
-            security,
+        return sdk.createOrderRefund(
             orderId,
             requestBody);
     }

@@ -45,8 +45,7 @@ public class CreateClientLinkRequestBody {
     private JsonNullable<String> registrationNumber;
 
     /**
-     * The VAT number of the organization, if based in the European Union. VAT numbers are verified against the
-     * international registry *VIES*.
+     * The VAT number of the organization, if based in the European Union. VAT numbers are verified against the international registry *VIES*.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatNumber")
@@ -111,8 +110,7 @@ public class CreateClientLinkRequestBody {
     }
 
     /**
-     * The VAT number of the organization, if based in the European Union. VAT numbers are verified against the
-     * international registry *VIES*.
+     * The VAT number of the organization, if based in the European Union. VAT numbers are verified against the international registry *VIES*.
      */
     @JsonIgnore
     public JsonNullable<String> vatNumber() {
@@ -169,8 +167,7 @@ public class CreateClientLinkRequestBody {
     }
 
     /**
-     * The VAT number of the organization, if based in the European Union. VAT numbers are verified against the
-     * international registry *VIES*.
+     * The VAT number of the organization, if based in the European Union. VAT numbers are verified against the international registry *VIES*.
      */
     public CreateClientLinkRequestBody withVatNumber(String vatNumber) {
         Utils.checkNotNull(vatNumber, "vatNumber");
@@ -179,8 +176,7 @@ public class CreateClientLinkRequestBody {
     }
 
     /**
-     * The VAT number of the organization, if based in the European Union. VAT numbers are verified against the
-     * international registry *VIES*.
+     * The VAT number of the organization, if based in the European Union. VAT numbers are verified against the international registry *VIES*.
      */
     public CreateClientLinkRequestBody withVatNumber(JsonNullable<String> vatNumber) {
         Utils.checkNotNull(vatNumber, "vatNumber");
@@ -287,8 +283,7 @@ public class CreateClientLinkRequestBody {
         }
 
         /**
-         * The VAT number of the organization, if based in the European Union. VAT numbers are verified against the
-         * international registry *VIES*.
+         * The VAT number of the organization, if based in the European Union. VAT numbers are verified against the international registry *VIES*.
          */
         public Builder vatNumber(String vatNumber) {
             Utils.checkNotNull(vatNumber, "vatNumber");
@@ -297,8 +292,7 @@ public class CreateClientLinkRequestBody {
         }
 
         /**
-         * The VAT number of the organization, if based in the European Union. VAT numbers are verified against the
-         * international registry *VIES*.
+         * The VAT number of the organization, if based in the European Union. VAT numbers are verified against the international registry *VIES*.
          */
         public Builder vatNumber(JsonNullable<String> vatNumber) {
             Utils.checkNotNull(vatNumber, "vatNumber");

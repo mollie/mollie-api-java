@@ -9,7 +9,6 @@ import com.mollie.mollie.utils.Utils;
 public class GetMethodRequestBuilder {
 
     private GetMethodRequest request;
-    private GetMethodSecurity security;
     private final SDKMethodInterfaces.MethodCallGetMethod sdk;
 
     public GetMethodRequestBuilder(SDKMethodInterfaces.MethodCallGetMethod sdk) {
@@ -22,16 +21,9 @@ public class GetMethodRequestBuilder {
         return this;
     }
 
-    public GetMethodRequestBuilder security(GetMethodSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
-    }
-
     public GetMethodResponse call() throws Exception {
 
-        return sdk.get(
-            request,
-            security);
+        return sdk.getMethod(
+            request);
     }
 }

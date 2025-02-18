@@ -19,15 +19,13 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * ListMethodsResponseBody - A list of payment method objects. For a complete reference of the
- * payment method object, refer to the [Get payment method endpoint](get-method) documentation.
+ * ListMethodsResponseBody - A list of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
  */
 
 public class ListMethodsResponseBody {
 
     /**
-     * The number of payment method objects in this result set.
-     * Results are **not** paginated.
+     * The number of payment method objects in this result set. Results are **not** paginated.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("count")
@@ -59,8 +57,7 @@ public class ListMethodsResponseBody {
     }
 
     /**
-     * The number of payment method objects in this result set.
-     * Results are **not** paginated.
+     * The number of payment method objects in this result set. Results are **not** paginated.
      */
     @JsonIgnore
     public Optional<Long> count() {
@@ -84,8 +81,7 @@ public class ListMethodsResponseBody {
     }
 
     /**
-     * The number of payment method objects in this result set.
-     * Results are **not** paginated.
+     * The number of payment method objects in this result set. Results are **not** paginated.
      */
     public ListMethodsResponseBody withCount(long count) {
         Utils.checkNotNull(count, "count");
@@ -94,8 +90,7 @@ public class ListMethodsResponseBody {
     }
 
     /**
-     * The number of payment method objects in this result set.
-     * Results are **not** paginated.
+     * The number of payment method objects in this result set. Results are **not** paginated.
      */
     public ListMethodsResponseBody withCount(Optional<Long> count) {
         Utils.checkNotNull(count, "count");
@@ -171,8 +166,7 @@ public class ListMethodsResponseBody {
         }
 
         /**
-         * The number of payment method objects in this result set.
-         * Results are **not** paginated.
+         * The number of payment method objects in this result set. Results are **not** paginated.
          */
         public Builder count(long count) {
             Utils.checkNotNull(count, "count");
@@ -181,8 +175,7 @@ public class ListMethodsResponseBody {
         }
 
         /**
-         * The number of payment method objects in this result set.
-         * Results are **not** paginated.
+         * The number of payment method objects in this result set. Results are **not** paginated.
          */
         public Builder count(Optional<Long> count) {
             Utils.checkNotNull(count, "count");

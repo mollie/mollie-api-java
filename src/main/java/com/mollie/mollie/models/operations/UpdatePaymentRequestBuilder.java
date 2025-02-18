@@ -10,8 +10,7 @@ import java.util.Optional;
 
 public class UpdatePaymentRequestBuilder {
 
-    private UpdatePaymentSecurity security;
-    private String id;
+    private String paymentId;
     private Optional<? extends UpdatePaymentRequestBody> requestBody = Optional.empty();
     private final SDKMethodInterfaces.MethodCallUpdatePayment sdk;
 
@@ -19,15 +18,9 @@ public class UpdatePaymentRequestBuilder {
         this.sdk = sdk;
     }
 
-    public UpdatePaymentRequestBuilder security(UpdatePaymentSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
-    }
-
-    public UpdatePaymentRequestBuilder id(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public UpdatePaymentRequestBuilder paymentId(String paymentId) {
+        Utils.checkNotNull(paymentId, "paymentId");
+        this.paymentId = paymentId;
         return this;
     }
                 
@@ -45,9 +38,8 @@ public class UpdatePaymentRequestBuilder {
 
     public UpdatePaymentResponse call() throws Exception {
 
-        return sdk.update(
-            security,
-            id,
+        return sdk.updatePayment(
+            paymentId,
             requestBody);
     }
 }

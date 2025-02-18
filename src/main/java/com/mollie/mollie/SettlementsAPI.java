@@ -75,9 +75,13 @@ public class SettlementsAPI implements
      * Retrieve a list of all your settlements.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **settlements.read**](/reference/authentication)
      * @return The call builder
      */
-    public ListSettlementsRequestBuilder list() {
+    public ListSettlementsRequestBuilder listSettlements() {
         return new ListSettlementsRequestBuilder(this);
     }
 
@@ -86,11 +90,15 @@ public class SettlementsAPI implements
      * Retrieve a list of all your settlements.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **settlements.read**](/reference/authentication)
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListSettlementsResponse listDirect() throws Exception {
-        return list(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+    public ListSettlementsResponse listSettlementsDirect() throws Exception {
+        return listSettlements(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
     }
     
     /**
@@ -98,15 +106,17 @@ public class SettlementsAPI implements
      * Retrieve a list of all your settlements.
      * 
      * The results are paginated.
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-    result set.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **settlements.read**](/reference/authentication)
+     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param balanceId Provide the token of the balance to filter the settlements by. This is
-    the balance token that the settlement was settled to.
+     * @param balanceId Provide the token of the balance to filter the settlements by. This is the balance token that the settlement was settled to.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListSettlementsResponse list(
+    public ListSettlementsResponse listSettlements(
             Optional<String> from,
             JsonNullable<Long> limit,
             JsonNullable<String> balanceId) throws Exception {
@@ -265,19 +275,20 @@ public class SettlementsAPI implements
      * Get settlement
      * Retrieve a single settlement by its ID.
      * 
-     * To lookup settlements by their bank reference, replace the ID in the URL by
-     * a reference. For example: `1234567.2404.03`.
+     * To lookup settlements by their bank reference, replace the ID in the URL by a reference. For example: `1234567.2404.03`.
      * 
      * A settlement represents a transfer of your balance funds to your external bank account.
      * 
-     * Settlements will typically include a report that details what balance transactions have taken place between this
-     * settlement and the previous one.
+     * Settlements will typically include a report that details what balance transactions have taken place between this settlement and the previous one.
      * 
-     * For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
-     * [balance transactions](list-balance-transactions) endpoint.
+     * For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the [balance transactions](list-balance-transactions) endpoint.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **settlements.read**](/reference/authentication)
      * @return The call builder
      */
-    public GetSettlementRequestBuilder get() {
+    public GetSettlementRequestBuilder getSettlement() {
         return new GetSettlementRequestBuilder(this);
     }
 
@@ -285,21 +296,22 @@ public class SettlementsAPI implements
      * Get settlement
      * Retrieve a single settlement by its ID.
      * 
-     * To lookup settlements by their bank reference, replace the ID in the URL by
-     * a reference. For example: `1234567.2404.03`.
+     * To lookup settlements by their bank reference, replace the ID in the URL by a reference. For example: `1234567.2404.03`.
      * 
      * A settlement represents a transfer of your balance funds to your external bank account.
      * 
-     * Settlements will typically include a report that details what balance transactions have taken place between this
-     * settlement and the previous one.
+     * Settlements will typically include a report that details what balance transactions have taken place between this settlement and the previous one.
      * 
-     * For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
-     * [balance transactions](list-balance-transactions) endpoint.
+     * For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the [balance transactions](list-balance-transactions) endpoint.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **settlements.read**](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetSettlementResponse get(
+    public GetSettlementResponse getSettlement(
             String id) throws Exception {
         GetSettlementRequest request =
             GetSettlementRequest
@@ -433,34 +445,36 @@ public class SettlementsAPI implements
 
     /**
      * Get open settlement
-     * Retrieve the details of the open balance of the organization. This will return a settlement object representing your
-     * organization's balance.
+     * Retrieve the details of the open balance of the organization. This will return a settlement object representing your organization's balance.
      * 
-     * For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement)
-     * documentation.
+     * For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
      * 
-     * For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
-     * [balance transactions](list-balance-transactions) endpoint.
+     * For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the [balance transactions](list-balance-transactions) endpoint.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **settlements.read**](/reference/authentication)
      * @return The call builder
      */
-    public GetOpenSettlementRequestBuilder getOpen() {
+    public GetOpenSettlementRequestBuilder getOpenSettlement() {
         return new GetOpenSettlementRequestBuilder(this);
     }
 
     /**
      * Get open settlement
-     * Retrieve the details of the open balance of the organization. This will return a settlement object representing your
-     * organization's balance.
+     * Retrieve the details of the open balance of the organization. This will return a settlement object representing your organization's balance.
      * 
-     * For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement)
-     * documentation.
+     * For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
      * 
-     * For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
-     * [balance transactions](list-balance-transactions) endpoint.
+     * For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the [balance transactions](list-balance-transactions) endpoint.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **settlements.read**](/reference/authentication)
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetOpenSettlementResponse getOpenDirect() throws Exception {
+    public GetOpenSettlementResponse getOpenSettlementDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -571,14 +585,16 @@ public class SettlementsAPI implements
      * Get next settlement
      * Retrieve the details of the current settlement, that has not yet been paid out.
      * 
-     * For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement)
-     * documentation.
+     * For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
      * 
-     * For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
-     * [balance transactions](list-balance-transactions) endpoint.
+     * For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the [balance transactions](list-balance-transactions) endpoint.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **settlements.read**](/reference/authentication)
      * @return The call builder
      */
-    public GetNextSettlementRequestBuilder getNext() {
+    public GetNextSettlementRequestBuilder getNextSettlement() {
         return new GetNextSettlementRequestBuilder(this);
     }
 
@@ -586,15 +602,17 @@ public class SettlementsAPI implements
      * Get next settlement
      * Retrieve the details of the current settlement, that has not yet been paid out.
      * 
-     * For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement)
-     * documentation.
+     * For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
      * 
-     * For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
-     * [balance transactions](list-balance-transactions) endpoint.
+     * For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the [balance transactions](list-balance-transactions) endpoint.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **settlements.read**](/reference/authentication)
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetNextSettlementResponse getNextDirect() throws Exception {
+    public GetNextSettlementResponse getNextSettlementDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -705,14 +723,16 @@ public class SettlementsAPI implements
      * Get settlement payments
      * Retrieve all payments included in the given settlement.
      * 
-     * The response is in the same format as the response of the [List payments endpoint](list-payments). Refer to that
-     * endpoint's documentation for more details.
+     * The response is in the same format as the response of the [List payments endpoint](list-payments). Refer to that endpoint's documentation for more details.
      * 
-     * For capture-based payment methods such as Klarna, the payments are not listed here. Refer to the
-     * [List captures endpoint](list-captures) endpoint instead.
+     * For capture-based payment methods such as Klarna, the payments are not listed here. Refer to the [List captures endpoint](list-captures) endpoint instead.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **settlements.read** **payments.read**](/reference/authentication)
      * @return The call builder
      */
-    public GetSettlementPaymentsRequestBuilder getPayments() {
+    public GetSettlementPaymentsRequestBuilder getSettlementPayments() {
         return new GetSettlementPaymentsRequestBuilder(this);
     }
 
@@ -720,16 +740,18 @@ public class SettlementsAPI implements
      * Get settlement payments
      * Retrieve all payments included in the given settlement.
      * 
-     * The response is in the same format as the response of the [List payments endpoint](list-payments). Refer to that
-     * endpoint's documentation for more details.
+     * The response is in the same format as the response of the [List payments endpoint](list-payments). Refer to that endpoint's documentation for more details.
      * 
-     * For capture-based payment methods such as Klarna, the payments are not listed here. Refer to the
-     * [List captures endpoint](list-captures) endpoint instead.
+     * For capture-based payment methods such as Klarna, the payments are not listed here. Refer to the [List captures endpoint](list-captures) endpoint instead.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **settlements.read** **payments.read**](/reference/authentication)
      * @param settlementId Provide the ID of the related settlement.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetSettlementPaymentsResponse getPayments(
+    public GetSettlementPaymentsResponse getSettlementPayments(
             String settlementId) throws Exception {
         GetSettlementPaymentsRequest request =
             GetSettlementPaymentsRequest
@@ -865,11 +887,14 @@ public class SettlementsAPI implements
      * Get settlement captures
      * Retrieve all captures included in the given settlement.
      * 
-     * The response is in the same format as the response of the [List captures endpoint](list-captures). Refer to that
-     * endpoint's documentation for more details.
+     * The response is in the same format as the response of the [List captures endpoint](list-captures). Refer to that endpoint's documentation for more details.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **settlements.read** **payments.read**](/reference/authentication)
      * @return The call builder
      */
-    public GetSettlementCapturesRequestBuilder getCaptures() {
+    public GetSettlementCapturesRequestBuilder getSettlementCaptures() {
         return new GetSettlementCapturesRequestBuilder(this);
     }
 
@@ -877,13 +902,16 @@ public class SettlementsAPI implements
      * Get settlement captures
      * Retrieve all captures included in the given settlement.
      * 
-     * The response is in the same format as the response of the [List captures endpoint](list-captures). Refer to that
-     * endpoint's documentation for more details.
+     * The response is in the same format as the response of the [List captures endpoint](list-captures). Refer to that endpoint's documentation for more details.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **settlements.read** **payments.read**](/reference/authentication)
      * @param settlementId Provide the ID of the related settlement.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetSettlementCapturesResponse getCaptures(
+    public GetSettlementCapturesResponse getSettlementCaptures(
             String settlementId) throws Exception {
         GetSettlementCapturesRequest request =
             GetSettlementCapturesRequest
@@ -1019,11 +1047,14 @@ public class SettlementsAPI implements
      * Get settlement refunds
      * Retrieve all refunds 'deducted' from the given settlement.
      * 
-     * The response is in the same format as the response of the [List refunds endpoint](list-refunds). Refer to that
-     * endpoint's documentation for more details.
+     * The response is in the same format as the response of the [List refunds endpoint](list-refunds). Refer to that endpoint's documentation for more details.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **settlements.read** **refunds.read**](/reference/authentication)
      * @return The call builder
      */
-    public GetSettlementRefundsRequestBuilder getRefunds() {
+    public GetSettlementRefundsRequestBuilder getSettlementRefunds() {
         return new GetSettlementRefundsRequestBuilder(this);
     }
 
@@ -1031,13 +1062,16 @@ public class SettlementsAPI implements
      * Get settlement refunds
      * Retrieve all refunds 'deducted' from the given settlement.
      * 
-     * The response is in the same format as the response of the [List refunds endpoint](list-refunds). Refer to that
-     * endpoint's documentation for more details.
+     * The response is in the same format as the response of the [List refunds endpoint](list-refunds). Refer to that endpoint's documentation for more details.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **settlements.read** **refunds.read**](/reference/authentication)
      * @param settlementId Provide the ID of the related settlement.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetSettlementRefundsResponse getRefunds(
+    public GetSettlementRefundsResponse getSettlementRefunds(
             String settlementId) throws Exception {
         GetSettlementRefundsRequest request =
             GetSettlementRefundsRequest
@@ -1173,11 +1207,14 @@ public class SettlementsAPI implements
      * Get settlement chargebacks
      * Retrieve all chargebacks 'deducted' from the given settlement.
      * 
-     * The response is in the same format as the response of the [List chargebacks endpoint](list-chargebacks). Refer to
-     * that endpoint's documentation for more details.
+     * The response is in the same format as the response of the [List chargebacks endpoint](list-chargebacks). Refer to that endpoint's documentation for more details.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **settlements.read** **payments.read**](/reference/authentication)
      * @return The call builder
      */
-    public GetSettlementChargebacksRequestBuilder getChargebacks() {
+    public GetSettlementChargebacksRequestBuilder getSettlementChargebacks() {
         return new GetSettlementChargebacksRequestBuilder(this);
     }
 
@@ -1185,13 +1222,16 @@ public class SettlementsAPI implements
      * Get settlement chargebacks
      * Retrieve all chargebacks 'deducted' from the given settlement.
      * 
-     * The response is in the same format as the response of the [List chargebacks endpoint](list-chargebacks). Refer to
-     * that endpoint's documentation for more details.
+     * The response is in the same format as the response of the [List chargebacks endpoint](list-chargebacks). Refer to that endpoint's documentation for more details.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **settlements.read** **payments.read**](/reference/authentication)
      * @param settlementId Provide the ID of the related settlement.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetSettlementChargebacksResponse getChargebacks(
+    public GetSettlementChargebacksResponse getSettlementChargebacks(
             String settlementId) throws Exception {
         GetSettlementChargebacksRequest request =
             GetSettlementChargebacksRequest

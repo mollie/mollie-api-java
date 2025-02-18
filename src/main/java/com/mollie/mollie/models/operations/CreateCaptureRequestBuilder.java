@@ -10,19 +10,12 @@ import java.util.Optional;
 
 public class CreateCaptureRequestBuilder {
 
-    private CreateCaptureSecurity security;
     private String paymentId;
     private Optional<? extends CreateCaptureRequestBody> requestBody = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCreateCapture sdk;
 
     public CreateCaptureRequestBuilder(SDKMethodInterfaces.MethodCallCreateCapture sdk) {
         this.sdk = sdk;
-    }
-
-    public CreateCaptureRequestBuilder security(CreateCaptureSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public CreateCaptureRequestBuilder paymentId(String paymentId) {
@@ -45,8 +38,7 @@ public class CreateCaptureRequestBuilder {
 
     public CreateCaptureResponse call() throws Exception {
 
-        return sdk.create(
-            security,
+        return sdk.createCapture(
             paymentId,
             requestBody);
     }

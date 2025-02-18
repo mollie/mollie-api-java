@@ -47,8 +47,7 @@ public class PaymentCreateRouteResponseBody extends RuntimeException {
     private Optional<String> detail;
 
     /**
-     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name
-     * of the field that caused the issue.
+     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("field")
@@ -113,8 +112,7 @@ public class PaymentCreateRouteResponseBody extends RuntimeException {
     }
 
     /**
-     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name
-     * of the field that caused the issue.
+     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
      */
     public JsonNullable<String> field(){
         return field;
@@ -192,8 +190,7 @@ public class PaymentCreateRouteResponseBody extends RuntimeException {
     }
 
     /**
-     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name
-     * of the field that caused the issue.
+     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
      */
     public PaymentCreateRouteResponseBody withField(String field) {
         Utils.checkNotNull(field, "field");
@@ -202,8 +199,7 @@ public class PaymentCreateRouteResponseBody extends RuntimeException {
     }
 
     /**
-     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name
-     * of the field that caused the issue.
+     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
      */
     public PaymentCreateRouteResponseBody withField(JsonNullable<String> field) {
         Utils.checkNotNull(field, "field");
@@ -354,8 +350,7 @@ public class PaymentCreateRouteResponseBody extends RuntimeException {
         }
 
         /**
-         * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name
-         * of the field that caused the issue.
+         * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
          */
         public Builder field(String field) {
             Utils.checkNotNull(field, "field");
@@ -364,8 +359,7 @@ public class PaymentCreateRouteResponseBody extends RuntimeException {
         }
 
         /**
-         * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name
-         * of the field that caused the issue.
+         * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
          */
         public Builder field(JsonNullable<String> field) {
             Utils.checkNotNull(field, "field");

@@ -12,17 +12,14 @@ import com.mollie.mollie.models.operations.GetChargebackRequest;
 import com.mollie.mollie.models.operations.GetChargebackRequestBuilder;
 import com.mollie.mollie.models.operations.GetChargebackResponse;
 import com.mollie.mollie.models.operations.GetChargebackResponseBody;
-import com.mollie.mollie.models.operations.GetChargebackSecurity;
 import com.mollie.mollie.models.operations.ListAllChargebacksRequest;
 import com.mollie.mollie.models.operations.ListAllChargebacksRequestBuilder;
 import com.mollie.mollie.models.operations.ListAllChargebacksResponse;
 import com.mollie.mollie.models.operations.ListAllChargebacksResponseBody;
-import com.mollie.mollie.models.operations.ListAllChargebacksSecurity;
 import com.mollie.mollie.models.operations.ListChargebacksRequest;
 import com.mollie.mollie.models.operations.ListChargebacksRequestBuilder;
 import com.mollie.mollie.models.operations.ListChargebacksResponse;
 import com.mollie.mollie.models.operations.ListChargebacksResponseBody;
-import com.mollie.mollie.models.operations.ListChargebacksSecurity;
 import com.mollie.mollie.models.operations.SDKMethodInterfaces.*;
 import com.mollie.mollie.utils.HTTPClient;
 import com.mollie.mollie.utils.HTTPRequest;
@@ -57,9 +54,15 @@ public class ChargebacksAPI implements
      * Retrieve the chargebacks initiated for a specific payment.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.read**](/reference/authentication)
      * @return The call builder
      */
-    public ListChargebacksRequestBuilder list() {
+    public ListChargebacksRequestBuilder listChargebacks() {
         return new ListChargebacksRequestBuilder(this);
     }
 
@@ -68,14 +71,18 @@ public class ChargebacksAPI implements
      * Retrieve the chargebacks initiated for a specific payment.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.read**](/reference/authentication)
      * @param request The request object containing all of the parameters for the API call.
-     * @param security The security details to use for authentication.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListChargebacksResponse list(
-            ListChargebacksRequest request,
-            ListChargebacksSecurity security) throws Exception {
+    public ListChargebacksResponse listChargebacks(
+            ListChargebacksRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 ListChargebacksRequest.class,
@@ -93,11 +100,9 @@ public class ChargebacksAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -226,47 +231,59 @@ public class ChargebacksAPI implements
     /**
      * Get payment chargeback
      * Retrieve a single payment chargeback by its ID and the ID of its parent payment.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.read**](/reference/authentication)
      * @return The call builder
      */
-    public GetChargebackRequestBuilder get() {
+    public GetChargebackRequestBuilder getChargeback() {
         return new GetChargebackRequestBuilder(this);
     }
 
     /**
      * Get payment chargeback
      * Retrieve a single payment chargeback by its ID and the ID of its parent payment.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.read**](/reference/authentication)
      * @param paymentId Provide the ID of the related payment.
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetChargebackResponse get(
-            GetChargebackSecurity security,
+    public GetChargebackResponse getChargeback(
             String paymentId,
             String id) throws Exception {
-        return get(security, paymentId, id, JsonNullable.undefined(), JsonNullable.undefined());
+        return getChargeback(paymentId, id, JsonNullable.undefined(), JsonNullable.undefined());
     }
     
     /**
      * Get payment chargeback
      * Retrieve a single payment chargeback by its ID and the ID of its parent payment.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.read**](/reference/authentication)
      * @param paymentId Provide the ID of the related payment.
      * @param id Provide the ID of the item you want to perform this operation on.
      * @param include This endpoint allows you to include additional information via the `include` query string parameter.
 
     * `payment`: Include the payment this chargeback was issued for.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetChargebackResponse get(
-            GetChargebackSecurity security,
+    public GetChargebackResponse getChargeback(
             String paymentId,
             String id,
             JsonNullable<String> include,
@@ -297,11 +314,9 @@ public class ChargebacksAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -416,9 +431,15 @@ public class ChargebacksAPI implements
      * Retrieve all chargebacks initiated for all your payments.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.read**](/reference/authentication)
      * @return The call builder
      */
-    public ListAllChargebacksRequestBuilder listAll() {
+    public ListAllChargebacksRequestBuilder listAllChargebacks() {
         return new ListAllChargebacksRequestBuilder(this);
     }
 
@@ -427,14 +448,18 @@ public class ChargebacksAPI implements
      * Retrieve all chargebacks initiated for all your payments.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.read**](/reference/authentication)
      * @param request The request object containing all of the parameters for the API call.
-     * @param security The security details to use for authentication.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListAllChargebacksResponse listAll(
-            ListAllChargebacksRequest request,
-            ListAllChargebacksSecurity security) throws Exception {
+    public ListAllChargebacksResponse listAllChargebacks(
+            ListAllChargebacksRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -450,11 +475,9 @@ public class ChargebacksAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()

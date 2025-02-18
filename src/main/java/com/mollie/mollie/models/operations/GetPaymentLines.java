@@ -10,8 +10,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Object;
@@ -29,10 +27,12 @@ public class GetPaymentLines {
      * The type of product purchased. For example, a physical or a digital product.
      * 
      * The `tip` payment line type is not available when creating a payment.
+     * 
+     * Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` `tip` (default: `physical`)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<? extends GetPaymentType> type;
+    private Optional<String> type;
 
     /**
      * A description of the line item. For example *LEGO 4440 Forest Police Station*.
@@ -66,16 +66,14 @@ public class GetPaymentLines {
     private GetPaymentUnitPrice unitPrice;
 
     /**
-     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
-     * type.
+     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("discountAmount")
     private Optional<? extends GetPaymentDiscountAmount> discountAmount;
 
     /**
-     * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout
-     * to inform the shopper of the details for recurring products in the payments.
+     * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("recurring")
@@ -92,21 +90,18 @@ public class GetPaymentLines {
     private GetPaymentTotalAmount totalAmount;
 
     /**
-     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
-     * not as a float, to ensure the correct number of decimals are passed.
+     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatRate")
     private Optional<String> vatRate;
 
     /**
-     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
-     * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
      * 
      * Any deviations from this will result in an error.
      * 
-     * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
-     * `SEK 100.00 × (25 / 125) = SEK 20.00`.
+     * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatAmount")
@@ -120,8 +115,9 @@ public class GetPaymentLines {
     private Optional<String> sku;
 
     /**
-     * An array with the voucher categories, in case of a line eligible for a voucher. See the
-     * [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * An array with the voucher categories, in case of a line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * 
+     * Possible values: `meal` `eco` `gift` `sport_culture`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("categories")
@@ -143,7 +139,7 @@ public class GetPaymentLines {
 
     @JsonCreator
     public GetPaymentLines(
-            @JsonProperty("type") Optional<? extends GetPaymentType> type,
+            @JsonProperty("type") Optional<String> type,
             @JsonProperty("description") String description,
             @JsonProperty("quantity") long quantity,
             @JsonProperty("quantityUnit") Optional<String> quantityUnit,
@@ -199,11 +195,12 @@ public class GetPaymentLines {
      * The type of product purchased. For example, a physical or a digital product.
      * 
      * The `tip` payment line type is not available when creating a payment.
+     * 
+     * Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` `tip` (default: `physical`)
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetPaymentType> type() {
-        return (Optional<GetPaymentType>) type;
+    public Optional<String> type() {
+        return type;
     }
 
     /**
@@ -245,8 +242,7 @@ public class GetPaymentLines {
     }
 
     /**
-     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
-     * type.
+     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -255,8 +251,7 @@ public class GetPaymentLines {
     }
 
     /**
-     * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout
-     * to inform the shopper of the details for recurring products in the payments.
+     * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -277,8 +272,7 @@ public class GetPaymentLines {
     }
 
     /**
-     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
-     * not as a float, to ensure the correct number of decimals are passed.
+     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
      */
     @JsonIgnore
     public Optional<String> vatRate() {
@@ -286,13 +280,11 @@ public class GetPaymentLines {
     }
 
     /**
-     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
-     * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
      * 
      * Any deviations from this will result in an error.
      * 
-     * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
-     * `SEK 100.00 × (25 / 125) = SEK 20.00`.
+     * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -309,8 +301,9 @@ public class GetPaymentLines {
     }
 
     /**
-     * An array with the voucher categories, in case of a line eligible for a voucher. See the
-     * [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * An array with the voucher categories, in case of a line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * 
+     * Possible values: `meal` `eco` `gift` `sport_culture`
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -342,8 +335,10 @@ public class GetPaymentLines {
      * The type of product purchased. For example, a physical or a digital product.
      * 
      * The `tip` payment line type is not available when creating a payment.
+     * 
+     * Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` `tip` (default: `physical`)
      */
-    public GetPaymentLines withType(GetPaymentType type) {
+    public GetPaymentLines withType(String type) {
         Utils.checkNotNull(type, "type");
         this.type = Optional.ofNullable(type);
         return this;
@@ -353,8 +348,10 @@ public class GetPaymentLines {
      * The type of product purchased. For example, a physical or a digital product.
      * 
      * The `tip` payment line type is not available when creating a payment.
+     * 
+     * Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` `tip` (default: `physical`)
      */
-    public GetPaymentLines withType(Optional<? extends GetPaymentType> type) {
+    public GetPaymentLines withType(Optional<String> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -412,8 +409,7 @@ public class GetPaymentLines {
     }
 
     /**
-     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
-     * type.
+     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
      */
     public GetPaymentLines withDiscountAmount(GetPaymentDiscountAmount discountAmount) {
         Utils.checkNotNull(discountAmount, "discountAmount");
@@ -422,8 +418,7 @@ public class GetPaymentLines {
     }
 
     /**
-     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
-     * type.
+     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
      */
     public GetPaymentLines withDiscountAmount(Optional<? extends GetPaymentDiscountAmount> discountAmount) {
         Utils.checkNotNull(discountAmount, "discountAmount");
@@ -432,8 +427,7 @@ public class GetPaymentLines {
     }
 
     /**
-     * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout
-     * to inform the shopper of the details for recurring products in the payments.
+     * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
      */
     public GetPaymentLines withRecurring(GetPaymentRecurring recurring) {
         Utils.checkNotNull(recurring, "recurring");
@@ -442,8 +436,7 @@ public class GetPaymentLines {
     }
 
     /**
-     * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout
-     * to inform the shopper of the details for recurring products in the payments.
+     * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
      */
     public GetPaymentLines withRecurring(Optional<? extends GetPaymentRecurring> recurring) {
         Utils.checkNotNull(recurring, "recurring");
@@ -465,8 +458,7 @@ public class GetPaymentLines {
     }
 
     /**
-     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
-     * not as a float, to ensure the correct number of decimals are passed.
+     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
      */
     public GetPaymentLines withVatRate(String vatRate) {
         Utils.checkNotNull(vatRate, "vatRate");
@@ -475,8 +467,7 @@ public class GetPaymentLines {
     }
 
     /**
-     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
-     * not as a float, to ensure the correct number of decimals are passed.
+     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
      */
     public GetPaymentLines withVatRate(Optional<String> vatRate) {
         Utils.checkNotNull(vatRate, "vatRate");
@@ -485,13 +476,11 @@ public class GetPaymentLines {
     }
 
     /**
-     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
-     * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
      * 
      * Any deviations from this will result in an error.
      * 
-     * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
-     * `SEK 100.00 × (25 / 125) = SEK 20.00`.
+     * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
      */
     public GetPaymentLines withVatAmount(GetPaymentVatAmount vatAmount) {
         Utils.checkNotNull(vatAmount, "vatAmount");
@@ -500,13 +489,11 @@ public class GetPaymentLines {
     }
 
     /**
-     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
-     * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
      * 
      * Any deviations from this will result in an error.
      * 
-     * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
-     * `SEK 100.00 × (25 / 125) = SEK 20.00`.
+     * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
      */
     public GetPaymentLines withVatAmount(Optional<? extends GetPaymentVatAmount> vatAmount) {
         Utils.checkNotNull(vatAmount, "vatAmount");
@@ -533,8 +520,9 @@ public class GetPaymentLines {
     }
 
     /**
-     * An array with the voucher categories, in case of a line eligible for a voucher. See the
-     * [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * An array with the voucher categories, in case of a line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * 
+     * Possible values: `meal` `eco` `gift` `sport_culture`
      */
     public GetPaymentLines withCategories(List<Object> categories) {
         Utils.checkNotNull(categories, "categories");
@@ -543,8 +531,9 @@ public class GetPaymentLines {
     }
 
     /**
-     * An array with the voucher categories, in case of a line eligible for a voucher. See the
-     * [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * An array with the voucher categories, in case of a line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * 
+     * Possible values: `meal` `eco` `gift` `sport_culture`
      */
     public GetPaymentLines withCategories(Optional<? extends List<Object>> categories) {
         Utils.checkNotNull(categories, "categories");
@@ -654,7 +643,7 @@ public class GetPaymentLines {
     
     public final static class Builder {
  
-        private Optional<? extends GetPaymentType> type;
+        private Optional<String> type = Optional.empty();
  
         private String description;
  
@@ -690,8 +679,10 @@ public class GetPaymentLines {
          * The type of product purchased. For example, a physical or a digital product.
          * 
          * The `tip` payment line type is not available when creating a payment.
+         * 
+         * Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` `tip` (default: `physical`)
          */
-        public Builder type(GetPaymentType type) {
+        public Builder type(String type) {
             Utils.checkNotNull(type, "type");
             this.type = Optional.ofNullable(type);
             return this;
@@ -701,8 +692,10 @@ public class GetPaymentLines {
          * The type of product purchased. For example, a physical or a digital product.
          * 
          * The `tip` payment line type is not available when creating a payment.
+         * 
+         * Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` `tip` (default: `physical`)
          */
-        public Builder type(Optional<? extends GetPaymentType> type) {
+        public Builder type(Optional<String> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
@@ -760,8 +753,7 @@ public class GetPaymentLines {
         }
 
         /**
-         * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
-         * type.
+         * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
          */
         public Builder discountAmount(GetPaymentDiscountAmount discountAmount) {
             Utils.checkNotNull(discountAmount, "discountAmount");
@@ -770,8 +762,7 @@ public class GetPaymentLines {
         }
 
         /**
-         * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
-         * type.
+         * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
          */
         public Builder discountAmount(Optional<? extends GetPaymentDiscountAmount> discountAmount) {
             Utils.checkNotNull(discountAmount, "discountAmount");
@@ -780,8 +771,7 @@ public class GetPaymentLines {
         }
 
         /**
-         * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout
-         * to inform the shopper of the details for recurring products in the payments.
+         * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
          */
         public Builder recurring(GetPaymentRecurring recurring) {
             Utils.checkNotNull(recurring, "recurring");
@@ -790,8 +780,7 @@ public class GetPaymentLines {
         }
 
         /**
-         * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout
-         * to inform the shopper of the details for recurring products in the payments.
+         * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
          */
         public Builder recurring(Optional<? extends GetPaymentRecurring> recurring) {
             Utils.checkNotNull(recurring, "recurring");
@@ -813,8 +802,7 @@ public class GetPaymentLines {
         }
 
         /**
-         * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
-         * not as a float, to ensure the correct number of decimals are passed.
+         * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
          */
         public Builder vatRate(String vatRate) {
             Utils.checkNotNull(vatRate, "vatRate");
@@ -823,8 +811,7 @@ public class GetPaymentLines {
         }
 
         /**
-         * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
-         * not as a float, to ensure the correct number of decimals are passed.
+         * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
          */
         public Builder vatRate(Optional<String> vatRate) {
             Utils.checkNotNull(vatRate, "vatRate");
@@ -833,13 +820,11 @@ public class GetPaymentLines {
         }
 
         /**
-         * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
-         * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+         * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
          * 
          * Any deviations from this will result in an error.
          * 
-         * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
-         * `SEK 100.00 × (25 / 125) = SEK 20.00`.
+         * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
          */
         public Builder vatAmount(GetPaymentVatAmount vatAmount) {
             Utils.checkNotNull(vatAmount, "vatAmount");
@@ -848,13 +833,11 @@ public class GetPaymentLines {
         }
 
         /**
-         * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
-         * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+         * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
          * 
          * Any deviations from this will result in an error.
          * 
-         * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
-         * `SEK 100.00 × (25 / 125) = SEK 20.00`.
+         * For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
          */
         public Builder vatAmount(Optional<? extends GetPaymentVatAmount> vatAmount) {
             Utils.checkNotNull(vatAmount, "vatAmount");
@@ -881,8 +864,9 @@ public class GetPaymentLines {
         }
 
         /**
-         * An array with the voucher categories, in case of a line eligible for a voucher. See the
-         * [Integrating Vouchers](integrating-vouchers) guide for more information.
+         * An array with the voucher categories, in case of a line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+         * 
+         * Possible values: `meal` `eco` `gift` `sport_culture`
          */
         public Builder categories(List<Object> categories) {
             Utils.checkNotNull(categories, "categories");
@@ -891,8 +875,9 @@ public class GetPaymentLines {
         }
 
         /**
-         * An array with the voucher categories, in case of a line eligible for a voucher. See the
-         * [Integrating Vouchers](integrating-vouchers) guide for more information.
+         * An array with the voucher categories, in case of a line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+         * 
+         * Possible values: `meal` `eco` `gift` `sport_culture`
          */
         public Builder categories(Optional<? extends List<Object>> categories) {
             Utils.checkNotNull(categories, "categories");
@@ -937,9 +922,7 @@ public class GetPaymentLines {
         }
         
         public GetPaymentLines build() {
-            if (type == null) {
-                type = _SINGLETON_VALUE_Type.value();
-            }            return new GetPaymentLines(
+            return new GetPaymentLines(
                 type,
                 description,
                 quantity,
@@ -955,12 +938,6 @@ public class GetPaymentLines {
                 imageUrl,
                 productUrl);
         }
-
-        private static final LazySingletonValue<Optional<? extends GetPaymentType>> _SINGLETON_VALUE_Type =
-                new LazySingletonValue<>(
-                        "type",
-                        "\"physical\"",
-                        new TypeReference<Optional<? extends GetPaymentType>>() {});
     }
 }
 

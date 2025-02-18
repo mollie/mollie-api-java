@@ -15,7 +15,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListPaymentLinksRequestBuilder {
 
-    private ListPaymentLinksSecurity security;
     private Optional<String> from = Optional.empty();
     private JsonNullable<Long> limit = Utils.readDefaultOrConstValue(
                             "limit",
@@ -29,12 +28,6 @@ public class ListPaymentLinksRequestBuilder {
 
     public ListPaymentLinksRequestBuilder(SDKMethodInterfaces.MethodCallListPaymentLinks sdk) {
         this.sdk = sdk;
-    }
-
-    public ListPaymentLinksRequestBuilder security(ListPaymentLinksSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
                 
     public ListPaymentLinksRequestBuilder from(String from) {
@@ -80,8 +73,7 @@ public class ListPaymentLinksRequestBuilder {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.list(
-            security,
+        return sdk.listPaymentLinks(
             from,
             limit,
             testmode);

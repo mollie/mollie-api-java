@@ -37,8 +37,7 @@ public class ListClientsResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * A list of client objects. For a complete reference of the client object, refer to the
-     * [Get client endpoint](get-client) documentation.
+     * A list of client objects. For a complete reference of the client object, refer to the [Get client endpoint](get-client) documentation.
      */
     private Optional<? extends ListClientsResponseBody> object;
 
@@ -90,8 +89,7 @@ public class ListClientsResponse implements Response {
     }
 
     /**
-     * A list of client objects. For a complete reference of the client object, refer to the
-     * [Get client endpoint](get-client) documentation.
+     * A list of client objects. For a complete reference of the client object, refer to the [Get client endpoint](get-client) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -131,8 +129,7 @@ public class ListClientsResponse implements Response {
     }
 
     /**
-     * A list of client objects. For a complete reference of the client object, refer to the
-     * [Get client endpoint](get-client) documentation.
+     * A list of client objects. For a complete reference of the client object, refer to the [Get client endpoint](get-client) documentation.
      */
     public ListClientsResponse withObject(ListClientsResponseBody object) {
         Utils.checkNotNull(object, "object");
@@ -141,8 +138,7 @@ public class ListClientsResponse implements Response {
     }
 
     /**
-     * A list of client objects. For a complete reference of the client object, refer to the
-     * [Get client endpoint](get-client) documentation.
+     * A list of client objects. For a complete reference of the client object, refer to the [Get client endpoint](get-client) documentation.
      */
     public ListClientsResponse withObject(Optional<? extends ListClientsResponseBody> object) {
         Utils.checkNotNull(object, "object");
@@ -226,8 +222,7 @@ public class ListClientsResponse implements Response {
         }
 
         /**
-         * A list of client objects. For a complete reference of the client object, refer to the
-         * [Get client endpoint](get-client) documentation.
+         * A list of client objects. For a complete reference of the client object, refer to the [Get client endpoint](get-client) documentation.
          */
         public Builder object(ListClientsResponseBody object) {
             Utils.checkNotNull(object, "object");
@@ -236,8 +231,7 @@ public class ListClientsResponse implements Response {
         }
 
         /**
-         * A list of client objects. For a complete reference of the client object, refer to the
-         * [Get client endpoint](get-client) documentation.
+         * A list of client objects. For a complete reference of the client object, refer to the [Get client endpoint](get-client) documentation.
          */
         public Builder object(Optional<? extends ListClientsResponseBody> object) {
             Utils.checkNotNull(object, "object");

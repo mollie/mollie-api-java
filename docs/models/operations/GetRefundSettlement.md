@@ -1,7 +1,6 @@
 # GetRefundSettlement
 
-The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not
-yet settled.
+The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not yet settled.
 
 
 ## Fields

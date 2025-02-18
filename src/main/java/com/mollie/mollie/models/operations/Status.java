@@ -9,16 +9,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-/**
- * Status - The subscription's current status is directly related to the status of the underlying customer or mandate that is
- * enabling the subscription.
- */
 public enum Status {
-    PENDING("pending"),
-    ACTIVE("active"),
-    CANCELED("canceled"),
-    SUSPENDED("suspended"),
-    COMPLETED("completed");
+    UNREQUESTED("unrequested"),
+    ENABLED("enabled"),
+    DISABLED("disabled"),
+    PENDING("pending");
 
     @JsonValue
     private final String value;

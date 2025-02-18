@@ -47,7 +47,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:0.0.1'
+implementation 'com.mollie:mollie:0.1.0'
 ```
 
 Maven:
@@ -55,7 +55,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>0.0.1</version>
+    <version>0.1.0</version>
 </dependency>
 ```
 
@@ -83,6 +83,7 @@ gradlew.bat publishToMavenLocal -Pskip.signing
 package hello.world;
 
 import com.mollie.mollie.Mollie;
+import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ListBalancesBalancesAPIResponseBody;
 import com.mollie.mollie.models.errors.ListBalancesResponseBody;
 import com.mollie.mollie.models.operations.ListBalancesResponse;
@@ -93,10 +94,12 @@ public class Application {
     public static void main(String[] args) throws ListBalancesResponseBody, ListBalancesBalancesAPIResponseBody, Exception {
 
         Mollie sdk = Mollie.builder()
-                .oAuth("<YOUR_O_AUTH_HERE>")
+                .security(Security.builder()
+                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
             .build();
 
-        ListBalancesResponse res = sdk.balancesAPI().list()
+        ListBalancesResponse res = sdk.balancesAPI().listBalances()
                 .currency("EUR")
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .limit(50L)
@@ -116,17 +119,19 @@ public class Application {
 
 ### Per-Client Security Schemes
 
-This SDK supports the following security scheme globally:
+This SDK supports the following security schemes globally:
 
-| Name    | Type   | Scheme       |
-| ------- | ------ | ------------ |
-| `oAuth` | oauth2 | OAuth2 token |
+| Name     | Type   | Scheme       |
+| -------- | ------ | ------------ |
+| `apiKey` | http   | HTTP Bearer  |
+| `oAuth`  | oauth2 | OAuth2 token |
 
-To authenticate with the API the `oAuth` parameter must be set when initializing the SDK client instance. For example:
+You can set the security parameters through the `security` builder method when initializing the SDK client instance. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
 ```java
 package hello.world;
 
 import com.mollie.mollie.Mollie;
+import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ListBalancesBalancesAPIResponseBody;
 import com.mollie.mollie.models.errors.ListBalancesResponseBody;
 import com.mollie.mollie.models.operations.ListBalancesResponse;
@@ -137,45 +142,16 @@ public class Application {
     public static void main(String[] args) throws ListBalancesResponseBody, ListBalancesBalancesAPIResponseBody, Exception {
 
         Mollie sdk = Mollie.builder()
-                .oAuth("<YOUR_O_AUTH_HERE>")
+                .security(Security.builder()
+                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
             .build();
 
-        ListBalancesResponse res = sdk.balancesAPI().list()
+        ListBalancesResponse res = sdk.balancesAPI().listBalances()
                 .currency("EUR")
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .limit(50L)
                 .testmode(false)
-                .call();
-
-        if (res.object().isPresent()) {
-            // handle response
-        }
-    }
-}
-```
-
-### Per-Operation Security Schemes
-
-Some operations in this SDK require the security scheme to be specified at the request level. For example:
-```java
-package hello.world;
-
-import com.mollie.mollie.Mollie;
-import com.mollie.mollie.models.operations.GetCurrentProfileResponse;
-import com.mollie.mollie.models.operations.GetCurrentProfileSecurity;
-import java.lang.Exception;
-
-public class Application {
-
-    public static void main(String[] args) throws Exception {
-
-        Mollie sdk = Mollie.builder()
-            .build();
-
-        GetCurrentProfileResponse res = sdk.profilesAPI().getCurrent()
-                .security(GetCurrentProfileSecurity.builder()
-                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
                 .call();
 
         if (res.object().isPresent()) {
@@ -194,69 +170,69 @@ public class Application {
 
 ### [balancesAPI()](docs/sdks/balancesapi/README.md)
 
-* [list](docs/sdks/balancesapi/README.md#list) - List balances
-* [get](docs/sdks/balancesapi/README.md#get) - Get balance
-* [getPrimary](docs/sdks/balancesapi/README.md#getprimary) - Get primary balance
-* [getReport](docs/sdks/balancesapi/README.md#getreport) - Get balance report
-* [listTransactions](docs/sdks/balancesapi/README.md#listtransactions) - List balance transactions
+* [listBalances](docs/sdks/balancesapi/README.md#listbalances) - List balances
+* [getBalance](docs/sdks/balancesapi/README.md#getbalance) - Get balance
+* [getPrimaryBalance](docs/sdks/balancesapi/README.md#getprimarybalance) - Get primary balance
+* [getBalanceReport](docs/sdks/balancesapi/README.md#getbalancereport) - Get balance report
+* [listBalanceTransactions](docs/sdks/balancesapi/README.md#listbalancetransactions) - List balance transactions
 
 ### [capabilitiesAPI()](docs/sdks/capabilitiesapi/README.md)
 
-* [list](docs/sdks/capabilitiesapi/README.md#list) - List capabilities
+* [listCapabilities](docs/sdks/capabilitiesapi/README.md#listcapabilities) - List capabilities
 
 ### [capturesAPI()](docs/sdks/capturesapi/README.md)
 
-* [create](docs/sdks/capturesapi/README.md#create) - Create capture
-* [list](docs/sdks/capturesapi/README.md#list) - List captures
-* [get](docs/sdks/capturesapi/README.md#get) - Get capture
+* [createCapture](docs/sdks/capturesapi/README.md#createcapture) - Create capture
+* [listCaptures](docs/sdks/capturesapi/README.md#listcaptures) - List captures
+* [getCapture](docs/sdks/capturesapi/README.md#getcapture) - Get capture
 
 ### [chargebacksAPI()](docs/sdks/chargebacksapi/README.md)
 
-* [list](docs/sdks/chargebacksapi/README.md#list) - List payment chargebacks
-* [get](docs/sdks/chargebacksapi/README.md#get) - Get payment chargeback
-* [listAll](docs/sdks/chargebacksapi/README.md#listall) - List all chargebacks
+* [listChargebacks](docs/sdks/chargebacksapi/README.md#listchargebacks) - List payment chargebacks
+* [getChargeback](docs/sdks/chargebacksapi/README.md#getchargeback) - Get payment chargeback
+* [listAllChargebacks](docs/sdks/chargebacksapi/README.md#listallchargebacks) - List all chargebacks
 
 ### [clientLinksAPI()](docs/sdks/clientlinksapi/README.md)
 
-* [create](docs/sdks/clientlinksapi/README.md#create) - Create client link
+* [createClientLink](docs/sdks/clientlinksapi/README.md#createclientlink) - Create client link
 
 ### [clientsAPI()](docs/sdks/clientsapi/README.md)
 
-* [list](docs/sdks/clientsapi/README.md#list) - List clients
-* [get](docs/sdks/clientsapi/README.md#get) - Get client
+* [listClients](docs/sdks/clientsapi/README.md#listclients) - List clients
+* [getClient](docs/sdks/clientsapi/README.md#getclient) - Get client
 
 ### [customersAPI()](docs/sdks/customersapi/README.md)
 
-* [create](docs/sdks/customersapi/README.md#create) - Create customer
-* [list](docs/sdks/customersapi/README.md#list) - List customers
-* [get](docs/sdks/customersapi/README.md#get) - Get customer
-* [update](docs/sdks/customersapi/README.md#update) - Update customer
-* [delete](docs/sdks/customersapi/README.md#delete) - Delete customer
-* [createPayment](docs/sdks/customersapi/README.md#createpayment) - Create customer payment
-* [listPayments](docs/sdks/customersapi/README.md#listpayments) - List customer payments
+* [createCustomer](docs/sdks/customersapi/README.md#createcustomer) - Create customer
+* [listCustomers](docs/sdks/customersapi/README.md#listcustomers) - List customers
+* [getCustomer](docs/sdks/customersapi/README.md#getcustomer) - Get customer
+* [updateCustomer](docs/sdks/customersapi/README.md#updatecustomer) - Update customer
+* [deleteCustomer](docs/sdks/customersapi/README.md#deletecustomer) - Delete customer
+* [createCustomerPayment](docs/sdks/customersapi/README.md#createcustomerpayment) - Create customer payment
+* [listCustomerPayments](docs/sdks/customersapi/README.md#listcustomerpayments) - List customer payments
 
 ### [delayedRoutingAPI()](docs/sdks/delayedroutingapi/README.md)
 
-* [create](docs/sdks/delayedroutingapi/README.md#create) - Create a delayed route
-* [list](docs/sdks/delayedroutingapi/README.md#list) - List payment routes
+* [paymentCreateRoute](docs/sdks/delayedroutingapi/README.md#paymentcreateroute) - Create a delayed route
+* [paymentListRoutes](docs/sdks/delayedroutingapi/README.md#paymentlistroutes) - List payment routes
 
 ### [invoicesAPI()](docs/sdks/invoicesapi/README.md)
 
-* [list](docs/sdks/invoicesapi/README.md#list) - List invoices
-* [get](docs/sdks/invoicesapi/README.md#get) - Get invoice
+* [listInvoices](docs/sdks/invoicesapi/README.md#listinvoices) - List invoices
+* [getInvoice](docs/sdks/invoicesapi/README.md#getinvoice) - Get invoice
 
 ### [mandatesAPI()](docs/sdks/mandatesapi/README.md)
 
-* [create](docs/sdks/mandatesapi/README.md#create) - Create mandate
-* [list](docs/sdks/mandatesapi/README.md#list) - List mandates
-* [get](docs/sdks/mandatesapi/README.md#get) - Get mandate
-* [revoke](docs/sdks/mandatesapi/README.md#revoke) - Revoke mandate
+* [createMandate](docs/sdks/mandatesapi/README.md#createmandate) - Create mandate
+* [listMandates](docs/sdks/mandatesapi/README.md#listmandates) - List mandates
+* [getMandate](docs/sdks/mandatesapi/README.md#getmandate) - Get mandate
+* [revokeMandate](docs/sdks/mandatesapi/README.md#revokemandate) - Revoke mandate
 
 ### [methodsAPI()](docs/sdks/methodsapi/README.md)
 
-* [list](docs/sdks/methodsapi/README.md#list) - List payment methods
-* [listAll](docs/sdks/methodsapi/README.md#listall) - List all payment methods
-* [get](docs/sdks/methodsapi/README.md#get) - Get payment method
+* [listMethods](docs/sdks/methodsapi/README.md#listmethods) - List payment methods
+* [listAllMethods](docs/sdks/methodsapi/README.md#listallmethods) - List all payment methods
+* [getMethod](docs/sdks/methodsapi/README.md#getmethod) - Get payment method
 * [enableMethod](docs/sdks/methodsapi/README.md#enablemethod) - Enable payment method
 * [disableMethod](docs/sdks/methodsapi/README.md#disablemethod) - Disable payment method
 * [enableMethodIssuer](docs/sdks/methodsapi/README.md#enablemethodissuer) - Enable payment method issuer
@@ -265,100 +241,101 @@ public class Application {
 
 ### [onboardingAPI()](docs/sdks/onboardingapi/README.md)
 
-* [get](docs/sdks/onboardingapi/README.md#get) - Get onboarding status
-* [create](docs/sdks/onboardingapi/README.md#create) - Submit onboarding data
+* [getOnboardingStatus](docs/sdks/onboardingapi/README.md#getonboardingstatus) - Get onboarding status
+* [submitOnboardingData](docs/sdks/onboardingapi/README.md#submitonboardingdata) - Submit onboarding data
 
 ### [ordersAPI()](docs/sdks/ordersapi/README.md)
 
-* [create](docs/sdks/ordersapi/README.md#create) - Create order
-* [list](docs/sdks/ordersapi/README.md#list) - List orders
-* [get](docs/sdks/ordersapi/README.md#get) - Get order
-* [update](docs/sdks/ordersapi/README.md#update) - Update order
-* [cancel](docs/sdks/ordersapi/README.md#cancel) - Cancel order
-* [manageLines](docs/sdks/ordersapi/README.md#managelines) - Manage order lines
-* [cancelLines](docs/sdks/ordersapi/README.md#cancellines) - Cancel order lines
-* [updateLine](docs/sdks/ordersapi/README.md#updateline) - Update order line
-* [createPayment](docs/sdks/ordersapi/README.md#createpayment) - Create order payment
+* [createOrder](docs/sdks/ordersapi/README.md#createorder) - Create order
+* [listOrders](docs/sdks/ordersapi/README.md#listorders) - List orders
+* [getOrder](docs/sdks/ordersapi/README.md#getorder) - Get order
+* [updateOrder](docs/sdks/ordersapi/README.md#updateorder) - Update order
+* [cancelOrder](docs/sdks/ordersapi/README.md#cancelorder) - Cancel order
+* [manageOrderLines](docs/sdks/ordersapi/README.md#manageorderlines) - Manage order lines
+* [cancelOrderLines](docs/sdks/ordersapi/README.md#cancelorderlines) - Cancel order lines
+* [updateOrderLine](docs/sdks/ordersapi/README.md#updateorderline) - Update order line
+* [createOrderPayment](docs/sdks/ordersapi/README.md#createorderpayment) - Create order payment
 
 ### [organizationsAPI()](docs/sdks/organizationsapi/README.md)
 
-* [get](docs/sdks/organizationsapi/README.md#get) - Get organization
-* [getCurrent](docs/sdks/organizationsapi/README.md#getcurrent) - Get current organization
+* [getOrganization](docs/sdks/organizationsapi/README.md#getorganization) - Get organization
+* [getCurrentOrganization](docs/sdks/organizationsapi/README.md#getcurrentorganization) - Get current organization
 * [getPartnerStatus](docs/sdks/organizationsapi/README.md#getpartnerstatus) - Get partner status
 
 ### [paymentLinksAPI()](docs/sdks/paymentlinksapi/README.md)
 
-* [create](docs/sdks/paymentlinksapi/README.md#create) - Create payment link
-* [list](docs/sdks/paymentlinksapi/README.md#list) - List payment links
-* [get](docs/sdks/paymentlinksapi/README.md#get) - Get payment link
-* [update](docs/sdks/paymentlinksapi/README.md#update) - Update payment link
-* [delete](docs/sdks/paymentlinksapi/README.md#delete) - Delete payment link
-* [getPayments](docs/sdks/paymentlinksapi/README.md#getpayments) - Get payment link payments
+* [createPaymentLink](docs/sdks/paymentlinksapi/README.md#createpaymentlink) - Create payment link
+* [listPaymentLinks](docs/sdks/paymentlinksapi/README.md#listpaymentlinks) - List payment links
+* [getPaymentLink](docs/sdks/paymentlinksapi/README.md#getpaymentlink) - Get payment link
+* [updatePaymentLink](docs/sdks/paymentlinksapi/README.md#updatepaymentlink) - Update payment link
+* [deletePaymentLink](docs/sdks/paymentlinksapi/README.md#deletepaymentlink) - Delete payment link
+* [getPaymentLinkPayments](docs/sdks/paymentlinksapi/README.md#getpaymentlinkpayments) - Get payment link payments
 
 ### [paymentsAPI()](docs/sdks/paymentsapi/README.md)
 
-* [create](docs/sdks/paymentsapi/README.md#create) - Create payment
-* [list](docs/sdks/paymentsapi/README.md#list) - List payments
-* [get](docs/sdks/paymentsapi/README.md#get) - Get payment
-* [update](docs/sdks/paymentsapi/README.md#update) - Update payment
-* [cancel](docs/sdks/paymentsapi/README.md#cancel) - Cancel payment
+* [createPayment](docs/sdks/paymentsapi/README.md#createpayment) - Create payment
+* [listPayments](docs/sdks/paymentsapi/README.md#listpayments) - List payments
+* [getPayment](docs/sdks/paymentsapi/README.md#getpayment) - Get payment
+* [updatePayment](docs/sdks/paymentsapi/README.md#updatepayment) - Update payment
+* [cancelPayment](docs/sdks/paymentsapi/README.md#cancelpayment) - Cancel payment
+* [releaseAuthorization](docs/sdks/paymentsapi/README.md#releaseauthorization) - Release payment authorization
 
 ### [permissionsAPI()](docs/sdks/permissionsapi/README.md)
 
-* [list](docs/sdks/permissionsapi/README.md#list) - List permissions
-* [get](docs/sdks/permissionsapi/README.md#get) - Get permission
+* [listPermissions](docs/sdks/permissionsapi/README.md#listpermissions) - List permissions
+* [getPermission](docs/sdks/permissionsapi/README.md#getpermission) - Get permission
 
 ### [profilesAPI()](docs/sdks/profilesapi/README.md)
 
-* [create](docs/sdks/profilesapi/README.md#create) - Create profile
-* [list](docs/sdks/profilesapi/README.md#list) - List profiles
-* [get](docs/sdks/profilesapi/README.md#get) - Get profile
-* [update](docs/sdks/profilesapi/README.md#update) - Update profile
-* [delete](docs/sdks/profilesapi/README.md#delete) - Delete profile
-* [getCurrent](docs/sdks/profilesapi/README.md#getcurrent) - Get current profile
+* [createProfile](docs/sdks/profilesapi/README.md#createprofile) - Create profile
+* [listProfiles](docs/sdks/profilesapi/README.md#listprofiles) - List profiles
+* [getProfile](docs/sdks/profilesapi/README.md#getprofile) - Get profile
+* [updateProfile](docs/sdks/profilesapi/README.md#updateprofile) - Update profile
+* [deleteProfile](docs/sdks/profilesapi/README.md#deleteprofile) - Delete profile
+* [getCurrentProfile](docs/sdks/profilesapi/README.md#getcurrentprofile) - Get current profile
 
 ### [refundsAPI()](docs/sdks/refundsapi/README.md)
 
-* [create](docs/sdks/refundsapi/README.md#create) - Create payment refund
-* [list](docs/sdks/refundsapi/README.md#list) - List payment refunds
-* [get](docs/sdks/refundsapi/README.md#get) - Get payment refund
-* [cancel](docs/sdks/refundsapi/README.md#cancel) - Cancel payment refund
-* [createOrder](docs/sdks/refundsapi/README.md#createorder) - Create order refund
-* [listOrder](docs/sdks/refundsapi/README.md#listorder) - List order refunds
-* [listAll](docs/sdks/refundsapi/README.md#listall) - List all refunds
+* [createRefund](docs/sdks/refundsapi/README.md#createrefund) - Create payment refund
+* [listRefunds](docs/sdks/refundsapi/README.md#listrefunds) - List payment refunds
+* [getRefund](docs/sdks/refundsapi/README.md#getrefund) - Get payment refund
+* [cancelRefund](docs/sdks/refundsapi/README.md#cancelrefund) - Cancel payment refund
+* [createOrderRefund](docs/sdks/refundsapi/README.md#createorderrefund) - Create order refund
+* [listOrderRefunds](docs/sdks/refundsapi/README.md#listorderrefunds) - List order refunds
+* [listAllRefunds](docs/sdks/refundsapi/README.md#listallrefunds) - List all refunds
 
 ### [settlementsAPI()](docs/sdks/settlementsapi/README.md)
 
-* [list](docs/sdks/settlementsapi/README.md#list) - List settlements
-* [get](docs/sdks/settlementsapi/README.md#get) - Get settlement
-* [getOpen](docs/sdks/settlementsapi/README.md#getopen) - Get open settlement
-* [getNext](docs/sdks/settlementsapi/README.md#getnext) - Get next settlement
-* [getPayments](docs/sdks/settlementsapi/README.md#getpayments) - Get settlement payments
-* [getCaptures](docs/sdks/settlementsapi/README.md#getcaptures) - Get settlement captures
-* [getRefunds](docs/sdks/settlementsapi/README.md#getrefunds) - Get settlement refunds
-* [getChargebacks](docs/sdks/settlementsapi/README.md#getchargebacks) - Get settlement chargebacks
+* [listSettlements](docs/sdks/settlementsapi/README.md#listsettlements) - List settlements
+* [getSettlement](docs/sdks/settlementsapi/README.md#getsettlement) - Get settlement
+* [getOpenSettlement](docs/sdks/settlementsapi/README.md#getopensettlement) - Get open settlement
+* [getNextSettlement](docs/sdks/settlementsapi/README.md#getnextsettlement) - Get next settlement
+* [getSettlementPayments](docs/sdks/settlementsapi/README.md#getsettlementpayments) - Get settlement payments
+* [getSettlementCaptures](docs/sdks/settlementsapi/README.md#getsettlementcaptures) - Get settlement captures
+* [getSettlementRefunds](docs/sdks/settlementsapi/README.md#getsettlementrefunds) - Get settlement refunds
+* [getSettlementChargebacks](docs/sdks/settlementsapi/README.md#getsettlementchargebacks) - Get settlement chargebacks
 
 ### [shipmentsAPI()](docs/sdks/shipmentsapi/README.md)
 
-* [create](docs/sdks/shipmentsapi/README.md#create) - Create shipment
-* [list](docs/sdks/shipmentsapi/README.md#list) - List shipments
-* [get](docs/sdks/shipmentsapi/README.md#get) - Get shipment
-* [update](docs/sdks/shipmentsapi/README.md#update) - Update shipment
+* [createShipment](docs/sdks/shipmentsapi/README.md#createshipment) - Create shipment
+* [listShipments](docs/sdks/shipmentsapi/README.md#listshipments) - List shipments
+* [getShipment](docs/sdks/shipmentsapi/README.md#getshipment) - Get shipment
+* [updateShipment](docs/sdks/shipmentsapi/README.md#updateshipment) - Update shipment
 
 ### [subscriptionsAPI()](docs/sdks/subscriptionsapi/README.md)
 
-* [create](docs/sdks/subscriptionsapi/README.md#create) - Create subscription
-* [list](docs/sdks/subscriptionsapi/README.md#list) - List customer subscriptions
-* [get](docs/sdks/subscriptionsapi/README.md#get) - Get subscription
-* [update](docs/sdks/subscriptionsapi/README.md#update) - Update subscription
-* [cancel](docs/sdks/subscriptionsapi/README.md#cancel) - Cancel subscription
-* [listAll](docs/sdks/subscriptionsapi/README.md#listall) - List all subscriptions
-* [listPayments](docs/sdks/subscriptionsapi/README.md#listpayments) - List subscription payments
+* [createSubscription](docs/sdks/subscriptionsapi/README.md#createsubscription) - Create subscription
+* [listSubscriptions](docs/sdks/subscriptionsapi/README.md#listsubscriptions) - List customer subscriptions
+* [getSubscription](docs/sdks/subscriptionsapi/README.md#getsubscription) - Get subscription
+* [updateSubscription](docs/sdks/subscriptionsapi/README.md#updatesubscription) - Update subscription
+* [cancelSubscription](docs/sdks/subscriptionsapi/README.md#cancelsubscription) - Cancel subscription
+* [listAllSubscriptions](docs/sdks/subscriptionsapi/README.md#listallsubscriptions) - List all subscriptions
+* [listSubscriptionPayments](docs/sdks/subscriptionsapi/README.md#listsubscriptionpayments) - List subscription payments
 
 ### [terminalsAPI()](docs/sdks/terminalsapi/README.md)
 
-* [list](docs/sdks/terminalsapi/README.md#list) - List terminals
-* [get](docs/sdks/terminalsapi/README.md#get) - Get terminal
+* [listTerminals](docs/sdks/terminalsapi/README.md#listterminals) - List terminals
+* [getTerminal](docs/sdks/terminalsapi/README.md#getterminal) - Get terminal
 
 ### [walletsAPI()](docs/sdks/walletsapi/README.md)
 
@@ -372,7 +349,7 @@ public class Application {
 
 Handling errors in this SDK should largely match your expectations. All operations return a response object or raise an exception.
 
-By default, an API error will throw a `models/errors/APIException` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `list` method throws the following exceptions:
+By default, an API error will throw a `models/errors/APIException` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `listBalances` method throws the following exceptions:
 
 | Error Type                                        | Status Code | Content Type         |
 | ------------------------------------------------- | ----------- | -------------------- |
@@ -386,6 +363,7 @@ By default, an API error will throw a `models/errors/APIException` exception. Wh
 package hello.world;
 
 import com.mollie.mollie.Mollie;
+import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ListBalancesBalancesAPIResponseBody;
 import com.mollie.mollie.models.errors.ListBalancesResponseBody;
 import com.mollie.mollie.models.operations.ListBalancesResponse;
@@ -396,10 +374,12 @@ public class Application {
     public static void main(String[] args) throws ListBalancesResponseBody, ListBalancesBalancesAPIResponseBody, Exception {
 
         Mollie sdk = Mollie.builder()
-                .oAuth("<YOUR_O_AUTH_HERE>")
+                .security(Security.builder()
+                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
             .build();
 
-        ListBalancesResponse res = sdk.balancesAPI().list()
+        ListBalancesResponse res = sdk.balancesAPI().listBalances()
                 .currency("EUR")
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .limit(50L)
@@ -419,11 +399,12 @@ public class Application {
 
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally using the `.serverURL(String serverUrl)` builder method when initializing the SDK client instance. For example:
+The default server can be overridden globally using the `.serverURL(String serverUrl)` builder method when initializing the SDK client instance. For example:
 ```java
 package hello.world;
 
 import com.mollie.mollie.Mollie;
+import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ListBalancesBalancesAPIResponseBody;
 import com.mollie.mollie.models.errors.ListBalancesResponseBody;
 import com.mollie.mollie.models.operations.ListBalancesResponse;
@@ -435,10 +416,12 @@ public class Application {
 
         Mollie sdk = Mollie.builder()
                 .serverURL("https://api.mollie.com/v2")
-                .oAuth("<YOUR_O_AUTH_HERE>")
+                .security(Security.builder()
+                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
             .build();
 
-        ListBalancesResponse res = sdk.balancesAPI().list()
+        ListBalancesResponse res = sdk.balancesAPI().listBalances()
                 .currency("EUR")
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .limit(50L)

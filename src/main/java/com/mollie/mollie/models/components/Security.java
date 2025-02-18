@@ -17,18 +17,29 @@ import java.util.Optional;
 
 public class Security {
 
+    @SpeakeasyMetadata("security:scheme=true,type=http,subtype=bearer,name=Authorization")
+    private Optional<String> apiKey;
+
     @SpeakeasyMetadata("security:scheme=true,type=oauth2,name=Authorization")
     private Optional<String> oAuth;
 
     @JsonCreator
     public Security(
+            Optional<String> apiKey,
             Optional<String> oAuth) {
+        Utils.checkNotNull(apiKey, "apiKey");
         Utils.checkNotNull(oAuth, "oAuth");
+        this.apiKey = apiKey;
         this.oAuth = oAuth;
     }
     
     public Security() {
-        this(Optional.empty());
+        this(Optional.empty(), Optional.empty());
+    }
+
+    @JsonIgnore
+    public Optional<String> apiKey() {
+        return apiKey;
     }
 
     @JsonIgnore
@@ -38,6 +49,18 @@ public class Security {
 
     public final static Builder builder() {
         return new Builder();
+    }
+
+    public Security withApiKey(String apiKey) {
+        Utils.checkNotNull(apiKey, "apiKey");
+        this.apiKey = Optional.ofNullable(apiKey);
+        return this;
+    }
+
+    public Security withApiKey(Optional<String> apiKey) {
+        Utils.checkNotNull(apiKey, "apiKey");
+        this.apiKey = apiKey;
+        return this;
     }
 
     public Security withOAuth(String oAuth) {
@@ -62,27 +85,44 @@ public class Security {
         }
         Security other = (Security) o;
         return 
+            Objects.deepEquals(this.apiKey, other.apiKey) &&
             Objects.deepEquals(this.oAuth, other.oAuth);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
+            apiKey,
             oAuth);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Security.class,
+                "apiKey", apiKey,
                 "oAuth", oAuth);
     }
     
     public final static class Builder {
  
+        private Optional<String> apiKey = Optional.empty();
+ 
         private Optional<String> oAuth = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
+        }
+
+        public Builder apiKey(String apiKey) {
+            Utils.checkNotNull(apiKey, "apiKey");
+            this.apiKey = Optional.ofNullable(apiKey);
+            return this;
+        }
+
+        public Builder apiKey(Optional<String> apiKey) {
+            Utils.checkNotNull(apiKey, "apiKey");
+            this.apiKey = apiKey;
+            return this;
         }
 
         public Builder oAuth(String oAuth) {
@@ -99,6 +139,7 @@ public class Security {
         
         public Security build() {
             return new Security(
+                apiKey,
                 oAuth);
         }
     }

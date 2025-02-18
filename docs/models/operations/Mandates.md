@@ -1,7 +1,6 @@
 # Mandates
 
-The API resource URL of the [mandates](list-mandates) linked to this customer. Omitted if no such mandates
-exist (yet).
+The API resource URL of the [mandates](list-mandates) linked to this customer. Omitted if no such mandates exist (yet).
 
 
 ## Fields

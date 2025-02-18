@@ -45,8 +45,7 @@ public class Clients {
     private JsonNullable<? extends ListClientsCommission> commission;
 
     /**
-     * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format.
+     * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("organizationCreatedAt")
@@ -115,8 +114,7 @@ public class Clients {
     }
 
     /**
-     * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format.
+     * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
     @JsonIgnore
     public Optional<String> organizationCreatedAt() {
@@ -197,8 +195,7 @@ public class Clients {
     }
 
     /**
-     * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format.
+     * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
     public Clients withOrganizationCreatedAt(String organizationCreatedAt) {
         Utils.checkNotNull(organizationCreatedAt, "organizationCreatedAt");
@@ -207,8 +204,7 @@ public class Clients {
     }
 
     /**
-     * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format.
+     * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
     public Clients withOrganizationCreatedAt(Optional<String> organizationCreatedAt) {
         Utils.checkNotNull(organizationCreatedAt, "organizationCreatedAt");
@@ -359,8 +355,7 @@ public class Clients {
         }
 
         /**
-         * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-         * format.
+         * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
          */
         public Builder organizationCreatedAt(String organizationCreatedAt) {
             Utils.checkNotNull(organizationCreatedAt, "organizationCreatedAt");
@@ -369,8 +364,7 @@ public class Clients {
         }
 
         /**
-         * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-         * format.
+         * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
          */
         public Builder organizationCreatedAt(Optional<String> organizationCreatedAt) {
             Utils.checkNotNull(organizationCreatedAt, "organizationCreatedAt");

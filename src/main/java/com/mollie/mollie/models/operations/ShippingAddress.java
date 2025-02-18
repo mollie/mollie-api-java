@@ -17,8 +17,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * ShippingAddress - The customer's shipping address details. We advise to provide these details to improve fraud protection and
- * conversion. This is particularly relevant for card payments.
+ * ShippingAddress - The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion. This is particularly relevant for card payments.
  */
 
 public class ShippingAddress {

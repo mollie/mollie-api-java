@@ -9,19 +9,12 @@ import java.lang.String;
 
 public class DisableMethodRequestBuilder {
 
-    private DisableMethodSecurity security;
     private String profileId;
     private String id;
     private final SDKMethodInterfaces.MethodCallDisableMethod sdk;
 
     public DisableMethodRequestBuilder(SDKMethodInterfaces.MethodCallDisableMethod sdk) {
         this.sdk = sdk;
-    }
-
-    public DisableMethodRequestBuilder security(DisableMethodSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public DisableMethodRequestBuilder profileId(String profileId) {
@@ -39,7 +32,6 @@ public class DisableMethodRequestBuilder {
     public DisableMethodResponse call() throws Exception {
 
         return sdk.disableMethod(
-            security,
             profileId,
             id);
     }

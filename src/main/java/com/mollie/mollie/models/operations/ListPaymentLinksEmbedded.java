@@ -22,8 +22,7 @@ import java.util.Optional;
 public class ListPaymentLinksEmbedded {
 
     /**
-     * An array of payment link objects. For a complete reference of the payment link object, refer to
-     * the [Get payment link endpoint](get-payment-link) documentation.
+     * An array of payment link objects. For a complete reference of the payment link object, refer to the [Get payment link endpoint](get-payment-link) documentation.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment_links")
@@ -41,8 +40,7 @@ public class ListPaymentLinksEmbedded {
     }
 
     /**
-     * An array of payment link objects. For a complete reference of the payment link object, refer to
-     * the [Get payment link endpoint](get-payment-link) documentation.
+     * An array of payment link objects. For a complete reference of the payment link object, refer to the [Get payment link endpoint](get-payment-link) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -55,8 +53,7 @@ public class ListPaymentLinksEmbedded {
     }
 
     /**
-     * An array of payment link objects. For a complete reference of the payment link object, refer to
-     * the [Get payment link endpoint](get-payment-link) documentation.
+     * An array of payment link objects. For a complete reference of the payment link object, refer to the [Get payment link endpoint](get-payment-link) documentation.
      */
     public ListPaymentLinksEmbedded withPaymentLinks(List<PaymentLinks> paymentLinks) {
         Utils.checkNotNull(paymentLinks, "paymentLinks");
@@ -65,8 +62,7 @@ public class ListPaymentLinksEmbedded {
     }
 
     /**
-     * An array of payment link objects. For a complete reference of the payment link object, refer to
-     * the [Get payment link endpoint](get-payment-link) documentation.
+     * An array of payment link objects. For a complete reference of the payment link object, refer to the [Get payment link endpoint](get-payment-link) documentation.
      */
     public ListPaymentLinksEmbedded withPaymentLinks(Optional<? extends List<PaymentLinks>> paymentLinks) {
         Utils.checkNotNull(paymentLinks, "paymentLinks");
@@ -108,8 +104,7 @@ public class ListPaymentLinksEmbedded {
         }
 
         /**
-         * An array of payment link objects. For a complete reference of the payment link object, refer to
-         * the [Get payment link endpoint](get-payment-link) documentation.
+         * An array of payment link objects. For a complete reference of the payment link object, refer to the [Get payment link endpoint](get-payment-link) documentation.
          */
         public Builder paymentLinks(List<PaymentLinks> paymentLinks) {
             Utils.checkNotNull(paymentLinks, "paymentLinks");
@@ -118,8 +113,7 @@ public class ListPaymentLinksEmbedded {
         }
 
         /**
-         * An array of payment link objects. For a complete reference of the payment link object, refer to
-         * the [Get payment link endpoint](get-payment-link) documentation.
+         * An array of payment link objects. For a complete reference of the payment link object, refer to the [Get payment link endpoint](get-payment-link) documentation.
          */
         public Builder paymentLinks(Optional<? extends List<PaymentLinks>> paymentLinks) {
             Utils.checkNotNull(paymentLinks, "paymentLinks");

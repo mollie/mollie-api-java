@@ -13,7 +13,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -25,14 +24,15 @@ public class Source {
 
     /**
      * The type of source. Currently only the source type `organization` is supported.
+     * 
+     * Possible values: `organization`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<? extends CreateRefundType> type;
+    private Optional<String> type;
 
     /**
-     * Required for source type `organization`. The ID of the connected organization the funds should be pulled
-     * back from.
+     * Required for source type `organization`. The ID of the connected organization the funds should be pulled back from.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("organizationId")
@@ -40,7 +40,7 @@ public class Source {
 
     @JsonCreator
     public Source(
-            @JsonProperty("type") Optional<? extends CreateRefundType> type,
+            @JsonProperty("type") Optional<String> type,
             @JsonProperty("organizationId") Optional<String> organizationId) {
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(organizationId, "organizationId");
@@ -54,16 +54,16 @@ public class Source {
 
     /**
      * The type of source. Currently only the source type `organization` is supported.
+     * 
+     * Possible values: `organization`
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateRefundType> type() {
-        return (Optional<CreateRefundType>) type;
+    public Optional<String> type() {
+        return type;
     }
 
     /**
-     * Required for source type `organization`. The ID of the connected organization the funds should be pulled
-     * back from.
+     * Required for source type `organization`. The ID of the connected organization the funds should be pulled back from.
      */
     @JsonIgnore
     public Optional<String> organizationId() {
@@ -76,8 +76,10 @@ public class Source {
 
     /**
      * The type of source. Currently only the source type `organization` is supported.
+     * 
+     * Possible values: `organization`
      */
-    public Source withType(CreateRefundType type) {
+    public Source withType(String type) {
         Utils.checkNotNull(type, "type");
         this.type = Optional.ofNullable(type);
         return this;
@@ -85,16 +87,17 @@ public class Source {
 
     /**
      * The type of source. Currently only the source type `organization` is supported.
+     * 
+     * Possible values: `organization`
      */
-    public Source withType(Optional<? extends CreateRefundType> type) {
+    public Source withType(Optional<String> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
     }
 
     /**
-     * Required for source type `organization`. The ID of the connected organization the funds should be pulled
-     * back from.
+     * Required for source type `organization`. The ID of the connected organization the funds should be pulled back from.
      */
     public Source withOrganizationId(String organizationId) {
         Utils.checkNotNull(organizationId, "organizationId");
@@ -103,8 +106,7 @@ public class Source {
     }
 
     /**
-     * Required for source type `organization`. The ID of the connected organization the funds should be pulled
-     * back from.
+     * Required for source type `organization`. The ID of the connected organization the funds should be pulled back from.
      */
     public Source withOrganizationId(Optional<String> organizationId) {
         Utils.checkNotNull(organizationId, "organizationId");
@@ -142,7 +144,7 @@ public class Source {
     
     public final static class Builder {
  
-        private Optional<? extends CreateRefundType> type = Optional.empty();
+        private Optional<String> type = Optional.empty();
  
         private Optional<String> organizationId = Optional.empty();  
         
@@ -152,8 +154,10 @@ public class Source {
 
         /**
          * The type of source. Currently only the source type `organization` is supported.
+         * 
+         * Possible values: `organization`
          */
-        public Builder type(CreateRefundType type) {
+        public Builder type(String type) {
             Utils.checkNotNull(type, "type");
             this.type = Optional.ofNullable(type);
             return this;
@@ -161,16 +165,17 @@ public class Source {
 
         /**
          * The type of source. Currently only the source type `organization` is supported.
+         * 
+         * Possible values: `organization`
          */
-        public Builder type(Optional<? extends CreateRefundType> type) {
+        public Builder type(Optional<String> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
         }
 
         /**
-         * Required for source type `organization`. The ID of the connected organization the funds should be pulled
-         * back from.
+         * Required for source type `organization`. The ID of the connected organization the funds should be pulled back from.
          */
         public Builder organizationId(String organizationId) {
             Utils.checkNotNull(organizationId, "organizationId");
@@ -179,8 +184,7 @@ public class Source {
         }
 
         /**
-         * Required for source type `organization`. The ID of the connected organization the funds should be pulled
-         * back from.
+         * Required for source type `organization`. The ID of the connected organization the funds should be pulled back from.
          */
         public Builder organizationId(Optional<String> organizationId) {
             Utils.checkNotNull(organizationId, "organizationId");

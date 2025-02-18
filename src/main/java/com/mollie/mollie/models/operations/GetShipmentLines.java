@@ -42,8 +42,7 @@ public class GetShipmentLines {
     private Optional<String> name;
 
     /**
-     * The number of items that should be shipped for this order line. When this parameter is omitted, all
-     * remaining unshipped items of this order line will be considered 'shipped'.
+     * The number of items that should be shipped for this order line. When this parameter is omitted, all remaining unshipped items of this order line will be considered 'shipped'.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("quantity")
@@ -161,8 +160,7 @@ public class GetShipmentLines {
     }
 
     /**
-     * The number of items that should be shipped for this order line. When this parameter is omitted, all
-     * remaining unshipped items of this order line will be considered 'shipped'.
+     * The number of items that should be shipped for this order line. When this parameter is omitted, all remaining unshipped items of this order line will be considered 'shipped'.
      */
     @JsonIgnore
     public JsonNullable<Long> quantity() {
@@ -280,8 +278,7 @@ public class GetShipmentLines {
     }
 
     /**
-     * The number of items that should be shipped for this order line. When this parameter is omitted, all
-     * remaining unshipped items of this order line will be considered 'shipped'.
+     * The number of items that should be shipped for this order line. When this parameter is omitted, all remaining unshipped items of this order line will be considered 'shipped'.
      */
     public GetShipmentLines withQuantity(long quantity) {
         Utils.checkNotNull(quantity, "quantity");
@@ -290,8 +287,7 @@ public class GetShipmentLines {
     }
 
     /**
-     * The number of items that should be shipped for this order line. When this parameter is omitted, all
-     * remaining unshipped items of this order line will be considered 'shipped'.
+     * The number of items that should be shipped for this order line. When this parameter is omitted, all remaining unshipped items of this order line will be considered 'shipped'.
      */
     public GetShipmentLines withQuantity(JsonNullable<Long> quantity) {
         Utils.checkNotNull(quantity, "quantity");
@@ -561,8 +557,7 @@ public class GetShipmentLines {
         }
 
         /**
-         * The number of items that should be shipped for this order line. When this parameter is omitted, all
-         * remaining unshipped items of this order line will be considered 'shipped'.
+         * The number of items that should be shipped for this order line. When this parameter is omitted, all remaining unshipped items of this order line will be considered 'shipped'.
          */
         public Builder quantity(long quantity) {
             Utils.checkNotNull(quantity, "quantity");
@@ -571,8 +566,7 @@ public class GetShipmentLines {
         }
 
         /**
-         * The number of items that should be shipped for this order line. When this parameter is omitted, all
-         * remaining unshipped items of this order line will be considered 'shipped'.
+         * The number of items that should be shipped for this order line. When this parameter is omitted, all remaining unshipped items of this order line will be considered 'shipped'.
          */
         public Builder quantity(JsonNullable<Long> quantity) {
             Utils.checkNotNull(quantity, "quantity");

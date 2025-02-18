@@ -14,7 +14,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class UpdateShipmentRequestBuilder {
 
-    private UpdateShipmentSecurity security;
     private String orderId;
     private String id;
     private JsonNullable<Boolean> testmode = Utils.readDefaultOrConstValue(
@@ -26,12 +25,6 @@ public class UpdateShipmentRequestBuilder {
 
     public UpdateShipmentRequestBuilder(SDKMethodInterfaces.MethodCallUpdateShipment sdk) {
         this.sdk = sdk;
-    }
-
-    public UpdateShipmentRequestBuilder security(UpdateShipmentSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public UpdateShipmentRequestBuilder orderId(String orderId) {
@@ -74,8 +67,7 @@ public class UpdateShipmentRequestBuilder {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.update(
-            security,
+        return sdk.updateShipment(
             orderId,
             id,
             testmode,

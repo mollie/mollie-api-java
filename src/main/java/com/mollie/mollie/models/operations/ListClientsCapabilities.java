@@ -38,7 +38,7 @@ public class ListClientsCapabilities {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends ListClientsClientsAPIStatus> status;
+    private Optional<? extends ListClientsStatus> status;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("statusReason")
@@ -52,7 +52,7 @@ public class ListClientsCapabilities {
     public ListClientsCapabilities(
             @JsonProperty("resource") Optional<String> resource,
             @JsonProperty("name") Optional<String> name,
-            @JsonProperty("status") Optional<? extends ListClientsClientsAPIStatus> status,
+            @JsonProperty("status") Optional<? extends ListClientsStatus> status,
             @JsonProperty("statusReason") JsonNullable<? extends ListClientsStatusReason> statusReason,
             @JsonProperty("requirements") Optional<? extends List<ListClientsRequirements>> requirements) {
         Utils.checkNotNull(resource, "resource");
@@ -89,8 +89,8 @@ public class ListClientsCapabilities {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListClientsClientsAPIStatus> status() {
-        return (Optional<ListClientsClientsAPIStatus>) status;
+    public Optional<ListClientsStatus> status() {
+        return (Optional<ListClientsStatus>) status;
     }
 
     @SuppressWarnings("unchecked")
@@ -145,13 +145,13 @@ public class ListClientsCapabilities {
         return this;
     }
 
-    public ListClientsCapabilities withStatus(ListClientsClientsAPIStatus status) {
+    public ListClientsCapabilities withStatus(ListClientsStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
     }
 
-    public ListClientsCapabilities withStatus(Optional<? extends ListClientsClientsAPIStatus> status) {
+    public ListClientsCapabilities withStatus(Optional<? extends ListClientsStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -224,7 +224,7 @@ public class ListClientsCapabilities {
  
         private Optional<String> name = Optional.empty();
  
-        private Optional<? extends ListClientsClientsAPIStatus> status = Optional.empty();
+        private Optional<? extends ListClientsStatus> status = Optional.empty();
  
         private JsonNullable<? extends ListClientsStatusReason> statusReason = JsonNullable.undefined();
  
@@ -270,13 +270,13 @@ public class ListClientsCapabilities {
             return this;
         }
 
-        public Builder status(ListClientsClientsAPIStatus status) {
+        public Builder status(ListClientsStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
         }
 
-        public Builder status(Optional<? extends ListClientsClientsAPIStatus> status) {
+        public Builder status(Optional<? extends ListClientsStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

@@ -19,35 +19,35 @@ import java.util.Optional;
 public class UpdatePaymentRequest {
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related payment.
      */
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
-    private String id;
+    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=paymentId")
+    private String paymentId;
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends UpdatePaymentRequestBody> requestBody;
 
     @JsonCreator
     public UpdatePaymentRequest(
-            String id,
+            String paymentId,
             Optional<? extends UpdatePaymentRequestBody> requestBody) {
-        Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(paymentId, "paymentId");
         Utils.checkNotNull(requestBody, "requestBody");
-        this.id = id;
+        this.paymentId = paymentId;
         this.requestBody = requestBody;
     }
     
     public UpdatePaymentRequest(
-            String id) {
-        this(id, Optional.empty());
+            String paymentId) {
+        this(paymentId, Optional.empty());
     }
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related payment.
      */
     @JsonIgnore
-    public String id() {
-        return id;
+    public String paymentId() {
+        return paymentId;
     }
 
     @SuppressWarnings("unchecked")
@@ -61,11 +61,11 @@ public class UpdatePaymentRequest {
     }
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related payment.
      */
-    public UpdatePaymentRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public UpdatePaymentRequest withPaymentId(String paymentId) {
+        Utils.checkNotNull(paymentId, "paymentId");
+        this.paymentId = paymentId;
         return this;
     }
 
@@ -91,27 +91,27 @@ public class UpdatePaymentRequest {
         }
         UpdatePaymentRequest other = (UpdatePaymentRequest) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.paymentId, other.paymentId) &&
             Objects.deepEquals(this.requestBody, other.requestBody);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
-            id,
+            paymentId,
             requestBody);
     }
     
     @Override
     public String toString() {
         return Utils.toString(UpdatePaymentRequest.class,
-                "id", id,
+                "paymentId", paymentId,
                 "requestBody", requestBody);
     }
     
     public final static class Builder {
  
-        private String id;
+        private String paymentId;
  
         private Optional<? extends UpdatePaymentRequestBody> requestBody = Optional.empty();  
         
@@ -120,11 +120,11 @@ public class UpdatePaymentRequest {
         }
 
         /**
-         * Provide the ID of the item you want to perform this operation on.
+         * Provide the ID of the related payment.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder paymentId(String paymentId) {
+            Utils.checkNotNull(paymentId, "paymentId");
+            this.paymentId = paymentId;
             return this;
         }
 
@@ -142,7 +142,7 @@ public class UpdatePaymentRequest {
         
         public UpdatePaymentRequest build() {
             return new UpdatePaymentRequest(
-                id,
+                paymentId,
                 requestBody);
         }
     }

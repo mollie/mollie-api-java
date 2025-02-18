@@ -42,19 +42,23 @@ public class GetMandateResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
+     * 
+     * Possible values: `live` `test`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<? extends GetMandateMode> mode;
+    private Optional<String> mode;
 
     /**
      * Payment method of the mandate.
      * 
      * SEPA Direct Debit and PayPal mandates can be created directly.
+     * 
+     * Possible values: `creditcard` `directdebit` `paypal`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("method")
-    private Optional<? extends GetMandateMethod> method;
+    private Optional<String> method;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("details")
@@ -68,20 +72,20 @@ public class GetMandateResponseBody {
     private JsonNullable<String> signatureDate;
 
     /**
-     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
-     * decline Direct Debit payments if the mandate reference is not unique.
+     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will decline Direct Debit payments if the mandate reference is not unique.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mandateReference")
     private JsonNullable<String> mandateReference;
 
     /**
-     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
-     * when we did not received the IBAN yet from the first payment.
+     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or when we did not received the IBAN yet from the first payment.
+     * 
+     * Possible values: `valid` `pending` `invalid`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends GetMandateStatus> status;
+    private Optional<String> status;
 
     /**
      * The identifier referring to the [customer](get-customer) this mandate was linked to.
@@ -108,12 +112,12 @@ public class GetMandateResponseBody {
     public GetMandateResponseBody(
             @JsonProperty("resource") Optional<String> resource,
             @JsonProperty("id") Optional<String> id,
-            @JsonProperty("mode") Optional<? extends GetMandateMode> mode,
-            @JsonProperty("method") Optional<? extends GetMandateMethod> method,
+            @JsonProperty("mode") Optional<String> mode,
+            @JsonProperty("method") Optional<String> method,
             @JsonProperty("details") Optional<? extends GetMandateDetails> details,
             @JsonProperty("signatureDate") JsonNullable<String> signatureDate,
             @JsonProperty("mandateReference") JsonNullable<String> mandateReference,
-            @JsonProperty("status") Optional<? extends GetMandateStatus> status,
+            @JsonProperty("status") Optional<String> status,
             @JsonProperty("customerId") JsonNullable<String> customerId,
             @JsonProperty("createdAt") Optional<String> createdAt,
             @JsonProperty("_links") Optional<? extends GetMandateLinks> links) {
@@ -163,22 +167,24 @@ public class GetMandateResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
+     * 
+     * Possible values: `live` `test`
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetMandateMode> mode() {
-        return (Optional<GetMandateMode>) mode;
+    public Optional<String> mode() {
+        return mode;
     }
 
     /**
      * Payment method of the mandate.
      * 
      * SEPA Direct Debit and PayPal mandates can be created directly.
+     * 
+     * Possible values: `creditcard` `directdebit` `paypal`
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetMandateMethod> method() {
-        return (Optional<GetMandateMethod>) method;
+    public Optional<String> method() {
+        return method;
     }
 
     @SuppressWarnings("unchecked")
@@ -196,8 +202,7 @@ public class GetMandateResponseBody {
     }
 
     /**
-     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
-     * decline Direct Debit payments if the mandate reference is not unique.
+     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will decline Direct Debit payments if the mandate reference is not unique.
      */
     @JsonIgnore
     public JsonNullable<String> mandateReference() {
@@ -205,13 +210,13 @@ public class GetMandateResponseBody {
     }
 
     /**
-     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
-     * when we did not received the IBAN yet from the first payment.
+     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or when we did not received the IBAN yet from the first payment.
+     * 
+     * Possible values: `valid` `pending` `invalid`
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetMandateStatus> status() {
-        return (Optional<GetMandateStatus>) status;
+    public Optional<String> status() {
+        return status;
     }
 
     /**
@@ -281,8 +286,10 @@ public class GetMandateResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
+     * 
+     * Possible values: `live` `test`
      */
-    public GetMandateResponseBody withMode(GetMandateMode mode) {
+    public GetMandateResponseBody withMode(String mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = Optional.ofNullable(mode);
         return this;
@@ -290,8 +297,10 @@ public class GetMandateResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
+     * 
+     * Possible values: `live` `test`
      */
-    public GetMandateResponseBody withMode(Optional<? extends GetMandateMode> mode) {
+    public GetMandateResponseBody withMode(Optional<String> mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
@@ -301,8 +310,10 @@ public class GetMandateResponseBody {
      * Payment method of the mandate.
      * 
      * SEPA Direct Debit and PayPal mandates can be created directly.
+     * 
+     * Possible values: `creditcard` `directdebit` `paypal`
      */
-    public GetMandateResponseBody withMethod(GetMandateMethod method) {
+    public GetMandateResponseBody withMethod(String method) {
         Utils.checkNotNull(method, "method");
         this.method = Optional.ofNullable(method);
         return this;
@@ -312,8 +323,10 @@ public class GetMandateResponseBody {
      * Payment method of the mandate.
      * 
      * SEPA Direct Debit and PayPal mandates can be created directly.
+     * 
+     * Possible values: `creditcard` `directdebit` `paypal`
      */
-    public GetMandateResponseBody withMethod(Optional<? extends GetMandateMethod> method) {
+    public GetMandateResponseBody withMethod(Optional<String> method) {
         Utils.checkNotNull(method, "method");
         this.method = method;
         return this;
@@ -350,8 +363,7 @@ public class GetMandateResponseBody {
     }
 
     /**
-     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
-     * decline Direct Debit payments if the mandate reference is not unique.
+     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will decline Direct Debit payments if the mandate reference is not unique.
      */
     public GetMandateResponseBody withMandateReference(String mandateReference) {
         Utils.checkNotNull(mandateReference, "mandateReference");
@@ -360,8 +372,7 @@ public class GetMandateResponseBody {
     }
 
     /**
-     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
-     * decline Direct Debit payments if the mandate reference is not unique.
+     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will decline Direct Debit payments if the mandate reference is not unique.
      */
     public GetMandateResponseBody withMandateReference(JsonNullable<String> mandateReference) {
         Utils.checkNotNull(mandateReference, "mandateReference");
@@ -370,20 +381,22 @@ public class GetMandateResponseBody {
     }
 
     /**
-     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
-     * when we did not received the IBAN yet from the first payment.
+     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or when we did not received the IBAN yet from the first payment.
+     * 
+     * Possible values: `valid` `pending` `invalid`
      */
-    public GetMandateResponseBody withStatus(GetMandateStatus status) {
+    public GetMandateResponseBody withStatus(String status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
     }
 
     /**
-     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
-     * when we did not received the IBAN yet from the first payment.
+     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or when we did not received the IBAN yet from the first payment.
+     * 
+     * Possible values: `valid` `pending` `invalid`
      */
-    public GetMandateResponseBody withStatus(Optional<? extends GetMandateStatus> status) {
+    public GetMandateResponseBody withStatus(Optional<String> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -504,9 +517,9 @@ public class GetMandateResponseBody {
  
         private Optional<String> id = Optional.empty();
  
-        private Optional<? extends GetMandateMode> mode = Optional.empty();
+        private Optional<String> mode = Optional.empty();
  
-        private Optional<? extends GetMandateMethod> method = Optional.empty();
+        private Optional<String> method = Optional.empty();
  
         private Optional<? extends GetMandateDetails> details = Optional.empty();
  
@@ -514,7 +527,7 @@ public class GetMandateResponseBody {
  
         private JsonNullable<String> mandateReference = JsonNullable.undefined();
  
-        private Optional<? extends GetMandateStatus> status = Optional.empty();
+        private Optional<String> status = Optional.empty();
  
         private JsonNullable<String> customerId = JsonNullable.undefined();
  
@@ -564,8 +577,10 @@ public class GetMandateResponseBody {
 
         /**
          * Whether this entity was created in live mode or in test mode.
+         * 
+         * Possible values: `live` `test`
          */
-        public Builder mode(GetMandateMode mode) {
+        public Builder mode(String mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = Optional.ofNullable(mode);
             return this;
@@ -573,8 +588,10 @@ public class GetMandateResponseBody {
 
         /**
          * Whether this entity was created in live mode or in test mode.
+         * 
+         * Possible values: `live` `test`
          */
-        public Builder mode(Optional<? extends GetMandateMode> mode) {
+        public Builder mode(Optional<String> mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
@@ -584,8 +601,10 @@ public class GetMandateResponseBody {
          * Payment method of the mandate.
          * 
          * SEPA Direct Debit and PayPal mandates can be created directly.
+         * 
+         * Possible values: `creditcard` `directdebit` `paypal`
          */
-        public Builder method(GetMandateMethod method) {
+        public Builder method(String method) {
             Utils.checkNotNull(method, "method");
             this.method = Optional.ofNullable(method);
             return this;
@@ -595,8 +614,10 @@ public class GetMandateResponseBody {
          * Payment method of the mandate.
          * 
          * SEPA Direct Debit and PayPal mandates can be created directly.
+         * 
+         * Possible values: `creditcard` `directdebit` `paypal`
          */
-        public Builder method(Optional<? extends GetMandateMethod> method) {
+        public Builder method(Optional<String> method) {
             Utils.checkNotNull(method, "method");
             this.method = method;
             return this;
@@ -633,8 +654,7 @@ public class GetMandateResponseBody {
         }
 
         /**
-         * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
-         * decline Direct Debit payments if the mandate reference is not unique.
+         * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will decline Direct Debit payments if the mandate reference is not unique.
          */
         public Builder mandateReference(String mandateReference) {
             Utils.checkNotNull(mandateReference, "mandateReference");
@@ -643,8 +663,7 @@ public class GetMandateResponseBody {
         }
 
         /**
-         * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
-         * decline Direct Debit payments if the mandate reference is not unique.
+         * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will decline Direct Debit payments if the mandate reference is not unique.
          */
         public Builder mandateReference(JsonNullable<String> mandateReference) {
             Utils.checkNotNull(mandateReference, "mandateReference");
@@ -653,20 +672,22 @@ public class GetMandateResponseBody {
         }
 
         /**
-         * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
-         * when we did not received the IBAN yet from the first payment.
+         * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or when we did not received the IBAN yet from the first payment.
+         * 
+         * Possible values: `valid` `pending` `invalid`
          */
-        public Builder status(GetMandateStatus status) {
+        public Builder status(String status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
         }
 
         /**
-         * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
-         * when we did not received the IBAN yet from the first payment.
+         * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or when we did not received the IBAN yet from the first payment.
+         * 
+         * Possible values: `valid` `pending` `invalid`
          */
-        public Builder status(Optional<? extends GetMandateStatus> status) {
+        public Builder status(Optional<String> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

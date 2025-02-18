@@ -17,8 +17,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * GetPaymentChargebacks - The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this
- * payment.
+ * GetPaymentChargebacks - The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this payment.
  */
 
 public class GetPaymentChargebacks {

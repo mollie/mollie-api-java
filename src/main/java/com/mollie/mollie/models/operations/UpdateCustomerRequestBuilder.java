@@ -10,19 +10,12 @@ import java.util.Optional;
 
 public class UpdateCustomerRequestBuilder {
 
-    private UpdateCustomerSecurity security;
     private String id;
     private Optional<? extends UpdateCustomerRequestBody> requestBody = Optional.empty();
     private final SDKMethodInterfaces.MethodCallUpdateCustomer sdk;
 
     public UpdateCustomerRequestBuilder(SDKMethodInterfaces.MethodCallUpdateCustomer sdk) {
         this.sdk = sdk;
-    }
-
-    public UpdateCustomerRequestBuilder security(UpdateCustomerSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public UpdateCustomerRequestBuilder id(String id) {
@@ -45,8 +38,7 @@ public class UpdateCustomerRequestBuilder {
 
     public UpdateCustomerResponse call() throws Exception {
 
-        return sdk.update(
-            security,
+        return sdk.updateCustomer(
             id,
             requestBody);
     }

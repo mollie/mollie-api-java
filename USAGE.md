@@ -3,6 +3,7 @@
 package hello.world;
 
 import com.mollie.mollie.Mollie;
+import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ListBalancesBalancesAPIResponseBody;
 import com.mollie.mollie.models.errors.ListBalancesResponseBody;
 import com.mollie.mollie.models.operations.ListBalancesResponse;
@@ -13,10 +14,12 @@ public class Application {
     public static void main(String[] args) throws ListBalancesResponseBody, ListBalancesBalancesAPIResponseBody, Exception {
 
         Mollie sdk = Mollie.builder()
-                .oAuth("<YOUR_O_AUTH_HERE>")
+                .security(Security.builder()
+                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
             .build();
 
-        ListBalancesResponse res = sdk.balancesAPI().list()
+        ListBalancesResponse res = sdk.balancesAPI().listBalances()
                 .currency("EUR")
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .limit(50L)

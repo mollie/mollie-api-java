@@ -9,7 +9,6 @@ import java.lang.String;
 
 public class DisableMethodIssuerRequestBuilder {
 
-    private DisableMethodIssuerSecurity security;
     private String profileId;
     private String methodId;
     private String id;
@@ -17,12 +16,6 @@ public class DisableMethodIssuerRequestBuilder {
 
     public DisableMethodIssuerRequestBuilder(SDKMethodInterfaces.MethodCallDisableMethodIssuer sdk) {
         this.sdk = sdk;
-    }
-
-    public DisableMethodIssuerRequestBuilder security(DisableMethodIssuerSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public DisableMethodIssuerRequestBuilder profileId(String profileId) {
@@ -46,7 +39,6 @@ public class DisableMethodIssuerRequestBuilder {
     public DisableMethodIssuerResponse call() throws Exception {
 
         return sdk.disableMethodIssuer(
-            security,
             profileId,
             methodId,
             id);

@@ -36,8 +36,7 @@ public class GetRefundResponseBody {
     private Optional<String> resource;
 
     /**
-     * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie
-     * will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
+     * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
@@ -45,10 +44,12 @@ public class GetRefundResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
+     * 
+     * Possible values: `live` `test`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<? extends GetRefundMode> mode;
+    private Optional<String> mode;
 
     /**
      * The description of the refund that may be shown to your customer, depending on the payment method used.
@@ -58,43 +59,36 @@ public class GetRefundResponseBody {
     private Optional<String> description;
 
     /**
-     * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment
-     * amount.
+     * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment amount.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
     private Optional<? extends GetRefundAmount> amount;
 
     /**
-     * This optional field will contain the approximate amount that will be deducted from your account balance, converted
-     * to the currency your account is settled in.
+     * This optional field will contain the approximate amount that will be deducted from your account balance, converted to the currency your account is settled in.
      * 
      * The amount is a **negative** amount.
      * 
-     * If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be
-     * zero.
+     * If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be zero.
      * 
-     * Since the field contains an estimated amount during refund processing, it may change over time. For example, while
-     * the refund is queued the settlement amount is likely not yet available.
+     * Since the field contains an estimated amount during refund processing, it may change over time. For example, while the refund is queued the settlement amount is likely not yet available.
      * 
-     * To retrieve accurate settlement amounts we recommend using the
-     * [List balance transactions endpoint](list-balance-transactions) instead.
+     * To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlementAmount")
     private JsonNullable<? extends GetRefundSettlementAmount> settlementAmount;
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends GetRefundMetadata> metadata;
 
     /**
-     * Refunds may take some time to get confirmed. For a full overview of possible states, see the guide on refund
-     * statuses.
+     * Refunds may take some time to get confirmed. For a full overview of possible states, see the guide on refund statuses.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
@@ -103,13 +97,11 @@ public class GetRefundResponseBody {
     /**
      * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
      * 
-     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
-     * merchants, by providing the `routing` object during [payment creation](create-payment).
+     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants, by providing the `routing` object during [payment creation](create-payment).
      * 
      * When creating refunds for these *routed* payments, by default the full amount is deducted from your balance.
      * 
-     * If you want to pull back the funds that were routed to the connected merchant(s), you can set this parameter to
-     * `true` when issuing a full refund.
+     * If you want to pull back the funds that were routed to the connected merchant(s), you can set this parameter to `true` when issuing a full refund.
      * 
      * For more fine-grained control and for partial refunds, use the `routingReversals` parameter instead.
      */
@@ -122,8 +114,7 @@ public class GetRefundResponseBody {
      * 
      * When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
      * 
-     * If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount
-     * needs to be reversed from which merchant(s).
+     * If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount needs to be reversed from which merchant(s).
      * 
      * If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
      */
@@ -132,16 +123,14 @@ public class GetRefundResponseBody {
     private JsonNullable<? extends List<GetRefundRoutingReversals>> routingReversals;
 
     /**
-     * The unique identifier of the payment this refund was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
-     * The full payment object can be retrieved via the payment URL in the `_links` object.
+     * The unique identifier of the payment this refund was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("paymentId")
     private Optional<String> paymentId;
 
     /**
-     * The identifier referring to the settlement this refund was settled with. For example, `stl_BkEjN2eBb`. This field
-     * is omitted if the refund is not settled (yet).
+     * The identifier referring to the settlement this refund was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the refund is not settled (yet).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlementId")
@@ -165,7 +154,7 @@ public class GetRefundResponseBody {
     public GetRefundResponseBody(
             @JsonProperty("resource") Optional<String> resource,
             @JsonProperty("id") Optional<String> id,
-            @JsonProperty("mode") Optional<? extends GetRefundMode> mode,
+            @JsonProperty("mode") Optional<String> mode,
             @JsonProperty("description") Optional<String> description,
             @JsonProperty("amount") Optional<? extends GetRefundAmount> amount,
             @JsonProperty("settlementAmount") JsonNullable<? extends GetRefundSettlementAmount> settlementAmount,
@@ -220,8 +209,7 @@ public class GetRefundResponseBody {
     }
 
     /**
-     * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie
-     * will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
+     * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
      */
     @JsonIgnore
     public Optional<String> id() {
@@ -230,11 +218,12 @@ public class GetRefundResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
+     * 
+     * Possible values: `live` `test`
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetRefundMode> mode() {
-        return (Optional<GetRefundMode>) mode;
+    public Optional<String> mode() {
+        return mode;
     }
 
     /**
@@ -246,8 +235,7 @@ public class GetRefundResponseBody {
     }
 
     /**
-     * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment
-     * amount.
+     * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment amount.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -256,19 +244,15 @@ public class GetRefundResponseBody {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be deducted from your account balance, converted
-     * to the currency your account is settled in.
+     * This optional field will contain the approximate amount that will be deducted from your account balance, converted to the currency your account is settled in.
      * 
      * The amount is a **negative** amount.
      * 
-     * If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be
-     * zero.
+     * If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be zero.
      * 
-     * Since the field contains an estimated amount during refund processing, it may change over time. For example, while
-     * the refund is queued the settlement amount is likely not yet available.
+     * Since the field contains an estimated amount during refund processing, it may change over time. For example, while the refund is queued the settlement amount is likely not yet available.
      * 
-     * To retrieve accurate settlement amounts we recommend using the
-     * [List balance transactions endpoint](list-balance-transactions) instead.
+     * To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -277,8 +261,7 @@ public class GetRefundResponseBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -287,8 +270,7 @@ public class GetRefundResponseBody {
     }
 
     /**
-     * Refunds may take some time to get confirmed. For a full overview of possible states, see the guide on refund
-     * statuses.
+     * Refunds may take some time to get confirmed. For a full overview of possible states, see the guide on refund statuses.
      */
     @JsonIgnore
     public Optional<String> status() {
@@ -298,13 +280,11 @@ public class GetRefundResponseBody {
     /**
      * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
      * 
-     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
-     * merchants, by providing the `routing` object during [payment creation](create-payment).
+     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants, by providing the `routing` object during [payment creation](create-payment).
      * 
      * When creating refunds for these *routed* payments, by default the full amount is deducted from your balance.
      * 
-     * If you want to pull back the funds that were routed to the connected merchant(s), you can set this parameter to
-     * `true` when issuing a full refund.
+     * If you want to pull back the funds that were routed to the connected merchant(s), you can set this parameter to `true` when issuing a full refund.
      * 
      * For more fine-grained control and for partial refunds, use the `routingReversals` parameter instead.
      */
@@ -318,8 +298,7 @@ public class GetRefundResponseBody {
      * 
      * When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
      * 
-     * If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount
-     * needs to be reversed from which merchant(s).
+     * If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount needs to be reversed from which merchant(s).
      * 
      * If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
      */
@@ -330,8 +309,7 @@ public class GetRefundResponseBody {
     }
 
     /**
-     * The unique identifier of the payment this refund was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
-     * The full payment object can be retrieved via the payment URL in the `_links` object.
+     * The unique identifier of the payment this refund was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
      */
     @JsonIgnore
     public Optional<String> paymentId() {
@@ -339,8 +317,7 @@ public class GetRefundResponseBody {
     }
 
     /**
-     * The identifier referring to the settlement this refund was settled with. For example, `stl_BkEjN2eBb`. This field
-     * is omitted if the refund is not settled (yet).
+     * The identifier referring to the settlement this refund was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the refund is not settled (yet).
      */
     @JsonIgnore
     public JsonNullable<String> settlementId() {
@@ -387,8 +364,7 @@ public class GetRefundResponseBody {
     }
 
     /**
-     * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie
-     * will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
+     * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
      */
     public GetRefundResponseBody withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -397,8 +373,7 @@ public class GetRefundResponseBody {
     }
 
     /**
-     * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie
-     * will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
+     * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
      */
     public GetRefundResponseBody withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
@@ -408,8 +383,10 @@ public class GetRefundResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
+     * 
+     * Possible values: `live` `test`
      */
-    public GetRefundResponseBody withMode(GetRefundMode mode) {
+    public GetRefundResponseBody withMode(String mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = Optional.ofNullable(mode);
         return this;
@@ -417,8 +394,10 @@ public class GetRefundResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
+     * 
+     * Possible values: `live` `test`
      */
-    public GetRefundResponseBody withMode(Optional<? extends GetRefundMode> mode) {
+    public GetRefundResponseBody withMode(Optional<String> mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
@@ -443,8 +422,7 @@ public class GetRefundResponseBody {
     }
 
     /**
-     * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment
-     * amount.
+     * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment amount.
      */
     public GetRefundResponseBody withAmount(GetRefundAmount amount) {
         Utils.checkNotNull(amount, "amount");
@@ -453,8 +431,7 @@ public class GetRefundResponseBody {
     }
 
     /**
-     * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment
-     * amount.
+     * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment amount.
      */
     public GetRefundResponseBody withAmount(Optional<? extends GetRefundAmount> amount) {
         Utils.checkNotNull(amount, "amount");
@@ -463,19 +440,15 @@ public class GetRefundResponseBody {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be deducted from your account balance, converted
-     * to the currency your account is settled in.
+     * This optional field will contain the approximate amount that will be deducted from your account balance, converted to the currency your account is settled in.
      * 
      * The amount is a **negative** amount.
      * 
-     * If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be
-     * zero.
+     * If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be zero.
      * 
-     * Since the field contains an estimated amount during refund processing, it may change over time. For example, while
-     * the refund is queued the settlement amount is likely not yet available.
+     * Since the field contains an estimated amount during refund processing, it may change over time. For example, while the refund is queued the settlement amount is likely not yet available.
      * 
-     * To retrieve accurate settlement amounts we recommend using the
-     * [List balance transactions endpoint](list-balance-transactions) instead.
+     * To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
      */
     public GetRefundResponseBody withSettlementAmount(GetRefundSettlementAmount settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
@@ -484,19 +457,15 @@ public class GetRefundResponseBody {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be deducted from your account balance, converted
-     * to the currency your account is settled in.
+     * This optional field will contain the approximate amount that will be deducted from your account balance, converted to the currency your account is settled in.
      * 
      * The amount is a **negative** amount.
      * 
-     * If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be
-     * zero.
+     * If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be zero.
      * 
-     * Since the field contains an estimated amount during refund processing, it may change over time. For example, while
-     * the refund is queued the settlement amount is likely not yet available.
+     * Since the field contains an estimated amount during refund processing, it may change over time. For example, while the refund is queued the settlement amount is likely not yet available.
      * 
-     * To retrieve accurate settlement amounts we recommend using the
-     * [List balance transactions endpoint](list-balance-transactions) instead.
+     * To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
      */
     public GetRefundResponseBody withSettlementAmount(JsonNullable<? extends GetRefundSettlementAmount> settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
@@ -505,8 +474,7 @@ public class GetRefundResponseBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     public GetRefundResponseBody withMetadata(GetRefundMetadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -515,8 +483,7 @@ public class GetRefundResponseBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     public GetRefundResponseBody withMetadata(JsonNullable<? extends GetRefundMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -525,8 +492,7 @@ public class GetRefundResponseBody {
     }
 
     /**
-     * Refunds may take some time to get confirmed. For a full overview of possible states, see the guide on refund
-     * statuses.
+     * Refunds may take some time to get confirmed. For a full overview of possible states, see the guide on refund statuses.
      */
     public GetRefundResponseBody withStatus(String status) {
         Utils.checkNotNull(status, "status");
@@ -535,8 +501,7 @@ public class GetRefundResponseBody {
     }
 
     /**
-     * Refunds may take some time to get confirmed. For a full overview of possible states, see the guide on refund
-     * statuses.
+     * Refunds may take some time to get confirmed. For a full overview of possible states, see the guide on refund statuses.
      */
     public GetRefundResponseBody withStatus(Optional<String> status) {
         Utils.checkNotNull(status, "status");
@@ -547,13 +512,11 @@ public class GetRefundResponseBody {
     /**
      * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
      * 
-     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
-     * merchants, by providing the `routing` object during [payment creation](create-payment).
+     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants, by providing the `routing` object during [payment creation](create-payment).
      * 
      * When creating refunds for these *routed* payments, by default the full amount is deducted from your balance.
      * 
-     * If you want to pull back the funds that were routed to the connected merchant(s), you can set this parameter to
-     * `true` when issuing a full refund.
+     * If you want to pull back the funds that were routed to the connected merchant(s), you can set this parameter to `true` when issuing a full refund.
      * 
      * For more fine-grained control and for partial refunds, use the `routingReversals` parameter instead.
      */
@@ -566,13 +529,11 @@ public class GetRefundResponseBody {
     /**
      * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
      * 
-     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
-     * merchants, by providing the `routing` object during [payment creation](create-payment).
+     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants, by providing the `routing` object during [payment creation](create-payment).
      * 
      * When creating refunds for these *routed* payments, by default the full amount is deducted from your balance.
      * 
-     * If you want to pull back the funds that were routed to the connected merchant(s), you can set this parameter to
-     * `true` when issuing a full refund.
+     * If you want to pull back the funds that were routed to the connected merchant(s), you can set this parameter to `true` when issuing a full refund.
      * 
      * For more fine-grained control and for partial refunds, use the `routingReversals` parameter instead.
      */
@@ -587,8 +548,7 @@ public class GetRefundResponseBody {
      * 
      * When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
      * 
-     * If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount
-     * needs to be reversed from which merchant(s).
+     * If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount needs to be reversed from which merchant(s).
      * 
      * If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
      */
@@ -603,8 +563,7 @@ public class GetRefundResponseBody {
      * 
      * When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
      * 
-     * If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount
-     * needs to be reversed from which merchant(s).
+     * If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount needs to be reversed from which merchant(s).
      * 
      * If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
      */
@@ -615,8 +574,7 @@ public class GetRefundResponseBody {
     }
 
     /**
-     * The unique identifier of the payment this refund was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
-     * The full payment object can be retrieved via the payment URL in the `_links` object.
+     * The unique identifier of the payment this refund was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
      */
     public GetRefundResponseBody withPaymentId(String paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
@@ -625,8 +583,7 @@ public class GetRefundResponseBody {
     }
 
     /**
-     * The unique identifier of the payment this refund was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
-     * The full payment object can be retrieved via the payment URL in the `_links` object.
+     * The unique identifier of the payment this refund was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
      */
     public GetRefundResponseBody withPaymentId(Optional<String> paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
@@ -635,8 +592,7 @@ public class GetRefundResponseBody {
     }
 
     /**
-     * The identifier referring to the settlement this refund was settled with. For example, `stl_BkEjN2eBb`. This field
-     * is omitted if the refund is not settled (yet).
+     * The identifier referring to the settlement this refund was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the refund is not settled (yet).
      */
     public GetRefundResponseBody withSettlementId(String settlementId) {
         Utils.checkNotNull(settlementId, "settlementId");
@@ -645,8 +601,7 @@ public class GetRefundResponseBody {
     }
 
     /**
-     * The identifier referring to the settlement this refund was settled with. For example, `stl_BkEjN2eBb`. This field
-     * is omitted if the refund is not settled (yet).
+     * The identifier referring to the settlement this refund was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the refund is not settled (yet).
      */
     public GetRefundResponseBody withSettlementId(JsonNullable<String> settlementId) {
         Utils.checkNotNull(settlementId, "settlementId");
@@ -760,7 +715,7 @@ public class GetRefundResponseBody {
  
         private Optional<String> id = Optional.empty();
  
-        private Optional<? extends GetRefundMode> mode = Optional.empty();
+        private Optional<String> mode = Optional.empty();
  
         private Optional<String> description = Optional.empty();
  
@@ -807,8 +762,7 @@ public class GetRefundResponseBody {
         }
 
         /**
-         * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie
-         * will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
+         * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -817,8 +771,7 @@ public class GetRefundResponseBody {
         }
 
         /**
-         * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie
-         * will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
+         * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
          */
         public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
@@ -828,8 +781,10 @@ public class GetRefundResponseBody {
 
         /**
          * Whether this entity was created in live mode or in test mode.
+         * 
+         * Possible values: `live` `test`
          */
-        public Builder mode(GetRefundMode mode) {
+        public Builder mode(String mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = Optional.ofNullable(mode);
             return this;
@@ -837,8 +792,10 @@ public class GetRefundResponseBody {
 
         /**
          * Whether this entity was created in live mode or in test mode.
+         * 
+         * Possible values: `live` `test`
          */
-        public Builder mode(Optional<? extends GetRefundMode> mode) {
+        public Builder mode(Optional<String> mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
@@ -863,8 +820,7 @@ public class GetRefundResponseBody {
         }
 
         /**
-         * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment
-         * amount.
+         * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment amount.
          */
         public Builder amount(GetRefundAmount amount) {
             Utils.checkNotNull(amount, "amount");
@@ -873,8 +829,7 @@ public class GetRefundResponseBody {
         }
 
         /**
-         * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment
-         * amount.
+         * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment amount.
          */
         public Builder amount(Optional<? extends GetRefundAmount> amount) {
             Utils.checkNotNull(amount, "amount");
@@ -883,19 +838,15 @@ public class GetRefundResponseBody {
         }
 
         /**
-         * This optional field will contain the approximate amount that will be deducted from your account balance, converted
-         * to the currency your account is settled in.
+         * This optional field will contain the approximate amount that will be deducted from your account balance, converted to the currency your account is settled in.
          * 
          * The amount is a **negative** amount.
          * 
-         * If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be
-         * zero.
+         * If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be zero.
          * 
-         * Since the field contains an estimated amount during refund processing, it may change over time. For example, while
-         * the refund is queued the settlement amount is likely not yet available.
+         * Since the field contains an estimated amount during refund processing, it may change over time. For example, while the refund is queued the settlement amount is likely not yet available.
          * 
-         * To retrieve accurate settlement amounts we recommend using the
-         * [List balance transactions endpoint](list-balance-transactions) instead.
+         * To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
          */
         public Builder settlementAmount(GetRefundSettlementAmount settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
@@ -904,19 +855,15 @@ public class GetRefundResponseBody {
         }
 
         /**
-         * This optional field will contain the approximate amount that will be deducted from your account balance, converted
-         * to the currency your account is settled in.
+         * This optional field will contain the approximate amount that will be deducted from your account balance, converted to the currency your account is settled in.
          * 
          * The amount is a **negative** amount.
          * 
-         * If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be
-         * zero.
+         * If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be zero.
          * 
-         * Since the field contains an estimated amount during refund processing, it may change over time. For example, while
-         * the refund is queued the settlement amount is likely not yet available.
+         * Since the field contains an estimated amount during refund processing, it may change over time. For example, while the refund is queued the settlement amount is likely not yet available.
          * 
-         * To retrieve accurate settlement amounts we recommend using the
-         * [List balance transactions endpoint](list-balance-transactions) instead.
+         * To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
          */
         public Builder settlementAmount(JsonNullable<? extends GetRefundSettlementAmount> settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
@@ -925,8 +872,7 @@ public class GetRefundResponseBody {
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
         public Builder metadata(GetRefundMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -935,8 +881,7 @@ public class GetRefundResponseBody {
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
         public Builder metadata(JsonNullable<? extends GetRefundMetadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -945,8 +890,7 @@ public class GetRefundResponseBody {
         }
 
         /**
-         * Refunds may take some time to get confirmed. For a full overview of possible states, see the guide on refund
-         * statuses.
+         * Refunds may take some time to get confirmed. For a full overview of possible states, see the guide on refund statuses.
          */
         public Builder status(String status) {
             Utils.checkNotNull(status, "status");
@@ -955,8 +899,7 @@ public class GetRefundResponseBody {
         }
 
         /**
-         * Refunds may take some time to get confirmed. For a full overview of possible states, see the guide on refund
-         * statuses.
+         * Refunds may take some time to get confirmed. For a full overview of possible states, see the guide on refund statuses.
          */
         public Builder status(Optional<String> status) {
             Utils.checkNotNull(status, "status");
@@ -967,13 +910,11 @@ public class GetRefundResponseBody {
         /**
          * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
          * 
-         * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
-         * merchants, by providing the `routing` object during [payment creation](create-payment).
+         * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants, by providing the `routing` object during [payment creation](create-payment).
          * 
          * When creating refunds for these *routed* payments, by default the full amount is deducted from your balance.
          * 
-         * If you want to pull back the funds that were routed to the connected merchant(s), you can set this parameter to
-         * `true` when issuing a full refund.
+         * If you want to pull back the funds that were routed to the connected merchant(s), you can set this parameter to `true` when issuing a full refund.
          * 
          * For more fine-grained control and for partial refunds, use the `routingReversals` parameter instead.
          */
@@ -986,13 +927,11 @@ public class GetRefundResponseBody {
         /**
          * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
          * 
-         * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
-         * merchants, by providing the `routing` object during [payment creation](create-payment).
+         * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants, by providing the `routing` object during [payment creation](create-payment).
          * 
          * When creating refunds for these *routed* payments, by default the full amount is deducted from your balance.
          * 
-         * If you want to pull back the funds that were routed to the connected merchant(s), you can set this parameter to
-         * `true` when issuing a full refund.
+         * If you want to pull back the funds that were routed to the connected merchant(s), you can set this parameter to `true` when issuing a full refund.
          * 
          * For more fine-grained control and for partial refunds, use the `routingReversals` parameter instead.
          */
@@ -1007,8 +946,7 @@ public class GetRefundResponseBody {
          * 
          * When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
          * 
-         * If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount
-         * needs to be reversed from which merchant(s).
+         * If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount needs to be reversed from which merchant(s).
          * 
          * If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
          */
@@ -1023,8 +961,7 @@ public class GetRefundResponseBody {
          * 
          * When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
          * 
-         * If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount
-         * needs to be reversed from which merchant(s).
+         * If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount needs to be reversed from which merchant(s).
          * 
          * If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
          */
@@ -1035,8 +972,7 @@ public class GetRefundResponseBody {
         }
 
         /**
-         * The unique identifier of the payment this refund was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
-         * The full payment object can be retrieved via the payment URL in the `_links` object.
+         * The unique identifier of the payment this refund was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
          */
         public Builder paymentId(String paymentId) {
             Utils.checkNotNull(paymentId, "paymentId");
@@ -1045,8 +981,7 @@ public class GetRefundResponseBody {
         }
 
         /**
-         * The unique identifier of the payment this refund was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
-         * The full payment object can be retrieved via the payment URL in the `_links` object.
+         * The unique identifier of the payment this refund was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
          */
         public Builder paymentId(Optional<String> paymentId) {
             Utils.checkNotNull(paymentId, "paymentId");
@@ -1055,8 +990,7 @@ public class GetRefundResponseBody {
         }
 
         /**
-         * The identifier referring to the settlement this refund was settled with. For example, `stl_BkEjN2eBb`. This field
-         * is omitted if the refund is not settled (yet).
+         * The identifier referring to the settlement this refund was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the refund is not settled (yet).
          */
         public Builder settlementId(String settlementId) {
             Utils.checkNotNull(settlementId, "settlementId");
@@ -1065,8 +999,7 @@ public class GetRefundResponseBody {
         }
 
         /**
-         * The identifier referring to the settlement this refund was settled with. For example, `stl_BkEjN2eBb`. This field
-         * is omitted if the refund is not settled (yet).
+         * The identifier referring to the settlement this refund was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the refund is not settled (yet).
          */
         public Builder settlementId(JsonNullable<String> settlementId) {
             Utils.checkNotNull(settlementId, "settlementId");

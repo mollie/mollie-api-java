@@ -15,7 +15,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListShipmentsRequestBuilder {
 
-    private ListShipmentsSecurity security;
     private String orderId;
     private Optional<String> from = Optional.empty();
     private JsonNullable<Long> limit = Utils.readDefaultOrConstValue(
@@ -30,12 +29,6 @@ public class ListShipmentsRequestBuilder {
 
     public ListShipmentsRequestBuilder(SDKMethodInterfaces.MethodCallListShipments sdk) {
         this.sdk = sdk;
-    }
-
-    public ListShipmentsRequestBuilder security(ListShipmentsSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public ListShipmentsRequestBuilder orderId(String orderId) {
@@ -87,8 +80,7 @@ public class ListShipmentsRequestBuilder {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.list(
-            security,
+        return sdk.listShipments(
             orderId,
             from,
             limit,

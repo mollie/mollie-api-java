@@ -37,8 +37,7 @@ public class ListTerminalsResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * A list of terminal objects. For a complete reference of the terminal object, refer to the
-     * [Get terminal endpoint](get-terminal) documentation.
+     * A list of terminal objects. For a complete reference of the terminal object, refer to the [Get terminal endpoint](get-terminal) documentation.
      */
     private Optional<? extends ListTerminalsResponseBody> object;
 
@@ -90,8 +89,7 @@ public class ListTerminalsResponse implements Response {
     }
 
     /**
-     * A list of terminal objects. For a complete reference of the terminal object, refer to the
-     * [Get terminal endpoint](get-terminal) documentation.
+     * A list of terminal objects. For a complete reference of the terminal object, refer to the [Get terminal endpoint](get-terminal) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -131,8 +129,7 @@ public class ListTerminalsResponse implements Response {
     }
 
     /**
-     * A list of terminal objects. For a complete reference of the terminal object, refer to the
-     * [Get terminal endpoint](get-terminal) documentation.
+     * A list of terminal objects. For a complete reference of the terminal object, refer to the [Get terminal endpoint](get-terminal) documentation.
      */
     public ListTerminalsResponse withObject(ListTerminalsResponseBody object) {
         Utils.checkNotNull(object, "object");
@@ -141,8 +138,7 @@ public class ListTerminalsResponse implements Response {
     }
 
     /**
-     * A list of terminal objects. For a complete reference of the terminal object, refer to the
-     * [Get terminal endpoint](get-terminal) documentation.
+     * A list of terminal objects. For a complete reference of the terminal object, refer to the [Get terminal endpoint](get-terminal) documentation.
      */
     public ListTerminalsResponse withObject(Optional<? extends ListTerminalsResponseBody> object) {
         Utils.checkNotNull(object, "object");
@@ -226,8 +222,7 @@ public class ListTerminalsResponse implements Response {
         }
 
         /**
-         * A list of terminal objects. For a complete reference of the terminal object, refer to the
-         * [Get terminal endpoint](get-terminal) documentation.
+         * A list of terminal objects. For a complete reference of the terminal object, refer to the [Get terminal endpoint](get-terminal) documentation.
          */
         public Builder object(ListTerminalsResponseBody object) {
             Utils.checkNotNull(object, "object");
@@ -236,8 +231,7 @@ public class ListTerminalsResponse implements Response {
         }
 
         /**
-         * A list of terminal objects. For a complete reference of the terminal object, refer to the
-         * [Get terminal endpoint](get-terminal) documentation.
+         * A list of terminal objects. For a complete reference of the terminal object, refer to the [Get terminal endpoint](get-terminal) documentation.
          */
         public Builder object(Optional<? extends ListTerminalsResponseBody> object) {
             Utils.checkNotNull(object, "object");

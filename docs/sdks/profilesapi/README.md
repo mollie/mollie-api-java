@@ -5,19 +5,22 @@
 
 ### Available Operations
 
-* [create](#create) - Create profile
-* [list](#list) - List profiles
-* [get](#get) - Get profile
-* [update](#update) - Update profile
-* [delete](#delete) - Delete profile
-* [getCurrent](#getcurrent) - Get current profile
+* [createProfile](#createprofile) - Create profile
+* [listProfiles](#listprofiles) - List profiles
+* [getProfile](#getprofile) - Get profile
+* [updateProfile](#updateprofile) - Update profile
+* [deleteProfile](#deleteprofile) - Delete profile
+* [getCurrentProfile](#getcurrentprofile) - Get current profile
 
-## create
+## createProfile
 
 Create a profile to process payments on.
 
-Profiles are required for payment processing. Normally they are created via the Mollie dashboard. Alternatively, you
-can use this endpoint to automate profile creation.
+Profiles are required for payment processing. Normally they are created via the Mollie dashboard. Alternatively, you can use this endpoint to automate profile creation.
+
+> 🔑 Access with
+>
+> [Access token with **profiles.write**](/reference/authentication)
 
 ### Example Usage
 
@@ -25,6 +28,7 @@ can use this endpoint to automate profile creation.
 package hello.world;
 
 import com.mollie.mollie.Mollie;
+import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.CreateProfileResponseBody;
 import com.mollie.mollie.models.operations.CreateProfileRequestBody;
 import com.mollie.mollie.models.operations.CreateProfileResponse;
@@ -36,7 +40,9 @@ public class Application {
     public static void main(String[] args) throws CreateProfileResponseBody, Exception {
 
         Mollie sdk = Mollie.builder()
-                .oAuth("<YOUR_O_AUTH_HERE>")
+                .security(Security.builder()
+                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
             .build();
 
         CreateProfileRequestBody req = CreateProfileRequestBody.builder()
@@ -51,13 +57,11 @@ public class Application {
                 .businessCategory("OTHER_MERCHANDISE")
                 .build();
 
-        CreateProfileResponse res = sdk.profilesAPI().create()
+        CreateProfileResponse res = sdk.profilesAPI().createProfile()
                 .request(req)
                 .call();
 
-        if (res.any().isPresent()) {
-            // handle response
-        }
+        // handle response
     }
 }
 ```
@@ -79,11 +83,15 @@ public class Application {
 | models/errors/CreateProfileResponseBody | 422                                     | application/hal+json                    |
 | models/errors/APIException              | 4XX, 5XX                                | \*/\*                                   |
 
-## list
+## listProfiles
 
 Retrieve a list of all of your profiles.
 
 The results are paginated.
+
+> 🔑 Access with
+>
+> [Access token with **profiles.read**](/reference/authentication)
 
 ### Example Usage
 
@@ -91,6 +99,7 @@ The results are paginated.
 package hello.world;
 
 import com.mollie.mollie.Mollie;
+import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ListProfilesResponseBody;
 import com.mollie.mollie.models.operations.ListProfilesResponse;
 import java.lang.Exception;
@@ -100,10 +109,12 @@ public class Application {
     public static void main(String[] args) throws ListProfilesResponseBody, Exception {
 
         Mollie sdk = Mollie.builder()
-                .oAuth("<YOUR_O_AUTH_HERE>")
+                .security(Security.builder()
+                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
             .build();
 
-        ListProfilesResponse res = sdk.profilesAPI().list()
+        ListProfilesResponse res = sdk.profilesAPI().listProfiles()
                 .from("pfl_QkEhN94Ba")
                 .limit(50L)
                 .call();
@@ -119,7 +130,7 @@ public class Application {
 
 | Parameter                                                                                                                      | Type                                                                                                                           | Required                                                                                                                       | Description                                                                                                                    | Example                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
-| `from`                                                                                                                         | *Optional\<String>*                                                                                                            | :heavy_minus_sign:                                                                                                             | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the<br/>result set. | pfl_QkEhN94Ba                                                                                                                  |
+| `from`                                                                                                                         | *Optional\<String>*                                                                                                            | :heavy_minus_sign:                                                                                                             | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set. | pfl_QkEhN94Ba                                                                                                                  |
 | `limit`                                                                                                                        | *JsonNullable\<Long>*                                                                                                          | :heavy_minus_sign:                                                                                                             | The maximum number of items to return. Defaults to 50 items.                                                                   | 50                                                                                                                             |
 
 ### Response
@@ -133,9 +144,13 @@ public class Application {
 | models/errors/ListProfilesResponseBody | 400                                    | application/hal+json                   |
 | models/errors/APIException             | 4XX, 5XX                               | \*/\*                                  |
 
-## get
+## getProfile
 
 Retrieve a single profile by its ID.
+
+> 🔑 Access with
+>
+> [Access token with **profiles.read**](/reference/authentication)
 
 ### Example Usage
 
@@ -143,6 +158,7 @@ Retrieve a single profile by its ID.
 package hello.world;
 
 import com.mollie.mollie.Mollie;
+import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.GetProfileProfilesAPIResponseBody;
 import com.mollie.mollie.models.errors.GetProfileResponseBody;
 import com.mollie.mollie.models.operations.GetProfileResponse;
@@ -153,10 +169,12 @@ public class Application {
     public static void main(String[] args) throws GetProfileResponseBody, GetProfileProfilesAPIResponseBody, Exception {
 
         Mollie sdk = Mollie.builder()
-                .oAuth("<YOUR_O_AUTH_HERE>")
+                .security(Security.builder()
+                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
             .build();
 
-        GetProfileResponse res = sdk.profilesAPI().get()
+        GetProfileResponse res = sdk.profilesAPI().getProfile()
                 .id("pfl_QkEhN94Ba")
                 .testmode(false)
                 .call();
@@ -173,7 +191,7 @@ public class Application {
 | Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`                                                                                                                                                                                                                                                                                                                                                                                   | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the item you want to perform this operation on.                                                                                                                                                                                                                                                                                                                      | pfl_QkEhN94Ba                                                                                                                                                                                                                                                                                                                                                                          |
-| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
+| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Response
 
@@ -187,12 +205,15 @@ public class Application {
 | models/errors/GetProfileProfilesAPIResponseBody | 410                                             | application/hal+json                            |
 | models/errors/APIException                      | 4XX, 5XX                                        | \*/\*                                           |
 
-## update
+## updateProfile
 
 Update an existing profile.
 
-Profiles are required for payment processing. Normally they are created and updated via the Mollie dashboard.
-Alternatively, you can use this endpoint to automate profile management.
+Profiles are required for payment processing. Normally they are created and updated via the Mollie dashboard. Alternatively, you can use this endpoint to automate profile management.
+
+> 🔑 Access with
+>
+> [Access token with **profiles.write**](/reference/authentication)
 
 ### Example Usage
 
@@ -200,10 +221,10 @@ Alternatively, you can use this endpoint to automate profile management.
 package hello.world;
 
 import com.mollie.mollie.Mollie;
+import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.UpdateProfileProfilesAPIResponseBody;
 import com.mollie.mollie.models.errors.UpdateProfileProfilesAPIResponseResponseBody;
 import com.mollie.mollie.models.errors.UpdateProfileResponseBody;
-import com.mollie.mollie.models.operations.Mode;
 import com.mollie.mollie.models.operations.UpdateProfileRequestBody;
 import com.mollie.mollie.models.operations.UpdateProfileResponse;
 import java.lang.Exception;
@@ -214,10 +235,12 @@ public class Application {
     public static void main(String[] args) throws UpdateProfileResponseBody, UpdateProfileProfilesAPIResponseBody, UpdateProfileProfilesAPIResponseResponseBody, Exception {
 
         Mollie sdk = Mollie.builder()
-                .oAuth("<YOUR_O_AUTH_HERE>")
+                .security(Security.builder()
+                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
             .build();
 
-        UpdateProfileResponse res = sdk.profilesAPI().update()
+        UpdateProfileResponse res = sdk.profilesAPI().updateProfile()
                 .id("pfl_QkEhN94Ba")
                 .requestBody(UpdateProfileRequestBody.builder()
                     .name("My new website name")
@@ -229,13 +252,11 @@ public class Application {
                         "NL",
                         "GB"))
                     .businessCategory("OTHER_MERCHANDISE")
-                    .mode(Mode.LIVE)
+                    .mode("live")
                     .build())
                 .call();
 
-        if (res.any().isPresent()) {
-            // handle response
-        }
+        // handle response
     }
 }
 ```
@@ -260,9 +281,13 @@ public class Application {
 | models/errors/UpdateProfileProfilesAPIResponseResponseBody | 422                                                        | application/hal+json                                       |
 | models/errors/APIException                                 | 4XX, 5XX                                                   | \*/\*                                                      |
 
-## delete
+## deleteProfile
 
 Delete a profile. A deleted profile and its related credentials can no longer be used for accepting payments.
+
+> 🔑 Access with
+>
+> [Access token with **profiles.write**](/reference/authentication)
 
 ### Example Usage
 
@@ -270,6 +295,7 @@ Delete a profile. A deleted profile and its related credentials can no longer be
 package hello.world;
 
 import com.mollie.mollie.Mollie;
+import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.DeleteProfileProfilesAPIResponseBody;
 import com.mollie.mollie.models.errors.DeleteProfileResponseBody;
 import com.mollie.mollie.models.operations.DeleteProfileResponse;
@@ -280,10 +306,12 @@ public class Application {
     public static void main(String[] args) throws DeleteProfileResponseBody, DeleteProfileProfilesAPIResponseBody, Exception {
 
         Mollie sdk = Mollie.builder()
-                .oAuth("<YOUR_O_AUTH_HERE>")
+                .security(Security.builder()
+                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
             .build();
 
-        DeleteProfileResponse res = sdk.profilesAPI().delete()
+        DeleteProfileResponse res = sdk.profilesAPI().deleteProfile()
                 .id("pfl_QkEhN94Ba")
                 .call();
 
@@ -312,13 +340,15 @@ public class Application {
 | models/errors/DeleteProfileProfilesAPIResponseBody | 410                                                | application/hal+json                               |
 | models/errors/APIException                         | 4XX, 5XX                                           | \*/\*                                              |
 
-## getCurrent
+## getCurrentProfile
 
-Retrieve the currently authenticated profile. A convenient alias of the [Get profile](get-profile)
-endpoint.
+Retrieve the currently authenticated profile. A convenient alias of the [Get profile](get-profile) endpoint.
 
-For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint
-documentation.
+For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint documentation.
+
+> 🔑 Access with
+>
+> [API key](/reference/authentication)
 
 ### Example Usage
 
@@ -326,8 +356,8 @@ documentation.
 package hello.world;
 
 import com.mollie.mollie.Mollie;
+import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.operations.GetCurrentProfileResponse;
-import com.mollie.mollie.models.operations.GetCurrentProfileSecurity;
 import java.lang.Exception;
 
 public class Application {
@@ -335,12 +365,12 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Mollie sdk = Mollie.builder()
-            .build();
-
-        GetCurrentProfileResponse res = sdk.profilesAPI().getCurrent()
-                .security(GetCurrentProfileSecurity.builder()
+                .security(Security.builder()
                     .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
+            .build();
+
+        GetCurrentProfileResponse res = sdk.profilesAPI().getCurrentProfile()
                 .call();
 
         if (res.object().isPresent()) {
@@ -349,12 +379,6 @@ public class Application {
     }
 }
 ```
-
-### Parameters
-
-| Parameter                                                                                                             | Type                                                                                                                  | Required                                                                                                              | Description                                                                                                           |
-| --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                            | [com.mollie.mollie.models.operations.GetCurrentProfileSecurity](../../models/operations/GetCurrentProfileSecurity.md) | :heavy_check_mark:                                                                                                    | The security requirements to use for the request.                                                                     |
 
 ### Response
 

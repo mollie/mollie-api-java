@@ -1,7 +1,6 @@
 # GetOnboardingStatusDashboard
 
-Direct link to the onboarding process in the Mollie dashboard. The merchant can be redirected to this page to
-complete their onboarding.
+Direct link to the onboarding process in the Mollie dashboard. The merchant can be redirected to this page to complete their onboarding.
 
 
 ## Fields

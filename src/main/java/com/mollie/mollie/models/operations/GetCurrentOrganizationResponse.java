@@ -38,8 +38,7 @@ public class GetCurrentOrganizationResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * The current organization object. For a complete reference of the organization object, refer to the
-     * [Get organization](get-organization) endpoint documentation.
+     * The current organization object. For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint documentation.
      */
     private Optional<? extends Object> any;
 
@@ -91,8 +90,7 @@ public class GetCurrentOrganizationResponse implements Response {
     }
 
     /**
-     * The current organization object. For a complete reference of the organization object, refer to the
-     * [Get organization](get-organization) endpoint documentation.
+     * The current organization object. For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -132,8 +130,7 @@ public class GetCurrentOrganizationResponse implements Response {
     }
 
     /**
-     * The current organization object. For a complete reference of the organization object, refer to the
-     * [Get organization](get-organization) endpoint documentation.
+     * The current organization object. For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint documentation.
      */
     public GetCurrentOrganizationResponse withAny(Object any) {
         Utils.checkNotNull(any, "any");
@@ -142,8 +139,7 @@ public class GetCurrentOrganizationResponse implements Response {
     }
 
     /**
-     * The current organization object. For a complete reference of the organization object, refer to the
-     * [Get organization](get-organization) endpoint documentation.
+     * The current organization object. For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint documentation.
      */
     public GetCurrentOrganizationResponse withAny(Optional<? extends Object> any) {
         Utils.checkNotNull(any, "any");
@@ -227,8 +223,7 @@ public class GetCurrentOrganizationResponse implements Response {
         }
 
         /**
-         * The current organization object. For a complete reference of the organization object, refer to the
-         * [Get organization](get-organization) endpoint documentation.
+         * The current organization object. For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint documentation.
          */
         public Builder any(Object any) {
             Utils.checkNotNull(any, "any");
@@ -237,8 +232,7 @@ public class GetCurrentOrganizationResponse implements Response {
         }
 
         /**
-         * The current organization object. For a complete reference of the organization object, refer to the
-         * [Get organization](get-organization) endpoint documentation.
+         * The current organization object. For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint documentation.
          */
         public Builder any(Optional<? extends Object> any) {
             Utils.checkNotNull(any, "any");

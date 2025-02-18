@@ -37,8 +37,7 @@ public class ListRefundsResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * A list of refund objects. For a complete reference of the refund object, refer to the
-     * [Get refund endpoint](get-refund) documentation.
+     * A list of refund objects. For a complete reference of the refund object, refer to the [Get refund endpoint](get-refund) documentation.
      */
     private Optional<? extends ListRefundsResponseBody> object;
 
@@ -90,8 +89,7 @@ public class ListRefundsResponse implements Response {
     }
 
     /**
-     * A list of refund objects. For a complete reference of the refund object, refer to the
-     * [Get refund endpoint](get-refund) documentation.
+     * A list of refund objects. For a complete reference of the refund object, refer to the [Get refund endpoint](get-refund) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -131,8 +129,7 @@ public class ListRefundsResponse implements Response {
     }
 
     /**
-     * A list of refund objects. For a complete reference of the refund object, refer to the
-     * [Get refund endpoint](get-refund) documentation.
+     * A list of refund objects. For a complete reference of the refund object, refer to the [Get refund endpoint](get-refund) documentation.
      */
     public ListRefundsResponse withObject(ListRefundsResponseBody object) {
         Utils.checkNotNull(object, "object");
@@ -141,8 +138,7 @@ public class ListRefundsResponse implements Response {
     }
 
     /**
-     * A list of refund objects. For a complete reference of the refund object, refer to the
-     * [Get refund endpoint](get-refund) documentation.
+     * A list of refund objects. For a complete reference of the refund object, refer to the [Get refund endpoint](get-refund) documentation.
      */
     public ListRefundsResponse withObject(Optional<? extends ListRefundsResponseBody> object) {
         Utils.checkNotNull(object, "object");
@@ -226,8 +222,7 @@ public class ListRefundsResponse implements Response {
         }
 
         /**
-         * A list of refund objects. For a complete reference of the refund object, refer to the
-         * [Get refund endpoint](get-refund) documentation.
+         * A list of refund objects. For a complete reference of the refund object, refer to the [Get refund endpoint](get-refund) documentation.
          */
         public Builder object(ListRefundsResponseBody object) {
             Utils.checkNotNull(object, "object");
@@ -236,8 +231,7 @@ public class ListRefundsResponse implements Response {
         }
 
         /**
-         * A list of refund objects. For a complete reference of the refund object, refer to the
-         * [Get refund endpoint](get-refund) documentation.
+         * A list of refund objects. For a complete reference of the refund object, refer to the [Get refund endpoint](get-refund) documentation.
          */
         public Builder object(Optional<? extends ListRefundsResponseBody> object) {
             Utils.checkNotNull(object, "object");

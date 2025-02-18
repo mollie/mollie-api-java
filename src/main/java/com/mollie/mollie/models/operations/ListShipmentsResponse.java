@@ -37,8 +37,7 @@ public class ListShipmentsResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * A list of shipment objects. For a complete reference of the shipment object, refer to the
-     * [Get shipment endpoint](get-shipment) documentation.
+     * A list of shipment objects. For a complete reference of the shipment object, refer to the [Get shipment endpoint](get-shipment) documentation.
      */
     private Optional<? extends ListShipmentsResponseBody> object;
 
@@ -90,8 +89,7 @@ public class ListShipmentsResponse implements Response {
     }
 
     /**
-     * A list of shipment objects. For a complete reference of the shipment object, refer to the
-     * [Get shipment endpoint](get-shipment) documentation.
+     * A list of shipment objects. For a complete reference of the shipment object, refer to the [Get shipment endpoint](get-shipment) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -131,8 +129,7 @@ public class ListShipmentsResponse implements Response {
     }
 
     /**
-     * A list of shipment objects. For a complete reference of the shipment object, refer to the
-     * [Get shipment endpoint](get-shipment) documentation.
+     * A list of shipment objects. For a complete reference of the shipment object, refer to the [Get shipment endpoint](get-shipment) documentation.
      */
     public ListShipmentsResponse withObject(ListShipmentsResponseBody object) {
         Utils.checkNotNull(object, "object");
@@ -141,8 +138,7 @@ public class ListShipmentsResponse implements Response {
     }
 
     /**
-     * A list of shipment objects. For a complete reference of the shipment object, refer to the
-     * [Get shipment endpoint](get-shipment) documentation.
+     * A list of shipment objects. For a complete reference of the shipment object, refer to the [Get shipment endpoint](get-shipment) documentation.
      */
     public ListShipmentsResponse withObject(Optional<? extends ListShipmentsResponseBody> object) {
         Utils.checkNotNull(object, "object");
@@ -226,8 +222,7 @@ public class ListShipmentsResponse implements Response {
         }
 
         /**
-         * A list of shipment objects. For a complete reference of the shipment object, refer to the
-         * [Get shipment endpoint](get-shipment) documentation.
+         * A list of shipment objects. For a complete reference of the shipment object, refer to the [Get shipment endpoint](get-shipment) documentation.
          */
         public Builder object(ListShipmentsResponseBody object) {
             Utils.checkNotNull(object, "object");
@@ -236,8 +231,7 @@ public class ListShipmentsResponse implements Response {
         }
 
         /**
-         * A list of shipment objects. For a complete reference of the shipment object, refer to the
-         * [Get shipment endpoint](get-shipment) documentation.
+         * A list of shipment objects. For a complete reference of the shipment object, refer to the [Get shipment endpoint](get-shipment) documentation.
          */
         public Builder object(Optional<? extends ListShipmentsResponseBody> object) {
             Utils.checkNotNull(object, "object");

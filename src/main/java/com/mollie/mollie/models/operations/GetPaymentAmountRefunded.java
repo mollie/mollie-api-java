@@ -14,9 +14,7 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * GetPaymentAmountRefunded - The total amount that is already refunded. Only available when refunds are available for this payment. For some
- * payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the
- * costs for a return shipment to the customer.
+ * GetPaymentAmountRefunded - The total amount that is already refunded. Only available when refunds are available for this payment. For some payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the costs for a return shipment to the customer.
  */
 
 public class GetPaymentAmountRefunded {

@@ -21,26 +21,22 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class GetPaymentRequest {
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related payment.
      */
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
-    private String id;
+    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=paymentId")
+    private String paymentId;
 
     /**
      * This endpoint allows you to include additional information via the `include` query string parameter.
      * 
-     * * `details.qrCode`: Include a QR code object. Only available for iDEAL,
-     * Bancontact and bank transfer payments.
-     * * `details.remainderDetails`: For payments where gift cards or vouchers were applied and the remaining amount
-     *   was paid with another payment method, this include will add another `details` object specifically for the
-     *   remainder payment.
+     * * `details.qrCode`: Include a QR code object. Only available for iDEAL, Bancontact and bank transfer payments.
+     * * `details.remainderDetails`: For payments where gift cards or vouchers were applied and the remaining amount was paid with another payment method, this include will add another `details` object specifically for the remainder payment.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=include")
     private JsonNullable<String> include;
 
     /**
-     * This endpoint allows embedding related API items by appending the
-     * following values via the `embed` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
      * 
      * * `captures`: Embed all captures created for this payment.
      * * `refunds`: Embed all refunds created for this payment.
@@ -50,9 +46,7 @@ public class GetPaymentRequest {
     private JsonNullable<String> embed;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -61,41 +55,38 @@ public class GetPaymentRequest {
 
     @JsonCreator
     public GetPaymentRequest(
-            String id,
+            String paymentId,
             JsonNullable<String> include,
             JsonNullable<String> embed,
             JsonNullable<Boolean> testmode) {
-        Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(paymentId, "paymentId");
         Utils.checkNotNull(include, "include");
         Utils.checkNotNull(embed, "embed");
         Utils.checkNotNull(testmode, "testmode");
-        this.id = id;
+        this.paymentId = paymentId;
         this.include = include;
         this.embed = embed;
         this.testmode = testmode;
     }
     
     public GetPaymentRequest(
-            String id) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+            String paymentId) {
+        this(paymentId, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related payment.
      */
     @JsonIgnore
-    public String id() {
-        return id;
+    public String paymentId() {
+        return paymentId;
     }
 
     /**
      * This endpoint allows you to include additional information via the `include` query string parameter.
      * 
-     * * `details.qrCode`: Include a QR code object. Only available for iDEAL,
-     * Bancontact and bank transfer payments.
-     * * `details.remainderDetails`: For payments where gift cards or vouchers were applied and the remaining amount
-     *   was paid with another payment method, this include will add another `details` object specifically for the
-     *   remainder payment.
+     * * `details.qrCode`: Include a QR code object. Only available for iDEAL, Bancontact and bank transfer payments.
+     * * `details.remainderDetails`: For payments where gift cards or vouchers were applied and the remaining amount was paid with another payment method, this include will add another `details` object specifically for the remainder payment.
      */
     @JsonIgnore
     public JsonNullable<String> include() {
@@ -103,8 +94,7 @@ public class GetPaymentRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the
-     * following values via the `embed` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
      * 
      * * `captures`: Embed all captures created for this payment.
      * * `refunds`: Embed all refunds created for this payment.
@@ -116,9 +106,7 @@ public class GetPaymentRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -132,22 +120,19 @@ public class GetPaymentRequest {
     }
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related payment.
      */
-    public GetPaymentRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public GetPaymentRequest withPaymentId(String paymentId) {
+        Utils.checkNotNull(paymentId, "paymentId");
+        this.paymentId = paymentId;
         return this;
     }
 
     /**
      * This endpoint allows you to include additional information via the `include` query string parameter.
      * 
-     * * `details.qrCode`: Include a QR code object. Only available for iDEAL,
-     * Bancontact and bank transfer payments.
-     * * `details.remainderDetails`: For payments where gift cards or vouchers were applied and the remaining amount
-     *   was paid with another payment method, this include will add another `details` object specifically for the
-     *   remainder payment.
+     * * `details.qrCode`: Include a QR code object. Only available for iDEAL, Bancontact and bank transfer payments.
+     * * `details.remainderDetails`: For payments where gift cards or vouchers were applied and the remaining amount was paid with another payment method, this include will add another `details` object specifically for the remainder payment.
      */
     public GetPaymentRequest withInclude(String include) {
         Utils.checkNotNull(include, "include");
@@ -158,11 +143,8 @@ public class GetPaymentRequest {
     /**
      * This endpoint allows you to include additional information via the `include` query string parameter.
      * 
-     * * `details.qrCode`: Include a QR code object. Only available for iDEAL,
-     * Bancontact and bank transfer payments.
-     * * `details.remainderDetails`: For payments where gift cards or vouchers were applied and the remaining amount
-     *   was paid with another payment method, this include will add another `details` object specifically for the
-     *   remainder payment.
+     * * `details.qrCode`: Include a QR code object. Only available for iDEAL, Bancontact and bank transfer payments.
+     * * `details.remainderDetails`: For payments where gift cards or vouchers were applied and the remaining amount was paid with another payment method, this include will add another `details` object specifically for the remainder payment.
      */
     public GetPaymentRequest withInclude(JsonNullable<String> include) {
         Utils.checkNotNull(include, "include");
@@ -171,8 +153,7 @@ public class GetPaymentRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the
-     * following values via the `embed` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
      * 
      * * `captures`: Embed all captures created for this payment.
      * * `refunds`: Embed all refunds created for this payment.
@@ -185,8 +166,7 @@ public class GetPaymentRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the
-     * following values via the `embed` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
      * 
      * * `captures`: Embed all captures created for this payment.
      * * `refunds`: Embed all refunds created for this payment.
@@ -199,9 +179,7 @@ public class GetPaymentRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -212,9 +190,7 @@ public class GetPaymentRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -234,7 +210,7 @@ public class GetPaymentRequest {
         }
         GetPaymentRequest other = (GetPaymentRequest) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.paymentId, other.paymentId) &&
             Objects.deepEquals(this.include, other.include) &&
             Objects.deepEquals(this.embed, other.embed) &&
             Objects.deepEquals(this.testmode, other.testmode);
@@ -243,7 +219,7 @@ public class GetPaymentRequest {
     @Override
     public int hashCode() {
         return Objects.hash(
-            id,
+            paymentId,
             include,
             embed,
             testmode);
@@ -252,7 +228,7 @@ public class GetPaymentRequest {
     @Override
     public String toString() {
         return Utils.toString(GetPaymentRequest.class,
-                "id", id,
+                "paymentId", paymentId,
                 "include", include,
                 "embed", embed,
                 "testmode", testmode);
@@ -260,7 +236,7 @@ public class GetPaymentRequest {
     
     public final static class Builder {
  
-        private String id;
+        private String paymentId;
  
         private JsonNullable<String> include = JsonNullable.undefined();
  
@@ -273,22 +249,19 @@ public class GetPaymentRequest {
         }
 
         /**
-         * Provide the ID of the item you want to perform this operation on.
+         * Provide the ID of the related payment.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder paymentId(String paymentId) {
+            Utils.checkNotNull(paymentId, "paymentId");
+            this.paymentId = paymentId;
             return this;
         }
 
         /**
          * This endpoint allows you to include additional information via the `include` query string parameter.
          * 
-         * * `details.qrCode`: Include a QR code object. Only available for iDEAL,
-         * Bancontact and bank transfer payments.
-         * * `details.remainderDetails`: For payments where gift cards or vouchers were applied and the remaining amount
-         *   was paid with another payment method, this include will add another `details` object specifically for the
-         *   remainder payment.
+         * * `details.qrCode`: Include a QR code object. Only available for iDEAL, Bancontact and bank transfer payments.
+         * * `details.remainderDetails`: For payments where gift cards or vouchers were applied and the remaining amount was paid with another payment method, this include will add another `details` object specifically for the remainder payment.
          */
         public Builder include(String include) {
             Utils.checkNotNull(include, "include");
@@ -299,11 +272,8 @@ public class GetPaymentRequest {
         /**
          * This endpoint allows you to include additional information via the `include` query string parameter.
          * 
-         * * `details.qrCode`: Include a QR code object. Only available for iDEAL,
-         * Bancontact and bank transfer payments.
-         * * `details.remainderDetails`: For payments where gift cards or vouchers were applied and the remaining amount
-         *   was paid with another payment method, this include will add another `details` object specifically for the
-         *   remainder payment.
+         * * `details.qrCode`: Include a QR code object. Only available for iDEAL, Bancontact and bank transfer payments.
+         * * `details.remainderDetails`: For payments where gift cards or vouchers were applied and the remaining amount was paid with another payment method, this include will add another `details` object specifically for the remainder payment.
          */
         public Builder include(JsonNullable<String> include) {
             Utils.checkNotNull(include, "include");
@@ -312,8 +282,7 @@ public class GetPaymentRequest {
         }
 
         /**
-         * This endpoint allows embedding related API items by appending the
-         * following values via the `embed` query string parameter.
+         * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
          * 
          * * `captures`: Embed all captures created for this payment.
          * * `refunds`: Embed all refunds created for this payment.
@@ -326,8 +295,7 @@ public class GetPaymentRequest {
         }
 
         /**
-         * This endpoint allows embedding related API items by appending the
-         * following values via the `embed` query string parameter.
+         * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
          * 
          * * `captures`: Embed all captures created for this payment.
          * * `refunds`: Embed all refunds created for this payment.
@@ -340,9 +308,7 @@ public class GetPaymentRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-         * setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
          * 
          * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -353,9 +319,7 @@ public class GetPaymentRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-         * setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
          * 
          * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -369,7 +333,7 @@ public class GetPaymentRequest {
             if (testmode == null) {
                 testmode = _SINGLETON_VALUE_Testmode.value();
             }            return new GetPaymentRequest(
-                id,
+                paymentId,
                 include,
                 embed,
                 testmode);

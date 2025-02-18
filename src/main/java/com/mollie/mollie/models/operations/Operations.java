@@ -18,28 +18,27 @@ public class Operations {
 
     /**
      * Type of operation.
+     * 
+     * Possible values: `add` `update` `cancel`
      */
     @JsonProperty("operation")
-    private Operation operation;
+    private String operation;
 
     /**
      * Operation data depending on the type of operation.
      * 
-     * For an `add` operation, provide the fields for the new order line in the same format as in the
-     * [Create order](create-order) endpoint.
+     * For an `add` operation, provide the fields for the new order line in the same format as in the [Create order](create-order) endpoint.
      * 
-     * For an `update` operation, provide the `id` of the order line, along with any fields you would
-     * like to update.
+     * For an `update` operation, provide the `id` of the order line, along with any fields you would like to update.
      * 
-     * For a `cancel` operation, provide the `id` of the order line. Optionally, a `quantity` or `amount`
-     * can be provided to only partially cancel an order line.
+     * For a `cancel` operation, provide the `id` of the order line. Optionally, a `quantity` or `amount` can be provided to only partially cancel an order line.
      */
     @JsonProperty("data")
     private Data data;
 
     @JsonCreator
     public Operations(
-            @JsonProperty("operation") Operation operation,
+            @JsonProperty("operation") String operation,
             @JsonProperty("data") Data data) {
         Utils.checkNotNull(operation, "operation");
         Utils.checkNotNull(data, "data");
@@ -49,23 +48,22 @@ public class Operations {
 
     /**
      * Type of operation.
+     * 
+     * Possible values: `add` `update` `cancel`
      */
     @JsonIgnore
-    public Operation operation() {
+    public String operation() {
         return operation;
     }
 
     /**
      * Operation data depending on the type of operation.
      * 
-     * For an `add` operation, provide the fields for the new order line in the same format as in the
-     * [Create order](create-order) endpoint.
+     * For an `add` operation, provide the fields for the new order line in the same format as in the [Create order](create-order) endpoint.
      * 
-     * For an `update` operation, provide the `id` of the order line, along with any fields you would
-     * like to update.
+     * For an `update` operation, provide the `id` of the order line, along with any fields you would like to update.
      * 
-     * For a `cancel` operation, provide the `id` of the order line. Optionally, a `quantity` or `amount`
-     * can be provided to only partially cancel an order line.
+     * For a `cancel` operation, provide the `id` of the order line. Optionally, a `quantity` or `amount` can be provided to only partially cancel an order line.
      */
     @JsonIgnore
     public Data data() {
@@ -78,8 +76,10 @@ public class Operations {
 
     /**
      * Type of operation.
+     * 
+     * Possible values: `add` `update` `cancel`
      */
-    public Operations withOperation(Operation operation) {
+    public Operations withOperation(String operation) {
         Utils.checkNotNull(operation, "operation");
         this.operation = operation;
         return this;
@@ -88,14 +88,11 @@ public class Operations {
     /**
      * Operation data depending on the type of operation.
      * 
-     * For an `add` operation, provide the fields for the new order line in the same format as in the
-     * [Create order](create-order) endpoint.
+     * For an `add` operation, provide the fields for the new order line in the same format as in the [Create order](create-order) endpoint.
      * 
-     * For an `update` operation, provide the `id` of the order line, along with any fields you would
-     * like to update.
+     * For an `update` operation, provide the `id` of the order line, along with any fields you would like to update.
      * 
-     * For a `cancel` operation, provide the `id` of the order line. Optionally, a `quantity` or `amount`
-     * can be provided to only partially cancel an order line.
+     * For a `cancel` operation, provide the `id` of the order line. Optionally, a `quantity` or `amount` can be provided to only partially cancel an order line.
      */
     public Operations withData(Data data) {
         Utils.checkNotNull(data, "data");
@@ -133,7 +130,7 @@ public class Operations {
     
     public final static class Builder {
  
-        private Operation operation;
+        private String operation;
  
         private Data data;  
         
@@ -143,8 +140,10 @@ public class Operations {
 
         /**
          * Type of operation.
+         * 
+         * Possible values: `add` `update` `cancel`
          */
-        public Builder operation(Operation operation) {
+        public Builder operation(String operation) {
             Utils.checkNotNull(operation, "operation");
             this.operation = operation;
             return this;
@@ -153,14 +152,11 @@ public class Operations {
         /**
          * Operation data depending on the type of operation.
          * 
-         * For an `add` operation, provide the fields for the new order line in the same format as in the
-         * [Create order](create-order) endpoint.
+         * For an `add` operation, provide the fields for the new order line in the same format as in the [Create order](create-order) endpoint.
          * 
-         * For an `update` operation, provide the `id` of the order line, along with any fields you would
-         * like to update.
+         * For an `update` operation, provide the `id` of the order line, along with any fields you would like to update.
          * 
-         * For a `cancel` operation, provide the `id` of the order line. Optionally, a `quantity` or `amount`
-         * can be provided to only partially cancel an order line.
+         * For a `cancel` operation, provide the `id` of the order line. Optionally, a `quantity` or `amount` can be provided to only partially cancel an order line.
          */
         public Builder data(Data data) {
             Utils.checkNotNull(data, "data");

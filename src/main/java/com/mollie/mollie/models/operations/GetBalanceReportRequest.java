@@ -14,7 +14,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -28,36 +27,29 @@ public class GetBalanceReportRequest {
     private String balanceId;
 
     /**
-     * The start date of the report, in `YYYY-MM-DD` format. The from date is
-     * 'inclusive', and in Central European Time. This means a report with for example `from=2024-01-01` will
-     * include transactions from 2024-01-01 0:00:00 CET and onwards.
+     * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central European Time. This means a report with for example `from=2024-01-01` will include transactions from 2024-01-01 0:00:00 CET and onwards.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
     private String from;
 
     /**
-     * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time.
-     * This means a report with for example `until=2024-02-01` will include transactions up until
-     * 2024-01-31 23:59:59 CET.
+     * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time. This means a report with for example `until=2024-02-01` will include transactions up until 2024-01-31 23:59:59 CET.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=until")
     private String until;
 
     /**
-     * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped
-     * by status (e.g. `pending`, `available`), then by transaction type, and then by other sub-groupings where
-     * available (e.g. payment method).
+     * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped by status (e.g. `pending`, `available`), then by transaction type, and then by other sub-groupings where available (e.g. payment method).
      * 
-     * With the `transaction-categories` format, transactions are grouped by
-     * transaction type, then by status, and then again by other sub-groupings where available.
+     * With the `transaction-categories` format, transactions are grouped by transaction type, then by status, and then again by other sub-groupings where available.
+     * 
+     * Possible values: `status-balances` `transaction-categories` (default: `status-balances`)
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=grouping")
-    private JsonNullable<? extends Grouping> grouping;
+    private JsonNullable<String> grouping;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -69,7 +61,7 @@ public class GetBalanceReportRequest {
             String balanceId,
             String from,
             String until,
-            JsonNullable<? extends Grouping> grouping,
+            JsonNullable<String> grouping,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(balanceId, "balanceId");
         Utils.checkNotNull(from, "from");
@@ -99,9 +91,7 @@ public class GetBalanceReportRequest {
     }
 
     /**
-     * The start date of the report, in `YYYY-MM-DD` format. The from date is
-     * 'inclusive', and in Central European Time. This means a report with for example `from=2024-01-01` will
-     * include transactions from 2024-01-01 0:00:00 CET and onwards.
+     * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central European Time. This means a report with for example `from=2024-01-01` will include transactions from 2024-01-01 0:00:00 CET and onwards.
      */
     @JsonIgnore
     public String from() {
@@ -109,9 +99,7 @@ public class GetBalanceReportRequest {
     }
 
     /**
-     * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time.
-     * This means a report with for example `until=2024-02-01` will include transactions up until
-     * 2024-01-31 23:59:59 CET.
+     * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time. This means a report with for example `until=2024-02-01` will include transactions up until 2024-01-31 23:59:59 CET.
      */
     @JsonIgnore
     public String until() {
@@ -119,23 +107,19 @@ public class GetBalanceReportRequest {
     }
 
     /**
-     * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped
-     * by status (e.g. `pending`, `available`), then by transaction type, and then by other sub-groupings where
-     * available (e.g. payment method).
+     * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped by status (e.g. `pending`, `available`), then by transaction type, and then by other sub-groupings where available (e.g. payment method).
      * 
-     * With the `transaction-categories` format, transactions are grouped by
-     * transaction type, then by status, and then again by other sub-groupings where available.
+     * With the `transaction-categories` format, transactions are grouped by transaction type, then by status, and then again by other sub-groupings where available.
+     * 
+     * Possible values: `status-balances` `transaction-categories` (default: `status-balances`)
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Grouping> grouping() {
-        return (JsonNullable<Grouping>) grouping;
+    public JsonNullable<String> grouping() {
+        return grouping;
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -158,9 +142,7 @@ public class GetBalanceReportRequest {
     }
 
     /**
-     * The start date of the report, in `YYYY-MM-DD` format. The from date is
-     * 'inclusive', and in Central European Time. This means a report with for example `from=2024-01-01` will
-     * include transactions from 2024-01-01 0:00:00 CET and onwards.
+     * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central European Time. This means a report with for example `from=2024-01-01` will include transactions from 2024-01-01 0:00:00 CET and onwards.
      */
     public GetBalanceReportRequest withFrom(String from) {
         Utils.checkNotNull(from, "from");
@@ -169,9 +151,7 @@ public class GetBalanceReportRequest {
     }
 
     /**
-     * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time.
-     * This means a report with for example `until=2024-02-01` will include transactions up until
-     * 2024-01-31 23:59:59 CET.
+     * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time. This means a report with for example `until=2024-02-01` will include transactions up until 2024-01-31 23:59:59 CET.
      */
     public GetBalanceReportRequest withUntil(String until) {
         Utils.checkNotNull(until, "until");
@@ -180,37 +160,33 @@ public class GetBalanceReportRequest {
     }
 
     /**
-     * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped
-     * by status (e.g. `pending`, `available`), then by transaction type, and then by other sub-groupings where
-     * available (e.g. payment method).
+     * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped by status (e.g. `pending`, `available`), then by transaction type, and then by other sub-groupings where available (e.g. payment method).
      * 
-     * With the `transaction-categories` format, transactions are grouped by
-     * transaction type, then by status, and then again by other sub-groupings where available.
+     * With the `transaction-categories` format, transactions are grouped by transaction type, then by status, and then again by other sub-groupings where available.
+     * 
+     * Possible values: `status-balances` `transaction-categories` (default: `status-balances`)
      */
-    public GetBalanceReportRequest withGrouping(Grouping grouping) {
+    public GetBalanceReportRequest withGrouping(String grouping) {
         Utils.checkNotNull(grouping, "grouping");
         this.grouping = JsonNullable.of(grouping);
         return this;
     }
 
     /**
-     * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped
-     * by status (e.g. `pending`, `available`), then by transaction type, and then by other sub-groupings where
-     * available (e.g. payment method).
+     * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped by status (e.g. `pending`, `available`), then by transaction type, and then by other sub-groupings where available (e.g. payment method).
      * 
-     * With the `transaction-categories` format, transactions are grouped by
-     * transaction type, then by status, and then again by other sub-groupings where available.
+     * With the `transaction-categories` format, transactions are grouped by transaction type, then by status, and then again by other sub-groupings where available.
+     * 
+     * Possible values: `status-balances` `transaction-categories` (default: `status-balances`)
      */
-    public GetBalanceReportRequest withGrouping(JsonNullable<? extends Grouping> grouping) {
+    public GetBalanceReportRequest withGrouping(JsonNullable<String> grouping) {
         Utils.checkNotNull(grouping, "grouping");
         this.grouping = grouping;
         return this;
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -221,9 +197,7 @@ public class GetBalanceReportRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -278,7 +252,7 @@ public class GetBalanceReportRequest {
  
         private String until;
  
-        private JsonNullable<? extends Grouping> grouping;
+        private JsonNullable<String> grouping = JsonNullable.undefined();
  
         private JsonNullable<Boolean> testmode;  
         
@@ -296,9 +270,7 @@ public class GetBalanceReportRequest {
         }
 
         /**
-         * The start date of the report, in `YYYY-MM-DD` format. The from date is
-         * 'inclusive', and in Central European Time. This means a report with for example `from=2024-01-01` will
-         * include transactions from 2024-01-01 0:00:00 CET and onwards.
+         * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central European Time. This means a report with for example `from=2024-01-01` will include transactions from 2024-01-01 0:00:00 CET and onwards.
          */
         public Builder from(String from) {
             Utils.checkNotNull(from, "from");
@@ -307,9 +279,7 @@ public class GetBalanceReportRequest {
         }
 
         /**
-         * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time.
-         * This means a report with for example `until=2024-02-01` will include transactions up until
-         * 2024-01-31 23:59:59 CET.
+         * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time. This means a report with for example `until=2024-02-01` will include transactions up until 2024-01-31 23:59:59 CET.
          */
         public Builder until(String until) {
             Utils.checkNotNull(until, "until");
@@ -318,37 +288,33 @@ public class GetBalanceReportRequest {
         }
 
         /**
-         * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped
-         * by status (e.g. `pending`, `available`), then by transaction type, and then by other sub-groupings where
-         * available (e.g. payment method).
+         * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped by status (e.g. `pending`, `available`), then by transaction type, and then by other sub-groupings where available (e.g. payment method).
          * 
-         * With the `transaction-categories` format, transactions are grouped by
-         * transaction type, then by status, and then again by other sub-groupings where available.
+         * With the `transaction-categories` format, transactions are grouped by transaction type, then by status, and then again by other sub-groupings where available.
+         * 
+         * Possible values: `status-balances` `transaction-categories` (default: `status-balances`)
          */
-        public Builder grouping(Grouping grouping) {
+        public Builder grouping(String grouping) {
             Utils.checkNotNull(grouping, "grouping");
             this.grouping = JsonNullable.of(grouping);
             return this;
         }
 
         /**
-         * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped
-         * by status (e.g. `pending`, `available`), then by transaction type, and then by other sub-groupings where
-         * available (e.g. payment method).
+         * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped by status (e.g. `pending`, `available`), then by transaction type, and then by other sub-groupings where available (e.g. payment method).
          * 
-         * With the `transaction-categories` format, transactions are grouped by
-         * transaction type, then by status, and then again by other sub-groupings where available.
+         * With the `transaction-categories` format, transactions are grouped by transaction type, then by status, and then again by other sub-groupings where available.
+         * 
+         * Possible values: `status-balances` `transaction-categories` (default: `status-balances`)
          */
-        public Builder grouping(JsonNullable<? extends Grouping> grouping) {
+        public Builder grouping(JsonNullable<String> grouping) {
             Utils.checkNotNull(grouping, "grouping");
             this.grouping = grouping;
             return this;
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-         * setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
          * 
          * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -359,9 +325,7 @@ public class GetBalanceReportRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-         * setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
          * 
          * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -372,9 +336,6 @@ public class GetBalanceReportRequest {
         }
         
         public GetBalanceReportRequest build() {
-            if (grouping == null) {
-                grouping = _SINGLETON_VALUE_Grouping.value();
-            }
             if (testmode == null) {
                 testmode = _SINGLETON_VALUE_Testmode.value();
             }            return new GetBalanceReportRequest(
@@ -384,12 +345,6 @@ public class GetBalanceReportRequest {
                 grouping,
                 testmode);
         }
-
-        private static final LazySingletonValue<JsonNullable<? extends Grouping>> _SINGLETON_VALUE_Grouping =
-                new LazySingletonValue<>(
-                        "grouping",
-                        "\"status-balances\"",
-                        new TypeReference<JsonNullable<? extends Grouping>>() {});
 
         private static final LazySingletonValue<JsonNullable<Boolean>> _SINGLETON_VALUE_Testmode =
                 new LazySingletonValue<>(

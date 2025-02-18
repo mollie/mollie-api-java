@@ -37,8 +37,7 @@ public class EnableMethodMethodsAPIImage {
     private Optional<String> size2x;
 
     /**
-     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can
-     * scale to any desired size without compromising visual quality.
+     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("svg")
@@ -78,8 +77,7 @@ public class EnableMethodMethodsAPIImage {
     }
 
     /**
-     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can
-     * scale to any desired size without compromising visual quality.
+     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
      */
     @JsonIgnore
     public Optional<String> svg() {
@@ -127,8 +125,7 @@ public class EnableMethodMethodsAPIImage {
     }
 
     /**
-     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can
-     * scale to any desired size without compromising visual quality.
+     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
      */
     public EnableMethodMethodsAPIImage withSvg(String svg) {
         Utils.checkNotNull(svg, "svg");
@@ -137,8 +134,7 @@ public class EnableMethodMethodsAPIImage {
     }
 
     /**
-     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can
-     * scale to any desired size without compromising visual quality.
+     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
      */
     public EnableMethodMethodsAPIImage withSvg(Optional<String> svg) {
         Utils.checkNotNull(svg, "svg");
@@ -226,8 +222,7 @@ public class EnableMethodMethodsAPIImage {
         }
 
         /**
-         * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can
-         * scale to any desired size without compromising visual quality.
+         * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
          */
         public Builder svg(String svg) {
             Utils.checkNotNull(svg, "svg");
@@ -236,8 +231,7 @@ public class EnableMethodMethodsAPIImage {
         }
 
         /**
-         * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can
-         * scale to any desired size without compromising visual quality.
+         * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
          */
         public Builder svg(Optional<String> svg) {
             Utils.checkNotNull(svg, "svg");

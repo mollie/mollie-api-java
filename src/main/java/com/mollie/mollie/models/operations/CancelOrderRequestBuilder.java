@@ -13,7 +13,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CancelOrderRequestBuilder {
 
-    private CancelOrderSecurity security;
     private String id;
     private JsonNullable<Boolean> testmode = Utils.readDefaultOrConstValue(
                             "testmode",
@@ -23,12 +22,6 @@ public class CancelOrderRequestBuilder {
 
     public CancelOrderRequestBuilder(SDKMethodInterfaces.MethodCallCancelOrder sdk) {
         this.sdk = sdk;
-    }
-
-    public CancelOrderRequestBuilder security(CancelOrderSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public CancelOrderRequestBuilder id(String id) {
@@ -53,8 +46,7 @@ public class CancelOrderRequestBuilder {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.cancel(
-            security,
+        return sdk.cancelOrder(
             id,
             testmode);
     }

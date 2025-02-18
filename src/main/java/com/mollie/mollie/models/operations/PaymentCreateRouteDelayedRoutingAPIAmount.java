@@ -14,8 +14,7 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * PaymentCreateRouteDelayedRoutingAPIAmount - The amount of the route.
- * That amount that will be routed to the specified destination.
+ * PaymentCreateRouteDelayedRoutingAPIAmount - The amount of the route. That amount that will be routed to the specified destination.
  */
 
 public class PaymentCreateRouteDelayedRoutingAPIAmount {

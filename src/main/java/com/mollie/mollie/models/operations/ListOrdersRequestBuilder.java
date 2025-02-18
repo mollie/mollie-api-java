@@ -9,7 +9,6 @@ import com.mollie.mollie.utils.Utils;
 public class ListOrdersRequestBuilder {
 
     private ListOrdersRequest request;
-    private ListOrdersSecurity security;
     private final SDKMethodInterfaces.MethodCallListOrders sdk;
 
     public ListOrdersRequestBuilder(SDKMethodInterfaces.MethodCallListOrders sdk) {
@@ -22,16 +21,9 @@ public class ListOrdersRequestBuilder {
         return this;
     }
 
-    public ListOrdersRequestBuilder security(ListOrdersSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
-    }
-
     public ListOrdersResponse call() throws Exception {
 
-        return sdk.list(
-            request,
-            security);
+        return sdk.listOrders(
+            request);
     }
 }

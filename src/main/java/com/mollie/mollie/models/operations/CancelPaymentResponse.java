@@ -11,13 +11,10 @@ import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Objects;
-import java.util.Optional;
 
 
 public class CancelPaymentResponse implements Response {
@@ -37,41 +34,17 @@ public class CancelPaymentResponse implements Response {
      */
     private HttpResponse<InputStream> rawResponse;
 
-    /**
-     * The canceled payment object. For a complete reference of the payment
-     * object, refer to the [Get payment endpoint](get-payment) documentation.
-     */
-    private Optional<? extends Object> twoHundredApplicationHalPlusJsonAny;
-
-    /**
-     * If the payment was already `authorized`, the status code will be `202`.
-     */
-    private Optional<? extends Object> twoHundredAndTwoApplicationHalPlusJsonAny;
-
     @JsonCreator
     public CancelPaymentResponse(
             String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse,
-            Optional<? extends Object> twoHundredApplicationHalPlusJsonAny,
-            Optional<? extends Object> twoHundredAndTwoApplicationHalPlusJsonAny) {
+            HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(twoHundredApplicationHalPlusJsonAny, "twoHundredApplicationHalPlusJsonAny");
-        Utils.checkNotNull(twoHundredAndTwoApplicationHalPlusJsonAny, "twoHundredAndTwoApplicationHalPlusJsonAny");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.twoHundredApplicationHalPlusJsonAny = twoHundredApplicationHalPlusJsonAny;
-        this.twoHundredAndTwoApplicationHalPlusJsonAny = twoHundredAndTwoApplicationHalPlusJsonAny;
-    }
-    
-    public CancelPaymentResponse(
-            String contentType,
-            int statusCode,
-            HttpResponse<InputStream> rawResponse) {
-        this(contentType, statusCode, rawResponse, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -96,25 +69,6 @@ public class CancelPaymentResponse implements Response {
     @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
-    }
-
-    /**
-     * The canceled payment object. For a complete reference of the payment
-     * object, refer to the [Get payment endpoint](get-payment) documentation.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Object> twoHundredApplicationHalPlusJsonAny() {
-        return (Optional<Object>) twoHundredApplicationHalPlusJsonAny;
-    }
-
-    /**
-     * If the payment was already `authorized`, the status code will be `202`.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Object> twoHundredAndTwoApplicationHalPlusJsonAny() {
-        return (Optional<Object>) twoHundredAndTwoApplicationHalPlusJsonAny;
     }
 
     public final static Builder builder() {
@@ -147,44 +101,6 @@ public class CancelPaymentResponse implements Response {
         this.rawResponse = rawResponse;
         return this;
     }
-
-    /**
-     * The canceled payment object. For a complete reference of the payment
-     * object, refer to the [Get payment endpoint](get-payment) documentation.
-     */
-    public CancelPaymentResponse withTwoHundredApplicationHalPlusJsonAny(Object twoHundredApplicationHalPlusJsonAny) {
-        Utils.checkNotNull(twoHundredApplicationHalPlusJsonAny, "twoHundredApplicationHalPlusJsonAny");
-        this.twoHundredApplicationHalPlusJsonAny = Optional.ofNullable(twoHundredApplicationHalPlusJsonAny);
-        return this;
-    }
-
-    /**
-     * The canceled payment object. For a complete reference of the payment
-     * object, refer to the [Get payment endpoint](get-payment) documentation.
-     */
-    public CancelPaymentResponse withTwoHundredApplicationHalPlusJsonAny(Optional<? extends Object> twoHundredApplicationHalPlusJsonAny) {
-        Utils.checkNotNull(twoHundredApplicationHalPlusJsonAny, "twoHundredApplicationHalPlusJsonAny");
-        this.twoHundredApplicationHalPlusJsonAny = twoHundredApplicationHalPlusJsonAny;
-        return this;
-    }
-
-    /**
-     * If the payment was already `authorized`, the status code will be `202`.
-     */
-    public CancelPaymentResponse withTwoHundredAndTwoApplicationHalPlusJsonAny(Object twoHundredAndTwoApplicationHalPlusJsonAny) {
-        Utils.checkNotNull(twoHundredAndTwoApplicationHalPlusJsonAny, "twoHundredAndTwoApplicationHalPlusJsonAny");
-        this.twoHundredAndTwoApplicationHalPlusJsonAny = Optional.ofNullable(twoHundredAndTwoApplicationHalPlusJsonAny);
-        return this;
-    }
-
-    /**
-     * If the payment was already `authorized`, the status code will be `202`.
-     */
-    public CancelPaymentResponse withTwoHundredAndTwoApplicationHalPlusJsonAny(Optional<? extends Object> twoHundredAndTwoApplicationHalPlusJsonAny) {
-        Utils.checkNotNull(twoHundredAndTwoApplicationHalPlusJsonAny, "twoHundredAndTwoApplicationHalPlusJsonAny");
-        this.twoHundredAndTwoApplicationHalPlusJsonAny = twoHundredAndTwoApplicationHalPlusJsonAny;
-        return this;
-    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -198,9 +114,7 @@ public class CancelPaymentResponse implements Response {
         return 
             Objects.deepEquals(this.contentType, other.contentType) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.twoHundredApplicationHalPlusJsonAny, other.twoHundredApplicationHalPlusJsonAny) &&
-            Objects.deepEquals(this.twoHundredAndTwoApplicationHalPlusJsonAny, other.twoHundredAndTwoApplicationHalPlusJsonAny);
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
@@ -208,9 +122,7 @@ public class CancelPaymentResponse implements Response {
         return Objects.hash(
             contentType,
             statusCode,
-            rawResponse,
-            twoHundredApplicationHalPlusJsonAny,
-            twoHundredAndTwoApplicationHalPlusJsonAny);
+            rawResponse);
     }
     
     @Override
@@ -218,9 +130,7 @@ public class CancelPaymentResponse implements Response {
         return Utils.toString(CancelPaymentResponse.class,
                 "contentType", contentType,
                 "statusCode", statusCode,
-                "rawResponse", rawResponse,
-                "twoHundredApplicationHalPlusJsonAny", twoHundredApplicationHalPlusJsonAny,
-                "twoHundredAndTwoApplicationHalPlusJsonAny", twoHundredAndTwoApplicationHalPlusJsonAny);
+                "rawResponse", rawResponse);
     }
     
     public final static class Builder {
@@ -229,11 +139,7 @@ public class CancelPaymentResponse implements Response {
  
         private Integer statusCode;
  
-        private HttpResponse<InputStream> rawResponse;
- 
-        private Optional<? extends Object> twoHundredApplicationHalPlusJsonAny = Optional.empty();
- 
-        private Optional<? extends Object> twoHundredAndTwoApplicationHalPlusJsonAny = Optional.empty();  
+        private HttpResponse<InputStream> rawResponse;  
         
         private Builder() {
           // force use of static builder() method
@@ -265,52 +171,12 @@ public class CancelPaymentResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
-
-        /**
-         * The canceled payment object. For a complete reference of the payment
-         * object, refer to the [Get payment endpoint](get-payment) documentation.
-         */
-        public Builder twoHundredApplicationHalPlusJsonAny(Object twoHundredApplicationHalPlusJsonAny) {
-            Utils.checkNotNull(twoHundredApplicationHalPlusJsonAny, "twoHundredApplicationHalPlusJsonAny");
-            this.twoHundredApplicationHalPlusJsonAny = Optional.ofNullable(twoHundredApplicationHalPlusJsonAny);
-            return this;
-        }
-
-        /**
-         * The canceled payment object. For a complete reference of the payment
-         * object, refer to the [Get payment endpoint](get-payment) documentation.
-         */
-        public Builder twoHundredApplicationHalPlusJsonAny(Optional<? extends Object> twoHundredApplicationHalPlusJsonAny) {
-            Utils.checkNotNull(twoHundredApplicationHalPlusJsonAny, "twoHundredApplicationHalPlusJsonAny");
-            this.twoHundredApplicationHalPlusJsonAny = twoHundredApplicationHalPlusJsonAny;
-            return this;
-        }
-
-        /**
-         * If the payment was already `authorized`, the status code will be `202`.
-         */
-        public Builder twoHundredAndTwoApplicationHalPlusJsonAny(Object twoHundredAndTwoApplicationHalPlusJsonAny) {
-            Utils.checkNotNull(twoHundredAndTwoApplicationHalPlusJsonAny, "twoHundredAndTwoApplicationHalPlusJsonAny");
-            this.twoHundredAndTwoApplicationHalPlusJsonAny = Optional.ofNullable(twoHundredAndTwoApplicationHalPlusJsonAny);
-            return this;
-        }
-
-        /**
-         * If the payment was already `authorized`, the status code will be `202`.
-         */
-        public Builder twoHundredAndTwoApplicationHalPlusJsonAny(Optional<? extends Object> twoHundredAndTwoApplicationHalPlusJsonAny) {
-            Utils.checkNotNull(twoHundredAndTwoApplicationHalPlusJsonAny, "twoHundredAndTwoApplicationHalPlusJsonAny");
-            this.twoHundredAndTwoApplicationHalPlusJsonAny = twoHundredAndTwoApplicationHalPlusJsonAny;
-            return this;
-        }
         
         public CancelPaymentResponse build() {
             return new CancelPaymentResponse(
                 contentType,
                 statusCode,
-                rawResponse,
-                twoHundredApplicationHalPlusJsonAny,
-                twoHundredAndTwoApplicationHalPlusJsonAny);
+                rawResponse);
         }
     }
 }

@@ -22,8 +22,7 @@ import java.util.Optional;
 public class ListSettlementsEmbedded {
 
     /**
-     * An array of settlement objects. For a complete reference
-     * of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
+     * An array of settlement objects. For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlements")
@@ -41,8 +40,7 @@ public class ListSettlementsEmbedded {
     }
 
     /**
-     * An array of settlement objects. For a complete reference
-     * of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
+     * An array of settlement objects. For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -55,8 +53,7 @@ public class ListSettlementsEmbedded {
     }
 
     /**
-     * An array of settlement objects. For a complete reference
-     * of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
+     * An array of settlement objects. For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
      */
     public ListSettlementsEmbedded withSettlements(List<Settlements> settlements) {
         Utils.checkNotNull(settlements, "settlements");
@@ -65,8 +62,7 @@ public class ListSettlementsEmbedded {
     }
 
     /**
-     * An array of settlement objects. For a complete reference
-     * of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
+     * An array of settlement objects. For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
      */
     public ListSettlementsEmbedded withSettlements(Optional<? extends List<Settlements>> settlements) {
         Utils.checkNotNull(settlements, "settlements");
@@ -108,8 +104,7 @@ public class ListSettlementsEmbedded {
         }
 
         /**
-         * An array of settlement objects. For a complete reference
-         * of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
+         * An array of settlement objects. For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
          */
         public Builder settlements(List<Settlements> settlements) {
             Utils.checkNotNull(settlements, "settlements");
@@ -118,8 +113,7 @@ public class ListSettlementsEmbedded {
         }
 
         /**
-         * An array of settlement objects. For a complete reference
-         * of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
+         * An array of settlement objects. For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
          */
         public Builder settlements(Optional<? extends List<Settlements>> settlements) {
             Utils.checkNotNull(settlements, "settlements");

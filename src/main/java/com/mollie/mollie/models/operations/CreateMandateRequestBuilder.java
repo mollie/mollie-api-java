@@ -10,19 +10,12 @@ import java.util.Optional;
 
 public class CreateMandateRequestBuilder {
 
-    private CreateMandateSecurity security;
     private String customerId;
     private Optional<? extends CreateMandateRequestBody> requestBody = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCreateMandate sdk;
 
     public CreateMandateRequestBuilder(SDKMethodInterfaces.MethodCallCreateMandate sdk) {
         this.sdk = sdk;
-    }
-
-    public CreateMandateRequestBuilder security(CreateMandateSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public CreateMandateRequestBuilder customerId(String customerId) {
@@ -45,8 +38,7 @@ public class CreateMandateRequestBuilder {
 
     public CreateMandateResponse call() throws Exception {
 
-        return sdk.create(
-            security,
+        return sdk.createMandate(
             customerId,
             requestBody);
     }

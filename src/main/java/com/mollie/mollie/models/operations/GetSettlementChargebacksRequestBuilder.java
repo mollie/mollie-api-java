@@ -24,7 +24,7 @@ public class GetSettlementChargebacksRequestBuilder {
 
     public GetSettlementChargebacksResponse call() throws Exception {
 
-        return sdk.getChargebacks(
+        return sdk.getSettlementChargebacks(
             settlementId);
     }
 }

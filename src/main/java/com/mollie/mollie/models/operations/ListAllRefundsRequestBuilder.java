@@ -9,7 +9,6 @@ import com.mollie.mollie.utils.Utils;
 public class ListAllRefundsRequestBuilder {
 
     private ListAllRefundsRequest request;
-    private ListAllRefundsSecurity security;
     private final SDKMethodInterfaces.MethodCallListAllRefunds sdk;
 
     public ListAllRefundsRequestBuilder(SDKMethodInterfaces.MethodCallListAllRefunds sdk) {
@@ -22,16 +21,9 @@ public class ListAllRefundsRequestBuilder {
         return this;
     }
 
-    public ListAllRefundsRequestBuilder security(ListAllRefundsSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
-    }
-
     public ListAllRefundsResponse call() throws Exception {
 
-        return sdk.listAll(
-            request,
-            security);
+        return sdk.listAllRefunds(
+            request);
     }
 }

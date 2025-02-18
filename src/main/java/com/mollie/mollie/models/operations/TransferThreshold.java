@@ -14,9 +14,7 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * TransferThreshold - The minimum amount configured for scheduled automatic settlements. As soon as the amount on the balance exceeds
- * this threshold, the complete balance will be paid out to the transfer destination according to the configured
- * frequency.
+ * TransferThreshold - The minimum amount configured for scheduled automatic settlements. As soon as the amount on the balance exceeds this threshold, the complete balance will be paid out to the transfer destination according to the configured frequency.
  */
 
 public class TransferThreshold {

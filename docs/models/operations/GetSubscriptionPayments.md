@@ -1,7 +1,6 @@
 # GetSubscriptionPayments
 
-The API resource URL of the [payments](list-payments) created for this subscription. Omitted if no such
-payments exist (yet).
+The API resource URL of the [payments](list-payments) created for this subscription. Omitted if no such payments exist (yet).
 
 
 ## Fields

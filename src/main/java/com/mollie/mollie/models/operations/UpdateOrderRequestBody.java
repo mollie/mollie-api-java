@@ -46,24 +46,21 @@ public class UpdateOrderRequestBody {
     private JsonNullable<String> webhookUrl;
 
     /**
-     * If a payment method has already been selected, the original shipping address may have already been
-     * forwarded to the payment method provider.
+     * If a payment method has already been selected, the original shipping address may have already been forwarded to the payment method provider.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billingAddress")
     private JsonNullable<? extends UpdateOrderBillingAddress> billingAddress;
 
     /**
-     * If a payment method has already been selected, the original billing address may have already been
-     * forwarded to the payment method provider.
+     * If a payment method has already been selected, the original billing address may have already been forwarded to the payment method provider.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shippingAddress")
     private JsonNullable<? extends UpdateOrderShippingAddress> shippingAddress;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
-     * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -127,8 +124,7 @@ public class UpdateOrderRequestBody {
     }
 
     /**
-     * If a payment method has already been selected, the original shipping address may have already been
-     * forwarded to the payment method provider.
+     * If a payment method has already been selected, the original shipping address may have already been forwarded to the payment method provider.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -137,8 +133,7 @@ public class UpdateOrderRequestBody {
     }
 
     /**
-     * If a payment method has already been selected, the original billing address may have already been
-     * forwarded to the payment method provider.
+     * If a payment method has already been selected, the original billing address may have already been forwarded to the payment method provider.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -147,8 +142,7 @@ public class UpdateOrderRequestBody {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
-     * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -222,8 +216,7 @@ public class UpdateOrderRequestBody {
     }
 
     /**
-     * If a payment method has already been selected, the original shipping address may have already been
-     * forwarded to the payment method provider.
+     * If a payment method has already been selected, the original shipping address may have already been forwarded to the payment method provider.
      */
     public UpdateOrderRequestBody withBillingAddress(UpdateOrderBillingAddress billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
@@ -232,8 +225,7 @@ public class UpdateOrderRequestBody {
     }
 
     /**
-     * If a payment method has already been selected, the original shipping address may have already been
-     * forwarded to the payment method provider.
+     * If a payment method has already been selected, the original shipping address may have already been forwarded to the payment method provider.
      */
     public UpdateOrderRequestBody withBillingAddress(JsonNullable<? extends UpdateOrderBillingAddress> billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
@@ -242,8 +234,7 @@ public class UpdateOrderRequestBody {
     }
 
     /**
-     * If a payment method has already been selected, the original billing address may have already been
-     * forwarded to the payment method provider.
+     * If a payment method has already been selected, the original billing address may have already been forwarded to the payment method provider.
      */
     public UpdateOrderRequestBody withShippingAddress(UpdateOrderShippingAddress shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
@@ -252,8 +243,7 @@ public class UpdateOrderRequestBody {
     }
 
     /**
-     * If a payment method has already been selected, the original billing address may have already been
-     * forwarded to the payment method provider.
+     * If a payment method has already been selected, the original billing address may have already been forwarded to the payment method provider.
      */
     public UpdateOrderRequestBody withShippingAddress(JsonNullable<? extends UpdateOrderShippingAddress> shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
@@ -262,8 +252,7 @@ public class UpdateOrderRequestBody {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
-     * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -274,8 +263,7 @@ public class UpdateOrderRequestBody {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
-     * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -409,8 +397,7 @@ public class UpdateOrderRequestBody {
         }
 
         /**
-         * If a payment method has already been selected, the original shipping address may have already been
-         * forwarded to the payment method provider.
+         * If a payment method has already been selected, the original shipping address may have already been forwarded to the payment method provider.
          */
         public Builder billingAddress(UpdateOrderBillingAddress billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
@@ -419,8 +406,7 @@ public class UpdateOrderRequestBody {
         }
 
         /**
-         * If a payment method has already been selected, the original shipping address may have already been
-         * forwarded to the payment method provider.
+         * If a payment method has already been selected, the original shipping address may have already been forwarded to the payment method provider.
          */
         public Builder billingAddress(JsonNullable<? extends UpdateOrderBillingAddress> billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
@@ -429,8 +415,7 @@ public class UpdateOrderRequestBody {
         }
 
         /**
-         * If a payment method has already been selected, the original billing address may have already been
-         * forwarded to the payment method provider.
+         * If a payment method has already been selected, the original billing address may have already been forwarded to the payment method provider.
          */
         public Builder shippingAddress(UpdateOrderShippingAddress shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
@@ -439,8 +424,7 @@ public class UpdateOrderRequestBody {
         }
 
         /**
-         * If a payment method has already been selected, the original billing address may have already been
-         * forwarded to the payment method provider.
+         * If a payment method has already been selected, the original billing address may have already been forwarded to the payment method provider.
          */
         public Builder shippingAddress(JsonNullable<? extends UpdateOrderShippingAddress> shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
@@ -449,8 +433,7 @@ public class UpdateOrderRequestBody {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
-         * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
          * 
          * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -461,8 +444,7 @@ public class UpdateOrderRequestBody {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
-         * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
          * 
          * Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */

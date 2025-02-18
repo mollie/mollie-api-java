@@ -30,7 +30,7 @@ public class CreateClientLinkRequestBuilder {
 
     public CreateClientLinkResponse call() throws Exception {
 
-        return sdk.create(
+        return sdk.createClientLink(
             request);
     }
 }

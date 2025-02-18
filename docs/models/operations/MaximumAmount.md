@@ -1,7 +1,6 @@
 # MaximumAmount
 
-The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
-is returned instead.
+The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
 
 
 ## Fields

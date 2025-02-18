@@ -13,7 +13,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetMandateRequestBuilder {
 
-    private GetMandateSecurity security;
     private String customerId;
     private String id;
     private JsonNullable<Boolean> testmode = Utils.readDefaultOrConstValue(
@@ -24,12 +23,6 @@ public class GetMandateRequestBuilder {
 
     public GetMandateRequestBuilder(SDKMethodInterfaces.MethodCallGetMandate sdk) {
         this.sdk = sdk;
-    }
-
-    public GetMandateRequestBuilder security(GetMandateSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public GetMandateRequestBuilder customerId(String customerId) {
@@ -60,8 +53,7 @@ public class GetMandateRequestBuilder {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.get(
-            security,
+        return sdk.getMandate(
             customerId,
             id,
             testmode);

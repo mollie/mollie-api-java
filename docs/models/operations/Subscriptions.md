@@ -1,7 +1,6 @@
 # Subscriptions
 
-The API resource URL of the [subscriptions](list-subscriptions) linked to this customer. Omitted if no such
-subscriptions exist (yet).
+The API resource URL of the [subscriptions](list-subscriptions) linked to this customer. Omitted if no such subscriptions exist (yet).
 
 
 ## Fields

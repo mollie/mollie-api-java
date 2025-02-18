@@ -37,8 +37,7 @@ public class ListSettlementsResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * A list of settlement objects. For a complete reference of the settlement
-     * object, refer to the [Get settlement endpoint](get-settlement) documentation.
+     * A list of settlement objects. For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
      */
     private Optional<? extends ListSettlementsResponseBody> object;
 
@@ -90,8 +89,7 @@ public class ListSettlementsResponse implements Response {
     }
 
     /**
-     * A list of settlement objects. For a complete reference of the settlement
-     * object, refer to the [Get settlement endpoint](get-settlement) documentation.
+     * A list of settlement objects. For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -131,8 +129,7 @@ public class ListSettlementsResponse implements Response {
     }
 
     /**
-     * A list of settlement objects. For a complete reference of the settlement
-     * object, refer to the [Get settlement endpoint](get-settlement) documentation.
+     * A list of settlement objects. For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
      */
     public ListSettlementsResponse withObject(ListSettlementsResponseBody object) {
         Utils.checkNotNull(object, "object");
@@ -141,8 +138,7 @@ public class ListSettlementsResponse implements Response {
     }
 
     /**
-     * A list of settlement objects. For a complete reference of the settlement
-     * object, refer to the [Get settlement endpoint](get-settlement) documentation.
+     * A list of settlement objects. For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
      */
     public ListSettlementsResponse withObject(Optional<? extends ListSettlementsResponseBody> object) {
         Utils.checkNotNull(object, "object");
@@ -226,8 +222,7 @@ public class ListSettlementsResponse implements Response {
         }
 
         /**
-         * A list of settlement objects. For a complete reference of the settlement
-         * object, refer to the [Get settlement endpoint](get-settlement) documentation.
+         * A list of settlement objects. For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
          */
         public Builder object(ListSettlementsResponseBody object) {
             Utils.checkNotNull(object, "object");
@@ -236,8 +231,7 @@ public class ListSettlementsResponse implements Response {
         }
 
         /**
-         * A list of settlement objects. For a complete reference of the settlement
-         * object, refer to the [Get settlement endpoint](get-settlement) documentation.
+         * A list of settlement objects. For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
          */
         public Builder object(Optional<? extends ListSettlementsResponseBody> object) {
             Utils.checkNotNull(object, "object");

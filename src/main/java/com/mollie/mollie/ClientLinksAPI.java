@@ -45,11 +45,9 @@ public class ClientLinksAPI implements
      * &gt;
      * &gt; This feature is currently in open beta, and the final specification may still change.
      * 
-     * Link a new or existing organization to your OAuth application, in effect creating a new client. The response
-     * contains a `clientLink` where you should redirect your customer to.
+     * Link a new or existing organization to your OAuth application, in effect creating a new client. The response contains a `clientLink` where you should redirect your customer to.
      * 
-     * The `clientLink` URL behaves similar to the regular OAuth authorization URL. It supports the following parameters
-     * from the [Authorize](authorize) endpoint:
+     * The `clientLink` URL behaves similar to the regular OAuth authorization URL. It supports the following parameters from the [Authorize](authorize) endpoint:
      * 
      * * `client_id`
      * * `state`
@@ -58,11 +56,14 @@ public class ClientLinksAPI implements
      * 
      * We recommend at least requesting the scopes `onboarding.read onboarding.write` this way.
      * 
-     * Error handling is also dealt with similar to the [Authorize](authorize) endpoint: the customer is redirected back to
-     * your app's redirect URL with the `error` and `error_description` parameters added to the URL.
+     * Error handling is also dealt with similar to the [Authorize](authorize) endpoint: the customer is redirected back to your app's redirect URL with the `error` and `error_description` parameters added to the URL.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **clients.write**](/reference/authentication)
      * @return The call builder
      */
-    public CreateClientLinkRequestBuilder create() {
+    public CreateClientLinkRequestBuilder createClientLink() {
         return new CreateClientLinkRequestBuilder(this);
     }
 
@@ -72,11 +73,9 @@ public class ClientLinksAPI implements
      * &gt;
      * &gt; This feature is currently in open beta, and the final specification may still change.
      * 
-     * Link a new or existing organization to your OAuth application, in effect creating a new client. The response
-     * contains a `clientLink` where you should redirect your customer to.
+     * Link a new or existing organization to your OAuth application, in effect creating a new client. The response contains a `clientLink` where you should redirect your customer to.
      * 
-     * The `clientLink` URL behaves similar to the regular OAuth authorization URL. It supports the following parameters
-     * from the [Authorize](authorize) endpoint:
+     * The `clientLink` URL behaves similar to the regular OAuth authorization URL. It supports the following parameters from the [Authorize](authorize) endpoint:
      * 
      * * `client_id`
      * * `state`
@@ -85,13 +84,16 @@ public class ClientLinksAPI implements
      * 
      * We recommend at least requesting the scopes `onboarding.read onboarding.write` this way.
      * 
-     * Error handling is also dealt with similar to the [Authorize](authorize) endpoint: the customer is redirected back to
-     * your app's redirect URL with the `error` and `error_description` parameters added to the URL.
+     * Error handling is also dealt with similar to the [Authorize](authorize) endpoint: the customer is redirected back to your app's redirect URL with the `error` and `error_description` parameters added to the URL.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **clients.write**](/reference/authentication)
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateClientLinkResponse createDirect() throws Exception {
-        return create(Optional.empty());
+    public CreateClientLinkResponse createClientLinkDirect() throws Exception {
+        return createClientLink(Optional.empty());
     }
     
     /**
@@ -100,11 +102,9 @@ public class ClientLinksAPI implements
      * &gt;
      * &gt; This feature is currently in open beta, and the final specification may still change.
      * 
-     * Link a new or existing organization to your OAuth application, in effect creating a new client. The response
-     * contains a `clientLink` where you should redirect your customer to.
+     * Link a new or existing organization to your OAuth application, in effect creating a new client. The response contains a `clientLink` where you should redirect your customer to.
      * 
-     * The `clientLink` URL behaves similar to the regular OAuth authorization URL. It supports the following parameters
-     * from the [Authorize](authorize) endpoint:
+     * The `clientLink` URL behaves similar to the regular OAuth authorization URL. It supports the following parameters from the [Authorize](authorize) endpoint:
      * 
      * * `client_id`
      * * `state`
@@ -113,13 +113,16 @@ public class ClientLinksAPI implements
      * 
      * We recommend at least requesting the scopes `onboarding.read onboarding.write` this way.
      * 
-     * Error handling is also dealt with similar to the [Authorize](authorize) endpoint: the customer is redirected back to
-     * your app's redirect URL with the `error` and `error_description` parameters added to the URL.
+     * Error handling is also dealt with similar to the [Authorize](authorize) endpoint: the customer is redirected back to your app's redirect URL with the `error` and `error_description` parameters added to the URL.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **clients.write**](/reference/authentication)
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateClientLinkResponse create(
+    public CreateClientLinkResponse createClientLink(
             Optional<? extends CreateClientLinkRequestBody> request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(

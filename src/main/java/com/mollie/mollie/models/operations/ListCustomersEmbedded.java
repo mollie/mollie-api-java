@@ -22,8 +22,7 @@ import java.util.Optional;
 public class ListCustomersEmbedded {
 
     /**
-     * An array of customer objects. For a complete reference of the customer object, refer to the
-     * [Get customer endpoint](get-customer) documentation.
+     * An array of customer objects. For a complete reference of the customer object, refer to the [Get customer endpoint](get-customer) documentation.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("customers")
@@ -41,8 +40,7 @@ public class ListCustomersEmbedded {
     }
 
     /**
-     * An array of customer objects. For a complete reference of the customer object, refer to the
-     * [Get customer endpoint](get-customer) documentation.
+     * An array of customer objects. For a complete reference of the customer object, refer to the [Get customer endpoint](get-customer) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -55,8 +53,7 @@ public class ListCustomersEmbedded {
     }
 
     /**
-     * An array of customer objects. For a complete reference of the customer object, refer to the
-     * [Get customer endpoint](get-customer) documentation.
+     * An array of customer objects. For a complete reference of the customer object, refer to the [Get customer endpoint](get-customer) documentation.
      */
     public ListCustomersEmbedded withCustomers(List<Customers> customers) {
         Utils.checkNotNull(customers, "customers");
@@ -65,8 +62,7 @@ public class ListCustomersEmbedded {
     }
 
     /**
-     * An array of customer objects. For a complete reference of the customer object, refer to the
-     * [Get customer endpoint](get-customer) documentation.
+     * An array of customer objects. For a complete reference of the customer object, refer to the [Get customer endpoint](get-customer) documentation.
      */
     public ListCustomersEmbedded withCustomers(Optional<? extends List<Customers>> customers) {
         Utils.checkNotNull(customers, "customers");
@@ -108,8 +104,7 @@ public class ListCustomersEmbedded {
         }
 
         /**
-         * An array of customer objects. For a complete reference of the customer object, refer to the
-         * [Get customer endpoint](get-customer) documentation.
+         * An array of customer objects. For a complete reference of the customer object, refer to the [Get customer endpoint](get-customer) documentation.
          */
         public Builder customers(List<Customers> customers) {
             Utils.checkNotNull(customers, "customers");
@@ -118,8 +113,7 @@ public class ListCustomersEmbedded {
         }
 
         /**
-         * An array of customer objects. For a complete reference of the customer object, refer to the
-         * [Get customer endpoint](get-customer) documentation.
+         * An array of customer objects. For a complete reference of the customer object, refer to the [Get customer endpoint](get-customer) documentation.
          */
         public Builder customers(Optional<? extends List<Customers>> customers) {
             Utils.checkNotNull(customers, "customers");

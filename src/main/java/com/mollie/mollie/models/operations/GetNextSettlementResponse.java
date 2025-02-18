@@ -38,8 +38,7 @@ public class GetNextSettlementResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * The next settlement object. For a complete reference of the settlement object, refer to the
-     * [Get settlement](get-settlement) endpoint documentation.
+     * The next settlement object. For a complete reference of the settlement object, refer to the [Get settlement](get-settlement) endpoint documentation.
      */
     private Optional<? extends Object> any;
 
@@ -91,8 +90,7 @@ public class GetNextSettlementResponse implements Response {
     }
 
     /**
-     * The next settlement object. For a complete reference of the settlement object, refer to the
-     * [Get settlement](get-settlement) endpoint documentation.
+     * The next settlement object. For a complete reference of the settlement object, refer to the [Get settlement](get-settlement) endpoint documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -132,8 +130,7 @@ public class GetNextSettlementResponse implements Response {
     }
 
     /**
-     * The next settlement object. For a complete reference of the settlement object, refer to the
-     * [Get settlement](get-settlement) endpoint documentation.
+     * The next settlement object. For a complete reference of the settlement object, refer to the [Get settlement](get-settlement) endpoint documentation.
      */
     public GetNextSettlementResponse withAny(Object any) {
         Utils.checkNotNull(any, "any");
@@ -142,8 +139,7 @@ public class GetNextSettlementResponse implements Response {
     }
 
     /**
-     * The next settlement object. For a complete reference of the settlement object, refer to the
-     * [Get settlement](get-settlement) endpoint documentation.
+     * The next settlement object. For a complete reference of the settlement object, refer to the [Get settlement](get-settlement) endpoint documentation.
      */
     public GetNextSettlementResponse withAny(Optional<? extends Object> any) {
         Utils.checkNotNull(any, "any");
@@ -227,8 +223,7 @@ public class GetNextSettlementResponse implements Response {
         }
 
         /**
-         * The next settlement object. For a complete reference of the settlement object, refer to the
-         * [Get settlement](get-settlement) endpoint documentation.
+         * The next settlement object. For a complete reference of the settlement object, refer to the [Get settlement](get-settlement) endpoint documentation.
          */
         public Builder any(Object any) {
             Utils.checkNotNull(any, "any");
@@ -237,8 +232,7 @@ public class GetNextSettlementResponse implements Response {
         }
 
         /**
-         * The next settlement object. For a complete reference of the settlement object, refer to the
-         * [Get settlement](get-settlement) endpoint documentation.
+         * The next settlement object. For a complete reference of the settlement object, refer to the [Get settlement](get-settlement) endpoint documentation.
          */
         public Builder any(Optional<? extends Object> any) {
             Utils.checkNotNull(any, "any");

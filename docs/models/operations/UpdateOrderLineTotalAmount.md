@@ -1,7 +1,6 @@
 # UpdateOrderLineTotalAmount
 
-Required when a `quantity`, `unitPrice`, `discountAmount`, `vatAmount`, or `vatRate` is also provided
-in the same request.
+Required when a `quantity`, `unitPrice`, `discountAmount`, `vatAmount`, or `vatRate` is also provided in the same request.
 
 
 ## Fields

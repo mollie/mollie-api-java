@@ -1,26 +1,22 @@
 lockVersion: 2.0.0
 id: 4e182d07-bfbb-4694-9306-c95b407fa97d
 management:
-  docChecksum: 3c13701d8c81388e749625c41a11a3b2
+  docChecksum: 92ea7ec1a826c4efb7b06eec2c6a0755
   docVersion: 1.0.0
-  speakeasyVersion: 1.493.0
-  generationVersion: 2.512.4
-  releaseVersion: 0.0.1
-  configChecksum: 229bea736aa727ad3f82cbb9711f84f0
+  speakeasyVersion: 1.494.0
+  generationVersion: 2.515.0
+  releaseVersion: 0.1.0
+  configChecksum: 2489a306fe2bbb2a4a10454a45738cb4
 features:
   java:
     additionalDependencies: 0.1.0
-    additionalProperties: 0.0.1
     constsAndDefaults: 0.1.1
     core: 3.34.0
     flattening: 2.81.1
     globalSecurity: 2.82.8
     globalSecurityCallbacks: 0.1.0
-    globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.1
     inputOutputModels: 2.83.0
-    methodSecurity: 2.82.2
-    nameOverrides: 2.81.3
     nullables: 0.1.0
     sdkHooks: 0.1.0
     unions: 0.0.6
@@ -356,6 +352,12 @@ generatedFiles:
   - docs/models/errors/PaymentListRoutesDocumentation.md
   - docs/models/errors/PaymentListRoutesLinks.md
   - docs/models/errors/PaymentListRoutesResponseBody.md
+  - docs/models/errors/ReleaseAuthorizationDocumentation.md
+  - docs/models/errors/ReleaseAuthorizationLinks.md
+  - docs/models/errors/ReleaseAuthorizationPaymentsAPIDocumentation.md
+  - docs/models/errors/ReleaseAuthorizationPaymentsAPILinks.md
+  - docs/models/errors/ReleaseAuthorizationPaymentsAPIResponseBody.md
+  - docs/models/errors/ReleaseAuthorizationResponseBody.md
   - docs/models/errors/RequestApplePayPaymentSessionDocumentation.md
   - docs/models/errors/RequestApplePayPaymentSessionLinks.md
   - docs/models/errors/RequestApplePayPaymentSessionResponseBody.md
@@ -420,25 +422,16 @@ generatedFiles:
   - docs/models/operations/CancelOrderLinesRequest.md
   - docs/models/operations/CancelOrderLinesRequestBody.md
   - docs/models/operations/CancelOrderLinesResponse.md
-  - docs/models/operations/CancelOrderLinesSecurity.md
   - docs/models/operations/CancelOrderRequest.md
   - docs/models/operations/CancelOrderResponse.md
-  - docs/models/operations/CancelOrderSecurity.md
   - docs/models/operations/CancelPaymentRequest.md
   - docs/models/operations/CancelPaymentResponse.md
-  - docs/models/operations/CancelPaymentSecurity.md
   - docs/models/operations/CancelRefundRequest.md
   - docs/models/operations/CancelRefundResponse.md
-  - docs/models/operations/CancelRefundSecurity.md
   - docs/models/operations/CancelSubscriptionRequest.md
   - docs/models/operations/CancelSubscriptionResponse.md
-  - docs/models/operations/CancelSubscriptionSecurity.md
   - docs/models/operations/Capabilities.md
-  - docs/models/operations/CaptureDelay.md
-  - docs/models/operations/CaptureMode.md
   - docs/models/operations/Captures.md
-  - docs/models/operations/CardLabel.md
-  - docs/models/operations/Category.md
   - docs/models/operations/ChangePaymentState.md
   - docs/models/operations/Chargebacks.md
   - docs/models/operations/Checkout.md
@@ -454,7 +447,6 @@ generatedFiles:
   - docs/models/operations/CreateCaptureRequest.md
   - docs/models/operations/CreateCaptureRequestBody.md
   - docs/models/operations/CreateCaptureResponse.md
-  - docs/models/operations/CreateCaptureSecurity.md
   - docs/models/operations/CreateClientLinkAddress.md
   - docs/models/operations/CreateClientLinkDocumentation.md
   - docs/models/operations/CreateClientLinkLinks.md
@@ -462,26 +454,19 @@ generatedFiles:
   - docs/models/operations/CreateClientLinkResponse.md
   - docs/models/operations/CreateClientLinkResponseBody.md
   - docs/models/operations/CreateClientLinkSelf.md
-  - docs/models/operations/CreateCustomerLocale.md
   - docs/models/operations/CreateCustomerMetadata.md
   - docs/models/operations/CreateCustomerMetadata2.md
   - docs/models/operations/CreateCustomerPaymentRequest.md
   - docs/models/operations/CreateCustomerPaymentRequestBody.md
   - docs/models/operations/CreateCustomerPaymentResponse.md
-  - docs/models/operations/CreateCustomerPaymentSecurity.md
   - docs/models/operations/CreateCustomerRequestBody.md
   - docs/models/operations/CreateCustomerResponse.md
-  - docs/models/operations/CreateCustomerSecurity.md
-  - docs/models/operations/CreateMandateMethod.md
   - docs/models/operations/CreateMandateRequest.md
   - docs/models/operations/CreateMandateRequestBody.md
   - docs/models/operations/CreateMandateResponse.md
-  - docs/models/operations/CreateMandateSecurity.md
-  - docs/models/operations/CreateOrderLocale.md
   - docs/models/operations/CreateOrderMetadata.md
   - docs/models/operations/CreateOrderPaymentRequest.md
   - docs/models/operations/CreateOrderPaymentResponse.md
-  - docs/models/operations/CreateOrderPaymentSecurity.md
   - docs/models/operations/CreateOrderRefundAmount.md
   - docs/models/operations/CreateOrderRefundDocumentation.md
   - docs/models/operations/CreateOrderRefundLines.md
@@ -490,14 +475,12 @@ generatedFiles:
   - docs/models/operations/CreateOrderRefundMetadata.md
   - docs/models/operations/CreateOrderRefundMetadata2.md
   - docs/models/operations/CreateOrderRefundMetadataRefundsApi2.md
-  - docs/models/operations/CreateOrderRefundMode.md
   - docs/models/operations/CreateOrderRefundOrder.md
   - docs/models/operations/CreateOrderRefundRefundsAPIMetadata.md
   - docs/models/operations/CreateOrderRefundRequest.md
   - docs/models/operations/CreateOrderRefundRequestBody.md
   - docs/models/operations/CreateOrderRefundResponse.md
   - docs/models/operations/CreateOrderRefundResponseBody.md
-  - docs/models/operations/CreateOrderRefundSecurity.md
   - docs/models/operations/CreateOrderRefundSelf.md
   - docs/models/operations/CreateOrderRefundSettlement.md
   - docs/models/operations/CreateOrderRefundTotalAmount.md
@@ -505,7 +488,6 @@ generatedFiles:
   - docs/models/operations/CreateOrderRequest.md
   - docs/models/operations/CreateOrderRequestBody.md
   - docs/models/operations/CreateOrderResponse.md
-  - docs/models/operations/CreateOrderSecurity.md
   - docs/models/operations/CreatePaymentAmount.md
   - docs/models/operations/CreatePaymentBillingAddress.md
   - docs/models/operations/CreatePaymentDiscountAmount.md
@@ -513,22 +495,16 @@ generatedFiles:
   - docs/models/operations/CreatePaymentLinkAmount.md
   - docs/models/operations/CreatePaymentLinkRequestBody.md
   - docs/models/operations/CreatePaymentLinkResponse.md
-  - docs/models/operations/CreatePaymentLinkSecurity.md
-  - docs/models/operations/CreatePaymentLocale.md
   - docs/models/operations/CreatePaymentMetadata.md
   - docs/models/operations/CreatePaymentMetadata2.md
-  - docs/models/operations/CreatePaymentMethod.md
   - docs/models/operations/CreatePaymentPaymentsAPIAmount.md
   - docs/models/operations/CreatePaymentPaymentsAPIRequestAmount.md
   - docs/models/operations/CreatePaymentPaymentsAPIRequestRequestBodyAmount.md
-  - docs/models/operations/CreatePaymentPaymentsAPIType.md
   - docs/models/operations/CreatePaymentRequest.md
   - docs/models/operations/CreatePaymentRequestBody.md
   - docs/models/operations/CreatePaymentResponse.md
-  - docs/models/operations/CreatePaymentSecurity.md
   - docs/models/operations/CreatePaymentShippingAddress.md
   - docs/models/operations/CreatePaymentTotalAmount.md
-  - docs/models/operations/CreatePaymentType.md
   - docs/models/operations/CreatePaymentUnitPrice.md
   - docs/models/operations/CreatePaymentVatAmount.md
   - docs/models/operations/CreateProfileRequestBody.md
@@ -540,24 +516,18 @@ generatedFiles:
   - docs/models/operations/CreateRefundRequest.md
   - docs/models/operations/CreateRefundRequestBody.md
   - docs/models/operations/CreateRefundResponse.md
-  - docs/models/operations/CreateRefundSecurity.md
-  - docs/models/operations/CreateRefundType.md
   - docs/models/operations/CreateShipmentAmount.md
   - docs/models/operations/CreateShipmentLines.md
   - docs/models/operations/CreateShipmentRequest.md
   - docs/models/operations/CreateShipmentRequestBody.md
   - docs/models/operations/CreateShipmentResponse.md
-  - docs/models/operations/CreateShipmentSecurity.md
   - docs/models/operations/CreateSubscriptionAmount.md
   - docs/models/operations/CreateSubscriptionApplicationFee.md
-  - docs/models/operations/CreateSubscriptionInterval.md
   - docs/models/operations/CreateSubscriptionMetadata.md
   - docs/models/operations/CreateSubscriptionMetadata2.md
-  - docs/models/operations/CreateSubscriptionMethod.md
   - docs/models/operations/CreateSubscriptionRequest.md
   - docs/models/operations/CreateSubscriptionRequestBody.md
   - docs/models/operations/CreateSubscriptionResponse.md
-  - docs/models/operations/CreateSubscriptionSecurity.md
   - docs/models/operations/CreateSubscriptionSubscriptionsAPIAmount.md
   - docs/models/operations/Customer.md
   - docs/models/operations/Customers.md
@@ -566,20 +536,16 @@ generatedFiles:
   - docs/models/operations/Deductions.md
   - docs/models/operations/DeleteCustomerRequest.md
   - docs/models/operations/DeleteCustomerResponse.md
-  - docs/models/operations/DeleteCustomerSecurity.md
   - docs/models/operations/DeletePaymentLinkRequest.md
   - docs/models/operations/DeletePaymentLinkResponse.md
-  - docs/models/operations/DeletePaymentLinkSecurity.md
   - docs/models/operations/DeleteProfileRequest.md
   - docs/models/operations/DeleteProfileResponse.md
   - docs/models/operations/Destination.md
   - docs/models/operations/Details.md
   - docs/models/operations/DisableMethodIssuerRequest.md
   - docs/models/operations/DisableMethodIssuerResponse.md
-  - docs/models/operations/DisableMethodIssuerSecurity.md
   - docs/models/operations/DisableMethodRequest.md
   - docs/models/operations/DisableMethodResponse.md
-  - docs/models/operations/DisableMethodSecurity.md
   - docs/models/operations/DiscountAmount.md
   - docs/models/operations/Documentation.md
   - docs/models/operations/Embedded.md
@@ -593,7 +559,6 @@ generatedFiles:
   - docs/models/operations/EnableMethodIssuerRequestBody.md
   - docs/models/operations/EnableMethodIssuerResponse.md
   - docs/models/operations/EnableMethodIssuerResponseBody.md
-  - docs/models/operations/EnableMethodIssuerSecurity.md
   - docs/models/operations/EnableMethodIssuerSelf.md
   - docs/models/operations/EnableMethodIssuers.md
   - docs/models/operations/EnableMethodLinks.md
@@ -604,14 +569,11 @@ generatedFiles:
   - docs/models/operations/EnableMethodRequest.md
   - docs/models/operations/EnableMethodResponse.md
   - docs/models/operations/EnableMethodResponseBody.md
-  - docs/models/operations/EnableMethodSecurity.md
   - docs/models/operations/EnableMethodSelf.md
   - docs/models/operations/Fixed.md
   - docs/models/operations/GetBalanceDocumentation.md
   - docs/models/operations/GetBalanceLinks.md
-  - docs/models/operations/GetBalanceMode.md
   - docs/models/operations/GetBalanceReportDocumentation.md
-  - docs/models/operations/GetBalanceReportGrouping.md
   - docs/models/operations/GetBalanceReportLinks.md
   - docs/models/operations/GetBalanceReportRequest.md
   - docs/models/operations/GetBalanceReportResponse.md
@@ -621,23 +583,18 @@ generatedFiles:
   - docs/models/operations/GetBalanceResponse.md
   - docs/models/operations/GetBalanceResponseBody.md
   - docs/models/operations/GetBalanceSelf.md
-  - docs/models/operations/GetBalanceStatus.md
-  - docs/models/operations/GetBalanceType.md
   - docs/models/operations/GetCaptureAmount.md
   - docs/models/operations/GetCaptureDocumentation.md
   - docs/models/operations/GetCaptureLinks.md
   - docs/models/operations/GetCaptureMetadata.md
   - docs/models/operations/GetCaptureMetadata2.md
-  - docs/models/operations/GetCaptureMode.md
   - docs/models/operations/GetCapturePayment.md
   - docs/models/operations/GetCaptureRequest.md
   - docs/models/operations/GetCaptureResponse.md
   - docs/models/operations/GetCaptureResponseBody.md
-  - docs/models/operations/GetCaptureSecurity.md
   - docs/models/operations/GetCaptureSelf.md
   - docs/models/operations/GetCaptureSettlement.md
   - docs/models/operations/GetCaptureSettlementAmount.md
-  - docs/models/operations/GetCaptureStatus.md
   - docs/models/operations/GetChargebackAmount.md
   - docs/models/operations/GetChargebackDocumentation.md
   - docs/models/operations/GetChargebackLinks.md
@@ -645,7 +602,6 @@ generatedFiles:
   - docs/models/operations/GetChargebackRequest.md
   - docs/models/operations/GetChargebackResponse.md
   - docs/models/operations/GetChargebackResponseBody.md
-  - docs/models/operations/GetChargebackSecurity.md
   - docs/models/operations/GetChargebackSelf.md
   - docs/models/operations/GetChargebackSettlement.md
   - docs/models/operations/GetChargebackSettlementAmount.md
@@ -661,9 +617,7 @@ generatedFiles:
   - docs/models/operations/GetClientClientsAPIResponseLinks.md
   - docs/models/operations/GetClientClientsAPIResponseOrganization.md
   - docs/models/operations/GetClientClientsAPIResponseSelf.md
-  - docs/models/operations/GetClientClientsAPIResponseStatus.md
   - docs/models/operations/GetClientClientsAPISelf.md
-  - docs/models/operations/GetClientClientsAPIStatus.md
   - docs/models/operations/GetClientDashboard.md
   - docs/models/operations/GetClientDocumentation.md
   - docs/models/operations/GetClientEmbedded.md
@@ -677,7 +631,6 @@ generatedFiles:
   - docs/models/operations/GetClientSelf.md
   - docs/models/operations/GetClientStatus.md
   - docs/models/operations/GetClientStatusReason.md
-  - docs/models/operations/GetClientVatRegulation.md
   - docs/models/operations/GetCurrentOrganizationResponse.md
   - docs/models/operations/GetCurrentProfileChargebacks.md
   - docs/models/operations/GetCurrentProfileCheckoutPreviewUrl.md
@@ -685,27 +638,20 @@ generatedFiles:
   - docs/models/operations/GetCurrentProfileDocumentation.md
   - docs/models/operations/GetCurrentProfileLinks.md
   - docs/models/operations/GetCurrentProfileMethods.md
-  - docs/models/operations/GetCurrentProfileMode.md
   - docs/models/operations/GetCurrentProfilePayments.md
-  - docs/models/operations/GetCurrentProfileProfilesAPIStatus.md
   - docs/models/operations/GetCurrentProfileRefunds.md
   - docs/models/operations/GetCurrentProfileResponse.md
   - docs/models/operations/GetCurrentProfileResponseBody.md
   - docs/models/operations/GetCurrentProfileReview.md
-  - docs/models/operations/GetCurrentProfileSecurity.md
   - docs/models/operations/GetCurrentProfileSelf.md
-  - docs/models/operations/GetCurrentProfileStatus.md
   - docs/models/operations/GetCustomerDocumentation.md
   - docs/models/operations/GetCustomerLinks.md
-  - docs/models/operations/GetCustomerLocale.md
   - docs/models/operations/GetCustomerMetadata.md
   - docs/models/operations/GetCustomerMetadata2.md
-  - docs/models/operations/GetCustomerMode.md
   - docs/models/operations/GetCustomerPayments.md
   - docs/models/operations/GetCustomerRequest.md
   - docs/models/operations/GetCustomerResponse.md
   - docs/models/operations/GetCustomerResponseBody.md
-  - docs/models/operations/GetCustomerSecurity.md
   - docs/models/operations/GetCustomerSelf.md
   - docs/models/operations/GetInvoiceAmount.md
   - docs/models/operations/GetInvoiceDocumentation.md
@@ -715,26 +661,20 @@ generatedFiles:
   - docs/models/operations/GetInvoiceResponse.md
   - docs/models/operations/GetInvoiceResponseBody.md
   - docs/models/operations/GetInvoiceSelf.md
-  - docs/models/operations/GetInvoiceStatus.md
   - docs/models/operations/GetInvoiceVatAmount.md
   - docs/models/operations/GetMandateDetails.md
   - docs/models/operations/GetMandateDocumentation.md
   - docs/models/operations/GetMandateLinks.md
-  - docs/models/operations/GetMandateMethod.md
-  - docs/models/operations/GetMandateMode.md
   - docs/models/operations/GetMandateRequest.md
   - docs/models/operations/GetMandateResponse.md
   - docs/models/operations/GetMandateResponseBody.md
-  - docs/models/operations/GetMandateSecurity.md
   - docs/models/operations/GetMandateSelf.md
-  - docs/models/operations/GetMandateStatus.md
   - docs/models/operations/GetMethodDocumentation.md
   - docs/models/operations/GetMethodImage.md
   - docs/models/operations/GetMethodLinks.md
   - docs/models/operations/GetMethodRequest.md
   - docs/models/operations/GetMethodResponse.md
   - docs/models/operations/GetMethodResponseBody.md
-  - docs/models/operations/GetMethodSecurity.md
   - docs/models/operations/GetMethodSelf.md
   - docs/models/operations/GetNextSettlementResponse.md
   - docs/models/operations/GetOnboardingStatusDashboard.md
@@ -744,36 +684,27 @@ generatedFiles:
   - docs/models/operations/GetOnboardingStatusResponse.md
   - docs/models/operations/GetOnboardingStatusResponseBody.md
   - docs/models/operations/GetOnboardingStatusSelf.md
-  - docs/models/operations/GetOnboardingStatusStatus.md
   - docs/models/operations/GetOpenSettlementResponse.md
   - docs/models/operations/GetOrderAmount.md
   - docs/models/operations/GetOrderBillingAddress.md
-  - docs/models/operations/GetOrderCategory.md
   - docs/models/operations/GetOrderDashboard.md
   - docs/models/operations/GetOrderDiscountAmount.md
   - docs/models/operations/GetOrderDocumentation.md
   - docs/models/operations/GetOrderLines.md
   - docs/models/operations/GetOrderLinks.md
-  - docs/models/operations/GetOrderLocale.md
   - docs/models/operations/GetOrderMetadata.md
   - docs/models/operations/GetOrderMetadata2.md
   - docs/models/operations/GetOrderMetadataOrdersApi2.md
-  - docs/models/operations/GetOrderMethod.md
-  - docs/models/operations/GetOrderMode.md
   - docs/models/operations/GetOrderOrdersAPILinks.md
   - docs/models/operations/GetOrderOrdersAPIMetadata.md
   - docs/models/operations/GetOrderOrdersAPISelf.md
-  - docs/models/operations/GetOrderOrdersAPIStatus.md
   - docs/models/operations/GetOrderPayment.md
   - docs/models/operations/GetOrderRequest.md
   - docs/models/operations/GetOrderResponse.md
   - docs/models/operations/GetOrderResponseBody.md
-  - docs/models/operations/GetOrderSecurity.md
   - docs/models/operations/GetOrderSelf.md
   - docs/models/operations/GetOrderShippingAddress.md
-  - docs/models/operations/GetOrderStatus.md
   - docs/models/operations/GetOrderTotalAmount.md
-  - docs/models/operations/GetOrderType.md
   - docs/models/operations/GetOrderUnitPrice.md
   - docs/models/operations/GetOrderVatAmount.md
   - docs/models/operations/GetOrganizationAddress.md
@@ -783,7 +714,6 @@ generatedFiles:
   - docs/models/operations/GetOrganizationResponse.md
   - docs/models/operations/GetOrganizationResponseBody.md
   - docs/models/operations/GetOrganizationSelf.md
-  - docs/models/operations/GetOrganizationVatRegulation.md
   - docs/models/operations/GetPartnerStatusDocumentation.md
   - docs/models/operations/GetPartnerStatusLinks.md
   - docs/models/operations/GetPartnerStatusResponse.md
@@ -794,8 +724,6 @@ generatedFiles:
   - docs/models/operations/GetPaymentAmountRefunded.md
   - docs/models/operations/GetPaymentApplicationFee.md
   - docs/models/operations/GetPaymentBillingAddress.md
-  - docs/models/operations/GetPaymentCaptureDelay.md
-  - docs/models/operations/GetPaymentCaptureMode.md
   - docs/models/operations/GetPaymentCaptures.md
   - docs/models/operations/GetPaymentChargebacks.md
   - docs/models/operations/GetPaymentCheckout.md
@@ -803,53 +731,40 @@ generatedFiles:
   - docs/models/operations/GetPaymentDestination.md
   - docs/models/operations/GetPaymentDiscountAmount.md
   - docs/models/operations/GetPaymentDocumentation.md
-  - docs/models/operations/GetPaymentInterval.md
   - docs/models/operations/GetPaymentLines.md
   - docs/models/operations/GetPaymentLinkAmount.md
   - docs/models/operations/GetPaymentLinkDocumentation.md
   - docs/models/operations/GetPaymentLinkLinks.md
-  - docs/models/operations/GetPaymentLinkMode.md
   - docs/models/operations/GetPaymentLinkPaymentsDocumentation.md
   - docs/models/operations/GetPaymentLinkPaymentsEmbedded.md
   - docs/models/operations/GetPaymentLinkPaymentsLinks.md
   - docs/models/operations/GetPaymentLinkPaymentsNext.md
   - docs/models/operations/GetPaymentLinkPaymentsPayments.md
   - docs/models/operations/GetPaymentLinkPaymentsPrevious.md
-  - docs/models/operations/GetPaymentLinkPaymentsQueryParamSort.md
   - docs/models/operations/GetPaymentLinkPaymentsRequest.md
   - docs/models/operations/GetPaymentLinkPaymentsResponse.md
   - docs/models/operations/GetPaymentLinkPaymentsResponseBody.md
-  - docs/models/operations/GetPaymentLinkPaymentsSecurity.md
   - docs/models/operations/GetPaymentLinkPaymentsSelf.md
   - docs/models/operations/GetPaymentLinkRequest.md
   - docs/models/operations/GetPaymentLinkResponse.md
   - docs/models/operations/GetPaymentLinkResponseBody.md
-  - docs/models/operations/GetPaymentLinkSecurity.md
   - docs/models/operations/GetPaymentLinkSelf.md
   - docs/models/operations/GetPaymentLinks.md
-  - docs/models/operations/GetPaymentLocale.md
   - docs/models/operations/GetPaymentMetadata.md
   - docs/models/operations/GetPaymentMetadata2.md
-  - docs/models/operations/GetPaymentMethod.md
-  - docs/models/operations/GetPaymentMode.md
   - docs/models/operations/GetPaymentOrder.md
   - docs/models/operations/GetPaymentPaymentsAPIAmount.md
   - docs/models/operations/GetPaymentPaymentsAPIResponse200Amount.md
   - docs/models/operations/GetPaymentPaymentsAPIResponseAmount.md
-  - docs/models/operations/GetPaymentPaymentsAPIType.md
   - docs/models/operations/GetPaymentRecurring.md
   - docs/models/operations/GetPaymentRefunds.md
   - docs/models/operations/GetPaymentRequest.md
   - docs/models/operations/GetPaymentResponse.md
   - docs/models/operations/GetPaymentResponseBody.md
   - docs/models/operations/GetPaymentRouting.md
-  - docs/models/operations/GetPaymentSecurity.md
   - docs/models/operations/GetPaymentSelf.md
-  - docs/models/operations/GetPaymentSequenceType.md
   - docs/models/operations/GetPaymentShippingAddress.md
-  - docs/models/operations/GetPaymentStatus.md
   - docs/models/operations/GetPaymentTotalAmount.md
-  - docs/models/operations/GetPaymentType.md
   - docs/models/operations/GetPaymentUnitPrice.md
   - docs/models/operations/GetPaymentVatAmount.md
   - docs/models/operations/GetPermissionDocumentation.md
@@ -863,33 +778,27 @@ generatedFiles:
   - docs/models/operations/GetProfileDashboard.md
   - docs/models/operations/GetProfileDocumentation.md
   - docs/models/operations/GetProfileLinks.md
-  - docs/models/operations/GetProfileMode.md
   - docs/models/operations/GetProfilePayments.md
-  - docs/models/operations/GetProfileProfilesAPIStatus.md
   - docs/models/operations/GetProfileRefunds.md
   - docs/models/operations/GetProfileRequest.md
   - docs/models/operations/GetProfileResponse.md
   - docs/models/operations/GetProfileResponseBody.md
   - docs/models/operations/GetProfileSelf.md
-  - docs/models/operations/GetProfileStatus.md
   - docs/models/operations/GetRefundAmount.md
   - docs/models/operations/GetRefundDocumentation.md
   - docs/models/operations/GetRefundLinks.md
   - docs/models/operations/GetRefundMetadata.md
   - docs/models/operations/GetRefundMetadata2.md
-  - docs/models/operations/GetRefundMode.md
   - docs/models/operations/GetRefundPayment.md
   - docs/models/operations/GetRefundRefundsAPIAmount.md
   - docs/models/operations/GetRefundRequest.md
   - docs/models/operations/GetRefundResponse.md
   - docs/models/operations/GetRefundResponseBody.md
   - docs/models/operations/GetRefundRoutingReversals.md
-  - docs/models/operations/GetRefundSecurity.md
   - docs/models/operations/GetRefundSelf.md
   - docs/models/operations/GetRefundSettlement.md
   - docs/models/operations/GetRefundSettlementAmount.md
   - docs/models/operations/GetRefundSource.md
-  - docs/models/operations/GetRefundType.md
   - docs/models/operations/GetSettlementAmount.md
   - docs/models/operations/GetSettlementCapturesRequest.md
   - docs/models/operations/GetSettlementCapturesResponse.md
@@ -905,15 +814,12 @@ generatedFiles:
   - docs/models/operations/GetSettlementResponse.md
   - docs/models/operations/GetSettlementResponseBody.md
   - docs/models/operations/GetSettlementSelf.md
-  - docs/models/operations/GetSettlementStatus.md
   - docs/models/operations/GetShipmentDocumentation.md
   - docs/models/operations/GetShipmentLines.md
   - docs/models/operations/GetShipmentLinks.md
-  - docs/models/operations/GetShipmentMode.md
   - docs/models/operations/GetShipmentRequest.md
   - docs/models/operations/GetShipmentResponse.md
   - docs/models/operations/GetShipmentResponseBody.md
-  - docs/models/operations/GetShipmentSecurity.md
   - docs/models/operations/GetShipmentSelf.md
   - docs/models/operations/GetShipmentTotalAmount.md
   - docs/models/operations/GetShipmentTracking.md
@@ -923,35 +829,25 @@ generatedFiles:
   - docs/models/operations/GetSubscriptionApplicationFee.md
   - docs/models/operations/GetSubscriptionCustomer.md
   - docs/models/operations/GetSubscriptionDocumentation.md
-  - docs/models/operations/GetSubscriptionInterval.md
   - docs/models/operations/GetSubscriptionLinks.md
   - docs/models/operations/GetSubscriptionMetadata.md
   - docs/models/operations/GetSubscriptionMetadata2.md
-  - docs/models/operations/GetSubscriptionMethod.md
-  - docs/models/operations/GetSubscriptionMode.md
   - docs/models/operations/GetSubscriptionPayments.md
   - docs/models/operations/GetSubscriptionRequest.md
   - docs/models/operations/GetSubscriptionResponse.md
   - docs/models/operations/GetSubscriptionResponseBody.md
-  - docs/models/operations/GetSubscriptionSecurity.md
   - docs/models/operations/GetSubscriptionSelf.md
-  - docs/models/operations/GetSubscriptionStatus.md
   - docs/models/operations/GetSubscriptionSubscriptionsAPIAmount.md
   - docs/models/operations/GetTerminalDocumentation.md
   - docs/models/operations/GetTerminalLinks.md
-  - docs/models/operations/GetTerminalMode.md
   - docs/models/operations/GetTerminalRequest.md
   - docs/models/operations/GetTerminalResponse.md
   - docs/models/operations/GetTerminalResponseBody.md
-  - docs/models/operations/GetTerminalSecurity.md
   - docs/models/operations/GetTerminalSelf.md
   - docs/models/operations/GrossAmount.md
-  - docs/models/operations/Grouping.md
   - docs/models/operations/Image.md
   - docs/models/operations/ImageUrl.md
-  - docs/models/operations/IncludeWallets.md
   - docs/models/operations/InitialAmount.md
-  - docs/models/operations/Interval.md
   - docs/models/operations/Invoices.md
   - docs/models/operations/Issuers.md
   - docs/models/operations/Lines.md
@@ -965,7 +861,6 @@ generatedFiles:
   - docs/models/operations/ListAllChargebacksRequest.md
   - docs/models/operations/ListAllChargebacksResponse.md
   - docs/models/operations/ListAllChargebacksResponseBody.md
-  - docs/models/operations/ListAllChargebacksSecurity.md
   - docs/models/operations/ListAllChargebacksSelf.md
   - docs/models/operations/ListAllMethodsDocumentation.md
   - docs/models/operations/ListAllMethodsEmbedded.md
@@ -975,7 +870,6 @@ generatedFiles:
   - docs/models/operations/ListAllMethodsRequest.md
   - docs/models/operations/ListAllMethodsResponse.md
   - docs/models/operations/ListAllMethodsResponseBody.md
-  - docs/models/operations/ListAllMethodsSecurity.md
   - docs/models/operations/ListAllMethodsSelf.md
   - docs/models/operations/ListAllRefundsDocumentation.md
   - docs/models/operations/ListAllRefundsEmbedded.md
@@ -986,7 +880,6 @@ generatedFiles:
   - docs/models/operations/ListAllRefundsRequest.md
   - docs/models/operations/ListAllRefundsResponse.md
   - docs/models/operations/ListAllRefundsResponseBody.md
-  - docs/models/operations/ListAllRefundsSecurity.md
   - docs/models/operations/ListAllRefundsSelf.md
   - docs/models/operations/ListAllSubscriptionsDocumentation.md
   - docs/models/operations/ListAllSubscriptionsEmbedded.md
@@ -996,7 +889,6 @@ generatedFiles:
   - docs/models/operations/ListAllSubscriptionsRequest.md
   - docs/models/operations/ListAllSubscriptionsResponse.md
   - docs/models/operations/ListAllSubscriptionsResponseBody.md
-  - docs/models/operations/ListAllSubscriptionsSecurity.md
   - docs/models/operations/ListAllSubscriptionsSelf.md
   - docs/models/operations/ListAllSubscriptionsSubscriptions.md
   - docs/models/operations/ListBalanceTransactionsDocumentation.md
@@ -1012,14 +904,12 @@ generatedFiles:
   - docs/models/operations/ListBalancesResponse.md
   - docs/models/operations/ListBalancesResponseBody.md
   - docs/models/operations/ListCapabilitiesCapabilitiesAPILinks.md
-  - docs/models/operations/ListCapabilitiesCapabilitiesAPIStatus.md
   - docs/models/operations/ListCapabilitiesDashboard.md
   - docs/models/operations/ListCapabilitiesDocumentation.md
   - docs/models/operations/ListCapabilitiesEmbedded.md
   - docs/models/operations/ListCapabilitiesLinks.md
   - docs/models/operations/ListCapabilitiesResponse.md
   - docs/models/operations/ListCapabilitiesResponseBody.md
-  - docs/models/operations/ListCapabilitiesStatus.md
   - docs/models/operations/ListCapabilitiesStatusReason.md
   - docs/models/operations/ListCapturesCaptures.md
   - docs/models/operations/ListCapturesDocumentation.md
@@ -1030,7 +920,6 @@ generatedFiles:
   - docs/models/operations/ListCapturesRequest.md
   - docs/models/operations/ListCapturesResponse.md
   - docs/models/operations/ListCapturesResponseBody.md
-  - docs/models/operations/ListCapturesSecurity.md
   - docs/models/operations/ListCapturesSelf.md
   - docs/models/operations/ListChargebacksChargebacks.md
   - docs/models/operations/ListChargebacksDocumentation.md
@@ -1041,7 +930,6 @@ generatedFiles:
   - docs/models/operations/ListChargebacksRequest.md
   - docs/models/operations/ListChargebacksResponse.md
   - docs/models/operations/ListChargebacksResponseBody.md
-  - docs/models/operations/ListChargebacksSecurity.md
   - docs/models/operations/ListChargebacksSelf.md
   - docs/models/operations/ListClientsAddress.md
   - docs/models/operations/ListClientsCapabilities.md
@@ -1060,9 +948,7 @@ generatedFiles:
   - docs/models/operations/ListClientsClientsAPIResponseLinks.md
   - docs/models/operations/ListClientsClientsAPIResponseOrganization.md
   - docs/models/operations/ListClientsClientsAPIResponseSelf.md
-  - docs/models/operations/ListClientsClientsAPIResponseStatus.md
   - docs/models/operations/ListClientsClientsAPISelf.md
-  - docs/models/operations/ListClientsClientsAPIStatus.md
   - docs/models/operations/ListClientsCommission.md
   - docs/models/operations/ListClientsDashboard.md
   - docs/models/operations/ListClientsDocumentation.md
@@ -1079,7 +965,6 @@ generatedFiles:
   - docs/models/operations/ListClientsSelf.md
   - docs/models/operations/ListClientsStatus.md
   - docs/models/operations/ListClientsStatusReason.md
-  - docs/models/operations/ListClientsVatRegulation.md
   - docs/models/operations/ListCustomerPaymentsDocumentation.md
   - docs/models/operations/ListCustomerPaymentsEmbedded.md
   - docs/models/operations/ListCustomerPaymentsLinks.md
@@ -1089,7 +974,6 @@ generatedFiles:
   - docs/models/operations/ListCustomerPaymentsRequest.md
   - docs/models/operations/ListCustomerPaymentsResponse.md
   - docs/models/operations/ListCustomerPaymentsResponseBody.md
-  - docs/models/operations/ListCustomerPaymentsSecurity.md
   - docs/models/operations/ListCustomerPaymentsSelf.md
   - docs/models/operations/ListCustomersDocumentation.md
   - docs/models/operations/ListCustomersEmbedded.md
@@ -1099,7 +983,6 @@ generatedFiles:
   - docs/models/operations/ListCustomersRequest.md
   - docs/models/operations/ListCustomersResponse.md
   - docs/models/operations/ListCustomersResponseBody.md
-  - docs/models/operations/ListCustomersSecurity.md
   - docs/models/operations/ListCustomersSelf.md
   - docs/models/operations/ListInvoicesDocumentation.md
   - docs/models/operations/ListInvoicesEmbedded.md
@@ -1119,7 +1002,6 @@ generatedFiles:
   - docs/models/operations/ListMandatesRequest.md
   - docs/models/operations/ListMandatesResponse.md
   - docs/models/operations/ListMandatesResponseBody.md
-  - docs/models/operations/ListMandatesSecurity.md
   - docs/models/operations/ListMandatesSelf.md
   - docs/models/operations/ListMethodsDocumentation.md
   - docs/models/operations/ListMethodsEmbedded.md
@@ -1128,7 +1010,6 @@ generatedFiles:
   - docs/models/operations/ListMethodsRequest.md
   - docs/models/operations/ListMethodsResponse.md
   - docs/models/operations/ListMethodsResponseBody.md
-  - docs/models/operations/ListMethodsSecurity.md
   - docs/models/operations/ListMethodsSelf.md
   - docs/models/operations/ListOrderRefundsDocumentation.md
   - docs/models/operations/ListOrderRefundsEmbedded.md
@@ -1139,7 +1020,6 @@ generatedFiles:
   - docs/models/operations/ListOrderRefundsRequest.md
   - docs/models/operations/ListOrderRefundsResponse.md
   - docs/models/operations/ListOrderRefundsResponseBody.md
-  - docs/models/operations/ListOrderRefundsSecurity.md
   - docs/models/operations/ListOrderRefundsSelf.md
   - docs/models/operations/ListOrdersDocumentation.md
   - docs/models/operations/ListOrdersEmbedded.md
@@ -1149,7 +1029,6 @@ generatedFiles:
   - docs/models/operations/ListOrdersRequest.md
   - docs/models/operations/ListOrdersResponse.md
   - docs/models/operations/ListOrdersResponseBody.md
-  - docs/models/operations/ListOrdersSecurity.md
   - docs/models/operations/ListOrdersSelf.md
   - docs/models/operations/ListPaymentLinksDocumentation.md
   - docs/models/operations/ListPaymentLinksEmbedded.md
@@ -1159,7 +1038,6 @@ generatedFiles:
   - docs/models/operations/ListPaymentLinksRequest.md
   - docs/models/operations/ListPaymentLinksResponse.md
   - docs/models/operations/ListPaymentLinksResponseBody.md
-  - docs/models/operations/ListPaymentLinksSecurity.md
   - docs/models/operations/ListPaymentLinksSelf.md
   - docs/models/operations/ListPaymentsDocumentation.md
   - docs/models/operations/ListPaymentsEmbedded.md
@@ -1170,7 +1048,6 @@ generatedFiles:
   - docs/models/operations/ListPaymentsRequest.md
   - docs/models/operations/ListPaymentsResponse.md
   - docs/models/operations/ListPaymentsResponseBody.md
-  - docs/models/operations/ListPaymentsSecurity.md
   - docs/models/operations/ListPaymentsSelf.md
   - docs/models/operations/ListPermissionsDocumentation.md
   - docs/models/operations/ListPermissionsEmbedded.md
@@ -1196,7 +1073,6 @@ generatedFiles:
   - docs/models/operations/ListRefundsRequest.md
   - docs/models/operations/ListRefundsResponse.md
   - docs/models/operations/ListRefundsResponseBody.md
-  - docs/models/operations/ListRefundsSecurity.md
   - docs/models/operations/ListRefundsSelf.md
   - docs/models/operations/ListSettlementsDocumentation.md
   - docs/models/operations/ListSettlementsEmbedded.md
@@ -1215,7 +1091,6 @@ generatedFiles:
   - docs/models/operations/ListShipmentsRequest.md
   - docs/models/operations/ListShipmentsResponse.md
   - docs/models/operations/ListShipmentsResponseBody.md
-  - docs/models/operations/ListShipmentsSecurity.md
   - docs/models/operations/ListShipmentsSelf.md
   - docs/models/operations/ListSubscriptionPaymentsDocumentation.md
   - docs/models/operations/ListSubscriptionPaymentsEmbedded.md
@@ -1226,7 +1101,6 @@ generatedFiles:
   - docs/models/operations/ListSubscriptionPaymentsRequest.md
   - docs/models/operations/ListSubscriptionPaymentsResponse.md
   - docs/models/operations/ListSubscriptionPaymentsResponseBody.md
-  - docs/models/operations/ListSubscriptionPaymentsSecurity.md
   - docs/models/operations/ListSubscriptionPaymentsSelf.md
   - docs/models/operations/ListSubscriptionsDocumentation.md
   - docs/models/operations/ListSubscriptionsEmbedded.md
@@ -1236,7 +1110,6 @@ generatedFiles:
   - docs/models/operations/ListSubscriptionsRequest.md
   - docs/models/operations/ListSubscriptionsResponse.md
   - docs/models/operations/ListSubscriptionsResponseBody.md
-  - docs/models/operations/ListSubscriptionsSecurity.md
   - docs/models/operations/ListSubscriptionsSelf.md
   - docs/models/operations/ListSubscriptionsSubscriptions.md
   - docs/models/operations/ListTerminalsDocumentation.md
@@ -1247,38 +1120,30 @@ generatedFiles:
   - docs/models/operations/ListTerminalsRequest.md
   - docs/models/operations/ListTerminalsResponse.md
   - docs/models/operations/ListTerminalsResponseBody.md
-  - docs/models/operations/ListTerminalsSecurity.md
   - docs/models/operations/ListTerminalsSelf.md
-  - docs/models/operations/Locale.md
   - docs/models/operations/ManageOrderLinesAmount.md
   - docs/models/operations/ManageOrderLinesRequest.md
   - docs/models/operations/ManageOrderLinesRequestBody.md
   - docs/models/operations/ManageOrderLinesResponse.md
-  - docs/models/operations/ManageOrderLinesSecurity.md
   - docs/models/operations/Mandates.md
   - docs/models/operations/MaximumAmount.md
   - docs/models/operations/Metadata.md
   - docs/models/operations/Metadata2.md
-  - docs/models/operations/Method.md
   - docs/models/operations/Methods.md
   - docs/models/operations/MinimumAmount.md
   - docs/models/operations/MobileAppCheckout.md
-  - docs/models/operations/Mode.md
   - docs/models/operations/NetAmount.md
   - docs/models/operations/Next.md
   - docs/models/operations/Onboarding.md
-  - docs/models/operations/Operation.md
   - docs/models/operations/Operations.md
   - docs/models/operations/Order.md
   - docs/models/operations/Orders.md
   - docs/models/operations/Organization.md
   - docs/models/operations/Owner.md
-  - docs/models/operations/PartnerType.md
   - docs/models/operations/Payment.md
   - docs/models/operations/PaymentCreateRouteAmount.md
   - docs/models/operations/PaymentCreateRouteDelayedRoutingAPIAmount.md
   - docs/models/operations/PaymentCreateRouteDelayedRoutingAPIDestination.md
-  - docs/models/operations/PaymentCreateRouteDelayedRoutingAPIType.md
   - docs/models/operations/PaymentCreateRouteDestination.md
   - docs/models/operations/PaymentCreateRouteDocumentation.md
   - docs/models/operations/PaymentCreateRouteLinks.md
@@ -1286,9 +1151,7 @@ generatedFiles:
   - docs/models/operations/PaymentCreateRouteRequestBody.md
   - docs/models/operations/PaymentCreateRouteResponse.md
   - docs/models/operations/PaymentCreateRouteResponseBody.md
-  - docs/models/operations/PaymentCreateRouteSecurity.md
   - docs/models/operations/PaymentCreateRouteSelf.md
-  - docs/models/operations/PaymentCreateRouteType.md
   - docs/models/operations/PaymentLink.md
   - docs/models/operations/PaymentLinks.md
   - docs/models/operations/PaymentListRoutesAmount.md
@@ -1304,9 +1167,7 @@ generatedFiles:
   - docs/models/operations/PaymentListRoutesRequest.md
   - docs/models/operations/PaymentListRoutesResponse.md
   - docs/models/operations/PaymentListRoutesResponseBody.md
-  - docs/models/operations/PaymentListRoutesSecurity.md
   - docs/models/operations/PaymentListRoutesSelf.md
-  - docs/models/operations/PaymentListRoutesType.md
   - docs/models/operations/Payments.md
   - docs/models/operations/Pdf.md
   - docs/models/operations/PendingAmount.md
@@ -1318,35 +1179,28 @@ generatedFiles:
   - docs/models/operations/Profile.md
   - docs/models/operations/Profiles.md
   - docs/models/operations/QueryParamAmount.md
-  - docs/models/operations/QueryParamLocale.md
-  - docs/models/operations/QueryParamSequenceType.md
-  - docs/models/operations/QueryParamSort.md
   - docs/models/operations/Reason.md
   - docs/models/operations/Recurring.md
   - docs/models/operations/Refunds.md
+  - docs/models/operations/ReleaseAuthorizationRequest.md
+  - docs/models/operations/ReleaseAuthorizationResponse.md
   - docs/models/operations/RequestApplePayPaymentSessionRequestBody.md
   - docs/models/operations/RequestApplePayPaymentSessionResponse.md
-  - docs/models/operations/RequestApplePayPaymentSessionResponseBody.md
-  - docs/models/operations/RequestApplePayPaymentSessionSecurity.md
   - docs/models/operations/Requirements.md
-  - docs/models/operations/Resource.md
   - docs/models/operations/ResultAmount.md
   - docs/models/operations/Review.md
   - docs/models/operations/RevokeMandateRequest.md
   - docs/models/operations/RevokeMandateResponse.md
-  - docs/models/operations/RevokeMandateSecurity.md
   - docs/models/operations/Routes.md
   - docs/models/operations/Routing.md
   - docs/models/operations/RoutingReversals.md
   - docs/models/operations/Self.md
-  - docs/models/operations/SequenceType.md
   - docs/models/operations/Settlement.md
   - docs/models/operations/SettlementAmount.md
   - docs/models/operations/Settlements.md
   - docs/models/operations/Shipments.md
   - docs/models/operations/ShippingAddress.md
   - docs/models/operations/Signuplink.md
-  - docs/models/operations/Sort.md
   - docs/models/operations/Source.md
   - docs/models/operations/Status.md
   - docs/models/operations/StatusReason.md
@@ -1359,60 +1213,49 @@ generatedFiles:
   - docs/models/operations/Totals.md
   - docs/models/operations/Tracking.md
   - docs/models/operations/TransferDestination.md
-  - docs/models/operations/TransferFrequency.md
   - docs/models/operations/TransferThreshold.md
   - docs/models/operations/Two.md
-  - docs/models/operations/Type.md
   - docs/models/operations/UnitPrice.md
   - docs/models/operations/UpdateCustomerRequest.md
   - docs/models/operations/UpdateCustomerRequestBody.md
   - docs/models/operations/UpdateCustomerResponse.md
-  - docs/models/operations/UpdateCustomerSecurity.md
   - docs/models/operations/UpdateOrderBillingAddress.md
   - docs/models/operations/UpdateOrderLineDiscountAmount.md
   - docs/models/operations/UpdateOrderLineRequest.md
   - docs/models/operations/UpdateOrderLineRequestBody.md
   - docs/models/operations/UpdateOrderLineResponse.md
-  - docs/models/operations/UpdateOrderLineSecurity.md
   - docs/models/operations/UpdateOrderLineTotalAmount.md
   - docs/models/operations/UpdateOrderLineUnitPrice.md
   - docs/models/operations/UpdateOrderLineVatAmount.md
   - docs/models/operations/UpdateOrderRequest.md
   - docs/models/operations/UpdateOrderRequestBody.md
   - docs/models/operations/UpdateOrderResponse.md
-  - docs/models/operations/UpdateOrderSecurity.md
   - docs/models/operations/UpdateOrderShippingAddress.md
   - docs/models/operations/UpdatePaymentLinkAmount.md
   - docs/models/operations/UpdatePaymentLinkDocumentation.md
   - docs/models/operations/UpdatePaymentLinkLinks.md
-  - docs/models/operations/UpdatePaymentLinkMode.md
   - docs/models/operations/UpdatePaymentLinkPaymentLink.md
   - docs/models/operations/UpdatePaymentLinkRequest.md
   - docs/models/operations/UpdatePaymentLinkRequestBody.md
   - docs/models/operations/UpdatePaymentLinkResponse.md
   - docs/models/operations/UpdatePaymentLinkResponseBody.md
-  - docs/models/operations/UpdatePaymentLinkSecurity.md
   - docs/models/operations/UpdatePaymentLinkSelf.md
   - docs/models/operations/UpdatePaymentRequest.md
   - docs/models/operations/UpdatePaymentRequestBody.md
   - docs/models/operations/UpdatePaymentResponse.md
-  - docs/models/operations/UpdatePaymentSecurity.md
   - docs/models/operations/UpdateProfileRequest.md
   - docs/models/operations/UpdateProfileRequestBody.md
   - docs/models/operations/UpdateProfileResponse.md
   - docs/models/operations/UpdateShipmentRequest.md
   - docs/models/operations/UpdateShipmentRequestBody.md
   - docs/models/operations/UpdateShipmentResponse.md
-  - docs/models/operations/UpdateShipmentSecurity.md
   - docs/models/operations/UpdateShipmentTracking.md
   - docs/models/operations/UpdateSubscriptionAmount.md
   - docs/models/operations/UpdateSubscriptionRequest.md
   - docs/models/operations/UpdateSubscriptionRequestBody.md
   - docs/models/operations/UpdateSubscriptionResponse.md
-  - docs/models/operations/UpdateSubscriptionSecurity.md
   - docs/models/operations/UserAgentTokens.md
   - docs/models/operations/VatAmount.md
-  - docs/models/operations/VatRegulation.md
   - docs/sdks/balancesapi/README.md
   - docs/sdks/capabilitiesapi/README.md
   - docs/sdks/capturesapi/README.md
@@ -1800,6 +1643,12 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/errors/PaymentListRoutesDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/PaymentListRoutesLinks.java
   - src/main/java/com/mollie/mollie/models/errors/PaymentListRoutesResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/ReleaseAuthorizationDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/ReleaseAuthorizationLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/ReleaseAuthorizationPaymentsAPIDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/ReleaseAuthorizationPaymentsAPILinks.java
+  - src/main/java/com/mollie/mollie/models/errors/ReleaseAuthorizationPaymentsAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/ReleaseAuthorizationResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/RequestApplePayPaymentSessionDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/RequestApplePayPaymentSessionLinks.java
   - src/main/java/com/mollie/mollie/models/errors/RequestApplePayPaymentSessionResponseBody.java
@@ -1865,29 +1714,20 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/CancelOrderLinesRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/CancelOrderLinesRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/CancelOrderLinesResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/CancelOrderLinesSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/CancelOrderRequest.java
   - src/main/java/com/mollie/mollie/models/operations/CancelOrderRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/CancelOrderResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/CancelOrderSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/CancelPaymentRequest.java
   - src/main/java/com/mollie/mollie/models/operations/CancelPaymentRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/CancelPaymentResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/CancelPaymentSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/CancelRefundRequest.java
   - src/main/java/com/mollie/mollie/models/operations/CancelRefundRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/CancelRefundResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/CancelRefundSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/CancelSubscriptionRequest.java
   - src/main/java/com/mollie/mollie/models/operations/CancelSubscriptionRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/CancelSubscriptionResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/CancelSubscriptionSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/Capabilities.java
-  - src/main/java/com/mollie/mollie/models/operations/CaptureDelay.java
-  - src/main/java/com/mollie/mollie/models/operations/CaptureMode.java
   - src/main/java/com/mollie/mollie/models/operations/Captures.java
-  - src/main/java/com/mollie/mollie/models/operations/CardLabel.java
-  - src/main/java/com/mollie/mollie/models/operations/Category.java
   - src/main/java/com/mollie/mollie/models/operations/ChangePaymentState.java
   - src/main/java/com/mollie/mollie/models/operations/Chargebacks.java
   - src/main/java/com/mollie/mollie/models/operations/Checkout.java
@@ -1904,7 +1744,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/CreateCaptureRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/CreateCaptureRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/CreateCaptureResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/CreateCaptureSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/CreateClientLinkAddress.java
   - src/main/java/com/mollie/mollie/models/operations/CreateClientLinkDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/CreateClientLinkLinks.java
@@ -1913,30 +1752,23 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/CreateClientLinkResponse.java
   - src/main/java/com/mollie/mollie/models/operations/CreateClientLinkResponseBody.java
   - src/main/java/com/mollie/mollie/models/operations/CreateClientLinkSelf.java
-  - src/main/java/com/mollie/mollie/models/operations/CreateCustomerLocale.java
   - src/main/java/com/mollie/mollie/models/operations/CreateCustomerMetadata.java
   - src/main/java/com/mollie/mollie/models/operations/CreateCustomerMetadata2.java
   - src/main/java/com/mollie/mollie/models/operations/CreateCustomerPaymentRequest.java
   - src/main/java/com/mollie/mollie/models/operations/CreateCustomerPaymentRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/CreateCustomerPaymentRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/CreateCustomerPaymentResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/CreateCustomerPaymentSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/CreateCustomerRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/CreateCustomerRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/CreateCustomerResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/CreateCustomerSecurity.java
-  - src/main/java/com/mollie/mollie/models/operations/CreateMandateMethod.java
   - src/main/java/com/mollie/mollie/models/operations/CreateMandateRequest.java
   - src/main/java/com/mollie/mollie/models/operations/CreateMandateRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/CreateMandateRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/CreateMandateResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/CreateMandateSecurity.java
-  - src/main/java/com/mollie/mollie/models/operations/CreateOrderLocale.java
   - src/main/java/com/mollie/mollie/models/operations/CreateOrderMetadata.java
   - src/main/java/com/mollie/mollie/models/operations/CreateOrderPaymentRequest.java
   - src/main/java/com/mollie/mollie/models/operations/CreateOrderPaymentRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/CreateOrderPaymentResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/CreateOrderPaymentSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/CreateOrderRefundAmount.java
   - src/main/java/com/mollie/mollie/models/operations/CreateOrderRefundDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/CreateOrderRefundLines.java
@@ -1945,7 +1777,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/CreateOrderRefundMetadata.java
   - src/main/java/com/mollie/mollie/models/operations/CreateOrderRefundMetadata2.java
   - src/main/java/com/mollie/mollie/models/operations/CreateOrderRefundMetadataRefundsAPI2.java
-  - src/main/java/com/mollie/mollie/models/operations/CreateOrderRefundMode.java
   - src/main/java/com/mollie/mollie/models/operations/CreateOrderRefundOrder.java
   - src/main/java/com/mollie/mollie/models/operations/CreateOrderRefundRefundsAPIMetadata.java
   - src/main/java/com/mollie/mollie/models/operations/CreateOrderRefundRequest.java
@@ -1953,7 +1784,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/CreateOrderRefundRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/CreateOrderRefundResponse.java
   - src/main/java/com/mollie/mollie/models/operations/CreateOrderRefundResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/CreateOrderRefundSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/CreateOrderRefundSelf.java
   - src/main/java/com/mollie/mollie/models/operations/CreateOrderRefundSettlement.java
   - src/main/java/com/mollie/mollie/models/operations/CreateOrderRefundTotalAmount.java
@@ -1962,7 +1792,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/CreateOrderRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/CreateOrderRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/CreateOrderResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/CreateOrderSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentAmount.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentBillingAddress.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentDiscountAmount.java
@@ -1971,23 +1800,17 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentLinkRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentLinkRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentLinkResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/CreatePaymentLinkSecurity.java
-  - src/main/java/com/mollie/mollie/models/operations/CreatePaymentLocale.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentMetadata.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentMetadata2.java
-  - src/main/java/com/mollie/mollie/models/operations/CreatePaymentMethod.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentPaymentsAPIAmount.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentPaymentsAPIRequestAmount.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentPaymentsAPIRequestRequestBodyAmount.java
-  - src/main/java/com/mollie/mollie/models/operations/CreatePaymentPaymentsAPIType.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentRequest.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/CreatePaymentSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentShippingAddress.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentTotalAmount.java
-  - src/main/java/com/mollie/mollie/models/operations/CreatePaymentType.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentUnitPrice.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentVatAmount.java
   - src/main/java/com/mollie/mollie/models/operations/CreateProfileRequestBody.java
@@ -2001,26 +1824,20 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/CreateRefundRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/CreateRefundRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/CreateRefundResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/CreateRefundSecurity.java
-  - src/main/java/com/mollie/mollie/models/operations/CreateRefundType.java
   - src/main/java/com/mollie/mollie/models/operations/CreateShipmentAmount.java
   - src/main/java/com/mollie/mollie/models/operations/CreateShipmentLines.java
   - src/main/java/com/mollie/mollie/models/operations/CreateShipmentRequest.java
   - src/main/java/com/mollie/mollie/models/operations/CreateShipmentRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/CreateShipmentRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/CreateShipmentResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/CreateShipmentSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionAmount.java
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionApplicationFee.java
-  - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionInterval.java
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionMetadata.java
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionMetadata2.java
-  - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionMethod.java
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionRequest.java
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionSubscriptionsAPIAmount.java
   - src/main/java/com/mollie/mollie/models/operations/Customer.java
   - src/main/java/com/mollie/mollie/models/operations/Customers.java
@@ -2030,11 +1847,9 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/DeleteCustomerRequest.java
   - src/main/java/com/mollie/mollie/models/operations/DeleteCustomerRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/DeleteCustomerResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/DeleteCustomerSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/DeletePaymentLinkRequest.java
   - src/main/java/com/mollie/mollie/models/operations/DeletePaymentLinkRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/DeletePaymentLinkResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/DeletePaymentLinkSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/DeleteProfileRequest.java
   - src/main/java/com/mollie/mollie/models/operations/DeleteProfileRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/DeleteProfileResponse.java
@@ -2043,11 +1858,9 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/DisableMethodIssuerRequest.java
   - src/main/java/com/mollie/mollie/models/operations/DisableMethodIssuerRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/DisableMethodIssuerResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/DisableMethodIssuerSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/DisableMethodRequest.java
   - src/main/java/com/mollie/mollie/models/operations/DisableMethodRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/DisableMethodResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/DisableMethodSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/DiscountAmount.java
   - src/main/java/com/mollie/mollie/models/operations/Documentation.java
   - src/main/java/com/mollie/mollie/models/operations/Embedded.java
@@ -2062,7 +1875,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/EnableMethodIssuerRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/EnableMethodIssuerResponse.java
   - src/main/java/com/mollie/mollie/models/operations/EnableMethodIssuerResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/EnableMethodIssuerSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/EnableMethodIssuerSelf.java
   - src/main/java/com/mollie/mollie/models/operations/EnableMethodIssuers.java
   - src/main/java/com/mollie/mollie/models/operations/EnableMethodLinks.java
@@ -2074,14 +1886,11 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/EnableMethodRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/EnableMethodResponse.java
   - src/main/java/com/mollie/mollie/models/operations/EnableMethodResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/EnableMethodSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/EnableMethodSelf.java
   - src/main/java/com/mollie/mollie/models/operations/Fixed.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceLinks.java
-  - src/main/java/com/mollie/mollie/models/operations/GetBalanceMode.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportDocumentation.java
-  - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportGrouping.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportLinks.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportRequest.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportRequestBuilder.java
@@ -2093,24 +1902,19 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceResponse.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceResponseBody.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceSelf.java
-  - src/main/java/com/mollie/mollie/models/operations/GetBalanceStatus.java
-  - src/main/java/com/mollie/mollie/models/operations/GetBalanceType.java
   - src/main/java/com/mollie/mollie/models/operations/GetCaptureAmount.java
   - src/main/java/com/mollie/mollie/models/operations/GetCaptureDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/GetCaptureLinks.java
   - src/main/java/com/mollie/mollie/models/operations/GetCaptureMetadata.java
   - src/main/java/com/mollie/mollie/models/operations/GetCaptureMetadata2.java
-  - src/main/java/com/mollie/mollie/models/operations/GetCaptureMode.java
   - src/main/java/com/mollie/mollie/models/operations/GetCapturePayment.java
   - src/main/java/com/mollie/mollie/models/operations/GetCaptureRequest.java
   - src/main/java/com/mollie/mollie/models/operations/GetCaptureRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/GetCaptureResponse.java
   - src/main/java/com/mollie/mollie/models/operations/GetCaptureResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/GetCaptureSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/GetCaptureSelf.java
   - src/main/java/com/mollie/mollie/models/operations/GetCaptureSettlement.java
   - src/main/java/com/mollie/mollie/models/operations/GetCaptureSettlementAmount.java
-  - src/main/java/com/mollie/mollie/models/operations/GetCaptureStatus.java
   - src/main/java/com/mollie/mollie/models/operations/GetChargebackAmount.java
   - src/main/java/com/mollie/mollie/models/operations/GetChargebackDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/GetChargebackLinks.java
@@ -2119,7 +1923,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetChargebackRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/GetChargebackResponse.java
   - src/main/java/com/mollie/mollie/models/operations/GetChargebackResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/GetChargebackSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/GetChargebackSelf.java
   - src/main/java/com/mollie/mollie/models/operations/GetChargebackSettlement.java
   - src/main/java/com/mollie/mollie/models/operations/GetChargebackSettlementAmount.java
@@ -2135,9 +1938,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetClientClientsAPIResponseLinks.java
   - src/main/java/com/mollie/mollie/models/operations/GetClientClientsAPIResponseOrganization.java
   - src/main/java/com/mollie/mollie/models/operations/GetClientClientsAPIResponseSelf.java
-  - src/main/java/com/mollie/mollie/models/operations/GetClientClientsAPIResponseStatus.java
   - src/main/java/com/mollie/mollie/models/operations/GetClientClientsAPISelf.java
-  - src/main/java/com/mollie/mollie/models/operations/GetClientClientsAPIStatus.java
   - src/main/java/com/mollie/mollie/models/operations/GetClientDashboard.java
   - src/main/java/com/mollie/mollie/models/operations/GetClientDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/GetClientEmbedded.java
@@ -2152,7 +1953,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetClientSelf.java
   - src/main/java/com/mollie/mollie/models/operations/GetClientStatus.java
   - src/main/java/com/mollie/mollie/models/operations/GetClientStatusReason.java
-  - src/main/java/com/mollie/mollie/models/operations/GetClientVatRegulation.java
   - src/main/java/com/mollie/mollie/models/operations/GetCurrentOrganizationRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/GetCurrentOrganizationResponse.java
   - src/main/java/com/mollie/mollie/models/operations/GetCurrentProfileChargebacks.java
@@ -2161,29 +1961,22 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetCurrentProfileDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/GetCurrentProfileLinks.java
   - src/main/java/com/mollie/mollie/models/operations/GetCurrentProfileMethods.java
-  - src/main/java/com/mollie/mollie/models/operations/GetCurrentProfileMode.java
   - src/main/java/com/mollie/mollie/models/operations/GetCurrentProfilePayments.java
-  - src/main/java/com/mollie/mollie/models/operations/GetCurrentProfileProfilesAPIStatus.java
   - src/main/java/com/mollie/mollie/models/operations/GetCurrentProfileRefunds.java
   - src/main/java/com/mollie/mollie/models/operations/GetCurrentProfileRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/GetCurrentProfileResponse.java
   - src/main/java/com/mollie/mollie/models/operations/GetCurrentProfileResponseBody.java
   - src/main/java/com/mollie/mollie/models/operations/GetCurrentProfileReview.java
-  - src/main/java/com/mollie/mollie/models/operations/GetCurrentProfileSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/GetCurrentProfileSelf.java
-  - src/main/java/com/mollie/mollie/models/operations/GetCurrentProfileStatus.java
   - src/main/java/com/mollie/mollie/models/operations/GetCustomerDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/GetCustomerLinks.java
-  - src/main/java/com/mollie/mollie/models/operations/GetCustomerLocale.java
   - src/main/java/com/mollie/mollie/models/operations/GetCustomerMetadata.java
   - src/main/java/com/mollie/mollie/models/operations/GetCustomerMetadata2.java
-  - src/main/java/com/mollie/mollie/models/operations/GetCustomerMode.java
   - src/main/java/com/mollie/mollie/models/operations/GetCustomerPayments.java
   - src/main/java/com/mollie/mollie/models/operations/GetCustomerRequest.java
   - src/main/java/com/mollie/mollie/models/operations/GetCustomerRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/GetCustomerResponse.java
   - src/main/java/com/mollie/mollie/models/operations/GetCustomerResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/GetCustomerSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/GetCustomerSelf.java
   - src/main/java/com/mollie/mollie/models/operations/GetInvoiceAmount.java
   - src/main/java/com/mollie/mollie/models/operations/GetInvoiceDocumentation.java
@@ -2194,20 +1987,15 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetInvoiceResponse.java
   - src/main/java/com/mollie/mollie/models/operations/GetInvoiceResponseBody.java
   - src/main/java/com/mollie/mollie/models/operations/GetInvoiceSelf.java
-  - src/main/java/com/mollie/mollie/models/operations/GetInvoiceStatus.java
   - src/main/java/com/mollie/mollie/models/operations/GetInvoiceVatAmount.java
   - src/main/java/com/mollie/mollie/models/operations/GetMandateDetails.java
   - src/main/java/com/mollie/mollie/models/operations/GetMandateDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/GetMandateLinks.java
-  - src/main/java/com/mollie/mollie/models/operations/GetMandateMethod.java
-  - src/main/java/com/mollie/mollie/models/operations/GetMandateMode.java
   - src/main/java/com/mollie/mollie/models/operations/GetMandateRequest.java
   - src/main/java/com/mollie/mollie/models/operations/GetMandateRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/GetMandateResponse.java
   - src/main/java/com/mollie/mollie/models/operations/GetMandateResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/GetMandateSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/GetMandateSelf.java
-  - src/main/java/com/mollie/mollie/models/operations/GetMandateStatus.java
   - src/main/java/com/mollie/mollie/models/operations/GetMethodDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/GetMethodImage.java
   - src/main/java/com/mollie/mollie/models/operations/GetMethodLinks.java
@@ -2215,7 +2003,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetMethodRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/GetMethodResponse.java
   - src/main/java/com/mollie/mollie/models/operations/GetMethodResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/GetMethodSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/GetMethodSelf.java
   - src/main/java/com/mollie/mollie/models/operations/GetNextSettlementRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/GetNextSettlementResponse.java
@@ -2227,38 +2014,29 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetOnboardingStatusResponse.java
   - src/main/java/com/mollie/mollie/models/operations/GetOnboardingStatusResponseBody.java
   - src/main/java/com/mollie/mollie/models/operations/GetOnboardingStatusSelf.java
-  - src/main/java/com/mollie/mollie/models/operations/GetOnboardingStatusStatus.java
   - src/main/java/com/mollie/mollie/models/operations/GetOpenSettlementRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/GetOpenSettlementResponse.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrderAmount.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrderBillingAddress.java
-  - src/main/java/com/mollie/mollie/models/operations/GetOrderCategory.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrderDashboard.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrderDiscountAmount.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrderDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrderLines.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrderLinks.java
-  - src/main/java/com/mollie/mollie/models/operations/GetOrderLocale.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrderMetadata.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrderMetadata2.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrderMetadataOrdersAPI2.java
-  - src/main/java/com/mollie/mollie/models/operations/GetOrderMethod.java
-  - src/main/java/com/mollie/mollie/models/operations/GetOrderMode.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrderOrdersAPILinks.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrderOrdersAPIMetadata.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrderOrdersAPISelf.java
-  - src/main/java/com/mollie/mollie/models/operations/GetOrderOrdersAPIStatus.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrderPayment.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrderRequest.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrderRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrderResponse.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrderResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/GetOrderSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrderSelf.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrderShippingAddress.java
-  - src/main/java/com/mollie/mollie/models/operations/GetOrderStatus.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrderTotalAmount.java
-  - src/main/java/com/mollie/mollie/models/operations/GetOrderType.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrderUnitPrice.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrderVatAmount.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrganizationAddress.java
@@ -2269,7 +2047,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetOrganizationResponse.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrganizationResponseBody.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrganizationSelf.java
-  - src/main/java/com/mollie/mollie/models/operations/GetOrganizationVatRegulation.java
   - src/main/java/com/mollie/mollie/models/operations/GetPartnerStatusDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/GetPartnerStatusLinks.java
   - src/main/java/com/mollie/mollie/models/operations/GetPartnerStatusRequestBuilder.java
@@ -2281,8 +2058,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentAmountRefunded.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentApplicationFee.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentBillingAddress.java
-  - src/main/java/com/mollie/mollie/models/operations/GetPaymentCaptureDelay.java
-  - src/main/java/com/mollie/mollie/models/operations/GetPaymentCaptureMode.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentCaptures.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentChargebacks.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentCheckout.java
@@ -2290,42 +2065,33 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentDestination.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentDiscountAmount.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentDocumentation.java
-  - src/main/java/com/mollie/mollie/models/operations/GetPaymentInterval.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLines.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkAmount.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkLinks.java
-  - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkMode.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkPaymentsDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkPaymentsEmbedded.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkPaymentsLinks.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkPaymentsNext.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkPaymentsPayments.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkPaymentsPrevious.java
-  - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkPaymentsQueryParamSort.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkPaymentsRequest.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkPaymentsRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkPaymentsResponse.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkPaymentsResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkPaymentsSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkPaymentsSelf.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkRequest.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkResponse.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkSelf.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinks.java
-  - src/main/java/com/mollie/mollie/models/operations/GetPaymentLocale.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentMetadata.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentMetadata2.java
-  - src/main/java/com/mollie/mollie/models/operations/GetPaymentMethod.java
-  - src/main/java/com/mollie/mollie/models/operations/GetPaymentMode.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentOrder.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentPaymentsAPIAmount.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentPaymentsAPIResponse200Amount.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentPaymentsAPIResponseAmount.java
-  - src/main/java/com/mollie/mollie/models/operations/GetPaymentPaymentsAPIType.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentRecurring.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentRefunds.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentRequest.java
@@ -2333,13 +2099,9 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentResponse.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentResponseBody.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentRouting.java
-  - src/main/java/com/mollie/mollie/models/operations/GetPaymentSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentSelf.java
-  - src/main/java/com/mollie/mollie/models/operations/GetPaymentSequenceType.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentShippingAddress.java
-  - src/main/java/com/mollie/mollie/models/operations/GetPaymentStatus.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentTotalAmount.java
-  - src/main/java/com/mollie/mollie/models/operations/GetPaymentType.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentUnitPrice.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentVatAmount.java
   - src/main/java/com/mollie/mollie/models/operations/GetPermissionDocumentation.java
@@ -2355,22 +2117,18 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetProfileDashboard.java
   - src/main/java/com/mollie/mollie/models/operations/GetProfileDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/GetProfileLinks.java
-  - src/main/java/com/mollie/mollie/models/operations/GetProfileMode.java
   - src/main/java/com/mollie/mollie/models/operations/GetProfilePayments.java
-  - src/main/java/com/mollie/mollie/models/operations/GetProfileProfilesAPIStatus.java
   - src/main/java/com/mollie/mollie/models/operations/GetProfileRefunds.java
   - src/main/java/com/mollie/mollie/models/operations/GetProfileRequest.java
   - src/main/java/com/mollie/mollie/models/operations/GetProfileRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/GetProfileResponse.java
   - src/main/java/com/mollie/mollie/models/operations/GetProfileResponseBody.java
   - src/main/java/com/mollie/mollie/models/operations/GetProfileSelf.java
-  - src/main/java/com/mollie/mollie/models/operations/GetProfileStatus.java
   - src/main/java/com/mollie/mollie/models/operations/GetRefundAmount.java
   - src/main/java/com/mollie/mollie/models/operations/GetRefundDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/GetRefundLinks.java
   - src/main/java/com/mollie/mollie/models/operations/GetRefundMetadata.java
   - src/main/java/com/mollie/mollie/models/operations/GetRefundMetadata2.java
-  - src/main/java/com/mollie/mollie/models/operations/GetRefundMode.java
   - src/main/java/com/mollie/mollie/models/operations/GetRefundPayment.java
   - src/main/java/com/mollie/mollie/models/operations/GetRefundRefundsAPIAmount.java
   - src/main/java/com/mollie/mollie/models/operations/GetRefundRequest.java
@@ -2378,12 +2136,10 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetRefundResponse.java
   - src/main/java/com/mollie/mollie/models/operations/GetRefundResponseBody.java
   - src/main/java/com/mollie/mollie/models/operations/GetRefundRoutingReversals.java
-  - src/main/java/com/mollie/mollie/models/operations/GetRefundSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/GetRefundSelf.java
   - src/main/java/com/mollie/mollie/models/operations/GetRefundSettlement.java
   - src/main/java/com/mollie/mollie/models/operations/GetRefundSettlementAmount.java
   - src/main/java/com/mollie/mollie/models/operations/GetRefundSource.java
-  - src/main/java/com/mollie/mollie/models/operations/GetRefundType.java
   - src/main/java/com/mollie/mollie/models/operations/GetSettlementAmount.java
   - src/main/java/com/mollie/mollie/models/operations/GetSettlementCapturesRequest.java
   - src/main/java/com/mollie/mollie/models/operations/GetSettlementCapturesRequestBuilder.java
@@ -2404,16 +2160,13 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetSettlementResponse.java
   - src/main/java/com/mollie/mollie/models/operations/GetSettlementResponseBody.java
   - src/main/java/com/mollie/mollie/models/operations/GetSettlementSelf.java
-  - src/main/java/com/mollie/mollie/models/operations/GetSettlementStatus.java
   - src/main/java/com/mollie/mollie/models/operations/GetShipmentDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/GetShipmentLines.java
   - src/main/java/com/mollie/mollie/models/operations/GetShipmentLinks.java
-  - src/main/java/com/mollie/mollie/models/operations/GetShipmentMode.java
   - src/main/java/com/mollie/mollie/models/operations/GetShipmentRequest.java
   - src/main/java/com/mollie/mollie/models/operations/GetShipmentRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/GetShipmentResponse.java
   - src/main/java/com/mollie/mollie/models/operations/GetShipmentResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/GetShipmentSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/GetShipmentSelf.java
   - src/main/java/com/mollie/mollie/models/operations/GetShipmentTotalAmount.java
   - src/main/java/com/mollie/mollie/models/operations/GetShipmentTracking.java
@@ -2423,37 +2176,27 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionApplicationFee.java
   - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionCustomer.java
   - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionDocumentation.java
-  - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionInterval.java
   - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionLinks.java
   - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionMetadata.java
   - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionMetadata2.java
-  - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionMethod.java
-  - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionMode.java
   - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionPayments.java
   - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionRequest.java
   - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionResponse.java
   - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionSelf.java
-  - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionStatus.java
   - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionSubscriptionsAPIAmount.java
   - src/main/java/com/mollie/mollie/models/operations/GetTerminalDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/GetTerminalLinks.java
-  - src/main/java/com/mollie/mollie/models/operations/GetTerminalMode.java
   - src/main/java/com/mollie/mollie/models/operations/GetTerminalRequest.java
   - src/main/java/com/mollie/mollie/models/operations/GetTerminalRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/GetTerminalResponse.java
   - src/main/java/com/mollie/mollie/models/operations/GetTerminalResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/GetTerminalSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/GetTerminalSelf.java
   - src/main/java/com/mollie/mollie/models/operations/GrossAmount.java
-  - src/main/java/com/mollie/mollie/models/operations/Grouping.java
   - src/main/java/com/mollie/mollie/models/operations/Image.java
   - src/main/java/com/mollie/mollie/models/operations/ImageUrl.java
-  - src/main/java/com/mollie/mollie/models/operations/IncludeWallets.java
   - src/main/java/com/mollie/mollie/models/operations/InitialAmount.java
-  - src/main/java/com/mollie/mollie/models/operations/Interval.java
   - src/main/java/com/mollie/mollie/models/operations/Invoices.java
   - src/main/java/com/mollie/mollie/models/operations/Issuers.java
   - src/main/java/com/mollie/mollie/models/operations/Lines.java
@@ -2468,7 +2211,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListAllChargebacksRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/ListAllChargebacksResponse.java
   - src/main/java/com/mollie/mollie/models/operations/ListAllChargebacksResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/ListAllChargebacksSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/ListAllChargebacksSelf.java
   - src/main/java/com/mollie/mollie/models/operations/ListAllMethodsDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/ListAllMethodsEmbedded.java
@@ -2479,7 +2221,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListAllMethodsRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/ListAllMethodsResponse.java
   - src/main/java/com/mollie/mollie/models/operations/ListAllMethodsResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/ListAllMethodsSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/ListAllMethodsSelf.java
   - src/main/java/com/mollie/mollie/models/operations/ListAllRefundsDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/ListAllRefundsEmbedded.java
@@ -2491,7 +2232,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListAllRefundsRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/ListAllRefundsResponse.java
   - src/main/java/com/mollie/mollie/models/operations/ListAllRefundsResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/ListAllRefundsSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/ListAllRefundsSelf.java
   - src/main/java/com/mollie/mollie/models/operations/ListAllSubscriptionsDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/ListAllSubscriptionsEmbedded.java
@@ -2502,7 +2242,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListAllSubscriptionsRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/ListAllSubscriptionsResponse.java
   - src/main/java/com/mollie/mollie/models/operations/ListAllSubscriptionsResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/ListAllSubscriptionsSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/ListAllSubscriptionsSelf.java
   - src/main/java/com/mollie/mollie/models/operations/ListAllSubscriptionsSubscriptions.java
   - src/main/java/com/mollie/mollie/models/operations/ListBalanceTransactionsDocumentation.java
@@ -2520,7 +2259,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListBalancesResponse.java
   - src/main/java/com/mollie/mollie/models/operations/ListBalancesResponseBody.java
   - src/main/java/com/mollie/mollie/models/operations/ListCapabilitiesCapabilitiesAPILinks.java
-  - src/main/java/com/mollie/mollie/models/operations/ListCapabilitiesCapabilitiesAPIStatus.java
   - src/main/java/com/mollie/mollie/models/operations/ListCapabilitiesDashboard.java
   - src/main/java/com/mollie/mollie/models/operations/ListCapabilitiesDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/ListCapabilitiesEmbedded.java
@@ -2528,7 +2266,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListCapabilitiesRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/ListCapabilitiesResponse.java
   - src/main/java/com/mollie/mollie/models/operations/ListCapabilitiesResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/ListCapabilitiesStatus.java
   - src/main/java/com/mollie/mollie/models/operations/ListCapabilitiesStatusReason.java
   - src/main/java/com/mollie/mollie/models/operations/ListCapturesCaptures.java
   - src/main/java/com/mollie/mollie/models/operations/ListCapturesDocumentation.java
@@ -2540,7 +2277,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListCapturesRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/ListCapturesResponse.java
   - src/main/java/com/mollie/mollie/models/operations/ListCapturesResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/ListCapturesSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/ListCapturesSelf.java
   - src/main/java/com/mollie/mollie/models/operations/ListChargebacksChargebacks.java
   - src/main/java/com/mollie/mollie/models/operations/ListChargebacksDocumentation.java
@@ -2552,7 +2288,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListChargebacksRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/ListChargebacksResponse.java
   - src/main/java/com/mollie/mollie/models/operations/ListChargebacksResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/ListChargebacksSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/ListChargebacksSelf.java
   - src/main/java/com/mollie/mollie/models/operations/ListClientsAddress.java
   - src/main/java/com/mollie/mollie/models/operations/ListClientsCapabilities.java
@@ -2571,9 +2306,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsAPIResponseLinks.java
   - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsAPIResponseOrganization.java
   - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsAPIResponseSelf.java
-  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsAPIResponseStatus.java
   - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsAPISelf.java
-  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsAPIStatus.java
   - src/main/java/com/mollie/mollie/models/operations/ListClientsCommission.java
   - src/main/java/com/mollie/mollie/models/operations/ListClientsDashboard.java
   - src/main/java/com/mollie/mollie/models/operations/ListClientsDocumentation.java
@@ -2591,7 +2324,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListClientsSelf.java
   - src/main/java/com/mollie/mollie/models/operations/ListClientsStatus.java
   - src/main/java/com/mollie/mollie/models/operations/ListClientsStatusReason.java
-  - src/main/java/com/mollie/mollie/models/operations/ListClientsVatRegulation.java
   - src/main/java/com/mollie/mollie/models/operations/ListCustomerPaymentsDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/ListCustomerPaymentsEmbedded.java
   - src/main/java/com/mollie/mollie/models/operations/ListCustomerPaymentsLinks.java
@@ -2602,7 +2334,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListCustomerPaymentsRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/ListCustomerPaymentsResponse.java
   - src/main/java/com/mollie/mollie/models/operations/ListCustomerPaymentsResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/ListCustomerPaymentsSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/ListCustomerPaymentsSelf.java
   - src/main/java/com/mollie/mollie/models/operations/ListCustomersDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/ListCustomersEmbedded.java
@@ -2613,7 +2344,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListCustomersRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/ListCustomersResponse.java
   - src/main/java/com/mollie/mollie/models/operations/ListCustomersResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/ListCustomersSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/ListCustomersSelf.java
   - src/main/java/com/mollie/mollie/models/operations/ListInvoicesDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/ListInvoicesEmbedded.java
@@ -2635,7 +2365,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListMandatesRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/ListMandatesResponse.java
   - src/main/java/com/mollie/mollie/models/operations/ListMandatesResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/ListMandatesSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/ListMandatesSelf.java
   - src/main/java/com/mollie/mollie/models/operations/ListMethodsDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/ListMethodsEmbedded.java
@@ -2645,7 +2374,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListMethodsRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/ListMethodsResponse.java
   - src/main/java/com/mollie/mollie/models/operations/ListMethodsResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/ListMethodsSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/ListMethodsSelf.java
   - src/main/java/com/mollie/mollie/models/operations/ListOrderRefundsDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/ListOrderRefundsEmbedded.java
@@ -2657,7 +2385,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListOrderRefundsRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/ListOrderRefundsResponse.java
   - src/main/java/com/mollie/mollie/models/operations/ListOrderRefundsResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/ListOrderRefundsSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/ListOrderRefundsSelf.java
   - src/main/java/com/mollie/mollie/models/operations/ListOrdersDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/ListOrdersEmbedded.java
@@ -2668,7 +2395,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListOrdersRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/ListOrdersResponse.java
   - src/main/java/com/mollie/mollie/models/operations/ListOrdersResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/ListOrdersSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/ListOrdersSelf.java
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentLinksDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentLinksEmbedded.java
@@ -2679,7 +2405,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentLinksRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentLinksResponse.java
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentLinksResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/ListPaymentLinksSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentLinksSelf.java
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentsDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentsEmbedded.java
@@ -2691,7 +2416,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentsRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentsResponse.java
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentsResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/ListPaymentsSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentsSelf.java
   - src/main/java/com/mollie/mollie/models/operations/ListPermissionsDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/ListPermissionsEmbedded.java
@@ -2720,7 +2444,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListRefundsRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/ListRefundsResponse.java
   - src/main/java/com/mollie/mollie/models/operations/ListRefundsResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/ListRefundsSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/ListRefundsSelf.java
   - src/main/java/com/mollie/mollie/models/operations/ListSettlementsDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/ListSettlementsEmbedded.java
@@ -2741,7 +2464,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListShipmentsRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/ListShipmentsResponse.java
   - src/main/java/com/mollie/mollie/models/operations/ListShipmentsResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/ListShipmentsSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/ListShipmentsSelf.java
   - src/main/java/com/mollie/mollie/models/operations/ListSubscriptionPaymentsDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/ListSubscriptionPaymentsEmbedded.java
@@ -2753,7 +2475,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListSubscriptionPaymentsRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/ListSubscriptionPaymentsResponse.java
   - src/main/java/com/mollie/mollie/models/operations/ListSubscriptionPaymentsResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/ListSubscriptionPaymentsSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/ListSubscriptionPaymentsSelf.java
   - src/main/java/com/mollie/mollie/models/operations/ListSubscriptionsDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/ListSubscriptionsEmbedded.java
@@ -2764,7 +2485,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListSubscriptionsRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/ListSubscriptionsResponse.java
   - src/main/java/com/mollie/mollie/models/operations/ListSubscriptionsResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/ListSubscriptionsSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/ListSubscriptionsSelf.java
   - src/main/java/com/mollie/mollie/models/operations/ListSubscriptionsSubscriptions.java
   - src/main/java/com/mollie/mollie/models/operations/ListTerminalsDocumentation.java
@@ -2776,39 +2496,31 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListTerminalsRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/ListTerminalsResponse.java
   - src/main/java/com/mollie/mollie/models/operations/ListTerminalsResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/ListTerminalsSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/ListTerminalsSelf.java
-  - src/main/java/com/mollie/mollie/models/operations/Locale.java
   - src/main/java/com/mollie/mollie/models/operations/ManageOrderLinesAmount.java
   - src/main/java/com/mollie/mollie/models/operations/ManageOrderLinesRequest.java
   - src/main/java/com/mollie/mollie/models/operations/ManageOrderLinesRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/ManageOrderLinesRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/ManageOrderLinesResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/ManageOrderLinesSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/Mandates.java
   - src/main/java/com/mollie/mollie/models/operations/MaximumAmount.java
   - src/main/java/com/mollie/mollie/models/operations/Metadata.java
   - src/main/java/com/mollie/mollie/models/operations/Metadata2.java
-  - src/main/java/com/mollie/mollie/models/operations/Method.java
   - src/main/java/com/mollie/mollie/models/operations/Methods.java
   - src/main/java/com/mollie/mollie/models/operations/MinimumAmount.java
   - src/main/java/com/mollie/mollie/models/operations/MobileAppCheckout.java
-  - src/main/java/com/mollie/mollie/models/operations/Mode.java
   - src/main/java/com/mollie/mollie/models/operations/NetAmount.java
   - src/main/java/com/mollie/mollie/models/operations/Next.java
   - src/main/java/com/mollie/mollie/models/operations/Onboarding.java
-  - src/main/java/com/mollie/mollie/models/operations/Operation.java
   - src/main/java/com/mollie/mollie/models/operations/Operations.java
   - src/main/java/com/mollie/mollie/models/operations/Order.java
   - src/main/java/com/mollie/mollie/models/operations/Orders.java
   - src/main/java/com/mollie/mollie/models/operations/Organization.java
   - src/main/java/com/mollie/mollie/models/operations/Owner.java
-  - src/main/java/com/mollie/mollie/models/operations/PartnerType.java
   - src/main/java/com/mollie/mollie/models/operations/Payment.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentCreateRouteAmount.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentCreateRouteDelayedRoutingAPIAmount.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentCreateRouteDelayedRoutingAPIDestination.java
-  - src/main/java/com/mollie/mollie/models/operations/PaymentCreateRouteDelayedRoutingAPIType.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentCreateRouteDestination.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentCreateRouteDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentCreateRouteLinks.java
@@ -2817,9 +2529,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/PaymentCreateRouteRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentCreateRouteResponse.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentCreateRouteResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/PaymentCreateRouteSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentCreateRouteSelf.java
-  - src/main/java/com/mollie/mollie/models/operations/PaymentCreateRouteType.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentLink.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentLinks.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentListRoutesAmount.java
@@ -2836,9 +2546,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/PaymentListRoutesRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentListRoutesResponse.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentListRoutesResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/PaymentListRoutesSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentListRoutesSelf.java
-  - src/main/java/com/mollie/mollie/models/operations/PaymentListRoutesType.java
   - src/main/java/com/mollie/mollie/models/operations/Payments.java
   - src/main/java/com/mollie/mollie/models/operations/Pdf.java
   - src/main/java/com/mollie/mollie/models/operations/PendingAmount.java
@@ -2850,38 +2558,32 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/Profile.java
   - src/main/java/com/mollie/mollie/models/operations/Profiles.java
   - src/main/java/com/mollie/mollie/models/operations/QueryParamAmount.java
-  - src/main/java/com/mollie/mollie/models/operations/QueryParamLocale.java
-  - src/main/java/com/mollie/mollie/models/operations/QueryParamSequenceType.java
-  - src/main/java/com/mollie/mollie/models/operations/QueryParamSort.java
   - src/main/java/com/mollie/mollie/models/operations/Reason.java
   - src/main/java/com/mollie/mollie/models/operations/Recurring.java
   - src/main/java/com/mollie/mollie/models/operations/Refunds.java
+  - src/main/java/com/mollie/mollie/models/operations/ReleaseAuthorizationRequest.java
+  - src/main/java/com/mollie/mollie/models/operations/ReleaseAuthorizationRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations/ReleaseAuthorizationResponse.java
   - src/main/java/com/mollie/mollie/models/operations/RequestApplePayPaymentSessionRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/RequestApplePayPaymentSessionRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/RequestApplePayPaymentSessionResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/RequestApplePayPaymentSessionResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/RequestApplePayPaymentSessionSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/Requirements.java
-  - src/main/java/com/mollie/mollie/models/operations/Resource.java
   - src/main/java/com/mollie/mollie/models/operations/ResultAmount.java
   - src/main/java/com/mollie/mollie/models/operations/Review.java
   - src/main/java/com/mollie/mollie/models/operations/RevokeMandateRequest.java
   - src/main/java/com/mollie/mollie/models/operations/RevokeMandateRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/RevokeMandateResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/RevokeMandateSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/Routes.java
   - src/main/java/com/mollie/mollie/models/operations/Routing.java
   - src/main/java/com/mollie/mollie/models/operations/RoutingReversals.java
   - src/main/java/com/mollie/mollie/models/operations/SDKMethodInterfaces.java
   - src/main/java/com/mollie/mollie/models/operations/Self.java
-  - src/main/java/com/mollie/mollie/models/operations/SequenceType.java
   - src/main/java/com/mollie/mollie/models/operations/Settlement.java
   - src/main/java/com/mollie/mollie/models/operations/SettlementAmount.java
   - src/main/java/com/mollie/mollie/models/operations/Settlements.java
   - src/main/java/com/mollie/mollie/models/operations/Shipments.java
   - src/main/java/com/mollie/mollie/models/operations/ShippingAddress.java
   - src/main/java/com/mollie/mollie/models/operations/Signuplink.java
-  - src/main/java/com/mollie/mollie/models/operations/Sort.java
   - src/main/java/com/mollie/mollie/models/operations/Source.java
   - src/main/java/com/mollie/mollie/models/operations/Status.java
   - src/main/java/com/mollie/mollie/models/operations/StatusReason.java
@@ -2895,23 +2597,19 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/Totals.java
   - src/main/java/com/mollie/mollie/models/operations/Tracking.java
   - src/main/java/com/mollie/mollie/models/operations/TransferDestination.java
-  - src/main/java/com/mollie/mollie/models/operations/TransferFrequency.java
   - src/main/java/com/mollie/mollie/models/operations/TransferThreshold.java
   - src/main/java/com/mollie/mollie/models/operations/Two.java
-  - src/main/java/com/mollie/mollie/models/operations/Type.java
   - src/main/java/com/mollie/mollie/models/operations/UnitPrice.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateCustomerRequest.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateCustomerRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateCustomerRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateCustomerResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/UpdateCustomerSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateOrderBillingAddress.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateOrderLineDiscountAmount.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateOrderLineRequest.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateOrderLineRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateOrderLineRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateOrderLineResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/UpdateOrderLineSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateOrderLineTotalAmount.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateOrderLineUnitPrice.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateOrderLineVatAmount.java
@@ -2919,25 +2617,21 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/UpdateOrderRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateOrderRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateOrderResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/UpdateOrderSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateOrderShippingAddress.java
   - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLinkAmount.java
   - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLinkDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLinkLinks.java
-  - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLinkMode.java
   - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLinkPaymentLink.java
   - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLinkRequest.java
   - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLinkRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLinkRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLinkResponse.java
   - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLinkResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLinkSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLinkSelf.java
   - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentRequest.java
   - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateProfileRequest.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateProfileRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateProfileRequestBuilder.java
@@ -2946,17 +2640,14 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/UpdateShipmentRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateShipmentRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateShipmentResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/UpdateShipmentSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateShipmentTracking.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionAmount.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionRequest.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionSecurity.java
   - src/main/java/com/mollie/mollie/models/operations/UserAgentTokens.java
   - src/main/java/com/mollie/mollie/models/operations/VatAmount.java
-  - src/main/java/com/mollie/mollie/models/operations/VatRegulation.java
   - src/main/java/com/mollie/mollie/utils/BackoffStrategy.java
   - src/main/java/com/mollie/mollie/utils/BigDecimalString.java
   - src/main/java/com/mollie/mollie/utils/BigIntegerString.java
@@ -4094,6 +3785,7 @@ examples:
       parameters:
         path:
           id: "tr_5B8cwPMGnU6qLbRvo7qEZo"
+          paymentId: "tr_5B8cwPMGnU6qLbRvo7qEZo"
         query:
           include: "details.qrCode"
           embed: "captures"
@@ -4105,6 +3797,7 @@ examples:
       parameters:
         path:
           id: "tr_5B8cwPMGnU6qLbRvo7qEZo"
+          paymentId: "tr_5B8cwPMGnU6qLbRvo7qEZo"
         query:
           include: "details.qrCode"
           embed: "captures"
@@ -4116,6 +3809,7 @@ examples:
       parameters:
         path:
           id: "tr_5B8cwPMGnU6qLbRvo7qEZo"
+          paymentId: "tr_5B8cwPMGnU6qLbRvo7qEZo"
         query:
           include: "details.qrCode"
           embed: "captures"
@@ -4127,6 +3821,7 @@ examples:
       parameters:
         path:
           id: "tr_5B8cwPMGnU6qLbRvo7qEZo"
+          paymentId: "tr_5B8cwPMGnU6qLbRvo7qEZo"
         query:
           include: "details.qrCode"
           embed: "captures"
@@ -4160,6 +3855,7 @@ examples:
       parameters:
         path:
           id: "tr_5B8cwPMGnU6qLbRvo7qEZo"
+          paymentId: "tr_5B8cwPMGnU6qLbRvo7qEZo"
       responses:
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "No entity exists with token '7UhSN1zuXS'", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
@@ -4179,6 +3875,7 @@ examples:
       parameters:
         path:
           id: "tr_5B8cwPMGnU6qLbRvo7qEZo"
+          paymentId: "tr_5B8cwPMGnU6qLbRvo7qEZo"
         query:
           testmode: false
       responses:
@@ -5328,7 +5025,7 @@ examples:
           testmode: false
       responses:
         "200":
-          application/hal+json: {"resource": "subscription", "id": "sub_rVKGtNd6s3", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "25.00"}, "times": 4, "timesRemaining": 4, "interval": "... months", "startDate": "2023-06-01", "nextPaymentDate": "2023-09-01", "description": "Quarterly payment", "method": null, "webhookUrl": "https://webshop.example.org/payments/webhook", "customerId": "cst_stTC2WHAuS", "mandateId": "mdt_38HS4fsS", "createdAt": "2023-04-06T13:10:19.0Z", "_links": {"self": {"type": "application/hal+json"}, "customer": {"href": "https://api.mollie.com/v2/customers/cst_stTC2WHAuS", "type": "application/hal+json"}, "documentation": {"type": "text/html"}}}
+          application/hal+json: {"resource": "subscription", "id": "sub_rVKGtNd6s3", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "25.00"}, "times": 4, "timesRemaining": 4, "interval": "3 months", "startDate": "2023-06-01", "nextPaymentDate": "2023-09-01", "description": "Quarterly payment", "method": null, "webhookUrl": "https://webshop.example.org/payments/webhook", "customerId": "cst_stTC2WHAuS", "mandateId": "mdt_38HS4fsS", "createdAt": "2023-04-06T13:10:19.0Z", "_links": {"self": {"type": "application/hal+json"}, "customer": {"href": "https://api.mollie.com/v2/customers/cst_stTC2WHAuS", "type": "application/hal+json"}, "documentation": {"type": "text/html"}}}
     "":
       parameters:
         path:
@@ -5445,5 +5142,19 @@ examples:
       responses:
         "400":
           application/hal+json: {"status": 400, "title": "Bad Request", "detail": "Invalid cursor value", "field": "from", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+  release-authorization:
+    "":
+      parameters:
+        path:
+          paymentId: "tr_5B8cwPMGnU6qLbRvo7qEZo"
+        query:
+          testmode: false
+      responses:
+        "202":
+          application/hal+json: {}
+        "404":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "No entity exists with token '7UhSN1zuXS'", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+        "422":
+          application/hal+json: {"status": 422, "title": "Unprocessable Entity", "detail": "Authorization cannot be released because the payment is not in the authorized\nstate.", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.0
 generatedTests: {}

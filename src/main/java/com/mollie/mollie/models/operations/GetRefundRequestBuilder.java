@@ -13,7 +13,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetRefundRequestBuilder {
 
-    private GetRefundSecurity security;
     private String paymentId;
     private String id;
     private JsonNullable<String> include = JsonNullable.undefined();
@@ -25,12 +24,6 @@ public class GetRefundRequestBuilder {
 
     public GetRefundRequestBuilder(SDKMethodInterfaces.MethodCallGetRefund sdk) {
         this.sdk = sdk;
-    }
-
-    public GetRefundRequestBuilder security(GetRefundSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public GetRefundRequestBuilder paymentId(String paymentId) {
@@ -73,8 +66,7 @@ public class GetRefundRequestBuilder {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.get(
-            security,
+        return sdk.getRefund(
             paymentId,
             id,
             include,

@@ -24,7 +24,7 @@ public class GetInvoiceRequestBuilder {
 
     public GetInvoiceResponse call() throws Exception {
 
-        return sdk.get(
+        return sdk.getInvoice(
             id);
     }
 }

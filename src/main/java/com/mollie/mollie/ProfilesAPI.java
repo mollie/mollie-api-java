@@ -22,7 +22,6 @@ import com.mollie.mollie.models.operations.DeleteProfileResponse;
 import com.mollie.mollie.models.operations.GetCurrentProfileRequestBuilder;
 import com.mollie.mollie.models.operations.GetCurrentProfileResponse;
 import com.mollie.mollie.models.operations.GetCurrentProfileResponseBody;
-import com.mollie.mollie.models.operations.GetCurrentProfileSecurity;
 import com.mollie.mollie.models.operations.GetProfileRequest;
 import com.mollie.mollie.models.operations.GetProfileRequestBuilder;
 import com.mollie.mollie.models.operations.GetProfileResponse;
@@ -75,11 +74,14 @@ public class ProfilesAPI implements
      * Create profile
      * Create a profile to process payments on.
      * 
-     * Profiles are required for payment processing. Normally they are created via the Mollie dashboard. Alternatively, you
-     * can use this endpoint to automate profile creation.
+     * Profiles are required for payment processing. Normally they are created via the Mollie dashboard. Alternatively, you can use this endpoint to automate profile creation.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **profiles.write**](/reference/authentication)
      * @return The call builder
      */
-    public CreateProfileRequestBuilder create() {
+    public CreateProfileRequestBuilder createProfile() {
         return new CreateProfileRequestBuilder(this);
     }
 
@@ -87,13 +89,16 @@ public class ProfilesAPI implements
      * Create profile
      * Create a profile to process payments on.
      * 
-     * Profiles are required for payment processing. Normally they are created via the Mollie dashboard. Alternatively, you
-     * can use this endpoint to automate profile creation.
+     * Profiles are required for payment processing. Normally they are created via the Mollie dashboard. Alternatively, you can use this endpoint to automate profile creation.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **profiles.write**](/reference/authentication)
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateProfileResponse create(
+    public CreateProfileResponse createProfile(
             CreateProfileRequestBody request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
@@ -175,19 +180,8 @@ public class ProfilesAPI implements
         CreateProfileResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
+            // no content 
+            return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "422")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
@@ -235,9 +229,13 @@ public class ProfilesAPI implements
      * Retrieve a list of all of your profiles.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **profiles.read**](/reference/authentication)
      * @return The call builder
      */
-    public ListProfilesRequestBuilder list() {
+    public ListProfilesRequestBuilder listProfiles() {
         return new ListProfilesRequestBuilder(this);
     }
 
@@ -246,11 +244,15 @@ public class ProfilesAPI implements
      * Retrieve a list of all of your profiles.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **profiles.read**](/reference/authentication)
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListProfilesResponse listDirect() throws Exception {
-        return list(Optional.empty(), JsonNullable.undefined());
+    public ListProfilesResponse listProfilesDirect() throws Exception {
+        return listProfiles(Optional.empty(), JsonNullable.undefined());
     }
     
     /**
@@ -258,13 +260,16 @@ public class ProfilesAPI implements
      * Retrieve a list of all of your profiles.
      * 
      * The results are paginated.
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-    result set.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **profiles.read**](/reference/authentication)
+     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListProfilesResponse list(
+    public ListProfilesResponse listProfiles(
             Optional<String> from,
             JsonNullable<Long> limit) throws Exception {
         ListProfilesRequest request =
@@ -404,37 +409,47 @@ public class ProfilesAPI implements
     /**
      * Get profile
      * Retrieve a single profile by its ID.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **profiles.read**](/reference/authentication)
      * @return The call builder
      */
-    public GetProfileRequestBuilder get() {
+    public GetProfileRequestBuilder getProfile() {
         return new GetProfileRequestBuilder(this);
     }
 
     /**
      * Get profile
      * Retrieve a single profile by its ID.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **profiles.read**](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetProfileResponse get(
+    public GetProfileResponse getProfile(
             String id) throws Exception {
-        return get(id, JsonNullable.undefined());
+        return getProfile(id, JsonNullable.undefined());
     }
     
     /**
      * Get profile
      * Retrieve a single profile by its ID.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **profiles.read**](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetProfileResponse get(
+    public GetProfileResponse getProfile(
             String id,
             JsonNullable<Boolean> testmode) throws Exception {
         GetProfileRequest request =
@@ -593,11 +608,14 @@ public class ProfilesAPI implements
      * Update profile
      * Update an existing profile.
      * 
-     * Profiles are required for payment processing. Normally they are created and updated via the Mollie dashboard.
-     * Alternatively, you can use this endpoint to automate profile management.
+     * Profiles are required for payment processing. Normally they are created and updated via the Mollie dashboard. Alternatively, you can use this endpoint to automate profile management.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **profiles.write**](/reference/authentication)
      * @return The call builder
      */
-    public UpdateProfileRequestBuilder update() {
+    public UpdateProfileRequestBuilder updateProfile() {
         return new UpdateProfileRequestBuilder(this);
     }
 
@@ -605,14 +623,17 @@ public class ProfilesAPI implements
      * Update profile
      * Update an existing profile.
      * 
-     * Profiles are required for payment processing. Normally they are created and updated via the Mollie dashboard.
-     * Alternatively, you can use this endpoint to automate profile management.
+     * Profiles are required for payment processing. Normally they are created and updated via the Mollie dashboard. Alternatively, you can use this endpoint to automate profile management.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **profiles.write**](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
      * @param requestBody
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdateProfileResponse update(
+    public UpdateProfileResponse updateProfile(
             String id,
             UpdateProfileRequestBody requestBody) throws Exception {
         UpdateProfileRequest request =
@@ -704,19 +725,8 @@ public class ProfilesAPI implements
         UpdateProfileResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
+            // no content 
+            return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
@@ -794,20 +804,28 @@ public class ProfilesAPI implements
     /**
      * Delete profile
      * Delete a profile. A deleted profile and its related credentials can no longer be used for accepting payments.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **profiles.write**](/reference/authentication)
      * @return The call builder
      */
-    public DeleteProfileRequestBuilder delete() {
+    public DeleteProfileRequestBuilder deleteProfile() {
         return new DeleteProfileRequestBuilder(this);
     }
 
     /**
      * Delete profile
      * Delete a profile. A deleted profile and its related credentials can no longer be used for accepting payments.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **profiles.write**](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DeleteProfileResponse delete(
+    public DeleteProfileResponse deleteProfile(
             String id) throws Exception {
         DeleteProfileRequest request =
             DeleteProfileRequest
@@ -957,30 +975,32 @@ public class ProfilesAPI implements
 
     /**
      * Get current profile
-     * Retrieve the currently authenticated profile. A convenient alias of the [Get profile](get-profile)
-     * endpoint.
+     * Retrieve the currently authenticated profile. A convenient alias of the [Get profile](get-profile) endpoint.
      * 
-     * For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint
-     * documentation.
+     * For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint documentation.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
      * @return The call builder
      */
-    public GetCurrentProfileRequestBuilder getCurrent() {
+    public GetCurrentProfileRequestBuilder getCurrentProfile() {
         return new GetCurrentProfileRequestBuilder(this);
     }
 
     /**
      * Get current profile
-     * Retrieve the currently authenticated profile. A convenient alias of the [Get profile](get-profile)
-     * endpoint.
+     * Retrieve the currently authenticated profile. A convenient alias of the [Get profile](get-profile) endpoint.
      * 
-     * For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint
-     * documentation.
-     * @param security The security details to use for authentication.
+     * For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint documentation.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetCurrentProfileResponse getCurrent(
-            GetCurrentProfileSecurity security) throws Exception {
+    public GetCurrentProfileResponse getCurrentProfileDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -991,11 +1011,9 @@ public class ProfilesAPI implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()

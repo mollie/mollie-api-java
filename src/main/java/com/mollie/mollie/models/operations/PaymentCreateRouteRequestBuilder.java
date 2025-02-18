@@ -10,19 +10,12 @@ import java.util.Optional;
 
 public class PaymentCreateRouteRequestBuilder {
 
-    private PaymentCreateRouteSecurity security;
     private String paymentId;
     private Optional<? extends PaymentCreateRouteRequestBody> requestBody = Optional.empty();
     private final SDKMethodInterfaces.MethodCallPaymentCreateRoute sdk;
 
     public PaymentCreateRouteRequestBuilder(SDKMethodInterfaces.MethodCallPaymentCreateRoute sdk) {
         this.sdk = sdk;
-    }
-
-    public PaymentCreateRouteRequestBuilder security(PaymentCreateRouteSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public PaymentCreateRouteRequestBuilder paymentId(String paymentId) {
@@ -45,8 +38,7 @@ public class PaymentCreateRouteRequestBuilder {
 
     public PaymentCreateRouteResponse call() throws Exception {
 
-        return sdk.create(
-            security,
+        return sdk.paymentCreateRoute(
             paymentId,
             requestBody);
     }

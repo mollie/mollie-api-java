@@ -10,7 +10,6 @@ import java.util.Optional;
 public class CreateCustomerRequestBuilder {
 
     private Optional<? extends CreateCustomerRequestBody> request = Optional.empty();
-    private CreateCustomerSecurity security;
     private final SDKMethodInterfaces.MethodCallCreateCustomer sdk;
 
     public CreateCustomerRequestBuilder(SDKMethodInterfaces.MethodCallCreateCustomer sdk) {
@@ -29,16 +28,9 @@ public class CreateCustomerRequestBuilder {
         return this;
     }
 
-    public CreateCustomerRequestBuilder security(CreateCustomerSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
-    }
-
     public CreateCustomerResponse call() throws Exception {
 
-        return sdk.create(
-            request,
-            security);
+        return sdk.createCustomer(
+            request);
     }
 }

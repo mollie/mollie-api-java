@@ -4,26 +4,17 @@
 
 package com.mollie.mollie.models.operations;
 
-import com.mollie.mollie.utils.Utils;
 
 public class GetCurrentProfileRequestBuilder {
 
-    private GetCurrentProfileSecurity security;
     private final SDKMethodInterfaces.MethodCallGetCurrentProfile sdk;
 
     public GetCurrentProfileRequestBuilder(SDKMethodInterfaces.MethodCallGetCurrentProfile sdk) {
         this.sdk = sdk;
     }
 
-    public GetCurrentProfileRequestBuilder security(GetCurrentProfileSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
-    }
-
     public GetCurrentProfileResponse call() throws Exception {
 
-        return sdk.getCurrent(
-            security);
+        return sdk.getCurrentProfileDirect();
     }
 }

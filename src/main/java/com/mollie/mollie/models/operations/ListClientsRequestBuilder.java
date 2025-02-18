@@ -66,7 +66,7 @@ public class ListClientsRequestBuilder {
         if (limit == null) {
             limit = _SINGLETON_VALUE_Limit.value();
         }
-        return sdk.list(
+        return sdk.listClients(
             embed,
             from,
             limit);

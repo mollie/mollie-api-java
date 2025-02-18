@@ -24,7 +24,7 @@ public class GetSettlementRefundsRequestBuilder {
 
     public GetSettlementRefundsResponse call() throws Exception {
 
-        return sdk.getRefunds(
+        return sdk.getSettlementRefunds(
             settlementId);
     }
 }

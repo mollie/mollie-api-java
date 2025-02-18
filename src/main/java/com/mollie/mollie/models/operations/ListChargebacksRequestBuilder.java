@@ -9,7 +9,6 @@ import com.mollie.mollie.utils.Utils;
 public class ListChargebacksRequestBuilder {
 
     private ListChargebacksRequest request;
-    private ListChargebacksSecurity security;
     private final SDKMethodInterfaces.MethodCallListChargebacks sdk;
 
     public ListChargebacksRequestBuilder(SDKMethodInterfaces.MethodCallListChargebacks sdk) {
@@ -22,16 +21,9 @@ public class ListChargebacksRequestBuilder {
         return this;
     }
 
-    public ListChargebacksRequestBuilder security(ListChargebacksSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
-    }
-
     public ListChargebacksResponse call() throws Exception {
 
-        return sdk.list(
-            request,
-            security);
+        return sdk.listChargebacks(
+            request);
     }
 }

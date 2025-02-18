@@ -14,7 +14,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class UpdatePaymentLinkRequestBuilder {
 
-    private UpdatePaymentLinkSecurity security;
     private String id;
     private JsonNullable<Boolean> testmode = Utils.readDefaultOrConstValue(
                             "testmode",
@@ -25,12 +24,6 @@ public class UpdatePaymentLinkRequestBuilder {
 
     public UpdatePaymentLinkRequestBuilder(SDKMethodInterfaces.MethodCallUpdatePaymentLink sdk) {
         this.sdk = sdk;
-    }
-
-    public UpdatePaymentLinkRequestBuilder security(UpdatePaymentLinkSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public UpdatePaymentLinkRequestBuilder id(String id) {
@@ -67,8 +60,7 @@ public class UpdatePaymentLinkRequestBuilder {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.update(
-            security,
+        return sdk.updatePaymentLink(
             id,
             testmode,
             requestBody);

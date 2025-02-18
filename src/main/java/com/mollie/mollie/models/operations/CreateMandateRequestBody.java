@@ -26,9 +26,11 @@ public class CreateMandateRequestBody {
      * Payment method of the mandate.
      * 
      * SEPA Direct Debit and PayPal mandates can be created directly.
+     * 
+     * Possible values: `creditcard` `directdebit` `paypal`
      */
     @JsonProperty("method")
-    private CreateMandateMethod method;
+    private String method;
 
     /**
      * The customer's name.
@@ -65,24 +67,21 @@ public class CreateMandateRequestBody {
     private JsonNullable<String> signatureDate;
 
     /**
-     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
-     * decline Direct Debit payments if the mandate reference is not unique.
+     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will decline Direct Debit payments if the mandate reference is not unique.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mandateReference")
     private JsonNullable<String> mandateReference;
 
     /**
-     * The billing agreement ID given by PayPal. For example: `B-12A34567B8901234CD`. Required for PayPal mandates.
-     * Must provide either this field or `payPalVaultId`, but not both.
+     * The billing agreement ID given by PayPal. For example: `B-12A34567B8901234CD`. Required for PayPal mandates. Must provide either this field or `payPalVaultId`, but not both.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("paypalBillingAgreementId")
     private JsonNullable<String> paypalBillingAgreementId;
 
     /**
-     * The Vault ID given by PayPal. For example: `8kk8451t`. Required for PayPal mandates.
-     * Must provide either this field or `paypalBillingAgreementId`, but not both.
+     * The Vault ID given by PayPal. For example: `8kk8451t`. Required for PayPal mandates. Must provide either this field or `paypalBillingAgreementId`, but not both.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payPalVaultId")
@@ -91,9 +90,7 @@ public class CreateMandateRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
-     * `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("testmode")
@@ -101,7 +98,7 @@ public class CreateMandateRequestBody {
 
     @JsonCreator
     public CreateMandateRequestBody(
-            @JsonProperty("method") CreateMandateMethod method,
+            @JsonProperty("method") String method,
             @JsonProperty("consumerName") String consumerName,
             @JsonProperty("consumerAccount") JsonNullable<String> consumerAccount,
             @JsonProperty("consumerBic") JsonNullable<String> consumerBic,
@@ -134,7 +131,7 @@ public class CreateMandateRequestBody {
     }
     
     public CreateMandateRequestBody(
-            CreateMandateMethod method,
+            String method,
             String consumerName) {
         this(method, consumerName, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
@@ -143,9 +140,11 @@ public class CreateMandateRequestBody {
      * Payment method of the mandate.
      * 
      * SEPA Direct Debit and PayPal mandates can be created directly.
+     * 
+     * Possible values: `creditcard` `directdebit` `paypal`
      */
     @JsonIgnore
-    public CreateMandateMethod method() {
+    public String method() {
         return method;
     }
 
@@ -190,8 +189,7 @@ public class CreateMandateRequestBody {
     }
 
     /**
-     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
-     * decline Direct Debit payments if the mandate reference is not unique.
+     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will decline Direct Debit payments if the mandate reference is not unique.
      */
     @JsonIgnore
     public JsonNullable<String> mandateReference() {
@@ -199,8 +197,7 @@ public class CreateMandateRequestBody {
     }
 
     /**
-     * The billing agreement ID given by PayPal. For example: `B-12A34567B8901234CD`. Required for PayPal mandates.
-     * Must provide either this field or `payPalVaultId`, but not both.
+     * The billing agreement ID given by PayPal. For example: `B-12A34567B8901234CD`. Required for PayPal mandates. Must provide either this field or `payPalVaultId`, but not both.
      */
     @JsonIgnore
     public JsonNullable<String> paypalBillingAgreementId() {
@@ -208,8 +205,7 @@ public class CreateMandateRequestBody {
     }
 
     /**
-     * The Vault ID given by PayPal. For example: `8kk8451t`. Required for PayPal mandates.
-     * Must provide either this field or `paypalBillingAgreementId`, but not both.
+     * The Vault ID given by PayPal. For example: `8kk8451t`. Required for PayPal mandates. Must provide either this field or `paypalBillingAgreementId`, but not both.
      */
     @JsonIgnore
     public JsonNullable<String> payPalVaultId() {
@@ -219,9 +215,7 @@ public class CreateMandateRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
-     * `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      */
     @JsonIgnore
     public JsonNullable<Boolean> testmode() {
@@ -236,8 +230,10 @@ public class CreateMandateRequestBody {
      * Payment method of the mandate.
      * 
      * SEPA Direct Debit and PayPal mandates can be created directly.
+     * 
+     * Possible values: `creditcard` `directdebit` `paypal`
      */
-    public CreateMandateRequestBody withMethod(CreateMandateMethod method) {
+    public CreateMandateRequestBody withMethod(String method) {
         Utils.checkNotNull(method, "method");
         this.method = method;
         return this;
@@ -325,8 +321,7 @@ public class CreateMandateRequestBody {
     }
 
     /**
-     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
-     * decline Direct Debit payments if the mandate reference is not unique.
+     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will decline Direct Debit payments if the mandate reference is not unique.
      */
     public CreateMandateRequestBody withMandateReference(String mandateReference) {
         Utils.checkNotNull(mandateReference, "mandateReference");
@@ -335,8 +330,7 @@ public class CreateMandateRequestBody {
     }
 
     /**
-     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
-     * decline Direct Debit payments if the mandate reference is not unique.
+     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will decline Direct Debit payments if the mandate reference is not unique.
      */
     public CreateMandateRequestBody withMandateReference(JsonNullable<String> mandateReference) {
         Utils.checkNotNull(mandateReference, "mandateReference");
@@ -345,8 +339,7 @@ public class CreateMandateRequestBody {
     }
 
     /**
-     * The billing agreement ID given by PayPal. For example: `B-12A34567B8901234CD`. Required for PayPal mandates.
-     * Must provide either this field or `payPalVaultId`, but not both.
+     * The billing agreement ID given by PayPal. For example: `B-12A34567B8901234CD`. Required for PayPal mandates. Must provide either this field or `payPalVaultId`, but not both.
      */
     public CreateMandateRequestBody withPaypalBillingAgreementId(String paypalBillingAgreementId) {
         Utils.checkNotNull(paypalBillingAgreementId, "paypalBillingAgreementId");
@@ -355,8 +348,7 @@ public class CreateMandateRequestBody {
     }
 
     /**
-     * The billing agreement ID given by PayPal. For example: `B-12A34567B8901234CD`. Required for PayPal mandates.
-     * Must provide either this field or `payPalVaultId`, but not both.
+     * The billing agreement ID given by PayPal. For example: `B-12A34567B8901234CD`. Required for PayPal mandates. Must provide either this field or `payPalVaultId`, but not both.
      */
     public CreateMandateRequestBody withPaypalBillingAgreementId(JsonNullable<String> paypalBillingAgreementId) {
         Utils.checkNotNull(paypalBillingAgreementId, "paypalBillingAgreementId");
@@ -365,8 +357,7 @@ public class CreateMandateRequestBody {
     }
 
     /**
-     * The Vault ID given by PayPal. For example: `8kk8451t`. Required for PayPal mandates.
-     * Must provide either this field or `paypalBillingAgreementId`, but not both.
+     * The Vault ID given by PayPal. For example: `8kk8451t`. Required for PayPal mandates. Must provide either this field or `paypalBillingAgreementId`, but not both.
      */
     public CreateMandateRequestBody withPayPalVaultId(String payPalVaultId) {
         Utils.checkNotNull(payPalVaultId, "payPalVaultId");
@@ -375,8 +366,7 @@ public class CreateMandateRequestBody {
     }
 
     /**
-     * The Vault ID given by PayPal. For example: `8kk8451t`. Required for PayPal mandates.
-     * Must provide either this field or `paypalBillingAgreementId`, but not both.
+     * The Vault ID given by PayPal. For example: `8kk8451t`. Required for PayPal mandates. Must provide either this field or `paypalBillingAgreementId`, but not both.
      */
     public CreateMandateRequestBody withPayPalVaultId(JsonNullable<String> payPalVaultId) {
         Utils.checkNotNull(payPalVaultId, "payPalVaultId");
@@ -387,9 +377,7 @@ public class CreateMandateRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
-     * `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      */
     public CreateMandateRequestBody withTestmode(boolean testmode) {
         Utils.checkNotNull(testmode, "testmode");
@@ -400,9 +388,7 @@ public class CreateMandateRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
-     * `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      */
     public CreateMandateRequestBody withTestmode(JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(testmode, "testmode");
@@ -464,7 +450,7 @@ public class CreateMandateRequestBody {
     
     public final static class Builder {
  
-        private CreateMandateMethod method;
+        private String method;
  
         private String consumerName;
  
@@ -492,8 +478,10 @@ public class CreateMandateRequestBody {
          * Payment method of the mandate.
          * 
          * SEPA Direct Debit and PayPal mandates can be created directly.
+         * 
+         * Possible values: `creditcard` `directdebit` `paypal`
          */
-        public Builder method(CreateMandateMethod method) {
+        public Builder method(String method) {
             Utils.checkNotNull(method, "method");
             this.method = method;
             return this;
@@ -581,8 +569,7 @@ public class CreateMandateRequestBody {
         }
 
         /**
-         * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
-         * decline Direct Debit payments if the mandate reference is not unique.
+         * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will decline Direct Debit payments if the mandate reference is not unique.
          */
         public Builder mandateReference(String mandateReference) {
             Utils.checkNotNull(mandateReference, "mandateReference");
@@ -591,8 +578,7 @@ public class CreateMandateRequestBody {
         }
 
         /**
-         * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
-         * decline Direct Debit payments if the mandate reference is not unique.
+         * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will decline Direct Debit payments if the mandate reference is not unique.
          */
         public Builder mandateReference(JsonNullable<String> mandateReference) {
             Utils.checkNotNull(mandateReference, "mandateReference");
@@ -601,8 +587,7 @@ public class CreateMandateRequestBody {
         }
 
         /**
-         * The billing agreement ID given by PayPal. For example: `B-12A34567B8901234CD`. Required for PayPal mandates.
-         * Must provide either this field or `payPalVaultId`, but not both.
+         * The billing agreement ID given by PayPal. For example: `B-12A34567B8901234CD`. Required for PayPal mandates. Must provide either this field or `payPalVaultId`, but not both.
          */
         public Builder paypalBillingAgreementId(String paypalBillingAgreementId) {
             Utils.checkNotNull(paypalBillingAgreementId, "paypalBillingAgreementId");
@@ -611,8 +596,7 @@ public class CreateMandateRequestBody {
         }
 
         /**
-         * The billing agreement ID given by PayPal. For example: `B-12A34567B8901234CD`. Required for PayPal mandates.
-         * Must provide either this field or `payPalVaultId`, but not both.
+         * The billing agreement ID given by PayPal. For example: `B-12A34567B8901234CD`. Required for PayPal mandates. Must provide either this field or `payPalVaultId`, but not both.
          */
         public Builder paypalBillingAgreementId(JsonNullable<String> paypalBillingAgreementId) {
             Utils.checkNotNull(paypalBillingAgreementId, "paypalBillingAgreementId");
@@ -621,8 +605,7 @@ public class CreateMandateRequestBody {
         }
 
         /**
-         * The Vault ID given by PayPal. For example: `8kk8451t`. Required for PayPal mandates.
-         * Must provide either this field or `paypalBillingAgreementId`, but not both.
+         * The Vault ID given by PayPal. For example: `8kk8451t`. Required for PayPal mandates. Must provide either this field or `paypalBillingAgreementId`, but not both.
          */
         public Builder payPalVaultId(String payPalVaultId) {
             Utils.checkNotNull(payPalVaultId, "payPalVaultId");
@@ -631,8 +614,7 @@ public class CreateMandateRequestBody {
         }
 
         /**
-         * The Vault ID given by PayPal. For example: `8kk8451t`. Required for PayPal mandates.
-         * Must provide either this field or `paypalBillingAgreementId`, but not both.
+         * The Vault ID given by PayPal. For example: `8kk8451t`. Required for PayPal mandates. Must provide either this field or `paypalBillingAgreementId`, but not both.
          */
         public Builder payPalVaultId(JsonNullable<String> payPalVaultId) {
             Utils.checkNotNull(payPalVaultId, "payPalVaultId");
@@ -643,9 +625,7 @@ public class CreateMandateRequestBody {
         /**
          * Whether to create the entity in test mode or live mode.
          * 
-         * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
-         * `testmode` to `true`.
+         * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
          */
         public Builder testmode(boolean testmode) {
             Utils.checkNotNull(testmode, "testmode");
@@ -656,9 +636,7 @@ public class CreateMandateRequestBody {
         /**
          * Whether to create the entity in test mode or live mode.
          * 
-         * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
-         * `testmode` to `true`.
+         * Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
          */
         public Builder testmode(JsonNullable<Boolean> testmode) {
             Utils.checkNotNull(testmode, "testmode");

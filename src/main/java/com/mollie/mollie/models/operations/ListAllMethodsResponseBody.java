@@ -19,8 +19,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * ListAllMethodsResponseBody - A list of payment method objects. For a complete reference of the
- * payment method object, refer to the [Get payment method endpoint](get-method) documentation.
+ * ListAllMethodsResponseBody - A list of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
  */
 
 public class ListAllMethodsResponseBody {

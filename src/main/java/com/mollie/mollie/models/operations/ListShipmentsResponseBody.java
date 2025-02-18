@@ -19,18 +19,15 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * ListShipmentsResponseBody - A list of shipment objects. For a complete reference of the shipment object, refer to the
- * [Get shipment endpoint](get-shipment) documentation.
+ * ListShipmentsResponseBody - A list of shipment objects. For a complete reference of the shipment object, refer to the [Get shipment endpoint](get-shipment) documentation.
  */
 
 public class ListShipmentsResponseBody {
 
     /**
-     * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result
-     * as well.
+     * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result as well.
      * 
-     * The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
-     * limit is 50 items.
+     * The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("count")
@@ -65,11 +62,9 @@ public class ListShipmentsResponseBody {
     }
 
     /**
-     * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result
-     * as well.
+     * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result as well.
      * 
-     * The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
-     * limit is 50 items.
+     * The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
      */
     @JsonIgnore
     public Optional<Long> count() {
@@ -96,11 +91,9 @@ public class ListShipmentsResponseBody {
     }
 
     /**
-     * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result
-     * as well.
+     * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result as well.
      * 
-     * The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
-     * limit is 50 items.
+     * The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
      */
     public ListShipmentsResponseBody withCount(long count) {
         Utils.checkNotNull(count, "count");
@@ -109,11 +102,9 @@ public class ListShipmentsResponseBody {
     }
 
     /**
-     * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result
-     * as well.
+     * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result as well.
      * 
-     * The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
-     * limit is 50 items.
+     * The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
      */
     public ListShipmentsResponseBody withCount(Optional<Long> count) {
         Utils.checkNotNull(count, "count");
@@ -195,11 +186,9 @@ public class ListShipmentsResponseBody {
         }
 
         /**
-         * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result
-         * as well.
+         * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result as well.
          * 
-         * The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
-         * limit is 50 items.
+         * The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
          */
         public Builder count(long count) {
             Utils.checkNotNull(count, "count");
@@ -208,11 +197,9 @@ public class ListShipmentsResponseBody {
         }
 
         /**
-         * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result
-         * as well.
+         * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result as well.
          * 
-         * The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
-         * limit is 50 items.
+         * The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
          */
         public Builder count(Optional<Long> count) {
             Utils.checkNotNull(count, "count");

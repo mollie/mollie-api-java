@@ -1,15 +1,11 @@
 # Status
 
-The subscription's current status is directly related to the status of the underlying customer or mandate that is
-enabling the subscription.
-
 
 ## Values
 
-| Name        | Value       |
-| ----------- | ----------- |
-| `PENDING`   | pending     |
-| `ACTIVE`    | active      |
-| `CANCELED`  | canceled    |
-| `SUSPENDED` | suspended   |
-| `COMPLETED` | completed   |
+| Name          | Value         |
+| ------------- | ------------- |
+| `UNREQUESTED` | unrequested   |
+| `ENABLED`     | enabled       |
+| `DISABLED`    | disabled      |
+| `PENDING`     | pending       |

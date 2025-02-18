@@ -14,8 +14,7 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * EnableMethodMaximumAmount - The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
- * is returned instead.
+ * EnableMethodMaximumAmount - The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
  */
 
 public class EnableMethodMaximumAmount {

@@ -16,7 +16,7 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallListBalances {
-        ListBalancesResponse list(
+        ListBalancesResponse listBalances(
             JsonNullable<String> currency,
             Optional<String> from,
             JsonNullable<Long> limit,
@@ -25,25 +25,25 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallGetBalance {
-        GetBalanceResponse get(
+        GetBalanceResponse getBalance(
             String id,
             JsonNullable<Boolean> testmode) throws Exception;
     }
 
 
     public interface MethodCallGetPrimaryBalance {
-        GetPrimaryBalanceResponse getPrimaryDirect() throws Exception;
+        GetPrimaryBalanceResponse getPrimaryBalanceDirect() throws Exception;
     }
 
 
     public interface MethodCallGetBalanceReport {
-        GetBalanceReportResponse getReport(
+        GetBalanceReportResponse getBalanceReport(
             GetBalanceReportRequest request) throws Exception;
     }
 
 
     public interface MethodCallListBalanceTransactions {
-        ListBalanceTransactionsResponse listTransactions(
+        ListBalanceTransactionsResponse listBalanceTransactions(
             String balanceId,
             Optional<String> from,
             JsonNullable<Long> limit,
@@ -52,7 +52,7 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallListSettlements {
-        ListSettlementsResponse list(
+        ListSettlementsResponse listSettlements(
             Optional<String> from,
             JsonNullable<Long> limit,
             JsonNullable<String> balanceId) throws Exception;
@@ -60,47 +60,47 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallGetSettlement {
-        GetSettlementResponse get(
+        GetSettlementResponse getSettlement(
             String id) throws Exception;
     }
 
 
     public interface MethodCallGetOpenSettlement {
-        GetOpenSettlementResponse getOpenDirect() throws Exception;
+        GetOpenSettlementResponse getOpenSettlementDirect() throws Exception;
     }
 
 
     public interface MethodCallGetNextSettlement {
-        GetNextSettlementResponse getNextDirect() throws Exception;
+        GetNextSettlementResponse getNextSettlementDirect() throws Exception;
     }
 
 
     public interface MethodCallGetSettlementPayments {
-        GetSettlementPaymentsResponse getPayments(
+        GetSettlementPaymentsResponse getSettlementPayments(
             String settlementId) throws Exception;
     }
 
 
     public interface MethodCallGetSettlementCaptures {
-        GetSettlementCapturesResponse getCaptures(
+        GetSettlementCapturesResponse getSettlementCaptures(
             String settlementId) throws Exception;
     }
 
 
     public interface MethodCallGetSettlementRefunds {
-        GetSettlementRefundsResponse getRefunds(
+        GetSettlementRefundsResponse getSettlementRefunds(
             String settlementId) throws Exception;
     }
 
 
     public interface MethodCallGetSettlementChargebacks {
-        GetSettlementChargebacksResponse getChargebacks(
+        GetSettlementChargebacksResponse getSettlementChargebacks(
             String settlementId) throws Exception;
     }
 
 
     public interface MethodCallListInvoices {
-        ListInvoicesResponse list(
+        ListInvoicesResponse listInvoices(
             JsonNullable<String> reference,
             JsonNullable<String> year,
             Optional<String> from,
@@ -109,32 +109,32 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallGetInvoice {
-        GetInvoiceResponse get(
+        GetInvoiceResponse getInvoice(
             String id) throws Exception;
     }
 
 
     public interface MethodCallListPermissions {
-        ListPermissionsResponse listDirect() throws Exception;
+        ListPermissionsResponse listPermissionsDirect() throws Exception;
     }
 
 
     public interface MethodCallGetPermission {
-        GetPermissionResponse get(
+        GetPermissionResponse getPermission(
             String id,
             JsonNullable<Boolean> testmode) throws Exception;
     }
 
 
     public interface MethodCallGetOrganization {
-        GetOrganizationResponse get(
+        GetOrganizationResponse getOrganization(
             String id,
             JsonNullable<Boolean> testmode) throws Exception;
     }
 
 
     public interface MethodCallGetCurrentOrganization {
-        GetCurrentOrganizationResponse getCurrentDirect() throws Exception;
+        GetCurrentOrganizationResponse getCurrentOrganizationDirect() throws Exception;
     }
 
 
@@ -144,62 +144,61 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallCreateProfile {
-        CreateProfileResponse create(
+        CreateProfileResponse createProfile(
             CreateProfileRequestBody request) throws Exception;
     }
 
 
     public interface MethodCallListProfiles {
-        ListProfilesResponse list(
+        ListProfilesResponse listProfiles(
             Optional<String> from,
             JsonNullable<Long> limit) throws Exception;
     }
 
 
     public interface MethodCallGetProfile {
-        GetProfileResponse get(
+        GetProfileResponse getProfile(
             String id,
             JsonNullable<Boolean> testmode) throws Exception;
     }
 
 
     public interface MethodCallUpdateProfile {
-        UpdateProfileResponse update(
+        UpdateProfileResponse updateProfile(
             String id,
             UpdateProfileRequestBody requestBody) throws Exception;
     }
 
 
     public interface MethodCallDeleteProfile {
-        DeleteProfileResponse delete(
+        DeleteProfileResponse deleteProfile(
             String id) throws Exception;
     }
 
 
     public interface MethodCallGetCurrentProfile {
-        GetCurrentProfileResponse getCurrent(
-            GetCurrentProfileSecurity security) throws Exception;
+        GetCurrentProfileResponse getCurrentProfileDirect() throws Exception;
     }
 
 
     public interface MethodCallGetOnboardingStatus {
-        GetOnboardingStatusResponse getDirect() throws Exception;
+        GetOnboardingStatusResponse getOnboardingStatusDirect() throws Exception;
     }
 
 
     public interface MethodCallSubmitOnboardingData {
-        SubmitOnboardingDataResponse create(
+        SubmitOnboardingDataResponse submitOnboardingData(
             Optional<? extends SubmitOnboardingDataRequestBody> request) throws Exception;
     }
 
 
     public interface MethodCallListCapabilities {
-        ListCapabilitiesResponse listDirect() throws Exception;
+        ListCapabilitiesResponse listCapabilitiesDirect() throws Exception;
     }
 
 
     public interface MethodCallListClients {
-        ListClientsResponse list(
+        ListClientsResponse listClients(
             JsonNullable<String> embed,
             Optional<String> from,
             JsonNullable<Long> limit) throws Exception;
@@ -207,36 +206,33 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallGetClient {
-        GetClientResponse get(
+        GetClientResponse getClient(
             String id,
             JsonNullable<String> embed) throws Exception;
     }
 
 
     public interface MethodCallCreateClientLink {
-        CreateClientLinkResponse create(
+        CreateClientLinkResponse createClientLink(
             Optional<? extends CreateClientLinkRequestBody> request) throws Exception;
     }
 
 
     public interface MethodCallCreateOrder {
-        CreateOrderResponse create(
-            CreateOrderSecurity security,
+        CreateOrderResponse createOrder(
             JsonNullable<String> embed,
             Optional<? extends CreateOrderRequestBody> requestBody) throws Exception;
     }
 
 
     public interface MethodCallListOrders {
-        ListOrdersResponse list(
-            ListOrdersRequest request,
-            ListOrdersSecurity security) throws Exception;
+        ListOrdersResponse listOrders(
+            ListOrdersRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetOrder {
-        GetOrderResponse get(
-            GetOrderSecurity security,
+        GetOrderResponse getOrder(
             String id,
             JsonNullable<String> embed,
             JsonNullable<Boolean> testmode) throws Exception;
@@ -244,40 +240,35 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallUpdateOrder {
-        UpdateOrderResponse update(
-            UpdateOrderSecurity security,
+        UpdateOrderResponse updateOrder(
             String id,
             Optional<? extends UpdateOrderRequestBody> requestBody) throws Exception;
     }
 
 
     public interface MethodCallCancelOrder {
-        CancelOrderResponse cancel(
-            CancelOrderSecurity security,
+        CancelOrderResponse cancelOrder(
             String id,
             JsonNullable<Boolean> testmode) throws Exception;
     }
 
 
     public interface MethodCallManageOrderLines {
-        ManageOrderLinesResponse manageLines(
-            ManageOrderLinesSecurity security,
+        ManageOrderLinesResponse manageOrderLines(
             String orderId,
             Optional<? extends ManageOrderLinesRequestBody> requestBody) throws Exception;
     }
 
 
     public interface MethodCallCancelOrderLines {
-        CancelOrderLinesResponse cancelLines(
-            CancelOrderLinesSecurity security,
+        CancelOrderLinesResponse cancelOrderLines(
             String orderId,
             Optional<? extends CancelOrderLinesRequestBody> requestBody) throws Exception;
     }
 
 
     public interface MethodCallUpdateOrderLine {
-        UpdateOrderLineResponse updateLine(
-            UpdateOrderLineSecurity security,
+        UpdateOrderLineResponse updateOrderLine(
             String orderId,
             String id,
             Optional<? extends UpdateOrderLineRequestBody> requestBody) throws Exception;
@@ -285,24 +276,21 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallCreateOrderPayment {
-        CreateOrderPaymentResponse createPayment(
-            CreateOrderPaymentSecurity security,
+        CreateOrderPaymentResponse createOrderPayment(
             String orderId,
             Optional<? extends Object> requestBody) throws Exception;
     }
 
 
     public interface MethodCallCreateShipment {
-        CreateShipmentResponse create(
-            CreateShipmentSecurity security,
+        CreateShipmentResponse createShipment(
             String orderId,
             Optional<? extends CreateShipmentRequestBody> requestBody) throws Exception;
     }
 
 
     public interface MethodCallListShipments {
-        ListShipmentsResponse list(
-            ListShipmentsSecurity security,
+        ListShipmentsResponse listShipments(
             String orderId,
             Optional<String> from,
             JsonNullable<Long> limit,
@@ -311,8 +299,7 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallGetShipment {
-        GetShipmentResponse get(
-            GetShipmentSecurity security,
+        GetShipmentResponse getShipment(
             String orderId,
             String id,
             JsonNullable<Boolean> testmode) throws Exception;
@@ -320,8 +307,7 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallUpdateShipment {
-        UpdateShipmentResponse update(
-            UpdateShipmentSecurity security,
+        UpdateShipmentResponse updateShipment(
             String orderId,
             String id,
             JsonNullable<Boolean> testmode,
@@ -330,27 +316,24 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallCreatePayment {
-        CreatePaymentResponse create(
-            CreatePaymentSecurity security,
+        CreatePaymentResponse createPayment(
             JsonNullable<String> include,
             Optional<? extends CreatePaymentRequestBody> requestBody) throws Exception;
     }
 
 
     public interface MethodCallListPayments {
-        ListPaymentsResponse list(
-            ListPaymentsSecurity security,
+        ListPaymentsResponse listPayments(
             Optional<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<? extends QueryParamSort> sort,
+            JsonNullable<String> sort,
             JsonNullable<Boolean> testmode) throws Exception;
     }
 
 
     public interface MethodCallGetPayment {
-        GetPaymentResponse get(
-            GetPaymentSecurity security,
-            String id,
+        GetPaymentResponse getPayment(
+            String paymentId,
             JsonNullable<String> include,
             JsonNullable<String> embed,
             JsonNullable<Boolean> testmode) throws Exception;
@@ -358,31 +341,34 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallUpdatePayment {
-        UpdatePaymentResponse update(
-            UpdatePaymentSecurity security,
-            String id,
+        UpdatePaymentResponse updatePayment(
+            String paymentId,
             Optional<? extends UpdatePaymentRequestBody> requestBody) throws Exception;
     }
 
 
     public interface MethodCallCancelPayment {
-        CancelPaymentResponse cancel(
-            CancelPaymentSecurity security,
-            String id,
+        CancelPaymentResponse cancelPayment(
+            String paymentId,
+            JsonNullable<Boolean> testmode) throws Exception;
+    }
+
+
+    public interface MethodCallReleaseAuthorization {
+        ReleaseAuthorizationResponse releaseAuthorization(
+            String paymentId,
             JsonNullable<Boolean> testmode) throws Exception;
     }
 
 
     public interface MethodCallListMethods {
-        ListMethodsResponse list(
-            ListMethodsRequest request,
-            ListMethodsSecurity security) throws Exception;
+        ListMethodsResponse listMethods(
+            ListMethodsRequest request) throws Exception;
     }
 
 
     public interface MethodCallListAllMethods {
-        ListAllMethodsResponse listAll(
-            ListAllMethodsSecurity security,
+        ListAllMethodsResponse listAllMethods(
             Optional<String> locale,
             Optional<? extends ListAllMethodsQueryParamAmount> amount,
             JsonNullable<String> include) throws Exception;
@@ -390,15 +376,13 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallGetMethod {
-        GetMethodResponse get(
-            GetMethodRequest request,
-            GetMethodSecurity security) throws Exception;
+        GetMethodResponse getMethod(
+            GetMethodRequest request) throws Exception;
     }
 
 
     public interface MethodCallEnableMethod {
         EnableMethodResponse enableMethod(
-            EnableMethodSecurity security,
             String profileId,
             String id) throws Exception;
     }
@@ -406,7 +390,6 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallDisableMethod {
         DisableMethodResponse disableMethod(
-            DisableMethodSecurity security,
             String profileId,
             String id) throws Exception;
     }
@@ -414,7 +397,6 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallEnableMethodIssuer {
         EnableMethodIssuerResponse enableMethodIssuer(
-            EnableMethodIssuerSecurity security,
             String profileId,
             String methodId,
             String id,
@@ -424,7 +406,6 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallDisableMethodIssuer {
         DisableMethodIssuerResponse disableMethodIssuer(
-            DisableMethodIssuerSecurity security,
             String profileId,
             String methodId,
             String id) throws Exception;
@@ -432,23 +413,20 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallCreateRefund {
-        CreateRefundResponse create(
-            CreateRefundSecurity security,
+        CreateRefundResponse createRefund(
             String paymentId,
             Optional<? extends CreateRefundRequestBody> requestBody) throws Exception;
     }
 
 
     public interface MethodCallListRefunds {
-        ListRefundsResponse list(
-            ListRefundsRequest request,
-            ListRefundsSecurity security) throws Exception;
+        ListRefundsResponse listRefunds(
+            ListRefundsRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetRefund {
-        GetRefundResponse get(
-            GetRefundSecurity security,
+        GetRefundResponse getRefund(
             String paymentId,
             String id,
             JsonNullable<String> include,
@@ -457,8 +435,7 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallCancelRefund {
-        CancelRefundResponse cancel(
-            CancelRefundSecurity security,
+        CancelRefundResponse cancelRefund(
             String paymentId,
             String id,
             JsonNullable<Boolean> testmode) throws Exception;
@@ -466,37 +443,32 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallCreateOrderRefund {
-        CreateOrderRefundResponse createOrder(
-            CreateOrderRefundSecurity security,
+        CreateOrderRefundResponse createOrderRefund(
             String orderId,
             Optional<? extends CreateOrderRefundRequestBody> requestBody) throws Exception;
     }
 
 
     public interface MethodCallListOrderRefunds {
-        ListOrderRefundsResponse listOrder(
-            ListOrderRefundsRequest request,
-            ListOrderRefundsSecurity security) throws Exception;
+        ListOrderRefundsResponse listOrderRefunds(
+            ListOrderRefundsRequest request) throws Exception;
     }
 
 
     public interface MethodCallListAllRefunds {
-        ListAllRefundsResponse listAll(
-            ListAllRefundsRequest request,
-            ListAllRefundsSecurity security) throws Exception;
+        ListAllRefundsResponse listAllRefunds(
+            ListAllRefundsRequest request) throws Exception;
     }
 
 
     public interface MethodCallListChargebacks {
-        ListChargebacksResponse list(
-            ListChargebacksRequest request,
-            ListChargebacksSecurity security) throws Exception;
+        ListChargebacksResponse listChargebacks(
+            ListChargebacksRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetChargeback {
-        GetChargebackResponse get(
-            GetChargebackSecurity security,
+        GetChargebackResponse getChargeback(
             String paymentId,
             String id,
             JsonNullable<String> include,
@@ -505,30 +477,26 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallListAllChargebacks {
-        ListAllChargebacksResponse listAll(
-            ListAllChargebacksRequest request,
-            ListAllChargebacksSecurity security) throws Exception;
+        ListAllChargebacksResponse listAllChargebacks(
+            ListAllChargebacksRequest request) throws Exception;
     }
 
 
     public interface MethodCallCreateCapture {
-        CreateCaptureResponse create(
-            CreateCaptureSecurity security,
+        CreateCaptureResponse createCapture(
             String paymentId,
             Optional<? extends CreateCaptureRequestBody> requestBody) throws Exception;
     }
 
 
     public interface MethodCallListCaptures {
-        ListCapturesResponse list(
-            ListCapturesRequest request,
-            ListCapturesSecurity security) throws Exception;
+        ListCapturesResponse listCaptures(
+            ListCapturesRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetCapture {
-        GetCaptureResponse get(
-            GetCaptureSecurity security,
+        GetCaptureResponse getCapture(
             String paymentId,
             String id,
             JsonNullable<String> include,
@@ -538,21 +506,18 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallRequestApplePayPaymentSession {
         RequestApplePayPaymentSessionResponse requestApplePayPaymentSession(
-            Optional<? extends RequestApplePayPaymentSessionRequestBody> request,
-            RequestApplePayPaymentSessionSecurity security) throws Exception;
+            Optional<? extends RequestApplePayPaymentSessionRequestBody> request) throws Exception;
     }
 
 
     public interface MethodCallCreatePaymentLink {
-        CreatePaymentLinkResponse create(
-            Optional<? extends CreatePaymentLinkRequestBody> request,
-            CreatePaymentLinkSecurity security) throws Exception;
+        CreatePaymentLinkResponse createPaymentLink(
+            Optional<? extends CreatePaymentLinkRequestBody> request) throws Exception;
     }
 
 
     public interface MethodCallListPaymentLinks {
-        ListPaymentLinksResponse list(
-            ListPaymentLinksSecurity security,
+        ListPaymentLinksResponse listPaymentLinks(
             Optional<String> from,
             JsonNullable<Long> limit,
             JsonNullable<Boolean> testmode) throws Exception;
@@ -560,16 +525,14 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallGetPaymentLink {
-        GetPaymentLinkResponse get(
-            GetPaymentLinkSecurity security,
+        GetPaymentLinkResponse getPaymentLink(
             String id,
             JsonNullable<Boolean> testmode) throws Exception;
     }
 
 
     public interface MethodCallUpdatePaymentLink {
-        UpdatePaymentLinkResponse update(
-            UpdatePaymentLinkSecurity security,
+        UpdatePaymentLinkResponse updatePaymentLink(
             String id,
             JsonNullable<Boolean> testmode,
             Optional<? extends UpdatePaymentLinkRequestBody> requestBody) throws Exception;
@@ -577,23 +540,20 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallDeletePaymentLink {
-        DeletePaymentLinkResponse delete(
-            DeletePaymentLinkSecurity security,
+        DeletePaymentLinkResponse deletePaymentLink(
             String id,
             JsonNullable<Boolean> testmode) throws Exception;
     }
 
 
     public interface MethodCallGetPaymentLinkPayments {
-        GetPaymentLinkPaymentsResponse getPayments(
-            GetPaymentLinkPaymentsRequest request,
-            GetPaymentLinkPaymentsSecurity security) throws Exception;
+        GetPaymentLinkPaymentsResponse getPaymentLinkPayments(
+            GetPaymentLinkPaymentsRequest request) throws Exception;
     }
 
 
     public interface MethodCallListTerminals {
-        ListTerminalsResponse list(
-            ListTerminalsSecurity security,
+        ListTerminalsResponse listTerminals(
             Optional<String> from,
             JsonNullable<Long> limit,
             JsonNullable<Boolean> testmode) throws Exception;
@@ -601,38 +561,33 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallGetTerminal {
-        GetTerminalResponse get(
-            GetTerminalSecurity security,
+        GetTerminalResponse getTerminal(
             String id,
             JsonNullable<Boolean> testmode) throws Exception;
     }
 
 
     public interface MethodCallPaymentCreateRoute {
-        PaymentCreateRouteResponse create(
-            PaymentCreateRouteSecurity security,
+        PaymentCreateRouteResponse paymentCreateRoute(
             String paymentId,
             Optional<? extends PaymentCreateRouteRequestBody> requestBody) throws Exception;
     }
 
 
     public interface MethodCallPaymentListRoutes {
-        PaymentListRoutesResponse list(
-            PaymentListRoutesSecurity security,
+        PaymentListRoutesResponse paymentListRoutes(
             String paymentId) throws Exception;
     }
 
 
     public interface MethodCallCreateCustomer {
-        CreateCustomerResponse create(
-            Optional<? extends CreateCustomerRequestBody> request,
-            CreateCustomerSecurity security) throws Exception;
+        CreateCustomerResponse createCustomer(
+            Optional<? extends CreateCustomerRequestBody> request) throws Exception;
     }
 
 
     public interface MethodCallListCustomers {
-        ListCustomersResponse list(
-            ListCustomersSecurity security,
+        ListCustomersResponse listCustomers(
             Optional<String> from,
             JsonNullable<Long> limit,
             JsonNullable<Boolean> testmode) throws Exception;
@@ -640,40 +595,35 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallGetCustomer {
-        GetCustomerResponse get(
-            GetCustomerSecurity security,
+        GetCustomerResponse getCustomer(
             String id,
             JsonNullable<Boolean> testmode) throws Exception;
     }
 
 
     public interface MethodCallUpdateCustomer {
-        UpdateCustomerResponse update(
-            UpdateCustomerSecurity security,
+        UpdateCustomerResponse updateCustomer(
             String id,
             Optional<? extends UpdateCustomerRequestBody> requestBody) throws Exception;
     }
 
 
     public interface MethodCallDeleteCustomer {
-        DeleteCustomerResponse delete(
-            DeleteCustomerSecurity security,
+        DeleteCustomerResponse deleteCustomer(
             String id,
             JsonNullable<Boolean> testmode) throws Exception;
     }
 
 
     public interface MethodCallCreateCustomerPayment {
-        CreateCustomerPaymentResponse createPayment(
-            CreateCustomerPaymentSecurity security,
+        CreateCustomerPaymentResponse createCustomerPayment(
             String customerId,
             Optional<? extends CreateCustomerPaymentRequestBody> requestBody) throws Exception;
     }
 
 
     public interface MethodCallListCustomerPayments {
-        ListCustomerPaymentsResponse listPayments(
-            ListCustomerPaymentsSecurity security,
+        ListCustomerPaymentsResponse listCustomerPayments(
             String customerId,
             JsonNullable<String> profileId,
             JsonNullable<Boolean> testmode) throws Exception;
@@ -681,16 +631,14 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallCreateMandate {
-        CreateMandateResponse create(
-            CreateMandateSecurity security,
+        CreateMandateResponse createMandate(
             String customerId,
             Optional<? extends CreateMandateRequestBody> requestBody) throws Exception;
     }
 
 
     public interface MethodCallListMandates {
-        ListMandatesResponse list(
-            ListMandatesSecurity security,
+        ListMandatesResponse listMandates(
             String customerId,
             Optional<String> from,
             JsonNullable<Long> limit,
@@ -699,8 +647,7 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallGetMandate {
-        GetMandateResponse get(
-            GetMandateSecurity security,
+        GetMandateResponse getMandate(
             String customerId,
             String id,
             JsonNullable<Boolean> testmode) throws Exception;
@@ -708,8 +655,7 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallRevokeMandate {
-        RevokeMandateResponse revoke(
-            RevokeMandateSecurity security,
+        RevokeMandateResponse revokeMandate(
             String customerId,
             String id,
             JsonNullable<Boolean> testmode) throws Exception;
@@ -717,16 +663,14 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallCreateSubscription {
-        CreateSubscriptionResponse create(
-            CreateSubscriptionSecurity security,
+        CreateSubscriptionResponse createSubscription(
             String customerId,
             Optional<? extends CreateSubscriptionRequestBody> requestBody) throws Exception;
     }
 
 
     public interface MethodCallListSubscriptions {
-        ListSubscriptionsResponse list(
-            ListSubscriptionsSecurity security,
+        ListSubscriptionsResponse listSubscriptions(
             String customerId,
             Optional<String> from,
             JsonNullable<Long> limit,
@@ -735,8 +679,7 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallGetSubscription {
-        GetSubscriptionResponse get(
-            GetSubscriptionSecurity security,
+        GetSubscriptionResponse getSubscription(
             String customerId,
             String id,
             JsonNullable<Boolean> testmode) throws Exception;
@@ -744,8 +687,7 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallUpdateSubscription {
-        UpdateSubscriptionResponse update(
-            UpdateSubscriptionSecurity security,
+        UpdateSubscriptionResponse updateSubscription(
             String customerId,
             String id,
             JsonNullable<Boolean> testmode,
@@ -754,8 +696,7 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallCancelSubscription {
-        CancelSubscriptionResponse cancel(
-            CancelSubscriptionSecurity security,
+        CancelSubscriptionResponse cancelSubscription(
             String customerId,
             String id,
             JsonNullable<Boolean> testmode) throws Exception;
@@ -763,8 +704,7 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallListAllSubscriptions {
-        ListAllSubscriptionsResponse listAll(
-            ListAllSubscriptionsSecurity security,
+        ListAllSubscriptionsResponse listAllSubscriptions(
             Optional<String> from,
             JsonNullable<Long> limit,
             JsonNullable<String> profileId,
@@ -773,9 +713,8 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallListSubscriptionPayments {
-        ListSubscriptionPaymentsResponse listPayments(
-            ListSubscriptionPaymentsRequest request,
-            ListSubscriptionPaymentsSecurity security) throws Exception;
+        ListSubscriptionPaymentsResponse listSubscriptionPayments(
+            ListSubscriptionPaymentsRequest request) throws Exception;
     }
 
 

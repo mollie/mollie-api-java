@@ -24,15 +24,13 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class CreateProfileRequestBody {
 
     /**
-     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
-     * application.
+     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
      */
     @JsonProperty("name")
     private String name;
 
     /**
-     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are
-     * allowed.
+     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
      */
     @JsonProperty("website")
     private String website;
@@ -57,16 +55,14 @@ public class CreateProfileRequestBody {
     private JsonNullable<String> description;
 
     /**
-     * A list of countries where you expect that the majority of the profile's customers reside, in ISO 3166-1 alpha-2
-     * format.
+     * A list of countries where you expect that the majority of the profile's customers reside, in ISO 3166-1 alpha-2 format.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("countriesOfActivity")
     private Optional<? extends List<Object>> countriesOfActivity;
 
     /**
-     * The industry associated with the profile's trade name or brand. Please refer to the
-     * [business category list](common-data-types) for all possible options.
+     * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types) for all possible options.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("businessCategory")
@@ -106,8 +102,7 @@ public class CreateProfileRequestBody {
     }
 
     /**
-     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
-     * application.
+     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
      */
     @JsonIgnore
     public String name() {
@@ -115,8 +110,7 @@ public class CreateProfileRequestBody {
     }
 
     /**
-     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are
-     * allowed.
+     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
      */
     @JsonIgnore
     public String website() {
@@ -148,8 +142,7 @@ public class CreateProfileRequestBody {
     }
 
     /**
-     * A list of countries where you expect that the majority of the profile's customers reside, in ISO 3166-1 alpha-2
-     * format.
+     * A list of countries where you expect that the majority of the profile's customers reside, in ISO 3166-1 alpha-2 format.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -158,8 +151,7 @@ public class CreateProfileRequestBody {
     }
 
     /**
-     * The industry associated with the profile's trade name or brand. Please refer to the
-     * [business category list](common-data-types) for all possible options.
+     * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types) for all possible options.
      */
     @JsonIgnore
     public Optional<String> businessCategory() {
@@ -171,8 +163,7 @@ public class CreateProfileRequestBody {
     }
 
     /**
-     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
-     * application.
+     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
      */
     public CreateProfileRequestBody withName(String name) {
         Utils.checkNotNull(name, "name");
@@ -181,8 +172,7 @@ public class CreateProfileRequestBody {
     }
 
     /**
-     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are
-     * allowed.
+     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
      */
     public CreateProfileRequestBody withWebsite(String website) {
         Utils.checkNotNull(website, "website");
@@ -227,8 +217,7 @@ public class CreateProfileRequestBody {
     }
 
     /**
-     * A list of countries where you expect that the majority of the profile's customers reside, in ISO 3166-1 alpha-2
-     * format.
+     * A list of countries where you expect that the majority of the profile's customers reside, in ISO 3166-1 alpha-2 format.
      */
     public CreateProfileRequestBody withCountriesOfActivity(List<Object> countriesOfActivity) {
         Utils.checkNotNull(countriesOfActivity, "countriesOfActivity");
@@ -237,8 +226,7 @@ public class CreateProfileRequestBody {
     }
 
     /**
-     * A list of countries where you expect that the majority of the profile's customers reside, in ISO 3166-1 alpha-2
-     * format.
+     * A list of countries where you expect that the majority of the profile's customers reside, in ISO 3166-1 alpha-2 format.
      */
     public CreateProfileRequestBody withCountriesOfActivity(Optional<? extends List<Object>> countriesOfActivity) {
         Utils.checkNotNull(countriesOfActivity, "countriesOfActivity");
@@ -247,8 +235,7 @@ public class CreateProfileRequestBody {
     }
 
     /**
-     * The industry associated with the profile's trade name or brand. Please refer to the
-     * [business category list](common-data-types) for all possible options.
+     * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types) for all possible options.
      */
     public CreateProfileRequestBody withBusinessCategory(String businessCategory) {
         Utils.checkNotNull(businessCategory, "businessCategory");
@@ -257,8 +244,7 @@ public class CreateProfileRequestBody {
     }
 
     /**
-     * The industry associated with the profile's trade name or brand. Please refer to the
-     * [business category list](common-data-types) for all possible options.
+     * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types) for all possible options.
      */
     public CreateProfileRequestBody withBusinessCategory(Optional<String> businessCategory) {
         Utils.checkNotNull(businessCategory, "businessCategory");
@@ -330,8 +316,7 @@ public class CreateProfileRequestBody {
         }
 
         /**
-         * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
-         * application.
+         * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
          */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
@@ -340,8 +325,7 @@ public class CreateProfileRequestBody {
         }
 
         /**
-         * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are
-         * allowed.
+         * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
          */
         public Builder website(String website) {
             Utils.checkNotNull(website, "website");
@@ -386,8 +370,7 @@ public class CreateProfileRequestBody {
         }
 
         /**
-         * A list of countries where you expect that the majority of the profile's customers reside, in ISO 3166-1 alpha-2
-         * format.
+         * A list of countries where you expect that the majority of the profile's customers reside, in ISO 3166-1 alpha-2 format.
          */
         public Builder countriesOfActivity(List<Object> countriesOfActivity) {
             Utils.checkNotNull(countriesOfActivity, "countriesOfActivity");
@@ -396,8 +379,7 @@ public class CreateProfileRequestBody {
         }
 
         /**
-         * A list of countries where you expect that the majority of the profile's customers reside, in ISO 3166-1 alpha-2
-         * format.
+         * A list of countries where you expect that the majority of the profile's customers reside, in ISO 3166-1 alpha-2 format.
          */
         public Builder countriesOfActivity(Optional<? extends List<Object>> countriesOfActivity) {
             Utils.checkNotNull(countriesOfActivity, "countriesOfActivity");
@@ -406,8 +388,7 @@ public class CreateProfileRequestBody {
         }
 
         /**
-         * The industry associated with the profile's trade name or brand. Please refer to the
-         * [business category list](common-data-types) for all possible options.
+         * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types) for all possible options.
          */
         public Builder businessCategory(String businessCategory) {
             Utils.checkNotNull(businessCategory, "businessCategory");
@@ -416,8 +397,7 @@ public class CreateProfileRequestBody {
         }
 
         /**
-         * The industry associated with the profile's trade name or brand. Please refer to the
-         * [business category list](common-data-types) for all possible options.
+         * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types) for all possible options.
          */
         public Builder businessCategory(Optional<String> businessCategory) {
             Utils.checkNotNull(businessCategory, "businessCategory");

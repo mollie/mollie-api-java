@@ -11,7 +11,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListAllMethodsRequestBuilder {
 
-    private ListAllMethodsSecurity security;
     private Optional<String> locale = Optional.empty();
     private Optional<? extends ListAllMethodsQueryParamAmount> amount = Optional.empty();
     private JsonNullable<String> include = JsonNullable.undefined();
@@ -19,12 +18,6 @@ public class ListAllMethodsRequestBuilder {
 
     public ListAllMethodsRequestBuilder(SDKMethodInterfaces.MethodCallListAllMethods sdk) {
         this.sdk = sdk;
-    }
-
-    public ListAllMethodsRequestBuilder security(ListAllMethodsSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
                 
     public ListAllMethodsRequestBuilder locale(String locale) {
@@ -65,8 +58,7 @@ public class ListAllMethodsRequestBuilder {
 
     public ListAllMethodsResponse call() throws Exception {
 
-        return sdk.listAll(
-            security,
+        return sdk.listAllMethods(
             locale,
             amount,
             include);

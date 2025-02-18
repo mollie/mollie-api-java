@@ -14,8 +14,7 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * CreateRefundAmount - The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment
- * amount.
+ * CreateRefundAmount - The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment amount.
  */
 
 public class CreateRefundAmount {

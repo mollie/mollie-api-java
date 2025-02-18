@@ -49,13 +49,16 @@ public class OrganizationsAPI implements
      * Get organization
      * Retrieve a single organization by its ID.
      * 
-     * You can normally only retrieve the currently authenticated organization with this endpoint. This is primarily useful
-     * for OAuth apps. See also [Get current organization](get-current-organization).
+     * You can normally only retrieve the currently authenticated organization with this endpoint. This is primarily useful for OAuth apps. See also [Get current organization](get-current-organization).
      * 
      * If you have a *partner account*', you can retrieve organization details of connected organizations.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **organizations.read**](/reference/authentication)
      * @return The call builder
      */
-    public GetOrganizationRequestBuilder get() {
+    public GetOrganizationRequestBuilder getOrganization() {
         return new GetOrganizationRequestBuilder(this);
     }
 
@@ -63,37 +66,41 @@ public class OrganizationsAPI implements
      * Get organization
      * Retrieve a single organization by its ID.
      * 
-     * You can normally only retrieve the currently authenticated organization with this endpoint. This is primarily useful
-     * for OAuth apps. See also [Get current organization](get-current-organization).
+     * You can normally only retrieve the currently authenticated organization with this endpoint. This is primarily useful for OAuth apps. See also [Get current organization](get-current-organization).
      * 
      * If you have a *partner account*', you can retrieve organization details of connected organizations.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **organizations.read**](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetOrganizationResponse get(
+    public GetOrganizationResponse getOrganization(
             String id) throws Exception {
-        return get(id, JsonNullable.undefined());
+        return getOrganization(id, JsonNullable.undefined());
     }
     
     /**
      * Get organization
      * Retrieve a single organization by its ID.
      * 
-     * You can normally only retrieve the currently authenticated organization with this endpoint. This is primarily useful
-     * for OAuth apps. See also [Get current organization](get-current-organization).
+     * You can normally only retrieve the currently authenticated organization with this endpoint. This is primarily useful for OAuth apps. See also [Get current organization](get-current-organization).
      * 
      * If you have a *partner account*', you can retrieve organization details of connected organizations.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **organizations.read**](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetOrganizationResponse get(
+    public GetOrganizationResponse getOrganization(
             String id,
             JsonNullable<Boolean> testmode) throws Exception {
         GetOrganizationRequest request =
@@ -234,28 +241,32 @@ public class OrganizationsAPI implements
 
     /**
      * Get current organization
-     * Retrieve the currently authenticated organization. A convenient alias of the [Get organization](get-organization)
-     * endpoint.
+     * Retrieve the currently authenticated organization. A convenient alias of the [Get organization](get-organization) endpoint.
      * 
-     * For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint
-     * documentation.
+     * For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint documentation.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **organizations.read**](/reference/authentication)
      * @return The call builder
      */
-    public GetCurrentOrganizationRequestBuilder getCurrent() {
+    public GetCurrentOrganizationRequestBuilder getCurrentOrganization() {
         return new GetCurrentOrganizationRequestBuilder(this);
     }
 
     /**
      * Get current organization
-     * Retrieve the currently authenticated organization. A convenient alias of the [Get organization](get-organization)
-     * endpoint.
+     * Retrieve the currently authenticated organization. A convenient alias of the [Get organization](get-organization) endpoint.
      * 
-     * For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint
-     * documentation.
+     * For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint documentation.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **organizations.read**](/reference/authentication)
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetCurrentOrganizationResponse getCurrentDirect() throws Exception {
+    public GetCurrentOrganizationResponse getCurrentOrganizationDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -364,8 +375,11 @@ public class OrganizationsAPI implements
 
     /**
      * Get partner status
-     * Retrieve partnership details about the currently authenticated organization. Only relevant for so-called *partner
-     * accounts*.
+     * Retrieve partnership details about the currently authenticated organization. Only relevant for so-called *partner accounts*.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **organizations.read**](/reference/authentication)
      * @return The call builder
      */
     public GetPartnerStatusRequestBuilder getPartnerStatus() {
@@ -374,8 +388,11 @@ public class OrganizationsAPI implements
 
     /**
      * Get partner status
-     * Retrieve partnership details about the currently authenticated organization. Only relevant for so-called *partner
-     * accounts*.
+     * Retrieve partnership details about the currently authenticated organization. Only relevant for so-called *partner accounts*.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **organizations.read**](/reference/authentication)
      * @return The response from the API call
      * @throws Exception if the API call fails
      */

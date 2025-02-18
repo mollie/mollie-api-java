@@ -13,21 +13,17 @@ import com.mollie.mollie.models.operations.CreateMandateRequest;
 import com.mollie.mollie.models.operations.CreateMandateRequestBody;
 import com.mollie.mollie.models.operations.CreateMandateRequestBuilder;
 import com.mollie.mollie.models.operations.CreateMandateResponse;
-import com.mollie.mollie.models.operations.CreateMandateSecurity;
 import com.mollie.mollie.models.operations.GetMandateRequest;
 import com.mollie.mollie.models.operations.GetMandateRequestBuilder;
 import com.mollie.mollie.models.operations.GetMandateResponse;
 import com.mollie.mollie.models.operations.GetMandateResponseBody;
-import com.mollie.mollie.models.operations.GetMandateSecurity;
 import com.mollie.mollie.models.operations.ListMandatesRequest;
 import com.mollie.mollie.models.operations.ListMandatesRequestBuilder;
 import com.mollie.mollie.models.operations.ListMandatesResponse;
 import com.mollie.mollie.models.operations.ListMandatesResponseBody;
-import com.mollie.mollie.models.operations.ListMandatesSecurity;
 import com.mollie.mollie.models.operations.RevokeMandateRequest;
 import com.mollie.mollie.models.operations.RevokeMandateRequestBuilder;
 import com.mollie.mollie.models.operations.RevokeMandateResponse;
-import com.mollie.mollie.models.operations.RevokeMandateSecurity;
 import com.mollie.mollie.models.operations.SDKMethodInterfaces.*;
 import com.mollie.mollie.utils.HTTPClient;
 import com.mollie.mollie.utils.HTTPRequest;
@@ -64,50 +60,58 @@ public class MandatesAPI implements
 
     /**
      * Create mandate
-     * Create a mandate for a specific customer. Mandates allow you to charge a customer's card, PayPal account or bank
-     * account recurrently.
+     * Create a mandate for a specific customer. Mandates allow you to charge a customer's card, PayPal account or bank account recurrently.
      * 
-     * It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint. To create
-     * mandates for cards, your customers need to perform a 'first payment' with their card.
+     * It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint. To create mandates for cards, your customers need to perform a 'first payment' with their card.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **mandates.write**](/reference/authentication)
      * @return The call builder
      */
-    public CreateMandateRequestBuilder create() {
+    public CreateMandateRequestBuilder createMandate() {
         return new CreateMandateRequestBuilder(this);
     }
 
     /**
      * Create mandate
-     * Create a mandate for a specific customer. Mandates allow you to charge a customer's card, PayPal account or bank
-     * account recurrently.
+     * Create a mandate for a specific customer. Mandates allow you to charge a customer's card, PayPal account or bank account recurrently.
      * 
-     * It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint. To create
-     * mandates for cards, your customers need to perform a 'first payment' with their card.
-     * @param security The security details to use for authentication.
+     * It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint. To create mandates for cards, your customers need to perform a 'first payment' with their card.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **mandates.write**](/reference/authentication)
      * @param customerId Provide the ID of the related customer.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateMandateResponse create(
-            CreateMandateSecurity security,
+    public CreateMandateResponse createMandate(
             String customerId) throws Exception {
-        return create(security, customerId, Optional.empty());
+        return createMandate(customerId, Optional.empty());
     }
     
     /**
      * Create mandate
-     * Create a mandate for a specific customer. Mandates allow you to charge a customer's card, PayPal account or bank
-     * account recurrently.
+     * Create a mandate for a specific customer. Mandates allow you to charge a customer's card, PayPal account or bank account recurrently.
      * 
-     * It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint. To create
-     * mandates for cards, your customers need to perform a 'first payment' with their card.
-     * @param security The security details to use for authentication.
+     * It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint. To create mandates for cards, your customers need to perform a 'first payment' with their card.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **mandates.write**](/reference/authentication)
      * @param customerId Provide the ID of the related customer.
      * @param requestBody
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateMandateResponse create(
-            CreateMandateSecurity security,
+    public CreateMandateResponse createMandate(
             String customerId,
             Optional<? extends CreateMandateRequestBody> requestBody) throws Exception {
         CreateMandateRequest request =
@@ -139,11 +143,9 @@ public class MandatesAPI implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -198,19 +200,8 @@ public class MandatesAPI implements
         CreateMandateResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
+            // no content 
+            return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
@@ -258,9 +249,15 @@ public class MandatesAPI implements
      * Retrieve a list of all mandates.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **mandates.read**](/reference/authentication)
      * @return The call builder
      */
-    public ListMandatesRequestBuilder list() {
+    public ListMandatesRequestBuilder listMandates() {
         return new ListMandatesRequestBuilder(this);
     }
 
@@ -269,15 +266,19 @@ public class MandatesAPI implements
      * Retrieve a list of all mandates.
      * 
      * The results are paginated.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **mandates.read**](/reference/authentication)
      * @param customerId Provide the ID of the related customer.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListMandatesResponse list(
-            ListMandatesSecurity security,
+    public ListMandatesResponse listMandates(
             String customerId) throws Exception {
-        return list(security, customerId, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        return listMandates(customerId, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
     }
     
     /**
@@ -285,21 +286,22 @@ public class MandatesAPI implements
      * Retrieve a list of all mandates.
      * 
      * The results are paginated.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **mandates.read**](/reference/authentication)
      * @param customerId Provide the ID of the related customer.
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-    result set.
+     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListMandatesResponse list(
-            ListMandatesSecurity security,
+    public ListMandatesResponse listMandates(
             String customerId,
             Optional<String> from,
             JsonNullable<Long> limit,
@@ -330,11 +332,9 @@ public class MandatesAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -462,48 +462,57 @@ public class MandatesAPI implements
 
     /**
      * Get mandate
-     * Retrieve a single mandate by its ID. Depending on the type of mandate, the object will contain the customer's bank
-     * account details, card details, or PayPal account details.
+     * Retrieve a single mandate by its ID. Depending on the type of mandate, the object will contain the customer's bank account details, card details, or PayPal account details.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **mandates.read**](/reference/authentication)
      * @return The call builder
      */
-    public GetMandateRequestBuilder get() {
+    public GetMandateRequestBuilder getMandate() {
         return new GetMandateRequestBuilder(this);
     }
 
     /**
      * Get mandate
-     * Retrieve a single mandate by its ID. Depending on the type of mandate, the object will contain the customer's bank
-     * account details, card details, or PayPal account details.
-     * @param security The security details to use for authentication.
+     * Retrieve a single mandate by its ID. Depending on the type of mandate, the object will contain the customer's bank account details, card details, or PayPal account details.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **mandates.read**](/reference/authentication)
      * @param customerId Provide the ID of the related customer.
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetMandateResponse get(
-            GetMandateSecurity security,
+    public GetMandateResponse getMandate(
             String customerId,
             String id) throws Exception {
-        return get(security, customerId, id, JsonNullable.undefined());
+        return getMandate(customerId, id, JsonNullable.undefined());
     }
     
     /**
      * Get mandate
-     * Retrieve a single mandate by its ID. Depending on the type of mandate, the object will contain the customer's bank
-     * account details, card details, or PayPal account details.
-     * @param security The security details to use for authentication.
+     * Retrieve a single mandate by its ID. Depending on the type of mandate, the object will contain the customer's bank account details, card details, or PayPal account details.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **mandates.read**](/reference/authentication)
      * @param customerId Provide the ID of the related customer.
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetMandateResponse get(
-            GetMandateSecurity security,
+    public GetMandateResponse getMandate(
             String customerId,
             String id,
             JsonNullable<Boolean> testmode) throws Exception {
@@ -532,11 +541,9 @@ public class MandatesAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -648,48 +655,57 @@ public class MandatesAPI implements
 
     /**
      * Revoke mandate
-     * Revoke a customer's mandate. You will no longer be able to charge the customer's bank account or card with this
-     * mandate, and all connected subscriptions will be canceled.
+     * Revoke a customer's mandate. You will no longer be able to charge the customer's bank account or card with this mandate, and all connected subscriptions will be canceled.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **mandates.write**](/reference/authentication)
      * @return The call builder
      */
-    public RevokeMandateRequestBuilder revoke() {
+    public RevokeMandateRequestBuilder revokeMandate() {
         return new RevokeMandateRequestBuilder(this);
     }
 
     /**
      * Revoke mandate
-     * Revoke a customer's mandate. You will no longer be able to charge the customer's bank account or card with this
-     * mandate, and all connected subscriptions will be canceled.
-     * @param security The security details to use for authentication.
+     * Revoke a customer's mandate. You will no longer be able to charge the customer's bank account or card with this mandate, and all connected subscriptions will be canceled.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **mandates.write**](/reference/authentication)
      * @param customerId Provide the ID of the related customer.
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public RevokeMandateResponse revoke(
-            RevokeMandateSecurity security,
+    public RevokeMandateResponse revokeMandate(
             String customerId,
             String id) throws Exception {
-        return revoke(security, customerId, id, JsonNullable.undefined());
+        return revokeMandate(customerId, id, JsonNullable.undefined());
     }
     
     /**
      * Revoke mandate
-     * Revoke a customer's mandate. You will no longer be able to charge the customer's bank account or card with this
-     * mandate, and all connected subscriptions will be canceled.
-     * @param security The security details to use for authentication.
+     * Revoke a customer's mandate. You will no longer be able to charge the customer's bank account or card with this mandate, and all connected subscriptions will be canceled.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **mandates.write**](/reference/authentication)
      * @param customerId Provide the ID of the related customer.
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public RevokeMandateResponse revoke(
-            RevokeMandateSecurity security,
+    public RevokeMandateResponse revokeMandate(
             String customerId,
             String id,
             JsonNullable<Boolean> testmode) throws Exception {
@@ -718,11 +734,9 @@ public class MandatesAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()

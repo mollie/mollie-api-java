@@ -30,8 +30,7 @@ public class CreateClientLinkAddress {
     private JsonNullable<String> streetAndNumber;
 
     /**
-     * The postal code of the organization. Required if a street address is provided and if the country has a postal
-     * code system.
+     * The postal code of the organization. Required if a street address is provided and if the country has a postal code system.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postalCode")
@@ -45,8 +44,7 @@ public class CreateClientLinkAddress {
     private JsonNullable<String> city;
 
     /**
-     * The country of the address in
-     * [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+     * The country of the address in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
      */
     @JsonProperty("country")
     private String country;
@@ -81,8 +79,7 @@ public class CreateClientLinkAddress {
     }
 
     /**
-     * The postal code of the organization. Required if a street address is provided and if the country has a postal
-     * code system.
+     * The postal code of the organization. Required if a street address is provided and if the country has a postal code system.
      */
     @JsonIgnore
     public JsonNullable<String> postalCode() {
@@ -98,8 +95,7 @@ public class CreateClientLinkAddress {
     }
 
     /**
-     * The country of the address in
-     * [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+     * The country of the address in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
      */
     @JsonIgnore
     public String country() {
@@ -129,8 +125,7 @@ public class CreateClientLinkAddress {
     }
 
     /**
-     * The postal code of the organization. Required if a street address is provided and if the country has a postal
-     * code system.
+     * The postal code of the organization. Required if a street address is provided and if the country has a postal code system.
      */
     public CreateClientLinkAddress withPostalCode(String postalCode) {
         Utils.checkNotNull(postalCode, "postalCode");
@@ -139,8 +134,7 @@ public class CreateClientLinkAddress {
     }
 
     /**
-     * The postal code of the organization. Required if a street address is provided and if the country has a postal
-     * code system.
+     * The postal code of the organization. Required if a street address is provided and if the country has a postal code system.
      */
     public CreateClientLinkAddress withPostalCode(JsonNullable<String> postalCode) {
         Utils.checkNotNull(postalCode, "postalCode");
@@ -167,8 +161,7 @@ public class CreateClientLinkAddress {
     }
 
     /**
-     * The country of the address in
-     * [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+     * The country of the address in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
      */
     public CreateClientLinkAddress withCountry(String country) {
         Utils.checkNotNull(country, "country");
@@ -243,8 +236,7 @@ public class CreateClientLinkAddress {
         }
 
         /**
-         * The postal code of the organization. Required if a street address is provided and if the country has a postal
-         * code system.
+         * The postal code of the organization. Required if a street address is provided and if the country has a postal code system.
          */
         public Builder postalCode(String postalCode) {
             Utils.checkNotNull(postalCode, "postalCode");
@@ -253,8 +245,7 @@ public class CreateClientLinkAddress {
         }
 
         /**
-         * The postal code of the organization. Required if a street address is provided and if the country has a postal
-         * code system.
+         * The postal code of the organization. Required if a street address is provided and if the country has a postal code system.
          */
         public Builder postalCode(JsonNullable<String> postalCode) {
             Utils.checkNotNull(postalCode, "postalCode");
@@ -281,8 +272,7 @@ public class CreateClientLinkAddress {
         }
 
         /**
-         * The country of the address in
-         * [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+         * The country of the address in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
          */
         public Builder country(String country) {
             Utils.checkNotNull(country, "country");

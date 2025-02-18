@@ -5,13 +5,16 @@
 
 ### Available Operations
 
-* [create](#create) - Create a delayed route
-* [list](#list) - List payment routes
+* [paymentCreateRoute](#paymentcreateroute) - Create a delayed route
+* [paymentListRoutes](#paymentlistroutes) - List payment routes
 
-## create
+## paymentCreateRoute
 
-Create a route for a specific payment.
-The routed amount is credited to the account of your customer.
+Create a route for a specific payment. The routed amount is credited to the account of your customer.
+
+> 🔑 Access with
+>
+> [API key](/reference/authentication)
 
 ### Example Usage
 
@@ -19,12 +22,12 @@ The routed amount is credited to the account of your customer.
 package hello.world;
 
 import com.mollie.mollie.Mollie;
+import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.PaymentCreateRouteResponseBody;
 import com.mollie.mollie.models.operations.PaymentCreateRouteAmount;
 import com.mollie.mollie.models.operations.PaymentCreateRouteDestination;
 import com.mollie.mollie.models.operations.PaymentCreateRouteRequestBody;
 import com.mollie.mollie.models.operations.PaymentCreateRouteResponse;
-import com.mollie.mollie.models.operations.PaymentCreateRouteSecurity;
 import java.lang.Exception;
 
 public class Application {
@@ -32,12 +35,12 @@ public class Application {
     public static void main(String[] args) throws PaymentCreateRouteResponseBody, Exception {
 
         Mollie sdk = Mollie.builder()
-            .build();
-
-        PaymentCreateRouteResponse res = sdk.delayedRoutingAPI().create()
-                .security(PaymentCreateRouteSecurity.builder()
+                .security(Security.builder()
                     .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
+            .build();
+
+        PaymentCreateRouteResponse res = sdk.delayedRoutingAPI().paymentCreateRoute()
                 .paymentId("tr_5B8cwPMGnU6qLbRvo7qEZo")
                 .requestBody(PaymentCreateRouteRequestBody.builder()
                     .amount(PaymentCreateRouteAmount.builder()
@@ -60,11 +63,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             | Example                                                                                                                 |
-| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                              | [com.mollie.mollie.models.operations.PaymentCreateRouteSecurity](../../models/operations/PaymentCreateRouteSecurity.md) | :heavy_check_mark:                                                                                                      | The security requirements to use for the request.                                                                       |                                                                                                                         |
-| `paymentId`                                                                                                             | *String*                                                                                                                | :heavy_check_mark:                                                                                                      | Provide the ID of the related payment.                                                                                  | tr_5B8cwPMGnU6qLbRvo7qEZo                                                                                               |
-| `requestBody`                                                                                                           | [Optional\<PaymentCreateRouteRequestBody>](../../models/operations/PaymentCreateRouteRequestBody.md)                    | :heavy_minus_sign:                                                                                                      | N/A                                                                                                                     |                                                                                                                         |
+| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          | Example                                                                                              |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `paymentId`                                                                                          | *String*                                                                                             | :heavy_check_mark:                                                                                   | Provide the ID of the related payment.                                                               | tr_5B8cwPMGnU6qLbRvo7qEZo                                                                            |
+| `requestBody`                                                                                        | [Optional\<PaymentCreateRouteRequestBody>](../../models/operations/PaymentCreateRouteRequestBody.md) | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |                                                                                                      |
 
 ### Response
 
@@ -77,9 +79,13 @@ public class Application {
 | models/errors/PaymentCreateRouteResponseBody | 404                                          | application/hal+json                         |
 | models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
 
-## list
+## paymentListRoutes
 
 Retrieve a list of all routes created for a specific payment.
+
+> 🔑 Access with
+>
+> [API key](/reference/authentication)
 
 ### Example Usage
 
@@ -87,9 +93,9 @@ Retrieve a list of all routes created for a specific payment.
 package hello.world;
 
 import com.mollie.mollie.Mollie;
+import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.PaymentListRoutesResponseBody;
 import com.mollie.mollie.models.operations.PaymentListRoutesResponse;
-import com.mollie.mollie.models.operations.PaymentListRoutesSecurity;
 import java.lang.Exception;
 
 public class Application {
@@ -97,12 +103,12 @@ public class Application {
     public static void main(String[] args) throws PaymentListRoutesResponseBody, Exception {
 
         Mollie sdk = Mollie.builder()
-            .build();
-
-        PaymentListRoutesResponse res = sdk.delayedRoutingAPI().list()
-                .security(PaymentListRoutesSecurity.builder()
+                .security(Security.builder()
                     .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
+            .build();
+
+        PaymentListRoutesResponse res = sdk.delayedRoutingAPI().paymentListRoutes()
                 .paymentId("tr_5B8cwPMGnU6qLbRvo7qEZo")
                 .call();
 
@@ -115,10 +121,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                             | Type                                                                                                                  | Required                                                                                                              | Description                                                                                                           | Example                                                                                                               |
-| --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                            | [com.mollie.mollie.models.operations.PaymentListRoutesSecurity](../../models/operations/PaymentListRoutesSecurity.md) | :heavy_check_mark:                                                                                                    | The security requirements to use for the request.                                                                     |                                                                                                                       |
-| `paymentId`                                                                                                           | *String*                                                                                                              | :heavy_check_mark:                                                                                                    | Provide the ID of the related payment.                                                                                | tr_5B8cwPMGnU6qLbRvo7qEZo                                                                                             |
+| Parameter                              | Type                                   | Required                               | Description                            | Example                                |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| `paymentId`                            | *String*                               | :heavy_check_mark:                     | Provide the ID of the related payment. | tr_5B8cwPMGnU6qLbRvo7qEZo              |
 
 ### Response
 

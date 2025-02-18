@@ -15,36 +15,29 @@ import com.mollie.mollie.models.operations.CreateCustomerPaymentRequest;
 import com.mollie.mollie.models.operations.CreateCustomerPaymentRequestBody;
 import com.mollie.mollie.models.operations.CreateCustomerPaymentRequestBuilder;
 import com.mollie.mollie.models.operations.CreateCustomerPaymentResponse;
-import com.mollie.mollie.models.operations.CreateCustomerPaymentSecurity;
 import com.mollie.mollie.models.operations.CreateCustomerRequestBody;
 import com.mollie.mollie.models.operations.CreateCustomerRequestBuilder;
 import com.mollie.mollie.models.operations.CreateCustomerResponse;
-import com.mollie.mollie.models.operations.CreateCustomerSecurity;
 import com.mollie.mollie.models.operations.DeleteCustomerRequest;
 import com.mollie.mollie.models.operations.DeleteCustomerRequestBuilder;
 import com.mollie.mollie.models.operations.DeleteCustomerResponse;
-import com.mollie.mollie.models.operations.DeleteCustomerSecurity;
 import com.mollie.mollie.models.operations.GetCustomerRequest;
 import com.mollie.mollie.models.operations.GetCustomerRequestBuilder;
 import com.mollie.mollie.models.operations.GetCustomerResponse;
 import com.mollie.mollie.models.operations.GetCustomerResponseBody;
-import com.mollie.mollie.models.operations.GetCustomerSecurity;
 import com.mollie.mollie.models.operations.ListCustomerPaymentsRequest;
 import com.mollie.mollie.models.operations.ListCustomerPaymentsRequestBuilder;
 import com.mollie.mollie.models.operations.ListCustomerPaymentsResponse;
 import com.mollie.mollie.models.operations.ListCustomerPaymentsResponseBody;
-import com.mollie.mollie.models.operations.ListCustomerPaymentsSecurity;
 import com.mollie.mollie.models.operations.ListCustomersRequest;
 import com.mollie.mollie.models.operations.ListCustomersRequestBuilder;
 import com.mollie.mollie.models.operations.ListCustomersResponse;
 import com.mollie.mollie.models.operations.ListCustomersResponseBody;
-import com.mollie.mollie.models.operations.ListCustomersSecurity;
 import com.mollie.mollie.models.operations.SDKMethodInterfaces.*;
 import com.mollie.mollie.models.operations.UpdateCustomerRequest;
 import com.mollie.mollie.models.operations.UpdateCustomerRequestBody;
 import com.mollie.mollie.models.operations.UpdateCustomerRequestBuilder;
 import com.mollie.mollie.models.operations.UpdateCustomerResponse;
-import com.mollie.mollie.models.operations.UpdateCustomerSecurity;
 import com.mollie.mollie.utils.HTTPClient;
 import com.mollie.mollie.utils.HTTPRequest;
 import com.mollie.mollie.utils.Hook.AfterErrorContextImpl;
@@ -83,45 +76,56 @@ public class CustomersAPI implements
 
     /**
      * Create customer
-     * Creates a simple minimal representation of a customer. Payments, recurring mandates, and subscriptions can be linked
-     * to this customer object, which simplifies management of recurring payments.
+     * Creates a simple minimal representation of a customer. Payments, recurring mandates, and subscriptions can be linked to this customer object, which simplifies management of recurring payments.
      * 
      * Once registered, customers will also appear in your Mollie dashboard.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **customers.write**](/reference/authentication)
      * @return The call builder
      */
-    public CreateCustomerRequestBuilder create() {
+    public CreateCustomerRequestBuilder createCustomer() {
         return new CreateCustomerRequestBuilder(this);
     }
 
     /**
      * Create customer
-     * Creates a simple minimal representation of a customer. Payments, recurring mandates, and subscriptions can be linked
-     * to this customer object, which simplifies management of recurring payments.
+     * Creates a simple minimal representation of a customer. Payments, recurring mandates, and subscriptions can be linked to this customer object, which simplifies management of recurring payments.
      * 
      * Once registered, customers will also appear in your Mollie dashboard.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **customers.write**](/reference/authentication)
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateCustomerResponse create(
-            CreateCustomerSecurity security) throws Exception {
-        return create(Optional.empty(), security);
+    public CreateCustomerResponse createCustomerDirect() throws Exception {
+        return createCustomer(Optional.empty());
     }
     
     /**
      * Create customer
-     * Creates a simple minimal representation of a customer. Payments, recurring mandates, and subscriptions can be linked
-     * to this customer object, which simplifies management of recurring payments.
+     * Creates a simple minimal representation of a customer. Payments, recurring mandates, and subscriptions can be linked to this customer object, which simplifies management of recurring payments.
      * 
      * Once registered, customers will also appear in your Mollie dashboard.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **customers.write**](/reference/authentication)
      * @param request The request object containing all of the parameters for the API call.
-     * @param security The security details to use for authentication.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateCustomerResponse create(
-            Optional<? extends CreateCustomerRequestBody> request,
-            CreateCustomerSecurity security) throws Exception {
+    public CreateCustomerResponse createCustomer(
+            Optional<? extends CreateCustomerRequestBody> request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -142,11 +146,9 @@ public class CustomersAPI implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -201,19 +203,8 @@ public class CustomersAPI implements
         CreateCustomerResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
+            // no content 
+            return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
@@ -261,9 +252,15 @@ public class CustomersAPI implements
      * Retrieve a list of all customers.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **customers.read**](/reference/authentication)
      * @return The call builder
      */
-    public ListCustomersRequestBuilder list() {
+    public ListCustomersRequestBuilder listCustomers() {
         return new ListCustomersRequestBuilder(this);
     }
 
@@ -272,13 +269,17 @@ public class CustomersAPI implements
      * Retrieve a list of all customers.
      * 
      * The results are paginated.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **customers.read**](/reference/authentication)
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListCustomersResponse list(
-            ListCustomersSecurity security) throws Exception {
-        return list(security, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+    public ListCustomersResponse listCustomersDirect() throws Exception {
+        return listCustomers(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
     }
     
     /**
@@ -286,20 +287,21 @@ public class CustomersAPI implements
      * Retrieve a list of all customers.
      * 
      * The results are paginated.
-     * @param security The security details to use for authentication.
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-    result set.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **customers.read**](/reference/authentication)
+     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListCustomersResponse list(
-            ListCustomersSecurity security,
+    public ListCustomersResponse listCustomers(
             Optional<String> from,
             JsonNullable<Long> limit,
             JsonNullable<Boolean> testmode) throws Exception {
@@ -326,11 +328,9 @@ public class CustomersAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -459,41 +459,47 @@ public class CustomersAPI implements
     /**
      * Get customer
      * Retrieve a single customer by its ID.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
      * @return The call builder
      */
-    public GetCustomerRequestBuilder get() {
+    public GetCustomerRequestBuilder getCustomer() {
         return new GetCustomerRequestBuilder(this);
     }
 
     /**
      * Get customer
      * Retrieve a single customer by its ID.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetCustomerResponse get(
-            GetCustomerSecurity security,
+    public GetCustomerResponse getCustomer(
             String id) throws Exception {
-        return get(security, id, JsonNullable.undefined());
+        return getCustomer(id, JsonNullable.undefined());
     }
     
     /**
      * Get customer
      * Retrieve a single customer by its ID.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetCustomerResponse get(
-            GetCustomerSecurity security,
+    public GetCustomerResponse getCustomer(
             String id,
             JsonNullable<Boolean> testmode) throws Exception {
         GetCustomerRequest request =
@@ -520,11 +526,9 @@ public class CustomersAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -639,9 +643,13 @@ public class CustomersAPI implements
      * Update an existing customer.
      * 
      * For an in-depth explanation of each parameter, refer to the [Create customer](create-customer) endpoint.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
      * @return The call builder
      */
-    public UpdateCustomerRequestBuilder update() {
+    public UpdateCustomerRequestBuilder updateCustomer() {
         return new UpdateCustomerRequestBuilder(this);
     }
 
@@ -650,15 +658,17 @@ public class CustomersAPI implements
      * Update an existing customer.
      * 
      * For an in-depth explanation of each parameter, refer to the [Create customer](create-customer) endpoint.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdateCustomerResponse update(
-            UpdateCustomerSecurity security,
+    public UpdateCustomerResponse updateCustomer(
             String id) throws Exception {
-        return update(security, id, Optional.empty());
+        return updateCustomer(id, Optional.empty());
     }
     
     /**
@@ -666,14 +676,16 @@ public class CustomersAPI implements
      * Update an existing customer.
      * 
      * For an in-depth explanation of each parameter, refer to the [Create customer](create-customer) endpoint.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
      * @param requestBody
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdateCustomerResponse update(
-            UpdateCustomerSecurity security,
+    public UpdateCustomerResponse updateCustomer(
             String id,
             Optional<? extends UpdateCustomerRequestBody> requestBody) throws Exception {
         UpdateCustomerRequest request =
@@ -705,11 +717,9 @@ public class CustomersAPI implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -764,19 +774,8 @@ public class CustomersAPI implements
         UpdateCustomerResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
+            // no content 
+            return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
@@ -822,41 +821,47 @@ public class CustomersAPI implements
     /**
      * Delete customer
      * Delete a customer. All mandates and subscriptions created for this customer will be canceled as well.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
      * @return The call builder
      */
-    public DeleteCustomerRequestBuilder delete() {
+    public DeleteCustomerRequestBuilder deleteCustomer() {
         return new DeleteCustomerRequestBuilder(this);
     }
 
     /**
      * Delete customer
      * Delete a customer. All mandates and subscriptions created for this customer will be canceled as well.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DeleteCustomerResponse delete(
-            DeleteCustomerSecurity security,
+    public DeleteCustomerResponse deleteCustomer(
             String id) throws Exception {
-        return delete(security, id, JsonNullable.undefined());
+        return deleteCustomer(id, JsonNullable.undefined());
     }
     
     /**
      * Delete customer
      * Delete a customer. All mandates and subscriptions created for this customer will be canceled as well.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DeleteCustomerResponse delete(
-            DeleteCustomerSecurity security,
+    public DeleteCustomerResponse deleteCustomer(
             String id,
             JsonNullable<Boolean> testmode) throws Exception {
         DeleteCustomerRequest request =
@@ -883,11 +888,9 @@ public class CustomersAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1008,11 +1011,16 @@ public class CustomersAPI implements
      * * Improve payment insights in the Mollie dashboard
      * * Use recurring payments
      * 
-     * This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the `customerId`
-     * parameter predefined. Please refer to the documentation of that endpoint for all possible parameters.
+     * This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the `customerId` parameter predefined. Please refer to the documentation of that endpoint for all possible parameters.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.write**](/reference/authentication)
      * @return The call builder
      */
-    public CreateCustomerPaymentRequestBuilder createPayment() {
+    public CreateCustomerPaymentRequestBuilder createCustomerPayment() {
         return new CreateCustomerPaymentRequestBuilder(this);
     }
 
@@ -1027,17 +1035,20 @@ public class CustomersAPI implements
      * * Improve payment insights in the Mollie dashboard
      * * Use recurring payments
      * 
-     * This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the `customerId`
-     * parameter predefined. Please refer to the documentation of that endpoint for all possible parameters.
-     * @param security The security details to use for authentication.
+     * This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the `customerId` parameter predefined. Please refer to the documentation of that endpoint for all possible parameters.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.write**](/reference/authentication)
      * @param customerId Provide the ID of the related customer.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateCustomerPaymentResponse createPayment(
-            CreateCustomerPaymentSecurity security,
+    public CreateCustomerPaymentResponse createCustomerPayment(
             String customerId) throws Exception {
-        return createPayment(security, customerId, Optional.empty());
+        return createCustomerPayment(customerId, Optional.empty());
     }
     
     /**
@@ -1051,16 +1062,19 @@ public class CustomersAPI implements
      * * Improve payment insights in the Mollie dashboard
      * * Use recurring payments
      * 
-     * This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the `customerId`
-     * parameter predefined. Please refer to the documentation of that endpoint for all possible parameters.
-     * @param security The security details to use for authentication.
+     * This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the `customerId` parameter predefined. Please refer to the documentation of that endpoint for all possible parameters.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.write**](/reference/authentication)
      * @param customerId Provide the ID of the related customer.
      * @param requestBody
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateCustomerPaymentResponse createPayment(
-            CreateCustomerPaymentSecurity security,
+    public CreateCustomerPaymentResponse createCustomerPayment(
             String customerId,
             Optional<? extends CreateCustomerPaymentRequestBody> requestBody) throws Exception {
         CreateCustomerPaymentRequest request =
@@ -1092,11 +1106,9 @@ public class CustomersAPI implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1209,47 +1221,56 @@ public class CustomersAPI implements
     /**
      * List customer payments
      * Retrieve all payments linked to the customer.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.read**](/reference/authentication)
      * @return The call builder
      */
-    public ListCustomerPaymentsRequestBuilder listPayments() {
+    public ListCustomerPaymentsRequestBuilder listCustomerPayments() {
         return new ListCustomerPaymentsRequestBuilder(this);
     }
 
     /**
      * List customer payments
      * Retrieve all payments linked to the customer.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.read**](/reference/authentication)
      * @param customerId Provide the ID of the related customer.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListCustomerPaymentsResponse listPayments(
-            ListCustomerPaymentsSecurity security,
+    public ListCustomerPaymentsResponse listCustomerPayments(
             String customerId) throws Exception {
-        return listPayments(security, customerId, JsonNullable.undefined(), JsonNullable.undefined());
+        return listCustomerPayments(customerId, JsonNullable.undefined(), JsonNullable.undefined());
     }
     
     /**
      * List customer payments
      * Retrieve all payments linked to the customer.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.read**](/reference/authentication)
      * @param customerId Provide the ID of the related customer.
-     * @param profileId The identifier referring to the [profile](get-profile) this entity
-    belongs to.
+     * @param profileId The identifier referring to the [profile](get-profile) this entity belongs to.
 
-    Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the
-    creation request. For organization-level credentials such as OAuth access tokens however, the `profileId`
-    parameter is required.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+    Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListCustomerPaymentsResponse listPayments(
-            ListCustomerPaymentsSecurity security,
+    public ListCustomerPaymentsResponse listCustomerPayments(
             String customerId,
             JsonNullable<String> profileId,
             JsonNullable<Boolean> testmode) throws Exception {
@@ -1278,11 +1299,9 @@ public class CustomersAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()

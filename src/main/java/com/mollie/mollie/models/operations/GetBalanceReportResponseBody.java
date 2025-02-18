@@ -26,8 +26,7 @@ import java.util.Optional;
 public class GetBalanceReportResponseBody {
 
     /**
-     * Indicates the response contains a balance report object. Will always contain the string `balance-report` for this
-     * endpoint.
+     * Indicates the response contains a balance report object. Will always contain the string `balance-report` for this endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
@@ -48,40 +47,34 @@ public class GetBalanceReportResponseBody {
     private Optional<String> timeZone;
 
     /**
-     * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central European Time.
-     * This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 0:00:00 CET and
-     * onwards.
+     * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central European Time. This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 0:00:00 CET and onwards.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("from")
     private Optional<String> from;
 
     /**
-     * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time.
-     * This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31 23:59:59 CET.
+     * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time. This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31 23:59:59 CET.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("until")
     private Optional<String> until;
 
     /**
-     * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped by
-     * status (e.g. `pending`, `available`), then by direction of movement (e.g. moved from pending to available), then
-     * by transaction type, and then by other sub-groupings where available (e.g. payment method).
+     * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped by status (e.g. `pending`, `available`), then by direction of movement (e.g. moved from pending to available), then by transaction type, and then by other sub-groupings where available (e.g. payment method).
      * 
-     * With the `transaction-categories` format, transactions are grouped by transaction type, then by direction of
-     * movement, and then again by other sub-groupings where available.
+     * With the `transaction-categories` format, transactions are grouped by transaction type, then by direction of movement, and then again by other sub-groupings where available.
      * 
-     * Both reporting formats will always contain opening and closing amounts that correspond to the start and end dates
-     * of the report.
+     * Both reporting formats will always contain opening and closing amounts that correspond to the start and end dates of the report.
+     * 
+     * Possible values: `status-balances` `transaction-categories` (default: `status-balances`)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("grouping")
-    private Optional<? extends GetBalanceReportGrouping> grouping;
+    private Optional<String> grouping;
 
     /**
-     * Totals are grouped according to the chosen grouping rule. The example response should give a good idea of what a
-     * typical grouping looks like.
+     * Totals are grouped according to the chosen grouping rule. The example response should give a good idea of what a typical grouping looks like.
      * 
      * If grouping `status-balances` is chosen, the main grouping is as follows:
      * 
@@ -91,8 +84,7 @@ public class GetBalanceReportResponseBody {
      * If grouping `transaction-categories` is chosen, the main grouping is as follows:
      * 
      * * `open` and `close` groups, each containing a `pending` and `available` sub-group
-     * * Transaction type groups such as `payments` or `refunds`, each containing a `pending`, `movedToAvailable`, and
-     * `immediatelyAvailable` sub-group
+     * * Transaction type groups such as `payments` or `refunds`, each containing a `pending`, `movedToAvailable`, and `immediatelyAvailable` sub-group
      * 
      * Each sub-group typically has:
      * 
@@ -118,7 +110,7 @@ public class GetBalanceReportResponseBody {
             @JsonProperty("timeZone") Optional<String> timeZone,
             @JsonProperty("from") Optional<String> from,
             @JsonProperty("until") Optional<String> until,
-            @JsonProperty("grouping") Optional<? extends GetBalanceReportGrouping> grouping,
+            @JsonProperty("grouping") Optional<String> grouping,
             @JsonProperty("totals") Optional<? extends Totals> totals,
             @JsonProperty("_links") Optional<? extends GetBalanceReportLinks> links) {
         Utils.checkNotNull(resource, "resource");
@@ -144,8 +136,7 @@ public class GetBalanceReportResponseBody {
     }
 
     /**
-     * Indicates the response contains a balance report object. Will always contain the string `balance-report` for this
-     * endpoint.
+     * Indicates the response contains a balance report object. Will always contain the string `balance-report` for this endpoint.
      */
     @JsonIgnore
     public Optional<String> resource() {
@@ -169,9 +160,7 @@ public class GetBalanceReportResponseBody {
     }
 
     /**
-     * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central European Time.
-     * This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 0:00:00 CET and
-     * onwards.
+     * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central European Time. This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 0:00:00 CET and onwards.
      */
     @JsonIgnore
     public Optional<String> from() {
@@ -179,8 +168,7 @@ public class GetBalanceReportResponseBody {
     }
 
     /**
-     * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time.
-     * This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31 23:59:59 CET.
+     * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time. This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31 23:59:59 CET.
      */
     @JsonIgnore
     public Optional<String> until() {
@@ -188,25 +176,21 @@ public class GetBalanceReportResponseBody {
     }
 
     /**
-     * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped by
-     * status (e.g. `pending`, `available`), then by direction of movement (e.g. moved from pending to available), then
-     * by transaction type, and then by other sub-groupings where available (e.g. payment method).
+     * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped by status (e.g. `pending`, `available`), then by direction of movement (e.g. moved from pending to available), then by transaction type, and then by other sub-groupings where available (e.g. payment method).
      * 
-     * With the `transaction-categories` format, transactions are grouped by transaction type, then by direction of
-     * movement, and then again by other sub-groupings where available.
+     * With the `transaction-categories` format, transactions are grouped by transaction type, then by direction of movement, and then again by other sub-groupings where available.
      * 
-     * Both reporting formats will always contain opening and closing amounts that correspond to the start and end dates
-     * of the report.
+     * Both reporting formats will always contain opening and closing amounts that correspond to the start and end dates of the report.
+     * 
+     * Possible values: `status-balances` `transaction-categories` (default: `status-balances`)
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetBalanceReportGrouping> grouping() {
-        return (Optional<GetBalanceReportGrouping>) grouping;
+    public Optional<String> grouping() {
+        return grouping;
     }
 
     /**
-     * Totals are grouped according to the chosen grouping rule. The example response should give a good idea of what a
-     * typical grouping looks like.
+     * Totals are grouped according to the chosen grouping rule. The example response should give a good idea of what a typical grouping looks like.
      * 
      * If grouping `status-balances` is chosen, the main grouping is as follows:
      * 
@@ -216,8 +200,7 @@ public class GetBalanceReportResponseBody {
      * If grouping `transaction-categories` is chosen, the main grouping is as follows:
      * 
      * * `open` and `close` groups, each containing a `pending` and `available` sub-group
-     * * Transaction type groups such as `payments` or `refunds`, each containing a `pending`, `movedToAvailable`, and
-     * `immediatelyAvailable` sub-group
+     * * Transaction type groups such as `payments` or `refunds`, each containing a `pending`, `movedToAvailable`, and `immediatelyAvailable` sub-group
      * 
      * Each sub-group typically has:
      * 
@@ -245,8 +228,7 @@ public class GetBalanceReportResponseBody {
     }
 
     /**
-     * Indicates the response contains a balance report object. Will always contain the string `balance-report` for this
-     * endpoint.
+     * Indicates the response contains a balance report object. Will always contain the string `balance-report` for this endpoint.
      */
     public GetBalanceReportResponseBody withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -255,8 +237,7 @@ public class GetBalanceReportResponseBody {
     }
 
     /**
-     * Indicates the response contains a balance report object. Will always contain the string `balance-report` for this
-     * endpoint.
+     * Indicates the response contains a balance report object. Will always contain the string `balance-report` for this endpoint.
      */
     public GetBalanceReportResponseBody withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
@@ -301,9 +282,7 @@ public class GetBalanceReportResponseBody {
     }
 
     /**
-     * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central European Time.
-     * This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 0:00:00 CET and
-     * onwards.
+     * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central European Time. This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 0:00:00 CET and onwards.
      */
     public GetBalanceReportResponseBody withFrom(String from) {
         Utils.checkNotNull(from, "from");
@@ -312,9 +291,7 @@ public class GetBalanceReportResponseBody {
     }
 
     /**
-     * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central European Time.
-     * This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 0:00:00 CET and
-     * onwards.
+     * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central European Time. This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 0:00:00 CET and onwards.
      */
     public GetBalanceReportResponseBody withFrom(Optional<String> from) {
         Utils.checkNotNull(from, "from");
@@ -323,8 +300,7 @@ public class GetBalanceReportResponseBody {
     }
 
     /**
-     * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time.
-     * This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31 23:59:59 CET.
+     * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time. This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31 23:59:59 CET.
      */
     public GetBalanceReportResponseBody withUntil(String until) {
         Utils.checkNotNull(until, "until");
@@ -333,8 +309,7 @@ public class GetBalanceReportResponseBody {
     }
 
     /**
-     * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time.
-     * This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31 23:59:59 CET.
+     * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time. This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31 23:59:59 CET.
      */
     public GetBalanceReportResponseBody withUntil(Optional<String> until) {
         Utils.checkNotNull(until, "until");
@@ -343,42 +318,37 @@ public class GetBalanceReportResponseBody {
     }
 
     /**
-     * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped by
-     * status (e.g. `pending`, `available`), then by direction of movement (e.g. moved from pending to available), then
-     * by transaction type, and then by other sub-groupings where available (e.g. payment method).
+     * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped by status (e.g. `pending`, `available`), then by direction of movement (e.g. moved from pending to available), then by transaction type, and then by other sub-groupings where available (e.g. payment method).
      * 
-     * With the `transaction-categories` format, transactions are grouped by transaction type, then by direction of
-     * movement, and then again by other sub-groupings where available.
+     * With the `transaction-categories` format, transactions are grouped by transaction type, then by direction of movement, and then again by other sub-groupings where available.
      * 
-     * Both reporting formats will always contain opening and closing amounts that correspond to the start and end dates
-     * of the report.
+     * Both reporting formats will always contain opening and closing amounts that correspond to the start and end dates of the report.
+     * 
+     * Possible values: `status-balances` `transaction-categories` (default: `status-balances`)
      */
-    public GetBalanceReportResponseBody withGrouping(GetBalanceReportGrouping grouping) {
+    public GetBalanceReportResponseBody withGrouping(String grouping) {
         Utils.checkNotNull(grouping, "grouping");
         this.grouping = Optional.ofNullable(grouping);
         return this;
     }
 
     /**
-     * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped by
-     * status (e.g. `pending`, `available`), then by direction of movement (e.g. moved from pending to available), then
-     * by transaction type, and then by other sub-groupings where available (e.g. payment method).
+     * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped by status (e.g. `pending`, `available`), then by direction of movement (e.g. moved from pending to available), then by transaction type, and then by other sub-groupings where available (e.g. payment method).
      * 
-     * With the `transaction-categories` format, transactions are grouped by transaction type, then by direction of
-     * movement, and then again by other sub-groupings where available.
+     * With the `transaction-categories` format, transactions are grouped by transaction type, then by direction of movement, and then again by other sub-groupings where available.
      * 
-     * Both reporting formats will always contain opening and closing amounts that correspond to the start and end dates
-     * of the report.
+     * Both reporting formats will always contain opening and closing amounts that correspond to the start and end dates of the report.
+     * 
+     * Possible values: `status-balances` `transaction-categories` (default: `status-balances`)
      */
-    public GetBalanceReportResponseBody withGrouping(Optional<? extends GetBalanceReportGrouping> grouping) {
+    public GetBalanceReportResponseBody withGrouping(Optional<String> grouping) {
         Utils.checkNotNull(grouping, "grouping");
         this.grouping = grouping;
         return this;
     }
 
     /**
-     * Totals are grouped according to the chosen grouping rule. The example response should give a good idea of what a
-     * typical grouping looks like.
+     * Totals are grouped according to the chosen grouping rule. The example response should give a good idea of what a typical grouping looks like.
      * 
      * If grouping `status-balances` is chosen, the main grouping is as follows:
      * 
@@ -388,8 +358,7 @@ public class GetBalanceReportResponseBody {
      * If grouping `transaction-categories` is chosen, the main grouping is as follows:
      * 
      * * `open` and `close` groups, each containing a `pending` and `available` sub-group
-     * * Transaction type groups such as `payments` or `refunds`, each containing a `pending`, `movedToAvailable`, and
-     * `immediatelyAvailable` sub-group
+     * * Transaction type groups such as `payments` or `refunds`, each containing a `pending`, `movedToAvailable`, and `immediatelyAvailable` sub-group
      * 
      * Each sub-group typically has:
      * 
@@ -404,8 +373,7 @@ public class GetBalanceReportResponseBody {
     }
 
     /**
-     * Totals are grouped according to the chosen grouping rule. The example response should give a good idea of what a
-     * typical grouping looks like.
+     * Totals are grouped according to the chosen grouping rule. The example response should give a good idea of what a typical grouping looks like.
      * 
      * If grouping `status-balances` is chosen, the main grouping is as follows:
      * 
@@ -415,8 +383,7 @@ public class GetBalanceReportResponseBody {
      * If grouping `transaction-categories` is chosen, the main grouping is as follows:
      * 
      * * `open` and `close` groups, each containing a `pending` and `available` sub-group
-     * * Transaction type groups such as `payments` or `refunds`, each containing a `pending`, `movedToAvailable`, and
-     * `immediatelyAvailable` sub-group
+     * * Transaction type groups such as `payments` or `refunds`, each containing a `pending`, `movedToAvailable`, and `immediatelyAvailable` sub-group
      * 
      * Each sub-group typically has:
      * 
@@ -506,7 +473,7 @@ public class GetBalanceReportResponseBody {
  
         private Optional<String> until = Optional.empty();
  
-        private Optional<? extends GetBalanceReportGrouping> grouping;
+        private Optional<String> grouping = Optional.empty();
  
         private Optional<? extends Totals> totals = Optional.empty();
  
@@ -517,8 +484,7 @@ public class GetBalanceReportResponseBody {
         }
 
         /**
-         * Indicates the response contains a balance report object. Will always contain the string `balance-report` for this
-         * endpoint.
+         * Indicates the response contains a balance report object. Will always contain the string `balance-report` for this endpoint.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -527,8 +493,7 @@ public class GetBalanceReportResponseBody {
         }
 
         /**
-         * Indicates the response contains a balance report object. Will always contain the string `balance-report` for this
-         * endpoint.
+         * Indicates the response contains a balance report object. Will always contain the string `balance-report` for this endpoint.
          */
         public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
@@ -573,9 +538,7 @@ public class GetBalanceReportResponseBody {
         }
 
         /**
-         * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central European Time.
-         * This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 0:00:00 CET and
-         * onwards.
+         * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central European Time. This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 0:00:00 CET and onwards.
          */
         public Builder from(String from) {
             Utils.checkNotNull(from, "from");
@@ -584,9 +547,7 @@ public class GetBalanceReportResponseBody {
         }
 
         /**
-         * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central European Time.
-         * This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 0:00:00 CET and
-         * onwards.
+         * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central European Time. This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 0:00:00 CET and onwards.
          */
         public Builder from(Optional<String> from) {
             Utils.checkNotNull(from, "from");
@@ -595,8 +556,7 @@ public class GetBalanceReportResponseBody {
         }
 
         /**
-         * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time.
-         * This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31 23:59:59 CET.
+         * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time. This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31 23:59:59 CET.
          */
         public Builder until(String until) {
             Utils.checkNotNull(until, "until");
@@ -605,8 +565,7 @@ public class GetBalanceReportResponseBody {
         }
 
         /**
-         * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time.
-         * This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31 23:59:59 CET.
+         * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time. This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31 23:59:59 CET.
          */
         public Builder until(Optional<String> until) {
             Utils.checkNotNull(until, "until");
@@ -615,42 +574,37 @@ public class GetBalanceReportResponseBody {
         }
 
         /**
-         * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped by
-         * status (e.g. `pending`, `available`), then by direction of movement (e.g. moved from pending to available), then
-         * by transaction type, and then by other sub-groupings where available (e.g. payment method).
+         * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped by status (e.g. `pending`, `available`), then by direction of movement (e.g. moved from pending to available), then by transaction type, and then by other sub-groupings where available (e.g. payment method).
          * 
-         * With the `transaction-categories` format, transactions are grouped by transaction type, then by direction of
-         * movement, and then again by other sub-groupings where available.
+         * With the `transaction-categories` format, transactions are grouped by transaction type, then by direction of movement, and then again by other sub-groupings where available.
          * 
-         * Both reporting formats will always contain opening and closing amounts that correspond to the start and end dates
-         * of the report.
+         * Both reporting formats will always contain opening and closing amounts that correspond to the start and end dates of the report.
+         * 
+         * Possible values: `status-balances` `transaction-categories` (default: `status-balances`)
          */
-        public Builder grouping(GetBalanceReportGrouping grouping) {
+        public Builder grouping(String grouping) {
             Utils.checkNotNull(grouping, "grouping");
             this.grouping = Optional.ofNullable(grouping);
             return this;
         }
 
         /**
-         * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped by
-         * status (e.g. `pending`, `available`), then by direction of movement (e.g. moved from pending to available), then
-         * by transaction type, and then by other sub-groupings where available (e.g. payment method).
+         * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped by status (e.g. `pending`, `available`), then by direction of movement (e.g. moved from pending to available), then by transaction type, and then by other sub-groupings where available (e.g. payment method).
          * 
-         * With the `transaction-categories` format, transactions are grouped by transaction type, then by direction of
-         * movement, and then again by other sub-groupings where available.
+         * With the `transaction-categories` format, transactions are grouped by transaction type, then by direction of movement, and then again by other sub-groupings where available.
          * 
-         * Both reporting formats will always contain opening and closing amounts that correspond to the start and end dates
-         * of the report.
+         * Both reporting formats will always contain opening and closing amounts that correspond to the start and end dates of the report.
+         * 
+         * Possible values: `status-balances` `transaction-categories` (default: `status-balances`)
          */
-        public Builder grouping(Optional<? extends GetBalanceReportGrouping> grouping) {
+        public Builder grouping(Optional<String> grouping) {
             Utils.checkNotNull(grouping, "grouping");
             this.grouping = grouping;
             return this;
         }
 
         /**
-         * Totals are grouped according to the chosen grouping rule. The example response should give a good idea of what a
-         * typical grouping looks like.
+         * Totals are grouped according to the chosen grouping rule. The example response should give a good idea of what a typical grouping looks like.
          * 
          * If grouping `status-balances` is chosen, the main grouping is as follows:
          * 
@@ -660,8 +614,7 @@ public class GetBalanceReportResponseBody {
          * If grouping `transaction-categories` is chosen, the main grouping is as follows:
          * 
          * * `open` and `close` groups, each containing a `pending` and `available` sub-group
-         * * Transaction type groups such as `payments` or `refunds`, each containing a `pending`, `movedToAvailable`, and
-         * `immediatelyAvailable` sub-group
+         * * Transaction type groups such as `payments` or `refunds`, each containing a `pending`, `movedToAvailable`, and `immediatelyAvailable` sub-group
          * 
          * Each sub-group typically has:
          * 
@@ -676,8 +629,7 @@ public class GetBalanceReportResponseBody {
         }
 
         /**
-         * Totals are grouped according to the chosen grouping rule. The example response should give a good idea of what a
-         * typical grouping looks like.
+         * Totals are grouped according to the chosen grouping rule. The example response should give a good idea of what a typical grouping looks like.
          * 
          * If grouping `status-balances` is chosen, the main grouping is as follows:
          * 
@@ -687,8 +639,7 @@ public class GetBalanceReportResponseBody {
          * If grouping `transaction-categories` is chosen, the main grouping is as follows:
          * 
          * * `open` and `close` groups, each containing a `pending` and `available` sub-group
-         * * Transaction type groups such as `payments` or `refunds`, each containing a `pending`, `movedToAvailable`, and
-         * `immediatelyAvailable` sub-group
+         * * Transaction type groups such as `payments` or `refunds`, each containing a `pending`, `movedToAvailable`, and `immediatelyAvailable` sub-group
          * 
          * Each sub-group typically has:
          * 
@@ -723,9 +674,6 @@ public class GetBalanceReportResponseBody {
         public GetBalanceReportResponseBody build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
-            }
-            if (grouping == null) {
-                grouping = _SINGLETON_VALUE_Grouping.value();
             }            return new GetBalanceReportResponseBody(
                 resource,
                 balanceId,
@@ -742,12 +690,6 @@ public class GetBalanceReportResponseBody {
                         "resource",
                         "\"balance-report\"",
                         new TypeReference<Optional<String>>() {});
-
-        private static final LazySingletonValue<Optional<? extends GetBalanceReportGrouping>> _SINGLETON_VALUE_Grouping =
-                new LazySingletonValue<>(
-                        "grouping",
-                        "\"status-balances\"",
-                        new TypeReference<Optional<? extends GetBalanceReportGrouping>>() {});
     }
 }
 

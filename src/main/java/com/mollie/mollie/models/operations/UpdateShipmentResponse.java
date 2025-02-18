@@ -11,13 +11,10 @@ import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Objects;
-import java.util.Optional;
 
 
 public class UpdateShipmentResponse implements Response {
@@ -37,33 +34,17 @@ public class UpdateShipmentResponse implements Response {
      */
     private HttpResponse<InputStream> rawResponse;
 
-    /**
-     * The updated shipment object. For a complete reference of the shipment object, refer to the
-     * [Get shipment endpoint](get-shipment) documentation.
-     */
-    private Optional<? extends Object> any;
-
     @JsonCreator
     public UpdateShipmentResponse(
             String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse,
-            Optional<? extends Object> any) {
+            HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(any, "any");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.any = any;
-    }
-    
-    public UpdateShipmentResponse(
-            String contentType,
-            int statusCode,
-            HttpResponse<InputStream> rawResponse) {
-        this(contentType, statusCode, rawResponse, Optional.empty());
     }
 
     /**
@@ -88,16 +69,6 @@ public class UpdateShipmentResponse implements Response {
     @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
-    }
-
-    /**
-     * The updated shipment object. For a complete reference of the shipment object, refer to the
-     * [Get shipment endpoint](get-shipment) documentation.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Object> any() {
-        return (Optional<Object>) any;
     }
 
     public final static Builder builder() {
@@ -130,26 +101,6 @@ public class UpdateShipmentResponse implements Response {
         this.rawResponse = rawResponse;
         return this;
     }
-
-    /**
-     * The updated shipment object. For a complete reference of the shipment object, refer to the
-     * [Get shipment endpoint](get-shipment) documentation.
-     */
-    public UpdateShipmentResponse withAny(Object any) {
-        Utils.checkNotNull(any, "any");
-        this.any = Optional.ofNullable(any);
-        return this;
-    }
-
-    /**
-     * The updated shipment object. For a complete reference of the shipment object, refer to the
-     * [Get shipment endpoint](get-shipment) documentation.
-     */
-    public UpdateShipmentResponse withAny(Optional<? extends Object> any) {
-        Utils.checkNotNull(any, "any");
-        this.any = any;
-        return this;
-    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -163,8 +114,7 @@ public class UpdateShipmentResponse implements Response {
         return 
             Objects.deepEquals(this.contentType, other.contentType) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.any, other.any);
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
@@ -172,8 +122,7 @@ public class UpdateShipmentResponse implements Response {
         return Objects.hash(
             contentType,
             statusCode,
-            rawResponse,
-            any);
+            rawResponse);
     }
     
     @Override
@@ -181,8 +130,7 @@ public class UpdateShipmentResponse implements Response {
         return Utils.toString(UpdateShipmentResponse.class,
                 "contentType", contentType,
                 "statusCode", statusCode,
-                "rawResponse", rawResponse,
-                "any", any);
+                "rawResponse", rawResponse);
     }
     
     public final static class Builder {
@@ -191,9 +139,7 @@ public class UpdateShipmentResponse implements Response {
  
         private Integer statusCode;
  
-        private HttpResponse<InputStream> rawResponse;
- 
-        private Optional<? extends Object> any = Optional.empty();  
+        private HttpResponse<InputStream> rawResponse;  
         
         private Builder() {
           // force use of static builder() method
@@ -225,33 +171,12 @@ public class UpdateShipmentResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
-
-        /**
-         * The updated shipment object. For a complete reference of the shipment object, refer to the
-         * [Get shipment endpoint](get-shipment) documentation.
-         */
-        public Builder any(Object any) {
-            Utils.checkNotNull(any, "any");
-            this.any = Optional.ofNullable(any);
-            return this;
-        }
-
-        /**
-         * The updated shipment object. For a complete reference of the shipment object, refer to the
-         * [Get shipment endpoint](get-shipment) documentation.
-         */
-        public Builder any(Optional<? extends Object> any) {
-            Utils.checkNotNull(any, "any");
-            this.any = any;
-            return this;
-        }
         
         public UpdateShipmentResponse build() {
             return new UpdateShipmentResponse(
                 contentType,
                 statusCode,
-                rawResponse,
-                any);
+                rawResponse);
         }
     }
 }

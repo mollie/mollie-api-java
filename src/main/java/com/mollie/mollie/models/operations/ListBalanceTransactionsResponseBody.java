@@ -25,11 +25,9 @@ import java.util.Optional;
 public class ListBalanceTransactionsResponseBody {
 
     /**
-     * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result
-     * as well.
+     * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result as well.
      * 
-     * The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
-     * limit is 50 items.
+     * The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("count")
@@ -64,11 +62,9 @@ public class ListBalanceTransactionsResponseBody {
     }
 
     /**
-     * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result
-     * as well.
+     * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result as well.
      * 
-     * The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
-     * limit is 50 items.
+     * The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
      */
     @JsonIgnore
     public Optional<Long> count() {
@@ -95,11 +91,9 @@ public class ListBalanceTransactionsResponseBody {
     }
 
     /**
-     * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result
-     * as well.
+     * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result as well.
      * 
-     * The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
-     * limit is 50 items.
+     * The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
      */
     public ListBalanceTransactionsResponseBody withCount(long count) {
         Utils.checkNotNull(count, "count");
@@ -108,11 +102,9 @@ public class ListBalanceTransactionsResponseBody {
     }
 
     /**
-     * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result
-     * as well.
+     * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result as well.
      * 
-     * The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
-     * limit is 50 items.
+     * The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
      */
     public ListBalanceTransactionsResponseBody withCount(Optional<Long> count) {
         Utils.checkNotNull(count, "count");
@@ -194,11 +186,9 @@ public class ListBalanceTransactionsResponseBody {
         }
 
         /**
-         * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result
-         * as well.
+         * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result as well.
          * 
-         * The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
-         * limit is 50 items.
+         * The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
          */
         public Builder count(long count) {
             Utils.checkNotNull(count, "count");
@@ -207,11 +197,9 @@ public class ListBalanceTransactionsResponseBody {
         }
 
         /**
-         * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result
-         * as well.
+         * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result as well.
          * 
-         * The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
-         * limit is 50 items.
+         * The maximum number of items per result set is controlled by the `limit` property provided in the request. The default limit is 50 items.
          */
         public Builder count(Optional<Long> count) {
             Utils.checkNotNull(count, "count");

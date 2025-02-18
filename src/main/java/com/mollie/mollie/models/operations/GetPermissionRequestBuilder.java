@@ -46,7 +46,7 @@ public class GetPermissionRequestBuilder {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.get(
+        return sdk.getPermission(
             id,
             testmode);
     }

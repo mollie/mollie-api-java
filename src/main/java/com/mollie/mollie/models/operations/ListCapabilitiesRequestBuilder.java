@@ -15,6 +15,6 @@ public class ListCapabilitiesRequestBuilder {
 
     public ListCapabilitiesResponse call() throws Exception {
 
-        return sdk.listDirect();
+        return sdk.listCapabilitiesDirect();
     }
 }

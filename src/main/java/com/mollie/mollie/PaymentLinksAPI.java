@@ -14,33 +14,27 @@ import com.mollie.mollie.models.errors.UpdatePaymentLinkPaymentLinksAPIResponseB
 import com.mollie.mollie.models.operations.CreatePaymentLinkRequestBody;
 import com.mollie.mollie.models.operations.CreatePaymentLinkRequestBuilder;
 import com.mollie.mollie.models.operations.CreatePaymentLinkResponse;
-import com.mollie.mollie.models.operations.CreatePaymentLinkSecurity;
 import com.mollie.mollie.models.operations.DeletePaymentLinkRequest;
 import com.mollie.mollie.models.operations.DeletePaymentLinkRequestBuilder;
 import com.mollie.mollie.models.operations.DeletePaymentLinkResponse;
-import com.mollie.mollie.models.operations.DeletePaymentLinkSecurity;
 import com.mollie.mollie.models.operations.GetPaymentLinkPaymentsRequest;
 import com.mollie.mollie.models.operations.GetPaymentLinkPaymentsRequestBuilder;
 import com.mollie.mollie.models.operations.GetPaymentLinkPaymentsResponse;
 import com.mollie.mollie.models.operations.GetPaymentLinkPaymentsResponseBody;
-import com.mollie.mollie.models.operations.GetPaymentLinkPaymentsSecurity;
 import com.mollie.mollie.models.operations.GetPaymentLinkRequest;
 import com.mollie.mollie.models.operations.GetPaymentLinkRequestBuilder;
 import com.mollie.mollie.models.operations.GetPaymentLinkResponse;
 import com.mollie.mollie.models.operations.GetPaymentLinkResponseBody;
-import com.mollie.mollie.models.operations.GetPaymentLinkSecurity;
 import com.mollie.mollie.models.operations.ListPaymentLinksRequest;
 import com.mollie.mollie.models.operations.ListPaymentLinksRequestBuilder;
 import com.mollie.mollie.models.operations.ListPaymentLinksResponse;
 import com.mollie.mollie.models.operations.ListPaymentLinksResponseBody;
-import com.mollie.mollie.models.operations.ListPaymentLinksSecurity;
 import com.mollie.mollie.models.operations.SDKMethodInterfaces.*;
 import com.mollie.mollie.models.operations.UpdatePaymentLinkRequest;
 import com.mollie.mollie.models.operations.UpdatePaymentLinkRequestBody;
 import com.mollie.mollie.models.operations.UpdatePaymentLinkRequestBuilder;
 import com.mollie.mollie.models.operations.UpdatePaymentLinkResponse;
 import com.mollie.mollie.models.operations.UpdatePaymentLinkResponseBody;
-import com.mollie.mollie.models.operations.UpdatePaymentLinkSecurity;
 import com.mollie.mollie.utils.HTTPClient;
 import com.mollie.mollie.utils.HTTPRequest;
 import com.mollie.mollie.utils.Hook.AfterErrorContextImpl;
@@ -78,42 +72,50 @@ public class PaymentLinksAPI implements
 
     /**
      * Create payment link
-     * With the Payment links API you can generate payment links that by default, unlike regular payments, do not expire.
-     * The payment link can be shared with your customers and will redirect them to them the payment page where they can
-     * complete the payment. A [payment](get-payment) will only be created once the customer initiates the payment.
+     * With the Payment links API you can generate payment links that by default, unlike regular payments, do not expire. The payment link can be shared with your customers and will redirect them to them the payment page where they can complete the payment. A [payment](get-payment) will only be created once the customer initiates the payment.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payment-links.write**](/reference/authentication)
      * @return The call builder
      */
-    public CreatePaymentLinkRequestBuilder create() {
+    public CreatePaymentLinkRequestBuilder createPaymentLink() {
         return new CreatePaymentLinkRequestBuilder(this);
     }
 
     /**
      * Create payment link
-     * With the Payment links API you can generate payment links that by default, unlike regular payments, do not expire.
-     * The payment link can be shared with your customers and will redirect them to them the payment page where they can
-     * complete the payment. A [payment](get-payment) will only be created once the customer initiates the payment.
-     * @param security The security details to use for authentication.
+     * With the Payment links API you can generate payment links that by default, unlike regular payments, do not expire. The payment link can be shared with your customers and will redirect them to them the payment page where they can complete the payment. A [payment](get-payment) will only be created once the customer initiates the payment.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payment-links.write**](/reference/authentication)
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreatePaymentLinkResponse create(
-            CreatePaymentLinkSecurity security) throws Exception {
-        return create(Optional.empty(), security);
+    public CreatePaymentLinkResponse createPaymentLinkDirect() throws Exception {
+        return createPaymentLink(Optional.empty());
     }
     
     /**
      * Create payment link
-     * With the Payment links API you can generate payment links that by default, unlike regular payments, do not expire.
-     * The payment link can be shared with your customers and will redirect them to them the payment page where they can
-     * complete the payment. A [payment](get-payment) will only be created once the customer initiates the payment.
+     * With the Payment links API you can generate payment links that by default, unlike regular payments, do not expire. The payment link can be shared with your customers and will redirect them to them the payment page where they can complete the payment. A [payment](get-payment) will only be created once the customer initiates the payment.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payment-links.write**](/reference/authentication)
      * @param request The request object containing all of the parameters for the API call.
-     * @param security The security details to use for authentication.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreatePaymentLinkResponse create(
-            Optional<? extends CreatePaymentLinkRequestBody> request,
-            CreatePaymentLinkSecurity security) throws Exception {
+    public CreatePaymentLinkResponse createPaymentLink(
+            Optional<? extends CreatePaymentLinkRequestBody> request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -134,11 +136,9 @@ public class PaymentLinksAPI implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -193,19 +193,8 @@ public class PaymentLinksAPI implements
         CreatePaymentLinkResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
+            // no content 
+            return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
@@ -269,9 +258,15 @@ public class PaymentLinksAPI implements
      * Retrieve a list of all payment links.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payment-links.read**](/reference/authentication)
      * @return The call builder
      */
-    public ListPaymentLinksRequestBuilder list() {
+    public ListPaymentLinksRequestBuilder listPaymentLinks() {
         return new ListPaymentLinksRequestBuilder(this);
     }
 
@@ -280,13 +275,17 @@ public class PaymentLinksAPI implements
      * Retrieve a list of all payment links.
      * 
      * The results are paginated.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payment-links.read**](/reference/authentication)
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListPaymentLinksResponse list(
-            ListPaymentLinksSecurity security) throws Exception {
-        return list(security, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+    public ListPaymentLinksResponse listPaymentLinksDirect() throws Exception {
+        return listPaymentLinks(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
     }
     
     /**
@@ -294,20 +293,21 @@ public class PaymentLinksAPI implements
      * Retrieve a list of all payment links.
      * 
      * The results are paginated.
-     * @param security The security details to use for authentication.
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-    result set.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payment-links.read**](/reference/authentication)
+     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListPaymentLinksResponse list(
-            ListPaymentLinksSecurity security,
+    public ListPaymentLinksResponse listPaymentLinks(
             Optional<String> from,
             JsonNullable<Long> limit,
             JsonNullable<Boolean> testmode) throws Exception {
@@ -334,11 +334,9 @@ public class PaymentLinksAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -451,41 +449,53 @@ public class PaymentLinksAPI implements
     /**
      * Get payment link
      * Retrieve a single payment link by its ID.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payment-links.read**](/reference/authentication)
      * @return The call builder
      */
-    public GetPaymentLinkRequestBuilder get() {
+    public GetPaymentLinkRequestBuilder getPaymentLink() {
         return new GetPaymentLinkRequestBuilder(this);
     }
 
     /**
      * Get payment link
      * Retrieve a single payment link by its ID.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payment-links.read**](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetPaymentLinkResponse get(
-            GetPaymentLinkSecurity security,
+    public GetPaymentLinkResponse getPaymentLink(
             String id) throws Exception {
-        return get(security, id, JsonNullable.undefined());
+        return getPaymentLink(id, JsonNullable.undefined());
     }
     
     /**
      * Get payment link
      * Retrieve a single payment link by its ID.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payment-links.read**](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetPaymentLinkResponse get(
-            GetPaymentLinkSecurity security,
+    public GetPaymentLinkResponse getPaymentLink(
             String id,
             JsonNullable<Boolean> testmode) throws Exception {
         GetPaymentLinkRequest request =
@@ -512,11 +522,9 @@ public class PaymentLinksAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -629,42 +637,54 @@ public class PaymentLinksAPI implements
     /**
      * Update payment link
      * Certain details of an existing payment link can be updated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payment-links.write**](/reference/authentication)
      * @return The call builder
      */
-    public UpdatePaymentLinkRequestBuilder update() {
+    public UpdatePaymentLinkRequestBuilder updatePaymentLink() {
         return new UpdatePaymentLinkRequestBuilder(this);
     }
 
     /**
      * Update payment link
      * Certain details of an existing payment link can be updated.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payment-links.write**](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdatePaymentLinkResponse update(
-            UpdatePaymentLinkSecurity security,
+    public UpdatePaymentLinkResponse updatePaymentLink(
             String id) throws Exception {
-        return update(security, id, JsonNullable.undefined(), Optional.empty());
+        return updatePaymentLink(id, JsonNullable.undefined(), Optional.empty());
     }
     
     /**
      * Update payment link
      * Certain details of an existing payment link can be updated.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payment-links.write**](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param requestBody
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdatePaymentLinkResponse update(
-            UpdatePaymentLinkSecurity security,
+    public UpdatePaymentLinkResponse updatePaymentLink(
             String id,
             JsonNullable<Boolean> testmode,
             Optional<? extends UpdatePaymentLinkRequestBody> requestBody) throws Exception {
@@ -703,11 +723,9 @@ public class PaymentLinksAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -835,60 +853,66 @@ public class PaymentLinksAPI implements
 
     /**
      * Delete payment link
-     * Payment links which have not been opened and no payments have been made yet can be deleted entirely.
-     * This can be useful for removing payment links that have been incorrectly configured or that are no longer relevant.
+     * Payment links which have not been opened and no payments have been made yet can be deleted entirely. This can be useful for removing payment links that have been incorrectly configured or that are no longer relevant.
      * 
      * Once deleted, the payment link will no longer show up in the API or Mollie dashboard.
      * 
-     * To simply disable a payment link without fully deleting it, you can use the `archived` parameter on the
-     * [Update payment link](update-payment-link) endpoint instead.
+     * To simply disable a payment link without fully deleting it, you can use the `archived` parameter on the [Update payment link](update-payment-link) endpoint instead.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payment-links.write**](/reference/authentication)
      * @return The call builder
      */
-    public DeletePaymentLinkRequestBuilder delete() {
+    public DeletePaymentLinkRequestBuilder deletePaymentLink() {
         return new DeletePaymentLinkRequestBuilder(this);
     }
 
     /**
      * Delete payment link
-     * Payment links which have not been opened and no payments have been made yet can be deleted entirely.
-     * This can be useful for removing payment links that have been incorrectly configured or that are no longer relevant.
+     * Payment links which have not been opened and no payments have been made yet can be deleted entirely. This can be useful for removing payment links that have been incorrectly configured or that are no longer relevant.
      * 
      * Once deleted, the payment link will no longer show up in the API or Mollie dashboard.
      * 
-     * To simply disable a payment link without fully deleting it, you can use the `archived` parameter on the
-     * [Update payment link](update-payment-link) endpoint instead.
-     * @param security The security details to use for authentication.
+     * To simply disable a payment link without fully deleting it, you can use the `archived` parameter on the [Update payment link](update-payment-link) endpoint instead.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payment-links.write**](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DeletePaymentLinkResponse delete(
-            DeletePaymentLinkSecurity security,
+    public DeletePaymentLinkResponse deletePaymentLink(
             String id) throws Exception {
-        return delete(security, id, JsonNullable.undefined());
+        return deletePaymentLink(id, JsonNullable.undefined());
     }
     
     /**
      * Delete payment link
-     * Payment links which have not been opened and no payments have been made yet can be deleted entirely.
-     * This can be useful for removing payment links that have been incorrectly configured or that are no longer relevant.
+     * Payment links which have not been opened and no payments have been made yet can be deleted entirely. This can be useful for removing payment links that have been incorrectly configured or that are no longer relevant.
      * 
      * Once deleted, the payment link will no longer show up in the API or Mollie dashboard.
      * 
-     * To simply disable a payment link without fully deleting it, you can use the `archived` parameter on the
-     * [Update payment link](update-payment-link) endpoint instead.
-     * @param security The security details to use for authentication.
+     * To simply disable a payment link without fully deleting it, you can use the `archived` parameter on the [Update payment link](update-payment-link) endpoint instead.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payment-links.write**](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DeletePaymentLinkResponse delete(
-            DeletePaymentLinkSecurity security,
+    public DeletePaymentLinkResponse deletePaymentLink(
             String id,
             JsonNullable<Boolean> testmode) throws Exception {
         DeletePaymentLinkRequest request =
@@ -915,11 +939,9 @@ public class PaymentLinksAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1050,9 +1072,15 @@ public class PaymentLinksAPI implements
      * Retrieve the list of payments for a specific payment link.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payment-links.read**](/reference/authentication)
      * @return The call builder
      */
-    public GetPaymentLinkPaymentsRequestBuilder getPayments() {
+    public GetPaymentLinkPaymentsRequestBuilder getPaymentLinkPayments() {
         return new GetPaymentLinkPaymentsRequestBuilder(this);
     }
 
@@ -1061,14 +1089,18 @@ public class PaymentLinksAPI implements
      * Retrieve the list of payments for a specific payment link.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payment-links.read**](/reference/authentication)
      * @param request The request object containing all of the parameters for the API call.
-     * @param security The security details to use for authentication.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetPaymentLinkPaymentsResponse getPayments(
-            GetPaymentLinkPaymentsRequest request,
-            GetPaymentLinkPaymentsSecurity security) throws Exception {
+    public GetPaymentLinkPaymentsResponse getPaymentLinkPayments(
+            GetPaymentLinkPaymentsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 GetPaymentLinkPaymentsRequest.class,
@@ -1086,11 +1118,9 @@ public class PaymentLinksAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()

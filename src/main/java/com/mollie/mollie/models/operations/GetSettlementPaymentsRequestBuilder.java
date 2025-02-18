@@ -24,7 +24,7 @@ public class GetSettlementPaymentsRequestBuilder {
 
     public GetSettlementPaymentsResponse call() throws Exception {
 
-        return sdk.getPayments(
+        return sdk.getSettlementPayments(
             settlementId);
     }
 }

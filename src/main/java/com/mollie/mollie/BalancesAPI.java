@@ -37,7 +37,6 @@ import java.io.InputStream;
 import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.Long;
-import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -64,9 +63,13 @@ public class BalancesAPI implements
      * Retrieve a list of the organization's balances, including the primary balance.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **balances.read**](/reference/authentication)
      * @return The call builder
      */
-    public ListBalancesRequestBuilder list() {
+    public ListBalancesRequestBuilder listBalances() {
         return new ListBalancesRequestBuilder(this);
     }
 
@@ -75,11 +78,15 @@ public class BalancesAPI implements
      * Retrieve a list of the organization's balances, including the primary balance.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **balances.read**](/reference/authentication)
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListBalancesResponse listDirect() throws Exception {
-        return list(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+    public ListBalancesResponse listBalancesDirect() throws Exception {
+        return listBalances(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
     }
     
     /**
@@ -87,19 +94,20 @@ public class BalancesAPI implements
      * Retrieve a list of the organization's balances, including the primary balance.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **balances.read**](/reference/authentication)
      * @param currency Optionally only return balances with the given currency. For example: `EUR`.
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-    result set.
+     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListBalancesResponse list(
+    public ListBalancesResponse listBalances(
             JsonNullable<String> currency,
             Optional<String> from,
             JsonNullable<Long> limit,
@@ -258,80 +266,69 @@ public class BalancesAPI implements
 
     /**
      * Get balance
-     * When processing payments with Mollie, we put all pending funds — usually
-     * minus Mollie fees — on a balance. Once you have linked a bank account to your Mollie account, we can pay out your
-     * balance towards this bank account.
+     * When processing payments with Mollie, we put all pending funds — usually minus Mollie fees — on a balance. Once you have linked a bank account to your Mollie account, we can pay out your balance towards this bank account.
      * 
-     * With the Balances API you can retrieve your current balance. The response
-     * includes two amounts:
+     * With the Balances API you can retrieve your current balance. The response includes two amounts:
      * 
-     * * The *pending amount*. These are payments that have been marked as `paid`,
-     * but are not yet available on your balance.
-     * * The *available amount*. This is the amount that you can get paid out to
-     * your bank account, or use for refunds.
+     * * The *pending amount*. These are payments that have been marked as `paid`, but are not yet available on your balance.
+     * * The *available amount*. This is the amount that you can get paid out to your bank account, or use for refunds.
      * 
-     * With instant payment methods like iDEAL, payments are moved to the available
-     * balance instantly. With slower payment methods, like credit card for example, it can take a few days before the
-     * funds are available on your balance. These funds will be shown under the *pending amount* in the meanwhile.
+     * With instant payment methods like iDEAL, payments are moved to the available balance instantly. With slower payment methods, like credit card for example, it can take a few days before the funds are available on your balance. These funds will be shown under the *pending amount* in the meanwhile.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **balances.read**](/reference/authentication)
      * @return The call builder
      */
-    public GetBalanceRequestBuilder get() {
+    public GetBalanceRequestBuilder getBalance() {
         return new GetBalanceRequestBuilder(this);
     }
 
     /**
      * Get balance
-     * When processing payments with Mollie, we put all pending funds — usually
-     * minus Mollie fees — on a balance. Once you have linked a bank account to your Mollie account, we can pay out your
-     * balance towards this bank account.
+     * When processing payments with Mollie, we put all pending funds — usually minus Mollie fees — on a balance. Once you have linked a bank account to your Mollie account, we can pay out your balance towards this bank account.
      * 
-     * With the Balances API you can retrieve your current balance. The response
-     * includes two amounts:
+     * With the Balances API you can retrieve your current balance. The response includes two amounts:
      * 
-     * * The *pending amount*. These are payments that have been marked as `paid`,
-     * but are not yet available on your balance.
-     * * The *available amount*. This is the amount that you can get paid out to
-     * your bank account, or use for refunds.
+     * * The *pending amount*. These are payments that have been marked as `paid`, but are not yet available on your balance.
+     * * The *available amount*. This is the amount that you can get paid out to your bank account, or use for refunds.
      * 
-     * With instant payment methods like iDEAL, payments are moved to the available
-     * balance instantly. With slower payment methods, like credit card for example, it can take a few days before the
-     * funds are available on your balance. These funds will be shown under the *pending amount* in the meanwhile.
+     * With instant payment methods like iDEAL, payments are moved to the available balance instantly. With slower payment methods, like credit card for example, it can take a few days before the funds are available on your balance. These funds will be shown under the *pending amount* in the meanwhile.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **balances.read**](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetBalanceResponse get(
+    public GetBalanceResponse getBalance(
             String id) throws Exception {
-        return get(id, JsonNullable.undefined());
+        return getBalance(id, JsonNullable.undefined());
     }
     
     /**
      * Get balance
-     * When processing payments with Mollie, we put all pending funds — usually
-     * minus Mollie fees — on a balance. Once you have linked a bank account to your Mollie account, we can pay out your
-     * balance towards this bank account.
+     * When processing payments with Mollie, we put all pending funds — usually minus Mollie fees — on a balance. Once you have linked a bank account to your Mollie account, we can pay out your balance towards this bank account.
      * 
-     * With the Balances API you can retrieve your current balance. The response
-     * includes two amounts:
+     * With the Balances API you can retrieve your current balance. The response includes two amounts:
      * 
-     * * The *pending amount*. These are payments that have been marked as `paid`,
-     * but are not yet available on your balance.
-     * * The *available amount*. This is the amount that you can get paid out to
-     * your bank account, or use for refunds.
+     * * The *pending amount*. These are payments that have been marked as `paid`, but are not yet available on your balance.
+     * * The *available amount*. This is the amount that you can get paid out to your bank account, or use for refunds.
      * 
-     * With instant payment methods like iDEAL, payments are moved to the available
-     * balance instantly. With slower payment methods, like credit card for example, it can take a few days before the
-     * funds are available on your balance. These funds will be shown under the *pending amount* in the meanwhile.
+     * With instant payment methods like iDEAL, payments are moved to the available balance instantly. With slower payment methods, like credit card for example, it can take a few days before the funds are available on your balance. These funds will be shown under the *pending amount* in the meanwhile.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **balances.read**](/reference/authentication)
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetBalanceResponse get(
+    public GetBalanceResponse getBalance(
             String id,
             JsonNullable<Boolean> testmode) throws Exception {
         GetBalanceRequest request =
@@ -472,35 +469,39 @@ public class BalancesAPI implements
 
     /**
      * Get primary balance
-     * Retrieve the primary balance. This is the balance of your account's primary
-     * currency, where all payments are settled to by default.
+     * Retrieve the primary balance. This is the balance of your account's primary currency, where all payments are settled to by default.
      * 
-     * This endpoint is a convenient alias of the [Get balance](get-balance)
-     * endpoint. For a complete reference of the balance object, refer to that endpoint's documentation.
+     * This endpoint is a convenient alias of the [Get balance](get-balance) endpoint. For a complete reference of the balance object, refer to that endpoint's documentation.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **balances.read**](/reference/authentication)
      * @return The call builder
      */
-    public GetPrimaryBalanceRequestBuilder getPrimary() {
+    public GetPrimaryBalanceRequestBuilder getPrimaryBalance() {
         return new GetPrimaryBalanceRequestBuilder(this);
     }
 
     /**
      * Get primary balance
-     * Retrieve the primary balance. This is the balance of your account's primary
-     * currency, where all payments are settled to by default.
+     * Retrieve the primary balance. This is the balance of your account's primary currency, where all payments are settled to by default.
      * 
-     * This endpoint is a convenient alias of the [Get balance](get-balance)
-     * endpoint. For a complete reference of the balance object, refer to that endpoint's documentation.
+     * This endpoint is a convenient alias of the [Get balance](get-balance) endpoint. For a complete reference of the balance object, refer to that endpoint's documentation.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **balances.read**](/reference/authentication)
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetPrimaryBalanceResponse getPrimaryDirect() throws Exception {
+    public GetPrimaryBalanceResponse getPrimaryBalanceDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/balances/primary");
         
         HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/hal+json")
+        _req.addHeader("Accept", "*/*")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
@@ -561,19 +562,8 @@ public class BalancesAPI implements
         GetPrimaryBalanceResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
+            // no content 
+            return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
             // no content 
@@ -604,14 +594,16 @@ public class BalancesAPI implements
      * Get balance report
      * Retrieve a summarized report for all transactions on a given balance within a given timeframe.
      * 
-     * The API also provides a detailed report on all 'prepayments' for Mollie fees that were deducted from your balance
-     * during the reported period, ahead of your Mollie invoice.
+     * The API also provides a detailed report on all 'prepayments' for Mollie fees that were deducted from your balance during the reported period, ahead of your Mollie invoice.
      * 
-     * The alias `primary` can be used instead of the balance ID to refer to the
-     * organization's primary balance.
+     * The alias `primary` can be used instead of the balance ID to refer to the organization's primary balance.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **balance-reports.read**](/reference/authentication)
      * @return The call builder
      */
-    public GetBalanceReportRequestBuilder getReport() {
+    public GetBalanceReportRequestBuilder getBalanceReport() {
         return new GetBalanceReportRequestBuilder(this);
     }
 
@@ -619,16 +611,18 @@ public class BalancesAPI implements
      * Get balance report
      * Retrieve a summarized report for all transactions on a given balance within a given timeframe.
      * 
-     * The API also provides a detailed report on all 'prepayments' for Mollie fees that were deducted from your balance
-     * during the reported period, ahead of your Mollie invoice.
+     * The API also provides a detailed report on all 'prepayments' for Mollie fees that were deducted from your balance during the reported period, ahead of your Mollie invoice.
      * 
-     * The alias `primary` can be used instead of the balance ID to refer to the
-     * organization's primary balance.
+     * The alias `primary` can be used instead of the balance ID to refer to the organization's primary balance.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **balance-reports.read**](/reference/authentication)
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetBalanceReportResponse getReport(
+    public GetBalanceReportResponse getBalanceReport(
             GetBalanceReportRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
@@ -761,68 +755,68 @@ public class BalancesAPI implements
 
     /**
      * List balance transactions
-     * Retrieve a list of all balance transactions. Transactions include for
-     * example payments, refunds, chargebacks, and settlements.
+     * Retrieve a list of all balance transactions. Transactions include for example payments, refunds, chargebacks, and settlements.
      * 
-     * For an aggregated report of these balance transactions, refer to the [Get
-     * balance report](get-balance-report) endpoint.
+     * For an aggregated report of these balance transactions, refer to the [Get balance report](get-balance-report) endpoint.
      * 
-     * The alias `primary` can be used instead of the balance ID to refer to the
-     * organization's primary balance.
+     * The alias `primary` can be used instead of the balance ID to refer to the organization's primary balance.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **balances.read**](/reference/authentication)
      * @return The call builder
      */
-    public ListBalanceTransactionsRequestBuilder listTransactions() {
+    public ListBalanceTransactionsRequestBuilder listBalanceTransactions() {
         return new ListBalanceTransactionsRequestBuilder(this);
     }
 
     /**
      * List balance transactions
-     * Retrieve a list of all balance transactions. Transactions include for
-     * example payments, refunds, chargebacks, and settlements.
+     * Retrieve a list of all balance transactions. Transactions include for example payments, refunds, chargebacks, and settlements.
      * 
-     * For an aggregated report of these balance transactions, refer to the [Get
-     * balance report](get-balance-report) endpoint.
+     * For an aggregated report of these balance transactions, refer to the [Get balance report](get-balance-report) endpoint.
      * 
-     * The alias `primary` can be used instead of the balance ID to refer to the
-     * organization's primary balance.
+     * The alias `primary` can be used instead of the balance ID to refer to the organization's primary balance.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **balances.read**](/reference/authentication)
      * @param balanceId Provide the ID of the related balance.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListBalanceTransactionsResponse listTransactions(
+    public ListBalanceTransactionsResponse listBalanceTransactions(
             String balanceId) throws Exception {
-        return listTransactions(balanceId, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        return listBalanceTransactions(balanceId, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
     }
     
     /**
      * List balance transactions
-     * Retrieve a list of all balance transactions. Transactions include for
-     * example payments, refunds, chargebacks, and settlements.
+     * Retrieve a list of all balance transactions. Transactions include for example payments, refunds, chargebacks, and settlements.
      * 
-     * For an aggregated report of these balance transactions, refer to the [Get
-     * balance report](get-balance-report) endpoint.
+     * For an aggregated report of these balance transactions, refer to the [Get balance report](get-balance-report) endpoint.
      * 
-     * The alias `primary` can be used instead of the balance ID to refer to the
-     * organization's primary balance.
+     * The alias `primary` can be used instead of the balance ID to refer to the organization's primary balance.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [Access token with **balances.read**](/reference/authentication)
      * @param balanceId Provide the ID of the related balance.
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-    result set.
+     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListBalanceTransactionsResponse listTransactions(
+    public ListBalanceTransactionsResponse listBalanceTransactions(
             String balanceId,
             Optional<String> from,
             JsonNullable<Long> limit,

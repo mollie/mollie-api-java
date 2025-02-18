@@ -14,8 +14,7 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * PaymentListRoutesAmount - The amount of the route.
- * That amount that will be routed to the specified destination.
+ * PaymentListRoutesAmount - The amount of the route. That amount that will be routed to the specified destination.
  */
 
 public class PaymentListRoutesAmount {

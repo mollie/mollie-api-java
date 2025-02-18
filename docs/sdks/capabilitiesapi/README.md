@@ -5,9 +5,9 @@
 
 ### Available Operations
 
-* [list](#list) - List capabilities
+* [listCapabilities](#listcapabilities) - List capabilities
 
-## list
+## listCapabilities
 
 > 🚧 Beta feature
 >
@@ -19,9 +19,11 @@ This API provides detailed insights into the specific requirements and status of
 
 Capabilities are at the organization level, indicating if the organization can perform a given capability.
 
-For payments, regardless them being at the profile level, the capability is listed at the organization level.
-This means that if at least one of the clients's profiles can receive payments,
-the payments capability is enabled, communicating that the organization can indeed receive payments.
+For payments, regardless them being at the profile level, the capability is listed at the organization level. This means that if at least one of the clients's profiles can receive payments, the payments capability is enabled, communicating that the organization can indeed receive payments.
+
+> 🔑 Access with
+>
+> [Access token with **onboarding.read**](/reference/authentication)
 
 ### Example Usage
 
@@ -29,6 +31,7 @@ the payments capability is enabled, communicating that the organization can inde
 package hello.world;
 
 import com.mollie.mollie.Mollie;
+import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.operations.ListCapabilitiesResponse;
 import java.lang.Exception;
 
@@ -37,10 +40,12 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Mollie sdk = Mollie.builder()
-                .oAuth("<YOUR_O_AUTH_HERE>")
+                .security(Security.builder()
+                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
             .build();
 
-        ListCapabilitiesResponse res = sdk.capabilitiesAPI().list()
+        ListCapabilitiesResponse res = sdk.capabilitiesAPI().listCapabilities()
                 .call();
 
         if (res.object().isPresent()) {

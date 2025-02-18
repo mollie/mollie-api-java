@@ -10,34 +10,33 @@ import com.mollie.mollie.models.errors.CancelPaymentPaymentsAPIResponseBody;
 import com.mollie.mollie.models.errors.CancelPaymentResponseBody;
 import com.mollie.mollie.models.errors.CreatePaymentPaymentsAPIResponseBody;
 import com.mollie.mollie.models.errors.CreatePaymentResponseBody;
+import com.mollie.mollie.models.errors.ReleaseAuthorizationPaymentsAPIResponseBody;
+import com.mollie.mollie.models.errors.ReleaseAuthorizationResponseBody;
 import com.mollie.mollie.models.errors.UpdatePaymentPaymentsAPIResponseBody;
 import com.mollie.mollie.models.errors.UpdatePaymentResponseBody;
 import com.mollie.mollie.models.operations.CancelPaymentRequest;
 import com.mollie.mollie.models.operations.CancelPaymentRequestBuilder;
 import com.mollie.mollie.models.operations.CancelPaymentResponse;
-import com.mollie.mollie.models.operations.CancelPaymentSecurity;
 import com.mollie.mollie.models.operations.CreatePaymentRequest;
 import com.mollie.mollie.models.operations.CreatePaymentRequestBody;
 import com.mollie.mollie.models.operations.CreatePaymentRequestBuilder;
 import com.mollie.mollie.models.operations.CreatePaymentResponse;
-import com.mollie.mollie.models.operations.CreatePaymentSecurity;
 import com.mollie.mollie.models.operations.GetPaymentRequest;
 import com.mollie.mollie.models.operations.GetPaymentRequestBuilder;
 import com.mollie.mollie.models.operations.GetPaymentResponse;
 import com.mollie.mollie.models.operations.GetPaymentResponseBody;
-import com.mollie.mollie.models.operations.GetPaymentSecurity;
 import com.mollie.mollie.models.operations.ListPaymentsRequest;
 import com.mollie.mollie.models.operations.ListPaymentsRequestBuilder;
 import com.mollie.mollie.models.operations.ListPaymentsResponse;
 import com.mollie.mollie.models.operations.ListPaymentsResponseBody;
-import com.mollie.mollie.models.operations.ListPaymentsSecurity;
-import com.mollie.mollie.models.operations.QueryParamSort;
+import com.mollie.mollie.models.operations.ReleaseAuthorizationRequest;
+import com.mollie.mollie.models.operations.ReleaseAuthorizationRequestBuilder;
+import com.mollie.mollie.models.operations.ReleaseAuthorizationResponse;
 import com.mollie.mollie.models.operations.SDKMethodInterfaces.*;
 import com.mollie.mollie.models.operations.UpdatePaymentRequest;
 import com.mollie.mollie.models.operations.UpdatePaymentRequestBody;
 import com.mollie.mollie.models.operations.UpdatePaymentRequestBuilder;
 import com.mollie.mollie.models.operations.UpdatePaymentResponse;
-import com.mollie.mollie.models.operations.UpdatePaymentSecurity;
 import com.mollie.mollie.utils.HTTPClient;
 import com.mollie.mollie.utils.HTTPRequest;
 import com.mollie.mollie.utils.Hook.AfterErrorContextImpl;
@@ -63,7 +62,8 @@ public class PaymentsAPI implements
             MethodCallListPayments,
             MethodCallGetPayment,
             MethodCallUpdatePayment,
-            MethodCallCancelPayment {
+            MethodCallCancelPayment,
+            MethodCallReleaseAuthorization {
 
     private final SDKConfiguration sdkConfiguration;
 
@@ -74,72 +74,70 @@ public class PaymentsAPI implements
 
     /**
      * Create payment
-     * Payment creation is elemental to the Mollie API: this is where most payment
-     * implementations start off.
+     * Payment creation is elemental to the Mollie API: this is where most payment implementations start off.
      * 
-     * Once you have created a payment, you should redirect your customer to the
-     * URL in the `_links.checkout` property from the response.
+     * Once you have created a payment, you should redirect your customer to the URL in the `_links.checkout` property from the response.
      * 
-     * To wrap your head around the payment process, an explanation and flow charts
-     * can be found in the 'Accepting payments' guide.
+     * To wrap your head around the payment process, an explanation and flow charts can be found in the 'Accepting payments' guide.
      * 
-     * If you specify the `method` parameter when creating a payment, optional
-     * additional parameters may be available for the payment method that are not listed below. Please refer to the
-     * guide on [method-specific parameters](extra-payment-parameters).
+     * If you specify the `method` parameter when creating a payment, optional additional parameters may be available for the payment method that are not listed below. Please refer to the guide on [method-specific parameters](extra-payment-parameters).
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.write**](/reference/authentication)
      * @return The call builder
      */
-    public CreatePaymentRequestBuilder create() {
+    public CreatePaymentRequestBuilder createPayment() {
         return new CreatePaymentRequestBuilder(this);
     }
 
     /**
      * Create payment
-     * Payment creation is elemental to the Mollie API: this is where most payment
-     * implementations start off.
+     * Payment creation is elemental to the Mollie API: this is where most payment implementations start off.
      * 
-     * Once you have created a payment, you should redirect your customer to the
-     * URL in the `_links.checkout` property from the response.
+     * Once you have created a payment, you should redirect your customer to the URL in the `_links.checkout` property from the response.
      * 
-     * To wrap your head around the payment process, an explanation and flow charts
-     * can be found in the 'Accepting payments' guide.
+     * To wrap your head around the payment process, an explanation and flow charts can be found in the 'Accepting payments' guide.
      * 
-     * If you specify the `method` parameter when creating a payment, optional
-     * additional parameters may be available for the payment method that are not listed below. Please refer to the
-     * guide on [method-specific parameters](extra-payment-parameters).
-     * @param security The security details to use for authentication.
+     * If you specify the `method` parameter when creating a payment, optional additional parameters may be available for the payment method that are not listed below. Please refer to the guide on [method-specific parameters](extra-payment-parameters).
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.write**](/reference/authentication)
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreatePaymentResponse create(
-            CreatePaymentSecurity security) throws Exception {
-        return create(security, JsonNullable.undefined(), Optional.empty());
+    public CreatePaymentResponse createPaymentDirect() throws Exception {
+        return createPayment(JsonNullable.undefined(), Optional.empty());
     }
     
     /**
      * Create payment
-     * Payment creation is elemental to the Mollie API: this is where most payment
-     * implementations start off.
+     * Payment creation is elemental to the Mollie API: this is where most payment implementations start off.
      * 
-     * Once you have created a payment, you should redirect your customer to the
-     * URL in the `_links.checkout` property from the response.
+     * Once you have created a payment, you should redirect your customer to the URL in the `_links.checkout` property from the response.
      * 
-     * To wrap your head around the payment process, an explanation and flow charts
-     * can be found in the 'Accepting payments' guide.
+     * To wrap your head around the payment process, an explanation and flow charts can be found in the 'Accepting payments' guide.
      * 
-     * If you specify the `method` parameter when creating a payment, optional
-     * additional parameters may be available for the payment method that are not listed below. Please refer to the
-     * guide on [method-specific parameters](extra-payment-parameters).
-     * @param security The security details to use for authentication.
+     * If you specify the `method` parameter when creating a payment, optional additional parameters may be available for the payment method that are not listed below. Please refer to the guide on [method-specific parameters](extra-payment-parameters).
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.write**](/reference/authentication)
      * @param include This endpoint allows you to include additional information via the `include` query string parameter.
 
-    * `details.qrCode`: Include a QR code object. Only available for iDEAL,
-    Bancontact and bank transfer payments.
+    * `details.qrCode`: Include a QR code object. Only available for iDEAL, Bancontact and bank transfer payments.
      * @param requestBody
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreatePaymentResponse create(
-            CreatePaymentSecurity security,
+    public CreatePaymentResponse createPayment(
             JsonNullable<String> include,
             Optional<? extends CreatePaymentRequestBody> requestBody) throws Exception {
         CreatePaymentRequest request =
@@ -174,11 +172,9 @@ public class PaymentsAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -233,19 +229,8 @@ public class PaymentsAPI implements
         CreatePaymentResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
+            // no content 
+            return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "422")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
@@ -309,9 +294,15 @@ public class PaymentsAPI implements
      * Retrieve all payments created with the current website profile.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.read**](/reference/authentication)
      * @return The call builder
      */
-    public ListPaymentsRequestBuilder list() {
+    public ListPaymentsRequestBuilder listPayments() {
         return new ListPaymentsRequestBuilder(this);
     }
 
@@ -320,13 +311,17 @@ public class PaymentsAPI implements
      * Retrieve all payments created with the current website profile.
      * 
      * The results are paginated.
-     * @param security The security details to use for authentication.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.read**](/reference/authentication)
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListPaymentsResponse list(
-            ListPaymentsSecurity security) throws Exception {
-        return list(security, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+    public ListPaymentsResponse listPaymentsDirect() throws Exception {
+        return listPayments(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
     
     /**
@@ -334,25 +329,27 @@ public class PaymentsAPI implements
      * Retrieve all payments created with the current website profile.
      * 
      * The results are paginated.
-     * @param security The security details to use for authentication.
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-    result set.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.read**](/reference/authentication)
+     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param sort Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
-    newest to oldest.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param sort Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
+
+    Possible values: `asc` `desc` (default: `desc`)
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListPaymentsResponse list(
-            ListPaymentsSecurity security,
+    public ListPaymentsResponse listPayments(
             Optional<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<? extends QueryParamSort> sort,
+            JsonNullable<String> sort,
             JsonNullable<Boolean> testmode) throws Exception {
         ListPaymentsRequest request =
             ListPaymentsRequest
@@ -378,11 +375,9 @@ public class PaymentsAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -495,62 +490,70 @@ public class PaymentsAPI implements
     /**
      * Get payment
      * Retrieve a single payment object by its payment ID.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.read**](/reference/authentication)
      * @return The call builder
      */
-    public GetPaymentRequestBuilder get() {
+    public GetPaymentRequestBuilder getPayment() {
         return new GetPaymentRequestBuilder(this);
     }
 
     /**
      * Get payment
      * Retrieve a single payment object by its payment ID.
-     * @param security The security details to use for authentication.
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.read**](/reference/authentication)
+     * @param paymentId Provide the ID of the related payment.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetPaymentResponse get(
-            GetPaymentSecurity security,
-            String id) throws Exception {
-        return get(security, id, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+    public GetPaymentResponse getPayment(
+            String paymentId) throws Exception {
+        return getPayment(paymentId, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
     
     /**
      * Get payment
      * Retrieve a single payment object by its payment ID.
-     * @param security The security details to use for authentication.
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.read**](/reference/authentication)
+     * @param paymentId Provide the ID of the related payment.
      * @param include This endpoint allows you to include additional information via the `include` query string parameter.
 
-    * `details.qrCode`: Include a QR code object. Only available for iDEAL,
-    Bancontact and bank transfer payments.
-    * `details.remainderDetails`: For payments where gift cards or vouchers were applied and the remaining amount
-      was paid with another payment method, this include will add another `details` object specifically for the
-      remainder payment.
-     * @param embed This endpoint allows embedding related API items by appending the
-    following values via the `embed` query string parameter.
+    * `details.qrCode`: Include a QR code object. Only available for iDEAL, Bancontact and bank transfer payments.
+    * `details.remainderDetails`: For payments where gift cards or vouchers were applied and the remaining amount was paid with another payment method, this include will add another `details` object specifically for the remainder payment.
+     * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
 
     * `captures`: Embed all captures created for this payment.
     * `refunds`: Embed all refunds created for this payment.
     * `chargebacks`: Embed all chargebacks created for this payment.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetPaymentResponse get(
-            GetPaymentSecurity security,
-            String id,
+    public GetPaymentResponse getPayment(
+            String paymentId,
             JsonNullable<String> include,
             JsonNullable<String> embed,
             JsonNullable<Boolean> testmode) throws Exception {
         GetPaymentRequest request =
             GetPaymentRequest
                 .builder()
-                .id(id)
+                .paymentId(paymentId)
                 .include(include)
                 .embed(embed)
                 .testmode(testmode)
@@ -560,7 +563,7 @@ public class PaymentsAPI implements
         String _url = Utils.generateURL(
                 GetPaymentRequest.class,
                 _baseUrl,
-                "/payments/{id}",
+                "/payments/{paymentId}",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "GET");
@@ -573,11 +576,9 @@ public class PaymentsAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -689,53 +690,64 @@ public class PaymentsAPI implements
 
     /**
      * Update payment
-     * Certain details of an existing payment can be updated. For an in-depth explanation of each parameter, see
-     * [Create payment](create-payment).
+     * Certain details of an existing payment can be updated. For an in-depth explanation of each parameter, see [Create payment](create-payment).
      * 
      * Updating the payment details will not result in a webhook call.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.write**](/reference/authentication)
      * @return The call builder
      */
-    public UpdatePaymentRequestBuilder update() {
+    public UpdatePaymentRequestBuilder updatePayment() {
         return new UpdatePaymentRequestBuilder(this);
     }
 
     /**
      * Update payment
-     * Certain details of an existing payment can be updated. For an in-depth explanation of each parameter, see
-     * [Create payment](create-payment).
+     * Certain details of an existing payment can be updated. For an in-depth explanation of each parameter, see [Create payment](create-payment).
      * 
      * Updating the payment details will not result in a webhook call.
-     * @param security The security details to use for authentication.
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.write**](/reference/authentication)
+     * @param paymentId Provide the ID of the related payment.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdatePaymentResponse update(
-            UpdatePaymentSecurity security,
-            String id) throws Exception {
-        return update(security, id, Optional.empty());
+    public UpdatePaymentResponse updatePayment(
+            String paymentId) throws Exception {
+        return updatePayment(paymentId, Optional.empty());
     }
     
     /**
      * Update payment
-     * Certain details of an existing payment can be updated. For an in-depth explanation of each parameter, see
-     * [Create payment](create-payment).
+     * Certain details of an existing payment can be updated. For an in-depth explanation of each parameter, see [Create payment](create-payment).
      * 
      * Updating the payment details will not result in a webhook call.
-     * @param security The security details to use for authentication.
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.write**](/reference/authentication)
+     * @param paymentId Provide the ID of the related payment.
      * @param requestBody
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdatePaymentResponse update(
-            UpdatePaymentSecurity security,
-            String id,
+    public UpdatePaymentResponse updatePayment(
+            String paymentId,
             Optional<? extends UpdatePaymentRequestBody> requestBody) throws Exception {
         UpdatePaymentRequest request =
             UpdatePaymentRequest
                 .builder()
-                .id(id)
+                .paymentId(paymentId)
                 .requestBody(requestBody)
                 .build();
         
@@ -743,7 +755,7 @@ public class PaymentsAPI implements
         String _url = Utils.generateURL(
                 UpdatePaymentRequest.class,
                 _baseUrl,
-                "/payments/{id}",
+                "/payments/{paymentId}",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "PATCH");
@@ -761,11 +773,9 @@ public class PaymentsAPI implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -820,19 +830,8 @@ public class PaymentsAPI implements
         UpdatePaymentResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
+            // no content 
+            return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
@@ -893,63 +892,72 @@ public class PaymentsAPI implements
 
     /**
      * Cancel payment
-     * Depending on the payment method, you may be able to cancel a payment for a certain amount of time — usually until
-     * the next business day or as long as the payment status is open.
+     * Depending on the payment method, you may be able to cancel a payment for a certain amount of time — usually until the next business day or as long as the payment status is open.
      * 
      * Payments may also be canceled manually from the Mollie Dashboard.
      * 
      * The `isCancelable` property on the [Payment object](get-payment) will indicate if the payment can be canceled.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.write**](/reference/authentication)
      * @return The call builder
      */
-    public CancelPaymentRequestBuilder cancel() {
+    public CancelPaymentRequestBuilder cancelPayment() {
         return new CancelPaymentRequestBuilder(this);
     }
 
     /**
      * Cancel payment
-     * Depending on the payment method, you may be able to cancel a payment for a certain amount of time — usually until
-     * the next business day or as long as the payment status is open.
+     * Depending on the payment method, you may be able to cancel a payment for a certain amount of time — usually until the next business day or as long as the payment status is open.
      * 
      * Payments may also be canceled manually from the Mollie Dashboard.
      * 
      * The `isCancelable` property on the [Payment object](get-payment) will indicate if the payment can be canceled.
-     * @param security The security details to use for authentication.
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.write**](/reference/authentication)
+     * @param paymentId Provide the ID of the related payment.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CancelPaymentResponse cancel(
-            CancelPaymentSecurity security,
-            String id) throws Exception {
-        return cancel(security, id, JsonNullable.undefined());
+    public CancelPaymentResponse cancelPayment(
+            String paymentId) throws Exception {
+        return cancelPayment(paymentId, JsonNullable.undefined());
     }
     
     /**
      * Cancel payment
-     * Depending on the payment method, you may be able to cancel a payment for a certain amount of time — usually until
-     * the next business day or as long as the payment status is open.
+     * Depending on the payment method, you may be able to cancel a payment for a certain amount of time — usually until the next business day or as long as the payment status is open.
      * 
      * Payments may also be canceled manually from the Mollie Dashboard.
      * 
      * The `isCancelable` property on the [Payment object](get-payment) will indicate if the payment can be canceled.
-     * @param security The security details to use for authentication.
-     * @param id Provide the ID of the item you want to perform this operation on.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.write**](/reference/authentication)
+     * @param paymentId Provide the ID of the related payment.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CancelPaymentResponse cancel(
-            CancelPaymentSecurity security,
-            String id,
+    public CancelPaymentResponse cancelPayment(
+            String paymentId,
             JsonNullable<Boolean> testmode) throws Exception {
         CancelPaymentRequest request =
             CancelPaymentRequest
                 .builder()
-                .id(id)
+                .paymentId(paymentId)
                 .testmode(testmode)
                 .build();
         
@@ -957,7 +965,7 @@ public class PaymentsAPI implements
         String _url = Utils.generateURL(
                 CancelPaymentRequest.class,
                 _baseUrl,
-                "/payments/{id}",
+                "/payments/{paymentId}",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "DELETE");
@@ -970,11 +978,9 @@ public class PaymentsAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1029,34 +1035,8 @@ public class PaymentsAPI implements
         CancelPaymentResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withTwoHundredApplicationHalPlusJsonAny(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "202")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withTwoHundredAndTwoApplicationHalPlusJsonAny(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
+            // no content 
+            return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
@@ -1079,6 +1059,222 @@ public class PaymentsAPI implements
                 CancelPaymentPaymentsAPIResponseBody _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<CancelPaymentPaymentsAPIResponseBody>() {});
+                    _out.withRawResponse(Optional.ofNullable(_httpRes));
+                
+                throw _out;
+            } else {
+                throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
+            // no content 
+            throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
+            // no content 
+            throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        throw new APIException(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
+
+
+    /**
+     * Release payment authorization
+     * Releases the full remaining authorized amount. Call this endpoint when you will not be making any additional captures. Payment authorizations may also be released manually from the Mollie Dashboard.
+     * 
+     * Mollie will do its best to process release requests, but it is not guaranteed that it will succeed. It is up to the issuing bank if and when the hold will be released.
+     * 
+     * If the request does succeed, the payment status will change to `canceled` for payments without captures. If there is a successful capture, the payment will transition to `paid`.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.write**](/reference/authentication)
+     * @return The call builder
+     */
+    public ReleaseAuthorizationRequestBuilder releaseAuthorization() {
+        return new ReleaseAuthorizationRequestBuilder(this);
+    }
+
+    /**
+     * Release payment authorization
+     * Releases the full remaining authorized amount. Call this endpoint when you will not be making any additional captures. Payment authorizations may also be released manually from the Mollie Dashboard.
+     * 
+     * Mollie will do its best to process release requests, but it is not guaranteed that it will succeed. It is up to the issuing bank if and when the hold will be released.
+     * 
+     * If the request does succeed, the payment status will change to `canceled` for payments without captures. If there is a successful capture, the payment will transition to `paid`.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.write**](/reference/authentication)
+     * @param paymentId Provide the ID of the related payment.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public ReleaseAuthorizationResponse releaseAuthorization(
+            String paymentId) throws Exception {
+        return releaseAuthorization(paymentId, JsonNullable.undefined());
+    }
+    
+    /**
+     * Release payment authorization
+     * Releases the full remaining authorized amount. Call this endpoint when you will not be making any additional captures. Payment authorizations may also be released manually from the Mollie Dashboard.
+     * 
+     * Mollie will do its best to process release requests, but it is not guaranteed that it will succeed. It is up to the issuing bank if and when the hold will be released.
+     * 
+     * If the request does succeed, the payment status will change to `canceled` for payments without captures. If there is a successful capture, the payment will transition to `paid`.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.write**](/reference/authentication)
+     * @param paymentId Provide the ID of the related payment.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+
+    Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public ReleaseAuthorizationResponse releaseAuthorization(
+            String paymentId,
+            JsonNullable<Boolean> testmode) throws Exception {
+        ReleaseAuthorizationRequest request =
+            ReleaseAuthorizationRequest
+                .builder()
+                .paymentId(paymentId)
+                .testmode(testmode)
+                .build();
+        
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
+                ReleaseAuthorizationRequest.class,
+                _baseUrl,
+                "/payments/{paymentId}/release-authorization",
+                request, null);
+        
+        HTTPRequest _req = new HTTPRequest(_url, "POST");
+        _req.addHeader("Accept", "application/hal+json")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                ReleaseAuthorizationRequest.class,
+                request, 
+                null));
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      "release-authorization", 
+                      Optional.of(List.of()), 
+                      _hookSecuritySource),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "404", "422", "4XX", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "release-authorization",
+                            Optional.of(List.of()),
+                            _hookSecuritySource),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            "release-authorization",
+                            Optional.of(List.of()), 
+                            _hookSecuritySource),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "release-authorization",
+                            Optional.of(List.of()),
+                            _hookSecuritySource), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        ReleaseAuthorizationResponse.Builder _resBuilder = 
+            ReleaseAuthorizationResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        ReleaseAuthorizationResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "202")) {
+            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
+                Object _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Object>() {});
+                _res.withAny(Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
+            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
+                ReleaseAuthorizationResponseBody _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<ReleaseAuthorizationResponseBody>() {});
+                    _out.withRawResponse(Optional.ofNullable(_httpRes));
+                
+                throw _out;
+            } else {
+                throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "422")) {
+            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
+                ReleaseAuthorizationPaymentsAPIResponseBody _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<ReleaseAuthorizationPaymentsAPIResponseBody>() {});
                     _out.withRawResponse(Optional.ofNullable(_httpRes));
                 
                 throw _out;

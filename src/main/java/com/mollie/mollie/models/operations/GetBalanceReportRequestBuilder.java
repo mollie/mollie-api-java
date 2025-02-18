@@ -23,7 +23,7 @@ public class GetBalanceReportRequestBuilder {
 
     public GetBalanceReportResponse call() throws Exception {
 
-        return sdk.getReport(
+        return sdk.getBalanceReport(
             request);
     }
 }

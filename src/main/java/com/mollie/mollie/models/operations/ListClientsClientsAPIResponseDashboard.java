@@ -17,8 +17,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * ListClientsClientsAPIResponseDashboard - If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.
- * For example, where necessary documents are to be uploaded.
+ * ListClientsClientsAPIResponseDashboard - If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled. For example, where necessary documents are to be uploaded.
  */
 
 public class ListClientsClientsAPIResponseDashboard {

@@ -31,8 +31,7 @@ public class ListClientsClientsAPIResponseLinks {
     private Optional<? extends ListClientsClientsAPIResponseSelf> self;
 
     /**
-     * Direct link to the onboarding process in the Mollie dashboard. The merchant can be redirected to this page to
-     * complete their onboarding.
+     * Direct link to the onboarding process in the Mollie dashboard. The merchant can be redirected to this page to complete their onboarding.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("dashboard")
@@ -82,8 +81,7 @@ public class ListClientsClientsAPIResponseLinks {
     }
 
     /**
-     * Direct link to the onboarding process in the Mollie dashboard. The merchant can be redirected to this page to
-     * complete their onboarding.
+     * Direct link to the onboarding process in the Mollie dashboard. The merchant can be redirected to this page to complete their onboarding.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -132,8 +130,7 @@ public class ListClientsClientsAPIResponseLinks {
     }
 
     /**
-     * Direct link to the onboarding process in the Mollie dashboard. The merchant can be redirected to this page to
-     * complete their onboarding.
+     * Direct link to the onboarding process in the Mollie dashboard. The merchant can be redirected to this page to complete their onboarding.
      */
     public ListClientsClientsAPIResponseLinks withDashboard(ListClientsClientsAPIDashboard dashboard) {
         Utils.checkNotNull(dashboard, "dashboard");
@@ -142,8 +139,7 @@ public class ListClientsClientsAPIResponseLinks {
     }
 
     /**
-     * Direct link to the onboarding process in the Mollie dashboard. The merchant can be redirected to this page to
-     * complete their onboarding.
+     * Direct link to the onboarding process in the Mollie dashboard. The merchant can be redirected to this page to complete their onboarding.
      */
     public ListClientsClientsAPIResponseLinks withDashboard(Optional<? extends ListClientsClientsAPIDashboard> dashboard) {
         Utils.checkNotNull(dashboard, "dashboard");
@@ -254,8 +250,7 @@ public class ListClientsClientsAPIResponseLinks {
         }
 
         /**
-         * Direct link to the onboarding process in the Mollie dashboard. The merchant can be redirected to this page to
-         * complete their onboarding.
+         * Direct link to the onboarding process in the Mollie dashboard. The merchant can be redirected to this page to complete their onboarding.
          */
         public Builder dashboard(ListClientsClientsAPIDashboard dashboard) {
             Utils.checkNotNull(dashboard, "dashboard");
@@ -264,8 +259,7 @@ public class ListClientsClientsAPIResponseLinks {
         }
 
         /**
-         * Direct link to the onboarding process in the Mollie dashboard. The merchant can be redirected to this page to
-         * complete their onboarding.
+         * Direct link to the onboarding process in the Mollie dashboard. The merchant can be redirected to this page to complete their onboarding.
          */
         public Builder dashboard(Optional<? extends ListClientsClientsAPIDashboard> dashboard) {
             Utils.checkNotNull(dashboard, "dashboard");

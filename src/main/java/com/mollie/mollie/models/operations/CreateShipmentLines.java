@@ -30,8 +30,7 @@ public class CreateShipmentLines {
     private Optional<String> id;
 
     /**
-     * The number of items that should be shipped for this order line. When this parameter is omitted, all
-     * remaining unshipped items of this order line will be considered 'shipped'.
+     * The number of items that should be shipped for this order line. When this parameter is omitted, all remaining unshipped items of this order line will be considered 'shipped'.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("quantity")
@@ -40,11 +39,9 @@ public class CreateShipmentLines {
     /**
      * The amount that you want to ship. In almost all cases, Mollie can determine the amount automatically.
      * 
-     * The amount is required only if you are *partially* fulfilling an order line which has a non-zero
-     * `discountAmount`.
+     * The amount is required only if you are *partially* fulfilling an order line which has a non-zero `discountAmount`.
      * 
-     * If you do not send an amount, Mollie will determine the amount automatically or respond with an
-     * error if the amount cannot be determined automatically.
+     * If you do not send an amount, Mollie will determine the amount automatically or respond with an error if the amount cannot be determined automatically.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
@@ -76,8 +73,7 @@ public class CreateShipmentLines {
     }
 
     /**
-     * The number of items that should be shipped for this order line. When this parameter is omitted, all
-     * remaining unshipped items of this order line will be considered 'shipped'.
+     * The number of items that should be shipped for this order line. When this parameter is omitted, all remaining unshipped items of this order line will be considered 'shipped'.
      */
     @JsonIgnore
     public JsonNullable<Long> quantity() {
@@ -87,11 +83,9 @@ public class CreateShipmentLines {
     /**
      * The amount that you want to ship. In almost all cases, Mollie can determine the amount automatically.
      * 
-     * The amount is required only if you are *partially* fulfilling an order line which has a non-zero
-     * `discountAmount`.
+     * The amount is required only if you are *partially* fulfilling an order line which has a non-zero `discountAmount`.
      * 
-     * If you do not send an amount, Mollie will determine the amount automatically or respond with an
-     * error if the amount cannot be determined automatically.
+     * If you do not send an amount, Mollie will determine the amount automatically or respond with an error if the amount cannot be determined automatically.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -122,8 +116,7 @@ public class CreateShipmentLines {
     }
 
     /**
-     * The number of items that should be shipped for this order line. When this parameter is omitted, all
-     * remaining unshipped items of this order line will be considered 'shipped'.
+     * The number of items that should be shipped for this order line. When this parameter is omitted, all remaining unshipped items of this order line will be considered 'shipped'.
      */
     public CreateShipmentLines withQuantity(long quantity) {
         Utils.checkNotNull(quantity, "quantity");
@@ -132,8 +125,7 @@ public class CreateShipmentLines {
     }
 
     /**
-     * The number of items that should be shipped for this order line. When this parameter is omitted, all
-     * remaining unshipped items of this order line will be considered 'shipped'.
+     * The number of items that should be shipped for this order line. When this parameter is omitted, all remaining unshipped items of this order line will be considered 'shipped'.
      */
     public CreateShipmentLines withQuantity(JsonNullable<Long> quantity) {
         Utils.checkNotNull(quantity, "quantity");
@@ -144,11 +136,9 @@ public class CreateShipmentLines {
     /**
      * The amount that you want to ship. In almost all cases, Mollie can determine the amount automatically.
      * 
-     * The amount is required only if you are *partially* fulfilling an order line which has a non-zero
-     * `discountAmount`.
+     * The amount is required only if you are *partially* fulfilling an order line which has a non-zero `discountAmount`.
      * 
-     * If you do not send an amount, Mollie will determine the amount automatically or respond with an
-     * error if the amount cannot be determined automatically.
+     * If you do not send an amount, Mollie will determine the amount automatically or respond with an error if the amount cannot be determined automatically.
      */
     public CreateShipmentLines withAmount(CreateShipmentAmount amount) {
         Utils.checkNotNull(amount, "amount");
@@ -159,11 +149,9 @@ public class CreateShipmentLines {
     /**
      * The amount that you want to ship. In almost all cases, Mollie can determine the amount automatically.
      * 
-     * The amount is required only if you are *partially* fulfilling an order line which has a non-zero
-     * `discountAmount`.
+     * The amount is required only if you are *partially* fulfilling an order line which has a non-zero `discountAmount`.
      * 
-     * If you do not send an amount, Mollie will determine the amount automatically or respond with an
-     * error if the amount cannot be determined automatically.
+     * If you do not send an amount, Mollie will determine the amount automatically or respond with an error if the amount cannot be determined automatically.
      */
     public CreateShipmentLines withAmount(JsonNullable<? extends CreateShipmentAmount> amount) {
         Utils.checkNotNull(amount, "amount");
@@ -233,8 +221,7 @@ public class CreateShipmentLines {
         }
 
         /**
-         * The number of items that should be shipped for this order line. When this parameter is omitted, all
-         * remaining unshipped items of this order line will be considered 'shipped'.
+         * The number of items that should be shipped for this order line. When this parameter is omitted, all remaining unshipped items of this order line will be considered 'shipped'.
          */
         public Builder quantity(long quantity) {
             Utils.checkNotNull(quantity, "quantity");
@@ -243,8 +230,7 @@ public class CreateShipmentLines {
         }
 
         /**
-         * The number of items that should be shipped for this order line. When this parameter is omitted, all
-         * remaining unshipped items of this order line will be considered 'shipped'.
+         * The number of items that should be shipped for this order line. When this parameter is omitted, all remaining unshipped items of this order line will be considered 'shipped'.
          */
         public Builder quantity(JsonNullable<Long> quantity) {
             Utils.checkNotNull(quantity, "quantity");
@@ -255,11 +241,9 @@ public class CreateShipmentLines {
         /**
          * The amount that you want to ship. In almost all cases, Mollie can determine the amount automatically.
          * 
-         * The amount is required only if you are *partially* fulfilling an order line which has a non-zero
-         * `discountAmount`.
+         * The amount is required only if you are *partially* fulfilling an order line which has a non-zero `discountAmount`.
          * 
-         * If you do not send an amount, Mollie will determine the amount automatically or respond with an
-         * error if the amount cannot be determined automatically.
+         * If you do not send an amount, Mollie will determine the amount automatically or respond with an error if the amount cannot be determined automatically.
          */
         public Builder amount(CreateShipmentAmount amount) {
             Utils.checkNotNull(amount, "amount");
@@ -270,11 +254,9 @@ public class CreateShipmentLines {
         /**
          * The amount that you want to ship. In almost all cases, Mollie can determine the amount automatically.
          * 
-         * The amount is required only if you are *partially* fulfilling an order line which has a non-zero
-         * `discountAmount`.
+         * The amount is required only if you are *partially* fulfilling an order line which has a non-zero `discountAmount`.
          * 
-         * If you do not send an amount, Mollie will determine the amount automatically or respond with an
-         * error if the amount cannot be determined automatically.
+         * If you do not send an amount, Mollie will determine the amount automatically or respond with an error if the amount cannot be determined automatically.
          */
         public Builder amount(JsonNullable<? extends CreateShipmentAmount> amount) {
             Utils.checkNotNull(amount, "amount");

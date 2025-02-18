@@ -13,7 +13,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CancelSubscriptionRequestBuilder {
 
-    private CancelSubscriptionSecurity security;
     private String customerId;
     private String id;
     private JsonNullable<Boolean> testmode = Utils.readDefaultOrConstValue(
@@ -24,12 +23,6 @@ public class CancelSubscriptionRequestBuilder {
 
     public CancelSubscriptionRequestBuilder(SDKMethodInterfaces.MethodCallCancelSubscription sdk) {
         this.sdk = sdk;
-    }
-
-    public CancelSubscriptionRequestBuilder security(CancelSubscriptionSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public CancelSubscriptionRequestBuilder customerId(String customerId) {
@@ -60,8 +53,7 @@ public class CancelSubscriptionRequestBuilder {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.cancel(
-            security,
+        return sdk.cancelSubscription(
             customerId,
             id,
             testmode);

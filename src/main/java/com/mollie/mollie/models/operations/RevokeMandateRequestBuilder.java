@@ -13,7 +13,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class RevokeMandateRequestBuilder {
 
-    private RevokeMandateSecurity security;
     private String customerId;
     private String id;
     private JsonNullable<Boolean> testmode = Utils.readDefaultOrConstValue(
@@ -24,12 +23,6 @@ public class RevokeMandateRequestBuilder {
 
     public RevokeMandateRequestBuilder(SDKMethodInterfaces.MethodCallRevokeMandate sdk) {
         this.sdk = sdk;
-    }
-
-    public RevokeMandateRequestBuilder security(RevokeMandateSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public RevokeMandateRequestBuilder customerId(String customerId) {
@@ -60,8 +53,7 @@ public class RevokeMandateRequestBuilder {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.revoke(
-            security,
+        return sdk.revokeMandate(
             customerId,
             id,
             testmode);

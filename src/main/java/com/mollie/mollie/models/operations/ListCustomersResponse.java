@@ -37,8 +37,7 @@ public class ListCustomersResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * A list of customer objects. For a complete reference of the customer object, refer to the
-     * [Get customer endpoint](get-customer) documentation.
+     * A list of customer objects. For a complete reference of the customer object, refer to the [Get customer endpoint](get-customer) documentation.
      */
     private Optional<? extends ListCustomersResponseBody> object;
 
@@ -90,8 +89,7 @@ public class ListCustomersResponse implements Response {
     }
 
     /**
-     * A list of customer objects. For a complete reference of the customer object, refer to the
-     * [Get customer endpoint](get-customer) documentation.
+     * A list of customer objects. For a complete reference of the customer object, refer to the [Get customer endpoint](get-customer) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -131,8 +129,7 @@ public class ListCustomersResponse implements Response {
     }
 
     /**
-     * A list of customer objects. For a complete reference of the customer object, refer to the
-     * [Get customer endpoint](get-customer) documentation.
+     * A list of customer objects. For a complete reference of the customer object, refer to the [Get customer endpoint](get-customer) documentation.
      */
     public ListCustomersResponse withObject(ListCustomersResponseBody object) {
         Utils.checkNotNull(object, "object");
@@ -141,8 +138,7 @@ public class ListCustomersResponse implements Response {
     }
 
     /**
-     * A list of customer objects. For a complete reference of the customer object, refer to the
-     * [Get customer endpoint](get-customer) documentation.
+     * A list of customer objects. For a complete reference of the customer object, refer to the [Get customer endpoint](get-customer) documentation.
      */
     public ListCustomersResponse withObject(Optional<? extends ListCustomersResponseBody> object) {
         Utils.checkNotNull(object, "object");
@@ -226,8 +222,7 @@ public class ListCustomersResponse implements Response {
         }
 
         /**
-         * A list of customer objects. For a complete reference of the customer object, refer to the
-         * [Get customer endpoint](get-customer) documentation.
+         * A list of customer objects. For a complete reference of the customer object, refer to the [Get customer endpoint](get-customer) documentation.
          */
         public Builder object(ListCustomersResponseBody object) {
             Utils.checkNotNull(object, "object");
@@ -236,8 +231,7 @@ public class ListCustomersResponse implements Response {
         }
 
         /**
-         * A list of customer objects. For a complete reference of the customer object, refer to the
-         * [Get customer endpoint](get-customer) documentation.
+         * A list of customer objects. For a complete reference of the customer object, refer to the [Get customer endpoint](get-customer) documentation.
          */
         public Builder object(Optional<? extends ListCustomersResponseBody> object) {
             Utils.checkNotNull(object, "object");

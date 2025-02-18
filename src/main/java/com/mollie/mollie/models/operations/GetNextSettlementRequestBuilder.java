@@ -15,6 +15,6 @@ public class GetNextSettlementRequestBuilder {
 
     public GetNextSettlementResponse call() throws Exception {
 
-        return sdk.getNextDirect();
+        return sdk.getNextSettlementDirect();
     }
 }

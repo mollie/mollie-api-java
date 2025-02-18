@@ -25,8 +25,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class UpdatePaymentLinkRequestBody {
 
     /**
-     * A short description of the payment link. The description is visible in the Dashboard and will be shown
-     * on the customer's bank or card statement when possible.
+     * A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
      * 
      * Updating the description does not affect any previously existing payments created for this payment link.
      */
@@ -35,18 +34,16 @@ public class UpdatePaymentLinkRequestBody {
     private Optional<String> description;
 
     /**
-     * Whether the payment link is archived. Customers will not be able to complete payments on archived
-     * payment links.
+     * Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("archived")
     private Optional<Boolean> archived;
 
     /**
-     * An array of payment methods that are allowed to be used for this payment link. When this parameter is
-     * not provided or is an empty array, all enabled payment methods will be available.
+     * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * All methods supported by the Payments API are also supported here.
+     * Possible values: `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `blik` `creditcard` `eps` `giftcard` `ideal` `kbc` `mybank` `paypal` `paysafecard` `pointofsale` `przelewy24` `satispay` `trustly` `twint`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("allowedMethods")
@@ -70,8 +67,7 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * A short description of the payment link. The description is visible in the Dashboard and will be shown
-     * on the customer's bank or card statement when possible.
+     * A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
      * 
      * Updating the description does not affect any previously existing payments created for this payment link.
      */
@@ -81,8 +77,7 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * Whether the payment link is archived. Customers will not be able to complete payments on archived
-     * payment links.
+     * Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
      */
     @JsonIgnore
     public Optional<Boolean> archived() {
@@ -90,10 +85,9 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * An array of payment methods that are allowed to be used for this payment link. When this parameter is
-     * not provided or is an empty array, all enabled payment methods will be available.
+     * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * All methods supported by the Payments API are also supported here.
+     * Possible values: `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `blik` `creditcard` `eps` `giftcard` `ideal` `kbc` `mybank` `paypal` `paysafecard` `pointofsale` `przelewy24` `satispay` `trustly` `twint`
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -106,8 +100,7 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * A short description of the payment link. The description is visible in the Dashboard and will be shown
-     * on the customer's bank or card statement when possible.
+     * A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
      * 
      * Updating the description does not affect any previously existing payments created for this payment link.
      */
@@ -118,8 +111,7 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * A short description of the payment link. The description is visible in the Dashboard and will be shown
-     * on the customer's bank or card statement when possible.
+     * A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
      * 
      * Updating the description does not affect any previously existing payments created for this payment link.
      */
@@ -130,8 +122,7 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * Whether the payment link is archived. Customers will not be able to complete payments on archived
-     * payment links.
+     * Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
      */
     public UpdatePaymentLinkRequestBody withArchived(boolean archived) {
         Utils.checkNotNull(archived, "archived");
@@ -140,8 +131,7 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * Whether the payment link is archived. Customers will not be able to complete payments on archived
-     * payment links.
+     * Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
      */
     public UpdatePaymentLinkRequestBody withArchived(Optional<Boolean> archived) {
         Utils.checkNotNull(archived, "archived");
@@ -150,10 +140,9 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * An array of payment methods that are allowed to be used for this payment link. When this parameter is
-     * not provided or is an empty array, all enabled payment methods will be available.
+     * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * All methods supported by the Payments API are also supported here.
+     * Possible values: `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `blik` `creditcard` `eps` `giftcard` `ideal` `kbc` `mybank` `paypal` `paysafecard` `pointofsale` `przelewy24` `satispay` `trustly` `twint`
      */
     public UpdatePaymentLinkRequestBody withAllowedMethods(List<Object> allowedMethods) {
         Utils.checkNotNull(allowedMethods, "allowedMethods");
@@ -162,10 +151,9 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * An array of payment methods that are allowed to be used for this payment link. When this parameter is
-     * not provided or is an empty array, all enabled payment methods will be available.
+     * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * All methods supported by the Payments API are also supported here.
+     * Possible values: `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `blik` `creditcard` `eps` `giftcard` `ideal` `kbc` `mybank` `paypal` `paysafecard` `pointofsale` `przelewy24` `satispay` `trustly` `twint`
      */
     public UpdatePaymentLinkRequestBody withAllowedMethods(JsonNullable<? extends List<Object>> allowedMethods) {
         Utils.checkNotNull(allowedMethods, "allowedMethods");
@@ -217,8 +205,7 @@ public class UpdatePaymentLinkRequestBody {
         }
 
         /**
-         * A short description of the payment link. The description is visible in the Dashboard and will be shown
-         * on the customer's bank or card statement when possible.
+         * A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
          * 
          * Updating the description does not affect any previously existing payments created for this payment link.
          */
@@ -229,8 +216,7 @@ public class UpdatePaymentLinkRequestBody {
         }
 
         /**
-         * A short description of the payment link. The description is visible in the Dashboard and will be shown
-         * on the customer's bank or card statement when possible.
+         * A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
          * 
          * Updating the description does not affect any previously existing payments created for this payment link.
          */
@@ -241,8 +227,7 @@ public class UpdatePaymentLinkRequestBody {
         }
 
         /**
-         * Whether the payment link is archived. Customers will not be able to complete payments on archived
-         * payment links.
+         * Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
          */
         public Builder archived(boolean archived) {
             Utils.checkNotNull(archived, "archived");
@@ -251,8 +236,7 @@ public class UpdatePaymentLinkRequestBody {
         }
 
         /**
-         * Whether the payment link is archived. Customers will not be able to complete payments on archived
-         * payment links.
+         * Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
          */
         public Builder archived(Optional<Boolean> archived) {
             Utils.checkNotNull(archived, "archived");
@@ -261,10 +245,9 @@ public class UpdatePaymentLinkRequestBody {
         }
 
         /**
-         * An array of payment methods that are allowed to be used for this payment link. When this parameter is
-         * not provided or is an empty array, all enabled payment methods will be available.
+         * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
          * 
-         * All methods supported by the Payments API are also supported here.
+         * Possible values: `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `blik` `creditcard` `eps` `giftcard` `ideal` `kbc` `mybank` `paypal` `paysafecard` `pointofsale` `przelewy24` `satispay` `trustly` `twint`
          */
         public Builder allowedMethods(List<Object> allowedMethods) {
             Utils.checkNotNull(allowedMethods, "allowedMethods");
@@ -273,10 +256,9 @@ public class UpdatePaymentLinkRequestBody {
         }
 
         /**
-         * An array of payment methods that are allowed to be used for this payment link. When this parameter is
-         * not provided or is an empty array, all enabled payment methods will be available.
+         * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
          * 
-         * All methods supported by the Payments API are also supported here.
+         * Possible values: `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `blik` `creditcard` `eps` `giftcard` `ideal` `kbc` `mybank` `paypal` `paysafecard` `pointofsale` `przelewy24` `satispay` `trustly` `twint`
          */
         public Builder allowedMethods(JsonNullable<? extends List<Object>> allowedMethods) {
             Utils.checkNotNull(allowedMethods, "allowedMethods");

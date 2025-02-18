@@ -14,8 +14,7 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * CreatePaymentDiscountAmount - Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
- * type.
+ * CreatePaymentDiscountAmount - Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
  */
 
 public class CreatePaymentDiscountAmount {

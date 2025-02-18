@@ -17,8 +17,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * ListClientsClientsAPIDashboard - Direct link to the onboarding process in the Mollie dashboard. The merchant can be redirected to this page to
- * complete their onboarding.
+ * ListClientsClientsAPIDashboard - Direct link to the onboarding process in the Mollie dashboard. The merchant can be redirected to this page to complete their onboarding.
  */
 
 public class ListClientsClientsAPIDashboard {

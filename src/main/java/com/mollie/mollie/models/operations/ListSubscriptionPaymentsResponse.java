@@ -37,8 +37,7 @@ public class ListSubscriptionPaymentsResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * A list of payment objects. For a complete reference of the payment object, refer to the
-     * [Get payment endpoint](get-payment) documentation.
+     * A list of payment objects. For a complete reference of the payment object, refer to the [Get payment endpoint](get-payment) documentation.
      */
     private Optional<? extends ListSubscriptionPaymentsResponseBody> object;
 
@@ -90,8 +89,7 @@ public class ListSubscriptionPaymentsResponse implements Response {
     }
 
     /**
-     * A list of payment objects. For a complete reference of the payment object, refer to the
-     * [Get payment endpoint](get-payment) documentation.
+     * A list of payment objects. For a complete reference of the payment object, refer to the [Get payment endpoint](get-payment) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -131,8 +129,7 @@ public class ListSubscriptionPaymentsResponse implements Response {
     }
 
     /**
-     * A list of payment objects. For a complete reference of the payment object, refer to the
-     * [Get payment endpoint](get-payment) documentation.
+     * A list of payment objects. For a complete reference of the payment object, refer to the [Get payment endpoint](get-payment) documentation.
      */
     public ListSubscriptionPaymentsResponse withObject(ListSubscriptionPaymentsResponseBody object) {
         Utils.checkNotNull(object, "object");
@@ -141,8 +138,7 @@ public class ListSubscriptionPaymentsResponse implements Response {
     }
 
     /**
-     * A list of payment objects. For a complete reference of the payment object, refer to the
-     * [Get payment endpoint](get-payment) documentation.
+     * A list of payment objects. For a complete reference of the payment object, refer to the [Get payment endpoint](get-payment) documentation.
      */
     public ListSubscriptionPaymentsResponse withObject(Optional<? extends ListSubscriptionPaymentsResponseBody> object) {
         Utils.checkNotNull(object, "object");
@@ -226,8 +222,7 @@ public class ListSubscriptionPaymentsResponse implements Response {
         }
 
         /**
-         * A list of payment objects. For a complete reference of the payment object, refer to the
-         * [Get payment endpoint](get-payment) documentation.
+         * A list of payment objects. For a complete reference of the payment object, refer to the [Get payment endpoint](get-payment) documentation.
          */
         public Builder object(ListSubscriptionPaymentsResponseBody object) {
             Utils.checkNotNull(object, "object");
@@ -236,8 +231,7 @@ public class ListSubscriptionPaymentsResponse implements Response {
         }
 
         /**
-         * A list of payment objects. For a complete reference of the payment object, refer to the
-         * [Get payment endpoint](get-payment) documentation.
+         * A list of payment objects. For a complete reference of the payment object, refer to the [Get payment endpoint](get-payment) documentation.
          */
         public Builder object(Optional<? extends ListSubscriptionPaymentsResponseBody> object) {
             Utils.checkNotNull(object, "object");

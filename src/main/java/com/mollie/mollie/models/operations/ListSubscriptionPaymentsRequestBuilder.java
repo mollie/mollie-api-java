@@ -9,7 +9,6 @@ import com.mollie.mollie.utils.Utils;
 public class ListSubscriptionPaymentsRequestBuilder {
 
     private ListSubscriptionPaymentsRequest request;
-    private ListSubscriptionPaymentsSecurity security;
     private final SDKMethodInterfaces.MethodCallListSubscriptionPayments sdk;
 
     public ListSubscriptionPaymentsRequestBuilder(SDKMethodInterfaces.MethodCallListSubscriptionPayments sdk) {
@@ -22,16 +21,9 @@ public class ListSubscriptionPaymentsRequestBuilder {
         return this;
     }
 
-    public ListSubscriptionPaymentsRequestBuilder security(ListSubscriptionPaymentsSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
-    }
-
     public ListSubscriptionPaymentsResponse call() throws Exception {
 
-        return sdk.listPayments(
-            request,
-            security);
+        return sdk.listSubscriptionPayments(
+            request);
     }
 }

@@ -2,14 +2,11 @@
 
 Operation data depending on the type of operation.
 
-For an `add` operation, provide the fields for the new order line in the same format as in the
-[Create order](create-order) endpoint.
+For an `add` operation, provide the fields for the new order line in the same format as in the [Create order](create-order) endpoint.
 
-For an `update` operation, provide the `id` of the order line, along with any fields you would
-like to update.
+For an `update` operation, provide the `id` of the order line, along with any fields you would like to update.
 
-For a `cancel` operation, provide the `id` of the order line. Optionally, a `quantity` or `amount`
-can be provided to only partially cancel an order line.
+For a `cancel` operation, provide the `id` of the order line. Optionally, a `quantity` or `amount` can be provided to only partially cancel an order line.
 
 
 ## Fields

@@ -13,7 +13,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -42,21 +41,22 @@ public class Owner {
     private String familyName;
 
     /**
-     * Preset the language to be used for the login screen, if applicable. For the consent screen, the preferred
-     * language of the logged in merchant will be used and this parameter is ignored.
+     * Preset the language to be used for the login screen, if applicable. For the consent screen, the preferred language of the logged in merchant will be used and this parameter is ignored.
      * 
      * When this parameter is omitted, the browser language will be used instead.
+     * 
+     * Possible values: `en_US` `nl_NL` `nl_BE` `fr_FR` `fr_BE` `de_DE` `es_ES` `it_IT`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("locale")
-    private JsonNullable<? extends Locale> locale;
+    private JsonNullable<String> locale;
 
     @JsonCreator
     public Owner(
             @JsonProperty("email") String email,
             @JsonProperty("givenName") String givenName,
             @JsonProperty("familyName") String familyName,
-            @JsonProperty("locale") JsonNullable<? extends Locale> locale) {
+            @JsonProperty("locale") JsonNullable<String> locale) {
         Utils.checkNotNull(email, "email");
         Utils.checkNotNull(givenName, "givenName");
         Utils.checkNotNull(familyName, "familyName");
@@ -99,15 +99,15 @@ public class Owner {
     }
 
     /**
-     * Preset the language to be used for the login screen, if applicable. For the consent screen, the preferred
-     * language of the logged in merchant will be used and this parameter is ignored.
+     * Preset the language to be used for the login screen, if applicable. For the consent screen, the preferred language of the logged in merchant will be used and this parameter is ignored.
      * 
      * When this parameter is omitted, the browser language will be used instead.
+     * 
+     * Possible values: `en_US` `nl_NL` `nl_BE` `fr_FR` `fr_BE` `de_DE` `es_ES` `it_IT`
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Locale> locale() {
-        return (JsonNullable<Locale>) locale;
+    public JsonNullable<String> locale() {
+        return locale;
     }
 
     public final static Builder builder() {
@@ -142,24 +142,26 @@ public class Owner {
     }
 
     /**
-     * Preset the language to be used for the login screen, if applicable. For the consent screen, the preferred
-     * language of the logged in merchant will be used and this parameter is ignored.
+     * Preset the language to be used for the login screen, if applicable. For the consent screen, the preferred language of the logged in merchant will be used and this parameter is ignored.
      * 
      * When this parameter is omitted, the browser language will be used instead.
+     * 
+     * Possible values: `en_US` `nl_NL` `nl_BE` `fr_FR` `fr_BE` `de_DE` `es_ES` `it_IT`
      */
-    public Owner withLocale(Locale locale) {
+    public Owner withLocale(String locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = JsonNullable.of(locale);
         return this;
     }
 
     /**
-     * Preset the language to be used for the login screen, if applicable. For the consent screen, the preferred
-     * language of the logged in merchant will be used and this parameter is ignored.
+     * Preset the language to be used for the login screen, if applicable. For the consent screen, the preferred language of the logged in merchant will be used and this parameter is ignored.
      * 
      * When this parameter is omitted, the browser language will be used instead.
+     * 
+     * Possible values: `en_US` `nl_NL` `nl_BE` `fr_FR` `fr_BE` `de_DE` `es_ES` `it_IT`
      */
-    public Owner withLocale(JsonNullable<? extends Locale> locale) {
+    public Owner withLocale(JsonNullable<String> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
@@ -207,7 +209,7 @@ public class Owner {
  
         private String familyName;
  
-        private JsonNullable<? extends Locale> locale = JsonNullable.undefined();  
+        private JsonNullable<String> locale = JsonNullable.undefined();  
         
         private Builder() {
           // force use of static builder() method
@@ -241,24 +243,26 @@ public class Owner {
         }
 
         /**
-         * Preset the language to be used for the login screen, if applicable. For the consent screen, the preferred
-         * language of the logged in merchant will be used and this parameter is ignored.
+         * Preset the language to be used for the login screen, if applicable. For the consent screen, the preferred language of the logged in merchant will be used and this parameter is ignored.
          * 
          * When this parameter is omitted, the browser language will be used instead.
+         * 
+         * Possible values: `en_US` `nl_NL` `nl_BE` `fr_FR` `fr_BE` `de_DE` `es_ES` `it_IT`
          */
-        public Builder locale(Locale locale) {
+        public Builder locale(String locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = JsonNullable.of(locale);
             return this;
         }
 
         /**
-         * Preset the language to be used for the login screen, if applicable. For the consent screen, the preferred
-         * language of the logged in merchant will be used and this parameter is ignored.
+         * Preset the language to be used for the login screen, if applicable. For the consent screen, the preferred language of the logged in merchant will be used and this parameter is ignored.
          * 
          * When this parameter is omitted, the browser language will be used instead.
+         * 
+         * Possible values: `en_US` `nl_NL` `nl_BE` `fr_FR` `fr_BE` `de_DE` `es_ES` `it_IT`
          */
-        public Builder locale(JsonNullable<? extends Locale> locale) {
+        public Builder locale(JsonNullable<String> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;

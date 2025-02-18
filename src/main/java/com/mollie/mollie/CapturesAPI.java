@@ -13,17 +13,14 @@ import com.mollie.mollie.models.operations.CreateCaptureRequest;
 import com.mollie.mollie.models.operations.CreateCaptureRequestBody;
 import com.mollie.mollie.models.operations.CreateCaptureRequestBuilder;
 import com.mollie.mollie.models.operations.CreateCaptureResponse;
-import com.mollie.mollie.models.operations.CreateCaptureSecurity;
 import com.mollie.mollie.models.operations.GetCaptureRequest;
 import com.mollie.mollie.models.operations.GetCaptureRequestBuilder;
 import com.mollie.mollie.models.operations.GetCaptureResponse;
 import com.mollie.mollie.models.operations.GetCaptureResponseBody;
-import com.mollie.mollie.models.operations.GetCaptureSecurity;
 import com.mollie.mollie.models.operations.ListCapturesRequest;
 import com.mollie.mollie.models.operations.ListCapturesRequestBuilder;
 import com.mollie.mollie.models.operations.ListCapturesResponse;
 import com.mollie.mollie.models.operations.ListCapturesResponseBody;
-import com.mollie.mollie.models.operations.ListCapturesSecurity;
 import com.mollie.mollie.models.operations.SDKMethodInterfaces.*;
 import com.mollie.mollie.utils.HTTPClient;
 import com.mollie.mollie.utils.HTTPRequest;
@@ -58,68 +55,70 @@ public class CapturesAPI implements
 
     /**
      * Create capture
-     * **This feature is currently in open beta. The final specification may still
-     * change.**
+     * **This feature is currently in open beta. The final specification may still change.**
      * 
      * Capture an *authorized* payment.
      * 
-     * Some payment methods allow you to first collect a customer's authorization,
-     * and capture the amount at a later point.
+     * Some payment methods allow you to first collect a customer's authorization, and capture the amount at a later point.
      * 
-     * By default, Mollie captures payments automatically. If however you
-     * configured your payment with `captureMode: manual`, you can capture the payment using this endpoint after
-     * having collected the customer's authorization.
+     * By default, Mollie captures payments automatically. If however you configured your payment with `captureMode: manual`, you can capture the payment using this endpoint after having collected the customer's authorization.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.write**](/reference/authentication)
      * @return The call builder
      */
-    public CreateCaptureRequestBuilder create() {
+    public CreateCaptureRequestBuilder createCapture() {
         return new CreateCaptureRequestBuilder(this);
     }
 
     /**
      * Create capture
-     * **This feature is currently in open beta. The final specification may still
-     * change.**
+     * **This feature is currently in open beta. The final specification may still change.**
      * 
      * Capture an *authorized* payment.
      * 
-     * Some payment methods allow you to first collect a customer's authorization,
-     * and capture the amount at a later point.
+     * Some payment methods allow you to first collect a customer's authorization, and capture the amount at a later point.
      * 
-     * By default, Mollie captures payments automatically. If however you
-     * configured your payment with `captureMode: manual`, you can capture the payment using this endpoint after
-     * having collected the customer's authorization.
-     * @param security The security details to use for authentication.
+     * By default, Mollie captures payments automatically. If however you configured your payment with `captureMode: manual`, you can capture the payment using this endpoint after having collected the customer's authorization.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.write**](/reference/authentication)
      * @param paymentId Provide the ID of the related payment.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateCaptureResponse create(
-            CreateCaptureSecurity security,
+    public CreateCaptureResponse createCapture(
             String paymentId) throws Exception {
-        return create(security, paymentId, Optional.empty());
+        return createCapture(paymentId, Optional.empty());
     }
     
     /**
      * Create capture
-     * **This feature is currently in open beta. The final specification may still
-     * change.**
+     * **This feature is currently in open beta. The final specification may still change.**
      * 
      * Capture an *authorized* payment.
      * 
-     * Some payment methods allow you to first collect a customer's authorization,
-     * and capture the amount at a later point.
+     * Some payment methods allow you to first collect a customer's authorization, and capture the amount at a later point.
      * 
-     * By default, Mollie captures payments automatically. If however you
-     * configured your payment with `captureMode: manual`, you can capture the payment using this endpoint after
-     * having collected the customer's authorization.
-     * @param security The security details to use for authentication.
+     * By default, Mollie captures payments automatically. If however you configured your payment with `captureMode: manual`, you can capture the payment using this endpoint after having collected the customer's authorization.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.write**](/reference/authentication)
      * @param paymentId Provide the ID of the related payment.
      * @param requestBody
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateCaptureResponse create(
-            CreateCaptureSecurity security,
+    public CreateCaptureResponse createCapture(
             String paymentId,
             Optional<? extends CreateCaptureRequestBody> requestBody) throws Exception {
         CreateCaptureRequest request =
@@ -151,11 +150,9 @@ public class CapturesAPI implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -210,19 +207,8 @@ public class CapturesAPI implements
         CreateCaptureResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
+            // no content 
+            return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
@@ -286,9 +272,15 @@ public class CapturesAPI implements
      * Retrieve a list of all captures created for a specific payment.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.read**](/reference/authentication)
      * @return The call builder
      */
-    public ListCapturesRequestBuilder list() {
+    public ListCapturesRequestBuilder listCaptures() {
         return new ListCapturesRequestBuilder(this);
     }
 
@@ -297,14 +289,18 @@ public class CapturesAPI implements
      * Retrieve a list of all captures created for a specific payment.
      * 
      * The results are paginated.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.read**](/reference/authentication)
      * @param request The request object containing all of the parameters for the API call.
-     * @param security The security details to use for authentication.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListCapturesResponse list(
-            ListCapturesRequest request,
-            ListCapturesSecurity security) throws Exception {
+    public ListCapturesResponse listCaptures(
+            ListCapturesRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 ListCapturesRequest.class,
@@ -322,11 +318,9 @@ public class CapturesAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -454,52 +448,60 @@ public class CapturesAPI implements
 
     /**
      * Get capture
-     * Retrieve a single payment capture by its ID and the ID of its parent
-     * payment.
+     * Retrieve a single payment capture by its ID and the ID of its parent payment.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.read**](/reference/authentication)
      * @return The call builder
      */
-    public GetCaptureRequestBuilder get() {
+    public GetCaptureRequestBuilder getCapture() {
         return new GetCaptureRequestBuilder(this);
     }
 
     /**
      * Get capture
-     * Retrieve a single payment capture by its ID and the ID of its parent
-     * payment.
-     * @param security The security details to use for authentication.
+     * Retrieve a single payment capture by its ID and the ID of its parent payment.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.read**](/reference/authentication)
      * @param paymentId Provide the ID of the related payment.
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetCaptureResponse get(
-            GetCaptureSecurity security,
+    public GetCaptureResponse getCapture(
             String paymentId,
             String id) throws Exception {
-        return get(security, paymentId, id, JsonNullable.undefined(), JsonNullable.undefined());
+        return getCapture(paymentId, id, JsonNullable.undefined(), JsonNullable.undefined());
     }
     
     /**
      * Get capture
-     * Retrieve a single payment capture by its ID and the ID of its parent
-     * payment.
-     * @param security The security details to use for authentication.
+     * Retrieve a single payment capture by its ID and the ID of its parent payment.
+     * 
+     * &gt; 🔑 Access with
+     * &gt;
+     * &gt; [API key](/reference/authentication)
+     * &gt;
+     * &gt; [Access token with **payments.read**](/reference/authentication)
      * @param paymentId Provide the ID of the related payment.
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param include This endpoint allows you to include additional information via the
-    `include` query string parameter.
+     * @param include This endpoint allows you to include additional information via the `include` query string parameter.
 
     * `payment`: Include the payment this capture was created for.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-    parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-    setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
 
     Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetCaptureResponse get(
-            GetCaptureSecurity security,
+    public GetCaptureResponse getCapture(
             String paymentId,
             String id,
             JsonNullable<String> include,
@@ -530,11 +532,9 @@ public class CapturesAPI implements
                 request, 
                 null));
         
-        // hooks will have access to global security options
-        // TODO pass the method level security object to hooks (type system doesn't allow 
-        // it, would require some reflection work)
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req, security);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()

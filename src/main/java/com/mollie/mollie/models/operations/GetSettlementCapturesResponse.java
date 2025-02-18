@@ -38,8 +38,7 @@ public class GetSettlementCapturesResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * A list of capture objects. For a complete reference of the response, refer to the [List captures](list-captures)
-     * endpoint documentation.
+     * A list of capture objects. For a complete reference of the response, refer to the [List captures](list-captures) endpoint documentation.
      */
     private Optional<? extends Object> any;
 
@@ -91,8 +90,7 @@ public class GetSettlementCapturesResponse implements Response {
     }
 
     /**
-     * A list of capture objects. For a complete reference of the response, refer to the [List captures](list-captures)
-     * endpoint documentation.
+     * A list of capture objects. For a complete reference of the response, refer to the [List captures](list-captures) endpoint documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -132,8 +130,7 @@ public class GetSettlementCapturesResponse implements Response {
     }
 
     /**
-     * A list of capture objects. For a complete reference of the response, refer to the [List captures](list-captures)
-     * endpoint documentation.
+     * A list of capture objects. For a complete reference of the response, refer to the [List captures](list-captures) endpoint documentation.
      */
     public GetSettlementCapturesResponse withAny(Object any) {
         Utils.checkNotNull(any, "any");
@@ -142,8 +139,7 @@ public class GetSettlementCapturesResponse implements Response {
     }
 
     /**
-     * A list of capture objects. For a complete reference of the response, refer to the [List captures](list-captures)
-     * endpoint documentation.
+     * A list of capture objects. For a complete reference of the response, refer to the [List captures](list-captures) endpoint documentation.
      */
     public GetSettlementCapturesResponse withAny(Optional<? extends Object> any) {
         Utils.checkNotNull(any, "any");
@@ -227,8 +223,7 @@ public class GetSettlementCapturesResponse implements Response {
         }
 
         /**
-         * A list of capture objects. For a complete reference of the response, refer to the [List captures](list-captures)
-         * endpoint documentation.
+         * A list of capture objects. For a complete reference of the response, refer to the [List captures](list-captures) endpoint documentation.
          */
         public Builder any(Object any) {
             Utils.checkNotNull(any, "any");
@@ -237,8 +232,7 @@ public class GetSettlementCapturesResponse implements Response {
         }
 
         /**
-         * A list of capture objects. For a complete reference of the response, refer to the [List captures](list-captures)
-         * endpoint documentation.
+         * A list of capture objects. For a complete reference of the response, refer to the [List captures](list-captures) endpoint documentation.
          */
         public Builder any(Optional<? extends Object> any) {
             Utils.checkNotNull(any, "any");

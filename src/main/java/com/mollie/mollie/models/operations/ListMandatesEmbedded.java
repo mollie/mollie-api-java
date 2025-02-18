@@ -22,8 +22,7 @@ import java.util.Optional;
 public class ListMandatesEmbedded {
 
     /**
-     * An array of mandate objects. For a complete reference of the mandate object, refer to the
-     * [Get mandate endpoint](get-mandate) documentation.
+     * An array of mandate objects. For a complete reference of the mandate object, refer to the [Get mandate endpoint](get-mandate) documentation.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mandates")
@@ -41,8 +40,7 @@ public class ListMandatesEmbedded {
     }
 
     /**
-     * An array of mandate objects. For a complete reference of the mandate object, refer to the
-     * [Get mandate endpoint](get-mandate) documentation.
+     * An array of mandate objects. For a complete reference of the mandate object, refer to the [Get mandate endpoint](get-mandate) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -55,8 +53,7 @@ public class ListMandatesEmbedded {
     }
 
     /**
-     * An array of mandate objects. For a complete reference of the mandate object, refer to the
-     * [Get mandate endpoint](get-mandate) documentation.
+     * An array of mandate objects. For a complete reference of the mandate object, refer to the [Get mandate endpoint](get-mandate) documentation.
      */
     public ListMandatesEmbedded withMandates(List<ListMandatesMandates> mandates) {
         Utils.checkNotNull(mandates, "mandates");
@@ -65,8 +62,7 @@ public class ListMandatesEmbedded {
     }
 
     /**
-     * An array of mandate objects. For a complete reference of the mandate object, refer to the
-     * [Get mandate endpoint](get-mandate) documentation.
+     * An array of mandate objects. For a complete reference of the mandate object, refer to the [Get mandate endpoint](get-mandate) documentation.
      */
     public ListMandatesEmbedded withMandates(Optional<? extends List<ListMandatesMandates>> mandates) {
         Utils.checkNotNull(mandates, "mandates");
@@ -108,8 +104,7 @@ public class ListMandatesEmbedded {
         }
 
         /**
-         * An array of mandate objects. For a complete reference of the mandate object, refer to the
-         * [Get mandate endpoint](get-mandate) documentation.
+         * An array of mandate objects. For a complete reference of the mandate object, refer to the [Get mandate endpoint](get-mandate) documentation.
          */
         public Builder mandates(List<ListMandatesMandates> mandates) {
             Utils.checkNotNull(mandates, "mandates");
@@ -118,8 +113,7 @@ public class ListMandatesEmbedded {
         }
 
         /**
-         * An array of mandate objects. For a complete reference of the mandate object, refer to the
-         * [Get mandate endpoint](get-mandate) documentation.
+         * An array of mandate objects. For a complete reference of the mandate object, refer to the [Get mandate endpoint](get-mandate) documentation.
          */
         public Builder mandates(Optional<? extends List<ListMandatesMandates>> mandates) {
             Utils.checkNotNull(mandates, "mandates");

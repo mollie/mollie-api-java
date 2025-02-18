@@ -15,6 +15,6 @@ public class ListPermissionsRequestBuilder {
 
     public ListPermissionsResponse call() throws Exception {
 
-        return sdk.listDirect();
+        return sdk.listPermissionsDirect();
     }
 }

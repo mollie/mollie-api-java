@@ -22,8 +22,7 @@ import java.util.Optional;
 public class ListTerminalsEmbedded {
 
     /**
-     * An array of terminal objects. For a complete reference of the terminal object, refer to the
-     * [Get terminal endpoint](get-terminal) documentation.
+     * An array of terminal objects. For a complete reference of the terminal object, refer to the [Get terminal endpoint](get-terminal) documentation.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("terminals")
@@ -41,8 +40,7 @@ public class ListTerminalsEmbedded {
     }
 
     /**
-     * An array of terminal objects. For a complete reference of the terminal object, refer to the
-     * [Get terminal endpoint](get-terminal) documentation.
+     * An array of terminal objects. For a complete reference of the terminal object, refer to the [Get terminal endpoint](get-terminal) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -55,8 +53,7 @@ public class ListTerminalsEmbedded {
     }
 
     /**
-     * An array of terminal objects. For a complete reference of the terminal object, refer to the
-     * [Get terminal endpoint](get-terminal) documentation.
+     * An array of terminal objects. For a complete reference of the terminal object, refer to the [Get terminal endpoint](get-terminal) documentation.
      */
     public ListTerminalsEmbedded withTerminals(List<Terminals> terminals) {
         Utils.checkNotNull(terminals, "terminals");
@@ -65,8 +62,7 @@ public class ListTerminalsEmbedded {
     }
 
     /**
-     * An array of terminal objects. For a complete reference of the terminal object, refer to the
-     * [Get terminal endpoint](get-terminal) documentation.
+     * An array of terminal objects. For a complete reference of the terminal object, refer to the [Get terminal endpoint](get-terminal) documentation.
      */
     public ListTerminalsEmbedded withTerminals(Optional<? extends List<Terminals>> terminals) {
         Utils.checkNotNull(terminals, "terminals");
@@ -108,8 +104,7 @@ public class ListTerminalsEmbedded {
         }
 
         /**
-         * An array of terminal objects. For a complete reference of the terminal object, refer to the
-         * [Get terminal endpoint](get-terminal) documentation.
+         * An array of terminal objects. For a complete reference of the terminal object, refer to the [Get terminal endpoint](get-terminal) documentation.
          */
         public Builder terminals(List<Terminals> terminals) {
             Utils.checkNotNull(terminals, "terminals");
@@ -118,8 +113,7 @@ public class ListTerminalsEmbedded {
         }
 
         /**
-         * An array of terminal objects. For a complete reference of the terminal object, refer to the
-         * [Get terminal endpoint](get-terminal) documentation.
+         * An array of terminal objects. For a complete reference of the terminal object, refer to the [Get terminal endpoint](get-terminal) documentation.
          */
         public Builder terminals(Optional<? extends List<Terminals>> terminals) {
             Utils.checkNotNull(terminals, "terminals");

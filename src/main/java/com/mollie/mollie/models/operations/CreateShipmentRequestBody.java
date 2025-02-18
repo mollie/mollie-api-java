@@ -22,11 +22,9 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class CreateShipmentRequestBody {
 
     /**
-     * The order lines that are being fulfilled with this shipment. If left blank, all open order lines will be
-     * considered fulfilled.
+     * The order lines that are being fulfilled with this shipment. If left blank, all open order lines will be considered fulfilled.
      * 
-     * For an in-depth explanation of all order line properties, refer to the `lines` parameter of the
-     * [Create order](create-order) endpoint.
+     * For an in-depth explanation of all order line properties, refer to the `lines` parameter of the [Create order](create-order) endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lines")
@@ -54,11 +52,9 @@ public class CreateShipmentRequestBody {
     }
 
     /**
-     * The order lines that are being fulfilled with this shipment. If left blank, all open order lines will be
-     * considered fulfilled.
+     * The order lines that are being fulfilled with this shipment. If left blank, all open order lines will be considered fulfilled.
      * 
-     * For an in-depth explanation of all order line properties, refer to the `lines` parameter of the
-     * [Create order](create-order) endpoint.
+     * For an in-depth explanation of all order line properties, refer to the `lines` parameter of the [Create order](create-order) endpoint.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -80,11 +76,9 @@ public class CreateShipmentRequestBody {
     }
 
     /**
-     * The order lines that are being fulfilled with this shipment. If left blank, all open order lines will be
-     * considered fulfilled.
+     * The order lines that are being fulfilled with this shipment. If left blank, all open order lines will be considered fulfilled.
      * 
-     * For an in-depth explanation of all order line properties, refer to the `lines` parameter of the
-     * [Create order](create-order) endpoint.
+     * For an in-depth explanation of all order line properties, refer to the `lines` parameter of the [Create order](create-order) endpoint.
      */
     public CreateShipmentRequestBody withLines(List<CreateShipmentLines> lines) {
         Utils.checkNotNull(lines, "lines");
@@ -93,11 +87,9 @@ public class CreateShipmentRequestBody {
     }
 
     /**
-     * The order lines that are being fulfilled with this shipment. If left blank, all open order lines will be
-     * considered fulfilled.
+     * The order lines that are being fulfilled with this shipment. If left blank, all open order lines will be considered fulfilled.
      * 
-     * For an in-depth explanation of all order line properties, refer to the `lines` parameter of the
-     * [Create order](create-order) endpoint.
+     * For an in-depth explanation of all order line properties, refer to the `lines` parameter of the [Create order](create-order) endpoint.
      */
     public CreateShipmentRequestBody withLines(JsonNullable<? extends List<CreateShipmentLines>> lines) {
         Utils.checkNotNull(lines, "lines");
@@ -162,11 +154,9 @@ public class CreateShipmentRequestBody {
         }
 
         /**
-         * The order lines that are being fulfilled with this shipment. If left blank, all open order lines will be
-         * considered fulfilled.
+         * The order lines that are being fulfilled with this shipment. If left blank, all open order lines will be considered fulfilled.
          * 
-         * For an in-depth explanation of all order line properties, refer to the `lines` parameter of the
-         * [Create order](create-order) endpoint.
+         * For an in-depth explanation of all order line properties, refer to the `lines` parameter of the [Create order](create-order) endpoint.
          */
         public Builder lines(List<CreateShipmentLines> lines) {
             Utils.checkNotNull(lines, "lines");
@@ -175,11 +165,9 @@ public class CreateShipmentRequestBody {
         }
 
         /**
-         * The order lines that are being fulfilled with this shipment. If left blank, all open order lines will be
-         * considered fulfilled.
+         * The order lines that are being fulfilled with this shipment. If left blank, all open order lines will be considered fulfilled.
          * 
-         * For an in-depth explanation of all order line properties, refer to the `lines` parameter of the
-         * [Create order](create-order) endpoint.
+         * For an in-depth explanation of all order line properties, refer to the `lines` parameter of the [Create order](create-order) endpoint.
          */
         public Builder lines(JsonNullable<? extends List<CreateShipmentLines>> lines) {
             Utils.checkNotNull(lines, "lines");

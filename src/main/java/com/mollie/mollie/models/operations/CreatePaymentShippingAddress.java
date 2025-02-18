@@ -17,11 +17,9 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * CreatePaymentShippingAddress - The customer's shipping address details. We advise to provide these details to improve fraud protection and
- * conversion.
+ * CreatePaymentShippingAddress - The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
  * 
- * Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
- * `country`.
+ * Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
  */
 
 public class CreatePaymentShippingAddress {
@@ -34,16 +32,14 @@ public class CreatePaymentShippingAddress {
     private Optional<String> title;
 
     /**
-     * The given name (first name) of the person should be at least two characters and cannot contain
-     * only numbers.
+     * The given name (first name) of the person should be at least two characters and cannot contain only numbers.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("givenName")
     private Optional<String> givenName;
 
     /**
-     * The given family name (surname) of the person should be at least two characters and cannot contain
-     * only numbers.
+     * The given family name (surname) of the person should be at least two characters and cannot contain only numbers.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("familyName")
@@ -85,8 +81,7 @@ public class CreatePaymentShippingAddress {
     private Optional<String> email;
 
     /**
-     * If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example:
-     * +31208202070.
+     * If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example: +31208202070.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phone")
@@ -160,8 +155,7 @@ public class CreatePaymentShippingAddress {
     }
 
     /**
-     * The given name (first name) of the person should be at least two characters and cannot contain
-     * only numbers.
+     * The given name (first name) of the person should be at least two characters and cannot contain only numbers.
      */
     @JsonIgnore
     public Optional<String> givenName() {
@@ -169,8 +163,7 @@ public class CreatePaymentShippingAddress {
     }
 
     /**
-     * The given family name (surname) of the person should be at least two characters and cannot contain
-     * only numbers.
+     * The given family name (surname) of the person should be at least two characters and cannot contain only numbers.
      */
     @JsonIgnore
     public Optional<String> familyName() {
@@ -218,8 +211,7 @@ public class CreatePaymentShippingAddress {
     }
 
     /**
-     * If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example:
-     * +31208202070.
+     * If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example: +31208202070.
      */
     @JsonIgnore
     public Optional<String> phone() {
@@ -267,8 +259,7 @@ public class CreatePaymentShippingAddress {
     }
 
     /**
-     * The given name (first name) of the person should be at least two characters and cannot contain
-     * only numbers.
+     * The given name (first name) of the person should be at least two characters and cannot contain only numbers.
      */
     public CreatePaymentShippingAddress withGivenName(String givenName) {
         Utils.checkNotNull(givenName, "givenName");
@@ -277,8 +268,7 @@ public class CreatePaymentShippingAddress {
     }
 
     /**
-     * The given name (first name) of the person should be at least two characters and cannot contain
-     * only numbers.
+     * The given name (first name) of the person should be at least two characters and cannot contain only numbers.
      */
     public CreatePaymentShippingAddress withGivenName(Optional<String> givenName) {
         Utils.checkNotNull(givenName, "givenName");
@@ -287,8 +277,7 @@ public class CreatePaymentShippingAddress {
     }
 
     /**
-     * The given family name (surname) of the person should be at least two characters and cannot contain
-     * only numbers.
+     * The given family name (surname) of the person should be at least two characters and cannot contain only numbers.
      */
     public CreatePaymentShippingAddress withFamilyName(String familyName) {
         Utils.checkNotNull(familyName, "familyName");
@@ -297,8 +286,7 @@ public class CreatePaymentShippingAddress {
     }
 
     /**
-     * The given family name (surname) of the person should be at least two characters and cannot contain
-     * only numbers.
+     * The given family name (surname) of the person should be at least two characters and cannot contain only numbers.
      */
     public CreatePaymentShippingAddress withFamilyName(Optional<String> familyName) {
         Utils.checkNotNull(familyName, "familyName");
@@ -397,8 +385,7 @@ public class CreatePaymentShippingAddress {
     }
 
     /**
-     * If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example:
-     * +31208202070.
+     * If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example: +31208202070.
      */
     public CreatePaymentShippingAddress withPhone(String phone) {
         Utils.checkNotNull(phone, "phone");
@@ -407,8 +394,7 @@ public class CreatePaymentShippingAddress {
     }
 
     /**
-     * If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example:
-     * +31208202070.
+     * If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example: +31208202070.
      */
     public CreatePaymentShippingAddress withPhone(Optional<String> phone) {
         Utils.checkNotNull(phone, "phone");
@@ -565,8 +551,7 @@ public class CreatePaymentShippingAddress {
         }
 
         /**
-         * The given name (first name) of the person should be at least two characters and cannot contain
-         * only numbers.
+         * The given name (first name) of the person should be at least two characters and cannot contain only numbers.
          */
         public Builder givenName(String givenName) {
             Utils.checkNotNull(givenName, "givenName");
@@ -575,8 +560,7 @@ public class CreatePaymentShippingAddress {
         }
 
         /**
-         * The given name (first name) of the person should be at least two characters and cannot contain
-         * only numbers.
+         * The given name (first name) of the person should be at least two characters and cannot contain only numbers.
          */
         public Builder givenName(Optional<String> givenName) {
             Utils.checkNotNull(givenName, "givenName");
@@ -585,8 +569,7 @@ public class CreatePaymentShippingAddress {
         }
 
         /**
-         * The given family name (surname) of the person should be at least two characters and cannot contain
-         * only numbers.
+         * The given family name (surname) of the person should be at least two characters and cannot contain only numbers.
          */
         public Builder familyName(String familyName) {
             Utils.checkNotNull(familyName, "familyName");
@@ -595,8 +578,7 @@ public class CreatePaymentShippingAddress {
         }
 
         /**
-         * The given family name (surname) of the person should be at least two characters and cannot contain
-         * only numbers.
+         * The given family name (surname) of the person should be at least two characters and cannot contain only numbers.
          */
         public Builder familyName(Optional<String> familyName) {
             Utils.checkNotNull(familyName, "familyName");
@@ -695,8 +677,7 @@ public class CreatePaymentShippingAddress {
         }
 
         /**
-         * If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example:
-         * +31208202070.
+         * If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example: +31208202070.
          */
         public Builder phone(String phone) {
             Utils.checkNotNull(phone, "phone");
@@ -705,8 +686,7 @@ public class CreatePaymentShippingAddress {
         }
 
         /**
-         * If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example:
-         * +31208202070.
+         * If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example: +31208202070.
          */
         public Builder phone(Optional<String> phone) {
             Utils.checkNotNull(phone, "phone");

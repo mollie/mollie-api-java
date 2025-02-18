@@ -46,14 +46,11 @@ public class GetPaymentLinks {
     private JsonNullable<? extends MobileAppCheckout> mobileAppCheckout;
 
     /**
-     * For test mode payments in certain scenarios, a hosted interface is available to help you test different
-     * payment states.
+     * For test mode payments in certain scenarios, a hosted interface is available to help you test different payment states.
      * 
-     * Firstly, for recurring test mode payments. Recurring payments do not have a checkout URL, because these
-     * payments are executed without any user interaction.
+     * Firstly, for recurring test mode payments. Recurring payments do not have a checkout URL, because these payments are executed without any user interaction.
      * 
-     * Secondly, for paid test mode payments. The payment state screen will then allow you to create a refund or
-     * chargeback for the test payment.
+     * Secondly, for paid test mode payments. The payment state screen will then allow you to create a refund or chargeback for the test payment.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("changePaymentState")
@@ -74,8 +71,7 @@ public class GetPaymentLinks {
     private JsonNullable<? extends GetPaymentRefunds> refunds;
 
     /**
-     * The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this
-     * payment.
+     * The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this payment.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("chargebacks")
@@ -89,24 +85,21 @@ public class GetPaymentLinks {
     private Optional<? extends GetPaymentCaptures> captures;
 
     /**
-     * The API resource URL of the [settlement](get-settlement) this payment has been settled with.
-     * Not present if not yet settled.
+     * The API resource URL of the [settlement](get-settlement) this payment has been settled with. Not present if not yet settled.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlement")
     private JsonNullable<? extends Settlement> settlement;
 
     /**
-     * The API resource URL of the [order](get-order) this payment was created for. Not present if not created for an
-     * order.
+     * The API resource URL of the [order](get-order) this payment was created for. Not present if not created for an order.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("order")
     private JsonNullable<? extends GetPaymentOrder> order;
 
     /**
-     * The API resource URL of the [terminal](get-terminal) this payment was created for. Only present for
-     * point-of-sale payments.
+     * The API resource URL of the [terminal](get-terminal) this payment was created for. Only present for point-of-sale payments.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("terminal")
@@ -191,14 +184,11 @@ public class GetPaymentLinks {
     }
 
     /**
-     * For test mode payments in certain scenarios, a hosted interface is available to help you test different
-     * payment states.
+     * For test mode payments in certain scenarios, a hosted interface is available to help you test different payment states.
      * 
-     * Firstly, for recurring test mode payments. Recurring payments do not have a checkout URL, because these
-     * payments are executed without any user interaction.
+     * Firstly, for recurring test mode payments. Recurring payments do not have a checkout URL, because these payments are executed without any user interaction.
      * 
-     * Secondly, for paid test mode payments. The payment state screen will then allow you to create a refund or
-     * chargeback for the test payment.
+     * Secondly, for paid test mode payments. The payment state screen will then allow you to create a refund or chargeback for the test payment.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -225,8 +215,7 @@ public class GetPaymentLinks {
     }
 
     /**
-     * The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this
-     * payment.
+     * The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this payment.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -244,8 +233,7 @@ public class GetPaymentLinks {
     }
 
     /**
-     * The API resource URL of the [settlement](get-settlement) this payment has been settled with.
-     * Not present if not yet settled.
+     * The API resource URL of the [settlement](get-settlement) this payment has been settled with. Not present if not yet settled.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -254,8 +242,7 @@ public class GetPaymentLinks {
     }
 
     /**
-     * The API resource URL of the [order](get-order) this payment was created for. Not present if not created for an
-     * order.
+     * The API resource URL of the [order](get-order) this payment was created for. Not present if not created for an order.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -264,8 +251,7 @@ public class GetPaymentLinks {
     }
 
     /**
-     * The API resource URL of the [terminal](get-terminal) this payment was created for. Only present for
-     * point-of-sale payments.
+     * The API resource URL of the [terminal](get-terminal) this payment was created for. Only present for point-of-sale payments.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -341,14 +327,11 @@ public class GetPaymentLinks {
     }
 
     /**
-     * For test mode payments in certain scenarios, a hosted interface is available to help you test different
-     * payment states.
+     * For test mode payments in certain scenarios, a hosted interface is available to help you test different payment states.
      * 
-     * Firstly, for recurring test mode payments. Recurring payments do not have a checkout URL, because these
-     * payments are executed without any user interaction.
+     * Firstly, for recurring test mode payments. Recurring payments do not have a checkout URL, because these payments are executed without any user interaction.
      * 
-     * Secondly, for paid test mode payments. The payment state screen will then allow you to create a refund or
-     * chargeback for the test payment.
+     * Secondly, for paid test mode payments. The payment state screen will then allow you to create a refund or chargeback for the test payment.
      */
     public GetPaymentLinks withChangePaymentState(ChangePaymentState changePaymentState) {
         Utils.checkNotNull(changePaymentState, "changePaymentState");
@@ -357,14 +340,11 @@ public class GetPaymentLinks {
     }
 
     /**
-     * For test mode payments in certain scenarios, a hosted interface is available to help you test different
-     * payment states.
+     * For test mode payments in certain scenarios, a hosted interface is available to help you test different payment states.
      * 
-     * Firstly, for recurring test mode payments. Recurring payments do not have a checkout URL, because these
-     * payments are executed without any user interaction.
+     * Firstly, for recurring test mode payments. Recurring payments do not have a checkout URL, because these payments are executed without any user interaction.
      * 
-     * Secondly, for paid test mode payments. The payment state screen will then allow you to create a refund or
-     * chargeback for the test payment.
+     * Secondly, for paid test mode payments. The payment state screen will then allow you to create a refund or chargeback for the test payment.
      */
     public GetPaymentLinks withChangePaymentState(JsonNullable<? extends ChangePaymentState> changePaymentState) {
         Utils.checkNotNull(changePaymentState, "changePaymentState");
@@ -409,8 +389,7 @@ public class GetPaymentLinks {
     }
 
     /**
-     * The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this
-     * payment.
+     * The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this payment.
      */
     public GetPaymentLinks withChargebacks(GetPaymentChargebacks chargebacks) {
         Utils.checkNotNull(chargebacks, "chargebacks");
@@ -419,8 +398,7 @@ public class GetPaymentLinks {
     }
 
     /**
-     * The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this
-     * payment.
+     * The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this payment.
      */
     public GetPaymentLinks withChargebacks(Optional<? extends GetPaymentChargebacks> chargebacks) {
         Utils.checkNotNull(chargebacks, "chargebacks");
@@ -447,8 +425,7 @@ public class GetPaymentLinks {
     }
 
     /**
-     * The API resource URL of the [settlement](get-settlement) this payment has been settled with.
-     * Not present if not yet settled.
+     * The API resource URL of the [settlement](get-settlement) this payment has been settled with. Not present if not yet settled.
      */
     public GetPaymentLinks withSettlement(Settlement settlement) {
         Utils.checkNotNull(settlement, "settlement");
@@ -457,8 +434,7 @@ public class GetPaymentLinks {
     }
 
     /**
-     * The API resource URL of the [settlement](get-settlement) this payment has been settled with.
-     * Not present if not yet settled.
+     * The API resource URL of the [settlement](get-settlement) this payment has been settled with. Not present if not yet settled.
      */
     public GetPaymentLinks withSettlement(JsonNullable<? extends Settlement> settlement) {
         Utils.checkNotNull(settlement, "settlement");
@@ -467,8 +443,7 @@ public class GetPaymentLinks {
     }
 
     /**
-     * The API resource URL of the [order](get-order) this payment was created for. Not present if not created for an
-     * order.
+     * The API resource URL of the [order](get-order) this payment was created for. Not present if not created for an order.
      */
     public GetPaymentLinks withOrder(GetPaymentOrder order) {
         Utils.checkNotNull(order, "order");
@@ -477,8 +452,7 @@ public class GetPaymentLinks {
     }
 
     /**
-     * The API resource URL of the [order](get-order) this payment was created for. Not present if not created for an
-     * order.
+     * The API resource URL of the [order](get-order) this payment was created for. Not present if not created for an order.
      */
     public GetPaymentLinks withOrder(JsonNullable<? extends GetPaymentOrder> order) {
         Utils.checkNotNull(order, "order");
@@ -487,8 +461,7 @@ public class GetPaymentLinks {
     }
 
     /**
-     * The API resource URL of the [terminal](get-terminal) this payment was created for. Only present for
-     * point-of-sale payments.
+     * The API resource URL of the [terminal](get-terminal) this payment was created for. Only present for point-of-sale payments.
      */
     public GetPaymentLinks withTerminal(Terminal terminal) {
         Utils.checkNotNull(terminal, "terminal");
@@ -497,8 +470,7 @@ public class GetPaymentLinks {
     }
 
     /**
-     * The API resource URL of the [terminal](get-terminal) this payment was created for. Only present for
-     * point-of-sale payments.
+     * The API resource URL of the [terminal](get-terminal) this payment was created for. Only present for point-of-sale payments.
      */
     public GetPaymentLinks withTerminal(JsonNullable<? extends Terminal> terminal) {
         Utils.checkNotNull(terminal, "terminal");
@@ -667,14 +639,11 @@ public class GetPaymentLinks {
         }
 
         /**
-         * For test mode payments in certain scenarios, a hosted interface is available to help you test different
-         * payment states.
+         * For test mode payments in certain scenarios, a hosted interface is available to help you test different payment states.
          * 
-         * Firstly, for recurring test mode payments. Recurring payments do not have a checkout URL, because these
-         * payments are executed without any user interaction.
+         * Firstly, for recurring test mode payments. Recurring payments do not have a checkout URL, because these payments are executed without any user interaction.
          * 
-         * Secondly, for paid test mode payments. The payment state screen will then allow you to create a refund or
-         * chargeback for the test payment.
+         * Secondly, for paid test mode payments. The payment state screen will then allow you to create a refund or chargeback for the test payment.
          */
         public Builder changePaymentState(ChangePaymentState changePaymentState) {
             Utils.checkNotNull(changePaymentState, "changePaymentState");
@@ -683,14 +652,11 @@ public class GetPaymentLinks {
         }
 
         /**
-         * For test mode payments in certain scenarios, a hosted interface is available to help you test different
-         * payment states.
+         * For test mode payments in certain scenarios, a hosted interface is available to help you test different payment states.
          * 
-         * Firstly, for recurring test mode payments. Recurring payments do not have a checkout URL, because these
-         * payments are executed without any user interaction.
+         * Firstly, for recurring test mode payments. Recurring payments do not have a checkout URL, because these payments are executed without any user interaction.
          * 
-         * Secondly, for paid test mode payments. The payment state screen will then allow you to create a refund or
-         * chargeback for the test payment.
+         * Secondly, for paid test mode payments. The payment state screen will then allow you to create a refund or chargeback for the test payment.
          */
         public Builder changePaymentState(JsonNullable<? extends ChangePaymentState> changePaymentState) {
             Utils.checkNotNull(changePaymentState, "changePaymentState");
@@ -735,8 +701,7 @@ public class GetPaymentLinks {
         }
 
         /**
-         * The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this
-         * payment.
+         * The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this payment.
          */
         public Builder chargebacks(GetPaymentChargebacks chargebacks) {
             Utils.checkNotNull(chargebacks, "chargebacks");
@@ -745,8 +710,7 @@ public class GetPaymentLinks {
         }
 
         /**
-         * The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this
-         * payment.
+         * The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this payment.
          */
         public Builder chargebacks(Optional<? extends GetPaymentChargebacks> chargebacks) {
             Utils.checkNotNull(chargebacks, "chargebacks");
@@ -773,8 +737,7 @@ public class GetPaymentLinks {
         }
 
         /**
-         * The API resource URL of the [settlement](get-settlement) this payment has been settled with.
-         * Not present if not yet settled.
+         * The API resource URL of the [settlement](get-settlement) this payment has been settled with. Not present if not yet settled.
          */
         public Builder settlement(Settlement settlement) {
             Utils.checkNotNull(settlement, "settlement");
@@ -783,8 +746,7 @@ public class GetPaymentLinks {
         }
 
         /**
-         * The API resource URL of the [settlement](get-settlement) this payment has been settled with.
-         * Not present if not yet settled.
+         * The API resource URL of the [settlement](get-settlement) this payment has been settled with. Not present if not yet settled.
          */
         public Builder settlement(JsonNullable<? extends Settlement> settlement) {
             Utils.checkNotNull(settlement, "settlement");
@@ -793,8 +755,7 @@ public class GetPaymentLinks {
         }
 
         /**
-         * The API resource URL of the [order](get-order) this payment was created for. Not present if not created for an
-         * order.
+         * The API resource URL of the [order](get-order) this payment was created for. Not present if not created for an order.
          */
         public Builder order(GetPaymentOrder order) {
             Utils.checkNotNull(order, "order");
@@ -803,8 +764,7 @@ public class GetPaymentLinks {
         }
 
         /**
-         * The API resource URL of the [order](get-order) this payment was created for. Not present if not created for an
-         * order.
+         * The API resource URL of the [order](get-order) this payment was created for. Not present if not created for an order.
          */
         public Builder order(JsonNullable<? extends GetPaymentOrder> order) {
             Utils.checkNotNull(order, "order");
@@ -813,8 +773,7 @@ public class GetPaymentLinks {
         }
 
         /**
-         * The API resource URL of the [terminal](get-terminal) this payment was created for. Only present for
-         * point-of-sale payments.
+         * The API resource URL of the [terminal](get-terminal) this payment was created for. Only present for point-of-sale payments.
          */
         public Builder terminal(Terminal terminal) {
             Utils.checkNotNull(terminal, "terminal");
@@ -823,8 +782,7 @@ public class GetPaymentLinks {
         }
 
         /**
-         * The API resource URL of the [terminal](get-terminal) this payment was created for. Only present for
-         * point-of-sale payments.
+         * The API resource URL of the [terminal](get-terminal) this payment was created for. Only present for point-of-sale payments.
          */
         public Builder terminal(JsonNullable<? extends Terminal> terminal) {
             Utils.checkNotNull(terminal, "terminal");

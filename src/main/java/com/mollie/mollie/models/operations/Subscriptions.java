@@ -17,8 +17,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * Subscriptions - The API resource URL of the [subscriptions](list-subscriptions) linked to this customer. Omitted if no such
- * subscriptions exist (yet).
+ * Subscriptions - The API resource URL of the [subscriptions](list-subscriptions) linked to this customer. Omitted if no such subscriptions exist (yet).
  */
 
 public class Subscriptions {

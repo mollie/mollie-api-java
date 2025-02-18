@@ -10,19 +10,12 @@ import java.util.Optional;
 
 public class CreateSubscriptionRequestBuilder {
 
-    private CreateSubscriptionSecurity security;
     private String customerId;
     private Optional<? extends CreateSubscriptionRequestBody> requestBody = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCreateSubscription sdk;
 
     public CreateSubscriptionRequestBuilder(SDKMethodInterfaces.MethodCallCreateSubscription sdk) {
         this.sdk = sdk;
-    }
-
-    public CreateSubscriptionRequestBuilder security(CreateSubscriptionSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public CreateSubscriptionRequestBuilder customerId(String customerId) {
@@ -45,8 +38,7 @@ public class CreateSubscriptionRequestBuilder {
 
     public CreateSubscriptionResponse call() throws Exception {
 
-        return sdk.create(
-            security,
+        return sdk.createSubscription(
             customerId,
             requestBody);
     }

@@ -13,8 +13,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetPaymentRequestBuilder {
 
-    private GetPaymentSecurity security;
-    private String id;
+    private String paymentId;
     private JsonNullable<String> include = JsonNullable.undefined();
     private JsonNullable<String> embed = JsonNullable.undefined();
     private JsonNullable<Boolean> testmode = Utils.readDefaultOrConstValue(
@@ -27,15 +26,9 @@ public class GetPaymentRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetPaymentRequestBuilder security(GetPaymentSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
-    }
-
-    public GetPaymentRequestBuilder id(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public GetPaymentRequestBuilder paymentId(String paymentId) {
+        Utils.checkNotNull(paymentId, "paymentId");
+        this.paymentId = paymentId;
         return this;
     }
 
@@ -79,9 +72,8 @@ public class GetPaymentRequestBuilder {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.get(
-            security,
-            id,
+        return sdk.getPayment(
+            paymentId,
             include,
             embed,
             testmode);

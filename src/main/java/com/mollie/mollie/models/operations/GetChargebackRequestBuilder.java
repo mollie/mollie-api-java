@@ -13,7 +13,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetChargebackRequestBuilder {
 
-    private GetChargebackSecurity security;
     private String paymentId;
     private String id;
     private JsonNullable<String> include = JsonNullable.undefined();
@@ -25,12 +24,6 @@ public class GetChargebackRequestBuilder {
 
     public GetChargebackRequestBuilder(SDKMethodInterfaces.MethodCallGetChargeback sdk) {
         this.sdk = sdk;
-    }
-
-    public GetChargebackRequestBuilder security(GetChargebackSecurity security) {
-        Utils.checkNotNull(security, "security");
-        this.security = security;
-        return this;
     }
 
     public GetChargebackRequestBuilder paymentId(String paymentId) {
@@ -73,8 +66,7 @@ public class GetChargebackRequestBuilder {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
         }
-        return sdk.get(
-            security,
+        return sdk.getChargeback(
             paymentId,
             id,
             include,

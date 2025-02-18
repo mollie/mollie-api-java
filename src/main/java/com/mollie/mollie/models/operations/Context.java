@@ -12,9 +12,7 @@ import java.lang.String;
 import java.util.Objects;
 
 /**
- * Context - Depending on the type of the balance transaction, we will try to give more context about the specific event that
- * triggered it. For example, the context object for a payment transaction will look like
- * `{"paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo"}`.
+ * Context - Depending on the type of the balance transaction, we will try to give more context about the specific event that triggered it. For example, the context object for a payment transaction will look like `{"paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo"}`.
  * 
  * Below is a complete list of the context values that each type of transaction will have.
  * 
