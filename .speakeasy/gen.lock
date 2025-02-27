@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
-id: 4e182d07-bfbb-4694-9306-c95b407fa97d
+id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 92ea7ec1a826c4efb7b06eec2c6a0755
+  docChecksum: 9a29fc755e737b1a32469941d1e15bd7
   docVersion: 1.0.0
-  speakeasyVersion: 1.494.0
-  generationVersion: 2.515.0
-  releaseVersion: 0.1.0
-  configChecksum: 2489a306fe2bbb2a4a10454a45738cb4
+  speakeasyVersion: 1.505.1
+  generationVersion: 2.531.0
+  releaseVersion: 0.0.1
+  configChecksum: 84906ac40a5d2d122907bdc8eb2763ed
 features:
   java:
     additionalDependencies: 0.1.0
@@ -16,8 +16,11 @@ features:
     globalSecurity: 2.82.8
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.1
+    groups: 2.81.2
     inputOutputModels: 2.83.0
+    nameOverrides: 2.81.3
     nullables: 0.1.0
+    retries: 0.1.1
     sdkHooks: 0.1.0
     unions: 0.0.6
 generatedFiles:
@@ -28,20 +31,20 @@ generatedFiles:
   - docs/models/errors/CancelOrderDocumentation.md
   - docs/models/errors/CancelOrderLinesDocumentation.md
   - docs/models/errors/CancelOrderLinesLinks.md
-  - docs/models/errors/CancelOrderLinesOrdersAPIDocumentation.md
-  - docs/models/errors/CancelOrderLinesOrdersAPILinks.md
-  - docs/models/errors/CancelOrderLinesOrdersAPIResponseBody.md
+  - docs/models/errors/CancelOrderLinesOrdersDocumentation.md
+  - docs/models/errors/CancelOrderLinesOrdersLinks.md
+  - docs/models/errors/CancelOrderLinesOrdersResponseBody.md
   - docs/models/errors/CancelOrderLinesResponseBody.md
   - docs/models/errors/CancelOrderLinks.md
-  - docs/models/errors/CancelOrderOrdersAPIDocumentation.md
-  - docs/models/errors/CancelOrderOrdersAPILinks.md
-  - docs/models/errors/CancelOrderOrdersAPIResponseBody.md
+  - docs/models/errors/CancelOrderOrdersDocumentation.md
+  - docs/models/errors/CancelOrderOrdersLinks.md
+  - docs/models/errors/CancelOrderOrdersResponseBody.md
   - docs/models/errors/CancelOrderResponseBody.md
   - docs/models/errors/CancelPaymentDocumentation.md
   - docs/models/errors/CancelPaymentLinks.md
-  - docs/models/errors/CancelPaymentPaymentsAPIDocumentation.md
-  - docs/models/errors/CancelPaymentPaymentsAPILinks.md
-  - docs/models/errors/CancelPaymentPaymentsAPIResponseBody.md
+  - docs/models/errors/CancelPaymentPaymentsDocumentation.md
+  - docs/models/errors/CancelPaymentPaymentsLinks.md
+  - docs/models/errors/CancelPaymentPaymentsResponseBody.md
   - docs/models/errors/CancelPaymentResponseBody.md
   - docs/models/errors/CancelRefundDocumentation.md
   - docs/models/errors/CancelRefundLinks.md
@@ -49,15 +52,15 @@ generatedFiles:
   - docs/models/errors/CancelSubscriptionDocumentation.md
   - docs/models/errors/CancelSubscriptionLinks.md
   - docs/models/errors/CancelSubscriptionResponseBody.md
-  - docs/models/errors/CreateCaptureCapturesAPIDocumentation.md
-  - docs/models/errors/CreateCaptureCapturesAPILinks.md
-  - docs/models/errors/CreateCaptureCapturesAPIResponseBody.md
+  - docs/models/errors/CreateCaptureCapturesDocumentation.md
+  - docs/models/errors/CreateCaptureCapturesLinks.md
+  - docs/models/errors/CreateCaptureCapturesResponseBody.md
   - docs/models/errors/CreateCaptureDocumentation.md
   - docs/models/errors/CreateCaptureLinks.md
   - docs/models/errors/CreateCaptureResponseBody.md
-  - docs/models/errors/CreateClientLinkClientLinksAPIDocumentation.md
-  - docs/models/errors/CreateClientLinkClientLinksAPILinks.md
-  - docs/models/errors/CreateClientLinkClientLinksAPIResponseBody.md
+  - docs/models/errors/CreateClientLinkClientLinksDocumentation.md
+  - docs/models/errors/CreateClientLinkClientLinksLinks.md
+  - docs/models/errors/CreateClientLinkClientLinksResponseBody.md
   - docs/models/errors/CreateClientLinkDocumentation.md
   - docs/models/errors/CreateClientLinkLinks.md
   - docs/models/errors/CreateClientLinkResponseBody.md
@@ -77,41 +80,41 @@ generatedFiles:
   - docs/models/errors/CreateOrderPaymentResponseBody.md
   - docs/models/errors/CreateOrderRefundDocumentation.md
   - docs/models/errors/CreateOrderRefundLinks.md
-  - docs/models/errors/CreateOrderRefundRefundsAPIDocumentation.md
-  - docs/models/errors/CreateOrderRefundRefundsAPILinks.md
-  - docs/models/errors/CreateOrderRefundRefundsAPIResponseBody.md
+  - docs/models/errors/CreateOrderRefundRefundsDocumentation.md
+  - docs/models/errors/CreateOrderRefundRefundsLinks.md
+  - docs/models/errors/CreateOrderRefundRefundsResponseBody.md
   - docs/models/errors/CreateOrderRefundResponseBody.md
   - docs/models/errors/CreateOrderResponseBody.md
   - docs/models/errors/CreatePaymentDocumentation.md
   - docs/models/errors/CreatePaymentLinkDocumentation.md
   - docs/models/errors/CreatePaymentLinkLinks.md
-  - docs/models/errors/CreatePaymentLinkPaymentLinksAPIDocumentation.md
-  - docs/models/errors/CreatePaymentLinkPaymentLinksAPILinks.md
-  - docs/models/errors/CreatePaymentLinkPaymentLinksAPIResponseBody.md
+  - docs/models/errors/CreatePaymentLinkPaymentLinksDocumentation.md
+  - docs/models/errors/CreatePaymentLinkPaymentLinksLinks.md
+  - docs/models/errors/CreatePaymentLinkPaymentLinksResponseBody.md
   - docs/models/errors/CreatePaymentLinkResponseBody.md
   - docs/models/errors/CreatePaymentLinks.md
-  - docs/models/errors/CreatePaymentPaymentsAPIDocumentation.md
-  - docs/models/errors/CreatePaymentPaymentsAPILinks.md
-  - docs/models/errors/CreatePaymentPaymentsAPIResponseBody.md
+  - docs/models/errors/CreatePaymentPaymentsDocumentation.md
+  - docs/models/errors/CreatePaymentPaymentsLinks.md
+  - docs/models/errors/CreatePaymentPaymentsResponseBody.md
   - docs/models/errors/CreatePaymentResponseBody.md
   - docs/models/errors/CreateProfileDocumentation.md
   - docs/models/errors/CreateProfileLinks.md
   - docs/models/errors/CreateProfileResponseBody.md
   - docs/models/errors/CreateRefundDocumentation.md
   - docs/models/errors/CreateRefundLinks.md
-  - docs/models/errors/CreateRefundRefundsAPIDocumentation.md
-  - docs/models/errors/CreateRefundRefundsAPILinks.md
-  - docs/models/errors/CreateRefundRefundsAPIResponseBody.md
-  - docs/models/errors/CreateRefundRefundsAPIResponseDocumentation.md
-  - docs/models/errors/CreateRefundRefundsAPIResponseLinks.md
-  - docs/models/errors/CreateRefundRefundsAPIResponseResponseBody.md
+  - docs/models/errors/CreateRefundRefundsDocumentation.md
+  - docs/models/errors/CreateRefundRefundsLinks.md
+  - docs/models/errors/CreateRefundRefundsResponseBody.md
+  - docs/models/errors/CreateRefundRefundsResponseDocumentation.md
+  - docs/models/errors/CreateRefundRefundsResponseLinks.md
+  - docs/models/errors/CreateRefundRefundsResponseResponseBody.md
   - docs/models/errors/CreateRefundResponseBody.md
   - docs/models/errors/CreateShipmentDocumentation.md
   - docs/models/errors/CreateShipmentLinks.md
   - docs/models/errors/CreateShipmentResponseBody.md
-  - docs/models/errors/CreateShipmentShipmentsAPIDocumentation.md
-  - docs/models/errors/CreateShipmentShipmentsAPILinks.md
-  - docs/models/errors/CreateShipmentShipmentsAPIResponseBody.md
+  - docs/models/errors/CreateShipmentShipmentsDocumentation.md
+  - docs/models/errors/CreateShipmentShipmentsLinks.md
+  - docs/models/errors/CreateShipmentShipmentsResponseBody.md
   - docs/models/errors/CreateSubscriptionDocumentation.md
   - docs/models/errors/CreateSubscriptionLinks.md
   - docs/models/errors/CreateSubscriptionResponseBody.md
@@ -120,15 +123,15 @@ generatedFiles:
   - docs/models/errors/DeleteCustomerResponseBody.md
   - docs/models/errors/DeletePaymentLinkDocumentation.md
   - docs/models/errors/DeletePaymentLinkLinks.md
-  - docs/models/errors/DeletePaymentLinkPaymentLinksAPIDocumentation.md
-  - docs/models/errors/DeletePaymentLinkPaymentLinksAPILinks.md
-  - docs/models/errors/DeletePaymentLinkPaymentLinksAPIResponseBody.md
+  - docs/models/errors/DeletePaymentLinkPaymentLinksDocumentation.md
+  - docs/models/errors/DeletePaymentLinkPaymentLinksLinks.md
+  - docs/models/errors/DeletePaymentLinkPaymentLinksResponseBody.md
   - docs/models/errors/DeletePaymentLinkResponseBody.md
   - docs/models/errors/DeleteProfileDocumentation.md
   - docs/models/errors/DeleteProfileLinks.md
-  - docs/models/errors/DeleteProfileProfilesAPIDocumentation.md
-  - docs/models/errors/DeleteProfileProfilesAPILinks.md
-  - docs/models/errors/DeleteProfileProfilesAPIResponseBody.md
+  - docs/models/errors/DeleteProfileProfilesDocumentation.md
+  - docs/models/errors/DeleteProfileProfilesLinks.md
+  - docs/models/errors/DeleteProfileProfilesResponseBody.md
   - docs/models/errors/DeleteProfileResponseBody.md
   - docs/models/errors/DisableMethodDocumentation.md
   - docs/models/errors/DisableMethodIssuerDocumentation.md
@@ -169,9 +172,9 @@ generatedFiles:
   - docs/models/errors/GetMandateResponseBody.md
   - docs/models/errors/GetMethodDocumentation.md
   - docs/models/errors/GetMethodLinks.md
-  - docs/models/errors/GetMethodMethodsAPIDocumentation.md
-  - docs/models/errors/GetMethodMethodsAPILinks.md
-  - docs/models/errors/GetMethodMethodsAPIResponseBody.md
+  - docs/models/errors/GetMethodMethodsDocumentation.md
+  - docs/models/errors/GetMethodMethodsLinks.md
+  - docs/models/errors/GetMethodMethodsResponseBody.md
   - docs/models/errors/GetMethodResponseBody.md
   - docs/models/errors/GetOrderDocumentation.md
   - docs/models/errors/GetOrderLinks.md
@@ -193,9 +196,9 @@ generatedFiles:
   - docs/models/errors/GetPermissionResponseBody.md
   - docs/models/errors/GetProfileDocumentation.md
   - docs/models/errors/GetProfileLinks.md
-  - docs/models/errors/GetProfileProfilesAPIDocumentation.md
-  - docs/models/errors/GetProfileProfilesAPILinks.md
-  - docs/models/errors/GetProfileProfilesAPIResponseBody.md
+  - docs/models/errors/GetProfileProfilesDocumentation.md
+  - docs/models/errors/GetProfileProfilesLinks.md
+  - docs/models/errors/GetProfileProfilesResponseBody.md
   - docs/models/errors/GetProfileResponseBody.md
   - docs/models/errors/GetRefundDocumentation.md
   - docs/models/errors/GetRefundLinks.md
@@ -225,9 +228,9 @@ generatedFiles:
   - docs/models/errors/GetTerminalLinks.md
   - docs/models/errors/GetTerminalResponseBody.md
   - docs/models/errors/Links.md
-  - docs/models/errors/ListAllChargebacksChargebacksAPIDocumentation.md
-  - docs/models/errors/ListAllChargebacksChargebacksAPILinks.md
-  - docs/models/errors/ListAllChargebacksChargebacksAPIResponseBody.md
+  - docs/models/errors/ListAllChargebacksChargebacksDocumentation.md
+  - docs/models/errors/ListAllChargebacksChargebacksLinks.md
+  - docs/models/errors/ListAllChargebacksChargebacksResponseBody.md
   - docs/models/errors/ListAllChargebacksDocumentation.md
   - docs/models/errors/ListAllChargebacksLinks.md
   - docs/models/errors/ListAllChargebacksResponseBody.md
@@ -240,57 +243,57 @@ generatedFiles:
   - docs/models/errors/ListAllSubscriptionsDocumentation.md
   - docs/models/errors/ListAllSubscriptionsLinks.md
   - docs/models/errors/ListAllSubscriptionsResponseBody.md
-  - docs/models/errors/ListAllSubscriptionsSubscriptionsAPIDocumentation.md
-  - docs/models/errors/ListAllSubscriptionsSubscriptionsAPILinks.md
-  - docs/models/errors/ListAllSubscriptionsSubscriptionsAPIResponseBody.md
-  - docs/models/errors/ListBalanceTransactionsBalancesAPIDocumentation.md
-  - docs/models/errors/ListBalanceTransactionsBalancesAPILinks.md
-  - docs/models/errors/ListBalanceTransactionsBalancesAPIResponseBody.md
+  - docs/models/errors/ListAllSubscriptionsSubscriptionsDocumentation.md
+  - docs/models/errors/ListAllSubscriptionsSubscriptionsLinks.md
+  - docs/models/errors/ListAllSubscriptionsSubscriptionsResponseBody.md
+  - docs/models/errors/ListBalanceTransactionsBalancesDocumentation.md
+  - docs/models/errors/ListBalanceTransactionsBalancesLinks.md
+  - docs/models/errors/ListBalanceTransactionsBalancesResponseBody.md
   - docs/models/errors/ListBalanceTransactionsDocumentation.md
   - docs/models/errors/ListBalanceTransactionsLinks.md
   - docs/models/errors/ListBalanceTransactionsResponseBody.md
-  - docs/models/errors/ListBalancesBalancesAPIResponseBody.md
+  - docs/models/errors/ListBalancesBalancesResponseBody.md
   - docs/models/errors/ListBalancesDocumentation.md
   - docs/models/errors/ListBalancesLinks.md
   - docs/models/errors/ListBalancesResponseBody.md
-  - docs/models/errors/ListCapturesCapturesAPIDocumentation.md
-  - docs/models/errors/ListCapturesCapturesAPILinks.md
-  - docs/models/errors/ListCapturesCapturesAPIResponseBody.md
+  - docs/models/errors/ListCapturesCapturesDocumentation.md
+  - docs/models/errors/ListCapturesCapturesLinks.md
+  - docs/models/errors/ListCapturesCapturesResponseBody.md
   - docs/models/errors/ListCapturesDocumentation.md
   - docs/models/errors/ListCapturesLinks.md
   - docs/models/errors/ListCapturesResponseBody.md
-  - docs/models/errors/ListChargebacksChargebacksAPIDocumentation.md
-  - docs/models/errors/ListChargebacksChargebacksAPILinks.md
-  - docs/models/errors/ListChargebacksChargebacksAPIResponseBody.md
+  - docs/models/errors/ListChargebacksChargebacksDocumentation.md
+  - docs/models/errors/ListChargebacksChargebacksLinks.md
+  - docs/models/errors/ListChargebacksChargebacksResponseBody.md
   - docs/models/errors/ListChargebacksDocumentation.md
   - docs/models/errors/ListChargebacksLinks.md
   - docs/models/errors/ListChargebacksResponseBody.md
-  - docs/models/errors/ListClientsClientsAPIDocumentation.md
-  - docs/models/errors/ListClientsClientsAPILinks.md
-  - docs/models/errors/ListClientsClientsAPIResponseBody.md
+  - docs/models/errors/ListClientsClientsDocumentation.md
+  - docs/models/errors/ListClientsClientsLinks.md
+  - docs/models/errors/ListClientsClientsResponseBody.md
   - docs/models/errors/ListClientsDocumentation.md
   - docs/models/errors/ListClientsLinks.md
   - docs/models/errors/ListClientsResponseBody.md
   - docs/models/errors/ListCustomerPaymentsDocumentation.md
   - docs/models/errors/ListCustomerPaymentsLinks.md
   - docs/models/errors/ListCustomerPaymentsResponseBody.md
-  - docs/models/errors/ListCustomersCustomersAPIDocumentation.md
-  - docs/models/errors/ListCustomersCustomersAPILinks.md
-  - docs/models/errors/ListCustomersCustomersAPIResponseBody.md
+  - docs/models/errors/ListCustomersCustomersDocumentation.md
+  - docs/models/errors/ListCustomersCustomersLinks.md
+  - docs/models/errors/ListCustomersCustomersResponseBody.md
   - docs/models/errors/ListCustomersDocumentation.md
   - docs/models/errors/ListCustomersLinks.md
   - docs/models/errors/ListCustomersResponseBody.md
   - docs/models/errors/ListInvoicesDocumentation.md
-  - docs/models/errors/ListInvoicesInvoicesAPIDocumentation.md
-  - docs/models/errors/ListInvoicesInvoicesAPILinks.md
-  - docs/models/errors/ListInvoicesInvoicesAPIResponseBody.md
+  - docs/models/errors/ListInvoicesInvoicesDocumentation.md
+  - docs/models/errors/ListInvoicesInvoicesLinks.md
+  - docs/models/errors/ListInvoicesInvoicesResponseBody.md
   - docs/models/errors/ListInvoicesLinks.md
   - docs/models/errors/ListInvoicesResponseBody.md
   - docs/models/errors/ListMandatesDocumentation.md
   - docs/models/errors/ListMandatesLinks.md
-  - docs/models/errors/ListMandatesMandatesAPIDocumentation.md
-  - docs/models/errors/ListMandatesMandatesAPILinks.md
-  - docs/models/errors/ListMandatesMandatesAPIResponseBody.md
+  - docs/models/errors/ListMandatesMandatesDocumentation.md
+  - docs/models/errors/ListMandatesMandatesLinks.md
+  - docs/models/errors/ListMandatesMandatesResponseBody.md
   - docs/models/errors/ListMandatesResponseBody.md
   - docs/models/errors/ListMethodsDocumentation.md
   - docs/models/errors/ListMethodsLinks.md
@@ -315,31 +318,31 @@ generatedFiles:
   - docs/models/errors/ListProfilesResponseBody.md
   - docs/models/errors/ListRefundsDocumentation.md
   - docs/models/errors/ListRefundsLinks.md
-  - docs/models/errors/ListRefundsRefundsAPIDocumentation.md
-  - docs/models/errors/ListRefundsRefundsAPILinks.md
-  - docs/models/errors/ListRefundsRefundsAPIResponseBody.md
+  - docs/models/errors/ListRefundsRefundsDocumentation.md
+  - docs/models/errors/ListRefundsRefundsLinks.md
+  - docs/models/errors/ListRefundsRefundsResponseBody.md
   - docs/models/errors/ListRefundsResponseBody.md
   - docs/models/errors/ListSettlementsDocumentation.md
   - docs/models/errors/ListSettlementsLinks.md
   - docs/models/errors/ListSettlementsResponseBody.md
-  - docs/models/errors/ListSettlementsSettlementsAPIDocumentation.md
-  - docs/models/errors/ListSettlementsSettlementsAPILinks.md
-  - docs/models/errors/ListSettlementsSettlementsAPIResponseBody.md
+  - docs/models/errors/ListSettlementsSettlementsDocumentation.md
+  - docs/models/errors/ListSettlementsSettlementsLinks.md
+  - docs/models/errors/ListSettlementsSettlementsResponseBody.md
   - docs/models/errors/ListShipmentsDocumentation.md
   - docs/models/errors/ListShipmentsLinks.md
   - docs/models/errors/ListShipmentsResponseBody.md
-  - docs/models/errors/ListShipmentsShipmentsAPIDocumentation.md
-  - docs/models/errors/ListShipmentsShipmentsAPILinks.md
-  - docs/models/errors/ListShipmentsShipmentsAPIResponseBody.md
+  - docs/models/errors/ListShipmentsShipmentsDocumentation.md
+  - docs/models/errors/ListShipmentsShipmentsLinks.md
+  - docs/models/errors/ListShipmentsShipmentsResponseBody.md
   - docs/models/errors/ListSubscriptionPaymentsDocumentation.md
   - docs/models/errors/ListSubscriptionPaymentsLinks.md
   - docs/models/errors/ListSubscriptionPaymentsResponseBody.md
   - docs/models/errors/ListSubscriptionsDocumentation.md
   - docs/models/errors/ListSubscriptionsLinks.md
   - docs/models/errors/ListSubscriptionsResponseBody.md
-  - docs/models/errors/ListSubscriptionsSubscriptionsAPIDocumentation.md
-  - docs/models/errors/ListSubscriptionsSubscriptionsAPILinks.md
-  - docs/models/errors/ListSubscriptionsSubscriptionsAPIResponseBody.md
+  - docs/models/errors/ListSubscriptionsSubscriptionsDocumentation.md
+  - docs/models/errors/ListSubscriptionsSubscriptionsLinks.md
+  - docs/models/errors/ListSubscriptionsSubscriptionsResponseBody.md
   - docs/models/errors/ListTerminalsDocumentation.md
   - docs/models/errors/ListTerminalsLinks.md
   - docs/models/errors/ListTerminalsResponseBody.md
@@ -354,9 +357,9 @@ generatedFiles:
   - docs/models/errors/PaymentListRoutesResponseBody.md
   - docs/models/errors/ReleaseAuthorizationDocumentation.md
   - docs/models/errors/ReleaseAuthorizationLinks.md
-  - docs/models/errors/ReleaseAuthorizationPaymentsAPIDocumentation.md
-  - docs/models/errors/ReleaseAuthorizationPaymentsAPILinks.md
-  - docs/models/errors/ReleaseAuthorizationPaymentsAPIResponseBody.md
+  - docs/models/errors/ReleaseAuthorizationPaymentsDocumentation.md
+  - docs/models/errors/ReleaseAuthorizationPaymentsLinks.md
+  - docs/models/errors/ReleaseAuthorizationPaymentsResponseBody.md
   - docs/models/errors/ReleaseAuthorizationResponseBody.md
   - docs/models/errors/RequestApplePayPaymentSessionDocumentation.md
   - docs/models/errors/RequestApplePayPaymentSessionLinks.md
@@ -370,35 +373,35 @@ generatedFiles:
   - docs/models/errors/UpdateOrderDocumentation.md
   - docs/models/errors/UpdateOrderLineDocumentation.md
   - docs/models/errors/UpdateOrderLineLinks.md
-  - docs/models/errors/UpdateOrderLineOrdersAPIDocumentation.md
-  - docs/models/errors/UpdateOrderLineOrdersAPILinks.md
-  - docs/models/errors/UpdateOrderLineOrdersAPIResponseBody.md
+  - docs/models/errors/UpdateOrderLineOrdersDocumentation.md
+  - docs/models/errors/UpdateOrderLineOrdersLinks.md
+  - docs/models/errors/UpdateOrderLineOrdersResponseBody.md
   - docs/models/errors/UpdateOrderLineResponseBody.md
   - docs/models/errors/UpdateOrderLinks.md
-  - docs/models/errors/UpdateOrderOrdersAPIDocumentation.md
-  - docs/models/errors/UpdateOrderOrdersAPILinks.md
-  - docs/models/errors/UpdateOrderOrdersAPIResponseBody.md
+  - docs/models/errors/UpdateOrderOrdersDocumentation.md
+  - docs/models/errors/UpdateOrderOrdersLinks.md
+  - docs/models/errors/UpdateOrderOrdersResponseBody.md
   - docs/models/errors/UpdateOrderResponseBody.md
   - docs/models/errors/UpdatePaymentDocumentation.md
   - docs/models/errors/UpdatePaymentLinkDocumentation.md
   - docs/models/errors/UpdatePaymentLinkLinks.md
-  - docs/models/errors/UpdatePaymentLinkPaymentLinksAPIDocumentation.md
-  - docs/models/errors/UpdatePaymentLinkPaymentLinksAPILinks.md
-  - docs/models/errors/UpdatePaymentLinkPaymentLinksAPIResponseBody.md
+  - docs/models/errors/UpdatePaymentLinkPaymentLinksDocumentation.md
+  - docs/models/errors/UpdatePaymentLinkPaymentLinksLinks.md
+  - docs/models/errors/UpdatePaymentLinkPaymentLinksResponseBody.md
   - docs/models/errors/UpdatePaymentLinkResponseBody.md
   - docs/models/errors/UpdatePaymentLinks.md
-  - docs/models/errors/UpdatePaymentPaymentsAPIDocumentation.md
-  - docs/models/errors/UpdatePaymentPaymentsAPILinks.md
-  - docs/models/errors/UpdatePaymentPaymentsAPIResponseBody.md
+  - docs/models/errors/UpdatePaymentPaymentsDocumentation.md
+  - docs/models/errors/UpdatePaymentPaymentsLinks.md
+  - docs/models/errors/UpdatePaymentPaymentsResponseBody.md
   - docs/models/errors/UpdatePaymentResponseBody.md
   - docs/models/errors/UpdateProfileDocumentation.md
   - docs/models/errors/UpdateProfileLinks.md
-  - docs/models/errors/UpdateProfileProfilesAPIDocumentation.md
-  - docs/models/errors/UpdateProfileProfilesAPILinks.md
-  - docs/models/errors/UpdateProfileProfilesAPIResponseBody.md
-  - docs/models/errors/UpdateProfileProfilesAPIResponseDocumentation.md
-  - docs/models/errors/UpdateProfileProfilesAPIResponseLinks.md
-  - docs/models/errors/UpdateProfileProfilesAPIResponseResponseBody.md
+  - docs/models/errors/UpdateProfileProfilesDocumentation.md
+  - docs/models/errors/UpdateProfileProfilesLinks.md
+  - docs/models/errors/UpdateProfileProfilesResponseBody.md
+  - docs/models/errors/UpdateProfileProfilesResponseDocumentation.md
+  - docs/models/errors/UpdateProfileProfilesResponseLinks.md
+  - docs/models/errors/UpdateProfileProfilesResponseResponseBody.md
   - docs/models/errors/UpdateProfileResponseBody.md
   - docs/models/errors/UpdateShipmentDocumentation.md
   - docs/models/errors/UpdateShipmentLinks.md
@@ -474,9 +477,9 @@ generatedFiles:
   - docs/models/operations/CreateOrderRefundLinks.md
   - docs/models/operations/CreateOrderRefundMetadata.md
   - docs/models/operations/CreateOrderRefundMetadata2.md
-  - docs/models/operations/CreateOrderRefundMetadataRefundsApi2.md
+  - docs/models/operations/CreateOrderRefundMetadataRefunds2.md
   - docs/models/operations/CreateOrderRefundOrder.md
-  - docs/models/operations/CreateOrderRefundRefundsAPIMetadata.md
+  - docs/models/operations/CreateOrderRefundRefundsMetadata.md
   - docs/models/operations/CreateOrderRefundRequest.md
   - docs/models/operations/CreateOrderRefundRequestBody.md
   - docs/models/operations/CreateOrderRefundResponse.md
@@ -497,9 +500,9 @@ generatedFiles:
   - docs/models/operations/CreatePaymentLinkResponse.md
   - docs/models/operations/CreatePaymentMetadata.md
   - docs/models/operations/CreatePaymentMetadata2.md
-  - docs/models/operations/CreatePaymentPaymentsAPIAmount.md
-  - docs/models/operations/CreatePaymentPaymentsAPIRequestAmount.md
-  - docs/models/operations/CreatePaymentPaymentsAPIRequestRequestBodyAmount.md
+  - docs/models/operations/CreatePaymentPaymentsAmount.md
+  - docs/models/operations/CreatePaymentPaymentsRequestAmount.md
+  - docs/models/operations/CreatePaymentPaymentsRequestRequestBodyAmount.md
   - docs/models/operations/CreatePaymentRequest.md
   - docs/models/operations/CreatePaymentRequestBody.md
   - docs/models/operations/CreatePaymentResponse.md
@@ -512,7 +515,7 @@ generatedFiles:
   - docs/models/operations/CreateRefundAmount.md
   - docs/models/operations/CreateRefundMetadata.md
   - docs/models/operations/CreateRefundMetadata2.md
-  - docs/models/operations/CreateRefundRefundsAPIAmount.md
+  - docs/models/operations/CreateRefundRefundsAmount.md
   - docs/models/operations/CreateRefundRequest.md
   - docs/models/operations/CreateRefundRequestBody.md
   - docs/models/operations/CreateRefundResponse.md
@@ -528,7 +531,7 @@ generatedFiles:
   - docs/models/operations/CreateSubscriptionRequest.md
   - docs/models/operations/CreateSubscriptionRequestBody.md
   - docs/models/operations/CreateSubscriptionResponse.md
-  - docs/models/operations/CreateSubscriptionSubscriptionsAPIAmount.md
+  - docs/models/operations/CreateSubscriptionSubscriptionsAmount.md
   - docs/models/operations/Customer.md
   - docs/models/operations/Customers.md
   - docs/models/operations/Dashboard.md
@@ -563,7 +566,7 @@ generatedFiles:
   - docs/models/operations/EnableMethodIssuers.md
   - docs/models/operations/EnableMethodLinks.md
   - docs/models/operations/EnableMethodMaximumAmount.md
-  - docs/models/operations/EnableMethodMethodsAPIImage.md
+  - docs/models/operations/EnableMethodMethodsImage.md
   - docs/models/operations/EnableMethodMinimumAmount.md
   - docs/models/operations/EnableMethodPricing.md
   - docs/models/operations/EnableMethodRequest.md
@@ -607,17 +610,17 @@ generatedFiles:
   - docs/models/operations/GetChargebackSettlementAmount.md
   - docs/models/operations/GetClientAddress.md
   - docs/models/operations/GetClientCapabilities.md
-  - docs/models/operations/GetClientClientsAPIDashboard.md
-  - docs/models/operations/GetClientClientsAPIDocumentation.md
-  - docs/models/operations/GetClientClientsAPILinks.md
-  - docs/models/operations/GetClientClientsAPIOrganization.md
-  - docs/models/operations/GetClientClientsAPIResponse200Links.md
-  - docs/models/operations/GetClientClientsAPIResponseDashboard.md
-  - docs/models/operations/GetClientClientsAPIResponseDocumentation.md
-  - docs/models/operations/GetClientClientsAPIResponseLinks.md
-  - docs/models/operations/GetClientClientsAPIResponseOrganization.md
-  - docs/models/operations/GetClientClientsAPIResponseSelf.md
-  - docs/models/operations/GetClientClientsAPISelf.md
+  - docs/models/operations/GetClientClientsDashboard.md
+  - docs/models/operations/GetClientClientsDocumentation.md
+  - docs/models/operations/GetClientClientsLinks.md
+  - docs/models/operations/GetClientClientsOrganization.md
+  - docs/models/operations/GetClientClientsResponse200Links.md
+  - docs/models/operations/GetClientClientsResponseDashboard.md
+  - docs/models/operations/GetClientClientsResponseDocumentation.md
+  - docs/models/operations/GetClientClientsResponseLinks.md
+  - docs/models/operations/GetClientClientsResponseOrganization.md
+  - docs/models/operations/GetClientClientsResponseSelf.md
+  - docs/models/operations/GetClientClientsSelf.md
   - docs/models/operations/GetClientDashboard.md
   - docs/models/operations/GetClientDocumentation.md
   - docs/models/operations/GetClientEmbedded.md
@@ -694,10 +697,10 @@ generatedFiles:
   - docs/models/operations/GetOrderLinks.md
   - docs/models/operations/GetOrderMetadata.md
   - docs/models/operations/GetOrderMetadata2.md
-  - docs/models/operations/GetOrderMetadataOrdersApi2.md
-  - docs/models/operations/GetOrderOrdersAPILinks.md
-  - docs/models/operations/GetOrderOrdersAPIMetadata.md
-  - docs/models/operations/GetOrderOrdersAPISelf.md
+  - docs/models/operations/GetOrderMetadataOrders2.md
+  - docs/models/operations/GetOrderOrdersLinks.md
+  - docs/models/operations/GetOrderOrdersMetadata.md
+  - docs/models/operations/GetOrderOrdersSelf.md
   - docs/models/operations/GetOrderPayment.md
   - docs/models/operations/GetOrderRequest.md
   - docs/models/operations/GetOrderResponse.md
@@ -753,9 +756,9 @@ generatedFiles:
   - docs/models/operations/GetPaymentMetadata.md
   - docs/models/operations/GetPaymentMetadata2.md
   - docs/models/operations/GetPaymentOrder.md
-  - docs/models/operations/GetPaymentPaymentsAPIAmount.md
-  - docs/models/operations/GetPaymentPaymentsAPIResponse200Amount.md
-  - docs/models/operations/GetPaymentPaymentsAPIResponseAmount.md
+  - docs/models/operations/GetPaymentPaymentsAmount.md
+  - docs/models/operations/GetPaymentPaymentsResponse200Amount.md
+  - docs/models/operations/GetPaymentPaymentsResponseAmount.md
   - docs/models/operations/GetPaymentRecurring.md
   - docs/models/operations/GetPaymentRefunds.md
   - docs/models/operations/GetPaymentRequest.md
@@ -790,7 +793,7 @@ generatedFiles:
   - docs/models/operations/GetRefundMetadata.md
   - docs/models/operations/GetRefundMetadata2.md
   - docs/models/operations/GetRefundPayment.md
-  - docs/models/operations/GetRefundRefundsAPIAmount.md
+  - docs/models/operations/GetRefundRefundsAmount.md
   - docs/models/operations/GetRefundRequest.md
   - docs/models/operations/GetRefundResponse.md
   - docs/models/operations/GetRefundResponseBody.md
@@ -837,7 +840,7 @@ generatedFiles:
   - docs/models/operations/GetSubscriptionResponse.md
   - docs/models/operations/GetSubscriptionResponseBody.md
   - docs/models/operations/GetSubscriptionSelf.md
-  - docs/models/operations/GetSubscriptionSubscriptionsAPIAmount.md
+  - docs/models/operations/GetSubscriptionSubscriptionsAmount.md
   - docs/models/operations/GetTerminalDocumentation.md
   - docs/models/operations/GetTerminalLinks.md
   - docs/models/operations/GetTerminalRequest.md
@@ -903,7 +906,7 @@ generatedFiles:
   - docs/models/operations/ListBalancesRequest.md
   - docs/models/operations/ListBalancesResponse.md
   - docs/models/operations/ListBalancesResponseBody.md
-  - docs/models/operations/ListCapabilitiesCapabilitiesAPILinks.md
+  - docs/models/operations/ListCapabilitiesCapabilitiesLinks.md
   - docs/models/operations/ListCapabilitiesDashboard.md
   - docs/models/operations/ListCapabilitiesDocumentation.md
   - docs/models/operations/ListCapabilitiesEmbedded.md
@@ -933,22 +936,22 @@ generatedFiles:
   - docs/models/operations/ListChargebacksSelf.md
   - docs/models/operations/ListClientsAddress.md
   - docs/models/operations/ListClientsCapabilities.md
-  - docs/models/operations/ListClientsClientsAPIDashboard.md
-  - docs/models/operations/ListClientsClientsAPIDocumentation.md
-  - docs/models/operations/ListClientsClientsAPIEmbedded.md
-  - docs/models/operations/ListClientsClientsAPILinks.md
-  - docs/models/operations/ListClientsClientsAPIOnboarding.md
-  - docs/models/operations/ListClientsClientsAPIOrganization.md
-  - docs/models/operations/ListClientsClientsAPIResponse200ApplicationHalPlusJsonLinks.md
-  - docs/models/operations/ListClientsClientsAPIResponse200Documentation.md
-  - docs/models/operations/ListClientsClientsAPIResponse200Links.md
-  - docs/models/operations/ListClientsClientsAPIResponse200Self.md
-  - docs/models/operations/ListClientsClientsAPIResponseDashboard.md
-  - docs/models/operations/ListClientsClientsAPIResponseDocumentation.md
-  - docs/models/operations/ListClientsClientsAPIResponseLinks.md
-  - docs/models/operations/ListClientsClientsAPIResponseOrganization.md
-  - docs/models/operations/ListClientsClientsAPIResponseSelf.md
-  - docs/models/operations/ListClientsClientsAPISelf.md
+  - docs/models/operations/ListClientsClientsDashboard.md
+  - docs/models/operations/ListClientsClientsDocumentation.md
+  - docs/models/operations/ListClientsClientsEmbedded.md
+  - docs/models/operations/ListClientsClientsLinks.md
+  - docs/models/operations/ListClientsClientsOnboarding.md
+  - docs/models/operations/ListClientsClientsOrganization.md
+  - docs/models/operations/ListClientsClientsResponse200ApplicationHalPlusJsonLinks.md
+  - docs/models/operations/ListClientsClientsResponse200Documentation.md
+  - docs/models/operations/ListClientsClientsResponse200Links.md
+  - docs/models/operations/ListClientsClientsResponse200Self.md
+  - docs/models/operations/ListClientsClientsResponseDashboard.md
+  - docs/models/operations/ListClientsClientsResponseDocumentation.md
+  - docs/models/operations/ListClientsClientsResponseLinks.md
+  - docs/models/operations/ListClientsClientsResponseOrganization.md
+  - docs/models/operations/ListClientsClientsResponseSelf.md
+  - docs/models/operations/ListClientsClientsSelf.md
   - docs/models/operations/ListClientsCommission.md
   - docs/models/operations/ListClientsDashboard.md
   - docs/models/operations/ListClientsDocumentation.md
@@ -1142,8 +1145,8 @@ generatedFiles:
   - docs/models/operations/Owner.md
   - docs/models/operations/Payment.md
   - docs/models/operations/PaymentCreateRouteAmount.md
-  - docs/models/operations/PaymentCreateRouteDelayedRoutingAPIAmount.md
-  - docs/models/operations/PaymentCreateRouteDelayedRoutingAPIDestination.md
+  - docs/models/operations/PaymentCreateRouteDelayedRoutingAmount.md
+  - docs/models/operations/PaymentCreateRouteDelayedRoutingDestination.md
   - docs/models/operations/PaymentCreateRouteDestination.md
   - docs/models/operations/PaymentCreateRouteDocumentation.md
   - docs/models/operations/PaymentCreateRouteLinks.md
@@ -1155,9 +1158,9 @@ generatedFiles:
   - docs/models/operations/PaymentLink.md
   - docs/models/operations/PaymentLinks.md
   - docs/models/operations/PaymentListRoutesAmount.md
-  - docs/models/operations/PaymentListRoutesDelayedRoutingAPIDocumentation.md
-  - docs/models/operations/PaymentListRoutesDelayedRoutingAPILinks.md
-  - docs/models/operations/PaymentListRoutesDelayedRoutingAPISelf.md
+  - docs/models/operations/PaymentListRoutesDelayedRoutingDocumentation.md
+  - docs/models/operations/PaymentListRoutesDelayedRoutingLinks.md
+  - docs/models/operations/PaymentListRoutesDelayedRoutingSelf.md
   - docs/models/operations/PaymentListRoutesDestination.md
   - docs/models/operations/PaymentListRoutesDocumentation.md
   - docs/models/operations/PaymentListRoutesEmbedded.md
@@ -1256,83 +1259,83 @@ generatedFiles:
   - docs/models/operations/UpdateSubscriptionResponse.md
   - docs/models/operations/UserAgentTokens.md
   - docs/models/operations/VatAmount.md
-  - docs/sdks/balancesapi/README.md
-  - docs/sdks/capabilitiesapi/README.md
-  - docs/sdks/capturesapi/README.md
-  - docs/sdks/chargebacksapi/README.md
-  - docs/sdks/clientlinksapi/README.md
-  - docs/sdks/clientsapi/README.md
-  - docs/sdks/customersapi/README.md
-  - docs/sdks/delayedroutingapi/README.md
-  - docs/sdks/invoicesapi/README.md
-  - docs/sdks/mandatesapi/README.md
-  - docs/sdks/methodsapi/README.md
-  - docs/sdks/mollie/README.md
-  - docs/sdks/onboardingapi/README.md
-  - docs/sdks/ordersapi/README.md
-  - docs/sdks/organizationsapi/README.md
-  - docs/sdks/paymentlinksapi/README.md
-  - docs/sdks/paymentsapi/README.md
-  - docs/sdks/permissionsapi/README.md
-  - docs/sdks/profilesapi/README.md
-  - docs/sdks/refundsapi/README.md
-  - docs/sdks/settlementsapi/README.md
-  - docs/sdks/shipmentsapi/README.md
-  - docs/sdks/subscriptionsapi/README.md
-  - docs/sdks/terminalsapi/README.md
-  - docs/sdks/walletsapi/README.md
+  - docs/sdks/balances/README.md
+  - docs/sdks/capabilities/README.md
+  - docs/sdks/captures/README.md
+  - docs/sdks/chargebacks/README.md
+  - docs/sdks/client/README.md
+  - docs/sdks/clientlinks/README.md
+  - docs/sdks/clients/README.md
+  - docs/sdks/customers/README.md
+  - docs/sdks/delayedrouting/README.md
+  - docs/sdks/invoices/README.md
+  - docs/sdks/mandates/README.md
+  - docs/sdks/methods/README.md
+  - docs/sdks/onboarding/README.md
+  - docs/sdks/orders/README.md
+  - docs/sdks/organizations/README.md
+  - docs/sdks/paymentlinks/README.md
+  - docs/sdks/payments/README.md
+  - docs/sdks/permissions/README.md
+  - docs/sdks/profiles/README.md
+  - docs/sdks/refunds/README.md
+  - docs/sdks/settlements/README.md
+  - docs/sdks/shipments/README.md
+  - docs/sdks/subscriptions/README.md
+  - docs/sdks/terminals/README.md
+  - docs/sdks/wallets/README.md
   - gradle/wrapper/gradle-wrapper.jar
   - gradle/wrapper/gradle-wrapper.properties
   - gradlew
   - gradlew.bat
   - settings.gradle
-  - src/main/java/com/mollie/mollie/BalancesAPI.java
-  - src/main/java/com/mollie/mollie/CapabilitiesAPI.java
-  - src/main/java/com/mollie/mollie/CapturesAPI.java
-  - src/main/java/com/mollie/mollie/ChargebacksAPI.java
-  - src/main/java/com/mollie/mollie/ClientLinksAPI.java
-  - src/main/java/com/mollie/mollie/ClientsAPI.java
-  - src/main/java/com/mollie/mollie/CustomersAPI.java
-  - src/main/java/com/mollie/mollie/DelayedRoutingAPI.java
-  - src/main/java/com/mollie/mollie/InvoicesAPI.java
-  - src/main/java/com/mollie/mollie/MandatesAPI.java
-  - src/main/java/com/mollie/mollie/MethodsAPI.java
-  - src/main/java/com/mollie/mollie/Mollie.java
-  - src/main/java/com/mollie/mollie/OnboardingAPI.java
-  - src/main/java/com/mollie/mollie/OrdersAPI.java
-  - src/main/java/com/mollie/mollie/OrganizationsAPI.java
-  - src/main/java/com/mollie/mollie/PaymentLinksAPI.java
-  - src/main/java/com/mollie/mollie/PaymentsAPI.java
-  - src/main/java/com/mollie/mollie/PermissionsAPI.java
-  - src/main/java/com/mollie/mollie/ProfilesAPI.java
-  - src/main/java/com/mollie/mollie/RefundsAPI.java
+  - src/main/java/com/mollie/mollie/Balances.java
+  - src/main/java/com/mollie/mollie/Capabilities.java
+  - src/main/java/com/mollie/mollie/Captures.java
+  - src/main/java/com/mollie/mollie/Chargebacks.java
+  - src/main/java/com/mollie/mollie/Client.java
+  - src/main/java/com/mollie/mollie/ClientLinks.java
+  - src/main/java/com/mollie/mollie/Clients.java
+  - src/main/java/com/mollie/mollie/Customers.java
+  - src/main/java/com/mollie/mollie/DelayedRouting.java
+  - src/main/java/com/mollie/mollie/Invoices.java
+  - src/main/java/com/mollie/mollie/Mandates.java
+  - src/main/java/com/mollie/mollie/Methods.java
+  - src/main/java/com/mollie/mollie/Onboarding.java
+  - src/main/java/com/mollie/mollie/Orders.java
+  - src/main/java/com/mollie/mollie/Organizations.java
+  - src/main/java/com/mollie/mollie/PaymentLinks.java
+  - src/main/java/com/mollie/mollie/Payments.java
+  - src/main/java/com/mollie/mollie/Permissions.java
+  - src/main/java/com/mollie/mollie/Profiles.java
+  - src/main/java/com/mollie/mollie/Refunds.java
   - src/main/java/com/mollie/mollie/SDKConfiguration.java
   - src/main/java/com/mollie/mollie/SecuritySource.java
-  - src/main/java/com/mollie/mollie/SettlementsAPI.java
-  - src/main/java/com/mollie/mollie/ShipmentsAPI.java
-  - src/main/java/com/mollie/mollie/SubscriptionsAPI.java
-  - src/main/java/com/mollie/mollie/TerminalsAPI.java
-  - src/main/java/com/mollie/mollie/WalletsAPI.java
+  - src/main/java/com/mollie/mollie/Settlements.java
+  - src/main/java/com/mollie/mollie/Shipments.java
+  - src/main/java/com/mollie/mollie/Subscriptions.java
+  - src/main/java/com/mollie/mollie/Terminals.java
+  - src/main/java/com/mollie/mollie/Wallets.java
   - src/main/java/com/mollie/mollie/models/components/Security.java
   - src/main/java/com/mollie/mollie/models/errors/APIException.java
   - src/main/java/com/mollie/mollie/models/errors/AuthException.java
   - src/main/java/com/mollie/mollie/models/errors/CancelOrderDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/CancelOrderLinesDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/CancelOrderLinesLinks.java
-  - src/main/java/com/mollie/mollie/models/errors/CancelOrderLinesOrdersAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/CancelOrderLinesOrdersAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/CancelOrderLinesOrdersAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/CancelOrderLinesOrdersDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/CancelOrderLinesOrdersLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/CancelOrderLinesOrdersResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/CancelOrderLinesResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/CancelOrderLinks.java
-  - src/main/java/com/mollie/mollie/models/errors/CancelOrderOrdersAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/CancelOrderOrdersAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/CancelOrderOrdersAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/CancelOrderOrdersDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/CancelOrderOrdersLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/CancelOrderOrdersResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/CancelOrderResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/CancelPaymentDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/CancelPaymentLinks.java
-  - src/main/java/com/mollie/mollie/models/errors/CancelPaymentPaymentsAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/CancelPaymentPaymentsAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/CancelPaymentPaymentsAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/CancelPaymentPaymentsDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/CancelPaymentPaymentsLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/CancelPaymentPaymentsResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/CancelPaymentResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/CancelRefundDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/CancelRefundLinks.java
@@ -1340,15 +1343,15 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/errors/CancelSubscriptionDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/CancelSubscriptionLinks.java
   - src/main/java/com/mollie/mollie/models/errors/CancelSubscriptionResponseBody.java
-  - src/main/java/com/mollie/mollie/models/errors/CreateCaptureCapturesAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/CreateCaptureCapturesAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/CreateCaptureCapturesAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/CreateCaptureCapturesDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/CreateCaptureCapturesLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/CreateCaptureCapturesResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/CreateCaptureDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/CreateCaptureLinks.java
   - src/main/java/com/mollie/mollie/models/errors/CreateCaptureResponseBody.java
-  - src/main/java/com/mollie/mollie/models/errors/CreateClientLinkClientLinksAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/CreateClientLinkClientLinksAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/CreateClientLinkClientLinksAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/CreateClientLinkClientLinksDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/CreateClientLinkClientLinksLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/CreateClientLinkClientLinksResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/CreateClientLinkDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/CreateClientLinkLinks.java
   - src/main/java/com/mollie/mollie/models/errors/CreateClientLinkResponseBody.java
@@ -1368,41 +1371,41 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/errors/CreateOrderPaymentResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/CreateOrderRefundDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/CreateOrderRefundLinks.java
-  - src/main/java/com/mollie/mollie/models/errors/CreateOrderRefundRefundsAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/CreateOrderRefundRefundsAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/CreateOrderRefundRefundsAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/CreateOrderRefundRefundsDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/CreateOrderRefundRefundsLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/CreateOrderRefundRefundsResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/CreateOrderRefundResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/CreateOrderResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/CreatePaymentDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/CreatePaymentLinkDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/CreatePaymentLinkLinks.java
-  - src/main/java/com/mollie/mollie/models/errors/CreatePaymentLinkPaymentLinksAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/CreatePaymentLinkPaymentLinksAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/CreatePaymentLinkPaymentLinksAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/CreatePaymentLinkPaymentLinksDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/CreatePaymentLinkPaymentLinksLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/CreatePaymentLinkPaymentLinksResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/CreatePaymentLinkResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/CreatePaymentLinks.java
-  - src/main/java/com/mollie/mollie/models/errors/CreatePaymentPaymentsAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/CreatePaymentPaymentsAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/CreatePaymentPaymentsAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/CreatePaymentPaymentsDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/CreatePaymentPaymentsLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/CreatePaymentPaymentsResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/CreatePaymentResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/CreateProfileDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/CreateProfileLinks.java
   - src/main/java/com/mollie/mollie/models/errors/CreateProfileResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/CreateRefundDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/CreateRefundLinks.java
-  - src/main/java/com/mollie/mollie/models/errors/CreateRefundRefundsAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/CreateRefundRefundsAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/CreateRefundRefundsAPIResponseBody.java
-  - src/main/java/com/mollie/mollie/models/errors/CreateRefundRefundsAPIResponseDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/CreateRefundRefundsAPIResponseLinks.java
-  - src/main/java/com/mollie/mollie/models/errors/CreateRefundRefundsAPIResponseResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/CreateRefundRefundsDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/CreateRefundRefundsLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/CreateRefundRefundsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/CreateRefundRefundsResponseDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/CreateRefundRefundsResponseLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/CreateRefundRefundsResponseResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/CreateRefundResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/CreateShipmentDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/CreateShipmentLinks.java
   - src/main/java/com/mollie/mollie/models/errors/CreateShipmentResponseBody.java
-  - src/main/java/com/mollie/mollie/models/errors/CreateShipmentShipmentsAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/CreateShipmentShipmentsAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/CreateShipmentShipmentsAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/CreateShipmentShipmentsDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/CreateShipmentShipmentsLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/CreateShipmentShipmentsResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/CreateSubscriptionDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/CreateSubscriptionLinks.java
   - src/main/java/com/mollie/mollie/models/errors/CreateSubscriptionResponseBody.java
@@ -1411,15 +1414,15 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/errors/DeleteCustomerResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/DeletePaymentLinkDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/DeletePaymentLinkLinks.java
-  - src/main/java/com/mollie/mollie/models/errors/DeletePaymentLinkPaymentLinksAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/DeletePaymentLinkPaymentLinksAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/DeletePaymentLinkPaymentLinksAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/DeletePaymentLinkPaymentLinksDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/DeletePaymentLinkPaymentLinksLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/DeletePaymentLinkPaymentLinksResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/DeletePaymentLinkResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/DeleteProfileDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/DeleteProfileLinks.java
-  - src/main/java/com/mollie/mollie/models/errors/DeleteProfileProfilesAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/DeleteProfileProfilesAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/DeleteProfileProfilesAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/DeleteProfileProfilesDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/DeleteProfileProfilesLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/DeleteProfileProfilesResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/DeleteProfileResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/DisableMethodDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/DisableMethodIssuerDocumentation.java
@@ -1460,9 +1463,9 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/errors/GetMandateResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/GetMethodDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/GetMethodLinks.java
-  - src/main/java/com/mollie/mollie/models/errors/GetMethodMethodsAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/GetMethodMethodsAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/GetMethodMethodsAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/GetMethodMethodsDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/GetMethodMethodsLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/GetMethodMethodsResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/GetMethodResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/GetOrderDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/GetOrderLinks.java
@@ -1484,9 +1487,9 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/errors/GetPermissionResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/GetProfileDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/GetProfileLinks.java
-  - src/main/java/com/mollie/mollie/models/errors/GetProfileProfilesAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/GetProfileProfilesAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/GetProfileProfilesAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/GetProfileProfilesDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/GetProfileProfilesLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/GetProfileProfilesResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/GetProfileResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/GetRefundDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/GetRefundLinks.java
@@ -1516,9 +1519,9 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/errors/GetTerminalLinks.java
   - src/main/java/com/mollie/mollie/models/errors/GetTerminalResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/Links.java
-  - src/main/java/com/mollie/mollie/models/errors/ListAllChargebacksChargebacksAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/ListAllChargebacksChargebacksAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/ListAllChargebacksChargebacksAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/ListAllChargebacksChargebacksDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/ListAllChargebacksChargebacksLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/ListAllChargebacksChargebacksResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/ListAllChargebacksDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/ListAllChargebacksLinks.java
   - src/main/java/com/mollie/mollie/models/errors/ListAllChargebacksResponseBody.java
@@ -1531,57 +1534,57 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/errors/ListAllSubscriptionsDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/ListAllSubscriptionsLinks.java
   - src/main/java/com/mollie/mollie/models/errors/ListAllSubscriptionsResponseBody.java
-  - src/main/java/com/mollie/mollie/models/errors/ListAllSubscriptionsSubscriptionsAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/ListAllSubscriptionsSubscriptionsAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/ListAllSubscriptionsSubscriptionsAPIResponseBody.java
-  - src/main/java/com/mollie/mollie/models/errors/ListBalanceTransactionsBalancesAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/ListBalanceTransactionsBalancesAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/ListBalanceTransactionsBalancesAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/ListAllSubscriptionsSubscriptionsDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/ListAllSubscriptionsSubscriptionsLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/ListAllSubscriptionsSubscriptionsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/ListBalanceTransactionsBalancesDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/ListBalanceTransactionsBalancesLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/ListBalanceTransactionsBalancesResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/ListBalanceTransactionsDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/ListBalanceTransactionsLinks.java
   - src/main/java/com/mollie/mollie/models/errors/ListBalanceTransactionsResponseBody.java
-  - src/main/java/com/mollie/mollie/models/errors/ListBalancesBalancesAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/ListBalancesBalancesResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/ListBalancesDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/ListBalancesLinks.java
   - src/main/java/com/mollie/mollie/models/errors/ListBalancesResponseBody.java
-  - src/main/java/com/mollie/mollie/models/errors/ListCapturesCapturesAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/ListCapturesCapturesAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/ListCapturesCapturesAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/ListCapturesCapturesDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/ListCapturesCapturesLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/ListCapturesCapturesResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/ListCapturesDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/ListCapturesLinks.java
   - src/main/java/com/mollie/mollie/models/errors/ListCapturesResponseBody.java
-  - src/main/java/com/mollie/mollie/models/errors/ListChargebacksChargebacksAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/ListChargebacksChargebacksAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/ListChargebacksChargebacksAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/ListChargebacksChargebacksDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/ListChargebacksChargebacksLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/ListChargebacksChargebacksResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/ListChargebacksDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/ListChargebacksLinks.java
   - src/main/java/com/mollie/mollie/models/errors/ListChargebacksResponseBody.java
-  - src/main/java/com/mollie/mollie/models/errors/ListClientsClientsAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/ListClientsClientsAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/ListClientsClientsAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/ListClientsClientsDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/ListClientsClientsLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/ListClientsClientsResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/ListClientsDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/ListClientsLinks.java
   - src/main/java/com/mollie/mollie/models/errors/ListClientsResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/ListCustomerPaymentsDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/ListCustomerPaymentsLinks.java
   - src/main/java/com/mollie/mollie/models/errors/ListCustomerPaymentsResponseBody.java
-  - src/main/java/com/mollie/mollie/models/errors/ListCustomersCustomersAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/ListCustomersCustomersAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/ListCustomersCustomersAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/ListCustomersCustomersDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/ListCustomersCustomersLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/ListCustomersCustomersResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/ListCustomersDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/ListCustomersLinks.java
   - src/main/java/com/mollie/mollie/models/errors/ListCustomersResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/ListInvoicesDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/ListInvoicesInvoicesAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/ListInvoicesInvoicesAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/ListInvoicesInvoicesAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/ListInvoicesInvoicesDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/ListInvoicesInvoicesLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/ListInvoicesInvoicesResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/ListInvoicesLinks.java
   - src/main/java/com/mollie/mollie/models/errors/ListInvoicesResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/ListMandatesDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/ListMandatesLinks.java
-  - src/main/java/com/mollie/mollie/models/errors/ListMandatesMandatesAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/ListMandatesMandatesAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/ListMandatesMandatesAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/ListMandatesMandatesDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/ListMandatesMandatesLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/ListMandatesMandatesResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/ListMandatesResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/ListMethodsDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/ListMethodsLinks.java
@@ -1606,31 +1609,31 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/errors/ListProfilesResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/ListRefundsDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/ListRefundsLinks.java
-  - src/main/java/com/mollie/mollie/models/errors/ListRefundsRefundsAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/ListRefundsRefundsAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/ListRefundsRefundsAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/ListRefundsRefundsDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/ListRefundsRefundsLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/ListRefundsRefundsResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/ListRefundsResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/ListSettlementsDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/ListSettlementsLinks.java
   - src/main/java/com/mollie/mollie/models/errors/ListSettlementsResponseBody.java
-  - src/main/java/com/mollie/mollie/models/errors/ListSettlementsSettlementsAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/ListSettlementsSettlementsAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/ListSettlementsSettlementsAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/ListSettlementsSettlementsDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/ListSettlementsSettlementsLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/ListSettlementsSettlementsResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/ListShipmentsDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/ListShipmentsLinks.java
   - src/main/java/com/mollie/mollie/models/errors/ListShipmentsResponseBody.java
-  - src/main/java/com/mollie/mollie/models/errors/ListShipmentsShipmentsAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/ListShipmentsShipmentsAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/ListShipmentsShipmentsAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/ListShipmentsShipmentsDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/ListShipmentsShipmentsLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/ListShipmentsShipmentsResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/ListSubscriptionPaymentsDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/ListSubscriptionPaymentsLinks.java
   - src/main/java/com/mollie/mollie/models/errors/ListSubscriptionPaymentsResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/ListSubscriptionsDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/ListSubscriptionsLinks.java
   - src/main/java/com/mollie/mollie/models/errors/ListSubscriptionsResponseBody.java
-  - src/main/java/com/mollie/mollie/models/errors/ListSubscriptionsSubscriptionsAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/ListSubscriptionsSubscriptionsAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/ListSubscriptionsSubscriptionsAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/ListSubscriptionsSubscriptionsDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/ListSubscriptionsSubscriptionsLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/ListSubscriptionsSubscriptionsResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/ListTerminalsDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/ListTerminalsLinks.java
   - src/main/java/com/mollie/mollie/models/errors/ListTerminalsResponseBody.java
@@ -1645,9 +1648,9 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/errors/PaymentListRoutesResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/ReleaseAuthorizationDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/ReleaseAuthorizationLinks.java
-  - src/main/java/com/mollie/mollie/models/errors/ReleaseAuthorizationPaymentsAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/ReleaseAuthorizationPaymentsAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/ReleaseAuthorizationPaymentsAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/ReleaseAuthorizationPaymentsDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/ReleaseAuthorizationPaymentsLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/ReleaseAuthorizationPaymentsResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/ReleaseAuthorizationResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/RequestApplePayPaymentSessionDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/RequestApplePayPaymentSessionLinks.java
@@ -1661,35 +1664,35 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/errors/UpdateOrderDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/UpdateOrderLineDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/UpdateOrderLineLinks.java
-  - src/main/java/com/mollie/mollie/models/errors/UpdateOrderLineOrdersAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/UpdateOrderLineOrdersAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/UpdateOrderLineOrdersAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdateOrderLineOrdersDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdateOrderLineOrdersLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdateOrderLineOrdersResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/UpdateOrderLineResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/UpdateOrderLinks.java
-  - src/main/java/com/mollie/mollie/models/errors/UpdateOrderOrdersAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/UpdateOrderOrdersAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/UpdateOrderOrdersAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdateOrderOrdersDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdateOrderOrdersLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdateOrderOrdersResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/UpdateOrderResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/UpdatePaymentDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/UpdatePaymentLinkDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/UpdatePaymentLinkLinks.java
-  - src/main/java/com/mollie/mollie/models/errors/UpdatePaymentLinkPaymentLinksAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/UpdatePaymentLinkPaymentLinksAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/UpdatePaymentLinkPaymentLinksAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdatePaymentLinkPaymentLinksDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdatePaymentLinkPaymentLinksLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdatePaymentLinkPaymentLinksResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/UpdatePaymentLinkResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/UpdatePaymentLinks.java
-  - src/main/java/com/mollie/mollie/models/errors/UpdatePaymentPaymentsAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/UpdatePaymentPaymentsAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/UpdatePaymentPaymentsAPIResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdatePaymentPaymentsDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdatePaymentPaymentsLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdatePaymentPaymentsResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/UpdatePaymentResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/UpdateProfileDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/UpdateProfileLinks.java
-  - src/main/java/com/mollie/mollie/models/errors/UpdateProfileProfilesAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/UpdateProfileProfilesAPILinks.java
-  - src/main/java/com/mollie/mollie/models/errors/UpdateProfileProfilesAPIResponseBody.java
-  - src/main/java/com/mollie/mollie/models/errors/UpdateProfileProfilesAPIResponseDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/UpdateProfileProfilesAPIResponseLinks.java
-  - src/main/java/com/mollie/mollie/models/errors/UpdateProfileProfilesAPIResponseResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdateProfileProfilesDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdateProfileProfilesLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdateProfileProfilesResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdateProfileProfilesResponseDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdateProfileProfilesResponseLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdateProfileProfilesResponseResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/UpdateProfileResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/UpdateShipmentDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/UpdateShipmentLinks.java
@@ -1776,9 +1779,9 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/CreateOrderRefundLinks.java
   - src/main/java/com/mollie/mollie/models/operations/CreateOrderRefundMetadata.java
   - src/main/java/com/mollie/mollie/models/operations/CreateOrderRefundMetadata2.java
-  - src/main/java/com/mollie/mollie/models/operations/CreateOrderRefundMetadataRefundsAPI2.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateOrderRefundMetadataRefunds2.java
   - src/main/java/com/mollie/mollie/models/operations/CreateOrderRefundOrder.java
-  - src/main/java/com/mollie/mollie/models/operations/CreateOrderRefundRefundsAPIMetadata.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateOrderRefundRefundsMetadata.java
   - src/main/java/com/mollie/mollie/models/operations/CreateOrderRefundRequest.java
   - src/main/java/com/mollie/mollie/models/operations/CreateOrderRefundRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/CreateOrderRefundRequestBuilder.java
@@ -1802,9 +1805,9 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentLinkResponse.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentMetadata.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentMetadata2.java
-  - src/main/java/com/mollie/mollie/models/operations/CreatePaymentPaymentsAPIAmount.java
-  - src/main/java/com/mollie/mollie/models/operations/CreatePaymentPaymentsAPIRequestAmount.java
-  - src/main/java/com/mollie/mollie/models/operations/CreatePaymentPaymentsAPIRequestRequestBodyAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/CreatePaymentPaymentsAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/CreatePaymentPaymentsRequestAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/CreatePaymentPaymentsRequestRequestBodyAmount.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentRequest.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentRequestBuilder.java
@@ -1819,7 +1822,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/CreateRefundAmount.java
   - src/main/java/com/mollie/mollie/models/operations/CreateRefundMetadata.java
   - src/main/java/com/mollie/mollie/models/operations/CreateRefundMetadata2.java
-  - src/main/java/com/mollie/mollie/models/operations/CreateRefundRefundsAPIAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateRefundRefundsAmount.java
   - src/main/java/com/mollie/mollie/models/operations/CreateRefundRequest.java
   - src/main/java/com/mollie/mollie/models/operations/CreateRefundRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/CreateRefundRequestBuilder.java
@@ -1838,7 +1841,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionResponse.java
-  - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionSubscriptionsAPIAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionSubscriptionsAmount.java
   - src/main/java/com/mollie/mollie/models/operations/Customer.java
   - src/main/java/com/mollie/mollie/models/operations/Customers.java
   - src/main/java/com/mollie/mollie/models/operations/Dashboard.java
@@ -1879,7 +1882,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/EnableMethodIssuers.java
   - src/main/java/com/mollie/mollie/models/operations/EnableMethodLinks.java
   - src/main/java/com/mollie/mollie/models/operations/EnableMethodMaximumAmount.java
-  - src/main/java/com/mollie/mollie/models/operations/EnableMethodMethodsAPIImage.java
+  - src/main/java/com/mollie/mollie/models/operations/EnableMethodMethodsImage.java
   - src/main/java/com/mollie/mollie/models/operations/EnableMethodMinimumAmount.java
   - src/main/java/com/mollie/mollie/models/operations/EnableMethodPricing.java
   - src/main/java/com/mollie/mollie/models/operations/EnableMethodRequest.java
@@ -1928,17 +1931,17 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetChargebackSettlementAmount.java
   - src/main/java/com/mollie/mollie/models/operations/GetClientAddress.java
   - src/main/java/com/mollie/mollie/models/operations/GetClientCapabilities.java
-  - src/main/java/com/mollie/mollie/models/operations/GetClientClientsAPIDashboard.java
-  - src/main/java/com/mollie/mollie/models/operations/GetClientClientsAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/operations/GetClientClientsAPILinks.java
-  - src/main/java/com/mollie/mollie/models/operations/GetClientClientsAPIOrganization.java
-  - src/main/java/com/mollie/mollie/models/operations/GetClientClientsAPIResponse200Links.java
-  - src/main/java/com/mollie/mollie/models/operations/GetClientClientsAPIResponseDashboard.java
-  - src/main/java/com/mollie/mollie/models/operations/GetClientClientsAPIResponseDocumentation.java
-  - src/main/java/com/mollie/mollie/models/operations/GetClientClientsAPIResponseLinks.java
-  - src/main/java/com/mollie/mollie/models/operations/GetClientClientsAPIResponseOrganization.java
-  - src/main/java/com/mollie/mollie/models/operations/GetClientClientsAPIResponseSelf.java
-  - src/main/java/com/mollie/mollie/models/operations/GetClientClientsAPISelf.java
+  - src/main/java/com/mollie/mollie/models/operations/GetClientClientsDashboard.java
+  - src/main/java/com/mollie/mollie/models/operations/GetClientClientsDocumentation.java
+  - src/main/java/com/mollie/mollie/models/operations/GetClientClientsLinks.java
+  - src/main/java/com/mollie/mollie/models/operations/GetClientClientsOrganization.java
+  - src/main/java/com/mollie/mollie/models/operations/GetClientClientsResponse200Links.java
+  - src/main/java/com/mollie/mollie/models/operations/GetClientClientsResponseDashboard.java
+  - src/main/java/com/mollie/mollie/models/operations/GetClientClientsResponseDocumentation.java
+  - src/main/java/com/mollie/mollie/models/operations/GetClientClientsResponseLinks.java
+  - src/main/java/com/mollie/mollie/models/operations/GetClientClientsResponseOrganization.java
+  - src/main/java/com/mollie/mollie/models/operations/GetClientClientsResponseSelf.java
+  - src/main/java/com/mollie/mollie/models/operations/GetClientClientsSelf.java
   - src/main/java/com/mollie/mollie/models/operations/GetClientDashboard.java
   - src/main/java/com/mollie/mollie/models/operations/GetClientDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/GetClientEmbedded.java
@@ -2025,10 +2028,10 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetOrderLinks.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrderMetadata.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrderMetadata2.java
-  - src/main/java/com/mollie/mollie/models/operations/GetOrderMetadataOrdersAPI2.java
-  - src/main/java/com/mollie/mollie/models/operations/GetOrderOrdersAPILinks.java
-  - src/main/java/com/mollie/mollie/models/operations/GetOrderOrdersAPIMetadata.java
-  - src/main/java/com/mollie/mollie/models/operations/GetOrderOrdersAPISelf.java
+  - src/main/java/com/mollie/mollie/models/operations/GetOrderMetadataOrders2.java
+  - src/main/java/com/mollie/mollie/models/operations/GetOrderOrdersLinks.java
+  - src/main/java/com/mollie/mollie/models/operations/GetOrderOrdersMetadata.java
+  - src/main/java/com/mollie/mollie/models/operations/GetOrderOrdersSelf.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrderPayment.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrderRequest.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrderRequestBuilder.java
@@ -2089,9 +2092,9 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentMetadata.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentMetadata2.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentOrder.java
-  - src/main/java/com/mollie/mollie/models/operations/GetPaymentPaymentsAPIAmount.java
-  - src/main/java/com/mollie/mollie/models/operations/GetPaymentPaymentsAPIResponse200Amount.java
-  - src/main/java/com/mollie/mollie/models/operations/GetPaymentPaymentsAPIResponseAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/GetPaymentPaymentsAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/GetPaymentPaymentsResponse200Amount.java
+  - src/main/java/com/mollie/mollie/models/operations/GetPaymentPaymentsResponseAmount.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentRecurring.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentRefunds.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentRequest.java
@@ -2130,7 +2133,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetRefundMetadata.java
   - src/main/java/com/mollie/mollie/models/operations/GetRefundMetadata2.java
   - src/main/java/com/mollie/mollie/models/operations/GetRefundPayment.java
-  - src/main/java/com/mollie/mollie/models/operations/GetRefundRefundsAPIAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/GetRefundRefundsAmount.java
   - src/main/java/com/mollie/mollie/models/operations/GetRefundRequest.java
   - src/main/java/com/mollie/mollie/models/operations/GetRefundRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/GetRefundResponse.java
@@ -2185,7 +2188,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionResponse.java
   - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionResponseBody.java
   - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionSelf.java
-  - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionSubscriptionsAPIAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionSubscriptionsAmount.java
   - src/main/java/com/mollie/mollie/models/operations/GetTerminalDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/GetTerminalLinks.java
   - src/main/java/com/mollie/mollie/models/operations/GetTerminalRequest.java
@@ -2258,7 +2261,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListBalancesRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/ListBalancesResponse.java
   - src/main/java/com/mollie/mollie/models/operations/ListBalancesResponseBody.java
-  - src/main/java/com/mollie/mollie/models/operations/ListCapabilitiesCapabilitiesAPILinks.java
+  - src/main/java/com/mollie/mollie/models/operations/ListCapabilitiesCapabilitiesLinks.java
   - src/main/java/com/mollie/mollie/models/operations/ListCapabilitiesDashboard.java
   - src/main/java/com/mollie/mollie/models/operations/ListCapabilitiesDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/ListCapabilitiesEmbedded.java
@@ -2291,22 +2294,22 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListChargebacksSelf.java
   - src/main/java/com/mollie/mollie/models/operations/ListClientsAddress.java
   - src/main/java/com/mollie/mollie/models/operations/ListClientsCapabilities.java
-  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsAPIDashboard.java
-  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsAPIEmbedded.java
-  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsAPILinks.java
-  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsAPIOnboarding.java
-  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsAPIOrganization.java
-  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsAPIResponse200ApplicationHalPlusJsonLinks.java
-  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsAPIResponse200Documentation.java
-  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsAPIResponse200Links.java
-  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsAPIResponse200Self.java
-  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsAPIResponseDashboard.java
-  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsAPIResponseDocumentation.java
-  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsAPIResponseLinks.java
-  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsAPIResponseOrganization.java
-  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsAPIResponseSelf.java
-  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsAPISelf.java
+  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsDashboard.java
+  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsDocumentation.java
+  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsEmbedded.java
+  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsLinks.java
+  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsOnboarding.java
+  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsOrganization.java
+  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsResponse200ApplicationHalPlusJsonLinks.java
+  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsResponse200Documentation.java
+  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsResponse200Links.java
+  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsResponse200Self.java
+  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsResponseDashboard.java
+  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsResponseDocumentation.java
+  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsResponseLinks.java
+  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsResponseOrganization.java
+  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsResponseSelf.java
+  - src/main/java/com/mollie/mollie/models/operations/ListClientsClientsSelf.java
   - src/main/java/com/mollie/mollie/models/operations/ListClientsCommission.java
   - src/main/java/com/mollie/mollie/models/operations/ListClientsDashboard.java
   - src/main/java/com/mollie/mollie/models/operations/ListClientsDocumentation.java
@@ -2519,8 +2522,8 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/Owner.java
   - src/main/java/com/mollie/mollie/models/operations/Payment.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentCreateRouteAmount.java
-  - src/main/java/com/mollie/mollie/models/operations/PaymentCreateRouteDelayedRoutingAPIAmount.java
-  - src/main/java/com/mollie/mollie/models/operations/PaymentCreateRouteDelayedRoutingAPIDestination.java
+  - src/main/java/com/mollie/mollie/models/operations/PaymentCreateRouteDelayedRoutingAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/PaymentCreateRouteDelayedRoutingDestination.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentCreateRouteDestination.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentCreateRouteDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentCreateRouteLinks.java
@@ -2533,9 +2536,9 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/PaymentLink.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentLinks.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentListRoutesAmount.java
-  - src/main/java/com/mollie/mollie/models/operations/PaymentListRoutesDelayedRoutingAPIDocumentation.java
-  - src/main/java/com/mollie/mollie/models/operations/PaymentListRoutesDelayedRoutingAPILinks.java
-  - src/main/java/com/mollie/mollie/models/operations/PaymentListRoutesDelayedRoutingAPISelf.java
+  - src/main/java/com/mollie/mollie/models/operations/PaymentListRoutesDelayedRoutingDocumentation.java
+  - src/main/java/com/mollie/mollie/models/operations/PaymentListRoutesDelayedRoutingLinks.java
+  - src/main/java/com/mollie/mollie/models/operations/PaymentListRoutesDelayedRoutingSelf.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentListRoutesDestination.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentListRoutesDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentListRoutesEmbedded.java
@@ -2936,8 +2939,10 @@ examples:
         query:
           reference: "2024.10000"
           year: "2024"
+          month: "01"
           from: "inv_xBEbP9rvAq"
           limit: 50
+          sort: "desc"
       responses:
         "200":
           application/hal+json: {"count": 5, "_embedded": {"invoices": [{}, {}, {}, {}, {}]}, "_links": {"self": {"type": "application/hal+json"}, "previous": null, "next": {"href": "https://api.mollie.com/v2/invoices?from=inv_TUhzbAFMrt&limit=5", "type": "application/hal+json"}, "documentation": {"type": "text/html"}}}
@@ -2946,8 +2951,10 @@ examples:
         query:
           reference: "2024.10000"
           year: "2024"
+          month: "01"
           from: "inv_xBEbP9rvAq"
           limit: 50
+          sort: "desc"
       responses:
         "200":
           application/hal+json: {"count": 11, "_embedded": {"invoices": [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]}, "_links": {"self": {"type": "application/hal+json"}, "previous": null, "next": null, "documentation": {"type": "text/html"}}}
@@ -2956,8 +2963,10 @@ examples:
         query:
           reference: "2024.10000"
           year: "2024"
+          month: "01"
           from: "inv_xBEbP9rvAq"
           limit: 50
+          sort: "desc"
       responses:
         "200":
           application/hal+json: {"count": 1, "_embedded": {"invoices": [{}]}, "_links": {"self": {"type": "application/hal+json"}, "previous": null, "next": null, "documentation": {"type": "text/html"}}}
@@ -2966,8 +2975,10 @@ examples:
         query:
           reference: "2024.10000"
           year: "2024"
+          month: "01"
           from: "inv_xBEbP9rvAq"
           limit: 50
+          sort: "desc"
       responses:
         "200":
           application/hal+json: {"count": 1, "_embedded": {"invoices": [{}]}, "_links": {"self": {"type": "application/hal+json"}, "previous": null, "next": null, "documentation": {"type": "text/html"}}}
@@ -2976,8 +2987,10 @@ examples:
         query:
           reference: "2024.10000"
           year: "2024"
+          month: "01"
           from: "inv_xBEbP9rvAq"
           limit: 50
+          sort: "desc"
       responses:
         "400":
           application/hal+json: {"status": 400, "title": "Bad Request", "detail": "Invalid cursor value", "field": "from", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
@@ -3281,7 +3294,7 @@ examples:
         query:
           embed: "payments"
       requestBody:
-        application/json: {"orderNumber": "<value>", "lines": [{"type": "physical", "name": "<value>", "quantity": 638424, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "category": "meal"}], "amount": {"currency": "EUR", "value": "10.00"}, "billingAddress": {"streetAndNumber": "<value>", "city": "Briaton", "country": "Seychelles"}, "locale": "lv_LV", "profileId": "pfl_QkEhN94Ba", "testmode": false}
+        application/json: {"orderNumber": "<value>", "lines": [{"name": "<value>", "quantity": 638424, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "category": "meal"}], "amount": {"currency": "EUR", "value": "10.00"}, "billingAddress": {"streetAndNumber": "<value>", "city": "Briaton", "country": "Seychelles"}, "locale": "el", "profileId": "pfl_QkEhN94Ba", "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "order", "id": "ord_pbjz8x", "mode": "live", "orderNumber": "34629", "lines": [{"resource": "orderline", "id": "odl_dgtxyl", "type": "physical", "name": "LEGO 42083 Bugatti Chiron", "quantity": 2, "vatRate": "21.00", "unitPrice": {"currency": "EUR", "value": "399.00"}, "totalAmount": {"currency": "EUR", "value": "698.00"}, "discountAmount": {"currency": "EUR", "value": "100.00"}, "vatAmount": {"currency": "EUR", "value": "121.14"}, "sku": "5702016116977", "status": "created", "isCancelable": false, "orderId": "ord_pbjz8x", "createdAt": "2023-08-02T09:29:56.0Z", "_links": {"productUrl": {"href": "https://shop.lego.com/nl-NL/Bugatti-Chiron-42083", "type": "text/html"}, "imageUrl": {"href": "https://sh-s7-live-s.legocdn.com/is/image/LEGO/42083", "type": "text/html"}}}, {"resource": "orderline", "id": "odl_jp31jz", "type": "physical", "name": "LEGO 42056 Porsche 911 GT3 RS", "quantity": 1, "vatRate": "21.00", "unitPrice": {"currency": "EUR", "value": "329.99"}, "totalAmount": {"currency": "EUR", "value": "329.99"}, "vatAmount": {"currency": "EUR", "value": "57.27"}, "sku": "5702015594028", "status": "created", "isCancelable": false, "orderId": "ord_pbjz8x", "createdAt": "2023-08-02T09:29:56.0Z", "_links": {"productUrl": {"href": "https://shop.lego.com/nl-NL/Porsche-911-GT3-RS-42056", "type": "text/html"}, "imageUrl": {"href": "https://sh-s7-live-s.legocdn.com/is/image/LEGO/42056", "type": "text/html"}}}], "amount": {"currency": "EUR", "value": "1027.99"}, "billingAddress": {"organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "city": "Amsterdam", "region": "Noord-Holland", "postalCode": "1234AB", "country": "NL", "title": "Dhr.", "givenName": "Piet", "familyName": "Mondriaan", "email": "piet@example.org", "phone": "+31309202070"}, "redirectUrl": "https://example.org/redirect", "webhookUrl": "https://example.org/webhook", "profileId": "pfl_URR55HPMGx", "status": "created", "isCancelable": true, "createdAt": "2023-08-02T09:29:56.0Z", "expiresAt": "2023-08-30T09:29:56.0Z", "_links": {"self": {"href": "...", "type": "application/hal+json"}, "checkout": {"href": "https://www.mollie.com/checkout/select-method/7UhSN1zuXS", "type": "text/html"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_123456789/orders/ord_pbjz8x", "type": "text/html"}, "documentation": {"href": "...", "type": "text/html"}}}
@@ -3290,7 +3303,7 @@ examples:
         query:
           embed: "payments"
       requestBody:
-        application/json: {"orderNumber": "<value>", "lines": [], "amount": {"currency": "EUR", "value": "10.00"}, "billingAddress": {"streetAndNumber": "<value>", "city": "North Pearlfield", "country": "Moldova"}, "locale": "da_DK", "profileId": "pfl_QkEhN94Ba", "testmode": false}
+        application/json: {"orderNumber": "<value>", "lines": [], "amount": {"currency": "EUR", "value": "10.00"}, "billingAddress": {"streetAndNumber": "<value>", "city": "North Pearlfield", "country": "Moldova"}, "locale": "tr", "profileId": "pfl_QkEhN94Ba", "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "order", "id": "ord_efu0tw", "profileId": "pfl_85dxyKqNHa", "method": "ideal", "amount": {"value": "289.00", "currency": "EUR"}, "status": "created", "isCancelable": true, "metadata": {"someProperty": "someValue", "anotherProperty": "anotherValue"}, "createdAt": "2021-12-30T13:38:46+00:00", "expiresAt": "2022-01-27T13:38:46+00:00", "mode": "test", "locale": "en_US", "billingAddress": {"organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL", "title": "Dhr.", "givenName": "Piet", "familyName": "Mondriaan", "email": "test@mollie.com", "phone": "+3130920207"}, "shopperCountryMustMatchBillingCountry": false, "consumerDateOfBirth": "1958-01-31", "orderNumber": "1337", "shippingAddress": {"organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "4th floor", "postalCode": "5678AB", "city": "Haarlem", "region": "Noord-Holland", "country": "NL", "title": "Mr.", "givenName": "Chuck", "familyName": "Norris", "email": "test@mollie.com"}, "redirectUrl": "https://example.com/landing_page", "webhookUrl": "https://example.com/redirect", "lines": [{"resource": "orderline", "id": "odl_1.q28flc", "orderId": "ord_efu0tw", "name": "order line number 1", "sku": null, "type": "physical", "status": "created", "metadata": null, "isCancelable": false, "quantity": 2, "quantityShipped": 0, "amountShipped": {"value": "0.00", "currency": "EUR"}, "quantityRefunded": 0, "amountRefunded": {"value": "0.00", "currency": "EUR"}, "quantityCanceled": 0, "amountCanceled": {"value": "0.00", "currency": "EUR"}, "shippableQuantity": 0, "refundableQuantity": 0, "cancelableQuantity": 0, "unitPrice": {"value": "89.00", "currency": "EUR"}, "vatRate": "21.00", "vatAmount": {"value": "29.16", "currency": "EUR"}, "totalAmount": {"value": "168.00", "currency": "EUR"}, "createdAt": "2021-12-30T13:38:46+00:00", "discountAmount": {"value": "10.00", "currency": "EUR"}}, {"resource": "orderline", "id": "odl_1.w48z1e", "orderId": "ord_efu0tw", "name": "order line number 2", "sku": null, "type": "physical", "status": "created", "metadata": null, "isCancelable": false, "quantity": 1, "quantityShipped": 0, "amountShipped": {"value": "0.00", "currency": "EUR"}, "quantityRefunded": 0, "amountRefunded": {"value": "0.00", "currency": "EUR"}, "quantityCanceled": 0, "amountCanceled": {"value": "0.00", "currency": "EUR"}, "shippableQuantity": 0, "refundableQuantity": 0, "cancelableQuantity": 0, "unitPrice": {"value": "121.00", "currency": "EUR"}, "vatRate": "21.00", "vatAmount": {"value": "21.00", "currency": "EUR"}, "totalAmount": {"value": "121.00", "currency": "EUR"}, "createdAt": "2021-12-30T13:38:46+00:00"}], "_links": {"self": {"href": "...", "type": "application/hal+json"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_13514547/orders/ord_efu0tw", "type": "text/html"}, "checkout": {"href": "https://www.mollie.com/checkout/order/efu0tw", "type": "text/html"}, "documentation": {"href": "...", "type": "text/html"}}}
@@ -3299,7 +3312,7 @@ examples:
         query:
           embed: "payments"
       requestBody:
-        application/json: {"orderNumber": "<value>", "lines": [{"type": "physical", "name": "<value>", "quantity": 357021, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "category": "meal"}, {"type": "physical", "name": "<value>", "quantity": 259629, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "category": "meal"}, {"type": "physical", "name": "<value>", "quantity": 17759, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "category": "meal"}], "amount": {"currency": "EUR", "value": "10.00"}, "billingAddress": {"streetAndNumber": "<value>", "city": "East Aniya", "country": "Gabon"}, "locale": "fr_FR", "profileId": "pfl_QkEhN94Ba", "testmode": false}
+        application/json: {"orderNumber": "<value>", "lines": [{"name": "<value>", "quantity": 357021, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "category": "meal"}, {"name": "<value>", "quantity": 259629, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "category": "meal"}, {"name": "<value>", "quantity": 17759, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "category": "meal"}], "amount": {"currency": "EUR", "value": "10.00"}, "billingAddress": {"streetAndNumber": "<value>", "city": "East Aniya", "country": "Gabon"}, "locale": "de", "profileId": "pfl_QkEhN94Ba", "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "order", "id": "ord_rwp6xc", "profileId": "pfl_eYDqpvw3Cv", "method": "billie", "amount": {"value": "9.00", "currency": "EUR"}, "status": "created", "isCancelable": true, "metadata": null, "createdAt": "2023-06-02T14:05:39+00:00", "expiresAt": "2023-06-30T14:05:39+00:00", "mode": "test", "locale": "de_DE", "billingAddress": {"organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "city": "Amsterdam", "region": "Noord-Holland", "country": "DE", "title": "Dhr.", "givenName": "Piet", "familyName": "Mondriaan", "email": "test@mollie.com", "phone": "+3130920207"}, "shopperCountryMustMatchBillingCountry": false, "orderNumber": "1337", "redirectUrl": "https://example.com/landing_page", "webhookUrl": "https://example.com/redirect", "lines": [{"resource": "orderline", "id": "odl_2.suuim4", "orderId": "ord_rwp6xc", "name": "line 1", "sku": null, "type": "physical", "status": "created", "metadata": null, "isCancelable": false, "quantity": 1, "quantityShipped": 0, "amountShipped": {"value": "0.00", "currency": "EUR"}, "quantityRefunded": 0, "amountRefunded": {"value": "0.00", "currency": "EUR"}, "quantityCanceled": 0, "amountCanceled": {"value": "0.00", "currency": "EUR"}, "shippableQuantity": 0, "refundableQuantity": 0, "cancelableQuantity": 0, "unitPrice": {"value": "5.00", "currency": "EUR"}, "vatRate": "10.00", "vatAmount": {"value": "0.45", "currency": "EUR"}, "totalAmount": {"value": "5.00", "currency": "EUR"}, "createdAt": "2023-06-02T14:05:39+00:00"}, {"resource": "orderline", "id": "odl_2.z33s4u", "orderId": "ord_rwp6xc", "name": "line 2", "sku": null, "type": "physical", "status": "created", "metadata": null, "isCancelable": false, "quantity": 1, "quantityShipped": 0, "amountShipped": {"value": "0.00", "currency": "EUR"}, "quantityRefunded": 0, "amountRefunded": {"value": "0.00", "currency": "EUR"}, "quantityCanceled": 0, "amountCanceled": {"value": "0.00", "currency": "EUR"}, "shippableQuantity": 0, "refundableQuantity": 0, "cancelableQuantity": 0, "unitPrice": {"value": "5.00", "currency": "EUR"}, "vatRate": "10.00", "vatAmount": {"value": "0.45", "currency": "EUR"}, "totalAmount": {"value": "5.00", "currency": "EUR"}, "createdAt": "2023-06-02T14:05:39+00:00"}, {"resource": "orderline", "id": "odl_2.5nteow", "orderId": "ord_rwp6xc", "name": "discount 10%", "sku": null, "type": "discount", "status": "created", "metadata": null, "isCancelable": false, "quantity": 1, "quantityShipped": 0, "amountShipped": {"value": "0.00", "currency": "EUR"}, "quantityRefunded": 0, "amountRefunded": {"value": "0.00", "currency": "EUR"}, "quantityCanceled": 0, "amountCanceled": {"value": "0.00", "currency": "EUR"}, "shippableQuantity": 0, "refundableQuantity": 0, "cancelableQuantity": 0, "unitPrice": {"value": "-1.00", "currency": "EUR"}, "vatRate": "10.00", "vatAmount": {"value": "-0.10", "currency": "EUR"}, "totalAmount": {"value": "-1.00", "currency": "EUR"}, "createdAt": "2023-06-02T14:05:39+00:00"}], "_links": {"self": {"href": "...", "type": "application/hal+json"}, "dashboard": {"href": "https://my.mollie.com/dashboard/org_16993549/orders/ord_rwp6xc", "type": "text/html"}, "checkout": {"href": "https://www.mollie.com/checkout/order/rwp6xc", "type": "text/html"}, "documentation": {"href": "...", "type": "text/html"}}}
@@ -3308,7 +3321,7 @@ examples:
         query:
           embed: "payments"
       requestBody:
-        application/json: {"orderNumber": "<value>", "lines": [], "amount": {"currency": "EUR", "value": "10.00"}, "billingAddress": {"streetAndNumber": "<value>", "city": "Lake Eulaliatown", "country": "Nauru"}, "locale": "sv_SE", "profileId": "pfl_QkEhN94Ba", "testmode": false}
+        application/json: {"orderNumber": "<value>", "lines": [], "amount": {"currency": "EUR", "value": "10.00"}, "billingAddress": {"streetAndNumber": "<value>", "city": "Lake Eulaliatown", "country": "Nauru"}, "locale": "sv", "profileId": "pfl_QkEhN94Ba", "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "order", "id": "ord_a5vdgo", "profileId": "pfl_zcfJRjkf6P", "method": "ideal", "amount": {"value": "289.00", "currency": "EUR"}, "status": "created", "isCancelable": true, "metadata": {"someProperty": "someValue", "anotherProperty": "anotherValue"}, "createdAt": "2022-01-19T13:54:48+00:00", "expiresAt": "2022-02-16T13:54:48+00:00", "mode": "live", "locale": "en_US", "billingAddress": {"organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL", "title": "Dhr.", "givenName": "Piet", "familyName": "Mondriaan", "email": "test@mollie.com", "phone": "+3130920207"}, "shopperCountryMustMatchBillingCountry": false, "consumerDateOfBirth": "1958-01-31", "orderNumber": "1337", "shippingAddress": {"organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "4th floor", "postalCode": "5678AB", "city": "Haarlem", "region": "Noord-Holland", "country": "NL", "title": "Mr.", "givenName": "Chuck", "familyName": "Norris", "email": "test@mollie.com"}, "redirectUrl": "https://example.com/landing_page", "webhookUrl": "https://example.com/redirect", "lines": [{"resource": "orderline", "id": "odl_1.xzkrco", "orderId": "ord_a5vdgo", "name": "order line number 1", "sku": null, "type": "physical", "status": "created", "metadata": null, "isCancelable": false, "quantity": 2, "quantityShipped": 0, "amountShipped": {"value": "0.00", "currency": "EUR"}, "quantityRefunded": 0, "amountRefunded": {"value": "0.00", "currency": "EUR"}, "quantityCanceled": 0, "amountCanceled": {"value": "0.00", "currency": "EUR"}, "shippableQuantity": 0, "refundableQuantity": 0, "cancelableQuantity": 0, "unitPrice": {"value": "89.00", "currency": "EUR"}, "vatRate": "21.00", "vatAmount": {"value": "29.16", "currency": "EUR"}, "totalAmount": {"value": "168.00", "currency": "EUR"}, "createdAt": "2022-01-19T13:54:48+00:00", "discountAmount": {"value": "10.00", "currency": "EUR"}}, {"resource": "orderline", "id": "odl_1.4j19ey", "orderId": "ord_a5vdgo", "name": "order line number 2", "sku": null, "type": "physical", "status": "created", "metadata": null, "isCancelable": false, "quantity": 1, "quantityShipped": 0, "amountShipped": {"value": "0.00", "currency": "EUR"}, "quantityRefunded": 0, "amountRefunded": {"value": "0.00", "currency": "EUR"}, "quantityCanceled": 0, "amountCanceled": {"value": "0.00", "currency": "EUR"}, "shippableQuantity": 0, "refundableQuantity": 0, "cancelableQuantity": 0, "unitPrice": {"value": "121.00", "currency": "EUR"}, "vatRate": "21.00", "vatAmount": {"value": "21.00", "currency": "EUR"}, "totalAmount": {"value": "121.00", "currency": "EUR"}, "createdAt": "2022-01-19T13:54:48+00:00"}], "_links": {"self": {"href": "...", "type": "application/hal+json"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_7049691/orders/ord_a5vdgo", "type": "text/html"}, "checkout": {"href": "https://www.mollie.com/checkout/order/a5vdgo", "type": "text/html"}, "documentation": {"href": "...", "type": "text/html"}}}
@@ -3317,7 +3330,7 @@ examples:
         query:
           embed: "payments"
       requestBody:
-        application/json: {"orderNumber": "<value>", "lines": [], "amount": {"currency": "EUR", "value": "10.00"}, "billingAddress": {"streetAndNumber": "<value>", "city": "New Alekchester", "country": "Malta"}, "locale": "pl_PL", "profileId": "pfl_QkEhN94Ba", "testmode": false}
+        application/json: {"orderNumber": "<value>", "lines": [], "amount": {"currency": "EUR", "value": "10.00"}, "billingAddress": {"streetAndNumber": "<value>", "city": "New Alekchester", "country": "Malta"}, "locale": "no", "profileId": "pfl_QkEhN94Ba", "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "order", "id": "ord_xs5swc", "profileId": "pfl_zcfJRjkf6P", "method": "ideal", "amount": {"value": "289.00", "currency": "EUR"}, "status": "created", "isCancelable": true, "metadata": {"someProperty": "someValue", "anotherProperty": "anotherValue"}, "createdAt": "2022-02-18T10:45:49+00:00", "expiresAt": "2022-03-18T10:45:49+00:00", "mode": "test", "locale": "en_US", "billingAddress": {"organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL", "title": "Dhr.", "givenName": "Piet", "familyName": "Mondriaan", "email": "test@mollie.com", "phone": "+3130920207"}, "shopperCountryMustMatchBillingCountry": false, "consumerDateOfBirth": "1958-01-31", "orderNumber": "1337", "shippingAddress": {"organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "4th floor", "postalCode": "5678AB", "city": "Haarlem", "region": "Noord-Holland", "country": "NL", "title": "Mr.", "givenName": "Chuck", "familyName": "Norris", "email": "test@mollie.com"}, "redirectUrl": "https://example.com/landing_page", "webhookUrl": "https://example.com/redirect", "lines": [{"resource": "orderline", "id": "odl_1.bs97uw", "orderId": "ord_xs5swc", "name": "order line number 1", "sku": null, "type": "physical", "status": "created", "metadata": null, "isCancelable": false, "quantity": 2, "quantityShipped": 0, "amountShipped": {"value": "0.00", "currency": "EUR"}, "quantityRefunded": 0, "amountRefunded": {"value": "0.00", "currency": "EUR"}, "quantityCanceled": 0, "amountCanceled": {"value": "0.00", "currency": "EUR"}, "shippableQuantity": 0, "refundableQuantity": 0, "cancelableQuantity": 0, "unitPrice": {"value": "89.00", "currency": "EUR"}, "vatRate": "21.00", "vatAmount": {"value": "29.16", "currency": "EUR"}, "totalAmount": {"value": "168.00", "currency": "EUR"}, "createdAt": "2022-02-18T10:45:49+00:00", "discountAmount": {"value": "10.00", "currency": "EUR"}}, {"resource": "orderline", "id": "odl_1.hvip6i", "orderId": "ord_xs5swc", "name": "order line number 2", "sku": null, "type": "physical", "status": "created", "metadata": null, "isCancelable": false, "quantity": 1, "quantityShipped": 0, "amountShipped": {"value": "0.00", "currency": "EUR"}, "quantityRefunded": 0, "amountRefunded": {"value": "0.00", "currency": "EUR"}, "quantityCanceled": 0, "amountCanceled": {"value": "0.00", "currency": "EUR"}, "shippableQuantity": 0, "refundableQuantity": 0, "cancelableQuantity": 0, "unitPrice": {"value": "121.00", "currency": "EUR"}, "vatRate": "21.00", "vatAmount": {"value": "21.00", "currency": "EUR"}, "totalAmount": {"value": "121.00", "currency": "EUR"}, "createdAt": "2022-02-18T10:45:49+00:00"}], "_links": {"self": {"href": "...", "type": "application/hal+json"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_7049691/orders/ord_xs5swc", "type": "text/html"}, "checkout": {"href": "https://www.mollie.com/checkout/order/xs5swc", "type": "text/html"}, "documentation": {"href": "...", "type": "text/html"}}}
@@ -3326,7 +3339,7 @@ examples:
         query:
           embed: "payments"
       requestBody:
-        application/json: {"orderNumber": "<value>", "lines": [{"type": "physical", "name": "<value>", "quantity": 496323, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "category": "meal"}], "amount": {"currency": "EUR", "value": "10.00"}, "billingAddress": {"streetAndNumber": "<value>", "city": "Port Brigitte", "country": "Philippines"}, "locale": "lv_LV", "profileId": "pfl_QkEhN94Ba", "testmode": false}
+        application/json: {"orderNumber": "<value>", "lines": [{"name": "<value>", "quantity": 496323, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "category": "meal"}], "amount": {"currency": "EUR", "value": "10.00"}, "billingAddress": {"streetAndNumber": "<value>", "city": "Port Brigitte", "country": "Philippines"}, "locale": "no", "profileId": "pfl_QkEhN94Ba", "testmode": false}
       responses:
         "422":
           application/hal+json: {"status": 422, "title": "Unprocessable Entity", "detail": "The 'orderNumber' field is missing", "field": "orderNumber", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
@@ -3625,7 +3638,7 @@ examples:
         query:
           include: "details.qrCode"
       requestBody:
-        application/json: {"description": "yuck vice between gee ugh ha", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://sparse-rim.biz", "lines": [{"type": "physical", "description": "attend alongside aw blend ha ew", "quantity": 497070, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "... weeks", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}, {"type": "physical", "description": "stealthily without trick yahoo until planula conceal", "quantity": 721880, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "... days", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}], "captureMode": "automatic", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "routing": [{"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}, {"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}, {"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}], "sequenceType": "oneoff", "mandateId": "mdt_pWUnw6pkBN", "customerId": "cst_8wmqcHMN4U", "profileId": "pfl_QkEhN94Ba", "testmode": false}
+        application/json: {"description": "yuck vice between gee ugh ha", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://example.org/redirect", "cancelUrl": "https://example.org/cancel", "webhookUrl": "https://example.org/webhooks", "lines": [{"description": "junior modulo tackle unabashedly mentor early miserly stealthily without", "quantity": 979186, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "<value>", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}, {"description": "warmhearted entomb gah aha what", "quantity": 842284, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "<value>", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}, {"description": "when warming when determined ouch scarcely", "quantity": 324689, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "<value>", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}], "billingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "shippingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "locale": "nl_NL", "method": "ideal", "issuer": "ideal_INGBNL2A", "captureMode": "manual", "captureDelay": "8 hours", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "routing": [{"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}], "sequenceType": "oneoff", "mandateId": "mdt_pWUnw6pkBN", "customerId": "cst_8wmqcHMN4U", "profileId": "pfl_QkEhN94Ba", "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "payment", "id": "tr_5B8cwPMGnU6qLbRvo7qEZo", "mode": "live", "amount": {"value": "10.00", "currency": "EUR"}, "description": "Order #12345", "sequenceType": "oneoff", "redirectUrl": "https://webshop.example.org/order/12345/", "webhookUrl": "https://webshop.example.org/payments/webhook/", "metadata": "{\"order_id\":12345}", "profileId": "pfl_QkEhN94Ba", "status": "open", "isCancelable": false, "createdAt": "2024-03-20T09:13:37.0Z", "expiresAt": "2024-03-20T09:28:37.0Z", "_links": {"self": {"href": "...", "type": "application/hal+json"}, "checkout": {"href": "https://www.mollie.com/checkout/select-method/7UhSN1zuXS", "type": "text/html"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_12345678/payments/tr_5B8cwPMGnU6qLbRvo7qEZo", "type": "text/html"}, "documentation": {"href": "...", "type": "text/html"}}}
@@ -3634,7 +3647,7 @@ examples:
         query:
           include: "details.qrCode"
       requestBody:
-        application/json: {"description": "when warming when determined ouch scarcely", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://fat-nucleotidase.info/", "lines": [{"type": "physical", "description": "needily proud massive under", "quantity": 812945, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "... days", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}], "captureMode": "automatic", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "routing": [{"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}, {"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}, {"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}], "sequenceType": "oneoff", "mandateId": "mdt_pWUnw6pkBN", "customerId": "cst_8wmqcHMN4U", "profileId": "pfl_QkEhN94Ba", "testmode": false}
+        application/json: {"description": "yippee sun scarily dispense quintessential besides mispronounce", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://example.org/redirect", "cancelUrl": "https://example.org/cancel", "webhookUrl": "https://example.org/webhooks", "lines": [{"description": "phew boyfriend for wildly whenever", "quantity": 738493, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "<value>", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}], "billingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "shippingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "locale": "nl_NL", "method": "ideal", "issuer": "ideal_INGBNL2A", "captureMode": "manual", "captureDelay": "8 hours", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "routing": [{"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}], "sequenceType": "oneoff", "mandateId": "mdt_pWUnw6pkBN", "customerId": "cst_8wmqcHMN4U", "profileId": "pfl_QkEhN94Ba", "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "payment", "id": "tr_KQb4E3WfpA", "mode": "test", "createdAt": "2021-12-14T12:53:25+00:00", "amount": {"value": "10.00", "currency": "EUR"}, "description": "I can do payments now", "method": null, "metadata": null, "status": "open", "isCancelable": false, "expiresAt": "2021-12-14T13:08:25+00:00", "profileId": "pfl_fFdmWR2qQU", "sequenceType": "oneoff", "redirectUrl": "https://example.com", "_links": {"self": {"href": "...", "type": "application/hal+json"}, "checkout": {"href": "https://www.mollie.com/checkout/select-method/KQb4E3WfpA", "type": "text/html"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_9253561/payments/tr_KQb4E3WfpA", "type": "text/html"}, "documentation": {"href": "...", "type": "text/html"}}}
@@ -3643,7 +3656,7 @@ examples:
         query:
           include: "details.qrCode"
       requestBody:
-        application/json: {"description": "besides mispronounce best-seller browse colorfully blank greatly failing", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://serene-yogurt.name", "lines": [{"type": "physical", "description": "times whenever ew cruelty essay properly purple now", "quantity": 913385, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "... months", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}, {"type": "physical", "description": "knight till sit very vainly till but", "quantity": 306964, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "... weeks", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}, {"type": "physical", "description": "ha uh-huh instead gracefully since besides viciously", "quantity": 249174, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "... months", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}], "captureMode": "automatic", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "routing": [{"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}], "sequenceType": "oneoff", "mandateId": "mdt_pWUnw6pkBN", "customerId": "cst_8wmqcHMN4U", "profileId": "pfl_QkEhN94Ba", "testmode": false}
+        application/json: {"description": "sorrowful ha evenly kosher who absent", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://example.org/redirect", "cancelUrl": "https://example.org/cancel", "webhookUrl": "https://example.org/webhooks", "lines": [{"description": "however ornery er restfully once ha", "quantity": 891175, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "<value>", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}], "billingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "shippingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "locale": "nl_NL", "method": "ideal", "issuer": "ideal_INGBNL2A", "captureMode": "manual", "captureDelay": "8 hours", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "routing": [{"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}, {"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}, {"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}], "sequenceType": "oneoff", "mandateId": "mdt_pWUnw6pkBN", "customerId": "cst_8wmqcHMN4U", "profileId": "pfl_QkEhN94Ba", "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "payment", "id": "tr_92M7kM99Rg", "mode": "test", "createdAt": "2021-12-29T13:39:35+00:00", "amount": {"value": "10.00", "currency": "EUR"}, "description": "This is the description", "method": "creditcard", "metadata": null, "status": "open", "isCancelable": false, "expiresAt": "2021-12-29T13:56:35+00:00", "locale": "nl_NL", "profileId": "pfl_85dxyKqNHa", "sequenceType": "oneoff", "redirectUrl": "https://example.com/redirect", "webhookUrl": "https://example.com/webhook", "settlementAmount": {"value": "10.00", "currency": "EUR"}, "_links": {"self": {"href": "...", "type": "application/hal+json"}, "checkout": {"href": "https://www.mollie.com/checkout/test-mode?method=creditcard&token=3.onk00c", "type": "text/html"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_13514547/payments/tr_92M7kM99Rg", "type": "text/html"}, "documentation": {"href": "...", "type": "text/html"}}}
@@ -3652,7 +3665,7 @@ examples:
         query:
           include: "details.qrCode"
       requestBody:
-        application/json: {"description": "obtrude toady trouser colorize courageously utterly optimistic norm", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://muted-permafrost.biz/", "lines": [{"type": "physical", "description": "noisily cornet about sometimes beneath rewarding confusion", "quantity": 774135, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "... days", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}], "captureMode": "automatic", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "routing": [{"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}, {"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}], "sequenceType": "oneoff", "mandateId": "mdt_pWUnw6pkBN", "customerId": "cst_8wmqcHMN4U", "profileId": "pfl_QkEhN94Ba", "testmode": false}
+        application/json: {"description": "pish notwithstanding unsteady exaggerate once barring frenetically", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://example.org/redirect", "cancelUrl": "https://example.org/cancel", "webhookUrl": "https://example.org/webhooks", "lines": [{"description": "gracefully since besides viciously upon misfire", "quantity": 560932, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "<value>", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}, {"description": "sweetly however whoever zowie wherever vivaciously", "quantity": 118148, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "<value>", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}], "billingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "shippingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "locale": "nl_NL", "method": "ideal", "issuer": "ideal_INGBNL2A", "captureMode": "manual", "captureDelay": "8 hours", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "routing": [{"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}, {"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}], "sequenceType": "oneoff", "mandateId": "mdt_pWUnw6pkBN", "customerId": "cst_8wmqcHMN4U", "profileId": "pfl_QkEhN94Ba", "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "payment", "id": "tr_RyNpP6zd9t", "mode": "test", "createdAt": "2022-01-14T14:49:45+00:00", "amount": {"value": "10.00", "currency": "EUR"}, "description": "This is the description Order ABS123", "method": "paypal", "metadata": null, "status": "open", "isCancelable": false, "expiresAt": "2022-01-14T17:49:45+00:00", "locale": "nl_NL", "profileId": "pfl_zcfJRjkf6P", "sequenceType": "oneoff", "redirectUrl": "https://example.com/redirect", "webhookUrl": "https://example.com/webhook", "details": {"shippingAddress": {"streetAndNumber": "Keizersgracht 126", "postalCode": "5678AB", "city": "Haarlem", "region": "Noord-Holland", "country": "NL"}}, "_links": {"self": {"href": "...", "type": "application/hal+json"}, "checkout": {"href": "https://www.mollie.com/checkout/test-mode?method=paypal&token=3.ruux9k", "type": "text/html"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_7049691/payments/tr_RyNpP6zd9t", "type": "text/html"}, "documentation": {"href": "...", "type": "text/html"}}}
@@ -3661,7 +3674,7 @@ examples:
         query:
           include: "details.qrCode"
       requestBody:
-        application/json: {"description": "adventurously given mean alienated geez than ack bah", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://honorable-developmental.info", "lines": [{"type": "physical", "description": "when calmly fraudster off", "quantity": 750434, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "... months", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}, {"type": "physical", "description": "saw notwithstanding what happy er furiously throughout", "quantity": 318346, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "... weeks", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}], "captureMode": "automatic", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "routing": [{"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}], "sequenceType": "oneoff", "mandateId": "mdt_pWUnw6pkBN", "customerId": "cst_8wmqcHMN4U", "profileId": "pfl_QkEhN94Ba", "testmode": false}
+        application/json: {"description": "with who exonerate why heroine", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://example.org/redirect", "cancelUrl": "https://example.org/cancel", "webhookUrl": "https://example.org/webhooks", "lines": [{"description": "whereas when separately adventurously given mean alienated geez than", "quantity": 69518, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "<value>", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}, {"description": "ha galoshes hmph inferior save attest", "quantity": 926458, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "<value>", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}], "billingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "shippingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "locale": "nl_NL", "method": "ideal", "issuer": "ideal_INGBNL2A", "captureMode": "manual", "captureDelay": "8 hours", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "routing": [{"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}, {"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}], "sequenceType": "oneoff", "mandateId": "mdt_pWUnw6pkBN", "customerId": "cst_8wmqcHMN4U", "profileId": "pfl_QkEhN94Ba", "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "payment", "id": "tr_hSW7aK9NJA", "mode": "test", "createdAt": "2022-01-14T14:57:33+00:00", "amount": {"value": "10.00", "currency": "EUR"}, "description": "This is the description of the payment", "method": "ideal", "metadata": null, "status": "open", "isCancelable": false, "expiresAt": "2022-01-14T15:12:33+00:00", "profileId": "pfl_zcfJRjkf6P", "sequenceType": "oneoff", "redirectUrl": "https://example.com/redirect", "webhookUrl": "https://example.com/webhook", "details": {"qrCode": {"src": "https://example.com/ideal-qr/qr/get/e9b52d78-9af9-4b4c-b7f7-f63499525d22", "width": 180, "height": 180}}, "_links": {"self": {"href": "...", "type": "application/hal+json"}, "checkout": {"href": "https://www.mollie.com/checkout/select-issuer/ideal/hSW7aK9NJA", "type": "text/html"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_7049691/payments/tr_hSW7aK9NJA", "type": "text/html"}, "documentation": {"href": "...", "type": "text/html"}}}
@@ -3670,7 +3683,7 @@ examples:
         query:
           include: "details.qrCode"
       requestBody:
-        application/json: {"description": "mortally prickly youthfully dismal exalt suspension", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://fine-nudge.com", "lines": [{"type": "physical", "description": "hmph wildly if greedily if obediently yummy slowly", "quantity": 104398, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "... days", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}], "captureMode": "automatic", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "routing": [{"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}], "sequenceType": "oneoff", "mandateId": "mdt_pWUnw6pkBN", "customerId": "cst_8wmqcHMN4U", "profileId": "pfl_QkEhN94Ba", "testmode": false}
+        application/json: {"description": "roughly rue spring general clamor bludgeon", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://example.org/redirect", "cancelUrl": "https://example.org/cancel", "webhookUrl": "https://example.org/webhooks", "lines": [{"description": "into brr judgementally frozen vice", "quantity": 998519, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "<value>", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}], "billingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "shippingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "locale": "nl_NL", "method": "ideal", "issuer": "ideal_INGBNL2A", "captureMode": "manual", "captureDelay": "8 hours", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "routing": [{"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}], "sequenceType": "oneoff", "mandateId": "mdt_pWUnw6pkBN", "customerId": "cst_8wmqcHMN4U", "profileId": "pfl_QkEhN94Ba", "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "payment", "id": "tr_NQCRf7VtKP", "mode": "test", "createdAt": "2022-01-14T14:37:01+00:00", "amount": {"value": "0.00", "currency": "EUR"}, "description": "Direct debit charge as recuring payment", "method": "creditcard", "metadata": {"someProperty": "someValue", "anotherProperty": "anotherValue"}, "status": "open", "isCancelable": false, "expiresAt": "2022-01-14T14:54:01+00:00", "locale": "en_US", "profileId": "pfl_85dxyKqNHa", "customerId": "cst_tKt44u85MM", "mandateId": "mdt_KmQnsDNkq2", "sequenceType": "first", "redirectUrl": "https://example.com/redirect", "webhookUrl": "https://example.com/webhook", "_links": {"self": {"href": "...", "type": "application/hal+json"}, "checkout": {"href": "https://www.mollie.com/checkout/test-mode?method=creditcard&token=3.ivicl6", "type": "text/html"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_13514547/payments/tr_NQCRf7VtKP", "type": "text/html"}, "customer": {"href": "https://api.mollie.com/v2/customers/cst_tKt44u85MM", "type": "application/hal+json"}, "mandate": {"href": "https://api.mollie.com/v2/customers/cst_tKt44u85MM/mandates/mdt_KmQnsDNkq2", "type": "application/hal+json"}, "documentation": {"href": "...", "type": "text/html"}}}
@@ -3679,7 +3692,7 @@ examples:
         query:
           include: "details.qrCode"
       requestBody:
-        application/json: {"description": "uh-huh surprisingly horde defenseless excitedly stranger knuckle well-groomed uh-huh", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://glum-optimal.biz/", "lines": [{"type": "physical", "description": "dreamily gadzooks how by secularize unearth inquisitively", "quantity": 705252, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "... days", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}, {"type": "physical", "description": "wherever zowie flawed eek absent", "quantity": 318261, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "... days", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}], "captureMode": "automatic", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "routing": [{"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}, {"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}, {"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}], "sequenceType": "oneoff", "mandateId": "mdt_pWUnw6pkBN", "customerId": "cst_8wmqcHMN4U", "profileId": "pfl_QkEhN94Ba", "testmode": false}
+        application/json: {"description": "confute till blah vol young", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://example.org/redirect", "cancelUrl": "https://example.org/cancel", "webhookUrl": "https://example.org/webhooks", "lines": [{"description": "if greedily if obediently yummy slowly brief bliss although duh", "quantity": 807779, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "<value>", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}], "billingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "shippingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "locale": "nl_NL", "method": "ideal", "issuer": "ideal_INGBNL2A", "captureMode": "manual", "captureDelay": "8 hours", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "routing": [{"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}, {"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}, {"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}], "sequenceType": "oneoff", "mandateId": "mdt_pWUnw6pkBN", "customerId": "cst_8wmqcHMN4U", "profileId": "pfl_QkEhN94Ba", "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "payment", "id": "tr_DjH8FpPNj7", "mode": "test", "createdAt": "2022-01-04T12:44:39+00:00", "amount": {"value": "20.00", "currency": "EUR"}, "description": "Direct debit charge as recuring payment", "method": "directdebit", "metadata": {"someProperty": "someValue", "anotherProperty": "anotherValue"}, "status": "pending", "isCancelable": true, "locale": "en_US", "profileId": "pfl_85dxyKqNHa", "customerId": "cst_tKt44u85MM", "mandateId": "mdt_uDPFVsxjR4", "sequenceType": "recurring", "redirectUrl": null, "webhookUrl": "https://example.com/webhook", "settlementAmount": {"value": "20.00", "currency": "EUR"}, "details": {"transferReference": "SD49-7608-3386-2993", "creditorIdentifier": "NL08ZZZ502057730000", "consumerName": "Jane Doe", "consumerAccount": "NL55INGB0000000000", "consumerBic": "INGBNL2A", "dueDate": "2022-01-05", "signatureDate": "2022-01-04"}, "_links": {"self": {"href": "...", "type": "application/hal+json"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_13514547/payments/tr_DjH8FpPNj7", "type": "text/html"}, "changePaymentState": {"href": "https://www.mollie.com/checkout/test-mode?method=directdebit&token=3.88ss2m", "type": "text/html"}, "customer": {"href": "https://api.mollie.com/v2/customers/cst_tKt44u85MM", "type": "application/hal+json"}, "mandate": {"href": "https://api.mollie.com/v2/customers/cst_tKt44u85MM/mandates/mdt_uDPFVsxjR4", "type": "application/hal+json"}, "documentation": {"href": "...", "type": "text/html"}}}
@@ -3688,7 +3701,7 @@ examples:
         query:
           include: "details.qrCode"
       requestBody:
-        application/json: {"description": "remark likewise yuck needily duh glorious", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://elegant-midwife.name", "lines": [{"type": "physical", "description": "governance injunction object fess", "quantity": 577535, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "... weeks", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}, {"type": "physical", "description": "bungalow omelet yahoo generously boo whole lest cinder cycle", "quantity": 577736, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "... months", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}], "captureMode": "automatic", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "routing": [{"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}, {"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}], "sequenceType": "oneoff", "mandateId": "mdt_pWUnw6pkBN", "customerId": "cst_8wmqcHMN4U", "profileId": "pfl_QkEhN94Ba", "testmode": false}
+        application/json: {"description": "aha legitimize within overcooked a operating dreamily gadzooks how by", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://example.org/redirect", "cancelUrl": "https://example.org/cancel", "webhookUrl": "https://example.org/webhooks", "lines": [{"description": "horn brace within aha", "quantity": 834846, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "<value>", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}, {"description": "junior easily kettledrum besides bookcase acceptable boo although meh", "quantity": 171621, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "<value>", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}, {"description": "um elliptical governance", "quantity": 824396, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "<value>", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}], "billingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "shippingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "locale": "nl_NL", "method": "ideal", "issuer": "ideal_INGBNL2A", "captureMode": "manual", "captureDelay": "8 hours", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "routing": [{"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}, {"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}], "sequenceType": "oneoff", "mandateId": "mdt_pWUnw6pkBN", "customerId": "cst_8wmqcHMN4U", "profileId": "pfl_QkEhN94Ba", "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "payment", "id": "tr_HnJygmFKY2", "mode": "test", "createdAt": "2023-06-05T12:56:30+00:00", "amount": {"value": "10.00", "currency": "EUR"}, "description": "This is the description", "method": "creditcard", "metadata": null, "status": "open", "isCancelable": false, "expiresAt": "2023-06-05T13:11:30+00:00", "amountCaptured": {"value": "0.00", "currency": "EUR"}, "locale": "nl_NL", "profileId": "pfl_zcfJRjkf6P", "sequenceType": "oneoff", "captureMode": "manual", "redirectUrl": "https://example.com/redirect", "webhookUrl": "https://example.com/webhook", "_links": {"self": {"href": "...", "type": "application/hal+json"}, "checkout": {"href": "https://www.mollie.com/checkout/credit-card/embedded/HnJygmFKY2", "type": "text/html"}, "dashboard": {"href": "https://my.mollie.com/dashboard/org_7049691/payments/tr_HnJygmFKY2", "type": "text/html"}, "documentation": {"href": "...", "type": "text/html"}}}
@@ -3697,7 +3710,7 @@ examples:
         query:
           include: "details.qrCode"
       requestBody:
-        application/json: {"description": "crank gadzooks validity", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://impossible-best-seller.biz", "lines": [{"type": "physical", "description": "upside-down gracefully bah if valiantly", "quantity": 895937, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "... months", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}, {"type": "physical", "description": "giggle lest why mystify yippee as majestic across promptly stir-fry", "quantity": 371452, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "... months", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}], "captureMode": "automatic", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "routing": [{"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}, {"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}, {"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}], "sequenceType": "oneoff", "mandateId": "mdt_pWUnw6pkBN", "customerId": "cst_8wmqcHMN4U", "profileId": "pfl_QkEhN94Ba", "testmode": false}
+        application/json: {"description": "even frightened wherever bungalow omelet yahoo", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://example.org/redirect", "cancelUrl": "https://example.org/cancel", "webhookUrl": "https://example.org/webhooks", "lines": [{"description": "nor until cannibalise sprinkles upside-down customise", "quantity": 446341, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "<value>", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}, {"description": "crank gadzooks validity", "quantity": 521054, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "<value>", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}], "billingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "shippingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "locale": "nl_NL", "method": "ideal", "issuer": "ideal_INGBNL2A", "captureMode": "manual", "captureDelay": "8 hours", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "routing": [{"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}, {"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}], "sequenceType": "oneoff", "mandateId": "mdt_pWUnw6pkBN", "customerId": "cst_8wmqcHMN4U", "profileId": "pfl_QkEhN94Ba", "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "payment", "id": "tr_EZLbsLBhYb", "mode": "test", "createdAt": "2023-06-05T12:59:45+00:00", "amount": {"value": "10.00", "currency": "EUR"}, "description": "This is the description", "method": "creditcard", "metadata": null, "status": "open", "isCancelable": false, "expiresAt": "2023-06-05T13:14:45+00:00", "amountCaptured": {"value": "0.00", "currency": "EUR"}, "locale": "nl_NL", "profileId": "pfl_zcfJRjkf6P", "sequenceType": "oneoff", "captureMode": "automatic", "captureDelay": "2 days", "redirectUrl": "https://example.com/redirect", "webhookUrl": "https://example.com/webhook", "_links": {"self": {"href": "...", "type": "application/hal+json"}, "checkout": {"href": "https://www.mollie.com/checkout/credit-card/embedded/EZLbsLBhYb", "type": "text/html"}, "dashboard": {"href": "https://my.mollie.com/dashboard/org_7049691/payments/tr_EZLbsLBhYb", "type": "text/html"}, "documentation": {"href": "...", "type": "text/html"}}}
@@ -3706,7 +3719,7 @@ examples:
         query:
           include: "details.qrCode"
       requestBody:
-        application/json: {"description": "lest community forager merry", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://warlike-blowgun.info", "lines": [{"type": "physical", "description": "instantly hm rubbery drat than to although guard", "quantity": 634186, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "... months", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}, {"type": "physical", "description": "ah in wherever after outside that why", "quantity": 295381, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "... months", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}], "captureMode": "automatic", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "routing": [{"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}, {"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}, {"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}], "sequenceType": "oneoff", "mandateId": "mdt_pWUnw6pkBN", "customerId": "cst_8wmqcHMN4U", "profileId": "pfl_QkEhN94Ba", "testmode": false}
+        application/json: {"description": "per eek ah", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://example.org/redirect", "cancelUrl": "https://example.org/cancel", "webhookUrl": "https://example.org/webhooks", "lines": [{"description": "below commodity openly whose between cantaloupe", "quantity": 784467, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "<value>", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}], "billingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "shippingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "locale": "nl_NL", "method": "ideal", "issuer": "ideal_INGBNL2A", "captureMode": "manual", "captureDelay": "8 hours", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "routing": [{"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}], "sequenceType": "oneoff", "mandateId": "mdt_pWUnw6pkBN", "customerId": "cst_8wmqcHMN4U", "profileId": "pfl_QkEhN94Ba", "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "payment", "id": "tr_95my2qPt3H", "mode": "test", "createdAt": "2022-01-19T13:22:39+00:00", "amount": {"value": "10.00", "currency": "EUR"}, "description": "I can do payments now", "method": null, "metadata": null, "status": "open", "isCancelable": false, "expiresAt": "2022-01-19T13:37:39+00:00", "profileId": "pfl_zcfJRjkf6P", "sequenceType": "oneoff", "redirectUrl": "https://example.com", "_links": {"self": {"href": "...", "type": "application/hal+json"}, "checkout": {"href": "https://www.mollie.com/checkout/select-method/95my2qPt3H", "type": "text/html"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_7049691/payments/tr_95my2qPt3H", "type": "text/html"}, "documentation": {"href": "...", "type": "text/html"}}}
@@ -3715,7 +3728,7 @@ examples:
         query:
           include: "details.qrCode"
       requestBody:
-        application/json: {"description": "scarily boohoo astride gripper and pine strategy geez longingly physically", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://stiff-injunction.info/", "lines": [{"type": "physical", "description": "gah consequently sew boo underneath weary popularity", "quantity": 895856, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "... weeks", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}, {"type": "physical", "description": "perfectly even faithfully partially vaguely", "quantity": 373673, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "... days", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}], "captureMode": "automatic", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "routing": [{"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}, {"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}, {"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}], "sequenceType": "oneoff", "mandateId": "mdt_pWUnw6pkBN", "customerId": "cst_8wmqcHMN4U", "profileId": "pfl_QkEhN94Ba", "testmode": false}
+        application/json: {"description": "whether ultimately successfully", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://example.org/redirect", "cancelUrl": "https://example.org/cancel", "webhookUrl": "https://example.org/webhooks", "lines": [{"description": "whose inure glisten because incandescence excepting for keenly", "quantity": 348933, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "<value>", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}, {"description": "instantly hm rubbery drat than to although guard", "quantity": 634186, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "<value>", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}], "billingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "shippingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "locale": "nl_NL", "method": "ideal", "issuer": "ideal_INGBNL2A", "captureMode": "manual", "captureDelay": "8 hours", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "routing": [{"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}], "sequenceType": "oneoff", "mandateId": "mdt_pWUnw6pkBN", "customerId": "cst_8wmqcHMN4U", "profileId": "pfl_QkEhN94Ba", "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "payment", "id": "tr_jDqwhKQVgW", "mode": "test", "createdAt": "2022-01-19T13:28:30+00:00", "amount": {"value": "10.00", "currency": "EUR"}, "description": "I can do payments now", "method": null, "metadata": null, "status": "open", "isCancelable": false, "expiresAt": "2022-01-19T13:43:30+00:00", "profileId": "pfl_zcfJRjkf6P", "applicationFee": {"amount": {"value": "1.50", "currency": "EUR"}, "description": "Platform free"}, "sequenceType": "oneoff", "redirectUrl": "https://example.com", "_links": {"self": {"href": "...", "type": "application/hal+json"}, "checkout": {"href": "https://www.mollie.com/checkout/select-method/jDqwhKQVgW", "type": "text/html"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_7049691/payments/tr_jDqwhKQVgW", "type": "text/html"}, "documentation": {"href": "...", "type": "text/html"}}}
@@ -3724,7 +3737,7 @@ examples:
         query:
           include: "details.qrCode"
       requestBody:
-        application/json: {"description": "gleefully hence for merit from smog like", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://nifty-character.org/", "lines": [{"type": "physical", "description": "couch but thorny while yahoo secret", "quantity": 94011, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "... days", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}, {"type": "physical", "description": "sidetrack considering really concerning if remark sprinkles delightfully flood how", "quantity": 981587, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "... days", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}, {"type": "physical", "description": "flight where grounded nicely tough maestro when limply ouch consequently", "quantity": 40135, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "... days", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}], "captureMode": "automatic", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "routing": [{"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}], "sequenceType": "oneoff", "mandateId": "mdt_pWUnw6pkBN", "customerId": "cst_8wmqcHMN4U", "profileId": "pfl_QkEhN94Ba", "testmode": false}
+        application/json: {"description": "ah in wherever after outside that why", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://example.org/redirect", "cancelUrl": "https://example.org/cancel", "webhookUrl": "https://example.org/webhooks", "lines": [{"description": "easily boo outside straw", "quantity": 862224, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "<value>", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}], "billingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "shippingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "locale": "nl_NL", "method": "ideal", "issuer": "ideal_INGBNL2A", "captureMode": "manual", "captureDelay": "8 hours", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "routing": [{"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}, {"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}], "sequenceType": "oneoff", "mandateId": "mdt_pWUnw6pkBN", "customerId": "cst_8wmqcHMN4U", "profileId": "pfl_QkEhN94Ba", "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "payment", "id": "tr_wuGFwxKB7g", "mode": "test", "createdAt": "2022-01-21T11:16:15+00:00", "amount": {"value": "10.00", "currency": "EUR"}, "description": "My first routed payment", "method": "ideal", "metadata": null, "status": "open", "isCancelable": false, "expiresAt": "2022-01-21T11:31:15+00:00", "profileId": "pfl_85dxyKqNHa", "sequenceType": "oneoff", "redirectUrl": "https://www.mollie.com/en", "webhookUrl": "https://www.mollie.com/en", "routing": [{"id": "rt_p70g7o", "amount": {"value": "7.50", "currency": "EUR"}, "destination": {"type": "organization", "organizationId": "org_7049691"}}], "_links": {"self": {"href": "...", "type": "application/hal+json"}, "checkout": {"href": "https://www.mollie.com/checkout/select-issuer/ideal/wuGFwxKB7g", "type": "text/html"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_13514547/payments/tr_wuGFwxKB7g", "type": "text/html"}, "routes": {"href": "https://api.mollie.com/v2/payments/tr_wuGFwxKB7g/routes?testmode=true", "type": "application/hal+json"}, "documentation": {"href": "...", "type": "text/html"}}}
@@ -3733,7 +3746,7 @@ examples:
         query:
           include: "details.qrCode"
       requestBody:
-        application/json: {"description": "first supplier questioningly moralise considering", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://bitter-wriggler.name/", "lines": [{"type": "physical", "description": "despite solidly indeed so gosh uh-huh amid instead tepid", "quantity": 804720, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "... weeks", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}], "captureMode": "automatic", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "routing": [{"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}], "sequenceType": "oneoff", "mandateId": "mdt_pWUnw6pkBN", "customerId": "cst_8wmqcHMN4U", "profileId": "pfl_QkEhN94Ba", "testmode": false}
+        application/json: {"description": "happily via and shyly vainly likewise", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://example.org/redirect", "cancelUrl": "https://example.org/cancel", "webhookUrl": "https://example.org/webhooks", "lines": [{"description": "awkwardly tenderly knit or midst per", "quantity": 648501, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "<value>", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}, {"description": "seemingly severe forgery wisecrack or anti settler", "quantity": 533857, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "<value>", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}, {"description": "lightly ick knottily upon hence at before", "quantity": 554781, "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "recurring": {"interval": "<value>", "amount": {"currency": "EUR", "value": "10.00"}}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatAmount": {"currency": "EUR", "value": "10.00"}, "categories": ["meal", "eco"]}], "billingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "shippingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "locale": "nl_NL", "method": "ideal", "issuer": "ideal_INGBNL2A", "captureMode": "manual", "captureDelay": "8 hours", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "routing": [{"amount": {"currency": "EUR", "value": "10.00"}, "destination": {"organizationId": "org_12345678"}}], "sequenceType": "oneoff", "mandateId": "mdt_pWUnw6pkBN", "customerId": "cst_8wmqcHMN4U", "profileId": "pfl_QkEhN94Ba", "testmode": false}
       responses:
         "422":
           application/hal+json: {"status": 422, "title": "Unprocessable Entity", "detail": "The 'description' field is missing", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
@@ -3784,7 +3797,6 @@ examples:
     get-payment-200-1:
       parameters:
         path:
-          id: "tr_5B8cwPMGnU6qLbRvo7qEZo"
           paymentId: "tr_5B8cwPMGnU6qLbRvo7qEZo"
         query:
           include: "details.qrCode"
@@ -3792,11 +3804,10 @@ examples:
           testmode: false
       responses:
         "200":
-          application/hal+json: {"resource": "payment", "id": "tr_5B8cwPMGnU6qLbRvo7qEZo", "mode": "live", "description": "Order #12345", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://webshop.example.org/order/12345/", "webhookUrl": "https://webshop.example.org/payments/webhook/", "metadata": "{\"order_id\":12345}", "captureMode": "automatic", "sequenceType": "oneoff", "profileId": "pfl_QkEhN94Ba", "status": "open", "isCancelable": false, "createdAt": "2024-03-20T09:13:37.0Z", "expiresAt": "2024-03-20T09:28:37.0Z", "_links": {"self": {"type": "application/hal+json"}, "checkout": {"href": "https://www.mollie.com/checkout/select-method/7UhSN1zuXS", "type": "text/html"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_12345678/payments/tr_5B8cwPMGnU6qLbRvo7qEZo", "type": "text/html"}, "documentation": {"type": "text/html"}}}
+          application/hal+json: {"resource": "payment", "id": "tr_5B8cwPMGnU6qLbRvo7qEZo", "mode": "live", "description": "Order #12345", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://webshop.example.org/order/12345/", "webhookUrl": "https://webshop.example.org/payments/webhook/", "metadata": "{\"order_id\":12345}", "sequenceType": "oneoff", "profileId": "pfl_QkEhN94Ba", "status": "open", "isCancelable": false, "createdAt": "2024-03-20T09:13:37.0Z", "expiresAt": "2024-03-20T09:28:37.0Z", "_links": {"self": {"type": "application/hal+json"}, "checkout": {"href": "https://www.mollie.com/checkout/select-method/7UhSN1zuXS", "type": "text/html"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_12345678/payments/tr_5B8cwPMGnU6qLbRvo7qEZo", "type": "text/html"}, "documentation": {"type": "text/html"}}}
     get-payment-200-2:
       parameters:
         path:
-          id: "tr_5B8cwPMGnU6qLbRvo7qEZo"
           paymentId: "tr_5B8cwPMGnU6qLbRvo7qEZo"
         query:
           include: "details.qrCode"
@@ -3804,11 +3815,10 @@ examples:
           testmode: false
       responses:
         "200":
-          application/hal+json: {"resource": "payment", "id": "tr_hSW7aK9NJA", "mode": "test", "description": "This is the description of the payment", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://example.com/redirect", "webhookUrl": "https://example.com/webhook", "method": "ideal", "metadata": null, "captureMode": "automatic", "sequenceType": "oneoff", "profileId": "pfl_zcfJRjkf6P", "status": "open", "isCancelable": false, "createdAt": "2022-01-14T14:57:33+00:00", "expiresAt": "2022-01-14T15:12:33+00:00", "_links": {"self": {"type": "application/hal+json"}, "checkout": {"href": "https://www.mollie.com/checkout/select-issuer/ideal/hSW7aK9NJA", "type": "text/html"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_7049691/payments/tr_hSW7aK9NJA", "type": "text/html"}, "documentation": {"type": "text/html"}}}
+          application/hal+json: {"resource": "payment", "id": "tr_hSW7aK9NJA", "mode": "test", "description": "This is the description of the payment", "amount": {"currency": "EUR", "value": "10.00"}, "redirectUrl": "https://example.com/redirect", "webhookUrl": "https://example.com/webhook", "method": "ideal", "metadata": null, "sequenceType": "oneoff", "profileId": "pfl_zcfJRjkf6P", "status": "open", "isCancelable": false, "createdAt": "2022-01-14T14:57:33+00:00", "expiresAt": "2022-01-14T15:12:33+00:00", "_links": {"self": {"type": "application/hal+json"}, "checkout": {"href": "https://www.mollie.com/checkout/select-issuer/ideal/hSW7aK9NJA", "type": "text/html"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_7049691/payments/tr_hSW7aK9NJA", "type": "text/html"}, "documentation": {"type": "text/html"}}}
     get-payment-200-3:
       parameters:
         path:
-          id: "tr_5B8cwPMGnU6qLbRvo7qEZo"
           paymentId: "tr_5B8cwPMGnU6qLbRvo7qEZo"
         query:
           include: "details.qrCode"
@@ -3820,7 +3830,6 @@ examples:
     "":
       parameters:
         path:
-          id: "tr_5B8cwPMGnU6qLbRvo7qEZo"
           paymentId: "tr_5B8cwPMGnU6qLbRvo7qEZo"
         query:
           include: "details.qrCode"
@@ -3833,28 +3842,27 @@ examples:
     update-payment-200-1:
       parameters:
         path:
-          id: "tr_5B8cwPMGnU6qLbRvo7qEZo"
+          paymentId: "tr_5B8cwPMGnU6qLbRvo7qEZo"
       responses:
         "200":
           application/hal+json: {"resource": "payment", "id": "tr_5B8cwPMGnU6qLbRvo7qEZo", "mode": "live", "amount": {"value": "10.00", "currency": "EUR"}, "description": "Order #98765", "sequenceType": "oneoff", "redirectUrl": "https://webshop.example.org/order/98765/", "webhookUrl": "https://example.org/webshop/payments/webhook/", "metadata": {"order_id": 98765}, "profileId": "pfl_QkEhN94Ba", "status": "open", "isCancelable": false, "createdAt": "2024-03-20T09:13:37.0Z", "expiresAt": "2024-03-20T09:28:37.0Z", "_links": {"self": {"href": "...", "type": "application/hal+json"}, "checkout": {"href": "https://www.mollie.com/checkout/select-method/7UhSN1zuXS", "type": "text/html"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_12345678/payments/tr_5B8cwPMGnU6qLbRvo7qEZo", "type": "text/html"}, "documentation": {"href": "...", "type": "text/html"}}}
     update-payment-200-2:
       parameters:
         path:
-          id: "tr_5B8cwPMGnU6qLbRvo7qEZo"
+          paymentId: "tr_5B8cwPMGnU6qLbRvo7qEZo"
       responses:
         "200":
           application/hal+json: {"resource": "payment", "id": "tr_FE9UrEs9zU", "mode": "test", "createdAt": "2021-12-29T13:01:35+00:00", "amount": {"value": "10.00", "currency": "EUR"}, "description": "Description", "method": "ideal", "metadata": {"someProperty": "someValue", "anotherProperty": "anotherValue"}, "status": "open", "isCancelable": false, "expiresAt": "2021-12-29T13:24:06+00:00", "locale": "en_GB", "restrictPaymentMethodsToCountry": "NL", "profileId": "pfl_85dxyKqNHa", "sequenceType": "oneoff", "redirectUrl": "https://example.com", "webhookUrl": "https://example.com/webhook", "settlementAmount": {"value": "10.00", "currency": "EUR"}, "_links": {"self": {"href": "...", "type": "application/hal+json"}, "checkout": {"href": "https://www.mollie.com/checkout/test-mode?method=ideal&token=3.y5vg7k", "type": "text/html"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_13514547/payments/tr_FE9UrEs9zU", "type": "text/html"}, "documentation": {"href": "...", "type": "text/html"}}}
     update-payment-200-3:
       parameters:
         path:
-          id: "tr_5B8cwPMGnU6qLbRvo7qEZo"
+          paymentId: "tr_5B8cwPMGnU6qLbRvo7qEZo"
       responses:
         "200":
           application/hal+json: {"resource": "payment", "id": "tr_FE9UrEs9zU", "mode": "test", "createdAt": "2021-12-29T13:01:35+00:00", "amount": {"value": "10.00", "currency": "EUR"}, "description": "Updated payment description", "method": "ideal", "metadata": {"someProperty": "someValue", "anotherProperty": "anotherValue"}, "status": "open", "isCancelable": false, "expiresAt": "2021-12-29T13:24:06+00:00", "locale": "en_GB", "restrictPaymentMethodsToCountry": "NL", "profileId": "pfl_85dxyKqNHa", "sequenceType": "oneoff", "redirectUrl": "https://example.com", "webhookUrl": "https://example.com/webhook", "settlementAmount": {"value": "10.00", "currency": "EUR"}, "_links": {"self": {"href": "...", "type": "application/hal+json"}, "checkout": {"href": "https://www.mollie.com/checkout/test-mode?method=ideal&token=3.y5vg7k", "type": "text/html"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_13514547/payments/tr_FE9UrEs9zU", "type": "text/html"}, "documentation": {"href": "...", "type": "text/html"}}}
     "":
       parameters:
         path:
-          id: "tr_5B8cwPMGnU6qLbRvo7qEZo"
           paymentId: "tr_5B8cwPMGnU6qLbRvo7qEZo"
       responses:
         "404":
@@ -3865,7 +3873,7 @@ examples:
     cancel-payment-200-1:
       parameters:
         path:
-          id: "tr_5B8cwPMGnU6qLbRvo7qEZo"
+          paymentId: "tr_5B8cwPMGnU6qLbRvo7qEZo"
         query:
           testmode: false
       responses:
@@ -3874,17 +3882,28 @@ examples:
     "":
       parameters:
         path:
-          id: "tr_5B8cwPMGnU6qLbRvo7qEZo"
+          paymentId: "tr_5B8cwPMGnU6qLbRvo7qEZo"
+        query:
+          testmode: false
+      responses:
+        "404":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "No entity exists with token '7UhSN1zuXS'", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+        "422":
+          application/hal+json: {"status": 422, "title": "Unprocessable Entity", "detail": "The payment cannot be cancelled", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+  release-authorization:
+    "":
+      parameters:
+        path:
           paymentId: "tr_5B8cwPMGnU6qLbRvo7qEZo"
         query:
           testmode: false
       responses:
         "202":
-          application/hal+json: {"resource": "payment", "id": "tr_WDqYK6vllg", "mode": "live", "amount": {"value": "35.07", "currency": "EUR"}, "description": "Order 33", "method": "banktransfer", "details": {"bankName": "Stichting Mollie Payments", "bankAccount": "NL53ABNA0627535577", "bankBic": "ABNANL2A", "transferReference": "RF12-3456-7890-1234"}, "sequenceType": "oneoff", "redirectUrl": "https://webshop.example.org/order/33/", "metadata": null, "profileId": "pfl_QkEhN94Ba", "status": "canceled", "createdAt": "2024-03-20T09:13:37.0Z", "canceledAt": "2024-03-20T10:19:15.0Z", "_links": {"self": {"href": "...", "type": "application/hal+json"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_12345678/payments/tr_WDqYK6vllg", "type": "text/html"}, "documentation": {"href": "...", "type": "text/html"}}}
+          application/hal+json: {}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "No entity exists with token '7UhSN1zuXS'", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
         "422":
-          application/hal+json: {"status": 422, "title": "Unprocessable Entity", "detail": "The payment cannot be cancelled", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+          application/hal+json: {"status": 422, "title": "Unprocessable Entity", "detail": "Authorization cannot be released because the payment is not in the authorized\nstate.", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   list-methods:
     list-methods-200-1:
       parameters:
@@ -4977,7 +4996,7 @@ examples:
         path:
           customerId: "cst_8wmqcHMN4U"
       requestBody:
-        application/json: {"amount": {"currency": "EUR", "value": "10.00"}, "interval": "... weeks", "description": "delightfully fumigate convection though zowie up bulky electronics", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "profileId": "pfl_QkEhN94Ba", "testmode": false}
+        application/json: {"amount": {"currency": "EUR", "value": "10.00"}, "interval": "<value>", "description": "yuck vice between gee ugh ha", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "profileId": "pfl_QkEhN94Ba", "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "subscription", "id": "sub_rVKGtNd6s3", "mode": "live", "amount": {"currency": "EUR", "value": "25.00"}, "times": 4, "timesRemaining": 4, "interval": "3 months", "startDate": "2023-06-01", "nextPaymentDate": "2023-09-01", "description": "Quarterly payment", "method": null, "status": "active", "webhookUrl": "https://webshop.example.org/payments/webhook", "customerId": "cst_stTC2WHAuS", "mandateId": "mdt_38HS4fsS", "createdAt": "2023-04-06T13:10:19.0Z", "_links": {"self": {"href": "...", "type": "application/hal+json"}, "customer": {"href": "https://api.mollie.com/v2/customers/cst_stTC2WHAuS", "type": "application/hal+json"}, "documentation": {"href": "...", "type": "text/html"}}}
@@ -4986,7 +5005,7 @@ examples:
         path:
           customerId: "cst_8wmqcHMN4U"
       requestBody:
-        application/json: {"amount": {"currency": "EUR", "value": "10.00"}, "interval": "... weeks", "description": "yuck forager beneath please shadowy foodstuffs welcome", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "profileId": "pfl_QkEhN94Ba", "testmode": false}
+        application/json: {"amount": {"currency": "EUR", "value": "10.00"}, "interval": "<value>", "description": "bulky electronics through for ick superb nudge embalm simple ouch", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}}, "profileId": "pfl_QkEhN94Ba", "testmode": false}
       responses:
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "No entity exists with token '7UhSN1zuXS'", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
@@ -5142,19 +5161,5 @@ examples:
       responses:
         "400":
           application/hal+json: {"status": 400, "title": "Bad Request", "detail": "Invalid cursor value", "field": "from", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
-  release-authorization:
-    "":
-      parameters:
-        path:
-          paymentId: "tr_5B8cwPMGnU6qLbRvo7qEZo"
-        query:
-          testmode: false
-      responses:
-        "202":
-          application/hal+json: {}
-        "404":
-          application/hal+json: {"status": 404, "title": "Not Found", "detail": "No entity exists with token '7UhSN1zuXS'", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
-        "422":
-          application/hal+json: {"status": 422, "title": "Unprocessable Entity", "detail": "Authorization cannot be released because the payment is not in the authorized\nstate.", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.0
 generatedTests: {}

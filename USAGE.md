@@ -2,24 +2,24 @@
 ```java
 package hello.world;
 
-import com.mollie.mollie.Mollie;
+import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ListBalancesBalancesAPIResponseBody;
+import com.mollie.mollie.models.errors.ListBalancesBalancesResponseBody;
 import com.mollie.mollie.models.errors.ListBalancesResponseBody;
 import com.mollie.mollie.models.operations.ListBalancesResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ListBalancesResponseBody, ListBalancesBalancesAPIResponseBody, Exception {
+    public static void main(String[] args) throws ListBalancesResponseBody, ListBalancesBalancesResponseBody, Exception {
 
-        Mollie sdk = Mollie.builder()
+        Client sdk = Client.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
             .build();
 
-        ListBalancesResponse res = sdk.balancesAPI().listBalances()
+        ListBalancesResponse res = sdk.balances().list()
                 .currency("EUR")
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .limit(50L)

@@ -6,6 +6,8 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.utils.LazySingletonValue;
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.String;
@@ -19,6 +21,7 @@ public class ListProfilesRequestBuilder {
                             "limit",
                             "50",
                             new TypeReference<JsonNullable<Long>>() {});
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallListProfiles sdk;
 
     public ListProfilesRequestBuilder(SDKMethodInterfaces.MethodCallListProfiles sdk) {
@@ -48,14 +51,29 @@ public class ListProfilesRequestBuilder {
         this.limit = limit;
         return this;
     }
+                
+    public ListProfilesRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public ListProfilesRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public ListProfilesResponse call() throws Exception {
         if (limit == null) {
             limit = _SINGLETON_VALUE_Limit.value();
-        }
-        return sdk.listProfiles(
+        }        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.list(
             from,
-            limit);
+            limit,
+            options);
     }
 
     private static final LazySingletonValue<JsonNullable<Long>> _SINGLETON_VALUE_Limit =

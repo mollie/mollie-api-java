@@ -4,17 +4,37 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
+import com.mollie.mollie.utils.Utils;
+import java.util.Optional;
 
 public class GetCurrentProfileRequestBuilder {
 
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallGetCurrentProfile sdk;
 
     public GetCurrentProfileRequestBuilder(SDKMethodInterfaces.MethodCallGetCurrentProfile sdk) {
         this.sdk = sdk;
     }
+                
+    public GetCurrentProfileRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public GetCurrentProfileRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public GetCurrentProfileResponse call() throws Exception {
-
-        return sdk.getCurrentProfileDirect();
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.getCurrent(
+            options);
     }
 }

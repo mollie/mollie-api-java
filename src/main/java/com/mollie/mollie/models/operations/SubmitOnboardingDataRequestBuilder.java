@@ -4,12 +4,15 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.util.Optional;
 
 public class SubmitOnboardingDataRequestBuilder {
 
     private Optional<? extends SubmitOnboardingDataRequestBody> request = Optional.empty();
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallSubmitOnboardingData sdk;
 
     public SubmitOnboardingDataRequestBuilder(SDKMethodInterfaces.MethodCallSubmitOnboardingData sdk) {
@@ -27,10 +30,25 @@ public class SubmitOnboardingDataRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public SubmitOnboardingDataRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public SubmitOnboardingDataRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public SubmitOnboardingDataResponse call() throws Exception {
-
-        return sdk.submitOnboardingData(
-            request);
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.create(
+            request,
+            options);
     }
 }

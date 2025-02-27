@@ -4,12 +4,15 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.util.Optional;
 
 public class CreateCustomerRequestBuilder {
 
     private Optional<? extends CreateCustomerRequestBody> request = Optional.empty();
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCreateCustomer sdk;
 
     public CreateCustomerRequestBuilder(SDKMethodInterfaces.MethodCallCreateCustomer sdk) {
@@ -27,10 +30,25 @@ public class CreateCustomerRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public CreateCustomerRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public CreateCustomerRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public CreateCustomerResponse call() throws Exception {
-
-        return sdk.createCustomer(
-            request);
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.create(
+            request,
+            options);
     }
 }

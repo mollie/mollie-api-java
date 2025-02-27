@@ -4,11 +4,15 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
+import java.util.Optional;
 
 public class ListMethodsRequestBuilder {
 
     private ListMethodsRequest request;
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallListMethods sdk;
 
     public ListMethodsRequestBuilder(SDKMethodInterfaces.MethodCallListMethods sdk) {
@@ -20,10 +24,25 @@ public class ListMethodsRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public ListMethodsRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public ListMethodsRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public ListMethodsResponse call() throws Exception {
-
-        return sdk.listMethods(
-            request);
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.list(
+            request,
+            options);
     }
 }

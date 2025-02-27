@@ -4,13 +4,17 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.String;
+import java.util.Optional;
 
 public class DisableMethodRequestBuilder {
 
     private String profileId;
     private String id;
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallDisableMethod sdk;
 
     public DisableMethodRequestBuilder(SDKMethodInterfaces.MethodCallDisableMethod sdk) {
@@ -28,11 +32,26 @@ public class DisableMethodRequestBuilder {
         this.id = id;
         return this;
     }
+                
+    public DisableMethodRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public DisableMethodRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public DisableMethodResponse call() throws Exception {
-
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
         return sdk.disableMethod(
             profileId,
-            id);
+            id,
+            options);
     }
 }

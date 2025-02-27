@@ -4,6 +4,8 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.String;
 import java.util.Optional;
@@ -12,6 +14,7 @@ public class ManageOrderLinesRequestBuilder {
 
     private String orderId;
     private Optional<? extends ManageOrderLinesRequestBody> requestBody = Optional.empty();
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallManageOrderLines sdk;
 
     public ManageOrderLinesRequestBuilder(SDKMethodInterfaces.MethodCallManageOrderLines sdk) {
@@ -35,11 +38,26 @@ public class ManageOrderLinesRequestBuilder {
         this.requestBody = requestBody;
         return this;
     }
+                
+    public ManageOrderLinesRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public ManageOrderLinesRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public ManageOrderLinesResponse call() throws Exception {
-
-        return sdk.manageOrderLines(
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.manageLines(
             orderId,
-            requestBody);
+            requestBody,
+            options);
     }
 }

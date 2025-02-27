@@ -4,6 +4,7 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.Long;
@@ -16,382 +17,435 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallListBalances {
-        ListBalancesResponse listBalances(
+        ListBalancesResponse list(
             JsonNullable<String> currency,
             Optional<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetBalance {
-        GetBalanceResponse getBalance(
+        GetBalanceResponse get(
             String id,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetPrimaryBalance {
-        GetPrimaryBalanceResponse getPrimaryBalanceDirect() throws Exception;
+        GetPrimaryBalanceResponse getPrimary(
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetBalanceReport {
-        GetBalanceReportResponse getBalanceReport(
-            GetBalanceReportRequest request) throws Exception;
+        GetBalanceReportResponse getReport(
+            GetBalanceReportRequest request,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallListBalanceTransactions {
-        ListBalanceTransactionsResponse listBalanceTransactions(
+        ListBalanceTransactionsResponse listTransactions(
             String balanceId,
             Optional<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallListSettlements {
-        ListSettlementsResponse listSettlements(
+        ListSettlementsResponse list(
             Optional<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<String> balanceId) throws Exception;
+            JsonNullable<String> balanceId,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetSettlement {
-        GetSettlementResponse getSettlement(
-            String id) throws Exception;
+        GetSettlementResponse get(
+            String id,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetOpenSettlement {
-        GetOpenSettlementResponse getOpenSettlementDirect() throws Exception;
+        GetOpenSettlementResponse getOpen(
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetNextSettlement {
-        GetNextSettlementResponse getNextSettlementDirect() throws Exception;
+        GetNextSettlementResponse getNext(
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetSettlementPayments {
-        GetSettlementPaymentsResponse getSettlementPayments(
-            String settlementId) throws Exception;
+        GetSettlementPaymentsResponse getPayments(
+            String settlementId,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetSettlementCaptures {
-        GetSettlementCapturesResponse getSettlementCaptures(
-            String settlementId) throws Exception;
+        GetSettlementCapturesResponse getCaptures(
+            String settlementId,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetSettlementRefunds {
-        GetSettlementRefundsResponse getSettlementRefunds(
-            String settlementId) throws Exception;
+        GetSettlementRefundsResponse getRefunds(
+            String settlementId,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetSettlementChargebacks {
-        GetSettlementChargebacksResponse getSettlementChargebacks(
-            String settlementId) throws Exception;
+        GetSettlementChargebacksResponse getChargebacks(
+            String settlementId,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallListInvoices {
-        ListInvoicesResponse listInvoices(
-            JsonNullable<String> reference,
-            JsonNullable<String> year,
-            Optional<String> from,
-            JsonNullable<Long> limit) throws Exception;
+        ListInvoicesResponse list(
+            ListInvoicesRequest request,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetInvoice {
-        GetInvoiceResponse getInvoice(
-            String id) throws Exception;
+        GetInvoiceResponse get(
+            String id,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallListPermissions {
-        ListPermissionsResponse listPermissionsDirect() throws Exception;
+        ListPermissionsResponse list(
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetPermission {
-        GetPermissionResponse getPermission(
+        GetPermissionResponse get(
             String id,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetOrganization {
-        GetOrganizationResponse getOrganization(
+        GetOrganizationResponse get(
             String id,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetCurrentOrganization {
-        GetCurrentOrganizationResponse getCurrentOrganizationDirect() throws Exception;
+        GetCurrentOrganizationResponse getCurrent(
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetPartnerStatus {
-        GetPartnerStatusResponse getPartnerStatusDirect() throws Exception;
+        GetPartnerStatusResponse getPartnerStatus(
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallCreateProfile {
-        CreateProfileResponse createProfile(
-            CreateProfileRequestBody request) throws Exception;
+        CreateProfileResponse create(
+            CreateProfileRequestBody request,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallListProfiles {
-        ListProfilesResponse listProfiles(
+        ListProfilesResponse list(
             Optional<String> from,
-            JsonNullable<Long> limit) throws Exception;
+            JsonNullable<Long> limit,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetProfile {
-        GetProfileResponse getProfile(
+        GetProfileResponse get(
             String id,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallUpdateProfile {
-        UpdateProfileResponse updateProfile(
+        UpdateProfileResponse update(
             String id,
-            UpdateProfileRequestBody requestBody) throws Exception;
+            UpdateProfileRequestBody requestBody,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallDeleteProfile {
-        DeleteProfileResponse deleteProfile(
-            String id) throws Exception;
+        DeleteProfileResponse delete(
+            String id,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetCurrentProfile {
-        GetCurrentProfileResponse getCurrentProfileDirect() throws Exception;
+        GetCurrentProfileResponse getCurrent(
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetOnboardingStatus {
-        GetOnboardingStatusResponse getOnboardingStatusDirect() throws Exception;
+        GetOnboardingStatusResponse get(
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallSubmitOnboardingData {
-        SubmitOnboardingDataResponse submitOnboardingData(
-            Optional<? extends SubmitOnboardingDataRequestBody> request) throws Exception;
+        SubmitOnboardingDataResponse create(
+            Optional<? extends SubmitOnboardingDataRequestBody> request,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallListCapabilities {
-        ListCapabilitiesResponse listCapabilitiesDirect() throws Exception;
+        ListCapabilitiesResponse list(
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallListClients {
-        ListClientsResponse listClients(
+        ListClientsResponse list(
             JsonNullable<String> embed,
             Optional<String> from,
-            JsonNullable<Long> limit) throws Exception;
+            JsonNullable<Long> limit,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetClient {
-        GetClientResponse getClient(
+        GetClientResponse get(
             String id,
-            JsonNullable<String> embed) throws Exception;
+            JsonNullable<String> embed,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallCreateClientLink {
-        CreateClientLinkResponse createClientLink(
-            Optional<? extends CreateClientLinkRequestBody> request) throws Exception;
+        CreateClientLinkResponse create(
+            Optional<? extends CreateClientLinkRequestBody> request,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallCreateOrder {
-        CreateOrderResponse createOrder(
+        CreateOrderResponse create(
             JsonNullable<String> embed,
-            Optional<? extends CreateOrderRequestBody> requestBody) throws Exception;
+            Optional<? extends CreateOrderRequestBody> requestBody,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallListOrders {
-        ListOrdersResponse listOrders(
-            ListOrdersRequest request) throws Exception;
+        ListOrdersResponse list(
+            ListOrdersRequest request,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetOrder {
-        GetOrderResponse getOrder(
+        GetOrderResponse get(
             String id,
             JsonNullable<String> embed,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallUpdateOrder {
-        UpdateOrderResponse updateOrder(
+        UpdateOrderResponse update(
             String id,
-            Optional<? extends UpdateOrderRequestBody> requestBody) throws Exception;
+            Optional<? extends UpdateOrderRequestBody> requestBody,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallCancelOrder {
-        CancelOrderResponse cancelOrder(
+        CancelOrderResponse cancel(
             String id,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallManageOrderLines {
-        ManageOrderLinesResponse manageOrderLines(
+        ManageOrderLinesResponse manageLines(
             String orderId,
-            Optional<? extends ManageOrderLinesRequestBody> requestBody) throws Exception;
+            Optional<? extends ManageOrderLinesRequestBody> requestBody,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallCancelOrderLines {
-        CancelOrderLinesResponse cancelOrderLines(
+        CancelOrderLinesResponse cancelLines(
             String orderId,
-            Optional<? extends CancelOrderLinesRequestBody> requestBody) throws Exception;
+            Optional<? extends CancelOrderLinesRequestBody> requestBody,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallUpdateOrderLine {
-        UpdateOrderLineResponse updateOrderLine(
+        UpdateOrderLineResponse updateLine(
             String orderId,
             String id,
-            Optional<? extends UpdateOrderLineRequestBody> requestBody) throws Exception;
+            Optional<? extends UpdateOrderLineRequestBody> requestBody,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallCreateOrderPayment {
-        CreateOrderPaymentResponse createOrderPayment(
+        CreateOrderPaymentResponse createPayment(
             String orderId,
-            Optional<? extends Object> requestBody) throws Exception;
+            Optional<? extends Object> requestBody,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallCreateShipment {
-        CreateShipmentResponse createShipment(
+        CreateShipmentResponse create(
             String orderId,
-            Optional<? extends CreateShipmentRequestBody> requestBody) throws Exception;
+            Optional<? extends CreateShipmentRequestBody> requestBody,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallListShipments {
-        ListShipmentsResponse listShipments(
+        ListShipmentsResponse list(
             String orderId,
             Optional<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetShipment {
-        GetShipmentResponse getShipment(
+        GetShipmentResponse get(
             String orderId,
             String id,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallUpdateShipment {
-        UpdateShipmentResponse updateShipment(
+        UpdateShipmentResponse update(
             String orderId,
             String id,
             JsonNullable<Boolean> testmode,
-            Optional<? extends UpdateShipmentRequestBody> requestBody) throws Exception;
+            Optional<? extends UpdateShipmentRequestBody> requestBody,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallCreatePayment {
-        CreatePaymentResponse createPayment(
+        CreatePaymentResponse create(
             JsonNullable<String> include,
-            Optional<? extends CreatePaymentRequestBody> requestBody) throws Exception;
+            Optional<? extends CreatePaymentRequestBody> requestBody,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallListPayments {
-        ListPaymentsResponse listPayments(
+        ListPaymentsResponse list(
             Optional<String> from,
             JsonNullable<Long> limit,
             JsonNullable<String> sort,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetPayment {
-        GetPaymentResponse getPayment(
+        GetPaymentResponse get(
             String paymentId,
             JsonNullable<String> include,
             JsonNullable<String> embed,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallUpdatePayment {
-        UpdatePaymentResponse updatePayment(
+        UpdatePaymentResponse update(
             String paymentId,
-            Optional<? extends UpdatePaymentRequestBody> requestBody) throws Exception;
+            Optional<? extends UpdatePaymentRequestBody> requestBody,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallCancelPayment {
-        CancelPaymentResponse cancelPayment(
+        CancelPaymentResponse cancel(
             String paymentId,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallReleaseAuthorization {
         ReleaseAuthorizationResponse releaseAuthorization(
             String paymentId,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallListMethods {
-        ListMethodsResponse listMethods(
-            ListMethodsRequest request) throws Exception;
+        ListMethodsResponse list(
+            ListMethodsRequest request,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallListAllMethods {
-        ListAllMethodsResponse listAllMethods(
+        ListAllMethodsResponse listAll(
             Optional<String> locale,
             Optional<? extends ListAllMethodsQueryParamAmount> amount,
-            JsonNullable<String> include) throws Exception;
+            JsonNullable<String> include,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetMethod {
-        GetMethodResponse getMethod(
-            GetMethodRequest request) throws Exception;
+        GetMethodResponse get(
+            GetMethodRequest request,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallEnableMethod {
         EnableMethodResponse enableMethod(
             String profileId,
-            String id) throws Exception;
+            String id,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallDisableMethod {
         DisableMethodResponse disableMethod(
             String profileId,
-            String id) throws Exception;
+            String id,
+            Optional<Options> options) throws Exception;
     }
 
 
@@ -400,7 +454,8 @@ public class SDKMethodInterfaces {
             String profileId,
             String methodId,
             String id,
-            Optional<? extends EnableMethodIssuerRequestBody> requestBody) throws Exception;
+            Optional<? extends EnableMethodIssuerRequestBody> requestBody,
+            Optional<Options> options) throws Exception;
     }
 
 
@@ -408,313 +463,356 @@ public class SDKMethodInterfaces {
         DisableMethodIssuerResponse disableMethodIssuer(
             String profileId,
             String methodId,
-            String id) throws Exception;
+            String id,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallCreateRefund {
-        CreateRefundResponse createRefund(
+        CreateRefundResponse create(
             String paymentId,
-            Optional<? extends CreateRefundRequestBody> requestBody) throws Exception;
+            Optional<? extends CreateRefundRequestBody> requestBody,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallListRefunds {
-        ListRefundsResponse listRefunds(
-            ListRefundsRequest request) throws Exception;
+        ListRefundsResponse list(
+            ListRefundsRequest request,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetRefund {
-        GetRefundResponse getRefund(
+        GetRefundResponse get(
             String paymentId,
             String id,
             JsonNullable<String> include,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallCancelRefund {
-        CancelRefundResponse cancelRefund(
+        CancelRefundResponse cancel(
             String paymentId,
             String id,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallCreateOrderRefund {
-        CreateOrderRefundResponse createOrderRefund(
+        CreateOrderRefundResponse createOrder(
             String orderId,
-            Optional<? extends CreateOrderRefundRequestBody> requestBody) throws Exception;
+            Optional<? extends CreateOrderRefundRequestBody> requestBody,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallListOrderRefunds {
-        ListOrderRefundsResponse listOrderRefunds(
-            ListOrderRefundsRequest request) throws Exception;
+        ListOrderRefundsResponse listOrder(
+            ListOrderRefundsRequest request,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallListAllRefunds {
-        ListAllRefundsResponse listAllRefunds(
-            ListAllRefundsRequest request) throws Exception;
+        ListAllRefundsResponse listAll(
+            ListAllRefundsRequest request,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallListChargebacks {
-        ListChargebacksResponse listChargebacks(
-            ListChargebacksRequest request) throws Exception;
+        ListChargebacksResponse list(
+            ListChargebacksRequest request,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetChargeback {
-        GetChargebackResponse getChargeback(
+        GetChargebackResponse get(
             String paymentId,
             String id,
             JsonNullable<String> include,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallListAllChargebacks {
-        ListAllChargebacksResponse listAllChargebacks(
-            ListAllChargebacksRequest request) throws Exception;
+        ListAllChargebacksResponse listAll(
+            ListAllChargebacksRequest request,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallCreateCapture {
-        CreateCaptureResponse createCapture(
+        CreateCaptureResponse create(
             String paymentId,
-            Optional<? extends CreateCaptureRequestBody> requestBody) throws Exception;
+            Optional<? extends CreateCaptureRequestBody> requestBody,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallListCaptures {
-        ListCapturesResponse listCaptures(
-            ListCapturesRequest request) throws Exception;
+        ListCapturesResponse list(
+            ListCapturesRequest request,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetCapture {
-        GetCaptureResponse getCapture(
+        GetCaptureResponse get(
             String paymentId,
             String id,
             JsonNullable<String> include,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallRequestApplePayPaymentSession {
         RequestApplePayPaymentSessionResponse requestApplePayPaymentSession(
-            Optional<? extends RequestApplePayPaymentSessionRequestBody> request) throws Exception;
+            Optional<? extends RequestApplePayPaymentSessionRequestBody> request,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallCreatePaymentLink {
-        CreatePaymentLinkResponse createPaymentLink(
-            Optional<? extends CreatePaymentLinkRequestBody> request) throws Exception;
+        CreatePaymentLinkResponse create(
+            Optional<? extends CreatePaymentLinkRequestBody> request,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallListPaymentLinks {
-        ListPaymentLinksResponse listPaymentLinks(
+        ListPaymentLinksResponse list(
             Optional<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetPaymentLink {
-        GetPaymentLinkResponse getPaymentLink(
+        GetPaymentLinkResponse get(
             String id,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallUpdatePaymentLink {
-        UpdatePaymentLinkResponse updatePaymentLink(
+        UpdatePaymentLinkResponse update(
             String id,
             JsonNullable<Boolean> testmode,
-            Optional<? extends UpdatePaymentLinkRequestBody> requestBody) throws Exception;
+            Optional<? extends UpdatePaymentLinkRequestBody> requestBody,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallDeletePaymentLink {
-        DeletePaymentLinkResponse deletePaymentLink(
+        DeletePaymentLinkResponse delete(
             String id,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetPaymentLinkPayments {
-        GetPaymentLinkPaymentsResponse getPaymentLinkPayments(
-            GetPaymentLinkPaymentsRequest request) throws Exception;
+        GetPaymentLinkPaymentsResponse getPayments(
+            GetPaymentLinkPaymentsRequest request,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallListTerminals {
-        ListTerminalsResponse listTerminals(
+        ListTerminalsResponse list(
             Optional<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetTerminal {
-        GetTerminalResponse getTerminal(
+        GetTerminalResponse get(
             String id,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallPaymentCreateRoute {
-        PaymentCreateRouteResponse paymentCreateRoute(
+        PaymentCreateRouteResponse create(
             String paymentId,
-            Optional<? extends PaymentCreateRouteRequestBody> requestBody) throws Exception;
+            Optional<? extends PaymentCreateRouteRequestBody> requestBody,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallPaymentListRoutes {
-        PaymentListRoutesResponse paymentListRoutes(
-            String paymentId) throws Exception;
+        PaymentListRoutesResponse list(
+            String paymentId,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallCreateCustomer {
-        CreateCustomerResponse createCustomer(
-            Optional<? extends CreateCustomerRequestBody> request) throws Exception;
+        CreateCustomerResponse create(
+            Optional<? extends CreateCustomerRequestBody> request,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallListCustomers {
-        ListCustomersResponse listCustomers(
+        ListCustomersResponse list(
             Optional<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetCustomer {
-        GetCustomerResponse getCustomer(
+        GetCustomerResponse get(
             String id,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallUpdateCustomer {
-        UpdateCustomerResponse updateCustomer(
+        UpdateCustomerResponse update(
             String id,
-            Optional<? extends UpdateCustomerRequestBody> requestBody) throws Exception;
+            Optional<? extends UpdateCustomerRequestBody> requestBody,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallDeleteCustomer {
-        DeleteCustomerResponse deleteCustomer(
+        DeleteCustomerResponse delete(
             String id,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallCreateCustomerPayment {
-        CreateCustomerPaymentResponse createCustomerPayment(
+        CreateCustomerPaymentResponse createPayment(
             String customerId,
-            Optional<? extends CreateCustomerPaymentRequestBody> requestBody) throws Exception;
+            Optional<? extends CreateCustomerPaymentRequestBody> requestBody,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallListCustomerPayments {
-        ListCustomerPaymentsResponse listCustomerPayments(
+        ListCustomerPaymentsResponse listPayments(
             String customerId,
             JsonNullable<String> profileId,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallCreateMandate {
-        CreateMandateResponse createMandate(
+        CreateMandateResponse create(
             String customerId,
-            Optional<? extends CreateMandateRequestBody> requestBody) throws Exception;
+            Optional<? extends CreateMandateRequestBody> requestBody,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallListMandates {
-        ListMandatesResponse listMandates(
+        ListMandatesResponse list(
             String customerId,
             Optional<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetMandate {
-        GetMandateResponse getMandate(
+        GetMandateResponse get(
             String customerId,
             String id,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallRevokeMandate {
-        RevokeMandateResponse revokeMandate(
+        RevokeMandateResponse revoke(
             String customerId,
             String id,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallCreateSubscription {
-        CreateSubscriptionResponse createSubscription(
+        CreateSubscriptionResponse create(
             String customerId,
-            Optional<? extends CreateSubscriptionRequestBody> requestBody) throws Exception;
+            Optional<? extends CreateSubscriptionRequestBody> requestBody,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallListSubscriptions {
-        ListSubscriptionsResponse listSubscriptions(
+        ListSubscriptionsResponse list(
             String customerId,
             Optional<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallGetSubscription {
-        GetSubscriptionResponse getSubscription(
+        GetSubscriptionResponse get(
             String customerId,
             String id,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallUpdateSubscription {
-        UpdateSubscriptionResponse updateSubscription(
+        UpdateSubscriptionResponse update(
             String customerId,
             String id,
             JsonNullable<Boolean> testmode,
-            Optional<? extends UpdateSubscriptionRequestBody> requestBody) throws Exception;
+            Optional<? extends UpdateSubscriptionRequestBody> requestBody,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallCancelSubscription {
-        CancelSubscriptionResponse cancelSubscription(
+        CancelSubscriptionResponse cancel(
             String customerId,
             String id,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallListAllSubscriptions {
-        ListAllSubscriptionsResponse listAllSubscriptions(
+        ListAllSubscriptionsResponse listAll(
             Optional<String> from,
             JsonNullable<Long> limit,
             JsonNullable<String> profileId,
-            JsonNullable<Boolean> testmode) throws Exception;
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
     }
 
 
     public interface MethodCallListSubscriptionPayments {
-        ListSubscriptionPaymentsResponse listSubscriptionPayments(
-            ListSubscriptionPaymentsRequest request) throws Exception;
+        ListSubscriptionPaymentsResponse listPayments(
+            ListSubscriptionPaymentsRequest request,
+            Optional<Options> options) throws Exception;
     }
 
 

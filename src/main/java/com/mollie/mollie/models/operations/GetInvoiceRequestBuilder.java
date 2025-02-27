@@ -4,12 +4,16 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.String;
+import java.util.Optional;
 
 public class GetInvoiceRequestBuilder {
 
     private String id;
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallGetInvoice sdk;
 
     public GetInvoiceRequestBuilder(SDKMethodInterfaces.MethodCallGetInvoice sdk) {
@@ -21,10 +25,25 @@ public class GetInvoiceRequestBuilder {
         this.id = id;
         return this;
     }
+                
+    public GetInvoiceRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public GetInvoiceRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public GetInvoiceResponse call() throws Exception {
-
-        return sdk.getInvoice(
-            id);
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.get(
+            id,
+            options);
     }
 }

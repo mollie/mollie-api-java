@@ -4,11 +4,15 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
+import java.util.Optional;
 
 public class ListChargebacksRequestBuilder {
 
     private ListChargebacksRequest request;
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallListChargebacks sdk;
 
     public ListChargebacksRequestBuilder(SDKMethodInterfaces.MethodCallListChargebacks sdk) {
@@ -20,10 +24,25 @@ public class ListChargebacksRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public ListChargebacksRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public ListChargebacksRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public ListChargebacksResponse call() throws Exception {
-
-        return sdk.listChargebacks(
-            request);
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.list(
+            request,
+            options);
     }
 }

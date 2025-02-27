@@ -4,12 +4,16 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.String;
+import java.util.Optional;
 
 public class GetSettlementRequestBuilder {
 
     private String id;
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallGetSettlement sdk;
 
     public GetSettlementRequestBuilder(SDKMethodInterfaces.MethodCallGetSettlement sdk) {
@@ -21,10 +25,25 @@ public class GetSettlementRequestBuilder {
         this.id = id;
         return this;
     }
+                
+    public GetSettlementRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public GetSettlementRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public GetSettlementResponse call() throws Exception {
-
-        return sdk.getSettlement(
-            id);
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.get(
+            id,
+            options);
     }
 }

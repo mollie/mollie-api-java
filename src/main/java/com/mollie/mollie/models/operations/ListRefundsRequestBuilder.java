@@ -4,11 +4,15 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
+import java.util.Optional;
 
 public class ListRefundsRequestBuilder {
 
     private ListRefundsRequest request;
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallListRefunds sdk;
 
     public ListRefundsRequestBuilder(SDKMethodInterfaces.MethodCallListRefunds sdk) {
@@ -20,10 +24,25 @@ public class ListRefundsRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public ListRefundsRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public ListRefundsRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public ListRefundsResponse call() throws Exception {
-
-        return sdk.listRefunds(
-            request);
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.list(
+            request,
+            options);
     }
 }

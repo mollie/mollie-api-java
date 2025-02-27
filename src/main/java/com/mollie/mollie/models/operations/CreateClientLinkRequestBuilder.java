@@ -4,12 +4,15 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.util.Optional;
 
 public class CreateClientLinkRequestBuilder {
 
     private Optional<? extends CreateClientLinkRequestBody> request = Optional.empty();
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCreateClientLink sdk;
 
     public CreateClientLinkRequestBuilder(SDKMethodInterfaces.MethodCallCreateClientLink sdk) {
@@ -27,10 +30,25 @@ public class CreateClientLinkRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public CreateClientLinkRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public CreateClientLinkRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public CreateClientLinkResponse call() throws Exception {
-
-        return sdk.createClientLink(
-            request);
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.create(
+            request,
+            options);
     }
 }

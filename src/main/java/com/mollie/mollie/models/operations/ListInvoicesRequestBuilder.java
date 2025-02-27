@@ -4,91 +4,45 @@
 
 package com.mollie.mollie.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Long;
-import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListInvoicesRequestBuilder {
 
-    private JsonNullable<String> reference = JsonNullable.undefined();
-    private JsonNullable<String> year = JsonNullable.undefined();
-    private Optional<String> from = Optional.empty();
-    private JsonNullable<Long> limit = Utils.readDefaultOrConstValue(
-                            "limit",
-                            "50",
-                            new TypeReference<JsonNullable<Long>>() {});
+    private ListInvoicesRequest request;
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallListInvoices sdk;
 
     public ListInvoicesRequestBuilder(SDKMethodInterfaces.MethodCallListInvoices sdk) {
         this.sdk = sdk;
     }
 
-    public ListInvoicesRequestBuilder reference(String reference) {
-        Utils.checkNotNull(reference, "reference");
-        this.reference = JsonNullable.of(reference);
-        return this;
-    }
-
-    public ListInvoicesRequestBuilder reference(JsonNullable<String> reference) {
-        Utils.checkNotNull(reference, "reference");
-        this.reference = reference;
-        return this;
-    }
-
-    public ListInvoicesRequestBuilder year(String year) {
-        Utils.checkNotNull(year, "year");
-        this.year = JsonNullable.of(year);
-        return this;
-    }
-
-    public ListInvoicesRequestBuilder year(JsonNullable<String> year) {
-        Utils.checkNotNull(year, "year");
-        this.year = year;
+    public ListInvoicesRequestBuilder request(ListInvoicesRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
-    public ListInvoicesRequestBuilder from(String from) {
-        Utils.checkNotNull(from, "from");
-        this.from = Optional.of(from);
+    public ListInvoicesRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
         return this;
     }
 
-    public ListInvoicesRequestBuilder from(Optional<String> from) {
-        Utils.checkNotNull(from, "from");
-        this.from = from;
-        return this;
-    }
-
-    public ListInvoicesRequestBuilder limit(long limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = JsonNullable.of(limit);
-        return this;
-    }
-
-    public ListInvoicesRequestBuilder limit(JsonNullable<Long> limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = limit;
+    public ListInvoicesRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
         return this;
     }
 
     public ListInvoicesResponse call() throws Exception {
-        if (limit == null) {
-            limit = _SINGLETON_VALUE_Limit.value();
-        }
-        return sdk.listInvoices(
-            reference,
-            year,
-            from,
-            limit);
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.list(
+            request,
+            options);
     }
-
-    private static final LazySingletonValue<JsonNullable<Long>> _SINGLETON_VALUE_Limit =
-            new LazySingletonValue<>(
-                    "limit",
-                    "50",
-                    new TypeReference<JsonNullable<Long>>() {});
 }

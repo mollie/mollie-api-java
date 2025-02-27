@@ -4,12 +4,15 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.util.Optional;
 
 public class CreatePaymentLinkRequestBuilder {
 
     private Optional<? extends CreatePaymentLinkRequestBody> request = Optional.empty();
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCreatePaymentLink sdk;
 
     public CreatePaymentLinkRequestBuilder(SDKMethodInterfaces.MethodCallCreatePaymentLink sdk) {
@@ -27,10 +30,25 @@ public class CreatePaymentLinkRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public CreatePaymentLinkRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public CreatePaymentLinkRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public CreatePaymentLinkResponse call() throws Exception {
-
-        return sdk.createPaymentLink(
-            request);
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.create(
+            request,
+            options);
     }
 }

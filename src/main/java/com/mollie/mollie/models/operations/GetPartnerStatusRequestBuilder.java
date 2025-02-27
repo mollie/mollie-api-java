@@ -4,17 +4,37 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
+import com.mollie.mollie.utils.Utils;
+import java.util.Optional;
 
 public class GetPartnerStatusRequestBuilder {
 
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallGetPartnerStatus sdk;
 
     public GetPartnerStatusRequestBuilder(SDKMethodInterfaces.MethodCallGetPartnerStatus sdk) {
         this.sdk = sdk;
     }
+                
+    public GetPartnerStatusRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public GetPartnerStatusRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public GetPartnerStatusResponse call() throws Exception {
-
-        return sdk.getPartnerStatusDirect();
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.getPartnerStatus(
+            options);
     }
 }

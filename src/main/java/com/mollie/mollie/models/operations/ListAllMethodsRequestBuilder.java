@@ -4,6 +4,8 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.String;
 import java.util.Optional;
@@ -14,6 +16,7 @@ public class ListAllMethodsRequestBuilder {
     private Optional<String> locale = Optional.empty();
     private Optional<? extends ListAllMethodsQueryParamAmount> amount = Optional.empty();
     private JsonNullable<String> include = JsonNullable.undefined();
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallListAllMethods sdk;
 
     public ListAllMethodsRequestBuilder(SDKMethodInterfaces.MethodCallListAllMethods sdk) {
@@ -55,12 +58,27 @@ public class ListAllMethodsRequestBuilder {
         this.include = include;
         return this;
     }
+                
+    public ListAllMethodsRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public ListAllMethodsRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public ListAllMethodsResponse call() throws Exception {
-
-        return sdk.listAllMethods(
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.listAll(
             locale,
             amount,
-            include);
+            include,
+            options);
     }
 }

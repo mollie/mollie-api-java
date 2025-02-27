@@ -4,6 +4,8 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.String;
 import java.util.Optional;
@@ -12,6 +14,7 @@ public class UpdateCustomerRequestBuilder {
 
     private String id;
     private Optional<? extends UpdateCustomerRequestBody> requestBody = Optional.empty();
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallUpdateCustomer sdk;
 
     public UpdateCustomerRequestBuilder(SDKMethodInterfaces.MethodCallUpdateCustomer sdk) {
@@ -35,11 +38,26 @@ public class UpdateCustomerRequestBuilder {
         this.requestBody = requestBody;
         return this;
     }
+                
+    public UpdateCustomerRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public UpdateCustomerRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public UpdateCustomerResponse call() throws Exception {
-
-        return sdk.updateCustomer(
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.update(
             id,
-            requestBody);
+            requestBody,
+            options);
     }
 }

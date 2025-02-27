@@ -1,0 +1,8 @@
+# CreateOrderRefundRefundsLinks
+
+
+## Fields
+
+| Field                                                                                                            | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      |
+| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `documentation`                                                                                                  | [Optional\<CreateOrderRefundRefundsDocumentation>](../../models/errors/CreateOrderRefundRefundsDocumentation.md) | :heavy_minus_sign:                                                                                               | The URL to the generic Mollie API error handling guide.                                                          |

@@ -4,12 +4,16 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.String;
+import java.util.Optional;
 
 public class DeleteProfileRequestBuilder {
 
     private String id;
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallDeleteProfile sdk;
 
     public DeleteProfileRequestBuilder(SDKMethodInterfaces.MethodCallDeleteProfile sdk) {
@@ -21,10 +25,25 @@ public class DeleteProfileRequestBuilder {
         this.id = id;
         return this;
     }
+                
+    public DeleteProfileRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public DeleteProfileRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public DeleteProfileResponse call() throws Exception {
-
-        return sdk.deleteProfile(
-            id);
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.delete(
+            id,
+            options);
     }
 }

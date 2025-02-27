@@ -4,12 +4,15 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.util.Optional;
 
 public class RequestApplePayPaymentSessionRequestBuilder {
 
     private Optional<? extends RequestApplePayPaymentSessionRequestBody> request = Optional.empty();
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallRequestApplePayPaymentSession sdk;
 
     public RequestApplePayPaymentSessionRequestBuilder(SDKMethodInterfaces.MethodCallRequestApplePayPaymentSession sdk) {
@@ -27,10 +30,25 @@ public class RequestApplePayPaymentSessionRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public RequestApplePayPaymentSessionRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public RequestApplePayPaymentSessionRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public RequestApplePayPaymentSessionResponse call() throws Exception {
-
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
         return sdk.requestApplePayPaymentSession(
-            request);
+            request,
+            options);
     }
 }

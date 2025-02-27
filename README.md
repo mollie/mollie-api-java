@@ -28,6 +28,7 @@ Developer-friendly & type-safe Java SDK specifically catered to leverage *openap
   * [SDK Example Usage](#sdk-example-usage)
   * [Authentication](#authentication)
   * [Available Resources and Operations](#available-resources-and-operations)
+  * [Retries](#retries)
   * [Error Handling](#error-handling)
   * [Server Selection](#server-selection)
 * [Development](#development)
@@ -47,7 +48,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:0.1.0'
+implementation 'com.mollie:mollie:0.0.1'
 ```
 
 Maven:
@@ -55,7 +56,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>0.1.0</version>
+    <version>0.0.1</version>
 </dependency>
 ```
 
@@ -82,24 +83,24 @@ gradlew.bat publishToMavenLocal -Pskip.signing
 ```java
 package hello.world;
 
-import com.mollie.mollie.Mollie;
+import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ListBalancesBalancesAPIResponseBody;
+import com.mollie.mollie.models.errors.ListBalancesBalancesResponseBody;
 import com.mollie.mollie.models.errors.ListBalancesResponseBody;
 import com.mollie.mollie.models.operations.ListBalancesResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ListBalancesResponseBody, ListBalancesBalancesAPIResponseBody, Exception {
+    public static void main(String[] args) throws ListBalancesResponseBody, ListBalancesBalancesResponseBody, Exception {
 
-        Mollie sdk = Mollie.builder()
+        Client sdk = Client.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
             .build();
 
-        ListBalancesResponse res = sdk.balancesAPI().listBalances()
+        ListBalancesResponse res = sdk.balances().list()
                 .currency("EUR")
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .limit(50L)
@@ -130,24 +131,24 @@ You can set the security parameters through the `security` builder method when i
 ```java
 package hello.world;
 
-import com.mollie.mollie.Mollie;
+import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ListBalancesBalancesAPIResponseBody;
+import com.mollie.mollie.models.errors.ListBalancesBalancesResponseBody;
 import com.mollie.mollie.models.errors.ListBalancesResponseBody;
 import com.mollie.mollie.models.operations.ListBalancesResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ListBalancesResponseBody, ListBalancesBalancesAPIResponseBody, Exception {
+    public static void main(String[] args) throws ListBalancesResponseBody, ListBalancesBalancesResponseBody, Exception {
 
-        Mollie sdk = Mollie.builder()
+        Client sdk = Client.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
             .build();
 
-        ListBalancesResponse res = sdk.balancesAPI().listBalances()
+        ListBalancesResponse res = sdk.balances().list()
                 .currency("EUR")
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .limit(50L)
@@ -168,218 +169,320 @@ public class Application {
 <details open>
 <summary>Available methods</summary>
 
-### [balancesAPI()](docs/sdks/balancesapi/README.md)
+### [balances()](docs/sdks/balances/README.md)
 
-* [listBalances](docs/sdks/balancesapi/README.md#listbalances) - List balances
-* [getBalance](docs/sdks/balancesapi/README.md#getbalance) - Get balance
-* [getPrimaryBalance](docs/sdks/balancesapi/README.md#getprimarybalance) - Get primary balance
-* [getBalanceReport](docs/sdks/balancesapi/README.md#getbalancereport) - Get balance report
-* [listBalanceTransactions](docs/sdks/balancesapi/README.md#listbalancetransactions) - List balance transactions
+* [list](docs/sdks/balances/README.md#list) - List balances
+* [get](docs/sdks/balances/README.md#get) - Get balance
+* [getPrimary](docs/sdks/balances/README.md#getprimary) - Get primary balance
+* [getReport](docs/sdks/balances/README.md#getreport) - Get balance report
+* [listTransactions](docs/sdks/balances/README.md#listtransactions) - List balance transactions
 
-### [capabilitiesAPI()](docs/sdks/capabilitiesapi/README.md)
+### [capabilities()](docs/sdks/capabilities/README.md)
 
-* [listCapabilities](docs/sdks/capabilitiesapi/README.md#listcapabilities) - List capabilities
+* [list](docs/sdks/capabilities/README.md#list) - List capabilities
 
-### [capturesAPI()](docs/sdks/capturesapi/README.md)
+### [captures()](docs/sdks/captures/README.md)
 
-* [createCapture](docs/sdks/capturesapi/README.md#createcapture) - Create capture
-* [listCaptures](docs/sdks/capturesapi/README.md#listcaptures) - List captures
-* [getCapture](docs/sdks/capturesapi/README.md#getcapture) - Get capture
+* [create](docs/sdks/captures/README.md#create) - Create capture
+* [list](docs/sdks/captures/README.md#list) - List captures
+* [get](docs/sdks/captures/README.md#get) - Get capture
 
-### [chargebacksAPI()](docs/sdks/chargebacksapi/README.md)
+### [chargebacks()](docs/sdks/chargebacks/README.md)
 
-* [listChargebacks](docs/sdks/chargebacksapi/README.md#listchargebacks) - List payment chargebacks
-* [getChargeback](docs/sdks/chargebacksapi/README.md#getchargeback) - Get payment chargeback
-* [listAllChargebacks](docs/sdks/chargebacksapi/README.md#listallchargebacks) - List all chargebacks
-
-### [clientLinksAPI()](docs/sdks/clientlinksapi/README.md)
-
-* [createClientLink](docs/sdks/clientlinksapi/README.md#createclientlink) - Create client link
-
-### [clientsAPI()](docs/sdks/clientsapi/README.md)
-
-* [listClients](docs/sdks/clientsapi/README.md#listclients) - List clients
-* [getClient](docs/sdks/clientsapi/README.md#getclient) - Get client
-
-### [customersAPI()](docs/sdks/customersapi/README.md)
-
-* [createCustomer](docs/sdks/customersapi/README.md#createcustomer) - Create customer
-* [listCustomers](docs/sdks/customersapi/README.md#listcustomers) - List customers
-* [getCustomer](docs/sdks/customersapi/README.md#getcustomer) - Get customer
-* [updateCustomer](docs/sdks/customersapi/README.md#updatecustomer) - Update customer
-* [deleteCustomer](docs/sdks/customersapi/README.md#deletecustomer) - Delete customer
-* [createCustomerPayment](docs/sdks/customersapi/README.md#createcustomerpayment) - Create customer payment
-* [listCustomerPayments](docs/sdks/customersapi/README.md#listcustomerpayments) - List customer payments
-
-### [delayedRoutingAPI()](docs/sdks/delayedroutingapi/README.md)
-
-* [paymentCreateRoute](docs/sdks/delayedroutingapi/README.md#paymentcreateroute) - Create a delayed route
-* [paymentListRoutes](docs/sdks/delayedroutingapi/README.md#paymentlistroutes) - List payment routes
-
-### [invoicesAPI()](docs/sdks/invoicesapi/README.md)
-
-* [listInvoices](docs/sdks/invoicesapi/README.md#listinvoices) - List invoices
-* [getInvoice](docs/sdks/invoicesapi/README.md#getinvoice) - Get invoice
-
-### [mandatesAPI()](docs/sdks/mandatesapi/README.md)
-
-* [createMandate](docs/sdks/mandatesapi/README.md#createmandate) - Create mandate
-* [listMandates](docs/sdks/mandatesapi/README.md#listmandates) - List mandates
-* [getMandate](docs/sdks/mandatesapi/README.md#getmandate) - Get mandate
-* [revokeMandate](docs/sdks/mandatesapi/README.md#revokemandate) - Revoke mandate
-
-### [methodsAPI()](docs/sdks/methodsapi/README.md)
-
-* [listMethods](docs/sdks/methodsapi/README.md#listmethods) - List payment methods
-* [listAllMethods](docs/sdks/methodsapi/README.md#listallmethods) - List all payment methods
-* [getMethod](docs/sdks/methodsapi/README.md#getmethod) - Get payment method
-* [enableMethod](docs/sdks/methodsapi/README.md#enablemethod) - Enable payment method
-* [disableMethod](docs/sdks/methodsapi/README.md#disablemethod) - Disable payment method
-* [enableMethodIssuer](docs/sdks/methodsapi/README.md#enablemethodissuer) - Enable payment method issuer
-* [disableMethodIssuer](docs/sdks/methodsapi/README.md#disablemethodissuer) - Disable payment method issuer
+* [list](docs/sdks/chargebacks/README.md#list) - List payment chargebacks
+* [get](docs/sdks/chargebacks/README.md#get) - Get payment chargeback
+* [listAll](docs/sdks/chargebacks/README.md#listall) - List all chargebacks
 
 
-### [onboardingAPI()](docs/sdks/onboardingapi/README.md)
+### [clientLinks()](docs/sdks/clientlinks/README.md)
 
-* [getOnboardingStatus](docs/sdks/onboardingapi/README.md#getonboardingstatus) - Get onboarding status
-* [submitOnboardingData](docs/sdks/onboardingapi/README.md#submitonboardingdata) - Submit onboarding data
+* [create](docs/sdks/clientlinks/README.md#create) - Create client link
 
-### [ordersAPI()](docs/sdks/ordersapi/README.md)
+### [clients()](docs/sdks/clients/README.md)
 
-* [createOrder](docs/sdks/ordersapi/README.md#createorder) - Create order
-* [listOrders](docs/sdks/ordersapi/README.md#listorders) - List orders
-* [getOrder](docs/sdks/ordersapi/README.md#getorder) - Get order
-* [updateOrder](docs/sdks/ordersapi/README.md#updateorder) - Update order
-* [cancelOrder](docs/sdks/ordersapi/README.md#cancelorder) - Cancel order
-* [manageOrderLines](docs/sdks/ordersapi/README.md#manageorderlines) - Manage order lines
-* [cancelOrderLines](docs/sdks/ordersapi/README.md#cancelorderlines) - Cancel order lines
-* [updateOrderLine](docs/sdks/ordersapi/README.md#updateorderline) - Update order line
-* [createOrderPayment](docs/sdks/ordersapi/README.md#createorderpayment) - Create order payment
+* [list](docs/sdks/clients/README.md#list) - List clients
+* [get](docs/sdks/clients/README.md#get) - Get client
 
-### [organizationsAPI()](docs/sdks/organizationsapi/README.md)
+### [customers()](docs/sdks/customers/README.md)
 
-* [getOrganization](docs/sdks/organizationsapi/README.md#getorganization) - Get organization
-* [getCurrentOrganization](docs/sdks/organizationsapi/README.md#getcurrentorganization) - Get current organization
-* [getPartnerStatus](docs/sdks/organizationsapi/README.md#getpartnerstatus) - Get partner status
+* [create](docs/sdks/customers/README.md#create) - Create customer
+* [list](docs/sdks/customers/README.md#list) - List customers
+* [get](docs/sdks/customers/README.md#get) - Get customer
+* [update](docs/sdks/customers/README.md#update) - Update customer
+* [delete](docs/sdks/customers/README.md#delete) - Delete customer
+* [createPayment](docs/sdks/customers/README.md#createpayment) - Create customer payment
+* [listPayments](docs/sdks/customers/README.md#listpayments) - List customer payments
 
-### [paymentLinksAPI()](docs/sdks/paymentlinksapi/README.md)
+### [delayedRouting()](docs/sdks/delayedrouting/README.md)
 
-* [createPaymentLink](docs/sdks/paymentlinksapi/README.md#createpaymentlink) - Create payment link
-* [listPaymentLinks](docs/sdks/paymentlinksapi/README.md#listpaymentlinks) - List payment links
-* [getPaymentLink](docs/sdks/paymentlinksapi/README.md#getpaymentlink) - Get payment link
-* [updatePaymentLink](docs/sdks/paymentlinksapi/README.md#updatepaymentlink) - Update payment link
-* [deletePaymentLink](docs/sdks/paymentlinksapi/README.md#deletepaymentlink) - Delete payment link
-* [getPaymentLinkPayments](docs/sdks/paymentlinksapi/README.md#getpaymentlinkpayments) - Get payment link payments
+* [create](docs/sdks/delayedrouting/README.md#create) - Create a delayed route
+* [list](docs/sdks/delayedrouting/README.md#list) - List payment routes
 
-### [paymentsAPI()](docs/sdks/paymentsapi/README.md)
+### [invoices()](docs/sdks/invoices/README.md)
 
-* [createPayment](docs/sdks/paymentsapi/README.md#createpayment) - Create payment
-* [listPayments](docs/sdks/paymentsapi/README.md#listpayments) - List payments
-* [getPayment](docs/sdks/paymentsapi/README.md#getpayment) - Get payment
-* [updatePayment](docs/sdks/paymentsapi/README.md#updatepayment) - Update payment
-* [cancelPayment](docs/sdks/paymentsapi/README.md#cancelpayment) - Cancel payment
-* [releaseAuthorization](docs/sdks/paymentsapi/README.md#releaseauthorization) - Release payment authorization
+* [list](docs/sdks/invoices/README.md#list) - List invoices
+* [get](docs/sdks/invoices/README.md#get) - Get invoice
 
-### [permissionsAPI()](docs/sdks/permissionsapi/README.md)
+### [mandates()](docs/sdks/mandates/README.md)
 
-* [listPermissions](docs/sdks/permissionsapi/README.md#listpermissions) - List permissions
-* [getPermission](docs/sdks/permissionsapi/README.md#getpermission) - Get permission
+* [create](docs/sdks/mandates/README.md#create) - Create mandate
+* [list](docs/sdks/mandates/README.md#list) - List mandates
+* [get](docs/sdks/mandates/README.md#get) - Get mandate
+* [revoke](docs/sdks/mandates/README.md#revoke) - Revoke mandate
 
-### [profilesAPI()](docs/sdks/profilesapi/README.md)
+### [methods()](docs/sdks/methods/README.md)
 
-* [createProfile](docs/sdks/profilesapi/README.md#createprofile) - Create profile
-* [listProfiles](docs/sdks/profilesapi/README.md#listprofiles) - List profiles
-* [getProfile](docs/sdks/profilesapi/README.md#getprofile) - Get profile
-* [updateProfile](docs/sdks/profilesapi/README.md#updateprofile) - Update profile
-* [deleteProfile](docs/sdks/profilesapi/README.md#deleteprofile) - Delete profile
-* [getCurrentProfile](docs/sdks/profilesapi/README.md#getcurrentprofile) - Get current profile
+* [list](docs/sdks/methods/README.md#list) - List payment methods
+* [listAll](docs/sdks/methods/README.md#listall) - List all payment methods
+* [get](docs/sdks/methods/README.md#get) - Get payment method
+* [enableMethod](docs/sdks/methods/README.md#enablemethod) - Enable payment method
+* [disableMethod](docs/sdks/methods/README.md#disablemethod) - Disable payment method
+* [enableMethodIssuer](docs/sdks/methods/README.md#enablemethodissuer) - Enable payment method issuer
+* [disableMethodIssuer](docs/sdks/methods/README.md#disablemethodissuer) - Disable payment method issuer
 
-### [refundsAPI()](docs/sdks/refundsapi/README.md)
+### [onboarding()](docs/sdks/onboarding/README.md)
 
-* [createRefund](docs/sdks/refundsapi/README.md#createrefund) - Create payment refund
-* [listRefunds](docs/sdks/refundsapi/README.md#listrefunds) - List payment refunds
-* [getRefund](docs/sdks/refundsapi/README.md#getrefund) - Get payment refund
-* [cancelRefund](docs/sdks/refundsapi/README.md#cancelrefund) - Cancel payment refund
-* [createOrderRefund](docs/sdks/refundsapi/README.md#createorderrefund) - Create order refund
-* [listOrderRefunds](docs/sdks/refundsapi/README.md#listorderrefunds) - List order refunds
-* [listAllRefunds](docs/sdks/refundsapi/README.md#listallrefunds) - List all refunds
+* [get](docs/sdks/onboarding/README.md#get) - Get onboarding status
+* [create](docs/sdks/onboarding/README.md#create) - Submit onboarding data
 
-### [settlementsAPI()](docs/sdks/settlementsapi/README.md)
+### [orders()](docs/sdks/orders/README.md)
 
-* [listSettlements](docs/sdks/settlementsapi/README.md#listsettlements) - List settlements
-* [getSettlement](docs/sdks/settlementsapi/README.md#getsettlement) - Get settlement
-* [getOpenSettlement](docs/sdks/settlementsapi/README.md#getopensettlement) - Get open settlement
-* [getNextSettlement](docs/sdks/settlementsapi/README.md#getnextsettlement) - Get next settlement
-* [getSettlementPayments](docs/sdks/settlementsapi/README.md#getsettlementpayments) - Get settlement payments
-* [getSettlementCaptures](docs/sdks/settlementsapi/README.md#getsettlementcaptures) - Get settlement captures
-* [getSettlementRefunds](docs/sdks/settlementsapi/README.md#getsettlementrefunds) - Get settlement refunds
-* [getSettlementChargebacks](docs/sdks/settlementsapi/README.md#getsettlementchargebacks) - Get settlement chargebacks
+* [create](docs/sdks/orders/README.md#create) - Create order
+* [list](docs/sdks/orders/README.md#list) - List orders
+* [get](docs/sdks/orders/README.md#get) - Get order
+* [update](docs/sdks/orders/README.md#update) - Update order
+* [cancel](docs/sdks/orders/README.md#cancel) - Cancel order
+* [manageLines](docs/sdks/orders/README.md#managelines) - Manage order lines
+* [cancelLines](docs/sdks/orders/README.md#cancellines) - Cancel order lines
+* [updateLine](docs/sdks/orders/README.md#updateline) - Update order line
+* [createPayment](docs/sdks/orders/README.md#createpayment) - Create order payment
 
-### [shipmentsAPI()](docs/sdks/shipmentsapi/README.md)
+### [organizations()](docs/sdks/organizations/README.md)
 
-* [createShipment](docs/sdks/shipmentsapi/README.md#createshipment) - Create shipment
-* [listShipments](docs/sdks/shipmentsapi/README.md#listshipments) - List shipments
-* [getShipment](docs/sdks/shipmentsapi/README.md#getshipment) - Get shipment
-* [updateShipment](docs/sdks/shipmentsapi/README.md#updateshipment) - Update shipment
+* [get](docs/sdks/organizations/README.md#get) - Get organization
+* [getCurrent](docs/sdks/organizations/README.md#getcurrent) - Get current organization
+* [getPartnerStatus](docs/sdks/organizations/README.md#getpartnerstatus) - Get partner status
 
-### [subscriptionsAPI()](docs/sdks/subscriptionsapi/README.md)
+### [paymentLinks()](docs/sdks/paymentlinks/README.md)
 
-* [createSubscription](docs/sdks/subscriptionsapi/README.md#createsubscription) - Create subscription
-* [listSubscriptions](docs/sdks/subscriptionsapi/README.md#listsubscriptions) - List customer subscriptions
-* [getSubscription](docs/sdks/subscriptionsapi/README.md#getsubscription) - Get subscription
-* [updateSubscription](docs/sdks/subscriptionsapi/README.md#updatesubscription) - Update subscription
-* [cancelSubscription](docs/sdks/subscriptionsapi/README.md#cancelsubscription) - Cancel subscription
-* [listAllSubscriptions](docs/sdks/subscriptionsapi/README.md#listallsubscriptions) - List all subscriptions
-* [listSubscriptionPayments](docs/sdks/subscriptionsapi/README.md#listsubscriptionpayments) - List subscription payments
+* [create](docs/sdks/paymentlinks/README.md#create) - Create payment link
+* [list](docs/sdks/paymentlinks/README.md#list) - List payment links
+* [get](docs/sdks/paymentlinks/README.md#get) - Get payment link
+* [update](docs/sdks/paymentlinks/README.md#update) - Update payment link
+* [delete](docs/sdks/paymentlinks/README.md#delete) - Delete payment link
+* [getPayments](docs/sdks/paymentlinks/README.md#getpayments) - Get payment link payments
 
-### [terminalsAPI()](docs/sdks/terminalsapi/README.md)
+### [payments()](docs/sdks/payments/README.md)
 
-* [listTerminals](docs/sdks/terminalsapi/README.md#listterminals) - List terminals
-* [getTerminal](docs/sdks/terminalsapi/README.md#getterminal) - Get terminal
+* [create](docs/sdks/payments/README.md#create) - Create payment
+* [list](docs/sdks/payments/README.md#list) - List payments
+* [get](docs/sdks/payments/README.md#get) - Get payment
+* [update](docs/sdks/payments/README.md#update) - Update payment
+* [cancel](docs/sdks/payments/README.md#cancel) - Cancel payment
+* [releaseAuthorization](docs/sdks/payments/README.md#releaseauthorization) - Release payment authorization
 
-### [walletsAPI()](docs/sdks/walletsapi/README.md)
+### [permissions()](docs/sdks/permissions/README.md)
 
-* [requestApplePayPaymentSession](docs/sdks/walletsapi/README.md#requestapplepaypaymentsession) - Request Apple Pay payment session
+* [list](docs/sdks/permissions/README.md#list) - List permissions
+* [get](docs/sdks/permissions/README.md#get) - Get permission
+
+### [profiles()](docs/sdks/profiles/README.md)
+
+* [create](docs/sdks/profiles/README.md#create) - Create profile
+* [list](docs/sdks/profiles/README.md#list) - List profiles
+* [get](docs/sdks/profiles/README.md#get) - Get profile
+* [update](docs/sdks/profiles/README.md#update) - Update profile
+* [delete](docs/sdks/profiles/README.md#delete) - Delete profile
+* [getCurrent](docs/sdks/profiles/README.md#getcurrent) - Get current profile
+
+### [refunds()](docs/sdks/refunds/README.md)
+
+* [create](docs/sdks/refunds/README.md#create) - Create payment refund
+* [list](docs/sdks/refunds/README.md#list) - List payment refunds
+* [get](docs/sdks/refunds/README.md#get) - Get payment refund
+* [cancel](docs/sdks/refunds/README.md#cancel) - Cancel payment refund
+* [createOrder](docs/sdks/refunds/README.md#createorder) - Create order refund
+* [listOrder](docs/sdks/refunds/README.md#listorder) - List order refunds
+* [listAll](docs/sdks/refunds/README.md#listall) - List all refunds
+
+### [settlements()](docs/sdks/settlements/README.md)
+
+* [list](docs/sdks/settlements/README.md#list) - List settlements
+* [get](docs/sdks/settlements/README.md#get) - Get settlement
+* [getOpen](docs/sdks/settlements/README.md#getopen) - Get open settlement
+* [getNext](docs/sdks/settlements/README.md#getnext) - Get next settlement
+* [getPayments](docs/sdks/settlements/README.md#getpayments) - Get settlement payments
+* [getCaptures](docs/sdks/settlements/README.md#getcaptures) - Get settlement captures
+* [getRefunds](docs/sdks/settlements/README.md#getrefunds) - Get settlement refunds
+* [getChargebacks](docs/sdks/settlements/README.md#getchargebacks) - Get settlement chargebacks
+
+### [shipments()](docs/sdks/shipments/README.md)
+
+* [create](docs/sdks/shipments/README.md#create) - Create shipment
+* [list](docs/sdks/shipments/README.md#list) - List shipments
+* [get](docs/sdks/shipments/README.md#get) - Get shipment
+* [update](docs/sdks/shipments/README.md#update) - Update shipment
+
+### [subscriptions()](docs/sdks/subscriptions/README.md)
+
+* [create](docs/sdks/subscriptions/README.md#create) - Create subscription
+* [list](docs/sdks/subscriptions/README.md#list) - List customer subscriptions
+* [get](docs/sdks/subscriptions/README.md#get) - Get subscription
+* [update](docs/sdks/subscriptions/README.md#update) - Update subscription
+* [cancel](docs/sdks/subscriptions/README.md#cancel) - Cancel subscription
+* [listAll](docs/sdks/subscriptions/README.md#listall) - List all subscriptions
+* [listPayments](docs/sdks/subscriptions/README.md#listpayments) - List subscription payments
+
+### [terminals()](docs/sdks/terminals/README.md)
+
+* [list](docs/sdks/terminals/README.md#list) - List terminals
+* [get](docs/sdks/terminals/README.md#get) - Get terminal
+
+### [wallets()](docs/sdks/wallets/README.md)
+
+* [requestApplePayPaymentSession](docs/sdks/wallets/README.md#requestapplepaypaymentsession) - Request Apple Pay payment session
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
+
+<!-- Start Retries [retries] -->
+## Retries
+
+Some of the endpoints in this SDK support retries. If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API. However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+
+To change the default retry strategy for a single API call, you can provide a `RetryConfig` object through the `retryConfig` builder method:
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ListBalancesBalancesResponseBody;
+import com.mollie.mollie.models.errors.ListBalancesResponseBody;
+import com.mollie.mollie.models.operations.ListBalancesResponse;
+import com.mollie.mollie.utils.BackoffStrategy;
+import com.mollie.mollie.utils.RetryConfig;
+import java.lang.Exception;
+import java.util.concurrent.TimeUnit;
+
+public class Application {
+
+    public static void main(String[] args) throws ListBalancesResponseBody, ListBalancesBalancesResponseBody, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+            .build();
+
+        ListBalancesResponse res = sdk.balances().list()
+                .retryConfig(RetryConfig.builder()
+                    .backoff(BackoffStrategy.builder()
+                        .initialInterval(1L, TimeUnit.MILLISECONDS)
+                        .maxInterval(50L, TimeUnit.MILLISECONDS)
+                        .maxElapsedTime(1000L, TimeUnit.MILLISECONDS)
+                        .baseFactor(1.1)
+                        .jitterFactor(0.15)
+                        .retryConnectError(false)
+                        .build())
+                    .build())
+                .currency("EUR")
+                .from("bal_gVMhHKqSSRYJyPsuoPNFH")
+                .limit(50L)
+                .testmode(false)
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+If you'd like to override the default retry strategy for all operations that support retries, you can provide a configuration at SDK initialization:
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ListBalancesBalancesResponseBody;
+import com.mollie.mollie.models.errors.ListBalancesResponseBody;
+import com.mollie.mollie.models.operations.ListBalancesResponse;
+import com.mollie.mollie.utils.BackoffStrategy;
+import com.mollie.mollie.utils.RetryConfig;
+import java.lang.Exception;
+import java.util.concurrent.TimeUnit;
+
+public class Application {
+
+    public static void main(String[] args) throws ListBalancesResponseBody, ListBalancesBalancesResponseBody, Exception {
+
+        Client sdk = Client.builder()
+                .retryConfig(RetryConfig.builder()
+                    .backoff(BackoffStrategy.builder()
+                        .initialInterval(1L, TimeUnit.MILLISECONDS)
+                        .maxInterval(50L, TimeUnit.MILLISECONDS)
+                        .maxElapsedTime(1000L, TimeUnit.MILLISECONDS)
+                        .baseFactor(1.1)
+                        .jitterFactor(0.15)
+                        .retryConnectError(false)
+                        .build())
+                    .build())
+                .security(Security.builder()
+                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                    .build())
+            .build();
+
+        ListBalancesResponse res = sdk.balances().list()
+                .currency("EUR")
+                .from("bal_gVMhHKqSSRYJyPsuoPNFH")
+                .limit(50L)
+                .testmode(false)
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+<!-- End Retries [retries] -->
 
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
 Handling errors in this SDK should largely match your expectations. All operations return a response object or raise an exception.
 
-By default, an API error will throw a `models/errors/APIException` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `listBalances` method throws the following exceptions:
+By default, an API error will throw a `models/errors/APIException` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `list` method throws the following exceptions:
 
-| Error Type                                        | Status Code | Content Type         |
-| ------------------------------------------------- | ----------- | -------------------- |
-| models/errors/ListBalancesResponseBody            | 400         | application/hal+json |
-| models/errors/ListBalancesBalancesAPIResponseBody | 404         | application/hal+json |
-| models/errors/APIException                        | 4XX, 5XX    | \*/\*                |
+| Error Type                                     | Status Code | Content Type         |
+| ---------------------------------------------- | ----------- | -------------------- |
+| models/errors/ListBalancesResponseBody         | 400         | application/hal+json |
+| models/errors/ListBalancesBalancesResponseBody | 404         | application/hal+json |
+| models/errors/APIException                     | 4XX, 5XX    | \*/\*                |
 
 ### Example
 
 ```java
 package hello.world;
 
-import com.mollie.mollie.Mollie;
+import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ListBalancesBalancesAPIResponseBody;
+import com.mollie.mollie.models.errors.ListBalancesBalancesResponseBody;
 import com.mollie.mollie.models.errors.ListBalancesResponseBody;
 import com.mollie.mollie.models.operations.ListBalancesResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ListBalancesResponseBody, ListBalancesBalancesAPIResponseBody, Exception {
+    public static void main(String[] args) throws ListBalancesResponseBody, ListBalancesBalancesResponseBody, Exception {
 
-        Mollie sdk = Mollie.builder()
+        Client sdk = Client.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
             .build();
 
-        ListBalancesResponse res = sdk.balancesAPI().listBalances()
+        ListBalancesResponse res = sdk.balances().list()
                 .currency("EUR")
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .limit(50L)
@@ -403,25 +506,25 @@ The default server can be overridden globally using the `.serverURL(String serve
 ```java
 package hello.world;
 
-import com.mollie.mollie.Mollie;
+import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ListBalancesBalancesAPIResponseBody;
+import com.mollie.mollie.models.errors.ListBalancesBalancesResponseBody;
 import com.mollie.mollie.models.errors.ListBalancesResponseBody;
 import com.mollie.mollie.models.operations.ListBalancesResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ListBalancesResponseBody, ListBalancesBalancesAPIResponseBody, Exception {
+    public static void main(String[] args) throws ListBalancesResponseBody, ListBalancesBalancesResponseBody, Exception {
 
-        Mollie sdk = Mollie.builder()
+        Client sdk = Client.builder()
                 .serverURL("https://api.mollie.com/v2")
                 .security(Security.builder()
                     .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
             .build();
 
-        ListBalancesResponse res = sdk.balancesAPI().listBalances()
+        ListBalancesResponse res = sdk.balances().list()
                 .currency("EUR")
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .limit(50L)

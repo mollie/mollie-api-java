@@ -4,17 +4,37 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
+import com.mollie.mollie.utils.Utils;
+import java.util.Optional;
 
 public class GetCurrentOrganizationRequestBuilder {
 
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallGetCurrentOrganization sdk;
 
     public GetCurrentOrganizationRequestBuilder(SDKMethodInterfaces.MethodCallGetCurrentOrganization sdk) {
         this.sdk = sdk;
     }
+                
+    public GetCurrentOrganizationRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public GetCurrentOrganizationRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public GetCurrentOrganizationResponse call() throws Exception {
-
-        return sdk.getCurrentOrganizationDirect();
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.getCurrent(
+            options);
     }
 }

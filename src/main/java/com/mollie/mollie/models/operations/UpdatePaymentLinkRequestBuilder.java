@@ -6,6 +6,8 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.utils.LazySingletonValue;
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.String;
@@ -20,6 +22,7 @@ public class UpdatePaymentLinkRequestBuilder {
                             "false",
                             new TypeReference<JsonNullable<Boolean>>() {});
     private Optional<? extends UpdatePaymentLinkRequestBody> requestBody = Optional.empty();
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallUpdatePaymentLink sdk;
 
     public UpdatePaymentLinkRequestBuilder(SDKMethodInterfaces.MethodCallUpdatePaymentLink sdk) {
@@ -55,15 +58,30 @@ public class UpdatePaymentLinkRequestBuilder {
         this.requestBody = requestBody;
         return this;
     }
+                
+    public UpdatePaymentLinkRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public UpdatePaymentLinkRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public UpdatePaymentLinkResponse call() throws Exception {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
-        }
-        return sdk.updatePaymentLink(
+        }        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.update(
             id,
             testmode,
-            requestBody);
+            requestBody,
+            options);
     }
 
     private static final LazySingletonValue<JsonNullable<Boolean>> _SINGLETON_VALUE_Testmode =

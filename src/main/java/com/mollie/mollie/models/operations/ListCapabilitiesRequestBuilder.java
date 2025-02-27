@@ -4,17 +4,37 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
+import com.mollie.mollie.utils.Utils;
+import java.util.Optional;
 
 public class ListCapabilitiesRequestBuilder {
 
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallListCapabilities sdk;
 
     public ListCapabilitiesRequestBuilder(SDKMethodInterfaces.MethodCallListCapabilities sdk) {
         this.sdk = sdk;
     }
+                
+    public ListCapabilitiesRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public ListCapabilitiesRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public ListCapabilitiesResponse call() throws Exception {
-
-        return sdk.listCapabilitiesDirect();
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.list(
+            options);
     }
 }

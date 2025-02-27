@@ -4,14 +4,18 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.String;
+import java.util.Optional;
 
 public class DisableMethodIssuerRequestBuilder {
 
     private String profileId;
     private String methodId;
     private String id;
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallDisableMethodIssuer sdk;
 
     public DisableMethodIssuerRequestBuilder(SDKMethodInterfaces.MethodCallDisableMethodIssuer sdk) {
@@ -35,12 +39,27 @@ public class DisableMethodIssuerRequestBuilder {
         this.id = id;
         return this;
     }
+                
+    public DisableMethodIssuerRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public DisableMethodIssuerRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public DisableMethodIssuerResponse call() throws Exception {
-
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
         return sdk.disableMethodIssuer(
             profileId,
             methodId,
-            id);
+            id,
+            options);
     }
 }

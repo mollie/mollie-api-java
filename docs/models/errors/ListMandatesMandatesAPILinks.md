@@ -1,8 +1,0 @@
-# ListMandatesMandatesAPILinks
-
-
-## Fields
-
-| Field                                                                                                          | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
-| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `documentation`                                                                                                | [Optional\<ListMandatesMandatesAPIDocumentation>](../../models/errors/ListMandatesMandatesAPIDocumentation.md) | :heavy_minus_sign:                                                                                             | The URL to the generic Mollie API error handling guide.                                                        |

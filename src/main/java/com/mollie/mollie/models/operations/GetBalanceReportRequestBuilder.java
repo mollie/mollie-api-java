@@ -4,11 +4,15 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
+import java.util.Optional;
 
 public class GetBalanceReportRequestBuilder {
 
     private GetBalanceReportRequest request;
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallGetBalanceReport sdk;
 
     public GetBalanceReportRequestBuilder(SDKMethodInterfaces.MethodCallGetBalanceReport sdk) {
@@ -20,10 +24,25 @@ public class GetBalanceReportRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public GetBalanceReportRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public GetBalanceReportRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public GetBalanceReportResponse call() throws Exception {
-
-        return sdk.getBalanceReport(
-            request);
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.getReport(
+            request,
+            options);
     }
 }

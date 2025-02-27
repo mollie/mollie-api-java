@@ -4,6 +4,8 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.String;
 import java.util.Optional;
@@ -12,6 +14,7 @@ public class CreateShipmentRequestBuilder {
 
     private String orderId;
     private Optional<? extends CreateShipmentRequestBody> requestBody = Optional.empty();
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCreateShipment sdk;
 
     public CreateShipmentRequestBuilder(SDKMethodInterfaces.MethodCallCreateShipment sdk) {
@@ -35,11 +38,26 @@ public class CreateShipmentRequestBuilder {
         this.requestBody = requestBody;
         return this;
     }
+                
+    public CreateShipmentRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public CreateShipmentRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public CreateShipmentResponse call() throws Exception {
-
-        return sdk.createShipment(
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.create(
             orderId,
-            requestBody);
+            requestBody,
+            options);
     }
 }

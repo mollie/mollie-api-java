@@ -6,9 +6,12 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.utils.LazySingletonValue;
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetCaptureRequestBuilder {
@@ -20,6 +23,7 @@ public class GetCaptureRequestBuilder {
                             "testmode",
                             "false",
                             new TypeReference<JsonNullable<Boolean>>() {});
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallGetCapture sdk;
 
     public GetCaptureRequestBuilder(SDKMethodInterfaces.MethodCallGetCapture sdk) {
@@ -61,16 +65,31 @@ public class GetCaptureRequestBuilder {
         this.testmode = testmode;
         return this;
     }
+                
+    public GetCaptureRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public GetCaptureRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public GetCaptureResponse call() throws Exception {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
-        }
-        return sdk.getCapture(
+        }        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.get(
             paymentId,
             id,
             include,
-            testmode);
+            testmode,
+            options);
     }
 
     private static final LazySingletonValue<JsonNullable<Boolean>> _SINGLETON_VALUE_Testmode =

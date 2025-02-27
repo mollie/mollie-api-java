@@ -6,6 +6,8 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.utils.LazySingletonValue;
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.String;
@@ -20,6 +22,7 @@ public class ListSettlementsRequestBuilder {
                             "50",
                             new TypeReference<JsonNullable<Long>>() {});
     private JsonNullable<String> balanceId = JsonNullable.undefined();
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallListSettlements sdk;
 
     public ListSettlementsRequestBuilder(SDKMethodInterfaces.MethodCallListSettlements sdk) {
@@ -61,15 +64,30 @@ public class ListSettlementsRequestBuilder {
         this.balanceId = balanceId;
         return this;
     }
+                
+    public ListSettlementsRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public ListSettlementsRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public ListSettlementsResponse call() throws Exception {
         if (limit == null) {
             limit = _SINGLETON_VALUE_Limit.value();
-        }
-        return sdk.listSettlements(
+        }        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.list(
             from,
             limit,
-            balanceId);
+            balanceId,
+            options);
     }
 
     private static final LazySingletonValue<JsonNullable<Long>> _SINGLETON_VALUE_Limit =

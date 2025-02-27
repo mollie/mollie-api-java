@@ -4,11 +4,15 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
+import java.util.Optional;
 
 public class GetPaymentLinkPaymentsRequestBuilder {
 
     private GetPaymentLinkPaymentsRequest request;
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallGetPaymentLinkPayments sdk;
 
     public GetPaymentLinkPaymentsRequestBuilder(SDKMethodInterfaces.MethodCallGetPaymentLinkPayments sdk) {
@@ -20,10 +24,25 @@ public class GetPaymentLinkPaymentsRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public GetPaymentLinkPaymentsRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public GetPaymentLinkPaymentsRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public GetPaymentLinkPaymentsResponse call() throws Exception {
-
-        return sdk.getPaymentLinkPayments(
-            request);
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.getPayments(
+            request,
+            options);
     }
 }

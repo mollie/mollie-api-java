@@ -1,6 +1,6 @@
 configVersion: 2.0.0
 generation:
-  sdkClassName: Mollie
+  sdkClassName: Client
   maintainOpenAPIOrder: true
   usageSnippets:
     optionalPropertyRendering: withExample
@@ -15,14 +15,14 @@ generation:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: true
 java:
-  version: 0.1.0
+  version: 0.0.1
   additionalDependencies: []
   additionalPlugins: []
   artifactID: mollie
   clientServerStatusCodesAsErrors: true
   companyEmail: info@mycompany.com
-  companyName: My Company
-  companyURL: www.mycompany.com
+  companyName: Mollie
+  companyURL: https://www.mollie.com/
   defaultErrorName: APIException
   flattenGlobalSecurity: true
   githubURL: github.com/owner/repo

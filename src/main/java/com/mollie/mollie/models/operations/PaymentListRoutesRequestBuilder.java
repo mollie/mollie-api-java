@@ -4,12 +4,16 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.String;
+import java.util.Optional;
 
 public class PaymentListRoutesRequestBuilder {
 
     private String paymentId;
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallPaymentListRoutes sdk;
 
     public PaymentListRoutesRequestBuilder(SDKMethodInterfaces.MethodCallPaymentListRoutes sdk) {
@@ -21,10 +25,25 @@ public class PaymentListRoutesRequestBuilder {
         this.paymentId = paymentId;
         return this;
     }
+                
+    public PaymentListRoutesRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public PaymentListRoutesRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public PaymentListRoutesResponse call() throws Exception {
-
-        return sdk.paymentListRoutes(
-            paymentId);
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.list(
+            paymentId,
+            options);
     }
 }

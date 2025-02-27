@@ -4,6 +4,8 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.String;
 import java.util.Optional;
@@ -12,6 +14,7 @@ public class CancelOrderLinesRequestBuilder {
 
     private String orderId;
     private Optional<? extends CancelOrderLinesRequestBody> requestBody = Optional.empty();
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCancelOrderLines sdk;
 
     public CancelOrderLinesRequestBuilder(SDKMethodInterfaces.MethodCallCancelOrderLines sdk) {
@@ -35,11 +38,26 @@ public class CancelOrderLinesRequestBuilder {
         this.requestBody = requestBody;
         return this;
     }
+                
+    public CancelOrderLinesRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public CancelOrderLinesRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public CancelOrderLinesResponse call() throws Exception {
-
-        return sdk.cancelOrderLines(
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.cancelLines(
             orderId,
-            requestBody);
+            requestBody,
+            options);
     }
 }

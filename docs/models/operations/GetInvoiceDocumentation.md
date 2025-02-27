@@ -1,6 +1,6 @@
 # GetInvoiceDocumentation
 
-In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+URL to the API documentation.
 
 
 ## Fields

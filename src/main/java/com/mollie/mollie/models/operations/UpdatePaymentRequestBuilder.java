@@ -4,6 +4,8 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.String;
 import java.util.Optional;
@@ -12,6 +14,7 @@ public class UpdatePaymentRequestBuilder {
 
     private String paymentId;
     private Optional<? extends UpdatePaymentRequestBody> requestBody = Optional.empty();
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallUpdatePayment sdk;
 
     public UpdatePaymentRequestBuilder(SDKMethodInterfaces.MethodCallUpdatePayment sdk) {
@@ -35,11 +38,26 @@ public class UpdatePaymentRequestBuilder {
         this.requestBody = requestBody;
         return this;
     }
+                
+    public UpdatePaymentRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public UpdatePaymentRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public UpdatePaymentResponse call() throws Exception {
-
-        return sdk.updatePayment(
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.update(
             paymentId,
-            requestBody);
+            requestBody,
+            options);
     }
 }

@@ -4,6 +4,8 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.String;
 import java.util.Optional;
@@ -13,6 +15,7 @@ public class CreateOrderRequestBuilder {
 
     private JsonNullable<String> embed = JsonNullable.undefined();
     private Optional<? extends CreateOrderRequestBody> requestBody = Optional.empty();
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCreateOrder sdk;
 
     public CreateOrderRequestBuilder(SDKMethodInterfaces.MethodCallCreateOrder sdk) {
@@ -42,11 +45,26 @@ public class CreateOrderRequestBuilder {
         this.requestBody = requestBody;
         return this;
     }
+                
+    public CreateOrderRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public CreateOrderRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public CreateOrderResponse call() throws Exception {
-
-        return sdk.createOrder(
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.create(
             embed,
-            requestBody);
+            requestBody,
+            options);
     }
 }

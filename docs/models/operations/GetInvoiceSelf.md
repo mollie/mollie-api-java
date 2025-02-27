@@ -1,6 +1,6 @@
 # GetInvoiceSelf
 
-In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+URL to the current invoice resource.
 
 
 ## Fields

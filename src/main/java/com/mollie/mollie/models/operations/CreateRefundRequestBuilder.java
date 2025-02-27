@@ -4,6 +4,8 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.String;
 import java.util.Optional;
@@ -12,6 +14,7 @@ public class CreateRefundRequestBuilder {
 
     private String paymentId;
     private Optional<? extends CreateRefundRequestBody> requestBody = Optional.empty();
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCreateRefund sdk;
 
     public CreateRefundRequestBuilder(SDKMethodInterfaces.MethodCallCreateRefund sdk) {
@@ -35,11 +38,26 @@ public class CreateRefundRequestBuilder {
         this.requestBody = requestBody;
         return this;
     }
+                
+    public CreateRefundRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public CreateRefundRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public CreateRefundResponse call() throws Exception {
-
-        return sdk.createRefund(
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.create(
             paymentId,
-            requestBody);
+            requestBody,
+            options);
     }
 }

@@ -4,12 +4,16 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.String;
+import java.util.Optional;
 
 public class GetSettlementPaymentsRequestBuilder {
 
     private String settlementId;
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallGetSettlementPayments sdk;
 
     public GetSettlementPaymentsRequestBuilder(SDKMethodInterfaces.MethodCallGetSettlementPayments sdk) {
@@ -21,10 +25,25 @@ public class GetSettlementPaymentsRequestBuilder {
         this.settlementId = settlementId;
         return this;
     }
+                
+    public GetSettlementPaymentsRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public GetSettlementPaymentsRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public GetSettlementPaymentsResponse call() throws Exception {
-
-        return sdk.getSettlementPayments(
-            settlementId);
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.getPayments(
+            settlementId,
+            options);
     }
 }

@@ -6,6 +6,8 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.utils.LazySingletonValue;
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.String;
@@ -21,6 +23,7 @@ public class UpdateShipmentRequestBuilder {
                             "false",
                             new TypeReference<JsonNullable<Boolean>>() {});
     private Optional<? extends UpdateShipmentRequestBody> requestBody = Optional.empty();
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallUpdateShipment sdk;
 
     public UpdateShipmentRequestBuilder(SDKMethodInterfaces.MethodCallUpdateShipment sdk) {
@@ -62,16 +65,31 @@ public class UpdateShipmentRequestBuilder {
         this.requestBody = requestBody;
         return this;
     }
+                
+    public UpdateShipmentRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public UpdateShipmentRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public UpdateShipmentResponse call() throws Exception {
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
-        }
-        return sdk.updateShipment(
+        }        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.update(
             orderId,
             id,
             testmode,
-            requestBody);
+            requestBody,
+            options);
     }
 
     private static final LazySingletonValue<JsonNullable<Boolean>> _SINGLETON_VALUE_Testmode =

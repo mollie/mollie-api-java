@@ -4,6 +4,8 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.String;
 import java.util.Optional;
@@ -12,6 +14,7 @@ public class CreateCaptureRequestBuilder {
 
     private String paymentId;
     private Optional<? extends CreateCaptureRequestBody> requestBody = Optional.empty();
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCreateCapture sdk;
 
     public CreateCaptureRequestBuilder(SDKMethodInterfaces.MethodCallCreateCapture sdk) {
@@ -35,11 +38,26 @@ public class CreateCaptureRequestBuilder {
         this.requestBody = requestBody;
         return this;
     }
+                
+    public CreateCaptureRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public CreateCaptureRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public CreateCaptureResponse call() throws Exception {
-
-        return sdk.createCapture(
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.create(
             paymentId,
-            requestBody);
+            requestBody,
+            options);
     }
 }

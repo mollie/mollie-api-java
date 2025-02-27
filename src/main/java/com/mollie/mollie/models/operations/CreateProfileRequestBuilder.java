@@ -4,11 +4,15 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
+import java.util.Optional;
 
 public class CreateProfileRequestBuilder {
 
     private CreateProfileRequestBody request;
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCreateProfile sdk;
 
     public CreateProfileRequestBuilder(SDKMethodInterfaces.MethodCallCreateProfile sdk) {
@@ -20,10 +24,25 @@ public class CreateProfileRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public CreateProfileRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public CreateProfileRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public CreateProfileResponse call() throws Exception {
-
-        return sdk.createProfile(
-            request);
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.create(
+            request,
+            options);
     }
 }

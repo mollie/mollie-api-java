@@ -6,6 +6,8 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.utils.LazySingletonValue;
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -24,6 +26,7 @@ public class ListPaymentLinksRequestBuilder {
                             "testmode",
                             "false",
                             new TypeReference<JsonNullable<Boolean>>() {});
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallListPaymentLinks sdk;
 
     public ListPaymentLinksRequestBuilder(SDKMethodInterfaces.MethodCallListPaymentLinks sdk) {
@@ -65,6 +68,18 @@ public class ListPaymentLinksRequestBuilder {
         this.testmode = testmode;
         return this;
     }
+                
+    public ListPaymentLinksRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public ListPaymentLinksRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public ListPaymentLinksResponse call() throws Exception {
         if (limit == null) {
@@ -72,11 +87,14 @@ public class ListPaymentLinksRequestBuilder {
         }
         if (testmode == null) {
             testmode = _SINGLETON_VALUE_Testmode.value();
-        }
-        return sdk.listPaymentLinks(
+        }        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.list(
             from,
             limit,
-            testmode);
+            testmode,
+            options);
     }
 
     private static final LazySingletonValue<JsonNullable<Long>> _SINGLETON_VALUE_Limit =

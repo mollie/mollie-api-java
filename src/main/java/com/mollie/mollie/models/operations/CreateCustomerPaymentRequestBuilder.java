@@ -4,6 +4,8 @@
 
 package com.mollie.mollie.models.operations;
 
+import com.mollie.mollie.utils.Options;
+import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.String;
 import java.util.Optional;
@@ -12,6 +14,7 @@ public class CreateCustomerPaymentRequestBuilder {
 
     private String customerId;
     private Optional<? extends CreateCustomerPaymentRequestBody> requestBody = Optional.empty();
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCreateCustomerPayment sdk;
 
     public CreateCustomerPaymentRequestBuilder(SDKMethodInterfaces.MethodCallCreateCustomerPayment sdk) {
@@ -35,11 +38,26 @@ public class CreateCustomerPaymentRequestBuilder {
         this.requestBody = requestBody;
         return this;
     }
+                
+    public CreateCustomerPaymentRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public CreateCustomerPaymentRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public CreateCustomerPaymentResponse call() throws Exception {
-
-        return sdk.createCustomerPayment(
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
+        return sdk.createPayment(
             customerId,
-            requestBody);
+            requestBody,
+            options);
     }
 }
