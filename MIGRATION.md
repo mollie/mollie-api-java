@@ -206,7 +206,7 @@ To see code examples for each method refer to the [README](./README.md).
       Enable payment method
     </td>
     <td>
-      client.profiles.enablePaymentMethod*
+      client.profiles.enablePaymentMethod
     </td>
     <td>
       client.methods.enable
@@ -217,7 +217,7 @@ To see code examples for each method refer to the [README](./README.md).
       Disable payment method
     </td>
     <td>
-      client.profiles.disablePaymentMethod*
+      client.profiles.disablePaymentMethod
     </td>
     <td>
       client.methods.disable
@@ -228,8 +228,8 @@ To see code examples for each method refer to the [README](./README.md).
       Enable payment method issuer
     </td>
     <td>
-      client.profiles.enableGiftCardIssuer*
-      client.profiles.enableVoucherIssuer*
+      client.profiles.enableGiftCardIssuer
+      client.profiles.enableVoucherIssuer
     </td>
     <td>
       client.methods.enableIssuer
@@ -240,8 +240,8 @@ To see code examples for each method refer to the [README](./README.md).
       Disable payment method issuer
     </td>
     <td>
-      client.profiles.disableGiftCardIssuer*
-      client.profiles.disableVoucherIssuer*
+      client.profiles.disableGiftCardIssuer
+      client.profiles.disableVoucherIssuer
     </td>
     <td>
       client.methods.disableIssuer
@@ -1173,7 +1173,7 @@ To see code examples for each method refer to the [README](./README.md).
       Get balance report
     </td>
     <td>
-      client.balances.getBalanceReport*
+      client.balances.getBalanceReport
     </td>
     <td>
       client.balances.report
@@ -1184,7 +1184,7 @@ To see code examples for each method refer to the [README](./README.md).
       List balance transactions
     </td>
     <td>
-      client.balances.getBalanceTransactions*
+      client.balances.getBalanceTransactions
     </td>
     <td>
       client.balances.transactions
