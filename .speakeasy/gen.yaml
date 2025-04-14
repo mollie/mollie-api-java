@@ -20,12 +20,12 @@ java:
   additionalPlugins: []
   artifactID: mollie
   clientServerStatusCodesAsErrors: true
-  companyEmail: info@mycompany.com
+  companyEmail: bit@mollie.com
   companyName: Mollie
   companyURL: https://www.mollie.com/
   defaultErrorName: APIException
   flattenGlobalSecurity: true
-  githubURL: github.com/owner/repo
+  githubURL: https://github.com/mollie/mollie-api-java-alpha
   groupID: com.mollie
   imports:
     option: openapi
