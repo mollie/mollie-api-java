@@ -1,10 +1,6 @@
 # CreatePaymentAmount
 
-The amount that you want to charge, e.g. `{currency:"EUR", value:"1000.00"}` if you would want to charge €1000.00.
-
-You can find the minimum and maximum amounts per payment method in our help center. Additionally, they can be retrieved using the Get method endpoint.
-
-If a tip was added for a Point-of-Sale payment, the amount will be updated to reflect the initial amount plus the tip amount.
+Total amount and currency of the recurring item.
 
 
 ## Fields

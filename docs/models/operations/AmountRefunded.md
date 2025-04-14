@@ -1,6 +1,6 @@
 # AmountRefunded
 
-The total amount that is already refunded. Only available when refunds are available for this order. For some payment methods, this amount may be higher than the order amount, for example to allow reimbursement of the costs for a return shipment to the customer.
+In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
 
 
 ## Fields

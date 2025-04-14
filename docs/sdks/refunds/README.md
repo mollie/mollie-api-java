@@ -10,8 +10,8 @@
 * [get](#get) - Get payment refund
 * [cancel](#cancel) - Cancel payment refund
 * [createOrder](#createorder) - Create order refund
-* [listOrder](#listorder) - List order refunds
-* [listAll](#listall) - List all refunds
+* [listForOrder](#listfororder) - List order refunds
+* [all](#all) - List all refunds
 
 ## create
 
@@ -30,15 +30,8 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.CreateRefundRefundsResponseBody;
-import com.mollie.mollie.models.errors.CreateRefundRefundsResponseResponseBody;
-import com.mollie.mollie.models.errors.CreateRefundResponseBody;
-import com.mollie.mollie.models.operations.CreateRefundAmount;
-import com.mollie.mollie.models.operations.CreateRefundRefundsAmount;
-import com.mollie.mollie.models.operations.CreateRefundRequestBody;
-import com.mollie.mollie.models.operations.CreateRefundResponse;
-import com.mollie.mollie.models.operations.RoutingReversals;
-import com.mollie.mollie.models.operations.Source;
+import com.mollie.mollie.models.errors.*;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 import java.util.List;
 
@@ -53,12 +46,18 @@ public class Application {
             .build();
 
         CreateRefundResponse res = sdk.refunds().create()
-                .paymentId("tr_5B8cwPMGnU6qLbRvo7qEZo")
+                .paymentId("tr_5B8cwPMGnU")
                 .requestBody(CreateRefundRequestBody.builder()
                     .amount(CreateRefundAmount.builder()
                         .currency("EUR")
                         .value("10.00")
                         .build())
+                    .description("Refunding a Chess Board")
+                    .externalReference(ExternalReference.builder()
+                        .type("acquirer-reference")
+                        .id("123456789012345")
+                        .build())
+                    .reverseRouting(false)
                     .routingReversals(List.of(
                         RoutingReversals.builder()
                             .amount(CreateRefundRefundsAmount.builder()
@@ -66,7 +65,8 @@ public class Application {
                                 .value("10.00")
                                 .build())
                             .source(Source.builder()
-                                .organizationId("org_12345678")
+                                .type("organization")
+                                .organizationId("org_1234567")
                                 .build())
                             .build(),
                         RoutingReversals.builder()
@@ -75,13 +75,14 @@ public class Application {
                                 .value("10.00")
                                 .build())
                             .source(Source.builder()
-                                .organizationId("org_12345678")
+                                .type("organization")
+                                .organizationId("org_1234567")
                                 .build())
                             .build()))
                     .build())
                 .call();
 
-        if (res.any().isPresent()) {
+        if (res.object().isPresent()) {
             // handle response
         }
     }
@@ -92,7 +93,7 @@ public class Application {
 
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              | Example                                                                                  |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `paymentId`                                                                              | *String*                                                                                 | :heavy_check_mark:                                                                       | Provide the ID of the related payment.                                                   | tr_5B8cwPMGnU6qLbRvo7qEZo                                                                |
+| `paymentId`                                                                              | *String*                                                                                 | :heavy_check_mark:                                                                       | Provide the ID of the related payment.                                                   | tr_5B8cwPMGnU                                                                            |
 | `requestBody`                                                                            | [Optional\<CreateRefundRequestBody>](../../models/operations/CreateRefundRequestBody.md) | :heavy_minus_sign:                                                                       | N/A                                                                                      |                                                                                          |
 
 ### Response
@@ -129,8 +130,7 @@ import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ListRefundsRefundsResponseBody;
 import com.mollie.mollie.models.errors.ListRefundsResponseBody;
-import com.mollie.mollie.models.operations.ListRefundsRequest;
-import com.mollie.mollie.models.operations.ListRefundsResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -144,9 +144,9 @@ public class Application {
             .build();
 
         ListRefundsRequest req = ListRefundsRequest.builder()
-                .paymentId("tr_5B8cwPMGnU6qLbRvo7qEZo")
-                .from("re_4qqhO89gsT")
-                .include("payment")
+                .paymentId("tr_5B8cwPMGnU")
+                .from("re_5B8cwPMGnU")
+                .include(ListRefundsQueryParamInclude.PAYMENT)
                 .build();
 
         ListRefundsResponse res = sdk.refunds().list()
@@ -196,6 +196,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.GetRefundResponseBody;
+import com.mollie.mollie.models.operations.GetRefundQueryParamInclude;
 import com.mollie.mollie.models.operations.GetRefundResponse;
 import java.lang.Exception;
 
@@ -210,10 +211,9 @@ public class Application {
             .build();
 
         GetRefundResponse res = sdk.refunds().get()
-                .paymentId("tr_5B8cwPMGnU6qLbRvo7qEZo")
-                .id("re_4qqhO89gsT")
-                .include("payment")
-                .testmode(false)
+                .paymentId("tr_5B8cwPMGnU")
+                .refundId("re_5B8cwPMGnU")
+                .include(GetRefundQueryParamInclude.PAYMENT)
                 .call();
 
         if (res.object().isPresent()) {
@@ -227,9 +227,9 @@ public class Application {
 
 | Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `paymentId`                                                                                                                                                                                                                                                                                                                                                                            | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related payment.                                                                                                                                                                                                                                                                                                                                                 | tr_5B8cwPMGnU6qLbRvo7qEZo                                                                                                                                                                                                                                                                                                                                                              |
-| `id`                                                                                                                                                                                                                                                                                                                                                                                   | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the item you want to perform this operation on.                                                                                                                                                                                                                                                                                                                      | re_4qqhO89gsT                                                                                                                                                                                                                                                                                                                                                                          |
-| `include`                                                                                                                                                                                                                                                                                                                                                                              | *JsonNullable\<String>*                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows you to include additional information via the `include` query string parameter.<br/><br/>* `payment`: Include the payment this refund was created for.                                                                                                                                                                                                            | payment                                                                                                                                                                                                                                                                                                                                                                                |
+| `paymentId`                                                                                                                                                                                                                                                                                                                                                                            | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related payment.                                                                                                                                                                                                                                                                                                                                                 | tr_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                          |
+| `refundId`                                                                                                                                                                                                                                                                                                                                                                             | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related refund.                                                                                                                                                                                                                                                                                                                                                  | re_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                          |
+| `include`                                                                                                                                                                                                                                                                                                                                                                              | [JsonNullable\<GetRefundQueryParamInclude>](../../models/operations/GetRefundQueryParamInclude.md)                                                                                                                                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows you to include additional information via the `include` query string parameter.                                                                                                                                                                                                                                                                                   | payment                                                                                                                                                                                                                                                                                                                                                                                |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Response
@@ -277,9 +277,8 @@ public class Application {
             .build();
 
         CancelRefundResponse res = sdk.refunds().cancel()
-                .paymentId("tr_5B8cwPMGnU6qLbRvo7qEZo")
-                .id("re_4qqhO89gsT")
-                .testmode(false)
+                .paymentId("tr_5B8cwPMGnU")
+                .refundId("re_5B8cwPMGnU")
                 .call();
 
         if (res.any().isPresent()) {
@@ -293,8 +292,8 @@ public class Application {
 
 | Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `paymentId`                                                                                                                                                                                                                                                                                                                                                                            | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related payment.                                                                                                                                                                                                                                                                                                                                                 | tr_5B8cwPMGnU6qLbRvo7qEZo                                                                                                                                                                                                                                                                                                                                                              |
-| `id`                                                                                                                                                                                                                                                                                                                                                                                   | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the item you want to perform this operation on.                                                                                                                                                                                                                                                                                                                      | re_4qqhO89gsT                                                                                                                                                                                                                                                                                                                                                                          |
+| `paymentId`                                                                                                                                                                                                                                                                                                                                                                            | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related payment.                                                                                                                                                                                                                                                                                                                                                 | tr_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                          |
+| `refundId`                                                                                                                                                                                                                                                                                                                                                                             | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related refund.                                                                                                                                                                                                                                                                                                                                                  | re_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                          |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Response
@@ -331,10 +330,7 @@ import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.CreateOrderRefundRefundsResponseBody;
 import com.mollie.mollie.models.errors.CreateOrderRefundResponseBody;
-import com.mollie.mollie.models.operations.CreateOrderRefundAmount;
-import com.mollie.mollie.models.operations.CreateOrderRefundLines;
-import com.mollie.mollie.models.operations.CreateOrderRefundRequestBody;
-import com.mollie.mollie.models.operations.CreateOrderRefundResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 import java.util.List;
 
@@ -349,27 +345,117 @@ public class Application {
             .build();
 
         CreateOrderRefundResponse res = sdk.refunds().createOrder()
-                .orderId("ord_pbjz8x")
+                .orderId("ord_5B8cwPMGnU")
                 .requestBody(CreateOrderRefundRequestBody.builder()
                     .lines(List.of(
                         CreateOrderRefundLines.builder()
-                            .amount(CreateOrderRefundAmount.builder()
+                            .id("odl_5B8cwPMGnU")
+                            .name("Chess Board")
+                            .sku("5702016116977")
+                            .type(Type.PHYSICAL)
+                            .status(Status.CREATED)
+                            .isCancelable(false)
+                            .quantity(1L)
+                            .quantityShipped(0L)
+                            .amountShipped(AmountShipped.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
+                            .quantityRefunded(0L)
+                            .amountRefunded(AmountRefunded.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .quantityCanceled(0L)
+                            .amountCanceled(AmountCanceled.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .amount(CreateOrderRefundRefundsAmount.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .shippableQuantity(0L)
+                            .refundableQuantity(0L)
+                            .cancelableQuantity(0L)
+                            .vatRate("21.00")
+                            .createdAt("2025-03-28T16:42:12+00:00")
                             .build(),
                         CreateOrderRefundLines.builder()
-                            .amount(CreateOrderRefundAmount.builder()
+                            .id("odl_5B8cwPMGnU")
+                            .name("Chess Board")
+                            .sku("5702016116977")
+                            .type(Type.PHYSICAL)
+                            .status(Status.CREATED)
+                            .isCancelable(false)
+                            .quantity(1L)
+                            .quantityShipped(0L)
+                            .amountShipped(AmountShipped.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
+                            .quantityRefunded(0L)
+                            .amountRefunded(AmountRefunded.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .quantityCanceled(0L)
+                            .amountCanceled(AmountCanceled.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .amount(CreateOrderRefundRefundsAmount.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .shippableQuantity(0L)
+                            .refundableQuantity(0L)
+                            .cancelableQuantity(0L)
+                            .vatRate("21.00")
+                            .createdAt("2025-03-28T16:42:12+00:00")
                             .build(),
                         CreateOrderRefundLines.builder()
-                            .amount(CreateOrderRefundAmount.builder()
+                            .id("odl_5B8cwPMGnU")
+                            .name("Chess Board")
+                            .sku("5702016116977")
+                            .type(Type.PHYSICAL)
+                            .status(Status.CREATED)
+                            .isCancelable(false)
+                            .quantity(1L)
+                            .quantityShipped(0L)
+                            .amountShipped(AmountShipped.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
+                            .quantityRefunded(0L)
+                            .amountRefunded(AmountRefunded.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .quantityCanceled(0L)
+                            .amountCanceled(AmountCanceled.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .amount(CreateOrderRefundRefundsAmount.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .shippableQuantity(0L)
+                            .refundableQuantity(0L)
+                            .cancelableQuantity(0L)
+                            .vatRate("21.00")
+                            .createdAt("2025-03-28T16:42:12+00:00")
                             .build()))
+                    .description("Refunding a Chess Board")
+                    .amount(CreateOrderRefundAmount.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .externalReference(CreateOrderRefundExternalReference.builder()
+                        .type("acquirer-reference")
+                        .id("123456789012345")
+                        .build())
                     .build())
                 .call();
 
@@ -384,7 +470,7 @@ public class Application {
 
 | Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        | Example                                                                                            |
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `orderId`                                                                                          | *String*                                                                                           | :heavy_check_mark:                                                                                 | Provide the ID of the related order.                                                               | ord_pbjz8x                                                                                         |
+| `orderId`                                                                                          | *String*                                                                                           | :heavy_check_mark:                                                                                 | Provide the ID of the related order.                                                               | ord_5B8cwPMGnU                                                                                     |
 | `requestBody`                                                                                      | [Optional\<CreateOrderRefundRequestBody>](../../models/operations/CreateOrderRefundRequestBody.md) | :heavy_minus_sign:                                                                                 | N/A                                                                                                |                                                                                                    |
 
 ### Response
@@ -399,7 +485,7 @@ public class Application {
 | models/errors/CreateOrderRefundRefundsResponseBody | 422                                                | application/hal+json                               |
 | models/errors/APIException                         | 4XX, 5XX                                           | \*/\*                                              |
 
-## listOrder
+## listForOrder
 
 Retrieve a list of all refunds created for a specific order.
 
@@ -434,12 +520,12 @@ public class Application {
             .build();
 
         ListOrderRefundsRequest req = ListOrderRefundsRequest.builder()
-                .orderId("ord_pbjz8x")
+                .orderId("ord_5B8cwPMGnU")
                 .from("re_4qqhO89gsT")
                 .include("payment")
                 .build();
 
-        ListOrderRefundsResponse res = sdk.refunds().listOrder()
+        ListOrderRefundsResponse res = sdk.refunds().listForOrder()
                 .request(req)
                 .call();
 
@@ -467,7 +553,7 @@ public class Application {
 | models/errors/ListOrderRefundsResponseBody | 400                                        | application/hal+json                       |
 | models/errors/APIException                 | 4XX, 5XX                                   | \*/\*                                      |
 
-## listAll
+## all
 
 Retrieve a list of all of your refunds.
 
@@ -487,8 +573,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ListAllRefundsResponseBody;
-import com.mollie.mollie.models.operations.ListAllRefundsRequest;
-import com.mollie.mollie.models.operations.ListAllRefundsResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -502,12 +587,13 @@ public class Application {
             .build();
 
         ListAllRefundsRequest req = ListAllRefundsRequest.builder()
-                .from("re_4qqhO89gsT")
-                .embed("payment")
-                .profileId("pfl_QkEhN94Ba")
+                .from("re_5B8cwPMGnU")
+                .sort("desc")
+                .embed(QueryParamEmbed.PAYMENT)
+                .profileId("pfl_5B8cwPMGnU")
                 .build();
 
-        ListAllRefundsResponse res = sdk.refunds().listAll()
+        ListAllRefundsResponse res = sdk.refunds().all()
                 .request(req)
                 .call();
 

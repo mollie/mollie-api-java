@@ -1,6 +1,6 @@
 # AmountCaptured
 
-The total amount that is already captured for this order. Only available when this order supports captures.
+The total amount that is already captured for this payment. Only available when this payment supports captures.
 
 
 ## Fields

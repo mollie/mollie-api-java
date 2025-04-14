@@ -1,6 +1,6 @@
 # MinimumAmount
 
-The minimum payment amount required to use this payment method.
+The minimum amount of the payment link. This property is only allowed when there is no amount provided. The customer will be prompted to enter a value greater than or equal to the minimum amount.
 
 
 ## Fields

@@ -39,10 +39,7 @@ import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.CreateClientLinkClientLinksResponseBody;
 import com.mollie.mollie.models.errors.CreateClientLinkResponseBody;
-import com.mollie.mollie.models.operations.CreateClientLinkAddress;
-import com.mollie.mollie.models.operations.CreateClientLinkRequestBody;
-import com.mollie.mollie.models.operations.CreateClientLinkResponse;
-import com.mollie.mollie.models.operations.Owner;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -60,6 +57,7 @@ public class Application {
                     .email("Loyal79@yahoo.com")
                     .givenName("<value>")
                     .familyName("<value>")
+                    .locale("en_US")
                     .build())
                 .name("<value>")
                 .address(CreateClientLinkAddress.builder()

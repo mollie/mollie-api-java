@@ -1,0 +1,9 @@
+# Pending
+
+
+## Fields
+
+| Field                                                                                                                  | Type                                                                                                                   | Required                                                                                                               | Description                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `amount`                                                                                                               | [Optional\<GetBalanceReportBalancesResponseAmount>](../../models/operations/GetBalanceReportBalancesResponseAmount.md) | :heavy_minus_sign:                                                                                                     | In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.                      |
+| `subtotals`                                                                                                            | List\<[GetBalanceReportBalancesSubtotals](../../models/operations/GetBalanceReportBalancesSubtotals.md)>               | :heavy_minus_sign:                                                                                                     | N/A                                                                                                                    |

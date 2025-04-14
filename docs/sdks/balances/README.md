@@ -46,8 +46,6 @@ public class Application {
         ListBalancesResponse res = sdk.balances().list()
                 .currency("EUR")
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
-                .limit(50L)
-                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {
@@ -116,7 +114,6 @@ public class Application {
 
         GetBalanceResponse res = sdk.balances().get()
                 .id("bal_gVMhHKqSSRYJyPsuoPNFH")
-                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {
@@ -213,6 +210,7 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.GetBalanceReportBalancesResponseBody;
 import com.mollie.mollie.models.errors.GetBalanceReportResponseBody;
 import com.mollie.mollie.models.operations.GetBalanceReportRequest;
 import com.mollie.mollie.models.operations.GetBalanceReportResponse;
@@ -220,7 +218,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws GetBalanceReportResponseBody, Exception {
+    public static void main(String[] args) throws GetBalanceReportResponseBody, GetBalanceReportBalancesResponseBody, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -258,10 +256,11 @@ public class Application {
 
 ### Errors
 
-| Error Type                                 | Status Code                                | Content Type                               |
-| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
-| models/errors/GetBalanceReportResponseBody | 404                                        | application/hal+json                       |
-| models/errors/APIException                 | 4XX, 5XX                                   | \*/\*                                      |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| models/errors/GetBalanceReportResponseBody         | 404                                                | application/hal+json                               |
+| models/errors/GetBalanceReportBalancesResponseBody | 422                                                | application/hal+json                               |
+| models/errors/APIException                         | 4XX, 5XX                                           | \*/\*                                              |
 
 ## listTransactions
 
@@ -284,14 +283,13 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ListBalanceTransactionsBalancesResponseBody;
-import com.mollie.mollie.models.errors.ListBalanceTransactionsResponseBody;
+import com.mollie.mollie.models.errors.*;
 import com.mollie.mollie.models.operations.ListBalanceTransactionsResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ListBalanceTransactionsResponseBody, ListBalanceTransactionsBalancesResponseBody, Exception {
+    public static void main(String[] args) throws ListBalanceTransactionsResponseBody, ListBalanceTransactionsBalancesResponseBody, ListBalanceTransactionsBalancesResponseResponseBody, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -302,8 +300,6 @@ public class Application {
         ListBalanceTransactionsResponse res = sdk.balances().listTransactions()
                 .balanceId("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .from("baltr_QM24QwzUWR4ev4Xfgyt29A")
-                .limit(50L)
-                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {
@@ -328,8 +324,9 @@ public class Application {
 
 ### Errors
 
-| Error Type                                                | Status Code                                               | Content Type                                              |
-| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| models/errors/ListBalanceTransactionsResponseBody         | 400                                                       | application/hal+json                                      |
-| models/errors/ListBalanceTransactionsBalancesResponseBody | 404                                                       | application/hal+json                                      |
-| models/errors/APIException                                | 4XX, 5XX                                                  | \*/\*                                                     |
+| Error Type                                                        | Status Code                                                       | Content Type                                                      |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| models/errors/ListBalanceTransactionsResponseBody                 | 400                                                               | application/hal+json                                              |
+| models/errors/ListBalanceTransactionsBalancesResponseBody         | 404                                                               | application/hal+json                                              |
+| models/errors/ListBalanceTransactionsBalancesResponseResponseBody | 429                                                               | application/hal+json                                              |
+| models/errors/APIException                                        | 4XX, 5XX                                                          | \*/\*                                                             |

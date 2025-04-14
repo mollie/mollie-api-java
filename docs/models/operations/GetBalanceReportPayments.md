@@ -1,0 +1,12 @@
+# GetBalanceReportPayments
+
+Only available on `transaction-categories` grouping.
+
+
+## Fields
+
+| Field                                                                                                                    | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
+| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| `pending`                                                                                                                | [Optional\<GetBalanceReportBalancesResponsePending>](../../models/operations/GetBalanceReportBalancesResponsePending.md) | :heavy_minus_sign:                                                                                                       | N/A                                                                                                                      |
+| `movedToAvailable`                                                                                                       | [Optional\<GetBalanceReportMovedToAvailable>](../../models/operations/GetBalanceReportMovedToAvailable.md)               | :heavy_minus_sign:                                                                                                       | N/A                                                                                                                      |
+| `immediatelyAvailable`                                                                                                   | [Optional\<GetBalanceReportImmediatelyAvailable>](../../models/operations/GetBalanceReportImmediatelyAvailable.md)       | :heavy_minus_sign:                                                                                                       | N/A                                                                                                                      |

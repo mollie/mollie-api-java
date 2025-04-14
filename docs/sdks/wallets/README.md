@@ -5,9 +5,9 @@
 
 ### Available Operations
 
-* [requestApplePayPaymentSession](#requestapplepaypaymentsession) - Request Apple Pay payment session
+* [requestApplePaySession](#requestapplepaysession) - Request Apple Pay payment session
 
-## requestApplePayPaymentSession
+## requestApplePaySession
 
 When integrating Apple Pay in your own checkout on the web, you need to [provide merchant validation](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api/providing_merchant_validation). This is normally done using Apple's [Requesting an Apple Pay Session](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session). The merchant validation proves to Apple that a validated merchant is calling the Apple Pay Javascript APIs.
 
@@ -48,16 +48,16 @@ public class Application {
             .build();
 
         RequestApplePayPaymentSessionRequestBody req = RequestApplePayPaymentSessionRequestBody.builder()
-                .validationUrl("https://dark-suv.org")
-                .domain("cheap-contractor.info")
-                .profileId("pfl_QkEhN94Ba")
+                .validationUrl("https://apple-pay-gateway-cert.apple.com/paymentservices/paymentSession")
+                .domain("pay.myshop.com")
+                .profileId("pfl_5B8cwPMGnU")
                 .build();
 
-        RequestApplePayPaymentSessionResponse res = sdk.wallets().requestApplePayPaymentSession()
+        RequestApplePayPaymentSessionResponse res = sdk.wallets().requestApplePaySession()
                 .request(req)
                 .call();
 
-        if (res.any().isPresent()) {
+        if (res.object().isPresent()) {
             // handle response
         }
     }

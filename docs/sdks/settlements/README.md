@@ -9,10 +9,10 @@
 * [get](#get) - Get settlement
 * [getOpen](#getopen) - Get open settlement
 * [getNext](#getnext) - Get next settlement
-* [getPayments](#getpayments) - Get settlement payments
-* [getCaptures](#getcaptures) - Get settlement captures
-* [getRefunds](#getrefunds) - Get settlement refunds
-* [getChargebacks](#getchargebacks) - Get settlement chargebacks
+* [listPayments](#listpayments) - Get settlement payments
+* [listCaptures](#listcaptures) - Get settlement captures
+* [listRefunds](#listrefunds) - Get settlement refunds
+* [listChargebacks](#listchargebacks) - Get settlement chargebacks
 
 ## list
 
@@ -33,6 +33,7 @@ import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ListSettlementsResponseBody;
 import com.mollie.mollie.models.errors.ListSettlementsSettlementsResponseBody;
+import com.mollie.mollie.models.operations.ListSettlementsRequest;
 import com.mollie.mollie.models.operations.ListSettlementsResponse;
 import java.lang.Exception;
 
@@ -46,10 +47,16 @@ public class Application {
                     .build())
             .build();
 
-        ListSettlementsResponse res = sdk.settlements().list()
+        ListSettlementsRequest req = ListSettlementsRequest.builder()
                 .from("stl_jDk30akdN")
-                .limit(50L)
-                .balanceId("bal_3kUf4yU2nT")
+                .balanceId("bal_gVMhHKqSSRYJyPsuoPNFH")
+                .year("2025")
+                .month("1")
+                .currencies("EUR")
+                .build();
+
+        ListSettlementsResponse res = sdk.settlements().list()
+                .request(req)
                 .call();
 
         if (res.object().isPresent()) {
@@ -61,11 +68,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                      | Type                                                                                                                           | Required                                                                                                                       | Description                                                                                                                    | Example                                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
-| `from`                                                                                                                         | *Optional\<String>*                                                                                                            | :heavy_minus_sign:                                                                                                             | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set. | stl_jDk30akdN                                                                                                                  |
-| `limit`                                                                                                                        | *JsonNullable\<Long>*                                                                                                          | :heavy_minus_sign:                                                                                                             | The maximum number of items to return. Defaults to 50 items.                                                                   | 50                                                                                                                             |
-| `balanceId`                                                                                                                    | *JsonNullable\<String>*                                                                                                        | :heavy_minus_sign:                                                                                                             | Provide the token of the balance to filter the settlements by. This is the balance token that the settlement was settled to.   | bal_3kUf4yU2nT                                                                                                                 |
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [ListSettlementsRequest](../../models/operations/ListSettlementsRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
 
 ### Response
 
@@ -248,7 +253,7 @@ public class Application {
 | -------------------------- | -------------------------- | -------------------------- |
 | models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
 
-## getPayments
+## listPayments
 
 Retrieve all payments included in the given settlement.
 
@@ -281,7 +286,7 @@ public class Application {
                     .build())
             .build();
 
-        GetSettlementPaymentsResponse res = sdk.settlements().getPayments()
+        GetSettlementPaymentsResponse res = sdk.settlements().listPayments()
                 .settlementId("stl_jDk30akdN")
                 .call();
 
@@ -309,7 +314,7 @@ public class Application {
 | models/errors/GetSettlementPaymentsResponseBody | 404                                             | application/hal+json                            |
 | models/errors/APIException                      | 4XX, 5XX                                        | \*/\*                                           |
 
-## getCaptures
+## listCaptures
 
 Retrieve all captures included in the given settlement.
 
@@ -340,7 +345,7 @@ public class Application {
                     .build())
             .build();
 
-        GetSettlementCapturesResponse res = sdk.settlements().getCaptures()
+        GetSettlementCapturesResponse res = sdk.settlements().listCaptures()
                 .settlementId("stl_jDk30akdN")
                 .call();
 
@@ -368,7 +373,7 @@ public class Application {
 | models/errors/GetSettlementCapturesResponseBody | 404                                             | application/hal+json                            |
 | models/errors/APIException                      | 4XX, 5XX                                        | \*/\*                                           |
 
-## getRefunds
+## listRefunds
 
 Retrieve all refunds 'deducted' from the given settlement.
 
@@ -399,7 +404,7 @@ public class Application {
                     .build())
             .build();
 
-        GetSettlementRefundsResponse res = sdk.settlements().getRefunds()
+        GetSettlementRefundsResponse res = sdk.settlements().listRefunds()
                 .settlementId("stl_jDk30akdN")
                 .call();
 
@@ -427,7 +432,7 @@ public class Application {
 | models/errors/GetSettlementRefundsResponseBody | 404                                            | application/hal+json                           |
 | models/errors/APIException                     | 4XX, 5XX                                       | \*/\*                                          |
 
-## getChargebacks
+## listChargebacks
 
 Retrieve all chargebacks 'deducted' from the given settlement.
 
@@ -458,7 +463,7 @@ public class Application {
                     .build())
             .build();
 
-        GetSettlementChargebacksResponse res = sdk.settlements().getChargebacks()
+        GetSettlementChargebacksResponse res = sdk.settlements().listChargebacks()
                 .settlementId("stl_jDk30akdN")
                 .call();
 

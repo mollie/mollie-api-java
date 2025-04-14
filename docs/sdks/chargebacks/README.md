@@ -7,7 +7,7 @@
 
 * [list](#list) - List payment chargebacks
 * [get](#get) - Get payment chargeback
-* [listAll](#listall) - List all chargebacks
+* [all](#all) - List all chargebacks
 
 ## list
 
@@ -30,8 +30,7 @@ import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ListChargebacksChargebacksResponseBody;
 import com.mollie.mollie.models.errors.ListChargebacksResponseBody;
-import com.mollie.mollie.models.operations.ListChargebacksRequest;
-import com.mollie.mollie.models.operations.ListChargebacksResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -45,9 +44,9 @@ public class Application {
             .build();
 
         ListChargebacksRequest req = ListChargebacksRequest.builder()
-                .paymentId("tr_5B8cwPMGnU6qLbRvo7qEZo")
-                .from("chb_n9z0tp")
-                .include("payment")
+                .paymentId("tr_5B8cwPMGnU")
+                .from("chb_xFzwUN4ci8HAmSGUACS4J")
+                .embed(ListChargebacksQueryParamEmbed.PAYMENT)
                 .build();
 
         ListChargebacksResponse res = sdk.chargebacks().list()
@@ -97,6 +96,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.GetChargebackResponseBody;
+import com.mollie.mollie.models.operations.GetChargebackQueryParamEmbed;
 import com.mollie.mollie.models.operations.GetChargebackResponse;
 import java.lang.Exception;
 
@@ -111,10 +111,9 @@ public class Application {
             .build();
 
         GetChargebackResponse res = sdk.chargebacks().get()
-                .paymentId("tr_5B8cwPMGnU6qLbRvo7qEZo")
-                .id("chb_n9z0tp")
-                .include("payment")
-                .testmode(false)
+                .paymentId("tr_5B8cwPMGnU")
+                .chargebackId("chb_xFzwUN4ci8HAmSGUACS4J")
+                .embed(GetChargebackQueryParamEmbed.PAYMENT)
                 .call();
 
         if (res.object().isPresent()) {
@@ -128,9 +127,9 @@ public class Application {
 
 | Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `paymentId`                                                                                                                                                                                                                                                                                                                                                                            | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related payment.                                                                                                                                                                                                                                                                                                                                                 | tr_5B8cwPMGnU6qLbRvo7qEZo                                                                                                                                                                                                                                                                                                                                                              |
-| `id`                                                                                                                                                                                                                                                                                                                                                                                   | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the item you want to perform this operation on.                                                                                                                                                                                                                                                                                                                      | chb_n9z0tp                                                                                                                                                                                                                                                                                                                                                                             |
-| `include`                                                                                                                                                                                                                                                                                                                                                                              | *JsonNullable\<String>*                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows you to include additional information via the `include` query string parameter.<br/><br/>* `payment`: Include the payment this chargeback was issued for.                                                                                                                                                                                                         | payment                                                                                                                                                                                                                                                                                                                                                                                |
+| `paymentId`                                                                                                                                                                                                                                                                                                                                                                            | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related payment.                                                                                                                                                                                                                                                                                                                                                 | tr_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                          |
+| `chargebackId`                                                                                                                                                                                                                                                                                                                                                                         | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related chargeback.                                                                                                                                                                                                                                                                                                                                              | chb_xFzwUN4ci8HAmSGUACS4J                                                                                                                                                                                                                                                                                                                                                              |
+| `embed`                                                                                                                                                                                                                                                                                                                                                                                | [JsonNullable\<GetChargebackQueryParamEmbed>](../../models/operations/GetChargebackQueryParamEmbed.md)                                                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows you to embed additional information via the `embed` query string parameter.                                                                                                                                                                                                                                                                                       | payment                                                                                                                                                                                                                                                                                                                                                                                |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Response
@@ -144,7 +143,7 @@ public class Application {
 | models/errors/GetChargebackResponseBody | 404                                     | application/hal+json                    |
 | models/errors/APIException              | 4XX, 5XX                                | \*/\*                                   |
 
-## listAll
+## all
 
 Retrieve all chargebacks initiated for all your payments.
 
@@ -165,8 +164,7 @@ import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ListAllChargebacksChargebacksResponseBody;
 import com.mollie.mollie.models.errors.ListAllChargebacksResponseBody;
-import com.mollie.mollie.models.operations.ListAllChargebacksRequest;
-import com.mollie.mollie.models.operations.ListAllChargebacksResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -180,12 +178,13 @@ public class Application {
             .build();
 
         ListAllChargebacksRequest req = ListAllChargebacksRequest.builder()
-                .from("chb_n9z0tp")
-                .include("payment")
-                .profileId("pfl_QkEhN94Ba")
+                .from("chb_xFzwUN4ci8HAmSGUACS4J")
+                .embed(ListAllChargebacksQueryParamEmbed.PAYMENT)
+                .sort("desc")
+                .profileId("pfl_5B8cwPMGnU")
                 .build();
 
-        ListAllChargebacksResponse res = sdk.chargebacks().listAll()
+        ListAllChargebacksResponse res = sdk.chargebacks().all()
                 .request(req)
                 .call();
 

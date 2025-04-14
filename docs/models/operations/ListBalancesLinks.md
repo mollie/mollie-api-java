@@ -1,0 +1,13 @@
+# ListBalancesLinks
+
+Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
+
+
+## Fields
+
+| Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `self`                                                                                       | [Optional\<ListBalancesSelf>](../../models/operations/ListBalancesSelf.md)                   | :heavy_minus_sign:                                                                           | The URL to the current set of items.                                                         |
+| `previous`                                                                                   | [JsonNullable\<ListBalancesPrevious>](../../models/operations/ListBalancesPrevious.md)       | :heavy_minus_sign:                                                                           | The previous set of items, if available.                                                     |
+| `next`                                                                                       | [JsonNullable\<ListBalancesNext>](../../models/operations/ListBalancesNext.md)               | :heavy_minus_sign:                                                                           | The next set of items, if available.                                                         |
+| `documentation`                                                                              | [Optional\<ListBalancesDocumentation>](../../models/operations/ListBalancesDocumentation.md) | :heavy_minus_sign:                                                                           | In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.   |

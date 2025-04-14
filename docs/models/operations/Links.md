@@ -1,13 +1,11 @@
 # Links
 
-Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
+An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
 
 
 ## Fields
 
 | Field                                                                                      | Type                                                                                       | Required                                                                                   | Description                                                                                |
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `self`                                                                                     | [Optional\<Self>](../../models/operations/Self.md)                                         | :heavy_minus_sign:                                                                         | The URL to the current set of items.                                                       |
-| `previous`                                                                                 | [JsonNullable\<Previous>](../../models/operations/Previous.md)                             | :heavy_minus_sign:                                                                         | The previous set of items, if available.                                                   |
-| `next`                                                                                     | [JsonNullable\<Next>](../../models/operations/Next.md)                                     | :heavy_minus_sign:                                                                         | The next set of items, if available.                                                       |
-| `documentation`                                                                            | [Optional\<Documentation>](../../models/operations/Documentation.md)                       | :heavy_minus_sign:                                                                         | In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field. |
+| `self`                                                                                     | [Optional\<Self>](../../models/operations/Self.md)                                         | :heavy_minus_sign:                                                                         | In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field. |
+| `payment`                                                                                  | [Optional\<Payment>](../../models/operations/Payment.md)                                   | :heavy_minus_sign:                                                                         | The API resource URL of the [payment](get-payment) that belong to this route.              |

@@ -1,9 +1,9 @@
-speakeasyVersion: 1.505.1
+speakeasyVersion: 1.531.4
 sources:
     Mollie API:
         sourceNamespace: mollie-api
-        sourceRevisionDigest: sha256:8d41e1a235dc05e297132debc67d0b25ca8eafde21302c6dbbe1a321b79ded6a
-        sourceBlobDigest: sha256:8e81064e139b4dae5cb23f781f8adfa18096ffb2ce1eff7e9e2cf4fe8b00d83c
+        sourceRevisionDigest: sha256:492b21e5430bb7f7698d8689320ffcc93b11da12acb14911c7312a105bb48867
+        sourceBlobDigest: sha256:e9080ccae2f558a7b3c96d0730b4ccce4d6115748ce6280eda835abbedfcd89d
         tags:
             - latest
             - 1.0.0
@@ -11,10 +11,10 @@ targets:
     client:
         source: Mollie API
         sourceNamespace: mollie-api
-        sourceRevisionDigest: sha256:8d41e1a235dc05e297132debc67d0b25ca8eafde21302c6dbbe1a321b79ded6a
-        sourceBlobDigest: sha256:8e81064e139b4dae5cb23f781f8adfa18096ffb2ce1eff7e9e2cf4fe8b00d83c
+        sourceRevisionDigest: sha256:492b21e5430bb7f7698d8689320ffcc93b11da12acb14911c7312a105bb48867
+        sourceBlobDigest: sha256:e9080ccae2f558a7b3c96d0730b4ccce4d6115748ce6280eda835abbedfcd89d
         codeSamplesNamespace: mollie-api-java-code-samples
-        codeSamplesRevisionDigest: sha256:c4fa933237e9da445013876e0d81edf209c97eabc65899ae3d522ed09e1e172d
+        codeSamplesRevisionDigest: sha256:120bdd0de351bd8c76c3f77163302b40808dbb7ea763f79b0a74ccb4be1ab124
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -28,6 +28,12 @@ workflow:
         client:
             target: java
             source: Mollie API
+            publish:
+                java:
+                    ossrhUsername: $ossrh_username
+                    ossrhPassword: $ossrh_password
+                    gpgSecretKey: $java_gpg_secret_key
+                    gpgPassPhrase: $java_gpg_passphrase
             codeSamples:
                 registry:
                     location: registry.speakeasyapi.dev/mollie-oom/mollie/mollie-api-java-code-samples

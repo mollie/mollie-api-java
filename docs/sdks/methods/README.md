@@ -6,12 +6,8 @@
 ### Available Operations
 
 * [list](#list) - List payment methods
-* [listAll](#listall) - List all payment methods
+* [all](#all) - List all payment methods
 * [get](#get) - Get payment method
-* [enableMethod](#enablemethod) - Enable payment method
-* [disableMethod](#disablemethod) - Disable payment method
-* [enableMethodIssuer](#enablemethodissuer) - Enable payment method issuer
-* [disableMethodIssuer](#disablemethodissuer) - Disable payment method issuer
 
 ## list
 
@@ -39,9 +35,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ListMethodsResponseBody;
-import com.mollie.mollie.models.operations.ListMethodsRequest;
-import com.mollie.mollie.models.operations.ListMethodsResponse;
-import com.mollie.mollie.models.operations.QueryParamAmount;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -55,18 +49,16 @@ public class Application {
             .build();
 
         ListMethodsRequest req = ListMethodsRequest.builder()
-                .sequenceType("oneoff")
                 .locale("en_US")
                 .amount(QueryParamAmount.builder()
                     .currency("EUR")
                     .value("10.00")
                     .build())
-                .resource("payments")
                 .billingCountry("DE")
                 .includeWallets("applepay")
                 .orderLineCategories("eco")
-                .profileId("pfl_QkEhN94Ba")
-                .include("issuers")
+                .profileId("pfl_5B8cwPMGnU")
+                .include(ListMethodsQueryParamInclude.ISSUERS)
                 .build();
 
         ListMethodsResponse res = sdk.methods().list()
@@ -97,7 +89,7 @@ public class Application {
 | models/errors/ListMethodsResponseBody | 400                                   | application/hal+json                  |
 | models/errors/APIException            | 4XX, 5XX                              | \*/\*                                 |
 
-## listAll
+## all
 
 Retrieve all payment methods that Mollie offers, regardless of the eligibility of the organization for the specific method. The results of this endpoint are **not** paginated — unlike most other list endpoints in our API.
 
@@ -117,8 +109,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ListAllMethodsResponseBody;
-import com.mollie.mollie.models.operations.ListAllMethodsQueryParamAmount;
-import com.mollie.mollie.models.operations.ListAllMethodsResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -131,13 +122,13 @@ public class Application {
                     .build())
             .build();
 
-        ListAllMethodsResponse res = sdk.methods().listAll()
+        ListAllMethodsResponse res = sdk.methods().all()
                 .locale("en_US")
                 .amount(ListAllMethodsQueryParamAmount.builder()
                     .currency("EUR")
                     .value("10.00")
                     .build())
-                .include("issuers")
+                .include(ListAllMethodsQueryParamInclude.ISSUERS)
                 .call();
 
         if (res.object().isPresent()) {
@@ -149,11 +140,12 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                                                                                                                                                                                      | Type                                                                                                                                                                                                                                                                                                                                                           | Required                                                                                                                                                                                                                                                                                                                                                       | Description                                                                                                                                                                                                                                                                                                                                                    | Example                                                                                                                                                                                                                                                                                                                                                        |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `locale`                                                                                                                                                                                                                                                                                                                                                       | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                             | Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.<br/><br/>Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT` | en_US                                                                                                                                                                                                                                                                                                                                                          |
-| `amount`                                                                                                                                                                                                                                                                                                                                                       | [Optional\<ListAllMethodsQueryParamAmount>](../../models/operations/ListAllMethodsQueryParamAmount.md)                                                                                                                                                                                                                                                         | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                             | If supplied, only payment methods that support the amount and currency are returned.<br/><br/>Example: `/v2/methods/all?amount[value]=100.00&amount[currency]=USD`                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                |
-| `include`                                                                                                                                                                                                                                                                                                                                                      | *JsonNullable\<String>*                                                                                                                                                                                                                                                                                                                                        | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                             | This endpoint allows you to include additional information via the `include` query string parameter.<br/><br/>* `issuers`: Include issuer details such as which iDEAL or gift card issuers are available.<br/>* `pricing`: Include pricing for each payment method.                                                                                            | issuers                                                                                                                                                                                                                                                                                                                                                        |
+| Parameter                                                                                                                                                                                                                                                                                           | Type                                                                                                                                                                                                                                                                                                | Required                                                                                                                                                                                                                                                                                            | Description                                                                                                                                                                                                                                                                                         | Example                                                                                                                                                                                                                                                                                             |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `locale`                                                                                                                                                                                                                                                                                            | *Optional\<String>*                                                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                                                                  | Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.                                                                                                                                        | en_US                                                                                                                                                                                                                                                                                               |
+| `amount`                                                                                                                                                                                                                                                                                            | [Optional\<ListAllMethodsQueryParamAmount>](../../models/operations/ListAllMethodsQueryParamAmount.md)                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                                                                                  | If supplied, only payment methods that support the amount and currency are returned.<br/><br/>Example: `/v2/methods/all?amount[value]=100.00&amount[currency]=USD`                                                                                                                                  |                                                                                                                                                                                                                                                                                                     |
+| `include`                                                                                                                                                                                                                                                                                           | [JsonNullable\<ListAllMethodsQueryParamInclude>](../../models/operations/ListAllMethodsQueryParamInclude.md)                                                                                                                                                                                        | :heavy_minus_sign:                                                                                                                                                                                                                                                                                  | This endpoint allows you to include additional information via the `include` query string parameter.                                                                                                                                                                                                | issuers                                                                                                                                                                                                                                                                                             |
+| `sequenceType`                                                                                                                                                                                                                                                                                      | *Optional\<String>*                                                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                                                                  | Set this parameter to `first` to only return the methods that can be used for the first payment of a recurring sequence.<br/><br/>Set it to `recurring` to only return methods that can be used for recurring payments or subscriptions.<br/><br/>Possible values: `oneoff` `first` `recurring` (default: `oneoff`) |                                                                                                                                                                                                                                                                                                     |
 
 ### Response
 
@@ -191,8 +183,7 @@ import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.GetMethodMethodsResponseBody;
 import com.mollie.mollie.models.errors.GetMethodResponseBody;
-import com.mollie.mollie.models.operations.GetMethodRequest;
-import com.mollie.mollie.models.operations.GetMethodResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -209,8 +200,8 @@ public class Application {
                 .id("ideal")
                 .locale("en_US")
                 .currency("EUR")
-                .profileId("pfl_QkEhN94Ba")
-                .include("issuers")
+                .profileId("pfl_5B8cwPMGnU")
+                .include(GetMethodQueryParamInclude.ISSUERS)
                 .build();
 
         GetMethodResponse res = sdk.methods().get()
@@ -241,271 +232,3 @@ public class Application {
 | models/errors/GetMethodResponseBody        | 400                                        | application/hal+json                       |
 | models/errors/GetMethodMethodsResponseBody | 404                                        | application/hal+json                       |
 | models/errors/APIException                 | 4XX, 5XX                                   | \*/\*                                      |
-
-## enableMethod
-
-Enable a payment method on a specific profile.
-
-When using a profile-specific API credential, the alias `me` can be used instead of the profile ID to refer to the current profile.
-
-Some payment methods require extra steps in order to be activated. In cases where a step at the payment method provider needs to be completed first, the status will be set to `pending-external` and the response will contain a link to complete the activation at the provider.
-
-To enable voucher or gift card issuers, refer to the [Enable payment method issuer](enable-method-issuer) endpoint.
-
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **profiles.write**](/reference/authentication)
-
-### Example Usage
-
-```java
-package hello.world;
-
-import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.EnableMethodResponseBody;
-import com.mollie.mollie.models.operations.EnableMethodResponse;
-import java.lang.Exception;
-
-public class Application {
-
-    public static void main(String[] args) throws EnableMethodResponseBody, Exception {
-
-        Client sdk = Client.builder()
-                .security(Security.builder()
-                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
-            .build();
-
-        EnableMethodResponse res = sdk.methods().enableMethod()
-                .profileId("pfl_QkEhN94Ba")
-                .id("ideal")
-                .call();
-
-        if (res.object().isPresent()) {
-            // handle response
-        }
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       | Example                                                           |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `profileId`                                                       | *String*                                                          | :heavy_check_mark:                                                | Provide the ID of the related profile.                            | pfl_QkEhN94Ba                                                     |
-| `id`                                                              | *String*                                                          | :heavy_check_mark:                                                | Provide the ID of the item you want to perform this operation on. | ideal                                                             |
-
-### Response
-
-**[EnableMethodResponse](../../models/operations/EnableMethodResponse.md)**
-
-### Errors
-
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| models/errors/EnableMethodResponseBody | 404                                    | application/hal+json                   |
-| models/errors/APIException             | 4XX, 5XX                               | \*/\*                                  |
-
-## disableMethod
-
-Disable a payment method on a specific profile.
-
-When using a profile-specific API credential, the alias `me` can be used instead of the profile ID to refer to the current profile.
-
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **profiles.write**](/reference/authentication)
-
-### Example Usage
-
-```java
-package hello.world;
-
-import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.DisableMethodResponseBody;
-import com.mollie.mollie.models.operations.DisableMethodResponse;
-import java.lang.Exception;
-
-public class Application {
-
-    public static void main(String[] args) throws DisableMethodResponseBody, Exception {
-
-        Client sdk = Client.builder()
-                .security(Security.builder()
-                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
-            .build();
-
-        DisableMethodResponse res = sdk.methods().disableMethod()
-                .profileId("pfl_QkEhN94Ba")
-                .id("ideal")
-                .call();
-
-        if (res.any().isPresent()) {
-            // handle response
-        }
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       | Example                                                           |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `profileId`                                                       | *String*                                                          | :heavy_check_mark:                                                | Provide the ID of the related profile.                            | pfl_QkEhN94Ba                                                     |
-| `id`                                                              | *String*                                                          | :heavy_check_mark:                                                | Provide the ID of the item you want to perform this operation on. | ideal                                                             |
-
-### Response
-
-**[DisableMethodResponse](../../models/operations/DisableMethodResponse.md)**
-
-### Errors
-
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| models/errors/DisableMethodResponseBody | 404                                     | application/hal+json                    |
-| models/errors/APIException              | 4XX, 5XX                                | \*/\*                                   |
-
-## enableMethodIssuer
-
-Enable an issuer for a payment method on a specific profile.
-
-Currently only the payment methods `voucher` and `giftcard` are supported.
-
-When using a profile-specific API credential, the alias `me` can be used instead of the profile ID to refer to the current profile.
-
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **profiles.write**](/reference/authentication)
-
-### Example Usage
-
-```java
-package hello.world;
-
-import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.EnableMethodIssuerResponseBody;
-import com.mollie.mollie.models.operations.EnableMethodIssuerRequestBody;
-import com.mollie.mollie.models.operations.EnableMethodIssuerResponse;
-import java.lang.Exception;
-
-public class Application {
-
-    public static void main(String[] args) throws EnableMethodIssuerResponseBody, Exception {
-
-        Client sdk = Client.builder()
-                .security(Security.builder()
-                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
-            .build();
-
-        EnableMethodIssuerResponse res = sdk.methods().enableMethodIssuer()
-                .profileId("pfl_QkEhN94Ba")
-                .methodId("voucher")
-                .id("edenred-france-sports")
-                .requestBody(EnableMethodIssuerRequestBody.builder()
-                    .build())
-                .call();
-
-        if (res.object().isPresent()) {
-            // handle response
-        }
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          | Example                                                                                              |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `profileId`                                                                                          | *String*                                                                                             | :heavy_check_mark:                                                                                   | Provide the ID of the related profile.                                                               | pfl_QkEhN94Ba                                                                                        |
-| `methodId`                                                                                           | *String*                                                                                             | :heavy_check_mark:                                                                                   | Provide the ID of the related payment method.                                                        | voucher                                                                                              |
-| `id`                                                                                                 | *String*                                                                                             | :heavy_check_mark:                                                                                   | Provide the ID of the item you want to perform this operation on.                                    | edenred-france-sports                                                                                |
-| `requestBody`                                                                                        | [Optional\<EnableMethodIssuerRequestBody>](../../models/operations/EnableMethodIssuerRequestBody.md) | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |                                                                                                      |
-
-### Response
-
-**[EnableMethodIssuerResponse](../../models/operations/EnableMethodIssuerResponse.md)**
-
-### Errors
-
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| models/errors/EnableMethodIssuerResponseBody | 404                                          | application/hal+json                         |
-| models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
-
-## disableMethodIssuer
-
-Disable an issuer for a payment method on a specific profile.
-
-Currently only the payment methods `voucher` and `giftcard` are supported.
-
-When using a profile-specific API credential, the alias `me` can be used instead of the profile ID to refer to the current profile.
-
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **profiles.write**](/reference/authentication)
-
-### Example Usage
-
-```java
-package hello.world;
-
-import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.DisableMethodIssuerResponseBody;
-import com.mollie.mollie.models.operations.DisableMethodIssuerResponse;
-import java.lang.Exception;
-
-public class Application {
-
-    public static void main(String[] args) throws DisableMethodIssuerResponseBody, Exception {
-
-        Client sdk = Client.builder()
-                .security(Security.builder()
-                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
-            .build();
-
-        DisableMethodIssuerResponse res = sdk.methods().disableMethodIssuer()
-                .profileId("pfl_QkEhN94Ba")
-                .methodId("voucher")
-                .id("edenred-france-sports")
-                .call();
-
-        if (res.any().isPresent()) {
-            // handle response
-        }
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       | Example                                                           |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `profileId`                                                       | *String*                                                          | :heavy_check_mark:                                                | Provide the ID of the related profile.                            | pfl_QkEhN94Ba                                                     |
-| `methodId`                                                        | *String*                                                          | :heavy_check_mark:                                                | Provide the ID of the related payment method.                     | voucher                                                           |
-| `id`                                                              | *String*                                                          | :heavy_check_mark:                                                | Provide the ID of the item you want to perform this operation on. | edenred-france-sports                                             |
-
-### Response
-
-**[DisableMethodIssuerResponse](../../models/operations/DisableMethodIssuerResponse.md)**
-
-### Errors
-
-| Error Type                                    | Status Code                                   | Content Type                                  |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| models/errors/DisableMethodIssuerResponseBody | 404                                           | application/hal+json                          |
-| models/errors/APIException                    | 4XX, 5XX                                      | \*/\*                                         |

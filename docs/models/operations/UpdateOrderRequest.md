@@ -1,9 +1,0 @@
-# UpdateOrderRequest
-
-
-## Fields
-
-| Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            | Example                                                                                |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `id`                                                                                   | *String*                                                                               | :heavy_check_mark:                                                                     | Provide the ID of the item you want to perform this operation on.                      | ord_vsKJpSsabw                                                                         |
-| `requestBody`                                                                          | [Optional\<UpdateOrderRequestBody>](../../models/operations/UpdateOrderRequestBody.md) | :heavy_minus_sign:                                                                     | N/A                                                                                    |                                                                                        |

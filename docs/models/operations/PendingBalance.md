@@ -1,0 +1,13 @@
+# PendingBalance
+
+The pending balance. Only available if grouping is `status-balances`.
+
+
+## Fields
+
+| Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `open`                                                                                               | [Optional\<GetBalanceReportBalancesOpen>](../../models/operations/GetBalanceReportBalancesOpen.md)   | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |
+| `close`                                                                                              | [Optional\<GetBalanceReportBalancesClose>](../../models/operations/GetBalanceReportBalancesClose.md) | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |
+| `pending`                                                                                            | [Optional\<Pending>](../../models/operations/Pending.md)                                             | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |
+| `movedToAvailable`                                                                                   | [Optional\<MovedToAvailable>](../../models/operations/MovedToAvailable.md)                           | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |

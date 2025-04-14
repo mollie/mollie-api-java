@@ -14,6 +14,7 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id 'signing'
+    id 'cl.franciscosolis.sonatype-central-upload' version '1.0.3'
 }
 
 compileJava.options.encoding = "UTF-8"
@@ -38,8 +39,12 @@ model {
     }
 }
 
+version = "${version}"
+group = "${groupId}"
+
 jar {
     dependsOn(":generatePomFileForMavenPublication")
+    archiveBaseName = "${artifactId}"
 
     into("META-INF/maven/com.mollie/mollie") {
         from("$buildDir/pom.xml")
@@ -60,15 +65,33 @@ tasks.withType(Javadoc) {
   options.addStringOption('Xdoclint:none', '-quiet')
 }
 
-group = "com.mollie"
-version = "0.0.1"
-
 sourcesJar {
-    archiveBaseName = "mollie"
+    archiveBaseName = "${artifactId}"
 }
 
 javadocJar {
-    archiveBaseName = "mollie"
+    archiveBaseName = "${artifactId}"
+}
+sonatypeCentralUpload {
+    // This is your Sonatype generated username
+    username = System.getenv("SONATYPE_USERNAME")
+    // This is your sonatype generated password
+    password = System.getenv("SONATYPE_PASSWORD")
+
+    // This is a list of files to upload. Ideally you would point to your jar file, source and javadoc jar (required by central)
+    archives = files(
+      "$buildDir/libs/${artifactId}-${version}.jar",
+      "$buildDir/libs/${artifactId}-${version}-sources.jar",
+      "$buildDir/libs/${artifactId}-${version}-javadoc.jar"
+    )
+
+    // This is the pom file to upload. This is required by central
+    pom = file("$buildDir/pom.xml")
+
+    // This is your PGP private key. This is required to sign your files
+    signingKey = System.getenv("SONATYPE_SIGNING_KEY")
+    // This is your PGP private key passphrase to decrypt your private key
+    signingKeyPassphrase = System.getenv("SIGNING_KEY_PASSPHRASE")
 }
 
 
@@ -76,19 +99,21 @@ publishing {
 
     publications {
         maven(MavenPublication) {
-            groupId = 'com.mollie'
-            artifactId = 'mollie'
-            version = '0.0.1'
+            // note that properties can't yet be used below!
+            // https://github.com/gradle/gradle/issues/18619
+            groupId = "com.mollie"
+            artifactId = "mollie"
+            version = "0.1.1"
 
             from components.java
 
             pom {
-                name = 'My Company Java SDK'
-                description = 'SDK enabling Java developers to easily integrate with the My Company API.'
-                url = 'https://github.com/owner/repo'
+                name = 'Mollie Java SDK'
+                description = 'SDK enabling Java developers to easily integrate with the Mollie API.'
+                url = 'https://https://github.com/mollie/mollie-api-java-alpha'
                 scm {
-                    url = 'github.com/owner/repo'
-                    connection = 'scm:git:ssh://git@github.com/owner/repo.git'
+                    url = 'https://github.com/mollie/mollie-api-java-alpha'
+                    connection = 'scm:git:ssh://git@https://github.com/mollie/mollie-api-java-alpha.git'
                 }
                 licenses {
                     license {
@@ -98,14 +123,14 @@ publishing {
                 }
                 developers {
                     developer {
-                        name = 'My Company'
-                        organization = 'My Company'
-                        email = 'info@mycompany.com'
+                        name = 'Mollie'
+                        organization = 'Mollie'
+                        email = 'bit@mollie.com'
                     }
                 }
                 organization {
-                    name = 'My Company'
-                    url = 'www.mycompany.com'
+                    name = 'Mollie'
+                    url = 'https://www.mollie.com/'
                 }
             }
         }

@@ -37,23 +37,7 @@ import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.CreatePaymentPaymentsResponseBody;
 import com.mollie.mollie.models.errors.CreatePaymentResponseBody;
-import com.mollie.mollie.models.operations.ApplicationFee;
-import com.mollie.mollie.models.operations.CreatePaymentAmount;
-import com.mollie.mollie.models.operations.CreatePaymentBillingAddress;
-import com.mollie.mollie.models.operations.CreatePaymentDiscountAmount;
-import com.mollie.mollie.models.operations.CreatePaymentLines;
-import com.mollie.mollie.models.operations.CreatePaymentPaymentsAmount;
-import com.mollie.mollie.models.operations.CreatePaymentPaymentsRequestAmount;
-import com.mollie.mollie.models.operations.CreatePaymentPaymentsRequestRequestBodyAmount;
-import com.mollie.mollie.models.operations.CreatePaymentRequestBody;
-import com.mollie.mollie.models.operations.CreatePaymentResponse;
-import com.mollie.mollie.models.operations.CreatePaymentShippingAddress;
-import com.mollie.mollie.models.operations.CreatePaymentTotalAmount;
-import com.mollie.mollie.models.operations.CreatePaymentUnitPrice;
-import com.mollie.mollie.models.operations.CreatePaymentVatAmount;
-import com.mollie.mollie.models.operations.Destination;
-import com.mollie.mollie.models.operations.Recurring;
-import com.mollie.mollie.models.operations.Routing;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 import java.util.List;
 
@@ -68,10 +52,10 @@ public class Application {
             .build();
 
         CreatePaymentResponse res = sdk.payments().create()
-                .include("details.qrCode")
+                .include(Include.DETAILS_QR_CODE)
                 .requestBody(CreatePaymentRequestBody.builder()
-                    .description("yuck vice between gee ugh ha")
-                    .amount(CreatePaymentAmount.builder()
+                    .description("Chess Board")
+                    .amount(Amount.builder()
                         .currency("EUR")
                         .value("10.00")
                         .build())
@@ -79,102 +63,89 @@ public class Application {
                     .cancelUrl("https://example.org/cancel")
                     .webhookUrl("https://example.org/webhooks")
                     .lines(List.of(
-                        CreatePaymentLines.builder()
-                            .description("junior modulo tackle unabashedly mentor early miserly stealthily without")
-                            .quantity(979186L)
-                            .unitPrice(CreatePaymentUnitPrice.builder()
+                        Lines.builder()
+                            .description("LEGO 4440 Forest Police Station")
+                            .quantity(1L)
+                            .unitPrice(UnitPrice.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
-                            .totalAmount(CreatePaymentTotalAmount.builder()
+                            .totalAmount(TotalAmount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
-                            .discountAmount(CreatePaymentDiscountAmount.builder()
+                            .quantityUnit("pcs")
+                            .discountAmount(DiscountAmount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
                             .recurring(Recurring.builder()
-                                .interval("<value>")
-                                .amount(CreatePaymentPaymentsAmount.builder()
+                                .interval("12 months")
+                                .description("Gym subscription")
+                                .amount(CreatePaymentAmount.builder()
                                     .currency("EUR")
                                     .value("10.00")
                                     .build())
+                                .times(1L)
+                                .startDate("2024-12-12")
                                 .build())
-                            .vatAmount(CreatePaymentVatAmount.builder()
+                            .vatRate("21.00")
+                            .vatAmount(VatAmount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
+                            .sku("9780241661628")
                             .categories(List.of(
-                                "meal",
-                                "eco"))
+                                Categories.MEAL,
+                                Categories.ECO))
+                            .imageUrl("https://...")
+                            .productUrl("https://...")
                             .build(),
-                        CreatePaymentLines.builder()
-                            .description("warmhearted entomb gah aha what")
-                            .quantity(842284L)
-                            .unitPrice(CreatePaymentUnitPrice.builder()
+                        Lines.builder()
+                            .description("LEGO 4440 Forest Police Station")
+                            .quantity(1L)
+                            .unitPrice(UnitPrice.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
-                            .totalAmount(CreatePaymentTotalAmount.builder()
+                            .totalAmount(TotalAmount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
-                            .discountAmount(CreatePaymentDiscountAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .recurring(Recurring.builder()
-                                .interval("<value>")
-                                .amount(CreatePaymentPaymentsAmount.builder()
-                                    .currency("EUR")
-                                    .value("10.00")
-                                    .build())
-                                .build())
-                            .vatAmount(CreatePaymentVatAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .categories(List.of(
-                                "meal",
-                                "eco"))
-                            .build(),
-                        CreatePaymentLines.builder()
-                            .description("when warming when determined ouch scarcely")
-                            .quantity(324689L)
-                            .unitPrice(CreatePaymentUnitPrice.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .totalAmount(CreatePaymentTotalAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .discountAmount(CreatePaymentDiscountAmount.builder()
+                            .quantityUnit("pcs")
+                            .discountAmount(DiscountAmount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
                             .recurring(Recurring.builder()
-                                .interval("<value>")
-                                .amount(CreatePaymentPaymentsAmount.builder()
+                                .interval("12 months")
+                                .description("Gym subscription")
+                                .amount(CreatePaymentAmount.builder()
                                     .currency("EUR")
                                     .value("10.00")
                                     .build())
+                                .times(1L)
+                                .startDate("2024-12-12")
                                 .build())
-                            .vatAmount(CreatePaymentVatAmount.builder()
+                            .vatRate("21.00")
+                            .vatAmount(VatAmount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
+                            .sku("9780241661628")
                             .categories(List.of(
-                                "meal",
-                                "eco"))
+                                Categories.MEAL,
+                                Categories.ECO))
+                            .imageUrl("https://...")
+                            .productUrl("https://...")
                             .build()))
-                    .billingAddress(CreatePaymentBillingAddress.builder()
+                    .billingAddress(BillingAddress.builder()
                         .title("Mr.")
                         .givenName("Piet")
                         .familyName("Mondriaan")
                         .organizationName("Mollie B.V.")
                         .streetAndNumber("Keizersgracht 126")
+                        .streetAdditional("Apt. 1")
                         .postalCode("1234AB")
                         .email("piet@example.org")
                         .phone("31208202070")
@@ -182,12 +153,13 @@ public class Application {
                         .region("Noord-Holland")
                         .country("NL")
                         .build())
-                    .shippingAddress(CreatePaymentShippingAddress.builder()
+                    .shippingAddress(ShippingAddress.builder()
                         .title("Mr.")
                         .givenName("Piet")
                         .familyName("Mondriaan")
                         .organizationName("Mollie B.V.")
                         .streetAndNumber("Keizersgracht 126")
+                        .streetAdditional("Apt. 1")
                         .postalCode("1234AB")
                         .email("piet@example.org")
                         .phone("31208202070")
@@ -195,35 +167,71 @@ public class Application {
                         .region("Noord-Holland")
                         .country("NL")
                         .build())
-                    .locale("nl_NL")
+                    .locale("en_US")
                     .method("ideal")
                     .issuer("ideal_INGBNL2A")
+                    .restrictPaymentMethodsToCountry("NL")
                     .captureMode("manual")
                     .captureDelay("8 hours")
                     .applicationFee(ApplicationFee.builder()
-                        .amount(CreatePaymentPaymentsRequestAmount.builder()
+                        .amount(CreatePaymentPaymentsAmount.builder()
                             .currency("EUR")
                             .value("10.00")
                             .build())
+                        .description("10")
                         .build())
                     .routing(List.of(
                         Routing.builder()
-                            .amount(CreatePaymentPaymentsRequestRequestBodyAmount.builder()
+                            .amount(CreatePaymentPaymentsRequestAmount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
                             .destination(Destination.builder()
+                                .type("organization")
                                 .organizationId("org_12345678")
+                                .build())
+                            .releaseDate("2024-12-12")
+                            .links(Links.builder()
+                                .self(Self.builder()
+                                    .href("https://...")
+                                    .type("application/hal+json")
+                                    .build())
+                                .payment(Payment.builder()
+                                    .href("https://...")
+                                    .type("application/hal+json")
+                                    .build())
+                                .build())
+                            .build(),
+                        Routing.builder()
+                            .amount(CreatePaymentPaymentsRequestAmount.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .destination(Destination.builder()
+                                .type("organization")
+                                .organizationId("org_12345678")
+                                .build())
+                            .releaseDate("2024-12-12")
+                            .links(Links.builder()
+                                .self(Self.builder()
+                                    .href("https://...")
+                                    .type("application/hal+json")
+                                    .build())
+                                .payment(Payment.builder()
+                                    .href("https://...")
+                                    .type("application/hal+json")
+                                    .build())
                                 .build())
                             .build()))
                     .sequenceType("oneoff")
-                    .mandateId("mdt_pWUnw6pkBN")
-                    .customerId("cst_8wmqcHMN4U")
-                    .profileId("pfl_QkEhN94Ba")
+                    .mandateId("mdt_5B8cwPMGnU")
+                    .customerId("cst_5B8cwPMGnU")
+                    .profileId("pfl_5B8cwPMGnU")
+                    .dueDate("2025-01-01")
                     .build())
                 .call();
 
-        if (res.any().isPresent()) {
+        if (res.object().isPresent()) {
             // handle response
         }
     }
@@ -232,10 +240,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                                            | Type                                                                                                                                                                                                                 | Required                                                                                                                                                                                                             | Description                                                                                                                                                                                                          | Example                                                                                                                                                                                                              |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `include`                                                                                                                                                                                                            | *JsonNullable\<String>*                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                   | This endpoint allows you to include additional information via the `include` query string parameter.<br/><br/>* `details.qrCode`: Include a QR code object. Only available for iDEAL, Bancontact and bank transfer payments. | details.qrCode                                                                                                                                                                                                       |
-| `requestBody`                                                                                                                                                                                                        | [Optional\<CreatePaymentRequestBody>](../../models/operations/CreatePaymentRequestBody.md)                                                                                                                           | :heavy_minus_sign:                                                                                                                                                                                                   | N/A                                                                                                                                                                                                                  |                                                                                                                                                                                                                      |
+| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          | Example                                                                                              |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `include`                                                                                            | [JsonNullable\<Include>](../../models/operations/Include.md)                                         | :heavy_minus_sign:                                                                                   | This endpoint allows you to include additional information via the `include` query string parameter. | details.qrCode                                                                                       |
+| `requestBody`                                                                                        | [Optional\<CreatePaymentRequestBody>](../../models/operations/CreatePaymentRequestBody.md)           | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |                                                                                                      |
 
 ### Response
 
@@ -283,10 +291,8 @@ public class Application {
             .build();
 
         ListPaymentsResponse res = sdk.payments().list()
-                .from("tr_5B8cwPMGnU6qLbRvo7qEZo")
-                .limit(50L)
+                .from("tr_5B8cwPMGnU")
                 .sort("desc")
-                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {
@@ -300,7 +306,7 @@ public class Application {
 
 | Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `from`                                                                                                                                                                                                                                                                                                                                                                                 | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.                                                                                                                                                                                                                                                         | tr_5B8cwPMGnU6qLbRvo7qEZo                                                                                                                                                                                                                                                                                                                                                              |
+| `from`                                                                                                                                                                                                                                                                                                                                                                                 | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.                                                                                                                                                                                                                                                         | tr_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                          |
 | `limit`                                                                                                                                                                                                                                                                                                                                                                                | *JsonNullable\<Long>*                                                                                                                                                                                                                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | The maximum number of items to return. Defaults to 50 items.                                                                                                                                                                                                                                                                                                                           | 50                                                                                                                                                                                                                                                                                                                                                                                     |
 | `sort`                                                                                                                                                                                                                                                                                                                                                                                 | *JsonNullable\<String>*                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.<br/><br/>Possible values: `asc` `desc` (default: `desc`)                                                                                                                                                                                        | desc                                                                                                                                                                                                                                                                                                                                                                                   |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
@@ -334,7 +340,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.GetPaymentResponseBody;
-import com.mollie.mollie.models.operations.GetPaymentResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -348,10 +354,9 @@ public class Application {
             .build();
 
         GetPaymentResponse res = sdk.payments().get()
-                .paymentId("tr_5B8cwPMGnU6qLbRvo7qEZo")
-                .include("details.qrCode")
-                .embed("captures")
-                .testmode(false)
+                .paymentId("tr_5B8cwPMGnU")
+                .include(QueryParamInclude.DETAILS_QR_CODE)
+                .embed(Embed.CAPTURES)
                 .call();
 
         if (res.object().isPresent()) {
@@ -363,12 +368,12 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Type                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Required                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Example                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `paymentId`                                                                                                                                                                                                                                                                                                                                                                                                                                                     | *String*                                                                                                                                                                                                                                                                                                                                                                                                                                                        | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                                                                                              | Provide the ID of the related payment.                                                                                                                                                                                                                                                                                                                                                                                                                          | tr_5B8cwPMGnU6qLbRvo7qEZo                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| `include`                                                                                                                                                                                                                                                                                                                                                                                                                                                       | *JsonNullable\<String>*                                                                                                                                                                                                                                                                                                                                                                                                                                         | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                                                              | This endpoint allows you to include additional information via the `include` query string parameter.<br/><br/>* `details.qrCode`: Include a QR code object. Only available for iDEAL, Bancontact and bank transfer payments.<br/>* `details.remainderDetails`: For payments where gift cards or vouchers were applied and the remaining amount was paid with another payment method, this include will add another `details` object specifically for the remainder payment. | details.qrCode                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| `embed`                                                                                                                                                                                                                                                                                                                                                                                                                                                         | *JsonNullable\<String>*                                                                                                                                                                                                                                                                                                                                                                                                                                         | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                                                              | This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.<br/><br/>* `captures`: Embed all captures created for this payment.<br/>* `refunds`: Embed all refunds created for this payment.<br/>* `chargebacks`: Embed all chargebacks created for this payment.                                                                                                                                | captures                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| `testmode`                                                                                                                                                                                                                                                                                                                                                                                                                                                      | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                                                                                                        | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                                                              | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.                                                                  | false                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `paymentId`                                                                                                                                                                                                                                                                                                                                                                            | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related payment.                                                                                                                                                                                                                                                                                                                                                 | tr_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                          |
+| `include`                                                                                                                                                                                                                                                                                                                                                                              | [JsonNullable\<QueryParamInclude>](../../models/operations/QueryParamInclude.md)                                                                                                                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows you to include additional information via the `include` query string parameter.                                                                                                                                                                                                                                                                                   | details.qrCode                                                                                                                                                                                                                                                                                                                                                                         |
+| `embed`                                                                                                                                                                                                                                                                                                                                                                                | [JsonNullable\<Embed>](../../models/operations/Embed.md)                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.                                                                                                                                                                                                                                                             | captures                                                                                                                                                                                                                                                                                                                                                                               |
+| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Response
 
@@ -402,8 +407,7 @@ import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.UpdatePaymentPaymentsResponseBody;
 import com.mollie.mollie.models.errors.UpdatePaymentResponseBody;
-import com.mollie.mollie.models.operations.UpdatePaymentRequestBody;
-import com.mollie.mollie.models.operations.UpdatePaymentResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -417,12 +421,19 @@ public class Application {
             .build();
 
         UpdatePaymentResponse res = sdk.payments().update()
-                .paymentId("tr_5B8cwPMGnU6qLbRvo7qEZo")
+                .paymentId("tr_5B8cwPMGnU")
                 .requestBody(UpdatePaymentRequestBody.builder()
+                    .description("Chess Board")
+                    .redirectUrl("https://example.org/redirect")
+                    .cancelUrl("https://example.org/cancel")
+                    .webhookUrl("https://example.org/webhooks")
+                    .method(Method.IDEAL)
+                    .locale("en_US")
+                    .restrictPaymentMethodsToCountry("NL")
                     .build())
                 .call();
 
-        if (res.any().isPresent()) {
+        if (res.object().isPresent()) {
             // handle response
         }
     }
@@ -433,7 +444,7 @@ public class Application {
 
 | Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                | Example                                                                                    |
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `paymentId`                                                                                | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the related payment.                                                     | tr_5B8cwPMGnU6qLbRvo7qEZo                                                                  |
+| `paymentId`                                                                                | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the related payment.                                                     | tr_5B8cwPMGnU                                                                              |
 | `requestBody`                                                                              | [Optional\<UpdatePaymentRequestBody>](../../models/operations/UpdatePaymentRequestBody.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |                                                                                            |
 
 ### Response
@@ -485,11 +496,10 @@ public class Application {
             .build();
 
         CancelPaymentResponse res = sdk.payments().cancel()
-                .paymentId("tr_5B8cwPMGnU6qLbRvo7qEZo")
-                .testmode(false)
+                .paymentId("tr_5B8cwPMGnU")
                 .call();
 
-        if (res.any().isPresent()) {
+        if (res.object().isPresent()) {
             // handle response
         }
     }
@@ -500,7 +510,7 @@ public class Application {
 
 | Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `paymentId`                                                                                                                                                                                                                                                                                                                                                                            | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related payment.                                                                                                                                                                                                                                                                                                                                                 | tr_5B8cwPMGnU6qLbRvo7qEZo                                                                                                                                                                                                                                                                                                                                                              |
+| `paymentId`                                                                                                                                                                                                                                                                                                                                                                            | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related payment.                                                                                                                                                                                                                                                                                                                                                 | tr_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                          |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Response
@@ -552,8 +562,7 @@ public class Application {
             .build();
 
         ReleaseAuthorizationResponse res = sdk.payments().releaseAuthorization()
-                .paymentId("tr_5B8cwPMGnU6qLbRvo7qEZo")
-                .testmode(false)
+                .paymentId("tr_5B8cwPMGnU")
                 .call();
 
         if (res.any().isPresent()) {
@@ -567,7 +576,7 @@ public class Application {
 
 | Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `paymentId`                                                                                                                                                                                                                                                                                                                                                                            | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related payment.                                                                                                                                                                                                                                                                                                                                                 | tr_5B8cwPMGnU6qLbRvo7qEZo                                                                                                                                                                                                                                                                                                                                                              |
+| `paymentId`                                                                                                                                                                                                                                                                                                                                                                            | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related payment.                                                                                                                                                                                                                                                                                                                                                 | tr_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                          |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Response

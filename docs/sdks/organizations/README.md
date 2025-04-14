@@ -7,7 +7,7 @@
 
 * [get](#get) - Get organization
 * [getCurrent](#getcurrent) - Get current organization
-* [getPartnerStatus](#getpartnerstatus) - Get partner status
+* [getPartner](#getpartner) - Get partner status
 
 ## get
 
@@ -44,7 +44,6 @@ public class Application {
 
         GetOrganizationResponse res = sdk.organizations().get()
                 .id("org_12345678")
-                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {
@@ -122,7 +121,7 @@ public class Application {
 | -------------------------- | -------------------------- | -------------------------- |
 | models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
 
-## getPartnerStatus
+## getPartner
 
 Retrieve partnership details about the currently authenticated organization. Only relevant for so-called *partner accounts*.
 
@@ -150,7 +149,7 @@ public class Application {
                     .build())
             .build();
 
-        GetPartnerStatusResponse res = sdk.organizations().getPartnerStatus()
+        GetPartnerStatusResponse res = sdk.organizations().getPartner()
                 .call();
 
         if (res.object().isPresent()) {

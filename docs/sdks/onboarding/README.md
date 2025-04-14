@@ -6,7 +6,7 @@
 ### Available Operations
 
 * [get](#get) - Get onboarding status
-* [create](#create) - Submit onboarding data
+* [submit](#submit) - Submit onboarding data
 
 ## get
 
@@ -56,7 +56,7 @@ public class Application {
 | -------------------------- | -------------------------- | -------------------------- |
 | models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
 
-## create
+## submit
 
 **⚠️ We no longer recommend implementing this endpoint. Please refer to the Client Links API instead to kick off the onboarding process for your merchants.**
 
@@ -92,7 +92,7 @@ public class Application {
         SubmitOnboardingDataRequestBody req = SubmitOnboardingDataRequestBody.builder()
                 .build();
 
-        SubmitOnboardingDataResponse res = sdk.onboarding().create()
+        SubmitOnboardingDataResponse res = sdk.onboarding().submit()
                 .request(req)
                 .call();
 

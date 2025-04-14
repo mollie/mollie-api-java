@@ -118,7 +118,6 @@ public class Application {
 
         ListProfilesResponse res = sdk.profiles().list()
                 .from("pfl_QkEhN94Ba")
-                .limit(50L)
                 .call();
 
         if (res.object().isPresent()) {
@@ -178,7 +177,6 @@ public class Application {
 
         GetProfileResponse res = sdk.profiles().get()
                 .id("pfl_QkEhN94Ba")
-                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {
@@ -224,9 +222,7 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.UpdateProfileProfilesResponseBody;
-import com.mollie.mollie.models.errors.UpdateProfileProfilesResponseResponseBody;
-import com.mollie.mollie.models.errors.UpdateProfileResponseBody;
+import com.mollie.mollie.models.errors.*;
 import com.mollie.mollie.models.operations.UpdateProfileRequestBody;
 import com.mollie.mollie.models.operations.UpdateProfileResponse;
 import java.lang.Exception;

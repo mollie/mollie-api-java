@@ -24,10 +24,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.PaymentCreateRouteResponseBody;
-import com.mollie.mollie.models.operations.PaymentCreateRouteAmount;
-import com.mollie.mollie.models.operations.PaymentCreateRouteDestination;
-import com.mollie.mollie.models.operations.PaymentCreateRouteRequestBody;
-import com.mollie.mollie.models.operations.PaymentCreateRouteResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -41,7 +38,7 @@ public class Application {
             .build();
 
         PaymentCreateRouteResponse res = sdk.delayedRouting().create()
-                .paymentId("tr_5B8cwPMGnU6qLbRvo7qEZo")
+                .paymentId("tr_5B8cwPMGnU")
                 .requestBody(PaymentCreateRouteRequestBody.builder()
                     .amount(PaymentCreateRouteAmount.builder()
                         .currency("EUR")
@@ -49,7 +46,8 @@ public class Application {
                         .build())
                     .description("Payment for Order #12345")
                     .destination(PaymentCreateRouteDestination.builder()
-                        .organizationId("org_123")
+                        .type("organization")
+                        .organizationId("org_1234567")
                         .build())
                     .build())
                 .call();
@@ -65,7 +63,7 @@ public class Application {
 
 | Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          | Example                                                                                              |
 | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `paymentId`                                                                                          | *String*                                                                                             | :heavy_check_mark:                                                                                   | Provide the ID of the related payment.                                                               | tr_5B8cwPMGnU6qLbRvo7qEZo                                                                            |
+| `paymentId`                                                                                          | *String*                                                                                             | :heavy_check_mark:                                                                                   | Provide the ID of the related payment.                                                               | tr_5B8cwPMGnU                                                                                        |
 | `requestBody`                                                                                        | [Optional\<PaymentCreateRouteRequestBody>](../../models/operations/PaymentCreateRouteRequestBody.md) | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |                                                                                                      |
 
 ### Response
@@ -109,7 +107,7 @@ public class Application {
             .build();
 
         PaymentListRoutesResponse res = sdk.delayedRouting().list()
-                .paymentId("tr_5B8cwPMGnU6qLbRvo7qEZo")
+                .paymentId("tr_5B8cwPMGnU")
                 .call();
 
         if (res.object().isPresent()) {
@@ -123,7 +121,7 @@ public class Application {
 
 | Parameter                              | Type                                   | Required                               | Description                            | Example                                |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| `paymentId`                            | *String*                               | :heavy_check_mark:                     | Provide the ID of the related payment. | tr_5B8cwPMGnU6qLbRvo7qEZo              |
+| `paymentId`                            | *String*                               | :heavy_check_mark:                     | Provide the ID of the related payment. | tr_5B8cwPMGnU                          |
 
 ### Response
 

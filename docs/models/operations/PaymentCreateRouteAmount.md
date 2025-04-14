@@ -1,6 +1,6 @@
 # PaymentCreateRouteAmount
 
-The portion of the total payment amount being routed. Currently only `EUR` payments can be routed.
+The amount of the route. That amount that will be routed to the specified destination.
 
 
 ## Fields
