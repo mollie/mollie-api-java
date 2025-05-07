@@ -110,10 +110,10 @@ publishing {
             pom {
                 name = 'Mollie Java SDK'
                 description = 'SDK enabling Java developers to easily integrate with the Mollie API.'
-                url = 'https://https://github.com/mollie/mollie-api-java-alpha'
+                url = 'https://https://github.com/mollie/mollie-api-java'
                 scm {
-                    url = 'https://github.com/mollie/mollie-api-java-alpha'
-                    connection = 'scm:git:ssh://git@https://github.com/mollie/mollie-api-java-alpha.git'
+                    url = 'https://github.com/mollie/mollie-api-java'
+                    connection = 'scm:git:ssh://git@https://github.com/mollie/mollie-api-java.git'
                 }
                 licenses {
                     license {
