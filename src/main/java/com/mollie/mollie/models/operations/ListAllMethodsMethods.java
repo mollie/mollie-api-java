@@ -31,7 +31,7 @@ public class ListAllMethodsMethods {
     /**
      * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
      * 
-     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
+     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
@@ -77,13 +77,6 @@ public class ListAllMethodsMethods {
     private JsonNullable<String> status;
 
     /**
-     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("pricing")
-    private Optional<? extends List<ListAllMethodsPricing>> pricing;
-
-    /**
      * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -97,6 +90,13 @@ public class ListAllMethodsMethods {
     @JsonProperty("_links")
     private Optional<? extends ListAllMethodsMethodsLinks> links;
 
+    /**
+     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("pricing")
+    private Optional<? extends List<Pricing>> pricing;
+
     @JsonCreator
     public ListAllMethodsMethods(
             @JsonProperty("resource") Optional<String> resource,
@@ -106,9 +106,9 @@ public class ListAllMethodsMethods {
             @JsonProperty("maximumAmount") JsonNullable<? extends ListAllMethodsMaximumAmount> maximumAmount,
             @JsonProperty("image") Optional<? extends ListAllMethodsImage> image,
             @JsonProperty("status") JsonNullable<String> status,
-            @JsonProperty("pricing") Optional<? extends List<ListAllMethodsPricing>> pricing,
             @JsonProperty("issuers") Optional<? extends List<ListAllMethodsIssuers>> issuers,
-            @JsonProperty("_links") Optional<? extends ListAllMethodsMethodsLinks> links) {
+            @JsonProperty("_links") Optional<? extends ListAllMethodsMethodsLinks> links,
+            @JsonProperty("pricing") Optional<? extends List<Pricing>> pricing) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(description, "description");
@@ -116,9 +116,9 @@ public class ListAllMethodsMethods {
         Utils.checkNotNull(maximumAmount, "maximumAmount");
         Utils.checkNotNull(image, "image");
         Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(pricing, "pricing");
         Utils.checkNotNull(issuers, "issuers");
         Utils.checkNotNull(links, "links");
+        Utils.checkNotNull(pricing, "pricing");
         this.resource = resource;
         this.id = id;
         this.description = description;
@@ -126,9 +126,9 @@ public class ListAllMethodsMethods {
         this.maximumAmount = maximumAmount;
         this.image = image;
         this.status = status;
-        this.pricing = pricing;
         this.issuers = issuers;
         this.links = links;
+        this.pricing = pricing;
     }
     
     public ListAllMethodsMethods() {
@@ -146,7 +146,7 @@ public class ListAllMethodsMethods {
     /**
      * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
      * 
-     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
+     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
      */
     @JsonIgnore
     public Optional<String> id() {
@@ -201,15 +201,6 @@ public class ListAllMethodsMethods {
     }
 
     /**
-     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<List<ListAllMethodsPricing>> pricing() {
-        return (Optional<List<ListAllMethodsPricing>>) pricing;
-    }
-
-    /**
      * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
      */
     @SuppressWarnings("unchecked")
@@ -225,6 +216,15 @@ public class ListAllMethodsMethods {
     @JsonIgnore
     public Optional<ListAllMethodsMethodsLinks> links() {
         return (Optional<ListAllMethodsMethodsLinks>) links;
+    }
+
+    /**
+     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<Pricing>> pricing() {
+        return (Optional<List<Pricing>>) pricing;
     }
 
     public final static Builder builder() {
@@ -252,7 +252,7 @@ public class ListAllMethodsMethods {
     /**
      * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
      * 
-     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
+     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
      */
     public ListAllMethodsMethods withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -263,7 +263,7 @@ public class ListAllMethodsMethods {
     /**
      * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
      * 
-     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
+     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
      */
     public ListAllMethodsMethods withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
@@ -370,24 +370,6 @@ public class ListAllMethodsMethods {
     }
 
     /**
-     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
-     */
-    public ListAllMethodsMethods withPricing(List<ListAllMethodsPricing> pricing) {
-        Utils.checkNotNull(pricing, "pricing");
-        this.pricing = Optional.ofNullable(pricing);
-        return this;
-    }
-
-    /**
-     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
-     */
-    public ListAllMethodsMethods withPricing(Optional<? extends List<ListAllMethodsPricing>> pricing) {
-        Utils.checkNotNull(pricing, "pricing");
-        this.pricing = pricing;
-        return this;
-    }
-
-    /**
      * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
      */
     public ListAllMethodsMethods withIssuers(List<ListAllMethodsIssuers> issuers) {
@@ -423,6 +405,24 @@ public class ListAllMethodsMethods {
         return this;
     }
 
+    /**
+     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
+     */
+    public ListAllMethodsMethods withPricing(List<Pricing> pricing) {
+        Utils.checkNotNull(pricing, "pricing");
+        this.pricing = Optional.ofNullable(pricing);
+        return this;
+    }
+
+    /**
+     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
+     */
+    public ListAllMethodsMethods withPricing(Optional<? extends List<Pricing>> pricing) {
+        Utils.checkNotNull(pricing, "pricing");
+        this.pricing = pricing;
+        return this;
+    }
+
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -441,9 +441,9 @@ public class ListAllMethodsMethods {
             Objects.deepEquals(this.maximumAmount, other.maximumAmount) &&
             Objects.deepEquals(this.image, other.image) &&
             Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.pricing, other.pricing) &&
             Objects.deepEquals(this.issuers, other.issuers) &&
-            Objects.deepEquals(this.links, other.links);
+            Objects.deepEquals(this.links, other.links) &&
+            Objects.deepEquals(this.pricing, other.pricing);
     }
     
     @Override
@@ -456,9 +456,9 @@ public class ListAllMethodsMethods {
             maximumAmount,
             image,
             status,
-            pricing,
             issuers,
-            links);
+            links,
+            pricing);
     }
     
     @Override
@@ -471,9 +471,9 @@ public class ListAllMethodsMethods {
                 "maximumAmount", maximumAmount,
                 "image", image,
                 "status", status,
-                "pricing", pricing,
                 "issuers", issuers,
-                "links", links);
+                "links", links,
+                "pricing", pricing);
     }
     
     public final static class Builder {
@@ -492,11 +492,11 @@ public class ListAllMethodsMethods {
  
         private JsonNullable<String> status = JsonNullable.undefined();
  
-        private Optional<? extends List<ListAllMethodsPricing>> pricing = Optional.empty();
- 
         private Optional<? extends List<ListAllMethodsIssuers>> issuers = Optional.empty();
  
         private Optional<? extends ListAllMethodsMethodsLinks> links = Optional.empty();
+ 
+        private Optional<? extends List<Pricing>> pricing = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -523,7 +523,7 @@ public class ListAllMethodsMethods {
         /**
          * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
          * 
-         * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
+         * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -534,7 +534,7 @@ public class ListAllMethodsMethods {
         /**
          * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
          * 
-         * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
+         * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
          */
         public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
@@ -641,24 +641,6 @@ public class ListAllMethodsMethods {
         }
 
         /**
-         * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
-         */
-        public Builder pricing(List<ListAllMethodsPricing> pricing) {
-            Utils.checkNotNull(pricing, "pricing");
-            this.pricing = Optional.ofNullable(pricing);
-            return this;
-        }
-
-        /**
-         * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
-         */
-        public Builder pricing(Optional<? extends List<ListAllMethodsPricing>> pricing) {
-            Utils.checkNotNull(pricing, "pricing");
-            this.pricing = pricing;
-            return this;
-        }
-
-        /**
          * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
          */
         public Builder issuers(List<ListAllMethodsIssuers> issuers) {
@@ -693,6 +675,24 @@ public class ListAllMethodsMethods {
             this.links = links;
             return this;
         }
+
+        /**
+         * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
+         */
+        public Builder pricing(List<Pricing> pricing) {
+            Utils.checkNotNull(pricing, "pricing");
+            this.pricing = Optional.ofNullable(pricing);
+            return this;
+        }
+
+        /**
+         * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
+         */
+        public Builder pricing(Optional<? extends List<Pricing>> pricing) {
+            Utils.checkNotNull(pricing, "pricing");
+            this.pricing = pricing;
+            return this;
+        }
         
         public ListAllMethodsMethods build() {
             if (resource == null) {
@@ -706,9 +706,9 @@ public class ListAllMethodsMethods {
                 maximumAmount,
                 image,
                 status,
-                pricing,
                 issuers,
-                links);
+                links,
+                pricing);
         }
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =

@@ -5,10 +5,9 @@ package com.mollie.mollie;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.models.errors.APIException;
-import com.mollie.mollie.models.errors.GetSettlementCapturesResponseBody;
-import com.mollie.mollie.models.errors.GetSettlementChargebacksResponseBody;
-import com.mollie.mollie.models.errors.GetSettlementPaymentsResponseBody;
-import com.mollie.mollie.models.errors.GetSettlementRefundsResponseBody;
+import com.mollie.mollie.models.errors.GetSettlementCapturesSettlementsResponseBody;
+import com.mollie.mollie.models.errors.GetSettlementChargebacksSettlementsResponseBody;
+import com.mollie.mollie.models.errors.GetSettlementRefundsSettlementsResponseBody;
 import com.mollie.mollie.models.errors.ListSettlementsSettlementsResponseBody;
 import com.mollie.mollie.models.operations.GetNextSettlementRequestBuilder;
 import com.mollie.mollie.models.operations.GetNextSettlementResponse;
@@ -17,15 +16,19 @@ import com.mollie.mollie.models.operations.GetOpenSettlementResponse;
 import com.mollie.mollie.models.operations.GetSettlementCapturesRequest;
 import com.mollie.mollie.models.operations.GetSettlementCapturesRequestBuilder;
 import com.mollie.mollie.models.operations.GetSettlementCapturesResponse;
+import com.mollie.mollie.models.operations.GetSettlementCapturesResponseBody;
 import com.mollie.mollie.models.operations.GetSettlementChargebacksRequest;
 import com.mollie.mollie.models.operations.GetSettlementChargebacksRequestBuilder;
 import com.mollie.mollie.models.operations.GetSettlementChargebacksResponse;
+import com.mollie.mollie.models.operations.GetSettlementChargebacksResponseBody;
 import com.mollie.mollie.models.operations.GetSettlementPaymentsRequest;
 import com.mollie.mollie.models.operations.GetSettlementPaymentsRequestBuilder;
 import com.mollie.mollie.models.operations.GetSettlementPaymentsResponse;
+import com.mollie.mollie.models.operations.GetSettlementPaymentsResponseBody;
 import com.mollie.mollie.models.operations.GetSettlementRefundsRequest;
 import com.mollie.mollie.models.operations.GetSettlementRefundsRequestBuilder;
 import com.mollie.mollie.models.operations.GetSettlementRefundsResponse;
+import com.mollie.mollie.models.operations.GetSettlementRefundsResponseBody;
 import com.mollie.mollie.models.operations.GetSettlementRequest;
 import com.mollie.mollie.models.operations.GetSettlementRequestBuilder;
 import com.mollie.mollie.models.operations.GetSettlementResponse;
@@ -907,7 +910,7 @@ public class Settlements implements
      * 
      * <p>Retrieve all payments included in the given settlement.
      * 
-     * <p>The response is in the same format as the response of the [List payments endpoint](list-payments). Refer to that endpoint's documentation for more details.
+     * <p>The response is in the same format as the response of the [List payments endpoint](list-payments).
      * 
      * <p>For capture-based payment methods such as Klarna, the payments are not listed here. Refer to the [List captures endpoint](list-captures) endpoint instead.
      * 
@@ -926,7 +929,7 @@ public class Settlements implements
      * 
      * <p>Retrieve all payments included in the given settlement.
      * 
-     * <p>The response is in the same format as the response of the [List payments endpoint](list-payments). Refer to that endpoint's documentation for more details.
+     * <p>The response is in the same format as the response of the [List payments endpoint](list-payments).
      * 
      * <p>For capture-based payment methods such as Klarna, the payments are not listed here. Refer to the [List captures endpoint](list-captures) endpoint instead.
      * 
@@ -934,13 +937,13 @@ public class Settlements implements
      * &gt;
      * &gt; [Access token with **settlements.read** **payments.read**](/reference/authentication)
      * 
-     * @param settlementId Provide the ID of the related settlement.
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetSettlementPaymentsResponse listPayments(
-            String settlementId) throws Exception {
-        return listPayments(settlementId, Optional.empty());
+            GetSettlementPaymentsRequest request) throws Exception {
+        return listPayments(request, Optional.empty());
     }
     
     /**
@@ -948,7 +951,7 @@ public class Settlements implements
      * 
      * <p>Retrieve all payments included in the given settlement.
      * 
-     * <p>The response is in the same format as the response of the [List payments endpoint](list-payments). Refer to that endpoint's documentation for more details.
+     * <p>The response is in the same format as the response of the [List payments endpoint](list-payments).
      * 
      * <p>For capture-based payment methods such as Klarna, the payments are not listed here. Refer to the [List captures endpoint](list-captures) endpoint instead.
      * 
@@ -956,24 +959,18 @@ public class Settlements implements
      * &gt;
      * &gt; [Access token with **settlements.read** **payments.read**](/reference/authentication)
      * 
-     * @param settlementId Provide the ID of the related settlement.
+     * @param request The request object containing all of the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetSettlementPaymentsResponse listPayments(
-            String settlementId,
+            GetSettlementPaymentsRequest request,
             Optional<Options> options) throws Exception {
 
         if (options.isPresent()) {
           options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
         }
-        GetSettlementPaymentsRequest request =
-            GetSettlementPaymentsRequest
-                .builder()
-                .settlementId(settlementId)
-                .build();
-        
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 GetSettlementPaymentsRequest.class,
@@ -985,6 +982,11 @@ public class Settlements implements
         _req.addHeader("Accept", "application/hal+json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                GetSettlementPaymentsRequest.class,
+                request, 
+                null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -1064,10 +1066,10 @@ public class Settlements implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
+                GetSettlementPaymentsResponseBody _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
+                    new TypeReference<GetSettlementPaymentsResponseBody>() {});
+                _res.withObject(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(
@@ -1077,11 +1079,11 @@ public class Settlements implements
                     Utils.extractByteArrayFromBody(_httpRes));
             }
         }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                GetSettlementPaymentsResponseBody _out = Utils.mapper().readValue(
+                com.mollie.mollie.models.errors.GetSettlementPaymentsResponseBody _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<GetSettlementPaymentsResponseBody>() {});
+                    new TypeReference<com.mollie.mollie.models.errors.GetSettlementPaymentsResponseBody>() {});
                     _out.withRawResponse(Optional.ofNullable(_httpRes));
                 
                 throw _out;
@@ -1123,7 +1125,7 @@ public class Settlements implements
      * 
      * <p>Retrieve all captures included in the given settlement.
      * 
-     * <p>The response is in the same format as the response of the [List captures endpoint](list-captures). Refer to that endpoint's documentation for more details.
+     * <p>The response is in the same format as the response of the [List captures endpoint](list-captures).
      * 
      * <p>&gt; 🔑 Access with
      * &gt;
@@ -1140,19 +1142,19 @@ public class Settlements implements
      * 
      * <p>Retrieve all captures included in the given settlement.
      * 
-     * <p>The response is in the same format as the response of the [List captures endpoint](list-captures). Refer to that endpoint's documentation for more details.
+     * <p>The response is in the same format as the response of the [List captures endpoint](list-captures).
      * 
      * <p>&gt; 🔑 Access with
      * &gt;
      * &gt; [Access token with **settlements.read** **payments.read**](/reference/authentication)
      * 
-     * @param settlementId Provide the ID of the related settlement.
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetSettlementCapturesResponse listCaptures(
-            String settlementId) throws Exception {
-        return listCaptures(settlementId, Optional.empty());
+            GetSettlementCapturesRequest request) throws Exception {
+        return listCaptures(request, Optional.empty());
     }
     
     /**
@@ -1160,30 +1162,24 @@ public class Settlements implements
      * 
      * <p>Retrieve all captures included in the given settlement.
      * 
-     * <p>The response is in the same format as the response of the [List captures endpoint](list-captures). Refer to that endpoint's documentation for more details.
+     * <p>The response is in the same format as the response of the [List captures endpoint](list-captures).
      * 
      * <p>&gt; 🔑 Access with
      * &gt;
      * &gt; [Access token with **settlements.read** **payments.read**](/reference/authentication)
      * 
-     * @param settlementId Provide the ID of the related settlement.
+     * @param request The request object containing all of the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetSettlementCapturesResponse listCaptures(
-            String settlementId,
+            GetSettlementCapturesRequest request,
             Optional<Options> options) throws Exception {
 
         if (options.isPresent()) {
           options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
         }
-        GetSettlementCapturesRequest request =
-            GetSettlementCapturesRequest
-                .builder()
-                .settlementId(settlementId)
-                .build();
-        
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 GetSettlementCapturesRequest.class,
@@ -1195,6 +1191,11 @@ public class Settlements implements
         _req.addHeader("Accept", "application/hal+json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                GetSettlementCapturesRequest.class,
+                request, 
+                null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -1274,11 +1275,27 @@ public class Settlements implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
+                GetSettlementCapturesResponseBody _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
+                    new TypeReference<GetSettlementCapturesResponseBody>() {});
+                _res.withObject(Optional.ofNullable(_out));
                 return _res;
+            } else {
+                throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
+            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
+                com.mollie.mollie.models.errors.GetSettlementCapturesResponseBody _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.mollie.mollie.models.errors.GetSettlementCapturesResponseBody>() {});
+                    _out.withRawResponse(Optional.ofNullable(_httpRes));
+                
+                throw _out;
             } else {
                 throw new APIException(
                     _httpRes, 
@@ -1289,9 +1306,9 @@ public class Settlements implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                GetSettlementCapturesResponseBody _out = Utils.mapper().readValue(
+                GetSettlementCapturesSettlementsResponseBody _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<GetSettlementCapturesResponseBody>() {});
+                    new TypeReference<GetSettlementCapturesSettlementsResponseBody>() {});
                     _out.withRawResponse(Optional.ofNullable(_httpRes));
                 
                 throw _out;
@@ -1333,7 +1350,7 @@ public class Settlements implements
      * 
      * <p>Retrieve all refunds 'deducted' from the given settlement.
      * 
-     * <p>The response is in the same format as the response of the [List refunds endpoint](list-refunds). Refer to that endpoint's documentation for more details.
+     * <p>The response is in the same format as the response of the [List refunds endpoint](list-refunds).
      * 
      * <p>&gt; 🔑 Access with
      * &gt;
@@ -1350,19 +1367,19 @@ public class Settlements implements
      * 
      * <p>Retrieve all refunds 'deducted' from the given settlement.
      * 
-     * <p>The response is in the same format as the response of the [List refunds endpoint](list-refunds). Refer to that endpoint's documentation for more details.
+     * <p>The response is in the same format as the response of the [List refunds endpoint](list-refunds).
      * 
      * <p>&gt; 🔑 Access with
      * &gt;
      * &gt; [Access token with **settlements.read** **refunds.read**](/reference/authentication)
      * 
-     * @param settlementId Provide the ID of the related settlement.
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetSettlementRefundsResponse listRefunds(
-            String settlementId) throws Exception {
-        return listRefunds(settlementId, Optional.empty());
+            GetSettlementRefundsRequest request) throws Exception {
+        return listRefunds(request, Optional.empty());
     }
     
     /**
@@ -1370,30 +1387,24 @@ public class Settlements implements
      * 
      * <p>Retrieve all refunds 'deducted' from the given settlement.
      * 
-     * <p>The response is in the same format as the response of the [List refunds endpoint](list-refunds). Refer to that endpoint's documentation for more details.
+     * <p>The response is in the same format as the response of the [List refunds endpoint](list-refunds).
      * 
      * <p>&gt; 🔑 Access with
      * &gt;
      * &gt; [Access token with **settlements.read** **refunds.read**](/reference/authentication)
      * 
-     * @param settlementId Provide the ID of the related settlement.
+     * @param request The request object containing all of the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetSettlementRefundsResponse listRefunds(
-            String settlementId,
+            GetSettlementRefundsRequest request,
             Optional<Options> options) throws Exception {
 
         if (options.isPresent()) {
           options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
         }
-        GetSettlementRefundsRequest request =
-            GetSettlementRefundsRequest
-                .builder()
-                .settlementId(settlementId)
-                .build();
-        
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 GetSettlementRefundsRequest.class,
@@ -1405,6 +1416,11 @@ public class Settlements implements
         _req.addHeader("Accept", "application/hal+json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                GetSettlementRefundsRequest.class,
+                request, 
+                null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -1484,11 +1500,27 @@ public class Settlements implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
+                GetSettlementRefundsResponseBody _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
+                    new TypeReference<GetSettlementRefundsResponseBody>() {});
+                _res.withObject(Optional.ofNullable(_out));
                 return _res;
+            } else {
+                throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
+            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
+                com.mollie.mollie.models.errors.GetSettlementRefundsResponseBody _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.mollie.mollie.models.errors.GetSettlementRefundsResponseBody>() {});
+                    _out.withRawResponse(Optional.ofNullable(_httpRes));
+                
+                throw _out;
             } else {
                 throw new APIException(
                     _httpRes, 
@@ -1499,9 +1531,9 @@ public class Settlements implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                GetSettlementRefundsResponseBody _out = Utils.mapper().readValue(
+                GetSettlementRefundsSettlementsResponseBody _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<GetSettlementRefundsResponseBody>() {});
+                    new TypeReference<GetSettlementRefundsSettlementsResponseBody>() {});
                     _out.withRawResponse(Optional.ofNullable(_httpRes));
                 
                 throw _out;
@@ -1543,7 +1575,7 @@ public class Settlements implements
      * 
      * <p>Retrieve all chargebacks 'deducted' from the given settlement.
      * 
-     * <p>The response is in the same format as the response of the [List chargebacks endpoint](list-chargebacks). Refer to that endpoint's documentation for more details.
+     * <p>The response is in the same format as the response of the [List chargebacks endpoint](list-chargebacks).
      * 
      * <p>&gt; 🔑 Access with
      * &gt;
@@ -1560,19 +1592,19 @@ public class Settlements implements
      * 
      * <p>Retrieve all chargebacks 'deducted' from the given settlement.
      * 
-     * <p>The response is in the same format as the response of the [List chargebacks endpoint](list-chargebacks). Refer to that endpoint's documentation for more details.
+     * <p>The response is in the same format as the response of the [List chargebacks endpoint](list-chargebacks).
      * 
      * <p>&gt; 🔑 Access with
      * &gt;
      * &gt; [Access token with **settlements.read** **payments.read**](/reference/authentication)
      * 
-     * @param settlementId Provide the ID of the related settlement.
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetSettlementChargebacksResponse listChargebacks(
-            String settlementId) throws Exception {
-        return listChargebacks(settlementId, Optional.empty());
+            GetSettlementChargebacksRequest request) throws Exception {
+        return listChargebacks(request, Optional.empty());
     }
     
     /**
@@ -1580,30 +1612,24 @@ public class Settlements implements
      * 
      * <p>Retrieve all chargebacks 'deducted' from the given settlement.
      * 
-     * <p>The response is in the same format as the response of the [List chargebacks endpoint](list-chargebacks). Refer to that endpoint's documentation for more details.
+     * <p>The response is in the same format as the response of the [List chargebacks endpoint](list-chargebacks).
      * 
      * <p>&gt; 🔑 Access with
      * &gt;
      * &gt; [Access token with **settlements.read** **payments.read**](/reference/authentication)
      * 
-     * @param settlementId Provide the ID of the related settlement.
+     * @param request The request object containing all of the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetSettlementChargebacksResponse listChargebacks(
-            String settlementId,
+            GetSettlementChargebacksRequest request,
             Optional<Options> options) throws Exception {
 
         if (options.isPresent()) {
           options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
         }
-        GetSettlementChargebacksRequest request =
-            GetSettlementChargebacksRequest
-                .builder()
-                .settlementId(settlementId)
-                .build();
-        
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 GetSettlementChargebacksRequest.class,
@@ -1615,6 +1641,11 @@ public class Settlements implements
         _req.addHeader("Accept", "application/hal+json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                GetSettlementChargebacksRequest.class,
+                request, 
+                null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -1694,11 +1725,27 @@ public class Settlements implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
+                GetSettlementChargebacksResponseBody _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
+                    new TypeReference<GetSettlementChargebacksResponseBody>() {});
+                _res.withObject(Optional.ofNullable(_out));
                 return _res;
+            } else {
+                throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
+            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
+                com.mollie.mollie.models.errors.GetSettlementChargebacksResponseBody _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.mollie.mollie.models.errors.GetSettlementChargebacksResponseBody>() {});
+                    _out.withRawResponse(Optional.ofNullable(_httpRes));
+                
+                throw _out;
             } else {
                 throw new APIException(
                     _httpRes, 
@@ -1709,9 +1756,9 @@ public class Settlements implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                GetSettlementChargebacksResponseBody _out = Utils.mapper().readValue(
+                GetSettlementChargebacksSettlementsResponseBody _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<GetSettlementChargebacksResponseBody>() {});
+                    new TypeReference<GetSettlementChargebacksSettlementsResponseBody>() {});
                     _out.withRawResponse(Optional.ofNullable(_httpRes));
                 
                 throw _out;

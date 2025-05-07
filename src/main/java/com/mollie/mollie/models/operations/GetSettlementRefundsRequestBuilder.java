@@ -7,12 +7,11 @@ import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
 import java.util.Optional;
 
 public class GetSettlementRefundsRequestBuilder {
 
-    private String settlementId;
+    private GetSettlementRefundsRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallGetSettlementRefunds sdk;
 
@@ -20,9 +19,9 @@ public class GetSettlementRefundsRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetSettlementRefundsRequestBuilder settlementId(String settlementId) {
-        Utils.checkNotNull(settlementId, "settlementId");
-        this.settlementId = settlementId;
+    public GetSettlementRefundsRequestBuilder request(GetSettlementRefundsRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -43,7 +42,7 @@ public class GetSettlementRefundsRequestBuilder {
                                                     .retryConfig(retryConfig)
                                                     .build());
         return sdk.listRefunds(
-            settlementId,
+            request,
             options);
     }
 }

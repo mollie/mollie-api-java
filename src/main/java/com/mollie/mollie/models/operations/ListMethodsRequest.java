@@ -10,6 +10,7 @@ import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
+import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -44,13 +45,18 @@ public class ListMethodsRequest {
     private Optional<? extends QueryParamAmount> amount;
 
     /**
-     * Indicate if you will use the result for the [Create order](create-order) or the [Create payment](create-payment) endpoint.
+     * **⚠️ We no longer recommend using the Orders API. Please refer to the [Payments API](payments-api) instead.**
+     * 
+     * <p>Indicate if you will use the result for the [Create order](create-order) or the [Create payment](create-payment) endpoint.
      * 
      * <p>When passing the value `orders`, the result will include payment methods that are only available for payments created via the Orders API.
      * 
      * <p>Possible values: `payments` `orders` (default: `payments`)
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=resource")
+    @Deprecated
     private Optional<String> resource;
 
     /**
@@ -70,9 +76,9 @@ public class ListMethodsRequest {
     private Optional<String> includeWallets;
 
     /**
-     * A comma-separated list of the order line categories you support in your checkout. The available categories can be found in the [Create order endpoint](create-order) documentation.
+     * A comma-separated list of the line categories you support in your checkout.
      * 
-     * <p>Example: `/v2/methods?resource=orders&amp;orderLineCategories=eco,meal`
+     * <p>Example: `/v2/methods?orderLineCategories=eco,meal`
      * 
      * <p>Possible values: `eco` `gift` `meal` `sport_culture` `additional` `consume`
      */
@@ -171,12 +177,17 @@ public class ListMethodsRequest {
     }
 
     /**
-     * Indicate if you will use the result for the [Create order](create-order) or the [Create payment](create-payment) endpoint.
+     * **⚠️ We no longer recommend using the Orders API. Please refer to the [Payments API](payments-api) instead.**
+     * 
+     * <p>Indicate if you will use the result for the [Create order](create-order) or the [Create payment](create-payment) endpoint.
      * 
      * <p>When passing the value `orders`, the result will include payment methods that are only available for payments created via the Orders API.
      * 
      * <p>Possible values: `payments` `orders` (default: `payments`)
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     @JsonIgnore
     public Optional<String> resource() {
         return resource;
@@ -203,9 +214,9 @@ public class ListMethodsRequest {
     }
 
     /**
-     * A comma-separated list of the order line categories you support in your checkout. The available categories can be found in the [Create order endpoint](create-order) documentation.
+     * A comma-separated list of the line categories you support in your checkout.
      * 
-     * <p>Example: `/v2/methods?resource=orders&amp;orderLineCategories=eco,meal`
+     * <p>Example: `/v2/methods?orderLineCategories=eco,meal`
      * 
      * <p>Possible values: `eco` `gift` `meal` `sport_culture` `additional` `consume`
      */
@@ -314,12 +325,17 @@ public class ListMethodsRequest {
     }
 
     /**
-     * Indicate if you will use the result for the [Create order](create-order) or the [Create payment](create-payment) endpoint.
+     * **⚠️ We no longer recommend using the Orders API. Please refer to the [Payments API](payments-api) instead.**
+     * 
+     * <p>Indicate if you will use the result for the [Create order](create-order) or the [Create payment](create-payment) endpoint.
      * 
      * <p>When passing the value `orders`, the result will include payment methods that are only available for payments created via the Orders API.
      * 
      * <p>Possible values: `payments` `orders` (default: `payments`)
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public ListMethodsRequest withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = Optional.ofNullable(resource);
@@ -327,12 +343,17 @@ public class ListMethodsRequest {
     }
 
     /**
-     * Indicate if you will use the result for the [Create order](create-order) or the [Create payment](create-payment) endpoint.
+     * **⚠️ We no longer recommend using the Orders API. Please refer to the [Payments API](payments-api) instead.**
+     * 
+     * <p>Indicate if you will use the result for the [Create order](create-order) or the [Create payment](create-payment) endpoint.
      * 
      * <p>When passing the value `orders`, the result will include payment methods that are only available for payments created via the Orders API.
      * 
      * <p>Possible values: `payments` `orders` (default: `payments`)
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public ListMethodsRequest withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = resource;
@@ -384,9 +405,9 @@ public class ListMethodsRequest {
     }
 
     /**
-     * A comma-separated list of the order line categories you support in your checkout. The available categories can be found in the [Create order endpoint](create-order) documentation.
+     * A comma-separated list of the line categories you support in your checkout.
      * 
-     * <p>Example: `/v2/methods?resource=orders&amp;orderLineCategories=eco,meal`
+     * <p>Example: `/v2/methods?orderLineCategories=eco,meal`
      * 
      * <p>Possible values: `eco` `gift` `meal` `sport_culture` `additional` `consume`
      */
@@ -397,9 +418,9 @@ public class ListMethodsRequest {
     }
 
     /**
-     * A comma-separated list of the order line categories you support in your checkout. The available categories can be found in the [Create order endpoint](create-order) documentation.
+     * A comma-separated list of the line categories you support in your checkout.
      * 
-     * <p>Example: `/v2/methods?resource=orders&amp;orderLineCategories=eco,meal`
+     * <p>Example: `/v2/methods?orderLineCategories=eco,meal`
      * 
      * <p>Possible values: `eco` `gift` `meal` `sport_culture` `additional` `consume`
      */
@@ -532,6 +553,7 @@ public class ListMethodsRequest {
  
         private Optional<? extends QueryParamAmount> amount = Optional.empty();
  
+        @Deprecated
         private Optional<String> resource = Optional.empty();
  
         private Optional<String> billingCountry = Optional.empty();
@@ -617,12 +639,17 @@ public class ListMethodsRequest {
         }
 
         /**
-         * Indicate if you will use the result for the [Create order](create-order) or the [Create payment](create-payment) endpoint.
+         * **⚠️ We no longer recommend using the Orders API. Please refer to the [Payments API](payments-api) instead.**
+         * 
+         * <p>Indicate if you will use the result for the [Create order](create-order) or the [Create payment](create-payment) endpoint.
          * 
          * <p>When passing the value `orders`, the result will include payment methods that are only available for payments created via the Orders API.
          * 
          * <p>Possible values: `payments` `orders` (default: `payments`)
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = Optional.ofNullable(resource);
@@ -630,12 +657,17 @@ public class ListMethodsRequest {
         }
 
         /**
-         * Indicate if you will use the result for the [Create order](create-order) or the [Create payment](create-payment) endpoint.
+         * **⚠️ We no longer recommend using the Orders API. Please refer to the [Payments API](payments-api) instead.**
+         * 
+         * <p>Indicate if you will use the result for the [Create order](create-order) or the [Create payment](create-payment) endpoint.
          * 
          * <p>When passing the value `orders`, the result will include payment methods that are only available for payments created via the Orders API.
          * 
          * <p>Possible values: `payments` `orders` (default: `payments`)
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = resource;
@@ -687,9 +719,9 @@ public class ListMethodsRequest {
         }
 
         /**
-         * A comma-separated list of the order line categories you support in your checkout. The available categories can be found in the [Create order endpoint](create-order) documentation.
+         * A comma-separated list of the line categories you support in your checkout.
          * 
-         * <p>Example: `/v2/methods?resource=orders&amp;orderLineCategories=eco,meal`
+         * <p>Example: `/v2/methods?orderLineCategories=eco,meal`
          * 
          * <p>Possible values: `eco` `gift` `meal` `sport_culture` `additional` `consume`
          */
@@ -700,9 +732,9 @@ public class ListMethodsRequest {
         }
 
         /**
-         * A comma-separated list of the order line categories you support in your checkout. The available categories can be found in the [Create order endpoint](create-order) documentation.
+         * A comma-separated list of the line categories you support in your checkout.
          * 
-         * <p>Example: `/v2/methods?resource=orders&amp;orderLineCategories=eco,meal`
+         * <p>Example: `/v2/methods?orderLineCategories=eco,meal`
          * 
          * <p>Possible values: `eco` `gift` `meal` `sport_culture` `additional` `consume`
          */

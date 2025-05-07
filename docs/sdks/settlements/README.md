@@ -257,7 +257,7 @@ public class Application {
 
 Retrieve all payments included in the given settlement.
 
-The response is in the same format as the response of the [List payments endpoint](list-payments). Refer to that endpoint's documentation for more details.
+The response is in the same format as the response of the [List payments endpoint](list-payments).
 
 For capture-based payment methods such as Klarna, the payments are not listed here. Refer to the [List captures endpoint](list-captures) endpoint instead.
 
@@ -273,6 +273,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.GetSettlementPaymentsResponseBody;
+import com.mollie.mollie.models.operations.GetSettlementPaymentsRequest;
 import com.mollie.mollie.models.operations.GetSettlementPaymentsResponse;
 import java.lang.Exception;
 
@@ -286,11 +287,17 @@ public class Application {
                     .build())
             .build();
 
-        GetSettlementPaymentsResponse res = sdk.settlements().listPayments()
+        GetSettlementPaymentsRequest req = GetSettlementPaymentsRequest.builder()
                 .settlementId("stl_jDk30akdN")
+                .from("tr_5B8cwPMGnU")
+                .sort("desc")
+                .build();
+
+        GetSettlementPaymentsResponse res = sdk.settlements().listPayments()
+                .request(req)
                 .call();
 
-        if (res.any().isPresent()) {
+        if (res.object().isPresent()) {
             // handle response
         }
     }
@@ -299,9 +306,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                 | Type                                      | Required                                  | Description                               | Example                                   |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| `settlementId`                            | *String*                                  | :heavy_check_mark:                        | Provide the ID of the related settlement. | stl_jDk30akdN                             |
+| Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `request`                                                                               | [GetSettlementPaymentsRequest](../../models/operations/GetSettlementPaymentsRequest.md) | :heavy_check_mark:                                                                      | The request object to use for the request.                                              |
 
 ### Response
 
@@ -311,14 +318,14 @@ public class Application {
 
 | Error Type                                      | Status Code                                     | Content Type                                    |
 | ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| models/errors/GetSettlementPaymentsResponseBody | 404                                             | application/hal+json                            |
+| models/errors/GetSettlementPaymentsResponseBody | 400                                             | application/hal+json                            |
 | models/errors/APIException                      | 4XX, 5XX                                        | \*/\*                                           |
 
 ## listCaptures
 
 Retrieve all captures included in the given settlement.
 
-The response is in the same format as the response of the [List captures endpoint](list-captures). Refer to that endpoint's documentation for more details.
+The response is in the same format as the response of the [List captures endpoint](list-captures).
 
 > 🔑 Access with
 >
@@ -332,12 +339,13 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.GetSettlementCapturesResponseBody;
-import com.mollie.mollie.models.operations.GetSettlementCapturesResponse;
+import com.mollie.mollie.models.errors.GetSettlementCapturesSettlementsResponseBody;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws GetSettlementCapturesResponseBody, Exception {
+    public static void main(String[] args) throws GetSettlementCapturesResponseBody, GetSettlementCapturesSettlementsResponseBody, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -345,11 +353,17 @@ public class Application {
                     .build())
             .build();
 
-        GetSettlementCapturesResponse res = sdk.settlements().listCaptures()
+        GetSettlementCapturesRequest req = GetSettlementCapturesRequest.builder()
                 .settlementId("stl_jDk30akdN")
+                .from("cpt_vytxeTZskVKR7C7WgdSP3d")
+                .include(GetSettlementCapturesQueryParamInclude.PAYMENT)
+                .build();
+
+        GetSettlementCapturesResponse res = sdk.settlements().listCaptures()
+                .request(req)
                 .call();
 
-        if (res.any().isPresent()) {
+        if (res.object().isPresent()) {
             // handle response
         }
     }
@@ -358,9 +372,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                 | Type                                      | Required                                  | Description                               | Example                                   |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| `settlementId`                            | *String*                                  | :heavy_check_mark:                        | Provide the ID of the related settlement. | stl_jDk30akdN                             |
+| Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `request`                                                                               | [GetSettlementCapturesRequest](../../models/operations/GetSettlementCapturesRequest.md) | :heavy_check_mark:                                                                      | The request object to use for the request.                                              |
 
 ### Response
 
@@ -368,16 +382,17 @@ public class Application {
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| models/errors/GetSettlementCapturesResponseBody | 404                                             | application/hal+json                            |
-| models/errors/APIException                      | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                                 | Status Code                                                | Content Type                                               |
+| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| models/errors/GetSettlementCapturesResponseBody            | 400                                                        | application/hal+json                                       |
+| models/errors/GetSettlementCapturesSettlementsResponseBody | 404                                                        | application/hal+json                                       |
+| models/errors/APIException                                 | 4XX, 5XX                                                   | \*/\*                                                      |
 
 ## listRefunds
 
 Retrieve all refunds 'deducted' from the given settlement.
 
-The response is in the same format as the response of the [List refunds endpoint](list-refunds). Refer to that endpoint's documentation for more details.
+The response is in the same format as the response of the [List refunds endpoint](list-refunds).
 
 > 🔑 Access with
 >
@@ -391,12 +406,13 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.GetSettlementRefundsResponseBody;
-import com.mollie.mollie.models.operations.GetSettlementRefundsResponse;
+import com.mollie.mollie.models.errors.GetSettlementRefundsSettlementsResponseBody;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws GetSettlementRefundsResponseBody, Exception {
+    public static void main(String[] args) throws GetSettlementRefundsResponseBody, GetSettlementRefundsSettlementsResponseBody, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -404,11 +420,17 @@ public class Application {
                     .build())
             .build();
 
-        GetSettlementRefundsResponse res = sdk.settlements().listRefunds()
+        GetSettlementRefundsRequest req = GetSettlementRefundsRequest.builder()
                 .settlementId("stl_jDk30akdN")
+                .from("re_5B8cwPMGnU")
+                .include(GetSettlementRefundsQueryParamInclude.PAYMENT)
+                .build();
+
+        GetSettlementRefundsResponse res = sdk.settlements().listRefunds()
+                .request(req)
                 .call();
 
-        if (res.any().isPresent()) {
+        if (res.object().isPresent()) {
             // handle response
         }
     }
@@ -417,9 +439,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                 | Type                                      | Required                                  | Description                               | Example                                   |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| `settlementId`                            | *String*                                  | :heavy_check_mark:                        | Provide the ID of the related settlement. | stl_jDk30akdN                             |
+| Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `request`                                                                             | [GetSettlementRefundsRequest](../../models/operations/GetSettlementRefundsRequest.md) | :heavy_check_mark:                                                                    | The request object to use for the request.                                            |
 
 ### Response
 
@@ -427,16 +449,17 @@ public class Application {
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| models/errors/GetSettlementRefundsResponseBody | 404                                            | application/hal+json                           |
-| models/errors/APIException                     | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type                                                | Status Code                                               | Content Type                                              |
+| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
+| models/errors/GetSettlementRefundsResponseBody            | 400                                                       | application/hal+json                                      |
+| models/errors/GetSettlementRefundsSettlementsResponseBody | 404                                                       | application/hal+json                                      |
+| models/errors/APIException                                | 4XX, 5XX                                                  | \*/\*                                                     |
 
 ## listChargebacks
 
 Retrieve all chargebacks 'deducted' from the given settlement.
 
-The response is in the same format as the response of the [List chargebacks endpoint](list-chargebacks). Refer to that endpoint's documentation for more details.
+The response is in the same format as the response of the [List chargebacks endpoint](list-chargebacks).
 
 > 🔑 Access with
 >
@@ -450,12 +473,13 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.GetSettlementChargebacksResponseBody;
-import com.mollie.mollie.models.operations.GetSettlementChargebacksResponse;
+import com.mollie.mollie.models.errors.GetSettlementChargebacksSettlementsResponseBody;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws GetSettlementChargebacksResponseBody, Exception {
+    public static void main(String[] args) throws GetSettlementChargebacksResponseBody, GetSettlementChargebacksSettlementsResponseBody, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -463,11 +487,17 @@ public class Application {
                     .build())
             .build();
 
-        GetSettlementChargebacksResponse res = sdk.settlements().listChargebacks()
+        GetSettlementChargebacksRequest req = GetSettlementChargebacksRequest.builder()
                 .settlementId("stl_jDk30akdN")
+                .from("chb_xFzwUN4ci8HAmSGUACS4J")
+                .embed(GetSettlementChargebacksQueryParamEmbed.PAYMENT)
+                .build();
+
+        GetSettlementChargebacksResponse res = sdk.settlements().listChargebacks()
+                .request(req)
                 .call();
 
-        if (res.any().isPresent()) {
+        if (res.object().isPresent()) {
             // handle response
         }
     }
@@ -476,9 +506,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                 | Type                                      | Required                                  | Description                               | Example                                   |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| `settlementId`                            | *String*                                  | :heavy_check_mark:                        | Provide the ID of the related settlement. | stl_jDk30akdN                             |
+| Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `request`                                                                                     | [GetSettlementChargebacksRequest](../../models/operations/GetSettlementChargebacksRequest.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
 
 ### Response
 
@@ -486,7 +516,8 @@ public class Application {
 
 ### Errors
 
-| Error Type                                         | Status Code                                        | Content Type                                       |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| models/errors/GetSettlementChargebacksResponseBody | 404                                                | application/hal+json                               |
-| models/errors/APIException                         | 4XX, 5XX                                           | \*/\*                                              |
+| Error Type                                                    | Status Code                                                   | Content Type                                                  |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| models/errors/GetSettlementChargebacksResponseBody            | 400                                                           | application/hal+json                                          |
+| models/errors/GetSettlementChargebacksSettlementsResponseBody | 404                                                           | application/hal+json                                          |
+| models/errors/APIException                                    | 4XX, 5XX                                                      | \*/\*                                                         |

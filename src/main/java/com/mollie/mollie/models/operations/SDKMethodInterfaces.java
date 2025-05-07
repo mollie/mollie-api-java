@@ -545,25 +545,25 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallGetSettlementPayments {
         GetSettlementPaymentsResponse listPayments(
-            String settlementId,
+            GetSettlementPaymentsRequest request,
             Optional<Options> options) throws Exception;
     }
 
     public interface MethodCallGetSettlementCaptures {
         GetSettlementCapturesResponse listCaptures(
-            String settlementId,
+            GetSettlementCapturesRequest request,
             Optional<Options> options) throws Exception;
     }
 
     public interface MethodCallGetSettlementRefunds {
         GetSettlementRefundsResponse listRefunds(
-            String settlementId,
+            GetSettlementRefundsRequest request,
             Optional<Options> options) throws Exception;
     }
 
     public interface MethodCallGetSettlementChargebacks {
         GetSettlementChargebacksResponse listChargebacks(
-            String settlementId,
+            GetSettlementChargebacksRequest request,
             Optional<Options> options) throws Exception;
     }
 

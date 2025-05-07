@@ -144,7 +144,7 @@ public class GetPaymentLinkPaymentsPayments {
      * 
      * <p>All lines must have the same currency as the payment.
      * 
-     * <p>Required for payment method `voucher`.
+     * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lines")
@@ -155,7 +155,7 @@ public class GetPaymentLinkPaymentsPayments {
      * 
      * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
      * 
-     * <p>Required for payment method `in3`.
+     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billingAddress")
@@ -191,7 +191,7 @@ public class GetPaymentLinkPaymentsPayments {
      * 
      * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen but will only show the methods specified in the array. For example, you can use this functionality to only show payment methods from a specific country to your customer `['bancontact', 'belfius']`.
      * 
-     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `satispay` `trustly` `twint` `voucher`
+     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("method")
@@ -218,13 +218,9 @@ public class GetPaymentLinkPaymentsPayments {
     private JsonNullable<? extends GetPaymentLinkPaymentsMetadata> metadata;
 
     /**
-     * **Only relevant if you wish to manage authorization and capturing separately.**
+     * Indicate if the funds should be captured immediately or if you want to [place a hold](place-a-hold-for-a-payment) and capture at a later time.
      * 
-     * <p>By default, the customer's card or bank account is immediately charged when they complete the payment.
-     * 
-     * <p>Some payment methods also allow placing a hold on the card or bank account. This hold or 'authorization' can then at a later point either be 'captured' or canceled.
-     * 
-     * <p>To enable this way of working, set the capture mode to `manual` and capture the payment manually using the [Create capture endpoint](create-capture).
+     * <p>This field needs to be set to `manual` for method `riverty`.
      * 
      * <p>Possible values: `automatic` `manual` (default: `automatic`)
      */
@@ -250,9 +246,7 @@ public class GetPaymentLinkPaymentsPayments {
     private JsonNullable<String> captureDelay;
 
     /**
-     * **Only relevant if you wish to manage authorization and capturing separately.**
-     * 
-     * <p>Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
+     * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("captureBefore")
@@ -725,7 +719,7 @@ public class GetPaymentLinkPaymentsPayments {
      * 
      * <p>All lines must have the same currency as the payment.
      * 
-     * <p>Required for payment method `voucher`.
+     * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -738,7 +732,7 @@ public class GetPaymentLinkPaymentsPayments {
      * 
      * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
      * 
-     * <p>Required for payment method `in3`.
+     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -780,7 +774,7 @@ public class GetPaymentLinkPaymentsPayments {
      * 
      * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen but will only show the methods specified in the array. For example, you can use this functionality to only show payment methods from a specific country to your customer `['bancontact', 'belfius']`.
      * 
-     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `satispay` `trustly` `twint` `voucher`
+     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
      */
     @JsonIgnore
     public JsonNullable<String> method() {
@@ -811,13 +805,9 @@ public class GetPaymentLinkPaymentsPayments {
     }
 
     /**
-     * **Only relevant if you wish to manage authorization and capturing separately.**
+     * Indicate if the funds should be captured immediately or if you want to [place a hold](place-a-hold-for-a-payment) and capture at a later time.
      * 
-     * <p>By default, the customer's card or bank account is immediately charged when they complete the payment.
-     * 
-     * <p>Some payment methods also allow placing a hold on the card or bank account. This hold or 'authorization' can then at a later point either be 'captured' or canceled.
-     * 
-     * <p>To enable this way of working, set the capture mode to `manual` and capture the payment manually using the [Create capture endpoint](create-capture).
+     * <p>This field needs to be set to `manual` for method `riverty`.
      * 
      * <p>Possible values: `automatic` `manual` (default: `automatic`)
      */
@@ -845,9 +835,7 @@ public class GetPaymentLinkPaymentsPayments {
     }
 
     /**
-     * **Only relevant if you wish to manage authorization and capturing separately.**
-     * 
-     * <p>Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
+     * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
      */
     @JsonIgnore
     public JsonNullable<String> captureBefore() {
@@ -1356,7 +1344,7 @@ public class GetPaymentLinkPaymentsPayments {
      * 
      * <p>All lines must have the same currency as the payment.
      * 
-     * <p>Required for payment method `voucher`.
+     * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
      */
     public GetPaymentLinkPaymentsPayments withLines(List<GetPaymentLinkPaymentsLines> lines) {
         Utils.checkNotNull(lines, "lines");
@@ -1369,7 +1357,7 @@ public class GetPaymentLinkPaymentsPayments {
      * 
      * <p>All lines must have the same currency as the payment.
      * 
-     * <p>Required for payment method `voucher`.
+     * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
      */
     public GetPaymentLinkPaymentsPayments withLines(JsonNullable<? extends List<GetPaymentLinkPaymentsLines>> lines) {
         Utils.checkNotNull(lines, "lines");
@@ -1382,7 +1370,7 @@ public class GetPaymentLinkPaymentsPayments {
      * 
      * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
      * 
-     * <p>Required for payment method `in3`.
+     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
      */
     public GetPaymentLinkPaymentsPayments withBillingAddress(GetPaymentLinkPaymentsBillingAddress billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
@@ -1395,7 +1383,7 @@ public class GetPaymentLinkPaymentsPayments {
      * 
      * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
      * 
-     * <p>Required for payment method `in3`.
+     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
      */
     public GetPaymentLinkPaymentsPayments withBillingAddress(Optional<? extends GetPaymentLinkPaymentsBillingAddress> billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
@@ -1470,7 +1458,7 @@ public class GetPaymentLinkPaymentsPayments {
      * 
      * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen but will only show the methods specified in the array. For example, you can use this functionality to only show payment methods from a specific country to your customer `['bancontact', 'belfius']`.
      * 
-     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `satispay` `trustly` `twint` `voucher`
+     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
      */
     public GetPaymentLinkPaymentsPayments withMethod(String method) {
         Utils.checkNotNull(method, "method");
@@ -1483,7 +1471,7 @@ public class GetPaymentLinkPaymentsPayments {
      * 
      * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen but will only show the methods specified in the array. For example, you can use this functionality to only show payment methods from a specific country to your customer `['bancontact', 'belfius']`.
      * 
-     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `satispay` `trustly` `twint` `voucher`
+     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
      */
     public GetPaymentLinkPaymentsPayments withMethod(JsonNullable<String> method) {
         Utils.checkNotNull(method, "method");
@@ -1540,13 +1528,9 @@ public class GetPaymentLinkPaymentsPayments {
     }
 
     /**
-     * **Only relevant if you wish to manage authorization and capturing separately.**
+     * Indicate if the funds should be captured immediately or if you want to [place a hold](place-a-hold-for-a-payment) and capture at a later time.
      * 
-     * <p>By default, the customer's card or bank account is immediately charged when they complete the payment.
-     * 
-     * <p>Some payment methods also allow placing a hold on the card or bank account. This hold or 'authorization' can then at a later point either be 'captured' or canceled.
-     * 
-     * <p>To enable this way of working, set the capture mode to `manual` and capture the payment manually using the [Create capture endpoint](create-capture).
+     * <p>This field needs to be set to `manual` for method `riverty`.
      * 
      * <p>Possible values: `automatic` `manual` (default: `automatic`)
      */
@@ -1557,13 +1541,9 @@ public class GetPaymentLinkPaymentsPayments {
     }
 
     /**
-     * **Only relevant if you wish to manage authorization and capturing separately.**
+     * Indicate if the funds should be captured immediately or if you want to [place a hold](place-a-hold-for-a-payment) and capture at a later time.
      * 
-     * <p>By default, the customer's card or bank account is immediately charged when they complete the payment.
-     * 
-     * <p>Some payment methods also allow placing a hold on the card or bank account. This hold or 'authorization' can then at a later point either be 'captured' or canceled.
-     * 
-     * <p>To enable this way of working, set the capture mode to `manual` and capture the payment manually using the [Create capture endpoint](create-capture).
+     * <p>This field needs to be set to `manual` for method `riverty`.
      * 
      * <p>Possible values: `automatic` `manual` (default: `automatic`)
      */
@@ -1612,9 +1592,7 @@ public class GetPaymentLinkPaymentsPayments {
     }
 
     /**
-     * **Only relevant if you wish to manage authorization and capturing separately.**
-     * 
-     * <p>Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
+     * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
      */
     public GetPaymentLinkPaymentsPayments withCaptureBefore(String captureBefore) {
         Utils.checkNotNull(captureBefore, "captureBefore");
@@ -1623,9 +1601,7 @@ public class GetPaymentLinkPaymentsPayments {
     }
 
     /**
-     * **Only relevant if you wish to manage authorization and capturing separately.**
-     * 
-     * <p>Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
+     * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
      */
     public GetPaymentLinkPaymentsPayments withCaptureBefore(JsonNullable<String> captureBefore) {
         Utils.checkNotNull(captureBefore, "captureBefore");
@@ -2628,7 +2604,7 @@ public class GetPaymentLinkPaymentsPayments {
          * 
          * <p>All lines must have the same currency as the payment.
          * 
-         * <p>Required for payment method `voucher`.
+         * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
          */
         public Builder lines(List<GetPaymentLinkPaymentsLines> lines) {
             Utils.checkNotNull(lines, "lines");
@@ -2641,7 +2617,7 @@ public class GetPaymentLinkPaymentsPayments {
          * 
          * <p>All lines must have the same currency as the payment.
          * 
-         * <p>Required for payment method `voucher`.
+         * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
          */
         public Builder lines(JsonNullable<? extends List<GetPaymentLinkPaymentsLines>> lines) {
             Utils.checkNotNull(lines, "lines");
@@ -2654,7 +2630,7 @@ public class GetPaymentLinkPaymentsPayments {
          * 
          * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
          * 
-         * <p>Required for payment method `in3`.
+         * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
          */
         public Builder billingAddress(GetPaymentLinkPaymentsBillingAddress billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
@@ -2667,7 +2643,7 @@ public class GetPaymentLinkPaymentsPayments {
          * 
          * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
          * 
-         * <p>Required for payment method `in3`.
+         * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
          */
         public Builder billingAddress(Optional<? extends GetPaymentLinkPaymentsBillingAddress> billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
@@ -2742,7 +2718,7 @@ public class GetPaymentLinkPaymentsPayments {
          * 
          * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen but will only show the methods specified in the array. For example, you can use this functionality to only show payment methods from a specific country to your customer `['bancontact', 'belfius']`.
          * 
-         * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `satispay` `trustly` `twint` `voucher`
+         * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
          */
         public Builder method(String method) {
             Utils.checkNotNull(method, "method");
@@ -2755,7 +2731,7 @@ public class GetPaymentLinkPaymentsPayments {
          * 
          * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen but will only show the methods specified in the array. For example, you can use this functionality to only show payment methods from a specific country to your customer `['bancontact', 'belfius']`.
          * 
-         * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `satispay` `trustly` `twint` `voucher`
+         * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
          */
         public Builder method(JsonNullable<String> method) {
             Utils.checkNotNull(method, "method");
@@ -2812,13 +2788,9 @@ public class GetPaymentLinkPaymentsPayments {
         }
 
         /**
-         * **Only relevant if you wish to manage authorization and capturing separately.**
+         * Indicate if the funds should be captured immediately or if you want to [place a hold](place-a-hold-for-a-payment) and capture at a later time.
          * 
-         * <p>By default, the customer's card or bank account is immediately charged when they complete the payment.
-         * 
-         * <p>Some payment methods also allow placing a hold on the card or bank account. This hold or 'authorization' can then at a later point either be 'captured' or canceled.
-         * 
-         * <p>To enable this way of working, set the capture mode to `manual` and capture the payment manually using the [Create capture endpoint](create-capture).
+         * <p>This field needs to be set to `manual` for method `riverty`.
          * 
          * <p>Possible values: `automatic` `manual` (default: `automatic`)
          */
@@ -2829,13 +2801,9 @@ public class GetPaymentLinkPaymentsPayments {
         }
 
         /**
-         * **Only relevant if you wish to manage authorization and capturing separately.**
+         * Indicate if the funds should be captured immediately or if you want to [place a hold](place-a-hold-for-a-payment) and capture at a later time.
          * 
-         * <p>By default, the customer's card or bank account is immediately charged when they complete the payment.
-         * 
-         * <p>Some payment methods also allow placing a hold on the card or bank account. This hold or 'authorization' can then at a later point either be 'captured' or canceled.
-         * 
-         * <p>To enable this way of working, set the capture mode to `manual` and capture the payment manually using the [Create capture endpoint](create-capture).
+         * <p>This field needs to be set to `manual` for method `riverty`.
          * 
          * <p>Possible values: `automatic` `manual` (default: `automatic`)
          */
@@ -2884,9 +2852,7 @@ public class GetPaymentLinkPaymentsPayments {
         }
 
         /**
-         * **Only relevant if you wish to manage authorization and capturing separately.**
-         * 
-         * <p>Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
+         * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
          */
         public Builder captureBefore(String captureBefore) {
             Utils.checkNotNull(captureBefore, "captureBefore");
@@ -2895,9 +2861,7 @@ public class GetPaymentLinkPaymentsPayments {
         }
 
         /**
-         * **Only relevant if you wish to manage authorization and capturing separately.**
-         * 
-         * <p>Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
+         * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
          */
         public Builder captureBefore(JsonNullable<String> captureBefore) {
             Utils.checkNotNull(captureBefore, "captureBefore");

@@ -38,6 +38,7 @@ public enum Method {
     POINTOFSALE("pointofsale"),
     PRZELEWY24("przelewy24"),
     SATISPAY("satispay"),
+    SWISH("swish"),
     TRUSTLY("trustly"),
     TWINT("twint"),
     VOUCHER("voucher");

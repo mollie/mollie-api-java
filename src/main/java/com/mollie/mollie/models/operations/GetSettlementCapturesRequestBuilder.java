@@ -7,12 +7,11 @@ import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
 import java.util.Optional;
 
 public class GetSettlementCapturesRequestBuilder {
 
-    private String settlementId;
+    private GetSettlementCapturesRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallGetSettlementCaptures sdk;
 
@@ -20,9 +19,9 @@ public class GetSettlementCapturesRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetSettlementCapturesRequestBuilder settlementId(String settlementId) {
-        Utils.checkNotNull(settlementId, "settlementId");
-        this.settlementId = settlementId;
+    public GetSettlementCapturesRequestBuilder request(GetSettlementCapturesRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -43,7 +42,7 @@ public class GetSettlementCapturesRequestBuilder {
                                                     .retryConfig(retryConfig)
                                                     .build());
         return sdk.listCaptures(
-            settlementId,
+            request,
             options);
     }
 }

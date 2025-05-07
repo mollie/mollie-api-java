@@ -7,12 +7,11 @@ import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
 import java.util.Optional;
 
 public class GetSettlementPaymentsRequestBuilder {
 
-    private String settlementId;
+    private GetSettlementPaymentsRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallGetSettlementPayments sdk;
 
@@ -20,9 +19,9 @@ public class GetSettlementPaymentsRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetSettlementPaymentsRequestBuilder settlementId(String settlementId) {
-        Utils.checkNotNull(settlementId, "settlementId");
-        this.settlementId = settlementId;
+    public GetSettlementPaymentsRequestBuilder request(GetSettlementPaymentsRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -43,7 +42,7 @@ public class GetSettlementPaymentsRequestBuilder {
                                                     .retryConfig(retryConfig)
                                                     .build());
         return sdk.listPayments(
-            settlementId,
+            request,
             options);
     }
 }

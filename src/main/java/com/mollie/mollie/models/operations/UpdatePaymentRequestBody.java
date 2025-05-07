@@ -16,6 +16,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Objects;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class UpdatePaymentRequestBody {
@@ -75,6 +76,13 @@ public class UpdatePaymentRequestBody {
     @JsonProperty("locale")
     private JsonNullable<String> locale;
 
+    /**
+     * The date by which the payment should be completed in `YYYY-MM-DD` format
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("dueDate")
+    private Optional<String> dueDate;
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("restrictPaymentMethodsToCountry")
     private JsonNullable<String> restrictPaymentMethodsToCountry;
@@ -97,6 +105,7 @@ public class UpdatePaymentRequestBody {
             @JsonProperty("metadata") JsonNullable<? extends UpdatePaymentMetadata> metadata,
             @JsonProperty("method") JsonNullable<? extends Method> method,
             @JsonProperty("locale") JsonNullable<String> locale,
+            @JsonProperty("dueDate") Optional<String> dueDate,
             @JsonProperty("restrictPaymentMethodsToCountry") JsonNullable<String> restrictPaymentMethodsToCountry,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(description, "description");
@@ -106,6 +115,7 @@ public class UpdatePaymentRequestBody {
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(method, "method");
         Utils.checkNotNull(locale, "locale");
+        Utils.checkNotNull(dueDate, "dueDate");
         Utils.checkNotNull(restrictPaymentMethodsToCountry, "restrictPaymentMethodsToCountry");
         Utils.checkNotNull(testmode, "testmode");
         this.description = description;
@@ -115,12 +125,13 @@ public class UpdatePaymentRequestBody {
         this.metadata = metadata;
         this.method = method;
         this.locale = locale;
+        this.dueDate = dueDate;
         this.restrictPaymentMethodsToCountry = restrictPaymentMethodsToCountry;
         this.testmode = testmode;
     }
     
     public UpdatePaymentRequestBody() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -185,6 +196,14 @@ public class UpdatePaymentRequestBody {
     @JsonIgnore
     public JsonNullable<String> locale() {
         return locale;
+    }
+
+    /**
+     * The date by which the payment should be completed in `YYYY-MM-DD` format
+     */
+    @JsonIgnore
+    public Optional<String> dueDate() {
+        return dueDate;
     }
 
     @JsonIgnore
@@ -344,6 +363,24 @@ public class UpdatePaymentRequestBody {
         return this;
     }
 
+    /**
+     * The date by which the payment should be completed in `YYYY-MM-DD` format
+     */
+    public UpdatePaymentRequestBody withDueDate(String dueDate) {
+        Utils.checkNotNull(dueDate, "dueDate");
+        this.dueDate = Optional.ofNullable(dueDate);
+        return this;
+    }
+
+    /**
+     * The date by which the payment should be completed in `YYYY-MM-DD` format
+     */
+    public UpdatePaymentRequestBody withDueDate(Optional<String> dueDate) {
+        Utils.checkNotNull(dueDate, "dueDate");
+        this.dueDate = dueDate;
+        return this;
+    }
+
     public UpdatePaymentRequestBody withRestrictPaymentMethodsToCountry(String restrictPaymentMethodsToCountry) {
         Utils.checkNotNull(restrictPaymentMethodsToCountry, "restrictPaymentMethodsToCountry");
         this.restrictPaymentMethodsToCountry = JsonNullable.of(restrictPaymentMethodsToCountry);
@@ -396,6 +433,7 @@ public class UpdatePaymentRequestBody {
             Objects.deepEquals(this.metadata, other.metadata) &&
             Objects.deepEquals(this.method, other.method) &&
             Objects.deepEquals(this.locale, other.locale) &&
+            Objects.deepEquals(this.dueDate, other.dueDate) &&
             Objects.deepEquals(this.restrictPaymentMethodsToCountry, other.restrictPaymentMethodsToCountry) &&
             Objects.deepEquals(this.testmode, other.testmode);
     }
@@ -410,6 +448,7 @@ public class UpdatePaymentRequestBody {
             metadata,
             method,
             locale,
+            dueDate,
             restrictPaymentMethodsToCountry,
             testmode);
     }
@@ -424,6 +463,7 @@ public class UpdatePaymentRequestBody {
                 "metadata", metadata,
                 "method", method,
                 "locale", locale,
+                "dueDate", dueDate,
                 "restrictPaymentMethodsToCountry", restrictPaymentMethodsToCountry,
                 "testmode", testmode);
     }
@@ -443,6 +483,8 @@ public class UpdatePaymentRequestBody {
         private JsonNullable<? extends Method> method = JsonNullable.undefined();
  
         private JsonNullable<String> locale = JsonNullable.undefined();
+ 
+        private Optional<String> dueDate = Optional.empty();
  
         private JsonNullable<String> restrictPaymentMethodsToCountry = JsonNullable.undefined();
  
@@ -590,6 +632,24 @@ public class UpdatePaymentRequestBody {
             return this;
         }
 
+        /**
+         * The date by which the payment should be completed in `YYYY-MM-DD` format
+         */
+        public Builder dueDate(String dueDate) {
+            Utils.checkNotNull(dueDate, "dueDate");
+            this.dueDate = Optional.ofNullable(dueDate);
+            return this;
+        }
+
+        /**
+         * The date by which the payment should be completed in `YYYY-MM-DD` format
+         */
+        public Builder dueDate(Optional<String> dueDate) {
+            Utils.checkNotNull(dueDate, "dueDate");
+            this.dueDate = dueDate;
+            return this;
+        }
+
         public Builder restrictPaymentMethodsToCountry(String restrictPaymentMethodsToCountry) {
             Utils.checkNotNull(restrictPaymentMethodsToCountry, "restrictPaymentMethodsToCountry");
             this.restrictPaymentMethodsToCountry = JsonNullable.of(restrictPaymentMethodsToCountry);
@@ -636,6 +696,7 @@ public class UpdatePaymentRequestBody {
                 metadata,
                 method,
                 locale,
+                dueDate,
                 restrictPaymentMethodsToCountry,
                 testmode);
         }

@@ -79,7 +79,7 @@ public class CreatePaymentRequestBody {
      * 
      * <p>All lines must have the same currency as the payment.
      * 
-     * <p>Required for payment method `voucher`.
+     * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lines")
@@ -90,7 +90,7 @@ public class CreatePaymentRequestBody {
      * 
      * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
      * 
-     * <p>Required for payment method `in3`.
+     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billingAddress")
@@ -119,7 +119,7 @@ public class CreatePaymentRequestBody {
      * 
      * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen but will only show the methods specified in the array. For example, you can use this functionality to only show payment methods from a specific country to your customer `['bancontact', 'belfius']`.
      * 
-     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `satispay` `trustly` `twint` `voucher`
+     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("method")
@@ -163,13 +163,9 @@ public class CreatePaymentRequestBody {
     private JsonNullable<? extends Metadata> metadata;
 
     /**
-     * **Only relevant if you wish to manage authorization and capturing separately.**
+     * Indicate if the funds should be captured immediately or if you want to [place a hold](place-a-hold-for-a-payment) and capture at a later time.
      * 
-     * <p>By default, the customer's card or bank account is immediately charged when they complete the payment.
-     * 
-     * <p>Some payment methods also allow placing a hold on the card or bank account. This hold or 'authorization' can then at a later point either be 'captured' or canceled.
-     * 
-     * <p>To enable this way of working, set the capture mode to `manual` and capture the payment manually using the [Create capture endpoint](create-capture).
+     * <p>This field needs to be set to `manual` for method `riverty`.
      * 
      * <p>Possible values: `automatic` `manual` (default: `automatic`)
      */
@@ -427,7 +423,7 @@ public class CreatePaymentRequestBody {
      * 
      * <p>All lines must have the same currency as the payment.
      * 
-     * <p>Required for payment method `voucher`.
+     * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -440,7 +436,7 @@ public class CreatePaymentRequestBody {
      * 
      * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
      * 
-     * <p>Required for payment method `in3`.
+     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -474,7 +470,7 @@ public class CreatePaymentRequestBody {
      * 
      * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen but will only show the methods specified in the array. For example, you can use this functionality to only show payment methods from a specific country to your customer `['bancontact', 'belfius']`.
      * 
-     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `satispay` `trustly` `twint` `voucher`
+     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
      */
     @JsonIgnore
     public JsonNullable<String> method() {
@@ -523,13 +519,9 @@ public class CreatePaymentRequestBody {
     }
 
     /**
-     * **Only relevant if you wish to manage authorization and capturing separately.**
+     * Indicate if the funds should be captured immediately or if you want to [place a hold](place-a-hold-for-a-payment) and capture at a later time.
      * 
-     * <p>By default, the customer's card or bank account is immediately charged when they complete the payment.
-     * 
-     * <p>Some payment methods also allow placing a hold on the card or bank account. This hold or 'authorization' can then at a later point either be 'captured' or canceled.
-     * 
-     * <p>To enable this way of working, set the capture mode to `manual` and capture the payment manually using the [Create capture endpoint](create-capture).
+     * <p>This field needs to be set to `manual` for method `riverty`.
      * 
      * <p>Possible values: `automatic` `manual` (default: `automatic`)
      */
@@ -780,7 +772,7 @@ public class CreatePaymentRequestBody {
      * 
      * <p>All lines must have the same currency as the payment.
      * 
-     * <p>Required for payment method `voucher`.
+     * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
      */
     public CreatePaymentRequestBody withLines(List<Lines> lines) {
         Utils.checkNotNull(lines, "lines");
@@ -793,7 +785,7 @@ public class CreatePaymentRequestBody {
      * 
      * <p>All lines must have the same currency as the payment.
      * 
-     * <p>Required for payment method `voucher`.
+     * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
      */
     public CreatePaymentRequestBody withLines(JsonNullable<? extends List<Lines>> lines) {
         Utils.checkNotNull(lines, "lines");
@@ -806,7 +798,7 @@ public class CreatePaymentRequestBody {
      * 
      * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
      * 
-     * <p>Required for payment method `in3`.
+     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
      */
     public CreatePaymentRequestBody withBillingAddress(BillingAddress billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
@@ -819,7 +811,7 @@ public class CreatePaymentRequestBody {
      * 
      * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
      * 
-     * <p>Required for payment method `in3`.
+     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
      */
     public CreatePaymentRequestBody withBillingAddress(Optional<? extends BillingAddress> billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
@@ -876,7 +868,7 @@ public class CreatePaymentRequestBody {
      * 
      * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen but will only show the methods specified in the array. For example, you can use this functionality to only show payment methods from a specific country to your customer `['bancontact', 'belfius']`.
      * 
-     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `satispay` `trustly` `twint` `voucher`
+     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
      */
     public CreatePaymentRequestBody withMethod(String method) {
         Utils.checkNotNull(method, "method");
@@ -889,7 +881,7 @@ public class CreatePaymentRequestBody {
      * 
      * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen but will only show the methods specified in the array. For example, you can use this functionality to only show payment methods from a specific country to your customer `['bancontact', 'belfius']`.
      * 
-     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `satispay` `trustly` `twint` `voucher`
+     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
      */
     public CreatePaymentRequestBody withMethod(JsonNullable<String> method) {
         Utils.checkNotNull(method, "method");
@@ -984,13 +976,9 @@ public class CreatePaymentRequestBody {
     }
 
     /**
-     * **Only relevant if you wish to manage authorization and capturing separately.**
+     * Indicate if the funds should be captured immediately or if you want to [place a hold](place-a-hold-for-a-payment) and capture at a later time.
      * 
-     * <p>By default, the customer's card or bank account is immediately charged when they complete the payment.
-     * 
-     * <p>Some payment methods also allow placing a hold on the card or bank account. This hold or 'authorization' can then at a later point either be 'captured' or canceled.
-     * 
-     * <p>To enable this way of working, set the capture mode to `manual` and capture the payment manually using the [Create capture endpoint](create-capture).
+     * <p>This field needs to be set to `manual` for method `riverty`.
      * 
      * <p>Possible values: `automatic` `manual` (default: `automatic`)
      */
@@ -1001,13 +989,9 @@ public class CreatePaymentRequestBody {
     }
 
     /**
-     * **Only relevant if you wish to manage authorization and capturing separately.**
+     * Indicate if the funds should be captured immediately or if you want to [place a hold](place-a-hold-for-a-payment) and capture at a later time.
      * 
-     * <p>By default, the customer's card or bank account is immediately charged when they complete the payment.
-     * 
-     * <p>Some payment methods also allow placing a hold on the card or bank account. This hold or 'authorization' can then at a later point either be 'captured' or canceled.
-     * 
-     * <p>To enable this way of working, set the capture mode to `manual` and capture the payment manually using the [Create capture endpoint](create-capture).
+     * <p>This field needs to be set to `manual` for method `riverty`.
      * 
      * <p>Possible values: `automatic` `manual` (default: `automatic`)
      */
@@ -1533,7 +1517,7 @@ public class CreatePaymentRequestBody {
          * 
          * <p>All lines must have the same currency as the payment.
          * 
-         * <p>Required for payment method `voucher`.
+         * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
          */
         public Builder lines(List<Lines> lines) {
             Utils.checkNotNull(lines, "lines");
@@ -1546,7 +1530,7 @@ public class CreatePaymentRequestBody {
          * 
          * <p>All lines must have the same currency as the payment.
          * 
-         * <p>Required for payment method `voucher`.
+         * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
          */
         public Builder lines(JsonNullable<? extends List<Lines>> lines) {
             Utils.checkNotNull(lines, "lines");
@@ -1559,7 +1543,7 @@ public class CreatePaymentRequestBody {
          * 
          * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
          * 
-         * <p>Required for payment method `in3`.
+         * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
          */
         public Builder billingAddress(BillingAddress billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
@@ -1572,7 +1556,7 @@ public class CreatePaymentRequestBody {
          * 
          * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
          * 
-         * <p>Required for payment method `in3`.
+         * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
          */
         public Builder billingAddress(Optional<? extends BillingAddress> billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
@@ -1629,7 +1613,7 @@ public class CreatePaymentRequestBody {
          * 
          * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen but will only show the methods specified in the array. For example, you can use this functionality to only show payment methods from a specific country to your customer `['bancontact', 'belfius']`.
          * 
-         * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `satispay` `trustly` `twint` `voucher`
+         * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
          */
         public Builder method(String method) {
             Utils.checkNotNull(method, "method");
@@ -1642,7 +1626,7 @@ public class CreatePaymentRequestBody {
          * 
          * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen but will only show the methods specified in the array. For example, you can use this functionality to only show payment methods from a specific country to your customer `['bancontact', 'belfius']`.
          * 
-         * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `satispay` `trustly` `twint` `voucher`
+         * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
          */
         public Builder method(JsonNullable<String> method) {
             Utils.checkNotNull(method, "method");
@@ -1737,13 +1721,9 @@ public class CreatePaymentRequestBody {
         }
 
         /**
-         * **Only relevant if you wish to manage authorization and capturing separately.**
+         * Indicate if the funds should be captured immediately or if you want to [place a hold](place-a-hold-for-a-payment) and capture at a later time.
          * 
-         * <p>By default, the customer's card or bank account is immediately charged when they complete the payment.
-         * 
-         * <p>Some payment methods also allow placing a hold on the card or bank account. This hold or 'authorization' can then at a later point either be 'captured' or canceled.
-         * 
-         * <p>To enable this way of working, set the capture mode to `manual` and capture the payment manually using the [Create capture endpoint](create-capture).
+         * <p>This field needs to be set to `manual` for method `riverty`.
          * 
          * <p>Possible values: `automatic` `manual` (default: `automatic`)
          */
@@ -1754,13 +1734,9 @@ public class CreatePaymentRequestBody {
         }
 
         /**
-         * **Only relevant if you wish to manage authorization and capturing separately.**
+         * Indicate if the funds should be captured immediately or if you want to [place a hold](place-a-hold-for-a-payment) and capture at a later time.
          * 
-         * <p>By default, the customer's card or bank account is immediately charged when they complete the payment.
-         * 
-         * <p>Some payment methods also allow placing a hold on the card or bank account. This hold or 'authorization' can then at a later point either be 'captured' or canceled.
-         * 
-         * <p>To enable this way of working, set the capture mode to `manual` and capture the payment manually using the [Create capture endpoint](create-capture).
+         * <p>This field needs to be set to `manual` for method `riverty`.
          * 
          * <p>Possible values: `automatic` `manual` (default: `automatic`)
          */

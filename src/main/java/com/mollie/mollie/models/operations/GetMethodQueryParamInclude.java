@@ -14,8 +14,7 @@ import java.util.Optional;
  * <p>This endpoint allows you to include additional information via the `include` query string parameter.
  */
 public enum GetMethodQueryParamInclude {
-    ISSUERS("issuers"),
-    PRICING("pricing");
+    ISSUERS("issuers");
 
     @JsonValue
     private final String value;
