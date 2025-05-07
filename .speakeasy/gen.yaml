@@ -26,7 +26,7 @@ java:
   companyURL: https://www.mollie.com/
   defaultErrorName: APIException
   flattenGlobalSecurity: true
-  githubURL: https://github.com/mollie/mollie-api-java-alpha
+  githubURL: https://github.com/mollie/mollie-api-java
   groupID: com.mollie
   imports:
     option: openapi
