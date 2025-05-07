@@ -11,11 +11,12 @@ generation:
     parameterOrderingFeb2024: true
     requestResponseComponentNamesFeb2024: true
     securityFeb2025: true
+    sharedErrorComponentsApr2025: false
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: true
 java:
-  version: 0.1.1
+  version: 0.2.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: mollie

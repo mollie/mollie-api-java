@@ -9,7 +9,6 @@ import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -35,24 +34,24 @@ public class GetSettlementCapturesResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * A list of capture objects. For a complete reference of the response, refer to the [List captures](list-captures) endpoint documentation.
+     * A list of capture objects.
      */
-    private Optional<? extends Object> any;
+    private Optional<? extends GetSettlementCapturesResponseBody> object;
 
     @JsonCreator
     public GetSettlementCapturesResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends Object> any) {
+            Optional<? extends GetSettlementCapturesResponseBody> object) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(any, "any");
+        Utils.checkNotNull(object, "object");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.any = any;
+        this.object = object;
     }
     
     public GetSettlementCapturesResponse(
@@ -87,12 +86,12 @@ public class GetSettlementCapturesResponse implements Response {
     }
 
     /**
-     * A list of capture objects. For a complete reference of the response, refer to the [List captures](list-captures) endpoint documentation.
+     * A list of capture objects.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Object> any() {
-        return (Optional<Object>) any;
+    public Optional<GetSettlementCapturesResponseBody> object() {
+        return (Optional<GetSettlementCapturesResponseBody>) object;
     }
 
     public final static Builder builder() {
@@ -127,20 +126,20 @@ public class GetSettlementCapturesResponse implements Response {
     }
 
     /**
-     * A list of capture objects. For a complete reference of the response, refer to the [List captures](list-captures) endpoint documentation.
+     * A list of capture objects.
      */
-    public GetSettlementCapturesResponse withAny(Object any) {
-        Utils.checkNotNull(any, "any");
-        this.any = Optional.ofNullable(any);
+    public GetSettlementCapturesResponse withObject(GetSettlementCapturesResponseBody object) {
+        Utils.checkNotNull(object, "object");
+        this.object = Optional.ofNullable(object);
         return this;
     }
 
     /**
-     * A list of capture objects. For a complete reference of the response, refer to the [List captures](list-captures) endpoint documentation.
+     * A list of capture objects.
      */
-    public GetSettlementCapturesResponse withAny(Optional<? extends Object> any) {
-        Utils.checkNotNull(any, "any");
-        this.any = any;
+    public GetSettlementCapturesResponse withObject(Optional<? extends GetSettlementCapturesResponseBody> object) {
+        Utils.checkNotNull(object, "object");
+        this.object = object;
         return this;
     }
 
@@ -158,7 +157,7 @@ public class GetSettlementCapturesResponse implements Response {
             Objects.deepEquals(this.contentType, other.contentType) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.any, other.any);
+            Objects.deepEquals(this.object, other.object);
     }
     
     @Override
@@ -167,7 +166,7 @@ public class GetSettlementCapturesResponse implements Response {
             contentType,
             statusCode,
             rawResponse,
-            any);
+            object);
     }
     
     @Override
@@ -176,7 +175,7 @@ public class GetSettlementCapturesResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "any", any);
+                "object", object);
     }
     
     public final static class Builder {
@@ -187,7 +186,7 @@ public class GetSettlementCapturesResponse implements Response {
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends Object> any = Optional.empty();
+        private Optional<? extends GetSettlementCapturesResponseBody> object = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -221,20 +220,20 @@ public class GetSettlementCapturesResponse implements Response {
         }
 
         /**
-         * A list of capture objects. For a complete reference of the response, refer to the [List captures](list-captures) endpoint documentation.
+         * A list of capture objects.
          */
-        public Builder any(Object any) {
-            Utils.checkNotNull(any, "any");
-            this.any = Optional.ofNullable(any);
+        public Builder object(GetSettlementCapturesResponseBody object) {
+            Utils.checkNotNull(object, "object");
+            this.object = Optional.ofNullable(object);
             return this;
         }
 
         /**
-         * A list of capture objects. For a complete reference of the response, refer to the [List captures](list-captures) endpoint documentation.
+         * A list of capture objects.
          */
-        public Builder any(Optional<? extends Object> any) {
-            Utils.checkNotNull(any, "any");
-            this.any = any;
+        public Builder object(Optional<? extends GetSettlementCapturesResponseBody> object) {
+            Utils.checkNotNull(object, "object");
+            this.object = object;
             return this;
         }
         
@@ -243,7 +242,7 @@ public class GetSettlementCapturesResponse implements Response {
                 contentType,
                 statusCode,
                 rawResponse,
-                any);
+                object);
         }
     }
 }

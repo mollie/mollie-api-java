@@ -31,7 +31,7 @@ public class Methods {
     /**
      * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
      * 
-     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
+     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
@@ -77,13 +77,6 @@ public class Methods {
     private JsonNullable<String> status;
 
     /**
-     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("pricing")
-    private Optional<? extends List<ListMethodsPricing>> pricing;
-
-    /**
      * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -106,7 +99,6 @@ public class Methods {
             @JsonProperty("maximumAmount") JsonNullable<? extends ListMethodsMaximumAmount> maximumAmount,
             @JsonProperty("image") Optional<? extends ListMethodsImage> image,
             @JsonProperty("status") JsonNullable<String> status,
-            @JsonProperty("pricing") Optional<? extends List<ListMethodsPricing>> pricing,
             @JsonProperty("issuers") Optional<? extends List<ListMethodsIssuers>> issuers,
             @JsonProperty("_links") Optional<? extends ListMethodsMethodsLinks> links) {
         Utils.checkNotNull(resource, "resource");
@@ -116,7 +108,6 @@ public class Methods {
         Utils.checkNotNull(maximumAmount, "maximumAmount");
         Utils.checkNotNull(image, "image");
         Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(pricing, "pricing");
         Utils.checkNotNull(issuers, "issuers");
         Utils.checkNotNull(links, "links");
         this.resource = resource;
@@ -126,13 +117,12 @@ public class Methods {
         this.maximumAmount = maximumAmount;
         this.image = image;
         this.status = status;
-        this.pricing = pricing;
         this.issuers = issuers;
         this.links = links;
     }
     
     public Methods() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -146,7 +136,7 @@ public class Methods {
     /**
      * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
      * 
-     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
+     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
      */
     @JsonIgnore
     public Optional<String> id() {
@@ -201,15 +191,6 @@ public class Methods {
     }
 
     /**
-     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<List<ListMethodsPricing>> pricing() {
-        return (Optional<List<ListMethodsPricing>>) pricing;
-    }
-
-    /**
      * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
      */
     @SuppressWarnings("unchecked")
@@ -252,7 +233,7 @@ public class Methods {
     /**
      * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
      * 
-     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
+     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
      */
     public Methods withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -263,7 +244,7 @@ public class Methods {
     /**
      * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
      * 
-     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
+     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
      */
     public Methods withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
@@ -370,24 +351,6 @@ public class Methods {
     }
 
     /**
-     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
-     */
-    public Methods withPricing(List<ListMethodsPricing> pricing) {
-        Utils.checkNotNull(pricing, "pricing");
-        this.pricing = Optional.ofNullable(pricing);
-        return this;
-    }
-
-    /**
-     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
-     */
-    public Methods withPricing(Optional<? extends List<ListMethodsPricing>> pricing) {
-        Utils.checkNotNull(pricing, "pricing");
-        this.pricing = pricing;
-        return this;
-    }
-
-    /**
      * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
      */
     public Methods withIssuers(List<ListMethodsIssuers> issuers) {
@@ -441,7 +404,6 @@ public class Methods {
             Objects.deepEquals(this.maximumAmount, other.maximumAmount) &&
             Objects.deepEquals(this.image, other.image) &&
             Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.pricing, other.pricing) &&
             Objects.deepEquals(this.issuers, other.issuers) &&
             Objects.deepEquals(this.links, other.links);
     }
@@ -456,7 +418,6 @@ public class Methods {
             maximumAmount,
             image,
             status,
-            pricing,
             issuers,
             links);
     }
@@ -471,7 +432,6 @@ public class Methods {
                 "maximumAmount", maximumAmount,
                 "image", image,
                 "status", status,
-                "pricing", pricing,
                 "issuers", issuers,
                 "links", links);
     }
@@ -491,8 +451,6 @@ public class Methods {
         private Optional<? extends ListMethodsImage> image = Optional.empty();
  
         private JsonNullable<String> status = JsonNullable.undefined();
- 
-        private Optional<? extends List<ListMethodsPricing>> pricing = Optional.empty();
  
         private Optional<? extends List<ListMethodsIssuers>> issuers = Optional.empty();
  
@@ -523,7 +481,7 @@ public class Methods {
         /**
          * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
          * 
-         * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
+         * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -534,7 +492,7 @@ public class Methods {
         /**
          * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
          * 
-         * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `trustly` `twint` `voucher`
+         * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
          */
         public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
@@ -641,24 +599,6 @@ public class Methods {
         }
 
         /**
-         * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
-         */
-        public Builder pricing(List<ListMethodsPricing> pricing) {
-            Utils.checkNotNull(pricing, "pricing");
-            this.pricing = Optional.ofNullable(pricing);
-            return this;
-        }
-
-        /**
-         * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
-         */
-        public Builder pricing(Optional<? extends List<ListMethodsPricing>> pricing) {
-            Utils.checkNotNull(pricing, "pricing");
-            this.pricing = pricing;
-            return this;
-        }
-
-        /**
          * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
          */
         public Builder issuers(List<ListMethodsIssuers> issuers) {
@@ -706,7 +646,6 @@ public class Methods {
                 maximumAmount,
                 image,
                 status,
-                pricing,
                 issuers,
                 links);
         }

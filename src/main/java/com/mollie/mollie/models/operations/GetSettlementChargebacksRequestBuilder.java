@@ -7,12 +7,11 @@ import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
 import java.util.Optional;
 
 public class GetSettlementChargebacksRequestBuilder {
 
-    private String settlementId;
+    private GetSettlementChargebacksRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallGetSettlementChargebacks sdk;
 
@@ -20,9 +19,9 @@ public class GetSettlementChargebacksRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetSettlementChargebacksRequestBuilder settlementId(String settlementId) {
-        Utils.checkNotNull(settlementId, "settlementId");
-        this.settlementId = settlementId;
+    public GetSettlementChargebacksRequestBuilder request(GetSettlementChargebacksRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -43,7 +42,7 @@ public class GetSettlementChargebacksRequestBuilder {
                                                     .retryConfig(retryConfig)
                                                     .build());
         return sdk.listChargebacks(
-            settlementId,
+            request,
             options);
     }
 }

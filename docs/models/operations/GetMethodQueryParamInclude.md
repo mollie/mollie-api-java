@@ -8,4 +8,3 @@ This endpoint allows you to include additional information via the `include` que
 | Name      | Value     |
 | --------- | --------- |
 | `ISSUERS` | issuers   |
-| `PRICING` | pricing   |

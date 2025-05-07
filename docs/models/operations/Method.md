@@ -31,6 +31,7 @@ Can be updated while no payment method has been chosen yet.
 | `POINTOFSALE`  | pointofsale    |
 | `PRZELEWY24`   | przelewy24     |
 | `SATISPAY`     | satispay       |
+| `SWISH`        | swish          |
 | `TRUSTLY`      | trustly        |
 | `TWINT`        | twint          |
 | `VOUCHER`      | voucher        |

@@ -120,7 +120,7 @@ public class GetRefundResponseBody {
     private Optional<? extends GetRefundExternalReference> externalReference;
 
     /**
-     * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
+     * *This feature is only available to marketplace operators.*
      * 
      * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
      * 
@@ -299,7 +299,7 @@ public class GetRefundResponseBody {
     }
 
     /**
-     * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
+     * *This feature is only available to marketplace operators.*
      * 
      * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
      * 
@@ -561,7 +561,7 @@ public class GetRefundResponseBody {
     }
 
     /**
-     * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
+     * *This feature is only available to marketplace operators.*
      * 
      * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
      * 
@@ -576,7 +576,7 @@ public class GetRefundResponseBody {
     }
 
     /**
-     * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
+     * *This feature is only available to marketplace operators.*
      * 
      * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
      * 
@@ -942,7 +942,7 @@ public class GetRefundResponseBody {
         }
 
         /**
-         * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
+         * *This feature is only available to marketplace operators.*
          * 
          * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
          * 
@@ -957,7 +957,7 @@ public class GetRefundResponseBody {
         }
 
         /**
-         * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
+         * *This feature is only available to marketplace operators.*
          * 
          * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
          * 

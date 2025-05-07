@@ -47,7 +47,7 @@ public class CreateRefundRequestBody {
     private Optional<? extends ExternalReference> externalReference;
 
     /**
-     * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
+     * *This feature is only available to marketplace operators.*
      * 
      * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants, by providing the `routing` object during [payment creation](create-payment).
      * 
@@ -62,7 +62,7 @@ public class CreateRefundRequestBody {
     private JsonNullable<Boolean> reverseRouting;
 
     /**
-     * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
+     * *This feature is only available to marketplace operators.*
      * 
      * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
      * 
@@ -145,7 +145,7 @@ public class CreateRefundRequestBody {
     }
 
     /**
-     * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
+     * *This feature is only available to marketplace operators.*
      * 
      * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants, by providing the `routing` object during [payment creation](create-payment).
      * 
@@ -161,7 +161,7 @@ public class CreateRefundRequestBody {
     }
 
     /**
-     * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
+     * *This feature is only available to marketplace operators.*
      * 
      * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
      * 
@@ -247,7 +247,7 @@ public class CreateRefundRequestBody {
     }
 
     /**
-     * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
+     * *This feature is only available to marketplace operators.*
      * 
      * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants, by providing the `routing` object during [payment creation](create-payment).
      * 
@@ -264,7 +264,7 @@ public class CreateRefundRequestBody {
     }
 
     /**
-     * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
+     * *This feature is only available to marketplace operators.*
      * 
      * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants, by providing the `routing` object during [payment creation](create-payment).
      * 
@@ -281,7 +281,7 @@ public class CreateRefundRequestBody {
     }
 
     /**
-     * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
+     * *This feature is only available to marketplace operators.*
      * 
      * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
      * 
@@ -296,7 +296,7 @@ public class CreateRefundRequestBody {
     }
 
     /**
-     * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
+     * *This feature is only available to marketplace operators.*
      * 
      * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
      * 
@@ -454,7 +454,7 @@ public class CreateRefundRequestBody {
         }
 
         /**
-         * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
+         * *This feature is only available to marketplace operators.*
          * 
          * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants, by providing the `routing` object during [payment creation](create-payment).
          * 
@@ -471,7 +471,7 @@ public class CreateRefundRequestBody {
         }
 
         /**
-         * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
+         * *This feature is only available to marketplace operators.*
          * 
          * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants, by providing the `routing` object during [payment creation](create-payment).
          * 
@@ -488,7 +488,7 @@ public class CreateRefundRequestBody {
         }
 
         /**
-         * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
+         * *This feature is only available to marketplace operators.*
          * 
          * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
          * 
@@ -503,7 +503,7 @@ public class CreateRefundRequestBody {
         }
 
         /**
-         * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
+         * *This feature is only available to marketplace operators.*
          * 
          * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
          * 
