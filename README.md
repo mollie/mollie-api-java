@@ -12,12 +12,6 @@ Developer-friendly & type-safe Java SDK specifically catered to leverage *mollie
 ## Migration
 This documentation is for the new Mollie's SDK. You can find more details on how to migrate from the old version to the new one [here](/MIGRATION.md)
 
-<!-- Start Summary [summary] -->
-## Summary
-
-
-<!-- End Summary [summary] -->
-
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
