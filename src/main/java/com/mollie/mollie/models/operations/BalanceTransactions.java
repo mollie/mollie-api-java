@@ -77,7 +77,7 @@ public class BalanceTransactions {
      * 
      * <p>Below is a complete list of the context values that each type of transaction will have.
      * 
-     * <p>* Type `payment: `paymentId`
+     * <p>* Type `payment`: `paymentId`
      * * Type `capture`: `paymentId` `captureId`
      * * Type `unauthorized-direct-debit`: `paymentId`
      * * Type `failed-payment`: `paymentId`
@@ -204,7 +204,7 @@ public class BalanceTransactions {
      * 
      * <p>Below is a complete list of the context values that each type of transaction will have.
      * 
-     * <p>* Type `payment: `paymentId`
+     * <p>* Type `payment`: `paymentId`
      * * Type `capture`: `paymentId` `captureId`
      * * Type `unauthorized-direct-debit`: `paymentId`
      * * Type `failed-payment`: `paymentId`
@@ -373,7 +373,7 @@ public class BalanceTransactions {
      * 
      * <p>Below is a complete list of the context values that each type of transaction will have.
      * 
-     * <p>* Type `payment: `paymentId`
+     * <p>* Type `payment`: `paymentId`
      * * Type `capture`: `paymentId` `captureId`
      * * Type `unauthorized-direct-debit`: `paymentId`
      * * Type `failed-payment`: `paymentId`
@@ -402,7 +402,7 @@ public class BalanceTransactions {
      * 
      * <p>Below is a complete list of the context values that each type of transaction will have.
      * 
-     * <p>* Type `payment: `paymentId`
+     * <p>* Type `payment`: `paymentId`
      * * Type `capture`: `paymentId` `captureId`
      * * Type `unauthorized-direct-debit`: `paymentId`
      * * Type `failed-payment`: `paymentId`
@@ -646,7 +646,7 @@ public class BalanceTransactions {
          * 
          * <p>Below is a complete list of the context values that each type of transaction will have.
          * 
-         * <p>* Type `payment: `paymentId`
+         * <p>* Type `payment`: `paymentId`
          * * Type `capture`: `paymentId` `captureId`
          * * Type `unauthorized-direct-debit`: `paymentId`
          * * Type `failed-payment`: `paymentId`
@@ -675,7 +675,7 @@ public class BalanceTransactions {
          * 
          * <p>Below is a complete list of the context values that each type of transaction will have.
          * 
-         * <p>* Type `payment: `paymentId`
+         * <p>* Type `payment`: `paymentId`
          * * Type `capture`: `paymentId` `captureId`
          * * Type `unauthorized-direct-debit`: `paymentId`
          * * Type `failed-payment`: `paymentId`

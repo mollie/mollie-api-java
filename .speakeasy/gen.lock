@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 4b4878b625fbebb67f8f93d666f7e098
+  docChecksum: c71982d2ab9fe2c68de0e6754d34aa53
   docVersion: 1.0.0
   speakeasyVersion: 1.542.3
   generationVersion: 2.597.9
-  releaseVersion: 0.2.0
-  configChecksum: 3cd8d686e59f9417877f178b03764063
+  releaseVersion: 0.2.1
+  configChecksum: 44e102effdbde02b4aa59b2f4fad01e3
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 features:

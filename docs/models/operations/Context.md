@@ -4,7 +4,7 @@ Depending on the type of the balance transaction, we will try to give more conte
 
 Below is a complete list of the context values that each type of transaction will have.
 
-* Type `payment: `paymentId`
+* Type `payment`: `paymentId`
 * Type `capture`: `paymentId` `captureId`
 * Type `unauthorized-direct-debit`: `paymentId`
 * Type `failed-payment`: `paymentId`
