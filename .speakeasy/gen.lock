@@ -1,24 +1,24 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: c71982d2ab9fe2c68de0e6754d34aa53
+  docChecksum: 95f777d30fbd5d7145f50707870cbeb1
   docVersion: 1.0.0
-  speakeasyVersion: 1.542.3
-  generationVersion: 2.597.9
-  releaseVersion: 0.2.1
-  configChecksum: 44e102effdbde02b4aa59b2f4fad01e3
+  speakeasyVersion: 1.543.4
+  generationVersion: 2.598.22
+  releaseVersion: 0.2.2
+  configChecksum: 64d7c84e6266f39669ea5c72e7257062
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 features:
   java:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.37.1
+    core: 3.37.2
     deprecations: 2.81.1
     flattening: 2.81.1
     globalSecurity: 2.82.8
     globalSecurityCallbacks: 0.1.0
-    globalServerURLs: 2.82.1
+    globalServerURLs: 2.82.2
     groups: 2.81.2
     inputOutputModels: 2.83.0
     nameOverrides: 2.81.3
@@ -6231,6 +6231,8 @@ examples:
           application/hal+json: {"resource": "onboarding", "name": "Mollie B.V.", "status": "completed", "canReceivePayments": true, "canReceiveSettlements": true, "signedUpAt": "2023-12-20T10:49:08.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://www.mollie.com/dashboard/onboarding", "type": "text/html"}, "organization": {"href": "https://api.mollie.com/v2/organizations/org_12345678", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
   submit-onboarding-data:
     "":
+      requestBody:
+        application/json: {"organization": {"name": "Mollie B.V.", "registrationNumber": "30204462", "vatNumber": "NL815839091B01", "vatRegulation": "dutch"}, "profile": {"name": "Mollie", "url": "https://www.mollie.com", "email": "info@mollie.com", "phone": "+31208202070", "description": "Payment service provider", "businessCategory": "MONEY_SERVICES"}}
       responses:
         "204":
           application/hal+json: {}

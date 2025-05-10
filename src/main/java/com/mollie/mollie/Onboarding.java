@@ -229,9 +229,7 @@ public class Onboarding implements
      * 
      * <p>**⚠️ We no longer recommend implementing this endpoint. Please refer to the Client Links API instead to kick off the onboarding process for your merchants.**
      * 
-     * <p>Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the onboarding status is `needs-data`. Information that the merchant has entered in their dashboard will not be
-     * 
-     * <p>overwritten.
+     * <p>Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the onboarding status is `needs-data`. Information that the merchant has entered in their dashboard will not be overwritten.
      * 
      * <p>&gt; 🔑 Access with
      * &gt;
@@ -248,9 +246,7 @@ public class Onboarding implements
      * 
      * <p>**⚠️ We no longer recommend implementing this endpoint. Please refer to the Client Links API instead to kick off the onboarding process for your merchants.**
      * 
-     * <p>Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the onboarding status is `needs-data`. Information that the merchant has entered in their dashboard will not be
-     * 
-     * <p>overwritten.
+     * <p>Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the onboarding status is `needs-data`. Information that the merchant has entered in their dashboard will not be overwritten.
      * 
      * <p>&gt; 🔑 Access with
      * &gt;
@@ -268,9 +264,7 @@ public class Onboarding implements
      * 
      * <p>**⚠️ We no longer recommend implementing this endpoint. Please refer to the Client Links API instead to kick off the onboarding process for your merchants.**
      * 
-     * <p>Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the onboarding status is `needs-data`. Information that the merchant has entered in their dashboard will not be
-     * 
-     * <p>overwritten.
+     * <p>Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the onboarding status is `needs-data`. Information that the merchant has entered in their dashboard will not be overwritten.
      * 
      * <p>&gt; 🔑 Access with
      * &gt;

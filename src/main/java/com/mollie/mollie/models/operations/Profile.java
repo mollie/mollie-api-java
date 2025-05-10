@@ -28,8 +28,8 @@ public class Profile {
      * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
      */
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("website")
-    private Optional<String> website;
+    @JsonProperty("url")
+    private Optional<String> url;
 
     /**
      * The email address associated with the profile's trade name or brand.
@@ -62,19 +62,19 @@ public class Profile {
     @JsonCreator
     public Profile(
             @JsonProperty("name") Optional<String> name,
-            @JsonProperty("website") Optional<String> website,
+            @JsonProperty("url") Optional<String> url,
             @JsonProperty("email") Optional<String> email,
             @JsonProperty("phone") Optional<String> phone,
             @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("businessCategory") Optional<String> businessCategory) {
         Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(website, "website");
+        Utils.checkNotNull(url, "url");
         Utils.checkNotNull(email, "email");
         Utils.checkNotNull(phone, "phone");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(businessCategory, "businessCategory");
         this.name = name;
-        this.website = website;
+        this.url = url;
         this.email = email;
         this.phone = phone;
         this.description = description;
@@ -97,8 +97,8 @@ public class Profile {
      * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
      */
     @JsonIgnore
-    public Optional<String> website() {
-        return website;
+    public Optional<String> url() {
+        return url;
     }
 
     /**
@@ -158,18 +158,18 @@ public class Profile {
     /**
      * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
      */
-    public Profile withWebsite(String website) {
-        Utils.checkNotNull(website, "website");
-        this.website = Optional.ofNullable(website);
+    public Profile withUrl(String url) {
+        Utils.checkNotNull(url, "url");
+        this.url = Optional.ofNullable(url);
         return this;
     }
 
     /**
      * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
      */
-    public Profile withWebsite(Optional<String> website) {
-        Utils.checkNotNull(website, "website");
-        this.website = website;
+    public Profile withUrl(Optional<String> url) {
+        Utils.checkNotNull(url, "url");
+        this.url = url;
         return this;
     }
 
@@ -257,7 +257,7 @@ public class Profile {
         Profile other = (Profile) o;
         return 
             Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.website, other.website) &&
+            Objects.deepEquals(this.url, other.url) &&
             Objects.deepEquals(this.email, other.email) &&
             Objects.deepEquals(this.phone, other.phone) &&
             Objects.deepEquals(this.description, other.description) &&
@@ -268,7 +268,7 @@ public class Profile {
     public int hashCode() {
         return Objects.hash(
             name,
-            website,
+            url,
             email,
             phone,
             description,
@@ -279,7 +279,7 @@ public class Profile {
     public String toString() {
         return Utils.toString(Profile.class,
                 "name", name,
-                "website", website,
+                "url", url,
                 "email", email,
                 "phone", phone,
                 "description", description,
@@ -290,7 +290,7 @@ public class Profile {
  
         private Optional<String> name = Optional.empty();
  
-        private Optional<String> website = Optional.empty();
+        private Optional<String> url = Optional.empty();
  
         private Optional<String> email = Optional.empty();
  
@@ -325,18 +325,18 @@ public class Profile {
         /**
          * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
          */
-        public Builder website(String website) {
-            Utils.checkNotNull(website, "website");
-            this.website = Optional.ofNullable(website);
+        public Builder url(String url) {
+            Utils.checkNotNull(url, "url");
+            this.url = Optional.ofNullable(url);
             return this;
         }
 
         /**
          * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
          */
-        public Builder website(Optional<String> website) {
-            Utils.checkNotNull(website, "website");
-            this.website = website;
+        public Builder url(Optional<String> url) {
+            Utils.checkNotNull(url, "url");
+            this.url = url;
             return this;
         }
 
@@ -415,7 +415,7 @@ public class Profile {
         public Profile build() {
             return new Profile(
                 name,
-                website,
+                url,
                 email,
                 phone,
                 description,

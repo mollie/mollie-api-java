@@ -60,9 +60,7 @@ public class Application {
 
 **⚠️ We no longer recommend implementing this endpoint. Please refer to the Client Links API instead to kick off the onboarding process for your merchants.**
 
-Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the onboarding status is `needs-data`. Information that the merchant has entered in their dashboard will not be
-
-overwritten.
+Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the onboarding status is `needs-data`. Information that the merchant has entered in their dashboard will not be overwritten.
 
 > 🔑 Access with
 >
@@ -75,8 +73,7 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.operations.SubmitOnboardingDataRequestBody;
-import com.mollie.mollie.models.operations.SubmitOnboardingDataResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -90,6 +87,20 @@ public class Application {
             .build();
 
         SubmitOnboardingDataRequestBody req = SubmitOnboardingDataRequestBody.builder()
+                .organization(Organization.builder()
+                    .name("Mollie B.V.")
+                    .registrationNumber("30204462")
+                    .vatNumber("NL815839091B01")
+                    .vatRegulation("dutch")
+                    .build())
+                .profile(Profile.builder()
+                    .name("Mollie")
+                    .url("https://www.mollie.com")
+                    .email("info@mollie.com")
+                    .phone("+31208202070")
+                    .description("Payment service provider")
+                    .businessCategory("MONEY_SERVICES")
+                    .build())
                 .build();
 
         SubmitOnboardingDataResponse res = sdk.onboarding().submit()
