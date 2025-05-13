@@ -8,15 +8,29 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-public enum SequenceType {
-    ONEOFF("oneoff"),
-    FIRST("first"),
-    RECURRING("recurring");
+/**
+ * GetPrimaryBalanceCurrency
+ * 
+ * <p>The balance's ISO 4217 currency code.
+ */
+public enum GetPrimaryBalanceCurrency {
+    EUR("EUR"),
+    GBP("GBP"),
+    CHF("CHF"),
+    DKK("DKK"),
+    NOK("NOK"),
+    PLN("PLN"),
+    SEK("SEK"),
+    USD("USD"),
+    CZK("CZK"),
+    HUF("HUF"),
+    AUD("AUD"),
+    CAD("CAD");
 
     @JsonValue
     private final String value;
 
-    private SequenceType(String value) {
+    private GetPrimaryBalanceCurrency(String value) {
         this.value = value;
     }
     
@@ -24,8 +38,8 @@ public enum SequenceType {
         return value;
     }
     
-    public static Optional<SequenceType> fromValue(String value) {
-        for (SequenceType o: SequenceType.values()) {
+    public static Optional<GetPrimaryBalanceCurrency> fromValue(String value) {
+        for (GetPrimaryBalanceCurrency o: GetPrimaryBalanceCurrency.values()) {
             if (Objects.deepEquals(o.value, value)) {
                 return Optional.of(o);
             }

@@ -1,6 +1,6 @@
 # ListProfilesResponseBody
 
-A list of profile objects. For a complete reference of the profile object, refer to the [Get profile endpoint](get-profile) documentation.
+A list of profile objects.
 
 
 ## Fields

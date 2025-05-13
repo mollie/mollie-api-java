@@ -69,7 +69,7 @@ public class GetProfileLinks {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("checkoutPreviewUrl")
-    private Optional<? extends CheckoutPreviewUrl> checkoutPreviewUrl;
+    private Optional<? extends GetProfileCheckoutPreviewUrl> checkoutPreviewUrl;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -86,7 +86,7 @@ public class GetProfileLinks {
             @JsonProperty("methods") Optional<? extends GetProfileMethods> methods,
             @JsonProperty("payments") Optional<? extends GetProfilePayments> payments,
             @JsonProperty("refunds") Optional<? extends GetProfileRefunds> refunds,
-            @JsonProperty("checkoutPreviewUrl") Optional<? extends CheckoutPreviewUrl> checkoutPreviewUrl,
+            @JsonProperty("checkoutPreviewUrl") Optional<? extends GetProfileCheckoutPreviewUrl> checkoutPreviewUrl,
             @JsonProperty("documentation") Optional<? extends GetProfileDocumentation> documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(dashboard, "dashboard");
@@ -169,8 +169,8 @@ public class GetProfileLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CheckoutPreviewUrl> checkoutPreviewUrl() {
-        return (Optional<CheckoutPreviewUrl>) checkoutPreviewUrl;
+    public Optional<GetProfileCheckoutPreviewUrl> checkoutPreviewUrl() {
+        return (Optional<GetProfileCheckoutPreviewUrl>) checkoutPreviewUrl;
     }
 
     /**
@@ -297,7 +297,7 @@ public class GetProfileLinks {
     /**
      * The hosted checkout preview URL. You need to be logged in to access this page.
      */
-    public GetProfileLinks withCheckoutPreviewUrl(CheckoutPreviewUrl checkoutPreviewUrl) {
+    public GetProfileLinks withCheckoutPreviewUrl(GetProfileCheckoutPreviewUrl checkoutPreviewUrl) {
         Utils.checkNotNull(checkoutPreviewUrl, "checkoutPreviewUrl");
         this.checkoutPreviewUrl = Optional.ofNullable(checkoutPreviewUrl);
         return this;
@@ -306,7 +306,7 @@ public class GetProfileLinks {
     /**
      * The hosted checkout preview URL. You need to be logged in to access this page.
      */
-    public GetProfileLinks withCheckoutPreviewUrl(Optional<? extends CheckoutPreviewUrl> checkoutPreviewUrl) {
+    public GetProfileLinks withCheckoutPreviewUrl(Optional<? extends GetProfileCheckoutPreviewUrl> checkoutPreviewUrl) {
         Utils.checkNotNull(checkoutPreviewUrl, "checkoutPreviewUrl");
         this.checkoutPreviewUrl = checkoutPreviewUrl;
         return this;
@@ -391,7 +391,7 @@ public class GetProfileLinks {
  
         private Optional<? extends GetProfileRefunds> refunds = Optional.empty();
  
-        private Optional<? extends CheckoutPreviewUrl> checkoutPreviewUrl = Optional.empty();
+        private Optional<? extends GetProfileCheckoutPreviewUrl> checkoutPreviewUrl = Optional.empty();
  
         private Optional<? extends GetProfileDocumentation> documentation = Optional.empty();
         
@@ -510,7 +510,7 @@ public class GetProfileLinks {
         /**
          * The hosted checkout preview URL. You need to be logged in to access this page.
          */
-        public Builder checkoutPreviewUrl(CheckoutPreviewUrl checkoutPreviewUrl) {
+        public Builder checkoutPreviewUrl(GetProfileCheckoutPreviewUrl checkoutPreviewUrl) {
             Utils.checkNotNull(checkoutPreviewUrl, "checkoutPreviewUrl");
             this.checkoutPreviewUrl = Optional.ofNullable(checkoutPreviewUrl);
             return this;
@@ -519,7 +519,7 @@ public class GetProfileLinks {
         /**
          * The hosted checkout preview URL. You need to be logged in to access this page.
          */
-        public Builder checkoutPreviewUrl(Optional<? extends CheckoutPreviewUrl> checkoutPreviewUrl) {
+        public Builder checkoutPreviewUrl(Optional<? extends GetProfileCheckoutPreviewUrl> checkoutPreviewUrl) {
             Utils.checkNotNull(checkoutPreviewUrl, "checkoutPreviewUrl");
             this.checkoutPreviewUrl = checkoutPreviewUrl;
             return this;

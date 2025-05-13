@@ -5,16 +5,15 @@ package com.mollie.mollie;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.models.errors.APIException;
-import com.mollie.mollie.models.errors.CreateProfileResponseBody;
 import com.mollie.mollie.models.errors.DeleteProfileProfilesResponseBody;
 import com.mollie.mollie.models.errors.DeleteProfileResponseBody;
 import com.mollie.mollie.models.errors.GetProfileProfilesResponseBody;
 import com.mollie.mollie.models.errors.UpdateProfileProfilesResponseBody;
 import com.mollie.mollie.models.errors.UpdateProfileProfilesResponseResponseBody;
-import com.mollie.mollie.models.errors.UpdateProfileResponseBody;
 import com.mollie.mollie.models.operations.CreateProfileRequestBody;
 import com.mollie.mollie.models.operations.CreateProfileRequestBuilder;
 import com.mollie.mollie.models.operations.CreateProfileResponse;
+import com.mollie.mollie.models.operations.CreateProfileResponseBody;
 import com.mollie.mollie.models.operations.DeleteProfileRequest;
 import com.mollie.mollie.models.operations.DeleteProfileRequestBuilder;
 import com.mollie.mollie.models.operations.DeleteProfileResponse;
@@ -34,6 +33,7 @@ import com.mollie.mollie.models.operations.UpdateProfileRequest;
 import com.mollie.mollie.models.operations.UpdateProfileRequestBody;
 import com.mollie.mollie.models.operations.UpdateProfileRequestBuilder;
 import com.mollie.mollie.models.operations.UpdateProfileResponse;
+import com.mollie.mollie.models.operations.UpdateProfileResponseBody;
 import com.mollie.mollie.utils.BackoffStrategy;
 import com.mollie.mollie.utils.HTTPClient;
 import com.mollie.mollie.utils.HTTPRequest;
@@ -238,10 +238,10 @@ public class Profiles implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
+                CreateProfileResponseBody _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
+                    new TypeReference<CreateProfileResponseBody>() {});
+                _res.withObject(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(
@@ -253,9 +253,9 @@ public class Profiles implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "422")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                CreateProfileResponseBody _out = Utils.mapper().readValue(
+                com.mollie.mollie.models.errors.CreateProfileResponseBody _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<CreateProfileResponseBody>() {});
+                    new TypeReference<com.mollie.mollie.models.errors.CreateProfileResponseBody>() {});
                     _out.withRawResponse(Optional.ofNullable(_httpRes));
                 
                 throw _out;
@@ -910,10 +910,10 @@ public class Profiles implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
+                UpdateProfileResponseBody _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
+                    new TypeReference<UpdateProfileResponseBody>() {});
+                _res.withObject(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(
@@ -925,9 +925,9 @@ public class Profiles implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                UpdateProfileResponseBody _out = Utils.mapper().readValue(
+                com.mollie.mollie.models.errors.UpdateProfileResponseBody _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<UpdateProfileResponseBody>() {});
+                    new TypeReference<com.mollie.mollie.models.errors.UpdateProfileResponseBody>() {});
                     _out.withRawResponse(Optional.ofNullable(_httpRes));
                 
                 throw _out;

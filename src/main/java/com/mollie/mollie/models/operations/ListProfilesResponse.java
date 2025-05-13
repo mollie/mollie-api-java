@@ -34,7 +34,7 @@ public class ListProfilesResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * A list of profile objects. For a complete reference of the profile object, refer to the [Get profile endpoint](get-profile) documentation.
+     * A list of profile objects.
      */
     private Optional<? extends ListProfilesResponseBody> object;
 
@@ -86,7 +86,7 @@ public class ListProfilesResponse implements Response {
     }
 
     /**
-     * A list of profile objects. For a complete reference of the profile object, refer to the [Get profile endpoint](get-profile) documentation.
+     * A list of profile objects.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -126,7 +126,7 @@ public class ListProfilesResponse implements Response {
     }
 
     /**
-     * A list of profile objects. For a complete reference of the profile object, refer to the [Get profile endpoint](get-profile) documentation.
+     * A list of profile objects.
      */
     public ListProfilesResponse withObject(ListProfilesResponseBody object) {
         Utils.checkNotNull(object, "object");
@@ -135,7 +135,7 @@ public class ListProfilesResponse implements Response {
     }
 
     /**
-     * A list of profile objects. For a complete reference of the profile object, refer to the [Get profile endpoint](get-profile) documentation.
+     * A list of profile objects.
      */
     public ListProfilesResponse withObject(Optional<? extends ListProfilesResponseBody> object) {
         Utils.checkNotNull(object, "object");
@@ -220,7 +220,7 @@ public class ListProfilesResponse implements Response {
         }
 
         /**
-         * A list of profile objects. For a complete reference of the profile object, refer to the [Get profile endpoint](get-profile) documentation.
+         * A list of profile objects.
          */
         public Builder object(ListProfilesResponseBody object) {
             Utils.checkNotNull(object, "object");
@@ -229,7 +229,7 @@ public class ListProfilesResponse implements Response {
         }
 
         /**
-         * A list of profile objects. For a complete reference of the profile object, refer to the [Get profile endpoint](get-profile) documentation.
+         * A list of profile objects.
          */
         public Builder object(Optional<? extends ListProfilesResponseBody> object) {
             Utils.checkNotNull(object, "object");

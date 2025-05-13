@@ -9,7 +9,6 @@ import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -35,24 +34,24 @@ public class GetPrimaryBalanceResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * The primary balance object. For a complete reference of the balance object, refer to the [Get balance](get-balance) endpoint documentation.
+     * The primary balance object.
      */
-    private Optional<? extends Object> any;
+    private Optional<? extends GetPrimaryBalanceResponseBody> object;
 
     @JsonCreator
     public GetPrimaryBalanceResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends Object> any) {
+            Optional<? extends GetPrimaryBalanceResponseBody> object) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(any, "any");
+        Utils.checkNotNull(object, "object");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.any = any;
+        this.object = object;
     }
     
     public GetPrimaryBalanceResponse(
@@ -87,12 +86,12 @@ public class GetPrimaryBalanceResponse implements Response {
     }
 
     /**
-     * The primary balance object. For a complete reference of the balance object, refer to the [Get balance](get-balance) endpoint documentation.
+     * The primary balance object.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Object> any() {
-        return (Optional<Object>) any;
+    public Optional<GetPrimaryBalanceResponseBody> object() {
+        return (Optional<GetPrimaryBalanceResponseBody>) object;
     }
 
     public final static Builder builder() {
@@ -127,20 +126,20 @@ public class GetPrimaryBalanceResponse implements Response {
     }
 
     /**
-     * The primary balance object. For a complete reference of the balance object, refer to the [Get balance](get-balance) endpoint documentation.
+     * The primary balance object.
      */
-    public GetPrimaryBalanceResponse withAny(Object any) {
-        Utils.checkNotNull(any, "any");
-        this.any = Optional.ofNullable(any);
+    public GetPrimaryBalanceResponse withObject(GetPrimaryBalanceResponseBody object) {
+        Utils.checkNotNull(object, "object");
+        this.object = Optional.ofNullable(object);
         return this;
     }
 
     /**
-     * The primary balance object. For a complete reference of the balance object, refer to the [Get balance](get-balance) endpoint documentation.
+     * The primary balance object.
      */
-    public GetPrimaryBalanceResponse withAny(Optional<? extends Object> any) {
-        Utils.checkNotNull(any, "any");
-        this.any = any;
+    public GetPrimaryBalanceResponse withObject(Optional<? extends GetPrimaryBalanceResponseBody> object) {
+        Utils.checkNotNull(object, "object");
+        this.object = object;
         return this;
     }
 
@@ -158,7 +157,7 @@ public class GetPrimaryBalanceResponse implements Response {
             Objects.deepEquals(this.contentType, other.contentType) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.any, other.any);
+            Objects.deepEquals(this.object, other.object);
     }
     
     @Override
@@ -167,7 +166,7 @@ public class GetPrimaryBalanceResponse implements Response {
             contentType,
             statusCode,
             rawResponse,
-            any);
+            object);
     }
     
     @Override
@@ -176,7 +175,7 @@ public class GetPrimaryBalanceResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "any", any);
+                "object", object);
     }
     
     public final static class Builder {
@@ -187,7 +186,7 @@ public class GetPrimaryBalanceResponse implements Response {
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends Object> any = Optional.empty();
+        private Optional<? extends GetPrimaryBalanceResponseBody> object = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -221,20 +220,20 @@ public class GetPrimaryBalanceResponse implements Response {
         }
 
         /**
-         * The primary balance object. For a complete reference of the balance object, refer to the [Get balance](get-balance) endpoint documentation.
+         * The primary balance object.
          */
-        public Builder any(Object any) {
-            Utils.checkNotNull(any, "any");
-            this.any = Optional.ofNullable(any);
+        public Builder object(GetPrimaryBalanceResponseBody object) {
+            Utils.checkNotNull(object, "object");
+            this.object = Optional.ofNullable(object);
             return this;
         }
 
         /**
-         * The primary balance object. For a complete reference of the balance object, refer to the [Get balance](get-balance) endpoint documentation.
+         * The primary balance object.
          */
-        public Builder any(Optional<? extends Object> any) {
-            Utils.checkNotNull(any, "any");
-            this.any = any;
+        public Builder object(Optional<? extends GetPrimaryBalanceResponseBody> object) {
+            Utils.checkNotNull(object, "object");
+            this.object = object;
             return this;
         }
         
@@ -243,7 +242,7 @@ public class GetPrimaryBalanceResponse implements Response {
                 contentType,
                 statusCode,
                 rawResponse,
-                any);
+                object);
         }
     }
 }

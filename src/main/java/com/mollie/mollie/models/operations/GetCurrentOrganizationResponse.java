@@ -9,7 +9,6 @@ import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -35,24 +34,24 @@ public class GetCurrentOrganizationResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * The current organization object. For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint documentation.
+     * The current organization object.
      */
-    private Optional<? extends Object> any;
+    private Optional<? extends GetCurrentOrganizationResponseBody> object;
 
     @JsonCreator
     public GetCurrentOrganizationResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends Object> any) {
+            Optional<? extends GetCurrentOrganizationResponseBody> object) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(any, "any");
+        Utils.checkNotNull(object, "object");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.any = any;
+        this.object = object;
     }
     
     public GetCurrentOrganizationResponse(
@@ -87,12 +86,12 @@ public class GetCurrentOrganizationResponse implements Response {
     }
 
     /**
-     * The current organization object. For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint documentation.
+     * The current organization object.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Object> any() {
-        return (Optional<Object>) any;
+    public Optional<GetCurrentOrganizationResponseBody> object() {
+        return (Optional<GetCurrentOrganizationResponseBody>) object;
     }
 
     public final static Builder builder() {
@@ -127,20 +126,20 @@ public class GetCurrentOrganizationResponse implements Response {
     }
 
     /**
-     * The current organization object. For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint documentation.
+     * The current organization object.
      */
-    public GetCurrentOrganizationResponse withAny(Object any) {
-        Utils.checkNotNull(any, "any");
-        this.any = Optional.ofNullable(any);
+    public GetCurrentOrganizationResponse withObject(GetCurrentOrganizationResponseBody object) {
+        Utils.checkNotNull(object, "object");
+        this.object = Optional.ofNullable(object);
         return this;
     }
 
     /**
-     * The current organization object. For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint documentation.
+     * The current organization object.
      */
-    public GetCurrentOrganizationResponse withAny(Optional<? extends Object> any) {
-        Utils.checkNotNull(any, "any");
-        this.any = any;
+    public GetCurrentOrganizationResponse withObject(Optional<? extends GetCurrentOrganizationResponseBody> object) {
+        Utils.checkNotNull(object, "object");
+        this.object = object;
         return this;
     }
 
@@ -158,7 +157,7 @@ public class GetCurrentOrganizationResponse implements Response {
             Objects.deepEquals(this.contentType, other.contentType) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.any, other.any);
+            Objects.deepEquals(this.object, other.object);
     }
     
     @Override
@@ -167,7 +166,7 @@ public class GetCurrentOrganizationResponse implements Response {
             contentType,
             statusCode,
             rawResponse,
-            any);
+            object);
     }
     
     @Override
@@ -176,7 +175,7 @@ public class GetCurrentOrganizationResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "any", any);
+                "object", object);
     }
     
     public final static class Builder {
@@ -187,7 +186,7 @@ public class GetCurrentOrganizationResponse implements Response {
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends Object> any = Optional.empty();
+        private Optional<? extends GetCurrentOrganizationResponseBody> object = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -221,20 +220,20 @@ public class GetCurrentOrganizationResponse implements Response {
         }
 
         /**
-         * The current organization object. For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint documentation.
+         * The current organization object.
          */
-        public Builder any(Object any) {
-            Utils.checkNotNull(any, "any");
-            this.any = Optional.ofNullable(any);
+        public Builder object(GetCurrentOrganizationResponseBody object) {
+            Utils.checkNotNull(object, "object");
+            this.object = Optional.ofNullable(object);
             return this;
         }
 
         /**
-         * The current organization object. For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint documentation.
+         * The current organization object.
          */
-        public Builder any(Optional<? extends Object> any) {
-            Utils.checkNotNull(any, "any");
-            this.any = any;
+        public Builder object(Optional<? extends GetCurrentOrganizationResponseBody> object) {
+            Utils.checkNotNull(object, "object");
+            this.object = object;
             return this;
         }
         
@@ -243,7 +242,7 @@ public class GetCurrentOrganizationResponse implements Response {
                 contentType,
                 statusCode,
                 rawResponse,
-                any);
+                object);
         }
     }
 }

@@ -19,6 +19,7 @@ import com.mollie.mollie.models.operations.GetBalanceResponse;
 import com.mollie.mollie.models.operations.GetBalanceResponseBody;
 import com.mollie.mollie.models.operations.GetPrimaryBalanceRequestBuilder;
 import com.mollie.mollie.models.operations.GetPrimaryBalanceResponse;
+import com.mollie.mollie.models.operations.GetPrimaryBalanceResponseBody;
 import com.mollie.mollie.models.operations.ListBalanceTransactionsRequest;
 import com.mollie.mollie.models.operations.ListBalanceTransactionsRequestBuilder;
 import com.mollie.mollie.models.operations.ListBalanceTransactionsResponse;
@@ -43,7 +44,6 @@ import java.io.InputStream;
 import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.Long;
-import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -546,7 +546,7 @@ public class Balances implements
      * 
      * <p>Retrieve the primary balance. This is the balance of your account's primary currency, where all payments are settled to by default.
      * 
-     * <p>This endpoint is a convenient alias of the [Get balance](get-balance) endpoint. For a complete reference of the balance object, refer to that endpoint's documentation.
+     * <p>This endpoint is a convenient alias of the [Get balance](get-balance) endpoint.
      * 
      * <p>&gt; 🔑 Access with
      * &gt;
@@ -563,7 +563,7 @@ public class Balances implements
      * 
      * <p>Retrieve the primary balance. This is the balance of your account's primary currency, where all payments are settled to by default.
      * 
-     * <p>This endpoint is a convenient alias of the [Get balance](get-balance) endpoint. For a complete reference of the balance object, refer to that endpoint's documentation.
+     * <p>This endpoint is a convenient alias of the [Get balance](get-balance) endpoint.
      * 
      * <p>&gt; 🔑 Access with
      * &gt;
@@ -581,7 +581,7 @@ public class Balances implements
      * 
      * <p>Retrieve the primary balance. This is the balance of your account's primary currency, where all payments are settled to by default.
      * 
-     * <p>This endpoint is a convenient alias of the [Get balance](get-balance) endpoint. For a complete reference of the balance object, refer to that endpoint's documentation.
+     * <p>This endpoint is a convenient alias of the [Get balance](get-balance) endpoint.
      * 
      * <p>&gt; 🔑 Access with
      * &gt;
@@ -685,10 +685,10 @@ public class Balances implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
+                GetPrimaryBalanceResponseBody _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
+                    new TypeReference<GetPrimaryBalanceResponseBody>() {});
+                _res.withObject(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(

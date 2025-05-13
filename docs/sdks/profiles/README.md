@@ -61,7 +61,7 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.any().isPresent()) {
+        if (res.object().isPresent()) {
             // handle response
         }
     }
@@ -254,7 +254,7 @@ public class Application {
                     .build())
                 .call();
 
-        if (res.any().isPresent()) {
+        if (res.object().isPresent()) {
             // handle response
         }
     }

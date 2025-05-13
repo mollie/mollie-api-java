@@ -115,7 +115,7 @@ public class GetProfileResponseBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("review")
-    private Optional<? extends Review> review;
+    private Optional<? extends GetProfileReview> review;
 
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -144,7 +144,7 @@ public class GetProfileResponseBody {
             @JsonProperty("countriesOfActivity") Optional<? extends List<String>> countriesOfActivity,
             @JsonProperty("businessCategory") Optional<String> businessCategory,
             @JsonProperty("status") Optional<String> status,
-            @JsonProperty("review") Optional<? extends Review> review,
+            @JsonProperty("review") Optional<? extends GetProfileReview> review,
             @JsonProperty("createdAt") Optional<String> createdAt,
             @JsonProperty("_links") Optional<? extends GetProfileLinks> links) {
         Utils.checkNotNull(resource, "resource");
@@ -283,8 +283,8 @@ public class GetProfileResponseBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Review> review() {
-        return (Optional<Review>) review;
+    public Optional<GetProfileReview> review() {
+        return (Optional<GetProfileReview>) review;
     }
 
     /**
@@ -525,7 +525,7 @@ public class GetProfileResponseBody {
     /**
      * Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved automatically, unless a switch to a live profile has been requested. The review object will therefore usually be `null` in test mode.
      */
-    public GetProfileResponseBody withReview(Review review) {
+    public GetProfileResponseBody withReview(GetProfileReview review) {
         Utils.checkNotNull(review, "review");
         this.review = Optional.ofNullable(review);
         return this;
@@ -534,7 +534,7 @@ public class GetProfileResponseBody {
     /**
      * Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved automatically, unless a switch to a live profile has been requested. The review object will therefore usually be `null` in test mode.
      */
-    public GetProfileResponseBody withReview(Optional<? extends Review> review) {
+    public GetProfileResponseBody withReview(Optional<? extends GetProfileReview> review) {
         Utils.checkNotNull(review, "review");
         this.review = review;
         return this;
@@ -665,7 +665,7 @@ public class GetProfileResponseBody {
  
         private Optional<String> status = Optional.empty();
  
-        private Optional<? extends Review> review = Optional.empty();
+        private Optional<? extends GetProfileReview> review = Optional.empty();
  
         private Optional<String> createdAt = Optional.empty();
  
@@ -892,7 +892,7 @@ public class GetProfileResponseBody {
         /**
          * Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved automatically, unless a switch to a live profile has been requested. The review object will therefore usually be `null` in test mode.
          */
-        public Builder review(Review review) {
+        public Builder review(GetProfileReview review) {
             Utils.checkNotNull(review, "review");
             this.review = Optional.ofNullable(review);
             return this;
@@ -901,7 +901,7 @@ public class GetProfileResponseBody {
         /**
          * Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved automatically, unless a switch to a live profile has been requested. The review object will therefore usually be `null` in test mode.
          */
-        public Builder review(Optional<? extends Review> review) {
+        public Builder review(Optional<? extends GetProfileReview> review) {
             Utils.checkNotNull(review, "review");
             this.review = review;
             return this;

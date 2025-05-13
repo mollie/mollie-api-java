@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.models.errors.APIException;
 import com.mollie.mollie.models.operations.GetCurrentOrganizationRequestBuilder;
 import com.mollie.mollie.models.operations.GetCurrentOrganizationResponse;
+import com.mollie.mollie.models.operations.GetCurrentOrganizationResponseBody;
 import com.mollie.mollie.models.operations.GetOrganizationRequest;
 import com.mollie.mollie.models.operations.GetOrganizationRequestBuilder;
 import com.mollie.mollie.models.operations.GetOrganizationResponse;
@@ -29,7 +30,6 @@ import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
 import java.lang.Boolean;
 import java.lang.Exception;
-import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -422,10 +422,10 @@ public class Organizations implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
+                GetCurrentOrganizationResponseBody _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
+                    new TypeReference<GetCurrentOrganizationResponseBody>() {});
+                _res.withObject(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(

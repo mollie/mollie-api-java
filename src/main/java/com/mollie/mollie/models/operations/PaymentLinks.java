@@ -137,14 +137,6 @@ public class PaymentLinks {
     @JsonProperty("allowedMethods")
     private JsonNullable<? extends List<ListPaymentLinksAllowedMethods>> allowedMethods;
 
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("sequenceType")
-    private Optional<? extends ListPaymentLinksSequenceType> sequenceType;
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("customerId")
-    private Optional<String> customerId;
-
     /**
      * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie merchants.
      * 
@@ -178,8 +170,6 @@ public class PaymentLinks {
             @JsonProperty("paidAt") JsonNullable<String> paidAt,
             @JsonProperty("expiresAt") JsonNullable<String> expiresAt,
             @JsonProperty("allowedMethods") JsonNullable<? extends List<ListPaymentLinksAllowedMethods>> allowedMethods,
-            @JsonProperty("sequenceType") Optional<? extends ListPaymentLinksSequenceType> sequenceType,
-            @JsonProperty("customerId") Optional<String> customerId,
             @JsonProperty("applicationFee") Optional<? extends ListPaymentLinksApplicationFee> applicationFee,
             @JsonProperty("_links") Optional<? extends ListPaymentLinksPaymentLinksLinks> links) {
         Utils.checkNotNull(resource, "resource");
@@ -197,8 +187,6 @@ public class PaymentLinks {
         Utils.checkNotNull(paidAt, "paidAt");
         Utils.checkNotNull(expiresAt, "expiresAt");
         Utils.checkNotNull(allowedMethods, "allowedMethods");
-        Utils.checkNotNull(sequenceType, "sequenceType");
-        Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(applicationFee, "applicationFee");
         Utils.checkNotNull(links, "links");
         this.resource = resource;
@@ -216,14 +204,12 @@ public class PaymentLinks {
         this.paidAt = paidAt;
         this.expiresAt = expiresAt;
         this.allowedMethods = allowedMethods;
-        this.sequenceType = sequenceType;
-        this.customerId = customerId;
         this.applicationFee = applicationFee;
         this.links = links;
     }
     
     public PaymentLinks() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -357,17 +343,6 @@ public class PaymentLinks {
     @JsonIgnore
     public JsonNullable<List<ListPaymentLinksAllowedMethods>> allowedMethods() {
         return (JsonNullable<List<ListPaymentLinksAllowedMethods>>) allowedMethods;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<ListPaymentLinksSequenceType> sequenceType() {
-        return (Optional<ListPaymentLinksSequenceType>) sequenceType;
-    }
-
-    @JsonIgnore
-    public Optional<String> customerId() {
-        return customerId;
     }
 
     /**
@@ -684,30 +659,6 @@ public class PaymentLinks {
         return this;
     }
 
-    public PaymentLinks withSequenceType(ListPaymentLinksSequenceType sequenceType) {
-        Utils.checkNotNull(sequenceType, "sequenceType");
-        this.sequenceType = Optional.ofNullable(sequenceType);
-        return this;
-    }
-
-    public PaymentLinks withSequenceType(Optional<? extends ListPaymentLinksSequenceType> sequenceType) {
-        Utils.checkNotNull(sequenceType, "sequenceType");
-        this.sequenceType = sequenceType;
-        return this;
-    }
-
-    public PaymentLinks withCustomerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = Optional.ofNullable(customerId);
-        return this;
-    }
-
-    public PaymentLinks withCustomerId(Optional<String> customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
-        return this;
-    }
-
     /**
      * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie merchants.
      * 
@@ -774,8 +725,6 @@ public class PaymentLinks {
             Objects.deepEquals(this.paidAt, other.paidAt) &&
             Objects.deepEquals(this.expiresAt, other.expiresAt) &&
             Objects.deepEquals(this.allowedMethods, other.allowedMethods) &&
-            Objects.deepEquals(this.sequenceType, other.sequenceType) &&
-            Objects.deepEquals(this.customerId, other.customerId) &&
             Objects.deepEquals(this.applicationFee, other.applicationFee) &&
             Objects.deepEquals(this.links, other.links);
     }
@@ -798,8 +747,6 @@ public class PaymentLinks {
             paidAt,
             expiresAt,
             allowedMethods,
-            sequenceType,
-            customerId,
             applicationFee,
             links);
     }
@@ -822,8 +769,6 @@ public class PaymentLinks {
                 "paidAt", paidAt,
                 "expiresAt", expiresAt,
                 "allowedMethods", allowedMethods,
-                "sequenceType", sequenceType,
-                "customerId", customerId,
                 "applicationFee", applicationFee,
                 "links", links);
     }
@@ -859,10 +804,6 @@ public class PaymentLinks {
         private JsonNullable<String> expiresAt = JsonNullable.undefined();
  
         private JsonNullable<? extends List<ListPaymentLinksAllowedMethods>> allowedMethods = JsonNullable.undefined();
- 
-        private Optional<? extends ListPaymentLinksSequenceType> sequenceType;
- 
-        private Optional<String> customerId = Optional.empty();
  
         private Optional<? extends ListPaymentLinksApplicationFee> applicationFee = Optional.empty();
  
@@ -1162,30 +1103,6 @@ public class PaymentLinks {
             return this;
         }
 
-        public Builder sequenceType(ListPaymentLinksSequenceType sequenceType) {
-            Utils.checkNotNull(sequenceType, "sequenceType");
-            this.sequenceType = Optional.ofNullable(sequenceType);
-            return this;
-        }
-
-        public Builder sequenceType(Optional<? extends ListPaymentLinksSequenceType> sequenceType) {
-            Utils.checkNotNull(sequenceType, "sequenceType");
-            this.sequenceType = sequenceType;
-            return this;
-        }
-
-        public Builder customerId(String customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = Optional.ofNullable(customerId);
-            return this;
-        }
-
-        public Builder customerId(Optional<String> customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = customerId;
-            return this;
-        }
-
         /**
          * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie merchants.
          * 
@@ -1233,9 +1150,6 @@ public class PaymentLinks {
             if (reusable == null) {
                 reusable = _SINGLETON_VALUE_Reusable.value();
             }
-            if (sequenceType == null) {
-                sequenceType = _SINGLETON_VALUE_SequenceType.value();
-            }
             return new PaymentLinks(
                 resource,
                 id,
@@ -1252,8 +1166,6 @@ public class PaymentLinks {
                 paidAt,
                 expiresAt,
                 allowedMethods,
-                sequenceType,
-                customerId,
                 applicationFee,
                 links);
         }
@@ -1269,11 +1181,5 @@ public class PaymentLinks {
                         "reusable",
                         "false",
                         new TypeReference<JsonNullable<Boolean>>() {});
-
-        private static final LazySingletonValue<Optional<? extends ListPaymentLinksSequenceType>> _SINGLETON_VALUE_SequenceType =
-                new LazySingletonValue<>(
-                        "sequenceType",
-                        "\"oneoff\"",
-                        new TypeReference<Optional<? extends ListPaymentLinksSequenceType>>() {});
     }
 }

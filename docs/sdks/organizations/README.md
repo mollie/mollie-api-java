@@ -104,7 +104,7 @@ public class Application {
         GetCurrentOrganizationResponse res = sdk.organizations().getCurrent()
                 .call();
 
-        if (res.any().isPresent()) {
+        if (res.object().isPresent()) {
             // handle response
         }
     }

@@ -61,7 +61,6 @@ public class Application {
                 .expiresAt("2025-12-24T11:00:16+00:00")
                 .allowedMethods(List.of(
                     AllowedMethods.IDEAL))
-                .customerId("cst_5B8cwPMGnU")
                 .applicationFee(CreatePaymentLinkApplicationFee.builder()
                     .amount(CreatePaymentLinkPaymentLinksAmount.builder()
                         .currency("EUR")
