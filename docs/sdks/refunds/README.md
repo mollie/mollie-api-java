@@ -79,6 +79,7 @@ public class Application {
                                 .organizationId("org_1234567")
                                 .build())
                             .build()))
+                    .testmode(false)
                     .build())
                 .call();
 
@@ -456,6 +457,7 @@ public class Application {
                         .type("acquirer-reference")
                         .id("123456789012345")
                         .build())
+                    .testmode(false)
                     .build())
                 .call();
 

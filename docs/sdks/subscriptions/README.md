@@ -77,6 +77,7 @@ public class Application {
                         .build())
                     .webhookUrl("https://example.com/webhook")
                     .mandateId("mdt_5B8cwPMGnU")
+                    .testmode(false)
                     .build())
                 .call();
 

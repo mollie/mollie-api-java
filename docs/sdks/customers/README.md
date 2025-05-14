@@ -51,6 +51,7 @@ public class Application {
                 .name("John Doe")
                 .email("example@email.com")
                 .locale("en_US")
+                .testmode(false)
                 .build();
 
         CreateCustomerResponse res = sdk.customers().create()
@@ -247,6 +248,7 @@ public class Application {
                     .name("John Doe")
                     .email("example@email.com")
                     .locale("en_US")
+                    .testmode(false)
                     .build())
                 .call();
 
@@ -590,6 +592,7 @@ public class Application {
                     .customerId("cst_5B8cwPMGnU")
                     .profileId("pfl_5B8cwPMGnU")
                     .dueDate("2025-01-01")
+                    .testmode(false)
                     .build())
                 .call();
 

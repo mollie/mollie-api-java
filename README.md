@@ -47,7 +47,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:0.2.3'
+implementation 'com.mollie:mollie:0.2.4'
 ```
 
 Maven:
@@ -55,7 +55,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>0.2.3</version>
+    <version>0.2.4</version>
 </dependency>
 ```
 
@@ -300,6 +300,7 @@ public class Application {
                     .customerId("cst_5B8cwPMGnU")
                     .profileId("pfl_5B8cwPMGnU")
                     .dueDate("2025-01-01")
+                    .testmode(false)
                     .build())
                 .call();
 
@@ -522,6 +523,7 @@ public class Application {
                     .customerId("cst_5B8cwPMGnU")
                     .profileId("pfl_5B8cwPMGnU")
                     .dueDate("2025-01-01")
+                    .testmode(false)
                     .build())
                 .call();
 
@@ -909,6 +911,7 @@ public class Application {
                     .customerId("cst_5B8cwPMGnU")
                     .profileId("pfl_5B8cwPMGnU")
                     .dueDate("2025-01-01")
+                    .testmode(false)
                     .build())
                 .call();
 
@@ -1131,6 +1134,7 @@ public class Application {
                     .customerId("cst_5B8cwPMGnU")
                     .profileId("pfl_5B8cwPMGnU")
                     .dueDate("2025-01-01")
+                    .testmode(false)
                     .build())
                 .call();
 
@@ -1355,6 +1359,7 @@ public class Application {
                     .customerId("cst_5B8cwPMGnU")
                     .profileId("pfl_5B8cwPMGnU")
                     .dueDate("2025-01-01")
+                    .testmode(false)
                     .build())
                 .call();
 
@@ -1571,6 +1576,7 @@ public class Application {
                     .customerId("cst_5B8cwPMGnU")
                     .profileId("pfl_5B8cwPMGnU")
                     .dueDate("2025-01-01")
+                    .testmode(false)
                     .build())
                 .call();
 

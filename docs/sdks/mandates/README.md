@@ -57,6 +57,7 @@ public class Application {
                     .mandateReference("ID-1023892")
                     .paypalBillingAgreementId("B-12A34567B8901234CD")
                     .payPalVaultId("8kk8451t")
+                    .testmode(false)
                     .build())
                 .call();
 

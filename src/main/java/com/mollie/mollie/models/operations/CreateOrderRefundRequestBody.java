@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
@@ -297,7 +295,7 @@ public class CreateOrderRefundRequestBody {
  
         private Optional<? extends CreateOrderRefundExternalReference> externalReference = Optional.empty();
  
-        private JsonNullable<Boolean> testmode;
+        private JsonNullable<Boolean> testmode = JsonNullable.undefined();
  
         private List<CreateOrderRefundLines> lines;
         
@@ -405,9 +403,6 @@ public class CreateOrderRefundRequestBody {
         }
         
         public CreateOrderRefundRequestBody build() {
-            if (testmode == null) {
-                testmode = _SINGLETON_VALUE_Testmode.value();
-            }
             return new CreateOrderRefundRequestBody(
                 description,
                 amount,
@@ -416,11 +411,5 @@ public class CreateOrderRefundRequestBody {
                 testmode,
                 lines);
         }
-
-        private static final LazySingletonValue<JsonNullable<Boolean>> _SINGLETON_VALUE_Testmode =
-                new LazySingletonValue<>(
-                        "testmode",
-                        "false",
-                        new TypeReference<JsonNullable<Boolean>>() {});
     }
 }
