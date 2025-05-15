@@ -91,6 +91,7 @@ public class Application {
 
         GetPermissionResponse res = sdk.permissions().get()
                 .permissionId("payments.read")
+                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {

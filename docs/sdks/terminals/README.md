@@ -44,6 +44,7 @@ public class Application {
         ListTerminalsResponse res = sdk.terminals().list()
                 .from("term_vytxeTZskVKR7C7WgdSP3d")
                 .sort("desc")
+                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {
@@ -106,6 +107,7 @@ public class Application {
 
         GetTerminalResponse res = sdk.terminals().get()
                 .terminalId("term_vytxeTZskVKR7C7WgdSP3d")
+                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {

@@ -5,8 +5,6 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
@@ -206,7 +204,7 @@ public class GetChargebackRequest {
  
         private JsonNullable<? extends GetChargebackQueryParamEmbed> embed = JsonNullable.undefined();
  
-        private JsonNullable<Boolean> testmode;
+        private JsonNullable<Boolean> testmode = JsonNullable.undefined();
         
         private Builder() {
           // force use of static builder() method
@@ -271,20 +269,11 @@ public class GetChargebackRequest {
         }
         
         public GetChargebackRequest build() {
-            if (testmode == null) {
-                testmode = _SINGLETON_VALUE_Testmode.value();
-            }
             return new GetChargebackRequest(
                 paymentId,
                 chargebackId,
                 embed,
                 testmode);
         }
-
-        private static final LazySingletonValue<JsonNullable<Boolean>> _SINGLETON_VALUE_Testmode =
-                new LazySingletonValue<>(
-                        "testmode",
-                        "false",
-                        new TypeReference<JsonNullable<Boolean>>() {});
     }
 }

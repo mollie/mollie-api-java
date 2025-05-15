@@ -125,6 +125,7 @@ public class Application {
                 .customerId("cst_5B8cwPMGnU")
                 .from("mdt_5B8cwPMGnU")
                 .sort("desc")
+                .testmode(false)
                 .build();
 
         ListMandatesResponse res = sdk.mandates().list()
@@ -190,6 +191,7 @@ public class Application {
         GetMandateResponse res = sdk.mandates().get()
                 .customerId("cst_5B8cwPMGnU")
                 .mandateId("mdt_5B8cwPMGnU")
+                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {
@@ -252,6 +254,7 @@ public class Application {
         RevokeMandateResponse res = sdk.mandates().revoke()
                 .customerId("cst_5B8cwPMGnU")
                 .mandateId("mdt_5B8cwPMGnU")
+                .testmode(false)
                 .call();
 
         if (res.any().isPresent()) {

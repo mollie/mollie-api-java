@@ -44,6 +44,7 @@ public class Application {
 
         GetOrganizationResponse res = sdk.organizations().get()
                 .id("org_12345678")
+                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {

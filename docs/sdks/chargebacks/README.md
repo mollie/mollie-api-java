@@ -47,6 +47,7 @@ public class Application {
                 .paymentId("tr_5B8cwPMGnU")
                 .from("chb_xFzwUN4ci8HAmSGUACS4J")
                 .embed(ListChargebacksQueryParamEmbed.PAYMENT)
+                .testmode(false)
                 .build();
 
         ListChargebacksResponse res = sdk.chargebacks().list()
@@ -114,6 +115,7 @@ public class Application {
                 .paymentId("tr_5B8cwPMGnU")
                 .chargebackId("chb_xFzwUN4ci8HAmSGUACS4J")
                 .embed(GetChargebackQueryParamEmbed.PAYMENT)
+                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {
@@ -182,6 +184,7 @@ public class Application {
                 .embed(ListAllChargebacksQueryParamEmbed.PAYMENT)
                 .sort("desc")
                 .profileId("pfl_5B8cwPMGnU")
+                .testmode(false)
                 .build();
 
         ListAllChargebacksResponse res = sdk.chargebacks().all()

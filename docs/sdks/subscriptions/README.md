@@ -145,6 +145,7 @@ public class Application {
                 .customerId("cst_5B8cwPMGnU")
                 .from("sub_5B8cwPMGnU")
                 .sort("desc")
+                .testmode(false)
                 .build();
 
         ListSubscriptionsResponse res = sdk.subscriptions().list()
@@ -210,6 +211,7 @@ public class Application {
         GetSubscriptionResponse res = sdk.subscriptions().get()
                 .customerId("cst_5B8cwPMGnU")
                 .subscriptionId("sub_5B8cwPMGnU")
+                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {
@@ -276,6 +278,7 @@ public class Application {
         UpdateSubscriptionResponse res = sdk.subscriptions().update()
                 .customerId("cst_5B8cwPMGnU")
                 .subscriptionId("sub_5B8cwPMGnU")
+                .testmode(false)
                 .requestBody(UpdateSubscriptionRequestBody.builder()
                     .amount(UpdateSubscriptionAmount.builder()
                         .currency("EUR")
@@ -351,6 +354,7 @@ public class Application {
         CancelSubscriptionResponse res = sdk.subscriptions().cancel()
                 .customerId("cst_5B8cwPMGnU")
                 .subscriptionId("sub_5B8cwPMGnU")
+                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {
@@ -415,6 +419,7 @@ public class Application {
         ListAllSubscriptionsResponse res = sdk.subscriptions().all()
                 .from("tr_5B8cwPMGnU")
                 .sort("desc")
+                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {
@@ -483,6 +488,7 @@ public class Application {
                 .subscriptionId("sub_5B8cwPMGnU")
                 .from("tr_5B8cwPMGnU")
                 .sort("desc")
+                .testmode(false)
                 .build();
 
         ListSubscriptionPaymentsResponse res = sdk.subscriptions().listPayments()

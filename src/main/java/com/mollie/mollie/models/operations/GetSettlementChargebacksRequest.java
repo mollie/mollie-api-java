@@ -256,7 +256,7 @@ public class GetSettlementChargebacksRequest {
  
         private Optional<? extends GetSettlementChargebacksQueryParamEmbed> embed = Optional.empty();
  
-        private JsonNullable<Boolean> testmode;
+        private JsonNullable<Boolean> testmode = JsonNullable.undefined();
         
         private Builder() {
           // force use of static builder() method
@@ -351,9 +351,6 @@ public class GetSettlementChargebacksRequest {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
-            if (testmode == null) {
-                testmode = _SINGLETON_VALUE_Testmode.value();
-            }
             return new GetSettlementChargebacksRequest(
                 settlementId,
                 from,
@@ -367,11 +364,5 @@ public class GetSettlementChargebacksRequest {
                         "limit",
                         "50",
                         new TypeReference<JsonNullable<Long>>() {});
-
-        private static final LazySingletonValue<JsonNullable<Boolean>> _SINGLETON_VALUE_Testmode =
-                new LazySingletonValue<>(
-                        "testmode",
-                        "false",
-                        new TypeReference<JsonNullable<Boolean>>() {});
     }
 }

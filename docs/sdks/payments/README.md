@@ -294,6 +294,7 @@ public class Application {
         ListPaymentsResponse res = sdk.payments().list()
                 .from("tr_5B8cwPMGnU")
                 .sort("desc")
+                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {
@@ -358,6 +359,7 @@ public class Application {
                 .paymentId("tr_5B8cwPMGnU")
                 .include(QueryParamInclude.DETAILS_QR_CODE)
                 .embed(Embed.CAPTURES)
+                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {
@@ -431,6 +433,7 @@ public class Application {
                     .method(Method.IDEAL)
                     .locale("en_US")
                     .restrictPaymentMethodsToCountry("NL")
+                    .testmode(false)
                     .build())
                 .call();
 
@@ -498,6 +501,7 @@ public class Application {
 
         CancelPaymentResponse res = sdk.payments().cancel()
                 .paymentId("tr_5B8cwPMGnU")
+                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {
@@ -564,6 +568,7 @@ public class Application {
 
         ReleaseAuthorizationResponse res = sdk.payments().releaseAuthorization()
                 .paymentId("tr_5B8cwPMGnU")
+                .testmode(false)
                 .call();
 
         if (res.any().isPresent()) {

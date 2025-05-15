@@ -222,7 +222,7 @@ public class ListBalancesRequest {
  
         private JsonNullable<Long> limit;
  
-        private JsonNullable<Boolean> testmode;
+        private JsonNullable<Boolean> testmode = JsonNullable.undefined();
         
         private Builder() {
           // force use of static builder() method
@@ -308,9 +308,6 @@ public class ListBalancesRequest {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
-            if (testmode == null) {
-                testmode = _SINGLETON_VALUE_Testmode.value();
-            }
             return new ListBalancesRequest(
                 currency,
                 from,
@@ -323,11 +320,5 @@ public class ListBalancesRequest {
                         "limit",
                         "50",
                         new TypeReference<JsonNullable<Long>>() {});
-
-        private static final LazySingletonValue<JsonNullable<Boolean>> _SINGLETON_VALUE_Testmode =
-                new LazySingletonValue<>(
-                        "testmode",
-                        "false",
-                        new TypeReference<JsonNullable<Boolean>>() {});
     }
 }

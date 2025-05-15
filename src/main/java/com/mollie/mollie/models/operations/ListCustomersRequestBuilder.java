@@ -23,10 +23,7 @@ public class ListCustomersRequestBuilder {
                             "50",
                             new TypeReference<JsonNullable<Long>>() {});
     private JsonNullable<String> sort = JsonNullable.undefined();
-    private JsonNullable<Boolean> testmode = Utils.readDefaultOrConstValue(
-                            "testmode",
-                            "false",
-                            new TypeReference<JsonNullable<Boolean>>() {});
+    private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallListCustomers sdk;
 
@@ -97,9 +94,6 @@ public class ListCustomersRequestBuilder {
     public ListCustomersResponse call() throws Exception {
         if (limit == null) {
             limit = _SINGLETON_VALUE_Limit.value();
-        }
-        if (testmode == null) {
-            testmode = _SINGLETON_VALUE_Testmode.value();
         }        Optional<Options> options = Optional.of(Options.builder()
                                                     .retryConfig(retryConfig)
                                                     .build());
@@ -116,10 +110,4 @@ public class ListCustomersRequestBuilder {
                     "limit",
                     "50",
                     new TypeReference<JsonNullable<Long>>() {});
-
-    private static final LazySingletonValue<JsonNullable<Boolean>> _SINGLETON_VALUE_Testmode =
-            new LazySingletonValue<>(
-                    "testmode",
-                    "false",
-                    new TypeReference<JsonNullable<Boolean>>() {});
 }

@@ -3,8 +3,6 @@
  */
 package com.mollie.mollie.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -17,10 +15,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class UpdatePaymentLinkRequestBuilder {
 
     private String paymentLinkId;
-    private JsonNullable<Boolean> testmode = Utils.readDefaultOrConstValue(
-                            "testmode",
-                            "false",
-                            new TypeReference<JsonNullable<Boolean>>() {});
+    private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<? extends UpdatePaymentLinkRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallUpdatePaymentLink sdk;
@@ -72,9 +67,7 @@ public class UpdatePaymentLinkRequestBuilder {
     }
 
     public UpdatePaymentLinkResponse call() throws Exception {
-        if (testmode == null) {
-            testmode = _SINGLETON_VALUE_Testmode.value();
-        }        Optional<Options> options = Optional.of(Options.builder()
+        Optional<Options> options = Optional.of(Options.builder()
                                                     .retryConfig(retryConfig)
                                                     .build());
         return sdk.update(
@@ -83,10 +76,4 @@ public class UpdatePaymentLinkRequestBuilder {
             requestBody,
             options);
     }
-
-    private static final LazySingletonValue<JsonNullable<Boolean>> _SINGLETON_VALUE_Testmode =
-            new LazySingletonValue<>(
-                    "testmode",
-                    "false",
-                    new TypeReference<JsonNullable<Boolean>>() {});
 }

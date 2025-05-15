@@ -177,6 +177,7 @@ public class Application {
 
         GetProfileResponse res = sdk.profiles().get()
                 .id("pfl_QkEhN94Ba")
+                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {

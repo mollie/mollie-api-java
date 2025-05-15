@@ -134,6 +134,7 @@ public class Application {
 
         ListPaymentLinksResponse res = sdk.paymentLinks().list()
                 .from("pl_d9fQur83kFdhH8hIhaZfq")
+                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {
@@ -195,6 +196,7 @@ public class Application {
 
         GetPaymentLinkResponse res = sdk.paymentLinks().get()
                 .paymentLinkId("pl_d9fQur83kFdhH8hIhaZfq")
+                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {
@@ -257,6 +259,7 @@ public class Application {
 
         UpdatePaymentLinkResponse res = sdk.paymentLinks().update()
                 .paymentLinkId("pl_d9fQur83kFdhH8hIhaZfq")
+                .testmode(false)
                 .requestBody(UpdatePaymentLinkRequestBody.builder()
                     .description("Chess Board")
                     .minimumAmount(UpdatePaymentLinkMinimumAmount.builder()
@@ -334,6 +337,7 @@ public class Application {
 
         DeletePaymentLinkResponse res = sdk.paymentLinks().delete()
                 .paymentLinkId("pl_d9fQur83kFdhH8hIhaZfq")
+                .testmode(false)
                 .call();
 
         if (res.any().isPresent()) {
@@ -400,6 +404,7 @@ public class Application {
                 .paymentLinkId("pl_d9fQur83kFdhH8hIhaZfq")
                 .from("tr_5B8cwPMGnU")
                 .sort("desc")
+                .testmode(false)
                 .build();
 
         GetPaymentLinkPaymentsResponse res = sdk.paymentLinks().listPayments()

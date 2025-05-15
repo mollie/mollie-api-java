@@ -3,8 +3,6 @@
  */
 package com.mollie.mollie.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -19,10 +17,7 @@ public class GetCaptureRequestBuilder {
     private String paymentId;
     private String captureId;
     private Optional<? extends GetCaptureQueryParamInclude> include = Optional.empty();
-    private JsonNullable<Boolean> testmode = Utils.readDefaultOrConstValue(
-                            "testmode",
-                            "false",
-                            new TypeReference<JsonNullable<Boolean>>() {});
+    private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallGetCapture sdk;
 
@@ -79,9 +74,7 @@ public class GetCaptureRequestBuilder {
     }
 
     public GetCaptureResponse call() throws Exception {
-        if (testmode == null) {
-            testmode = _SINGLETON_VALUE_Testmode.value();
-        }        Optional<Options> options = Optional.of(Options.builder()
+        Optional<Options> options = Optional.of(Options.builder()
                                                     .retryConfig(retryConfig)
                                                     .build());
         return sdk.get(
@@ -91,10 +84,4 @@ public class GetCaptureRequestBuilder {
             testmode,
             options);
     }
-
-    private static final LazySingletonValue<JsonNullable<Boolean>> _SINGLETON_VALUE_Testmode =
-            new LazySingletonValue<>(
-                    "testmode",
-                    "false",
-                    new TypeReference<JsonNullable<Boolean>>() {});
 }

@@ -119,6 +119,7 @@ public class Application {
         ListCustomersResponse res = sdk.customers().list()
                 .from("cst_5B8cwPMGnU")
                 .sort("desc")
+                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {
@@ -182,6 +183,7 @@ public class Application {
         GetCustomerResponse res = sdk.customers().get()
                 .customerId("cst_5B8cwPMGnU")
                 .include(GetCustomerQueryParamInclude.EVENTS)
+                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {
@@ -308,6 +310,7 @@ public class Application {
 
         DeleteCustomerResponse res = sdk.customers().delete()
                 .customerId("cst_5B8cwPMGnU")
+                .testmode(false)
                 .call();
 
         if (res.any().isPresent()) {
@@ -658,6 +661,7 @@ public class Application {
                 .customerId("cst_5B8cwPMGnU")
                 .from("tr_5B8cwPMGnU")
                 .sort("desc")
+                .testmode(false)
                 .build();
 
         ListCustomerPaymentsResponse res = sdk.customers().listPayments()

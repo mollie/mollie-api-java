@@ -5,8 +5,6 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
@@ -252,7 +250,7 @@ public class GetBalanceReportRequest {
  
         private JsonNullable<String> grouping = JsonNullable.undefined();
  
-        private JsonNullable<Boolean> testmode;
+        private JsonNullable<Boolean> testmode = JsonNullable.undefined();
         
         private Builder() {
           // force use of static builder() method
@@ -334,9 +332,6 @@ public class GetBalanceReportRequest {
         }
         
         public GetBalanceReportRequest build() {
-            if (testmode == null) {
-                testmode = _SINGLETON_VALUE_Testmode.value();
-            }
             return new GetBalanceReportRequest(
                 balanceId,
                 from,
@@ -344,11 +339,5 @@ public class GetBalanceReportRequest {
                 grouping,
                 testmode);
         }
-
-        private static final LazySingletonValue<JsonNullable<Boolean>> _SINGLETON_VALUE_Testmode =
-                new LazySingletonValue<>(
-                        "testmode",
-                        "false",
-                        new TypeReference<JsonNullable<Boolean>>() {});
     }
 }

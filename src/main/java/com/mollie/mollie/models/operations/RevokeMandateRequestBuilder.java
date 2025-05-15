@@ -3,8 +3,6 @@
  */
 package com.mollie.mollie.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -18,10 +16,7 @@ public class RevokeMandateRequestBuilder {
 
     private String customerId;
     private String mandateId;
-    private JsonNullable<Boolean> testmode = Utils.readDefaultOrConstValue(
-                            "testmode",
-                            "false",
-                            new TypeReference<JsonNullable<Boolean>>() {});
+    private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallRevokeMandate sdk;
 
@@ -66,9 +61,7 @@ public class RevokeMandateRequestBuilder {
     }
 
     public RevokeMandateResponse call() throws Exception {
-        if (testmode == null) {
-            testmode = _SINGLETON_VALUE_Testmode.value();
-        }        Optional<Options> options = Optional.of(Options.builder()
+        Optional<Options> options = Optional.of(Options.builder()
                                                     .retryConfig(retryConfig)
                                                     .build());
         return sdk.revoke(
@@ -77,10 +70,4 @@ public class RevokeMandateRequestBuilder {
             testmode,
             options);
     }
-
-    private static final LazySingletonValue<JsonNullable<Boolean>> _SINGLETON_VALUE_Testmode =
-            new LazySingletonValue<>(
-                    "testmode",
-                    "false",
-                    new TypeReference<JsonNullable<Boolean>>() {});
 }

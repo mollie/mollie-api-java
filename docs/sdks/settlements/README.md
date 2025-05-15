@@ -291,6 +291,7 @@ public class Application {
                 .settlementId("stl_jDk30akdN")
                 .from("tr_5B8cwPMGnU")
                 .sort("desc")
+                .testmode(false)
                 .build();
 
         GetSettlementPaymentsResponse res = sdk.settlements().listPayments()
@@ -357,6 +358,7 @@ public class Application {
                 .settlementId("stl_jDk30akdN")
                 .from("cpt_vytxeTZskVKR7C7WgdSP3d")
                 .include(GetSettlementCapturesQueryParamInclude.PAYMENT)
+                .testmode(false)
                 .build();
 
         GetSettlementCapturesResponse res = sdk.settlements().listCaptures()
@@ -424,6 +426,7 @@ public class Application {
                 .settlementId("stl_jDk30akdN")
                 .from("re_5B8cwPMGnU")
                 .include(GetSettlementRefundsQueryParamInclude.PAYMENT)
+                .testmode(false)
                 .build();
 
         GetSettlementRefundsResponse res = sdk.settlements().listRefunds()
@@ -491,6 +494,7 @@ public class Application {
                 .settlementId("stl_jDk30akdN")
                 .from("chb_xFzwUN4ci8HAmSGUACS4J")
                 .embed(GetSettlementChargebacksQueryParamEmbed.PAYMENT)
+                .testmode(false)
                 .build();
 
         GetSettlementChargebacksResponse res = sdk.settlements().listChargebacks()

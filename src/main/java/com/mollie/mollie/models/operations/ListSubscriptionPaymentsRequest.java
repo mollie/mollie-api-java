@@ -294,7 +294,7 @@ public class ListSubscriptionPaymentsRequest {
  
         private JsonNullable<String> sort = JsonNullable.undefined();
  
-        private JsonNullable<Boolean> testmode;
+        private JsonNullable<Boolean> testmode = JsonNullable.undefined();
         
         private Builder() {
           // force use of static builder() method
@@ -402,9 +402,6 @@ public class ListSubscriptionPaymentsRequest {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
-            if (testmode == null) {
-                testmode = _SINGLETON_VALUE_Testmode.value();
-            }
             return new ListSubscriptionPaymentsRequest(
                 customerId,
                 subscriptionId,
@@ -419,11 +416,5 @@ public class ListSubscriptionPaymentsRequest {
                         "limit",
                         "50",
                         new TypeReference<JsonNullable<Long>>() {});
-
-        private static final LazySingletonValue<JsonNullable<Boolean>> _SINGLETON_VALUE_Testmode =
-                new LazySingletonValue<>(
-                        "testmode",
-                        "false",
-                        new TypeReference<JsonNullable<Boolean>>() {});
     }
 }

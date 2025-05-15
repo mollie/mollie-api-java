@@ -59,6 +59,7 @@ public class Application {
                 .orderLineCategories("eco")
                 .profileId("pfl_5B8cwPMGnU")
                 .include(ListMethodsQueryParamInclude.ISSUERS)
+                .testmode(false)
                 .build();
 
         ListMethodsResponse res = sdk.methods().list()
@@ -202,6 +203,7 @@ public class Application {
                 .currency("EUR")
                 .profileId("pfl_5B8cwPMGnU")
                 .include(GetMethodQueryParamInclude.ISSUERS)
+                .testmode(false)
                 .build();
 
         GetMethodResponse res = sdk.methods().get()

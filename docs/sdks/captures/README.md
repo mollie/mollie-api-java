@@ -122,6 +122,7 @@ public class Application {
                 .paymentId("tr_5B8cwPMGnU")
                 .from("cpt_vytxeTZskVKR7C7WgdSP3d")
                 .include(ListCapturesQueryParamInclude.PAYMENT)
+                .testmode(false)
                 .build();
 
         ListCapturesResponse res = sdk.captures().list()
@@ -189,6 +190,7 @@ public class Application {
                 .paymentId("tr_5B8cwPMGnU")
                 .captureId("cpt_gVMhHKqSSRYJyPsuoPNFH")
                 .include(GetCaptureQueryParamInclude.PAYMENT)
+                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {

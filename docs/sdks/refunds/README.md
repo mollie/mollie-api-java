@@ -148,6 +148,7 @@ public class Application {
                 .paymentId("tr_5B8cwPMGnU")
                 .from("re_5B8cwPMGnU")
                 .include(ListRefundsQueryParamInclude.PAYMENT)
+                .testmode(false)
                 .build();
 
         ListRefundsResponse res = sdk.refunds().list()
@@ -215,6 +216,7 @@ public class Application {
                 .paymentId("tr_5B8cwPMGnU")
                 .refundId("re_5B8cwPMGnU")
                 .include(GetRefundQueryParamInclude.PAYMENT)
+                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {
@@ -280,6 +282,7 @@ public class Application {
         CancelRefundResponse res = sdk.refunds().cancel()
                 .paymentId("tr_5B8cwPMGnU")
                 .refundId("re_5B8cwPMGnU")
+                .testmode(false)
                 .call();
 
         if (res.any().isPresent()) {
@@ -525,6 +528,7 @@ public class Application {
                 .orderId("ord_5B8cwPMGnU")
                 .from("re_4qqhO89gsT")
                 .include("payment")
+                .testmode(false)
                 .build();
 
         ListOrderRefundsResponse res = sdk.refunds().listForOrder()
@@ -593,6 +597,7 @@ public class Application {
                 .sort("desc")
                 .embed(QueryParamEmbed.PAYMENT)
                 .profileId("pfl_5B8cwPMGnU")
+                .testmode(false)
                 .build();
 
         ListAllRefundsResponse res = sdk.refunds().all()

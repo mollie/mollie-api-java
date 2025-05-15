@@ -46,6 +46,7 @@ public class Application {
         ListBalancesResponse res = sdk.balances().list()
                 .currency("EUR")
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
+                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {
@@ -114,6 +115,7 @@ public class Application {
 
         GetBalanceResponse res = sdk.balances().get()
                 .id("bal_gVMhHKqSSRYJyPsuoPNFH")
+                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {
@@ -231,6 +233,7 @@ public class Application {
                 .from("2024-01-01")
                 .until("2024-02-01")
                 .grouping("status-balances")
+                .testmode(false)
                 .build();
 
         GetBalanceReportResponse res = sdk.balances().getReport()
@@ -300,6 +303,7 @@ public class Application {
         ListBalanceTransactionsResponse res = sdk.balances().listTransactions()
                 .balanceId("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .from("baltr_QM24QwzUWR4ev4Xfgyt29A")
+                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {
