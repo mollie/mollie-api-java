@@ -7,5 +7,5 @@ The URL to the generic Mollie API error handling guide.
 
 | Field                          | Type                           | Required                       | Description                    | Example                        |
 | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `href`                         | *Optional\<String>*            | :heavy_minus_sign:             | N/A                            | https://docs.mollie.com/errors |
-| `type`                         | *Optional\<String>*            | :heavy_minus_sign:             | N/A                            | text/html                      |
+| `href`                         | *String*                       | :heavy_check_mark:             | N/A                            | https://docs.mollie.com/errors |
+| `type`                         | *String*                       | :heavy_check_mark:             | N/A                            | text/html                      |

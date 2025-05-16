@@ -5,43 +5,33 @@ package com.mollie.mollie.models.errors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Objects;
-import java.util.Optional;
 
 public class GetBalanceReportBalancesLinks {
 
     /**
      * The URL to the generic Mollie API error handling guide.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends GetBalanceReportBalancesDocumentation> documentation;
+    private GetBalanceReportBalancesDocumentation documentation;
 
     @JsonCreator
     public GetBalanceReportBalancesLinks(
-            @JsonProperty("documentation") Optional<? extends GetBalanceReportBalancesDocumentation> documentation) {
+            @JsonProperty("documentation") GetBalanceReportBalancesDocumentation documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
-    }
-    
-    public GetBalanceReportBalancesLinks() {
-        this(Optional.empty());
     }
 
     /**
      * The URL to the generic Mollie API error handling guide.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetBalanceReportBalancesDocumentation> documentation() {
-        return (Optional<GetBalanceReportBalancesDocumentation>) documentation;
+    public GetBalanceReportBalancesDocumentation documentation() {
+        return documentation;
     }
 
     public final static Builder builder() {
@@ -52,15 +42,6 @@ public class GetBalanceReportBalancesLinks {
      * The URL to the generic Mollie API error handling guide.
      */
     public GetBalanceReportBalancesLinks withDocumentation(GetBalanceReportBalancesDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-    /**
-     * The URL to the generic Mollie API error handling guide.
-     */
-    public GetBalanceReportBalancesLinks withDocumentation(Optional<? extends GetBalanceReportBalancesDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -94,7 +75,7 @@ public class GetBalanceReportBalancesLinks {
     
     public final static class Builder {
  
-        private Optional<? extends GetBalanceReportBalancesDocumentation> documentation = Optional.empty();
+        private GetBalanceReportBalancesDocumentation documentation;
         
         private Builder() {
           // force use of static builder() method
@@ -104,15 +85,6 @@ public class GetBalanceReportBalancesLinks {
          * The URL to the generic Mollie API error handling guide.
          */
         public Builder documentation(GetBalanceReportBalancesDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * The URL to the generic Mollie API error handling guide.
-         */
-        public Builder documentation(Optional<? extends GetBalanceReportBalancesDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

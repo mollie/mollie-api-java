@@ -18,7 +18,6 @@ import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Objects;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * CancelRefundResponseBody
@@ -31,34 +30,23 @@ public class CancelRefundResponseBody extends RuntimeException {
     /**
      * The status code of the error message. This is always the same code as the status code of the HTTP message itself.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<Long> status;
+    private long status;
 
     /**
      * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not Found`.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("title")
-    private Optional<String> title;
+    private String title;
 
     /**
      * A detailed human-readable description of the error that occurred.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("detail")
-    private Optional<String> detail;
+    private String detail;
 
-    /**
-     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("field")
-    private JsonNullable<String> field;
-
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends CancelRefundLinks> links;
+    private CancelRefundLinks links;
 
     /**
      * Raw HTTP response; suitable for custom response parsing
@@ -69,35 +57,36 @@ public class CancelRefundResponseBody extends RuntimeException {
 
     @JsonCreator
     public CancelRefundResponseBody(
-            @JsonProperty("status") Optional<Long> status,
-            @JsonProperty("title") Optional<String> title,
-            @JsonProperty("detail") Optional<String> detail,
-            @JsonProperty("field") JsonNullable<String> field,
-            @JsonProperty("_links") Optional<? extends CancelRefundLinks> links,
+            @JsonProperty("status") long status,
+            @JsonProperty("title") String title,
+            @JsonProperty("detail") String detail,
+            @JsonProperty("_links") CancelRefundLinks links,
             @JsonProperty("RawResponse") Optional<? extends HttpResponse<InputStream>> rawResponse) {
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(title, "title");
         Utils.checkNotNull(detail, "detail");
-        Utils.checkNotNull(field, "field");
         Utils.checkNotNull(links, "links");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.status = status;
         this.title = title;
         this.detail = detail;
-        this.field = field;
         this.links = links;
         this.rawResponse = rawResponse;
     }
     
-    public CancelRefundResponseBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+    public CancelRefundResponseBody(
+            long status,
+            String title,
+            String detail,
+            CancelRefundLinks links) {
+        this(status, title, detail, links, Optional.empty());
     }
 
     /**
      * The status code of the error message. This is always the same code as the status code of the HTTP message itself.
      */
     @JsonIgnore
-    public Optional<Long> status() {
+    public long status() {
         return status;
     }
 
@@ -105,7 +94,7 @@ public class CancelRefundResponseBody extends RuntimeException {
      * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not Found`.
      */
     @JsonIgnore
-    public Optional<String> title() {
+    public String title() {
         return title;
     }
 
@@ -113,22 +102,13 @@ public class CancelRefundResponseBody extends RuntimeException {
      * A detailed human-readable description of the error that occurred.
      */
     @JsonIgnore
-    public Optional<String> detail() {
+    public String detail() {
         return detail;
     }
 
-    /**
-     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
-     */
     @JsonIgnore
-    public JsonNullable<String> field() {
-        return field;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<CancelRefundLinks> links() {
-        return (Optional<CancelRefundLinks>) links;
+    public CancelRefundLinks links() {
+        return links;
     }
 
     /**
@@ -149,15 +129,6 @@ public class CancelRefundResponseBody extends RuntimeException {
      */
     public CancelRefundResponseBody withStatus(long status) {
         Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-    /**
-     * The status code of the error message. This is always the same code as the status code of the HTTP message itself.
-     */
-    public CancelRefundResponseBody withStatus(Optional<Long> status) {
-        Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
@@ -166,15 +137,6 @@ public class CancelRefundResponseBody extends RuntimeException {
      * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not Found`.
      */
     public CancelRefundResponseBody withTitle(String title) {
-        Utils.checkNotNull(title, "title");
-        this.title = Optional.ofNullable(title);
-        return this;
-    }
-
-    /**
-     * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not Found`.
-     */
-    public CancelRefundResponseBody withTitle(Optional<String> title) {
         Utils.checkNotNull(title, "title");
         this.title = title;
         return this;
@@ -185,44 +147,11 @@ public class CancelRefundResponseBody extends RuntimeException {
      */
     public CancelRefundResponseBody withDetail(String detail) {
         Utils.checkNotNull(detail, "detail");
-        this.detail = Optional.ofNullable(detail);
-        return this;
-    }
-
-    /**
-     * A detailed human-readable description of the error that occurred.
-     */
-    public CancelRefundResponseBody withDetail(Optional<String> detail) {
-        Utils.checkNotNull(detail, "detail");
         this.detail = detail;
         return this;
     }
 
-    /**
-     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
-     */
-    public CancelRefundResponseBody withField(String field) {
-        Utils.checkNotNull(field, "field");
-        this.field = JsonNullable.of(field);
-        return this;
-    }
-
-    /**
-     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
-     */
-    public CancelRefundResponseBody withField(JsonNullable<String> field) {
-        Utils.checkNotNull(field, "field");
-        this.field = field;
-        return this;
-    }
-
     public CancelRefundResponseBody withLinks(CancelRefundLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-    public CancelRefundResponseBody withLinks(Optional<? extends CancelRefundLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -260,7 +189,6 @@ public class CancelRefundResponseBody extends RuntimeException {
             Objects.deepEquals(this.status, other.status) &&
             Objects.deepEquals(this.title, other.title) &&
             Objects.deepEquals(this.detail, other.detail) &&
-            Objects.deepEquals(this.field, other.field) &&
             Objects.deepEquals(this.links, other.links) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
@@ -271,7 +199,6 @@ public class CancelRefundResponseBody extends RuntimeException {
             status,
             title,
             detail,
-            field,
             links,
             rawResponse);
     }
@@ -282,22 +209,19 @@ public class CancelRefundResponseBody extends RuntimeException {
                 "status", status,
                 "title", title,
                 "detail", detail,
-                "field", field,
                 "links", links,
                 "rawResponse", rawResponse);
     }
     
     public final static class Builder {
  
-        private Optional<Long> status = Optional.empty();
+        private Long status;
  
-        private Optional<String> title = Optional.empty();
+        private String title;
  
-        private Optional<String> detail = Optional.empty();
+        private String detail;
  
-        private JsonNullable<String> field = JsonNullable.undefined();
- 
-        private Optional<? extends CancelRefundLinks> links = Optional.empty();
+        private CancelRefundLinks links;
  
         private Optional<? extends HttpResponse<InputStream>> rawResponse;
         
@@ -310,15 +234,6 @@ public class CancelRefundResponseBody extends RuntimeException {
          */
         public Builder status(long status) {
             Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * The status code of the error message. This is always the same code as the status code of the HTTP message itself.
-         */
-        public Builder status(Optional<Long> status) {
-            Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
@@ -327,15 +242,6 @@ public class CancelRefundResponseBody extends RuntimeException {
          * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not Found`.
          */
         public Builder title(String title) {
-            Utils.checkNotNull(title, "title");
-            this.title = Optional.ofNullable(title);
-            return this;
-        }
-
-        /**
-         * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not Found`.
-         */
-        public Builder title(Optional<String> title) {
             Utils.checkNotNull(title, "title");
             this.title = title;
             return this;
@@ -346,44 +252,11 @@ public class CancelRefundResponseBody extends RuntimeException {
          */
         public Builder detail(String detail) {
             Utils.checkNotNull(detail, "detail");
-            this.detail = Optional.ofNullable(detail);
-            return this;
-        }
-
-        /**
-         * A detailed human-readable description of the error that occurred.
-         */
-        public Builder detail(Optional<String> detail) {
-            Utils.checkNotNull(detail, "detail");
             this.detail = detail;
             return this;
         }
 
-        /**
-         * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
-         */
-        public Builder field(String field) {
-            Utils.checkNotNull(field, "field");
-            this.field = JsonNullable.of(field);
-            return this;
-        }
-
-        /**
-         * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
-         */
-        public Builder field(JsonNullable<String> field) {
-            Utils.checkNotNull(field, "field");
-            this.field = field;
-            return this;
-        }
-
         public Builder links(CancelRefundLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        public Builder links(Optional<? extends CancelRefundLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;
@@ -412,7 +285,6 @@ public class CancelRefundResponseBody extends RuntimeException {
                 status,
                 title,
                 detail,
-                field,
                 links,
                 rawResponse);
         }

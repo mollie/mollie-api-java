@@ -357,7 +357,7 @@ public class Application {
         GetSettlementCapturesRequest req = GetSettlementCapturesRequest.builder()
                 .settlementId("stl_jDk30akdN")
                 .from("cpt_vytxeTZskVKR7C7WgdSP3d")
-                .include(GetSettlementCapturesQueryParamInclude.PAYMENT)
+                .embed(GetSettlementCapturesQueryParamEmbed.PAYMENT)
                 .testmode(false)
                 .build();
 

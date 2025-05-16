@@ -39,10 +39,10 @@ public class ListCapturesRequest {
     private JsonNullable<Long> limit;
 
     /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
+     * This endpoint allows you to embed additional resources via the `embed` query string parameter.
      */
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=include")
-    private Optional<? extends ListCapturesQueryParamInclude> include;
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=embed")
+    private Optional<? extends ListCapturesQueryParamEmbed> embed;
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
@@ -57,17 +57,17 @@ public class ListCapturesRequest {
             String paymentId,
             Optional<String> from,
             JsonNullable<Long> limit,
-            Optional<? extends ListCapturesQueryParamInclude> include,
+            Optional<? extends ListCapturesQueryParamEmbed> embed,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(paymentId, "paymentId");
         Utils.checkNotNull(from, "from");
         Utils.checkNotNull(limit, "limit");
-        Utils.checkNotNull(include, "include");
+        Utils.checkNotNull(embed, "embed");
         Utils.checkNotNull(testmode, "testmode");
         this.paymentId = paymentId;
         this.from = from;
         this.limit = limit;
-        this.include = include;
+        this.embed = embed;
         this.testmode = testmode;
     }
     
@@ -101,12 +101,12 @@ public class ListCapturesRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
+     * This endpoint allows you to embed additional resources via the `embed` query string parameter.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListCapturesQueryParamInclude> include() {
-        return (Optional<ListCapturesQueryParamInclude>) include;
+    public Optional<ListCapturesQueryParamEmbed> embed() {
+        return (Optional<ListCapturesQueryParamEmbed>) embed;
     }
 
     /**
@@ -169,20 +169,20 @@ public class ListCapturesRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
+     * This endpoint allows you to embed additional resources via the `embed` query string parameter.
      */
-    public ListCapturesRequest withInclude(ListCapturesQueryParamInclude include) {
-        Utils.checkNotNull(include, "include");
-        this.include = Optional.ofNullable(include);
+    public ListCapturesRequest withEmbed(ListCapturesQueryParamEmbed embed) {
+        Utils.checkNotNull(embed, "embed");
+        this.embed = Optional.ofNullable(embed);
         return this;
     }
 
     /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
+     * This endpoint allows you to embed additional resources via the `embed` query string parameter.
      */
-    public ListCapturesRequest withInclude(Optional<? extends ListCapturesQueryParamInclude> include) {
-        Utils.checkNotNull(include, "include");
-        this.include = include;
+    public ListCapturesRequest withEmbed(Optional<? extends ListCapturesQueryParamEmbed> embed) {
+        Utils.checkNotNull(embed, "embed");
+        this.embed = embed;
         return this;
     }
 
@@ -222,7 +222,7 @@ public class ListCapturesRequest {
             Objects.deepEquals(this.paymentId, other.paymentId) &&
             Objects.deepEquals(this.from, other.from) &&
             Objects.deepEquals(this.limit, other.limit) &&
-            Objects.deepEquals(this.include, other.include) &&
+            Objects.deepEquals(this.embed, other.embed) &&
             Objects.deepEquals(this.testmode, other.testmode);
     }
     
@@ -232,7 +232,7 @@ public class ListCapturesRequest {
             paymentId,
             from,
             limit,
-            include,
+            embed,
             testmode);
     }
     
@@ -242,7 +242,7 @@ public class ListCapturesRequest {
                 "paymentId", paymentId,
                 "from", from,
                 "limit", limit,
-                "include", include,
+                "embed", embed,
                 "testmode", testmode);
     }
     
@@ -254,7 +254,7 @@ public class ListCapturesRequest {
  
         private JsonNullable<Long> limit;
  
-        private Optional<? extends ListCapturesQueryParamInclude> include = Optional.empty();
+        private Optional<? extends ListCapturesQueryParamEmbed> embed = Optional.empty();
  
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
         
@@ -308,20 +308,20 @@ public class ListCapturesRequest {
         }
 
         /**
-         * This endpoint allows you to include additional information via the `include` query string parameter.
+         * This endpoint allows you to embed additional resources via the `embed` query string parameter.
          */
-        public Builder include(ListCapturesQueryParamInclude include) {
-            Utils.checkNotNull(include, "include");
-            this.include = Optional.ofNullable(include);
+        public Builder embed(ListCapturesQueryParamEmbed embed) {
+            Utils.checkNotNull(embed, "embed");
+            this.embed = Optional.ofNullable(embed);
             return this;
         }
 
         /**
-         * This endpoint allows you to include additional information via the `include` query string parameter.
+         * This endpoint allows you to embed additional resources via the `embed` query string parameter.
          */
-        public Builder include(Optional<? extends ListCapturesQueryParamInclude> include) {
-            Utils.checkNotNull(include, "include");
-            this.include = include;
+        public Builder embed(Optional<? extends ListCapturesQueryParamEmbed> embed) {
+            Utils.checkNotNull(embed, "embed");
+            this.embed = embed;
             return this;
         }
 
@@ -355,7 +355,7 @@ public class ListCapturesRequest {
                 paymentId,
                 from,
                 limit,
-                include,
+                embed,
                 testmode);
         }
 

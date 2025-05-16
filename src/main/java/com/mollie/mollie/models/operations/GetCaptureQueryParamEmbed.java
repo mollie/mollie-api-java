@@ -9,17 +9,17 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * ListCapturesQueryParamInclude
+ * GetCaptureQueryParamEmbed
  * 
- * <p>This endpoint allows you to include additional information via the `include` query string parameter.
+ * <p>This endpoint allows you to embed additional resources via the `embed` query string parameter.
  */
-public enum ListCapturesQueryParamInclude {
+public enum GetCaptureQueryParamEmbed {
     PAYMENT("payment");
 
     @JsonValue
     private final String value;
 
-    private ListCapturesQueryParamInclude(String value) {
+    private GetCaptureQueryParamEmbed(String value) {
         this.value = value;
     }
     
@@ -27,8 +27,8 @@ public enum ListCapturesQueryParamInclude {
         return value;
     }
     
-    public static Optional<ListCapturesQueryParamInclude> fromValue(String value) {
-        for (ListCapturesQueryParamInclude o: ListCapturesQueryParamInclude.values()) {
+    public static Optional<GetCaptureQueryParamEmbed> fromValue(String value) {
+        for (GetCaptureQueryParamEmbed o: GetCaptureQueryParamEmbed.values()) {
             if (Objects.deepEquals(o.value, value)) {
                 return Optional.of(o);
             }

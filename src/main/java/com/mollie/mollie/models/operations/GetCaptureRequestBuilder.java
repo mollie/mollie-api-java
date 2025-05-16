@@ -16,7 +16,7 @@ public class GetCaptureRequestBuilder {
 
     private String paymentId;
     private String captureId;
-    private Optional<? extends GetCaptureQueryParamInclude> include = Optional.empty();
+    private Optional<? extends GetCaptureQueryParamEmbed> embed = Optional.empty();
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallGetCapture sdk;
@@ -37,15 +37,15 @@ public class GetCaptureRequestBuilder {
         return this;
     }
                 
-    public GetCaptureRequestBuilder include(GetCaptureQueryParamInclude include) {
-        Utils.checkNotNull(include, "include");
-        this.include = Optional.of(include);
+    public GetCaptureRequestBuilder embed(GetCaptureQueryParamEmbed embed) {
+        Utils.checkNotNull(embed, "embed");
+        this.embed = Optional.of(embed);
         return this;
     }
 
-    public GetCaptureRequestBuilder include(Optional<? extends GetCaptureQueryParamInclude> include) {
-        Utils.checkNotNull(include, "include");
-        this.include = include;
+    public GetCaptureRequestBuilder embed(Optional<? extends GetCaptureQueryParamEmbed> embed) {
+        Utils.checkNotNull(embed, "embed");
+        this.embed = embed;
         return this;
     }
 
@@ -80,7 +80,7 @@ public class GetCaptureRequestBuilder {
         return sdk.get(
             paymentId,
             captureId,
-            include,
+            embed,
             testmode,
             options);
     }

@@ -5,43 +5,33 @@ package com.mollie.mollie.models.errors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Objects;
-import java.util.Optional;
 
 public class CancelSubscriptionLinks {
 
     /**
      * The URL to the generic Mollie API error handling guide.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends CancelSubscriptionDocumentation> documentation;
+    private CancelSubscriptionDocumentation documentation;
 
     @JsonCreator
     public CancelSubscriptionLinks(
-            @JsonProperty("documentation") Optional<? extends CancelSubscriptionDocumentation> documentation) {
+            @JsonProperty("documentation") CancelSubscriptionDocumentation documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
-    }
-    
-    public CancelSubscriptionLinks() {
-        this(Optional.empty());
     }
 
     /**
      * The URL to the generic Mollie API error handling guide.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CancelSubscriptionDocumentation> documentation() {
-        return (Optional<CancelSubscriptionDocumentation>) documentation;
+    public CancelSubscriptionDocumentation documentation() {
+        return documentation;
     }
 
     public final static Builder builder() {
@@ -52,15 +42,6 @@ public class CancelSubscriptionLinks {
      * The URL to the generic Mollie API error handling guide.
      */
     public CancelSubscriptionLinks withDocumentation(CancelSubscriptionDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-    /**
-     * The URL to the generic Mollie API error handling guide.
-     */
-    public CancelSubscriptionLinks withDocumentation(Optional<? extends CancelSubscriptionDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -94,7 +75,7 @@ public class CancelSubscriptionLinks {
     
     public final static class Builder {
  
-        private Optional<? extends CancelSubscriptionDocumentation> documentation = Optional.empty();
+        private CancelSubscriptionDocumentation documentation;
         
         private Builder() {
           // force use of static builder() method
@@ -104,15 +85,6 @@ public class CancelSubscriptionLinks {
          * The URL to the generic Mollie API error handling guide.
          */
         public Builder documentation(CancelSubscriptionDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * The URL to the generic Mollie API error handling guide.
-         */
-        public Builder documentation(Optional<? extends CancelSubscriptionDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

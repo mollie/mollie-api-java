@@ -39,10 +39,10 @@ public class GetSettlementCapturesRequest {
     private JsonNullable<Long> limit;
 
     /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
+     * This endpoint allows you to embed additional resources via the `embed` query string parameter.
      */
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=include")
-    private Optional<? extends GetSettlementCapturesQueryParamInclude> include;
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=embed")
+    private Optional<? extends GetSettlementCapturesQueryParamEmbed> embed;
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
@@ -57,17 +57,17 @@ public class GetSettlementCapturesRequest {
             String settlementId,
             Optional<String> from,
             JsonNullable<Long> limit,
-            Optional<? extends GetSettlementCapturesQueryParamInclude> include,
+            Optional<? extends GetSettlementCapturesQueryParamEmbed> embed,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(settlementId, "settlementId");
         Utils.checkNotNull(from, "from");
         Utils.checkNotNull(limit, "limit");
-        Utils.checkNotNull(include, "include");
+        Utils.checkNotNull(embed, "embed");
         Utils.checkNotNull(testmode, "testmode");
         this.settlementId = settlementId;
         this.from = from;
         this.limit = limit;
-        this.include = include;
+        this.embed = embed;
         this.testmode = testmode;
     }
     
@@ -101,12 +101,12 @@ public class GetSettlementCapturesRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
+     * This endpoint allows you to embed additional resources via the `embed` query string parameter.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetSettlementCapturesQueryParamInclude> include() {
-        return (Optional<GetSettlementCapturesQueryParamInclude>) include;
+    public Optional<GetSettlementCapturesQueryParamEmbed> embed() {
+        return (Optional<GetSettlementCapturesQueryParamEmbed>) embed;
     }
 
     /**
@@ -169,20 +169,20 @@ public class GetSettlementCapturesRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
+     * This endpoint allows you to embed additional resources via the `embed` query string parameter.
      */
-    public GetSettlementCapturesRequest withInclude(GetSettlementCapturesQueryParamInclude include) {
-        Utils.checkNotNull(include, "include");
-        this.include = Optional.ofNullable(include);
+    public GetSettlementCapturesRequest withEmbed(GetSettlementCapturesQueryParamEmbed embed) {
+        Utils.checkNotNull(embed, "embed");
+        this.embed = Optional.ofNullable(embed);
         return this;
     }
 
     /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
+     * This endpoint allows you to embed additional resources via the `embed` query string parameter.
      */
-    public GetSettlementCapturesRequest withInclude(Optional<? extends GetSettlementCapturesQueryParamInclude> include) {
-        Utils.checkNotNull(include, "include");
-        this.include = include;
+    public GetSettlementCapturesRequest withEmbed(Optional<? extends GetSettlementCapturesQueryParamEmbed> embed) {
+        Utils.checkNotNull(embed, "embed");
+        this.embed = embed;
         return this;
     }
 
@@ -222,7 +222,7 @@ public class GetSettlementCapturesRequest {
             Objects.deepEquals(this.settlementId, other.settlementId) &&
             Objects.deepEquals(this.from, other.from) &&
             Objects.deepEquals(this.limit, other.limit) &&
-            Objects.deepEquals(this.include, other.include) &&
+            Objects.deepEquals(this.embed, other.embed) &&
             Objects.deepEquals(this.testmode, other.testmode);
     }
     
@@ -232,7 +232,7 @@ public class GetSettlementCapturesRequest {
             settlementId,
             from,
             limit,
-            include,
+            embed,
             testmode);
     }
     
@@ -242,7 +242,7 @@ public class GetSettlementCapturesRequest {
                 "settlementId", settlementId,
                 "from", from,
                 "limit", limit,
-                "include", include,
+                "embed", embed,
                 "testmode", testmode);
     }
     
@@ -254,7 +254,7 @@ public class GetSettlementCapturesRequest {
  
         private JsonNullable<Long> limit;
  
-        private Optional<? extends GetSettlementCapturesQueryParamInclude> include = Optional.empty();
+        private Optional<? extends GetSettlementCapturesQueryParamEmbed> embed = Optional.empty();
  
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
         
@@ -308,20 +308,20 @@ public class GetSettlementCapturesRequest {
         }
 
         /**
-         * This endpoint allows you to include additional information via the `include` query string parameter.
+         * This endpoint allows you to embed additional resources via the `embed` query string parameter.
          */
-        public Builder include(GetSettlementCapturesQueryParamInclude include) {
-            Utils.checkNotNull(include, "include");
-            this.include = Optional.ofNullable(include);
+        public Builder embed(GetSettlementCapturesQueryParamEmbed embed) {
+            Utils.checkNotNull(embed, "embed");
+            this.embed = Optional.ofNullable(embed);
             return this;
         }
 
         /**
-         * This endpoint allows you to include additional information via the `include` query string parameter.
+         * This endpoint allows you to embed additional resources via the `embed` query string parameter.
          */
-        public Builder include(Optional<? extends GetSettlementCapturesQueryParamInclude> include) {
-            Utils.checkNotNull(include, "include");
-            this.include = include;
+        public Builder embed(Optional<? extends GetSettlementCapturesQueryParamEmbed> embed) {
+            Utils.checkNotNull(embed, "embed");
+            this.embed = embed;
             return this;
         }
 
@@ -355,7 +355,7 @@ public class GetSettlementCapturesRequest {
                 settlementId,
                 from,
                 limit,
-                include,
+                embed,
                 testmode);
         }
 

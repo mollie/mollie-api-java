@@ -9,17 +9,17 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * GetCaptureQueryParamInclude
+ * GetSettlementCapturesQueryParamEmbed
  * 
- * <p>This endpoint allows you to include additional information via the `include` query string parameter.
+ * <p>This endpoint allows you to embed additional resources via the `embed` query string parameter.
  */
-public enum GetCaptureQueryParamInclude {
+public enum GetSettlementCapturesQueryParamEmbed {
     PAYMENT("payment");
 
     @JsonValue
     private final String value;
 
-    private GetCaptureQueryParamInclude(String value) {
+    private GetSettlementCapturesQueryParamEmbed(String value) {
         this.value = value;
     }
     
@@ -27,8 +27,8 @@ public enum GetCaptureQueryParamInclude {
         return value;
     }
     
-    public static Optional<GetCaptureQueryParamInclude> fromValue(String value) {
-        for (GetCaptureQueryParamInclude o: GetCaptureQueryParamInclude.values()) {
+    public static Optional<GetSettlementCapturesQueryParamEmbed> fromValue(String value) {
+        for (GetSettlementCapturesQueryParamEmbed o: GetSettlementCapturesQueryParamEmbed.values()) {
             if (Objects.deepEquals(o.value, value)) {
                 return Optional.of(o);
             }

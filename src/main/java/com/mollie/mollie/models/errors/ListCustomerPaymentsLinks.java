@@ -5,43 +5,33 @@ package com.mollie.mollie.models.errors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Objects;
-import java.util.Optional;
 
 public class ListCustomerPaymentsLinks {
 
     /**
      * The URL to the generic Mollie API error handling guide.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends ListCustomerPaymentsDocumentation> documentation;
+    private ListCustomerPaymentsDocumentation documentation;
 
     @JsonCreator
     public ListCustomerPaymentsLinks(
-            @JsonProperty("documentation") Optional<? extends ListCustomerPaymentsDocumentation> documentation) {
+            @JsonProperty("documentation") ListCustomerPaymentsDocumentation documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
-    }
-    
-    public ListCustomerPaymentsLinks() {
-        this(Optional.empty());
     }
 
     /**
      * The URL to the generic Mollie API error handling guide.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListCustomerPaymentsDocumentation> documentation() {
-        return (Optional<ListCustomerPaymentsDocumentation>) documentation;
+    public ListCustomerPaymentsDocumentation documentation() {
+        return documentation;
     }
 
     public final static Builder builder() {
@@ -52,15 +42,6 @@ public class ListCustomerPaymentsLinks {
      * The URL to the generic Mollie API error handling guide.
      */
     public ListCustomerPaymentsLinks withDocumentation(ListCustomerPaymentsDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-    /**
-     * The URL to the generic Mollie API error handling guide.
-     */
-    public ListCustomerPaymentsLinks withDocumentation(Optional<? extends ListCustomerPaymentsDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -94,7 +75,7 @@ public class ListCustomerPaymentsLinks {
     
     public final static class Builder {
  
-        private Optional<? extends ListCustomerPaymentsDocumentation> documentation = Optional.empty();
+        private ListCustomerPaymentsDocumentation documentation;
         
         private Builder() {
           // force use of static builder() method
@@ -104,15 +85,6 @@ public class ListCustomerPaymentsLinks {
          * The URL to the generic Mollie API error handling guide.
          */
         public Builder documentation(ListCustomerPaymentsDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * The URL to the generic Mollie API error handling guide.
-         */
-        public Builder documentation(Optional<? extends ListCustomerPaymentsDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

@@ -12,7 +12,7 @@ import com.mollie.mollie.models.operations.CreateCaptureRequestBody;
 import com.mollie.mollie.models.operations.CreateCaptureRequestBuilder;
 import com.mollie.mollie.models.operations.CreateCaptureResponse;
 import com.mollie.mollie.models.operations.CreateCaptureResponseBody;
-import com.mollie.mollie.models.operations.GetCaptureQueryParamInclude;
+import com.mollie.mollie.models.operations.GetCaptureQueryParamEmbed;
 import com.mollie.mollie.models.operations.GetCaptureRequest;
 import com.mollie.mollie.models.operations.GetCaptureRequestBuilder;
 import com.mollie.mollie.models.operations.GetCaptureResponse;
@@ -601,7 +601,7 @@ public class Captures implements
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param captureId Provide the ID of the related capture.
-     * @param include This endpoint allows you to include additional information via the `include` query string parameter.
+     * @param embed This endpoint allows you to embed additional resources via the `embed` query string parameter.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -612,7 +612,7 @@ public class Captures implements
     public GetCaptureResponse get(
             String paymentId,
             String captureId,
-            Optional<? extends GetCaptureQueryParamInclude> include,
+            Optional<? extends GetCaptureQueryParamEmbed> embed,
             JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
 
@@ -624,7 +624,7 @@ public class Captures implements
                 .builder()
                 .paymentId(paymentId)
                 .captureId(captureId)
-                .include(include)
+                .embed(embed)
                 .testmode(testmode)
                 .build();
         

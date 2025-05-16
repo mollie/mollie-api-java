@@ -5,16 +5,11 @@ package com.mollie.mollie.models.errors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 
 /**
  * CreateProfileDocumentation
@@ -23,35 +18,29 @@ import java.util.Optional;
  */
 public class CreateProfileDocumentation {
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("href")
-    private Optional<String> href;
+    private String href;
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<String> type;
+    private String type;
 
     @JsonCreator
     public CreateProfileDocumentation(
-            @JsonProperty("href") Optional<String> href,
-            @JsonProperty("type") Optional<String> type) {
+            @JsonProperty("href") String href,
+            @JsonProperty("type") String type) {
         Utils.checkNotNull(href, "href");
         Utils.checkNotNull(type, "type");
         this.href = href;
         this.type = type;
     }
-    
-    public CreateProfileDocumentation() {
-        this(Optional.empty(), Optional.empty());
-    }
 
     @JsonIgnore
-    public Optional<String> href() {
+    public String href() {
         return href;
     }
 
     @JsonIgnore
-    public Optional<String> type() {
+    public String type() {
         return type;
     }
 
@@ -61,23 +50,11 @@ public class CreateProfileDocumentation {
 
     public CreateProfileDocumentation withHref(String href) {
         Utils.checkNotNull(href, "href");
-        this.href = Optional.ofNullable(href);
-        return this;
-    }
-
-    public CreateProfileDocumentation withHref(Optional<String> href) {
-        Utils.checkNotNull(href, "href");
         this.href = href;
         return this;
     }
 
     public CreateProfileDocumentation withType(String type) {
-        Utils.checkNotNull(type, "type");
-        this.type = Optional.ofNullable(type);
-        return this;
-    }
-
-    public CreateProfileDocumentation withType(Optional<String> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -114,9 +91,9 @@ public class CreateProfileDocumentation {
     
     public final static class Builder {
  
-        private Optional<String> href;
+        private String href;
  
-        private Optional<String> type;
+        private String type;
         
         private Builder() {
           // force use of static builder() method
@@ -124,50 +101,20 @@ public class CreateProfileDocumentation {
 
         public Builder href(String href) {
             Utils.checkNotNull(href, "href");
-            this.href = Optional.ofNullable(href);
-            return this;
-        }
-
-        public Builder href(Optional<String> href) {
-            Utils.checkNotNull(href, "href");
             this.href = href;
             return this;
         }
 
         public Builder type(String type) {
             Utils.checkNotNull(type, "type");
-            this.type = Optional.ofNullable(type);
-            return this;
-        }
-
-        public Builder type(Optional<String> type) {
-            Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
         }
         
         public CreateProfileDocumentation build() {
-            if (href == null) {
-                href = _SINGLETON_VALUE_Href.value();
-            }
-            if (type == null) {
-                type = _SINGLETON_VALUE_Type.value();
-            }
             return new CreateProfileDocumentation(
                 href,
                 type);
         }
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Href =
-                new LazySingletonValue<>(
-                        "href",
-                        "\"https://docs.mollie.com/errors\"",
-                        new TypeReference<Optional<String>>() {});
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
-                new LazySingletonValue<>(
-                        "type",
-                        "\"text/html\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

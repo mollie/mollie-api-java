@@ -5,43 +5,33 @@ package com.mollie.mollie.models.errors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Objects;
-import java.util.Optional;
 
 public class ListAllSubscriptionsLinks {
 
     /**
      * The URL to the generic Mollie API error handling guide.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends ListAllSubscriptionsDocumentation> documentation;
+    private ListAllSubscriptionsDocumentation documentation;
 
     @JsonCreator
     public ListAllSubscriptionsLinks(
-            @JsonProperty("documentation") Optional<? extends ListAllSubscriptionsDocumentation> documentation) {
+            @JsonProperty("documentation") ListAllSubscriptionsDocumentation documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
-    }
-    
-    public ListAllSubscriptionsLinks() {
-        this(Optional.empty());
     }
 
     /**
      * The URL to the generic Mollie API error handling guide.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListAllSubscriptionsDocumentation> documentation() {
-        return (Optional<ListAllSubscriptionsDocumentation>) documentation;
+    public ListAllSubscriptionsDocumentation documentation() {
+        return documentation;
     }
 
     public final static Builder builder() {
@@ -52,15 +42,6 @@ public class ListAllSubscriptionsLinks {
      * The URL to the generic Mollie API error handling guide.
      */
     public ListAllSubscriptionsLinks withDocumentation(ListAllSubscriptionsDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-    /**
-     * The URL to the generic Mollie API error handling guide.
-     */
-    public ListAllSubscriptionsLinks withDocumentation(Optional<? extends ListAllSubscriptionsDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -94,7 +75,7 @@ public class ListAllSubscriptionsLinks {
     
     public final static class Builder {
  
-        private Optional<? extends ListAllSubscriptionsDocumentation> documentation = Optional.empty();
+        private ListAllSubscriptionsDocumentation documentation;
         
         private Builder() {
           // force use of static builder() method
@@ -104,15 +85,6 @@ public class ListAllSubscriptionsLinks {
          * The URL to the generic Mollie API error handling guide.
          */
         public Builder documentation(ListAllSubscriptionsDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * The URL to the generic Mollie API error handling guide.
-         */
-        public Builder documentation(Optional<? extends ListAllSubscriptionsDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

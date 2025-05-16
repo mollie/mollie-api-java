@@ -5,43 +5,33 @@ package com.mollie.mollie.models.errors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Objects;
-import java.util.Optional;
 
 public class ListInvoicesInvoicesLinks {
 
     /**
      * The URL to the generic Mollie API error handling guide.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends ListInvoicesInvoicesDocumentation> documentation;
+    private ListInvoicesInvoicesDocumentation documentation;
 
     @JsonCreator
     public ListInvoicesInvoicesLinks(
-            @JsonProperty("documentation") Optional<? extends ListInvoicesInvoicesDocumentation> documentation) {
+            @JsonProperty("documentation") ListInvoicesInvoicesDocumentation documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
-    }
-    
-    public ListInvoicesInvoicesLinks() {
-        this(Optional.empty());
     }
 
     /**
      * The URL to the generic Mollie API error handling guide.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListInvoicesInvoicesDocumentation> documentation() {
-        return (Optional<ListInvoicesInvoicesDocumentation>) documentation;
+    public ListInvoicesInvoicesDocumentation documentation() {
+        return documentation;
     }
 
     public final static Builder builder() {
@@ -52,15 +42,6 @@ public class ListInvoicesInvoicesLinks {
      * The URL to the generic Mollie API error handling guide.
      */
     public ListInvoicesInvoicesLinks withDocumentation(ListInvoicesInvoicesDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-    /**
-     * The URL to the generic Mollie API error handling guide.
-     */
-    public ListInvoicesInvoicesLinks withDocumentation(Optional<? extends ListInvoicesInvoicesDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -94,7 +75,7 @@ public class ListInvoicesInvoicesLinks {
     
     public final static class Builder {
  
-        private Optional<? extends ListInvoicesInvoicesDocumentation> documentation = Optional.empty();
+        private ListInvoicesInvoicesDocumentation documentation;
         
         private Builder() {
           // force use of static builder() method
@@ -104,15 +85,6 @@ public class ListInvoicesInvoicesLinks {
          * The URL to the generic Mollie API error handling guide.
          */
         public Builder documentation(ListInvoicesInvoicesDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * The URL to the generic Mollie API error handling guide.
-         */
-        public Builder documentation(Optional<? extends ListInvoicesInvoicesDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

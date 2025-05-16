@@ -18,7 +18,6 @@ import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Objects;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * GetSettlementChargebacksResponseBody
@@ -31,34 +30,29 @@ public class GetSettlementChargebacksResponseBody extends RuntimeException {
     /**
      * The status code of the error message. This is always the same code as the status code of the HTTP message itself.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<Long> status;
+    private long status;
 
     /**
      * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not Found`.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("title")
-    private Optional<String> title;
+    private String title;
 
     /**
      * A detailed human-readable description of the error that occurred.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("detail")
-    private Optional<String> detail;
+    private String detail;
 
     /**
      * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("field")
-    private JsonNullable<String> field;
+    private String field;
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends GetSettlementChargebacksLinks> links;
+    private GetSettlementChargebacksLinks links;
 
     /**
      * Raw HTTP response; suitable for custom response parsing
@@ -69,11 +63,11 @@ public class GetSettlementChargebacksResponseBody extends RuntimeException {
 
     @JsonCreator
     public GetSettlementChargebacksResponseBody(
-            @JsonProperty("status") Optional<Long> status,
-            @JsonProperty("title") Optional<String> title,
-            @JsonProperty("detail") Optional<String> detail,
-            @JsonProperty("field") JsonNullable<String> field,
-            @JsonProperty("_links") Optional<? extends GetSettlementChargebacksLinks> links,
+            @JsonProperty("status") long status,
+            @JsonProperty("title") String title,
+            @JsonProperty("detail") String detail,
+            @JsonProperty("field") String field,
+            @JsonProperty("_links") GetSettlementChargebacksLinks links,
             @JsonProperty("RawResponse") Optional<? extends HttpResponse<InputStream>> rawResponse) {
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(title, "title");
@@ -89,15 +83,20 @@ public class GetSettlementChargebacksResponseBody extends RuntimeException {
         this.rawResponse = rawResponse;
     }
     
-    public GetSettlementChargebacksResponseBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+    public GetSettlementChargebacksResponseBody(
+            long status,
+            String title,
+            String detail,
+            String field,
+            GetSettlementChargebacksLinks links) {
+        this(status, title, detail, field, links, Optional.empty());
     }
 
     /**
      * The status code of the error message. This is always the same code as the status code of the HTTP message itself.
      */
     @JsonIgnore
-    public Optional<Long> status() {
+    public long status() {
         return status;
     }
 
@@ -105,7 +104,7 @@ public class GetSettlementChargebacksResponseBody extends RuntimeException {
      * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not Found`.
      */
     @JsonIgnore
-    public Optional<String> title() {
+    public String title() {
         return title;
     }
 
@@ -113,7 +112,7 @@ public class GetSettlementChargebacksResponseBody extends RuntimeException {
      * A detailed human-readable description of the error that occurred.
      */
     @JsonIgnore
-    public Optional<String> detail() {
+    public String detail() {
         return detail;
     }
 
@@ -121,14 +120,13 @@ public class GetSettlementChargebacksResponseBody extends RuntimeException {
      * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
      */
     @JsonIgnore
-    public JsonNullable<String> field() {
+    public String field() {
         return field;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetSettlementChargebacksLinks> links() {
-        return (Optional<GetSettlementChargebacksLinks>) links;
+    public GetSettlementChargebacksLinks links() {
+        return links;
     }
 
     /**
@@ -149,15 +147,6 @@ public class GetSettlementChargebacksResponseBody extends RuntimeException {
      */
     public GetSettlementChargebacksResponseBody withStatus(long status) {
         Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-    /**
-     * The status code of the error message. This is always the same code as the status code of the HTTP message itself.
-     */
-    public GetSettlementChargebacksResponseBody withStatus(Optional<Long> status) {
-        Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
@@ -166,15 +155,6 @@ public class GetSettlementChargebacksResponseBody extends RuntimeException {
      * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not Found`.
      */
     public GetSettlementChargebacksResponseBody withTitle(String title) {
-        Utils.checkNotNull(title, "title");
-        this.title = Optional.ofNullable(title);
-        return this;
-    }
-
-    /**
-     * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not Found`.
-     */
-    public GetSettlementChargebacksResponseBody withTitle(Optional<String> title) {
         Utils.checkNotNull(title, "title");
         this.title = title;
         return this;
@@ -185,15 +165,6 @@ public class GetSettlementChargebacksResponseBody extends RuntimeException {
      */
     public GetSettlementChargebacksResponseBody withDetail(String detail) {
         Utils.checkNotNull(detail, "detail");
-        this.detail = Optional.ofNullable(detail);
-        return this;
-    }
-
-    /**
-     * A detailed human-readable description of the error that occurred.
-     */
-    public GetSettlementChargebacksResponseBody withDetail(Optional<String> detail) {
-        Utils.checkNotNull(detail, "detail");
         this.detail = detail;
         return this;
     }
@@ -203,26 +174,11 @@ public class GetSettlementChargebacksResponseBody extends RuntimeException {
      */
     public GetSettlementChargebacksResponseBody withField(String field) {
         Utils.checkNotNull(field, "field");
-        this.field = JsonNullable.of(field);
-        return this;
-    }
-
-    /**
-     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
-     */
-    public GetSettlementChargebacksResponseBody withField(JsonNullable<String> field) {
-        Utils.checkNotNull(field, "field");
         this.field = field;
         return this;
     }
 
     public GetSettlementChargebacksResponseBody withLinks(GetSettlementChargebacksLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-    public GetSettlementChargebacksResponseBody withLinks(Optional<? extends GetSettlementChargebacksLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -289,15 +245,15 @@ public class GetSettlementChargebacksResponseBody extends RuntimeException {
     
     public final static class Builder {
  
-        private Optional<Long> status = Optional.empty();
+        private Long status;
  
-        private Optional<String> title = Optional.empty();
+        private String title;
  
-        private Optional<String> detail = Optional.empty();
+        private String detail;
  
-        private JsonNullable<String> field = JsonNullable.undefined();
+        private String field;
  
-        private Optional<? extends GetSettlementChargebacksLinks> links = Optional.empty();
+        private GetSettlementChargebacksLinks links;
  
         private Optional<? extends HttpResponse<InputStream>> rawResponse;
         
@@ -310,15 +266,6 @@ public class GetSettlementChargebacksResponseBody extends RuntimeException {
          */
         public Builder status(long status) {
             Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * The status code of the error message. This is always the same code as the status code of the HTTP message itself.
-         */
-        public Builder status(Optional<Long> status) {
-            Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
@@ -327,15 +274,6 @@ public class GetSettlementChargebacksResponseBody extends RuntimeException {
          * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not Found`.
          */
         public Builder title(String title) {
-            Utils.checkNotNull(title, "title");
-            this.title = Optional.ofNullable(title);
-            return this;
-        }
-
-        /**
-         * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not Found`.
-         */
-        public Builder title(Optional<String> title) {
             Utils.checkNotNull(title, "title");
             this.title = title;
             return this;
@@ -346,15 +284,6 @@ public class GetSettlementChargebacksResponseBody extends RuntimeException {
          */
         public Builder detail(String detail) {
             Utils.checkNotNull(detail, "detail");
-            this.detail = Optional.ofNullable(detail);
-            return this;
-        }
-
-        /**
-         * A detailed human-readable description of the error that occurred.
-         */
-        public Builder detail(Optional<String> detail) {
-            Utils.checkNotNull(detail, "detail");
             this.detail = detail;
             return this;
         }
@@ -364,26 +293,11 @@ public class GetSettlementChargebacksResponseBody extends RuntimeException {
          */
         public Builder field(String field) {
             Utils.checkNotNull(field, "field");
-            this.field = JsonNullable.of(field);
-            return this;
-        }
-
-        /**
-         * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
-         */
-        public Builder field(JsonNullable<String> field) {
-            Utils.checkNotNull(field, "field");
             this.field = field;
             return this;
         }
 
         public Builder links(GetSettlementChargebacksLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        public Builder links(Optional<? extends GetSettlementChargebacksLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

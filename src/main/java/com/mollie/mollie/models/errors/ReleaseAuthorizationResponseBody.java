@@ -18,7 +18,6 @@ import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Objects;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * ReleaseAuthorizationResponseBody
@@ -31,34 +30,23 @@ public class ReleaseAuthorizationResponseBody extends RuntimeException {
     /**
      * The status code of the error message. This is always the same code as the status code of the HTTP message itself.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<Long> status;
+    private long status;
 
     /**
      * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not Found`.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("title")
-    private Optional<String> title;
+    private String title;
 
     /**
      * A detailed human-readable description of the error that occurred.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("detail")
-    private Optional<String> detail;
+    private String detail;
 
-    /**
-     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("field")
-    private JsonNullable<String> field;
-
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends ReleaseAuthorizationLinks> links;
+    private ReleaseAuthorizationLinks links;
 
     /**
      * Raw HTTP response; suitable for custom response parsing
@@ -69,35 +57,36 @@ public class ReleaseAuthorizationResponseBody extends RuntimeException {
 
     @JsonCreator
     public ReleaseAuthorizationResponseBody(
-            @JsonProperty("status") Optional<Long> status,
-            @JsonProperty("title") Optional<String> title,
-            @JsonProperty("detail") Optional<String> detail,
-            @JsonProperty("field") JsonNullable<String> field,
-            @JsonProperty("_links") Optional<? extends ReleaseAuthorizationLinks> links,
+            @JsonProperty("status") long status,
+            @JsonProperty("title") String title,
+            @JsonProperty("detail") String detail,
+            @JsonProperty("_links") ReleaseAuthorizationLinks links,
             @JsonProperty("RawResponse") Optional<? extends HttpResponse<InputStream>> rawResponse) {
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(title, "title");
         Utils.checkNotNull(detail, "detail");
-        Utils.checkNotNull(field, "field");
         Utils.checkNotNull(links, "links");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.status = status;
         this.title = title;
         this.detail = detail;
-        this.field = field;
         this.links = links;
         this.rawResponse = rawResponse;
     }
     
-    public ReleaseAuthorizationResponseBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+    public ReleaseAuthorizationResponseBody(
+            long status,
+            String title,
+            String detail,
+            ReleaseAuthorizationLinks links) {
+        this(status, title, detail, links, Optional.empty());
     }
 
     /**
      * The status code of the error message. This is always the same code as the status code of the HTTP message itself.
      */
     @JsonIgnore
-    public Optional<Long> status() {
+    public long status() {
         return status;
     }
 
@@ -105,7 +94,7 @@ public class ReleaseAuthorizationResponseBody extends RuntimeException {
      * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not Found`.
      */
     @JsonIgnore
-    public Optional<String> title() {
+    public String title() {
         return title;
     }
 
@@ -113,22 +102,13 @@ public class ReleaseAuthorizationResponseBody extends RuntimeException {
      * A detailed human-readable description of the error that occurred.
      */
     @JsonIgnore
-    public Optional<String> detail() {
+    public String detail() {
         return detail;
     }
 
-    /**
-     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
-     */
     @JsonIgnore
-    public JsonNullable<String> field() {
-        return field;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<ReleaseAuthorizationLinks> links() {
-        return (Optional<ReleaseAuthorizationLinks>) links;
+    public ReleaseAuthorizationLinks links() {
+        return links;
     }
 
     /**
@@ -149,15 +129,6 @@ public class ReleaseAuthorizationResponseBody extends RuntimeException {
      */
     public ReleaseAuthorizationResponseBody withStatus(long status) {
         Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-    /**
-     * The status code of the error message. This is always the same code as the status code of the HTTP message itself.
-     */
-    public ReleaseAuthorizationResponseBody withStatus(Optional<Long> status) {
-        Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
@@ -166,15 +137,6 @@ public class ReleaseAuthorizationResponseBody extends RuntimeException {
      * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not Found`.
      */
     public ReleaseAuthorizationResponseBody withTitle(String title) {
-        Utils.checkNotNull(title, "title");
-        this.title = Optional.ofNullable(title);
-        return this;
-    }
-
-    /**
-     * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not Found`.
-     */
-    public ReleaseAuthorizationResponseBody withTitle(Optional<String> title) {
         Utils.checkNotNull(title, "title");
         this.title = title;
         return this;
@@ -185,44 +147,11 @@ public class ReleaseAuthorizationResponseBody extends RuntimeException {
      */
     public ReleaseAuthorizationResponseBody withDetail(String detail) {
         Utils.checkNotNull(detail, "detail");
-        this.detail = Optional.ofNullable(detail);
-        return this;
-    }
-
-    /**
-     * A detailed human-readable description of the error that occurred.
-     */
-    public ReleaseAuthorizationResponseBody withDetail(Optional<String> detail) {
-        Utils.checkNotNull(detail, "detail");
         this.detail = detail;
         return this;
     }
 
-    /**
-     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
-     */
-    public ReleaseAuthorizationResponseBody withField(String field) {
-        Utils.checkNotNull(field, "field");
-        this.field = JsonNullable.of(field);
-        return this;
-    }
-
-    /**
-     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
-     */
-    public ReleaseAuthorizationResponseBody withField(JsonNullable<String> field) {
-        Utils.checkNotNull(field, "field");
-        this.field = field;
-        return this;
-    }
-
     public ReleaseAuthorizationResponseBody withLinks(ReleaseAuthorizationLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-    public ReleaseAuthorizationResponseBody withLinks(Optional<? extends ReleaseAuthorizationLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -260,7 +189,6 @@ public class ReleaseAuthorizationResponseBody extends RuntimeException {
             Objects.deepEquals(this.status, other.status) &&
             Objects.deepEquals(this.title, other.title) &&
             Objects.deepEquals(this.detail, other.detail) &&
-            Objects.deepEquals(this.field, other.field) &&
             Objects.deepEquals(this.links, other.links) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
@@ -271,7 +199,6 @@ public class ReleaseAuthorizationResponseBody extends RuntimeException {
             status,
             title,
             detail,
-            field,
             links,
             rawResponse);
     }
@@ -282,22 +209,19 @@ public class ReleaseAuthorizationResponseBody extends RuntimeException {
                 "status", status,
                 "title", title,
                 "detail", detail,
-                "field", field,
                 "links", links,
                 "rawResponse", rawResponse);
     }
     
     public final static class Builder {
  
-        private Optional<Long> status = Optional.empty();
+        private Long status;
  
-        private Optional<String> title = Optional.empty();
+        private String title;
  
-        private Optional<String> detail = Optional.empty();
+        private String detail;
  
-        private JsonNullable<String> field = JsonNullable.undefined();
- 
-        private Optional<? extends ReleaseAuthorizationLinks> links = Optional.empty();
+        private ReleaseAuthorizationLinks links;
  
         private Optional<? extends HttpResponse<InputStream>> rawResponse;
         
@@ -310,15 +234,6 @@ public class ReleaseAuthorizationResponseBody extends RuntimeException {
          */
         public Builder status(long status) {
             Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * The status code of the error message. This is always the same code as the status code of the HTTP message itself.
-         */
-        public Builder status(Optional<Long> status) {
-            Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
@@ -327,15 +242,6 @@ public class ReleaseAuthorizationResponseBody extends RuntimeException {
          * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not Found`.
          */
         public Builder title(String title) {
-            Utils.checkNotNull(title, "title");
-            this.title = Optional.ofNullable(title);
-            return this;
-        }
-
-        /**
-         * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not Found`.
-         */
-        public Builder title(Optional<String> title) {
             Utils.checkNotNull(title, "title");
             this.title = title;
             return this;
@@ -346,44 +252,11 @@ public class ReleaseAuthorizationResponseBody extends RuntimeException {
          */
         public Builder detail(String detail) {
             Utils.checkNotNull(detail, "detail");
-            this.detail = Optional.ofNullable(detail);
-            return this;
-        }
-
-        /**
-         * A detailed human-readable description of the error that occurred.
-         */
-        public Builder detail(Optional<String> detail) {
-            Utils.checkNotNull(detail, "detail");
             this.detail = detail;
             return this;
         }
 
-        /**
-         * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
-         */
-        public Builder field(String field) {
-            Utils.checkNotNull(field, "field");
-            this.field = JsonNullable.of(field);
-            return this;
-        }
-
-        /**
-         * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
-         */
-        public Builder field(JsonNullable<String> field) {
-            Utils.checkNotNull(field, "field");
-            this.field = field;
-            return this;
-        }
-
         public Builder links(ReleaseAuthorizationLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        public Builder links(Optional<? extends ReleaseAuthorizationLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;
@@ -412,7 +285,6 @@ public class ReleaseAuthorizationResponseBody extends RuntimeException {
                 status,
                 title,
                 detail,
-                field,
                 links,
                 rawResponse);
         }

@@ -167,7 +167,7 @@ public class SDKMethodInterfaces {
         GetCaptureResponse get(
             String paymentId,
             String captureId,
-            Optional<? extends GetCaptureQueryParamInclude> include,
+            Optional<? extends GetCaptureQueryParamEmbed> embed,
             JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception;
     }

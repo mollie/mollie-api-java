@@ -5,43 +5,33 @@ package com.mollie.mollie.models.errors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Objects;
-import java.util.Optional;
 
 public class ListBalanceTransactionsBalancesLinks {
 
     /**
      * The URL to the generic Mollie API error handling guide.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends ListBalanceTransactionsBalancesDocumentation> documentation;
+    private ListBalanceTransactionsBalancesDocumentation documentation;
 
     @JsonCreator
     public ListBalanceTransactionsBalancesLinks(
-            @JsonProperty("documentation") Optional<? extends ListBalanceTransactionsBalancesDocumentation> documentation) {
+            @JsonProperty("documentation") ListBalanceTransactionsBalancesDocumentation documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
-    }
-    
-    public ListBalanceTransactionsBalancesLinks() {
-        this(Optional.empty());
     }
 
     /**
      * The URL to the generic Mollie API error handling guide.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListBalanceTransactionsBalancesDocumentation> documentation() {
-        return (Optional<ListBalanceTransactionsBalancesDocumentation>) documentation;
+    public ListBalanceTransactionsBalancesDocumentation documentation() {
+        return documentation;
     }
 
     public final static Builder builder() {
@@ -52,15 +42,6 @@ public class ListBalanceTransactionsBalancesLinks {
      * The URL to the generic Mollie API error handling guide.
      */
     public ListBalanceTransactionsBalancesLinks withDocumentation(ListBalanceTransactionsBalancesDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-    /**
-     * The URL to the generic Mollie API error handling guide.
-     */
-    public ListBalanceTransactionsBalancesLinks withDocumentation(Optional<? extends ListBalanceTransactionsBalancesDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -94,7 +75,7 @@ public class ListBalanceTransactionsBalancesLinks {
     
     public final static class Builder {
  
-        private Optional<? extends ListBalanceTransactionsBalancesDocumentation> documentation = Optional.empty();
+        private ListBalanceTransactionsBalancesDocumentation documentation;
         
         private Builder() {
           // force use of static builder() method
@@ -104,15 +85,6 @@ public class ListBalanceTransactionsBalancesLinks {
          * The URL to the generic Mollie API error handling guide.
          */
         public Builder documentation(ListBalanceTransactionsBalancesDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * The URL to the generic Mollie API error handling guide.
-         */
-        public Builder documentation(Optional<? extends ListBalanceTransactionsBalancesDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

@@ -5,43 +5,33 @@ package com.mollie.mollie.models.errors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Objects;
-import java.util.Optional;
 
 public class ListRefundsRefundsLinks {
 
     /**
      * The URL to the generic Mollie API error handling guide.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends ListRefundsRefundsDocumentation> documentation;
+    private ListRefundsRefundsDocumentation documentation;
 
     @JsonCreator
     public ListRefundsRefundsLinks(
-            @JsonProperty("documentation") Optional<? extends ListRefundsRefundsDocumentation> documentation) {
+            @JsonProperty("documentation") ListRefundsRefundsDocumentation documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
-    }
-    
-    public ListRefundsRefundsLinks() {
-        this(Optional.empty());
     }
 
     /**
      * The URL to the generic Mollie API error handling guide.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListRefundsRefundsDocumentation> documentation() {
-        return (Optional<ListRefundsRefundsDocumentation>) documentation;
+    public ListRefundsRefundsDocumentation documentation() {
+        return documentation;
     }
 
     public final static Builder builder() {
@@ -52,15 +42,6 @@ public class ListRefundsRefundsLinks {
      * The URL to the generic Mollie API error handling guide.
      */
     public ListRefundsRefundsLinks withDocumentation(ListRefundsRefundsDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-    /**
-     * The URL to the generic Mollie API error handling guide.
-     */
-    public ListRefundsRefundsLinks withDocumentation(Optional<? extends ListRefundsRefundsDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -94,7 +75,7 @@ public class ListRefundsRefundsLinks {
     
     public final static class Builder {
  
-        private Optional<? extends ListRefundsRefundsDocumentation> documentation = Optional.empty();
+        private ListRefundsRefundsDocumentation documentation;
         
         private Builder() {
           // force use of static builder() method
@@ -104,15 +85,6 @@ public class ListRefundsRefundsLinks {
          * The URL to the generic Mollie API error handling guide.
          */
         public Builder documentation(ListRefundsRefundsDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * The URL to the generic Mollie API error handling guide.
-         */
-        public Builder documentation(Optional<? extends ListRefundsRefundsDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

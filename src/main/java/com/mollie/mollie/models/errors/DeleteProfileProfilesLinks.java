@@ -5,43 +5,33 @@ package com.mollie.mollie.models.errors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Objects;
-import java.util.Optional;
 
 public class DeleteProfileProfilesLinks {
 
     /**
      * The URL to the generic Mollie API error handling guide.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends DeleteProfileProfilesDocumentation> documentation;
+    private DeleteProfileProfilesDocumentation documentation;
 
     @JsonCreator
     public DeleteProfileProfilesLinks(
-            @JsonProperty("documentation") Optional<? extends DeleteProfileProfilesDocumentation> documentation) {
+            @JsonProperty("documentation") DeleteProfileProfilesDocumentation documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
-    }
-    
-    public DeleteProfileProfilesLinks() {
-        this(Optional.empty());
     }
 
     /**
      * The URL to the generic Mollie API error handling guide.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<DeleteProfileProfilesDocumentation> documentation() {
-        return (Optional<DeleteProfileProfilesDocumentation>) documentation;
+    public DeleteProfileProfilesDocumentation documentation() {
+        return documentation;
     }
 
     public final static Builder builder() {
@@ -52,15 +42,6 @@ public class DeleteProfileProfilesLinks {
      * The URL to the generic Mollie API error handling guide.
      */
     public DeleteProfileProfilesLinks withDocumentation(DeleteProfileProfilesDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-    /**
-     * The URL to the generic Mollie API error handling guide.
-     */
-    public DeleteProfileProfilesLinks withDocumentation(Optional<? extends DeleteProfileProfilesDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -94,7 +75,7 @@ public class DeleteProfileProfilesLinks {
     
     public final static class Builder {
  
-        private Optional<? extends DeleteProfileProfilesDocumentation> documentation = Optional.empty();
+        private DeleteProfileProfilesDocumentation documentation;
         
         private Builder() {
           // force use of static builder() method
@@ -104,15 +85,6 @@ public class DeleteProfileProfilesLinks {
          * The URL to the generic Mollie API error handling guide.
          */
         public Builder documentation(DeleteProfileProfilesDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * The URL to the generic Mollie API error handling guide.
-         */
-        public Builder documentation(Optional<? extends DeleteProfileProfilesDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;
