@@ -54,14 +54,14 @@ public class Application {
 
         CreateClientLinkRequestBody req = CreateClientLinkRequestBody.builder()
                 .owner(Owner.builder()
-                    .email("Loyal79@yahoo.com")
+                    .email("Hermina_Johnston15@hotmail.com")
                     .givenName("<value>")
                     .familyName("<value>")
                     .locale("en_US")
                     .build())
                 .name("<value>")
                 .address(CreateClientLinkAddress.builder()
-                    .country("Afghanistan")
+                    .country("Panama")
                     .build())
                 .build();
 

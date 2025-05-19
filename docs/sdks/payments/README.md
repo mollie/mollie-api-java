@@ -138,6 +138,44 @@ public class Application {
                                 Categories.ECO))
                             .imageUrl("https://...")
                             .productUrl("https://...")
+                            .build(),
+                        Lines.builder()
+                            .description("LEGO 4440 Forest Police Station")
+                            .quantity(1L)
+                            .unitPrice(UnitPrice.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .totalAmount(TotalAmount.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .quantityUnit("pcs")
+                            .discountAmount(DiscountAmount.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .recurring(Recurring.builder()
+                                .interval("12 months")
+                                .description("Gym subscription")
+                                .amount(CreatePaymentAmount.builder()
+                                    .currency("EUR")
+                                    .value("10.00")
+                                    .build())
+                                .times(1L)
+                                .startDate("2024-12-12")
+                                .build())
+                            .vatRate("21.00")
+                            .vatAmount(VatAmount.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .sku("9780241661628")
+                            .categories(List.of(
+                                Categories.MEAL,
+                                Categories.ECO))
+                            .imageUrl("https://...")
+                            .productUrl("https://...")
                             .build()))
                     .billingAddress(BillingAddress.builder()
                         .title("Mr.")
@@ -188,7 +226,7 @@ public class Application {
                                 .build())
                             .destination(Destination.builder()
                                 .type("organization")
-                                .organizationId("org_12345678")
+                                .organizationId("org_1234567")
                                 .build())
                             .releaseDate("2024-12-12")
                             .links(Links.builder()
@@ -209,7 +247,7 @@ public class Application {
                                 .build())
                             .destination(Destination.builder()
                                 .type("organization")
-                                .organizationId("org_12345678")
+                                .organizationId("org_1234567")
                                 .build())
                             .releaseDate("2024-12-12")
                             .links(Links.builder()
@@ -391,7 +429,7 @@ public class Application {
 
 ## update
 
-Certain details of an existing payment can be updated. For an in-depth explanation of each parameter, see [Create payment](create-payment).
+Certain details of an existing payment can be updated.
 
 Updating the payment details will not result in a webhook call.
 
@@ -430,10 +468,41 @@ public class Application {
                     .redirectUrl("https://example.org/redirect")
                     .cancelUrl("https://example.org/cancel")
                     .webhookUrl("https://example.org/webhooks")
-                    .method(Method.IDEAL)
+                    .method("ideal")
                     .locale("en_US")
+                    .dueDate("2025-01-01")
                     .restrictPaymentMethodsToCountry("NL")
                     .testmode(false)
+                    .issuer("ideal_INGBNL2A")
+                    .billingAddress(UpdatePaymentBillingAddress.builder()
+                        .title("Mr.")
+                        .givenName("Piet")
+                        .familyName("Mondriaan")
+                        .organizationName("Mollie B.V.")
+                        .streetAndNumber("Keizersgracht 126")
+                        .streetAdditional("Apt. 1")
+                        .postalCode("1234AB")
+                        .email("piet@example.org")
+                        .phone("31208202070")
+                        .city("Amsterdam")
+                        .region("Noord-Holland")
+                        .country("NL")
+                        .build())
+                    .shippingAddress(UpdatePaymentShippingAddress.builder()
+                        .title("Mr.")
+                        .givenName("Piet")
+                        .familyName("Mondriaan")
+                        .organizationName("Mollie B.V.")
+                        .streetAndNumber("Keizersgracht 126")
+                        .streetAdditional("Apt. 1")
+                        .postalCode("1234AB")
+                        .email("piet@example.org")
+                        .phone("31208202070")
+                        .city("Amsterdam")
+                        .region("Noord-Holland")
+                        .country("NL")
+                        .build())
+                    .billingEmail("test@example.com")
                     .build())
                 .call();
 
@@ -553,6 +622,7 @@ import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ReleaseAuthorizationPaymentsResponseBody;
 import com.mollie.mollie.models.errors.ReleaseAuthorizationResponseBody;
+import com.mollie.mollie.models.operations.ReleaseAuthorizationRequestBody;
 import com.mollie.mollie.models.operations.ReleaseAuthorizationResponse;
 import java.lang.Exception;
 
@@ -568,7 +638,10 @@ public class Application {
 
         ReleaseAuthorizationResponse res = sdk.payments().releaseAuthorization()
                 .paymentId("tr_5B8cwPMGnU")
-                .testmode(false)
+                .requestBody(ReleaseAuthorizationRequestBody.builder()
+                    .profileId("pfl_5B8cwPMGnU")
+                    .testmode(false)
+                    .build())
                 .call();
 
         if (res.any().isPresent()) {
@@ -580,10 +653,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `paymentId`                                                                                                                                                                                                                                                                                                                                                                            | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related payment.                                                                                                                                                                                                                                                                                                                                                 | tr_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                          |
-| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
+| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              | Example                                                                                                  |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `paymentId`                                                                                              | *String*                                                                                                 | :heavy_check_mark:                                                                                       | Provide the ID of the related payment.                                                                   | tr_5B8cwPMGnU                                                                                            |
+| `requestBody`                                                                                            | [Optional\<ReleaseAuthorizationRequestBody>](../../models/operations/ReleaseAuthorizationRequestBody.md) | :heavy_minus_sign:                                                                                       | N/A                                                                                                      |                                                                                                          |
 
 ### Response
 

@@ -14,15 +14,6 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-/**
- * UpdatePaymentBillingAddress
- * 
- * <p>The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
- * 
- * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
- * 
- * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
- */
 public class UpdatePaymentBillingAddress {
 
     /**

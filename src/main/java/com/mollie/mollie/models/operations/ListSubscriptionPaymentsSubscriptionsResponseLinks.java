@@ -5,15 +5,11 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Objects;
-import java.util.Optional;
 
 /**
  * ListSubscriptionPaymentsSubscriptionsResponseLinks
@@ -25,47 +21,39 @@ public class ListSubscriptionPaymentsSubscriptionsResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends ListSubscriptionPaymentsSubscriptionsResponseSelf> self;
+    private ListSubscriptionPaymentsSubscriptionsResponseSelf self;
 
     /**
      * The API resource URL of the [payment](get-payment) that belong to this route.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment")
-    private Optional<? extends ListSubscriptionPaymentsPayment> payment;
+    private ListSubscriptionPaymentsPayment payment;
 
     @JsonCreator
     public ListSubscriptionPaymentsSubscriptionsResponseLinks(
-            @JsonProperty("self") Optional<? extends ListSubscriptionPaymentsSubscriptionsResponseSelf> self,
-            @JsonProperty("payment") Optional<? extends ListSubscriptionPaymentsPayment> payment) {
+            @JsonProperty("self") ListSubscriptionPaymentsSubscriptionsResponseSelf self,
+            @JsonProperty("payment") ListSubscriptionPaymentsPayment payment) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(payment, "payment");
         this.self = self;
         this.payment = payment;
     }
-    
-    public ListSubscriptionPaymentsSubscriptionsResponseLinks() {
-        this(Optional.empty(), Optional.empty());
-    }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListSubscriptionPaymentsSubscriptionsResponseSelf> self() {
-        return (Optional<ListSubscriptionPaymentsSubscriptionsResponseSelf>) self;
+    public ListSubscriptionPaymentsSubscriptionsResponseSelf self() {
+        return self;
     }
 
     /**
      * The API resource URL of the [payment](get-payment) that belong to this route.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListSubscriptionPaymentsPayment> payment() {
-        return (Optional<ListSubscriptionPaymentsPayment>) payment;
+    public ListSubscriptionPaymentsPayment payment() {
+        return payment;
     }
 
     public final static Builder builder() {
@@ -77,15 +65,6 @@ public class ListSubscriptionPaymentsSubscriptionsResponseLinks {
      */
     public ListSubscriptionPaymentsSubscriptionsResponseLinks withSelf(ListSubscriptionPaymentsSubscriptionsResponseSelf self) {
         Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListSubscriptionPaymentsSubscriptionsResponseLinks withSelf(Optional<? extends ListSubscriptionPaymentsSubscriptionsResponseSelf> self) {
-        Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
@@ -94,15 +73,6 @@ public class ListSubscriptionPaymentsSubscriptionsResponseLinks {
      * The API resource URL of the [payment](get-payment) that belong to this route.
      */
     public ListSubscriptionPaymentsSubscriptionsResponseLinks withPayment(ListSubscriptionPaymentsPayment payment) {
-        Utils.checkNotNull(payment, "payment");
-        this.payment = Optional.ofNullable(payment);
-        return this;
-    }
-
-    /**
-     * The API resource URL of the [payment](get-payment) that belong to this route.
-     */
-    public ListSubscriptionPaymentsSubscriptionsResponseLinks withPayment(Optional<? extends ListSubscriptionPaymentsPayment> payment) {
         Utils.checkNotNull(payment, "payment");
         this.payment = payment;
         return this;
@@ -139,9 +109,9 @@ public class ListSubscriptionPaymentsSubscriptionsResponseLinks {
     
     public final static class Builder {
  
-        private Optional<? extends ListSubscriptionPaymentsSubscriptionsResponseSelf> self = Optional.empty();
+        private ListSubscriptionPaymentsSubscriptionsResponseSelf self;
  
-        private Optional<? extends ListSubscriptionPaymentsPayment> payment = Optional.empty();
+        private ListSubscriptionPaymentsPayment payment;
         
         private Builder() {
           // force use of static builder() method
@@ -152,15 +122,6 @@ public class ListSubscriptionPaymentsSubscriptionsResponseLinks {
          */
         public Builder self(ListSubscriptionPaymentsSubscriptionsResponseSelf self) {
             Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder self(Optional<? extends ListSubscriptionPaymentsSubscriptionsResponseSelf> self) {
-            Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
         }
@@ -169,15 +130,6 @@ public class ListSubscriptionPaymentsSubscriptionsResponseLinks {
          * The API resource URL of the [payment](get-payment) that belong to this route.
          */
         public Builder payment(ListSubscriptionPaymentsPayment payment) {
-            Utils.checkNotNull(payment, "payment");
-            this.payment = Optional.ofNullable(payment);
-            return this;
-        }
-
-        /**
-         * The API resource URL of the [payment](get-payment) that belong to this route.
-         */
-        public Builder payment(Optional<? extends ListSubscriptionPaymentsPayment> payment) {
             Utils.checkNotNull(payment, "payment");
             this.payment = payment;
             return this;

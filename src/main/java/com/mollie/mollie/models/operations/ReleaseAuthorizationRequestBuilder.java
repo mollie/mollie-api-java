@@ -6,16 +6,14 @@ package com.mollie.mollie.models.operations;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ReleaseAuthorizationRequestBuilder {
 
     private String paymentId;
-    private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+    private Optional<? extends ReleaseAuthorizationRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallReleaseAuthorization sdk;
 
@@ -28,16 +26,16 @@ public class ReleaseAuthorizationRequestBuilder {
         this.paymentId = paymentId;
         return this;
     }
-
-    public ReleaseAuthorizationRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
+                
+    public ReleaseAuthorizationRequestBuilder requestBody(ReleaseAuthorizationRequestBody requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = Optional.of(requestBody);
         return this;
     }
 
-    public ReleaseAuthorizationRequestBuilder testmode(JsonNullable<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
+    public ReleaseAuthorizationRequestBuilder requestBody(Optional<? extends ReleaseAuthorizationRequestBody> requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
         return this;
     }
                 
@@ -59,7 +57,7 @@ public class ReleaseAuthorizationRequestBuilder {
                                                     .build());
         return sdk.releaseAuthorization(
             paymentId,
-            testmode,
+            requestBody,
             options);
     }
 }

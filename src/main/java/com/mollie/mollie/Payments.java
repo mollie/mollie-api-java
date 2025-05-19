@@ -31,6 +31,7 @@ import com.mollie.mollie.models.operations.ListPaymentsResponse;
 import com.mollie.mollie.models.operations.ListPaymentsResponseBody;
 import com.mollie.mollie.models.operations.QueryParamInclude;
 import com.mollie.mollie.models.operations.ReleaseAuthorizationRequest;
+import com.mollie.mollie.models.operations.ReleaseAuthorizationRequestBody;
 import com.mollie.mollie.models.operations.ReleaseAuthorizationRequestBuilder;
 import com.mollie.mollie.models.operations.ReleaseAuthorizationResponse;
 import com.mollie.mollie.models.operations.SDKMethodInterfaces.*;
@@ -799,7 +800,7 @@ public class Payments implements
     /**
      * Update payment
      * 
-     * <p>Certain details of an existing payment can be updated. For an in-depth explanation of each parameter, see [Create payment](create-payment).
+     * <p>Certain details of an existing payment can be updated.
      * 
      * <p>Updating the payment details will not result in a webhook call.
      * 
@@ -818,7 +819,7 @@ public class Payments implements
     /**
      * Update payment
      * 
-     * <p>Certain details of an existing payment can be updated. For an in-depth explanation of each parameter, see [Create payment](create-payment).
+     * <p>Certain details of an existing payment can be updated.
      * 
      * <p>Updating the payment details will not result in a webhook call.
      * 
@@ -840,7 +841,7 @@ public class Payments implements
     /**
      * Update payment
      * 
-     * <p>Certain details of an existing payment can be updated. For an in-depth explanation of each parameter, see [Create payment](create-payment).
+     * <p>Certain details of an existing payment can be updated.
      * 
      * <p>Updating the payment details will not result in a webhook call.
      * 
@@ -1331,7 +1332,7 @@ public class Payments implements
      */
     public ReleaseAuthorizationResponse releaseAuthorization(
             String paymentId) throws Exception {
-        return releaseAuthorization(paymentId, JsonNullable.undefined(), Optional.empty());
+        return releaseAuthorization(paymentId, Optional.empty(), Optional.empty());
     }
     
     /**
@@ -1350,16 +1351,14 @@ public class Payments implements
      * &gt; [Access token with **payments.write**](/reference/authentication)
      * 
      * @param paymentId Provide the ID of the related payment.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param requestBody 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ReleaseAuthorizationResponse releaseAuthorization(
             String paymentId,
-            JsonNullable<Boolean> testmode,
+            Optional<? extends ReleaseAuthorizationRequestBody> requestBody,
             Optional<Options> options) throws Exception {
 
         if (options.isPresent()) {
@@ -1369,7 +1368,7 @@ public class Payments implements
             ReleaseAuthorizationRequest
                 .builder()
                 .paymentId(paymentId)
-                .testmode(testmode)
+                .requestBody(requestBody)
                 .build();
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
@@ -1380,14 +1379,19 @@ public class Payments implements
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Object>() {});
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/hal+json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                ReleaseAuthorizationRequest.class,
-                request, 
-                null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  

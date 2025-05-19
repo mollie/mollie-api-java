@@ -28,24 +28,34 @@ public class UpdatePaymentRequestBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private JsonNullable<String> description;
+    private Optional<String> description;
 
     /**
-     * Can be updated while the payment is in an `open` state.
+     * The URL your customer will be redirected to after the payment process.
+     * 
+     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the right page referencing the order when your customer returns.
+     * 
+     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("redirectUrl")
-    private JsonNullable<String> redirectUrl;
+    private Optional<String> redirectUrl;
 
     /**
-     * Can be updated while the payment is in an `open` state.
+     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not provided, the customer will be redirected to the `redirectUrl` instead — see above.
+     * 
+     * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle payment cancellations.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cancelUrl")
     private JsonNullable<String> cancelUrl;
 
     /**
-     * Can be updated while the payment is in an `open` state.
+     * The webhook URL where we will send payment status updates to.
+     * 
+     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to your payment.
+     * 
+     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your local machine.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("webhookUrl")
@@ -59,11 +69,15 @@ public class UpdatePaymentRequestBody {
     private JsonNullable<? extends UpdatePaymentMetadata> metadata;
 
     /**
-     * Can be updated while no payment method has been chosen yet.
+     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment method and your customer will skip the selection screen and is sent directly to the chosen payment method. The parameter enables you to fully integrate the payment method selection into your website.
+     * 
+     * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen but will only show the methods specified in the array. For example, you can use this functionality to only show payment methods from a specific country to your customer `['bancontact', 'belfius']`.
+     * 
+     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("method")
-    private JsonNullable<? extends Method> method;
+    private JsonNullable<String> method;
 
     /**
      * Allows you to preset the language to be used.
@@ -72,7 +86,7 @@ public class UpdatePaymentRequestBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("locale")
-    private JsonNullable<String> locale;
+    private Optional<String> locale;
 
     /**
      * The date by which the payment should be completed in `YYYY-MM-DD` format
@@ -81,31 +95,73 @@ public class UpdatePaymentRequestBody {
     @JsonProperty("dueDate")
     private Optional<String> dueDate;
 
+    /**
+     * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT rates you have used for the order to ensure your customer's country matches the VAT country.
+     * 
+     * <p>Use this parameter to restrict the payment methods available to your customer to those from a single country.
+     * 
+     * <p>If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
+     * 
+     * <p>The field expects a country code in ISO 3166-1 alpha-2 format, for example `NL`.
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("restrictPaymentMethodsToCountry")
     private JsonNullable<String> restrictPaymentMethodsToCountry;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("testmode")
     private JsonNullable<Boolean> testmode;
 
+    /**
+     * **Only relevant for iDEAL, KBC/CBC, gift card, and voucher payments.**
+     * 
+     * <p>**⚠️ With the introduction of iDEAL 2 in 2025, this field will be ignored for iDEAL payments. For more information on the migration, refer to our [help center](https://help.mollie.com/hc/articles/19100313768338-iDEAL-2-0).**
+     * 
+     * <p>Some payment methods are a network of connected banks or card issuers. In these cases, after selecting the payment method, the customer may still need to select the appropriate issuer before the payment can proceed.
+     * 
+     * <p>We provide hosted issuer selection screens, but these screens can be skipped by providing the `issuer` via the API up front.
+     * 
+     * <p>The full list of issuers for a specific method can be retrieved via the Methods API by using the optional `issuers` include.
+     * 
+     * <p>A valid issuer for iDEAL is for example `ideal_INGBNL2A` (for ING Bank).
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("issuer")
+    private JsonNullable<String> issuer;
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("billingAddress")
+    private Optional<? extends UpdatePaymentBillingAddress> billingAddress;
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("shippingAddress")
+    private Optional<? extends UpdatePaymentShippingAddress> shippingAddress;
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("billingEmail")
+    private Optional<String> billingEmail;
+
     @JsonCreator
     public UpdatePaymentRequestBody(
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("redirectUrl") JsonNullable<String> redirectUrl,
+            @JsonProperty("description") Optional<String> description,
+            @JsonProperty("redirectUrl") Optional<String> redirectUrl,
             @JsonProperty("cancelUrl") JsonNullable<String> cancelUrl,
             @JsonProperty("webhookUrl") JsonNullable<String> webhookUrl,
             @JsonProperty("metadata") JsonNullable<? extends UpdatePaymentMetadata> metadata,
-            @JsonProperty("method") JsonNullable<? extends Method> method,
-            @JsonProperty("locale") JsonNullable<String> locale,
+            @JsonProperty("method") JsonNullable<String> method,
+            @JsonProperty("locale") Optional<String> locale,
             @JsonProperty("dueDate") Optional<String> dueDate,
             @JsonProperty("restrictPaymentMethodsToCountry") JsonNullable<String> restrictPaymentMethodsToCountry,
-            @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
+            @JsonProperty("testmode") JsonNullable<Boolean> testmode,
+            @JsonProperty("issuer") JsonNullable<String> issuer,
+            @JsonProperty("billingAddress") Optional<? extends UpdatePaymentBillingAddress> billingAddress,
+            @JsonProperty("shippingAddress") Optional<? extends UpdatePaymentShippingAddress> shippingAddress,
+            @JsonProperty("billingEmail") Optional<String> billingEmail) {
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(redirectUrl, "redirectUrl");
         Utils.checkNotNull(cancelUrl, "cancelUrl");
@@ -116,6 +172,10 @@ public class UpdatePaymentRequestBody {
         Utils.checkNotNull(dueDate, "dueDate");
         Utils.checkNotNull(restrictPaymentMethodsToCountry, "restrictPaymentMethodsToCountry");
         Utils.checkNotNull(testmode, "testmode");
+        Utils.checkNotNull(issuer, "issuer");
+        Utils.checkNotNull(billingAddress, "billingAddress");
+        Utils.checkNotNull(shippingAddress, "shippingAddress");
+        Utils.checkNotNull(billingEmail, "billingEmail");
         this.description = description;
         this.redirectUrl = redirectUrl;
         this.cancelUrl = cancelUrl;
@@ -126,10 +186,14 @@ public class UpdatePaymentRequestBody {
         this.dueDate = dueDate;
         this.restrictPaymentMethodsToCountry = restrictPaymentMethodsToCountry;
         this.testmode = testmode;
+        this.issuer = issuer;
+        this.billingAddress = billingAddress;
+        this.shippingAddress = shippingAddress;
+        this.billingEmail = billingEmail;
     }
     
     public UpdatePaymentRequestBody() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -140,20 +204,26 @@ public class UpdatePaymentRequestBody {
      * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255 characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
      */
     @JsonIgnore
-    public JsonNullable<String> description() {
+    public Optional<String> description() {
         return description;
     }
 
     /**
-     * Can be updated while the payment is in an `open` state.
+     * The URL your customer will be redirected to after the payment process.
+     * 
+     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the right page referencing the order when your customer returns.
+     * 
+     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
      */
     @JsonIgnore
-    public JsonNullable<String> redirectUrl() {
+    public Optional<String> redirectUrl() {
         return redirectUrl;
     }
 
     /**
-     * Can be updated while the payment is in an `open` state.
+     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not provided, the customer will be redirected to the `redirectUrl` instead — see above.
+     * 
+     * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle payment cancellations.
      */
     @JsonIgnore
     public JsonNullable<String> cancelUrl() {
@@ -161,7 +231,11 @@ public class UpdatePaymentRequestBody {
     }
 
     /**
-     * Can be updated while the payment is in an `open` state.
+     * The webhook URL where we will send payment status updates to.
+     * 
+     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to your payment.
+     * 
+     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your local machine.
      */
     @JsonIgnore
     public JsonNullable<String> webhookUrl() {
@@ -178,12 +252,15 @@ public class UpdatePaymentRequestBody {
     }
 
     /**
-     * Can be updated while no payment method has been chosen yet.
+     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment method and your customer will skip the selection screen and is sent directly to the chosen payment method. The parameter enables you to fully integrate the payment method selection into your website.
+     * 
+     * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen but will only show the methods specified in the array. For example, you can use this functionality to only show payment methods from a specific country to your customer `['bancontact', 'belfius']`.
+     * 
+     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Method> method() {
-        return (JsonNullable<Method>) method;
+    public JsonNullable<String> method() {
+        return method;
     }
 
     /**
@@ -192,7 +269,7 @@ public class UpdatePaymentRequestBody {
      * <p>Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
      */
     @JsonIgnore
-    public JsonNullable<String> locale() {
+    public Optional<String> locale() {
         return locale;
     }
 
@@ -204,19 +281,63 @@ public class UpdatePaymentRequestBody {
         return dueDate;
     }
 
+    /**
+     * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT rates you have used for the order to ensure your customer's country matches the VAT country.
+     * 
+     * <p>Use this parameter to restrict the payment methods available to your customer to those from a single country.
+     * 
+     * <p>If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
+     * 
+     * <p>The field expects a country code in ISO 3166-1 alpha-2 format, for example `NL`.
+     */
     @JsonIgnore
     public JsonNullable<String> restrictPaymentMethodsToCountry() {
         return restrictPaymentMethodsToCountry;
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      */
     @JsonIgnore
     public JsonNullable<Boolean> testmode() {
         return testmode;
+    }
+
+    /**
+     * **Only relevant for iDEAL, KBC/CBC, gift card, and voucher payments.**
+     * 
+     * <p>**⚠️ With the introduction of iDEAL 2 in 2025, this field will be ignored for iDEAL payments. For more information on the migration, refer to our [help center](https://help.mollie.com/hc/articles/19100313768338-iDEAL-2-0).**
+     * 
+     * <p>Some payment methods are a network of connected banks or card issuers. In these cases, after selecting the payment method, the customer may still need to select the appropriate issuer before the payment can proceed.
+     * 
+     * <p>We provide hosted issuer selection screens, but these screens can be skipped by providing the `issuer` via the API up front.
+     * 
+     * <p>The full list of issuers for a specific method can be retrieved via the Methods API by using the optional `issuers` include.
+     * 
+     * <p>A valid issuer for iDEAL is for example `ideal_INGBNL2A` (for ING Bank).
+     */
+    @JsonIgnore
+    public JsonNullable<String> issuer() {
+        return issuer;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<UpdatePaymentBillingAddress> billingAddress() {
+        return (Optional<UpdatePaymentBillingAddress>) billingAddress;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<UpdatePaymentShippingAddress> shippingAddress() {
+        return (Optional<UpdatePaymentShippingAddress>) shippingAddress;
+    }
+
+    @JsonIgnore
+    public Optional<String> billingEmail() {
+        return billingEmail;
     }
 
     public final static Builder builder() {
@@ -232,7 +353,7 @@ public class UpdatePaymentRequestBody {
      */
     public UpdatePaymentRequestBody withDescription(String description) {
         Utils.checkNotNull(description, "description");
-        this.description = JsonNullable.of(description);
+        this.description = Optional.ofNullable(description);
         return this;
     }
 
@@ -243,32 +364,42 @@ public class UpdatePaymentRequestBody {
      * 
      * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255 characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
      */
-    public UpdatePaymentRequestBody withDescription(JsonNullable<String> description) {
+    public UpdatePaymentRequestBody withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
     }
 
     /**
-     * Can be updated while the payment is in an `open` state.
+     * The URL your customer will be redirected to after the payment process.
+     * 
+     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the right page referencing the order when your customer returns.
+     * 
+     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
      */
     public UpdatePaymentRequestBody withRedirectUrl(String redirectUrl) {
         Utils.checkNotNull(redirectUrl, "redirectUrl");
-        this.redirectUrl = JsonNullable.of(redirectUrl);
+        this.redirectUrl = Optional.ofNullable(redirectUrl);
         return this;
     }
 
     /**
-     * Can be updated while the payment is in an `open` state.
+     * The URL your customer will be redirected to after the payment process.
+     * 
+     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the right page referencing the order when your customer returns.
+     * 
+     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
      */
-    public UpdatePaymentRequestBody withRedirectUrl(JsonNullable<String> redirectUrl) {
+    public UpdatePaymentRequestBody withRedirectUrl(Optional<String> redirectUrl) {
         Utils.checkNotNull(redirectUrl, "redirectUrl");
         this.redirectUrl = redirectUrl;
         return this;
     }
 
     /**
-     * Can be updated while the payment is in an `open` state.
+     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not provided, the customer will be redirected to the `redirectUrl` instead — see above.
+     * 
+     * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle payment cancellations.
      */
     public UpdatePaymentRequestBody withCancelUrl(String cancelUrl) {
         Utils.checkNotNull(cancelUrl, "cancelUrl");
@@ -277,7 +408,9 @@ public class UpdatePaymentRequestBody {
     }
 
     /**
-     * Can be updated while the payment is in an `open` state.
+     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not provided, the customer will be redirected to the `redirectUrl` instead — see above.
+     * 
+     * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle payment cancellations.
      */
     public UpdatePaymentRequestBody withCancelUrl(JsonNullable<String> cancelUrl) {
         Utils.checkNotNull(cancelUrl, "cancelUrl");
@@ -286,7 +419,11 @@ public class UpdatePaymentRequestBody {
     }
 
     /**
-     * Can be updated while the payment is in an `open` state.
+     * The webhook URL where we will send payment status updates to.
+     * 
+     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to your payment.
+     * 
+     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your local machine.
      */
     public UpdatePaymentRequestBody withWebhookUrl(String webhookUrl) {
         Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -295,7 +432,11 @@ public class UpdatePaymentRequestBody {
     }
 
     /**
-     * Can be updated while the payment is in an `open` state.
+     * The webhook URL where we will send payment status updates to.
+     * 
+     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to your payment.
+     * 
+     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your local machine.
      */
     public UpdatePaymentRequestBody withWebhookUrl(JsonNullable<String> webhookUrl) {
         Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -322,18 +463,26 @@ public class UpdatePaymentRequestBody {
     }
 
     /**
-     * Can be updated while no payment method has been chosen yet.
+     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment method and your customer will skip the selection screen and is sent directly to the chosen payment method. The parameter enables you to fully integrate the payment method selection into your website.
+     * 
+     * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen but will only show the methods specified in the array. For example, you can use this functionality to only show payment methods from a specific country to your customer `['bancontact', 'belfius']`.
+     * 
+     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
      */
-    public UpdatePaymentRequestBody withMethod(Method method) {
+    public UpdatePaymentRequestBody withMethod(String method) {
         Utils.checkNotNull(method, "method");
         this.method = JsonNullable.of(method);
         return this;
     }
 
     /**
-     * Can be updated while no payment method has been chosen yet.
+     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment method and your customer will skip the selection screen and is sent directly to the chosen payment method. The parameter enables you to fully integrate the payment method selection into your website.
+     * 
+     * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen but will only show the methods specified in the array. For example, you can use this functionality to only show payment methods from a specific country to your customer `['bancontact', 'belfius']`.
+     * 
+     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
      */
-    public UpdatePaymentRequestBody withMethod(JsonNullable<? extends Method> method) {
+    public UpdatePaymentRequestBody withMethod(JsonNullable<String> method) {
         Utils.checkNotNull(method, "method");
         this.method = method;
         return this;
@@ -346,7 +495,7 @@ public class UpdatePaymentRequestBody {
      */
     public UpdatePaymentRequestBody withLocale(String locale) {
         Utils.checkNotNull(locale, "locale");
-        this.locale = JsonNullable.of(locale);
+        this.locale = Optional.ofNullable(locale);
         return this;
     }
 
@@ -355,7 +504,7 @@ public class UpdatePaymentRequestBody {
      * 
      * <p>Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
      */
-    public UpdatePaymentRequestBody withLocale(JsonNullable<String> locale) {
+    public UpdatePaymentRequestBody withLocale(Optional<String> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
@@ -379,12 +528,30 @@ public class UpdatePaymentRequestBody {
         return this;
     }
 
+    /**
+     * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT rates you have used for the order to ensure your customer's country matches the VAT country.
+     * 
+     * <p>Use this parameter to restrict the payment methods available to your customer to those from a single country.
+     * 
+     * <p>If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
+     * 
+     * <p>The field expects a country code in ISO 3166-1 alpha-2 format, for example `NL`.
+     */
     public UpdatePaymentRequestBody withRestrictPaymentMethodsToCountry(String restrictPaymentMethodsToCountry) {
         Utils.checkNotNull(restrictPaymentMethodsToCountry, "restrictPaymentMethodsToCountry");
         this.restrictPaymentMethodsToCountry = JsonNullable.of(restrictPaymentMethodsToCountry);
         return this;
     }
 
+    /**
+     * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT rates you have used for the order to ensure your customer's country matches the VAT country.
+     * 
+     * <p>Use this parameter to restrict the payment methods available to your customer to those from a single country.
+     * 
+     * <p>If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
+     * 
+     * <p>The field expects a country code in ISO 3166-1 alpha-2 format, for example `NL`.
+     */
     public UpdatePaymentRequestBody withRestrictPaymentMethodsToCountry(JsonNullable<String> restrictPaymentMethodsToCountry) {
         Utils.checkNotNull(restrictPaymentMethodsToCountry, "restrictPaymentMethodsToCountry");
         this.restrictPaymentMethodsToCountry = restrictPaymentMethodsToCountry;
@@ -392,9 +559,9 @@ public class UpdatePaymentRequestBody {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      */
     public UpdatePaymentRequestBody withTestmode(boolean testmode) {
         Utils.checkNotNull(testmode, "testmode");
@@ -403,13 +570,87 @@ public class UpdatePaymentRequestBody {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      */
     public UpdatePaymentRequestBody withTestmode(JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(testmode, "testmode");
         this.testmode = testmode;
+        return this;
+    }
+
+    /**
+     * **Only relevant for iDEAL, KBC/CBC, gift card, and voucher payments.**
+     * 
+     * <p>**⚠️ With the introduction of iDEAL 2 in 2025, this field will be ignored for iDEAL payments. For more information on the migration, refer to our [help center](https://help.mollie.com/hc/articles/19100313768338-iDEAL-2-0).**
+     * 
+     * <p>Some payment methods are a network of connected banks or card issuers. In these cases, after selecting the payment method, the customer may still need to select the appropriate issuer before the payment can proceed.
+     * 
+     * <p>We provide hosted issuer selection screens, but these screens can be skipped by providing the `issuer` via the API up front.
+     * 
+     * <p>The full list of issuers for a specific method can be retrieved via the Methods API by using the optional `issuers` include.
+     * 
+     * <p>A valid issuer for iDEAL is for example `ideal_INGBNL2A` (for ING Bank).
+     */
+    public UpdatePaymentRequestBody withIssuer(String issuer) {
+        Utils.checkNotNull(issuer, "issuer");
+        this.issuer = JsonNullable.of(issuer);
+        return this;
+    }
+
+    /**
+     * **Only relevant for iDEAL, KBC/CBC, gift card, and voucher payments.**
+     * 
+     * <p>**⚠️ With the introduction of iDEAL 2 in 2025, this field will be ignored for iDEAL payments. For more information on the migration, refer to our [help center](https://help.mollie.com/hc/articles/19100313768338-iDEAL-2-0).**
+     * 
+     * <p>Some payment methods are a network of connected banks or card issuers. In these cases, after selecting the payment method, the customer may still need to select the appropriate issuer before the payment can proceed.
+     * 
+     * <p>We provide hosted issuer selection screens, but these screens can be skipped by providing the `issuer` via the API up front.
+     * 
+     * <p>The full list of issuers for a specific method can be retrieved via the Methods API by using the optional `issuers` include.
+     * 
+     * <p>A valid issuer for iDEAL is for example `ideal_INGBNL2A` (for ING Bank).
+     */
+    public UpdatePaymentRequestBody withIssuer(JsonNullable<String> issuer) {
+        Utils.checkNotNull(issuer, "issuer");
+        this.issuer = issuer;
+        return this;
+    }
+
+    public UpdatePaymentRequestBody withBillingAddress(UpdatePaymentBillingAddress billingAddress) {
+        Utils.checkNotNull(billingAddress, "billingAddress");
+        this.billingAddress = Optional.ofNullable(billingAddress);
+        return this;
+    }
+
+    public UpdatePaymentRequestBody withBillingAddress(Optional<? extends UpdatePaymentBillingAddress> billingAddress) {
+        Utils.checkNotNull(billingAddress, "billingAddress");
+        this.billingAddress = billingAddress;
+        return this;
+    }
+
+    public UpdatePaymentRequestBody withShippingAddress(UpdatePaymentShippingAddress shippingAddress) {
+        Utils.checkNotNull(shippingAddress, "shippingAddress");
+        this.shippingAddress = Optional.ofNullable(shippingAddress);
+        return this;
+    }
+
+    public UpdatePaymentRequestBody withShippingAddress(Optional<? extends UpdatePaymentShippingAddress> shippingAddress) {
+        Utils.checkNotNull(shippingAddress, "shippingAddress");
+        this.shippingAddress = shippingAddress;
+        return this;
+    }
+
+    public UpdatePaymentRequestBody withBillingEmail(String billingEmail) {
+        Utils.checkNotNull(billingEmail, "billingEmail");
+        this.billingEmail = Optional.ofNullable(billingEmail);
+        return this;
+    }
+
+    public UpdatePaymentRequestBody withBillingEmail(Optional<String> billingEmail) {
+        Utils.checkNotNull(billingEmail, "billingEmail");
+        this.billingEmail = billingEmail;
         return this;
     }
 
@@ -433,7 +674,11 @@ public class UpdatePaymentRequestBody {
             Objects.deepEquals(this.locale, other.locale) &&
             Objects.deepEquals(this.dueDate, other.dueDate) &&
             Objects.deepEquals(this.restrictPaymentMethodsToCountry, other.restrictPaymentMethodsToCountry) &&
-            Objects.deepEquals(this.testmode, other.testmode);
+            Objects.deepEquals(this.testmode, other.testmode) &&
+            Objects.deepEquals(this.issuer, other.issuer) &&
+            Objects.deepEquals(this.billingAddress, other.billingAddress) &&
+            Objects.deepEquals(this.shippingAddress, other.shippingAddress) &&
+            Objects.deepEquals(this.billingEmail, other.billingEmail);
     }
     
     @Override
@@ -448,7 +693,11 @@ public class UpdatePaymentRequestBody {
             locale,
             dueDate,
             restrictPaymentMethodsToCountry,
-            testmode);
+            testmode,
+            issuer,
+            billingAddress,
+            shippingAddress,
+            billingEmail);
     }
     
     @Override
@@ -463,14 +712,18 @@ public class UpdatePaymentRequestBody {
                 "locale", locale,
                 "dueDate", dueDate,
                 "restrictPaymentMethodsToCountry", restrictPaymentMethodsToCountry,
-                "testmode", testmode);
+                "testmode", testmode,
+                "issuer", issuer,
+                "billingAddress", billingAddress,
+                "shippingAddress", shippingAddress,
+                "billingEmail", billingEmail);
     }
     
     public final static class Builder {
  
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private Optional<String> description = Optional.empty();
  
-        private JsonNullable<String> redirectUrl = JsonNullable.undefined();
+        private Optional<String> redirectUrl = Optional.empty();
  
         private JsonNullable<String> cancelUrl = JsonNullable.undefined();
  
@@ -478,15 +731,23 @@ public class UpdatePaymentRequestBody {
  
         private JsonNullable<? extends UpdatePaymentMetadata> metadata = JsonNullable.undefined();
  
-        private JsonNullable<? extends Method> method = JsonNullable.undefined();
+        private JsonNullable<String> method = JsonNullable.undefined();
  
-        private JsonNullable<String> locale = JsonNullable.undefined();
+        private Optional<String> locale = Optional.empty();
  
         private Optional<String> dueDate = Optional.empty();
  
         private JsonNullable<String> restrictPaymentMethodsToCountry = JsonNullable.undefined();
  
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+ 
+        private JsonNullable<String> issuer = JsonNullable.undefined();
+ 
+        private Optional<? extends UpdatePaymentBillingAddress> billingAddress = Optional.empty();
+ 
+        private Optional<? extends UpdatePaymentShippingAddress> shippingAddress = Optional.empty();
+ 
+        private Optional<String> billingEmail = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -501,7 +762,7 @@ public class UpdatePaymentRequestBody {
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
-            this.description = JsonNullable.of(description);
+            this.description = Optional.ofNullable(description);
             return this;
         }
 
@@ -512,32 +773,42 @@ public class UpdatePaymentRequestBody {
          * 
          * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255 characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
          */
-        public Builder description(JsonNullable<String> description) {
+        public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
         }
 
         /**
-         * Can be updated while the payment is in an `open` state.
+         * The URL your customer will be redirected to after the payment process.
+         * 
+         * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the right page referencing the order when your customer returns.
+         * 
+         * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
          */
         public Builder redirectUrl(String redirectUrl) {
             Utils.checkNotNull(redirectUrl, "redirectUrl");
-            this.redirectUrl = JsonNullable.of(redirectUrl);
+            this.redirectUrl = Optional.ofNullable(redirectUrl);
             return this;
         }
 
         /**
-         * Can be updated while the payment is in an `open` state.
+         * The URL your customer will be redirected to after the payment process.
+         * 
+         * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the right page referencing the order when your customer returns.
+         * 
+         * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
          */
-        public Builder redirectUrl(JsonNullable<String> redirectUrl) {
+        public Builder redirectUrl(Optional<String> redirectUrl) {
             Utils.checkNotNull(redirectUrl, "redirectUrl");
             this.redirectUrl = redirectUrl;
             return this;
         }
 
         /**
-         * Can be updated while the payment is in an `open` state.
+         * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not provided, the customer will be redirected to the `redirectUrl` instead — see above.
+         * 
+         * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle payment cancellations.
          */
         public Builder cancelUrl(String cancelUrl) {
             Utils.checkNotNull(cancelUrl, "cancelUrl");
@@ -546,7 +817,9 @@ public class UpdatePaymentRequestBody {
         }
 
         /**
-         * Can be updated while the payment is in an `open` state.
+         * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not provided, the customer will be redirected to the `redirectUrl` instead — see above.
+         * 
+         * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle payment cancellations.
          */
         public Builder cancelUrl(JsonNullable<String> cancelUrl) {
             Utils.checkNotNull(cancelUrl, "cancelUrl");
@@ -555,7 +828,11 @@ public class UpdatePaymentRequestBody {
         }
 
         /**
-         * Can be updated while the payment is in an `open` state.
+         * The webhook URL where we will send payment status updates to.
+         * 
+         * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to your payment.
+         * 
+         * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your local machine.
          */
         public Builder webhookUrl(String webhookUrl) {
             Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -564,7 +841,11 @@ public class UpdatePaymentRequestBody {
         }
 
         /**
-         * Can be updated while the payment is in an `open` state.
+         * The webhook URL where we will send payment status updates to.
+         * 
+         * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to your payment.
+         * 
+         * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your local machine.
          */
         public Builder webhookUrl(JsonNullable<String> webhookUrl) {
             Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -591,18 +872,26 @@ public class UpdatePaymentRequestBody {
         }
 
         /**
-         * Can be updated while no payment method has been chosen yet.
+         * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment method and your customer will skip the selection screen and is sent directly to the chosen payment method. The parameter enables you to fully integrate the payment method selection into your website.
+         * 
+         * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen but will only show the methods specified in the array. For example, you can use this functionality to only show payment methods from a specific country to your customer `['bancontact', 'belfius']`.
+         * 
+         * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
          */
-        public Builder method(Method method) {
+        public Builder method(String method) {
             Utils.checkNotNull(method, "method");
             this.method = JsonNullable.of(method);
             return this;
         }
 
         /**
-         * Can be updated while no payment method has been chosen yet.
+         * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment method and your customer will skip the selection screen and is sent directly to the chosen payment method. The parameter enables you to fully integrate the payment method selection into your website.
+         * 
+         * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen but will only show the methods specified in the array. For example, you can use this functionality to only show payment methods from a specific country to your customer `['bancontact', 'belfius']`.
+         * 
+         * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `mbway` `multibanco` `mybank` `payconiq` `paypal` `paysafecard` `pointofsale` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
          */
-        public Builder method(JsonNullable<? extends Method> method) {
+        public Builder method(JsonNullable<String> method) {
             Utils.checkNotNull(method, "method");
             this.method = method;
             return this;
@@ -615,7 +904,7 @@ public class UpdatePaymentRequestBody {
          */
         public Builder locale(String locale) {
             Utils.checkNotNull(locale, "locale");
-            this.locale = JsonNullable.of(locale);
+            this.locale = Optional.ofNullable(locale);
             return this;
         }
 
@@ -624,7 +913,7 @@ public class UpdatePaymentRequestBody {
          * 
          * <p>Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE` `es_ES` `ca_ES` `pt_PT` `it_IT` `nb_NO` `sv_SE` `fi_FI` `da_DK` `is_IS` `hu_HU` `pl_PL` `lv_LV` `lt_LT`
          */
-        public Builder locale(JsonNullable<String> locale) {
+        public Builder locale(Optional<String> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;
@@ -648,12 +937,30 @@ public class UpdatePaymentRequestBody {
             return this;
         }
 
+        /**
+         * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT rates you have used for the order to ensure your customer's country matches the VAT country.
+         * 
+         * <p>Use this parameter to restrict the payment methods available to your customer to those from a single country.
+         * 
+         * <p>If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
+         * 
+         * <p>The field expects a country code in ISO 3166-1 alpha-2 format, for example `NL`.
+         */
         public Builder restrictPaymentMethodsToCountry(String restrictPaymentMethodsToCountry) {
             Utils.checkNotNull(restrictPaymentMethodsToCountry, "restrictPaymentMethodsToCountry");
             this.restrictPaymentMethodsToCountry = JsonNullable.of(restrictPaymentMethodsToCountry);
             return this;
         }
 
+        /**
+         * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT rates you have used for the order to ensure your customer's country matches the VAT country.
+         * 
+         * <p>Use this parameter to restrict the payment methods available to your customer to those from a single country.
+         * 
+         * <p>If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
+         * 
+         * <p>The field expects a country code in ISO 3166-1 alpha-2 format, for example `NL`.
+         */
         public Builder restrictPaymentMethodsToCountry(JsonNullable<String> restrictPaymentMethodsToCountry) {
             Utils.checkNotNull(restrictPaymentMethodsToCountry, "restrictPaymentMethodsToCountry");
             this.restrictPaymentMethodsToCountry = restrictPaymentMethodsToCountry;
@@ -661,9 +968,9 @@ public class UpdatePaymentRequestBody {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+         * Whether to create the entity in test mode or live mode.
          * 
-         * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
          */
         public Builder testmode(boolean testmode) {
             Utils.checkNotNull(testmode, "testmode");
@@ -672,13 +979,87 @@ public class UpdatePaymentRequestBody {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+         * Whether to create the entity in test mode or live mode.
          * 
-         * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
          */
         public Builder testmode(JsonNullable<Boolean> testmode) {
             Utils.checkNotNull(testmode, "testmode");
             this.testmode = testmode;
+            return this;
+        }
+
+        /**
+         * **Only relevant for iDEAL, KBC/CBC, gift card, and voucher payments.**
+         * 
+         * <p>**⚠️ With the introduction of iDEAL 2 in 2025, this field will be ignored for iDEAL payments. For more information on the migration, refer to our [help center](https://help.mollie.com/hc/articles/19100313768338-iDEAL-2-0).**
+         * 
+         * <p>Some payment methods are a network of connected banks or card issuers. In these cases, after selecting the payment method, the customer may still need to select the appropriate issuer before the payment can proceed.
+         * 
+         * <p>We provide hosted issuer selection screens, but these screens can be skipped by providing the `issuer` via the API up front.
+         * 
+         * <p>The full list of issuers for a specific method can be retrieved via the Methods API by using the optional `issuers` include.
+         * 
+         * <p>A valid issuer for iDEAL is for example `ideal_INGBNL2A` (for ING Bank).
+         */
+        public Builder issuer(String issuer) {
+            Utils.checkNotNull(issuer, "issuer");
+            this.issuer = JsonNullable.of(issuer);
+            return this;
+        }
+
+        /**
+         * **Only relevant for iDEAL, KBC/CBC, gift card, and voucher payments.**
+         * 
+         * <p>**⚠️ With the introduction of iDEAL 2 in 2025, this field will be ignored for iDEAL payments. For more information on the migration, refer to our [help center](https://help.mollie.com/hc/articles/19100313768338-iDEAL-2-0).**
+         * 
+         * <p>Some payment methods are a network of connected banks or card issuers. In these cases, after selecting the payment method, the customer may still need to select the appropriate issuer before the payment can proceed.
+         * 
+         * <p>We provide hosted issuer selection screens, but these screens can be skipped by providing the `issuer` via the API up front.
+         * 
+         * <p>The full list of issuers for a specific method can be retrieved via the Methods API by using the optional `issuers` include.
+         * 
+         * <p>A valid issuer for iDEAL is for example `ideal_INGBNL2A` (for ING Bank).
+         */
+        public Builder issuer(JsonNullable<String> issuer) {
+            Utils.checkNotNull(issuer, "issuer");
+            this.issuer = issuer;
+            return this;
+        }
+
+        public Builder billingAddress(UpdatePaymentBillingAddress billingAddress) {
+            Utils.checkNotNull(billingAddress, "billingAddress");
+            this.billingAddress = Optional.ofNullable(billingAddress);
+            return this;
+        }
+
+        public Builder billingAddress(Optional<? extends UpdatePaymentBillingAddress> billingAddress) {
+            Utils.checkNotNull(billingAddress, "billingAddress");
+            this.billingAddress = billingAddress;
+            return this;
+        }
+
+        public Builder shippingAddress(UpdatePaymentShippingAddress shippingAddress) {
+            Utils.checkNotNull(shippingAddress, "shippingAddress");
+            this.shippingAddress = Optional.ofNullable(shippingAddress);
+            return this;
+        }
+
+        public Builder shippingAddress(Optional<? extends UpdatePaymentShippingAddress> shippingAddress) {
+            Utils.checkNotNull(shippingAddress, "shippingAddress");
+            this.shippingAddress = shippingAddress;
+            return this;
+        }
+
+        public Builder billingEmail(String billingEmail) {
+            Utils.checkNotNull(billingEmail, "billingEmail");
+            this.billingEmail = Optional.ofNullable(billingEmail);
+            return this;
+        }
+
+        public Builder billingEmail(Optional<String> billingEmail) {
+            Utils.checkNotNull(billingEmail, "billingEmail");
+            this.billingEmail = billingEmail;
             return this;
         }
         
@@ -693,7 +1074,11 @@ public class UpdatePaymentRequestBody {
                 locale,
                 dueDate,
                 restrictPaymentMethodsToCountry,
-                testmode);
+                testmode,
+                issuer,
+                billingAddress,
+                shippingAddress,
+                billingEmail);
         }
     }
 }

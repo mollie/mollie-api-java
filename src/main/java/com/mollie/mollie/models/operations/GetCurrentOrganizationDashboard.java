@@ -5,14 +5,11 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 
 /**
  * GetCurrentOrganizationDashboard
@@ -24,36 +21,30 @@ public class GetCurrentOrganizationDashboard {
     /**
      * The actual URL string.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("href")
-    private Optional<String> href;
+    private String href;
 
     /**
      * The content type of the page or endpoint the URL points to.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<String> type;
+    private String type;
 
     @JsonCreator
     public GetCurrentOrganizationDashboard(
-            @JsonProperty("href") Optional<String> href,
-            @JsonProperty("type") Optional<String> type) {
+            @JsonProperty("href") String href,
+            @JsonProperty("type") String type) {
         Utils.checkNotNull(href, "href");
         Utils.checkNotNull(type, "type");
         this.href = href;
         this.type = type;
-    }
-    
-    public GetCurrentOrganizationDashboard() {
-        this(Optional.empty(), Optional.empty());
     }
 
     /**
      * The actual URL string.
      */
     @JsonIgnore
-    public Optional<String> href() {
+    public String href() {
         return href;
     }
 
@@ -61,7 +52,7 @@ public class GetCurrentOrganizationDashboard {
      * The content type of the page or endpoint the URL points to.
      */
     @JsonIgnore
-    public Optional<String> type() {
+    public String type() {
         return type;
     }
 
@@ -74,15 +65,6 @@ public class GetCurrentOrganizationDashboard {
      */
     public GetCurrentOrganizationDashboard withHref(String href) {
         Utils.checkNotNull(href, "href");
-        this.href = Optional.ofNullable(href);
-        return this;
-    }
-
-    /**
-     * The actual URL string.
-     */
-    public GetCurrentOrganizationDashboard withHref(Optional<String> href) {
-        Utils.checkNotNull(href, "href");
         this.href = href;
         return this;
     }
@@ -91,15 +73,6 @@ public class GetCurrentOrganizationDashboard {
      * The content type of the page or endpoint the URL points to.
      */
     public GetCurrentOrganizationDashboard withType(String type) {
-        Utils.checkNotNull(type, "type");
-        this.type = Optional.ofNullable(type);
-        return this;
-    }
-
-    /**
-     * The content type of the page or endpoint the URL points to.
-     */
-    public GetCurrentOrganizationDashboard withType(Optional<String> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -136,9 +109,9 @@ public class GetCurrentOrganizationDashboard {
     
     public final static class Builder {
  
-        private Optional<String> href = Optional.empty();
+        private String href;
  
-        private Optional<String> type = Optional.empty();
+        private String type;
         
         private Builder() {
           // force use of static builder() method
@@ -149,15 +122,6 @@ public class GetCurrentOrganizationDashboard {
          */
         public Builder href(String href) {
             Utils.checkNotNull(href, "href");
-            this.href = Optional.ofNullable(href);
-            return this;
-        }
-
-        /**
-         * The actual URL string.
-         */
-        public Builder href(Optional<String> href) {
-            Utils.checkNotNull(href, "href");
             this.href = href;
             return this;
         }
@@ -166,15 +130,6 @@ public class GetCurrentOrganizationDashboard {
          * The content type of the page or endpoint the URL points to.
          */
         public Builder type(String type) {
-            Utils.checkNotNull(type, "type");
-            this.type = Optional.ofNullable(type);
-            return this;
-        }
-
-        /**
-         * The content type of the page or endpoint the URL points to.
-         */
-        public Builder type(Optional<String> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;

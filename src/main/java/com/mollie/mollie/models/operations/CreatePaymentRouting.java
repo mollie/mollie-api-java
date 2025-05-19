@@ -30,32 +30,34 @@ public class CreatePaymentRouting {
     /**
      * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID. Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * Whether this entity was created in live mode or in test mode.
      * 
      * <p>Possible values: `live` `test`
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<String> mode;
+    private String mode;
 
     /**
      * The portion of the total payment amount being routed. Currently only `EUR` payments can be routed.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private Optional<? extends CreatePaymentPaymentsResponse201ApplicationHalPlusJsonAmount> amount;
+    private CreatePaymentPaymentsResponse201ApplicationHalPlusJsonAmount amount;
 
     /**
      * The destination of this portion of the payment.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destination")
-    private Optional<? extends CreatePaymentDestination> destination;
+    private CreatePaymentDestination destination;
+
+    /**
+     * The date and time when the route was created. The date is given in ISO 8601 format.
+     */
+    @JsonProperty("createdAt")
+    private String createdAt;
 
     /**
      * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
@@ -71,22 +73,24 @@ public class CreatePaymentRouting {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private JsonNullable<? extends CreatePaymentPaymentsLinks> links;
+    private Optional<? extends CreatePaymentPaymentsLinks> links;
 
     @JsonCreator
     public CreatePaymentRouting(
             @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("mode") Optional<String> mode,
-            @JsonProperty("amount") Optional<? extends CreatePaymentPaymentsResponse201ApplicationHalPlusJsonAmount> amount,
-            @JsonProperty("destination") Optional<? extends CreatePaymentDestination> destination,
+            @JsonProperty("id") String id,
+            @JsonProperty("mode") String mode,
+            @JsonProperty("amount") CreatePaymentPaymentsResponse201ApplicationHalPlusJsonAmount amount,
+            @JsonProperty("destination") CreatePaymentDestination destination,
+            @JsonProperty("createdAt") String createdAt,
             @JsonProperty("releaseDate") JsonNullable<String> releaseDate,
-            @JsonProperty("_links") JsonNullable<? extends CreatePaymentPaymentsLinks> links) {
+            @JsonProperty("_links") Optional<? extends CreatePaymentPaymentsLinks> links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(mode, "mode");
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(destination, "destination");
+        Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(releaseDate, "releaseDate");
         Utils.checkNotNull(links, "links");
         this.resource = resource;
@@ -94,12 +98,18 @@ public class CreatePaymentRouting {
         this.mode = mode;
         this.amount = amount;
         this.destination = destination;
+        this.createdAt = createdAt;
         this.releaseDate = releaseDate;
         this.links = links;
     }
     
-    public CreatePaymentRouting() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+    public CreatePaymentRouting(
+            String id,
+            String mode,
+            CreatePaymentPaymentsResponse201ApplicationHalPlusJsonAmount amount,
+            CreatePaymentDestination destination,
+            String createdAt) {
+        this(Optional.empty(), id, mode, amount, destination, createdAt, JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -114,7 +124,7 @@ public class CreatePaymentRouting {
      * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID. Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
      */
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
@@ -124,26 +134,32 @@ public class CreatePaymentRouting {
      * <p>Possible values: `live` `test`
      */
     @JsonIgnore
-    public Optional<String> mode() {
+    public String mode() {
         return mode;
     }
 
     /**
      * The portion of the total payment amount being routed. Currently only `EUR` payments can be routed.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreatePaymentPaymentsResponse201ApplicationHalPlusJsonAmount> amount() {
-        return (Optional<CreatePaymentPaymentsResponse201ApplicationHalPlusJsonAmount>) amount;
+    public CreatePaymentPaymentsResponse201ApplicationHalPlusJsonAmount amount() {
+        return amount;
     }
 
     /**
      * The destination of this portion of the payment.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreatePaymentDestination> destination() {
-        return (Optional<CreatePaymentDestination>) destination;
+    public CreatePaymentDestination destination() {
+        return destination;
+    }
+
+    /**
+     * The date and time when the route was created. The date is given in ISO 8601 format.
+     */
+    @JsonIgnore
+    public String createdAt() {
+        return createdAt;
     }
 
     /**
@@ -161,8 +177,8 @@ public class CreatePaymentRouting {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CreatePaymentPaymentsLinks> links() {
-        return (JsonNullable<CreatePaymentPaymentsLinks>) links;
+    public Optional<CreatePaymentPaymentsLinks> links() {
+        return (Optional<CreatePaymentPaymentsLinks>) links;
     }
 
     public final static Builder builder() {
@@ -192,15 +208,6 @@ public class CreatePaymentRouting {
      */
     public CreatePaymentRouting withId(String id) {
         Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-    /**
-     * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID. Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
-     */
-    public CreatePaymentRouting withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
@@ -212,17 +219,6 @@ public class CreatePaymentRouting {
      */
     public CreatePaymentRouting withMode(String mode) {
         Utils.checkNotNull(mode, "mode");
-        this.mode = Optional.ofNullable(mode);
-        return this;
-    }
-
-    /**
-     * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
-     */
-    public CreatePaymentRouting withMode(Optional<String> mode) {
-        Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
     }
@@ -231,15 +227,6 @@ public class CreatePaymentRouting {
      * The portion of the total payment amount being routed. Currently only `EUR` payments can be routed.
      */
     public CreatePaymentRouting withAmount(CreatePaymentPaymentsResponse201ApplicationHalPlusJsonAmount amount) {
-        Utils.checkNotNull(amount, "amount");
-        this.amount = Optional.ofNullable(amount);
-        return this;
-    }
-
-    /**
-     * The portion of the total payment amount being routed. Currently only `EUR` payments can be routed.
-     */
-    public CreatePaymentRouting withAmount(Optional<? extends CreatePaymentPaymentsResponse201ApplicationHalPlusJsonAmount> amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
@@ -250,16 +237,16 @@ public class CreatePaymentRouting {
      */
     public CreatePaymentRouting withDestination(CreatePaymentDestination destination) {
         Utils.checkNotNull(destination, "destination");
-        this.destination = Optional.ofNullable(destination);
+        this.destination = destination;
         return this;
     }
 
     /**
-     * The destination of this portion of the payment.
+     * The date and time when the route was created. The date is given in ISO 8601 format.
      */
-    public CreatePaymentRouting withDestination(Optional<? extends CreatePaymentDestination> destination) {
-        Utils.checkNotNull(destination, "destination");
-        this.destination = destination;
+    public CreatePaymentRouting withCreatedAt(String createdAt) {
+        Utils.checkNotNull(createdAt, "createdAt");
+        this.createdAt = createdAt;
         return this;
     }
 
@@ -290,14 +277,14 @@ public class CreatePaymentRouting {
      */
     public CreatePaymentRouting withLinks(CreatePaymentPaymentsLinks links) {
         Utils.checkNotNull(links, "links");
-        this.links = JsonNullable.of(links);
+        this.links = Optional.ofNullable(links);
         return this;
     }
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    public CreatePaymentRouting withLinks(JsonNullable<? extends CreatePaymentPaymentsLinks> links) {
+    public CreatePaymentRouting withLinks(Optional<? extends CreatePaymentPaymentsLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -319,6 +306,7 @@ public class CreatePaymentRouting {
             Objects.deepEquals(this.mode, other.mode) &&
             Objects.deepEquals(this.amount, other.amount) &&
             Objects.deepEquals(this.destination, other.destination) &&
+            Objects.deepEquals(this.createdAt, other.createdAt) &&
             Objects.deepEquals(this.releaseDate, other.releaseDate) &&
             Objects.deepEquals(this.links, other.links);
     }
@@ -331,6 +319,7 @@ public class CreatePaymentRouting {
             mode,
             amount,
             destination,
+            createdAt,
             releaseDate,
             links);
     }
@@ -343,6 +332,7 @@ public class CreatePaymentRouting {
                 "mode", mode,
                 "amount", amount,
                 "destination", destination,
+                "createdAt", createdAt,
                 "releaseDate", releaseDate,
                 "links", links);
     }
@@ -351,17 +341,19 @@ public class CreatePaymentRouting {
  
         private Optional<String> resource;
  
-        private Optional<String> id = Optional.empty();
+        private String id;
  
-        private Optional<String> mode = Optional.empty();
+        private String mode;
  
-        private Optional<? extends CreatePaymentPaymentsResponse201ApplicationHalPlusJsonAmount> amount = Optional.empty();
+        private CreatePaymentPaymentsResponse201ApplicationHalPlusJsonAmount amount;
  
-        private Optional<? extends CreatePaymentDestination> destination = Optional.empty();
+        private CreatePaymentDestination destination;
+ 
+        private String createdAt;
  
         private JsonNullable<String> releaseDate = JsonNullable.undefined();
  
-        private JsonNullable<? extends CreatePaymentPaymentsLinks> links = JsonNullable.undefined();
+        private Optional<? extends CreatePaymentPaymentsLinks> links = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -390,15 +382,6 @@ public class CreatePaymentRouting {
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID. Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
@@ -410,17 +393,6 @@ public class CreatePaymentRouting {
          */
         public Builder mode(String mode) {
             Utils.checkNotNull(mode, "mode");
-            this.mode = Optional.ofNullable(mode);
-            return this;
-        }
-
-        /**
-         * Whether this entity was created in live mode or in test mode.
-         * 
-         * <p>Possible values: `live` `test`
-         */
-        public Builder mode(Optional<String> mode) {
-            Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
         }
@@ -429,15 +401,6 @@ public class CreatePaymentRouting {
          * The portion of the total payment amount being routed. Currently only `EUR` payments can be routed.
          */
         public Builder amount(CreatePaymentPaymentsResponse201ApplicationHalPlusJsonAmount amount) {
-            Utils.checkNotNull(amount, "amount");
-            this.amount = Optional.ofNullable(amount);
-            return this;
-        }
-
-        /**
-         * The portion of the total payment amount being routed. Currently only `EUR` payments can be routed.
-         */
-        public Builder amount(Optional<? extends CreatePaymentPaymentsResponse201ApplicationHalPlusJsonAmount> amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;
@@ -448,16 +411,16 @@ public class CreatePaymentRouting {
          */
         public Builder destination(CreatePaymentDestination destination) {
             Utils.checkNotNull(destination, "destination");
-            this.destination = Optional.ofNullable(destination);
+            this.destination = destination;
             return this;
         }
 
         /**
-         * The destination of this portion of the payment.
+         * The date and time when the route was created. The date is given in ISO 8601 format.
          */
-        public Builder destination(Optional<? extends CreatePaymentDestination> destination) {
-            Utils.checkNotNull(destination, "destination");
-            this.destination = destination;
+        public Builder createdAt(String createdAt) {
+            Utils.checkNotNull(createdAt, "createdAt");
+            this.createdAt = createdAt;
             return this;
         }
 
@@ -488,14 +451,14 @@ public class CreatePaymentRouting {
          */
         public Builder links(CreatePaymentPaymentsLinks links) {
             Utils.checkNotNull(links, "links");
-            this.links = JsonNullable.of(links);
+            this.links = Optional.ofNullable(links);
             return this;
         }
 
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
-        public Builder links(JsonNullable<? extends CreatePaymentPaymentsLinks> links) {
+        public Builder links(Optional<? extends CreatePaymentPaymentsLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;
@@ -511,6 +474,7 @@ public class CreatePaymentRouting {
                 mode,
                 amount,
                 destination,
+                createdAt,
                 releaseDate,
                 links);
         }

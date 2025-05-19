@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Object;
@@ -32,25 +30,22 @@ public class CreatePaymentResponseBody {
     /**
      * Indicates the response contains a payment object. Will always contain the string `payment` for this endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
     /**
      * The identifier uniquely referring to this payment. Mollie assigns this identifier at payment creation time. Mollie will always refer to the payment by this ID. Example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * Whether this entity was created in live mode or in test mode.
      * 
      * <p>Possible values: `live` `test`
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<String> mode;
+    private String mode;
 
     /**
      * The description of the payment. This will be shown to your customer on their card or bank statement when possible. We truncate the description automatically according to the limits of the used payment method. The description is also visible in any exports you generate.
@@ -59,9 +54,8 @@ public class CreatePaymentResponseBody {
      * 
      * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255 characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private JsonNullable<String> description;
+    private String description;
 
     /**
      * The amount that you want to charge, e.g. `{currency:"EUR", value:"1000.00"}` if you would want to charge €1000.00.
@@ -70,37 +64,36 @@ public class CreatePaymentResponseBody {
      * 
      * <p>If a tip was added for a Point-of-Sale payment, the amount will be updated to reflect the initial amount plus the tip amount.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private Optional<? extends CreatePaymentPaymentsResponseAmount> amount;
+    private CreatePaymentPaymentsResponseAmount amount;
 
     /**
      * The total amount that is already refunded. Only available when refunds are available for this payment. For some payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the costs for a return shipment to the customer.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amountRefunded")
-    private JsonNullable<? extends CreatePaymentAmountRefunded> amountRefunded;
+    private Optional<? extends CreatePaymentAmountRefunded> amountRefunded;
 
     /**
      * The remaining amount that can be refunded. Only available when refunds are available for this payment.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amountRemaining")
-    private JsonNullable<? extends AmountRemaining> amountRemaining;
+    private Optional<? extends AmountRemaining> amountRemaining;
 
     /**
      * The total amount that is already captured for this payment. Only available when this payment supports captures.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amountCaptured")
-    private JsonNullable<? extends AmountCaptured> amountCaptured;
+    private Optional<? extends AmountCaptured> amountCaptured;
 
     /**
      * The total amount that was charged back for this payment. Only available when the total charged back amount is not zero.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amountChargedBack")
-    private JsonNullable<? extends AmountChargedBack> amountChargedBack;
+    private Optional<? extends AmountChargedBack> amountChargedBack;
 
     /**
      * This optional field will contain the approximate amount that will be settled to your account, converted to the currency your account is settled in.
@@ -111,7 +104,7 @@ public class CreatePaymentResponseBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlementAmount")
-    private JsonNullable<? extends SettlementAmount> settlementAmount;
+    private Optional<? extends SettlementAmount> settlementAmount;
 
     /**
      * The URL your customer will be redirected to after the payment process.
@@ -122,7 +115,7 @@ public class CreatePaymentResponseBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("redirectUrl")
-    private JsonNullable<String> redirectUrl;
+    private Optional<String> redirectUrl;
 
     /**
      * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not provided, the customer will be redirected to the `redirectUrl` instead — see above.
@@ -300,9 +293,9 @@ public class CreatePaymentResponseBody {
      * 
      * <p>Possible values: `oneoff` `first` `recurring` (default: `oneoff`)
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("sequenceType")
-    private JsonNullable<String> sequenceType;
+    private Optional<String> sequenceType;
 
     /**
      * If the payment was automatically created via a subscription, the ID of the [subscription](get-subscription) will be added to the response.
@@ -336,9 +329,8 @@ public class CreatePaymentResponseBody {
      * 
      * <p>For more information, see [Authentication](authentication).
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("profileId")
-    private Optional<String> profileId;
+    private String profileId;
 
     /**
      * The identifier referring to the [settlement](get-settlement) this payment was settled with.
@@ -359,9 +351,8 @@ public class CreatePaymentResponseBody {
      * 
      * <p>Possible values: `open` `pending` `authorized` `paid` `canceled` `expired` `failed`
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<String> status;
+    private String status;
 
     /**
      * This object offers details about the status of a payment. Currently it is only available for point-of-sale payments.
@@ -389,9 +380,8 @@ public class CreatePaymentResponseBody {
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
-    private Optional<String> createdAt;
+    private String createdAt;
 
     /**
      * The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if the payment is not authorized (yet).
@@ -438,23 +428,22 @@ public class CreatePaymentResponseBody {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends CreatePaymentLinks> links;
+    private CreatePaymentLinks links;
 
     @JsonCreator
     public CreatePaymentResponseBody(
-            @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("mode") Optional<String> mode,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("amount") Optional<? extends CreatePaymentPaymentsResponseAmount> amount,
-            @JsonProperty("amountRefunded") JsonNullable<? extends CreatePaymentAmountRefunded> amountRefunded,
-            @JsonProperty("amountRemaining") JsonNullable<? extends AmountRemaining> amountRemaining,
-            @JsonProperty("amountCaptured") JsonNullable<? extends AmountCaptured> amountCaptured,
-            @JsonProperty("amountChargedBack") JsonNullable<? extends AmountChargedBack> amountChargedBack,
-            @JsonProperty("settlementAmount") JsonNullable<? extends SettlementAmount> settlementAmount,
-            @JsonProperty("redirectUrl") JsonNullable<String> redirectUrl,
+            @JsonProperty("resource") String resource,
+            @JsonProperty("id") String id,
+            @JsonProperty("mode") String mode,
+            @JsonProperty("description") String description,
+            @JsonProperty("amount") CreatePaymentPaymentsResponseAmount amount,
+            @JsonProperty("amountRefunded") Optional<? extends CreatePaymentAmountRefunded> amountRefunded,
+            @JsonProperty("amountRemaining") Optional<? extends AmountRemaining> amountRemaining,
+            @JsonProperty("amountCaptured") Optional<? extends AmountCaptured> amountCaptured,
+            @JsonProperty("amountChargedBack") Optional<? extends AmountChargedBack> amountChargedBack,
+            @JsonProperty("settlementAmount") Optional<? extends SettlementAmount> settlementAmount,
+            @JsonProperty("redirectUrl") Optional<String> redirectUrl,
             @JsonProperty("cancelUrl") JsonNullable<String> cancelUrl,
             @JsonProperty("webhookUrl") JsonNullable<String> webhookUrl,
             @JsonProperty("lines") JsonNullable<? extends List<CreatePaymentLines>> lines,
@@ -470,25 +459,25 @@ public class CreatePaymentResponseBody {
             @JsonProperty("captureBefore") JsonNullable<String> captureBefore,
             @JsonProperty("applicationFee") JsonNullable<? extends CreatePaymentApplicationFee> applicationFee,
             @JsonProperty("routing") JsonNullable<? extends List<CreatePaymentRouting>> routing,
-            @JsonProperty("sequenceType") JsonNullable<String> sequenceType,
+            @JsonProperty("sequenceType") Optional<String> sequenceType,
             @JsonProperty("subscriptionId") JsonNullable<String> subscriptionId,
             @JsonProperty("mandateId") JsonNullable<String> mandateId,
             @JsonProperty("customerId") JsonNullable<String> customerId,
-            @JsonProperty("profileId") Optional<String> profileId,
+            @JsonProperty("profileId") String profileId,
             @JsonProperty("settlementId") JsonNullable<String> settlementId,
             @JsonProperty("orderId") JsonNullable<String> orderId,
-            @JsonProperty("status") Optional<String> status,
+            @JsonProperty("status") String status,
             @JsonProperty("statusReason") JsonNullable<? extends StatusReason> statusReason,
             @JsonProperty("isCancelable") JsonNullable<Boolean> isCancelable,
             @JsonProperty("details") JsonNullable<? extends Map<String, Object>> details,
-            @JsonProperty("createdAt") Optional<String> createdAt,
+            @JsonProperty("createdAt") String createdAt,
             @JsonProperty("authorizedAt") JsonNullable<String> authorizedAt,
             @JsonProperty("paidAt") JsonNullable<String> paidAt,
             @JsonProperty("canceledAt") JsonNullable<String> canceledAt,
             @JsonProperty("expiresAt") JsonNullable<String> expiresAt,
             @JsonProperty("expiredAt") JsonNullable<String> expiredAt,
             @JsonProperty("failedAt") JsonNullable<String> failedAt,
-            @JsonProperty("_links") Optional<? extends CreatePaymentLinks> links) {
+            @JsonProperty("_links") CreatePaymentLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(mode, "mode");
@@ -581,15 +570,24 @@ public class CreatePaymentResponseBody {
         this.links = links;
     }
     
-    public CreatePaymentResponseBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+    public CreatePaymentResponseBody(
+            String resource,
+            String id,
+            String mode,
+            String description,
+            CreatePaymentPaymentsResponseAmount amount,
+            String profileId,
+            String status,
+            String createdAt,
+            CreatePaymentLinks links) {
+        this(resource, id, mode, description, amount, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), profileId, JsonNullable.undefined(), JsonNullable.undefined(), status, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), createdAt, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), links);
     }
 
     /**
      * Indicates the response contains a payment object. Will always contain the string `payment` for this endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
@@ -597,7 +595,7 @@ public class CreatePaymentResponseBody {
      * The identifier uniquely referring to this payment. Mollie assigns this identifier at payment creation time. Mollie will always refer to the payment by this ID. Example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
      */
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
@@ -607,7 +605,7 @@ public class CreatePaymentResponseBody {
      * <p>Possible values: `live` `test`
      */
     @JsonIgnore
-    public Optional<String> mode() {
+    public String mode() {
         return mode;
     }
 
@@ -619,7 +617,7 @@ public class CreatePaymentResponseBody {
      * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255 characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
      */
     @JsonIgnore
-    public JsonNullable<String> description() {
+    public String description() {
         return description;
     }
 
@@ -630,10 +628,9 @@ public class CreatePaymentResponseBody {
      * 
      * <p>If a tip was added for a Point-of-Sale payment, the amount will be updated to reflect the initial amount plus the tip amount.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreatePaymentPaymentsResponseAmount> amount() {
-        return (Optional<CreatePaymentPaymentsResponseAmount>) amount;
+    public CreatePaymentPaymentsResponseAmount amount() {
+        return amount;
     }
 
     /**
@@ -641,8 +638,8 @@ public class CreatePaymentResponseBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CreatePaymentAmountRefunded> amountRefunded() {
-        return (JsonNullable<CreatePaymentAmountRefunded>) amountRefunded;
+    public Optional<CreatePaymentAmountRefunded> amountRefunded() {
+        return (Optional<CreatePaymentAmountRefunded>) amountRefunded;
     }
 
     /**
@@ -650,8 +647,8 @@ public class CreatePaymentResponseBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<AmountRemaining> amountRemaining() {
-        return (JsonNullable<AmountRemaining>) amountRemaining;
+    public Optional<AmountRemaining> amountRemaining() {
+        return (Optional<AmountRemaining>) amountRemaining;
     }
 
     /**
@@ -659,8 +656,8 @@ public class CreatePaymentResponseBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<AmountCaptured> amountCaptured() {
-        return (JsonNullable<AmountCaptured>) amountCaptured;
+    public Optional<AmountCaptured> amountCaptured() {
+        return (Optional<AmountCaptured>) amountCaptured;
     }
 
     /**
@@ -668,8 +665,8 @@ public class CreatePaymentResponseBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<AmountChargedBack> amountChargedBack() {
-        return (JsonNullable<AmountChargedBack>) amountChargedBack;
+    public Optional<AmountChargedBack> amountChargedBack() {
+        return (Optional<AmountChargedBack>) amountChargedBack;
     }
 
     /**
@@ -681,8 +678,8 @@ public class CreatePaymentResponseBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<SettlementAmount> settlementAmount() {
-        return (JsonNullable<SettlementAmount>) settlementAmount;
+    public Optional<SettlementAmount> settlementAmount() {
+        return (Optional<SettlementAmount>) settlementAmount;
     }
 
     /**
@@ -693,7 +690,7 @@ public class CreatePaymentResponseBody {
      * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
      */
     @JsonIgnore
-    public JsonNullable<String> redirectUrl() {
+    public Optional<String> redirectUrl() {
         return redirectUrl;
     }
 
@@ -895,7 +892,7 @@ public class CreatePaymentResponseBody {
      * <p>Possible values: `oneoff` `first` `recurring` (default: `oneoff`)
      */
     @JsonIgnore
-    public JsonNullable<String> sequenceType() {
+    public Optional<String> sequenceType() {
         return sequenceType;
     }
 
@@ -935,7 +932,7 @@ public class CreatePaymentResponseBody {
      * <p>For more information, see [Authentication](authentication).
      */
     @JsonIgnore
-    public Optional<String> profileId() {
+    public String profileId() {
         return profileId;
     }
 
@@ -961,7 +958,7 @@ public class CreatePaymentResponseBody {
      * <p>Possible values: `open` `pending` `authorized` `paid` `canceled` `expired` `failed`
      */
     @JsonIgnore
-    public Optional<String> status() {
+    public String status() {
         return status;
     }
 
@@ -997,7 +994,7 @@ public class CreatePaymentResponseBody {
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
     @JsonIgnore
-    public Optional<String> createdAt() {
+    public String createdAt() {
         return createdAt;
     }
 
@@ -1052,10 +1049,9 @@ public class CreatePaymentResponseBody {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreatePaymentLinks> links() {
-        return (Optional<CreatePaymentLinks>) links;
+    public CreatePaymentLinks links() {
+        return links;
     }
 
     public final static Builder builder() {
@@ -1067,15 +1063,6 @@ public class CreatePaymentResponseBody {
      */
     public CreatePaymentResponseBody withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-    /**
-     * Indicates the response contains a payment object. Will always contain the string `payment` for this endpoint.
-     */
-    public CreatePaymentResponseBody withResource(Optional<String> resource) {
-        Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
     }
@@ -1084,15 +1071,6 @@ public class CreatePaymentResponseBody {
      * The identifier uniquely referring to this payment. Mollie assigns this identifier at payment creation time. Mollie will always refer to the payment by this ID. Example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
      */
     public CreatePaymentResponseBody withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-    /**
-     * The identifier uniquely referring to this payment. Mollie assigns this identifier at payment creation time. Mollie will always refer to the payment by this ID. Example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
-     */
-    public CreatePaymentResponseBody withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -1104,17 +1082,6 @@ public class CreatePaymentResponseBody {
      * <p>Possible values: `live` `test`
      */
     public CreatePaymentResponseBody withMode(String mode) {
-        Utils.checkNotNull(mode, "mode");
-        this.mode = Optional.ofNullable(mode);
-        return this;
-    }
-
-    /**
-     * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
-     */
-    public CreatePaymentResponseBody withMode(Optional<String> mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
@@ -1129,19 +1096,6 @@ public class CreatePaymentResponseBody {
      */
     public CreatePaymentResponseBody withDescription(String description) {
         Utils.checkNotNull(description, "description");
-        this.description = JsonNullable.of(description);
-        return this;
-    }
-
-    /**
-     * The description of the payment. This will be shown to your customer on their card or bank statement when possible. We truncate the description automatically according to the limits of the used payment method. The description is also visible in any exports you generate.
-     * 
-     * <p>We recommend you use a unique identifier so that you can always link the payment to the order in your back office. This is particularly useful for bookkeeping.
-     * 
-     * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255 characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
-     */
-    public CreatePaymentResponseBody withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
     }
@@ -1155,19 +1109,6 @@ public class CreatePaymentResponseBody {
      */
     public CreatePaymentResponseBody withAmount(CreatePaymentPaymentsResponseAmount amount) {
         Utils.checkNotNull(amount, "amount");
-        this.amount = Optional.ofNullable(amount);
-        return this;
-    }
-
-    /**
-     * The amount that you want to charge, e.g. `{currency:"EUR", value:"1000.00"}` if you would want to charge €1000.00.
-     * 
-     * <p>You can find the minimum and maximum amounts per payment method in our help center. Additionally, they can be retrieved using the Get method endpoint.
-     * 
-     * <p>If a tip was added for a Point-of-Sale payment, the amount will be updated to reflect the initial amount plus the tip amount.
-     */
-    public CreatePaymentResponseBody withAmount(Optional<? extends CreatePaymentPaymentsResponseAmount> amount) {
-        Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
@@ -1177,14 +1118,14 @@ public class CreatePaymentResponseBody {
      */
     public CreatePaymentResponseBody withAmountRefunded(CreatePaymentAmountRefunded amountRefunded) {
         Utils.checkNotNull(amountRefunded, "amountRefunded");
-        this.amountRefunded = JsonNullable.of(amountRefunded);
+        this.amountRefunded = Optional.ofNullable(amountRefunded);
         return this;
     }
 
     /**
      * The total amount that is already refunded. Only available when refunds are available for this payment. For some payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the costs for a return shipment to the customer.
      */
-    public CreatePaymentResponseBody withAmountRefunded(JsonNullable<? extends CreatePaymentAmountRefunded> amountRefunded) {
+    public CreatePaymentResponseBody withAmountRefunded(Optional<? extends CreatePaymentAmountRefunded> amountRefunded) {
         Utils.checkNotNull(amountRefunded, "amountRefunded");
         this.amountRefunded = amountRefunded;
         return this;
@@ -1195,14 +1136,14 @@ public class CreatePaymentResponseBody {
      */
     public CreatePaymentResponseBody withAmountRemaining(AmountRemaining amountRemaining) {
         Utils.checkNotNull(amountRemaining, "amountRemaining");
-        this.amountRemaining = JsonNullable.of(amountRemaining);
+        this.amountRemaining = Optional.ofNullable(amountRemaining);
         return this;
     }
 
     /**
      * The remaining amount that can be refunded. Only available when refunds are available for this payment.
      */
-    public CreatePaymentResponseBody withAmountRemaining(JsonNullable<? extends AmountRemaining> amountRemaining) {
+    public CreatePaymentResponseBody withAmountRemaining(Optional<? extends AmountRemaining> amountRemaining) {
         Utils.checkNotNull(amountRemaining, "amountRemaining");
         this.amountRemaining = amountRemaining;
         return this;
@@ -1213,14 +1154,14 @@ public class CreatePaymentResponseBody {
      */
     public CreatePaymentResponseBody withAmountCaptured(AmountCaptured amountCaptured) {
         Utils.checkNotNull(amountCaptured, "amountCaptured");
-        this.amountCaptured = JsonNullable.of(amountCaptured);
+        this.amountCaptured = Optional.ofNullable(amountCaptured);
         return this;
     }
 
     /**
      * The total amount that is already captured for this payment. Only available when this payment supports captures.
      */
-    public CreatePaymentResponseBody withAmountCaptured(JsonNullable<? extends AmountCaptured> amountCaptured) {
+    public CreatePaymentResponseBody withAmountCaptured(Optional<? extends AmountCaptured> amountCaptured) {
         Utils.checkNotNull(amountCaptured, "amountCaptured");
         this.amountCaptured = amountCaptured;
         return this;
@@ -1231,14 +1172,14 @@ public class CreatePaymentResponseBody {
      */
     public CreatePaymentResponseBody withAmountChargedBack(AmountChargedBack amountChargedBack) {
         Utils.checkNotNull(amountChargedBack, "amountChargedBack");
-        this.amountChargedBack = JsonNullable.of(amountChargedBack);
+        this.amountChargedBack = Optional.ofNullable(amountChargedBack);
         return this;
     }
 
     /**
      * The total amount that was charged back for this payment. Only available when the total charged back amount is not zero.
      */
-    public CreatePaymentResponseBody withAmountChargedBack(JsonNullable<? extends AmountChargedBack> amountChargedBack) {
+    public CreatePaymentResponseBody withAmountChargedBack(Optional<? extends AmountChargedBack> amountChargedBack) {
         Utils.checkNotNull(amountChargedBack, "amountChargedBack");
         this.amountChargedBack = amountChargedBack;
         return this;
@@ -1253,7 +1194,7 @@ public class CreatePaymentResponseBody {
      */
     public CreatePaymentResponseBody withSettlementAmount(SettlementAmount settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
-        this.settlementAmount = JsonNullable.of(settlementAmount);
+        this.settlementAmount = Optional.ofNullable(settlementAmount);
         return this;
     }
 
@@ -1264,7 +1205,7 @@ public class CreatePaymentResponseBody {
      * 
      * <p>Please note that this amount might be recalculated and changed when the status of the payment changes. We suggest using the List balance transactions endpoint instead to get more accurate settlement amounts for your payments.
      */
-    public CreatePaymentResponseBody withSettlementAmount(JsonNullable<? extends SettlementAmount> settlementAmount) {
+    public CreatePaymentResponseBody withSettlementAmount(Optional<? extends SettlementAmount> settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
         this.settlementAmount = settlementAmount;
         return this;
@@ -1279,7 +1220,7 @@ public class CreatePaymentResponseBody {
      */
     public CreatePaymentResponseBody withRedirectUrl(String redirectUrl) {
         Utils.checkNotNull(redirectUrl, "redirectUrl");
-        this.redirectUrl = JsonNullable.of(redirectUrl);
+        this.redirectUrl = Optional.ofNullable(redirectUrl);
         return this;
     }
 
@@ -1290,7 +1231,7 @@ public class CreatePaymentResponseBody {
      * 
      * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
      */
-    public CreatePaymentResponseBody withRedirectUrl(JsonNullable<String> redirectUrl) {
+    public CreatePaymentResponseBody withRedirectUrl(Optional<String> redirectUrl) {
         Utils.checkNotNull(redirectUrl, "redirectUrl");
         this.redirectUrl = redirectUrl;
         return this;
@@ -1695,7 +1636,7 @@ public class CreatePaymentResponseBody {
      */
     public CreatePaymentResponseBody withSequenceType(String sequenceType) {
         Utils.checkNotNull(sequenceType, "sequenceType");
-        this.sequenceType = JsonNullable.of(sequenceType);
+        this.sequenceType = Optional.ofNullable(sequenceType);
         return this;
     }
 
@@ -1714,7 +1655,7 @@ public class CreatePaymentResponseBody {
      * 
      * <p>Possible values: `oneoff` `first` `recurring` (default: `oneoff`)
      */
-    public CreatePaymentResponseBody withSequenceType(JsonNullable<String> sequenceType) {
+    public CreatePaymentResponseBody withSequenceType(Optional<String> sequenceType) {
         Utils.checkNotNull(sequenceType, "sequenceType");
         this.sequenceType = sequenceType;
         return this;
@@ -1791,19 +1732,6 @@ public class CreatePaymentResponseBody {
      */
     public CreatePaymentResponseBody withProfileId(String profileId) {
         Utils.checkNotNull(profileId, "profileId");
-        this.profileId = Optional.ofNullable(profileId);
-        return this;
-    }
-
-    /**
-     * The identifier referring to the [profile](get-profile) this entity belongs to.
-     * 
-     * <p>When using an API Key, the `profileId` can be omitted since it is linked to the key. However, for OAuth and Organization tokens, the `profileId` is required.
-     * 
-     * <p>For more information, see [Authentication](authentication).
-     */
-    public CreatePaymentResponseBody withProfileId(Optional<String> profileId) {
-        Utils.checkNotNull(profileId, "profileId");
         this.profileId = profileId;
         return this;
     }
@@ -1850,17 +1778,6 @@ public class CreatePaymentResponseBody {
      * <p>Possible values: `open` `pending` `authorized` `paid` `canceled` `expired` `failed`
      */
     public CreatePaymentResponseBody withStatus(String status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-    /**
-     * The payment's status. Refer to the [documentation regarding statuses](status-change) for more info about which statuses occur at what point.
-     * 
-     * <p>Possible values: `open` `pending` `authorized` `paid` `canceled` `expired` `failed`
-     */
-    public CreatePaymentResponseBody withStatus(Optional<String> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -1928,15 +1845,6 @@ public class CreatePaymentResponseBody {
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
     public CreatePaymentResponseBody withCreatedAt(String createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = Optional.ofNullable(createdAt);
-        return this;
-    }
-
-    /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-     */
-    public CreatePaymentResponseBody withCreatedAt(Optional<String> createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
@@ -2054,15 +1962,6 @@ public class CreatePaymentResponseBody {
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
     public CreatePaymentResponseBody withLinks(CreatePaymentLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public CreatePaymentResponseBody withLinks(Optional<? extends CreatePaymentLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -2228,27 +2127,27 @@ public class CreatePaymentResponseBody {
     
     public final static class Builder {
  
-        private Optional<String> resource;
+        private String resource;
  
-        private Optional<String> id = Optional.empty();
+        private String id;
  
-        private Optional<String> mode = Optional.empty();
+        private String mode;
  
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private String description;
  
-        private Optional<? extends CreatePaymentPaymentsResponseAmount> amount = Optional.empty();
+        private CreatePaymentPaymentsResponseAmount amount;
  
-        private JsonNullable<? extends CreatePaymentAmountRefunded> amountRefunded = JsonNullable.undefined();
+        private Optional<? extends CreatePaymentAmountRefunded> amountRefunded = Optional.empty();
  
-        private JsonNullable<? extends AmountRemaining> amountRemaining = JsonNullable.undefined();
+        private Optional<? extends AmountRemaining> amountRemaining = Optional.empty();
  
-        private JsonNullable<? extends AmountCaptured> amountCaptured = JsonNullable.undefined();
+        private Optional<? extends AmountCaptured> amountCaptured = Optional.empty();
  
-        private JsonNullable<? extends AmountChargedBack> amountChargedBack = JsonNullable.undefined();
+        private Optional<? extends AmountChargedBack> amountChargedBack = Optional.empty();
  
-        private JsonNullable<? extends SettlementAmount> settlementAmount = JsonNullable.undefined();
+        private Optional<? extends SettlementAmount> settlementAmount = Optional.empty();
  
-        private JsonNullable<String> redirectUrl = JsonNullable.undefined();
+        private Optional<String> redirectUrl = Optional.empty();
  
         private JsonNullable<String> cancelUrl = JsonNullable.undefined();
  
@@ -2280,7 +2179,7 @@ public class CreatePaymentResponseBody {
  
         private JsonNullable<? extends List<CreatePaymentRouting>> routing = JsonNullable.undefined();
  
-        private JsonNullable<String> sequenceType = JsonNullable.undefined();
+        private Optional<String> sequenceType = Optional.empty();
  
         private JsonNullable<String> subscriptionId = JsonNullable.undefined();
  
@@ -2288,13 +2187,13 @@ public class CreatePaymentResponseBody {
  
         private JsonNullable<String> customerId = JsonNullable.undefined();
  
-        private Optional<String> profileId = Optional.empty();
+        private String profileId;
  
         private JsonNullable<String> settlementId = JsonNullable.undefined();
  
         private JsonNullable<String> orderId = JsonNullable.undefined();
  
-        private Optional<String> status = Optional.empty();
+        private String status;
  
         private JsonNullable<? extends StatusReason> statusReason = JsonNullable.undefined();
  
@@ -2302,7 +2201,7 @@ public class CreatePaymentResponseBody {
  
         private JsonNullable<? extends Map<String, Object>> details = JsonNullable.undefined();
  
-        private Optional<String> createdAt = Optional.empty();
+        private String createdAt;
  
         private JsonNullable<String> authorizedAt = JsonNullable.undefined();
  
@@ -2316,7 +2215,7 @@ public class CreatePaymentResponseBody {
  
         private JsonNullable<String> failedAt = JsonNullable.undefined();
  
-        private Optional<? extends CreatePaymentLinks> links = Optional.empty();
+        private CreatePaymentLinks links;
         
         private Builder() {
           // force use of static builder() method
@@ -2327,15 +2226,6 @@ public class CreatePaymentResponseBody {
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a payment object. Will always contain the string `payment` for this endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
-            Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
         }
@@ -2344,15 +2234,6 @@ public class CreatePaymentResponseBody {
          * The identifier uniquely referring to this payment. Mollie assigns this identifier at payment creation time. Mollie will always refer to the payment by this ID. Example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
          */
         public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The identifier uniquely referring to this payment. Mollie assigns this identifier at payment creation time. Mollie will always refer to the payment by this ID. Example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
-         */
-        public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -2364,17 +2245,6 @@ public class CreatePaymentResponseBody {
          * <p>Possible values: `live` `test`
          */
         public Builder mode(String mode) {
-            Utils.checkNotNull(mode, "mode");
-            this.mode = Optional.ofNullable(mode);
-            return this;
-        }
-
-        /**
-         * Whether this entity was created in live mode or in test mode.
-         * 
-         * <p>Possible values: `live` `test`
-         */
-        public Builder mode(Optional<String> mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
@@ -2389,19 +2259,6 @@ public class CreatePaymentResponseBody {
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
-            this.description = JsonNullable.of(description);
-            return this;
-        }
-
-        /**
-         * The description of the payment. This will be shown to your customer on their card or bank statement when possible. We truncate the description automatically according to the limits of the used payment method. The description is also visible in any exports you generate.
-         * 
-         * <p>We recommend you use a unique identifier so that you can always link the payment to the order in your back office. This is particularly useful for bookkeeping.
-         * 
-         * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255 characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
         }
@@ -2415,19 +2272,6 @@ public class CreatePaymentResponseBody {
          */
         public Builder amount(CreatePaymentPaymentsResponseAmount amount) {
             Utils.checkNotNull(amount, "amount");
-            this.amount = Optional.ofNullable(amount);
-            return this;
-        }
-
-        /**
-         * The amount that you want to charge, e.g. `{currency:"EUR", value:"1000.00"}` if you would want to charge €1000.00.
-         * 
-         * <p>You can find the minimum and maximum amounts per payment method in our help center. Additionally, they can be retrieved using the Get method endpoint.
-         * 
-         * <p>If a tip was added for a Point-of-Sale payment, the amount will be updated to reflect the initial amount plus the tip amount.
-         */
-        public Builder amount(Optional<? extends CreatePaymentPaymentsResponseAmount> amount) {
-            Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;
         }
@@ -2437,14 +2281,14 @@ public class CreatePaymentResponseBody {
          */
         public Builder amountRefunded(CreatePaymentAmountRefunded amountRefunded) {
             Utils.checkNotNull(amountRefunded, "amountRefunded");
-            this.amountRefunded = JsonNullable.of(amountRefunded);
+            this.amountRefunded = Optional.ofNullable(amountRefunded);
             return this;
         }
 
         /**
          * The total amount that is already refunded. Only available when refunds are available for this payment. For some payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the costs for a return shipment to the customer.
          */
-        public Builder amountRefunded(JsonNullable<? extends CreatePaymentAmountRefunded> amountRefunded) {
+        public Builder amountRefunded(Optional<? extends CreatePaymentAmountRefunded> amountRefunded) {
             Utils.checkNotNull(amountRefunded, "amountRefunded");
             this.amountRefunded = amountRefunded;
             return this;
@@ -2455,14 +2299,14 @@ public class CreatePaymentResponseBody {
          */
         public Builder amountRemaining(AmountRemaining amountRemaining) {
             Utils.checkNotNull(amountRemaining, "amountRemaining");
-            this.amountRemaining = JsonNullable.of(amountRemaining);
+            this.amountRemaining = Optional.ofNullable(amountRemaining);
             return this;
         }
 
         /**
          * The remaining amount that can be refunded. Only available when refunds are available for this payment.
          */
-        public Builder amountRemaining(JsonNullable<? extends AmountRemaining> amountRemaining) {
+        public Builder amountRemaining(Optional<? extends AmountRemaining> amountRemaining) {
             Utils.checkNotNull(amountRemaining, "amountRemaining");
             this.amountRemaining = amountRemaining;
             return this;
@@ -2473,14 +2317,14 @@ public class CreatePaymentResponseBody {
          */
         public Builder amountCaptured(AmountCaptured amountCaptured) {
             Utils.checkNotNull(amountCaptured, "amountCaptured");
-            this.amountCaptured = JsonNullable.of(amountCaptured);
+            this.amountCaptured = Optional.ofNullable(amountCaptured);
             return this;
         }
 
         /**
          * The total amount that is already captured for this payment. Only available when this payment supports captures.
          */
-        public Builder amountCaptured(JsonNullable<? extends AmountCaptured> amountCaptured) {
+        public Builder amountCaptured(Optional<? extends AmountCaptured> amountCaptured) {
             Utils.checkNotNull(amountCaptured, "amountCaptured");
             this.amountCaptured = amountCaptured;
             return this;
@@ -2491,14 +2335,14 @@ public class CreatePaymentResponseBody {
          */
         public Builder amountChargedBack(AmountChargedBack amountChargedBack) {
             Utils.checkNotNull(amountChargedBack, "amountChargedBack");
-            this.amountChargedBack = JsonNullable.of(amountChargedBack);
+            this.amountChargedBack = Optional.ofNullable(amountChargedBack);
             return this;
         }
 
         /**
          * The total amount that was charged back for this payment. Only available when the total charged back amount is not zero.
          */
-        public Builder amountChargedBack(JsonNullable<? extends AmountChargedBack> amountChargedBack) {
+        public Builder amountChargedBack(Optional<? extends AmountChargedBack> amountChargedBack) {
             Utils.checkNotNull(amountChargedBack, "amountChargedBack");
             this.amountChargedBack = amountChargedBack;
             return this;
@@ -2513,7 +2357,7 @@ public class CreatePaymentResponseBody {
          */
         public Builder settlementAmount(SettlementAmount settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
-            this.settlementAmount = JsonNullable.of(settlementAmount);
+            this.settlementAmount = Optional.ofNullable(settlementAmount);
             return this;
         }
 
@@ -2524,7 +2368,7 @@ public class CreatePaymentResponseBody {
          * 
          * <p>Please note that this amount might be recalculated and changed when the status of the payment changes. We suggest using the List balance transactions endpoint instead to get more accurate settlement amounts for your payments.
          */
-        public Builder settlementAmount(JsonNullable<? extends SettlementAmount> settlementAmount) {
+        public Builder settlementAmount(Optional<? extends SettlementAmount> settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
             this.settlementAmount = settlementAmount;
             return this;
@@ -2539,7 +2383,7 @@ public class CreatePaymentResponseBody {
          */
         public Builder redirectUrl(String redirectUrl) {
             Utils.checkNotNull(redirectUrl, "redirectUrl");
-            this.redirectUrl = JsonNullable.of(redirectUrl);
+            this.redirectUrl = Optional.ofNullable(redirectUrl);
             return this;
         }
 
@@ -2550,7 +2394,7 @@ public class CreatePaymentResponseBody {
          * 
          * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
          */
-        public Builder redirectUrl(JsonNullable<String> redirectUrl) {
+        public Builder redirectUrl(Optional<String> redirectUrl) {
             Utils.checkNotNull(redirectUrl, "redirectUrl");
             this.redirectUrl = redirectUrl;
             return this;
@@ -2955,7 +2799,7 @@ public class CreatePaymentResponseBody {
          */
         public Builder sequenceType(String sequenceType) {
             Utils.checkNotNull(sequenceType, "sequenceType");
-            this.sequenceType = JsonNullable.of(sequenceType);
+            this.sequenceType = Optional.ofNullable(sequenceType);
             return this;
         }
 
@@ -2974,7 +2818,7 @@ public class CreatePaymentResponseBody {
          * 
          * <p>Possible values: `oneoff` `first` `recurring` (default: `oneoff`)
          */
-        public Builder sequenceType(JsonNullable<String> sequenceType) {
+        public Builder sequenceType(Optional<String> sequenceType) {
             Utils.checkNotNull(sequenceType, "sequenceType");
             this.sequenceType = sequenceType;
             return this;
@@ -3051,19 +2895,6 @@ public class CreatePaymentResponseBody {
          */
         public Builder profileId(String profileId) {
             Utils.checkNotNull(profileId, "profileId");
-            this.profileId = Optional.ofNullable(profileId);
-            return this;
-        }
-
-        /**
-         * The identifier referring to the [profile](get-profile) this entity belongs to.
-         * 
-         * <p>When using an API Key, the `profileId` can be omitted since it is linked to the key. However, for OAuth and Organization tokens, the `profileId` is required.
-         * 
-         * <p>For more information, see [Authentication](authentication).
-         */
-        public Builder profileId(Optional<String> profileId) {
-            Utils.checkNotNull(profileId, "profileId");
             this.profileId = profileId;
             return this;
         }
@@ -3110,17 +2941,6 @@ public class CreatePaymentResponseBody {
          * <p>Possible values: `open` `pending` `authorized` `paid` `canceled` `expired` `failed`
          */
         public Builder status(String status) {
-            Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * The payment's status. Refer to the [documentation regarding statuses](status-change) for more info about which statuses occur at what point.
-         * 
-         * <p>Possible values: `open` `pending` `authorized` `paid` `canceled` `expired` `failed`
-         */
-        public Builder status(Optional<String> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -3188,15 +3008,6 @@ public class CreatePaymentResponseBody {
          * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
          */
         public Builder createdAt(String createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = Optional.ofNullable(createdAt);
-            return this;
-        }
-
-        /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-         */
-        public Builder createdAt(Optional<String> createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
@@ -3315,23 +3126,11 @@ public class CreatePaymentResponseBody {
          */
         public Builder links(CreatePaymentLinks links) {
             Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends CreatePaymentLinks> links) {
-            Utils.checkNotNull(links, "links");
             this.links = links;
             return this;
         }
         
         public CreatePaymentResponseBody build() {
-            if (resource == null) {
-                resource = _SINGLETON_VALUE_Resource.value();
-            }
             return new CreatePaymentResponseBody(
                 resource,
                 id,
@@ -3379,11 +3178,5 @@ public class CreatePaymentResponseBody {
                 failedAt,
                 links);
         }
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
-                new LazySingletonValue<>(
-                        "resource",
-                        "\"payment\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

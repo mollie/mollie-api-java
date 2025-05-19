@@ -1,11 +1,5 @@
 # UpdatePaymentBillingAddress
 
-The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
-
-Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
-
-Required for payment method `in3`, `klarna`, `billie` and `riverty`.
-
 
 ## Fields
 

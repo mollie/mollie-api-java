@@ -55,7 +55,7 @@ public class SDKMethodInterfaces {
     public interface MethodCallReleaseAuthorization {
         ReleaseAuthorizationResponse releaseAuthorization(
             String paymentId,
-            JsonNullable<Boolean> testmode,
+            Optional<? extends ReleaseAuthorizationRequestBody> requestBody,
             Optional<Options> options) throws Exception;
     }
 

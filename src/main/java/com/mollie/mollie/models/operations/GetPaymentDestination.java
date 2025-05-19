@@ -5,14 +5,11 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 
 /**
  * GetPaymentDestination
@@ -26,29 +23,23 @@ public class GetPaymentDestination {
      * 
      * <p>Possible values: `organization`
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<String> type;
+    private String type;
 
     /**
      * Required for destination type `organization`. The ID of the connected organization the funds should be routed to.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("organizationId")
-    private Optional<String> organizationId;
+    private String organizationId;
 
     @JsonCreator
     public GetPaymentDestination(
-            @JsonProperty("type") Optional<String> type,
-            @JsonProperty("organizationId") Optional<String> organizationId) {
+            @JsonProperty("type") String type,
+            @JsonProperty("organizationId") String organizationId) {
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(organizationId, "organizationId");
         this.type = type;
         this.organizationId = organizationId;
-    }
-    
-    public GetPaymentDestination() {
-        this(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -57,7 +48,7 @@ public class GetPaymentDestination {
      * <p>Possible values: `organization`
      */
     @JsonIgnore
-    public Optional<String> type() {
+    public String type() {
         return type;
     }
 
@@ -65,7 +56,7 @@ public class GetPaymentDestination {
      * Required for destination type `organization`. The ID of the connected organization the funds should be routed to.
      */
     @JsonIgnore
-    public Optional<String> organizationId() {
+    public String organizationId() {
         return organizationId;
     }
 
@@ -80,17 +71,6 @@ public class GetPaymentDestination {
      */
     public GetPaymentDestination withType(String type) {
         Utils.checkNotNull(type, "type");
-        this.type = Optional.ofNullable(type);
-        return this;
-    }
-
-    /**
-     * The type of destination. Currently only the destination type `organization` is supported.
-     * 
-     * <p>Possible values: `organization`
-     */
-    public GetPaymentDestination withType(Optional<String> type) {
-        Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
     }
@@ -99,15 +79,6 @@ public class GetPaymentDestination {
      * Required for destination type `organization`. The ID of the connected organization the funds should be routed to.
      */
     public GetPaymentDestination withOrganizationId(String organizationId) {
-        Utils.checkNotNull(organizationId, "organizationId");
-        this.organizationId = Optional.ofNullable(organizationId);
-        return this;
-    }
-
-    /**
-     * Required for destination type `organization`. The ID of the connected organization the funds should be routed to.
-     */
-    public GetPaymentDestination withOrganizationId(Optional<String> organizationId) {
         Utils.checkNotNull(organizationId, "organizationId");
         this.organizationId = organizationId;
         return this;
@@ -144,9 +115,9 @@ public class GetPaymentDestination {
     
     public final static class Builder {
  
-        private Optional<String> type = Optional.empty();
+        private String type;
  
-        private Optional<String> organizationId = Optional.empty();
+        private String organizationId;
         
         private Builder() {
           // force use of static builder() method
@@ -159,17 +130,6 @@ public class GetPaymentDestination {
          */
         public Builder type(String type) {
             Utils.checkNotNull(type, "type");
-            this.type = Optional.ofNullable(type);
-            return this;
-        }
-
-        /**
-         * The type of destination. Currently only the destination type `organization` is supported.
-         * 
-         * <p>Possible values: `organization`
-         */
-        public Builder type(Optional<String> type) {
-            Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
         }
@@ -178,15 +138,6 @@ public class GetPaymentDestination {
          * Required for destination type `organization`. The ID of the connected organization the funds should be routed to.
          */
         public Builder organizationId(String organizationId) {
-            Utils.checkNotNull(organizationId, "organizationId");
-            this.organizationId = Optional.ofNullable(organizationId);
-            return this;
-        }
-
-        /**
-         * Required for destination type `organization`. The ID of the connected organization the funds should be routed to.
-         */
-        public Builder organizationId(Optional<String> organizationId) {
             Utils.checkNotNull(organizationId, "organizationId");
             this.organizationId = organizationId;
             return this;

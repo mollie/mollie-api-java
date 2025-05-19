@@ -14,7 +14,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Objects;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * GetPaymentLinks
@@ -26,23 +25,22 @@ public class GetPaymentLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends GetPaymentSelf> self;
+    private GetPaymentSelf self;
 
     /**
      * The URL your customer should visit to make the payment. This is where you should redirect the customer to.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("checkout")
-    private JsonNullable<? extends GetPaymentCheckout> checkout;
+    private Optional<? extends GetPaymentCheckout> checkout;
 
     /**
      * The deeplink URL to the app of the payment method. Currently only available for `bancontact`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mobileAppCheckout")
-    private JsonNullable<? extends GetPaymentMobileAppCheckout> mobileAppCheckout;
+    private Optional<? extends GetPaymentMobileAppCheckout> mobileAppCheckout;
 
     /**
      * For test mode payments in certain scenarios, a hosted interface is available to help you test different payment states.
@@ -53,21 +51,20 @@ public class GetPaymentLinks {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("changePaymentState")
-    private JsonNullable<? extends GetPaymentChangePaymentState> changePaymentState;
+    private Optional<? extends GetPaymentChangePaymentState> changePaymentState;
 
     /**
      * Direct link to the payment in the Mollie Dashboard.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("dashboard")
-    private Optional<? extends GetPaymentDashboard> dashboard;
+    private GetPaymentDashboard dashboard;
 
     /**
      * The API resource URL of the [refunds](list-payment-refunds) that belong to this payment.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("refunds")
-    private JsonNullable<? extends GetPaymentRefunds> refunds;
+    private Optional<? extends GetPaymentRefunds> refunds;
 
     /**
      * The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this payment.
@@ -88,67 +85,66 @@ public class GetPaymentLinks {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlement")
-    private JsonNullable<? extends GetPaymentSettlement> settlement;
+    private Optional<? extends GetPaymentSettlement> settlement;
 
     /**
      * The API resource URL of the [customer](get-customer).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("customer")
-    private JsonNullable<? extends GetPaymentCustomer> customer;
+    private Optional<? extends GetPaymentCustomer> customer;
 
     /**
      * The API resource URL of the [mandate](get-mandate).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mandate")
-    private JsonNullable<? extends GetPaymentMandate> mandate;
+    private Optional<? extends GetPaymentMandate> mandate;
 
     /**
      * The API resource URL of the [subscription](get-subscription).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subscription")
-    private JsonNullable<? extends GetPaymentSubscription> subscription;
+    private Optional<? extends GetPaymentSubscription> subscription;
 
     /**
      * The API resource URL of the [order](get-order) this payment was created for. Not present if not created for an order.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("order")
-    private JsonNullable<? extends GetPaymentOrder> order;
+    private Optional<? extends GetPaymentOrder> order;
 
     /**
      * The API resource URL of the [terminal](get-terminal) this payment was created for. Only present for point-of-sale payments.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("terminal")
-    private JsonNullable<? extends GetPaymentTerminal> terminal;
+    private Optional<? extends GetPaymentTerminal> terminal;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends GetPaymentDocumentation> documentation;
+    private GetPaymentDocumentation documentation;
 
     @JsonCreator
     public GetPaymentLinks(
-            @JsonProperty("self") Optional<? extends GetPaymentSelf> self,
-            @JsonProperty("checkout") JsonNullable<? extends GetPaymentCheckout> checkout,
-            @JsonProperty("mobileAppCheckout") JsonNullable<? extends GetPaymentMobileAppCheckout> mobileAppCheckout,
-            @JsonProperty("changePaymentState") JsonNullable<? extends GetPaymentChangePaymentState> changePaymentState,
-            @JsonProperty("dashboard") Optional<? extends GetPaymentDashboard> dashboard,
-            @JsonProperty("refunds") JsonNullable<? extends GetPaymentRefunds> refunds,
+            @JsonProperty("self") GetPaymentSelf self,
+            @JsonProperty("checkout") Optional<? extends GetPaymentCheckout> checkout,
+            @JsonProperty("mobileAppCheckout") Optional<? extends GetPaymentMobileAppCheckout> mobileAppCheckout,
+            @JsonProperty("changePaymentState") Optional<? extends GetPaymentChangePaymentState> changePaymentState,
+            @JsonProperty("dashboard") GetPaymentDashboard dashboard,
+            @JsonProperty("refunds") Optional<? extends GetPaymentRefunds> refunds,
             @JsonProperty("chargebacks") Optional<? extends GetPaymentChargebacks> chargebacks,
             @JsonProperty("captures") Optional<? extends GetPaymentCaptures> captures,
-            @JsonProperty("settlement") JsonNullable<? extends GetPaymentSettlement> settlement,
-            @JsonProperty("customer") JsonNullable<? extends GetPaymentCustomer> customer,
-            @JsonProperty("mandate") JsonNullable<? extends GetPaymentMandate> mandate,
-            @JsonProperty("subscription") JsonNullable<? extends GetPaymentSubscription> subscription,
-            @JsonProperty("order") JsonNullable<? extends GetPaymentOrder> order,
-            @JsonProperty("terminal") JsonNullable<? extends GetPaymentTerminal> terminal,
-            @JsonProperty("documentation") Optional<? extends GetPaymentDocumentation> documentation) {
+            @JsonProperty("settlement") Optional<? extends GetPaymentSettlement> settlement,
+            @JsonProperty("customer") Optional<? extends GetPaymentCustomer> customer,
+            @JsonProperty("mandate") Optional<? extends GetPaymentMandate> mandate,
+            @JsonProperty("subscription") Optional<? extends GetPaymentSubscription> subscription,
+            @JsonProperty("order") Optional<? extends GetPaymentOrder> order,
+            @JsonProperty("terminal") Optional<? extends GetPaymentTerminal> terminal,
+            @JsonProperty("documentation") GetPaymentDocumentation documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(checkout, "checkout");
         Utils.checkNotNull(mobileAppCheckout, "mobileAppCheckout");
@@ -181,17 +177,19 @@ public class GetPaymentLinks {
         this.documentation = documentation;
     }
     
-    public GetPaymentLinks() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+    public GetPaymentLinks(
+            GetPaymentSelf self,
+            GetPaymentDashboard dashboard,
+            GetPaymentDocumentation documentation) {
+        this(self, Optional.empty(), Optional.empty(), Optional.empty(), dashboard, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), documentation);
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetPaymentSelf> self() {
-        return (Optional<GetPaymentSelf>) self;
+    public GetPaymentSelf self() {
+        return self;
     }
 
     /**
@@ -199,8 +197,8 @@ public class GetPaymentLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<GetPaymentCheckout> checkout() {
-        return (JsonNullable<GetPaymentCheckout>) checkout;
+    public Optional<GetPaymentCheckout> checkout() {
+        return (Optional<GetPaymentCheckout>) checkout;
     }
 
     /**
@@ -208,8 +206,8 @@ public class GetPaymentLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<GetPaymentMobileAppCheckout> mobileAppCheckout() {
-        return (JsonNullable<GetPaymentMobileAppCheckout>) mobileAppCheckout;
+    public Optional<GetPaymentMobileAppCheckout> mobileAppCheckout() {
+        return (Optional<GetPaymentMobileAppCheckout>) mobileAppCheckout;
     }
 
     /**
@@ -221,17 +219,16 @@ public class GetPaymentLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<GetPaymentChangePaymentState> changePaymentState() {
-        return (JsonNullable<GetPaymentChangePaymentState>) changePaymentState;
+    public Optional<GetPaymentChangePaymentState> changePaymentState() {
+        return (Optional<GetPaymentChangePaymentState>) changePaymentState;
     }
 
     /**
      * Direct link to the payment in the Mollie Dashboard.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetPaymentDashboard> dashboard() {
-        return (Optional<GetPaymentDashboard>) dashboard;
+    public GetPaymentDashboard dashboard() {
+        return dashboard;
     }
 
     /**
@@ -239,8 +236,8 @@ public class GetPaymentLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<GetPaymentRefunds> refunds() {
-        return (JsonNullable<GetPaymentRefunds>) refunds;
+    public Optional<GetPaymentRefunds> refunds() {
+        return (Optional<GetPaymentRefunds>) refunds;
     }
 
     /**
@@ -266,8 +263,8 @@ public class GetPaymentLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<GetPaymentSettlement> settlement() {
-        return (JsonNullable<GetPaymentSettlement>) settlement;
+    public Optional<GetPaymentSettlement> settlement() {
+        return (Optional<GetPaymentSettlement>) settlement;
     }
 
     /**
@@ -275,8 +272,8 @@ public class GetPaymentLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<GetPaymentCustomer> customer() {
-        return (JsonNullable<GetPaymentCustomer>) customer;
+    public Optional<GetPaymentCustomer> customer() {
+        return (Optional<GetPaymentCustomer>) customer;
     }
 
     /**
@@ -284,8 +281,8 @@ public class GetPaymentLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<GetPaymentMandate> mandate() {
-        return (JsonNullable<GetPaymentMandate>) mandate;
+    public Optional<GetPaymentMandate> mandate() {
+        return (Optional<GetPaymentMandate>) mandate;
     }
 
     /**
@@ -293,8 +290,8 @@ public class GetPaymentLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<GetPaymentSubscription> subscription() {
-        return (JsonNullable<GetPaymentSubscription>) subscription;
+    public Optional<GetPaymentSubscription> subscription() {
+        return (Optional<GetPaymentSubscription>) subscription;
     }
 
     /**
@@ -302,8 +299,8 @@ public class GetPaymentLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<GetPaymentOrder> order() {
-        return (JsonNullable<GetPaymentOrder>) order;
+    public Optional<GetPaymentOrder> order() {
+        return (Optional<GetPaymentOrder>) order;
     }
 
     /**
@@ -311,17 +308,16 @@ public class GetPaymentLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<GetPaymentTerminal> terminal() {
-        return (JsonNullable<GetPaymentTerminal>) terminal;
+    public Optional<GetPaymentTerminal> terminal() {
+        return (Optional<GetPaymentTerminal>) terminal;
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetPaymentDocumentation> documentation() {
-        return (Optional<GetPaymentDocumentation>) documentation;
+    public GetPaymentDocumentation documentation() {
+        return documentation;
     }
 
     public final static Builder builder() {
@@ -333,15 +329,6 @@ public class GetPaymentLinks {
      */
     public GetPaymentLinks withSelf(GetPaymentSelf self) {
         Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public GetPaymentLinks withSelf(Optional<? extends GetPaymentSelf> self) {
-        Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
@@ -351,14 +338,14 @@ public class GetPaymentLinks {
      */
     public GetPaymentLinks withCheckout(GetPaymentCheckout checkout) {
         Utils.checkNotNull(checkout, "checkout");
-        this.checkout = JsonNullable.of(checkout);
+        this.checkout = Optional.ofNullable(checkout);
         return this;
     }
 
     /**
      * The URL your customer should visit to make the payment. This is where you should redirect the customer to.
      */
-    public GetPaymentLinks withCheckout(JsonNullable<? extends GetPaymentCheckout> checkout) {
+    public GetPaymentLinks withCheckout(Optional<? extends GetPaymentCheckout> checkout) {
         Utils.checkNotNull(checkout, "checkout");
         this.checkout = checkout;
         return this;
@@ -369,14 +356,14 @@ public class GetPaymentLinks {
      */
     public GetPaymentLinks withMobileAppCheckout(GetPaymentMobileAppCheckout mobileAppCheckout) {
         Utils.checkNotNull(mobileAppCheckout, "mobileAppCheckout");
-        this.mobileAppCheckout = JsonNullable.of(mobileAppCheckout);
+        this.mobileAppCheckout = Optional.ofNullable(mobileAppCheckout);
         return this;
     }
 
     /**
      * The deeplink URL to the app of the payment method. Currently only available for `bancontact`.
      */
-    public GetPaymentLinks withMobileAppCheckout(JsonNullable<? extends GetPaymentMobileAppCheckout> mobileAppCheckout) {
+    public GetPaymentLinks withMobileAppCheckout(Optional<? extends GetPaymentMobileAppCheckout> mobileAppCheckout) {
         Utils.checkNotNull(mobileAppCheckout, "mobileAppCheckout");
         this.mobileAppCheckout = mobileAppCheckout;
         return this;
@@ -391,7 +378,7 @@ public class GetPaymentLinks {
      */
     public GetPaymentLinks withChangePaymentState(GetPaymentChangePaymentState changePaymentState) {
         Utils.checkNotNull(changePaymentState, "changePaymentState");
-        this.changePaymentState = JsonNullable.of(changePaymentState);
+        this.changePaymentState = Optional.ofNullable(changePaymentState);
         return this;
     }
 
@@ -402,7 +389,7 @@ public class GetPaymentLinks {
      * 
      * <p>Secondly, for paid test mode payments. The payment state screen will then allow you to create a refund or chargeback for the test payment.
      */
-    public GetPaymentLinks withChangePaymentState(JsonNullable<? extends GetPaymentChangePaymentState> changePaymentState) {
+    public GetPaymentLinks withChangePaymentState(Optional<? extends GetPaymentChangePaymentState> changePaymentState) {
         Utils.checkNotNull(changePaymentState, "changePaymentState");
         this.changePaymentState = changePaymentState;
         return this;
@@ -413,15 +400,6 @@ public class GetPaymentLinks {
      */
     public GetPaymentLinks withDashboard(GetPaymentDashboard dashboard) {
         Utils.checkNotNull(dashboard, "dashboard");
-        this.dashboard = Optional.ofNullable(dashboard);
-        return this;
-    }
-
-    /**
-     * Direct link to the payment in the Mollie Dashboard.
-     */
-    public GetPaymentLinks withDashboard(Optional<? extends GetPaymentDashboard> dashboard) {
-        Utils.checkNotNull(dashboard, "dashboard");
         this.dashboard = dashboard;
         return this;
     }
@@ -431,14 +409,14 @@ public class GetPaymentLinks {
      */
     public GetPaymentLinks withRefunds(GetPaymentRefunds refunds) {
         Utils.checkNotNull(refunds, "refunds");
-        this.refunds = JsonNullable.of(refunds);
+        this.refunds = Optional.ofNullable(refunds);
         return this;
     }
 
     /**
      * The API resource URL of the [refunds](list-payment-refunds) that belong to this payment.
      */
-    public GetPaymentLinks withRefunds(JsonNullable<? extends GetPaymentRefunds> refunds) {
+    public GetPaymentLinks withRefunds(Optional<? extends GetPaymentRefunds> refunds) {
         Utils.checkNotNull(refunds, "refunds");
         this.refunds = refunds;
         return this;
@@ -485,14 +463,14 @@ public class GetPaymentLinks {
      */
     public GetPaymentLinks withSettlement(GetPaymentSettlement settlement) {
         Utils.checkNotNull(settlement, "settlement");
-        this.settlement = JsonNullable.of(settlement);
+        this.settlement = Optional.ofNullable(settlement);
         return this;
     }
 
     /**
      * The API resource URL of the [settlement](get-settlement) this payment has been settled with. Not present if not yet settled.
      */
-    public GetPaymentLinks withSettlement(JsonNullable<? extends GetPaymentSettlement> settlement) {
+    public GetPaymentLinks withSettlement(Optional<? extends GetPaymentSettlement> settlement) {
         Utils.checkNotNull(settlement, "settlement");
         this.settlement = settlement;
         return this;
@@ -503,14 +481,14 @@ public class GetPaymentLinks {
      */
     public GetPaymentLinks withCustomer(GetPaymentCustomer customer) {
         Utils.checkNotNull(customer, "customer");
-        this.customer = JsonNullable.of(customer);
+        this.customer = Optional.ofNullable(customer);
         return this;
     }
 
     /**
      * The API resource URL of the [customer](get-customer).
      */
-    public GetPaymentLinks withCustomer(JsonNullable<? extends GetPaymentCustomer> customer) {
+    public GetPaymentLinks withCustomer(Optional<? extends GetPaymentCustomer> customer) {
         Utils.checkNotNull(customer, "customer");
         this.customer = customer;
         return this;
@@ -521,14 +499,14 @@ public class GetPaymentLinks {
      */
     public GetPaymentLinks withMandate(GetPaymentMandate mandate) {
         Utils.checkNotNull(mandate, "mandate");
-        this.mandate = JsonNullable.of(mandate);
+        this.mandate = Optional.ofNullable(mandate);
         return this;
     }
 
     /**
      * The API resource URL of the [mandate](get-mandate).
      */
-    public GetPaymentLinks withMandate(JsonNullable<? extends GetPaymentMandate> mandate) {
+    public GetPaymentLinks withMandate(Optional<? extends GetPaymentMandate> mandate) {
         Utils.checkNotNull(mandate, "mandate");
         this.mandate = mandate;
         return this;
@@ -539,14 +517,14 @@ public class GetPaymentLinks {
      */
     public GetPaymentLinks withSubscription(GetPaymentSubscription subscription) {
         Utils.checkNotNull(subscription, "subscription");
-        this.subscription = JsonNullable.of(subscription);
+        this.subscription = Optional.ofNullable(subscription);
         return this;
     }
 
     /**
      * The API resource URL of the [subscription](get-subscription).
      */
-    public GetPaymentLinks withSubscription(JsonNullable<? extends GetPaymentSubscription> subscription) {
+    public GetPaymentLinks withSubscription(Optional<? extends GetPaymentSubscription> subscription) {
         Utils.checkNotNull(subscription, "subscription");
         this.subscription = subscription;
         return this;
@@ -557,14 +535,14 @@ public class GetPaymentLinks {
      */
     public GetPaymentLinks withOrder(GetPaymentOrder order) {
         Utils.checkNotNull(order, "order");
-        this.order = JsonNullable.of(order);
+        this.order = Optional.ofNullable(order);
         return this;
     }
 
     /**
      * The API resource URL of the [order](get-order) this payment was created for. Not present if not created for an order.
      */
-    public GetPaymentLinks withOrder(JsonNullable<? extends GetPaymentOrder> order) {
+    public GetPaymentLinks withOrder(Optional<? extends GetPaymentOrder> order) {
         Utils.checkNotNull(order, "order");
         this.order = order;
         return this;
@@ -575,14 +553,14 @@ public class GetPaymentLinks {
      */
     public GetPaymentLinks withTerminal(GetPaymentTerminal terminal) {
         Utils.checkNotNull(terminal, "terminal");
-        this.terminal = JsonNullable.of(terminal);
+        this.terminal = Optional.ofNullable(terminal);
         return this;
     }
 
     /**
      * The API resource URL of the [terminal](get-terminal) this payment was created for. Only present for point-of-sale payments.
      */
-    public GetPaymentLinks withTerminal(JsonNullable<? extends GetPaymentTerminal> terminal) {
+    public GetPaymentLinks withTerminal(Optional<? extends GetPaymentTerminal> terminal) {
         Utils.checkNotNull(terminal, "terminal");
         this.terminal = terminal;
         return this;
@@ -592,15 +570,6 @@ public class GetPaymentLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public GetPaymentLinks withDocumentation(GetPaymentDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public GetPaymentLinks withDocumentation(Optional<? extends GetPaymentDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -676,35 +645,35 @@ public class GetPaymentLinks {
     
     public final static class Builder {
  
-        private Optional<? extends GetPaymentSelf> self = Optional.empty();
+        private GetPaymentSelf self;
  
-        private JsonNullable<? extends GetPaymentCheckout> checkout = JsonNullable.undefined();
+        private Optional<? extends GetPaymentCheckout> checkout = Optional.empty();
  
-        private JsonNullable<? extends GetPaymentMobileAppCheckout> mobileAppCheckout = JsonNullable.undefined();
+        private Optional<? extends GetPaymentMobileAppCheckout> mobileAppCheckout = Optional.empty();
  
-        private JsonNullable<? extends GetPaymentChangePaymentState> changePaymentState = JsonNullable.undefined();
+        private Optional<? extends GetPaymentChangePaymentState> changePaymentState = Optional.empty();
  
-        private Optional<? extends GetPaymentDashboard> dashboard = Optional.empty();
+        private GetPaymentDashboard dashboard;
  
-        private JsonNullable<? extends GetPaymentRefunds> refunds = JsonNullable.undefined();
+        private Optional<? extends GetPaymentRefunds> refunds = Optional.empty();
  
         private Optional<? extends GetPaymentChargebacks> chargebacks = Optional.empty();
  
         private Optional<? extends GetPaymentCaptures> captures = Optional.empty();
  
-        private JsonNullable<? extends GetPaymentSettlement> settlement = JsonNullable.undefined();
+        private Optional<? extends GetPaymentSettlement> settlement = Optional.empty();
  
-        private JsonNullable<? extends GetPaymentCustomer> customer = JsonNullable.undefined();
+        private Optional<? extends GetPaymentCustomer> customer = Optional.empty();
  
-        private JsonNullable<? extends GetPaymentMandate> mandate = JsonNullable.undefined();
+        private Optional<? extends GetPaymentMandate> mandate = Optional.empty();
  
-        private JsonNullable<? extends GetPaymentSubscription> subscription = JsonNullable.undefined();
+        private Optional<? extends GetPaymentSubscription> subscription = Optional.empty();
  
-        private JsonNullable<? extends GetPaymentOrder> order = JsonNullable.undefined();
+        private Optional<? extends GetPaymentOrder> order = Optional.empty();
  
-        private JsonNullable<? extends GetPaymentTerminal> terminal = JsonNullable.undefined();
+        private Optional<? extends GetPaymentTerminal> terminal = Optional.empty();
  
-        private Optional<? extends GetPaymentDocumentation> documentation = Optional.empty();
+        private GetPaymentDocumentation documentation;
         
         private Builder() {
           // force use of static builder() method
@@ -715,15 +684,6 @@ public class GetPaymentLinks {
          */
         public Builder self(GetPaymentSelf self) {
             Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder self(Optional<? extends GetPaymentSelf> self) {
-            Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
         }
@@ -733,14 +693,14 @@ public class GetPaymentLinks {
          */
         public Builder checkout(GetPaymentCheckout checkout) {
             Utils.checkNotNull(checkout, "checkout");
-            this.checkout = JsonNullable.of(checkout);
+            this.checkout = Optional.ofNullable(checkout);
             return this;
         }
 
         /**
          * The URL your customer should visit to make the payment. This is where you should redirect the customer to.
          */
-        public Builder checkout(JsonNullable<? extends GetPaymentCheckout> checkout) {
+        public Builder checkout(Optional<? extends GetPaymentCheckout> checkout) {
             Utils.checkNotNull(checkout, "checkout");
             this.checkout = checkout;
             return this;
@@ -751,14 +711,14 @@ public class GetPaymentLinks {
          */
         public Builder mobileAppCheckout(GetPaymentMobileAppCheckout mobileAppCheckout) {
             Utils.checkNotNull(mobileAppCheckout, "mobileAppCheckout");
-            this.mobileAppCheckout = JsonNullable.of(mobileAppCheckout);
+            this.mobileAppCheckout = Optional.ofNullable(mobileAppCheckout);
             return this;
         }
 
         /**
          * The deeplink URL to the app of the payment method. Currently only available for `bancontact`.
          */
-        public Builder mobileAppCheckout(JsonNullable<? extends GetPaymentMobileAppCheckout> mobileAppCheckout) {
+        public Builder mobileAppCheckout(Optional<? extends GetPaymentMobileAppCheckout> mobileAppCheckout) {
             Utils.checkNotNull(mobileAppCheckout, "mobileAppCheckout");
             this.mobileAppCheckout = mobileAppCheckout;
             return this;
@@ -773,7 +733,7 @@ public class GetPaymentLinks {
          */
         public Builder changePaymentState(GetPaymentChangePaymentState changePaymentState) {
             Utils.checkNotNull(changePaymentState, "changePaymentState");
-            this.changePaymentState = JsonNullable.of(changePaymentState);
+            this.changePaymentState = Optional.ofNullable(changePaymentState);
             return this;
         }
 
@@ -784,7 +744,7 @@ public class GetPaymentLinks {
          * 
          * <p>Secondly, for paid test mode payments. The payment state screen will then allow you to create a refund or chargeback for the test payment.
          */
-        public Builder changePaymentState(JsonNullable<? extends GetPaymentChangePaymentState> changePaymentState) {
+        public Builder changePaymentState(Optional<? extends GetPaymentChangePaymentState> changePaymentState) {
             Utils.checkNotNull(changePaymentState, "changePaymentState");
             this.changePaymentState = changePaymentState;
             return this;
@@ -795,15 +755,6 @@ public class GetPaymentLinks {
          */
         public Builder dashboard(GetPaymentDashboard dashboard) {
             Utils.checkNotNull(dashboard, "dashboard");
-            this.dashboard = Optional.ofNullable(dashboard);
-            return this;
-        }
-
-        /**
-         * Direct link to the payment in the Mollie Dashboard.
-         */
-        public Builder dashboard(Optional<? extends GetPaymentDashboard> dashboard) {
-            Utils.checkNotNull(dashboard, "dashboard");
             this.dashboard = dashboard;
             return this;
         }
@@ -813,14 +764,14 @@ public class GetPaymentLinks {
          */
         public Builder refunds(GetPaymentRefunds refunds) {
             Utils.checkNotNull(refunds, "refunds");
-            this.refunds = JsonNullable.of(refunds);
+            this.refunds = Optional.ofNullable(refunds);
             return this;
         }
 
         /**
          * The API resource URL of the [refunds](list-payment-refunds) that belong to this payment.
          */
-        public Builder refunds(JsonNullable<? extends GetPaymentRefunds> refunds) {
+        public Builder refunds(Optional<? extends GetPaymentRefunds> refunds) {
             Utils.checkNotNull(refunds, "refunds");
             this.refunds = refunds;
             return this;
@@ -867,14 +818,14 @@ public class GetPaymentLinks {
          */
         public Builder settlement(GetPaymentSettlement settlement) {
             Utils.checkNotNull(settlement, "settlement");
-            this.settlement = JsonNullable.of(settlement);
+            this.settlement = Optional.ofNullable(settlement);
             return this;
         }
 
         /**
          * The API resource URL of the [settlement](get-settlement) this payment has been settled with. Not present if not yet settled.
          */
-        public Builder settlement(JsonNullable<? extends GetPaymentSettlement> settlement) {
+        public Builder settlement(Optional<? extends GetPaymentSettlement> settlement) {
             Utils.checkNotNull(settlement, "settlement");
             this.settlement = settlement;
             return this;
@@ -885,14 +836,14 @@ public class GetPaymentLinks {
          */
         public Builder customer(GetPaymentCustomer customer) {
             Utils.checkNotNull(customer, "customer");
-            this.customer = JsonNullable.of(customer);
+            this.customer = Optional.ofNullable(customer);
             return this;
         }
 
         /**
          * The API resource URL of the [customer](get-customer).
          */
-        public Builder customer(JsonNullable<? extends GetPaymentCustomer> customer) {
+        public Builder customer(Optional<? extends GetPaymentCustomer> customer) {
             Utils.checkNotNull(customer, "customer");
             this.customer = customer;
             return this;
@@ -903,14 +854,14 @@ public class GetPaymentLinks {
          */
         public Builder mandate(GetPaymentMandate mandate) {
             Utils.checkNotNull(mandate, "mandate");
-            this.mandate = JsonNullable.of(mandate);
+            this.mandate = Optional.ofNullable(mandate);
             return this;
         }
 
         /**
          * The API resource URL of the [mandate](get-mandate).
          */
-        public Builder mandate(JsonNullable<? extends GetPaymentMandate> mandate) {
+        public Builder mandate(Optional<? extends GetPaymentMandate> mandate) {
             Utils.checkNotNull(mandate, "mandate");
             this.mandate = mandate;
             return this;
@@ -921,14 +872,14 @@ public class GetPaymentLinks {
          */
         public Builder subscription(GetPaymentSubscription subscription) {
             Utils.checkNotNull(subscription, "subscription");
-            this.subscription = JsonNullable.of(subscription);
+            this.subscription = Optional.ofNullable(subscription);
             return this;
         }
 
         /**
          * The API resource URL of the [subscription](get-subscription).
          */
-        public Builder subscription(JsonNullable<? extends GetPaymentSubscription> subscription) {
+        public Builder subscription(Optional<? extends GetPaymentSubscription> subscription) {
             Utils.checkNotNull(subscription, "subscription");
             this.subscription = subscription;
             return this;
@@ -939,14 +890,14 @@ public class GetPaymentLinks {
          */
         public Builder order(GetPaymentOrder order) {
             Utils.checkNotNull(order, "order");
-            this.order = JsonNullable.of(order);
+            this.order = Optional.ofNullable(order);
             return this;
         }
 
         /**
          * The API resource URL of the [order](get-order) this payment was created for. Not present if not created for an order.
          */
-        public Builder order(JsonNullable<? extends GetPaymentOrder> order) {
+        public Builder order(Optional<? extends GetPaymentOrder> order) {
             Utils.checkNotNull(order, "order");
             this.order = order;
             return this;
@@ -957,14 +908,14 @@ public class GetPaymentLinks {
          */
         public Builder terminal(GetPaymentTerminal terminal) {
             Utils.checkNotNull(terminal, "terminal");
-            this.terminal = JsonNullable.of(terminal);
+            this.terminal = Optional.ofNullable(terminal);
             return this;
         }
 
         /**
          * The API resource URL of the [terminal](get-terminal) this payment was created for. Only present for point-of-sale payments.
          */
-        public Builder terminal(JsonNullable<? extends GetPaymentTerminal> terminal) {
+        public Builder terminal(Optional<? extends GetPaymentTerminal> terminal) {
             Utils.checkNotNull(terminal, "terminal");
             this.terminal = terminal;
             return this;
@@ -974,15 +925,6 @@ public class GetPaymentLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(GetPaymentDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends GetPaymentDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

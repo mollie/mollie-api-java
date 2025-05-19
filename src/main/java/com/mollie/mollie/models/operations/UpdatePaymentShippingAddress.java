@@ -14,13 +14,6 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-/**
- * UpdatePaymentShippingAddress
- * 
- * <p>The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
- * 
- * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
- */
 public class UpdatePaymentShippingAddress {
 
     /**

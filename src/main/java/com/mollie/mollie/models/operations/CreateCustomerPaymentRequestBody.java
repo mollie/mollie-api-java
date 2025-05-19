@@ -27,9 +27,8 @@ public class CreateCustomerPaymentRequestBody {
      * 
      * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255 characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
      */
-    @JsonInclude(Include.ALWAYS)
     @JsonProperty("description")
-    private Optional<String> description;
+    private String description;
 
     /**
      * The amount that you want to charge, e.g. `{currency:"EUR", value:"1000.00"}` if you would want to charge €1000.00.
@@ -48,9 +47,8 @@ public class CreateCustomerPaymentRequestBody {
      * 
      * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
      */
-    @JsonInclude(Include.ALWAYS)
     @JsonProperty("redirectUrl")
-    private Optional<String> redirectUrl;
+    private String redirectUrl;
 
     /**
      * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not provided, the customer will be redirected to the `redirectUrl` instead — see above.
@@ -282,9 +280,9 @@ public class CreateCustomerPaymentRequestBody {
 
     @JsonCreator
     public CreateCustomerPaymentRequestBody(
-            @JsonProperty("description") Optional<String> description,
+            @JsonProperty("description") String description,
             @JsonProperty("amount") CreateCustomerPaymentAmount amount,
-            @JsonProperty("redirectUrl") Optional<String> redirectUrl,
+            @JsonProperty("redirectUrl") String redirectUrl,
             @JsonProperty("cancelUrl") JsonNullable<String> cancelUrl,
             @JsonProperty("webhookUrl") JsonNullable<String> webhookUrl,
             @JsonProperty("lines") JsonNullable<? extends List<CreateCustomerPaymentLines>> lines,
@@ -354,8 +352,10 @@ public class CreateCustomerPaymentRequestBody {
     }
     
     public CreateCustomerPaymentRequestBody(
-            CreateCustomerPaymentAmount amount) {
-        this(Optional.empty(), amount, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
+            String description,
+            CreateCustomerPaymentAmount amount,
+            String redirectUrl) {
+        this(description, amount, redirectUrl, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -366,7 +366,7 @@ public class CreateCustomerPaymentRequestBody {
      * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255 characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
      */
     @JsonIgnore
-    public Optional<String> description() {
+    public String description() {
         return description;
     }
 
@@ -390,7 +390,7 @@ public class CreateCustomerPaymentRequestBody {
      * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
      */
     @JsonIgnore
-    public Optional<String> redirectUrl() {
+    public String redirectUrl() {
         return redirectUrl;
     }
 
@@ -661,19 +661,6 @@ public class CreateCustomerPaymentRequestBody {
      */
     public CreateCustomerPaymentRequestBody withDescription(String description) {
         Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
-        return this;
-    }
-
-    /**
-     * The description of the payment. This will be shown to your customer on their card or bank statement when possible. We truncate the description automatically according to the limits of the used payment method. The description is also visible in any exports you generate.
-     * 
-     * <p>We recommend you use a unique identifier so that you can always link the payment to the order in your back office. This is particularly useful for bookkeeping.
-     * 
-     * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255 characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
-     */
-    public CreateCustomerPaymentRequestBody withDescription(Optional<String> description) {
-        Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
     }
@@ -699,19 +686,6 @@ public class CreateCustomerPaymentRequestBody {
      * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
      */
     public CreateCustomerPaymentRequestBody withRedirectUrl(String redirectUrl) {
-        Utils.checkNotNull(redirectUrl, "redirectUrl");
-        this.redirectUrl = Optional.ofNullable(redirectUrl);
-        return this;
-    }
-
-    /**
-     * The URL your customer will be redirected to after the payment process.
-     * 
-     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the right page referencing the order when your customer returns.
-     * 
-     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
-     */
-    public CreateCustomerPaymentRequestBody withRedirectUrl(Optional<String> redirectUrl) {
         Utils.checkNotNull(redirectUrl, "redirectUrl");
         this.redirectUrl = redirectUrl;
         return this;
@@ -1347,11 +1321,11 @@ public class CreateCustomerPaymentRequestBody {
     
     public final static class Builder {
  
-        private Optional<String> description = Optional.empty();
+        private String description;
  
         private CreateCustomerPaymentAmount amount;
  
-        private Optional<String> redirectUrl = Optional.empty();
+        private String redirectUrl;
  
         private JsonNullable<String> cancelUrl = JsonNullable.undefined();
  
@@ -1406,19 +1380,6 @@ public class CreateCustomerPaymentRequestBody {
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
-            return this;
-        }
-
-        /**
-         * The description of the payment. This will be shown to your customer on their card or bank statement when possible. We truncate the description automatically according to the limits of the used payment method. The description is also visible in any exports you generate.
-         * 
-         * <p>We recommend you use a unique identifier so that you can always link the payment to the order in your back office. This is particularly useful for bookkeeping.
-         * 
-         * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255 characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
-         */
-        public Builder description(Optional<String> description) {
-            Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
         }
@@ -1444,19 +1405,6 @@ public class CreateCustomerPaymentRequestBody {
          * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
          */
         public Builder redirectUrl(String redirectUrl) {
-            Utils.checkNotNull(redirectUrl, "redirectUrl");
-            this.redirectUrl = Optional.ofNullable(redirectUrl);
-            return this;
-        }
-
-        /**
-         * The URL your customer will be redirected to after the payment process.
-         * 
-         * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the right page referencing the order when your customer returns.
-         * 
-         * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
-         */
-        public Builder redirectUrl(Optional<String> redirectUrl) {
             Utils.checkNotNull(redirectUrl, "redirectUrl");
             this.redirectUrl = redirectUrl;
             return this;

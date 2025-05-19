@@ -21,16 +21,14 @@ public class CreateCustomerPaymentRouting {
     /**
      * The portion of the total payment amount being routed. Currently only `EUR` payments can be routed.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private Optional<? extends CreateCustomerPaymentCustomersRequestRequestBodyAmount> amount;
+    private CreateCustomerPaymentCustomersRequestRequestBodyAmount amount;
 
     /**
      * The destination of this portion of the payment.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destination")
-    private Optional<? extends CreateCustomerPaymentDestination> destination;
+    private CreateCustomerPaymentDestination destination;
 
     /**
      * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
@@ -46,14 +44,14 @@ public class CreateCustomerPaymentRouting {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private JsonNullable<? extends CreateCustomerPaymentLinks> links;
+    private Optional<? extends CreateCustomerPaymentLinks> links;
 
     @JsonCreator
     public CreateCustomerPaymentRouting(
-            @JsonProperty("amount") Optional<? extends CreateCustomerPaymentCustomersRequestRequestBodyAmount> amount,
-            @JsonProperty("destination") Optional<? extends CreateCustomerPaymentDestination> destination,
+            @JsonProperty("amount") CreateCustomerPaymentCustomersRequestRequestBodyAmount amount,
+            @JsonProperty("destination") CreateCustomerPaymentDestination destination,
             @JsonProperty("releaseDate") JsonNullable<String> releaseDate,
-            @JsonProperty("_links") JsonNullable<? extends CreateCustomerPaymentLinks> links) {
+            @JsonProperty("_links") Optional<? extends CreateCustomerPaymentLinks> links) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(destination, "destination");
         Utils.checkNotNull(releaseDate, "releaseDate");
@@ -64,26 +62,26 @@ public class CreateCustomerPaymentRouting {
         this.links = links;
     }
     
-    public CreateCustomerPaymentRouting() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+    public CreateCustomerPaymentRouting(
+            CreateCustomerPaymentCustomersRequestRequestBodyAmount amount,
+            CreateCustomerPaymentDestination destination) {
+        this(amount, destination, JsonNullable.undefined(), Optional.empty());
     }
 
     /**
      * The portion of the total payment amount being routed. Currently only `EUR` payments can be routed.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateCustomerPaymentCustomersRequestRequestBodyAmount> amount() {
-        return (Optional<CreateCustomerPaymentCustomersRequestRequestBodyAmount>) amount;
+    public CreateCustomerPaymentCustomersRequestRequestBodyAmount amount() {
+        return amount;
     }
 
     /**
      * The destination of this portion of the payment.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateCustomerPaymentDestination> destination() {
-        return (Optional<CreateCustomerPaymentDestination>) destination;
+    public CreateCustomerPaymentDestination destination() {
+        return destination;
     }
 
     /**
@@ -101,8 +99,8 @@ public class CreateCustomerPaymentRouting {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CreateCustomerPaymentLinks> links() {
-        return (JsonNullable<CreateCustomerPaymentLinks>) links;
+    public Optional<CreateCustomerPaymentLinks> links() {
+        return (Optional<CreateCustomerPaymentLinks>) links;
     }
 
     public final static Builder builder() {
@@ -114,15 +112,6 @@ public class CreateCustomerPaymentRouting {
      */
     public CreateCustomerPaymentRouting withAmount(CreateCustomerPaymentCustomersRequestRequestBodyAmount amount) {
         Utils.checkNotNull(amount, "amount");
-        this.amount = Optional.ofNullable(amount);
-        return this;
-    }
-
-    /**
-     * The portion of the total payment amount being routed. Currently only `EUR` payments can be routed.
-     */
-    public CreateCustomerPaymentRouting withAmount(Optional<? extends CreateCustomerPaymentCustomersRequestRequestBodyAmount> amount) {
-        Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
@@ -131,15 +120,6 @@ public class CreateCustomerPaymentRouting {
      * The destination of this portion of the payment.
      */
     public CreateCustomerPaymentRouting withDestination(CreateCustomerPaymentDestination destination) {
-        Utils.checkNotNull(destination, "destination");
-        this.destination = Optional.ofNullable(destination);
-        return this;
-    }
-
-    /**
-     * The destination of this portion of the payment.
-     */
-    public CreateCustomerPaymentRouting withDestination(Optional<? extends CreateCustomerPaymentDestination> destination) {
         Utils.checkNotNull(destination, "destination");
         this.destination = destination;
         return this;
@@ -172,14 +152,14 @@ public class CreateCustomerPaymentRouting {
      */
     public CreateCustomerPaymentRouting withLinks(CreateCustomerPaymentLinks links) {
         Utils.checkNotNull(links, "links");
-        this.links = JsonNullable.of(links);
+        this.links = Optional.ofNullable(links);
         return this;
     }
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    public CreateCustomerPaymentRouting withLinks(JsonNullable<? extends CreateCustomerPaymentLinks> links) {
+    public CreateCustomerPaymentRouting withLinks(Optional<? extends CreateCustomerPaymentLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -222,13 +202,13 @@ public class CreateCustomerPaymentRouting {
     
     public final static class Builder {
  
-        private Optional<? extends CreateCustomerPaymentCustomersRequestRequestBodyAmount> amount = Optional.empty();
+        private CreateCustomerPaymentCustomersRequestRequestBodyAmount amount;
  
-        private Optional<? extends CreateCustomerPaymentDestination> destination = Optional.empty();
+        private CreateCustomerPaymentDestination destination;
  
         private JsonNullable<String> releaseDate = JsonNullable.undefined();
  
-        private JsonNullable<? extends CreateCustomerPaymentLinks> links = JsonNullable.undefined();
+        private Optional<? extends CreateCustomerPaymentLinks> links = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -239,15 +219,6 @@ public class CreateCustomerPaymentRouting {
          */
         public Builder amount(CreateCustomerPaymentCustomersRequestRequestBodyAmount amount) {
             Utils.checkNotNull(amount, "amount");
-            this.amount = Optional.ofNullable(amount);
-            return this;
-        }
-
-        /**
-         * The portion of the total payment amount being routed. Currently only `EUR` payments can be routed.
-         */
-        public Builder amount(Optional<? extends CreateCustomerPaymentCustomersRequestRequestBodyAmount> amount) {
-            Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;
         }
@@ -256,15 +227,6 @@ public class CreateCustomerPaymentRouting {
          * The destination of this portion of the payment.
          */
         public Builder destination(CreateCustomerPaymentDestination destination) {
-            Utils.checkNotNull(destination, "destination");
-            this.destination = Optional.ofNullable(destination);
-            return this;
-        }
-
-        /**
-         * The destination of this portion of the payment.
-         */
-        public Builder destination(Optional<? extends CreateCustomerPaymentDestination> destination) {
             Utils.checkNotNull(destination, "destination");
             this.destination = destination;
             return this;
@@ -297,14 +259,14 @@ public class CreateCustomerPaymentRouting {
          */
         public Builder links(CreateCustomerPaymentLinks links) {
             Utils.checkNotNull(links, "links");
-            this.links = JsonNullable.of(links);
+            this.links = Optional.ofNullable(links);
             return this;
         }
 
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
-        public Builder links(JsonNullable<? extends CreateCustomerPaymentLinks> links) {
+        public Builder links(Optional<? extends CreateCustomerPaymentLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;
