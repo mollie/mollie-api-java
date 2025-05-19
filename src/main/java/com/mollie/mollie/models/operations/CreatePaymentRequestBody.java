@@ -47,8 +47,9 @@ public class CreatePaymentRequestBody {
      * 
      * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
      */
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("redirectUrl")
-    private String redirectUrl;
+    private Optional<String> redirectUrl;
 
     /**
      * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not provided, the customer will be redirected to the `redirectUrl` instead — see above.
@@ -282,7 +283,7 @@ public class CreatePaymentRequestBody {
     public CreatePaymentRequestBody(
             @JsonProperty("description") String description,
             @JsonProperty("amount") Amount amount,
-            @JsonProperty("redirectUrl") String redirectUrl,
+            @JsonProperty("redirectUrl") Optional<String> redirectUrl,
             @JsonProperty("cancelUrl") JsonNullable<String> cancelUrl,
             @JsonProperty("webhookUrl") JsonNullable<String> webhookUrl,
             @JsonProperty("lines") JsonNullable<? extends List<Lines>> lines,
@@ -353,9 +354,8 @@ public class CreatePaymentRequestBody {
     
     public CreatePaymentRequestBody(
             String description,
-            Amount amount,
-            String redirectUrl) {
-        this(description, amount, redirectUrl, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
+            Amount amount) {
+        this(description, amount, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -390,7 +390,7 @@ public class CreatePaymentRequestBody {
      * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
      */
     @JsonIgnore
-    public String redirectUrl() {
+    public Optional<String> redirectUrl() {
         return redirectUrl;
     }
 
@@ -686,6 +686,19 @@ public class CreatePaymentRequestBody {
      * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
      */
     public CreatePaymentRequestBody withRedirectUrl(String redirectUrl) {
+        Utils.checkNotNull(redirectUrl, "redirectUrl");
+        this.redirectUrl = Optional.ofNullable(redirectUrl);
+        return this;
+    }
+
+    /**
+     * The URL your customer will be redirected to after the payment process.
+     * 
+     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the right page referencing the order when your customer returns.
+     * 
+     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
+     */
+    public CreatePaymentRequestBody withRedirectUrl(Optional<String> redirectUrl) {
         Utils.checkNotNull(redirectUrl, "redirectUrl");
         this.redirectUrl = redirectUrl;
         return this;
@@ -1325,7 +1338,7 @@ public class CreatePaymentRequestBody {
  
         private Amount amount;
  
-        private String redirectUrl;
+        private Optional<String> redirectUrl = Optional.empty();
  
         private JsonNullable<String> cancelUrl = JsonNullable.undefined();
  
@@ -1405,6 +1418,19 @@ public class CreatePaymentRequestBody {
          * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
          */
         public Builder redirectUrl(String redirectUrl) {
+            Utils.checkNotNull(redirectUrl, "redirectUrl");
+            this.redirectUrl = Optional.ofNullable(redirectUrl);
+            return this;
+        }
+
+        /**
+         * The URL your customer will be redirected to after the payment process.
+         * 
+         * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the right page referencing the order when your customer returns.
+         * 
+         * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
+         */
+        public Builder redirectUrl(Optional<String> redirectUrl) {
             Utils.checkNotNull(redirectUrl, "redirectUrl");
             this.redirectUrl = redirectUrl;
             return this;

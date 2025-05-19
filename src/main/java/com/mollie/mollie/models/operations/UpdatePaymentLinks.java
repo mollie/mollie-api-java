@@ -125,8 +125,9 @@ public class UpdatePaymentLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private UpdatePaymentDocumentation documentation;
+    private Optional<? extends UpdatePaymentDocumentation> documentation;
 
     @JsonCreator
     public UpdatePaymentLinks(
@@ -144,7 +145,7 @@ public class UpdatePaymentLinks {
             @JsonProperty("subscription") Optional<? extends UpdatePaymentSubscription> subscription,
             @JsonProperty("order") Optional<? extends UpdatePaymentOrder> order,
             @JsonProperty("terminal") Optional<? extends UpdatePaymentTerminal> terminal,
-            @JsonProperty("documentation") UpdatePaymentDocumentation documentation) {
+            @JsonProperty("documentation") Optional<? extends UpdatePaymentDocumentation> documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(checkout, "checkout");
         Utils.checkNotNull(mobileAppCheckout, "mobileAppCheckout");
@@ -179,9 +180,8 @@ public class UpdatePaymentLinks {
     
     public UpdatePaymentLinks(
             UpdatePaymentSelf self,
-            UpdatePaymentDashboard dashboard,
-            UpdatePaymentDocumentation documentation) {
-        this(self, Optional.empty(), Optional.empty(), Optional.empty(), dashboard, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), documentation);
+            UpdatePaymentDashboard dashboard) {
+        this(self, Optional.empty(), Optional.empty(), Optional.empty(), dashboard, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -315,9 +315,10 @@ public class UpdatePaymentLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public UpdatePaymentDocumentation documentation() {
-        return documentation;
+    public Optional<UpdatePaymentDocumentation> documentation() {
+        return (Optional<UpdatePaymentDocumentation>) documentation;
     }
 
     public final static Builder builder() {
@@ -571,6 +572,15 @@ public class UpdatePaymentLinks {
      */
     public UpdatePaymentLinks withDocumentation(UpdatePaymentDocumentation documentation) {
         Utils.checkNotNull(documentation, "documentation");
+        this.documentation = Optional.ofNullable(documentation);
+        return this;
+    }
+
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    public UpdatePaymentLinks withDocumentation(Optional<? extends UpdatePaymentDocumentation> documentation) {
+        Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
     }
@@ -673,7 +683,7 @@ public class UpdatePaymentLinks {
  
         private Optional<? extends UpdatePaymentTerminal> terminal = Optional.empty();
  
-        private UpdatePaymentDocumentation documentation;
+        private Optional<? extends UpdatePaymentDocumentation> documentation = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -925,6 +935,15 @@ public class UpdatePaymentLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(UpdatePaymentDocumentation documentation) {
+            Utils.checkNotNull(documentation, "documentation");
+            this.documentation = Optional.ofNullable(documentation);
+            return this;
+        }
+
+        /**
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+         */
+        public Builder documentation(Optional<? extends UpdatePaymentDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

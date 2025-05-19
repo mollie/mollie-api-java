@@ -47,7 +47,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:0.2.7'
+implementation 'com.mollie:mollie:0.2.8'
 ```
 
 Maven:
@@ -55,7 +55,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>0.2.7</version>
+    <version>0.2.8</version>
 </dependency>
 ```
 
@@ -300,7 +300,6 @@ public class Application {
                                 .type("organization")
                                 .organizationId("org_1234567")
                                 .build())
-                            .releaseDate("2024-12-12")
                             .links(Links.builder()
                                 .self(Self.builder()
                                     .href("https://...")
@@ -311,6 +310,7 @@ public class Application {
                                     .type("application/hal+json")
                                     .build())
                                 .build())
+                            .releaseDate("2024-12-12")
                             .build(),
                         Routing.builder()
                             .amount(CreatePaymentPaymentsRequestAmount.builder()
@@ -321,7 +321,6 @@ public class Application {
                                 .type("organization")
                                 .organizationId("org_1234567")
                                 .build())
-                            .releaseDate("2024-12-12")
                             .links(Links.builder()
                                 .self(Self.builder()
                                     .href("https://...")
@@ -332,6 +331,7 @@ public class Application {
                                     .type("application/hal+json")
                                     .build())
                                 .build())
+                            .releaseDate("2024-12-12")
                             .build()))
                     .sequenceType("oneoff")
                     .mandateId("mdt_5B8cwPMGnU")
@@ -561,7 +561,6 @@ public class Application {
                                 .type("organization")
                                 .organizationId("org_1234567")
                                 .build())
-                            .releaseDate("2024-12-12")
                             .links(Links.builder()
                                 .self(Self.builder()
                                     .href("https://...")
@@ -572,6 +571,7 @@ public class Application {
                                     .type("application/hal+json")
                                     .build())
                                 .build())
+                            .releaseDate("2024-12-12")
                             .build(),
                         Routing.builder()
                             .amount(CreatePaymentPaymentsRequestAmount.builder()
@@ -582,7 +582,6 @@ public class Application {
                                 .type("organization")
                                 .organizationId("org_1234567")
                                 .build())
-                            .releaseDate("2024-12-12")
                             .links(Links.builder()
                                 .self(Self.builder()
                                     .href("https://...")
@@ -593,6 +592,7 @@ public class Application {
                                     .type("application/hal+json")
                                     .build())
                                 .build())
+                            .releaseDate("2024-12-12")
                             .build()))
                     .sequenceType("oneoff")
                     .mandateId("mdt_5B8cwPMGnU")
@@ -987,7 +987,6 @@ public class Application {
                                 .type("organization")
                                 .organizationId("org_1234567")
                                 .build())
-                            .releaseDate("2024-12-12")
                             .links(Links.builder()
                                 .self(Self.builder()
                                     .href("https://...")
@@ -998,6 +997,7 @@ public class Application {
                                     .type("application/hal+json")
                                     .build())
                                 .build())
+                            .releaseDate("2024-12-12")
                             .build(),
                         Routing.builder()
                             .amount(CreatePaymentPaymentsRequestAmount.builder()
@@ -1008,7 +1008,6 @@ public class Application {
                                 .type("organization")
                                 .organizationId("org_1234567")
                                 .build())
-                            .releaseDate("2024-12-12")
                             .links(Links.builder()
                                 .self(Self.builder()
                                     .href("https://...")
@@ -1019,6 +1018,7 @@ public class Application {
                                     .type("application/hal+json")
                                     .build())
                                 .build())
+                            .releaseDate("2024-12-12")
                             .build()))
                     .sequenceType("oneoff")
                     .mandateId("mdt_5B8cwPMGnU")
@@ -1248,7 +1248,6 @@ public class Application {
                                 .type("organization")
                                 .organizationId("org_1234567")
                                 .build())
-                            .releaseDate("2024-12-12")
                             .links(Links.builder()
                                 .self(Self.builder()
                                     .href("https://...")
@@ -1259,6 +1258,7 @@ public class Application {
                                     .type("application/hal+json")
                                     .build())
                                 .build())
+                            .releaseDate("2024-12-12")
                             .build(),
                         Routing.builder()
                             .amount(CreatePaymentPaymentsRequestAmount.builder()
@@ -1269,7 +1269,6 @@ public class Application {
                                 .type("organization")
                                 .organizationId("org_1234567")
                                 .build())
-                            .releaseDate("2024-12-12")
                             .links(Links.builder()
                                 .self(Self.builder()
                                     .href("https://...")
@@ -1280,6 +1279,7 @@ public class Application {
                                     .type("application/hal+json")
                                     .build())
                                 .build())
+                            .releaseDate("2024-12-12")
                             .build()))
                     .sequenceType("oneoff")
                     .mandateId("mdt_5B8cwPMGnU")
@@ -1511,7 +1511,6 @@ public class Application {
                                 .type("organization")
                                 .organizationId("org_1234567")
                                 .build())
-                            .releaseDate("2024-12-12")
                             .links(Links.builder()
                                 .self(Self.builder()
                                     .href("https://...")
@@ -1522,6 +1521,7 @@ public class Application {
                                     .type("application/hal+json")
                                     .build())
                                 .build())
+                            .releaseDate("2024-12-12")
                             .build(),
                         Routing.builder()
                             .amount(CreatePaymentPaymentsRequestAmount.builder()
@@ -1532,7 +1532,6 @@ public class Application {
                                 .type("organization")
                                 .organizationId("org_1234567")
                                 .build())
-                            .releaseDate("2024-12-12")
                             .links(Links.builder()
                                 .self(Self.builder()
                                     .href("https://...")
@@ -1543,6 +1542,7 @@ public class Application {
                                     .type("application/hal+json")
                                     .build())
                                 .build())
+                            .releaseDate("2024-12-12")
                             .build()))
                     .sequenceType("oneoff")
                     .mandateId("mdt_5B8cwPMGnU")
@@ -1766,7 +1766,6 @@ public class Application {
                                 .type("organization")
                                 .organizationId("org_1234567")
                                 .build())
-                            .releaseDate("2024-12-12")
                             .links(Links.builder()
                                 .self(Self.builder()
                                     .href("https://...")
@@ -1777,6 +1776,7 @@ public class Application {
                                     .type("application/hal+json")
                                     .build())
                                 .build())
+                            .releaseDate("2024-12-12")
                             .build(),
                         Routing.builder()
                             .amount(CreatePaymentPaymentsRequestAmount.builder()
@@ -1787,7 +1787,6 @@ public class Application {
                                 .type("organization")
                                 .organizationId("org_1234567")
                                 .build())
-                            .releaseDate("2024-12-12")
                             .links(Links.builder()
                                 .self(Self.builder()
                                     .href("https://...")
@@ -1798,6 +1797,7 @@ public class Application {
                                     .type("application/hal+json")
                                     .build())
                                 .build())
+                            .releaseDate("2024-12-12")
                             .build()))
                     .sequenceType("oneoff")
                     .mandateId("mdt_5B8cwPMGnU")

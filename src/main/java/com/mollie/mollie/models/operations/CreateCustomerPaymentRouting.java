@@ -11,9 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreateCustomerPaymentRouting {
@@ -42,16 +40,15 @@ public class CreateCustomerPaymentRouting {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends CreateCustomerPaymentLinks> links;
+    private CreateCustomerPaymentLinks links;
 
     @JsonCreator
     public CreateCustomerPaymentRouting(
             @JsonProperty("amount") CreateCustomerPaymentCustomersRequestRequestBodyAmount amount,
             @JsonProperty("destination") CreateCustomerPaymentDestination destination,
             @JsonProperty("releaseDate") JsonNullable<String> releaseDate,
-            @JsonProperty("_links") Optional<? extends CreateCustomerPaymentLinks> links) {
+            @JsonProperty("_links") CreateCustomerPaymentLinks links) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(destination, "destination");
         Utils.checkNotNull(releaseDate, "releaseDate");
@@ -64,8 +61,9 @@ public class CreateCustomerPaymentRouting {
     
     public CreateCustomerPaymentRouting(
             CreateCustomerPaymentCustomersRequestRequestBodyAmount amount,
-            CreateCustomerPaymentDestination destination) {
-        this(amount, destination, JsonNullable.undefined(), Optional.empty());
+            CreateCustomerPaymentDestination destination,
+            CreateCustomerPaymentLinks links) {
+        this(amount, destination, JsonNullable.undefined(), links);
     }
 
     /**
@@ -97,10 +95,9 @@ public class CreateCustomerPaymentRouting {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateCustomerPaymentLinks> links() {
-        return (Optional<CreateCustomerPaymentLinks>) links;
+    public CreateCustomerPaymentLinks links() {
+        return links;
     }
 
     public final static Builder builder() {
@@ -152,15 +149,6 @@ public class CreateCustomerPaymentRouting {
      */
     public CreateCustomerPaymentRouting withLinks(CreateCustomerPaymentLinks links) {
         Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public CreateCustomerPaymentRouting withLinks(Optional<? extends CreateCustomerPaymentLinks> links) {
-        Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
     }
@@ -208,7 +196,7 @@ public class CreateCustomerPaymentRouting {
  
         private JsonNullable<String> releaseDate = JsonNullable.undefined();
  
-        private Optional<? extends CreateCustomerPaymentLinks> links = Optional.empty();
+        private CreateCustomerPaymentLinks links;
         
         private Builder() {
           // force use of static builder() method
@@ -258,15 +246,6 @@ public class CreateCustomerPaymentRouting {
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
         public Builder links(CreateCustomerPaymentLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends CreateCustomerPaymentLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

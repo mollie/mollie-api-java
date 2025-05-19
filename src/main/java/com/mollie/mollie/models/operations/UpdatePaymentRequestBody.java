@@ -39,7 +39,7 @@ public class UpdatePaymentRequestBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("redirectUrl")
-    private Optional<String> redirectUrl;
+    private JsonNullable<String> redirectUrl;
 
     /**
      * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not provided, the customer will be redirected to the `redirectUrl` instead — see above.
@@ -149,7 +149,7 @@ public class UpdatePaymentRequestBody {
     @JsonCreator
     public UpdatePaymentRequestBody(
             @JsonProperty("description") Optional<String> description,
-            @JsonProperty("redirectUrl") Optional<String> redirectUrl,
+            @JsonProperty("redirectUrl") JsonNullable<String> redirectUrl,
             @JsonProperty("cancelUrl") JsonNullable<String> cancelUrl,
             @JsonProperty("webhookUrl") JsonNullable<String> webhookUrl,
             @JsonProperty("metadata") JsonNullable<? extends UpdatePaymentMetadata> metadata,
@@ -193,7 +193,7 @@ public class UpdatePaymentRequestBody {
     }
     
     public UpdatePaymentRequestBody() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -216,7 +216,7 @@ public class UpdatePaymentRequestBody {
      * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
      */
     @JsonIgnore
-    public Optional<String> redirectUrl() {
+    public JsonNullable<String> redirectUrl() {
         return redirectUrl;
     }
 
@@ -379,7 +379,7 @@ public class UpdatePaymentRequestBody {
      */
     public UpdatePaymentRequestBody withRedirectUrl(String redirectUrl) {
         Utils.checkNotNull(redirectUrl, "redirectUrl");
-        this.redirectUrl = Optional.ofNullable(redirectUrl);
+        this.redirectUrl = JsonNullable.of(redirectUrl);
         return this;
     }
 
@@ -390,7 +390,7 @@ public class UpdatePaymentRequestBody {
      * 
      * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
      */
-    public UpdatePaymentRequestBody withRedirectUrl(Optional<String> redirectUrl) {
+    public UpdatePaymentRequestBody withRedirectUrl(JsonNullable<String> redirectUrl) {
         Utils.checkNotNull(redirectUrl, "redirectUrl");
         this.redirectUrl = redirectUrl;
         return this;
@@ -723,7 +723,7 @@ public class UpdatePaymentRequestBody {
  
         private Optional<String> description = Optional.empty();
  
-        private Optional<String> redirectUrl = Optional.empty();
+        private JsonNullable<String> redirectUrl = JsonNullable.undefined();
  
         private JsonNullable<String> cancelUrl = JsonNullable.undefined();
  
@@ -788,7 +788,7 @@ public class UpdatePaymentRequestBody {
          */
         public Builder redirectUrl(String redirectUrl) {
             Utils.checkNotNull(redirectUrl, "redirectUrl");
-            this.redirectUrl = Optional.ofNullable(redirectUrl);
+            this.redirectUrl = JsonNullable.of(redirectUrl);
             return this;
         }
 
@@ -799,7 +799,7 @@ public class UpdatePaymentRequestBody {
          * 
          * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
          */
-        public Builder redirectUrl(Optional<String> redirectUrl) {
+        public Builder redirectUrl(JsonNullable<String> redirectUrl) {
             Utils.checkNotNull(redirectUrl, "redirectUrl");
             this.redirectUrl = redirectUrl;
             return this;

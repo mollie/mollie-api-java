@@ -48,8 +48,9 @@ public class CreateProfileResponseBody extends RuntimeException {
     /**
      * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("field")
-    private String field;
+    private Optional<String> field;
 
     @JsonProperty("_links")
     private CreateProfileLinks links;
@@ -66,7 +67,7 @@ public class CreateProfileResponseBody extends RuntimeException {
             @JsonProperty("status") long status,
             @JsonProperty("title") String title,
             @JsonProperty("detail") String detail,
-            @JsonProperty("field") String field,
+            @JsonProperty("field") Optional<String> field,
             @JsonProperty("_links") CreateProfileLinks links,
             @JsonProperty("RawResponse") Optional<? extends HttpResponse<InputStream>> rawResponse) {
         Utils.checkNotNull(status, "status");
@@ -87,9 +88,8 @@ public class CreateProfileResponseBody extends RuntimeException {
             long status,
             String title,
             String detail,
-            String field,
             CreateProfileLinks links) {
-        this(status, title, detail, field, links, Optional.empty());
+        this(status, title, detail, Optional.empty(), links, Optional.empty());
     }
 
     /**
@@ -120,7 +120,7 @@ public class CreateProfileResponseBody extends RuntimeException {
      * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
      */
     @JsonIgnore
-    public String field() {
+    public Optional<String> field() {
         return field;
     }
 
@@ -173,6 +173,15 @@ public class CreateProfileResponseBody extends RuntimeException {
      * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
      */
     public CreateProfileResponseBody withField(String field) {
+        Utils.checkNotNull(field, "field");
+        this.field = Optional.ofNullable(field);
+        return this;
+    }
+
+    /**
+     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
+     */
+    public CreateProfileResponseBody withField(Optional<String> field) {
         Utils.checkNotNull(field, "field");
         this.field = field;
         return this;
@@ -251,7 +260,7 @@ public class CreateProfileResponseBody extends RuntimeException {
  
         private String detail;
  
-        private String field;
+        private Optional<String> field = Optional.empty();
  
         private CreateProfileLinks links;
  
@@ -292,6 +301,15 @@ public class CreateProfileResponseBody extends RuntimeException {
          * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
          */
         public Builder field(String field) {
+            Utils.checkNotNull(field, "field");
+            this.field = Optional.ofNullable(field);
+            return this;
+        }
+
+        /**
+         * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
+         */
+        public Builder field(Optional<String> field) {
             Utils.checkNotNull(field, "field");
             this.field = field;
             return this;

@@ -125,8 +125,9 @@ public class GetPaymentLinkPaymentsPaymentLinksLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private GetPaymentLinkPaymentsPaymentLinksDocumentation documentation;
+    private Optional<? extends GetPaymentLinkPaymentsPaymentLinksDocumentation> documentation;
 
     @JsonCreator
     public GetPaymentLinkPaymentsPaymentLinksLinks(
@@ -144,7 +145,7 @@ public class GetPaymentLinkPaymentsPaymentLinksLinks {
             @JsonProperty("subscription") Optional<? extends GetPaymentLinkPaymentsSubscription> subscription,
             @JsonProperty("order") Optional<? extends GetPaymentLinkPaymentsOrder> order,
             @JsonProperty("terminal") Optional<? extends GetPaymentLinkPaymentsTerminal> terminal,
-            @JsonProperty("documentation") GetPaymentLinkPaymentsPaymentLinksDocumentation documentation) {
+            @JsonProperty("documentation") Optional<? extends GetPaymentLinkPaymentsPaymentLinksDocumentation> documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(checkout, "checkout");
         Utils.checkNotNull(mobileAppCheckout, "mobileAppCheckout");
@@ -179,9 +180,8 @@ public class GetPaymentLinkPaymentsPaymentLinksLinks {
     
     public GetPaymentLinkPaymentsPaymentLinksLinks(
             GetPaymentLinkPaymentsPaymentLinksSelf self,
-            GetPaymentLinkPaymentsDashboard dashboard,
-            GetPaymentLinkPaymentsPaymentLinksDocumentation documentation) {
-        this(self, Optional.empty(), Optional.empty(), Optional.empty(), dashboard, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), documentation);
+            GetPaymentLinkPaymentsDashboard dashboard) {
+        this(self, Optional.empty(), Optional.empty(), Optional.empty(), dashboard, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -315,9 +315,10 @@ public class GetPaymentLinkPaymentsPaymentLinksLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public GetPaymentLinkPaymentsPaymentLinksDocumentation documentation() {
-        return documentation;
+    public Optional<GetPaymentLinkPaymentsPaymentLinksDocumentation> documentation() {
+        return (Optional<GetPaymentLinkPaymentsPaymentLinksDocumentation>) documentation;
     }
 
     public final static Builder builder() {
@@ -571,6 +572,15 @@ public class GetPaymentLinkPaymentsPaymentLinksLinks {
      */
     public GetPaymentLinkPaymentsPaymentLinksLinks withDocumentation(GetPaymentLinkPaymentsPaymentLinksDocumentation documentation) {
         Utils.checkNotNull(documentation, "documentation");
+        this.documentation = Optional.ofNullable(documentation);
+        return this;
+    }
+
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    public GetPaymentLinkPaymentsPaymentLinksLinks withDocumentation(Optional<? extends GetPaymentLinkPaymentsPaymentLinksDocumentation> documentation) {
+        Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
     }
@@ -673,7 +683,7 @@ public class GetPaymentLinkPaymentsPaymentLinksLinks {
  
         private Optional<? extends GetPaymentLinkPaymentsTerminal> terminal = Optional.empty();
  
-        private GetPaymentLinkPaymentsPaymentLinksDocumentation documentation;
+        private Optional<? extends GetPaymentLinkPaymentsPaymentLinksDocumentation> documentation = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -925,6 +935,15 @@ public class GetPaymentLinkPaymentsPaymentLinksLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(GetPaymentLinkPaymentsPaymentLinksDocumentation documentation) {
+            Utils.checkNotNull(documentation, "documentation");
+            this.documentation = Optional.ofNullable(documentation);
+            return this;
+        }
+
+        /**
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+         */
+        public Builder documentation(Optional<? extends GetPaymentLinkPaymentsPaymentLinksDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

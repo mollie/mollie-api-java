@@ -286,13 +286,14 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.*;
+import com.mollie.mollie.models.errors.ListBalanceTransactionsBalancesResponseBody;
+import com.mollie.mollie.models.errors.ListBalanceTransactionsResponseBody;
 import com.mollie.mollie.models.operations.ListBalanceTransactionsResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ListBalanceTransactionsResponseBody, ListBalanceTransactionsBalancesResponseBody, ListBalanceTransactionsBalancesResponseResponseBody, Exception {
+    public static void main(String[] args) throws ListBalanceTransactionsResponseBody, ListBalanceTransactionsBalancesResponseBody, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -328,9 +329,8 @@ public class Application {
 
 ### Errors
 
-| Error Type                                                        | Status Code                                                       | Content Type                                                      |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| models/errors/ListBalanceTransactionsResponseBody                 | 400                                                               | application/hal+json                                              |
-| models/errors/ListBalanceTransactionsBalancesResponseBody         | 404                                                               | application/hal+json                                              |
-| models/errors/ListBalanceTransactionsBalancesResponseResponseBody | 429                                                               | application/hal+json                                              |
-| models/errors/APIException                                        | 4XX, 5XX                                                          | \*/\*                                                             |
+| Error Type                                                | Status Code                                               | Content Type                                              |
+| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
+| models/errors/ListBalanceTransactionsResponseBody         | 400                                                       | application/hal+json                                      |
+| models/errors/ListBalanceTransactionsBalancesResponseBody | 404                                                       | application/hal+json                                      |
+| models/errors/APIException                                | 4XX, 5XX                                                  | \*/\*                                                     |

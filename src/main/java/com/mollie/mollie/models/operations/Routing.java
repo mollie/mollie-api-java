@@ -11,9 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Routing {
@@ -42,16 +40,15 @@ public class Routing {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends Links> links;
+    private Links links;
 
     @JsonCreator
     public Routing(
             @JsonProperty("amount") CreatePaymentPaymentsRequestAmount amount,
             @JsonProperty("destination") Destination destination,
             @JsonProperty("releaseDate") JsonNullable<String> releaseDate,
-            @JsonProperty("_links") Optional<? extends Links> links) {
+            @JsonProperty("_links") Links links) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(destination, "destination");
         Utils.checkNotNull(releaseDate, "releaseDate");
@@ -64,8 +61,9 @@ public class Routing {
     
     public Routing(
             CreatePaymentPaymentsRequestAmount amount,
-            Destination destination) {
-        this(amount, destination, JsonNullable.undefined(), Optional.empty());
+            Destination destination,
+            Links links) {
+        this(amount, destination, JsonNullable.undefined(), links);
     }
 
     /**
@@ -97,10 +95,9 @@ public class Routing {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Links> links() {
-        return (Optional<Links>) links;
+    public Links links() {
+        return links;
     }
 
     public final static Builder builder() {
@@ -152,15 +149,6 @@ public class Routing {
      */
     public Routing withLinks(Links links) {
         Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public Routing withLinks(Optional<? extends Links> links) {
-        Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
     }
@@ -208,7 +196,7 @@ public class Routing {
  
         private JsonNullable<String> releaseDate = JsonNullable.undefined();
  
-        private Optional<? extends Links> links = Optional.empty();
+        private Links links;
         
         private Builder() {
           // force use of static builder() method
@@ -258,15 +246,6 @@ public class Routing {
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
         public Builder links(Links links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends Links> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

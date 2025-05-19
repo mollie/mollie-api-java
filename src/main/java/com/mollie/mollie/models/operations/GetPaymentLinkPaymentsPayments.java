@@ -110,7 +110,7 @@ public class GetPaymentLinkPaymentsPayments {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("redirectUrl")
-    private Optional<String> redirectUrl;
+    private JsonNullable<String> redirectUrl;
 
     /**
      * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not provided, the customer will be redirected to the `redirectUrl` instead — see above.
@@ -438,7 +438,7 @@ public class GetPaymentLinkPaymentsPayments {
             @JsonProperty("amountCaptured") Optional<? extends GetPaymentLinkPaymentsAmountCaptured> amountCaptured,
             @JsonProperty("amountChargedBack") Optional<? extends GetPaymentLinkPaymentsAmountChargedBack> amountChargedBack,
             @JsonProperty("settlementAmount") Optional<? extends GetPaymentLinkPaymentsSettlementAmount> settlementAmount,
-            @JsonProperty("redirectUrl") Optional<String> redirectUrl,
+            @JsonProperty("redirectUrl") JsonNullable<String> redirectUrl,
             @JsonProperty("cancelUrl") JsonNullable<String> cancelUrl,
             @JsonProperty("webhookUrl") JsonNullable<String> webhookUrl,
             @JsonProperty("lines") JsonNullable<? extends List<GetPaymentLinkPaymentsLines>> lines,
@@ -575,7 +575,7 @@ public class GetPaymentLinkPaymentsPayments {
             String status,
             String createdAt,
             GetPaymentLinkPaymentsPaymentLinksLinks links) {
-        this(resource, id, mode, description, amount, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), profileId, JsonNullable.undefined(), JsonNullable.undefined(), status, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), createdAt, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), links);
+        this(resource, id, mode, description, amount, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), profileId, JsonNullable.undefined(), JsonNullable.undefined(), status, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), createdAt, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), links);
     }
 
     /**
@@ -685,7 +685,7 @@ public class GetPaymentLinkPaymentsPayments {
      * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
      */
     @JsonIgnore
-    public Optional<String> redirectUrl() {
+    public JsonNullable<String> redirectUrl() {
         return redirectUrl;
     }
 
@@ -1215,7 +1215,7 @@ public class GetPaymentLinkPaymentsPayments {
      */
     public GetPaymentLinkPaymentsPayments withRedirectUrl(String redirectUrl) {
         Utils.checkNotNull(redirectUrl, "redirectUrl");
-        this.redirectUrl = Optional.ofNullable(redirectUrl);
+        this.redirectUrl = JsonNullable.of(redirectUrl);
         return this;
     }
 
@@ -1226,7 +1226,7 @@ public class GetPaymentLinkPaymentsPayments {
      * 
      * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
      */
-    public GetPaymentLinkPaymentsPayments withRedirectUrl(Optional<String> redirectUrl) {
+    public GetPaymentLinkPaymentsPayments withRedirectUrl(JsonNullable<String> redirectUrl) {
         Utils.checkNotNull(redirectUrl, "redirectUrl");
         this.redirectUrl = redirectUrl;
         return this;
@@ -2142,7 +2142,7 @@ public class GetPaymentLinkPaymentsPayments {
  
         private Optional<? extends GetPaymentLinkPaymentsSettlementAmount> settlementAmount = Optional.empty();
  
-        private Optional<String> redirectUrl = Optional.empty();
+        private JsonNullable<String> redirectUrl = JsonNullable.undefined();
  
         private JsonNullable<String> cancelUrl = JsonNullable.undefined();
  
@@ -2378,7 +2378,7 @@ public class GetPaymentLinkPaymentsPayments {
          */
         public Builder redirectUrl(String redirectUrl) {
             Utils.checkNotNull(redirectUrl, "redirectUrl");
-            this.redirectUrl = Optional.ofNullable(redirectUrl);
+            this.redirectUrl = JsonNullable.of(redirectUrl);
             return this;
         }
 
@@ -2389,7 +2389,7 @@ public class GetPaymentLinkPaymentsPayments {
          * 
          * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
          */
-        public Builder redirectUrl(Optional<String> redirectUrl) {
+        public Builder redirectUrl(JsonNullable<String> redirectUrl) {
             Utils.checkNotNull(redirectUrl, "redirectUrl");
             this.redirectUrl = redirectUrl;
             return this;

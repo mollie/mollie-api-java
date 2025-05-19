@@ -8,14 +8,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetPaymentLinkPaymentsRouting {
@@ -23,9 +19,8 @@ public class GetPaymentLinkPaymentsRouting {
     /**
      * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
     /**
      * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID. Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
@@ -71,20 +66,19 @@ public class GetPaymentLinkPaymentsRouting {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends GetPaymentLinkPaymentsPaymentLinksResponseLinks> links;
+    private GetPaymentLinkPaymentsPaymentLinksResponseLinks links;
 
     @JsonCreator
     public GetPaymentLinkPaymentsRouting(
-            @JsonProperty("resource") Optional<String> resource,
+            @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
             @JsonProperty("mode") String mode,
             @JsonProperty("amount") GetPaymentLinkPaymentsPaymentLinksResponseAmount amount,
             @JsonProperty("destination") GetPaymentLinkPaymentsDestination destination,
             @JsonProperty("createdAt") String createdAt,
             @JsonProperty("releaseDate") JsonNullable<String> releaseDate,
-            @JsonProperty("_links") Optional<? extends GetPaymentLinkPaymentsPaymentLinksResponseLinks> links) {
+            @JsonProperty("_links") GetPaymentLinkPaymentsPaymentLinksResponseLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(mode, "mode");
@@ -104,19 +98,21 @@ public class GetPaymentLinkPaymentsRouting {
     }
     
     public GetPaymentLinkPaymentsRouting(
+            String resource,
             String id,
             String mode,
             GetPaymentLinkPaymentsPaymentLinksResponseAmount amount,
             GetPaymentLinkPaymentsDestination destination,
-            String createdAt) {
-        this(Optional.empty(), id, mode, amount, destination, createdAt, JsonNullable.undefined(), Optional.empty());
+            String createdAt,
+            GetPaymentLinkPaymentsPaymentLinksResponseLinks links) {
+        this(resource, id, mode, amount, destination, createdAt, JsonNullable.undefined(), links);
     }
 
     /**
      * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
@@ -175,10 +171,9 @@ public class GetPaymentLinkPaymentsRouting {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetPaymentLinkPaymentsPaymentLinksResponseLinks> links() {
-        return (Optional<GetPaymentLinkPaymentsPaymentLinksResponseLinks>) links;
+    public GetPaymentLinkPaymentsPaymentLinksResponseLinks links() {
+        return links;
     }
 
     public final static Builder builder() {
@@ -189,15 +184,6 @@ public class GetPaymentLinkPaymentsRouting {
      * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
      */
     public GetPaymentLinkPaymentsRouting withResource(String resource) {
-        Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-    /**
-     * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
-     */
-    public GetPaymentLinkPaymentsRouting withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
@@ -277,15 +263,6 @@ public class GetPaymentLinkPaymentsRouting {
      */
     public GetPaymentLinkPaymentsRouting withLinks(GetPaymentLinkPaymentsPaymentLinksResponseLinks links) {
         Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public GetPaymentLinkPaymentsRouting withLinks(Optional<? extends GetPaymentLinkPaymentsPaymentLinksResponseLinks> links) {
-        Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
     }
@@ -339,7 +316,7 @@ public class GetPaymentLinkPaymentsRouting {
     
     public final static class Builder {
  
-        private Optional<String> resource;
+        private String resource;
  
         private String id;
  
@@ -353,7 +330,7 @@ public class GetPaymentLinkPaymentsRouting {
  
         private JsonNullable<String> releaseDate = JsonNullable.undefined();
  
-        private Optional<? extends GetPaymentLinkPaymentsPaymentLinksResponseLinks> links = Optional.empty();
+        private GetPaymentLinkPaymentsPaymentLinksResponseLinks links;
         
         private Builder() {
           // force use of static builder() method
@@ -363,15 +340,6 @@ public class GetPaymentLinkPaymentsRouting {
          * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
          */
         public Builder resource(String resource) {
-            Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
@@ -451,23 +419,11 @@ public class GetPaymentLinkPaymentsRouting {
          */
         public Builder links(GetPaymentLinkPaymentsPaymentLinksResponseLinks links) {
             Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends GetPaymentLinkPaymentsPaymentLinksResponseLinks> links) {
-            Utils.checkNotNull(links, "links");
             this.links = links;
             return this;
         }
         
         public GetPaymentLinkPaymentsRouting build() {
-            if (resource == null) {
-                resource = _SINGLETON_VALUE_Resource.value();
-            }
             return new GetPaymentLinkPaymentsRouting(
                 resource,
                 id,
@@ -478,11 +434,5 @@ public class GetPaymentLinkPaymentsRouting {
                 releaseDate,
                 links);
         }
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
-                new LazySingletonValue<>(
-                        "resource",
-                        "\"route\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

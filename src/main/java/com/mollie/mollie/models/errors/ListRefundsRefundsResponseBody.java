@@ -45,6 +45,13 @@ public class ListRefundsRefundsResponseBody extends RuntimeException {
     @JsonProperty("detail")
     private String detail;
 
+    /**
+     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("field")
+    private Optional<String> field;
+
     @JsonProperty("_links")
     private ListRefundsRefundsLinks links;
 
@@ -60,16 +67,19 @@ public class ListRefundsRefundsResponseBody extends RuntimeException {
             @JsonProperty("status") long status,
             @JsonProperty("title") String title,
             @JsonProperty("detail") String detail,
+            @JsonProperty("field") Optional<String> field,
             @JsonProperty("_links") ListRefundsRefundsLinks links,
             @JsonProperty("RawResponse") Optional<? extends HttpResponse<InputStream>> rawResponse) {
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(title, "title");
         Utils.checkNotNull(detail, "detail");
+        Utils.checkNotNull(field, "field");
         Utils.checkNotNull(links, "links");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.status = status;
         this.title = title;
         this.detail = detail;
+        this.field = field;
         this.links = links;
         this.rawResponse = rawResponse;
     }
@@ -79,7 +89,7 @@ public class ListRefundsRefundsResponseBody extends RuntimeException {
             String title,
             String detail,
             ListRefundsRefundsLinks links) {
-        this(status, title, detail, links, Optional.empty());
+        this(status, title, detail, Optional.empty(), links, Optional.empty());
     }
 
     /**
@@ -104,6 +114,14 @@ public class ListRefundsRefundsResponseBody extends RuntimeException {
     @JsonIgnore
     public String detail() {
         return detail;
+    }
+
+    /**
+     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
+     */
+    @JsonIgnore
+    public Optional<String> field() {
+        return field;
     }
 
     @JsonIgnore
@@ -151,6 +169,24 @@ public class ListRefundsRefundsResponseBody extends RuntimeException {
         return this;
     }
 
+    /**
+     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
+     */
+    public ListRefundsRefundsResponseBody withField(String field) {
+        Utils.checkNotNull(field, "field");
+        this.field = Optional.ofNullable(field);
+        return this;
+    }
+
+    /**
+     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
+     */
+    public ListRefundsRefundsResponseBody withField(Optional<String> field) {
+        Utils.checkNotNull(field, "field");
+        this.field = field;
+        return this;
+    }
+
     public ListRefundsRefundsResponseBody withLinks(ListRefundsRefundsLinks links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
@@ -189,6 +225,7 @@ public class ListRefundsRefundsResponseBody extends RuntimeException {
             Objects.deepEquals(this.status, other.status) &&
             Objects.deepEquals(this.title, other.title) &&
             Objects.deepEquals(this.detail, other.detail) &&
+            Objects.deepEquals(this.field, other.field) &&
             Objects.deepEquals(this.links, other.links) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
@@ -199,6 +236,7 @@ public class ListRefundsRefundsResponseBody extends RuntimeException {
             status,
             title,
             detail,
+            field,
             links,
             rawResponse);
     }
@@ -209,6 +247,7 @@ public class ListRefundsRefundsResponseBody extends RuntimeException {
                 "status", status,
                 "title", title,
                 "detail", detail,
+                "field", field,
                 "links", links,
                 "rawResponse", rawResponse);
     }
@@ -220,6 +259,8 @@ public class ListRefundsRefundsResponseBody extends RuntimeException {
         private String title;
  
         private String detail;
+ 
+        private Optional<String> field = Optional.empty();
  
         private ListRefundsRefundsLinks links;
  
@@ -256,6 +297,24 @@ public class ListRefundsRefundsResponseBody extends RuntimeException {
             return this;
         }
 
+        /**
+         * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
+         */
+        public Builder field(String field) {
+            Utils.checkNotNull(field, "field");
+            this.field = Optional.ofNullable(field);
+            return this;
+        }
+
+        /**
+         * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
+         */
+        public Builder field(Optional<String> field) {
+            Utils.checkNotNull(field, "field");
+            this.field = field;
+            return this;
+        }
+
         public Builder links(ListRefundsRefundsLinks links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
@@ -285,6 +344,7 @@ public class ListRefundsRefundsResponseBody extends RuntimeException {
                 status,
                 title,
                 detail,
+                field,
                 links,
                 rawResponse);
         }

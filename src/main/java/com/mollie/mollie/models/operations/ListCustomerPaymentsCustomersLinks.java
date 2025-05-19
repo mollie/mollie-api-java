@@ -125,8 +125,9 @@ public class ListCustomerPaymentsCustomersLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private ListCustomerPaymentsCustomersDocumentation documentation;
+    private Optional<? extends ListCustomerPaymentsCustomersDocumentation> documentation;
 
     @JsonCreator
     public ListCustomerPaymentsCustomersLinks(
@@ -144,7 +145,7 @@ public class ListCustomerPaymentsCustomersLinks {
             @JsonProperty("subscription") Optional<? extends ListCustomerPaymentsSubscription> subscription,
             @JsonProperty("order") Optional<? extends ListCustomerPaymentsOrder> order,
             @JsonProperty("terminal") Optional<? extends ListCustomerPaymentsTerminal> terminal,
-            @JsonProperty("documentation") ListCustomerPaymentsCustomersDocumentation documentation) {
+            @JsonProperty("documentation") Optional<? extends ListCustomerPaymentsCustomersDocumentation> documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(checkout, "checkout");
         Utils.checkNotNull(mobileAppCheckout, "mobileAppCheckout");
@@ -179,9 +180,8 @@ public class ListCustomerPaymentsCustomersLinks {
     
     public ListCustomerPaymentsCustomersLinks(
             ListCustomerPaymentsCustomersSelf self,
-            ListCustomerPaymentsDashboard dashboard,
-            ListCustomerPaymentsCustomersDocumentation documentation) {
-        this(self, Optional.empty(), Optional.empty(), Optional.empty(), dashboard, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), documentation);
+            ListCustomerPaymentsDashboard dashboard) {
+        this(self, Optional.empty(), Optional.empty(), Optional.empty(), dashboard, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -315,9 +315,10 @@ public class ListCustomerPaymentsCustomersLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public ListCustomerPaymentsCustomersDocumentation documentation() {
-        return documentation;
+    public Optional<ListCustomerPaymentsCustomersDocumentation> documentation() {
+        return (Optional<ListCustomerPaymentsCustomersDocumentation>) documentation;
     }
 
     public final static Builder builder() {
@@ -571,6 +572,15 @@ public class ListCustomerPaymentsCustomersLinks {
      */
     public ListCustomerPaymentsCustomersLinks withDocumentation(ListCustomerPaymentsCustomersDocumentation documentation) {
         Utils.checkNotNull(documentation, "documentation");
+        this.documentation = Optional.ofNullable(documentation);
+        return this;
+    }
+
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    public ListCustomerPaymentsCustomersLinks withDocumentation(Optional<? extends ListCustomerPaymentsCustomersDocumentation> documentation) {
+        Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
     }
@@ -673,7 +683,7 @@ public class ListCustomerPaymentsCustomersLinks {
  
         private Optional<? extends ListCustomerPaymentsTerminal> terminal = Optional.empty();
  
-        private ListCustomerPaymentsCustomersDocumentation documentation;
+        private Optional<? extends ListCustomerPaymentsCustomersDocumentation> documentation = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -925,6 +935,15 @@ public class ListCustomerPaymentsCustomersLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(ListCustomerPaymentsCustomersDocumentation documentation) {
+            Utils.checkNotNull(documentation, "documentation");
+            this.documentation = Optional.ofNullable(documentation);
+            return this;
+        }
+
+        /**
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+         */
+        public Builder documentation(Optional<? extends ListCustomerPaymentsCustomersDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

@@ -7,7 +7,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.models.errors.APIException;
 import com.mollie.mollie.models.errors.GetBalanceReportBalancesResponseBody;
 import com.mollie.mollie.models.errors.ListBalanceTransactionsBalancesResponseBody;
-import com.mollie.mollie.models.errors.ListBalanceTransactionsBalancesResponseResponseBody;
 import com.mollie.mollie.models.errors.ListBalancesBalancesResponseBody;
 import com.mollie.mollie.models.operations.GetBalanceReportRequest;
 import com.mollie.mollie.models.operations.GetBalanceReportRequestBuilder;
@@ -1172,22 +1171,6 @@ public class Balances implements
                 ListBalanceTransactionsBalancesResponseBody _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<ListBalanceTransactionsBalancesResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "429")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                ListBalanceTransactionsBalancesResponseResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ListBalanceTransactionsBalancesResponseResponseBody>() {});
                     _out.withRawResponse(Optional.ofNullable(_httpRes));
                 
                 throw _out;
