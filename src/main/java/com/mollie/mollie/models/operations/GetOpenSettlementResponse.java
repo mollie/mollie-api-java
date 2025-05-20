@@ -9,7 +9,6 @@ import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -37,22 +36,22 @@ public class GetOpenSettlementResponse implements Response {
     /**
      * A settlement object describing your current balance. For a complete reference of the settlement object, refer to the [Get settlement](get-settlement) endpoint documentation.
      */
-    private Optional<? extends Object> any;
+    private Optional<? extends GetOpenSettlementResponseBody> object;
 
     @JsonCreator
     public GetOpenSettlementResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends Object> any) {
+            Optional<? extends GetOpenSettlementResponseBody> object) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(any, "any");
+        Utils.checkNotNull(object, "object");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.any = any;
+        this.object = object;
     }
     
     public GetOpenSettlementResponse(
@@ -91,8 +90,8 @@ public class GetOpenSettlementResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Object> any() {
-        return (Optional<Object>) any;
+    public Optional<GetOpenSettlementResponseBody> object() {
+        return (Optional<GetOpenSettlementResponseBody>) object;
     }
 
     public final static Builder builder() {
@@ -129,18 +128,18 @@ public class GetOpenSettlementResponse implements Response {
     /**
      * A settlement object describing your current balance. For a complete reference of the settlement object, refer to the [Get settlement](get-settlement) endpoint documentation.
      */
-    public GetOpenSettlementResponse withAny(Object any) {
-        Utils.checkNotNull(any, "any");
-        this.any = Optional.ofNullable(any);
+    public GetOpenSettlementResponse withObject(GetOpenSettlementResponseBody object) {
+        Utils.checkNotNull(object, "object");
+        this.object = Optional.ofNullable(object);
         return this;
     }
 
     /**
      * A settlement object describing your current balance. For a complete reference of the settlement object, refer to the [Get settlement](get-settlement) endpoint documentation.
      */
-    public GetOpenSettlementResponse withAny(Optional<? extends Object> any) {
-        Utils.checkNotNull(any, "any");
-        this.any = any;
+    public GetOpenSettlementResponse withObject(Optional<? extends GetOpenSettlementResponseBody> object) {
+        Utils.checkNotNull(object, "object");
+        this.object = object;
         return this;
     }
 
@@ -158,7 +157,7 @@ public class GetOpenSettlementResponse implements Response {
             Objects.deepEquals(this.contentType, other.contentType) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.any, other.any);
+            Objects.deepEquals(this.object, other.object);
     }
     
     @Override
@@ -167,7 +166,7 @@ public class GetOpenSettlementResponse implements Response {
             contentType,
             statusCode,
             rawResponse,
-            any);
+            object);
     }
     
     @Override
@@ -176,7 +175,7 @@ public class GetOpenSettlementResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "any", any);
+                "object", object);
     }
     
     public final static class Builder {
@@ -187,7 +186,7 @@ public class GetOpenSettlementResponse implements Response {
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends Object> any = Optional.empty();
+        private Optional<? extends GetOpenSettlementResponseBody> object = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -223,18 +222,18 @@ public class GetOpenSettlementResponse implements Response {
         /**
          * A settlement object describing your current balance. For a complete reference of the settlement object, refer to the [Get settlement](get-settlement) endpoint documentation.
          */
-        public Builder any(Object any) {
-            Utils.checkNotNull(any, "any");
-            this.any = Optional.ofNullable(any);
+        public Builder object(GetOpenSettlementResponseBody object) {
+            Utils.checkNotNull(object, "object");
+            this.object = Optional.ofNullable(object);
             return this;
         }
 
         /**
          * A settlement object describing your current balance. For a complete reference of the settlement object, refer to the [Get settlement](get-settlement) endpoint documentation.
          */
-        public Builder any(Optional<? extends Object> any) {
-            Utils.checkNotNull(any, "any");
-            this.any = any;
+        public Builder object(Optional<? extends GetOpenSettlementResponseBody> object) {
+            Utils.checkNotNull(object, "object");
+            this.object = object;
             return this;
         }
         
@@ -243,7 +242,7 @@ public class GetOpenSettlementResponse implements Response {
                 contentType,
                 statusCode,
                 rawResponse,
-                any);
+                object);
         }
     }
 }

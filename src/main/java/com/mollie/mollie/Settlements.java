@@ -11,8 +11,10 @@ import com.mollie.mollie.models.errors.GetSettlementRefundsSettlementsResponseBo
 import com.mollie.mollie.models.errors.ListSettlementsSettlementsResponseBody;
 import com.mollie.mollie.models.operations.GetNextSettlementRequestBuilder;
 import com.mollie.mollie.models.operations.GetNextSettlementResponse;
+import com.mollie.mollie.models.operations.GetNextSettlementResponseBody;
 import com.mollie.mollie.models.operations.GetOpenSettlementRequestBuilder;
 import com.mollie.mollie.models.operations.GetOpenSettlementResponse;
+import com.mollie.mollie.models.operations.GetOpenSettlementResponseBody;
 import com.mollie.mollie.models.operations.GetSettlementCapturesRequest;
 import com.mollie.mollie.models.operations.GetSettlementCapturesRequestBuilder;
 import com.mollie.mollie.models.operations.GetSettlementCapturesResponse;
@@ -51,7 +53,6 @@ import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
 import java.lang.Exception;
-import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -679,10 +680,10 @@ public class Settlements implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
+                GetOpenSettlementResponseBody _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
+                    new TypeReference<GetOpenSettlementResponseBody>() {});
+                _res.withObject(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(
@@ -867,10 +868,10 @@ public class Settlements implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
+                GetNextSettlementResponseBody _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
+                    new TypeReference<GetNextSettlementResponseBody>() {});
+                _res.withObject(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(

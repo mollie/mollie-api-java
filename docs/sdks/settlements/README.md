@@ -184,7 +184,7 @@ public class Application {
         GetOpenSettlementResponse res = sdk.settlements().getOpen()
                 .call();
 
-        if (res.any().isPresent()) {
+        if (res.object().isPresent()) {
             // handle response
         }
     }
@@ -236,7 +236,7 @@ public class Application {
         GetNextSettlementResponse res = sdk.settlements().getNext()
                 .call();
 
-        if (res.any().isPresent()) {
+        if (res.object().isPresent()) {
             // handle response
         }
     }
