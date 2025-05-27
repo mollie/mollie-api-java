@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -17,64 +15,58 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListAllMethodsMethods {
 
     /**
      * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
     /**
      * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
      * 
      * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The full name of the payment method.
      * 
      * <p>If a `locale` parameter is provided, the name is translated to the given locale if possible.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private Optional<String> description;
+    private String description;
 
     /**
      * The minimum payment amount required to use this payment method.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("minimumAmount")
-    private Optional<? extends ListAllMethodsMinimumAmount> minimumAmount;
+    private ListAllMethodsMinimumAmount minimumAmount;
 
     /**
      * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("maximumAmount")
-    private JsonNullable<? extends ListAllMethodsMaximumAmount> maximumAmount;
+    private Optional<? extends ListAllMethodsMaximumAmount> maximumAmount;
 
     /**
      * URLs of images representing the payment method.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("image")
-    private Optional<? extends ListAllMethodsImage> image;
+    private ListAllMethodsImage image;
 
     /**
      * The payment method's activation status for this profile.
      * 
      * <p>Possible values: `activated` `pending-boarding` `pending-review` `pending-external` `rejected`
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("status")
-    private JsonNullable<String> status;
+    private Optional<String> status;
 
     /**
      * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
@@ -86,9 +78,8 @@ public class ListAllMethodsMethods {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends ListAllMethodsMethodsLinks> links;
+    private ListAllMethodsMethodsLinks links;
 
     /**
      * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
@@ -99,15 +90,15 @@ public class ListAllMethodsMethods {
 
     @JsonCreator
     public ListAllMethodsMethods(
-            @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("description") Optional<String> description,
-            @JsonProperty("minimumAmount") Optional<? extends ListAllMethodsMinimumAmount> minimumAmount,
-            @JsonProperty("maximumAmount") JsonNullable<? extends ListAllMethodsMaximumAmount> maximumAmount,
-            @JsonProperty("image") Optional<? extends ListAllMethodsImage> image,
-            @JsonProperty("status") JsonNullable<String> status,
+            @JsonProperty("resource") String resource,
+            @JsonProperty("id") String id,
+            @JsonProperty("description") String description,
+            @JsonProperty("minimumAmount") ListAllMethodsMinimumAmount minimumAmount,
+            @JsonProperty("maximumAmount") Optional<? extends ListAllMethodsMaximumAmount> maximumAmount,
+            @JsonProperty("image") ListAllMethodsImage image,
+            @JsonProperty("status") Optional<String> status,
             @JsonProperty("issuers") Optional<? extends List<ListAllMethodsIssuers>> issuers,
-            @JsonProperty("_links") Optional<? extends ListAllMethodsMethodsLinks> links,
+            @JsonProperty("_links") ListAllMethodsMethodsLinks links,
             @JsonProperty("pricing") Optional<? extends List<Pricing>> pricing) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
@@ -131,15 +122,21 @@ public class ListAllMethodsMethods {
         this.pricing = pricing;
     }
     
-    public ListAllMethodsMethods() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty());
+    public ListAllMethodsMethods(
+            String resource,
+            String id,
+            String description,
+            ListAllMethodsMinimumAmount minimumAmount,
+            ListAllMethodsImage image,
+            ListAllMethodsMethodsLinks links) {
+        this(resource, id, description, minimumAmount, Optional.empty(), image, Optional.empty(), Optional.empty(), links, Optional.empty());
     }
 
     /**
      * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
@@ -149,7 +146,7 @@ public class ListAllMethodsMethods {
      * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
      */
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
@@ -159,17 +156,16 @@ public class ListAllMethodsMethods {
      * <p>If a `locale` parameter is provided, the name is translated to the given locale if possible.
      */
     @JsonIgnore
-    public Optional<String> description() {
+    public String description() {
         return description;
     }
 
     /**
      * The minimum payment amount required to use this payment method.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListAllMethodsMinimumAmount> minimumAmount() {
-        return (Optional<ListAllMethodsMinimumAmount>) minimumAmount;
+    public ListAllMethodsMinimumAmount minimumAmount() {
+        return minimumAmount;
     }
 
     /**
@@ -177,17 +173,16 @@ public class ListAllMethodsMethods {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListAllMethodsMaximumAmount> maximumAmount() {
-        return (JsonNullable<ListAllMethodsMaximumAmount>) maximumAmount;
+    public Optional<ListAllMethodsMaximumAmount> maximumAmount() {
+        return (Optional<ListAllMethodsMaximumAmount>) maximumAmount;
     }
 
     /**
      * URLs of images representing the payment method.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListAllMethodsImage> image() {
-        return (Optional<ListAllMethodsImage>) image;
+    public ListAllMethodsImage image() {
+        return image;
     }
 
     /**
@@ -196,7 +191,7 @@ public class ListAllMethodsMethods {
      * <p>Possible values: `activated` `pending-boarding` `pending-review` `pending-external` `rejected`
      */
     @JsonIgnore
-    public JsonNullable<String> status() {
+    public Optional<String> status() {
         return status;
     }
 
@@ -212,10 +207,9 @@ public class ListAllMethodsMethods {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListAllMethodsMethodsLinks> links() {
-        return (Optional<ListAllMethodsMethodsLinks>) links;
+    public ListAllMethodsMethodsLinks links() {
+        return links;
     }
 
     /**
@@ -236,15 +230,6 @@ public class ListAllMethodsMethods {
      */
     public ListAllMethodsMethods withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-    /**
-     * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
-     */
-    public ListAllMethodsMethods withResource(Optional<String> resource) {
-        Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
     }
@@ -255,17 +240,6 @@ public class ListAllMethodsMethods {
      * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
      */
     public ListAllMethodsMethods withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-    /**
-     * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
-     * 
-     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
-     */
-    public ListAllMethodsMethods withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -278,17 +252,6 @@ public class ListAllMethodsMethods {
      */
     public ListAllMethodsMethods withDescription(String description) {
         Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
-        return this;
-    }
-
-    /**
-     * The full name of the payment method.
-     * 
-     * <p>If a `locale` parameter is provided, the name is translated to the given locale if possible.
-     */
-    public ListAllMethodsMethods withDescription(Optional<String> description) {
-        Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
     }
@@ -297,15 +260,6 @@ public class ListAllMethodsMethods {
      * The minimum payment amount required to use this payment method.
      */
     public ListAllMethodsMethods withMinimumAmount(ListAllMethodsMinimumAmount minimumAmount) {
-        Utils.checkNotNull(minimumAmount, "minimumAmount");
-        this.minimumAmount = Optional.ofNullable(minimumAmount);
-        return this;
-    }
-
-    /**
-     * The minimum payment amount required to use this payment method.
-     */
-    public ListAllMethodsMethods withMinimumAmount(Optional<? extends ListAllMethodsMinimumAmount> minimumAmount) {
         Utils.checkNotNull(minimumAmount, "minimumAmount");
         this.minimumAmount = minimumAmount;
         return this;
@@ -316,14 +270,14 @@ public class ListAllMethodsMethods {
      */
     public ListAllMethodsMethods withMaximumAmount(ListAllMethodsMaximumAmount maximumAmount) {
         Utils.checkNotNull(maximumAmount, "maximumAmount");
-        this.maximumAmount = JsonNullable.of(maximumAmount);
+        this.maximumAmount = Optional.ofNullable(maximumAmount);
         return this;
     }
 
     /**
      * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
      */
-    public ListAllMethodsMethods withMaximumAmount(JsonNullable<? extends ListAllMethodsMaximumAmount> maximumAmount) {
+    public ListAllMethodsMethods withMaximumAmount(Optional<? extends ListAllMethodsMaximumAmount> maximumAmount) {
         Utils.checkNotNull(maximumAmount, "maximumAmount");
         this.maximumAmount = maximumAmount;
         return this;
@@ -333,15 +287,6 @@ public class ListAllMethodsMethods {
      * URLs of images representing the payment method.
      */
     public ListAllMethodsMethods withImage(ListAllMethodsImage image) {
-        Utils.checkNotNull(image, "image");
-        this.image = Optional.ofNullable(image);
-        return this;
-    }
-
-    /**
-     * URLs of images representing the payment method.
-     */
-    public ListAllMethodsMethods withImage(Optional<? extends ListAllMethodsImage> image) {
         Utils.checkNotNull(image, "image");
         this.image = image;
         return this;
@@ -354,7 +299,7 @@ public class ListAllMethodsMethods {
      */
     public ListAllMethodsMethods withStatus(String status) {
         Utils.checkNotNull(status, "status");
-        this.status = JsonNullable.of(status);
+        this.status = Optional.ofNullable(status);
         return this;
     }
 
@@ -363,7 +308,7 @@ public class ListAllMethodsMethods {
      * 
      * <p>Possible values: `activated` `pending-boarding` `pending-review` `pending-external` `rejected`
      */
-    public ListAllMethodsMethods withStatus(JsonNullable<String> status) {
+    public ListAllMethodsMethods withStatus(Optional<String> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -391,15 +336,6 @@ public class ListAllMethodsMethods {
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
     public ListAllMethodsMethods withLinks(ListAllMethodsMethodsLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public ListAllMethodsMethods withLinks(Optional<? extends ListAllMethodsMethodsLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -478,23 +414,23 @@ public class ListAllMethodsMethods {
     
     public final static class Builder {
  
-        private Optional<String> resource;
+        private String resource;
  
-        private Optional<String> id = Optional.empty();
+        private String id;
  
-        private Optional<String> description = Optional.empty();
+        private String description;
  
-        private Optional<? extends ListAllMethodsMinimumAmount> minimumAmount = Optional.empty();
+        private ListAllMethodsMinimumAmount minimumAmount;
  
-        private JsonNullable<? extends ListAllMethodsMaximumAmount> maximumAmount = JsonNullable.undefined();
+        private Optional<? extends ListAllMethodsMaximumAmount> maximumAmount = Optional.empty();
  
-        private Optional<? extends ListAllMethodsImage> image = Optional.empty();
+        private ListAllMethodsImage image;
  
-        private JsonNullable<String> status = JsonNullable.undefined();
+        private Optional<String> status = Optional.empty();
  
         private Optional<? extends List<ListAllMethodsIssuers>> issuers = Optional.empty();
  
-        private Optional<? extends ListAllMethodsMethodsLinks> links = Optional.empty();
+        private ListAllMethodsMethodsLinks links;
  
         private Optional<? extends List<Pricing>> pricing = Optional.empty();
         
@@ -507,15 +443,6 @@ public class ListAllMethodsMethods {
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
-            Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
         }
@@ -526,17 +453,6 @@ public class ListAllMethodsMethods {
          * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
          */
         public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
-         * 
-         * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
-         */
-        public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -549,17 +465,6 @@ public class ListAllMethodsMethods {
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
-            return this;
-        }
-
-        /**
-         * The full name of the payment method.
-         * 
-         * <p>If a `locale` parameter is provided, the name is translated to the given locale if possible.
-         */
-        public Builder description(Optional<String> description) {
-            Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
         }
@@ -568,15 +473,6 @@ public class ListAllMethodsMethods {
          * The minimum payment amount required to use this payment method.
          */
         public Builder minimumAmount(ListAllMethodsMinimumAmount minimumAmount) {
-            Utils.checkNotNull(minimumAmount, "minimumAmount");
-            this.minimumAmount = Optional.ofNullable(minimumAmount);
-            return this;
-        }
-
-        /**
-         * The minimum payment amount required to use this payment method.
-         */
-        public Builder minimumAmount(Optional<? extends ListAllMethodsMinimumAmount> minimumAmount) {
             Utils.checkNotNull(minimumAmount, "minimumAmount");
             this.minimumAmount = minimumAmount;
             return this;
@@ -587,14 +483,14 @@ public class ListAllMethodsMethods {
          */
         public Builder maximumAmount(ListAllMethodsMaximumAmount maximumAmount) {
             Utils.checkNotNull(maximumAmount, "maximumAmount");
-            this.maximumAmount = JsonNullable.of(maximumAmount);
+            this.maximumAmount = Optional.ofNullable(maximumAmount);
             return this;
         }
 
         /**
          * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
          */
-        public Builder maximumAmount(JsonNullable<? extends ListAllMethodsMaximumAmount> maximumAmount) {
+        public Builder maximumAmount(Optional<? extends ListAllMethodsMaximumAmount> maximumAmount) {
             Utils.checkNotNull(maximumAmount, "maximumAmount");
             this.maximumAmount = maximumAmount;
             return this;
@@ -604,15 +500,6 @@ public class ListAllMethodsMethods {
          * URLs of images representing the payment method.
          */
         public Builder image(ListAllMethodsImage image) {
-            Utils.checkNotNull(image, "image");
-            this.image = Optional.ofNullable(image);
-            return this;
-        }
-
-        /**
-         * URLs of images representing the payment method.
-         */
-        public Builder image(Optional<? extends ListAllMethodsImage> image) {
             Utils.checkNotNull(image, "image");
             this.image = image;
             return this;
@@ -625,7 +512,7 @@ public class ListAllMethodsMethods {
          */
         public Builder status(String status) {
             Utils.checkNotNull(status, "status");
-            this.status = JsonNullable.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 
@@ -634,7 +521,7 @@ public class ListAllMethodsMethods {
          * 
          * <p>Possible values: `activated` `pending-boarding` `pending-review` `pending-external` `rejected`
          */
-        public Builder status(JsonNullable<String> status) {
+        public Builder status(Optional<String> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -663,15 +550,6 @@ public class ListAllMethodsMethods {
          */
         public Builder links(ListAllMethodsMethodsLinks links) {
             Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends ListAllMethodsMethodsLinks> links) {
-            Utils.checkNotNull(links, "links");
             this.links = links;
             return this;
         }
@@ -695,9 +573,6 @@ public class ListAllMethodsMethods {
         }
         
         public ListAllMethodsMethods build() {
-            if (resource == null) {
-                resource = _SINGLETON_VALUE_Resource.value();
-            }
             return new ListAllMethodsMethods(
                 resource,
                 id,
@@ -710,11 +585,5 @@ public class ListAllMethodsMethods {
                 links,
                 pricing);
         }
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
-                new LazySingletonValue<>(
-                        "resource",
-                        "\"method\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

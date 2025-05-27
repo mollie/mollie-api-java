@@ -25,9 +25,8 @@ public class ListMethodsMethodsLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends ListMethodsMethodsSelf> self;
+    private ListMethodsMethodsSelf self;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -38,7 +37,7 @@ public class ListMethodsMethodsLinks {
 
     @JsonCreator
     public ListMethodsMethodsLinks(
-            @JsonProperty("self") Optional<? extends ListMethodsMethodsSelf> self,
+            @JsonProperty("self") ListMethodsMethodsSelf self,
             @JsonProperty("documentation") Optional<? extends ListMethodsMethodsDocumentation> documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(documentation, "documentation");
@@ -46,17 +45,17 @@ public class ListMethodsMethodsLinks {
         this.documentation = documentation;
     }
     
-    public ListMethodsMethodsLinks() {
-        this(Optional.empty(), Optional.empty());
+    public ListMethodsMethodsLinks(
+            ListMethodsMethodsSelf self) {
+        this(self, Optional.empty());
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListMethodsMethodsSelf> self() {
-        return (Optional<ListMethodsMethodsSelf>) self;
+    public ListMethodsMethodsSelf self() {
+        return self;
     }
 
     /**
@@ -76,15 +75,6 @@ public class ListMethodsMethodsLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public ListMethodsMethodsLinks withSelf(ListMethodsMethodsSelf self) {
-        Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListMethodsMethodsLinks withSelf(Optional<? extends ListMethodsMethodsSelf> self) {
         Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
@@ -139,7 +129,7 @@ public class ListMethodsMethodsLinks {
     
     public final static class Builder {
  
-        private Optional<? extends ListMethodsMethodsSelf> self = Optional.empty();
+        private ListMethodsMethodsSelf self;
  
         private Optional<? extends ListMethodsMethodsDocumentation> documentation = Optional.empty();
         
@@ -151,15 +141,6 @@ public class ListMethodsMethodsLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder self(ListMethodsMethodsSelf self) {
-            Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder self(Optional<? extends ListMethodsMethodsSelf> self) {
             Utils.checkNotNull(self, "self");
             this.self = self;
             return this;

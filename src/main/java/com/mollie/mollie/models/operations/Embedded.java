@@ -5,44 +5,34 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 public class Embedded {
 
     /**
      * An array of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("methods")
-    private Optional<? extends List<Methods>> methods;
+    private List<Methods> methods;
 
     @JsonCreator
     public Embedded(
-            @JsonProperty("methods") Optional<? extends List<Methods>> methods) {
+            @JsonProperty("methods") List<Methods> methods) {
         Utils.checkNotNull(methods, "methods");
         this.methods = methods;
-    }
-    
-    public Embedded() {
-        this(Optional.empty());
     }
 
     /**
      * An array of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<Methods>> methods() {
-        return (Optional<List<Methods>>) methods;
+    public List<Methods> methods() {
+        return methods;
     }
 
     public final static Builder builder() {
@@ -53,15 +43,6 @@ public class Embedded {
      * An array of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
      */
     public Embedded withMethods(List<Methods> methods) {
-        Utils.checkNotNull(methods, "methods");
-        this.methods = Optional.ofNullable(methods);
-        return this;
-    }
-
-    /**
-     * An array of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
-     */
-    public Embedded withMethods(Optional<? extends List<Methods>> methods) {
         Utils.checkNotNull(methods, "methods");
         this.methods = methods;
         return this;
@@ -95,7 +76,7 @@ public class Embedded {
     
     public final static class Builder {
  
-        private Optional<? extends List<Methods>> methods = Optional.empty();
+        private List<Methods> methods;
         
         private Builder() {
           // force use of static builder() method
@@ -105,15 +86,6 @@ public class Embedded {
          * An array of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
          */
         public Builder methods(List<Methods> methods) {
-            Utils.checkNotNull(methods, "methods");
-            this.methods = Optional.ofNullable(methods);
-            return this;
-        }
-
-        /**
-         * An array of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
-         */
-        public Builder methods(Optional<? extends List<Methods>> methods) {
             Utils.checkNotNull(methods, "methods");
             this.methods = methods;
             return this;

@@ -5,62 +5,50 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Objects;
-import java.util.Optional;
 
 public class ListMethodsLinks {
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends ListMethodsSelf> self;
+    private ListMethodsSelf self;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends ListMethodsDocumentation> documentation;
+    private ListMethodsDocumentation documentation;
 
     @JsonCreator
     public ListMethodsLinks(
-            @JsonProperty("self") Optional<? extends ListMethodsSelf> self,
-            @JsonProperty("documentation") Optional<? extends ListMethodsDocumentation> documentation) {
+            @JsonProperty("self") ListMethodsSelf self,
+            @JsonProperty("documentation") ListMethodsDocumentation documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(documentation, "documentation");
         this.self = self;
         this.documentation = documentation;
     }
-    
-    public ListMethodsLinks() {
-        this(Optional.empty(), Optional.empty());
+
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    @JsonIgnore
+    public ListMethodsSelf self() {
+        return self;
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListMethodsSelf> self() {
-        return (Optional<ListMethodsSelf>) self;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<ListMethodsDocumentation> documentation() {
-        return (Optional<ListMethodsDocumentation>) documentation;
+    public ListMethodsDocumentation documentation() {
+        return documentation;
     }
 
     public final static Builder builder() {
@@ -72,15 +60,6 @@ public class ListMethodsLinks {
      */
     public ListMethodsLinks withSelf(ListMethodsSelf self) {
         Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListMethodsLinks withSelf(Optional<? extends ListMethodsSelf> self) {
-        Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
@@ -89,15 +68,6 @@ public class ListMethodsLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public ListMethodsLinks withDocumentation(ListMethodsDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListMethodsLinks withDocumentation(Optional<? extends ListMethodsDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -134,9 +104,9 @@ public class ListMethodsLinks {
     
     public final static class Builder {
  
-        private Optional<? extends ListMethodsSelf> self = Optional.empty();
+        private ListMethodsSelf self;
  
-        private Optional<? extends ListMethodsDocumentation> documentation = Optional.empty();
+        private ListMethodsDocumentation documentation;
         
         private Builder() {
           // force use of static builder() method
@@ -147,15 +117,6 @@ public class ListMethodsLinks {
          */
         public Builder self(ListMethodsSelf self) {
             Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder self(Optional<? extends ListMethodsSelf> self) {
-            Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
         }
@@ -164,15 +125,6 @@ public class ListMethodsLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(ListMethodsDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends ListMethodsDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

@@ -18,6 +18,7 @@ import com.mollie.mollie.models.operations.CreateCustomerRequestBuilder;
 import com.mollie.mollie.models.operations.CreateCustomerResponse;
 import com.mollie.mollie.models.operations.CreateCustomerResponseBody;
 import com.mollie.mollie.models.operations.DeleteCustomerRequest;
+import com.mollie.mollie.models.operations.DeleteCustomerRequestBody;
 import com.mollie.mollie.models.operations.DeleteCustomerRequestBuilder;
 import com.mollie.mollie.models.operations.DeleteCustomerResponse;
 import com.mollie.mollie.models.operations.GetCustomerQueryParamInclude;
@@ -1015,7 +1016,7 @@ public class Customers implements
      */
     public DeleteCustomerResponse delete(
             String customerId) throws Exception {
-        return delete(customerId, JsonNullable.undefined(), Optional.empty());
+        return delete(customerId, Optional.empty(), Optional.empty());
     }
     
     /**
@@ -1028,16 +1029,14 @@ public class Customers implements
      * &gt; [API key](/reference/authentication)
      * 
      * @param customerId Provide the ID of the related customer.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param requestBody 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeleteCustomerResponse delete(
             String customerId,
-            JsonNullable<Boolean> testmode,
+            Optional<? extends DeleteCustomerRequestBody> requestBody,
             Optional<Options> options) throws Exception {
 
         if (options.isPresent()) {
@@ -1047,7 +1046,7 @@ public class Customers implements
             DeleteCustomerRequest
                 .builder()
                 .customerId(customerId)
-                .testmode(testmode)
+                .requestBody(requestBody)
                 .build();
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
@@ -1058,14 +1057,19 @@ public class Customers implements
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "DELETE");
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Object>() {});
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/hal+json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                DeleteCustomerRequest.class,
-                request, 
-                null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  

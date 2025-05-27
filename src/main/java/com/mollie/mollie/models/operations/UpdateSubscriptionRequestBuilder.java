@@ -6,17 +6,14 @@ package com.mollie.mollie.models.operations;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class UpdateSubscriptionRequestBuilder {
 
     private String customerId;
     private String subscriptionId;
-    private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<? extends UpdateSubscriptionRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallUpdateSubscription sdk;
@@ -34,18 +31,6 @@ public class UpdateSubscriptionRequestBuilder {
     public UpdateSubscriptionRequestBuilder subscriptionId(String subscriptionId) {
         Utils.checkNotNull(subscriptionId, "subscriptionId");
         this.subscriptionId = subscriptionId;
-        return this;
-    }
-
-    public UpdateSubscriptionRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
-        return this;
-    }
-
-    public UpdateSubscriptionRequestBuilder testmode(JsonNullable<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
         return this;
     }
                 
@@ -80,7 +65,6 @@ public class UpdateSubscriptionRequestBuilder {
         return sdk.update(
             customerId,
             subscriptionId,
-            testmode,
             requestBody,
             options);
     }

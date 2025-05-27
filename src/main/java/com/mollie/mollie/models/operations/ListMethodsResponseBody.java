@@ -5,16 +5,12 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Objects;
-import java.util.Optional;
 
 /**
  * ListMethodsResponseBody
@@ -26,23 +22,20 @@ public class ListMethodsResponseBody {
     /**
      * The number of payment method objects in this result set. Results are **not** paginated.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("count")
-    private Optional<Long> count;
+    private long count;
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_embedded")
-    private Optional<? extends Embedded> embedded;
+    private Embedded embedded;
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends ListMethodsLinks> links;
+    private ListMethodsLinks links;
 
     @JsonCreator
     public ListMethodsResponseBody(
-            @JsonProperty("count") Optional<Long> count,
-            @JsonProperty("_embedded") Optional<? extends Embedded> embedded,
-            @JsonProperty("_links") Optional<? extends ListMethodsLinks> links) {
+            @JsonProperty("count") long count,
+            @JsonProperty("_embedded") Embedded embedded,
+            @JsonProperty("_links") ListMethodsLinks links) {
         Utils.checkNotNull(count, "count");
         Utils.checkNotNull(embedded, "embedded");
         Utils.checkNotNull(links, "links");
@@ -50,29 +43,23 @@ public class ListMethodsResponseBody {
         this.embedded = embedded;
         this.links = links;
     }
-    
-    public ListMethodsResponseBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
-    }
 
     /**
      * The number of payment method objects in this result set. Results are **not** paginated.
      */
     @JsonIgnore
-    public Optional<Long> count() {
+    public long count() {
         return count;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Embedded> embedded() {
-        return (Optional<Embedded>) embedded;
+    public Embedded embedded() {
+        return embedded;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListMethodsLinks> links() {
-        return (Optional<ListMethodsLinks>) links;
+    public ListMethodsLinks links() {
+        return links;
     }
 
     public final static Builder builder() {
@@ -84,38 +71,17 @@ public class ListMethodsResponseBody {
      */
     public ListMethodsResponseBody withCount(long count) {
         Utils.checkNotNull(count, "count");
-        this.count = Optional.ofNullable(count);
-        return this;
-    }
-
-    /**
-     * The number of payment method objects in this result set. Results are **not** paginated.
-     */
-    public ListMethodsResponseBody withCount(Optional<Long> count) {
-        Utils.checkNotNull(count, "count");
         this.count = count;
         return this;
     }
 
     public ListMethodsResponseBody withEmbedded(Embedded embedded) {
         Utils.checkNotNull(embedded, "embedded");
-        this.embedded = Optional.ofNullable(embedded);
-        return this;
-    }
-
-    public ListMethodsResponseBody withEmbedded(Optional<? extends Embedded> embedded) {
-        Utils.checkNotNull(embedded, "embedded");
         this.embedded = embedded;
         return this;
     }
 
     public ListMethodsResponseBody withLinks(ListMethodsLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-    public ListMethodsResponseBody withLinks(Optional<? extends ListMethodsLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -155,11 +121,11 @@ public class ListMethodsResponseBody {
     
     public final static class Builder {
  
-        private Optional<Long> count = Optional.empty();
+        private Long count;
  
-        private Optional<? extends Embedded> embedded = Optional.empty();
+        private Embedded embedded;
  
-        private Optional<? extends ListMethodsLinks> links = Optional.empty();
+        private ListMethodsLinks links;
         
         private Builder() {
           // force use of static builder() method
@@ -170,38 +136,17 @@ public class ListMethodsResponseBody {
          */
         public Builder count(long count) {
             Utils.checkNotNull(count, "count");
-            this.count = Optional.ofNullable(count);
-            return this;
-        }
-
-        /**
-         * The number of payment method objects in this result set. Results are **not** paginated.
-         */
-        public Builder count(Optional<Long> count) {
-            Utils.checkNotNull(count, "count");
             this.count = count;
             return this;
         }
 
         public Builder embedded(Embedded embedded) {
             Utils.checkNotNull(embedded, "embedded");
-            this.embedded = Optional.ofNullable(embedded);
-            return this;
-        }
-
-        public Builder embedded(Optional<? extends Embedded> embedded) {
-            Utils.checkNotNull(embedded, "embedded");
             this.embedded = embedded;
             return this;
         }
 
         public Builder links(ListMethodsLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        public Builder links(Optional<? extends ListMethodsLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

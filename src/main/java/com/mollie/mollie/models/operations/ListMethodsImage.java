@@ -5,14 +5,11 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 
 /**
  * ListMethodsImage
@@ -24,29 +21,26 @@ public class ListMethodsImage {
     /**
      * The URL pointing to an icon of 32 by 24 pixels.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("size1x")
-    private Optional<String> size1x;
+    private String size1x;
 
     /**
      * The URL pointing to an icon of 64 by 48 pixels.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("size2x")
-    private Optional<String> size2x;
+    private String size2x;
 
     /**
      * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("svg")
-    private Optional<String> svg;
+    private String svg;
 
     @JsonCreator
     public ListMethodsImage(
-            @JsonProperty("size1x") Optional<String> size1x,
-            @JsonProperty("size2x") Optional<String> size2x,
-            @JsonProperty("svg") Optional<String> svg) {
+            @JsonProperty("size1x") String size1x,
+            @JsonProperty("size2x") String size2x,
+            @JsonProperty("svg") String svg) {
         Utils.checkNotNull(size1x, "size1x");
         Utils.checkNotNull(size2x, "size2x");
         Utils.checkNotNull(svg, "svg");
@@ -54,16 +48,12 @@ public class ListMethodsImage {
         this.size2x = size2x;
         this.svg = svg;
     }
-    
-    public ListMethodsImage() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
-    }
 
     /**
      * The URL pointing to an icon of 32 by 24 pixels.
      */
     @JsonIgnore
-    public Optional<String> size1x() {
+    public String size1x() {
         return size1x;
     }
 
@@ -71,7 +61,7 @@ public class ListMethodsImage {
      * The URL pointing to an icon of 64 by 48 pixels.
      */
     @JsonIgnore
-    public Optional<String> size2x() {
+    public String size2x() {
         return size2x;
     }
 
@@ -79,7 +69,7 @@ public class ListMethodsImage {
      * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
      */
     @JsonIgnore
-    public Optional<String> svg() {
+    public String svg() {
         return svg;
     }
 
@@ -92,15 +82,6 @@ public class ListMethodsImage {
      */
     public ListMethodsImage withSize1x(String size1x) {
         Utils.checkNotNull(size1x, "size1x");
-        this.size1x = Optional.ofNullable(size1x);
-        return this;
-    }
-
-    /**
-     * The URL pointing to an icon of 32 by 24 pixels.
-     */
-    public ListMethodsImage withSize1x(Optional<String> size1x) {
-        Utils.checkNotNull(size1x, "size1x");
         this.size1x = size1x;
         return this;
     }
@@ -110,15 +91,6 @@ public class ListMethodsImage {
      */
     public ListMethodsImage withSize2x(String size2x) {
         Utils.checkNotNull(size2x, "size2x");
-        this.size2x = Optional.ofNullable(size2x);
-        return this;
-    }
-
-    /**
-     * The URL pointing to an icon of 64 by 48 pixels.
-     */
-    public ListMethodsImage withSize2x(Optional<String> size2x) {
-        Utils.checkNotNull(size2x, "size2x");
         this.size2x = size2x;
         return this;
     }
@@ -127,15 +99,6 @@ public class ListMethodsImage {
      * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
      */
     public ListMethodsImage withSvg(String svg) {
-        Utils.checkNotNull(svg, "svg");
-        this.svg = Optional.ofNullable(svg);
-        return this;
-    }
-
-    /**
-     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
-     */
-    public ListMethodsImage withSvg(Optional<String> svg) {
         Utils.checkNotNull(svg, "svg");
         this.svg = svg;
         return this;
@@ -175,11 +138,11 @@ public class ListMethodsImage {
     
     public final static class Builder {
  
-        private Optional<String> size1x = Optional.empty();
+        private String size1x;
  
-        private Optional<String> size2x = Optional.empty();
+        private String size2x;
  
-        private Optional<String> svg = Optional.empty();
+        private String svg;
         
         private Builder() {
           // force use of static builder() method
@@ -190,15 +153,6 @@ public class ListMethodsImage {
          */
         public Builder size1x(String size1x) {
             Utils.checkNotNull(size1x, "size1x");
-            this.size1x = Optional.ofNullable(size1x);
-            return this;
-        }
-
-        /**
-         * The URL pointing to an icon of 32 by 24 pixels.
-         */
-        public Builder size1x(Optional<String> size1x) {
-            Utils.checkNotNull(size1x, "size1x");
             this.size1x = size1x;
             return this;
         }
@@ -208,15 +162,6 @@ public class ListMethodsImage {
          */
         public Builder size2x(String size2x) {
             Utils.checkNotNull(size2x, "size2x");
-            this.size2x = Optional.ofNullable(size2x);
-            return this;
-        }
-
-        /**
-         * The URL pointing to an icon of 64 by 48 pixels.
-         */
-        public Builder size2x(Optional<String> size2x) {
-            Utils.checkNotNull(size2x, "size2x");
             this.size2x = size2x;
             return this;
         }
@@ -225,15 +170,6 @@ public class ListMethodsImage {
          * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
          */
         public Builder svg(String svg) {
-            Utils.checkNotNull(svg, "svg");
-            this.svg = Optional.ofNullable(svg);
-            return this;
-        }
-
-        /**
-         * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
-         */
-        public Builder svg(Optional<String> svg) {
             Utils.checkNotNull(svg, "svg");
             this.svg = svg;
             return this;

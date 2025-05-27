@@ -21,6 +21,7 @@ import com.mollie.mollie.models.operations.ListMandatesRequestBuilder;
 import com.mollie.mollie.models.operations.ListMandatesResponse;
 import com.mollie.mollie.models.operations.ListMandatesResponseBody;
 import com.mollie.mollie.models.operations.RevokeMandateRequest;
+import com.mollie.mollie.models.operations.RevokeMandateRequestBody;
 import com.mollie.mollie.models.operations.RevokeMandateRequestBuilder;
 import com.mollie.mollie.models.operations.RevokeMandateResponse;
 import com.mollie.mollie.models.operations.SDKMethodInterfaces.*;
@@ -785,7 +786,7 @@ public class Mandates implements
     public RevokeMandateResponse revoke(
             String customerId,
             String mandateId) throws Exception {
-        return revoke(customerId, mandateId, JsonNullable.undefined(), Optional.empty());
+        return revoke(customerId, mandateId, Optional.empty(), Optional.empty());
     }
     
     /**
@@ -801,9 +802,7 @@ public class Mandates implements
      * 
      * @param customerId Provide the ID of the related customer.
      * @param mandateId Provide the ID of the related mandate.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param requestBody 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -811,7 +810,7 @@ public class Mandates implements
     public RevokeMandateResponse revoke(
             String customerId,
             String mandateId,
-            JsonNullable<Boolean> testmode,
+            Optional<? extends RevokeMandateRequestBody> requestBody,
             Optional<Options> options) throws Exception {
 
         if (options.isPresent()) {
@@ -822,7 +821,7 @@ public class Mandates implements
                 .builder()
                 .customerId(customerId)
                 .mandateId(mandateId)
-                .testmode(testmode)
+                .requestBody(requestBody)
                 .build();
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
@@ -833,14 +832,19 @@ public class Mandates implements
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "DELETE");
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Object>() {});
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/hal+json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                RevokeMandateRequest.class,
-                request, 
-                null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  

@@ -11,9 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Pricing {
@@ -21,23 +19,20 @@ public class Pricing {
     /**
      * A description of what the pricing applies to. For example, a specific country (`The Netherlands`) or a category of cards (`American Express`). If a `locale` is provided, the description may be translated.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private Optional<String> description;
+    private String description;
 
     /**
      * The fixed price charged per payment.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("fixed")
-    private Optional<? extends Fixed> fixed;
+    private Fixed fixed;
 
     /**
      * The variable price charged per payment, as a percentage string.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("variable")
-    private Optional<String> variable;
+    private String variable;
 
     /**
      * Only present for credit card pricing. It will correspond with the `feeRegion` of credit card payments as returned in the [Payments API](get-payment).
@@ -48,9 +43,9 @@ public class Pricing {
 
     @JsonCreator
     public Pricing(
-            @JsonProperty("description") Optional<String> description,
-            @JsonProperty("fixed") Optional<? extends Fixed> fixed,
-            @JsonProperty("variable") Optional<String> variable,
+            @JsonProperty("description") String description,
+            @JsonProperty("fixed") Fixed fixed,
+            @JsonProperty("variable") String variable,
             @JsonProperty("feeRegion") JsonNullable<String> feeRegion) {
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(fixed, "fixed");
@@ -62,32 +57,34 @@ public class Pricing {
         this.feeRegion = feeRegion;
     }
     
-    public Pricing() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
+    public Pricing(
+            String description,
+            Fixed fixed,
+            String variable) {
+        this(description, fixed, variable, JsonNullable.undefined());
     }
 
     /**
      * A description of what the pricing applies to. For example, a specific country (`The Netherlands`) or a category of cards (`American Express`). If a `locale` is provided, the description may be translated.
      */
     @JsonIgnore
-    public Optional<String> description() {
+    public String description() {
         return description;
     }
 
     /**
      * The fixed price charged per payment.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Fixed> fixed() {
-        return (Optional<Fixed>) fixed;
+    public Fixed fixed() {
+        return fixed;
     }
 
     /**
      * The variable price charged per payment, as a percentage string.
      */
     @JsonIgnore
-    public Optional<String> variable() {
+    public String variable() {
         return variable;
     }
 
@@ -108,15 +105,6 @@ public class Pricing {
      */
     public Pricing withDescription(String description) {
         Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
-        return this;
-    }
-
-    /**
-     * A description of what the pricing applies to. For example, a specific country (`The Netherlands`) or a category of cards (`American Express`). If a `locale` is provided, the description may be translated.
-     */
-    public Pricing withDescription(Optional<String> description) {
-        Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
     }
@@ -126,15 +114,6 @@ public class Pricing {
      */
     public Pricing withFixed(Fixed fixed) {
         Utils.checkNotNull(fixed, "fixed");
-        this.fixed = Optional.ofNullable(fixed);
-        return this;
-    }
-
-    /**
-     * The fixed price charged per payment.
-     */
-    public Pricing withFixed(Optional<? extends Fixed> fixed) {
-        Utils.checkNotNull(fixed, "fixed");
         this.fixed = fixed;
         return this;
     }
@@ -143,15 +122,6 @@ public class Pricing {
      * The variable price charged per payment, as a percentage string.
      */
     public Pricing withVariable(String variable) {
-        Utils.checkNotNull(variable, "variable");
-        this.variable = Optional.ofNullable(variable);
-        return this;
-    }
-
-    /**
-     * The variable price charged per payment, as a percentage string.
-     */
-    public Pricing withVariable(Optional<String> variable) {
         Utils.checkNotNull(variable, "variable");
         this.variable = variable;
         return this;
@@ -212,11 +182,11 @@ public class Pricing {
     
     public final static class Builder {
  
-        private Optional<String> description = Optional.empty();
+        private String description;
  
-        private Optional<? extends Fixed> fixed = Optional.empty();
+        private Fixed fixed;
  
-        private Optional<String> variable = Optional.empty();
+        private String variable;
  
         private JsonNullable<String> feeRegion = JsonNullable.undefined();
         
@@ -229,15 +199,6 @@ public class Pricing {
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
-            return this;
-        }
-
-        /**
-         * A description of what the pricing applies to. For example, a specific country (`The Netherlands`) or a category of cards (`American Express`). If a `locale` is provided, the description may be translated.
-         */
-        public Builder description(Optional<String> description) {
-            Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
         }
@@ -247,15 +208,6 @@ public class Pricing {
          */
         public Builder fixed(Fixed fixed) {
             Utils.checkNotNull(fixed, "fixed");
-            this.fixed = Optional.ofNullable(fixed);
-            return this;
-        }
-
-        /**
-         * The fixed price charged per payment.
-         */
-        public Builder fixed(Optional<? extends Fixed> fixed) {
-            Utils.checkNotNull(fixed, "fixed");
             this.fixed = fixed;
             return this;
         }
@@ -264,15 +216,6 @@ public class Pricing {
          * The variable price charged per payment, as a percentage string.
          */
         public Builder variable(String variable) {
-            Utils.checkNotNull(variable, "variable");
-            this.variable = Optional.ofNullable(variable);
-            return this;
-        }
-
-        /**
-         * The variable price charged per payment, as a percentage string.
-         */
-        public Builder variable(Optional<String> variable) {
             Utils.checkNotNull(variable, "variable");
             this.variable = variable;
             return this;

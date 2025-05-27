@@ -6,16 +6,14 @@ package com.mollie.mollie.models.operations;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class DeleteCustomerRequestBuilder {
 
     private String customerId;
-    private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+    private Optional<? extends DeleteCustomerRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallDeleteCustomer sdk;
 
@@ -28,16 +26,16 @@ public class DeleteCustomerRequestBuilder {
         this.customerId = customerId;
         return this;
     }
-
-    public DeleteCustomerRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
+                
+    public DeleteCustomerRequestBuilder requestBody(DeleteCustomerRequestBody requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = Optional.of(requestBody);
         return this;
     }
 
-    public DeleteCustomerRequestBuilder testmode(JsonNullable<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
+    public DeleteCustomerRequestBuilder requestBody(Optional<? extends DeleteCustomerRequestBody> requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
         return this;
     }
                 
@@ -59,7 +57,7 @@ public class DeleteCustomerRequestBuilder {
                                                     .build());
         return sdk.delete(
             customerId,
-            testmode,
+            requestBody,
             options);
     }
 }

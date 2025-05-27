@@ -14,6 +14,7 @@ import com.mollie.mollie.models.operations.CreatePaymentLinkRequestBuilder;
 import com.mollie.mollie.models.operations.CreatePaymentLinkResponse;
 import com.mollie.mollie.models.operations.CreatePaymentLinkResponseBody;
 import com.mollie.mollie.models.operations.DeletePaymentLinkRequest;
+import com.mollie.mollie.models.operations.DeletePaymentLinkRequestBody;
 import com.mollie.mollie.models.operations.DeletePaymentLinkRequestBuilder;
 import com.mollie.mollie.models.operations.DeletePaymentLinkResponse;
 import com.mollie.mollie.models.operations.GetPaymentLinkPaymentsRequest;
@@ -782,7 +783,7 @@ public class PaymentLinks implements
      */
     public UpdatePaymentLinkResponse update(
             String paymentLinkId) throws Exception {
-        return update(paymentLinkId, JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        return update(paymentLinkId, Optional.empty(), Optional.empty());
     }
     
     /**
@@ -797,9 +798,6 @@ public class PaymentLinks implements
      * &gt; [Access token with **payment-links.write**](/reference/authentication)
      * 
      * @param paymentLinkId Provide the ID of the related payment link.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
@@ -807,7 +805,6 @@ public class PaymentLinks implements
      */
     public UpdatePaymentLinkResponse update(
             String paymentLinkId,
-            JsonNullable<Boolean> testmode,
             Optional<? extends UpdatePaymentLinkRequestBody> requestBody,
             Optional<Options> options) throws Exception {
 
@@ -818,7 +815,6 @@ public class PaymentLinks implements
             UpdatePaymentLinkRequest
                 .builder()
                 .paymentLinkId(paymentLinkId)
-                .testmode(testmode)
                 .requestBody(requestBody)
                 .build();
         
@@ -843,11 +839,6 @@ public class PaymentLinks implements
         _req.addHeader("Accept", "application/hal+json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                UpdatePaymentLinkRequest.class,
-                request, 
-                null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -1039,7 +1030,7 @@ public class PaymentLinks implements
      */
     public DeletePaymentLinkResponse delete(
             String paymentLinkId) throws Exception {
-        return delete(paymentLinkId, JsonNullable.undefined(), Optional.empty());
+        return delete(paymentLinkId, Optional.empty(), Optional.empty());
     }
     
     /**
@@ -1058,16 +1049,14 @@ public class PaymentLinks implements
      * &gt; [Access token with **payment-links.write**](/reference/authentication)
      * 
      * @param paymentLinkId Provide the ID of the related payment link.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param requestBody 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeletePaymentLinkResponse delete(
             String paymentLinkId,
-            JsonNullable<Boolean> testmode,
+            Optional<? extends DeletePaymentLinkRequestBody> requestBody,
             Optional<Options> options) throws Exception {
 
         if (options.isPresent()) {
@@ -1077,7 +1066,7 @@ public class PaymentLinks implements
             DeletePaymentLinkRequest
                 .builder()
                 .paymentLinkId(paymentLinkId)
-                .testmode(testmode)
+                .requestBody(requestBody)
                 .build();
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
@@ -1088,14 +1077,19 @@ public class PaymentLinks implements
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "DELETE");
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Object>() {});
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/hal+json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                DeletePaymentLinkRequest.class,
-                request, 
-                null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  

@@ -13,7 +13,6 @@ import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -23,30 +22,27 @@ public class ListAllMethodsIssuers {
     @JsonProperty("resource")
     private Optional<String> resource;
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The full name of the issuer.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
     /**
-     * URLs of images representing the issuer.
+     * URLs of images representing the issuer. required: - size1x - size2x - svg
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("image")
-    private Optional<? extends ListAllMethodsMethodsImage> image;
+    private ListAllMethodsMethodsImage image;
 
     @JsonCreator
     public ListAllMethodsIssuers(
             @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("image") Optional<? extends ListAllMethodsMethodsImage> image) {
+            @JsonProperty("id") String id,
+            @JsonProperty("name") String name,
+            @JsonProperty("image") ListAllMethodsMethodsImage image) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(name, "name");
@@ -57,8 +53,11 @@ public class ListAllMethodsIssuers {
         this.image = image;
     }
     
-    public ListAllMethodsIssuers() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    public ListAllMethodsIssuers(
+            String id,
+            String name,
+            ListAllMethodsMethodsImage image) {
+        this(Optional.empty(), id, name, image);
     }
 
     @JsonIgnore
@@ -67,7 +66,7 @@ public class ListAllMethodsIssuers {
     }
 
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
@@ -75,17 +74,16 @@ public class ListAllMethodsIssuers {
      * The full name of the issuer.
      */
     @JsonIgnore
-    public Optional<String> name() {
+    public String name() {
         return name;
     }
 
     /**
-     * URLs of images representing the issuer.
+     * URLs of images representing the issuer. required: - size1x - size2x - svg
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListAllMethodsMethodsImage> image() {
-        return (Optional<ListAllMethodsMethodsImage>) image;
+    public ListAllMethodsMethodsImage image() {
+        return image;
     }
 
     public final static Builder builder() {
@@ -106,12 +104,6 @@ public class ListAllMethodsIssuers {
 
     public ListAllMethodsIssuers withId(String id) {
         Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-    public ListAllMethodsIssuers withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
@@ -121,32 +113,14 @@ public class ListAllMethodsIssuers {
      */
     public ListAllMethodsIssuers withName(String name) {
         Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
-    /**
-     * The full name of the issuer.
-     */
-    public ListAllMethodsIssuers withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
     /**
-     * URLs of images representing the issuer.
+     * URLs of images representing the issuer. required: - size1x - size2x - svg
      */
     public ListAllMethodsIssuers withImage(ListAllMethodsMethodsImage image) {
-        Utils.checkNotNull(image, "image");
-        this.image = Optional.ofNullable(image);
-        return this;
-    }
-
-    /**
-     * URLs of images representing the issuer.
-     */
-    public ListAllMethodsIssuers withImage(Optional<? extends ListAllMethodsMethodsImage> image) {
         Utils.checkNotNull(image, "image");
         this.image = image;
         return this;
@@ -191,11 +165,11 @@ public class ListAllMethodsIssuers {
  
         private Optional<String> resource;
  
-        private Optional<String> id = Optional.empty();
+        private String id;
  
-        private Optional<String> name = Optional.empty();
+        private String name;
  
-        private Optional<? extends ListAllMethodsMethodsImage> image = Optional.empty();
+        private ListAllMethodsMethodsImage image;
         
         private Builder() {
           // force use of static builder() method
@@ -215,12 +189,6 @@ public class ListAllMethodsIssuers {
 
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
@@ -230,32 +198,14 @@ public class ListAllMethodsIssuers {
          */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * The full name of the issuer.
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
 
         /**
-         * URLs of images representing the issuer.
+         * URLs of images representing the issuer. required: - size1x - size2x - svg
          */
         public Builder image(ListAllMethodsMethodsImage image) {
-            Utils.checkNotNull(image, "image");
-            this.image = Optional.ofNullable(image);
-            return this;
-        }
-
-        /**
-         * URLs of images representing the issuer.
-         */
-        public Builder image(Optional<? extends ListAllMethodsMethodsImage> image) {
             Utils.checkNotNull(image, "image");
             this.image = image;
             return this;

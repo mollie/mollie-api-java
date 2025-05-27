@@ -6,16 +6,14 @@ package com.mollie.mollie.models.operations;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CancelPaymentRequestBuilder {
 
     private String paymentId;
-    private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+    private Optional<? extends CancelPaymentRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCancelPayment sdk;
 
@@ -28,16 +26,16 @@ public class CancelPaymentRequestBuilder {
         this.paymentId = paymentId;
         return this;
     }
-
-    public CancelPaymentRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
+                
+    public CancelPaymentRequestBuilder requestBody(CancelPaymentRequestBody requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = Optional.of(requestBody);
         return this;
     }
 
-    public CancelPaymentRequestBuilder testmode(JsonNullable<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
+    public CancelPaymentRequestBuilder requestBody(Optional<? extends CancelPaymentRequestBody> requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
         return this;
     }
                 
@@ -59,7 +57,7 @@ public class CancelPaymentRequestBuilder {
                                                     .build());
         return sdk.cancel(
             paymentId,
-            testmode,
+            requestBody,
             options);
     }
 }

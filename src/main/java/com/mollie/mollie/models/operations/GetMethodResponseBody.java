@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -17,7 +15,6 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * GetMethodResponseBody
@@ -29,57 +26,52 @@ public class GetMethodResponseBody {
     /**
      * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
     /**
      * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
      * 
      * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The full name of the payment method.
      * 
      * <p>If a `locale` parameter is provided, the name is translated to the given locale if possible.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private Optional<String> description;
+    private String description;
 
     /**
      * The minimum payment amount required to use this payment method.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("minimumAmount")
-    private Optional<? extends GetMethodMinimumAmount> minimumAmount;
+    private GetMethodMinimumAmount minimumAmount;
 
     /**
      * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("maximumAmount")
-    private JsonNullable<? extends MaximumAmount> maximumAmount;
+    private Optional<? extends MaximumAmount> maximumAmount;
 
     /**
      * URLs of images representing the payment method.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("image")
-    private Optional<? extends Image> image;
+    private Image image;
 
     /**
      * The payment method's activation status for this profile.
      * 
      * <p>Possible values: `activated` `pending-boarding` `pending-review` `pending-external` `rejected`
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("status")
-    private JsonNullable<String> status;
+    private Optional<String> status;
 
     /**
      * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
@@ -91,21 +83,20 @@ public class GetMethodResponseBody {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends GetMethodLinks> links;
+    private GetMethodLinks links;
 
     @JsonCreator
     public GetMethodResponseBody(
-            @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("description") Optional<String> description,
-            @JsonProperty("minimumAmount") Optional<? extends GetMethodMinimumAmount> minimumAmount,
-            @JsonProperty("maximumAmount") JsonNullable<? extends MaximumAmount> maximumAmount,
-            @JsonProperty("image") Optional<? extends Image> image,
-            @JsonProperty("status") JsonNullable<String> status,
+            @JsonProperty("resource") String resource,
+            @JsonProperty("id") String id,
+            @JsonProperty("description") String description,
+            @JsonProperty("minimumAmount") GetMethodMinimumAmount minimumAmount,
+            @JsonProperty("maximumAmount") Optional<? extends MaximumAmount> maximumAmount,
+            @JsonProperty("image") Image image,
+            @JsonProperty("status") Optional<String> status,
             @JsonProperty("issuers") Optional<? extends List<Issuers>> issuers,
-            @JsonProperty("_links") Optional<? extends GetMethodLinks> links) {
+            @JsonProperty("_links") GetMethodLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(description, "description");
@@ -126,15 +117,21 @@ public class GetMethodResponseBody {
         this.links = links;
     }
     
-    public GetMethodResponseBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+    public GetMethodResponseBody(
+            String resource,
+            String id,
+            String description,
+            GetMethodMinimumAmount minimumAmount,
+            Image image,
+            GetMethodLinks links) {
+        this(resource, id, description, minimumAmount, Optional.empty(), image, Optional.empty(), Optional.empty(), links);
     }
 
     /**
      * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
@@ -144,7 +141,7 @@ public class GetMethodResponseBody {
      * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
      */
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
@@ -154,17 +151,16 @@ public class GetMethodResponseBody {
      * <p>If a `locale` parameter is provided, the name is translated to the given locale if possible.
      */
     @JsonIgnore
-    public Optional<String> description() {
+    public String description() {
         return description;
     }
 
     /**
      * The minimum payment amount required to use this payment method.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetMethodMinimumAmount> minimumAmount() {
-        return (Optional<GetMethodMinimumAmount>) minimumAmount;
+    public GetMethodMinimumAmount minimumAmount() {
+        return minimumAmount;
     }
 
     /**
@@ -172,17 +168,16 @@ public class GetMethodResponseBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<MaximumAmount> maximumAmount() {
-        return (JsonNullable<MaximumAmount>) maximumAmount;
+    public Optional<MaximumAmount> maximumAmount() {
+        return (Optional<MaximumAmount>) maximumAmount;
     }
 
     /**
      * URLs of images representing the payment method.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Image> image() {
-        return (Optional<Image>) image;
+    public Image image() {
+        return image;
     }
 
     /**
@@ -191,7 +186,7 @@ public class GetMethodResponseBody {
      * <p>Possible values: `activated` `pending-boarding` `pending-review` `pending-external` `rejected`
      */
     @JsonIgnore
-    public JsonNullable<String> status() {
+    public Optional<String> status() {
         return status;
     }
 
@@ -207,10 +202,9 @@ public class GetMethodResponseBody {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetMethodLinks> links() {
-        return (Optional<GetMethodLinks>) links;
+    public GetMethodLinks links() {
+        return links;
     }
 
     public final static Builder builder() {
@@ -221,15 +215,6 @@ public class GetMethodResponseBody {
      * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
      */
     public GetMethodResponseBody withResource(String resource) {
-        Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-    /**
-     * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
-     */
-    public GetMethodResponseBody withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
@@ -242,17 +227,6 @@ public class GetMethodResponseBody {
      */
     public GetMethodResponseBody withId(String id) {
         Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-    /**
-     * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
-     * 
-     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
-     */
-    public GetMethodResponseBody withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
@@ -264,17 +238,6 @@ public class GetMethodResponseBody {
      */
     public GetMethodResponseBody withDescription(String description) {
         Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
-        return this;
-    }
-
-    /**
-     * The full name of the payment method.
-     * 
-     * <p>If a `locale` parameter is provided, the name is translated to the given locale if possible.
-     */
-    public GetMethodResponseBody withDescription(Optional<String> description) {
-        Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
     }
@@ -283,15 +246,6 @@ public class GetMethodResponseBody {
      * The minimum payment amount required to use this payment method.
      */
     public GetMethodResponseBody withMinimumAmount(GetMethodMinimumAmount minimumAmount) {
-        Utils.checkNotNull(minimumAmount, "minimumAmount");
-        this.minimumAmount = Optional.ofNullable(minimumAmount);
-        return this;
-    }
-
-    /**
-     * The minimum payment amount required to use this payment method.
-     */
-    public GetMethodResponseBody withMinimumAmount(Optional<? extends GetMethodMinimumAmount> minimumAmount) {
         Utils.checkNotNull(minimumAmount, "minimumAmount");
         this.minimumAmount = minimumAmount;
         return this;
@@ -302,14 +256,14 @@ public class GetMethodResponseBody {
      */
     public GetMethodResponseBody withMaximumAmount(MaximumAmount maximumAmount) {
         Utils.checkNotNull(maximumAmount, "maximumAmount");
-        this.maximumAmount = JsonNullable.of(maximumAmount);
+        this.maximumAmount = Optional.ofNullable(maximumAmount);
         return this;
     }
 
     /**
      * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
      */
-    public GetMethodResponseBody withMaximumAmount(JsonNullable<? extends MaximumAmount> maximumAmount) {
+    public GetMethodResponseBody withMaximumAmount(Optional<? extends MaximumAmount> maximumAmount) {
         Utils.checkNotNull(maximumAmount, "maximumAmount");
         this.maximumAmount = maximumAmount;
         return this;
@@ -319,15 +273,6 @@ public class GetMethodResponseBody {
      * URLs of images representing the payment method.
      */
     public GetMethodResponseBody withImage(Image image) {
-        Utils.checkNotNull(image, "image");
-        this.image = Optional.ofNullable(image);
-        return this;
-    }
-
-    /**
-     * URLs of images representing the payment method.
-     */
-    public GetMethodResponseBody withImage(Optional<? extends Image> image) {
         Utils.checkNotNull(image, "image");
         this.image = image;
         return this;
@@ -340,7 +285,7 @@ public class GetMethodResponseBody {
      */
     public GetMethodResponseBody withStatus(String status) {
         Utils.checkNotNull(status, "status");
-        this.status = JsonNullable.of(status);
+        this.status = Optional.ofNullable(status);
         return this;
     }
 
@@ -349,7 +294,7 @@ public class GetMethodResponseBody {
      * 
      * <p>Possible values: `activated` `pending-boarding` `pending-review` `pending-external` `rejected`
      */
-    public GetMethodResponseBody withStatus(JsonNullable<String> status) {
+    public GetMethodResponseBody withStatus(Optional<String> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -377,15 +322,6 @@ public class GetMethodResponseBody {
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
     public GetMethodResponseBody withLinks(GetMethodLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public GetMethodResponseBody withLinks(Optional<? extends GetMethodLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -443,23 +379,23 @@ public class GetMethodResponseBody {
     
     public final static class Builder {
  
-        private Optional<String> resource;
+        private String resource;
  
-        private Optional<String> id = Optional.empty();
+        private String id;
  
-        private Optional<String> description = Optional.empty();
+        private String description;
  
-        private Optional<? extends GetMethodMinimumAmount> minimumAmount = Optional.empty();
+        private GetMethodMinimumAmount minimumAmount;
  
-        private JsonNullable<? extends MaximumAmount> maximumAmount = JsonNullable.undefined();
+        private Optional<? extends MaximumAmount> maximumAmount = Optional.empty();
  
-        private Optional<? extends Image> image = Optional.empty();
+        private Image image;
  
-        private JsonNullable<String> status = JsonNullable.undefined();
+        private Optional<String> status = Optional.empty();
  
         private Optional<? extends List<Issuers>> issuers = Optional.empty();
  
-        private Optional<? extends GetMethodLinks> links = Optional.empty();
+        private GetMethodLinks links;
         
         private Builder() {
           // force use of static builder() method
@@ -469,15 +405,6 @@ public class GetMethodResponseBody {
          * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
          */
         public Builder resource(String resource) {
-            Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
@@ -490,17 +417,6 @@ public class GetMethodResponseBody {
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
-         * 
-         * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
@@ -512,17 +428,6 @@ public class GetMethodResponseBody {
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
-            return this;
-        }
-
-        /**
-         * The full name of the payment method.
-         * 
-         * <p>If a `locale` parameter is provided, the name is translated to the given locale if possible.
-         */
-        public Builder description(Optional<String> description) {
-            Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
         }
@@ -531,15 +436,6 @@ public class GetMethodResponseBody {
          * The minimum payment amount required to use this payment method.
          */
         public Builder minimumAmount(GetMethodMinimumAmount minimumAmount) {
-            Utils.checkNotNull(minimumAmount, "minimumAmount");
-            this.minimumAmount = Optional.ofNullable(minimumAmount);
-            return this;
-        }
-
-        /**
-         * The minimum payment amount required to use this payment method.
-         */
-        public Builder minimumAmount(Optional<? extends GetMethodMinimumAmount> minimumAmount) {
             Utils.checkNotNull(minimumAmount, "minimumAmount");
             this.minimumAmount = minimumAmount;
             return this;
@@ -550,14 +446,14 @@ public class GetMethodResponseBody {
          */
         public Builder maximumAmount(MaximumAmount maximumAmount) {
             Utils.checkNotNull(maximumAmount, "maximumAmount");
-            this.maximumAmount = JsonNullable.of(maximumAmount);
+            this.maximumAmount = Optional.ofNullable(maximumAmount);
             return this;
         }
 
         /**
          * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
          */
-        public Builder maximumAmount(JsonNullable<? extends MaximumAmount> maximumAmount) {
+        public Builder maximumAmount(Optional<? extends MaximumAmount> maximumAmount) {
             Utils.checkNotNull(maximumAmount, "maximumAmount");
             this.maximumAmount = maximumAmount;
             return this;
@@ -567,15 +463,6 @@ public class GetMethodResponseBody {
          * URLs of images representing the payment method.
          */
         public Builder image(Image image) {
-            Utils.checkNotNull(image, "image");
-            this.image = Optional.ofNullable(image);
-            return this;
-        }
-
-        /**
-         * URLs of images representing the payment method.
-         */
-        public Builder image(Optional<? extends Image> image) {
             Utils.checkNotNull(image, "image");
             this.image = image;
             return this;
@@ -588,7 +475,7 @@ public class GetMethodResponseBody {
          */
         public Builder status(String status) {
             Utils.checkNotNull(status, "status");
-            this.status = JsonNullable.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 
@@ -597,7 +484,7 @@ public class GetMethodResponseBody {
          * 
          * <p>Possible values: `activated` `pending-boarding` `pending-review` `pending-external` `rejected`
          */
-        public Builder status(JsonNullable<String> status) {
+        public Builder status(Optional<String> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -626,23 +513,11 @@ public class GetMethodResponseBody {
          */
         public Builder links(GetMethodLinks links) {
             Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends GetMethodLinks> links) {
-            Utils.checkNotNull(links, "links");
             this.links = links;
             return this;
         }
         
         public GetMethodResponseBody build() {
-            if (resource == null) {
-                resource = _SINGLETON_VALUE_Resource.value();
-            }
             return new GetMethodResponseBody(
                 resource,
                 id,
@@ -654,11 +529,5 @@ public class GetMethodResponseBody {
                 issuers,
                 links);
         }
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
-                new LazySingletonValue<>(
-                        "resource",
-                        "\"method\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

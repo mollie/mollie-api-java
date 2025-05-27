@@ -25,9 +25,8 @@ public class GetMethodLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends GetMethodSelf> self;
+    private GetMethodSelf self;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -38,7 +37,7 @@ public class GetMethodLinks {
 
     @JsonCreator
     public GetMethodLinks(
-            @JsonProperty("self") Optional<? extends GetMethodSelf> self,
+            @JsonProperty("self") GetMethodSelf self,
             @JsonProperty("documentation") Optional<? extends GetMethodDocumentation> documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(documentation, "documentation");
@@ -46,17 +45,17 @@ public class GetMethodLinks {
         this.documentation = documentation;
     }
     
-    public GetMethodLinks() {
-        this(Optional.empty(), Optional.empty());
+    public GetMethodLinks(
+            GetMethodSelf self) {
+        this(self, Optional.empty());
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetMethodSelf> self() {
-        return (Optional<GetMethodSelf>) self;
+    public GetMethodSelf self() {
+        return self;
     }
 
     /**
@@ -76,15 +75,6 @@ public class GetMethodLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public GetMethodLinks withSelf(GetMethodSelf self) {
-        Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public GetMethodLinks withSelf(Optional<? extends GetMethodSelf> self) {
         Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
@@ -139,7 +129,7 @@ public class GetMethodLinks {
     
     public final static class Builder {
  
-        private Optional<? extends GetMethodSelf> self = Optional.empty();
+        private GetMethodSelf self;
  
         private Optional<? extends GetMethodDocumentation> documentation = Optional.empty();
         
@@ -151,15 +141,6 @@ public class GetMethodLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder self(GetMethodSelf self) {
-            Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder self(Optional<? extends GetMethodSelf> self) {
             Utils.checkNotNull(self, "self");
             this.self = self;
             return this;

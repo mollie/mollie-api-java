@@ -6,16 +6,13 @@ package com.mollie.mollie.models.operations;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class UpdatePaymentLinkRequestBuilder {
 
     private String paymentLinkId;
-    private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<? extends UpdatePaymentLinkRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallUpdatePaymentLink sdk;
@@ -27,18 +24,6 @@ public class UpdatePaymentLinkRequestBuilder {
     public UpdatePaymentLinkRequestBuilder paymentLinkId(String paymentLinkId) {
         Utils.checkNotNull(paymentLinkId, "paymentLinkId");
         this.paymentLinkId = paymentLinkId;
-        return this;
-    }
-
-    public UpdatePaymentLinkRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
-        return this;
-    }
-
-    public UpdatePaymentLinkRequestBuilder testmode(JsonNullable<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
         return this;
     }
                 
@@ -72,7 +57,6 @@ public class UpdatePaymentLinkRequestBuilder {
                                                     .build());
         return sdk.update(
             paymentLinkId,
-            testmode,
             requestBody,
             options);
     }

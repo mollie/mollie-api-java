@@ -17,7 +17,7 @@ import java.util.Optional;
 /**
  * ListAllMethodsMethodsImage
  * 
- * <p>URLs of images representing the issuer.
+ * <p>URLs of images representing the issuer. required: - size1x - size2x - svg
  */
 public class ListAllMethodsMethodsImage {
 

@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
@@ -87,6 +88,15 @@ public class UpdateSubscriptionRequestBody {
     @JsonProperty("mandateId")
     private Optional<String> mandateId;
 
+    /**
+     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * 
+     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("testmode")
+    private JsonNullable<Boolean> testmode;
+
     @JsonCreator
     public UpdateSubscriptionRequestBody(
             @JsonProperty("amount") Optional<? extends UpdateSubscriptionAmount> amount,
@@ -96,7 +106,8 @@ public class UpdateSubscriptionRequestBody {
             @JsonProperty("times") Optional<Long> times,
             @JsonProperty("metadata") JsonNullable<? extends UpdateSubscriptionMetadata> metadata,
             @JsonProperty("webhookUrl") Optional<String> webhookUrl,
-            @JsonProperty("mandateId") Optional<String> mandateId) {
+            @JsonProperty("mandateId") Optional<String> mandateId,
+            @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(interval, "interval");
@@ -105,6 +116,7 @@ public class UpdateSubscriptionRequestBody {
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(webhookUrl, "webhookUrl");
         Utils.checkNotNull(mandateId, "mandateId");
+        Utils.checkNotNull(testmode, "testmode");
         this.amount = amount;
         this.description = description;
         this.interval = interval;
@@ -113,10 +125,11 @@ public class UpdateSubscriptionRequestBody {
         this.metadata = metadata;
         this.webhookUrl = webhookUrl;
         this.mandateId = mandateId;
+        this.testmode = testmode;
     }
     
     public UpdateSubscriptionRequestBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -195,6 +208,16 @@ public class UpdateSubscriptionRequestBody {
     @JsonIgnore
     public Optional<String> mandateId() {
         return mandateId;
+    }
+
+    /**
+     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * 
+     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     */
+    @JsonIgnore
+    public JsonNullable<Boolean> testmode() {
+        return testmode;
     }
 
     public final static Builder builder() {
@@ -369,6 +392,28 @@ public class UpdateSubscriptionRequestBody {
         return this;
     }
 
+    /**
+     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * 
+     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     */
+    public UpdateSubscriptionRequestBody withTestmode(boolean testmode) {
+        Utils.checkNotNull(testmode, "testmode");
+        this.testmode = JsonNullable.of(testmode);
+        return this;
+    }
+
+    /**
+     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * 
+     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     */
+    public UpdateSubscriptionRequestBody withTestmode(JsonNullable<Boolean> testmode) {
+        Utils.checkNotNull(testmode, "testmode");
+        this.testmode = testmode;
+        return this;
+    }
+
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -387,7 +432,8 @@ public class UpdateSubscriptionRequestBody {
             Objects.deepEquals(this.times, other.times) &&
             Objects.deepEquals(this.metadata, other.metadata) &&
             Objects.deepEquals(this.webhookUrl, other.webhookUrl) &&
-            Objects.deepEquals(this.mandateId, other.mandateId);
+            Objects.deepEquals(this.mandateId, other.mandateId) &&
+            Objects.deepEquals(this.testmode, other.testmode);
     }
     
     @Override
@@ -400,7 +446,8 @@ public class UpdateSubscriptionRequestBody {
             times,
             metadata,
             webhookUrl,
-            mandateId);
+            mandateId,
+            testmode);
     }
     
     @Override
@@ -413,7 +460,8 @@ public class UpdateSubscriptionRequestBody {
                 "times", times,
                 "metadata", metadata,
                 "webhookUrl", webhookUrl,
-                "mandateId", mandateId);
+                "mandateId", mandateId,
+                "testmode", testmode);
     }
     
     public final static class Builder {
@@ -433,6 +481,8 @@ public class UpdateSubscriptionRequestBody {
         private Optional<String> webhookUrl = Optional.empty();
  
         private Optional<String> mandateId = Optional.empty();
+ 
+        private JsonNullable<Boolean> testmode = JsonNullable.undefined();
         
         private Builder() {
           // force use of static builder() method
@@ -605,6 +655,28 @@ public class UpdateSubscriptionRequestBody {
             this.mandateId = mandateId;
             return this;
         }
+
+        /**
+         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+         * 
+         * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+         */
+        public Builder testmode(boolean testmode) {
+            Utils.checkNotNull(testmode, "testmode");
+            this.testmode = JsonNullable.of(testmode);
+            return this;
+        }
+
+        /**
+         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+         * 
+         * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+         */
+        public Builder testmode(JsonNullable<Boolean> testmode) {
+            Utils.checkNotNull(testmode, "testmode");
+            this.testmode = testmode;
+            return this;
+        }
         
         public UpdateSubscriptionRequestBody build() {
             return new UpdateSubscriptionRequestBody(
@@ -615,7 +687,8 @@ public class UpdateSubscriptionRequestBody {
                 times,
                 metadata,
                 webhookUrl,
-                mandateId);
+                mandateId,
+                testmode);
         }
     }
 }

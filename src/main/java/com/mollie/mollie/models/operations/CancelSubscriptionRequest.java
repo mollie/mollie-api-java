@@ -7,11 +7,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Objects;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.Optional;
 
 public class CancelSubscriptionRequest {
 
@@ -27,31 +27,26 @@ public class CancelSubscriptionRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=subscriptionId")
     private String subscriptionId;
 
-    /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
-     * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     */
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=testmode")
-    private JsonNullable<Boolean> testmode;
+    @SpeakeasyMetadata("request:mediaType=application/json")
+    private Optional<? extends CancelSubscriptionRequestBody> requestBody;
 
     @JsonCreator
     public CancelSubscriptionRequest(
             String customerId,
             String subscriptionId,
-            JsonNullable<Boolean> testmode) {
+            Optional<? extends CancelSubscriptionRequestBody> requestBody) {
         Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(subscriptionId, "subscriptionId");
-        Utils.checkNotNull(testmode, "testmode");
+        Utils.checkNotNull(requestBody, "requestBody");
         this.customerId = customerId;
         this.subscriptionId = subscriptionId;
-        this.testmode = testmode;
+        this.requestBody = requestBody;
     }
     
     public CancelSubscriptionRequest(
             String customerId,
             String subscriptionId) {
-        this(customerId, subscriptionId, JsonNullable.undefined());
+        this(customerId, subscriptionId, Optional.empty());
     }
 
     /**
@@ -70,14 +65,10 @@ public class CancelSubscriptionRequest {
         return subscriptionId;
     }
 
-    /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
-     * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Boolean> testmode() {
-        return testmode;
+    public Optional<CancelSubscriptionRequestBody> requestBody() {
+        return (Optional<CancelSubscriptionRequestBody>) requestBody;
     }
 
     public final static Builder builder() {
@@ -102,25 +93,15 @@ public class CancelSubscriptionRequest {
         return this;
     }
 
-    /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
-     * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     */
-    public CancelSubscriptionRequest withTestmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
+    public CancelSubscriptionRequest withRequestBody(CancelSubscriptionRequestBody requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = Optional.ofNullable(requestBody);
         return this;
     }
 
-    /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
-     * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     */
-    public CancelSubscriptionRequest withTestmode(JsonNullable<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
+    public CancelSubscriptionRequest withRequestBody(Optional<? extends CancelSubscriptionRequestBody> requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
         return this;
     }
 
@@ -137,7 +118,7 @@ public class CancelSubscriptionRequest {
         return 
             Objects.deepEquals(this.customerId, other.customerId) &&
             Objects.deepEquals(this.subscriptionId, other.subscriptionId) &&
-            Objects.deepEquals(this.testmode, other.testmode);
+            Objects.deepEquals(this.requestBody, other.requestBody);
     }
     
     @Override
@@ -145,7 +126,7 @@ public class CancelSubscriptionRequest {
         return Objects.hash(
             customerId,
             subscriptionId,
-            testmode);
+            requestBody);
     }
     
     @Override
@@ -153,7 +134,7 @@ public class CancelSubscriptionRequest {
         return Utils.toString(CancelSubscriptionRequest.class,
                 "customerId", customerId,
                 "subscriptionId", subscriptionId,
-                "testmode", testmode);
+                "requestBody", requestBody);
     }
     
     public final static class Builder {
@@ -162,7 +143,7 @@ public class CancelSubscriptionRequest {
  
         private String subscriptionId;
  
-        private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+        private Optional<? extends CancelSubscriptionRequestBody> requestBody = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -186,25 +167,15 @@ public class CancelSubscriptionRequest {
             return this;
         }
 
-        /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
-         * 
-         * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-         */
-        public Builder testmode(boolean testmode) {
-            Utils.checkNotNull(testmode, "testmode");
-            this.testmode = JsonNullable.of(testmode);
+        public Builder requestBody(CancelSubscriptionRequestBody requestBody) {
+            Utils.checkNotNull(requestBody, "requestBody");
+            this.requestBody = Optional.ofNullable(requestBody);
             return this;
         }
 
-        /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
-         * 
-         * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-         */
-        public Builder testmode(JsonNullable<Boolean> testmode) {
-            Utils.checkNotNull(testmode, "testmode");
-            this.testmode = testmode;
+        public Builder requestBody(Optional<? extends CancelSubscriptionRequestBody> requestBody) {
+            Utils.checkNotNull(requestBody, "requestBody");
+            this.requestBody = requestBody;
             return this;
         }
         
@@ -212,7 +183,7 @@ public class CancelSubscriptionRequest {
             return new CancelSubscriptionRequest(
                 customerId,
                 subscriptionId,
-                testmode);
+                requestBody);
         }
     }
 }

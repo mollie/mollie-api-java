@@ -1,6 +1,6 @@
 # ListAllMethodsMethodsImage
 
-URLs of images representing the issuer.
+URLs of images representing the issuer. required: - size1x - size2x - svg
 
 
 ## Fields

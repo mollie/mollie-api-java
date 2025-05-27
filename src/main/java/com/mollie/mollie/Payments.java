@@ -11,6 +11,7 @@ import com.mollie.mollie.models.errors.ReleaseAuthorizationPaymentsResponseBody;
 import com.mollie.mollie.models.errors.ReleaseAuthorizationResponseBody;
 import com.mollie.mollie.models.errors.UpdatePaymentPaymentsResponseBody;
 import com.mollie.mollie.models.operations.CancelPaymentRequest;
+import com.mollie.mollie.models.operations.CancelPaymentRequestBody;
 import com.mollie.mollie.models.operations.CancelPaymentRequestBuilder;
 import com.mollie.mollie.models.operations.CancelPaymentResponse;
 import com.mollie.mollie.models.operations.CancelPaymentResponseBody;
@@ -1084,7 +1085,7 @@ public class Payments implements
      */
     public CancelPaymentResponse cancel(
             String paymentId) throws Exception {
-        return cancel(paymentId, JsonNullable.undefined(), Optional.empty());
+        return cancel(paymentId, Optional.empty(), Optional.empty());
     }
     
     /**
@@ -1103,16 +1104,14 @@ public class Payments implements
      * &gt; [Access token with **payments.write**](/reference/authentication)
      * 
      * @param paymentId Provide the ID of the related payment.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param requestBody 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CancelPaymentResponse cancel(
             String paymentId,
-            JsonNullable<Boolean> testmode,
+            Optional<? extends CancelPaymentRequestBody> requestBody,
             Optional<Options> options) throws Exception {
 
         if (options.isPresent()) {
@@ -1122,7 +1121,7 @@ public class Payments implements
             CancelPaymentRequest
                 .builder()
                 .paymentId(paymentId)
-                .testmode(testmode)
+                .requestBody(requestBody)
                 .build();
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
@@ -1133,14 +1132,19 @@ public class Payments implements
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "DELETE");
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Object>() {});
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/hal+json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                CancelPaymentRequest.class,
-                request, 
-                null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  

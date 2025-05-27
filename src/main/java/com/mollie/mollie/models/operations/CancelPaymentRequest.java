@@ -7,11 +7,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Objects;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.Optional;
 
 public class CancelPaymentRequest {
 
@@ -21,27 +21,22 @@ public class CancelPaymentRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=paymentId")
     private String paymentId;
 
-    /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
-     * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     */
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=testmode")
-    private JsonNullable<Boolean> testmode;
+    @SpeakeasyMetadata("request:mediaType=application/json")
+    private Optional<? extends CancelPaymentRequestBody> requestBody;
 
     @JsonCreator
     public CancelPaymentRequest(
             String paymentId,
-            JsonNullable<Boolean> testmode) {
+            Optional<? extends CancelPaymentRequestBody> requestBody) {
         Utils.checkNotNull(paymentId, "paymentId");
-        Utils.checkNotNull(testmode, "testmode");
+        Utils.checkNotNull(requestBody, "requestBody");
         this.paymentId = paymentId;
-        this.testmode = testmode;
+        this.requestBody = requestBody;
     }
     
     public CancelPaymentRequest(
             String paymentId) {
-        this(paymentId, JsonNullable.undefined());
+        this(paymentId, Optional.empty());
     }
 
     /**
@@ -52,14 +47,10 @@ public class CancelPaymentRequest {
         return paymentId;
     }
 
-    /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
-     * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Boolean> testmode() {
-        return testmode;
+    public Optional<CancelPaymentRequestBody> requestBody() {
+        return (Optional<CancelPaymentRequestBody>) requestBody;
     }
 
     public final static Builder builder() {
@@ -75,25 +66,15 @@ public class CancelPaymentRequest {
         return this;
     }
 
-    /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
-     * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     */
-    public CancelPaymentRequest withTestmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
+    public CancelPaymentRequest withRequestBody(CancelPaymentRequestBody requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = Optional.ofNullable(requestBody);
         return this;
     }
 
-    /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
-     * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     */
-    public CancelPaymentRequest withTestmode(JsonNullable<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
+    public CancelPaymentRequest withRequestBody(Optional<? extends CancelPaymentRequestBody> requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
         return this;
     }
 
@@ -109,28 +90,28 @@ public class CancelPaymentRequest {
         CancelPaymentRequest other = (CancelPaymentRequest) o;
         return 
             Objects.deepEquals(this.paymentId, other.paymentId) &&
-            Objects.deepEquals(this.testmode, other.testmode);
+            Objects.deepEquals(this.requestBody, other.requestBody);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
             paymentId,
-            testmode);
+            requestBody);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CancelPaymentRequest.class,
                 "paymentId", paymentId,
-                "testmode", testmode);
+                "requestBody", requestBody);
     }
     
     public final static class Builder {
  
         private String paymentId;
  
-        private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+        private Optional<? extends CancelPaymentRequestBody> requestBody = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -145,32 +126,22 @@ public class CancelPaymentRequest {
             return this;
         }
 
-        /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
-         * 
-         * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-         */
-        public Builder testmode(boolean testmode) {
-            Utils.checkNotNull(testmode, "testmode");
-            this.testmode = JsonNullable.of(testmode);
+        public Builder requestBody(CancelPaymentRequestBody requestBody) {
+            Utils.checkNotNull(requestBody, "requestBody");
+            this.requestBody = Optional.ofNullable(requestBody);
             return this;
         }
 
-        /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
-         * 
-         * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-         */
-        public Builder testmode(JsonNullable<Boolean> testmode) {
-            Utils.checkNotNull(testmode, "testmode");
-            this.testmode = testmode;
+        public Builder requestBody(Optional<? extends CancelPaymentRequestBody> requestBody) {
+            Utils.checkNotNull(requestBody, "requestBody");
+            this.requestBody = requestBody;
             return this;
         }
         
         public CancelPaymentRequest build() {
             return new CancelPaymentRequest(
                 paymentId,
-                testmode);
+                requestBody);
         }
     }
 }

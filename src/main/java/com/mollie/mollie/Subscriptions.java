@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.models.errors.APIException;
 import com.mollie.mollie.models.errors.ListSubscriptionsSubscriptionsResponseBody;
 import com.mollie.mollie.models.operations.CancelSubscriptionRequest;
+import com.mollie.mollie.models.operations.CancelSubscriptionRequestBody;
 import com.mollie.mollie.models.operations.CancelSubscriptionRequestBuilder;
 import com.mollie.mollie.models.operations.CancelSubscriptionResponse;
 import com.mollie.mollie.models.operations.CancelSubscriptionResponseBody;
@@ -840,7 +841,7 @@ public class Subscriptions implements
     public UpdateSubscriptionResponse update(
             String customerId,
             String subscriptionId) throws Exception {
-        return update(customerId, subscriptionId, JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        return update(customerId, subscriptionId, Optional.empty(), Optional.empty());
     }
     
     /**
@@ -860,9 +861,6 @@ public class Subscriptions implements
      * 
      * @param customerId Provide the ID of the related customer.
      * @param subscriptionId Provide the ID of the related subscription.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
@@ -871,7 +869,6 @@ public class Subscriptions implements
     public UpdateSubscriptionResponse update(
             String customerId,
             String subscriptionId,
-            JsonNullable<Boolean> testmode,
             Optional<? extends UpdateSubscriptionRequestBody> requestBody,
             Optional<Options> options) throws Exception {
 
@@ -883,7 +880,6 @@ public class Subscriptions implements
                 .builder()
                 .customerId(customerId)
                 .subscriptionId(subscriptionId)
-                .testmode(testmode)
                 .requestBody(requestBody)
                 .build();
         
@@ -908,11 +904,6 @@ public class Subscriptions implements
         _req.addHeader("Accept", "application/hal+json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                UpdateSubscriptionRequest.class,
-                request, 
-                null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -1082,7 +1073,7 @@ public class Subscriptions implements
     public CancelSubscriptionResponse cancel(
             String customerId,
             String subscriptionId) throws Exception {
-        return cancel(customerId, subscriptionId, JsonNullable.undefined(), Optional.empty());
+        return cancel(customerId, subscriptionId, Optional.empty(), Optional.empty());
     }
     
     /**
@@ -1098,9 +1089,7 @@ public class Subscriptions implements
      * 
      * @param customerId Provide the ID of the related customer.
      * @param subscriptionId Provide the ID of the related subscription.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param requestBody 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -1108,7 +1097,7 @@ public class Subscriptions implements
     public CancelSubscriptionResponse cancel(
             String customerId,
             String subscriptionId,
-            JsonNullable<Boolean> testmode,
+            Optional<? extends CancelSubscriptionRequestBody> requestBody,
             Optional<Options> options) throws Exception {
 
         if (options.isPresent()) {
@@ -1119,7 +1108,7 @@ public class Subscriptions implements
                 .builder()
                 .customerId(customerId)
                 .subscriptionId(subscriptionId)
-                .testmode(testmode)
+                .requestBody(requestBody)
                 .build();
         
         String _baseUrl = this.sdkConfiguration.serverUrl;
@@ -1130,14 +1119,19 @@ public class Subscriptions implements
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "DELETE");
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Object>() {});
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/hal+json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                CancelSubscriptionRequest.class,
-                request, 
-                null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  

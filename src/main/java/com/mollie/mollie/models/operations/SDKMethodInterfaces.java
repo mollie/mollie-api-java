@@ -48,7 +48,7 @@ public class SDKMethodInterfaces {
     public interface MethodCallCancelPayment {
         CancelPaymentResponse cancel(
             String paymentId,
-            JsonNullable<Boolean> testmode,
+            Optional<? extends CancelPaymentRequestBody> requestBody,
             Optional<Options> options) throws Exception;
     }
 
@@ -202,7 +202,6 @@ public class SDKMethodInterfaces {
     public interface MethodCallUpdatePaymentLink {
         UpdatePaymentLinkResponse update(
             String paymentLinkId,
-            JsonNullable<Boolean> testmode,
             Optional<? extends UpdatePaymentLinkRequestBody> requestBody,
             Optional<Options> options) throws Exception;
     }
@@ -210,7 +209,7 @@ public class SDKMethodInterfaces {
     public interface MethodCallDeletePaymentLink {
         DeletePaymentLinkResponse delete(
             String paymentLinkId,
-            JsonNullable<Boolean> testmode,
+            Optional<? extends DeletePaymentLinkRequestBody> requestBody,
             Optional<Options> options) throws Exception;
     }
 
@@ -282,7 +281,7 @@ public class SDKMethodInterfaces {
     public interface MethodCallDeleteCustomer {
         DeleteCustomerResponse delete(
             String customerId,
-            JsonNullable<Boolean> testmode,
+            Optional<? extends DeleteCustomerRequestBody> requestBody,
             Optional<Options> options) throws Exception;
     }
 
@@ -324,7 +323,7 @@ public class SDKMethodInterfaces {
         RevokeMandateResponse revoke(
             String customerId,
             String mandateId,
-            JsonNullable<Boolean> testmode,
+            Optional<? extends RevokeMandateRequestBody> requestBody,
             Optional<Options> options) throws Exception;
     }
 
@@ -353,7 +352,6 @@ public class SDKMethodInterfaces {
         UpdateSubscriptionResponse update(
             String customerId,
             String subscriptionId,
-            JsonNullable<Boolean> testmode,
             Optional<? extends UpdateSubscriptionRequestBody> requestBody,
             Optional<Options> options) throws Exception;
     }
@@ -362,7 +360,7 @@ public class SDKMethodInterfaces {
         CancelSubscriptionResponse cancel(
             String customerId,
             String subscriptionId,
-            JsonNullable<Boolean> testmode,
+            Optional<? extends CancelSubscriptionRequestBody> requestBody,
             Optional<Options> options) throws Exception;
     }
 
