@@ -160,7 +160,7 @@ public class CreateCustomerPaymentRequestBody {
     private JsonNullable<? extends CreateCustomerPaymentMetadata> metadata;
 
     /**
-     * Indicate if the funds should be captured immediately or if you want to [place a hold](place-a-hold-for-a-payment) and capture at a later time.
+     * Indicate if the funds should be captured immediately or if you want to [place a hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/) and capture at a later time.
      * 
      * <p>This field needs to be set to `manual` for method `riverty`.
      * 
@@ -517,7 +517,7 @@ public class CreateCustomerPaymentRequestBody {
     }
 
     /**
-     * Indicate if the funds should be captured immediately or if you want to [place a hold](place-a-hold-for-a-payment) and capture at a later time.
+     * Indicate if the funds should be captured immediately or if you want to [place a hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/) and capture at a later time.
      * 
      * <p>This field needs to be set to `manual` for method `riverty`.
      * 
@@ -961,7 +961,7 @@ public class CreateCustomerPaymentRequestBody {
     }
 
     /**
-     * Indicate if the funds should be captured immediately or if you want to [place a hold](place-a-hold-for-a-payment) and capture at a later time.
+     * Indicate if the funds should be captured immediately or if you want to [place a hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/) and capture at a later time.
      * 
      * <p>This field needs to be set to `manual` for method `riverty`.
      * 
@@ -974,7 +974,7 @@ public class CreateCustomerPaymentRequestBody {
     }
 
     /**
-     * Indicate if the funds should be captured immediately or if you want to [place a hold](place-a-hold-for-a-payment) and capture at a later time.
+     * Indicate if the funds should be captured immediately or if you want to [place a hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/) and capture at a later time.
      * 
      * <p>This field needs to be set to `manual` for method `riverty`.
      * 
@@ -1693,7 +1693,7 @@ public class CreateCustomerPaymentRequestBody {
         }
 
         /**
-         * Indicate if the funds should be captured immediately or if you want to [place a hold](place-a-hold-for-a-payment) and capture at a later time.
+         * Indicate if the funds should be captured immediately or if you want to [place a hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/) and capture at a later time.
          * 
          * <p>This field needs to be set to `manual` for method `riverty`.
          * 
@@ -1706,7 +1706,7 @@ public class CreateCustomerPaymentRequestBody {
         }
 
         /**
-         * Indicate if the funds should be captured immediately or if you want to [place a hold](place-a-hold-for-a-payment) and capture at a later time.
+         * Indicate if the funds should be captured immediately or if you want to [place a hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/) and capture at a later time.
          * 
          * <p>This field needs to be set to `manual` for method `riverty`.
          * 
