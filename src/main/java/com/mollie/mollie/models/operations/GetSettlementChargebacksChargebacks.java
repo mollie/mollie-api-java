@@ -8,14 +8,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetSettlementChargebacksChargebacks {
@@ -23,23 +20,20 @@ public class GetSettlementChargebacksChargebacks {
     /**
      * Indicates the response contains a chargeback object. Will always contain the string `chargeback` for this endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
     /**
      * The identifier uniquely referring to this chargeback. Example: `chb_n9z0tp`.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The amount charged back by the customer.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private Optional<? extends GetSettlementChargebacksAmount> amount;
+    private GetSettlementChargebacksAmount amount;
 
     /**
      * This optional field will contain the approximate amount that will be deducted from your account balance, converted to the currency your account is settled in.
@@ -62,9 +56,8 @@ public class GetSettlementChargebacksChargebacks {
     /**
      * The unique identifier of the payment this chargeback was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("paymentId")
-    private Optional<String> paymentId;
+    private String paymentId;
 
     /**
      * The identifier referring to the settlement this payment was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the refund is not settled (yet).
@@ -76,9 +69,8 @@ public class GetSettlementChargebacksChargebacks {
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
-    private Optional<String> createdAt;
+    private String createdAt;
 
     /**
      * The date and time the chargeback was reversed if applicable, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -90,22 +82,21 @@ public class GetSettlementChargebacksChargebacks {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends GetSettlementChargebacksSettlementsLinks> links;
+    private GetSettlementChargebacksSettlementsLinks links;
 
     @JsonCreator
     public GetSettlementChargebacksChargebacks(
-            @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("amount") Optional<? extends GetSettlementChargebacksAmount> amount,
+            @JsonProperty("resource") String resource,
+            @JsonProperty("id") String id,
+            @JsonProperty("amount") GetSettlementChargebacksAmount amount,
             @JsonProperty("settlementAmount") JsonNullable<? extends GetSettlementChargebacksSettlementAmount> settlementAmount,
             @JsonProperty("reason") JsonNullable<? extends GetSettlementChargebacksReason> reason,
-            @JsonProperty("paymentId") Optional<String> paymentId,
+            @JsonProperty("paymentId") String paymentId,
             @JsonProperty("settlementId") JsonNullable<String> settlementId,
-            @JsonProperty("createdAt") Optional<String> createdAt,
+            @JsonProperty("createdAt") String createdAt,
             @JsonProperty("reversedAt") JsonNullable<String> reversedAt,
-            @JsonProperty("_links") Optional<? extends GetSettlementChargebacksSettlementsLinks> links) {
+            @JsonProperty("_links") GetSettlementChargebacksSettlementsLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(amount, "amount");
@@ -128,15 +119,21 @@ public class GetSettlementChargebacksChargebacks {
         this.links = links;
     }
     
-    public GetSettlementChargebacksChargebacks() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+    public GetSettlementChargebacksChargebacks(
+            String resource,
+            String id,
+            GetSettlementChargebacksAmount amount,
+            String paymentId,
+            String createdAt,
+            GetSettlementChargebacksSettlementsLinks links) {
+        this(resource, id, amount, JsonNullable.undefined(), JsonNullable.undefined(), paymentId, JsonNullable.undefined(), createdAt, JsonNullable.undefined(), links);
     }
 
     /**
      * Indicates the response contains a chargeback object. Will always contain the string `chargeback` for this endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
@@ -144,17 +141,16 @@ public class GetSettlementChargebacksChargebacks {
      * The identifier uniquely referring to this chargeback. Example: `chb_n9z0tp`.
      */
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
     /**
      * The amount charged back by the customer.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetSettlementChargebacksAmount> amount() {
-        return (Optional<GetSettlementChargebacksAmount>) amount;
+    public GetSettlementChargebacksAmount amount() {
+        return amount;
     }
 
     /**
@@ -183,7 +179,7 @@ public class GetSettlementChargebacksChargebacks {
      * The unique identifier of the payment this chargeback was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
      */
     @JsonIgnore
-    public Optional<String> paymentId() {
+    public String paymentId() {
         return paymentId;
     }
 
@@ -199,7 +195,7 @@ public class GetSettlementChargebacksChargebacks {
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
     @JsonIgnore
-    public Optional<String> createdAt() {
+    public String createdAt() {
         return createdAt;
     }
 
@@ -214,10 +210,9 @@ public class GetSettlementChargebacksChargebacks {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetSettlementChargebacksSettlementsLinks> links() {
-        return (Optional<GetSettlementChargebacksSettlementsLinks>) links;
+    public GetSettlementChargebacksSettlementsLinks links() {
+        return links;
     }
 
     public final static Builder builder() {
@@ -229,15 +224,6 @@ public class GetSettlementChargebacksChargebacks {
      */
     public GetSettlementChargebacksChargebacks withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-    /**
-     * Indicates the response contains a chargeback object. Will always contain the string `chargeback` for this endpoint.
-     */
-    public GetSettlementChargebacksChargebacks withResource(Optional<String> resource) {
-        Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
     }
@@ -247,15 +233,6 @@ public class GetSettlementChargebacksChargebacks {
      */
     public GetSettlementChargebacksChargebacks withId(String id) {
         Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-    /**
-     * The identifier uniquely referring to this chargeback. Example: `chb_n9z0tp`.
-     */
-    public GetSettlementChargebacksChargebacks withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
@@ -264,15 +241,6 @@ public class GetSettlementChargebacksChargebacks {
      * The amount charged back by the customer.
      */
     public GetSettlementChargebacksChargebacks withAmount(GetSettlementChargebacksAmount amount) {
-        Utils.checkNotNull(amount, "amount");
-        this.amount = Optional.ofNullable(amount);
-        return this;
-    }
-
-    /**
-     * The amount charged back by the customer.
-     */
-    public GetSettlementChargebacksChargebacks withAmount(Optional<? extends GetSettlementChargebacksAmount> amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
@@ -327,15 +295,6 @@ public class GetSettlementChargebacksChargebacks {
      */
     public GetSettlementChargebacksChargebacks withPaymentId(String paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
-        this.paymentId = Optional.ofNullable(paymentId);
-        return this;
-    }
-
-    /**
-     * The unique identifier of the payment this chargeback was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
-     */
-    public GetSettlementChargebacksChargebacks withPaymentId(Optional<String> paymentId) {
-        Utils.checkNotNull(paymentId, "paymentId");
         this.paymentId = paymentId;
         return this;
     }
@@ -363,15 +322,6 @@ public class GetSettlementChargebacksChargebacks {
      */
     public GetSettlementChargebacksChargebacks withCreatedAt(String createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = Optional.ofNullable(createdAt);
-        return this;
-    }
-
-    /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-     */
-    public GetSettlementChargebacksChargebacks withCreatedAt(Optional<String> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
@@ -398,15 +348,6 @@ public class GetSettlementChargebacksChargebacks {
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
     public GetSettlementChargebacksChargebacks withLinks(GetSettlementChargebacksSettlementsLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public GetSettlementChargebacksChargebacks withLinks(Optional<? extends GetSettlementChargebacksSettlementsLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -467,25 +408,25 @@ public class GetSettlementChargebacksChargebacks {
     
     public final static class Builder {
  
-        private Optional<String> resource;
+        private String resource;
  
-        private Optional<String> id = Optional.empty();
+        private String id;
  
-        private Optional<? extends GetSettlementChargebacksAmount> amount = Optional.empty();
+        private GetSettlementChargebacksAmount amount;
  
         private JsonNullable<? extends GetSettlementChargebacksSettlementAmount> settlementAmount = JsonNullable.undefined();
  
         private JsonNullable<? extends GetSettlementChargebacksReason> reason = JsonNullable.undefined();
  
-        private Optional<String> paymentId = Optional.empty();
+        private String paymentId;
  
         private JsonNullable<String> settlementId = JsonNullable.undefined();
  
-        private Optional<String> createdAt = Optional.empty();
+        private String createdAt;
  
         private JsonNullable<String> reversedAt = JsonNullable.undefined();
  
-        private Optional<? extends GetSettlementChargebacksSettlementsLinks> links = Optional.empty();
+        private GetSettlementChargebacksSettlementsLinks links;
         
         private Builder() {
           // force use of static builder() method
@@ -496,15 +437,6 @@ public class GetSettlementChargebacksChargebacks {
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a chargeback object. Will always contain the string `chargeback` for this endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
-            Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
         }
@@ -514,15 +446,6 @@ public class GetSettlementChargebacksChargebacks {
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The identifier uniquely referring to this chargeback. Example: `chb_n9z0tp`.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
@@ -531,15 +454,6 @@ public class GetSettlementChargebacksChargebacks {
          * The amount charged back by the customer.
          */
         public Builder amount(GetSettlementChargebacksAmount amount) {
-            Utils.checkNotNull(amount, "amount");
-            this.amount = Optional.ofNullable(amount);
-            return this;
-        }
-
-        /**
-         * The amount charged back by the customer.
-         */
-        public Builder amount(Optional<? extends GetSettlementChargebacksAmount> amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;
@@ -594,15 +508,6 @@ public class GetSettlementChargebacksChargebacks {
          */
         public Builder paymentId(String paymentId) {
             Utils.checkNotNull(paymentId, "paymentId");
-            this.paymentId = Optional.ofNullable(paymentId);
-            return this;
-        }
-
-        /**
-         * The unique identifier of the payment this chargeback was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
-         */
-        public Builder paymentId(Optional<String> paymentId) {
-            Utils.checkNotNull(paymentId, "paymentId");
             this.paymentId = paymentId;
             return this;
         }
@@ -629,15 +534,6 @@ public class GetSettlementChargebacksChargebacks {
          * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
          */
         public Builder createdAt(String createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = Optional.ofNullable(createdAt);
-            return this;
-        }
-
-        /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-         */
-        public Builder createdAt(Optional<String> createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
@@ -666,23 +562,11 @@ public class GetSettlementChargebacksChargebacks {
          */
         public Builder links(GetSettlementChargebacksSettlementsLinks links) {
             Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends GetSettlementChargebacksSettlementsLinks> links) {
-            Utils.checkNotNull(links, "links");
             this.links = links;
             return this;
         }
         
         public GetSettlementChargebacksChargebacks build() {
-            if (resource == null) {
-                resource = _SINGLETON_VALUE_Resource.value();
-            }
             return new GetSettlementChargebacksChargebacks(
                 resource,
                 id,
@@ -695,11 +579,5 @@ public class GetSettlementChargebacksChargebacks {
                 reversedAt,
                 links);
         }
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
-                new LazySingletonValue<>(
-                        "resource",
-                        "\"chargeback\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

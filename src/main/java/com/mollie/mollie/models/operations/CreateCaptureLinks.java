@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -26,16 +25,14 @@ public class CreateCaptureLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends CreateCaptureSelf> self;
+    private CreateCaptureSelf self;
 
     /**
      * The API resource URL of the [payment](get-payment) that this capture belongs to.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment")
-    private Optional<? extends CreateCapturePayment> payment;
+    private CreateCapturePayment payment;
 
     /**
      * The API resource URL of the [settlement](get-settlement) this capture has been settled with. Not present if not yet settled.
@@ -54,17 +51,16 @@ public class CreateCaptureLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends CreateCaptureDocumentation> documentation;
+    private CreateCaptureDocumentation documentation;
 
     @JsonCreator
     public CreateCaptureLinks(
-            @JsonProperty("self") Optional<? extends CreateCaptureSelf> self,
-            @JsonProperty("payment") Optional<? extends CreateCapturePayment> payment,
+            @JsonProperty("self") CreateCaptureSelf self,
+            @JsonProperty("payment") CreateCapturePayment payment,
             @JsonProperty("settlement") JsonNullable<? extends CreateCaptureSettlement> settlement,
             @JsonProperty("shipment") JsonNullable<? extends Shipment> shipment,
-            @JsonProperty("documentation") Optional<? extends CreateCaptureDocumentation> documentation) {
+            @JsonProperty("documentation") CreateCaptureDocumentation documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(payment, "payment");
         Utils.checkNotNull(settlement, "settlement");
@@ -77,26 +73,27 @@ public class CreateCaptureLinks {
         this.documentation = documentation;
     }
     
-    public CreateCaptureLinks() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+    public CreateCaptureLinks(
+            CreateCaptureSelf self,
+            CreateCapturePayment payment,
+            CreateCaptureDocumentation documentation) {
+        this(self, payment, JsonNullable.undefined(), JsonNullable.undefined(), documentation);
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateCaptureSelf> self() {
-        return (Optional<CreateCaptureSelf>) self;
+    public CreateCaptureSelf self() {
+        return self;
     }
 
     /**
      * The API resource URL of the [payment](get-payment) that this capture belongs to.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateCapturePayment> payment() {
-        return (Optional<CreateCapturePayment>) payment;
+    public CreateCapturePayment payment() {
+        return payment;
     }
 
     /**
@@ -120,10 +117,9 @@ public class CreateCaptureLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateCaptureDocumentation> documentation() {
-        return (Optional<CreateCaptureDocumentation>) documentation;
+    public CreateCaptureDocumentation documentation() {
+        return documentation;
     }
 
     public final static Builder builder() {
@@ -135,15 +131,6 @@ public class CreateCaptureLinks {
      */
     public CreateCaptureLinks withSelf(CreateCaptureSelf self) {
         Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public CreateCaptureLinks withSelf(Optional<? extends CreateCaptureSelf> self) {
-        Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
@@ -152,15 +139,6 @@ public class CreateCaptureLinks {
      * The API resource URL of the [payment](get-payment) that this capture belongs to.
      */
     public CreateCaptureLinks withPayment(CreateCapturePayment payment) {
-        Utils.checkNotNull(payment, "payment");
-        this.payment = Optional.ofNullable(payment);
-        return this;
-    }
-
-    /**
-     * The API resource URL of the [payment](get-payment) that this capture belongs to.
-     */
-    public CreateCaptureLinks withPayment(Optional<? extends CreateCapturePayment> payment) {
         Utils.checkNotNull(payment, "payment");
         this.payment = payment;
         return this;
@@ -207,15 +185,6 @@ public class CreateCaptureLinks {
      */
     public CreateCaptureLinks withDocumentation(CreateCaptureDocumentation documentation) {
         Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public CreateCaptureLinks withDocumentation(Optional<? extends CreateCaptureDocumentation> documentation) {
-        Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
     }
@@ -260,15 +229,15 @@ public class CreateCaptureLinks {
     
     public final static class Builder {
  
-        private Optional<? extends CreateCaptureSelf> self = Optional.empty();
+        private CreateCaptureSelf self;
  
-        private Optional<? extends CreateCapturePayment> payment = Optional.empty();
+        private CreateCapturePayment payment;
  
         private JsonNullable<? extends CreateCaptureSettlement> settlement = JsonNullable.undefined();
  
         private JsonNullable<? extends Shipment> shipment = JsonNullable.undefined();
  
-        private Optional<? extends CreateCaptureDocumentation> documentation = Optional.empty();
+        private CreateCaptureDocumentation documentation;
         
         private Builder() {
           // force use of static builder() method
@@ -279,15 +248,6 @@ public class CreateCaptureLinks {
          */
         public Builder self(CreateCaptureSelf self) {
             Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder self(Optional<? extends CreateCaptureSelf> self) {
-            Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
         }
@@ -296,15 +256,6 @@ public class CreateCaptureLinks {
          * The API resource URL of the [payment](get-payment) that this capture belongs to.
          */
         public Builder payment(CreateCapturePayment payment) {
-            Utils.checkNotNull(payment, "payment");
-            this.payment = Optional.ofNullable(payment);
-            return this;
-        }
-
-        /**
-         * The API resource URL of the [payment](get-payment) that this capture belongs to.
-         */
-        public Builder payment(Optional<? extends CreateCapturePayment> payment) {
             Utils.checkNotNull(payment, "payment");
             this.payment = payment;
             return this;
@@ -350,15 +301,6 @@ public class CreateCaptureLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(CreateCaptureDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends CreateCaptureDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

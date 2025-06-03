@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -26,16 +25,14 @@ public class ListAllChargebacksChargebacksLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends ListAllChargebacksChargebacksSelf> self;
+    private ListAllChargebacksChargebacksSelf self;
 
     /**
      * The API resource URL of the [payment](get-payment) that this chargeback belongs to.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment")
-    private Optional<? extends ListAllChargebacksPayment> payment;
+    private ListAllChargebacksPayment payment;
 
     /**
      * The API resource URL of the [settlement](get-settlement) this chargeback has been settled with. Not present if not yet settled.
@@ -47,16 +44,15 @@ public class ListAllChargebacksChargebacksLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends ListAllChargebacksChargebacksDocumentation> documentation;
+    private ListAllChargebacksChargebacksDocumentation documentation;
 
     @JsonCreator
     public ListAllChargebacksChargebacksLinks(
-            @JsonProperty("self") Optional<? extends ListAllChargebacksChargebacksSelf> self,
-            @JsonProperty("payment") Optional<? extends ListAllChargebacksPayment> payment,
+            @JsonProperty("self") ListAllChargebacksChargebacksSelf self,
+            @JsonProperty("payment") ListAllChargebacksPayment payment,
             @JsonProperty("settlement") JsonNullable<? extends ListAllChargebacksSettlement> settlement,
-            @JsonProperty("documentation") Optional<? extends ListAllChargebacksChargebacksDocumentation> documentation) {
+            @JsonProperty("documentation") ListAllChargebacksChargebacksDocumentation documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(payment, "payment");
         Utils.checkNotNull(settlement, "settlement");
@@ -67,26 +63,27 @@ public class ListAllChargebacksChargebacksLinks {
         this.documentation = documentation;
     }
     
-    public ListAllChargebacksChargebacksLinks() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+    public ListAllChargebacksChargebacksLinks(
+            ListAllChargebacksChargebacksSelf self,
+            ListAllChargebacksPayment payment,
+            ListAllChargebacksChargebacksDocumentation documentation) {
+        this(self, payment, JsonNullable.undefined(), documentation);
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListAllChargebacksChargebacksSelf> self() {
-        return (Optional<ListAllChargebacksChargebacksSelf>) self;
+    public ListAllChargebacksChargebacksSelf self() {
+        return self;
     }
 
     /**
      * The API resource URL of the [payment](get-payment) that this chargeback belongs to.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListAllChargebacksPayment> payment() {
-        return (Optional<ListAllChargebacksPayment>) payment;
+    public ListAllChargebacksPayment payment() {
+        return payment;
     }
 
     /**
@@ -101,10 +98,9 @@ public class ListAllChargebacksChargebacksLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListAllChargebacksChargebacksDocumentation> documentation() {
-        return (Optional<ListAllChargebacksChargebacksDocumentation>) documentation;
+    public ListAllChargebacksChargebacksDocumentation documentation() {
+        return documentation;
     }
 
     public final static Builder builder() {
@@ -116,15 +112,6 @@ public class ListAllChargebacksChargebacksLinks {
      */
     public ListAllChargebacksChargebacksLinks withSelf(ListAllChargebacksChargebacksSelf self) {
         Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListAllChargebacksChargebacksLinks withSelf(Optional<? extends ListAllChargebacksChargebacksSelf> self) {
-        Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
@@ -133,15 +120,6 @@ public class ListAllChargebacksChargebacksLinks {
      * The API resource URL of the [payment](get-payment) that this chargeback belongs to.
      */
     public ListAllChargebacksChargebacksLinks withPayment(ListAllChargebacksPayment payment) {
-        Utils.checkNotNull(payment, "payment");
-        this.payment = Optional.ofNullable(payment);
-        return this;
-    }
-
-    /**
-     * The API resource URL of the [payment](get-payment) that this chargeback belongs to.
-     */
-    public ListAllChargebacksChargebacksLinks withPayment(Optional<? extends ListAllChargebacksPayment> payment) {
         Utils.checkNotNull(payment, "payment");
         this.payment = payment;
         return this;
@@ -169,15 +147,6 @@ public class ListAllChargebacksChargebacksLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public ListAllChargebacksChargebacksLinks withDocumentation(ListAllChargebacksChargebacksDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListAllChargebacksChargebacksLinks withDocumentation(Optional<? extends ListAllChargebacksChargebacksDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -220,13 +189,13 @@ public class ListAllChargebacksChargebacksLinks {
     
     public final static class Builder {
  
-        private Optional<? extends ListAllChargebacksChargebacksSelf> self = Optional.empty();
+        private ListAllChargebacksChargebacksSelf self;
  
-        private Optional<? extends ListAllChargebacksPayment> payment = Optional.empty();
+        private ListAllChargebacksPayment payment;
  
         private JsonNullable<? extends ListAllChargebacksSettlement> settlement = JsonNullable.undefined();
  
-        private Optional<? extends ListAllChargebacksChargebacksDocumentation> documentation = Optional.empty();
+        private ListAllChargebacksChargebacksDocumentation documentation;
         
         private Builder() {
           // force use of static builder() method
@@ -237,15 +206,6 @@ public class ListAllChargebacksChargebacksLinks {
          */
         public Builder self(ListAllChargebacksChargebacksSelf self) {
             Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder self(Optional<? extends ListAllChargebacksChargebacksSelf> self) {
-            Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
         }
@@ -254,15 +214,6 @@ public class ListAllChargebacksChargebacksLinks {
          * The API resource URL of the [payment](get-payment) that this chargeback belongs to.
          */
         public Builder payment(ListAllChargebacksPayment payment) {
-            Utils.checkNotNull(payment, "payment");
-            this.payment = Optional.ofNullable(payment);
-            return this;
-        }
-
-        /**
-         * The API resource URL of the [payment](get-payment) that this chargeback belongs to.
-         */
-        public Builder payment(Optional<? extends ListAllChargebacksPayment> payment) {
             Utils.checkNotNull(payment, "payment");
             this.payment = payment;
             return this;
@@ -290,15 +241,6 @@ public class ListAllChargebacksChargebacksLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(ListAllChargebacksChargebacksDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends ListAllChargebacksChargebacksDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

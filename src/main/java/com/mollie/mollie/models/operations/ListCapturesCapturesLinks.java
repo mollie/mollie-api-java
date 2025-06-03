@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -26,16 +25,14 @@ public class ListCapturesCapturesLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends ListCapturesCapturesSelf> self;
+    private ListCapturesCapturesSelf self;
 
     /**
      * The API resource URL of the [payment](get-payment) that this capture belongs to.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment")
-    private Optional<? extends ListCapturesPayment> payment;
+    private ListCapturesPayment payment;
 
     /**
      * The API resource URL of the [settlement](get-settlement) this capture has been settled with. Not present if not yet settled.
@@ -54,17 +51,16 @@ public class ListCapturesCapturesLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends ListCapturesCapturesDocumentation> documentation;
+    private ListCapturesCapturesDocumentation documentation;
 
     @JsonCreator
     public ListCapturesCapturesLinks(
-            @JsonProperty("self") Optional<? extends ListCapturesCapturesSelf> self,
-            @JsonProperty("payment") Optional<? extends ListCapturesPayment> payment,
+            @JsonProperty("self") ListCapturesCapturesSelf self,
+            @JsonProperty("payment") ListCapturesPayment payment,
             @JsonProperty("settlement") JsonNullable<? extends ListCapturesSettlement> settlement,
             @JsonProperty("shipment") JsonNullable<? extends ListCapturesShipment> shipment,
-            @JsonProperty("documentation") Optional<? extends ListCapturesCapturesDocumentation> documentation) {
+            @JsonProperty("documentation") ListCapturesCapturesDocumentation documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(payment, "payment");
         Utils.checkNotNull(settlement, "settlement");
@@ -77,26 +73,27 @@ public class ListCapturesCapturesLinks {
         this.documentation = documentation;
     }
     
-    public ListCapturesCapturesLinks() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+    public ListCapturesCapturesLinks(
+            ListCapturesCapturesSelf self,
+            ListCapturesPayment payment,
+            ListCapturesCapturesDocumentation documentation) {
+        this(self, payment, JsonNullable.undefined(), JsonNullable.undefined(), documentation);
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListCapturesCapturesSelf> self() {
-        return (Optional<ListCapturesCapturesSelf>) self;
+    public ListCapturesCapturesSelf self() {
+        return self;
     }
 
     /**
      * The API resource URL of the [payment](get-payment) that this capture belongs to.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListCapturesPayment> payment() {
-        return (Optional<ListCapturesPayment>) payment;
+    public ListCapturesPayment payment() {
+        return payment;
     }
 
     /**
@@ -120,10 +117,9 @@ public class ListCapturesCapturesLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListCapturesCapturesDocumentation> documentation() {
-        return (Optional<ListCapturesCapturesDocumentation>) documentation;
+    public ListCapturesCapturesDocumentation documentation() {
+        return documentation;
     }
 
     public final static Builder builder() {
@@ -135,15 +131,6 @@ public class ListCapturesCapturesLinks {
      */
     public ListCapturesCapturesLinks withSelf(ListCapturesCapturesSelf self) {
         Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListCapturesCapturesLinks withSelf(Optional<? extends ListCapturesCapturesSelf> self) {
-        Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
@@ -152,15 +139,6 @@ public class ListCapturesCapturesLinks {
      * The API resource URL of the [payment](get-payment) that this capture belongs to.
      */
     public ListCapturesCapturesLinks withPayment(ListCapturesPayment payment) {
-        Utils.checkNotNull(payment, "payment");
-        this.payment = Optional.ofNullable(payment);
-        return this;
-    }
-
-    /**
-     * The API resource URL of the [payment](get-payment) that this capture belongs to.
-     */
-    public ListCapturesCapturesLinks withPayment(Optional<? extends ListCapturesPayment> payment) {
         Utils.checkNotNull(payment, "payment");
         this.payment = payment;
         return this;
@@ -207,15 +185,6 @@ public class ListCapturesCapturesLinks {
      */
     public ListCapturesCapturesLinks withDocumentation(ListCapturesCapturesDocumentation documentation) {
         Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListCapturesCapturesLinks withDocumentation(Optional<? extends ListCapturesCapturesDocumentation> documentation) {
-        Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
     }
@@ -260,15 +229,15 @@ public class ListCapturesCapturesLinks {
     
     public final static class Builder {
  
-        private Optional<? extends ListCapturesCapturesSelf> self = Optional.empty();
+        private ListCapturesCapturesSelf self;
  
-        private Optional<? extends ListCapturesPayment> payment = Optional.empty();
+        private ListCapturesPayment payment;
  
         private JsonNullable<? extends ListCapturesSettlement> settlement = JsonNullable.undefined();
  
         private JsonNullable<? extends ListCapturesShipment> shipment = JsonNullable.undefined();
  
-        private Optional<? extends ListCapturesCapturesDocumentation> documentation = Optional.empty();
+        private ListCapturesCapturesDocumentation documentation;
         
         private Builder() {
           // force use of static builder() method
@@ -279,15 +248,6 @@ public class ListCapturesCapturesLinks {
          */
         public Builder self(ListCapturesCapturesSelf self) {
             Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder self(Optional<? extends ListCapturesCapturesSelf> self) {
-            Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
         }
@@ -296,15 +256,6 @@ public class ListCapturesCapturesLinks {
          * The API resource URL of the [payment](get-payment) that this capture belongs to.
          */
         public Builder payment(ListCapturesPayment payment) {
-            Utils.checkNotNull(payment, "payment");
-            this.payment = Optional.ofNullable(payment);
-            return this;
-        }
-
-        /**
-         * The API resource URL of the [payment](get-payment) that this capture belongs to.
-         */
-        public Builder payment(Optional<? extends ListCapturesPayment> payment) {
             Utils.checkNotNull(payment, "payment");
             this.payment = payment;
             return this;
@@ -350,15 +301,6 @@ public class ListCapturesCapturesLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(ListCapturesCapturesDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends ListCapturesCapturesDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

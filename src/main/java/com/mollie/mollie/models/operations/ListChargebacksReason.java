@@ -5,14 +5,11 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 
 /**
  * ListChargebacksReason
@@ -24,36 +21,30 @@ public class ListChargebacksReason {
     /**
      * Technical code provided by the bank.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("code")
-    private Optional<String> code;
+    private String code;
 
     /**
      * A more detailed human-friendly description.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private Optional<String> description;
+    private String description;
 
     @JsonCreator
     public ListChargebacksReason(
-            @JsonProperty("code") Optional<String> code,
-            @JsonProperty("description") Optional<String> description) {
+            @JsonProperty("code") String code,
+            @JsonProperty("description") String description) {
         Utils.checkNotNull(code, "code");
         Utils.checkNotNull(description, "description");
         this.code = code;
         this.description = description;
-    }
-    
-    public ListChargebacksReason() {
-        this(Optional.empty(), Optional.empty());
     }
 
     /**
      * Technical code provided by the bank.
      */
     @JsonIgnore
-    public Optional<String> code() {
+    public String code() {
         return code;
     }
 
@@ -61,7 +52,7 @@ public class ListChargebacksReason {
      * A more detailed human-friendly description.
      */
     @JsonIgnore
-    public Optional<String> description() {
+    public String description() {
         return description;
     }
 
@@ -74,15 +65,6 @@ public class ListChargebacksReason {
      */
     public ListChargebacksReason withCode(String code) {
         Utils.checkNotNull(code, "code");
-        this.code = Optional.ofNullable(code);
-        return this;
-    }
-
-    /**
-     * Technical code provided by the bank.
-     */
-    public ListChargebacksReason withCode(Optional<String> code) {
-        Utils.checkNotNull(code, "code");
         this.code = code;
         return this;
     }
@@ -91,15 +73,6 @@ public class ListChargebacksReason {
      * A more detailed human-friendly description.
      */
     public ListChargebacksReason withDescription(String description) {
-        Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
-        return this;
-    }
-
-    /**
-     * A more detailed human-friendly description.
-     */
-    public ListChargebacksReason withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
@@ -136,9 +109,9 @@ public class ListChargebacksReason {
     
     public final static class Builder {
  
-        private Optional<String> code = Optional.empty();
+        private String code;
  
-        private Optional<String> description = Optional.empty();
+        private String description;
         
         private Builder() {
           // force use of static builder() method
@@ -149,15 +122,6 @@ public class ListChargebacksReason {
          */
         public Builder code(String code) {
             Utils.checkNotNull(code, "code");
-            this.code = Optional.ofNullable(code);
-            return this;
-        }
-
-        /**
-         * Technical code provided by the bank.
-         */
-        public Builder code(Optional<String> code) {
-            Utils.checkNotNull(code, "code");
             this.code = code;
             return this;
         }
@@ -166,15 +130,6 @@ public class ListChargebacksReason {
          * A more detailed human-friendly description.
          */
         public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
-            return this;
-        }
-
-        /**
-         * A more detailed human-friendly description.
-         */
-        public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
             return this;

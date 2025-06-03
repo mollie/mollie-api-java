@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -23,25 +21,22 @@ public class ListCapturesCaptures {
     /**
      * Indicates the response contains a capture object. Will always contain the string `capture` for this endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
     /**
      * The identifier uniquely referring to this capture. Example: `cpt_mNepDkEtco6ah3QNPUGYH`.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * Whether this entity was created in live mode or in test mode.
      * 
      * <p>Possible values: `live` `test`
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<String> mode;
+    private String mode;
 
     /**
      * The description of the capture.
@@ -53,9 +48,9 @@ public class ListCapturesCaptures {
     /**
      * The amount captured. If no amount is provided, the full authorized amount is captured.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("amount")
-    private JsonNullable<? extends ListCapturesAmount> amount;
+    private Optional<? extends ListCapturesAmount> amount;
 
     /**
      * This optional field will contain the approximate amount that will be settled to your account, converted to the currency your account is settled in.
@@ -71,9 +66,8 @@ public class ListCapturesCaptures {
      * 
      * <p>Possible values: `pending` `succeeded` `failed`
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<String> status;
+    private String status;
 
     /**
      * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
@@ -85,9 +79,8 @@ public class ListCapturesCaptures {
     /**
      * The unique identifier of the payment this capture was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("paymentId")
-    private Optional<String> paymentId;
+    private String paymentId;
 
     /**
      * The unique identifier of the shipment that triggered the creation of this capture, if applicable. For example: `shp_gNapNy9qQTUFZYnCrCF7J`.
@@ -106,32 +99,30 @@ public class ListCapturesCaptures {
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
-    private Optional<String> createdAt;
+    private String createdAt;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends ListCapturesCapturesLinks> links;
+    private ListCapturesCapturesLinks links;
 
     @JsonCreator
     public ListCapturesCaptures(
-            @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("mode") Optional<String> mode,
+            @JsonProperty("resource") String resource,
+            @JsonProperty("id") String id,
+            @JsonProperty("mode") String mode,
             @JsonProperty("description") Optional<String> description,
-            @JsonProperty("amount") JsonNullable<? extends ListCapturesAmount> amount,
+            @JsonProperty("amount") Optional<? extends ListCapturesAmount> amount,
             @JsonProperty("settlementAmount") JsonNullable<? extends ListCapturesSettlementAmount> settlementAmount,
-            @JsonProperty("status") Optional<String> status,
+            @JsonProperty("status") String status,
             @JsonProperty("metadata") JsonNullable<? extends ListCapturesMetadata> metadata,
-            @JsonProperty("paymentId") Optional<String> paymentId,
+            @JsonProperty("paymentId") String paymentId,
             @JsonProperty("shipmentId") JsonNullable<String> shipmentId,
             @JsonProperty("settlementId") JsonNullable<String> settlementId,
-            @JsonProperty("createdAt") Optional<String> createdAt,
-            @JsonProperty("_links") Optional<? extends ListCapturesCapturesLinks> links) {
+            @JsonProperty("createdAt") String createdAt,
+            @JsonProperty("_links") ListCapturesCapturesLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(mode, "mode");
@@ -160,15 +151,22 @@ public class ListCapturesCaptures {
         this.links = links;
     }
     
-    public ListCapturesCaptures() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+    public ListCapturesCaptures(
+            String resource,
+            String id,
+            String mode,
+            String status,
+            String paymentId,
+            String createdAt,
+            ListCapturesCapturesLinks links) {
+        this(resource, id, mode, Optional.empty(), Optional.empty(), JsonNullable.undefined(), status, JsonNullable.undefined(), paymentId, JsonNullable.undefined(), JsonNullable.undefined(), createdAt, links);
     }
 
     /**
      * Indicates the response contains a capture object. Will always contain the string `capture` for this endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
@@ -176,7 +174,7 @@ public class ListCapturesCaptures {
      * The identifier uniquely referring to this capture. Example: `cpt_mNepDkEtco6ah3QNPUGYH`.
      */
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
@@ -186,7 +184,7 @@ public class ListCapturesCaptures {
      * <p>Possible values: `live` `test`
      */
     @JsonIgnore
-    public Optional<String> mode() {
+    public String mode() {
         return mode;
     }
 
@@ -203,8 +201,8 @@ public class ListCapturesCaptures {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListCapturesAmount> amount() {
-        return (JsonNullable<ListCapturesAmount>) amount;
+    public Optional<ListCapturesAmount> amount() {
+        return (Optional<ListCapturesAmount>) amount;
     }
 
     /**
@@ -224,7 +222,7 @@ public class ListCapturesCaptures {
      * <p>Possible values: `pending` `succeeded` `failed`
      */
     @JsonIgnore
-    public Optional<String> status() {
+    public String status() {
         return status;
     }
 
@@ -241,7 +239,7 @@ public class ListCapturesCaptures {
      * The unique identifier of the payment this capture was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
      */
     @JsonIgnore
-    public Optional<String> paymentId() {
+    public String paymentId() {
         return paymentId;
     }
 
@@ -265,17 +263,16 @@ public class ListCapturesCaptures {
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
     @JsonIgnore
-    public Optional<String> createdAt() {
+    public String createdAt() {
         return createdAt;
     }
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListCapturesCapturesLinks> links() {
-        return (Optional<ListCapturesCapturesLinks>) links;
+    public ListCapturesCapturesLinks links() {
+        return links;
     }
 
     public final static Builder builder() {
@@ -287,15 +284,6 @@ public class ListCapturesCaptures {
      */
     public ListCapturesCaptures withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-    /**
-     * Indicates the response contains a capture object. Will always contain the string `capture` for this endpoint.
-     */
-    public ListCapturesCaptures withResource(Optional<String> resource) {
-        Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
     }
@@ -304,15 +292,6 @@ public class ListCapturesCaptures {
      * The identifier uniquely referring to this capture. Example: `cpt_mNepDkEtco6ah3QNPUGYH`.
      */
     public ListCapturesCaptures withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-    /**
-     * The identifier uniquely referring to this capture. Example: `cpt_mNepDkEtco6ah3QNPUGYH`.
-     */
-    public ListCapturesCaptures withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -324,17 +303,6 @@ public class ListCapturesCaptures {
      * <p>Possible values: `live` `test`
      */
     public ListCapturesCaptures withMode(String mode) {
-        Utils.checkNotNull(mode, "mode");
-        this.mode = Optional.ofNullable(mode);
-        return this;
-    }
-
-    /**
-     * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
-     */
-    public ListCapturesCaptures withMode(Optional<String> mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
@@ -363,14 +331,14 @@ public class ListCapturesCaptures {
      */
     public ListCapturesCaptures withAmount(ListCapturesAmount amount) {
         Utils.checkNotNull(amount, "amount");
-        this.amount = JsonNullable.of(amount);
+        this.amount = Optional.ofNullable(amount);
         return this;
     }
 
     /**
      * The amount captured. If no amount is provided, the full authorized amount is captured.
      */
-    public ListCapturesCaptures withAmount(JsonNullable<? extends ListCapturesAmount> amount) {
+    public ListCapturesCaptures withAmount(Optional<? extends ListCapturesAmount> amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
@@ -405,17 +373,6 @@ public class ListCapturesCaptures {
      */
     public ListCapturesCaptures withStatus(String status) {
         Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-    /**
-     * The capture's status.
-     * 
-     * <p>Possible values: `pending` `succeeded` `failed`
-     */
-    public ListCapturesCaptures withStatus(Optional<String> status) {
-        Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
@@ -442,15 +399,6 @@ public class ListCapturesCaptures {
      * The unique identifier of the payment this capture was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
      */
     public ListCapturesCaptures withPaymentId(String paymentId) {
-        Utils.checkNotNull(paymentId, "paymentId");
-        this.paymentId = Optional.ofNullable(paymentId);
-        return this;
-    }
-
-    /**
-     * The unique identifier of the payment this capture was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
-     */
-    public ListCapturesCaptures withPaymentId(Optional<String> paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
         this.paymentId = paymentId;
         return this;
@@ -497,15 +445,6 @@ public class ListCapturesCaptures {
      */
     public ListCapturesCaptures withCreatedAt(String createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = Optional.ofNullable(createdAt);
-        return this;
-    }
-
-    /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-     */
-    public ListCapturesCaptures withCreatedAt(Optional<String> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
@@ -514,15 +453,6 @@ public class ListCapturesCaptures {
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
     public ListCapturesCaptures withLinks(ListCapturesCapturesLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public ListCapturesCaptures withLinks(Optional<? extends ListCapturesCapturesLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -592,31 +522,31 @@ public class ListCapturesCaptures {
     
     public final static class Builder {
  
-        private Optional<String> resource;
+        private String resource;
  
-        private Optional<String> id = Optional.empty();
+        private String id;
  
-        private Optional<String> mode = Optional.empty();
+        private String mode;
  
         private Optional<String> description = Optional.empty();
  
-        private JsonNullable<? extends ListCapturesAmount> amount = JsonNullable.undefined();
+        private Optional<? extends ListCapturesAmount> amount = Optional.empty();
  
         private JsonNullable<? extends ListCapturesSettlementAmount> settlementAmount = JsonNullable.undefined();
  
-        private Optional<String> status = Optional.empty();
+        private String status;
  
         private JsonNullable<? extends ListCapturesMetadata> metadata = JsonNullable.undefined();
  
-        private Optional<String> paymentId = Optional.empty();
+        private String paymentId;
  
         private JsonNullable<String> shipmentId = JsonNullable.undefined();
  
         private JsonNullable<String> settlementId = JsonNullable.undefined();
  
-        private Optional<String> createdAt = Optional.empty();
+        private String createdAt;
  
-        private Optional<? extends ListCapturesCapturesLinks> links = Optional.empty();
+        private ListCapturesCapturesLinks links;
         
         private Builder() {
           // force use of static builder() method
@@ -627,15 +557,6 @@ public class ListCapturesCaptures {
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a capture object. Will always contain the string `capture` for this endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
-            Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
         }
@@ -644,15 +565,6 @@ public class ListCapturesCaptures {
          * The identifier uniquely referring to this capture. Example: `cpt_mNepDkEtco6ah3QNPUGYH`.
          */
         public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The identifier uniquely referring to this capture. Example: `cpt_mNepDkEtco6ah3QNPUGYH`.
-         */
-        public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -664,17 +576,6 @@ public class ListCapturesCaptures {
          * <p>Possible values: `live` `test`
          */
         public Builder mode(String mode) {
-            Utils.checkNotNull(mode, "mode");
-            this.mode = Optional.ofNullable(mode);
-            return this;
-        }
-
-        /**
-         * Whether this entity was created in live mode or in test mode.
-         * 
-         * <p>Possible values: `live` `test`
-         */
-        public Builder mode(Optional<String> mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
@@ -703,14 +604,14 @@ public class ListCapturesCaptures {
          */
         public Builder amount(ListCapturesAmount amount) {
             Utils.checkNotNull(amount, "amount");
-            this.amount = JsonNullable.of(amount);
+            this.amount = Optional.ofNullable(amount);
             return this;
         }
 
         /**
          * The amount captured. If no amount is provided, the full authorized amount is captured.
          */
-        public Builder amount(JsonNullable<? extends ListCapturesAmount> amount) {
+        public Builder amount(Optional<? extends ListCapturesAmount> amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;
@@ -745,17 +646,6 @@ public class ListCapturesCaptures {
          */
         public Builder status(String status) {
             Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * The capture's status.
-         * 
-         * <p>Possible values: `pending` `succeeded` `failed`
-         */
-        public Builder status(Optional<String> status) {
-            Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
@@ -782,15 +672,6 @@ public class ListCapturesCaptures {
          * The unique identifier of the payment this capture was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
          */
         public Builder paymentId(String paymentId) {
-            Utils.checkNotNull(paymentId, "paymentId");
-            this.paymentId = Optional.ofNullable(paymentId);
-            return this;
-        }
-
-        /**
-         * The unique identifier of the payment this capture was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
-         */
-        public Builder paymentId(Optional<String> paymentId) {
             Utils.checkNotNull(paymentId, "paymentId");
             this.paymentId = paymentId;
             return this;
@@ -837,15 +718,6 @@ public class ListCapturesCaptures {
          */
         public Builder createdAt(String createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = Optional.ofNullable(createdAt);
-            return this;
-        }
-
-        /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-         */
-        public Builder createdAt(Optional<String> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
@@ -855,23 +727,11 @@ public class ListCapturesCaptures {
          */
         public Builder links(ListCapturesCapturesLinks links) {
             Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends ListCapturesCapturesLinks> links) {
-            Utils.checkNotNull(links, "links");
             this.links = links;
             return this;
         }
         
         public ListCapturesCaptures build() {
-            if (resource == null) {
-                resource = _SINGLETON_VALUE_Resource.value();
-            }
             return new ListCapturesCaptures(
                 resource,
                 id,
@@ -887,11 +747,5 @@ public class ListCapturesCaptures {
                 createdAt,
                 links);
         }
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
-                new LazySingletonValue<>(
-                        "resource",
-                        "\"capture\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

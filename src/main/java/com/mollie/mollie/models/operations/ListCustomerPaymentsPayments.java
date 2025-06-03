@@ -342,7 +342,7 @@ public class ListCustomerPaymentsPayments {
     private JsonNullable<String> orderId;
 
     /**
-     * The payment's status. Refer to the [documentation regarding statuses](status-change) for more info about which statuses occur at what point.
+     * The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which statuses occur at what point.
      * 
      * <p>Possible values: `open` `pending` `authorized` `paid` `canceled` `expired` `failed`
      */
@@ -948,7 +948,7 @@ public class ListCustomerPaymentsPayments {
     }
 
     /**
-     * The payment's status. Refer to the [documentation regarding statuses](status-change) for more info about which statuses occur at what point.
+     * The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which statuses occur at what point.
      * 
      * <p>Possible values: `open` `pending` `authorized` `paid` `canceled` `expired` `failed`
      */
@@ -1768,7 +1768,7 @@ public class ListCustomerPaymentsPayments {
     }
 
     /**
-     * The payment's status. Refer to the [documentation regarding statuses](status-change) for more info about which statuses occur at what point.
+     * The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which statuses occur at what point.
      * 
      * <p>Possible values: `open` `pending` `authorized` `paid` `canceled` `expired` `failed`
      */
@@ -2931,7 +2931,7 @@ public class ListCustomerPaymentsPayments {
         }
 
         /**
-         * The payment's status. Refer to the [documentation regarding statuses](status-change) for more info about which statuses occur at what point.
+         * The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which statuses occur at what point.
          * 
          * <p>Possible values: `open` `pending` `authorized` `paid` `canceled` `expired` `failed`
          */
