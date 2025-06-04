@@ -69,13 +69,6 @@ public class UpdatePaymentLines {
     private Optional<? extends UpdatePaymentDiscountAmount> discountAmount;
 
     /**
-     * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("recurring")
-    private Optional<? extends UpdatePaymentRecurring> recurring;
-
-    /**
      * The total amount of the line, including VAT and discounts.
      * 
      * <p>Should match the following formula: `(unitPrice × quantity) - discountAmount`.
@@ -131,6 +124,13 @@ public class UpdatePaymentLines {
     @JsonProperty("productUrl")
     private Optional<String> productUrl;
 
+    /**
+     * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("recurring")
+    private Optional<? extends UpdatePaymentRecurring> recurring;
+
     @JsonCreator
     public UpdatePaymentLines(
             @JsonProperty("type") Optional<String> type,
@@ -139,21 +139,20 @@ public class UpdatePaymentLines {
             @JsonProperty("quantityUnit") Optional<String> quantityUnit,
             @JsonProperty("unitPrice") UpdatePaymentUnitPrice unitPrice,
             @JsonProperty("discountAmount") Optional<? extends UpdatePaymentDiscountAmount> discountAmount,
-            @JsonProperty("recurring") Optional<? extends UpdatePaymentRecurring> recurring,
             @JsonProperty("totalAmount") UpdatePaymentTotalAmount totalAmount,
             @JsonProperty("vatRate") Optional<String> vatRate,
             @JsonProperty("vatAmount") Optional<? extends UpdatePaymentVatAmount> vatAmount,
             @JsonProperty("sku") Optional<String> sku,
             @JsonProperty("categories") Optional<? extends List<UpdatePaymentCategories>> categories,
             @JsonProperty("imageUrl") Optional<String> imageUrl,
-            @JsonProperty("productUrl") Optional<String> productUrl) {
+            @JsonProperty("productUrl") Optional<String> productUrl,
+            @JsonProperty("recurring") Optional<? extends UpdatePaymentRecurring> recurring) {
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(quantity, "quantity");
         Utils.checkNotNull(quantityUnit, "quantityUnit");
         Utils.checkNotNull(unitPrice, "unitPrice");
         Utils.checkNotNull(discountAmount, "discountAmount");
-        Utils.checkNotNull(recurring, "recurring");
         Utils.checkNotNull(totalAmount, "totalAmount");
         Utils.checkNotNull(vatRate, "vatRate");
         Utils.checkNotNull(vatAmount, "vatAmount");
@@ -161,13 +160,13 @@ public class UpdatePaymentLines {
         Utils.checkNotNull(categories, "categories");
         Utils.checkNotNull(imageUrl, "imageUrl");
         Utils.checkNotNull(productUrl, "productUrl");
+        Utils.checkNotNull(recurring, "recurring");
         this.type = type;
         this.description = description;
         this.quantity = quantity;
         this.quantityUnit = quantityUnit;
         this.unitPrice = unitPrice;
         this.discountAmount = discountAmount;
-        this.recurring = recurring;
         this.totalAmount = totalAmount;
         this.vatRate = vatRate;
         this.vatAmount = vatAmount;
@@ -175,6 +174,7 @@ public class UpdatePaymentLines {
         this.categories = categories;
         this.imageUrl = imageUrl;
         this.productUrl = productUrl;
+        this.recurring = recurring;
     }
     
     public UpdatePaymentLines(
@@ -182,7 +182,7 @@ public class UpdatePaymentLines {
             long quantity,
             UpdatePaymentUnitPrice unitPrice,
             UpdatePaymentTotalAmount totalAmount) {
-        this(Optional.empty(), description, quantity, Optional.empty(), unitPrice, Optional.empty(), Optional.empty(), totalAmount, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), description, quantity, Optional.empty(), unitPrice, Optional.empty(), totalAmount, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -242,15 +242,6 @@ public class UpdatePaymentLines {
     @JsonIgnore
     public Optional<UpdatePaymentDiscountAmount> discountAmount() {
         return (Optional<UpdatePaymentDiscountAmount>) discountAmount;
-    }
-
-    /**
-     * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<UpdatePaymentRecurring> recurring() {
-        return (Optional<UpdatePaymentRecurring>) recurring;
     }
 
     /**
@@ -317,6 +308,15 @@ public class UpdatePaymentLines {
     @JsonIgnore
     public Optional<String> productUrl() {
         return productUrl;
+    }
+
+    /**
+     * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<UpdatePaymentRecurring> recurring() {
+        return (Optional<UpdatePaymentRecurring>) recurring;
     }
 
     public final static Builder builder() {
@@ -415,24 +415,6 @@ public class UpdatePaymentLines {
     public UpdatePaymentLines withDiscountAmount(Optional<? extends UpdatePaymentDiscountAmount> discountAmount) {
         Utils.checkNotNull(discountAmount, "discountAmount");
         this.discountAmount = discountAmount;
-        return this;
-    }
-
-    /**
-     * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
-     */
-    public UpdatePaymentLines withRecurring(UpdatePaymentRecurring recurring) {
-        Utils.checkNotNull(recurring, "recurring");
-        this.recurring = Optional.ofNullable(recurring);
-        return this;
-    }
-
-    /**
-     * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
-     */
-    public UpdatePaymentLines withRecurring(Optional<? extends UpdatePaymentRecurring> recurring) {
-        Utils.checkNotNull(recurring, "recurring");
-        this.recurring = recurring;
         return this;
     }
 
@@ -565,6 +547,24 @@ public class UpdatePaymentLines {
         return this;
     }
 
+    /**
+     * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
+     */
+    public UpdatePaymentLines withRecurring(UpdatePaymentRecurring recurring) {
+        Utils.checkNotNull(recurring, "recurring");
+        this.recurring = Optional.ofNullable(recurring);
+        return this;
+    }
+
+    /**
+     * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
+     */
+    public UpdatePaymentLines withRecurring(Optional<? extends UpdatePaymentRecurring> recurring) {
+        Utils.checkNotNull(recurring, "recurring");
+        this.recurring = recurring;
+        return this;
+    }
+
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -582,14 +582,14 @@ public class UpdatePaymentLines {
             Objects.deepEquals(this.quantityUnit, other.quantityUnit) &&
             Objects.deepEquals(this.unitPrice, other.unitPrice) &&
             Objects.deepEquals(this.discountAmount, other.discountAmount) &&
-            Objects.deepEquals(this.recurring, other.recurring) &&
             Objects.deepEquals(this.totalAmount, other.totalAmount) &&
             Objects.deepEquals(this.vatRate, other.vatRate) &&
             Objects.deepEquals(this.vatAmount, other.vatAmount) &&
             Objects.deepEquals(this.sku, other.sku) &&
             Objects.deepEquals(this.categories, other.categories) &&
             Objects.deepEquals(this.imageUrl, other.imageUrl) &&
-            Objects.deepEquals(this.productUrl, other.productUrl);
+            Objects.deepEquals(this.productUrl, other.productUrl) &&
+            Objects.deepEquals(this.recurring, other.recurring);
     }
     
     @Override
@@ -601,14 +601,14 @@ public class UpdatePaymentLines {
             quantityUnit,
             unitPrice,
             discountAmount,
-            recurring,
             totalAmount,
             vatRate,
             vatAmount,
             sku,
             categories,
             imageUrl,
-            productUrl);
+            productUrl,
+            recurring);
     }
     
     @Override
@@ -620,14 +620,14 @@ public class UpdatePaymentLines {
                 "quantityUnit", quantityUnit,
                 "unitPrice", unitPrice,
                 "discountAmount", discountAmount,
-                "recurring", recurring,
                 "totalAmount", totalAmount,
                 "vatRate", vatRate,
                 "vatAmount", vatAmount,
                 "sku", sku,
                 "categories", categories,
                 "imageUrl", imageUrl,
-                "productUrl", productUrl);
+                "productUrl", productUrl,
+                "recurring", recurring);
     }
     
     public final static class Builder {
@@ -644,8 +644,6 @@ public class UpdatePaymentLines {
  
         private Optional<? extends UpdatePaymentDiscountAmount> discountAmount = Optional.empty();
  
-        private Optional<? extends UpdatePaymentRecurring> recurring = Optional.empty();
- 
         private UpdatePaymentTotalAmount totalAmount;
  
         private Optional<String> vatRate = Optional.empty();
@@ -659,6 +657,8 @@ public class UpdatePaymentLines {
         private Optional<String> imageUrl = Optional.empty();
  
         private Optional<String> productUrl = Optional.empty();
+ 
+        private Optional<? extends UpdatePaymentRecurring> recurring = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -756,24 +756,6 @@ public class UpdatePaymentLines {
         public Builder discountAmount(Optional<? extends UpdatePaymentDiscountAmount> discountAmount) {
             Utils.checkNotNull(discountAmount, "discountAmount");
             this.discountAmount = discountAmount;
-            return this;
-        }
-
-        /**
-         * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
-         */
-        public Builder recurring(UpdatePaymentRecurring recurring) {
-            Utils.checkNotNull(recurring, "recurring");
-            this.recurring = Optional.ofNullable(recurring);
-            return this;
-        }
-
-        /**
-         * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
-         */
-        public Builder recurring(Optional<? extends UpdatePaymentRecurring> recurring) {
-            Utils.checkNotNull(recurring, "recurring");
-            this.recurring = recurring;
             return this;
         }
 
@@ -905,6 +887,24 @@ public class UpdatePaymentLines {
             this.productUrl = productUrl;
             return this;
         }
+
+        /**
+         * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
+         */
+        public Builder recurring(UpdatePaymentRecurring recurring) {
+            Utils.checkNotNull(recurring, "recurring");
+            this.recurring = Optional.ofNullable(recurring);
+            return this;
+        }
+
+        /**
+         * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
+         */
+        public Builder recurring(Optional<? extends UpdatePaymentRecurring> recurring) {
+            Utils.checkNotNull(recurring, "recurring");
+            this.recurring = recurring;
+            return this;
+        }
         
         public UpdatePaymentLines build() {
             return new UpdatePaymentLines(
@@ -914,14 +914,14 @@ public class UpdatePaymentLines {
                 quantityUnit,
                 unitPrice,
                 discountAmount,
-                recurring,
                 totalAmount,
                 vatRate,
                 vatAmount,
                 sku,
                 categories,
                 imageUrl,
-                productUrl);
+                productUrl,
+                recurring);
         }
     }
 }

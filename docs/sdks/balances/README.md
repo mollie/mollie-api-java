@@ -46,6 +46,7 @@ public class Application {
         ListBalancesResponse res = sdk.balances().list()
                 .currency("EUR")
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
+                .limit(50L)
                 .testmode(false)
                 .call();
 
@@ -303,6 +304,7 @@ public class Application {
         ListBalanceTransactionsResponse res = sdk.balances().listTransactions()
                 .balanceId("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .from("baltr_QM24QwzUWR4ev4Xfgyt29A")
+                .limit(50L)
                 .testmode(false)
                 .call();
 

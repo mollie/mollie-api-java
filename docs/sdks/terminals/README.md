@@ -43,6 +43,7 @@ public class Application {
 
         ListTerminalsResponse res = sdk.terminals().list()
                 .from("term_vytxeTZskVKR7C7WgdSP3d")
+                .limit(50L)
                 .sort("desc")
                 .testmode(false)
                 .call();

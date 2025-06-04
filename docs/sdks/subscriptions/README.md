@@ -420,6 +420,7 @@ public class Application {
 
         ListAllSubscriptionsResponse res = sdk.subscriptions().all()
                 .from("tr_5B8cwPMGnU")
+                .limit(50L)
                 .sort("desc")
                 .testmode(false)
                 .call();

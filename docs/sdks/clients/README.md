@@ -43,6 +43,7 @@ public class Application {
         ListClientsResponse res = sdk.clients().list()
                 .embed("organization")
                 .from("org_12345678")
+                .limit(50L)
                 .call();
 
         if (res.object().isPresent()) {

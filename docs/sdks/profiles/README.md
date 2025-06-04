@@ -118,6 +118,7 @@ public class Application {
 
         ListProfilesResponse res = sdk.profiles().list()
                 .from("pfl_QkEhN94Ba")
+                .limit(50L)
                 .call();
 
         if (res.object().isPresent()) {

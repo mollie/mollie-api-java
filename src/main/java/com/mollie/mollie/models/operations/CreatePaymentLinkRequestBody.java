@@ -61,6 +61,37 @@ public class CreatePaymentLinkRequestBody {
     private JsonNullable<String> webhookUrl;
 
     /**
+     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+     * 
+     * <p>All lines must have the same currency as the payment.
+     * 
+     * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("lines")
+    private JsonNullable<? extends List<CreatePaymentLinkLines>> lines;
+
+    /**
+     * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * 
+     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("billingAddress")
+    private Optional<? extends CreatePaymentLinkBillingAddress> billingAddress;
+
+    /**
+     * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("shippingAddress")
+    private Optional<? extends CreatePaymentLinkShippingAddress> shippingAddress;
+
+    /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
      * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
@@ -108,6 +139,9 @@ public class CreatePaymentLinkRequestBody {
             @JsonProperty("minimumAmount") JsonNullable<? extends MinimumAmount> minimumAmount,
             @JsonProperty("redirectUrl") JsonNullable<String> redirectUrl,
             @JsonProperty("webhookUrl") JsonNullable<String> webhookUrl,
+            @JsonProperty("lines") JsonNullable<? extends List<CreatePaymentLinkLines>> lines,
+            @JsonProperty("billingAddress") Optional<? extends CreatePaymentLinkBillingAddress> billingAddress,
+            @JsonProperty("shippingAddress") Optional<? extends CreatePaymentLinkShippingAddress> shippingAddress,
             @JsonProperty("profileId") JsonNullable<String> profileId,
             @JsonProperty("reusable") JsonNullable<Boolean> reusable,
             @JsonProperty("expiresAt") JsonNullable<String> expiresAt,
@@ -118,6 +152,9 @@ public class CreatePaymentLinkRequestBody {
         Utils.checkNotNull(minimumAmount, "minimumAmount");
         Utils.checkNotNull(redirectUrl, "redirectUrl");
         Utils.checkNotNull(webhookUrl, "webhookUrl");
+        Utils.checkNotNull(lines, "lines");
+        Utils.checkNotNull(billingAddress, "billingAddress");
+        Utils.checkNotNull(shippingAddress, "shippingAddress");
         Utils.checkNotNull(profileId, "profileId");
         Utils.checkNotNull(reusable, "reusable");
         Utils.checkNotNull(expiresAt, "expiresAt");
@@ -128,6 +165,9 @@ public class CreatePaymentLinkRequestBody {
         this.minimumAmount = minimumAmount;
         this.redirectUrl = redirectUrl;
         this.webhookUrl = webhookUrl;
+        this.lines = lines;
+        this.billingAddress = billingAddress;
+        this.shippingAddress = shippingAddress;
         this.profileId = profileId;
         this.reusable = reusable;
         this.expiresAt = expiresAt;
@@ -137,7 +177,7 @@ public class CreatePaymentLinkRequestBody {
     
     public CreatePaymentLinkRequestBody(
             String description) {
-        this(description, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(description, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -184,6 +224,43 @@ public class CreatePaymentLinkRequestBody {
     @JsonIgnore
     public JsonNullable<String> webhookUrl() {
         return webhookUrl;
+    }
+
+    /**
+     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+     * 
+     * <p>All lines must have the same currency as the payment.
+     * 
+     * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<List<CreatePaymentLinkLines>> lines() {
+        return (JsonNullable<List<CreatePaymentLinkLines>>) lines;
+    }
+
+    /**
+     * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * 
+     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<CreatePaymentLinkBillingAddress> billingAddress() {
+        return (Optional<CreatePaymentLinkBillingAddress>) billingAddress;
+    }
+
+    /**
+     * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<CreatePaymentLinkShippingAddress> shippingAddress() {
+        return (Optional<CreatePaymentLinkShippingAddress>) shippingAddress;
     }
 
     /**
@@ -328,6 +405,80 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
+     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+     * 
+     * <p>All lines must have the same currency as the payment.
+     * 
+     * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
+     */
+    public CreatePaymentLinkRequestBody withLines(List<CreatePaymentLinkLines> lines) {
+        Utils.checkNotNull(lines, "lines");
+        this.lines = JsonNullable.of(lines);
+        return this;
+    }
+
+    /**
+     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+     * 
+     * <p>All lines must have the same currency as the payment.
+     * 
+     * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
+     */
+    public CreatePaymentLinkRequestBody withLines(JsonNullable<? extends List<CreatePaymentLinkLines>> lines) {
+        Utils.checkNotNull(lines, "lines");
+        this.lines = lines;
+        return this;
+    }
+
+    /**
+     * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * 
+     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+     */
+    public CreatePaymentLinkRequestBody withBillingAddress(CreatePaymentLinkBillingAddress billingAddress) {
+        Utils.checkNotNull(billingAddress, "billingAddress");
+        this.billingAddress = Optional.ofNullable(billingAddress);
+        return this;
+    }
+
+    /**
+     * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * 
+     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+     */
+    public CreatePaymentLinkRequestBody withBillingAddress(Optional<? extends CreatePaymentLinkBillingAddress> billingAddress) {
+        Utils.checkNotNull(billingAddress, "billingAddress");
+        this.billingAddress = billingAddress;
+        return this;
+    }
+
+    /**
+     * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     */
+    public CreatePaymentLinkRequestBody withShippingAddress(CreatePaymentLinkShippingAddress shippingAddress) {
+        Utils.checkNotNull(shippingAddress, "shippingAddress");
+        this.shippingAddress = Optional.ofNullable(shippingAddress);
+        return this;
+    }
+
+    /**
+     * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     */
+    public CreatePaymentLinkRequestBody withShippingAddress(Optional<? extends CreatePaymentLinkShippingAddress> shippingAddress) {
+        Utils.checkNotNull(shippingAddress, "shippingAddress");
+        this.shippingAddress = shippingAddress;
+        return this;
+    }
+
+    /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
      * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
@@ -445,6 +596,9 @@ public class CreatePaymentLinkRequestBody {
             Objects.deepEquals(this.minimumAmount, other.minimumAmount) &&
             Objects.deepEquals(this.redirectUrl, other.redirectUrl) &&
             Objects.deepEquals(this.webhookUrl, other.webhookUrl) &&
+            Objects.deepEquals(this.lines, other.lines) &&
+            Objects.deepEquals(this.billingAddress, other.billingAddress) &&
+            Objects.deepEquals(this.shippingAddress, other.shippingAddress) &&
             Objects.deepEquals(this.profileId, other.profileId) &&
             Objects.deepEquals(this.reusable, other.reusable) &&
             Objects.deepEquals(this.expiresAt, other.expiresAt) &&
@@ -460,6 +614,9 @@ public class CreatePaymentLinkRequestBody {
             minimumAmount,
             redirectUrl,
             webhookUrl,
+            lines,
+            billingAddress,
+            shippingAddress,
             profileId,
             reusable,
             expiresAt,
@@ -475,6 +632,9 @@ public class CreatePaymentLinkRequestBody {
                 "minimumAmount", minimumAmount,
                 "redirectUrl", redirectUrl,
                 "webhookUrl", webhookUrl,
+                "lines", lines,
+                "billingAddress", billingAddress,
+                "shippingAddress", shippingAddress,
                 "profileId", profileId,
                 "reusable", reusable,
                 "expiresAt", expiresAt,
@@ -493,6 +653,12 @@ public class CreatePaymentLinkRequestBody {
         private JsonNullable<String> redirectUrl = JsonNullable.undefined();
  
         private JsonNullable<String> webhookUrl = JsonNullable.undefined();
+ 
+        private JsonNullable<? extends List<CreatePaymentLinkLines>> lines = JsonNullable.undefined();
+ 
+        private Optional<? extends CreatePaymentLinkBillingAddress> billingAddress = Optional.empty();
+ 
+        private Optional<? extends CreatePaymentLinkShippingAddress> shippingAddress = Optional.empty();
  
         private JsonNullable<String> profileId = JsonNullable.undefined();
  
@@ -594,6 +760,80 @@ public class CreatePaymentLinkRequestBody {
         public Builder webhookUrl(JsonNullable<String> webhookUrl) {
             Utils.checkNotNull(webhookUrl, "webhookUrl");
             this.webhookUrl = webhookUrl;
+            return this;
+        }
+
+        /**
+         * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+         * 
+         * <p>All lines must have the same currency as the payment.
+         * 
+         * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
+         */
+        public Builder lines(List<CreatePaymentLinkLines> lines) {
+            Utils.checkNotNull(lines, "lines");
+            this.lines = JsonNullable.of(lines);
+            return this;
+        }
+
+        /**
+         * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+         * 
+         * <p>All lines must have the same currency as the payment.
+         * 
+         * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
+         */
+        public Builder lines(JsonNullable<? extends List<CreatePaymentLinkLines>> lines) {
+            Utils.checkNotNull(lines, "lines");
+            this.lines = lines;
+            return this;
+        }
+
+        /**
+         * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+         * 
+         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+         * 
+         * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+         */
+        public Builder billingAddress(CreatePaymentLinkBillingAddress billingAddress) {
+            Utils.checkNotNull(billingAddress, "billingAddress");
+            this.billingAddress = Optional.ofNullable(billingAddress);
+            return this;
+        }
+
+        /**
+         * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+         * 
+         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+         * 
+         * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+         */
+        public Builder billingAddress(Optional<? extends CreatePaymentLinkBillingAddress> billingAddress) {
+            Utils.checkNotNull(billingAddress, "billingAddress");
+            this.billingAddress = billingAddress;
+            return this;
+        }
+
+        /**
+         * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+         * 
+         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+         */
+        public Builder shippingAddress(CreatePaymentLinkShippingAddress shippingAddress) {
+            Utils.checkNotNull(shippingAddress, "shippingAddress");
+            this.shippingAddress = Optional.ofNullable(shippingAddress);
+            return this;
+        }
+
+        /**
+         * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+         * 
+         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+         */
+        public Builder shippingAddress(Optional<? extends CreatePaymentLinkShippingAddress> shippingAddress) {
+            Utils.checkNotNull(shippingAddress, "shippingAddress");
+            this.shippingAddress = shippingAddress;
             return this;
         }
 
@@ -709,6 +949,9 @@ public class CreatePaymentLinkRequestBody {
                 minimumAmount,
                 redirectUrl,
                 webhookUrl,
+                lines,
+                billingAddress,
+                shippingAddress,
                 profileId,
                 reusable,
                 expiresAt,
