@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 677c6ced5817a42214b50c3e182c693f
+  docChecksum: 977d067ed3a7db358e16461458946af2
   docVersion: 1.0.0
   speakeasyVersion: 1.555.2
   generationVersion: 2.620.2
-  releaseVersion: 0.3.2
-  configChecksum: ff5cb95e345bbaa8da44e32c5dddaa9b
+  releaseVersion: 0.3.3
+  configChecksum: 4e69bd0bec27267d38a3664004084876
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 features:
@@ -2172,7 +2172,15 @@ generatedFiles:
   - docs/models/operations/UpdatePaymentLinkPaymentLink.md
   - docs/models/operations/UpdatePaymentLinkPaymentLinksAllowedMethods.md
   - docs/models/operations/UpdatePaymentLinkPaymentLinksAmount.md
+  - docs/models/operations/UpdatePaymentLinkPaymentLinksBillingAddress.md
+  - docs/models/operations/UpdatePaymentLinkPaymentLinksCategories.md
+  - docs/models/operations/UpdatePaymentLinkPaymentLinksDiscountAmount.md
+  - docs/models/operations/UpdatePaymentLinkPaymentLinksLines.md
   - docs/models/operations/UpdatePaymentLinkPaymentLinksMinimumAmount.md
+  - docs/models/operations/UpdatePaymentLinkPaymentLinksShippingAddress.md
+  - docs/models/operations/UpdatePaymentLinkPaymentLinksTotalAmount.md
+  - docs/models/operations/UpdatePaymentLinkPaymentLinksUnitPrice.md
+  - docs/models/operations/UpdatePaymentLinkPaymentLinksVatAmount.md
   - docs/models/operations/UpdatePaymentLinkRequest.md
   - docs/models/operations/UpdatePaymentLinkRequestBody.md
   - docs/models/operations/UpdatePaymentLinkResponse.md
@@ -4528,7 +4536,15 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLinkPaymentLink.java
   - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLinkPaymentLinksAllowedMethods.java
   - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLinkPaymentLinksAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLinkPaymentLinksBillingAddress.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLinkPaymentLinksCategories.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLinkPaymentLinksDiscountAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLinkPaymentLinksLines.java
   - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLinkPaymentLinksMinimumAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLinkPaymentLinksShippingAddress.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLinkPaymentLinksTotalAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLinkPaymentLinksUnitPrice.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLinkPaymentLinksVatAmount.java
   - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLinkRequest.java
   - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLinkRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLinkRequestBuilder.java
@@ -5579,7 +5595,7 @@ examples:
         query:
           testmode: false
       requestBody:
-        application/json: {"description": "Chess Board", "minimumAmount": {"currency": "EUR", "value": "10.00"}, "archived": false, "allowedMethods": ["ideal"], "testmode": false}
+        application/json: {"description": "Chess Board", "minimumAmount": {"currency": "EUR", "value": "10.00"}, "archived": false, "allowedMethods": ["ideal"], "lines": [{"description": "LEGO 4440 Forest Police Station", "quantity": 1, "quantityUnit": "pcs", "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatRate": "21.00", "vatAmount": {"currency": "EUR", "value": "10.00"}, "sku": "9780241661628", "categories": ["meal", "eco"], "imageUrl": "https://...", "productUrl": "https://..."}], "billingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "Apt. 1", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "shippingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "Apt. 1", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "testmode": false}
       responses:
         "200":
           application/hal+json: {"resource": "payment-link", "id": "pl_4Y0eZitmBnQ6IDoMqZQKh", "mode": "live", "description": "Bicycle tires", "amount": {"currency": "EUR", "value": "24.95"}, "archived": true, "redirectUrl": "https://webshop.example.org/thanks", "webhookUrl": "https://webshop.example.org/payment-links/webhook", "profileId": "pfl_QkEhN94Ba", "reusable": false, "createdAt": "2021-03-20T09:29:56.0Z", "expiresAt": "2023-06-06T11:00:00.0Z", "allowedMethods": ["creditcard"], "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "paymentLink": {"href": "https://payment-links.mollie.com/payment/4Y0eZitmBnQ6IDoMqZQKh", "type": "text/html"}, "documentation": {"href": "https://...", "type": "text/html"}}}
@@ -5590,7 +5606,7 @@ examples:
         query:
           testmode: false
       requestBody:
-        application/json: {"description": "Chess Board", "minimumAmount": {"currency": "EUR", "value": "10.00"}, "archived": false, "allowedMethods": ["ideal"], "testmode": false}
+        application/json: {"description": "Chess Board", "minimumAmount": {"currency": "EUR", "value": "10.00"}, "archived": false, "allowedMethods": ["ideal"], "lines": [{"description": "LEGO 4440 Forest Police Station", "quantity": 1, "quantityUnit": "pcs", "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatRate": "21.00", "vatAmount": {"currency": "EUR", "value": "10.00"}, "sku": "9780241661628", "categories": ["meal", "eco"], "imageUrl": "https://...", "productUrl": "https://..."}], "billingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "Apt. 1", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "shippingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "Apt. 1", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "testmode": false}
       responses:
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "No entity exists with token '7UhSN1zuXS'", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}

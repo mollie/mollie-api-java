@@ -51,6 +51,37 @@ public class UpdatePaymentLinkRequestBody {
     private JsonNullable<? extends List<UpdatePaymentLinkAllowedMethods>> allowedMethods;
 
     /**
+     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+     * 
+     * <p>All lines must have the same currency as the payment.
+     * 
+     * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("lines")
+    private JsonNullable<? extends List<UpdatePaymentLinkLines>> lines;
+
+    /**
+     * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * 
+     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("billingAddress")
+    private Optional<? extends UpdatePaymentLinkBillingAddress> billingAddress;
+
+    /**
+     * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("shippingAddress")
+    private Optional<? extends UpdatePaymentLinkShippingAddress> shippingAddress;
+
+    /**
      * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -65,21 +96,30 @@ public class UpdatePaymentLinkRequestBody {
             @JsonProperty("minimumAmount") Optional<? extends UpdatePaymentLinkMinimumAmount> minimumAmount,
             @JsonProperty("archived") Optional<Boolean> archived,
             @JsonProperty("allowedMethods") JsonNullable<? extends List<UpdatePaymentLinkAllowedMethods>> allowedMethods,
+            @JsonProperty("lines") JsonNullable<? extends List<UpdatePaymentLinkLines>> lines,
+            @JsonProperty("billingAddress") Optional<? extends UpdatePaymentLinkBillingAddress> billingAddress,
+            @JsonProperty("shippingAddress") Optional<? extends UpdatePaymentLinkShippingAddress> shippingAddress,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(minimumAmount, "minimumAmount");
         Utils.checkNotNull(archived, "archived");
         Utils.checkNotNull(allowedMethods, "allowedMethods");
+        Utils.checkNotNull(lines, "lines");
+        Utils.checkNotNull(billingAddress, "billingAddress");
+        Utils.checkNotNull(shippingAddress, "shippingAddress");
         Utils.checkNotNull(testmode, "testmode");
         this.description = description;
         this.minimumAmount = minimumAmount;
         this.archived = archived;
         this.allowedMethods = allowedMethods;
+        this.lines = lines;
+        this.billingAddress = billingAddress;
+        this.shippingAddress = shippingAddress;
         this.testmode = testmode;
     }
     
     public UpdatePaymentLinkRequestBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -116,6 +156,43 @@ public class UpdatePaymentLinkRequestBody {
     @JsonIgnore
     public JsonNullable<List<UpdatePaymentLinkAllowedMethods>> allowedMethods() {
         return (JsonNullable<List<UpdatePaymentLinkAllowedMethods>>) allowedMethods;
+    }
+
+    /**
+     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+     * 
+     * <p>All lines must have the same currency as the payment.
+     * 
+     * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<List<UpdatePaymentLinkLines>> lines() {
+        return (JsonNullable<List<UpdatePaymentLinkLines>>) lines;
+    }
+
+    /**
+     * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * 
+     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<UpdatePaymentLinkBillingAddress> billingAddress() {
+        return (Optional<UpdatePaymentLinkBillingAddress>) billingAddress;
+    }
+
+    /**
+     * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<UpdatePaymentLinkShippingAddress> shippingAddress() {
+        return (Optional<UpdatePaymentLinkShippingAddress>) shippingAddress;
     }
 
     /**
@@ -209,6 +286,80 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
+     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+     * 
+     * <p>All lines must have the same currency as the payment.
+     * 
+     * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
+     */
+    public UpdatePaymentLinkRequestBody withLines(List<UpdatePaymentLinkLines> lines) {
+        Utils.checkNotNull(lines, "lines");
+        this.lines = JsonNullable.of(lines);
+        return this;
+    }
+
+    /**
+     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+     * 
+     * <p>All lines must have the same currency as the payment.
+     * 
+     * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
+     */
+    public UpdatePaymentLinkRequestBody withLines(JsonNullable<? extends List<UpdatePaymentLinkLines>> lines) {
+        Utils.checkNotNull(lines, "lines");
+        this.lines = lines;
+        return this;
+    }
+
+    /**
+     * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * 
+     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+     */
+    public UpdatePaymentLinkRequestBody withBillingAddress(UpdatePaymentLinkBillingAddress billingAddress) {
+        Utils.checkNotNull(billingAddress, "billingAddress");
+        this.billingAddress = Optional.ofNullable(billingAddress);
+        return this;
+    }
+
+    /**
+     * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * 
+     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+     */
+    public UpdatePaymentLinkRequestBody withBillingAddress(Optional<? extends UpdatePaymentLinkBillingAddress> billingAddress) {
+        Utils.checkNotNull(billingAddress, "billingAddress");
+        this.billingAddress = billingAddress;
+        return this;
+    }
+
+    /**
+     * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     */
+    public UpdatePaymentLinkRequestBody withShippingAddress(UpdatePaymentLinkShippingAddress shippingAddress) {
+        Utils.checkNotNull(shippingAddress, "shippingAddress");
+        this.shippingAddress = Optional.ofNullable(shippingAddress);
+        return this;
+    }
+
+    /**
+     * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     */
+    public UpdatePaymentLinkRequestBody withShippingAddress(Optional<? extends UpdatePaymentLinkShippingAddress> shippingAddress) {
+        Utils.checkNotNull(shippingAddress, "shippingAddress");
+        this.shippingAddress = shippingAddress;
+        return this;
+    }
+
+    /**
      * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -245,6 +396,9 @@ public class UpdatePaymentLinkRequestBody {
             Objects.deepEquals(this.minimumAmount, other.minimumAmount) &&
             Objects.deepEquals(this.archived, other.archived) &&
             Objects.deepEquals(this.allowedMethods, other.allowedMethods) &&
+            Objects.deepEquals(this.lines, other.lines) &&
+            Objects.deepEquals(this.billingAddress, other.billingAddress) &&
+            Objects.deepEquals(this.shippingAddress, other.shippingAddress) &&
             Objects.deepEquals(this.testmode, other.testmode);
     }
     
@@ -255,6 +409,9 @@ public class UpdatePaymentLinkRequestBody {
             minimumAmount,
             archived,
             allowedMethods,
+            lines,
+            billingAddress,
+            shippingAddress,
             testmode);
     }
     
@@ -265,6 +422,9 @@ public class UpdatePaymentLinkRequestBody {
                 "minimumAmount", minimumAmount,
                 "archived", archived,
                 "allowedMethods", allowedMethods,
+                "lines", lines,
+                "billingAddress", billingAddress,
+                "shippingAddress", shippingAddress,
                 "testmode", testmode);
     }
     
@@ -277,6 +437,12 @@ public class UpdatePaymentLinkRequestBody {
         private Optional<Boolean> archived = Optional.empty();
  
         private JsonNullable<? extends List<UpdatePaymentLinkAllowedMethods>> allowedMethods = JsonNullable.undefined();
+ 
+        private JsonNullable<? extends List<UpdatePaymentLinkLines>> lines = JsonNullable.undefined();
+ 
+        private Optional<? extends UpdatePaymentLinkBillingAddress> billingAddress = Optional.empty();
+ 
+        private Optional<? extends UpdatePaymentLinkShippingAddress> shippingAddress = Optional.empty();
  
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
         
@@ -361,6 +527,80 @@ public class UpdatePaymentLinkRequestBody {
         }
 
         /**
+         * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+         * 
+         * <p>All lines must have the same currency as the payment.
+         * 
+         * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
+         */
+        public Builder lines(List<UpdatePaymentLinkLines> lines) {
+            Utils.checkNotNull(lines, "lines");
+            this.lines = JsonNullable.of(lines);
+            return this;
+        }
+
+        /**
+         * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+         * 
+         * <p>All lines must have the same currency as the payment.
+         * 
+         * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
+         */
+        public Builder lines(JsonNullable<? extends List<UpdatePaymentLinkLines>> lines) {
+            Utils.checkNotNull(lines, "lines");
+            this.lines = lines;
+            return this;
+        }
+
+        /**
+         * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+         * 
+         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+         * 
+         * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+         */
+        public Builder billingAddress(UpdatePaymentLinkBillingAddress billingAddress) {
+            Utils.checkNotNull(billingAddress, "billingAddress");
+            this.billingAddress = Optional.ofNullable(billingAddress);
+            return this;
+        }
+
+        /**
+         * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+         * 
+         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+         * 
+         * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+         */
+        public Builder billingAddress(Optional<? extends UpdatePaymentLinkBillingAddress> billingAddress) {
+            Utils.checkNotNull(billingAddress, "billingAddress");
+            this.billingAddress = billingAddress;
+            return this;
+        }
+
+        /**
+         * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+         * 
+         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+         */
+        public Builder shippingAddress(UpdatePaymentLinkShippingAddress shippingAddress) {
+            Utils.checkNotNull(shippingAddress, "shippingAddress");
+            this.shippingAddress = Optional.ofNullable(shippingAddress);
+            return this;
+        }
+
+        /**
+         * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+         * 
+         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+         */
+        public Builder shippingAddress(Optional<? extends UpdatePaymentLinkShippingAddress> shippingAddress) {
+            Utils.checkNotNull(shippingAddress, "shippingAddress");
+            this.shippingAddress = shippingAddress;
+            return this;
+        }
+
+        /**
          * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -388,6 +628,9 @@ public class UpdatePaymentLinkRequestBody {
                 minimumAmount,
                 archived,
                 allowedMethods,
+                lines,
+                billingAddress,
+                shippingAddress,
                 testmode);
         }
     }

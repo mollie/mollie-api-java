@@ -105,7 +105,7 @@ public class UpdatePaymentLinkResponseBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lines")
-    private JsonNullable<? extends List<UpdatePaymentLinkLines>> lines;
+    private JsonNullable<? extends List<UpdatePaymentLinkPaymentLinksLines>> lines;
 
     /**
      * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
@@ -116,7 +116,7 @@ public class UpdatePaymentLinkResponseBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billingAddress")
-    private Optional<? extends UpdatePaymentLinkBillingAddress> billingAddress;
+    private Optional<? extends UpdatePaymentLinkPaymentLinksBillingAddress> billingAddress;
 
     /**
      * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
@@ -125,7 +125,7 @@ public class UpdatePaymentLinkResponseBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shippingAddress")
-    private Optional<? extends UpdatePaymentLinkShippingAddress> shippingAddress;
+    private Optional<? extends UpdatePaymentLinkPaymentLinksShippingAddress> shippingAddress;
 
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
@@ -200,9 +200,9 @@ public class UpdatePaymentLinkResponseBody {
             @JsonProperty("archived") Optional<Boolean> archived,
             @JsonProperty("redirectUrl") JsonNullable<String> redirectUrl,
             @JsonProperty("webhookUrl") JsonNullable<String> webhookUrl,
-            @JsonProperty("lines") JsonNullable<? extends List<UpdatePaymentLinkLines>> lines,
-            @JsonProperty("billingAddress") Optional<? extends UpdatePaymentLinkBillingAddress> billingAddress,
-            @JsonProperty("shippingAddress") Optional<? extends UpdatePaymentLinkShippingAddress> shippingAddress,
+            @JsonProperty("lines") JsonNullable<? extends List<UpdatePaymentLinkPaymentLinksLines>> lines,
+            @JsonProperty("billingAddress") Optional<? extends UpdatePaymentLinkPaymentLinksBillingAddress> billingAddress,
+            @JsonProperty("shippingAddress") Optional<? extends UpdatePaymentLinkPaymentLinksShippingAddress> shippingAddress,
             @JsonProperty("profileId") JsonNullable<String> profileId,
             @JsonProperty("reusable") JsonNullable<Boolean> reusable,
             @JsonProperty("createdAt") Optional<String> createdAt,
@@ -346,8 +346,8 @@ public class UpdatePaymentLinkResponseBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<List<UpdatePaymentLinkLines>> lines() {
-        return (JsonNullable<List<UpdatePaymentLinkLines>>) lines;
+    public JsonNullable<List<UpdatePaymentLinkPaymentLinksLines>> lines() {
+        return (JsonNullable<List<UpdatePaymentLinkPaymentLinksLines>>) lines;
     }
 
     /**
@@ -359,8 +359,8 @@ public class UpdatePaymentLinkResponseBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<UpdatePaymentLinkBillingAddress> billingAddress() {
-        return (Optional<UpdatePaymentLinkBillingAddress>) billingAddress;
+    public Optional<UpdatePaymentLinkPaymentLinksBillingAddress> billingAddress() {
+        return (Optional<UpdatePaymentLinkPaymentLinksBillingAddress>) billingAddress;
     }
 
     /**
@@ -370,8 +370,8 @@ public class UpdatePaymentLinkResponseBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<UpdatePaymentLinkShippingAddress> shippingAddress() {
-        return (Optional<UpdatePaymentLinkShippingAddress>) shippingAddress;
+    public Optional<UpdatePaymentLinkPaymentLinksShippingAddress> shippingAddress() {
+        return (Optional<UpdatePaymentLinkPaymentLinksShippingAddress>) shippingAddress;
     }
 
     /**
@@ -632,7 +632,7 @@ public class UpdatePaymentLinkResponseBody {
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
      */
-    public UpdatePaymentLinkResponseBody withLines(List<UpdatePaymentLinkLines> lines) {
+    public UpdatePaymentLinkResponseBody withLines(List<UpdatePaymentLinkPaymentLinksLines> lines) {
         Utils.checkNotNull(lines, "lines");
         this.lines = JsonNullable.of(lines);
         return this;
@@ -645,7 +645,7 @@ public class UpdatePaymentLinkResponseBody {
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
      */
-    public UpdatePaymentLinkResponseBody withLines(JsonNullable<? extends List<UpdatePaymentLinkLines>> lines) {
+    public UpdatePaymentLinkResponseBody withLines(JsonNullable<? extends List<UpdatePaymentLinkPaymentLinksLines>> lines) {
         Utils.checkNotNull(lines, "lines");
         this.lines = lines;
         return this;
@@ -658,7 +658,7 @@ public class UpdatePaymentLinkResponseBody {
      * 
      * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
      */
-    public UpdatePaymentLinkResponseBody withBillingAddress(UpdatePaymentLinkBillingAddress billingAddress) {
+    public UpdatePaymentLinkResponseBody withBillingAddress(UpdatePaymentLinkPaymentLinksBillingAddress billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
         this.billingAddress = Optional.ofNullable(billingAddress);
         return this;
@@ -671,7 +671,7 @@ public class UpdatePaymentLinkResponseBody {
      * 
      * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
      */
-    public UpdatePaymentLinkResponseBody withBillingAddress(Optional<? extends UpdatePaymentLinkBillingAddress> billingAddress) {
+    public UpdatePaymentLinkResponseBody withBillingAddress(Optional<? extends UpdatePaymentLinkPaymentLinksBillingAddress> billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
         this.billingAddress = billingAddress;
         return this;
@@ -682,7 +682,7 @@ public class UpdatePaymentLinkResponseBody {
      * 
      * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
      */
-    public UpdatePaymentLinkResponseBody withShippingAddress(UpdatePaymentLinkShippingAddress shippingAddress) {
+    public UpdatePaymentLinkResponseBody withShippingAddress(UpdatePaymentLinkPaymentLinksShippingAddress shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
         this.shippingAddress = Optional.ofNullable(shippingAddress);
         return this;
@@ -693,7 +693,7 @@ public class UpdatePaymentLinkResponseBody {
      * 
      * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
      */
-    public UpdatePaymentLinkResponseBody withShippingAddress(Optional<? extends UpdatePaymentLinkShippingAddress> shippingAddress) {
+    public UpdatePaymentLinkResponseBody withShippingAddress(Optional<? extends UpdatePaymentLinkPaymentLinksShippingAddress> shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
         this.shippingAddress = shippingAddress;
         return this;
@@ -958,11 +958,11 @@ public class UpdatePaymentLinkResponseBody {
  
         private JsonNullable<String> webhookUrl = JsonNullable.undefined();
  
-        private JsonNullable<? extends List<UpdatePaymentLinkLines>> lines = JsonNullable.undefined();
+        private JsonNullable<? extends List<UpdatePaymentLinkPaymentLinksLines>> lines = JsonNullable.undefined();
  
-        private Optional<? extends UpdatePaymentLinkBillingAddress> billingAddress = Optional.empty();
+        private Optional<? extends UpdatePaymentLinkPaymentLinksBillingAddress> billingAddress = Optional.empty();
  
-        private Optional<? extends UpdatePaymentLinkShippingAddress> shippingAddress = Optional.empty();
+        private Optional<? extends UpdatePaymentLinkPaymentLinksShippingAddress> shippingAddress = Optional.empty();
  
         private JsonNullable<String> profileId = JsonNullable.undefined();
  
@@ -1165,7 +1165,7 @@ public class UpdatePaymentLinkResponseBody {
          * 
          * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
          */
-        public Builder lines(List<UpdatePaymentLinkLines> lines) {
+        public Builder lines(List<UpdatePaymentLinkPaymentLinksLines> lines) {
             Utils.checkNotNull(lines, "lines");
             this.lines = JsonNullable.of(lines);
             return this;
@@ -1178,7 +1178,7 @@ public class UpdatePaymentLinkResponseBody {
          * 
          * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
          */
-        public Builder lines(JsonNullable<? extends List<UpdatePaymentLinkLines>> lines) {
+        public Builder lines(JsonNullable<? extends List<UpdatePaymentLinkPaymentLinksLines>> lines) {
             Utils.checkNotNull(lines, "lines");
             this.lines = lines;
             return this;
@@ -1191,7 +1191,7 @@ public class UpdatePaymentLinkResponseBody {
          * 
          * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
          */
-        public Builder billingAddress(UpdatePaymentLinkBillingAddress billingAddress) {
+        public Builder billingAddress(UpdatePaymentLinkPaymentLinksBillingAddress billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
             this.billingAddress = Optional.ofNullable(billingAddress);
             return this;
@@ -1204,7 +1204,7 @@ public class UpdatePaymentLinkResponseBody {
          * 
          * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
          */
-        public Builder billingAddress(Optional<? extends UpdatePaymentLinkBillingAddress> billingAddress) {
+        public Builder billingAddress(Optional<? extends UpdatePaymentLinkPaymentLinksBillingAddress> billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
             this.billingAddress = billingAddress;
             return this;
@@ -1215,7 +1215,7 @@ public class UpdatePaymentLinkResponseBody {
          * 
          * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
          */
-        public Builder shippingAddress(UpdatePaymentLinkShippingAddress shippingAddress) {
+        public Builder shippingAddress(UpdatePaymentLinkPaymentLinksShippingAddress shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
             this.shippingAddress = Optional.ofNullable(shippingAddress);
             return this;
@@ -1226,7 +1226,7 @@ public class UpdatePaymentLinkResponseBody {
          * 
          * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
          */
-        public Builder shippingAddress(Optional<? extends UpdatePaymentLinkShippingAddress> shippingAddress) {
+        public Builder shippingAddress(Optional<? extends UpdatePaymentLinkPaymentLinksShippingAddress> shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
             this.shippingAddress = shippingAddress;
             return this;

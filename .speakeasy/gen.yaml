@@ -17,7 +17,7 @@ generation:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: true
 java:
-  version: 0.3.2
+  version: 0.3.3
   additionalDependencies: []
   additionalPlugins: []
   artifactID: mollie
