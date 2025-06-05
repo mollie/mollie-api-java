@@ -483,6 +483,52 @@ public class SDKMethodInterfaces {
             Optional<Options> options) throws Exception;
     }
 
+    public interface MethodCallCreateWebhook {
+        CreateWebhookResponse create(
+            Optional<? extends CreateWebhookRequestBody> request,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallListWebhooks {
+        ListWebhooksResponse list(
+            ListWebhooksRequest request,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallUpdateWebhook {
+        UpdateWebhookResponse update(
+            String id,
+            Optional<? extends UpdateWebhookRequestBody> requestBody,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallGetWebhook {
+        GetWebhookResponse get(
+            String id,
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallDeleteWebhook {
+        DeleteWebhookResponse delete(
+            String id,
+            JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallTestWebhook {
+        TestWebhookResponse test(
+            String id,
+            Optional<? extends TestWebhookRequestBody> requestBody,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallGetWebhookEvent {
+        GetWebhookEventResponse getEvent(
+            String id,
+            Optional<Options> options) throws Exception;
+    }
+
     public interface MethodCallListBalances {
         ListBalancesResponse list(
             JsonNullable<String> currency,

@@ -60,6 +60,10 @@ public class Client {
 
     private final ClientLinks clientLinks;
 
+    private final Webhooks webhooks;
+
+    private final WebhookEvents webhookEvents;
+
     private final Balances balances;
 
     private final Settlements settlements;
@@ -140,6 +144,14 @@ public class Client {
 
     public ClientLinks clientLinks() {
         return clientLinks;
+    }
+
+    public Webhooks webhooks() {
+        return webhooks;
+    }
+
+    public WebhookEvents webhookEvents() {
+        return webhookEvents;
     }
 
     public Balances balances() {
@@ -306,6 +318,8 @@ public class Client {
         this.capabilities = new Capabilities(sdkConfiguration);
         this.clients = new Clients(sdkConfiguration);
         this.clientLinks = new ClientLinks(sdkConfiguration);
+        this.webhooks = new Webhooks(sdkConfiguration);
+        this.webhookEvents = new WebhookEvents(sdkConfiguration);
         this.balances = new Balances(sdkConfiguration);
         this.settlements = new Settlements(sdkConfiguration);
         this.invoices = new Invoices(sdkConfiguration);

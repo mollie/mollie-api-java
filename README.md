@@ -47,7 +47,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:0.3.3'
+implementation 'com.mollie:mollie:0.3.4'
 ```
 
 Maven:
@@ -55,7 +55,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>0.3.3</version>
+    <version>0.3.4</version>
 </dependency>
 ```
 
@@ -766,6 +766,19 @@ public class Application {
 ### [wallets()](docs/sdks/wallets/README.md)
 
 * [requestApplePaySession](docs/sdks/wallets/README.md#requestapplepaysession) - Request Apple Pay payment session
+
+### [webhookEvents()](docs/sdks/webhookevents/README.md)
+
+* [getEvent](docs/sdks/webhookevents/README.md#getevent) - Get a Webhook Event
+
+### [webhooks()](docs/sdks/webhooks/README.md)
+
+* [create](docs/sdks/webhooks/README.md#create) - Create a webhook
+* [list](docs/sdks/webhooks/README.md#list) - List all webhooks
+* [update](docs/sdks/webhooks/README.md#update) - Update a webhook
+* [get](docs/sdks/webhooks/README.md#get) - Get a webhook
+* [delete](docs/sdks/webhooks/README.md#delete) - Delete a webhook
+* [test](docs/sdks/webhooks/README.md#test) - Test a webhook
 
 </details>
 <!-- End Available Resources and Operations [operations] -->

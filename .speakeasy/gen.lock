@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 977d067ed3a7db358e16461458946af2
+  docChecksum: ff1405bcd862bfcc42243e7f27b0a2d0
   docVersion: 1.0.0
-  speakeasyVersion: 1.555.2
+  speakeasyVersion: 1.555.3
   generationVersion: 2.620.2
-  releaseVersion: 0.3.3
-  configChecksum: 4e69bd0bec27267d38a3664004084876
+  releaseVersion: 0.3.4
+  configChecksum: 01d2bc30f4f1c064915c8a262b96dd47
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 features:
@@ -98,6 +98,9 @@ generatedFiles:
   - docs/models/errors/CreateSubscriptionDocumentation.md
   - docs/models/errors/CreateSubscriptionLinks.md
   - docs/models/errors/CreateSubscriptionResponseBody.md
+  - docs/models/errors/CreateWebhookDocumentation.md
+  - docs/models/errors/CreateWebhookLinks.md
+  - docs/models/errors/CreateWebhookResponseBody.md
   - docs/models/errors/DeleteCustomerDocumentation.md
   - docs/models/errors/DeleteCustomerLinks.md
   - docs/models/errors/DeleteCustomerResponseBody.md
@@ -113,6 +116,12 @@ generatedFiles:
   - docs/models/errors/DeleteProfileProfilesLinks.md
   - docs/models/errors/DeleteProfileProfilesResponseBody.md
   - docs/models/errors/DeleteProfileResponseBody.md
+  - docs/models/errors/DeleteWebhookDocumentation.md
+  - docs/models/errors/DeleteWebhookLinks.md
+  - docs/models/errors/DeleteWebhookResponseBody.md
+  - docs/models/errors/DeleteWebhookWebhooksDocumentation.md
+  - docs/models/errors/DeleteWebhookWebhooksLinks.md
+  - docs/models/errors/DeleteWebhookWebhooksResponseBody.md
   - docs/models/errors/Documentation.md
   - docs/models/errors/GetBalanceDocumentation.md
   - docs/models/errors/GetBalanceLinks.md
@@ -201,6 +210,15 @@ generatedFiles:
   - docs/models/errors/GetTerminalDocumentation.md
   - docs/models/errors/GetTerminalLinks.md
   - docs/models/errors/GetTerminalResponseBody.md
+  - docs/models/errors/GetWebhookDocumentation.md
+  - docs/models/errors/GetWebhookEventDocumentation.md
+  - docs/models/errors/GetWebhookEventLinks.md
+  - docs/models/errors/GetWebhookEventResponseBody.md
+  - docs/models/errors/GetWebhookLinks.md
+  - docs/models/errors/GetWebhookResponseBody.md
+  - docs/models/errors/GetWebhookWebhooksDocumentation.md
+  - docs/models/errors/GetWebhookWebhooksLinks.md
+  - docs/models/errors/GetWebhookWebhooksResponseBody.md
   - docs/models/errors/Links.md
   - docs/models/errors/ListAllChargebacksChargebacksDocumentation.md
   - docs/models/errors/ListAllChargebacksChargebacksLinks.md
@@ -313,6 +331,9 @@ generatedFiles:
   - docs/models/errors/ListTerminalsDocumentation.md
   - docs/models/errors/ListTerminalsLinks.md
   - docs/models/errors/ListTerminalsResponseBody.md
+  - docs/models/errors/ListWebhooksDocumentation.md
+  - docs/models/errors/ListWebhooksLinks.md
+  - docs/models/errors/ListWebhooksResponseBody.md
   - docs/models/errors/PaymentCreateRouteDocumentation.md
   - docs/models/errors/PaymentCreateRouteLinks.md
   - docs/models/errors/PaymentCreateRouteResponseBody.md
@@ -331,6 +352,12 @@ generatedFiles:
   - docs/models/errors/RevokeMandateDocumentation.md
   - docs/models/errors/RevokeMandateLinks.md
   - docs/models/errors/RevokeMandateResponseBody.md
+  - docs/models/errors/TestWebhookDocumentation.md
+  - docs/models/errors/TestWebhookLinks.md
+  - docs/models/errors/TestWebhookResponseBody.md
+  - docs/models/errors/TestWebhookWebhooksDocumentation.md
+  - docs/models/errors/TestWebhookWebhooksLinks.md
+  - docs/models/errors/TestWebhookWebhooksResponseBody.md
   - docs/models/errors/UpdateCustomerDocumentation.md
   - docs/models/errors/UpdateCustomerLinks.md
   - docs/models/errors/UpdateCustomerResponseBody.md
@@ -358,6 +385,12 @@ generatedFiles:
   - docs/models/errors/UpdateSubscriptionDocumentation.md
   - docs/models/errors/UpdateSubscriptionLinks.md
   - docs/models/errors/UpdateSubscriptionResponseBody.md
+  - docs/models/errors/UpdateWebhookDocumentation.md
+  - docs/models/errors/UpdateWebhookLinks.md
+  - docs/models/errors/UpdateWebhookResponseBody.md
+  - docs/models/errors/UpdateWebhookWebhooksDocumentation.md
+  - docs/models/errors/UpdateWebhookWebhooksLinks.md
+  - docs/models/errors/UpdateWebhookWebhooksResponseBody.md
   - docs/models/operations/Address.md
   - docs/models/operations/AllowedMethods.md
   - docs/models/operations/Amount.md
@@ -717,6 +750,11 @@ generatedFiles:
   - docs/models/operations/CreateSubscriptionSubscriptionsMetadata.md
   - docs/models/operations/CreateSubscriptionSubscriptionsResponse201Amount.md
   - docs/models/operations/CreateSubscriptionSubscriptionsResponseAmount.md
+  - docs/models/operations/CreateWebhookDocumentation.md
+  - docs/models/operations/CreateWebhookLinks.md
+  - docs/models/operations/CreateWebhookRequestBody.md
+  - docs/models/operations/CreateWebhookResponse.md
+  - docs/models/operations/CreateWebhookResponseBody.md
   - docs/models/operations/Currency.md
   - docs/models/operations/Customer.md
   - docs/models/operations/Customers.md
@@ -730,6 +768,8 @@ generatedFiles:
   - docs/models/operations/DeletePaymentLinkResponse.md
   - docs/models/operations/DeleteProfileRequest.md
   - docs/models/operations/DeleteProfileResponse.md
+  - docs/models/operations/DeleteWebhookRequest.md
+  - docs/models/operations/DeleteWebhookResponse.md
   - docs/models/operations/Destination.md
   - docs/models/operations/Details.md
   - docs/models/operations/DiscountAmount.md
@@ -737,6 +777,32 @@ generatedFiles:
   - docs/models/operations/Documentation.md
   - docs/models/operations/Embed.md
   - docs/models/operations/Embedded.md
+  - docs/models/operations/Entity.md
+  - docs/models/operations/EntityAllowedMethods.md
+  - docs/models/operations/EntityAmount.md
+  - docs/models/operations/EntityApplicationFee.md
+  - docs/models/operations/EntityBillingAddress.md
+  - docs/models/operations/EntityCategories.md
+  - docs/models/operations/EntityChargebacks.md
+  - docs/models/operations/EntityCheckoutPreviewUrl.md
+  - docs/models/operations/EntityDashboard.md
+  - docs/models/operations/EntityDiscountAmount.md
+  - docs/models/operations/EntityDocumentation.md
+  - docs/models/operations/EntityLines.md
+  - docs/models/operations/EntityLinks.md
+  - docs/models/operations/EntityMethods.md
+  - docs/models/operations/EntityMinimumAmount.md
+  - docs/models/operations/EntityPaymentLink.md
+  - docs/models/operations/EntityPayments.md
+  - docs/models/operations/EntityProfile.md
+  - docs/models/operations/EntityRefunds.md
+  - docs/models/operations/EntityReview.md
+  - docs/models/operations/EntitySelf.md
+  - docs/models/operations/EntityShippingAddress.md
+  - docs/models/operations/EntityTotalAmount.md
+  - docs/models/operations/EntityUnitPrice.md
+  - docs/models/operations/EntityVatAmount.md
+  - docs/models/operations/EventTypes.md
   - docs/models/operations/Events.md
   - docs/models/operations/ExternalReference.md
   - docs/models/operations/FeePrepayments.md
@@ -1392,6 +1458,22 @@ generatedFiles:
   - docs/models/operations/GetTerminalResponse.md
   - docs/models/operations/GetTerminalResponseBody.md
   - docs/models/operations/GetTerminalSelf.md
+  - docs/models/operations/GetWebhookEventDocumentation.md
+  - docs/models/operations/GetWebhookEventEmbedded.md
+  - docs/models/operations/GetWebhookEventEntity.md
+  - docs/models/operations/GetWebhookEventEntityAmount.md
+  - docs/models/operations/GetWebhookEventEntityDocumentation.md
+  - docs/models/operations/GetWebhookEventEntityLinks.md
+  - docs/models/operations/GetWebhookEventEntityPaymentLink.md
+  - docs/models/operations/GetWebhookEventEntitySelf.md
+  - docs/models/operations/GetWebhookEventLinks.md
+  - docs/models/operations/GetWebhookEventRequest.md
+  - docs/models/operations/GetWebhookEventResponse.md
+  - docs/models/operations/GetWebhookEventResponseBody.md
+  - docs/models/operations/GetWebhookEventSelf.md
+  - docs/models/operations/GetWebhookRequest.md
+  - docs/models/operations/GetWebhookResponse.md
+  - docs/models/operations/GetWebhookResponseBody.md
   - docs/models/operations/GrossAmount.md
   - docs/models/operations/Image.md
   - docs/models/operations/ImmediatelyAvailable.md
@@ -2016,6 +2098,15 @@ generatedFiles:
   - docs/models/operations/ListTerminalsTerminalsDocumentation.md
   - docs/models/operations/ListTerminalsTerminalsLinks.md
   - docs/models/operations/ListTerminalsTerminalsSelf.md
+  - docs/models/operations/ListWebhooksDocumentation.md
+  - docs/models/operations/ListWebhooksEmbedded.md
+  - docs/models/operations/ListWebhooksLinks.md
+  - docs/models/operations/ListWebhooksNext.md
+  - docs/models/operations/ListWebhooksPrevious.md
+  - docs/models/operations/ListWebhooksRequest.md
+  - docs/models/operations/ListWebhooksResponse.md
+  - docs/models/operations/ListWebhooksResponseBody.md
+  - docs/models/operations/ListWebhooksSelf.md
   - docs/models/operations/Mandate.md
   - docs/models/operations/Mandates.md
   - docs/models/operations/MaximumAmount.md
@@ -2117,6 +2208,9 @@ generatedFiles:
   - docs/models/operations/Subtotals.md
   - docs/models/operations/Terminal.md
   - docs/models/operations/Terminals.md
+  - docs/models/operations/TestWebhookRequest.md
+  - docs/models/operations/TestWebhookRequestBody.md
+  - docs/models/operations/TestWebhookResponse.md
   - docs/models/operations/Topups.md
   - docs/models/operations/TotalAmount.md
   - docs/models/operations/Totals.md
@@ -2255,9 +2349,15 @@ generatedFiles:
   - docs/models/operations/UpdateSubscriptionSubscriptionsAmount.md
   - docs/models/operations/UpdateSubscriptionSubscriptionsMetadata.md
   - docs/models/operations/UpdateSubscriptionSubscriptionsResponseAmount.md
+  - docs/models/operations/UpdateWebhookEventTypes.md
+  - docs/models/operations/UpdateWebhookRequest.md
+  - docs/models/operations/UpdateWebhookRequestBody.md
+  - docs/models/operations/UpdateWebhookResponse.md
+  - docs/models/operations/UpdateWebhookResponseBody.md
   - docs/models/operations/Url.md
   - docs/models/operations/UserAgentTokens.md
   - docs/models/operations/VatAmount.md
+  - docs/models/operations/Webhooks.md
   - docs/sdks/balances/README.md
   - docs/sdks/capabilities/README.md
   - docs/sdks/captures/README.md
@@ -2281,6 +2381,8 @@ generatedFiles:
   - docs/sdks/subscriptions/README.md
   - docs/sdks/terminals/README.md
   - docs/sdks/wallets/README.md
+  - docs/sdks/webhookevents/README.md
+  - docs/sdks/webhooks/README.md
   - gradle.properties
   - gradle/wrapper/gradle-wrapper.jar
   - gradle/wrapper/gradle-wrapper.properties
@@ -2312,6 +2414,8 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/Subscriptions.java
   - src/main/java/com/mollie/mollie/Terminals.java
   - src/main/java/com/mollie/mollie/Wallets.java
+  - src/main/java/com/mollie/mollie/WebhookEvents.java
+  - src/main/java/com/mollie/mollie/Webhooks.java
   - src/main/java/com/mollie/mollie/models/components/Security.java
   - src/main/java/com/mollie/mollie/models/errors/APIException.java
   - src/main/java/com/mollie/mollie/models/errors/AuthException.java
@@ -2382,6 +2486,9 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/errors/CreateSubscriptionDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/CreateSubscriptionLinks.java
   - src/main/java/com/mollie/mollie/models/errors/CreateSubscriptionResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/CreateWebhookDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/CreateWebhookLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/CreateWebhookResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/DeleteCustomerDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/DeleteCustomerLinks.java
   - src/main/java/com/mollie/mollie/models/errors/DeleteCustomerResponseBody.java
@@ -2397,6 +2504,12 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/errors/DeleteProfileProfilesLinks.java
   - src/main/java/com/mollie/mollie/models/errors/DeleteProfileProfilesResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/DeleteProfileResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/DeleteWebhookDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/DeleteWebhookLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/DeleteWebhookResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/DeleteWebhookWebhooksDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/DeleteWebhookWebhooksLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/DeleteWebhookWebhooksResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/Documentation.java
   - src/main/java/com/mollie/mollie/models/errors/GetBalanceDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/GetBalanceLinks.java
@@ -2485,6 +2598,15 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/errors/GetTerminalDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/GetTerminalLinks.java
   - src/main/java/com/mollie/mollie/models/errors/GetTerminalResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/GetWebhookDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/GetWebhookEventDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/GetWebhookEventLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/GetWebhookEventResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/GetWebhookLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/GetWebhookResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/GetWebhookWebhooksDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/GetWebhookWebhooksLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/GetWebhookWebhooksResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/Links.java
   - src/main/java/com/mollie/mollie/models/errors/ListAllChargebacksChargebacksDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/ListAllChargebacksChargebacksLinks.java
@@ -2597,6 +2719,9 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/errors/ListTerminalsDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/ListTerminalsLinks.java
   - src/main/java/com/mollie/mollie/models/errors/ListTerminalsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/ListWebhooksDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/ListWebhooksLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/ListWebhooksResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/PaymentCreateRouteDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/PaymentCreateRouteLinks.java
   - src/main/java/com/mollie/mollie/models/errors/PaymentCreateRouteResponseBody.java
@@ -2615,6 +2740,12 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/errors/RevokeMandateDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/RevokeMandateLinks.java
   - src/main/java/com/mollie/mollie/models/errors/RevokeMandateResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/TestWebhookDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/TestWebhookLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/TestWebhookResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/TestWebhookWebhooksDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/TestWebhookWebhooksLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/TestWebhookWebhooksResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/UpdateCustomerDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/UpdateCustomerLinks.java
   - src/main/java/com/mollie/mollie/models/errors/UpdateCustomerResponseBody.java
@@ -2642,6 +2773,12 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/errors/UpdateSubscriptionDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/UpdateSubscriptionLinks.java
   - src/main/java/com/mollie/mollie/models/errors/UpdateSubscriptionResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdateWebhookDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdateWebhookLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdateWebhookResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdateWebhookWebhooksDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdateWebhookWebhooksLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdateWebhookWebhooksResponseBody.java
   - src/main/java/com/mollie/mollie/models/operations/Address.java
   - src/main/java/com/mollie/mollie/models/operations/AllowedMethods.java
   - src/main/java/com/mollie/mollie/models/operations/Amount.java
@@ -3015,6 +3152,12 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionSubscriptionsMetadata.java
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionSubscriptionsResponse201Amount.java
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionSubscriptionsResponseAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateWebhookDocumentation.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateWebhookLinks.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateWebhookRequestBody.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateWebhookRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateWebhookResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateWebhookResponseBody.java
   - src/main/java/com/mollie/mollie/models/operations/Currency.java
   - src/main/java/com/mollie/mollie/models/operations/Customer.java
   - src/main/java/com/mollie/mollie/models/operations/Customers.java
@@ -3031,6 +3174,9 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/DeleteProfileRequest.java
   - src/main/java/com/mollie/mollie/models/operations/DeleteProfileRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/DeleteProfileResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/DeleteWebhookRequest.java
+  - src/main/java/com/mollie/mollie/models/operations/DeleteWebhookRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations/DeleteWebhookResponse.java
   - src/main/java/com/mollie/mollie/models/operations/Destination.java
   - src/main/java/com/mollie/mollie/models/operations/Details.java
   - src/main/java/com/mollie/mollie/models/operations/DiscountAmount.java
@@ -3038,6 +3184,32 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/Documentation.java
   - src/main/java/com/mollie/mollie/models/operations/Embed.java
   - src/main/java/com/mollie/mollie/models/operations/Embedded.java
+  - src/main/java/com/mollie/mollie/models/operations/Entity.java
+  - src/main/java/com/mollie/mollie/models/operations/EntityAllowedMethods.java
+  - src/main/java/com/mollie/mollie/models/operations/EntityAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/EntityApplicationFee.java
+  - src/main/java/com/mollie/mollie/models/operations/EntityBillingAddress.java
+  - src/main/java/com/mollie/mollie/models/operations/EntityCategories.java
+  - src/main/java/com/mollie/mollie/models/operations/EntityChargebacks.java
+  - src/main/java/com/mollie/mollie/models/operations/EntityCheckoutPreviewUrl.java
+  - src/main/java/com/mollie/mollie/models/operations/EntityDashboard.java
+  - src/main/java/com/mollie/mollie/models/operations/EntityDiscountAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/EntityDocumentation.java
+  - src/main/java/com/mollie/mollie/models/operations/EntityLines.java
+  - src/main/java/com/mollie/mollie/models/operations/EntityLinks.java
+  - src/main/java/com/mollie/mollie/models/operations/EntityMethods.java
+  - src/main/java/com/mollie/mollie/models/operations/EntityMinimumAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/EntityPaymentLink.java
+  - src/main/java/com/mollie/mollie/models/operations/EntityPayments.java
+  - src/main/java/com/mollie/mollie/models/operations/EntityProfile.java
+  - src/main/java/com/mollie/mollie/models/operations/EntityRefunds.java
+  - src/main/java/com/mollie/mollie/models/operations/EntityReview.java
+  - src/main/java/com/mollie/mollie/models/operations/EntitySelf.java
+  - src/main/java/com/mollie/mollie/models/operations/EntityShippingAddress.java
+  - src/main/java/com/mollie/mollie/models/operations/EntityTotalAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/EntityUnitPrice.java
+  - src/main/java/com/mollie/mollie/models/operations/EntityVatAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/EventTypes.java
   - src/main/java/com/mollie/mollie/models/operations/Events.java
   - src/main/java/com/mollie/mollie/models/operations/ExternalReference.java
   - src/main/java/com/mollie/mollie/models/operations/FeePrepayments.java
@@ -3723,6 +3895,24 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetTerminalResponse.java
   - src/main/java/com/mollie/mollie/models/operations/GetTerminalResponseBody.java
   - src/main/java/com/mollie/mollie/models/operations/GetTerminalSelf.java
+  - src/main/java/com/mollie/mollie/models/operations/GetWebhookEventDocumentation.java
+  - src/main/java/com/mollie/mollie/models/operations/GetWebhookEventEmbedded.java
+  - src/main/java/com/mollie/mollie/models/operations/GetWebhookEventEntity.java
+  - src/main/java/com/mollie/mollie/models/operations/GetWebhookEventEntityAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/GetWebhookEventEntityDocumentation.java
+  - src/main/java/com/mollie/mollie/models/operations/GetWebhookEventEntityLinks.java
+  - src/main/java/com/mollie/mollie/models/operations/GetWebhookEventEntityPaymentLink.java
+  - src/main/java/com/mollie/mollie/models/operations/GetWebhookEventEntitySelf.java
+  - src/main/java/com/mollie/mollie/models/operations/GetWebhookEventLinks.java
+  - src/main/java/com/mollie/mollie/models/operations/GetWebhookEventRequest.java
+  - src/main/java/com/mollie/mollie/models/operations/GetWebhookEventRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations/GetWebhookEventResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/GetWebhookEventResponseBody.java
+  - src/main/java/com/mollie/mollie/models/operations/GetWebhookEventSelf.java
+  - src/main/java/com/mollie/mollie/models/operations/GetWebhookRequest.java
+  - src/main/java/com/mollie/mollie/models/operations/GetWebhookRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations/GetWebhookResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/GetWebhookResponseBody.java
   - src/main/java/com/mollie/mollie/models/operations/GrossAmount.java
   - src/main/java/com/mollie/mollie/models/operations/Image.java
   - src/main/java/com/mollie/mollie/models/operations/ImmediatelyAvailable.java
@@ -4372,6 +4562,16 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListTerminalsTerminalsDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/ListTerminalsTerminalsLinks.java
   - src/main/java/com/mollie/mollie/models/operations/ListTerminalsTerminalsSelf.java
+  - src/main/java/com/mollie/mollie/models/operations/ListWebhooksDocumentation.java
+  - src/main/java/com/mollie/mollie/models/operations/ListWebhooksEmbedded.java
+  - src/main/java/com/mollie/mollie/models/operations/ListWebhooksLinks.java
+  - src/main/java/com/mollie/mollie/models/operations/ListWebhooksNext.java
+  - src/main/java/com/mollie/mollie/models/operations/ListWebhooksPrevious.java
+  - src/main/java/com/mollie/mollie/models/operations/ListWebhooksRequest.java
+  - src/main/java/com/mollie/mollie/models/operations/ListWebhooksRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations/ListWebhooksResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/ListWebhooksResponseBody.java
+  - src/main/java/com/mollie/mollie/models/operations/ListWebhooksSelf.java
   - src/main/java/com/mollie/mollie/models/operations/Mandate.java
   - src/main/java/com/mollie/mollie/models/operations/Mandates.java
   - src/main/java/com/mollie/mollie/models/operations/MaximumAmount.java
@@ -4480,6 +4680,10 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/Subtotals.java
   - src/main/java/com/mollie/mollie/models/operations/Terminal.java
   - src/main/java/com/mollie/mollie/models/operations/Terminals.java
+  - src/main/java/com/mollie/mollie/models/operations/TestWebhookRequest.java
+  - src/main/java/com/mollie/mollie/models/operations/TestWebhookRequestBody.java
+  - src/main/java/com/mollie/mollie/models/operations/TestWebhookRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations/TestWebhookResponse.java
   - src/main/java/com/mollie/mollie/models/operations/Topups.java
   - src/main/java/com/mollie/mollie/models/operations/TotalAmount.java
   - src/main/java/com/mollie/mollie/models/operations/Totals.java
@@ -4623,9 +4827,16 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionSubscriptionsAmount.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionSubscriptionsMetadata.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionSubscriptionsResponseAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateWebhookEventTypes.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateWebhookRequest.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateWebhookRequestBody.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateWebhookRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateWebhookResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateWebhookResponseBody.java
   - src/main/java/com/mollie/mollie/models/operations/Url.java
   - src/main/java/com/mollie/mollie/models/operations/UserAgentTokens.java
   - src/main/java/com/mollie/mollie/models/operations/VatAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/Webhooks.java
   - src/main/java/com/mollie/mollie/utils/BackoffStrategy.java
   - src/main/java/com/mollie/mollie/utils/BigDecimalString.java
   - src/main/java/com/mollie/mollie/utils/BigIntegerString.java
@@ -7062,6 +7273,136 @@ examples:
       parameters:
         path:
           id: "inv_FrvewDA3Pr"
+      responses:
+        "404":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "No entity exists with token '7UhSN1zuXS'", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+  create-webhook:
+    create-webhook-200:
+      requestBody:
+        application/json: {"name": "Webhook #1", "url": "https://mollie.com/", "eventTypes": "payment-link.paid", "testmode": false}
+      responses:
+        "201":
+          application/hal+json: {"resource": "webhook", "id": "hook_B2EyhTH5N4KWUnoYPcgiH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:09:56+00:00", "name": "Webhook #1", "eventTypes": "payment.paid", "status": "enabled", "_links": {"documentation": {"href": "https://docs.mollie.com/reference/create-webhook", "type": "text/html"}}}
+    "":
+      requestBody:
+        application/json: {"name": "Webhook #1", "url": "https://mollie.com/", "eventTypes": "payment-link.paid", "testmode": false}
+      responses:
+        "422":
+          application/hal+json: {"status": 422, "title": "Unprocessable entity", "detail": "Invalid URL provided", "field": "url", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+  list-webhooks:
+    list-webhook-200:
+      parameters:
+        query:
+          from: "hook_B2EyhTH5N4KWUnoYPcgiH"
+          limit: 50
+          sort: "desc"
+          eventTypes: "payment-link.paid"
+          testmode: false
+      responses:
+        "200":
+          application/hal+json: {"count": 2, "_embedded": {"webhooks": [{"resource": "webhook", "id": "hook_yjtBMWDCGw5YFSPQ3HPzH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:09:56+00:00", "name": "Webhook #2", "eventTypes": "payment-link.paid,payment.failed", "status": "enabled"}, {"resource": "webhook", "id": "hook_qHknfTxaDx6s8JNhuGPzH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:08:48+00:00", "name": "Webhook #1", "eventTypes": "payment-link.paid", "status": "blocked"}]}, "_links": {"self": {"href": "https://api.mollie.localhost/v2/webhooks?from=hook_yjtBMWDCGw5YFSPQ3HPzH&limit=2", "type": "application/hal+json"}, "previous": {"href": "https://api.mollie.localhost/v2/webhooks?from=hook_5foxphpBru4xNPCDJJPzH&limit=2", "type": "application/hal+json"}, "next": {"href": "https://api.mollie.localhost/v2/webhooks?from=hook_fTqARmWsfs9oXvKbZEPzH&limit=2", "type": "application/hal+json"}, "documentation": {"href": "https://docs.mollie.com/reference/list-webhook", "type": "text/html"}}}
+    "":
+      parameters:
+        query:
+          from: "hook_B2EyhTH5N4KWUnoYPcgiH"
+          limit: 50
+          sort: "desc"
+          eventTypes: "payment-link.paid"
+          testmode: false
+      responses:
+        "400":
+          application/hal+json: {"status": 400, "title": "Bad Request", "detail": "Invalid cursor value", "field": "from", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+  update-webhook:
+    create-webhook-200:
+      parameters:
+        path:
+          id: "hook_B2EyhTH5N4KWUnoYPcgiH"
+      requestBody:
+        application/json: {"name": "Webhook #1", "url": "https://mollie.com/", "eventTypes": "payment-link.paid", "testmode": false}
+      responses:
+        "200":
+          application/hal+json: {"resource": "webhook", "id": "hook_B2EyhTH5N4KWUnoYPcgiH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:09:56+00:00", "name": "Webhook #1", "eventTypes": "payment.paid", "status": "enabled"}
+    "":
+      parameters:
+        path:
+          id: "hook_B2EyhTH5N4KWUnoYPcgiH"
+      requestBody:
+        application/json: {"name": "Webhook #1", "url": "https://mollie.com/", "eventTypes": "payment-link.paid", "testmode": false}
+      responses:
+        "404":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "No entity exists with token '7UhSN1zuXS'", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+        "422":
+          application/hal+json: {"status": 422, "title": "Unprocessable entity", "detail": "Invalid URL provided", "field": "url", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+  get-webhook:
+    get-webhook-200:
+      parameters:
+        path:
+          id: "hook_B2EyhTH5N4KWUnoYPcgiH"
+        query:
+          testmode: false
+      responses:
+        "200":
+          application/hal+json: {"resource": "webhook", "id": "hook_B2EyhTH5N4KWUnoYPcgiH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:09:56+00:00", "name": "Webhook #1", "eventTypes": "payment.expired,payment.paid", "status": "enabled"}
+    get-webhook-200-1:
+      parameters:
+        path:
+          id: "hook_B2EyhTH5N4KWUnoYPcgiH"
+        query:
+          testmode: false
+      responses:
+        "200":
+          application/hal+json: {"resource": "webhook", "id": "hook_B2EyhTH5N4KWUnoYPcgiH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:09:56+00:00", "name": "Webhook #1", "eventTypes": "payment-link.paid", "status": "deleted"}
+    "":
+      parameters:
+        path:
+          id: "hook_B2EyhTH5N4KWUnoYPcgiH"
+        query:
+          testmode: false
+      responses:
+        "404":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "No entity exists with token '7UhSN1zuXS'", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+        "422":
+          application/hal+json: {"status": 422, "title": "Unprocessable entity", "detail": "This subscription was already deleted.", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+  delete-webhook:
+    "":
+      parameters:
+        path:
+          id: "hook_B2EyhTH5N4KWUnoYPcgiH"
+        query:
+          testmode: false
+      responses:
+        "204":
+          application/hal+json: {}
+        "404":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "No entity exists with token '7UhSN1zuXS'", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+        "422":
+          application/hal+json: {"status": 422, "title": "Unprocessable entity", "detail": "This subscription was already deleted.", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+  test-webhook:
+    "":
+      parameters:
+        path:
+          id: "hook_B2EyhTH5N4KWUnoYPcgiH"
+      requestBody:
+        application/json: {"testmode": false}
+      responses:
+        "202":
+          application/hal+json: {}
+        "404":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "No entity exists with token '7UhSN1zuXS'", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+        "422":
+          application/hal+json: {"status": 422, "title": "Unprocessable entity", "detail": "This subscription was already deleted.", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+  get-webhook-event:
+    get-webhook-event-200:
+      parameters:
+        path:
+          id: "event_jd9v34P5YqN9pT8n3HJyH"
+      responses:
+        "200":
+          application/hal+json: {"resource": "event", "id": "event_GvJ8WHrp5isUdRub9CJyH", "type": "payment-link.paid", "entityId": "pl_qng5gbbv8NAZ5gpM5ZYgx", "createdAt": "2024-12-16T15:57:04.0Z", "_embedded": {"entity": {"resource": "payment-link", "id": "pl_d9fQur83kFdhH8hIhaZfq", "mode": "live", "description": "Chess Board", "amount": {"currency": "EUR", "value": "10.00"}, "minimumAmount": {"currency": "EUR", "value": "10.00"}, "archived": false, "redirectUrl": "https://webshop.example.org/payment-links/redirect/", "webhookUrl": "https://webshop.example.org/payment-links/webhook/", "lines": [{"description": "LEGO 4440 Forest Police Station", "quantity": 1, "quantityUnit": "pcs", "unitPrice": {"currency": "EUR", "value": "10.00"}, "discountAmount": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "vatRate": "21.00", "vatAmount": {"currency": "EUR", "value": "10.00"}, "sku": "9780241661628", "categories": ["meal", "eco"], "imageUrl": "https://...", "productUrl": "https://..."}], "billingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "Apt. 1", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "shippingAddress": {"title": "Mr.", "givenName": "Piet", "familyName": "Mondriaan", "organizationName": "Mollie B.V.", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "Apt. 1", "postalCode": "1234AB", "email": "piet@example.org", "phone": "31208202070", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL"}, "profileId": "pfl_QkEhN94Ba", "reusable": false, "createdAt": "2024-03-20T09:13:37.0Z", "paidAt": "2025-12-24T11:00:16+00:00", "expiresAt": "2025-12-24T11:00:16+00:00", "allowedMethods": ["ideal"], "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "paymentLink": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}}, "_links": {"self": {"href": "https://api.mollie.com/v2/events/event_GvJ8WHrp5isUdRub9CJyH", "type": "application/hal+json"}, "documentation": {"href": "https://docs.mollie.com/guides/webhooks", "type": "text/html"}, "entity": {"href": "/v2/payment-links/pl_qng5gbbv8NAZ5gpM5ZYgx", "type": "application/hal+json"}}}
+    "":
+      parameters:
+        path:
+          id: "event_jd9v34P5YqN9pT8n3HJyH"
       responses:
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "No entity exists with token '7UhSN1zuXS'", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
