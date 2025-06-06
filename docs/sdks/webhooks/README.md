@@ -18,8 +18,6 @@ A webhook must have a name, an url and a list of event types. You can also creat
 
 > 🔑 Access with
 >
-> [API key](/reference/authentication)
->
 > [Access token with **webhooks.write**](/reference/authentication)
 
 ### Example Usage
@@ -83,8 +81,6 @@ public class Application {
 Returns a paginated list of your webhooks. If no webhook endpoints are available, the resulting array will be empty. This request should never throw an error.
 
 > 🔑 Access with
->
-> [API key](/reference/authentication)
 >
 > [Access token with **webhooks.read**](/reference/authentication)
 
@@ -150,8 +146,6 @@ public class Application {
 Updates the webhook. You may edit the name, url and the list of subscribed event types.
 
 > 🔑 Access with
->
-> [API key](/reference/authentication)
 >
 > [Access token with **webhooks.write**](/reference/authentication)
 
@@ -219,8 +213,6 @@ Retrieve a single webhook object by its ID.
 
 > 🔑 Access with
 >
-> [API key](/reference/authentication)
->
 > [Access token with **webhooks.read**](/reference/authentication)
 
 ### Example Usage
@@ -282,8 +274,6 @@ Delete a single webhook object by its webhook ID.
 
 > 🔑 Access with
 >
-> [API key](/reference/authentication)
->
 > [Access token with **webhooks.write**](/reference/authentication)
 
 ### Example Usage
@@ -344,8 +334,6 @@ public class Application {
 Sends a test event to the webhook to verify the endpoint is working as expected.
 
 > 🔑 Access with
->
-> [API key](/reference/authentication)
 >
 > [Access token with **webhooks.write**](/reference/authentication)
 

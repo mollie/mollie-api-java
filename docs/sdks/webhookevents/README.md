@@ -13,8 +13,6 @@ Retrieve a single webhook event object by its event ID.
 
 > 🔑 Access with
 >
-> [API key](/reference/authentication)
->
 > [Access token with **events.read**](/reference/authentication)
 
 ### Example Usage

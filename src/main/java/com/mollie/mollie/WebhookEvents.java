@@ -49,8 +49,6 @@ public class WebhookEvents implements
      * 
      * <p>&gt; 🔑 Access with
      * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
      * &gt; [Access token with **events.read**](/reference/authentication)
      * 
      * @return The call builder
@@ -65,8 +63,6 @@ public class WebhookEvents implements
      * <p>Retrieve a single webhook event object by its event ID.
      * 
      * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
      * &gt;
      * &gt; [Access token with **events.read**](/reference/authentication)
      * 
@@ -85,8 +81,6 @@ public class WebhookEvents implements
      * <p>Retrieve a single webhook event object by its event ID.
      * 
      * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
      * &gt;
      * &gt; [Access token with **events.read**](/reference/authentication)
      * 

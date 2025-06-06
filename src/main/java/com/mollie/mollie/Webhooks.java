@@ -85,8 +85,6 @@ public class Webhooks implements
      * 
      * <p>&gt; 🔑 Access with
      * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
      * &gt; [Access token with **webhooks.write**](/reference/authentication)
      * 
      * @return The call builder
@@ -101,8 +99,6 @@ public class Webhooks implements
      * <p>A webhook must have a name, an url and a list of event types. You can also create webhooks in the webhooks settings section of the Dashboard.
      * 
      * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
      * &gt;
      * &gt; [Access token with **webhooks.write**](/reference/authentication)
      * 
@@ -119,8 +115,6 @@ public class Webhooks implements
      * <p>A webhook must have a name, an url and a list of event types. You can also create webhooks in the webhooks settings section of the Dashboard.
      * 
      * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
      * &gt;
      * &gt; [Access token with **webhooks.write**](/reference/authentication)
      * 
@@ -298,8 +292,6 @@ public class Webhooks implements
      * 
      * <p>&gt; 🔑 Access with
      * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
      * &gt; [Access token with **webhooks.read**](/reference/authentication)
      * 
      * @return The call builder
@@ -314,8 +306,6 @@ public class Webhooks implements
      * <p>Returns a paginated list of your webhooks. If no webhook endpoints are available, the resulting array will be empty. This request should never throw an error.
      * 
      * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
      * &gt;
      * &gt; [Access token with **webhooks.read**](/reference/authentication)
      * 
@@ -334,8 +324,6 @@ public class Webhooks implements
      * <p>Returns a paginated list of your webhooks. If no webhook endpoints are available, the resulting array will be empty. This request should never throw an error.
      * 
      * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
      * &gt;
      * &gt; [Access token with **webhooks.read**](/reference/authentication)
      * 
@@ -508,8 +496,6 @@ public class Webhooks implements
      * 
      * <p>&gt; 🔑 Access with
      * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
      * &gt; [Access token with **webhooks.write**](/reference/authentication)
      * 
      * @return The call builder
@@ -524,8 +510,6 @@ public class Webhooks implements
      * <p>Updates the webhook. You may edit the name, url and the list of subscribed event types.
      * 
      * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
      * &gt;
      * &gt; [Access token with **webhooks.write**](/reference/authentication)
      * 
@@ -544,8 +528,6 @@ public class Webhooks implements
      * <p>Updates the webhook. You may edit the name, url and the list of subscribed event types.
      * 
      * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
      * &gt;
      * &gt; [Access token with **webhooks.write**](/reference/authentication)
      * 
@@ -750,8 +732,6 @@ public class Webhooks implements
      * 
      * <p>&gt; 🔑 Access with
      * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
      * &gt; [Access token with **webhooks.read**](/reference/authentication)
      * 
      * @return The call builder
@@ -766,8 +746,6 @@ public class Webhooks implements
      * <p>Retrieve a single webhook object by its ID.
      * 
      * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
      * &gt;
      * &gt; [Access token with **webhooks.read**](/reference/authentication)
      * 
@@ -786,8 +764,6 @@ public class Webhooks implements
      * <p>Retrieve a single webhook object by its ID.
      * 
      * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
      * &gt;
      * &gt; [Access token with **webhooks.read**](/reference/authentication)
      * 
@@ -989,8 +965,6 @@ public class Webhooks implements
      * 
      * <p>&gt; 🔑 Access with
      * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
      * &gt; [Access token with **webhooks.write**](/reference/authentication)
      * 
      * @return The call builder
@@ -1005,8 +979,6 @@ public class Webhooks implements
      * <p>Delete a single webhook object by its webhook ID.
      * 
      * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
      * &gt;
      * &gt; [Access token with **webhooks.write**](/reference/authentication)
      * 
@@ -1025,8 +997,6 @@ public class Webhooks implements
      * <p>Delete a single webhook object by its webhook ID.
      * 
      * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
      * &gt;
      * &gt; [Access token with **webhooks.write**](/reference/authentication)
      * 
@@ -1228,8 +1198,6 @@ public class Webhooks implements
      * 
      * <p>&gt; 🔑 Access with
      * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
      * &gt; [Access token with **webhooks.write**](/reference/authentication)
      * 
      * @return The call builder
@@ -1244,8 +1212,6 @@ public class Webhooks implements
      * <p>Sends a test event to the webhook to verify the endpoint is working as expected.
      * 
      * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
      * &gt;
      * &gt; [Access token with **webhooks.write**](/reference/authentication)
      * 
@@ -1264,8 +1230,6 @@ public class Webhooks implements
      * <p>Sends a test event to the webhook to verify the endpoint is working as expected.
      * 
      * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
      * &gt;
      * &gt; [Access token with **webhooks.write**](/reference/authentication)
      * 
