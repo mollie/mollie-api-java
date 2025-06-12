@@ -77,7 +77,6 @@ public class PaymentLinks implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Create payment link
      * 
@@ -304,7 +303,6 @@ public class PaymentLinks implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -534,7 +532,6 @@ public class PaymentLinks implements
     }
 
 
-
     /**
      * Get payment link
      * 
@@ -755,7 +752,6 @@ public class PaymentLinks implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -997,7 +993,6 @@ public class PaymentLinks implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1251,7 +1246,6 @@ public class PaymentLinks implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

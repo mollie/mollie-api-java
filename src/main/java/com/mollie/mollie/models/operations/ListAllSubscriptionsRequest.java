@@ -40,6 +40,14 @@ public class ListAllSubscriptionsRequest {
     private JsonNullable<String> sort;
 
     /**
+     * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+     * 
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=profileId")
+    private Optional<String> profileId;
+
+    /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -52,19 +60,22 @@ public class ListAllSubscriptionsRequest {
             Optional<String> from,
             JsonNullable<Long> limit,
             JsonNullable<String> sort,
+            Optional<String> profileId,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(from, "from");
         Utils.checkNotNull(limit, "limit");
         Utils.checkNotNull(sort, "sort");
+        Utils.checkNotNull(profileId, "profileId");
         Utils.checkNotNull(testmode, "testmode");
         this.from = from;
         this.limit = limit;
         this.sort = sort;
+        this.profileId = profileId;
         this.testmode = testmode;
     }
     
     public ListAllSubscriptionsRequest() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -91,6 +102,16 @@ public class ListAllSubscriptionsRequest {
     @JsonIgnore
     public JsonNullable<String> sort() {
         return sort;
+    }
+
+    /**
+     * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+     * 
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     */
+    @JsonIgnore
+    public Optional<String> profileId() {
+        return profileId;
     }
 
     /**
@@ -166,6 +187,28 @@ public class ListAllSubscriptionsRequest {
     }
 
     /**
+     * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+     * 
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     */
+    public ListAllSubscriptionsRequest withProfileId(String profileId) {
+        Utils.checkNotNull(profileId, "profileId");
+        this.profileId = Optional.ofNullable(profileId);
+        return this;
+    }
+
+    /**
+     * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+     * 
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     */
+    public ListAllSubscriptionsRequest withProfileId(Optional<String> profileId) {
+        Utils.checkNotNull(profileId, "profileId");
+        this.profileId = profileId;
+        return this;
+    }
+
+    /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -201,6 +244,7 @@ public class ListAllSubscriptionsRequest {
             Objects.deepEquals(this.from, other.from) &&
             Objects.deepEquals(this.limit, other.limit) &&
             Objects.deepEquals(this.sort, other.sort) &&
+            Objects.deepEquals(this.profileId, other.profileId) &&
             Objects.deepEquals(this.testmode, other.testmode);
     }
     
@@ -210,6 +254,7 @@ public class ListAllSubscriptionsRequest {
             from,
             limit,
             sort,
+            profileId,
             testmode);
     }
     
@@ -219,6 +264,7 @@ public class ListAllSubscriptionsRequest {
                 "from", from,
                 "limit", limit,
                 "sort", sort,
+                "profileId", profileId,
                 "testmode", testmode);
     }
     
@@ -229,6 +275,8 @@ public class ListAllSubscriptionsRequest {
         private JsonNullable<Long> limit;
  
         private JsonNullable<String> sort = JsonNullable.undefined();
+ 
+        private Optional<String> profileId = Optional.empty();
  
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
         
@@ -295,6 +343,28 @@ public class ListAllSubscriptionsRequest {
         }
 
         /**
+         * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+         * 
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+         */
+        public Builder profileId(String profileId) {
+            Utils.checkNotNull(profileId, "profileId");
+            this.profileId = Optional.ofNullable(profileId);
+            return this;
+        }
+
+        /**
+         * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+         * 
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+         */
+        public Builder profileId(Optional<String> profileId) {
+            Utils.checkNotNull(profileId, "profileId");
+            this.profileId = profileId;
+            return this;
+        }
+
+        /**
          * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -324,6 +394,7 @@ public class ListAllSubscriptionsRequest {
                 from,
                 limit,
                 sort,
+                profileId,
                 testmode);
         }
 

@@ -47,7 +47,6 @@ public class Invoices implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List invoices
      * 
@@ -271,7 +270,6 @@ public class Invoices implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

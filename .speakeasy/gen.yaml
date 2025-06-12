@@ -17,15 +17,17 @@ generation:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: true
 java:
-  version: 0.3.5
+  version: 0.4.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: mollie
+  baseErrorName: ClientError
   clientServerStatusCodesAsErrors: true
   companyEmail: bit@mollie.com
   companyName: Mollie
   companyURL: https://www.mollie.com/
   defaultErrorName: APIException
+  enableCustomCodeRegions: false
   flattenGlobalSecurity: true
   githubURL: https://github.com/mollie/mollie-api-java
   groupID: com.mollie

@@ -50,7 +50,6 @@ public class DelayedRouting implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Create a delayed route
      * 
@@ -268,7 +267,6 @@ public class DelayedRouting implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

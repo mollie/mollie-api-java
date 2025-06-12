@@ -78,7 +78,6 @@ public class Settlements implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List settlements
      * 
@@ -302,7 +301,6 @@ public class Settlements implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -535,7 +533,6 @@ public class Settlements implements
     }
 
 
-
     /**
      * Get open settlement
      * 
@@ -726,7 +723,6 @@ public class Settlements implements
     }
 
 
-
     /**
      * Get next settlement
      * 
@@ -915,7 +911,6 @@ public class Settlements implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1133,7 +1128,6 @@ public class Settlements implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1363,7 +1357,6 @@ public class Settlements implements
     }
 
 
-
     /**
      * Get settlement refunds
      * 
@@ -1589,7 +1582,6 @@ public class Settlements implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

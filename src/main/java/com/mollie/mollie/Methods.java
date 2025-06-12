@@ -10,8 +10,6 @@ import com.mollie.mollie.models.operations.GetMethodRequest;
 import com.mollie.mollie.models.operations.GetMethodRequestBuilder;
 import com.mollie.mollie.models.operations.GetMethodResponse;
 import com.mollie.mollie.models.operations.GetMethodResponseBody;
-import com.mollie.mollie.models.operations.ListAllMethodsQueryParamAmount;
-import com.mollie.mollie.models.operations.ListAllMethodsQueryParamInclude;
 import com.mollie.mollie.models.operations.ListAllMethodsRequest;
 import com.mollie.mollie.models.operations.ListAllMethodsRequestBuilder;
 import com.mollie.mollie.models.operations.ListAllMethodsResponse;
@@ -42,7 +40,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Methods implements
             MethodCallListMethods,
@@ -54,7 +51,6 @@ public class Methods implements
     Methods(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
 
     /**
      * List payment methods
@@ -289,7 +285,6 @@ public class Methods implements
     }
 
 
-
     /**
      * List all payment methods
      * 
@@ -322,11 +317,13 @@ public class Methods implements
      * &gt;
      * &gt; [Access token with **payments.read**](/reference/authentication)
      * 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListAllMethodsResponse allDirect() throws Exception {
-        return all(Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+    public ListAllMethodsResponse all(
+            ListAllMethodsRequest request) throws Exception {
+        return all(request, Optional.empty());
     }
     
     /**
@@ -342,37 +339,18 @@ public class Methods implements
      * &gt;
      * &gt; [Access token with **payments.read**](/reference/authentication)
      * 
-     * @param locale Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
-     * @param amount In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     * @param include This endpoint allows you to include additional information via the `include` query string parameter.
-     * @param sequenceType Set this parameter to `first` to only return the methods that can be used for the first payment of a recurring sequence.
-     *         
-     *         Set it to `recurring` to only return methods that can be used for recurring payments or subscriptions.
-     *         
-     *         Possible values: `oneoff` `first` `recurring` (default: `oneoff`)
+     * @param request The request object containing all of the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListAllMethodsResponse all(
-            Optional<String> locale,
-            Optional<? extends ListAllMethodsQueryParamAmount> amount,
-            JsonNullable<? extends ListAllMethodsQueryParamInclude> include,
-            Optional<String> sequenceType,
+            ListAllMethodsRequest request,
             Optional<Options> options) throws Exception {
 
         if (options.isPresent()) {
           options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
         }
-        ListAllMethodsRequest request =
-            ListAllMethodsRequest
-                .builder()
-                .locale(locale)
-                .amount(amount)
-                .include(include)
-                .sequenceType(sequenceType)
-                .build();
-        
         String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -520,7 +498,6 @@ public class Methods implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

@@ -49,7 +49,6 @@ public class Terminals implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List terminals
      * 
@@ -280,7 +279,6 @@ public class Terminals implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

@@ -51,7 +51,6 @@ public class Organizations implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Get organization
      * 
@@ -280,7 +279,6 @@ public class Organizations implements
     }
 
 
-
     /**
      * Get current organization
      * 
@@ -463,7 +461,6 @@ public class Organizations implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

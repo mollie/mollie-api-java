@@ -47,7 +47,6 @@ public class Permissions implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List permissions
      * 
@@ -246,7 +245,6 @@ public class Permissions implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

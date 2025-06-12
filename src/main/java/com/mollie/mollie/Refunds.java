@@ -83,7 +83,6 @@ public class Refunds implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Create payment refund
      * 
@@ -341,7 +340,6 @@ public class Refunds implements
     }
 
 
-
     /**
      * List payment refunds
      * 
@@ -575,7 +573,6 @@ public class Refunds implements
     }
 
 
-
     /**
      * Get payment refund
      * 
@@ -804,7 +801,6 @@ public class Refunds implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1038,7 +1034,6 @@ public class Refunds implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1294,7 +1289,6 @@ public class Refunds implements
     }
 
 
-
     /**
      * List order refunds
      * 
@@ -1510,7 +1504,6 @@ public class Refunds implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

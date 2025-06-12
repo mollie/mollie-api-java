@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -46,24 +47,46 @@ public class ListAllMethodsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sequenceType")
     private Optional<String> sequenceType;
 
+    /**
+     * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+     * 
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=profileId")
+    private Optional<String> profileId;
+
+    /**
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * 
+     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=testmode")
+    private JsonNullable<Boolean> testmode;
+
     @JsonCreator
     public ListAllMethodsRequest(
             Optional<String> locale,
             Optional<? extends ListAllMethodsQueryParamAmount> amount,
             JsonNullable<? extends ListAllMethodsQueryParamInclude> include,
-            Optional<String> sequenceType) {
+            Optional<String> sequenceType,
+            Optional<String> profileId,
+            JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(locale, "locale");
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(include, "include");
         Utils.checkNotNull(sequenceType, "sequenceType");
+        Utils.checkNotNull(profileId, "profileId");
+        Utils.checkNotNull(testmode, "testmode");
         this.locale = locale;
         this.amount = amount;
         this.include = include;
         this.sequenceType = sequenceType;
+        this.profileId = profileId;
+        this.testmode = testmode;
     }
     
     public ListAllMethodsRequest() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -104,6 +127,26 @@ public class ListAllMethodsRequest {
     @JsonIgnore
     public Optional<String> sequenceType() {
         return sequenceType;
+    }
+
+    /**
+     * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+     * 
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     */
+    @JsonIgnore
+    public Optional<String> profileId() {
+        return profileId;
+    }
+
+    /**
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * 
+     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     */
+    @JsonIgnore
+    public JsonNullable<Boolean> testmode() {
+        return testmode;
     }
 
     public final static Builder builder() {
@@ -194,6 +237,50 @@ public class ListAllMethodsRequest {
         return this;
     }
 
+    /**
+     * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+     * 
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     */
+    public ListAllMethodsRequest withProfileId(String profileId) {
+        Utils.checkNotNull(profileId, "profileId");
+        this.profileId = Optional.ofNullable(profileId);
+        return this;
+    }
+
+    /**
+     * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+     * 
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     */
+    public ListAllMethodsRequest withProfileId(Optional<String> profileId) {
+        Utils.checkNotNull(profileId, "profileId");
+        this.profileId = profileId;
+        return this;
+    }
+
+    /**
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * 
+     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     */
+    public ListAllMethodsRequest withTestmode(boolean testmode) {
+        Utils.checkNotNull(testmode, "testmode");
+        this.testmode = JsonNullable.of(testmode);
+        return this;
+    }
+
+    /**
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * 
+     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     */
+    public ListAllMethodsRequest withTestmode(JsonNullable<Boolean> testmode) {
+        Utils.checkNotNull(testmode, "testmode");
+        this.testmode = testmode;
+        return this;
+    }
+
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -208,7 +295,9 @@ public class ListAllMethodsRequest {
             Objects.deepEquals(this.locale, other.locale) &&
             Objects.deepEquals(this.amount, other.amount) &&
             Objects.deepEquals(this.include, other.include) &&
-            Objects.deepEquals(this.sequenceType, other.sequenceType);
+            Objects.deepEquals(this.sequenceType, other.sequenceType) &&
+            Objects.deepEquals(this.profileId, other.profileId) &&
+            Objects.deepEquals(this.testmode, other.testmode);
     }
     
     @Override
@@ -217,7 +306,9 @@ public class ListAllMethodsRequest {
             locale,
             amount,
             include,
-            sequenceType);
+            sequenceType,
+            profileId,
+            testmode);
     }
     
     @Override
@@ -226,7 +317,9 @@ public class ListAllMethodsRequest {
                 "locale", locale,
                 "amount", amount,
                 "include", include,
-                "sequenceType", sequenceType);
+                "sequenceType", sequenceType,
+                "profileId", profileId,
+                "testmode", testmode);
     }
     
     public final static class Builder {
@@ -238,6 +331,10 @@ public class ListAllMethodsRequest {
         private JsonNullable<? extends ListAllMethodsQueryParamInclude> include = JsonNullable.undefined();
  
         private Optional<String> sequenceType = Optional.empty();
+ 
+        private Optional<String> profileId = Optional.empty();
+ 
+        private JsonNullable<Boolean> testmode = JsonNullable.undefined();
         
         private Builder() {
           // force use of static builder() method
@@ -326,13 +423,59 @@ public class ListAllMethodsRequest {
             this.sequenceType = sequenceType;
             return this;
         }
+
+        /**
+         * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+         * 
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+         */
+        public Builder profileId(String profileId) {
+            Utils.checkNotNull(profileId, "profileId");
+            this.profileId = Optional.ofNullable(profileId);
+            return this;
+        }
+
+        /**
+         * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+         * 
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+         */
+        public Builder profileId(Optional<String> profileId) {
+            Utils.checkNotNull(profileId, "profileId");
+            this.profileId = profileId;
+            return this;
+        }
+
+        /**
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+         * 
+         * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+         */
+        public Builder testmode(boolean testmode) {
+            Utils.checkNotNull(testmode, "testmode");
+            this.testmode = JsonNullable.of(testmode);
+            return this;
+        }
+
+        /**
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+         * 
+         * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+         */
+        public Builder testmode(JsonNullable<Boolean> testmode) {
+            Utils.checkNotNull(testmode, "testmode");
+            this.testmode = testmode;
+            return this;
+        }
         
         public ListAllMethodsRequest build() {
             return new ListAllMethodsRequest(
                 locale,
                 amount,
                 include,
-                sequenceType);
+                sequenceType,
+                profileId,
+                testmode);
         }
     }
 }

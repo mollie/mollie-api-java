@@ -60,7 +60,6 @@ public class Captures implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Create capture
      * 
@@ -320,7 +319,6 @@ public class Captures implements
     }
 
 
-
     /**
      * List captures
      * 
@@ -552,7 +550,6 @@ public class Captures implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

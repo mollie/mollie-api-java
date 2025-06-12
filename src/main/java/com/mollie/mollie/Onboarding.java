@@ -47,7 +47,6 @@ public class Onboarding implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Get onboarding status
      * 
@@ -224,7 +223,6 @@ public class Onboarding implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

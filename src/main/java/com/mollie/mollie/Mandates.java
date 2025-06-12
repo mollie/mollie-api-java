@@ -64,7 +64,6 @@ public class Mandates implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Create mandate
      * 
@@ -294,7 +293,6 @@ public class Mandates implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -530,7 +528,6 @@ public class Mandates implements
     }
 
 
-
     /**
      * Get mandate
      * 
@@ -756,7 +753,6 @@ public class Mandates implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

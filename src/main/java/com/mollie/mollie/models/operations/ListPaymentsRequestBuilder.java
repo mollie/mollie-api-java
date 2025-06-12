@@ -3,79 +3,25 @@
  */
 package com.mollie.mollie.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
 import java.lang.Exception;
-import java.lang.Long;
-import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListPaymentsRequestBuilder {
 
-    private Optional<String> from = Optional.empty();
-    private JsonNullable<Long> limit = Utils.readDefaultOrConstValue(
-                            "limit",
-                            "50",
-                            new TypeReference<JsonNullable<Long>>() {});
-    private JsonNullable<String> sort = JsonNullable.undefined();
-    private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+    private ListPaymentsRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallListPayments sdk;
 
     public ListPaymentsRequestBuilder(SDKMethodInterfaces.MethodCallListPayments sdk) {
         this.sdk = sdk;
     }
-                
-    public ListPaymentsRequestBuilder from(String from) {
-        Utils.checkNotNull(from, "from");
-        this.from = Optional.of(from);
-        return this;
-    }
 
-    public ListPaymentsRequestBuilder from(Optional<String> from) {
-        Utils.checkNotNull(from, "from");
-        this.from = from;
-        return this;
-    }
-
-    public ListPaymentsRequestBuilder limit(long limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = JsonNullable.of(limit);
-        return this;
-    }
-
-    public ListPaymentsRequestBuilder limit(JsonNullable<Long> limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = limit;
-        return this;
-    }
-
-    public ListPaymentsRequestBuilder sort(String sort) {
-        Utils.checkNotNull(sort, "sort");
-        this.sort = JsonNullable.of(sort);
-        return this;
-    }
-
-    public ListPaymentsRequestBuilder sort(JsonNullable<String> sort) {
-        Utils.checkNotNull(sort, "sort");
-        this.sort = sort;
-        return this;
-    }
-
-    public ListPaymentsRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
-        return this;
-    }
-
-    public ListPaymentsRequestBuilder testmode(JsonNullable<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
+    public ListPaymentsRequestBuilder request(ListPaymentsRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -92,22 +38,11 @@ public class ListPaymentsRequestBuilder {
     }
 
     public ListPaymentsResponse call() throws Exception {
-        if (limit == null) {
-            limit = _SINGLETON_VALUE_Limit.value();
-        }        Optional<Options> options = Optional.of(Options.builder()
+        Optional<Options> options = Optional.of(Options.builder()
                                                     .retryConfig(retryConfig)
                                                     .build());
         return sdk.list(
-            from,
-            limit,
-            sort,
-            testmode,
+            request,
             options);
     }
-
-    private static final LazySingletonValue<JsonNullable<Long>> _SINGLETON_VALUE_Limit =
-            new LazySingletonValue<>(
-                    "limit",
-                    "50",
-                    new TypeReference<JsonNullable<Long>>() {});
 }

@@ -47,7 +47,9 @@ public class ListAllRefundsRequest {
     private Optional<? extends QueryParamEmbed> embed;
 
     /**
-     * The identifier referring to the [profile](get-profile) you wish to retrieve refunds for. Most API credentials are linked to a single profile. In these cases the `profileId` is already implied. To retrieve all refunds across the organization, use an organization-level API credential and omit the `profileId` parameter.
+     * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+     * 
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=profileId")
     private Optional<String> profileId;
@@ -122,7 +124,9 @@ public class ListAllRefundsRequest {
     }
 
     /**
-     * The identifier referring to the [profile](get-profile) you wish to retrieve refunds for. Most API credentials are linked to a single profile. In these cases the `profileId` is already implied. To retrieve all refunds across the organization, use an organization-level API credential and omit the `profileId` parameter.
+     * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+     * 
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     @JsonIgnore
     public Optional<String> profileId() {
@@ -220,7 +224,9 @@ public class ListAllRefundsRequest {
     }
 
     /**
-     * The identifier referring to the [profile](get-profile) you wish to retrieve refunds for. Most API credentials are linked to a single profile. In these cases the `profileId` is already implied. To retrieve all refunds across the organization, use an organization-level API credential and omit the `profileId` parameter.
+     * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+     * 
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     public ListAllRefundsRequest withProfileId(String profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -229,7 +235,9 @@ public class ListAllRefundsRequest {
     }
 
     /**
-     * The identifier referring to the [profile](get-profile) you wish to retrieve refunds for. Most API credentials are linked to a single profile. In these cases the `profileId` is already implied. To retrieve all refunds across the organization, use an organization-level API credential and omit the `profileId` parameter.
+     * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+     * 
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     public ListAllRefundsRequest withProfileId(Optional<String> profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -395,7 +403,9 @@ public class ListAllRefundsRequest {
         }
 
         /**
-         * The identifier referring to the [profile](get-profile) you wish to retrieve refunds for. Most API credentials are linked to a single profile. In these cases the `profileId` is already implied. To retrieve all refunds across the organization, use an organization-level API credential and omit the `profileId` parameter.
+         * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+         * 
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
          */
         public Builder profileId(String profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -404,7 +414,9 @@ public class ListAllRefundsRequest {
         }
 
         /**
-         * The identifier referring to the [profile](get-profile) you wish to retrieve refunds for. Most API credentials are linked to a single profile. In these cases the `profileId` is already implied. To retrieve all refunds across the organization, use an organization-level API credential and omit the `profileId` parameter.
+         * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+         * 
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
          */
         public Builder profileId(Optional<String> profileId) {
             Utils.checkNotNull(profileId, "profileId");

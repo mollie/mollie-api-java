@@ -76,7 +76,6 @@ public class Profiles implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Create profile
      * 
@@ -294,7 +293,6 @@ public class Profiles implements
     }
 
 
-
     /**
      * List profiles
      * 
@@ -509,7 +507,6 @@ public class Profiles implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -742,7 +739,6 @@ public class Profiles implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1007,7 +1003,6 @@ public class Profiles implements
     }
 
 
-
     /**
      * Delete profile
      * 
@@ -1228,7 +1223,6 @@ public class Profiles implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

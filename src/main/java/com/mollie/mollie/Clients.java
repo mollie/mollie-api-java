@@ -49,7 +49,6 @@ public class Clients implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List clients
      * 
@@ -287,7 +286,6 @@ public class Clients implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

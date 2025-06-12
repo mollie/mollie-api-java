@@ -40,7 +40,6 @@ public class Capabilities implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List capabilities
      * 

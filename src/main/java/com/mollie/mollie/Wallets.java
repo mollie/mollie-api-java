@@ -45,7 +45,6 @@ public class Wallets implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Request Apple Pay payment session
      * 

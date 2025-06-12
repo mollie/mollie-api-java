@@ -67,7 +67,6 @@ public class Balances implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List balances
      * 
@@ -308,7 +307,6 @@ public class Balances implements
     }
 
 
-
     /**
      * Get balance
      * 
@@ -546,7 +544,6 @@ public class Balances implements
     }
 
 
-
     /**
      * Get primary balance
      * 
@@ -729,7 +726,6 @@ public class Balances implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -963,7 +959,6 @@ public class Balances implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

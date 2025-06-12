@@ -22,10 +22,7 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallListPayments {
         ListPaymentsResponse list(
-            Optional<String> from,
-            JsonNullable<Long> limit,
-            JsonNullable<String> sort,
-            JsonNullable<Boolean> testmode,
+            ListPaymentsRequest request,
             Optional<Options> options) throws Exception;
     }
 
@@ -67,10 +64,7 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallListAllMethods {
         ListAllMethodsResponse all(
-            Optional<String> locale,
-            Optional<? extends ListAllMethodsQueryParamAmount> amount,
-            JsonNullable<? extends ListAllMethodsQueryParamInclude> include,
-            Optional<String> sequenceType,
+            ListAllMethodsRequest request,
             Optional<Options> options) throws Exception;
     }
 
@@ -366,10 +360,7 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallListAllSubscriptions {
         ListAllSubscriptionsResponse all(
-            Optional<String> from,
-            JsonNullable<Long> limit,
-            JsonNullable<String> sort,
-            JsonNullable<Boolean> testmode,
+            ListAllSubscriptionsRequest request,
             Optional<Options> options) throws Exception;
     }
 

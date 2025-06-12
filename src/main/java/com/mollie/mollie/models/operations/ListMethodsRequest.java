@@ -84,7 +84,7 @@ public class ListMethodsRequest {
     private Optional<String> orderLineCategories;
 
     /**
-     * The identifier referring to the [profile](get-profile) you wish to retrieve the payment methods for.
+     * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
      * 
      * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
@@ -224,7 +224,7 @@ public class ListMethodsRequest {
     }
 
     /**
-     * The identifier referring to the [profile](get-profile) you wish to retrieve the payment methods for.
+     * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
      * 
      * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
@@ -429,7 +429,7 @@ public class ListMethodsRequest {
     }
 
     /**
-     * The identifier referring to the [profile](get-profile) you wish to retrieve the payment methods for.
+     * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
      * 
      * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
@@ -440,7 +440,7 @@ public class ListMethodsRequest {
     }
 
     /**
-     * The identifier referring to the [profile](get-profile) you wish to retrieve the payment methods for.
+     * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
      * 
      * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
@@ -743,7 +743,7 @@ public class ListMethodsRequest {
         }
 
         /**
-         * The identifier referring to the [profile](get-profile) you wish to retrieve the payment methods for.
+         * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
          * 
          * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
          */
@@ -754,7 +754,7 @@ public class ListMethodsRequest {
         }
 
         /**
-         * The identifier referring to the [profile](get-profile) you wish to retrieve the payment methods for.
+         * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
          * 
          * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
          */

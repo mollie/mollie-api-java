@@ -45,7 +45,6 @@ public class ClientLinks implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Create client link
      * 

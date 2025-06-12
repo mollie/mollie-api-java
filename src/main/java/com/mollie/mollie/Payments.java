@@ -57,7 +57,6 @@ import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
 import java.lang.Boolean;
 import java.lang.Exception;
-import java.lang.Long;
 import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
@@ -82,7 +81,6 @@ public class Payments implements
     Payments(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
 
     /**
      * Create payment
@@ -344,7 +342,6 @@ public class Payments implements
     }
 
 
-
     /**
      * List payments
      * 
@@ -377,11 +374,13 @@ public class Payments implements
      * &gt;
      * &gt; [Access token with **payments.read**](/reference/authentication)
      * 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListPaymentsResponse listDirect() throws Exception {
-        return list(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+    public ListPaymentsResponse list(
+            ListPaymentsRequest request) throws Exception {
+        return list(request, Optional.empty());
     }
     
     /**
@@ -397,37 +396,18 @@ public class Payments implements
      * &gt;
      * &gt; [Access token with **payments.read**](/reference/authentication)
      * 
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
-     * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param sort Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
-     *         
-     *         Possible values: `asc` `desc` (default: `desc`)
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param request The request object containing all of the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListPaymentsResponse list(
-            Optional<String> from,
-            JsonNullable<Long> limit,
-            JsonNullable<String> sort,
-            JsonNullable<Boolean> testmode,
+            ListPaymentsRequest request,
             Optional<Options> options) throws Exception {
 
         if (options.isPresent()) {
           options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
         }
-        ListPaymentsRequest request =
-            ListPaymentsRequest
-                .builder()
-                .from(from)
-                .limit(limit)
-                .sort(sort)
-                .testmode(testmode)
-                .build();
-        
         String _baseUrl = this.sdkConfiguration.serverUrl();
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -575,7 +555,6 @@ public class Payments implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -804,7 +783,6 @@ public class Payments implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1052,7 +1030,6 @@ public class Payments implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1306,7 +1283,6 @@ public class Payments implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

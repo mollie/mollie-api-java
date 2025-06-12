@@ -3,79 +3,25 @@
  */
 package com.mollie.mollie.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
 import java.lang.Exception;
-import java.lang.Long;
-import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListAllSubscriptionsRequestBuilder {
 
-    private Optional<String> from = Optional.empty();
-    private JsonNullable<Long> limit = Utils.readDefaultOrConstValue(
-                            "limit",
-                            "50",
-                            new TypeReference<JsonNullable<Long>>() {});
-    private JsonNullable<String> sort = JsonNullable.undefined();
-    private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+    private ListAllSubscriptionsRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallListAllSubscriptions sdk;
 
     public ListAllSubscriptionsRequestBuilder(SDKMethodInterfaces.MethodCallListAllSubscriptions sdk) {
         this.sdk = sdk;
     }
-                
-    public ListAllSubscriptionsRequestBuilder from(String from) {
-        Utils.checkNotNull(from, "from");
-        this.from = Optional.of(from);
-        return this;
-    }
 
-    public ListAllSubscriptionsRequestBuilder from(Optional<String> from) {
-        Utils.checkNotNull(from, "from");
-        this.from = from;
-        return this;
-    }
-
-    public ListAllSubscriptionsRequestBuilder limit(long limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = JsonNullable.of(limit);
-        return this;
-    }
-
-    public ListAllSubscriptionsRequestBuilder limit(JsonNullable<Long> limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = limit;
-        return this;
-    }
-
-    public ListAllSubscriptionsRequestBuilder sort(String sort) {
-        Utils.checkNotNull(sort, "sort");
-        this.sort = JsonNullable.of(sort);
-        return this;
-    }
-
-    public ListAllSubscriptionsRequestBuilder sort(JsonNullable<String> sort) {
-        Utils.checkNotNull(sort, "sort");
-        this.sort = sort;
-        return this;
-    }
-
-    public ListAllSubscriptionsRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
-        return this;
-    }
-
-    public ListAllSubscriptionsRequestBuilder testmode(JsonNullable<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
+    public ListAllSubscriptionsRequestBuilder request(ListAllSubscriptionsRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -92,22 +38,11 @@ public class ListAllSubscriptionsRequestBuilder {
     }
 
     public ListAllSubscriptionsResponse call() throws Exception {
-        if (limit == null) {
-            limit = _SINGLETON_VALUE_Limit.value();
-        }        Optional<Options> options = Optional.of(Options.builder()
+        Optional<Options> options = Optional.of(Options.builder()
                                                     .retryConfig(retryConfig)
                                                     .build());
         return sdk.all(
-            from,
-            limit,
-            sort,
-            testmode,
+            request,
             options);
     }
-
-    private static final LazySingletonValue<JsonNullable<Long>> _SINGLETON_VALUE_Limit =
-            new LazySingletonValue<>(
-                    "limit",
-                    "50",
-                    new TypeReference<JsonNullable<Long>>() {});
 }

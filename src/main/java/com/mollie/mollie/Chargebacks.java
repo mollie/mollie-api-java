@@ -56,7 +56,6 @@ public class Chargebacks implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List payment chargebacks
      * 
@@ -290,7 +289,6 @@ public class Chargebacks implements
     }
 
 
-
     /**
      * Get payment chargeback
      * 
@@ -519,7 +517,6 @@ public class Chargebacks implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

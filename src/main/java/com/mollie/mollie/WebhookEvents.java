@@ -41,7 +41,6 @@ public class WebhookEvents implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Get a Webhook Event
      * 
