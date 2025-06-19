@@ -118,10 +118,12 @@ public class CreatePaymentLinkRequestBody {
 
     /**
      * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
+     * 
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint'.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("allowedMethods")
-    private JsonNullable<? extends List<AllowedMethods>> allowedMethods;
+    private JsonNullable<? extends List<String>> allowedMethods;
 
     /**
      * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie merchants.
@@ -145,7 +147,7 @@ public class CreatePaymentLinkRequestBody {
             @JsonProperty("profileId") JsonNullable<String> profileId,
             @JsonProperty("reusable") JsonNullable<Boolean> reusable,
             @JsonProperty("expiresAt") JsonNullable<String> expiresAt,
-            @JsonProperty("allowedMethods") JsonNullable<? extends List<AllowedMethods>> allowedMethods,
+            @JsonProperty("allowedMethods") JsonNullable<? extends List<String>> allowedMethods,
             @JsonProperty("applicationFee") Optional<? extends CreatePaymentLinkApplicationFee> applicationFee) {
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(amount, "amount");
@@ -293,11 +295,13 @@ public class CreatePaymentLinkRequestBody {
 
     /**
      * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
+     * 
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint'.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<List<AllowedMethods>> allowedMethods() {
-        return (JsonNullable<List<AllowedMethods>>) allowedMethods;
+    public JsonNullable<List<String>> allowedMethods() {
+        return (JsonNullable<List<String>>) allowedMethods;
     }
 
     /**
@@ -542,8 +546,10 @@ public class CreatePaymentLinkRequestBody {
 
     /**
      * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
+     * 
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint'.
      */
-    public CreatePaymentLinkRequestBody withAllowedMethods(List<AllowedMethods> allowedMethods) {
+    public CreatePaymentLinkRequestBody withAllowedMethods(List<String> allowedMethods) {
         Utils.checkNotNull(allowedMethods, "allowedMethods");
         this.allowedMethods = JsonNullable.of(allowedMethods);
         return this;
@@ -551,8 +557,10 @@ public class CreatePaymentLinkRequestBody {
 
     /**
      * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
+     * 
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint'.
      */
-    public CreatePaymentLinkRequestBody withAllowedMethods(JsonNullable<? extends List<AllowedMethods>> allowedMethods) {
+    public CreatePaymentLinkRequestBody withAllowedMethods(JsonNullable<? extends List<String>> allowedMethods) {
         Utils.checkNotNull(allowedMethods, "allowedMethods");
         this.allowedMethods = allowedMethods;
         return this;
@@ -666,7 +674,7 @@ public class CreatePaymentLinkRequestBody {
  
         private JsonNullable<String> expiresAt = JsonNullable.undefined();
  
-        private JsonNullable<? extends List<AllowedMethods>> allowedMethods = JsonNullable.undefined();
+        private JsonNullable<? extends List<String>> allowedMethods = JsonNullable.undefined();
  
         private Optional<? extends CreatePaymentLinkApplicationFee> applicationFee = Optional.empty();
         
@@ -901,8 +909,10 @@ public class CreatePaymentLinkRequestBody {
 
         /**
          * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
+         * 
+         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint'.
          */
-        public Builder allowedMethods(List<AllowedMethods> allowedMethods) {
+        public Builder allowedMethods(List<String> allowedMethods) {
             Utils.checkNotNull(allowedMethods, "allowedMethods");
             this.allowedMethods = JsonNullable.of(allowedMethods);
             return this;
@@ -910,8 +920,10 @@ public class CreatePaymentLinkRequestBody {
 
         /**
          * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
+         * 
+         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint'.
          */
-        public Builder allowedMethods(JsonNullable<? extends List<AllowedMethods>> allowedMethods) {
+        public Builder allowedMethods(JsonNullable<? extends List<String>> allowedMethods) {
             Utils.checkNotNull(allowedMethods, "allowedMethods");
             this.allowedMethods = allowedMethods;
             return this;

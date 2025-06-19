@@ -117,7 +117,7 @@ public class Application {
                 .profileId("pfl_QkEhN94Ba")
                 .expiresAt("2025-12-24T11:00:16+00:00")
                 .allowedMethods(List.of(
-                    AllowedMethods.IDEAL))
+                    "ideal"))
                 .applicationFee(CreatePaymentLinkApplicationFee.builder()
                     .amount(CreatePaymentLinkPaymentLinksAmount.builder()
                         .currency("EUR")
@@ -325,7 +325,7 @@ public class Application {
                         .build())
                     .archived(false)
                     .allowedMethods(List.of(
-                        UpdatePaymentLinkAllowedMethods.IDEAL))
+                        "ideal"))
                     .lines(List.of(
                         UpdatePaymentLinkLines.builder()
                             .description("LEGO 4440 Forest Police Station")

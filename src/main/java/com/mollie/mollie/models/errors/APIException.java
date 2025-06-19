@@ -5,6 +5,7 @@ package com.mollie.mollie.models.errors;
 
 import java.net.http.HttpResponse;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import com.mollie.mollie.utils.Utils;
 
 /**
@@ -23,6 +24,7 @@ public class APIException extends Exception {
             int code,
             String message,
             byte[] body) {
+        super(message);
         Utils.checkNotNull(rawResponse, "rawResponse");
         Utils.checkNotNull(message, "message");
         Utils.checkNotNull(body, "body");
@@ -80,5 +82,9 @@ public class APIException extends Exception {
 
     public byte[] body() {
         return this.body;
+    }
+
+    public String bodyAsString() {
+    	return new String(body(), StandardCharsets.UTF_8);
     }
 }
