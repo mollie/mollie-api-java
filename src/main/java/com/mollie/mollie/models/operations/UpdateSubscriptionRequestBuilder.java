@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.UpdateSubscriptionOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -16,10 +20,10 @@ public class UpdateSubscriptionRequestBuilder {
     private String subscriptionId;
     private Optional<? extends UpdateSubscriptionRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallUpdateSubscription sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public UpdateSubscriptionRequestBuilder(SDKMethodInterfaces.MethodCallUpdateSubscription sdk) {
-        this.sdk = sdk;
+    public UpdateSubscriptionRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public UpdateSubscriptionRequestBuilder customerId(String customerId) {
@@ -58,14 +62,27 @@ public class UpdateSubscriptionRequestBuilder {
         return this;
     }
 
+
+    private UpdateSubscriptionRequest buildRequest() {
+
+        UpdateSubscriptionRequest request = new UpdateSubscriptionRequest(customerId,
+            subscriptionId,
+            requestBody);
+
+        return request;
+    }
+
     public UpdateSubscriptionResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.update(
-            customerId,
-            subscriptionId,
-            requestBody,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<UpdateSubscriptionRequest, UpdateSubscriptionResponse> operation
+              = new UpdateSubscriptionOperation(
+                 sdkConfiguration,
+                 options);
+        UpdateSubscriptionRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

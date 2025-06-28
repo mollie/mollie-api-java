@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.GetPermissionOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -17,10 +21,10 @@ public class GetPermissionRequestBuilder {
     private String permissionId;
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetPermission sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetPermissionRequestBuilder(SDKMethodInterfaces.MethodCallGetPermission sdk) {
-        this.sdk = sdk;
+    public GetPermissionRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetPermissionRequestBuilder permissionId(String permissionId) {
@@ -53,13 +57,26 @@ public class GetPermissionRequestBuilder {
         return this;
     }
 
+
+    private GetPermissionRequest buildRequest() {
+
+        GetPermissionRequest request = new GetPermissionRequest(permissionId,
+            testmode);
+
+        return request;
+    }
+
     public GetPermissionResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            permissionId,
-            testmode,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetPermissionRequest, GetPermissionResponse> operation
+              = new GetPermissionOperation(
+                 sdkConfiguration,
+                 options);
+        GetPermissionRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

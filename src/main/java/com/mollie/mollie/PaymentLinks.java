@@ -3,16 +3,11 @@
  */
 package com.mollie.mollie;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.models.errors.APIException;
-import com.mollie.mollie.models.errors.CreatePaymentLinkPaymentLinksResponseBody;
-import com.mollie.mollie.models.errors.DeletePaymentLinkPaymentLinksResponseBody;
-import com.mollie.mollie.models.errors.DeletePaymentLinkResponseBody;
-import com.mollie.mollie.models.errors.UpdatePaymentLinkPaymentLinksResponseBody;
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
 import com.mollie.mollie.models.operations.CreatePaymentLinkRequestBody;
 import com.mollie.mollie.models.operations.CreatePaymentLinkRequestBuilder;
 import com.mollie.mollie.models.operations.CreatePaymentLinkResponse;
-import com.mollie.mollie.models.operations.CreatePaymentLinkResponseBody;
 import com.mollie.mollie.models.operations.DeletePaymentLinkRequest;
 import com.mollie.mollie.models.operations.DeletePaymentLinkRequestBody;
 import com.mollie.mollie.models.operations.DeletePaymentLinkRequestBuilder;
@@ -20,57 +15,33 @@ import com.mollie.mollie.models.operations.DeletePaymentLinkResponse;
 import com.mollie.mollie.models.operations.GetPaymentLinkPaymentsRequest;
 import com.mollie.mollie.models.operations.GetPaymentLinkPaymentsRequestBuilder;
 import com.mollie.mollie.models.operations.GetPaymentLinkPaymentsResponse;
-import com.mollie.mollie.models.operations.GetPaymentLinkPaymentsResponseBody;
 import com.mollie.mollie.models.operations.GetPaymentLinkRequest;
 import com.mollie.mollie.models.operations.GetPaymentLinkRequestBuilder;
 import com.mollie.mollie.models.operations.GetPaymentLinkResponse;
-import com.mollie.mollie.models.operations.GetPaymentLinkResponseBody;
 import com.mollie.mollie.models.operations.ListPaymentLinksRequest;
 import com.mollie.mollie.models.operations.ListPaymentLinksRequestBuilder;
 import com.mollie.mollie.models.operations.ListPaymentLinksResponse;
-import com.mollie.mollie.models.operations.ListPaymentLinksResponseBody;
-import com.mollie.mollie.models.operations.SDKMethodInterfaces.*;
 import com.mollie.mollie.models.operations.UpdatePaymentLinkRequest;
 import com.mollie.mollie.models.operations.UpdatePaymentLinkRequestBody;
 import com.mollie.mollie.models.operations.UpdatePaymentLinkRequestBuilder;
 import com.mollie.mollie.models.operations.UpdatePaymentLinkResponse;
-import com.mollie.mollie.models.operations.UpdatePaymentLinkResponseBody;
-import com.mollie.mollie.utils.BackoffStrategy;
-import com.mollie.mollie.utils.HTTPClient;
-import com.mollie.mollie.utils.HTTPRequest;
-import com.mollie.mollie.utils.Hook.AfterErrorContextImpl;
-import com.mollie.mollie.utils.Hook.AfterSuccessContextImpl;
-import com.mollie.mollie.utils.Hook.BeforeRequestContextImpl;
+import com.mollie.mollie.operations.CreatePaymentLinkOperation;
+import com.mollie.mollie.operations.DeletePaymentLinkOperation;
+import com.mollie.mollie.operations.GetPaymentLinkOperation;
+import com.mollie.mollie.operations.GetPaymentLinkPaymentsOperation;
+import com.mollie.mollie.operations.ListPaymentLinksOperation;
+import com.mollie.mollie.operations.UpdatePaymentLinkOperation;
 import com.mollie.mollie.utils.Options;
-import com.mollie.mollie.utils.Retries.NonRetryableException;
-import com.mollie.mollie.utils.Retries;
-import com.mollie.mollie.utils.RetryConfig;
-import com.mollie.mollie.utils.SerializedBody;
-import com.mollie.mollie.utils.Utils.JsonShape;
-import com.mollie.mollie.utils.Utils;
-import java.io.InputStream;
 import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.Long;
-import java.lang.Object;
 import java.lang.String;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class PaymentLinks implements
-            MethodCallCreatePaymentLink,
-            MethodCallListPaymentLinks,
-            MethodCallGetPaymentLink,
-            MethodCallUpdatePaymentLink,
-            MethodCallDeletePaymentLink,
-            MethodCallGetPaymentLinkPayments {
 
+public class PaymentLinks {
     private final SDKConfiguration sdkConfiguration;
 
     PaymentLinks(SDKConfiguration sdkConfiguration) {
@@ -91,7 +62,7 @@ public class PaymentLinks implements
      * @return The call builder
      */
     public CreatePaymentLinkRequestBuilder create() {
-        return new CreatePaymentLinkRequestBuilder(this);
+        return new CreatePaymentLinkRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -111,7 +82,7 @@ public class PaymentLinks implements
     public CreatePaymentLinkResponse createDirect() throws Exception {
         return create(Optional.empty(), Optional.empty());
     }
-    
+
     /**
      * Create payment link
      * 
@@ -123,7 +94,7 @@ public class PaymentLinks implements
      * &gt;
      * &gt; [Access token with **payment-links.write**](/reference/authentication)
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -131,177 +102,11 @@ public class PaymentLinks implements
     public CreatePaymentLinkResponse create(
             Optional<? extends CreatePaymentLinkRequestBody> request,
             Optional<Options> options) throws Exception {
-
-        if (options.isPresent()) {
-          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
-        }
-        String _baseUrl = this.sdkConfiguration.serverUrl();
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/payment-links");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Optional<? extends CreatePaymentLinkRequestBody>>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "request",
-                "json",
-                false);
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/hal+json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HTTPRequest _finalReq = _req;
-        RetryConfig _retryConfig;
-        if (options.isPresent() && options.get().retryConfig().isPresent()) {
-            _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig().get();
-        } else {
-            _retryConfig = RetryConfig.builder()
-                .backoff(BackoffStrategy.builder()
-                            .initialInterval(500, TimeUnit.MILLISECONDS)
-                            .maxInterval(60000, TimeUnit.MILLISECONDS)
-                            .baseFactor((double)(1.5))
-                            .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
-                            .retryConnectError(true)
-                            .build())
-                .build();
-        }
-        List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5xx");
-        Retries _retries = Retries.builder()
-            .action(() -> {
-                HttpRequest _r = null;
-                try {
-                    _r = sdkConfiguration.hooks()
-                        .beforeRequest(
-                            new BeforeRequestContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "create-payment-link", 
-                                Optional.of(List.of()), 
-                                _hookSecuritySource),
-                            _finalReq.build());
-                } catch (Exception _e) {
-                    throw new NonRetryableException(_e);
-                }
-                try {
-                    return _client.send(_r);
-                } catch (Exception _e) {
-                    return sdkConfiguration.hooks()
-                        .afterError(
-                            new AfterErrorContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "create-payment-link",
-                                 Optional.of(List.of()),
-                                 _hookSecuritySource), 
-                            Optional.empty(),
-                            Optional.of(_e));
-                }
-            })
-            .retryConfig(_retryConfig)
-            .statusCodes(_statusCodes)
-            .build();
-        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
-                 .afterSuccess(
-                     new AfterSuccessContextImpl(
-                         this.sdkConfiguration,
-                         _baseUrl,
-                         "create-payment-link", 
-                         Optional.of(List.of()), 
-                         _hookSecuritySource),
-                     _retries.run());
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        CreatePaymentLinkResponse.Builder _resBuilder = 
-            CreatePaymentLinkResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        CreatePaymentLinkResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                CreatePaymentLinkResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<CreatePaymentLinkResponseBody>() {});
-                _res.withObject(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                com.mollie.mollie.models.errors.CreatePaymentLinkResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.mollie.mollie.models.errors.CreatePaymentLinkResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "422")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                CreatePaymentLinkPaymentLinksResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<CreatePaymentLinkPaymentLinksResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<Optional<? extends CreatePaymentLinkRequestBody>, CreatePaymentLinkResponse> operation
+              = new CreatePaymentLinkOperation(
+                 sdkConfiguration,
+                 options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -321,7 +126,7 @@ public class PaymentLinks implements
      * @return The call builder
      */
     public ListPaymentLinksRequestBuilder list() {
-        return new ListPaymentLinksRequestBuilder(this);
+        return new ListPaymentLinksRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -343,7 +148,7 @@ public class PaymentLinks implements
     public ListPaymentLinksResponse listDirect() throws Exception {
         return list(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
-    
+
     /**
      * List payment links
      * 
@@ -371,10 +176,6 @@ public class PaymentLinks implements
             JsonNullable<Long> limit,
             JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
-
-        if (options.isPresent()) {
-          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
-        }
         ListPaymentLinksRequest request =
             ListPaymentLinksRequest
                 .builder()
@@ -382,153 +183,11 @@ public class PaymentLinks implements
                 .limit(limit)
                 .testmode(testmode)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl();
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/payment-links");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/hal+json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                ListPaymentLinksRequest.class,
-                request, 
-                null));
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HTTPRequest _finalReq = _req;
-        RetryConfig _retryConfig;
-        if (options.isPresent() && options.get().retryConfig().isPresent()) {
-            _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig().get();
-        } else {
-            _retryConfig = RetryConfig.builder()
-                .backoff(BackoffStrategy.builder()
-                            .initialInterval(500, TimeUnit.MILLISECONDS)
-                            .maxInterval(60000, TimeUnit.MILLISECONDS)
-                            .baseFactor((double)(1.5))
-                            .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
-                            .retryConnectError(true)
-                            .build())
-                .build();
-        }
-        List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5xx");
-        Retries _retries = Retries.builder()
-            .action(() -> {
-                HttpRequest _r = null;
-                try {
-                    _r = sdkConfiguration.hooks()
-                        .beforeRequest(
-                            new BeforeRequestContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "list-payment-links", 
-                                Optional.of(List.of()), 
-                                _hookSecuritySource),
-                            _finalReq.build());
-                } catch (Exception _e) {
-                    throw new NonRetryableException(_e);
-                }
-                try {
-                    return _client.send(_r);
-                } catch (Exception _e) {
-                    return sdkConfiguration.hooks()
-                        .afterError(
-                            new AfterErrorContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "list-payment-links",
-                                 Optional.of(List.of()),
-                                 _hookSecuritySource), 
-                            Optional.empty(),
-                            Optional.of(_e));
-                }
-            })
-            .retryConfig(_retryConfig)
-            .statusCodes(_statusCodes)
-            .build();
-        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
-                 .afterSuccess(
-                     new AfterSuccessContextImpl(
-                         this.sdkConfiguration,
-                         _baseUrl,
-                         "list-payment-links", 
-                         Optional.of(List.of()), 
-                         _hookSecuritySource),
-                     _retries.run());
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        ListPaymentLinksResponse.Builder _resBuilder = 
-            ListPaymentLinksResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        ListPaymentLinksResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                ListPaymentLinksResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ListPaymentLinksResponseBody>() {});
-                _res.withObject(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                com.mollie.mollie.models.errors.ListPaymentLinksResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.mollie.mollie.models.errors.ListPaymentLinksResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<ListPaymentLinksRequest, ListPaymentLinksResponse> operation
+              = new ListPaymentLinksOperation(
+                 sdkConfiguration,
+                 options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -546,7 +205,7 @@ public class PaymentLinks implements
      * @return The call builder
      */
     public GetPaymentLinkRequestBuilder get() {
-        return new GetPaymentLinkRequestBuilder(this);
+        return new GetPaymentLinkRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -564,11 +223,10 @@ public class PaymentLinks implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetPaymentLinkResponse get(
-            String paymentLinkId) throws Exception {
+    public GetPaymentLinkResponse get(String paymentLinkId) throws Exception {
         return get(paymentLinkId, JsonNullable.undefined(), Optional.empty());
     }
-    
+
     /**
      * Get payment link
      * 
@@ -592,165 +250,17 @@ public class PaymentLinks implements
             String paymentLinkId,
             JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
-
-        if (options.isPresent()) {
-          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
-        }
         GetPaymentLinkRequest request =
             GetPaymentLinkRequest
                 .builder()
                 .paymentLinkId(paymentLinkId)
                 .testmode(testmode)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl();
-        String _url = Utils.generateURL(
-                GetPaymentLinkRequest.class,
-                _baseUrl,
-                "/payment-links/{paymentLinkId}",
-                request, null);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/hal+json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                GetPaymentLinkRequest.class,
-                request, 
-                null));
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HTTPRequest _finalReq = _req;
-        RetryConfig _retryConfig;
-        if (options.isPresent() && options.get().retryConfig().isPresent()) {
-            _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig().get();
-        } else {
-            _retryConfig = RetryConfig.builder()
-                .backoff(BackoffStrategy.builder()
-                            .initialInterval(500, TimeUnit.MILLISECONDS)
-                            .maxInterval(60000, TimeUnit.MILLISECONDS)
-                            .baseFactor((double)(1.5))
-                            .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
-                            .retryConnectError(true)
-                            .build())
-                .build();
-        }
-        List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5xx");
-        Retries _retries = Retries.builder()
-            .action(() -> {
-                HttpRequest _r = null;
-                try {
-                    _r = sdkConfiguration.hooks()
-                        .beforeRequest(
-                            new BeforeRequestContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "get-payment-link", 
-                                Optional.of(List.of()), 
-                                _hookSecuritySource),
-                            _finalReq.build());
-                } catch (Exception _e) {
-                    throw new NonRetryableException(_e);
-                }
-                try {
-                    return _client.send(_r);
-                } catch (Exception _e) {
-                    return sdkConfiguration.hooks()
-                        .afterError(
-                            new AfterErrorContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "get-payment-link",
-                                 Optional.of(List.of()),
-                                 _hookSecuritySource), 
-                            Optional.empty(),
-                            Optional.of(_e));
-                }
-            })
-            .retryConfig(_retryConfig)
-            .statusCodes(_statusCodes)
-            .build();
-        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
-                 .afterSuccess(
-                     new AfterSuccessContextImpl(
-                         this.sdkConfiguration,
-                         _baseUrl,
-                         "get-payment-link", 
-                         Optional.of(List.of()), 
-                         _hookSecuritySource),
-                     _retries.run());
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        GetPaymentLinkResponse.Builder _resBuilder = 
-            GetPaymentLinkResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        GetPaymentLinkResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                GetPaymentLinkResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<GetPaymentLinkResponseBody>() {});
-                _res.withObject(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                com.mollie.mollie.models.errors.GetPaymentLinkResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.mollie.mollie.models.errors.GetPaymentLinkResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<GetPaymentLinkRequest, GetPaymentLinkResponse> operation
+              = new GetPaymentLinkOperation(
+                 sdkConfiguration,
+                 options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -768,7 +278,7 @@ public class PaymentLinks implements
      * @return The call builder
      */
     public UpdatePaymentLinkRequestBuilder update() {
-        return new UpdatePaymentLinkRequestBuilder(this);
+        return new UpdatePaymentLinkRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -786,11 +296,10 @@ public class PaymentLinks implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdatePaymentLinkResponse update(
-            String paymentLinkId) throws Exception {
+    public UpdatePaymentLinkResponse update(String paymentLinkId) throws Exception {
         return update(paymentLinkId, Optional.empty(), Optional.empty());
     }
-    
+
     /**
      * Update payment link
      * 
@@ -812,186 +321,17 @@ public class PaymentLinks implements
             String paymentLinkId,
             Optional<? extends UpdatePaymentLinkRequestBody> requestBody,
             Optional<Options> options) throws Exception {
-
-        if (options.isPresent()) {
-          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
-        }
         UpdatePaymentLinkRequest request =
             UpdatePaymentLinkRequest
                 .builder()
                 .paymentLinkId(paymentLinkId)
                 .requestBody(requestBody)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl();
-        String _url = Utils.generateURL(
-                UpdatePaymentLinkRequest.class,
-                _baseUrl,
-                "/payment-links/{paymentLinkId}",
-                request, null);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "PATCH");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "requestBody",
-                "json",
-                false);
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/hal+json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HTTPRequest _finalReq = _req;
-        RetryConfig _retryConfig;
-        if (options.isPresent() && options.get().retryConfig().isPresent()) {
-            _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig().get();
-        } else {
-            _retryConfig = RetryConfig.builder()
-                .backoff(BackoffStrategy.builder()
-                            .initialInterval(500, TimeUnit.MILLISECONDS)
-                            .maxInterval(60000, TimeUnit.MILLISECONDS)
-                            .baseFactor((double)(1.5))
-                            .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
-                            .retryConnectError(true)
-                            .build())
-                .build();
-        }
-        List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5xx");
-        Retries _retries = Retries.builder()
-            .action(() -> {
-                HttpRequest _r = null;
-                try {
-                    _r = sdkConfiguration.hooks()
-                        .beforeRequest(
-                            new BeforeRequestContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "update-payment-link", 
-                                Optional.of(List.of()), 
-                                _hookSecuritySource),
-                            _finalReq.build());
-                } catch (Exception _e) {
-                    throw new NonRetryableException(_e);
-                }
-                try {
-                    return _client.send(_r);
-                } catch (Exception _e) {
-                    return sdkConfiguration.hooks()
-                        .afterError(
-                            new AfterErrorContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "update-payment-link",
-                                 Optional.of(List.of()),
-                                 _hookSecuritySource), 
-                            Optional.empty(),
-                            Optional.of(_e));
-                }
-            })
-            .retryConfig(_retryConfig)
-            .statusCodes(_statusCodes)
-            .build();
-        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
-                 .afterSuccess(
-                     new AfterSuccessContextImpl(
-                         this.sdkConfiguration,
-                         _baseUrl,
-                         "update-payment-link", 
-                         Optional.of(List.of()), 
-                         _hookSecuritySource),
-                     _retries.run());
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        UpdatePaymentLinkResponse.Builder _resBuilder = 
-            UpdatePaymentLinkResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        UpdatePaymentLinkResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                UpdatePaymentLinkResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<UpdatePaymentLinkResponseBody>() {});
-                _res.withObject(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                com.mollie.mollie.models.errors.UpdatePaymentLinkResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.mollie.mollie.models.errors.UpdatePaymentLinkResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "422")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                UpdatePaymentLinkPaymentLinksResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<UpdatePaymentLinkPaymentLinksResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<UpdatePaymentLinkRequest, UpdatePaymentLinkResponse> operation
+              = new UpdatePaymentLinkOperation(
+                 sdkConfiguration,
+                 options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -1013,7 +353,7 @@ public class PaymentLinks implements
      * @return The call builder
      */
     public DeletePaymentLinkRequestBuilder delete() {
-        return new DeletePaymentLinkRequestBuilder(this);
+        return new DeletePaymentLinkRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -1035,11 +375,10 @@ public class PaymentLinks implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DeletePaymentLinkResponse delete(
-            String paymentLinkId) throws Exception {
+    public DeletePaymentLinkResponse delete(String paymentLinkId) throws Exception {
         return delete(paymentLinkId, Optional.empty(), Optional.empty());
     }
-    
+
     /**
      * Delete payment link
      * 
@@ -1065,186 +404,17 @@ public class PaymentLinks implements
             String paymentLinkId,
             Optional<? extends DeletePaymentLinkRequestBody> requestBody,
             Optional<Options> options) throws Exception {
-
-        if (options.isPresent()) {
-          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
-        }
         DeletePaymentLinkRequest request =
             DeletePaymentLinkRequest
                 .builder()
                 .paymentLinkId(paymentLinkId)
                 .requestBody(requestBody)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl();
-        String _url = Utils.generateURL(
-                DeletePaymentLinkRequest.class,
-                _baseUrl,
-                "/payment-links/{paymentLinkId}",
-                request, null);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "DELETE");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "requestBody",
-                "json",
-                false);
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/hal+json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HTTPRequest _finalReq = _req;
-        RetryConfig _retryConfig;
-        if (options.isPresent() && options.get().retryConfig().isPresent()) {
-            _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig().get();
-        } else {
-            _retryConfig = RetryConfig.builder()
-                .backoff(BackoffStrategy.builder()
-                            .initialInterval(500, TimeUnit.MILLISECONDS)
-                            .maxInterval(60000, TimeUnit.MILLISECONDS)
-                            .baseFactor((double)(1.5))
-                            .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
-                            .retryConnectError(true)
-                            .build())
-                .build();
-        }
-        List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5xx");
-        Retries _retries = Retries.builder()
-            .action(() -> {
-                HttpRequest _r = null;
-                try {
-                    _r = sdkConfiguration.hooks()
-                        .beforeRequest(
-                            new BeforeRequestContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "delete-payment-link", 
-                                Optional.of(List.of()), 
-                                _hookSecuritySource),
-                            _finalReq.build());
-                } catch (Exception _e) {
-                    throw new NonRetryableException(_e);
-                }
-                try {
-                    return _client.send(_r);
-                } catch (Exception _e) {
-                    return sdkConfiguration.hooks()
-                        .afterError(
-                            new AfterErrorContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "delete-payment-link",
-                                 Optional.of(List.of()),
-                                 _hookSecuritySource), 
-                            Optional.empty(),
-                            Optional.of(_e));
-                }
-            })
-            .retryConfig(_retryConfig)
-            .statusCodes(_statusCodes)
-            .build();
-        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
-                 .afterSuccess(
-                     new AfterSuccessContextImpl(
-                         this.sdkConfiguration,
-                         _baseUrl,
-                         "delete-payment-link", 
-                         Optional.of(List.of()), 
-                         _hookSecuritySource),
-                     _retries.run());
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        DeletePaymentLinkResponse.Builder _resBuilder = 
-            DeletePaymentLinkResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        DeletePaymentLinkResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                DeletePaymentLinkResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<DeletePaymentLinkResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "422")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                DeletePaymentLinkPaymentLinksResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<DeletePaymentLinkPaymentLinksResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<DeletePaymentLinkRequest, DeletePaymentLinkResponse> operation
+              = new DeletePaymentLinkOperation(
+                 sdkConfiguration,
+                 options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -1264,7 +434,7 @@ public class PaymentLinks implements
      * @return The call builder
      */
     public GetPaymentLinkPaymentsRequestBuilder listPayments() {
-        return new GetPaymentLinkPaymentsRequestBuilder(this);
+        return new GetPaymentLinkPaymentsRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -1280,15 +450,14 @@ public class PaymentLinks implements
      * &gt;
      * &gt; [Access token with **payment-links.read**](/reference/authentication)
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetPaymentLinkPaymentsResponse listPayments(
-            GetPaymentLinkPaymentsRequest request) throws Exception {
+    public GetPaymentLinkPaymentsResponse listPayments(GetPaymentLinkPaymentsRequest request) throws Exception {
         return listPayments(request, Optional.empty());
     }
-    
+
     /**
      * Get payment link payments
      * 
@@ -1302,7 +471,7 @@ public class PaymentLinks implements
      * &gt;
      * &gt; [Access token with **payment-links.read**](/reference/authentication)
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -1310,158 +479,11 @@ public class PaymentLinks implements
     public GetPaymentLinkPaymentsResponse listPayments(
             GetPaymentLinkPaymentsRequest request,
             Optional<Options> options) throws Exception {
-
-        if (options.isPresent()) {
-          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
-        }
-        String _baseUrl = this.sdkConfiguration.serverUrl();
-        String _url = Utils.generateURL(
-                GetPaymentLinkPaymentsRequest.class,
-                _baseUrl,
-                "/payment-links/{paymentLinkId}/payments",
-                request, null);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/hal+json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                GetPaymentLinkPaymentsRequest.class,
-                request, 
-                null));
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HTTPRequest _finalReq = _req;
-        RetryConfig _retryConfig;
-        if (options.isPresent() && options.get().retryConfig().isPresent()) {
-            _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig().get();
-        } else {
-            _retryConfig = RetryConfig.builder()
-                .backoff(BackoffStrategy.builder()
-                            .initialInterval(500, TimeUnit.MILLISECONDS)
-                            .maxInterval(60000, TimeUnit.MILLISECONDS)
-                            .baseFactor((double)(1.5))
-                            .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
-                            .retryConnectError(true)
-                            .build())
-                .build();
-        }
-        List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5xx");
-        Retries _retries = Retries.builder()
-            .action(() -> {
-                HttpRequest _r = null;
-                try {
-                    _r = sdkConfiguration.hooks()
-                        .beforeRequest(
-                            new BeforeRequestContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "get-payment-link-payments", 
-                                Optional.of(List.of()), 
-                                _hookSecuritySource),
-                            _finalReq.build());
-                } catch (Exception _e) {
-                    throw new NonRetryableException(_e);
-                }
-                try {
-                    return _client.send(_r);
-                } catch (Exception _e) {
-                    return sdkConfiguration.hooks()
-                        .afterError(
-                            new AfterErrorContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "get-payment-link-payments",
-                                 Optional.of(List.of()),
-                                 _hookSecuritySource), 
-                            Optional.empty(),
-                            Optional.of(_e));
-                }
-            })
-            .retryConfig(_retryConfig)
-            .statusCodes(_statusCodes)
-            .build();
-        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
-                 .afterSuccess(
-                     new AfterSuccessContextImpl(
-                         this.sdkConfiguration,
-                         _baseUrl,
-                         "get-payment-link-payments", 
-                         Optional.of(List.of()), 
-                         _hookSecuritySource),
-                     _retries.run());
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        GetPaymentLinkPaymentsResponse.Builder _resBuilder = 
-            GetPaymentLinkPaymentsResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        GetPaymentLinkPaymentsResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                GetPaymentLinkPaymentsResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<GetPaymentLinkPaymentsResponseBody>() {});
-                _res.withObject(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                com.mollie.mollie.models.errors.GetPaymentLinkPaymentsResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.mollie.mollie.models.errors.GetPaymentLinkPaymentsResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<GetPaymentLinkPaymentsRequest, GetPaymentLinkPaymentsResponse> operation
+              = new GetPaymentLinkPaymentsOperation(
+                 sdkConfiguration,
+                 options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 }

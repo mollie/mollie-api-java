@@ -3,7 +3,11 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.ListProfilesOperation;
 import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
@@ -22,10 +26,10 @@ public class ListProfilesRequestBuilder {
                             "50",
                             new TypeReference<JsonNullable<Long>>() {});
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallListProfiles sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListProfilesRequestBuilder(SDKMethodInterfaces.MethodCallListProfiles sdk) {
-        this.sdk = sdk;
+    public ListProfilesRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public ListProfilesRequestBuilder from(String from) {
@@ -64,16 +68,30 @@ public class ListProfilesRequestBuilder {
         return this;
     }
 
-    public ListProfilesResponse call() throws Exception {
+
+    private ListProfilesRequest buildRequest() {
         if (limit == null) {
             limit = _SINGLETON_VALUE_Limit.value();
-        }        Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.list(
-            from,
-            limit,
-            options);
+        }
+
+        ListProfilesRequest request = new ListProfilesRequest(from,
+            limit);
+
+        return request;
+    }
+
+    public ListProfilesResponse call() throws Exception {
+        Optional<Options> options = Optional.of(Options.builder()
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<ListProfilesRequest, ListProfilesResponse> operation
+              = new ListProfilesOperation(
+                 sdkConfiguration,
+                 options);
+        ListProfilesRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 
     private static final LazySingletonValue<JsonNullable<Long>> _SINGLETON_VALUE_Limit =

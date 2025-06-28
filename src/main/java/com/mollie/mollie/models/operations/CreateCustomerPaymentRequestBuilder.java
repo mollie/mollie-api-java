@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.CreateCustomerPaymentOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -15,10 +19,10 @@ public class CreateCustomerPaymentRequestBuilder {
     private String customerId;
     private Optional<? extends CreateCustomerPaymentRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCreateCustomerPayment sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateCustomerPaymentRequestBuilder(SDKMethodInterfaces.MethodCallCreateCustomerPayment sdk) {
-        this.sdk = sdk;
+    public CreateCustomerPaymentRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreateCustomerPaymentRequestBuilder customerId(String customerId) {
@@ -51,13 +55,26 @@ public class CreateCustomerPaymentRequestBuilder {
         return this;
     }
 
+
+    private CreateCustomerPaymentRequest buildRequest() {
+
+        CreateCustomerPaymentRequest request = new CreateCustomerPaymentRequest(customerId,
+            requestBody);
+
+        return request;
+    }
+
     public CreateCustomerPaymentResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.createPayment(
-            customerId,
-            requestBody,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<CreateCustomerPaymentRequest, CreateCustomerPaymentResponse> operation
+              = new CreateCustomerPaymentOperation(
+                 sdkConfiguration,
+                 options);
+        CreateCustomerPaymentRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

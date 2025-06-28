@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.CreatePaymentOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -15,10 +19,10 @@ public class CreatePaymentRequestBuilder {
     private JsonNullable<? extends Include> include = JsonNullable.undefined();
     private Optional<? extends CreatePaymentRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCreatePayment sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreatePaymentRequestBuilder(SDKMethodInterfaces.MethodCallCreatePayment sdk) {
-        this.sdk = sdk;
+    public CreatePaymentRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreatePaymentRequestBuilder include(Include include) {
@@ -57,13 +61,26 @@ public class CreatePaymentRequestBuilder {
         return this;
     }
 
+
+    private CreatePaymentRequest buildRequest() {
+
+        CreatePaymentRequest request = new CreatePaymentRequest(include,
+            requestBody);
+
+        return request;
+    }
+
     public CreatePaymentResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.create(
-            include,
-            requestBody,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<CreatePaymentRequest, CreatePaymentResponse> operation
+              = new CreatePaymentOperation(
+                 sdkConfiguration,
+                 options);
+        CreatePaymentRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

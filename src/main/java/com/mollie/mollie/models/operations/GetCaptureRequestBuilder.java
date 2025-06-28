@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.GetCaptureOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -19,10 +23,10 @@ public class GetCaptureRequestBuilder {
     private Optional<? extends GetCaptureQueryParamEmbed> embed = Optional.empty();
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetCapture sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetCaptureRequestBuilder(SDKMethodInterfaces.MethodCallGetCapture sdk) {
-        this.sdk = sdk;
+    public GetCaptureRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetCaptureRequestBuilder paymentId(String paymentId) {
@@ -73,15 +77,28 @@ public class GetCaptureRequestBuilder {
         return this;
     }
 
-    public GetCaptureResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            paymentId,
+
+    private GetCaptureRequest buildRequest() {
+
+        GetCaptureRequest request = new GetCaptureRequest(paymentId,
             captureId,
             embed,
-            testmode,
-            options);
+            testmode);
+
+        return request;
+    }
+
+    public GetCaptureResponse call() throws Exception {
+        Optional<Options> options = Optional.of(Options.builder()
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetCaptureRequest, GetCaptureResponse> operation
+              = new GetCaptureOperation(
+                 sdkConfiguration,
+                 options);
+        GetCaptureRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -3,13 +3,8 @@
  */
 package com.mollie.mollie;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.models.errors.APIException;
-import com.mollie.mollie.models.errors.CancelRefundResponseBody;
-import com.mollie.mollie.models.errors.CreateOrderRefundRefundsResponseBody;
-import com.mollie.mollie.models.errors.CreateRefundRefundsResponseBody;
-import com.mollie.mollie.models.errors.CreateRefundRefundsResponseResponseBody;
-import com.mollie.mollie.models.errors.ListRefundsRefundsResponseBody;
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
 import com.mollie.mollie.models.operations.CancelRefundRequest;
 import com.mollie.mollie.models.operations.CancelRefundRequestBuilder;
 import com.mollie.mollie.models.operations.CancelRefundResponse;
@@ -17,66 +12,40 @@ import com.mollie.mollie.models.operations.CreateOrderRefundRequest;
 import com.mollie.mollie.models.operations.CreateOrderRefundRequestBody;
 import com.mollie.mollie.models.operations.CreateOrderRefundRequestBuilder;
 import com.mollie.mollie.models.operations.CreateOrderRefundResponse;
-import com.mollie.mollie.models.operations.CreateOrderRefundResponseBody;
 import com.mollie.mollie.models.operations.CreateRefundRequest;
 import com.mollie.mollie.models.operations.CreateRefundRequestBody;
 import com.mollie.mollie.models.operations.CreateRefundRequestBuilder;
 import com.mollie.mollie.models.operations.CreateRefundResponse;
-import com.mollie.mollie.models.operations.CreateRefundResponseBody;
 import com.mollie.mollie.models.operations.GetRefundQueryParamInclude;
 import com.mollie.mollie.models.operations.GetRefundRequest;
 import com.mollie.mollie.models.operations.GetRefundRequestBuilder;
 import com.mollie.mollie.models.operations.GetRefundResponse;
-import com.mollie.mollie.models.operations.GetRefundResponseBody;
 import com.mollie.mollie.models.operations.ListAllRefundsRequest;
 import com.mollie.mollie.models.operations.ListAllRefundsRequestBuilder;
 import com.mollie.mollie.models.operations.ListAllRefundsResponse;
-import com.mollie.mollie.models.operations.ListAllRefundsResponseBody;
 import com.mollie.mollie.models.operations.ListOrderRefundsRequest;
 import com.mollie.mollie.models.operations.ListOrderRefundsRequestBuilder;
 import com.mollie.mollie.models.operations.ListOrderRefundsResponse;
-import com.mollie.mollie.models.operations.ListOrderRefundsResponseBody;
 import com.mollie.mollie.models.operations.ListRefundsRequest;
 import com.mollie.mollie.models.operations.ListRefundsRequestBuilder;
 import com.mollie.mollie.models.operations.ListRefundsResponse;
-import com.mollie.mollie.models.operations.ListRefundsResponseBody;
-import com.mollie.mollie.models.operations.SDKMethodInterfaces.*;
-import com.mollie.mollie.utils.BackoffStrategy;
-import com.mollie.mollie.utils.HTTPClient;
-import com.mollie.mollie.utils.HTTPRequest;
-import com.mollie.mollie.utils.Hook.AfterErrorContextImpl;
-import com.mollie.mollie.utils.Hook.AfterSuccessContextImpl;
-import com.mollie.mollie.utils.Hook.BeforeRequestContextImpl;
+import com.mollie.mollie.operations.CancelRefundOperation;
+import com.mollie.mollie.operations.CreateOrderRefundOperation;
+import com.mollie.mollie.operations.CreateRefundOperation;
+import com.mollie.mollie.operations.GetRefundOperation;
+import com.mollie.mollie.operations.ListAllRefundsOperation;
+import com.mollie.mollie.operations.ListOrderRefundsOperation;
+import com.mollie.mollie.operations.ListRefundsOperation;
 import com.mollie.mollie.utils.Options;
-import com.mollie.mollie.utils.Retries.NonRetryableException;
-import com.mollie.mollie.utils.Retries;
-import com.mollie.mollie.utils.RetryConfig;
-import com.mollie.mollie.utils.SerializedBody;
-import com.mollie.mollie.utils.Utils.JsonShape;
-import com.mollie.mollie.utils.Utils;
-import java.io.InputStream;
 import java.lang.Boolean;
 import java.lang.Exception;
-import java.lang.Object;
 import java.lang.String;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Refunds implements
-            MethodCallCreateRefund,
-            MethodCallListRefunds,
-            MethodCallGetRefund,
-            MethodCallCancelRefund,
-            MethodCallCreateOrderRefund,
-            MethodCallListOrderRefunds,
-            MethodCallListAllRefunds {
 
+public class Refunds {
     private final SDKConfiguration sdkConfiguration;
 
     Refunds(SDKConfiguration sdkConfiguration) {
@@ -97,7 +66,7 @@ public class Refunds implements
      * @return The call builder
      */
     public CreateRefundRequestBuilder create() {
-        return new CreateRefundRequestBuilder(this);
+        return new CreateRefundRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -115,11 +84,10 @@ public class Refunds implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateRefundResponse create(
-            String paymentId) throws Exception {
+    public CreateRefundResponse create(String paymentId) throws Exception {
         return create(paymentId, Optional.empty(), Optional.empty());
     }
-    
+
     /**
      * Create payment refund
      * 
@@ -141,202 +109,17 @@ public class Refunds implements
             String paymentId,
             Optional<? extends CreateRefundRequestBody> requestBody,
             Optional<Options> options) throws Exception {
-
-        if (options.isPresent()) {
-          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
-        }
         CreateRefundRequest request =
             CreateRefundRequest
                 .builder()
                 .paymentId(paymentId)
                 .requestBody(requestBody)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl();
-        String _url = Utils.generateURL(
-                CreateRefundRequest.class,
-                _baseUrl,
-                "/payments/{paymentId}/refunds",
-                request, null);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "requestBody",
-                "json",
-                false);
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/hal+json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HTTPRequest _finalReq = _req;
-        RetryConfig _retryConfig;
-        if (options.isPresent() && options.get().retryConfig().isPresent()) {
-            _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig().get();
-        } else {
-            _retryConfig = RetryConfig.builder()
-                .backoff(BackoffStrategy.builder()
-                            .initialInterval(500, TimeUnit.MILLISECONDS)
-                            .maxInterval(60000, TimeUnit.MILLISECONDS)
-                            .baseFactor((double)(1.5))
-                            .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
-                            .retryConnectError(true)
-                            .build())
-                .build();
-        }
-        List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5xx");
-        Retries _retries = Retries.builder()
-            .action(() -> {
-                HttpRequest _r = null;
-                try {
-                    _r = sdkConfiguration.hooks()
-                        .beforeRequest(
-                            new BeforeRequestContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "create-refund", 
-                                Optional.of(List.of()), 
-                                _hookSecuritySource),
-                            _finalReq.build());
-                } catch (Exception _e) {
-                    throw new NonRetryableException(_e);
-                }
-                try {
-                    return _client.send(_r);
-                } catch (Exception _e) {
-                    return sdkConfiguration.hooks()
-                        .afterError(
-                            new AfterErrorContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "create-refund",
-                                 Optional.of(List.of()),
-                                 _hookSecuritySource), 
-                            Optional.empty(),
-                            Optional.of(_e));
-                }
-            })
-            .retryConfig(_retryConfig)
-            .statusCodes(_statusCodes)
-            .build();
-        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
-                 .afterSuccess(
-                     new AfterSuccessContextImpl(
-                         this.sdkConfiguration,
-                         _baseUrl,
-                         "create-refund", 
-                         Optional.of(List.of()), 
-                         _hookSecuritySource),
-                     _retries.run());
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        CreateRefundResponse.Builder _resBuilder = 
-            CreateRefundResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        CreateRefundResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                CreateRefundResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<CreateRefundResponseBody>() {});
-                _res.withObject(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                com.mollie.mollie.models.errors.CreateRefundResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.mollie.mollie.models.errors.CreateRefundResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "409")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                CreateRefundRefundsResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<CreateRefundRefundsResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "422")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                CreateRefundRefundsResponseResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<CreateRefundRefundsResponseResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<CreateRefundRequest, CreateRefundResponse> operation
+              = new CreateRefundOperation(
+                 sdkConfiguration,
+                 options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -356,7 +139,7 @@ public class Refunds implements
      * @return The call builder
      */
     public ListRefundsRequestBuilder list() {
-        return new ListRefundsRequestBuilder(this);
+        return new ListRefundsRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -372,15 +155,14 @@ public class Refunds implements
      * &gt;
      * &gt; [Access token with **refunds.read**](/reference/authentication)
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListRefundsResponse list(
-            ListRefundsRequest request) throws Exception {
+    public ListRefundsResponse list(ListRefundsRequest request) throws Exception {
         return list(request, Optional.empty());
     }
-    
+
     /**
      * List payment refunds
      * 
@@ -394,7 +176,7 @@ public class Refunds implements
      * &gt;
      * &gt; [Access token with **refunds.read**](/reference/authentication)
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -402,174 +184,11 @@ public class Refunds implements
     public ListRefundsResponse list(
             ListRefundsRequest request,
             Optional<Options> options) throws Exception {
-
-        if (options.isPresent()) {
-          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
-        }
-        String _baseUrl = this.sdkConfiguration.serverUrl();
-        String _url = Utils.generateURL(
-                ListRefundsRequest.class,
-                _baseUrl,
-                "/payments/{paymentId}/refunds",
-                request, null);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/hal+json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                ListRefundsRequest.class,
-                request, 
-                null));
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HTTPRequest _finalReq = _req;
-        RetryConfig _retryConfig;
-        if (options.isPresent() && options.get().retryConfig().isPresent()) {
-            _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig().get();
-        } else {
-            _retryConfig = RetryConfig.builder()
-                .backoff(BackoffStrategy.builder()
-                            .initialInterval(500, TimeUnit.MILLISECONDS)
-                            .maxInterval(60000, TimeUnit.MILLISECONDS)
-                            .baseFactor((double)(1.5))
-                            .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
-                            .retryConnectError(true)
-                            .build())
-                .build();
-        }
-        List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5xx");
-        Retries _retries = Retries.builder()
-            .action(() -> {
-                HttpRequest _r = null;
-                try {
-                    _r = sdkConfiguration.hooks()
-                        .beforeRequest(
-                            new BeforeRequestContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "list-refunds", 
-                                Optional.of(List.of()), 
-                                _hookSecuritySource),
-                            _finalReq.build());
-                } catch (Exception _e) {
-                    throw new NonRetryableException(_e);
-                }
-                try {
-                    return _client.send(_r);
-                } catch (Exception _e) {
-                    return sdkConfiguration.hooks()
-                        .afterError(
-                            new AfterErrorContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "list-refunds",
-                                 Optional.of(List.of()),
-                                 _hookSecuritySource), 
-                            Optional.empty(),
-                            Optional.of(_e));
-                }
-            })
-            .retryConfig(_retryConfig)
-            .statusCodes(_statusCodes)
-            .build();
-        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
-                 .afterSuccess(
-                     new AfterSuccessContextImpl(
-                         this.sdkConfiguration,
-                         _baseUrl,
-                         "list-refunds", 
-                         Optional.of(List.of()), 
-                         _hookSecuritySource),
-                     _retries.run());
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        ListRefundsResponse.Builder _resBuilder = 
-            ListRefundsResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        ListRefundsResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                ListRefundsResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ListRefundsResponseBody>() {});
-                _res.withObject(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                com.mollie.mollie.models.errors.ListRefundsResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.mollie.mollie.models.errors.ListRefundsResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                ListRefundsRefundsResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ListRefundsRefundsResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<ListRefundsRequest, ListRefundsResponse> operation
+              = new ListRefundsOperation(
+                 sdkConfiguration,
+                 options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -587,7 +206,7 @@ public class Refunds implements
      * @return The call builder
      */
     public GetRefundRequestBuilder get() {
-        return new GetRefundRequestBuilder(this);
+        return new GetRefundRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -611,7 +230,7 @@ public class Refunds implements
             String refundId) throws Exception {
         return get(paymentId, refundId, JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
-    
+
     /**
      * Get payment refund
      * 
@@ -639,10 +258,6 @@ public class Refunds implements
             JsonNullable<? extends GetRefundQueryParamInclude> include,
             JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
-
-        if (options.isPresent()) {
-          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
-        }
         GetRefundRequest request =
             GetRefundRequest
                 .builder()
@@ -651,155 +266,11 @@ public class Refunds implements
                 .include(include)
                 .testmode(testmode)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl();
-        String _url = Utils.generateURL(
-                GetRefundRequest.class,
-                _baseUrl,
-                "/payments/{paymentId}/refunds/{refundId}",
-                request, null);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/hal+json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                GetRefundRequest.class,
-                request, 
-                null));
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HTTPRequest _finalReq = _req;
-        RetryConfig _retryConfig;
-        if (options.isPresent() && options.get().retryConfig().isPresent()) {
-            _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig().get();
-        } else {
-            _retryConfig = RetryConfig.builder()
-                .backoff(BackoffStrategy.builder()
-                            .initialInterval(500, TimeUnit.MILLISECONDS)
-                            .maxInterval(60000, TimeUnit.MILLISECONDS)
-                            .baseFactor((double)(1.5))
-                            .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
-                            .retryConnectError(true)
-                            .build())
-                .build();
-        }
-        List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5xx");
-        Retries _retries = Retries.builder()
-            .action(() -> {
-                HttpRequest _r = null;
-                try {
-                    _r = sdkConfiguration.hooks()
-                        .beforeRequest(
-                            new BeforeRequestContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "get-refund", 
-                                Optional.of(List.of()), 
-                                _hookSecuritySource),
-                            _finalReq.build());
-                } catch (Exception _e) {
-                    throw new NonRetryableException(_e);
-                }
-                try {
-                    return _client.send(_r);
-                } catch (Exception _e) {
-                    return sdkConfiguration.hooks()
-                        .afterError(
-                            new AfterErrorContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "get-refund",
-                                 Optional.of(List.of()),
-                                 _hookSecuritySource), 
-                            Optional.empty(),
-                            Optional.of(_e));
-                }
-            })
-            .retryConfig(_retryConfig)
-            .statusCodes(_statusCodes)
-            .build();
-        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
-                 .afterSuccess(
-                     new AfterSuccessContextImpl(
-                         this.sdkConfiguration,
-                         _baseUrl,
-                         "get-refund", 
-                         Optional.of(List.of()), 
-                         _hookSecuritySource),
-                     _retries.run());
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        GetRefundResponse.Builder _resBuilder = 
-            GetRefundResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        GetRefundResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                GetRefundResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<GetRefundResponseBody>() {});
-                _res.withObject(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                com.mollie.mollie.models.errors.GetRefundResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.mollie.mollie.models.errors.GetRefundResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<GetRefundRequest, GetRefundResponse> operation
+              = new GetRefundOperation(
+                 sdkConfiguration,
+                 options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -819,7 +290,7 @@ public class Refunds implements
      * @return The call builder
      */
     public CancelRefundRequestBuilder cancel() {
-        return new CancelRefundRequestBuilder(this);
+        return new CancelRefundRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -845,7 +316,7 @@ public class Refunds implements
             String refundId) throws Exception {
         return cancel(paymentId, refundId, JsonNullable.undefined(), Optional.empty());
     }
-    
+
     /**
      * Cancel payment refund
      * 
@@ -873,10 +344,6 @@ public class Refunds implements
             String refundId,
             JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
-
-        if (options.isPresent()) {
-          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
-        }
         CancelRefundRequest request =
             CancelRefundRequest
                 .builder()
@@ -884,155 +351,11 @@ public class Refunds implements
                 .refundId(refundId)
                 .testmode(testmode)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl();
-        String _url = Utils.generateURL(
-                CancelRefundRequest.class,
-                _baseUrl,
-                "/payments/{paymentId}/refunds/{refundId}",
-                request, null);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "DELETE");
-        _req.addHeader("Accept", "application/hal+json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                CancelRefundRequest.class,
-                request, 
-                null));
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HTTPRequest _finalReq = _req;
-        RetryConfig _retryConfig;
-        if (options.isPresent() && options.get().retryConfig().isPresent()) {
-            _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig().get();
-        } else {
-            _retryConfig = RetryConfig.builder()
-                .backoff(BackoffStrategy.builder()
-                            .initialInterval(500, TimeUnit.MILLISECONDS)
-                            .maxInterval(60000, TimeUnit.MILLISECONDS)
-                            .baseFactor((double)(1.5))
-                            .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
-                            .retryConnectError(true)
-                            .build())
-                .build();
-        }
-        List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5xx");
-        Retries _retries = Retries.builder()
-            .action(() -> {
-                HttpRequest _r = null;
-                try {
-                    _r = sdkConfiguration.hooks()
-                        .beforeRequest(
-                            new BeforeRequestContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "cancel-refund", 
-                                Optional.of(List.of()), 
-                                _hookSecuritySource),
-                            _finalReq.build());
-                } catch (Exception _e) {
-                    throw new NonRetryableException(_e);
-                }
-                try {
-                    return _client.send(_r);
-                } catch (Exception _e) {
-                    return sdkConfiguration.hooks()
-                        .afterError(
-                            new AfterErrorContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "cancel-refund",
-                                 Optional.of(List.of()),
-                                 _hookSecuritySource), 
-                            Optional.empty(),
-                            Optional.of(_e));
-                }
-            })
-            .retryConfig(_retryConfig)
-            .statusCodes(_statusCodes)
-            .build();
-        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
-                 .afterSuccess(
-                     new AfterSuccessContextImpl(
-                         this.sdkConfiguration,
-                         _baseUrl,
-                         "cancel-refund", 
-                         Optional.of(List.of()), 
-                         _hookSecuritySource),
-                     _retries.run());
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        CancelRefundResponse.Builder _resBuilder = 
-            CancelRefundResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        CancelRefundResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                CancelRefundResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<CancelRefundResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<CancelRefundRequest, CancelRefundResponse> operation
+              = new CancelRefundOperation(
+                 sdkConfiguration,
+                 options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -1054,7 +377,7 @@ public class Refunds implements
      * @return The call builder
      */
     public CreateOrderRefundRequestBuilder createOrder() {
-        return new CreateOrderRefundRequestBuilder(this);
+        return new CreateOrderRefundRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -1076,11 +399,10 @@ public class Refunds implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateOrderRefundResponse createOrder(
-            String orderId) throws Exception {
+    public CreateOrderRefundResponse createOrder(String orderId) throws Exception {
         return createOrder(orderId, Optional.empty(), Optional.empty());
     }
-    
+
     /**
      * Create order refund
      * 
@@ -1106,186 +428,17 @@ public class Refunds implements
             String orderId,
             Optional<? extends CreateOrderRefundRequestBody> requestBody,
             Optional<Options> options) throws Exception {
-
-        if (options.isPresent()) {
-          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
-        }
         CreateOrderRefundRequest request =
             CreateOrderRefundRequest
                 .builder()
                 .orderId(orderId)
                 .requestBody(requestBody)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl();
-        String _url = Utils.generateURL(
-                CreateOrderRefundRequest.class,
-                _baseUrl,
-                "/orders/{orderId}/refunds",
-                request, null);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "requestBody",
-                "json",
-                false);
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/hal+json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HTTPRequest _finalReq = _req;
-        RetryConfig _retryConfig;
-        if (options.isPresent() && options.get().retryConfig().isPresent()) {
-            _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig().get();
-        } else {
-            _retryConfig = RetryConfig.builder()
-                .backoff(BackoffStrategy.builder()
-                            .initialInterval(500, TimeUnit.MILLISECONDS)
-                            .maxInterval(60000, TimeUnit.MILLISECONDS)
-                            .baseFactor((double)(1.5))
-                            .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
-                            .retryConnectError(true)
-                            .build())
-                .build();
-        }
-        List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5xx");
-        Retries _retries = Retries.builder()
-            .action(() -> {
-                HttpRequest _r = null;
-                try {
-                    _r = sdkConfiguration.hooks()
-                        .beforeRequest(
-                            new BeforeRequestContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "create-order-refund", 
-                                Optional.of(List.of()), 
-                                _hookSecuritySource),
-                            _finalReq.build());
-                } catch (Exception _e) {
-                    throw new NonRetryableException(_e);
-                }
-                try {
-                    return _client.send(_r);
-                } catch (Exception _e) {
-                    return sdkConfiguration.hooks()
-                        .afterError(
-                            new AfterErrorContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "create-order-refund",
-                                 Optional.of(List.of()),
-                                 _hookSecuritySource), 
-                            Optional.empty(),
-                            Optional.of(_e));
-                }
-            })
-            .retryConfig(_retryConfig)
-            .statusCodes(_statusCodes)
-            .build();
-        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
-                 .afterSuccess(
-                     new AfterSuccessContextImpl(
-                         this.sdkConfiguration,
-                         _baseUrl,
-                         "create-order-refund", 
-                         Optional.of(List.of()), 
-                         _hookSecuritySource),
-                     _retries.run());
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        CreateOrderRefundResponse.Builder _resBuilder = 
-            CreateOrderRefundResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        CreateOrderRefundResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                CreateOrderRefundResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<CreateOrderRefundResponseBody>() {});
-                _res.withObject(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                com.mollie.mollie.models.errors.CreateOrderRefundResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.mollie.mollie.models.errors.CreateOrderRefundResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "422")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                CreateOrderRefundRefundsResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<CreateOrderRefundRefundsResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<CreateOrderRefundRequest, CreateOrderRefundResponse> operation
+              = new CreateOrderRefundOperation(
+                 sdkConfiguration,
+                 options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -1305,7 +458,7 @@ public class Refunds implements
      * @return The call builder
      */
     public ListOrderRefundsRequestBuilder listForOrder() {
-        return new ListOrderRefundsRequestBuilder(this);
+        return new ListOrderRefundsRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -1321,15 +474,14 @@ public class Refunds implements
      * &gt;
      * &gt; [Access token with **refunds.read**](/reference/authentication)
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListOrderRefundsResponse listForOrder(
-            ListOrderRefundsRequest request) throws Exception {
+    public ListOrderRefundsResponse listForOrder(ListOrderRefundsRequest request) throws Exception {
         return listForOrder(request, Optional.empty());
     }
-    
+
     /**
      * List order refunds
      * 
@@ -1343,7 +495,7 @@ public class Refunds implements
      * &gt;
      * &gt; [Access token with **refunds.read**](/reference/authentication)
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -1351,158 +503,11 @@ public class Refunds implements
     public ListOrderRefundsResponse listForOrder(
             ListOrderRefundsRequest request,
             Optional<Options> options) throws Exception {
-
-        if (options.isPresent()) {
-          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
-        }
-        String _baseUrl = this.sdkConfiguration.serverUrl();
-        String _url = Utils.generateURL(
-                ListOrderRefundsRequest.class,
-                _baseUrl,
-                "/orders/{orderId}/refunds",
-                request, null);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/hal+json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                ListOrderRefundsRequest.class,
-                request, 
-                null));
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HTTPRequest _finalReq = _req;
-        RetryConfig _retryConfig;
-        if (options.isPresent() && options.get().retryConfig().isPresent()) {
-            _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig().get();
-        } else {
-            _retryConfig = RetryConfig.builder()
-                .backoff(BackoffStrategy.builder()
-                            .initialInterval(500, TimeUnit.MILLISECONDS)
-                            .maxInterval(60000, TimeUnit.MILLISECONDS)
-                            .baseFactor((double)(1.5))
-                            .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
-                            .retryConnectError(true)
-                            .build())
-                .build();
-        }
-        List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5xx");
-        Retries _retries = Retries.builder()
-            .action(() -> {
-                HttpRequest _r = null;
-                try {
-                    _r = sdkConfiguration.hooks()
-                        .beforeRequest(
-                            new BeforeRequestContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "list-order-refunds", 
-                                Optional.of(List.of()), 
-                                _hookSecuritySource),
-                            _finalReq.build());
-                } catch (Exception _e) {
-                    throw new NonRetryableException(_e);
-                }
-                try {
-                    return _client.send(_r);
-                } catch (Exception _e) {
-                    return sdkConfiguration.hooks()
-                        .afterError(
-                            new AfterErrorContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "list-order-refunds",
-                                 Optional.of(List.of()),
-                                 _hookSecuritySource), 
-                            Optional.empty(),
-                            Optional.of(_e));
-                }
-            })
-            .retryConfig(_retryConfig)
-            .statusCodes(_statusCodes)
-            .build();
-        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
-                 .afterSuccess(
-                     new AfterSuccessContextImpl(
-                         this.sdkConfiguration,
-                         _baseUrl,
-                         "list-order-refunds", 
-                         Optional.of(List.of()), 
-                         _hookSecuritySource),
-                     _retries.run());
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        ListOrderRefundsResponse.Builder _resBuilder = 
-            ListOrderRefundsResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        ListOrderRefundsResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                ListOrderRefundsResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ListOrderRefundsResponseBody>() {});
-                _res.withObject(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                com.mollie.mollie.models.errors.ListOrderRefundsResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.mollie.mollie.models.errors.ListOrderRefundsResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<ListOrderRefundsRequest, ListOrderRefundsResponse> operation
+              = new ListOrderRefundsOperation(
+                 sdkConfiguration,
+                 options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -1522,7 +527,7 @@ public class Refunds implements
      * @return The call builder
      */
     public ListAllRefundsRequestBuilder all() {
-        return new ListAllRefundsRequestBuilder(this);
+        return new ListAllRefundsRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -1538,15 +543,14 @@ public class Refunds implements
      * &gt;
      * &gt; [Access token with **refunds.read**](/reference/authentication)
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListAllRefundsResponse all(
-            ListAllRefundsRequest request) throws Exception {
+    public ListAllRefundsResponse all(ListAllRefundsRequest request) throws Exception {
         return all(request, Optional.empty());
     }
-    
+
     /**
      * List all refunds
      * 
@@ -1560,7 +564,7 @@ public class Refunds implements
      * &gt;
      * &gt; [Access token with **refunds.read**](/reference/authentication)
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -1568,156 +572,11 @@ public class Refunds implements
     public ListAllRefundsResponse all(
             ListAllRefundsRequest request,
             Optional<Options> options) throws Exception {
-
-        if (options.isPresent()) {
-          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
-        }
-        String _baseUrl = this.sdkConfiguration.serverUrl();
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/refunds");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/hal+json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                ListAllRefundsRequest.class,
-                request, 
-                null));
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HTTPRequest _finalReq = _req;
-        RetryConfig _retryConfig;
-        if (options.isPresent() && options.get().retryConfig().isPresent()) {
-            _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig().get();
-        } else {
-            _retryConfig = RetryConfig.builder()
-                .backoff(BackoffStrategy.builder()
-                            .initialInterval(500, TimeUnit.MILLISECONDS)
-                            .maxInterval(60000, TimeUnit.MILLISECONDS)
-                            .baseFactor((double)(1.5))
-                            .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
-                            .retryConnectError(true)
-                            .build())
-                .build();
-        }
-        List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5xx");
-        Retries _retries = Retries.builder()
-            .action(() -> {
-                HttpRequest _r = null;
-                try {
-                    _r = sdkConfiguration.hooks()
-                        .beforeRequest(
-                            new BeforeRequestContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "list-all-refunds", 
-                                Optional.of(List.of()), 
-                                _hookSecuritySource),
-                            _finalReq.build());
-                } catch (Exception _e) {
-                    throw new NonRetryableException(_e);
-                }
-                try {
-                    return _client.send(_r);
-                } catch (Exception _e) {
-                    return sdkConfiguration.hooks()
-                        .afterError(
-                            new AfterErrorContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "list-all-refunds",
-                                 Optional.of(List.of()),
-                                 _hookSecuritySource), 
-                            Optional.empty(),
-                            Optional.of(_e));
-                }
-            })
-            .retryConfig(_retryConfig)
-            .statusCodes(_statusCodes)
-            .build();
-        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
-                 .afterSuccess(
-                     new AfterSuccessContextImpl(
-                         this.sdkConfiguration,
-                         _baseUrl,
-                         "list-all-refunds", 
-                         Optional.of(List.of()), 
-                         _hookSecuritySource),
-                     _retries.run());
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        ListAllRefundsResponse.Builder _resBuilder = 
-            ListAllRefundsResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        ListAllRefundsResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                ListAllRefundsResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ListAllRefundsResponseBody>() {});
-                _res.withObject(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                com.mollie.mollie.models.errors.ListAllRefundsResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.mollie.mollie.models.errors.ListAllRefundsResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<ListAllRefundsRequest, ListAllRefundsResponse> operation
+              = new ListAllRefundsOperation(
+                 sdkConfiguration,
+                 options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 }

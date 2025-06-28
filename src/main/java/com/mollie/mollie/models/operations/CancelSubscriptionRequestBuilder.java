@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.CancelSubscriptionOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -16,10 +20,10 @@ public class CancelSubscriptionRequestBuilder {
     private String subscriptionId;
     private Optional<? extends CancelSubscriptionRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCancelSubscription sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CancelSubscriptionRequestBuilder(SDKMethodInterfaces.MethodCallCancelSubscription sdk) {
-        this.sdk = sdk;
+    public CancelSubscriptionRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CancelSubscriptionRequestBuilder customerId(String customerId) {
@@ -58,14 +62,27 @@ public class CancelSubscriptionRequestBuilder {
         return this;
     }
 
+
+    private CancelSubscriptionRequest buildRequest() {
+
+        CancelSubscriptionRequest request = new CancelSubscriptionRequest(customerId,
+            subscriptionId,
+            requestBody);
+
+        return request;
+    }
+
     public CancelSubscriptionResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.cancel(
-            customerId,
-            subscriptionId,
-            requestBody,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<CancelSubscriptionRequest, CancelSubscriptionResponse> operation
+              = new CancelSubscriptionOperation(
+                 sdkConfiguration,
+                 options);
+        CancelSubscriptionRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

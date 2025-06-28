@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestlessOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.GetPrimaryBalanceOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -12,10 +16,10 @@ import java.util.Optional;
 public class GetPrimaryBalanceRequestBuilder {
 
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetPrimaryBalance sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetPrimaryBalanceRequestBuilder(SDKMethodInterfaces.MethodCallGetPrimaryBalance sdk) {
-        this.sdk = sdk;
+    public GetPrimaryBalanceRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetPrimaryBalanceRequestBuilder retryConfig(RetryConfig retryConfig) {
@@ -32,9 +36,14 @@ public class GetPrimaryBalanceRequestBuilder {
 
     public GetPrimaryBalanceResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.getPrimary(
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestlessOperation<GetPrimaryBalanceResponse> operation
+            = new GetPrimaryBalanceOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest());
     }
 }

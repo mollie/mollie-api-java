@@ -15,7 +15,7 @@ public enum ListClientsStatusReason {
     @JsonValue
     private final String value;
 
-    private ListClientsStatusReason(String value) {
+    ListClientsStatusReason(String value) {
         this.value = value;
     }
     

@@ -3,7 +3,11 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.ListTerminalsOperation;
 import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
@@ -25,10 +29,10 @@ public class ListTerminalsRequestBuilder {
     private JsonNullable<String> sort = JsonNullable.undefined();
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallListTerminals sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListTerminalsRequestBuilder(SDKMethodInterfaces.MethodCallListTerminals sdk) {
-        this.sdk = sdk;
+    public ListTerminalsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public ListTerminalsRequestBuilder from(String from) {
@@ -91,18 +95,32 @@ public class ListTerminalsRequestBuilder {
         return this;
     }
 
-    public ListTerminalsResponse call() throws Exception {
+
+    private ListTerminalsRequest buildRequest() {
         if (limit == null) {
             limit = _SINGLETON_VALUE_Limit.value();
-        }        Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.list(
-            from,
+        }
+
+        ListTerminalsRequest request = new ListTerminalsRequest(from,
             limit,
             sort,
-            testmode,
-            options);
+            testmode);
+
+        return request;
+    }
+
+    public ListTerminalsResponse call() throws Exception {
+        Optional<Options> options = Optional.of(Options.builder()
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<ListTerminalsRequest, ListTerminalsResponse> operation
+              = new ListTerminalsOperation(
+                 sdkConfiguration,
+                 options);
+        ListTerminalsRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 
     private static final LazySingletonValue<JsonNullable<Long>> _SINGLETON_VALUE_Limit =

@@ -16,8 +16,12 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: true
+  tests:
+    generateTests: true
+    generateNewTests: false
+    skipResponseBodyAssertions: false
 java:
-  version: 0.5.0
+  version: 0.6.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: mollie

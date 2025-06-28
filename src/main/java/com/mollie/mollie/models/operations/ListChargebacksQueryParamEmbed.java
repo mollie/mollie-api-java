@@ -19,7 +19,7 @@ public enum ListChargebacksQueryParamEmbed {
     @JsonValue
     private final String value;
 
-    private ListChargebacksQueryParamEmbed(String value) {
+    ListChargebacksQueryParamEmbed(String value) {
         this.value = value;
     }
     

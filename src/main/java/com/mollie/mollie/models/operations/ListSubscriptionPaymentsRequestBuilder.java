@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.ListSubscriptionPaymentsOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -13,10 +17,10 @@ public class ListSubscriptionPaymentsRequestBuilder {
 
     private ListSubscriptionPaymentsRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallListSubscriptionPayments sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListSubscriptionPaymentsRequestBuilder(SDKMethodInterfaces.MethodCallListSubscriptionPayments sdk) {
-        this.sdk = sdk;
+    public ListSubscriptionPaymentsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ListSubscriptionPaymentsRequestBuilder request(ListSubscriptionPaymentsRequest request) {
@@ -39,10 +43,14 @@ public class ListSubscriptionPaymentsRequestBuilder {
 
     public ListSubscriptionPaymentsResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.listPayments(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<ListSubscriptionPaymentsRequest, ListSubscriptionPaymentsResponse> operation
+              = new ListSubscriptionPaymentsOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

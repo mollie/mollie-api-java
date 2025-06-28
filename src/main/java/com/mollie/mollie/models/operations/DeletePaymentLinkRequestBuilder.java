@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.DeletePaymentLinkOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -15,10 +19,10 @@ public class DeletePaymentLinkRequestBuilder {
     private String paymentLinkId;
     private Optional<? extends DeletePaymentLinkRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallDeletePaymentLink sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DeletePaymentLinkRequestBuilder(SDKMethodInterfaces.MethodCallDeletePaymentLink sdk) {
-        this.sdk = sdk;
+    public DeletePaymentLinkRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public DeletePaymentLinkRequestBuilder paymentLinkId(String paymentLinkId) {
@@ -51,13 +55,26 @@ public class DeletePaymentLinkRequestBuilder {
         return this;
     }
 
+
+    private DeletePaymentLinkRequest buildRequest() {
+
+        DeletePaymentLinkRequest request = new DeletePaymentLinkRequest(paymentLinkId,
+            requestBody);
+
+        return request;
+    }
+
     public DeletePaymentLinkResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.delete(
-            paymentLinkId,
-            requestBody,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<DeletePaymentLinkRequest, DeletePaymentLinkResponse> operation
+              = new DeletePaymentLinkOperation(
+                 sdkConfiguration,
+                 options);
+        DeletePaymentLinkRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

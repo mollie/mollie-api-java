@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestlessOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.GetOnboardingStatusOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -12,10 +16,10 @@ import java.util.Optional;
 public class GetOnboardingStatusRequestBuilder {
 
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetOnboardingStatus sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetOnboardingStatusRequestBuilder(SDKMethodInterfaces.MethodCallGetOnboardingStatus sdk) {
-        this.sdk = sdk;
+    public GetOnboardingStatusRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetOnboardingStatusRequestBuilder retryConfig(RetryConfig retryConfig) {
@@ -32,9 +36,14 @@ public class GetOnboardingStatusRequestBuilder {
 
     public GetOnboardingStatusResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestlessOperation<GetOnboardingStatusResponse> operation
+            = new GetOnboardingStatusOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest());
     }
 }

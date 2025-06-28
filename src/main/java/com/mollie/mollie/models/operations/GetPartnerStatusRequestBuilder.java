@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestlessOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.GetPartnerStatusOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -12,10 +16,10 @@ import java.util.Optional;
 public class GetPartnerStatusRequestBuilder {
 
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetPartnerStatus sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetPartnerStatusRequestBuilder(SDKMethodInterfaces.MethodCallGetPartnerStatus sdk) {
-        this.sdk = sdk;
+    public GetPartnerStatusRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetPartnerStatusRequestBuilder retryConfig(RetryConfig retryConfig) {
@@ -32,9 +36,14 @@ public class GetPartnerStatusRequestBuilder {
 
     public GetPartnerStatusResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.getPartner(
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestlessOperation<GetPartnerStatusResponse> operation
+            = new GetPartnerStatusOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest());
     }
 }

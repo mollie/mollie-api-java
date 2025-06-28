@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.PaymentCreateRouteOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -15,10 +19,10 @@ public class PaymentCreateRouteRequestBuilder {
     private String paymentId;
     private Optional<? extends PaymentCreateRouteRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallPaymentCreateRoute sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PaymentCreateRouteRequestBuilder(SDKMethodInterfaces.MethodCallPaymentCreateRoute sdk) {
-        this.sdk = sdk;
+    public PaymentCreateRouteRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PaymentCreateRouteRequestBuilder paymentId(String paymentId) {
@@ -51,13 +55,26 @@ public class PaymentCreateRouteRequestBuilder {
         return this;
     }
 
+
+    private PaymentCreateRouteRequest buildRequest() {
+
+        PaymentCreateRouteRequest request = new PaymentCreateRouteRequest(paymentId,
+            requestBody);
+
+        return request;
+    }
+
     public PaymentCreateRouteResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.create(
-            paymentId,
-            requestBody,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<PaymentCreateRouteRequest, PaymentCreateRouteResponse> operation
+              = new PaymentCreateRouteOperation(
+                 sdkConfiguration,
+                 options);
+        PaymentCreateRouteRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

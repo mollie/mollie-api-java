@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.GetOrganizationOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -17,10 +21,10 @@ public class GetOrganizationRequestBuilder {
     private String id;
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetOrganization sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetOrganizationRequestBuilder(SDKMethodInterfaces.MethodCallGetOrganization sdk) {
-        this.sdk = sdk;
+    public GetOrganizationRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetOrganizationRequestBuilder id(String id) {
@@ -53,13 +57,26 @@ public class GetOrganizationRequestBuilder {
         return this;
     }
 
+
+    private GetOrganizationRequest buildRequest() {
+
+        GetOrganizationRequest request = new GetOrganizationRequest(id,
+            testmode);
+
+        return request;
+    }
+
     public GetOrganizationResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            id,
-            testmode,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetOrganizationRequest, GetOrganizationResponse> operation
+              = new GetOrganizationOperation(
+                 sdkConfiguration,
+                 options);
+        GetOrganizationRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

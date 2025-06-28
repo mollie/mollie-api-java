@@ -19,7 +19,7 @@ public enum GetRefundQueryParamInclude {
     @JsonValue
     private final String value;
 
-    private GetRefundQueryParamInclude(String value) {
+    GetRefundQueryParamInclude(String value) {
         this.value = value;
     }
     

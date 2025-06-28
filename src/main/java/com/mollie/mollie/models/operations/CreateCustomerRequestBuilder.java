@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.CreateCustomerOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -13,10 +17,10 @@ public class CreateCustomerRequestBuilder {
 
     private Optional<? extends CreateCustomerRequestBody> request = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCreateCustomer sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateCustomerRequestBuilder(SDKMethodInterfaces.MethodCallCreateCustomer sdk) {
-        this.sdk = sdk;
+    public CreateCustomerRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public CreateCustomerRequestBuilder request(CreateCustomerRequestBody request) {
@@ -45,10 +49,14 @@ public class CreateCustomerRequestBuilder {
 
     public CreateCustomerResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.create(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<Optional<? extends CreateCustomerRequestBody>, CreateCustomerResponse> operation
+              = new CreateCustomerOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

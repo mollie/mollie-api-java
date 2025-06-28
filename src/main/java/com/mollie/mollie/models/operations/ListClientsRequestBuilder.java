@@ -3,7 +3,11 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.ListClientsOperation;
 import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
@@ -23,10 +27,10 @@ public class ListClientsRequestBuilder {
                             "50",
                             new TypeReference<JsonNullable<Long>>() {});
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallListClients sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListClientsRequestBuilder(SDKMethodInterfaces.MethodCallListClients sdk) {
-        this.sdk = sdk;
+    public ListClientsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ListClientsRequestBuilder embed(String embed) {
@@ -77,17 +81,31 @@ public class ListClientsRequestBuilder {
         return this;
     }
 
-    public ListClientsResponse call() throws Exception {
+
+    private ListClientsRequest buildRequest() {
         if (limit == null) {
             limit = _SINGLETON_VALUE_Limit.value();
-        }        Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.list(
-            embed,
+        }
+
+        ListClientsRequest request = new ListClientsRequest(embed,
             from,
-            limit,
-            options);
+            limit);
+
+        return request;
+    }
+
+    public ListClientsResponse call() throws Exception {
+        Optional<Options> options = Optional.of(Options.builder()
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<ListClientsRequest, ListClientsResponse> operation
+              = new ListClientsOperation(
+                 sdkConfiguration,
+                 options);
+        ListClientsRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 
     private static final LazySingletonValue<JsonNullable<Long>> _SINGLETON_VALUE_Limit =

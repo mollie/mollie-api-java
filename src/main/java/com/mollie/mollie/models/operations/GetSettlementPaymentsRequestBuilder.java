@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.GetSettlementPaymentsOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -13,10 +17,10 @@ public class GetSettlementPaymentsRequestBuilder {
 
     private GetSettlementPaymentsRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetSettlementPayments sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetSettlementPaymentsRequestBuilder(SDKMethodInterfaces.MethodCallGetSettlementPayments sdk) {
-        this.sdk = sdk;
+    public GetSettlementPaymentsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetSettlementPaymentsRequestBuilder request(GetSettlementPaymentsRequest request) {
@@ -39,10 +43,14 @@ public class GetSettlementPaymentsRequestBuilder {
 
     public GetSettlementPaymentsResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.listPayments(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetSettlementPaymentsRequest, GetSettlementPaymentsResponse> operation
+              = new GetSettlementPaymentsOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

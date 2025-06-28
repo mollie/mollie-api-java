@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.GetTerminalOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -17,10 +21,10 @@ public class GetTerminalRequestBuilder {
     private String terminalId;
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetTerminal sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetTerminalRequestBuilder(SDKMethodInterfaces.MethodCallGetTerminal sdk) {
-        this.sdk = sdk;
+    public GetTerminalRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetTerminalRequestBuilder terminalId(String terminalId) {
@@ -53,13 +57,26 @@ public class GetTerminalRequestBuilder {
         return this;
     }
 
+
+    private GetTerminalRequest buildRequest() {
+
+        GetTerminalRequest request = new GetTerminalRequest(terminalId,
+            testmode);
+
+        return request;
+    }
+
     public GetTerminalResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            terminalId,
-            testmode,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetTerminalRequest, GetTerminalResponse> operation
+              = new GetTerminalOperation(
+                 sdkConfiguration,
+                 options);
+        GetTerminalRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -3,79 +3,49 @@
  */
 package com.mollie.mollie;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.models.errors.APIException;
-import com.mollie.mollie.models.errors.CancelPaymentPaymentsResponseBody;
-import com.mollie.mollie.models.errors.CreatePaymentPaymentsResponseBody;
-import com.mollie.mollie.models.errors.ReleaseAuthorizationPaymentsResponseBody;
-import com.mollie.mollie.models.errors.ReleaseAuthorizationResponseBody;
-import com.mollie.mollie.models.errors.UpdatePaymentPaymentsResponseBody;
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
 import com.mollie.mollie.models.operations.CancelPaymentRequest;
 import com.mollie.mollie.models.operations.CancelPaymentRequestBody;
 import com.mollie.mollie.models.operations.CancelPaymentRequestBuilder;
 import com.mollie.mollie.models.operations.CancelPaymentResponse;
-import com.mollie.mollie.models.operations.CancelPaymentResponseBody;
 import com.mollie.mollie.models.operations.CreatePaymentRequest;
 import com.mollie.mollie.models.operations.CreatePaymentRequestBody;
 import com.mollie.mollie.models.operations.CreatePaymentRequestBuilder;
 import com.mollie.mollie.models.operations.CreatePaymentResponse;
-import com.mollie.mollie.models.operations.CreatePaymentResponseBody;
 import com.mollie.mollie.models.operations.Embed;
 import com.mollie.mollie.models.operations.GetPaymentRequest;
 import com.mollie.mollie.models.operations.GetPaymentRequestBuilder;
 import com.mollie.mollie.models.operations.GetPaymentResponse;
-import com.mollie.mollie.models.operations.GetPaymentResponseBody;
 import com.mollie.mollie.models.operations.Include;
 import com.mollie.mollie.models.operations.ListPaymentsRequest;
 import com.mollie.mollie.models.operations.ListPaymentsRequestBuilder;
 import com.mollie.mollie.models.operations.ListPaymentsResponse;
-import com.mollie.mollie.models.operations.ListPaymentsResponseBody;
 import com.mollie.mollie.models.operations.QueryParamInclude;
 import com.mollie.mollie.models.operations.ReleaseAuthorizationRequest;
 import com.mollie.mollie.models.operations.ReleaseAuthorizationRequestBody;
 import com.mollie.mollie.models.operations.ReleaseAuthorizationRequestBuilder;
 import com.mollie.mollie.models.operations.ReleaseAuthorizationResponse;
-import com.mollie.mollie.models.operations.SDKMethodInterfaces.*;
 import com.mollie.mollie.models.operations.UpdatePaymentRequest;
 import com.mollie.mollie.models.operations.UpdatePaymentRequestBody;
 import com.mollie.mollie.models.operations.UpdatePaymentRequestBuilder;
 import com.mollie.mollie.models.operations.UpdatePaymentResponse;
-import com.mollie.mollie.models.operations.UpdatePaymentResponseBody;
-import com.mollie.mollie.utils.BackoffStrategy;
-import com.mollie.mollie.utils.HTTPClient;
-import com.mollie.mollie.utils.HTTPRequest;
-import com.mollie.mollie.utils.Hook.AfterErrorContextImpl;
-import com.mollie.mollie.utils.Hook.AfterSuccessContextImpl;
-import com.mollie.mollie.utils.Hook.BeforeRequestContextImpl;
+import com.mollie.mollie.operations.CancelPaymentOperation;
+import com.mollie.mollie.operations.CreatePaymentOperation;
+import com.mollie.mollie.operations.GetPaymentOperation;
+import com.mollie.mollie.operations.ListPaymentsOperation;
+import com.mollie.mollie.operations.ReleaseAuthorizationOperation;
+import com.mollie.mollie.operations.UpdatePaymentOperation;
 import com.mollie.mollie.utils.Options;
-import com.mollie.mollie.utils.Retries.NonRetryableException;
-import com.mollie.mollie.utils.Retries;
-import com.mollie.mollie.utils.RetryConfig;
-import com.mollie.mollie.utils.SerializedBody;
-import com.mollie.mollie.utils.Utils.JsonShape;
-import com.mollie.mollie.utils.Utils;
-import java.io.InputStream;
 import java.lang.Boolean;
 import java.lang.Exception;
-import java.lang.Object;
 import java.lang.String;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Payments implements
-            MethodCallCreatePayment,
-            MethodCallListPayments,
-            MethodCallGetPayment,
-            MethodCallUpdatePayment,
-            MethodCallCancelPayment,
-            MethodCallReleaseAuthorization {
 
+public class Payments {
     private final SDKConfiguration sdkConfiguration;
 
     Payments(SDKConfiguration sdkConfiguration) {
@@ -102,7 +72,7 @@ public class Payments implements
      * @return The call builder
      */
     public CreatePaymentRequestBuilder create() {
-        return new CreatePaymentRequestBuilder(this);
+        return new CreatePaymentRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -128,7 +98,7 @@ public class Payments implements
     public CreatePaymentResponse createDirect() throws Exception {
         return create(JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
-    
+
     /**
      * Create payment
      * 
@@ -156,189 +126,17 @@ public class Payments implements
             JsonNullable<? extends Include> include,
             Optional<? extends CreatePaymentRequestBody> requestBody,
             Optional<Options> options) throws Exception {
-
-        if (options.isPresent()) {
-          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
-        }
         CreatePaymentRequest request =
             CreatePaymentRequest
                 .builder()
                 .include(include)
                 .requestBody(requestBody)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl();
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/payments");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "requestBody",
-                "json",
-                false);
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/hal+json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                CreatePaymentRequest.class,
-                request, 
-                null));
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HTTPRequest _finalReq = _req;
-        RetryConfig _retryConfig;
-        if (options.isPresent() && options.get().retryConfig().isPresent()) {
-            _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig().get();
-        } else {
-            _retryConfig = RetryConfig.builder()
-                .backoff(BackoffStrategy.builder()
-                            .initialInterval(500, TimeUnit.MILLISECONDS)
-                            .maxInterval(60000, TimeUnit.MILLISECONDS)
-                            .baseFactor((double)(1.5))
-                            .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
-                            .retryConnectError(true)
-                            .build())
-                .build();
-        }
-        List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5xx");
-        Retries _retries = Retries.builder()
-            .action(() -> {
-                HttpRequest _r = null;
-                try {
-                    _r = sdkConfiguration.hooks()
-                        .beforeRequest(
-                            new BeforeRequestContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "create-payment", 
-                                Optional.of(List.of()), 
-                                _hookSecuritySource),
-                            _finalReq.build());
-                } catch (Exception _e) {
-                    throw new NonRetryableException(_e);
-                }
-                try {
-                    return _client.send(_r);
-                } catch (Exception _e) {
-                    return sdkConfiguration.hooks()
-                        .afterError(
-                            new AfterErrorContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "create-payment",
-                                 Optional.of(List.of()),
-                                 _hookSecuritySource), 
-                            Optional.empty(),
-                            Optional.of(_e));
-                }
-            })
-            .retryConfig(_retryConfig)
-            .statusCodes(_statusCodes)
-            .build();
-        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
-                 .afterSuccess(
-                     new AfterSuccessContextImpl(
-                         this.sdkConfiguration,
-                         _baseUrl,
-                         "create-payment", 
-                         Optional.of(List.of()), 
-                         _hookSecuritySource),
-                     _retries.run());
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        CreatePaymentResponse.Builder _resBuilder = 
-            CreatePaymentResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        CreatePaymentResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                CreatePaymentResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<CreatePaymentResponseBody>() {});
-                _res.withObject(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "422")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                com.mollie.mollie.models.errors.CreatePaymentResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.mollie.mollie.models.errors.CreatePaymentResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "503")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                CreatePaymentPaymentsResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<CreatePaymentPaymentsResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<CreatePaymentRequest, CreatePaymentResponse> operation
+              = new CreatePaymentOperation(
+                 sdkConfiguration,
+                 options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -358,7 +156,7 @@ public class Payments implements
      * @return The call builder
      */
     public ListPaymentsRequestBuilder list() {
-        return new ListPaymentsRequestBuilder(this);
+        return new ListPaymentsRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -374,15 +172,14 @@ public class Payments implements
      * &gt;
      * &gt; [Access token with **payments.read**](/reference/authentication)
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListPaymentsResponse list(
-            ListPaymentsRequest request) throws Exception {
+    public ListPaymentsResponse list(ListPaymentsRequest request) throws Exception {
         return list(request, Optional.empty());
     }
-    
+
     /**
      * List payments
      * 
@@ -396,7 +193,7 @@ public class Payments implements
      * &gt;
      * &gt; [Access token with **payments.read**](/reference/authentication)
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -404,156 +201,11 @@ public class Payments implements
     public ListPaymentsResponse list(
             ListPaymentsRequest request,
             Optional<Options> options) throws Exception {
-
-        if (options.isPresent()) {
-          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
-        }
-        String _baseUrl = this.sdkConfiguration.serverUrl();
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/payments");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/hal+json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                ListPaymentsRequest.class,
-                request, 
-                null));
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HTTPRequest _finalReq = _req;
-        RetryConfig _retryConfig;
-        if (options.isPresent() && options.get().retryConfig().isPresent()) {
-            _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig().get();
-        } else {
-            _retryConfig = RetryConfig.builder()
-                .backoff(BackoffStrategy.builder()
-                            .initialInterval(500, TimeUnit.MILLISECONDS)
-                            .maxInterval(60000, TimeUnit.MILLISECONDS)
-                            .baseFactor((double)(1.5))
-                            .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
-                            .retryConnectError(true)
-                            .build())
-                .build();
-        }
-        List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5xx");
-        Retries _retries = Retries.builder()
-            .action(() -> {
-                HttpRequest _r = null;
-                try {
-                    _r = sdkConfiguration.hooks()
-                        .beforeRequest(
-                            new BeforeRequestContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "list-payments", 
-                                Optional.of(List.of()), 
-                                _hookSecuritySource),
-                            _finalReq.build());
-                } catch (Exception _e) {
-                    throw new NonRetryableException(_e);
-                }
-                try {
-                    return _client.send(_r);
-                } catch (Exception _e) {
-                    return sdkConfiguration.hooks()
-                        .afterError(
-                            new AfterErrorContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "list-payments",
-                                 Optional.of(List.of()),
-                                 _hookSecuritySource), 
-                            Optional.empty(),
-                            Optional.of(_e));
-                }
-            })
-            .retryConfig(_retryConfig)
-            .statusCodes(_statusCodes)
-            .build();
-        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
-                 .afterSuccess(
-                     new AfterSuccessContextImpl(
-                         this.sdkConfiguration,
-                         _baseUrl,
-                         "list-payments", 
-                         Optional.of(List.of()), 
-                         _hookSecuritySource),
-                     _retries.run());
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        ListPaymentsResponse.Builder _resBuilder = 
-            ListPaymentsResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        ListPaymentsResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                ListPaymentsResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ListPaymentsResponseBody>() {});
-                _res.withObject(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                com.mollie.mollie.models.errors.ListPaymentsResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.mollie.mollie.models.errors.ListPaymentsResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<ListPaymentsRequest, ListPaymentsResponse> operation
+              = new ListPaymentsOperation(
+                 sdkConfiguration,
+                 options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -571,7 +223,7 @@ public class Payments implements
      * @return The call builder
      */
     public GetPaymentRequestBuilder get() {
-        return new GetPaymentRequestBuilder(this);
+        return new GetPaymentRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -589,11 +241,10 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetPaymentResponse get(
-            String paymentId) throws Exception {
+    public GetPaymentResponse get(String paymentId) throws Exception {
         return get(paymentId, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
-    
+
     /**
      * Get payment
      * 
@@ -621,10 +272,6 @@ public class Payments implements
             JsonNullable<? extends Embed> embed,
             JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
-
-        if (options.isPresent()) {
-          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
-        }
         GetPaymentRequest request =
             GetPaymentRequest
                 .builder()
@@ -633,155 +280,11 @@ public class Payments implements
                 .embed(embed)
                 .testmode(testmode)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl();
-        String _url = Utils.generateURL(
-                GetPaymentRequest.class,
-                _baseUrl,
-                "/payments/{paymentId}",
-                request, null);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/hal+json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                GetPaymentRequest.class,
-                request, 
-                null));
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HTTPRequest _finalReq = _req;
-        RetryConfig _retryConfig;
-        if (options.isPresent() && options.get().retryConfig().isPresent()) {
-            _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig().get();
-        } else {
-            _retryConfig = RetryConfig.builder()
-                .backoff(BackoffStrategy.builder()
-                            .initialInterval(500, TimeUnit.MILLISECONDS)
-                            .maxInterval(60000, TimeUnit.MILLISECONDS)
-                            .baseFactor((double)(1.5))
-                            .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
-                            .retryConnectError(true)
-                            .build())
-                .build();
-        }
-        List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5xx");
-        Retries _retries = Retries.builder()
-            .action(() -> {
-                HttpRequest _r = null;
-                try {
-                    _r = sdkConfiguration.hooks()
-                        .beforeRequest(
-                            new BeforeRequestContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "get-payment", 
-                                Optional.of(List.of()), 
-                                _hookSecuritySource),
-                            _finalReq.build());
-                } catch (Exception _e) {
-                    throw new NonRetryableException(_e);
-                }
-                try {
-                    return _client.send(_r);
-                } catch (Exception _e) {
-                    return sdkConfiguration.hooks()
-                        .afterError(
-                            new AfterErrorContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "get-payment",
-                                 Optional.of(List.of()),
-                                 _hookSecuritySource), 
-                            Optional.empty(),
-                            Optional.of(_e));
-                }
-            })
-            .retryConfig(_retryConfig)
-            .statusCodes(_statusCodes)
-            .build();
-        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
-                 .afterSuccess(
-                     new AfterSuccessContextImpl(
-                         this.sdkConfiguration,
-                         _baseUrl,
-                         "get-payment", 
-                         Optional.of(List.of()), 
-                         _hookSecuritySource),
-                     _retries.run());
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        GetPaymentResponse.Builder _resBuilder = 
-            GetPaymentResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        GetPaymentResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                GetPaymentResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<GetPaymentResponseBody>() {});
-                _res.withObject(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                com.mollie.mollie.models.errors.GetPaymentResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.mollie.mollie.models.errors.GetPaymentResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<GetPaymentRequest, GetPaymentResponse> operation
+              = new GetPaymentOperation(
+                 sdkConfiguration,
+                 options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -801,7 +304,7 @@ public class Payments implements
      * @return The call builder
      */
     public UpdatePaymentRequestBuilder update() {
-        return new UpdatePaymentRequestBuilder(this);
+        return new UpdatePaymentRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -821,11 +324,10 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdatePaymentResponse update(
-            String paymentId) throws Exception {
+    public UpdatePaymentResponse update(String paymentId) throws Exception {
         return update(paymentId, Optional.empty(), Optional.empty());
     }
-    
+
     /**
      * Update payment
      * 
@@ -849,186 +351,17 @@ public class Payments implements
             String paymentId,
             Optional<? extends UpdatePaymentRequestBody> requestBody,
             Optional<Options> options) throws Exception {
-
-        if (options.isPresent()) {
-          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
-        }
         UpdatePaymentRequest request =
             UpdatePaymentRequest
                 .builder()
                 .paymentId(paymentId)
                 .requestBody(requestBody)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl();
-        String _url = Utils.generateURL(
-                UpdatePaymentRequest.class,
-                _baseUrl,
-                "/payments/{paymentId}",
-                request, null);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "PATCH");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "requestBody",
-                "json",
-                false);
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/hal+json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HTTPRequest _finalReq = _req;
-        RetryConfig _retryConfig;
-        if (options.isPresent() && options.get().retryConfig().isPresent()) {
-            _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig().get();
-        } else {
-            _retryConfig = RetryConfig.builder()
-                .backoff(BackoffStrategy.builder()
-                            .initialInterval(500, TimeUnit.MILLISECONDS)
-                            .maxInterval(60000, TimeUnit.MILLISECONDS)
-                            .baseFactor((double)(1.5))
-                            .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
-                            .retryConnectError(true)
-                            .build())
-                .build();
-        }
-        List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5xx");
-        Retries _retries = Retries.builder()
-            .action(() -> {
-                HttpRequest _r = null;
-                try {
-                    _r = sdkConfiguration.hooks()
-                        .beforeRequest(
-                            new BeforeRequestContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "update-payment", 
-                                Optional.of(List.of()), 
-                                _hookSecuritySource),
-                            _finalReq.build());
-                } catch (Exception _e) {
-                    throw new NonRetryableException(_e);
-                }
-                try {
-                    return _client.send(_r);
-                } catch (Exception _e) {
-                    return sdkConfiguration.hooks()
-                        .afterError(
-                            new AfterErrorContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "update-payment",
-                                 Optional.of(List.of()),
-                                 _hookSecuritySource), 
-                            Optional.empty(),
-                            Optional.of(_e));
-                }
-            })
-            .retryConfig(_retryConfig)
-            .statusCodes(_statusCodes)
-            .build();
-        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
-                 .afterSuccess(
-                     new AfterSuccessContextImpl(
-                         this.sdkConfiguration,
-                         _baseUrl,
-                         "update-payment", 
-                         Optional.of(List.of()), 
-                         _hookSecuritySource),
-                     _retries.run());
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        UpdatePaymentResponse.Builder _resBuilder = 
-            UpdatePaymentResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        UpdatePaymentResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                UpdatePaymentResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<UpdatePaymentResponseBody>() {});
-                _res.withObject(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                com.mollie.mollie.models.errors.UpdatePaymentResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.mollie.mollie.models.errors.UpdatePaymentResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "422")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                UpdatePaymentPaymentsResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<UpdatePaymentPaymentsResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<UpdatePaymentRequest, UpdatePaymentResponse> operation
+              = new UpdatePaymentOperation(
+                 sdkConfiguration,
+                 options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -1050,7 +383,7 @@ public class Payments implements
      * @return The call builder
      */
     public CancelPaymentRequestBuilder cancel() {
-        return new CancelPaymentRequestBuilder(this);
+        return new CancelPaymentRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -1072,11 +405,10 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CancelPaymentResponse cancel(
-            String paymentId) throws Exception {
+    public CancelPaymentResponse cancel(String paymentId) throws Exception {
         return cancel(paymentId, Optional.empty(), Optional.empty());
     }
-    
+
     /**
      * Cancel payment
      * 
@@ -1102,186 +434,17 @@ public class Payments implements
             String paymentId,
             Optional<? extends CancelPaymentRequestBody> requestBody,
             Optional<Options> options) throws Exception {
-
-        if (options.isPresent()) {
-          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
-        }
         CancelPaymentRequest request =
             CancelPaymentRequest
                 .builder()
                 .paymentId(paymentId)
                 .requestBody(requestBody)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl();
-        String _url = Utils.generateURL(
-                CancelPaymentRequest.class,
-                _baseUrl,
-                "/payments/{paymentId}",
-                request, null);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "DELETE");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "requestBody",
-                "json",
-                false);
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/hal+json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HTTPRequest _finalReq = _req;
-        RetryConfig _retryConfig;
-        if (options.isPresent() && options.get().retryConfig().isPresent()) {
-            _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig().get();
-        } else {
-            _retryConfig = RetryConfig.builder()
-                .backoff(BackoffStrategy.builder()
-                            .initialInterval(500, TimeUnit.MILLISECONDS)
-                            .maxInterval(60000, TimeUnit.MILLISECONDS)
-                            .baseFactor((double)(1.5))
-                            .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
-                            .retryConnectError(true)
-                            .build())
-                .build();
-        }
-        List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5xx");
-        Retries _retries = Retries.builder()
-            .action(() -> {
-                HttpRequest _r = null;
-                try {
-                    _r = sdkConfiguration.hooks()
-                        .beforeRequest(
-                            new BeforeRequestContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "cancel-payment", 
-                                Optional.of(List.of()), 
-                                _hookSecuritySource),
-                            _finalReq.build());
-                } catch (Exception _e) {
-                    throw new NonRetryableException(_e);
-                }
-                try {
-                    return _client.send(_r);
-                } catch (Exception _e) {
-                    return sdkConfiguration.hooks()
-                        .afterError(
-                            new AfterErrorContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "cancel-payment",
-                                 Optional.of(List.of()),
-                                 _hookSecuritySource), 
-                            Optional.empty(),
-                            Optional.of(_e));
-                }
-            })
-            .retryConfig(_retryConfig)
-            .statusCodes(_statusCodes)
-            .build();
-        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
-                 .afterSuccess(
-                     new AfterSuccessContextImpl(
-                         this.sdkConfiguration,
-                         _baseUrl,
-                         "cancel-payment", 
-                         Optional.of(List.of()), 
-                         _hookSecuritySource),
-                     _retries.run());
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        CancelPaymentResponse.Builder _resBuilder = 
-            CancelPaymentResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        CancelPaymentResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                CancelPaymentResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<CancelPaymentResponseBody>() {});
-                _res.withObject(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                com.mollie.mollie.models.errors.CancelPaymentResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.mollie.mollie.models.errors.CancelPaymentResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "422")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                CancelPaymentPaymentsResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<CancelPaymentPaymentsResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<CancelPaymentRequest, CancelPaymentResponse> operation
+              = new CancelPaymentOperation(
+                 sdkConfiguration,
+                 options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -1303,7 +466,7 @@ public class Payments implements
      * @return The call builder
      */
     public ReleaseAuthorizationRequestBuilder releaseAuthorization() {
-        return new ReleaseAuthorizationRequestBuilder(this);
+        return new ReleaseAuthorizationRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -1325,11 +488,10 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ReleaseAuthorizationResponse releaseAuthorization(
-            String paymentId) throws Exception {
+    public ReleaseAuthorizationResponse releaseAuthorization(String paymentId) throws Exception {
         return releaseAuthorization(paymentId, Optional.empty(), Optional.empty());
     }
-    
+
     /**
      * Release payment authorization
      * 
@@ -1355,186 +517,17 @@ public class Payments implements
             String paymentId,
             Optional<? extends ReleaseAuthorizationRequestBody> requestBody,
             Optional<Options> options) throws Exception {
-
-        if (options.isPresent()) {
-          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
-        }
         ReleaseAuthorizationRequest request =
             ReleaseAuthorizationRequest
                 .builder()
                 .paymentId(paymentId)
                 .requestBody(requestBody)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl();
-        String _url = Utils.generateURL(
-                ReleaseAuthorizationRequest.class,
-                _baseUrl,
-                "/payments/{paymentId}/release-authorization",
-                request, null);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "requestBody",
-                "json",
-                false);
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/hal+json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HTTPRequest _finalReq = _req;
-        RetryConfig _retryConfig;
-        if (options.isPresent() && options.get().retryConfig().isPresent()) {
-            _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig().get();
-        } else {
-            _retryConfig = RetryConfig.builder()
-                .backoff(BackoffStrategy.builder()
-                            .initialInterval(500, TimeUnit.MILLISECONDS)
-                            .maxInterval(60000, TimeUnit.MILLISECONDS)
-                            .baseFactor((double)(1.5))
-                            .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
-                            .retryConnectError(true)
-                            .build())
-                .build();
-        }
-        List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5xx");
-        Retries _retries = Retries.builder()
-            .action(() -> {
-                HttpRequest _r = null;
-                try {
-                    _r = sdkConfiguration.hooks()
-                        .beforeRequest(
-                            new BeforeRequestContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "release-authorization", 
-                                Optional.of(List.of()), 
-                                _hookSecuritySource),
-                            _finalReq.build());
-                } catch (Exception _e) {
-                    throw new NonRetryableException(_e);
-                }
-                try {
-                    return _client.send(_r);
-                } catch (Exception _e) {
-                    return sdkConfiguration.hooks()
-                        .afterError(
-                            new AfterErrorContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "release-authorization",
-                                 Optional.of(List.of()),
-                                 _hookSecuritySource), 
-                            Optional.empty(),
-                            Optional.of(_e));
-                }
-            })
-            .retryConfig(_retryConfig)
-            .statusCodes(_statusCodes)
-            .build();
-        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
-                 .afterSuccess(
-                     new AfterSuccessContextImpl(
-                         this.sdkConfiguration,
-                         _baseUrl,
-                         "release-authorization", 
-                         Optional.of(List.of()), 
-                         _hookSecuritySource),
-                     _retries.run());
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        ReleaseAuthorizationResponse.Builder _resBuilder = 
-            ReleaseAuthorizationResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        ReleaseAuthorizationResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "202")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                ReleaseAuthorizationResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ReleaseAuthorizationResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "422")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                ReleaseAuthorizationPaymentsResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ReleaseAuthorizationPaymentsResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<ReleaseAuthorizationRequest, ReleaseAuthorizationResponse> operation
+              = new ReleaseAuthorizationOperation(
+                 sdkConfiguration,
+                 options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 }

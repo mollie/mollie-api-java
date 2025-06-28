@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.ListInvoicesOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -13,10 +17,10 @@ public class ListInvoicesRequestBuilder {
 
     private ListInvoicesRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallListInvoices sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListInvoicesRequestBuilder(SDKMethodInterfaces.MethodCallListInvoices sdk) {
-        this.sdk = sdk;
+    public ListInvoicesRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ListInvoicesRequestBuilder request(ListInvoicesRequest request) {
@@ -39,10 +43,14 @@ public class ListInvoicesRequestBuilder {
 
     public ListInvoicesResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.list(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<ListInvoicesRequest, ListInvoicesResponse> operation
+              = new ListInvoicesOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

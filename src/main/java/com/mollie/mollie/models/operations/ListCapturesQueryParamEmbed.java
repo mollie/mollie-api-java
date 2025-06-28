@@ -19,7 +19,7 @@ public enum ListCapturesQueryParamEmbed {
     @JsonValue
     private final String value;
 
-    private ListCapturesQueryParamEmbed(String value) {
+    ListCapturesQueryParamEmbed(String value) {
         this.value = value;
     }
     

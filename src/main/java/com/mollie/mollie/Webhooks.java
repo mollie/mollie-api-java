@@ -3,30 +3,20 @@
  */
 package com.mollie.mollie;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.models.errors.APIException;
-import com.mollie.mollie.models.errors.DeleteWebhookResponseBody;
-import com.mollie.mollie.models.errors.DeleteWebhookWebhooksResponseBody;
-import com.mollie.mollie.models.errors.GetWebhookWebhooksResponseBody;
-import com.mollie.mollie.models.errors.TestWebhookResponseBody;
-import com.mollie.mollie.models.errors.TestWebhookWebhooksResponseBody;
-import com.mollie.mollie.models.errors.UpdateWebhookWebhooksResponseBody;
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
 import com.mollie.mollie.models.operations.CreateWebhookRequestBody;
 import com.mollie.mollie.models.operations.CreateWebhookRequestBuilder;
 import com.mollie.mollie.models.operations.CreateWebhookResponse;
-import com.mollie.mollie.models.operations.CreateWebhookResponseBody;
 import com.mollie.mollie.models.operations.DeleteWebhookRequest;
 import com.mollie.mollie.models.operations.DeleteWebhookRequestBuilder;
 import com.mollie.mollie.models.operations.DeleteWebhookResponse;
 import com.mollie.mollie.models.operations.GetWebhookRequest;
 import com.mollie.mollie.models.operations.GetWebhookRequestBuilder;
 import com.mollie.mollie.models.operations.GetWebhookResponse;
-import com.mollie.mollie.models.operations.GetWebhookResponseBody;
 import com.mollie.mollie.models.operations.ListWebhooksRequest;
 import com.mollie.mollie.models.operations.ListWebhooksRequestBuilder;
 import com.mollie.mollie.models.operations.ListWebhooksResponse;
-import com.mollie.mollie.models.operations.ListWebhooksResponseBody;
-import com.mollie.mollie.models.operations.SDKMethodInterfaces.*;
 import com.mollie.mollie.models.operations.TestWebhookRequest;
 import com.mollie.mollie.models.operations.TestWebhookRequestBody;
 import com.mollie.mollie.models.operations.TestWebhookRequestBuilder;
@@ -35,42 +25,22 @@ import com.mollie.mollie.models.operations.UpdateWebhookRequest;
 import com.mollie.mollie.models.operations.UpdateWebhookRequestBody;
 import com.mollie.mollie.models.operations.UpdateWebhookRequestBuilder;
 import com.mollie.mollie.models.operations.UpdateWebhookResponse;
-import com.mollie.mollie.models.operations.UpdateWebhookResponseBody;
-import com.mollie.mollie.utils.BackoffStrategy;
-import com.mollie.mollie.utils.HTTPClient;
-import com.mollie.mollie.utils.HTTPRequest;
-import com.mollie.mollie.utils.Hook.AfterErrorContextImpl;
-import com.mollie.mollie.utils.Hook.AfterSuccessContextImpl;
-import com.mollie.mollie.utils.Hook.BeforeRequestContextImpl;
+import com.mollie.mollie.operations.CreateWebhookOperation;
+import com.mollie.mollie.operations.DeleteWebhookOperation;
+import com.mollie.mollie.operations.GetWebhookOperation;
+import com.mollie.mollie.operations.ListWebhooksOperation;
+import com.mollie.mollie.operations.TestWebhookOperation;
+import com.mollie.mollie.operations.UpdateWebhookOperation;
 import com.mollie.mollie.utils.Options;
-import com.mollie.mollie.utils.Retries.NonRetryableException;
-import com.mollie.mollie.utils.Retries;
-import com.mollie.mollie.utils.RetryConfig;
-import com.mollie.mollie.utils.SerializedBody;
-import com.mollie.mollie.utils.Utils.JsonShape;
-import com.mollie.mollie.utils.Utils;
-import java.io.InputStream;
 import java.lang.Boolean;
 import java.lang.Exception;
-import java.lang.Object;
 import java.lang.String;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Webhooks implements
-            MethodCallCreateWebhook,
-            MethodCallListWebhooks,
-            MethodCallUpdateWebhook,
-            MethodCallGetWebhook,
-            MethodCallDeleteWebhook,
-            MethodCallTestWebhook {
 
+public class Webhooks {
     private final SDKConfiguration sdkConfiguration;
 
     Webhooks(SDKConfiguration sdkConfiguration) {
@@ -89,7 +59,7 @@ public class Webhooks implements
      * @return The call builder
      */
     public CreateWebhookRequestBuilder create() {
-        return new CreateWebhookRequestBuilder(this);
+        return new CreateWebhookRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -107,7 +77,7 @@ public class Webhooks implements
     public CreateWebhookResponse createDirect() throws Exception {
         return create(Optional.empty(), Optional.empty());
     }
-    
+
     /**
      * Create a webhook
      * 
@@ -117,7 +87,7 @@ public class Webhooks implements
      * &gt;
      * &gt; [Access token with **webhooks.write**](/reference/authentication)
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -125,161 +95,11 @@ public class Webhooks implements
     public CreateWebhookResponse create(
             Optional<? extends CreateWebhookRequestBody> request,
             Optional<Options> options) throws Exception {
-
-        if (options.isPresent()) {
-          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
-        }
-        String _baseUrl = this.sdkConfiguration.serverUrl();
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/webhooks");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Optional<? extends CreateWebhookRequestBody>>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "request",
-                "json",
-                false);
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/hal+json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HTTPRequest _finalReq = _req;
-        RetryConfig _retryConfig;
-        if (options.isPresent() && options.get().retryConfig().isPresent()) {
-            _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig().get();
-        } else {
-            _retryConfig = RetryConfig.builder()
-                .backoff(BackoffStrategy.builder()
-                            .initialInterval(500, TimeUnit.MILLISECONDS)
-                            .maxInterval(60000, TimeUnit.MILLISECONDS)
-                            .baseFactor((double)(1.5))
-                            .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
-                            .retryConnectError(true)
-                            .build())
-                .build();
-        }
-        List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5xx");
-        Retries _retries = Retries.builder()
-            .action(() -> {
-                HttpRequest _r = null;
-                try {
-                    _r = sdkConfiguration.hooks()
-                        .beforeRequest(
-                            new BeforeRequestContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "create-webhook", 
-                                Optional.of(List.of()), 
-                                _hookSecuritySource),
-                            _finalReq.build());
-                } catch (Exception _e) {
-                    throw new NonRetryableException(_e);
-                }
-                try {
-                    return _client.send(_r);
-                } catch (Exception _e) {
-                    return sdkConfiguration.hooks()
-                        .afterError(
-                            new AfterErrorContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "create-webhook",
-                                 Optional.of(List.of()),
-                                 _hookSecuritySource), 
-                            Optional.empty(),
-                            Optional.of(_e));
-                }
-            })
-            .retryConfig(_retryConfig)
-            .statusCodes(_statusCodes)
-            .build();
-        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
-                 .afterSuccess(
-                     new AfterSuccessContextImpl(
-                         this.sdkConfiguration,
-                         _baseUrl,
-                         "create-webhook", 
-                         Optional.of(List.of()), 
-                         _hookSecuritySource),
-                     _retries.run());
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        CreateWebhookResponse.Builder _resBuilder = 
-            CreateWebhookResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        CreateWebhookResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                CreateWebhookResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<CreateWebhookResponseBody>() {});
-                _res.withObject(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "422")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                com.mollie.mollie.models.errors.CreateWebhookResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.mollie.mollie.models.errors.CreateWebhookResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<Optional<? extends CreateWebhookRequestBody>, CreateWebhookResponse> operation
+              = new CreateWebhookOperation(
+                 sdkConfiguration,
+                 options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -295,7 +115,7 @@ public class Webhooks implements
      * @return The call builder
      */
     public ListWebhooksRequestBuilder list() {
-        return new ListWebhooksRequestBuilder(this);
+        return new ListWebhooksRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -307,15 +127,14 @@ public class Webhooks implements
      * &gt;
      * &gt; [Access token with **webhooks.read**](/reference/authentication)
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListWebhooksResponse list(
-            ListWebhooksRequest request) throws Exception {
+    public ListWebhooksResponse list(ListWebhooksRequest request) throws Exception {
         return list(request, Optional.empty());
     }
-    
+
     /**
      * List all webhooks
      * 
@@ -325,7 +144,7 @@ public class Webhooks implements
      * &gt;
      * &gt; [Access token with **webhooks.read**](/reference/authentication)
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -333,156 +152,11 @@ public class Webhooks implements
     public ListWebhooksResponse list(
             ListWebhooksRequest request,
             Optional<Options> options) throws Exception {
-
-        if (options.isPresent()) {
-          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
-        }
-        String _baseUrl = this.sdkConfiguration.serverUrl();
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/webhooks");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/hal+json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                ListWebhooksRequest.class,
-                request, 
-                null));
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HTTPRequest _finalReq = _req;
-        RetryConfig _retryConfig;
-        if (options.isPresent() && options.get().retryConfig().isPresent()) {
-            _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig().get();
-        } else {
-            _retryConfig = RetryConfig.builder()
-                .backoff(BackoffStrategy.builder()
-                            .initialInterval(500, TimeUnit.MILLISECONDS)
-                            .maxInterval(60000, TimeUnit.MILLISECONDS)
-                            .baseFactor((double)(1.5))
-                            .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
-                            .retryConnectError(true)
-                            .build())
-                .build();
-        }
-        List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5xx");
-        Retries _retries = Retries.builder()
-            .action(() -> {
-                HttpRequest _r = null;
-                try {
-                    _r = sdkConfiguration.hooks()
-                        .beforeRequest(
-                            new BeforeRequestContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "list-webhooks", 
-                                Optional.of(List.of()), 
-                                _hookSecuritySource),
-                            _finalReq.build());
-                } catch (Exception _e) {
-                    throw new NonRetryableException(_e);
-                }
-                try {
-                    return _client.send(_r);
-                } catch (Exception _e) {
-                    return sdkConfiguration.hooks()
-                        .afterError(
-                            new AfterErrorContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "list-webhooks",
-                                 Optional.of(List.of()),
-                                 _hookSecuritySource), 
-                            Optional.empty(),
-                            Optional.of(_e));
-                }
-            })
-            .retryConfig(_retryConfig)
-            .statusCodes(_statusCodes)
-            .build();
-        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
-                 .afterSuccess(
-                     new AfterSuccessContextImpl(
-                         this.sdkConfiguration,
-                         _baseUrl,
-                         "list-webhooks", 
-                         Optional.of(List.of()), 
-                         _hookSecuritySource),
-                     _retries.run());
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        ListWebhooksResponse.Builder _resBuilder = 
-            ListWebhooksResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        ListWebhooksResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                ListWebhooksResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ListWebhooksResponseBody>() {});
-                _res.withObject(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                com.mollie.mollie.models.errors.ListWebhooksResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.mollie.mollie.models.errors.ListWebhooksResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<ListWebhooksRequest, ListWebhooksResponse> operation
+              = new ListWebhooksOperation(
+                 sdkConfiguration,
+                 options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -498,7 +172,7 @@ public class Webhooks implements
      * @return The call builder
      */
     public UpdateWebhookRequestBuilder update() {
-        return new UpdateWebhookRequestBuilder(this);
+        return new UpdateWebhookRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -514,11 +188,10 @@ public class Webhooks implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdateWebhookResponse update(
-            String id) throws Exception {
+    public UpdateWebhookResponse update(String id) throws Exception {
         return update(id, Optional.empty(), Optional.empty());
     }
-    
+
     /**
      * Update a webhook
      * 
@@ -538,186 +211,17 @@ public class Webhooks implements
             String id,
             Optional<? extends UpdateWebhookRequestBody> requestBody,
             Optional<Options> options) throws Exception {
-
-        if (options.isPresent()) {
-          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
-        }
         UpdateWebhookRequest request =
             UpdateWebhookRequest
                 .builder()
                 .id(id)
                 .requestBody(requestBody)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl();
-        String _url = Utils.generateURL(
-                UpdateWebhookRequest.class,
-                _baseUrl,
-                "/webhooks/{id}",
-                request, null);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "PATCH");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "requestBody",
-                "json",
-                false);
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/hal+json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HTTPRequest _finalReq = _req;
-        RetryConfig _retryConfig;
-        if (options.isPresent() && options.get().retryConfig().isPresent()) {
-            _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig().get();
-        } else {
-            _retryConfig = RetryConfig.builder()
-                .backoff(BackoffStrategy.builder()
-                            .initialInterval(500, TimeUnit.MILLISECONDS)
-                            .maxInterval(60000, TimeUnit.MILLISECONDS)
-                            .baseFactor((double)(1.5))
-                            .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
-                            .retryConnectError(true)
-                            .build())
-                .build();
-        }
-        List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5xx");
-        Retries _retries = Retries.builder()
-            .action(() -> {
-                HttpRequest _r = null;
-                try {
-                    _r = sdkConfiguration.hooks()
-                        .beforeRequest(
-                            new BeforeRequestContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "update-webhook", 
-                                Optional.of(List.of()), 
-                                _hookSecuritySource),
-                            _finalReq.build());
-                } catch (Exception _e) {
-                    throw new NonRetryableException(_e);
-                }
-                try {
-                    return _client.send(_r);
-                } catch (Exception _e) {
-                    return sdkConfiguration.hooks()
-                        .afterError(
-                            new AfterErrorContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "update-webhook",
-                                 Optional.of(List.of()),
-                                 _hookSecuritySource), 
-                            Optional.empty(),
-                            Optional.of(_e));
-                }
-            })
-            .retryConfig(_retryConfig)
-            .statusCodes(_statusCodes)
-            .build();
-        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
-                 .afterSuccess(
-                     new AfterSuccessContextImpl(
-                         this.sdkConfiguration,
-                         _baseUrl,
-                         "update-webhook", 
-                         Optional.of(List.of()), 
-                         _hookSecuritySource),
-                     _retries.run());
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        UpdateWebhookResponse.Builder _resBuilder = 
-            UpdateWebhookResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        UpdateWebhookResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                UpdateWebhookResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<UpdateWebhookResponseBody>() {});
-                _res.withObject(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                com.mollie.mollie.models.errors.UpdateWebhookResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.mollie.mollie.models.errors.UpdateWebhookResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "422")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                UpdateWebhookWebhooksResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<UpdateWebhookWebhooksResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<UpdateWebhookRequest, UpdateWebhookResponse> operation
+              = new UpdateWebhookOperation(
+                 sdkConfiguration,
+                 options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -733,7 +237,7 @@ public class Webhooks implements
      * @return The call builder
      */
     public GetWebhookRequestBuilder get() {
-        return new GetWebhookRequestBuilder(this);
+        return new GetWebhookRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -749,11 +253,10 @@ public class Webhooks implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetWebhookResponse get(
-            String id) throws Exception {
+    public GetWebhookResponse get(String id) throws Exception {
         return get(id, JsonNullable.undefined(), Optional.empty());
     }
-    
+
     /**
      * Get a webhook
      * 
@@ -775,181 +278,17 @@ public class Webhooks implements
             String id,
             JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
-
-        if (options.isPresent()) {
-          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
-        }
         GetWebhookRequest request =
             GetWebhookRequest
                 .builder()
                 .id(id)
                 .testmode(testmode)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl();
-        String _url = Utils.generateURL(
-                GetWebhookRequest.class,
-                _baseUrl,
-                "/webhooks/{id}",
-                request, null);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/hal+json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                GetWebhookRequest.class,
-                request, 
-                null));
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HTTPRequest _finalReq = _req;
-        RetryConfig _retryConfig;
-        if (options.isPresent() && options.get().retryConfig().isPresent()) {
-            _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig().get();
-        } else {
-            _retryConfig = RetryConfig.builder()
-                .backoff(BackoffStrategy.builder()
-                            .initialInterval(500, TimeUnit.MILLISECONDS)
-                            .maxInterval(60000, TimeUnit.MILLISECONDS)
-                            .baseFactor((double)(1.5))
-                            .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
-                            .retryConnectError(true)
-                            .build())
-                .build();
-        }
-        List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5xx");
-        Retries _retries = Retries.builder()
-            .action(() -> {
-                HttpRequest _r = null;
-                try {
-                    _r = sdkConfiguration.hooks()
-                        .beforeRequest(
-                            new BeforeRequestContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "get-webhook", 
-                                Optional.of(List.of()), 
-                                _hookSecuritySource),
-                            _finalReq.build());
-                } catch (Exception _e) {
-                    throw new NonRetryableException(_e);
-                }
-                try {
-                    return _client.send(_r);
-                } catch (Exception _e) {
-                    return sdkConfiguration.hooks()
-                        .afterError(
-                            new AfterErrorContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "get-webhook",
-                                 Optional.of(List.of()),
-                                 _hookSecuritySource), 
-                            Optional.empty(),
-                            Optional.of(_e));
-                }
-            })
-            .retryConfig(_retryConfig)
-            .statusCodes(_statusCodes)
-            .build();
-        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
-                 .afterSuccess(
-                     new AfterSuccessContextImpl(
-                         this.sdkConfiguration,
-                         _baseUrl,
-                         "get-webhook", 
-                         Optional.of(List.of()), 
-                         _hookSecuritySource),
-                     _retries.run());
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        GetWebhookResponse.Builder _resBuilder = 
-            GetWebhookResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        GetWebhookResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                GetWebhookResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<GetWebhookResponseBody>() {});
-                _res.withObject(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                com.mollie.mollie.models.errors.GetWebhookResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.mollie.mollie.models.errors.GetWebhookResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "422")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                GetWebhookWebhooksResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<GetWebhookWebhooksResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<GetWebhookRequest, GetWebhookResponse> operation
+              = new GetWebhookOperation(
+                 sdkConfiguration,
+                 options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -965,7 +304,7 @@ public class Webhooks implements
      * @return The call builder
      */
     public DeleteWebhookRequestBuilder delete() {
-        return new DeleteWebhookRequestBuilder(this);
+        return new DeleteWebhookRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -981,11 +320,10 @@ public class Webhooks implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DeleteWebhookResponse delete(
-            String id) throws Exception {
+    public DeleteWebhookResponse delete(String id) throws Exception {
         return delete(id, JsonNullable.undefined(), Optional.empty());
     }
-    
+
     /**
      * Delete a webhook
      * 
@@ -1007,181 +345,17 @@ public class Webhooks implements
             String id,
             JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
-
-        if (options.isPresent()) {
-          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
-        }
         DeleteWebhookRequest request =
             DeleteWebhookRequest
                 .builder()
                 .id(id)
                 .testmode(testmode)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl();
-        String _url = Utils.generateURL(
-                DeleteWebhookRequest.class,
-                _baseUrl,
-                "/webhooks/{id}",
-                request, null);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "DELETE");
-        _req.addHeader("Accept", "application/hal+json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                DeleteWebhookRequest.class,
-                request, 
-                null));
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HTTPRequest _finalReq = _req;
-        RetryConfig _retryConfig;
-        if (options.isPresent() && options.get().retryConfig().isPresent()) {
-            _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig().get();
-        } else {
-            _retryConfig = RetryConfig.builder()
-                .backoff(BackoffStrategy.builder()
-                            .initialInterval(500, TimeUnit.MILLISECONDS)
-                            .maxInterval(60000, TimeUnit.MILLISECONDS)
-                            .baseFactor((double)(1.5))
-                            .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
-                            .retryConnectError(true)
-                            .build())
-                .build();
-        }
-        List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5xx");
-        Retries _retries = Retries.builder()
-            .action(() -> {
-                HttpRequest _r = null;
-                try {
-                    _r = sdkConfiguration.hooks()
-                        .beforeRequest(
-                            new BeforeRequestContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "delete-webhook", 
-                                Optional.of(List.of()), 
-                                _hookSecuritySource),
-                            _finalReq.build());
-                } catch (Exception _e) {
-                    throw new NonRetryableException(_e);
-                }
-                try {
-                    return _client.send(_r);
-                } catch (Exception _e) {
-                    return sdkConfiguration.hooks()
-                        .afterError(
-                            new AfterErrorContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "delete-webhook",
-                                 Optional.of(List.of()),
-                                 _hookSecuritySource), 
-                            Optional.empty(),
-                            Optional.of(_e));
-                }
-            })
-            .retryConfig(_retryConfig)
-            .statusCodes(_statusCodes)
-            .build();
-        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
-                 .afterSuccess(
-                     new AfterSuccessContextImpl(
-                         this.sdkConfiguration,
-                         _baseUrl,
-                         "delete-webhook", 
-                         Optional.of(List.of()), 
-                         _hookSecuritySource),
-                     _retries.run());
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        DeleteWebhookResponse.Builder _resBuilder = 
-            DeleteWebhookResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        DeleteWebhookResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                DeleteWebhookResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<DeleteWebhookResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "422")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                DeleteWebhookWebhooksResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<DeleteWebhookWebhooksResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<DeleteWebhookRequest, DeleteWebhookResponse> operation
+              = new DeleteWebhookOperation(
+                 sdkConfiguration,
+                 options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -1197,7 +371,7 @@ public class Webhooks implements
      * @return The call builder
      */
     public TestWebhookRequestBuilder test() {
-        return new TestWebhookRequestBuilder(this);
+        return new TestWebhookRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -1213,11 +387,10 @@ public class Webhooks implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public TestWebhookResponse test(
-            String id) throws Exception {
+    public TestWebhookResponse test(String id) throws Exception {
         return test(id, Optional.empty(), Optional.empty());
     }
-    
+
     /**
      * Test a webhook
      * 
@@ -1237,186 +410,17 @@ public class Webhooks implements
             String id,
             Optional<? extends TestWebhookRequestBody> requestBody,
             Optional<Options> options) throws Exception {
-
-        if (options.isPresent()) {
-          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
-        }
         TestWebhookRequest request =
             TestWebhookRequest
                 .builder()
                 .id(id)
                 .requestBody(requestBody)
                 .build();
-        
-        String _baseUrl = this.sdkConfiguration.serverUrl();
-        String _url = Utils.generateURL(
-                TestWebhookRequest.class,
-                _baseUrl,
-                "/webhooks/{id}/ping",
-                request, null);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "requestBody",
-                "json",
-                false);
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/hal+json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HTTPRequest _finalReq = _req;
-        RetryConfig _retryConfig;
-        if (options.isPresent() && options.get().retryConfig().isPresent()) {
-            _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig().get();
-        } else {
-            _retryConfig = RetryConfig.builder()
-                .backoff(BackoffStrategy.builder()
-                            .initialInterval(500, TimeUnit.MILLISECONDS)
-                            .maxInterval(60000, TimeUnit.MILLISECONDS)
-                            .baseFactor((double)(1.5))
-                            .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
-                            .retryConnectError(true)
-                            .build())
-                .build();
-        }
-        List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5xx");
-        Retries _retries = Retries.builder()
-            .action(() -> {
-                HttpRequest _r = null;
-                try {
-                    _r = sdkConfiguration.hooks()
-                        .beforeRequest(
-                            new BeforeRequestContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "test-webhook", 
-                                Optional.of(List.of()), 
-                                _hookSecuritySource),
-                            _finalReq.build());
-                } catch (Exception _e) {
-                    throw new NonRetryableException(_e);
-                }
-                try {
-                    return _client.send(_r);
-                } catch (Exception _e) {
-                    return sdkConfiguration.hooks()
-                        .afterError(
-                            new AfterErrorContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "test-webhook",
-                                 Optional.of(List.of()),
-                                 _hookSecuritySource), 
-                            Optional.empty(),
-                            Optional.of(_e));
-                }
-            })
-            .retryConfig(_retryConfig)
-            .statusCodes(_statusCodes)
-            .build();
-        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
-                 .afterSuccess(
-                     new AfterSuccessContextImpl(
-                         this.sdkConfiguration,
-                         _baseUrl,
-                         "test-webhook", 
-                         Optional.of(List.of()), 
-                         _hookSecuritySource),
-                     _retries.run());
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        TestWebhookResponse.Builder _resBuilder = 
-            TestWebhookResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        TestWebhookResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "202")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                Object _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Object>() {});
-                _res.withAny(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                TestWebhookResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<TestWebhookResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "422")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                TestWebhookWebhooksResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<TestWebhookWebhooksResponseBody>() {});
-                    _out.withRawResponse(Optional.ofNullable(_httpRes));
-                
-                throw _out;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<TestWebhookRequest, TestWebhookResponse> operation
+              = new TestWebhookOperation(
+                 sdkConfiguration,
+                 options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 }

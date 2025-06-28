@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.CancelRefundOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -18,10 +22,10 @@ public class CancelRefundRequestBuilder {
     private String refundId;
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCancelRefund sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CancelRefundRequestBuilder(SDKMethodInterfaces.MethodCallCancelRefund sdk) {
-        this.sdk = sdk;
+    public CancelRefundRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CancelRefundRequestBuilder paymentId(String paymentId) {
@@ -60,14 +64,27 @@ public class CancelRefundRequestBuilder {
         return this;
     }
 
+
+    private CancelRefundRequest buildRequest() {
+
+        CancelRefundRequest request = new CancelRefundRequest(paymentId,
+            refundId,
+            testmode);
+
+        return request;
+    }
+
     public CancelRefundResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.cancel(
-            paymentId,
-            refundId,
-            testmode,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<CancelRefundRequest, CancelRefundResponse> operation
+              = new CancelRefundOperation(
+                 sdkConfiguration,
+                 options);
+        CancelRefundRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

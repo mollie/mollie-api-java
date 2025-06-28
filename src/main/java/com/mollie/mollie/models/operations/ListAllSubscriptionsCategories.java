@@ -17,7 +17,7 @@ public enum ListAllSubscriptionsCategories {
     @JsonValue
     private final String value;
 
-    private ListAllSubscriptionsCategories(String value) {
+    ListAllSubscriptionsCategories(String value) {
         this.value = value;
     }
     

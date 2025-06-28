@@ -3,37 +3,18 @@
  */
 package com.mollie.mollie;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.models.errors.APIException;
+import static com.mollie.mollie.operations.Operations.RequestlessOperation;
+
 import com.mollie.mollie.models.operations.ListCapabilitiesRequestBuilder;
 import com.mollie.mollie.models.operations.ListCapabilitiesResponse;
-import com.mollie.mollie.models.operations.ListCapabilitiesResponseBody;
-import com.mollie.mollie.models.operations.SDKMethodInterfaces.*;
-import com.mollie.mollie.utils.BackoffStrategy;
-import com.mollie.mollie.utils.HTTPClient;
-import com.mollie.mollie.utils.HTTPRequest;
-import com.mollie.mollie.utils.Hook.AfterErrorContextImpl;
-import com.mollie.mollie.utils.Hook.AfterSuccessContextImpl;
-import com.mollie.mollie.utils.Hook.BeforeRequestContextImpl;
+import com.mollie.mollie.operations.ListCapabilitiesOperation;
 import com.mollie.mollie.utils.Options;
-import com.mollie.mollie.utils.Retries.NonRetryableException;
-import com.mollie.mollie.utils.Retries;
-import com.mollie.mollie.utils.RetryConfig;
-import com.mollie.mollie.utils.Utils;
-import java.io.InputStream;
 import java.lang.Exception;
-import java.lang.String;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 
-public class Capabilities implements
-            MethodCallListCapabilities {
 
+public class Capabilities {
     private final SDKConfiguration sdkConfiguration;
 
     Capabilities(SDKConfiguration sdkConfiguration) {
@@ -62,7 +43,7 @@ public class Capabilities implements
      * @return The call builder
      */
     public ListCapabilitiesRequestBuilder list() {
-        return new ListCapabilitiesRequestBuilder(this);
+        return new ListCapabilitiesRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -90,7 +71,7 @@ public class Capabilities implements
     public ListCapabilitiesResponse listDirect() throws Exception {
         return list(Optional.empty());
     }
-    
+
     /**
      * List capabilities
      * 
@@ -116,135 +97,11 @@ public class Capabilities implements
      */
     public ListCapabilitiesResponse list(
             Optional<Options> options) throws Exception {
-
-        if (options.isPresent()) {
-          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
-        }
-        String _baseUrl = this.sdkConfiguration.serverUrl();
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/capabilities");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/hal+json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HTTPRequest _finalReq = _req;
-        RetryConfig _retryConfig;
-        if (options.isPresent() && options.get().retryConfig().isPresent()) {
-            _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig().get();
-        } else {
-            _retryConfig = RetryConfig.builder()
-                .backoff(BackoffStrategy.builder()
-                            .initialInterval(500, TimeUnit.MILLISECONDS)
-                            .maxInterval(60000, TimeUnit.MILLISECONDS)
-                            .baseFactor((double)(1.5))
-                            .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
-                            .retryConnectError(true)
-                            .build())
-                .build();
-        }
-        List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5xx");
-        Retries _retries = Retries.builder()
-            .action(() -> {
-                HttpRequest _r = null;
-                try {
-                    _r = sdkConfiguration.hooks()
-                        .beforeRequest(
-                            new BeforeRequestContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "list-capabilities", 
-                                Optional.of(List.of()), 
-                                _hookSecuritySource),
-                            _finalReq.build());
-                } catch (Exception _e) {
-                    throw new NonRetryableException(_e);
-                }
-                try {
-                    return _client.send(_r);
-                } catch (Exception _e) {
-                    return sdkConfiguration.hooks()
-                        .afterError(
-                            new AfterErrorContextImpl(
-                                this.sdkConfiguration,
-                                _baseUrl,
-                                "list-capabilities",
-                                 Optional.of(List.of()),
-                                 _hookSecuritySource), 
-                            Optional.empty(),
-                            Optional.of(_e));
-                }
-            })
-            .retryConfig(_retryConfig)
-            .statusCodes(_statusCodes)
-            .build();
-        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
-                 .afterSuccess(
-                     new AfterSuccessContextImpl(
-                         this.sdkConfiguration,
-                         _baseUrl,
-                         "list-capabilities", 
-                         Optional.of(List.of()), 
-                         _hookSecuritySource),
-                     _retries.run());
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        ListCapabilitiesResponse.Builder _resBuilder = 
-            ListCapabilitiesResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        ListCapabilitiesResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/hal+json")) {
-                ListCapabilitiesResponseBody _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ListCapabilitiesResponseBody>() {});
-                _res.withObject(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestlessOperation<ListCapabilitiesResponse> operation
+            = new ListCapabilitiesOperation(
+                 sdkConfiguration,
+                 options);
+        return operation.handleResponse(operation.doRequest());
     }
 
 }

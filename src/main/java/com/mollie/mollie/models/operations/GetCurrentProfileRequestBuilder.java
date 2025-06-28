@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestlessOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.GetCurrentProfileOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -12,10 +16,10 @@ import java.util.Optional;
 public class GetCurrentProfileRequestBuilder {
 
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetCurrentProfile sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetCurrentProfileRequestBuilder(SDKMethodInterfaces.MethodCallGetCurrentProfile sdk) {
-        this.sdk = sdk;
+    public GetCurrentProfileRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetCurrentProfileRequestBuilder retryConfig(RetryConfig retryConfig) {
@@ -32,9 +36,14 @@ public class GetCurrentProfileRequestBuilder {
 
     public GetCurrentProfileResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.getCurrent(
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestlessOperation<GetCurrentProfileResponse> operation
+            = new GetCurrentProfileOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest());
     }
 }

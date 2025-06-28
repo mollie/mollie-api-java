@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.GetMethodOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -13,10 +17,10 @@ public class GetMethodRequestBuilder {
 
     private GetMethodRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetMethod sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetMethodRequestBuilder(SDKMethodInterfaces.MethodCallGetMethod sdk) {
-        this.sdk = sdk;
+    public GetMethodRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetMethodRequestBuilder request(GetMethodRequest request) {
@@ -39,10 +43,14 @@ public class GetMethodRequestBuilder {
 
     public GetMethodResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetMethodRequest, GetMethodResponse> operation
+              = new GetMethodOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

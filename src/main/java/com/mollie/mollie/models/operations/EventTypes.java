@@ -19,7 +19,7 @@ public enum EventTypes {
     @JsonValue
     private final String value;
 
-    private EventTypes(String value) {
+    EventTypes(String value) {
         this.value = value;
     }
     

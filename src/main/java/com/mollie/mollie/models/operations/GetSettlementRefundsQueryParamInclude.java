@@ -19,7 +19,7 @@ public enum GetSettlementRefundsQueryParamInclude {
     @JsonValue
     private final String value;
 
-    private GetSettlementRefundsQueryParamInclude(String value) {
+    GetSettlementRefundsQueryParamInclude(String value) {
         this.value = value;
     }
     

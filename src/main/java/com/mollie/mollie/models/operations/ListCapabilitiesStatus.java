@@ -17,7 +17,7 @@ public enum ListCapabilitiesStatus {
     @JsonValue
     private final String value;
 
-    private ListCapabilitiesStatus(String value) {
+    ListCapabilitiesStatus(String value) {
         this.value = value;
     }
     

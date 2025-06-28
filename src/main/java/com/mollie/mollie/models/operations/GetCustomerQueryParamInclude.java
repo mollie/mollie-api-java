@@ -19,7 +19,7 @@ public enum GetCustomerQueryParamInclude {
     @JsonValue
     private final String value;
 
-    private GetCustomerQueryParamInclude(String value) {
+    GetCustomerQueryParamInclude(String value) {
         this.value = value;
     }
     

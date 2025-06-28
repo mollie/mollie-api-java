@@ -20,7 +20,7 @@ public enum ListOrderRefundsType {
     @JsonValue
     private final String value;
 
-    private ListOrderRefundsType(String value) {
+    ListOrderRefundsType(String value) {
         this.value = value;
     }
     

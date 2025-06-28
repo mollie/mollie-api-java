@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.GetRefundOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -19,10 +23,10 @@ public class GetRefundRequestBuilder {
     private JsonNullable<? extends GetRefundQueryParamInclude> include = JsonNullable.undefined();
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetRefund sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetRefundRequestBuilder(SDKMethodInterfaces.MethodCallGetRefund sdk) {
-        this.sdk = sdk;
+    public GetRefundRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetRefundRequestBuilder paymentId(String paymentId) {
@@ -73,15 +77,28 @@ public class GetRefundRequestBuilder {
         return this;
     }
 
-    public GetRefundResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            paymentId,
+
+    private GetRefundRequest buildRequest() {
+
+        GetRefundRequest request = new GetRefundRequest(paymentId,
             refundId,
             include,
-            testmode,
-            options);
+            testmode);
+
+        return request;
+    }
+
+    public GetRefundResponse call() throws Exception {
+        Optional<Options> options = Optional.of(Options.builder()
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetRefundRequest, GetRefundResponse> operation
+              = new GetRefundOperation(
+                 sdkConfiguration,
+                 options);
+        GetRefundRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

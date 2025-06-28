@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.GetWebhookEventOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -14,10 +18,10 @@ public class GetWebhookEventRequestBuilder {
 
     private String id;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetWebhookEvent sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetWebhookEventRequestBuilder(SDKMethodInterfaces.MethodCallGetWebhookEvent sdk) {
-        this.sdk = sdk;
+    public GetWebhookEventRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetWebhookEventRequestBuilder id(String id) {
@@ -38,12 +42,25 @@ public class GetWebhookEventRequestBuilder {
         return this;
     }
 
+
+    private GetWebhookEventRequest buildRequest() {
+
+        GetWebhookEventRequest request = new GetWebhookEventRequest(id);
+
+        return request;
+    }
+
     public GetWebhookEventResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.getEvent(
-            id,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetWebhookEventRequest, GetWebhookEventResponse> operation
+              = new GetWebhookEventOperation(
+                 sdkConfiguration,
+                 options);
+        GetWebhookEventRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

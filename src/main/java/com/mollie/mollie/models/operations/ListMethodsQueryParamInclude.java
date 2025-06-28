@@ -19,7 +19,7 @@ public enum ListMethodsQueryParamInclude {
     @JsonValue
     private final String value;
 
-    private ListMethodsQueryParamInclude(String value) {
+    ListMethodsQueryParamInclude(String value) {
         this.value = value;
     }
     

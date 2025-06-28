@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestlessOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.GetCurrentOrganizationOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -12,10 +16,10 @@ import java.util.Optional;
 public class GetCurrentOrganizationRequestBuilder {
 
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetCurrentOrganization sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetCurrentOrganizationRequestBuilder(SDKMethodInterfaces.MethodCallGetCurrentOrganization sdk) {
-        this.sdk = sdk;
+    public GetCurrentOrganizationRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetCurrentOrganizationRequestBuilder retryConfig(RetryConfig retryConfig) {
@@ -32,9 +36,14 @@ public class GetCurrentOrganizationRequestBuilder {
 
     public GetCurrentOrganizationResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.getCurrent(
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestlessOperation<GetCurrentOrganizationResponse> operation
+            = new GetCurrentOrganizationOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest());
     }
 }

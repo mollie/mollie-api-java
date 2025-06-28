@@ -19,7 +19,7 @@ public enum QueryParamEmbed {
     @JsonValue
     private final String value;
 
-    private QueryParamEmbed(String value) {
+    QueryParamEmbed(String value) {
         this.value = value;
     }
     

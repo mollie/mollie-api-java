@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.CreateWebhookOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -13,10 +17,10 @@ public class CreateWebhookRequestBuilder {
 
     private Optional<? extends CreateWebhookRequestBody> request = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCreateWebhook sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateWebhookRequestBuilder(SDKMethodInterfaces.MethodCallCreateWebhook sdk) {
-        this.sdk = sdk;
+    public CreateWebhookRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public CreateWebhookRequestBuilder request(CreateWebhookRequestBody request) {
@@ -45,10 +49,14 @@ public class CreateWebhookRequestBuilder {
 
     public CreateWebhookResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.create(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<Optional<? extends CreateWebhookRequestBody>, CreateWebhookResponse> operation
+              = new CreateWebhookOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

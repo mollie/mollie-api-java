@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.GetPaymentOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -19,10 +23,10 @@ public class GetPaymentRequestBuilder {
     private JsonNullable<? extends Embed> embed = JsonNullable.undefined();
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetPayment sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetPaymentRequestBuilder(SDKMethodInterfaces.MethodCallGetPayment sdk) {
-        this.sdk = sdk;
+    public GetPaymentRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetPaymentRequestBuilder paymentId(String paymentId) {
@@ -79,15 +83,28 @@ public class GetPaymentRequestBuilder {
         return this;
     }
 
-    public GetPaymentResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            paymentId,
+
+    private GetPaymentRequest buildRequest() {
+
+        GetPaymentRequest request = new GetPaymentRequest(paymentId,
             include,
             embed,
-            testmode,
-            options);
+            testmode);
+
+        return request;
+    }
+
+    public GetPaymentResponse call() throws Exception {
+        Optional<Options> options = Optional.of(Options.builder()
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetPaymentRequest, GetPaymentResponse> operation
+              = new GetPaymentOperation(
+                 sdkConfiguration,
+                 options);
+        GetPaymentRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

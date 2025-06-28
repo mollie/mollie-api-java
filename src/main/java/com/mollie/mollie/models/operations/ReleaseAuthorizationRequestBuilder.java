@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.ReleaseAuthorizationOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -15,10 +19,10 @@ public class ReleaseAuthorizationRequestBuilder {
     private String paymentId;
     private Optional<? extends ReleaseAuthorizationRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallReleaseAuthorization sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ReleaseAuthorizationRequestBuilder(SDKMethodInterfaces.MethodCallReleaseAuthorization sdk) {
-        this.sdk = sdk;
+    public ReleaseAuthorizationRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ReleaseAuthorizationRequestBuilder paymentId(String paymentId) {
@@ -51,13 +55,26 @@ public class ReleaseAuthorizationRequestBuilder {
         return this;
     }
 
+
+    private ReleaseAuthorizationRequest buildRequest() {
+
+        ReleaseAuthorizationRequest request = new ReleaseAuthorizationRequest(paymentId,
+            requestBody);
+
+        return request;
+    }
+
     public ReleaseAuthorizationResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.releaseAuthorization(
-            paymentId,
-            requestBody,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<ReleaseAuthorizationRequest, ReleaseAuthorizationResponse> operation
+              = new ReleaseAuthorizationOperation(
+                 sdkConfiguration,
+                 options);
+        ReleaseAuthorizationRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

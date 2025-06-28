@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.UpdatePaymentLinkOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -15,10 +19,10 @@ public class UpdatePaymentLinkRequestBuilder {
     private String paymentLinkId;
     private Optional<? extends UpdatePaymentLinkRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallUpdatePaymentLink sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public UpdatePaymentLinkRequestBuilder(SDKMethodInterfaces.MethodCallUpdatePaymentLink sdk) {
-        this.sdk = sdk;
+    public UpdatePaymentLinkRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public UpdatePaymentLinkRequestBuilder paymentLinkId(String paymentLinkId) {
@@ -51,13 +55,26 @@ public class UpdatePaymentLinkRequestBuilder {
         return this;
     }
 
+
+    private UpdatePaymentLinkRequest buildRequest() {
+
+        UpdatePaymentLinkRequest request = new UpdatePaymentLinkRequest(paymentLinkId,
+            requestBody);
+
+        return request;
+    }
+
     public UpdatePaymentLinkResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.update(
-            paymentLinkId,
-            requestBody,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<UpdatePaymentLinkRequest, UpdatePaymentLinkResponse> operation
+              = new UpdatePaymentLinkOperation(
+                 sdkConfiguration,
+                 options);
+        UpdatePaymentLinkRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

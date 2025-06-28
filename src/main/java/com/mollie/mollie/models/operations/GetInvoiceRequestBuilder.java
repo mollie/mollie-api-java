@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.GetInvoiceOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -14,10 +18,10 @@ public class GetInvoiceRequestBuilder {
 
     private String id;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetInvoice sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetInvoiceRequestBuilder(SDKMethodInterfaces.MethodCallGetInvoice sdk) {
-        this.sdk = sdk;
+    public GetInvoiceRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetInvoiceRequestBuilder id(String id) {
@@ -38,12 +42,25 @@ public class GetInvoiceRequestBuilder {
         return this;
     }
 
+
+    private GetInvoiceRequest buildRequest() {
+
+        GetInvoiceRequest request = new GetInvoiceRequest(id);
+
+        return request;
+    }
+
     public GetInvoiceResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            id,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetInvoiceRequest, GetInvoiceResponse> operation
+              = new GetInvoiceOperation(
+                 sdkConfiguration,
+                 options);
+        GetInvoiceRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

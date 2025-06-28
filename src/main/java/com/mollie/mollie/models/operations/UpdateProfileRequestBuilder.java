@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.UpdateProfileOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -15,10 +19,10 @@ public class UpdateProfileRequestBuilder {
     private String id;
     private UpdateProfileRequestBody requestBody;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallUpdateProfile sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public UpdateProfileRequestBuilder(SDKMethodInterfaces.MethodCallUpdateProfile sdk) {
-        this.sdk = sdk;
+    public UpdateProfileRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public UpdateProfileRequestBuilder id(String id) {
@@ -45,13 +49,26 @@ public class UpdateProfileRequestBuilder {
         return this;
     }
 
+
+    private UpdateProfileRequest buildRequest() {
+
+        UpdateProfileRequest request = new UpdateProfileRequest(id,
+            requestBody);
+
+        return request;
+    }
+
     public UpdateProfileResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.update(
-            id,
-            requestBody,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<UpdateProfileRequest, UpdateProfileResponse> operation
+              = new UpdateProfileOperation(
+                 sdkConfiguration,
+                 options);
+        UpdateProfileRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

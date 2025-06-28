@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.UpdateWebhookOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -15,10 +19,10 @@ public class UpdateWebhookRequestBuilder {
     private String id;
     private Optional<? extends UpdateWebhookRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallUpdateWebhook sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public UpdateWebhookRequestBuilder(SDKMethodInterfaces.MethodCallUpdateWebhook sdk) {
-        this.sdk = sdk;
+    public UpdateWebhookRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public UpdateWebhookRequestBuilder id(String id) {
@@ -51,13 +55,26 @@ public class UpdateWebhookRequestBuilder {
         return this;
     }
 
+
+    private UpdateWebhookRequest buildRequest() {
+
+        UpdateWebhookRequest request = new UpdateWebhookRequest(id,
+            requestBody);
+
+        return request;
+    }
+
     public UpdateWebhookResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.update(
-            id,
-            requestBody,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<UpdateWebhookRequest, UpdateWebhookResponse> operation
+              = new UpdateWebhookOperation(
+                 sdkConfiguration,
+                 options);
+        UpdateWebhookRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

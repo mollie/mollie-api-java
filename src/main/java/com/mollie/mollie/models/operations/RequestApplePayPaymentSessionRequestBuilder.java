@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.RequestApplePayPaymentSessionOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -13,10 +17,10 @@ public class RequestApplePayPaymentSessionRequestBuilder {
 
     private Optional<? extends RequestApplePayPaymentSessionRequestBody> request = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallRequestApplePayPaymentSession sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public RequestApplePayPaymentSessionRequestBuilder(SDKMethodInterfaces.MethodCallRequestApplePayPaymentSession sdk) {
-        this.sdk = sdk;
+    public RequestApplePayPaymentSessionRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public RequestApplePayPaymentSessionRequestBuilder request(RequestApplePayPaymentSessionRequestBody request) {
@@ -45,10 +49,14 @@ public class RequestApplePayPaymentSessionRequestBuilder {
 
     public RequestApplePayPaymentSessionResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.requestApplePaySession(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<Optional<? extends RequestApplePayPaymentSessionRequestBody>, RequestApplePayPaymentSessionResponse> operation
+              = new RequestApplePayPaymentSessionOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

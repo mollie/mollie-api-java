@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestlessOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.GetOpenSettlementOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -12,10 +16,10 @@ import java.util.Optional;
 public class GetOpenSettlementRequestBuilder {
 
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetOpenSettlement sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetOpenSettlementRequestBuilder(SDKMethodInterfaces.MethodCallGetOpenSettlement sdk) {
-        this.sdk = sdk;
+    public GetOpenSettlementRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetOpenSettlementRequestBuilder retryConfig(RetryConfig retryConfig) {
@@ -32,9 +36,14 @@ public class GetOpenSettlementRequestBuilder {
 
     public GetOpenSettlementResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.getOpen(
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestlessOperation<GetOpenSettlementResponse> operation
+            = new GetOpenSettlementOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest());
     }
 }

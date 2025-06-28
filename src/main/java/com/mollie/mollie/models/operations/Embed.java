@@ -21,7 +21,7 @@ public enum Embed {
     @JsonValue
     private final String value;
 
-    private Embed(String value) {
+    Embed(String value) {
         this.value = value;
     }
     

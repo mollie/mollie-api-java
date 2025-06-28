@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.GetPaymentLinkOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -17,10 +21,10 @@ public class GetPaymentLinkRequestBuilder {
     private String paymentLinkId;
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetPaymentLink sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetPaymentLinkRequestBuilder(SDKMethodInterfaces.MethodCallGetPaymentLink sdk) {
-        this.sdk = sdk;
+    public GetPaymentLinkRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetPaymentLinkRequestBuilder paymentLinkId(String paymentLinkId) {
@@ -53,13 +57,26 @@ public class GetPaymentLinkRequestBuilder {
         return this;
     }
 
+
+    private GetPaymentLinkRequest buildRequest() {
+
+        GetPaymentLinkRequest request = new GetPaymentLinkRequest(paymentLinkId,
+            testmode);
+
+        return request;
+    }
+
     public GetPaymentLinkResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            paymentLinkId,
-            testmode,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetPaymentLinkRequest, GetPaymentLinkResponse> operation
+              = new GetPaymentLinkOperation(
+                 sdkConfiguration,
+                 options);
+        GetPaymentLinkRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -3,7 +3,11 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.ListPaymentLinksOperation;
 import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
@@ -24,10 +28,10 @@ public class ListPaymentLinksRequestBuilder {
                             new TypeReference<JsonNullable<Long>>() {});
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallListPaymentLinks sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListPaymentLinksRequestBuilder(SDKMethodInterfaces.MethodCallListPaymentLinks sdk) {
-        this.sdk = sdk;
+    public ListPaymentLinksRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public ListPaymentLinksRequestBuilder from(String from) {
@@ -78,17 +82,31 @@ public class ListPaymentLinksRequestBuilder {
         return this;
     }
 
-    public ListPaymentLinksResponse call() throws Exception {
+
+    private ListPaymentLinksRequest buildRequest() {
         if (limit == null) {
             limit = _SINGLETON_VALUE_Limit.value();
-        }        Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.list(
-            from,
+        }
+
+        ListPaymentLinksRequest request = new ListPaymentLinksRequest(from,
             limit,
-            testmode,
-            options);
+            testmode);
+
+        return request;
+    }
+
+    public ListPaymentLinksResponse call() throws Exception {
+        Optional<Options> options = Optional.of(Options.builder()
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<ListPaymentLinksRequest, ListPaymentLinksResponse> operation
+              = new ListPaymentLinksOperation(
+                 sdkConfiguration,
+                 options);
+        ListPaymentLinksRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 
     private static final LazySingletonValue<JsonNullable<Long>> _SINGLETON_VALUE_Limit =

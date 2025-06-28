@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.DeleteProfileOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -14,10 +18,10 @@ public class DeleteProfileRequestBuilder {
 
     private String id;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallDeleteProfile sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DeleteProfileRequestBuilder(SDKMethodInterfaces.MethodCallDeleteProfile sdk) {
-        this.sdk = sdk;
+    public DeleteProfileRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public DeleteProfileRequestBuilder id(String id) {
@@ -38,12 +42,25 @@ public class DeleteProfileRequestBuilder {
         return this;
     }
 
+
+    private DeleteProfileRequest buildRequest() {
+
+        DeleteProfileRequest request = new DeleteProfileRequest(id);
+
+        return request;
+    }
+
     public DeleteProfileResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.delete(
-            id,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<DeleteProfileRequest, DeleteProfileResponse> operation
+              = new DeleteProfileOperation(
+                 sdkConfiguration,
+                 options);
+        DeleteProfileRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

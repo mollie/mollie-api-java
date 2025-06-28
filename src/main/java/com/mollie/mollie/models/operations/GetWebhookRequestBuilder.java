@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.GetWebhookOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -17,10 +21,10 @@ public class GetWebhookRequestBuilder {
     private String id;
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetWebhook sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetWebhookRequestBuilder(SDKMethodInterfaces.MethodCallGetWebhook sdk) {
-        this.sdk = sdk;
+    public GetWebhookRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetWebhookRequestBuilder id(String id) {
@@ -53,13 +57,26 @@ public class GetWebhookRequestBuilder {
         return this;
     }
 
+
+    private GetWebhookRequest buildRequest() {
+
+        GetWebhookRequest request = new GetWebhookRequest(id,
+            testmode);
+
+        return request;
+    }
+
     public GetWebhookResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            id,
-            testmode,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetWebhookRequest, GetWebhookResponse> operation
+              = new GetWebhookOperation(
+                 sdkConfiguration,
+                 options);
+        GetWebhookRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -30,7 +30,7 @@ public enum GetPrimaryBalanceCurrency {
     @JsonValue
     private final String value;
 
-    private GetPrimaryBalanceCurrency(String value) {
+    GetPrimaryBalanceCurrency(String value) {
         this.value = value;
     }
     

@@ -20,7 +20,7 @@ public enum QueryParamInclude {
     @JsonValue
     private final String value;
 
-    private QueryParamInclude(String value) {
+    QueryParamInclude(String value) {
         this.value = value;
     }
     

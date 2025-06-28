@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.GetSubscriptionOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -18,10 +22,10 @@ public class GetSubscriptionRequestBuilder {
     private String subscriptionId;
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetSubscription sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetSubscriptionRequestBuilder(SDKMethodInterfaces.MethodCallGetSubscription sdk) {
-        this.sdk = sdk;
+    public GetSubscriptionRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetSubscriptionRequestBuilder customerId(String customerId) {
@@ -60,14 +64,27 @@ public class GetSubscriptionRequestBuilder {
         return this;
     }
 
+
+    private GetSubscriptionRequest buildRequest() {
+
+        GetSubscriptionRequest request = new GetSubscriptionRequest(customerId,
+            subscriptionId,
+            testmode);
+
+        return request;
+    }
+
     public GetSubscriptionResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            customerId,
-            subscriptionId,
-            testmode,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetSubscriptionRequest, GetSubscriptionResponse> operation
+              = new GetSubscriptionOperation(
+                 sdkConfiguration,
+                 options);
+        GetSubscriptionRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

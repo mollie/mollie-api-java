@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.GetSettlementChargebacksOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -13,10 +17,10 @@ public class GetSettlementChargebacksRequestBuilder {
 
     private GetSettlementChargebacksRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetSettlementChargebacks sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetSettlementChargebacksRequestBuilder(SDKMethodInterfaces.MethodCallGetSettlementChargebacks sdk) {
-        this.sdk = sdk;
+    public GetSettlementChargebacksRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetSettlementChargebacksRequestBuilder request(GetSettlementChargebacksRequest request) {
@@ -39,10 +43,14 @@ public class GetSettlementChargebacksRequestBuilder {
 
     public GetSettlementChargebacksResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.listChargebacks(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetSettlementChargebacksRequest, GetSettlementChargebacksResponse> operation
+              = new GetSettlementChargebacksOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

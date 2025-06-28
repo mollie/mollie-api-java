@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestlessOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.ListCapabilitiesOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -12,10 +16,10 @@ import java.util.Optional;
 public class ListCapabilitiesRequestBuilder {
 
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallListCapabilities sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListCapabilitiesRequestBuilder(SDKMethodInterfaces.MethodCallListCapabilities sdk) {
-        this.sdk = sdk;
+    public ListCapabilitiesRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public ListCapabilitiesRequestBuilder retryConfig(RetryConfig retryConfig) {
@@ -32,9 +36,14 @@ public class ListCapabilitiesRequestBuilder {
 
     public ListCapabilitiesResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.list(
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestlessOperation<ListCapabilitiesResponse> operation
+            = new ListCapabilitiesOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest());
     }
 }

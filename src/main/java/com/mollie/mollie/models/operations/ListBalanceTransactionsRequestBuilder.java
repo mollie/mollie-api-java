@@ -3,7 +3,11 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.ListBalanceTransactionsOperation;
 import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
@@ -25,10 +29,10 @@ public class ListBalanceTransactionsRequestBuilder {
                             new TypeReference<JsonNullable<Long>>() {});
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallListBalanceTransactions sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListBalanceTransactionsRequestBuilder(SDKMethodInterfaces.MethodCallListBalanceTransactions sdk) {
-        this.sdk = sdk;
+    public ListBalanceTransactionsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ListBalanceTransactionsRequestBuilder balanceId(String balanceId) {
@@ -85,18 +89,32 @@ public class ListBalanceTransactionsRequestBuilder {
         return this;
     }
 
-    public ListBalanceTransactionsResponse call() throws Exception {
+
+    private ListBalanceTransactionsRequest buildRequest() {
         if (limit == null) {
             limit = _SINGLETON_VALUE_Limit.value();
-        }        Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.listTransactions(
-            balanceId,
+        }
+
+        ListBalanceTransactionsRequest request = new ListBalanceTransactionsRequest(balanceId,
             from,
             limit,
-            testmode,
-            options);
+            testmode);
+
+        return request;
+    }
+
+    public ListBalanceTransactionsResponse call() throws Exception {
+        Optional<Options> options = Optional.of(Options.builder()
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<ListBalanceTransactionsRequest, ListBalanceTransactionsResponse> operation
+              = new ListBalanceTransactionsOperation(
+                 sdkConfiguration,
+                 options);
+        ListBalanceTransactionsRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 
     private static final LazySingletonValue<JsonNullable<Long>> _SINGLETON_VALUE_Limit =

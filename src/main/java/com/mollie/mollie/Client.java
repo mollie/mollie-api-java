@@ -6,6 +6,7 @@ package com.mollie.mollie;
 import com.mollie.mollie.utils.HTTPClient;
 import com.mollie.mollie.utils.Hook.SdkInitData;
 import com.mollie.mollie.utils.RetryConfig;
+import com.mollie.mollie.utils.SpeakeasyHTTPClient;
 import com.mollie.mollie.utils.Utils;
 import java.lang.String;
 import java.util.Map;
@@ -21,6 +22,8 @@ public class Client {
     public static final String[] SERVERS = {
         "https://api.mollie.com/v2",
     };
+
+    
 
     private final Payments payments;
 
@@ -165,7 +168,6 @@ public class Client {
     public Invoices invoices() {
         return invoices;
     }
-
     private SDKConfiguration sdkConfiguration;
 
     /**
@@ -260,6 +262,21 @@ public class Client {
             this.sdkConfiguration.setRetryConfig(Optional.of(retryConfig));
             return this;
         }
+
+        /**
+         * Enables debug logging for HTTP requests and responses, including JSON body content.
+         *
+         * Convenience method that calls {@link HTTPClient#enableDebugLogging(boolean)}.
+         * {@link SpeakeasyHTTPClient} honors this setting. If you are using a custom HTTP client,
+         * it is up to the custom client to honor this setting.
+         *
+         * @return The builder instance.
+         */
+        public Builder enableHTTPDebugLogging(boolean enabled) {
+            this.sdkConfiguration.client().enableDebugLogging(enabled);
+            return this;
+        }
+
         // Visible for testing, may be accessed via reflection in tests
         Builder _hooks(com.mollie.mollie.utils.Hooks hooks) {
             sdkConfiguration.setHooks(hooks);  

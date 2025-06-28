@@ -5,9 +5,9 @@
 
 ### Available Operations
 
-* [getEvent](#getevent) - Get a Webhook Event
+* [get](#get) - Get a Webhook Event
 
-## getEvent
+## get
 
 Retrieve a single webhook event object by its event ID.
 
@@ -36,7 +36,7 @@ public class Application {
                     .build())
             .build();
 
-        GetWebhookEventResponse res = sdk.webhookEvents().getEvent()
+        GetWebhookEventResponse res = sdk.webhookEvents().get()
                 .id("event_jd9v34P5YqN9pT8n3HJyH")
                 .call();
 

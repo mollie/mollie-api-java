@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.DeleteCustomerOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -15,10 +19,10 @@ public class DeleteCustomerRequestBuilder {
     private String customerId;
     private Optional<? extends DeleteCustomerRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallDeleteCustomer sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DeleteCustomerRequestBuilder(SDKMethodInterfaces.MethodCallDeleteCustomer sdk) {
-        this.sdk = sdk;
+    public DeleteCustomerRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public DeleteCustomerRequestBuilder customerId(String customerId) {
@@ -51,13 +55,26 @@ public class DeleteCustomerRequestBuilder {
         return this;
     }
 
+
+    private DeleteCustomerRequest buildRequest() {
+
+        DeleteCustomerRequest request = new DeleteCustomerRequest(customerId,
+            requestBody);
+
+        return request;
+    }
+
     public DeleteCustomerResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.delete(
-            customerId,
-            requestBody,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<DeleteCustomerRequest, DeleteCustomerResponse> operation
+              = new DeleteCustomerOperation(
+                 sdkConfiguration,
+                 options);
+        DeleteCustomerRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

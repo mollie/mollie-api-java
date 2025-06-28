@@ -3,7 +3,11 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.ListCustomersOperation;
 import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
@@ -25,10 +29,10 @@ public class ListCustomersRequestBuilder {
     private JsonNullable<String> sort = JsonNullable.undefined();
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallListCustomers sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListCustomersRequestBuilder(SDKMethodInterfaces.MethodCallListCustomers sdk) {
-        this.sdk = sdk;
+    public ListCustomersRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public ListCustomersRequestBuilder from(String from) {
@@ -91,18 +95,32 @@ public class ListCustomersRequestBuilder {
         return this;
     }
 
-    public ListCustomersResponse call() throws Exception {
+
+    private ListCustomersRequest buildRequest() {
         if (limit == null) {
             limit = _SINGLETON_VALUE_Limit.value();
-        }        Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.list(
-            from,
+        }
+
+        ListCustomersRequest request = new ListCustomersRequest(from,
             limit,
             sort,
-            testmode,
-            options);
+            testmode);
+
+        return request;
+    }
+
+    public ListCustomersResponse call() throws Exception {
+        Optional<Options> options = Optional.of(Options.builder()
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<ListCustomersRequest, ListCustomersResponse> operation
+              = new ListCustomersOperation(
+                 sdkConfiguration,
+                 options);
+        ListCustomersRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 
     private static final LazySingletonValue<JsonNullable<Long>> _SINGLETON_VALUE_Limit =

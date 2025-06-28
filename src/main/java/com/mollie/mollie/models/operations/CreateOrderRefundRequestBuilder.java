@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.CreateOrderRefundOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -15,10 +19,10 @@ public class CreateOrderRefundRequestBuilder {
     private String orderId;
     private Optional<? extends CreateOrderRefundRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCreateOrderRefund sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateOrderRefundRequestBuilder(SDKMethodInterfaces.MethodCallCreateOrderRefund sdk) {
-        this.sdk = sdk;
+    public CreateOrderRefundRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreateOrderRefundRequestBuilder orderId(String orderId) {
@@ -51,13 +55,26 @@ public class CreateOrderRefundRequestBuilder {
         return this;
     }
 
+
+    private CreateOrderRefundRequest buildRequest() {
+
+        CreateOrderRefundRequest request = new CreateOrderRefundRequest(orderId,
+            requestBody);
+
+        return request;
+    }
+
     public CreateOrderRefundResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.createOrder(
-            orderId,
-            requestBody,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<CreateOrderRefundRequest, CreateOrderRefundResponse> operation
+              = new CreateOrderRefundOperation(
+                 sdkConfiguration,
+                 options);
+        CreateOrderRefundRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

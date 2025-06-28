@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.GetSettlementOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -14,10 +18,10 @@ public class GetSettlementRequestBuilder {
 
     private String id;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetSettlement sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetSettlementRequestBuilder(SDKMethodInterfaces.MethodCallGetSettlement sdk) {
-        this.sdk = sdk;
+    public GetSettlementRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetSettlementRequestBuilder id(String id) {
@@ -38,12 +42,25 @@ public class GetSettlementRequestBuilder {
         return this;
     }
 
+
+    private GetSettlementRequest buildRequest() {
+
+        GetSettlementRequest request = new GetSettlementRequest(id);
+
+        return request;
+    }
+
     public GetSettlementResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            id,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetSettlementRequest, GetSettlementResponse> operation
+              = new GetSettlementOperation(
+                 sdkConfiguration,
+                 options);
+        GetSettlementRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

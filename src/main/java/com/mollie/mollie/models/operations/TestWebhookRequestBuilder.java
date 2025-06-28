@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.TestWebhookOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -15,10 +19,10 @@ public class TestWebhookRequestBuilder {
     private String id;
     private Optional<? extends TestWebhookRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallTestWebhook sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public TestWebhookRequestBuilder(SDKMethodInterfaces.MethodCallTestWebhook sdk) {
-        this.sdk = sdk;
+    public TestWebhookRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public TestWebhookRequestBuilder id(String id) {
@@ -51,13 +55,26 @@ public class TestWebhookRequestBuilder {
         return this;
     }
 
+
+    private TestWebhookRequest buildRequest() {
+
+        TestWebhookRequest request = new TestWebhookRequest(id,
+            requestBody);
+
+        return request;
+    }
+
     public TestWebhookResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.test(
-            id,
-            requestBody,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<TestWebhookRequest, TestWebhookResponse> operation
+              = new TestWebhookOperation(
+                 sdkConfiguration,
+                 options);
+        TestWebhookRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

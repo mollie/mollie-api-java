@@ -19,7 +19,7 @@ public enum ListRefundsQueryParamInclude {
     @JsonValue
     private final String value;
 
-    private ListRefundsQueryParamInclude(String value) {
+    ListRefundsQueryParamInclude(String value) {
         this.value = value;
     }
     

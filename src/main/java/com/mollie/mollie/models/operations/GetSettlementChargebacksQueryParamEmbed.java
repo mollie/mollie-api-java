@@ -19,7 +19,7 @@ public enum GetSettlementChargebacksQueryParamEmbed {
     @JsonValue
     private final String value;
 
-    private GetSettlementChargebacksQueryParamEmbed(String value) {
+    GetSettlementChargebacksQueryParamEmbed(String value) {
         this.value = value;
     }
     

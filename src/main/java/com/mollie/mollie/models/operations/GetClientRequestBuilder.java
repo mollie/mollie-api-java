@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.GetClientOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -16,10 +20,10 @@ public class GetClientRequestBuilder {
     private String id;
     private JsonNullable<String> embed = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetClient sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetClientRequestBuilder(SDKMethodInterfaces.MethodCallGetClient sdk) {
-        this.sdk = sdk;
+    public GetClientRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetClientRequestBuilder id(String id) {
@@ -52,13 +56,26 @@ public class GetClientRequestBuilder {
         return this;
     }
 
+
+    private GetClientRequest buildRequest() {
+
+        GetClientRequest request = new GetClientRequest(id,
+            embed);
+
+        return request;
+    }
+
     public GetClientResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            id,
-            embed,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetClientRequest, GetClientResponse> operation
+              = new GetClientOperation(
+                 sdkConfiguration,
+                 options);
+        GetClientRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

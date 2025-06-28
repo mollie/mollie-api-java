@@ -17,7 +17,7 @@ public enum ListClientsStatus {
     @JsonValue
     private final String value;
 
-    private ListClientsStatus(String value) {
+    ListClientsStatus(String value) {
         this.value = value;
     }
     

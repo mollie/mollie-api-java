@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.GetBalanceReportOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -13,10 +17,10 @@ public class GetBalanceReportRequestBuilder {
 
     private GetBalanceReportRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetBalanceReport sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetBalanceReportRequestBuilder(SDKMethodInterfaces.MethodCallGetBalanceReport sdk) {
-        this.sdk = sdk;
+    public GetBalanceReportRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetBalanceReportRequestBuilder request(GetBalanceReportRequest request) {
@@ -39,10 +43,14 @@ public class GetBalanceReportRequestBuilder {
 
     public GetBalanceReportResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.getReport(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetBalanceReportRequest, GetBalanceReportResponse> operation
+              = new GetBalanceReportOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

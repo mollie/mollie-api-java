@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.CreateRefundOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -15,10 +19,10 @@ public class CreateRefundRequestBuilder {
     private String paymentId;
     private Optional<? extends CreateRefundRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCreateRefund sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateRefundRequestBuilder(SDKMethodInterfaces.MethodCallCreateRefund sdk) {
-        this.sdk = sdk;
+    public CreateRefundRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreateRefundRequestBuilder paymentId(String paymentId) {
@@ -51,13 +55,26 @@ public class CreateRefundRequestBuilder {
         return this;
     }
 
+
+    private CreateRefundRequest buildRequest() {
+
+        CreateRefundRequest request = new CreateRefundRequest(paymentId,
+            requestBody);
+
+        return request;
+    }
+
     public CreateRefundResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.create(
-            paymentId,
-            requestBody,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<CreateRefundRequest, CreateRefundResponse> operation
+              = new CreateRefundOperation(
+                 sdkConfiguration,
+                 options);
+        CreateRefundRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

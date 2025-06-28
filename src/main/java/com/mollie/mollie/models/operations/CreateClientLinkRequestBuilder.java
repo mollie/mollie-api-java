@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.CreateClientLinkOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -13,10 +17,10 @@ public class CreateClientLinkRequestBuilder {
 
     private Optional<? extends CreateClientLinkRequestBody> request = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCreateClientLink sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateClientLinkRequestBuilder(SDKMethodInterfaces.MethodCallCreateClientLink sdk) {
-        this.sdk = sdk;
+    public CreateClientLinkRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public CreateClientLinkRequestBuilder request(CreateClientLinkRequestBody request) {
@@ -45,10 +49,14 @@ public class CreateClientLinkRequestBuilder {
 
     public CreateClientLinkResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.create(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<Optional<? extends CreateClientLinkRequestBody>, CreateClientLinkResponse> operation
+              = new CreateClientLinkOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

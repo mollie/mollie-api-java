@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.GetSettlementCapturesOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -13,10 +17,10 @@ public class GetSettlementCapturesRequestBuilder {
 
     private GetSettlementCapturesRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetSettlementCaptures sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetSettlementCapturesRequestBuilder(SDKMethodInterfaces.MethodCallGetSettlementCaptures sdk) {
-        this.sdk = sdk;
+    public GetSettlementCapturesRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetSettlementCapturesRequestBuilder request(GetSettlementCapturesRequest request) {
@@ -39,10 +43,14 @@ public class GetSettlementCapturesRequestBuilder {
 
     public GetSettlementCapturesResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.listCaptures(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetSettlementCapturesRequest, GetSettlementCapturesResponse> operation
+              = new GetSettlementCapturesOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

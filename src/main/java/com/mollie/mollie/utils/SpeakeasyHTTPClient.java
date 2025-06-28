@@ -14,13 +14,19 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class SpeakeasyHTTPClient implements HTTPClient {
 
+    // global debug flag. Retained for backwards compatibility.
     private static boolean debugEnabled = false;
+
+    // Instance-level debug flag. Can be set by clients to enable debug logging for a
+    // single SDK instance.
+    private Boolean localDebugEnabled;
 
     // uppercase
     private static Set<String> redactedHeaders = Set.of("AUTHORIZATION", "X-API-KEY");
@@ -42,6 +48,16 @@ public class SpeakeasyHTTPClient implements HTTPClient {
      */
     public static void setDebugLogging(boolean enabled) {
         debugEnabled = enabled;
+    }
+
+    @Override
+    public boolean isDebugLoggingEnabled() {
+        return Optional.ofNullable(localDebugEnabled).orElse(debugEnabled);
+    }
+
+    @Override
+    public void enableDebugLogging(boolean enabled) {
+        localDebugEnabled = enabled;
     }
 
     /**
@@ -67,11 +83,11 @@ public class SpeakeasyHTTPClient implements HTTPClient {
     @Override
     public HttpResponse<InputStream> send(HttpRequest request)
             throws IOException, InterruptedException, URISyntaxException {
-        if (debugEnabled) {
+        if (isDebugLoggingEnabled()) {
             request = logRequest(request);
         }
         var response = client.send(request, HttpResponse.BodyHandlers.ofInputStream());
-        if (debugEnabled) {
+        if (isDebugLoggingEnabled()) {
             response = logResponse(response);
         }
         return response;

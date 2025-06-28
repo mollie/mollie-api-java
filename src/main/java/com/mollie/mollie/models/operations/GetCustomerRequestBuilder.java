@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.GetCustomerOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -18,10 +22,10 @@ public class GetCustomerRequestBuilder {
     private JsonNullable<? extends GetCustomerQueryParamInclude> include = JsonNullable.undefined();
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetCustomer sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetCustomerRequestBuilder(SDKMethodInterfaces.MethodCallGetCustomer sdk) {
-        this.sdk = sdk;
+    public GetCustomerRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetCustomerRequestBuilder customerId(String customerId) {
@@ -66,14 +70,27 @@ public class GetCustomerRequestBuilder {
         return this;
     }
 
+
+    private GetCustomerRequest buildRequest() {
+
+        GetCustomerRequest request = new GetCustomerRequest(customerId,
+            include,
+            testmode);
+
+        return request;
+    }
+
     public GetCustomerResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            customerId,
-            include,
-            testmode,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetCustomerRequest, GetCustomerResponse> operation
+              = new GetCustomerOperation(
+                 sdkConfiguration,
+                 options);
+        GetCustomerRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

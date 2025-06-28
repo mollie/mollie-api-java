@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.RevokeMandateOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -16,10 +20,10 @@ public class RevokeMandateRequestBuilder {
     private String mandateId;
     private Optional<? extends RevokeMandateRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallRevokeMandate sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public RevokeMandateRequestBuilder(SDKMethodInterfaces.MethodCallRevokeMandate sdk) {
-        this.sdk = sdk;
+    public RevokeMandateRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public RevokeMandateRequestBuilder customerId(String customerId) {
@@ -58,14 +62,27 @@ public class RevokeMandateRequestBuilder {
         return this;
     }
 
+
+    private RevokeMandateRequest buildRequest() {
+
+        RevokeMandateRequest request = new RevokeMandateRequest(customerId,
+            mandateId,
+            requestBody);
+
+        return request;
+    }
+
     public RevokeMandateResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.revoke(
-            customerId,
-            mandateId,
-            requestBody,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<RevokeMandateRequest, RevokeMandateResponse> operation
+              = new RevokeMandateOperation(
+                 sdkConfiguration,
+                 options);
+        RevokeMandateRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

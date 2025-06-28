@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.DeleteWebhookOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -17,10 +21,10 @@ public class DeleteWebhookRequestBuilder {
     private String id;
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallDeleteWebhook sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DeleteWebhookRequestBuilder(SDKMethodInterfaces.MethodCallDeleteWebhook sdk) {
-        this.sdk = sdk;
+    public DeleteWebhookRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public DeleteWebhookRequestBuilder id(String id) {
@@ -53,13 +57,26 @@ public class DeleteWebhookRequestBuilder {
         return this;
     }
 
+
+    private DeleteWebhookRequest buildRequest() {
+
+        DeleteWebhookRequest request = new DeleteWebhookRequest(id,
+            testmode);
+
+        return request;
+    }
+
     public DeleteWebhookResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.delete(
-            id,
-            testmode,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<DeleteWebhookRequest, DeleteWebhookResponse> operation
+              = new DeleteWebhookOperation(
+                 sdkConfiguration,
+                 options);
+        DeleteWebhookRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

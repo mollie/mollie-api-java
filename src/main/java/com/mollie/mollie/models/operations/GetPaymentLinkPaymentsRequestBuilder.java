@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.GetPaymentLinkPaymentsOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -13,10 +17,10 @@ public class GetPaymentLinkPaymentsRequestBuilder {
 
     private GetPaymentLinkPaymentsRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetPaymentLinkPayments sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetPaymentLinkPaymentsRequestBuilder(SDKMethodInterfaces.MethodCallGetPaymentLinkPayments sdk) {
-        this.sdk = sdk;
+    public GetPaymentLinkPaymentsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetPaymentLinkPaymentsRequestBuilder request(GetPaymentLinkPaymentsRequest request) {
@@ -39,10 +43,14 @@ public class GetPaymentLinkPaymentsRequestBuilder {
 
     public GetPaymentLinkPaymentsResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.listPayments(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetPaymentLinkPaymentsRequest, GetPaymentLinkPaymentsResponse> operation
+              = new GetPaymentLinkPaymentsOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

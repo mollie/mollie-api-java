@@ -19,7 +19,7 @@ public enum UpdateWebhookEventTypes {
     @JsonValue
     private final String value;
 
-    private UpdateWebhookEventTypes(String value) {
+    UpdateWebhookEventTypes(String value) {
         this.value = value;
     }
     

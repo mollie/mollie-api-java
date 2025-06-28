@@ -17,7 +17,7 @@ public enum GetClientStatus {
     @JsonValue
     private final String value;
 
-    private GetClientStatus(String value) {
+    GetClientStatus(String value) {
         this.value = value;
     }
     

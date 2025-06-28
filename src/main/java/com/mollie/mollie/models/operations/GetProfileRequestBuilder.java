@@ -3,6 +3,10 @@
  */
 package com.mollie.mollie.models.operations;
 
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+
+import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.operations.GetProfileOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -17,10 +21,10 @@ public class GetProfileRequestBuilder {
     private String id;
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetProfile sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetProfileRequestBuilder(SDKMethodInterfaces.MethodCallGetProfile sdk) {
-        this.sdk = sdk;
+    public GetProfileRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetProfileRequestBuilder id(String id) {
@@ -53,13 +57,26 @@ public class GetProfileRequestBuilder {
         return this;
     }
 
+
+    private GetProfileRequest buildRequest() {
+
+        GetProfileRequest request = new GetProfileRequest(id,
+            testmode);
+
+        return request;
+    }
+
     public GetProfileResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            id,
-            testmode,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetProfileRequest, GetProfileResponse> operation
+              = new GetProfileOperation(
+                 sdkConfiguration,
+                 options);
+        GetProfileRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

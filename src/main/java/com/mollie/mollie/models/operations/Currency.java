@@ -30,7 +30,7 @@ public enum Currency {
     @JsonValue
     private final String value;
 
-    private Currency(String value) {
+    Currency(String value) {
         this.value = value;
     }
     

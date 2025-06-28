@@ -30,7 +30,7 @@ public enum ListBalancesCurrency {
     @JsonValue
     private final String value;
 
-    private ListBalancesCurrency(String value) {
+    ListBalancesCurrency(String value) {
         this.value = value;
     }
     
