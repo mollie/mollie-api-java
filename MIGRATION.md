@@ -2,8 +2,8 @@
 Learn how to migrate to the latest version of the Java SDK
 
 > [!WARNING]
-> ### Alpha Feature
-> This feature is currently in Alpha testing, and the final specification may still change.
+> ### Beta Feature
+> This feature is currently in Beta testing, and the final specification may still change.
 
 Mollie uses API specification to autogenerate the SDK and enhance its consistency, ensure frequent updates and provide a more streamlined integration experience for developers.
 
