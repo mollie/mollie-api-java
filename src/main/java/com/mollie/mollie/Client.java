@@ -73,6 +73,8 @@ public class Client {
 
     private final Invoices invoices;
 
+    private final SalesInvoices salesInvoices;
+
     public Payments payments() {
         return payments;
     }
@@ -167,6 +169,10 @@ public class Client {
 
     public Invoices invoices() {
         return invoices;
+    }
+
+    public SalesInvoices salesInvoices() {
+        return salesInvoices;
     }
     private SDKConfiguration sdkConfiguration;
 
@@ -340,6 +346,7 @@ public class Client {
         this.balances = new Balances(sdkConfiguration);
         this.settlements = new Settlements(sdkConfiguration);
         this.invoices = new Invoices(sdkConfiguration);
+        this.salesInvoices = new SalesInvoices(sdkConfiguration);
         
         SdkInitData data = this.sdkConfiguration.hooks().sdkInit(new SdkInitData(this.sdkConfiguration.resolvedServerUrl(), this.sdkConfiguration.client()));
         this.sdkConfiguration.setServerUrl(data.baseUrl());

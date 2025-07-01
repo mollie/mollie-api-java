@@ -50,6 +50,10 @@ public class SpeakeasyHTTPClient implements HTTPClient {
         debugEnabled = enabled;
     }
 
+    public static boolean getDebugLoggingEnabled() {
+        return debugEnabled;
+    }
+
     @Override
     public boolean isDebugLoggingEnabled() {
         return Optional.ofNullable(localDebugEnabled).orElse(debugEnabled);

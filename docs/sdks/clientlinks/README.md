@@ -9,10 +9,6 @@
 
 ## create
 
-> 🚧 Open beta
->
-> This feature is currently in open beta, and the final specification may still change.
-
 Link a new or existing organization to your OAuth application, in effect creating a new client. The response contains a `clientLink` where you should redirect your customer to.
 
 The `clientLink` URL behaves similar to the regular OAuth authorization URL. It supports the following parameters from the [Authorize](authorize) endpoint:
@@ -54,15 +50,20 @@ public class Application {
 
         CreateClientLinkRequestBody req = CreateClientLinkRequestBody.builder()
                 .owner(Owner.builder()
-                    .email("Hermina_Johnston15@hotmail.com")
-                    .givenName("<value>")
-                    .familyName("<value>")
+                    .email("john@example.org")
+                    .givenName("John")
+                    .familyName("Doe")
                     .locale("en_US")
                     .build())
-                .name("<value>")
+                .name("Acme Corporation")
                 .address(CreateClientLinkAddress.builder()
-                    .country("Panama")
+                    .country("NL")
+                    .streetAndNumber("Main Street 123")
+                    .postalCode("1234AB")
+                    .city("Amsterdam")
                     .build())
+                .registrationNumber("12345678")
+                .vatNumber("123456789B01")
                 .build();
 
         CreateClientLinkResponse res = sdk.clientLinks().create()

@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: cabc0871cfe3f2f1c620c4b2eaef9cde
+  docChecksum: 4b0f16d09d14ef8e80fdd3deb2c73bec
   docVersion: 1.0.0
-  speakeasyVersion: 1.571.1
-  generationVersion: 2.640.2
-  releaseVersion: 0.6.0
-  configChecksum: 9ab069e06d10f780fddee01faecc36ba
+  speakeasyVersion: 1.573.0
+  generationVersion: 2.644.1
+  releaseVersion: 0.7.0
+  configChecksum: e31e79e5a6bda099c5c21801510bc016
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 features:
   java:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.40.1
+    core: 3.41.0
     deprecations: 2.81.1
     flattening: 2.81.1
     globalSecurity: 2.82.8
@@ -95,6 +95,12 @@ generatedFiles:
   - docs/models/errors/CreateRefundRefundsResponseLinks.md
   - docs/models/errors/CreateRefundRefundsResponseResponseBody.md
   - docs/models/errors/CreateRefundResponseBody.md
+  - docs/models/errors/CreateSalesInvoiceDocumentation.md
+  - docs/models/errors/CreateSalesInvoiceLinks.md
+  - docs/models/errors/CreateSalesInvoiceResponseBody.md
+  - docs/models/errors/CreateSalesInvoiceSalesInvoicesDocumentation.md
+  - docs/models/errors/CreateSalesInvoiceSalesInvoicesLinks.md
+  - docs/models/errors/CreateSalesInvoiceSalesInvoicesResponseBody.md
   - docs/models/errors/CreateSubscriptionDocumentation.md
   - docs/models/errors/CreateSubscriptionLinks.md
   - docs/models/errors/CreateSubscriptionResponseBody.md
@@ -116,6 +122,12 @@ generatedFiles:
   - docs/models/errors/DeleteProfileProfilesLinks.md
   - docs/models/errors/DeleteProfileProfilesResponseBody.md
   - docs/models/errors/DeleteProfileResponseBody.md
+  - docs/models/errors/DeleteSalesInvoiceDocumentation.md
+  - docs/models/errors/DeleteSalesInvoiceLinks.md
+  - docs/models/errors/DeleteSalesInvoiceResponseBody.md
+  - docs/models/errors/DeleteSalesInvoiceSalesInvoicesDocumentation.md
+  - docs/models/errors/DeleteSalesInvoiceSalesInvoicesLinks.md
+  - docs/models/errors/DeleteSalesInvoiceSalesInvoicesResponseBody.md
   - docs/models/errors/DeleteWebhookDocumentation.md
   - docs/models/errors/DeleteWebhookLinks.md
   - docs/models/errors/DeleteWebhookResponseBody.md
@@ -180,6 +192,9 @@ generatedFiles:
   - docs/models/errors/GetRefundDocumentation.md
   - docs/models/errors/GetRefundLinks.md
   - docs/models/errors/GetRefundResponseBody.md
+  - docs/models/errors/GetSalesInvoiceDocumentation.md
+  - docs/models/errors/GetSalesInvoiceLinks.md
+  - docs/models/errors/GetSalesInvoiceResponseBody.md
   - docs/models/errors/GetSettlementCapturesDocumentation.md
   - docs/models/errors/GetSettlementCapturesLinks.md
   - docs/models/errors/GetSettlementCapturesResponseBody.md
@@ -313,6 +328,9 @@ generatedFiles:
   - docs/models/errors/ListRefundsRefundsLinks.md
   - docs/models/errors/ListRefundsRefundsResponseBody.md
   - docs/models/errors/ListRefundsResponseBody.md
+  - docs/models/errors/ListSalesInvoicesDocumentation.md
+  - docs/models/errors/ListSalesInvoicesLinks.md
+  - docs/models/errors/ListSalesInvoicesResponseBody.md
   - docs/models/errors/ListSettlementsDocumentation.md
   - docs/models/errors/ListSettlementsLinks.md
   - docs/models/errors/ListSettlementsResponseBody.md
@@ -382,6 +400,12 @@ generatedFiles:
   - docs/models/errors/UpdateProfileProfilesResponseLinks.md
   - docs/models/errors/UpdateProfileProfilesResponseResponseBody.md
   - docs/models/errors/UpdateProfileResponseBody.md
+  - docs/models/errors/UpdateSalesInvoiceDocumentation.md
+  - docs/models/errors/UpdateSalesInvoiceLinks.md
+  - docs/models/errors/UpdateSalesInvoiceResponseBody.md
+  - docs/models/errors/UpdateSalesInvoiceSalesInvoicesDocumentation.md
+  - docs/models/errors/UpdateSalesInvoiceSalesInvoicesLinks.md
+  - docs/models/errors/UpdateSalesInvoiceSalesInvoicesResponseBody.md
   - docs/models/errors/UpdateSubscriptionDocumentation.md
   - docs/models/errors/UpdateSubscriptionLinks.md
   - docs/models/errors/UpdateSubscriptionResponseBody.md
@@ -396,6 +420,7 @@ generatedFiles:
   - docs/models/operations/AmountCanceled.md
   - docs/models/operations/AmountCaptured.md
   - docs/models/operations/AmountChargedBack.md
+  - docs/models/operations/AmountDue.md
   - docs/models/operations/AmountGross.md
   - docs/models/operations/AmountNet.md
   - docs/models/operations/AmountRefunded.md
@@ -727,6 +752,25 @@ generatedFiles:
   - docs/models/operations/CreateRefundSettlement.md
   - docs/models/operations/CreateRefundSettlementAmount.md
   - docs/models/operations/CreateRefundSource.md
+  - docs/models/operations/CreateSalesInvoiceDiscount.md
+  - docs/models/operations/CreateSalesInvoiceDocumentation.md
+  - docs/models/operations/CreateSalesInvoiceEmailDetails.md
+  - docs/models/operations/CreateSalesInvoiceLines.md
+  - docs/models/operations/CreateSalesInvoiceLinks.md
+  - docs/models/operations/CreateSalesInvoiceMetadata.md
+  - docs/models/operations/CreateSalesInvoicePaymentDetails.md
+  - docs/models/operations/CreateSalesInvoiceRecipient.md
+  - docs/models/operations/CreateSalesInvoiceRequestBody.md
+  - docs/models/operations/CreateSalesInvoiceResponse.md
+  - docs/models/operations/CreateSalesInvoiceResponseBody.md
+  - docs/models/operations/CreateSalesInvoiceSalesInvoicesDiscount.md
+  - docs/models/operations/CreateSalesInvoiceSalesInvoicesLines.md
+  - docs/models/operations/CreateSalesInvoiceSalesInvoicesMetadata.md
+  - docs/models/operations/CreateSalesInvoiceSalesInvoicesResponseDiscount.md
+  - docs/models/operations/CreateSalesInvoiceSalesInvoicesUnitPrice.md
+  - docs/models/operations/CreateSalesInvoiceSelf.md
+  - docs/models/operations/CreateSalesInvoiceTotalAmount.md
+  - docs/models/operations/CreateSalesInvoiceUnitPrice.md
   - docs/models/operations/CreateSubscriptionAmount.md
   - docs/models/operations/CreateSubscriptionApplicationFee.md
   - docs/models/operations/CreateSubscriptionCustomer.md
@@ -766,13 +810,19 @@ generatedFiles:
   - docs/models/operations/DeletePaymentLinkResponse.md
   - docs/models/operations/DeleteProfileRequest.md
   - docs/models/operations/DeleteProfileResponse.md
+  - docs/models/operations/DeleteSalesInvoiceRequest.md
+  - docs/models/operations/DeleteSalesInvoiceRequestBody.md
+  - docs/models/operations/DeleteSalesInvoiceResponse.md
   - docs/models/operations/DeleteWebhookRequest.md
   - docs/models/operations/DeleteWebhookResponse.md
   - docs/models/operations/Destination.md
   - docs/models/operations/Details.md
+  - docs/models/operations/Discount.md
   - docs/models/operations/DiscountAmount.md
   - docs/models/operations/DiscountedAmount.md
+  - docs/models/operations/DiscountedSubtotalAmount.md
   - docs/models/operations/Documentation.md
+  - docs/models/operations/EmailDetails.md
   - docs/models/operations/Embed.md
   - docs/models/operations/Embedded.md
   - docs/models/operations/Entity.md
@@ -1301,6 +1351,27 @@ generatedFiles:
   - docs/models/operations/GetRefundSettlement.md
   - docs/models/operations/GetRefundSettlementAmount.md
   - docs/models/operations/GetRefundSource.md
+  - docs/models/operations/GetSalesInvoiceAmountDue.md
+  - docs/models/operations/GetSalesInvoiceDiscount.md
+  - docs/models/operations/GetSalesInvoiceDiscountedSubtotalAmount.md
+  - docs/models/operations/GetSalesInvoiceDocumentation.md
+  - docs/models/operations/GetSalesInvoiceEmailDetails.md
+  - docs/models/operations/GetSalesInvoiceInvoicePayment.md
+  - docs/models/operations/GetSalesInvoiceLines.md
+  - docs/models/operations/GetSalesInvoiceLinks.md
+  - docs/models/operations/GetSalesInvoiceMetadata.md
+  - docs/models/operations/GetSalesInvoicePaymentDetails.md
+  - docs/models/operations/GetSalesInvoicePdfLink.md
+  - docs/models/operations/GetSalesInvoiceRecipient.md
+  - docs/models/operations/GetSalesInvoiceRequest.md
+  - docs/models/operations/GetSalesInvoiceResponse.md
+  - docs/models/operations/GetSalesInvoiceResponseBody.md
+  - docs/models/operations/GetSalesInvoiceSalesInvoicesDiscount.md
+  - docs/models/operations/GetSalesInvoiceSelf.md
+  - docs/models/operations/GetSalesInvoiceSubtotalAmount.md
+  - docs/models/operations/GetSalesInvoiceTotalAmount.md
+  - docs/models/operations/GetSalesInvoiceTotalVatAmount.md
+  - docs/models/operations/GetSalesInvoiceUnitPrice.md
   - docs/models/operations/GetSettlementAmount.md
   - docs/models/operations/GetSettlementAmountGross.md
   - docs/models/operations/GetSettlementAmountNet.md
@@ -1476,6 +1547,7 @@ generatedFiles:
   - docs/models/operations/Include.md
   - docs/models/operations/InitialAmount.md
   - docs/models/operations/Invoice.md
+  - docs/models/operations/InvoicePayment.md
   - docs/models/operations/Invoices.md
   - docs/models/operations/Issuers.md
   - docs/models/operations/LessThanMonthGreaterThan.md
@@ -1974,6 +2046,33 @@ generatedFiles:
   - docs/models/operations/ListRefundsSettlement.md
   - docs/models/operations/ListRefundsSettlementAmount.md
   - docs/models/operations/ListRefundsSource.md
+  - docs/models/operations/ListSalesInvoicesAmountDue.md
+  - docs/models/operations/ListSalesInvoicesDiscount.md
+  - docs/models/operations/ListSalesInvoicesDiscountedSubtotalAmount.md
+  - docs/models/operations/ListSalesInvoicesDocumentation.md
+  - docs/models/operations/ListSalesInvoicesEmailDetails.md
+  - docs/models/operations/ListSalesInvoicesEmbedded.md
+  - docs/models/operations/ListSalesInvoicesInvoicePayment.md
+  - docs/models/operations/ListSalesInvoicesLines.md
+  - docs/models/operations/ListSalesInvoicesLinks.md
+  - docs/models/operations/ListSalesInvoicesMetadata.md
+  - docs/models/operations/ListSalesInvoicesNext.md
+  - docs/models/operations/ListSalesInvoicesPaymentDetails.md
+  - docs/models/operations/ListSalesInvoicesPdfLink.md
+  - docs/models/operations/ListSalesInvoicesPrevious.md
+  - docs/models/operations/ListSalesInvoicesRecipient.md
+  - docs/models/operations/ListSalesInvoicesRequest.md
+  - docs/models/operations/ListSalesInvoicesResponse.md
+  - docs/models/operations/ListSalesInvoicesResponseBody.md
+  - docs/models/operations/ListSalesInvoicesSalesInvoicesDiscount.md
+  - docs/models/operations/ListSalesInvoicesSalesInvoicesDocumentation.md
+  - docs/models/operations/ListSalesInvoicesSalesInvoicesLinks.md
+  - docs/models/operations/ListSalesInvoicesSalesInvoicesSelf.md
+  - docs/models/operations/ListSalesInvoicesSelf.md
+  - docs/models/operations/ListSalesInvoicesSubtotalAmount.md
+  - docs/models/operations/ListSalesInvoicesTotalAmount.md
+  - docs/models/operations/ListSalesInvoicesTotalVatAmount.md
+  - docs/models/operations/ListSalesInvoicesUnitPrice.md
   - docs/models/operations/ListSettlementsAmount.md
   - docs/models/operations/ListSettlementsAmountGross.md
   - docs/models/operations/ListSettlementsAmountNet.md
@@ -2132,6 +2231,7 @@ generatedFiles:
   - docs/models/operations/PaymentCreateRouteResponse.md
   - docs/models/operations/PaymentCreateRouteResponseBody.md
   - docs/models/operations/PaymentCreateRouteSelf.md
+  - docs/models/operations/PaymentDetails.md
   - docs/models/operations/PaymentLink.md
   - docs/models/operations/PaymentLinks.md
   - docs/models/operations/PaymentListRoutesAmount.md
@@ -2150,6 +2250,7 @@ generatedFiles:
   - docs/models/operations/PaymentListRoutesSelf.md
   - docs/models/operations/Payments.md
   - docs/models/operations/Pdf.md
+  - docs/models/operations/PdfLink.md
   - docs/models/operations/Pending.md
   - docs/models/operations/PendingAmount.md
   - docs/models/operations/PendingBalance.md
@@ -2167,6 +2268,7 @@ generatedFiles:
   - docs/models/operations/QueryParamInclude.md
   - docs/models/operations/Rate.md
   - docs/models/operations/Reason.md
+  - docs/models/operations/Recipient.md
   - docs/models/operations/Recurring.md
   - docs/models/operations/Refunds.md
   - docs/models/operations/ReleaseAuthorizationRequest.md
@@ -2186,6 +2288,7 @@ generatedFiles:
   - docs/models/operations/Routes.md
   - docs/models/operations/Routing.md
   - docs/models/operations/RoutingReversals.md
+  - docs/models/operations/SalesInvoices.md
   - docs/models/operations/Self.md
   - docs/models/operations/Settlement.md
   - docs/models/operations/SettlementAmount.md
@@ -2200,6 +2303,7 @@ generatedFiles:
   - docs/models/operations/SubmitOnboardingDataResponse.md
   - docs/models/operations/Subscription.md
   - docs/models/operations/Subscriptions.md
+  - docs/models/operations/SubtotalAmount.md
   - docs/models/operations/Subtotals.md
   - docs/models/operations/Terminal.md
   - docs/models/operations/Terminals.md
@@ -2208,6 +2312,7 @@ generatedFiles:
   - docs/models/operations/TestWebhookResponse.md
   - docs/models/operations/Topups.md
   - docs/models/operations/TotalAmount.md
+  - docs/models/operations/TotalVatAmount.md
   - docs/models/operations/Totals.md
   - docs/models/operations/TransferDestination.md
   - docs/models/operations/TransferThreshold.md
@@ -2323,6 +2428,35 @@ generatedFiles:
   - docs/models/operations/UpdateProfileResponseBody.md
   - docs/models/operations/UpdateProfileReview.md
   - docs/models/operations/UpdateProfileSelf.md
+  - docs/models/operations/UpdateSalesInvoiceAmountDue.md
+  - docs/models/operations/UpdateSalesInvoiceDiscount.md
+  - docs/models/operations/UpdateSalesInvoiceDiscountedSubtotalAmount.md
+  - docs/models/operations/UpdateSalesInvoiceDocumentation.md
+  - docs/models/operations/UpdateSalesInvoiceEmailDetails.md
+  - docs/models/operations/UpdateSalesInvoiceInvoicePayment.md
+  - docs/models/operations/UpdateSalesInvoiceLines.md
+  - docs/models/operations/UpdateSalesInvoiceLinks.md
+  - docs/models/operations/UpdateSalesInvoiceMetadata.md
+  - docs/models/operations/UpdateSalesInvoicePaymentDetails.md
+  - docs/models/operations/UpdateSalesInvoicePdfLink.md
+  - docs/models/operations/UpdateSalesInvoiceRecipient.md
+  - docs/models/operations/UpdateSalesInvoiceRequest.md
+  - docs/models/operations/UpdateSalesInvoiceRequestBody.md
+  - docs/models/operations/UpdateSalesInvoiceResponse.md
+  - docs/models/operations/UpdateSalesInvoiceResponseBody.md
+  - docs/models/operations/UpdateSalesInvoiceSalesInvoicesDiscount.md
+  - docs/models/operations/UpdateSalesInvoiceSalesInvoicesEmailDetails.md
+  - docs/models/operations/UpdateSalesInvoiceSalesInvoicesLines.md
+  - docs/models/operations/UpdateSalesInvoiceSalesInvoicesPaymentDetails.md
+  - docs/models/operations/UpdateSalesInvoiceSalesInvoicesRecipient.md
+  - docs/models/operations/UpdateSalesInvoiceSalesInvoicesResponse200Discount.md
+  - docs/models/operations/UpdateSalesInvoiceSalesInvoicesResponseDiscount.md
+  - docs/models/operations/UpdateSalesInvoiceSalesInvoicesUnitPrice.md
+  - docs/models/operations/UpdateSalesInvoiceSelf.md
+  - docs/models/operations/UpdateSalesInvoiceSubtotalAmount.md
+  - docs/models/operations/UpdateSalesInvoiceTotalAmount.md
+  - docs/models/operations/UpdateSalesInvoiceTotalVatAmount.md
+  - docs/models/operations/UpdateSalesInvoiceUnitPrice.md
   - docs/models/operations/UpdateSubscriptionAmount.md
   - docs/models/operations/UpdateSubscriptionApplicationFee.md
   - docs/models/operations/UpdateSubscriptionCustomer.md
@@ -2370,6 +2504,7 @@ generatedFiles:
   - docs/sdks/permissions/README.md
   - docs/sdks/profiles/README.md
   - docs/sdks/refunds/README.md
+  - docs/sdks/salesinvoices/README.md
   - docs/sdks/settlements/README.md
   - docs/sdks/subscriptions/README.md
   - docs/sdks/terminals/README.md
@@ -2402,6 +2537,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/Profiles.java
   - src/main/java/com/mollie/mollie/Refunds.java
   - src/main/java/com/mollie/mollie/SDKConfiguration.java
+  - src/main/java/com/mollie/mollie/SalesInvoices.java
   - src/main/java/com/mollie/mollie/SecuritySource.java
   - src/main/java/com/mollie/mollie/Settlements.java
   - src/main/java/com/mollie/mollie/Subscriptions.java
@@ -2476,6 +2612,12 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/errors/CreateRefundRefundsResponseLinks.java
   - src/main/java/com/mollie/mollie/models/errors/CreateRefundRefundsResponseResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/CreateRefundResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/CreateSalesInvoiceDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/CreateSalesInvoiceLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/CreateSalesInvoiceResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/CreateSalesInvoiceSalesInvoicesDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/CreateSalesInvoiceSalesInvoicesLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/CreateSalesInvoiceSalesInvoicesResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/CreateSubscriptionDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/CreateSubscriptionLinks.java
   - src/main/java/com/mollie/mollie/models/errors/CreateSubscriptionResponseBody.java
@@ -2497,6 +2639,12 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/errors/DeleteProfileProfilesLinks.java
   - src/main/java/com/mollie/mollie/models/errors/DeleteProfileProfilesResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/DeleteProfileResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/DeleteSalesInvoiceDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/DeleteSalesInvoiceLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/DeleteSalesInvoiceResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/DeleteSalesInvoiceSalesInvoicesDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/DeleteSalesInvoiceSalesInvoicesLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/DeleteSalesInvoiceSalesInvoicesResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/DeleteWebhookDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/DeleteWebhookLinks.java
   - src/main/java/com/mollie/mollie/models/errors/DeleteWebhookResponseBody.java
@@ -2561,6 +2709,9 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/errors/GetRefundDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/GetRefundLinks.java
   - src/main/java/com/mollie/mollie/models/errors/GetRefundResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/GetSalesInvoiceDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/GetSalesInvoiceLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/GetSalesInvoiceResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/GetSettlementCapturesDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/GetSettlementCapturesLinks.java
   - src/main/java/com/mollie/mollie/models/errors/GetSettlementCapturesResponseBody.java
@@ -2694,6 +2845,9 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/errors/ListRefundsRefundsLinks.java
   - src/main/java/com/mollie/mollie/models/errors/ListRefundsRefundsResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/ListRefundsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/ListSalesInvoicesDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/ListSalesInvoicesLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/ListSalesInvoicesResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/ListSettlementsDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/ListSettlementsLinks.java
   - src/main/java/com/mollie/mollie/models/errors/ListSettlementsResponseBody.java
@@ -2763,6 +2917,12 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/errors/UpdateProfileProfilesResponseLinks.java
   - src/main/java/com/mollie/mollie/models/errors/UpdateProfileProfilesResponseResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/UpdateProfileResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdateSalesInvoiceDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdateSalesInvoiceLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdateSalesInvoiceResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdateSalesInvoiceSalesInvoicesDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdateSalesInvoiceSalesInvoicesLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/UpdateSalesInvoiceSalesInvoicesResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/UpdateSubscriptionDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/UpdateSubscriptionLinks.java
   - src/main/java/com/mollie/mollie/models/errors/UpdateSubscriptionResponseBody.java
@@ -2777,6 +2937,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/AmountCanceled.java
   - src/main/java/com/mollie/mollie/models/operations/AmountCaptured.java
   - src/main/java/com/mollie/mollie/models/operations/AmountChargedBack.java
+  - src/main/java/com/mollie/mollie/models/operations/AmountDue.java
   - src/main/java/com/mollie/mollie/models/operations/AmountGross.java
   - src/main/java/com/mollie/mollie/models/operations/AmountNet.java
   - src/main/java/com/mollie/mollie/models/operations/AmountRefunded.java
@@ -3121,6 +3282,26 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/CreateRefundSettlement.java
   - src/main/java/com/mollie/mollie/models/operations/CreateRefundSettlementAmount.java
   - src/main/java/com/mollie/mollie/models/operations/CreateRefundSource.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateSalesInvoiceDiscount.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateSalesInvoiceDocumentation.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateSalesInvoiceEmailDetails.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateSalesInvoiceLines.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateSalesInvoiceLinks.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateSalesInvoiceMetadata.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateSalesInvoicePaymentDetails.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateSalesInvoiceRecipient.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateSalesInvoiceRequestBody.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateSalesInvoiceRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateSalesInvoiceResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateSalesInvoiceResponseBody.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateSalesInvoiceSalesInvoicesDiscount.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateSalesInvoiceSalesInvoicesLines.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateSalesInvoiceSalesInvoicesMetadata.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateSalesInvoiceSalesInvoicesResponseDiscount.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateSalesInvoiceSalesInvoicesUnitPrice.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateSalesInvoiceSelf.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateSalesInvoiceTotalAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateSalesInvoiceUnitPrice.java
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionAmount.java
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionApplicationFee.java
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionCustomer.java
@@ -3165,14 +3346,21 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/DeleteProfileRequest.java
   - src/main/java/com/mollie/mollie/models/operations/DeleteProfileRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/DeleteProfileResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/DeleteSalesInvoiceRequest.java
+  - src/main/java/com/mollie/mollie/models/operations/DeleteSalesInvoiceRequestBody.java
+  - src/main/java/com/mollie/mollie/models/operations/DeleteSalesInvoiceRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations/DeleteSalesInvoiceResponse.java
   - src/main/java/com/mollie/mollie/models/operations/DeleteWebhookRequest.java
   - src/main/java/com/mollie/mollie/models/operations/DeleteWebhookRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/DeleteWebhookResponse.java
   - src/main/java/com/mollie/mollie/models/operations/Destination.java
   - src/main/java/com/mollie/mollie/models/operations/Details.java
+  - src/main/java/com/mollie/mollie/models/operations/Discount.java
   - src/main/java/com/mollie/mollie/models/operations/DiscountAmount.java
   - src/main/java/com/mollie/mollie/models/operations/DiscountedAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/DiscountedSubtotalAmount.java
   - src/main/java/com/mollie/mollie/models/operations/Documentation.java
+  - src/main/java/com/mollie/mollie/models/operations/EmailDetails.java
   - src/main/java/com/mollie/mollie/models/operations/Embed.java
   - src/main/java/com/mollie/mollie/models/operations/Embedded.java
   - src/main/java/com/mollie/mollie/models/operations/Entity.java
@@ -3724,6 +3912,28 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetRefundSettlement.java
   - src/main/java/com/mollie/mollie/models/operations/GetRefundSettlementAmount.java
   - src/main/java/com/mollie/mollie/models/operations/GetRefundSource.java
+  - src/main/java/com/mollie/mollie/models/operations/GetSalesInvoiceAmountDue.java
+  - src/main/java/com/mollie/mollie/models/operations/GetSalesInvoiceDiscount.java
+  - src/main/java/com/mollie/mollie/models/operations/GetSalesInvoiceDiscountedSubtotalAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/GetSalesInvoiceDocumentation.java
+  - src/main/java/com/mollie/mollie/models/operations/GetSalesInvoiceEmailDetails.java
+  - src/main/java/com/mollie/mollie/models/operations/GetSalesInvoiceInvoicePayment.java
+  - src/main/java/com/mollie/mollie/models/operations/GetSalesInvoiceLines.java
+  - src/main/java/com/mollie/mollie/models/operations/GetSalesInvoiceLinks.java
+  - src/main/java/com/mollie/mollie/models/operations/GetSalesInvoiceMetadata.java
+  - src/main/java/com/mollie/mollie/models/operations/GetSalesInvoicePaymentDetails.java
+  - src/main/java/com/mollie/mollie/models/operations/GetSalesInvoicePdfLink.java
+  - src/main/java/com/mollie/mollie/models/operations/GetSalesInvoiceRecipient.java
+  - src/main/java/com/mollie/mollie/models/operations/GetSalesInvoiceRequest.java
+  - src/main/java/com/mollie/mollie/models/operations/GetSalesInvoiceRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations/GetSalesInvoiceResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/GetSalesInvoiceResponseBody.java
+  - src/main/java/com/mollie/mollie/models/operations/GetSalesInvoiceSalesInvoicesDiscount.java
+  - src/main/java/com/mollie/mollie/models/operations/GetSalesInvoiceSelf.java
+  - src/main/java/com/mollie/mollie/models/operations/GetSalesInvoiceSubtotalAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/GetSalesInvoiceTotalAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/GetSalesInvoiceTotalVatAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/GetSalesInvoiceUnitPrice.java
   - src/main/java/com/mollie/mollie/models/operations/GetSettlementAmount.java
   - src/main/java/com/mollie/mollie/models/operations/GetSettlementAmountGross.java
   - src/main/java/com/mollie/mollie/models/operations/GetSettlementAmountNet.java
@@ -3908,6 +4118,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/Include.java
   - src/main/java/com/mollie/mollie/models/operations/InitialAmount.java
   - src/main/java/com/mollie/mollie/models/operations/Invoice.java
+  - src/main/java/com/mollie/mollie/models/operations/InvoicePayment.java
   - src/main/java/com/mollie/mollie/models/operations/Invoices.java
   - src/main/java/com/mollie/mollie/models/operations/Issuers.java
   - src/main/java/com/mollie/mollie/models/operations/LessThanMonthGreaterThan.java
@@ -4427,6 +4638,34 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListRefundsSettlement.java
   - src/main/java/com/mollie/mollie/models/operations/ListRefundsSettlementAmount.java
   - src/main/java/com/mollie/mollie/models/operations/ListRefundsSource.java
+  - src/main/java/com/mollie/mollie/models/operations/ListSalesInvoicesAmountDue.java
+  - src/main/java/com/mollie/mollie/models/operations/ListSalesInvoicesDiscount.java
+  - src/main/java/com/mollie/mollie/models/operations/ListSalesInvoicesDiscountedSubtotalAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/ListSalesInvoicesDocumentation.java
+  - src/main/java/com/mollie/mollie/models/operations/ListSalesInvoicesEmailDetails.java
+  - src/main/java/com/mollie/mollie/models/operations/ListSalesInvoicesEmbedded.java
+  - src/main/java/com/mollie/mollie/models/operations/ListSalesInvoicesInvoicePayment.java
+  - src/main/java/com/mollie/mollie/models/operations/ListSalesInvoicesLines.java
+  - src/main/java/com/mollie/mollie/models/operations/ListSalesInvoicesLinks.java
+  - src/main/java/com/mollie/mollie/models/operations/ListSalesInvoicesMetadata.java
+  - src/main/java/com/mollie/mollie/models/operations/ListSalesInvoicesNext.java
+  - src/main/java/com/mollie/mollie/models/operations/ListSalesInvoicesPaymentDetails.java
+  - src/main/java/com/mollie/mollie/models/operations/ListSalesInvoicesPdfLink.java
+  - src/main/java/com/mollie/mollie/models/operations/ListSalesInvoicesPrevious.java
+  - src/main/java/com/mollie/mollie/models/operations/ListSalesInvoicesRecipient.java
+  - src/main/java/com/mollie/mollie/models/operations/ListSalesInvoicesRequest.java
+  - src/main/java/com/mollie/mollie/models/operations/ListSalesInvoicesRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations/ListSalesInvoicesResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/ListSalesInvoicesResponseBody.java
+  - src/main/java/com/mollie/mollie/models/operations/ListSalesInvoicesSalesInvoicesDiscount.java
+  - src/main/java/com/mollie/mollie/models/operations/ListSalesInvoicesSalesInvoicesDocumentation.java
+  - src/main/java/com/mollie/mollie/models/operations/ListSalesInvoicesSalesInvoicesLinks.java
+  - src/main/java/com/mollie/mollie/models/operations/ListSalesInvoicesSalesInvoicesSelf.java
+  - src/main/java/com/mollie/mollie/models/operations/ListSalesInvoicesSelf.java
+  - src/main/java/com/mollie/mollie/models/operations/ListSalesInvoicesSubtotalAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/ListSalesInvoicesTotalAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/ListSalesInvoicesTotalVatAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/ListSalesInvoicesUnitPrice.java
   - src/main/java/com/mollie/mollie/models/operations/ListSettlementsAmount.java
   - src/main/java/com/mollie/mollie/models/operations/ListSettlementsAmountGross.java
   - src/main/java/com/mollie/mollie/models/operations/ListSettlementsAmountNet.java
@@ -4591,6 +4830,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/PaymentCreateRouteResponse.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentCreateRouteResponseBody.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentCreateRouteSelf.java
+  - src/main/java/com/mollie/mollie/models/operations/PaymentDetails.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentLink.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentLinks.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentListRoutesAmount.java
@@ -4610,6 +4850,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/PaymentListRoutesSelf.java
   - src/main/java/com/mollie/mollie/models/operations/Payments.java
   - src/main/java/com/mollie/mollie/models/operations/Pdf.java
+  - src/main/java/com/mollie/mollie/models/operations/PdfLink.java
   - src/main/java/com/mollie/mollie/models/operations/Pending.java
   - src/main/java/com/mollie/mollie/models/operations/PendingAmount.java
   - src/main/java/com/mollie/mollie/models/operations/PendingBalance.java
@@ -4627,6 +4868,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/QueryParamInclude.java
   - src/main/java/com/mollie/mollie/models/operations/Rate.java
   - src/main/java/com/mollie/mollie/models/operations/Reason.java
+  - src/main/java/com/mollie/mollie/models/operations/Recipient.java
   - src/main/java/com/mollie/mollie/models/operations/Recurring.java
   - src/main/java/com/mollie/mollie/models/operations/Refunds.java
   - src/main/java/com/mollie/mollie/models/operations/ReleaseAuthorizationRequest.java
@@ -4649,6 +4891,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/Routes.java
   - src/main/java/com/mollie/mollie/models/operations/Routing.java
   - src/main/java/com/mollie/mollie/models/operations/RoutingReversals.java
+  - src/main/java/com/mollie/mollie/models/operations/SalesInvoices.java
   - src/main/java/com/mollie/mollie/models/operations/Self.java
   - src/main/java/com/mollie/mollie/models/operations/Settlement.java
   - src/main/java/com/mollie/mollie/models/operations/SettlementAmount.java
@@ -4664,6 +4907,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/SubmitOnboardingDataResponse.java
   - src/main/java/com/mollie/mollie/models/operations/Subscription.java
   - src/main/java/com/mollie/mollie/models/operations/Subscriptions.java
+  - src/main/java/com/mollie/mollie/models/operations/SubtotalAmount.java
   - src/main/java/com/mollie/mollie/models/operations/Subtotals.java
   - src/main/java/com/mollie/mollie/models/operations/Terminal.java
   - src/main/java/com/mollie/mollie/models/operations/Terminals.java
@@ -4673,6 +4917,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/TestWebhookResponse.java
   - src/main/java/com/mollie/mollie/models/operations/Topups.java
   - src/main/java/com/mollie/mollie/models/operations/TotalAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/TotalVatAmount.java
   - src/main/java/com/mollie/mollie/models/operations/Totals.java
   - src/main/java/com/mollie/mollie/models/operations/TransferDestination.java
   - src/main/java/com/mollie/mollie/models/operations/TransferThreshold.java
@@ -4792,6 +5037,36 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/UpdateProfileResponseBody.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateProfileReview.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateProfileSelf.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceAmountDue.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceDiscount.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceDiscountedSubtotalAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceDocumentation.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceEmailDetails.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceInvoicePayment.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceLines.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceLinks.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceMetadata.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoicePaymentDetails.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoicePdfLink.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceRecipient.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceRequest.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceRequestBody.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceResponseBody.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceSalesInvoicesDiscount.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceSalesInvoicesEmailDetails.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceSalesInvoicesLines.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceSalesInvoicesPaymentDetails.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceSalesInvoicesRecipient.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceSalesInvoicesResponse200Discount.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceSalesInvoicesResponseDiscount.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceSalesInvoicesUnitPrice.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceSelf.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceSubtotalAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceTotalAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceTotalVatAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceUnitPrice.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionAmount.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionApplicationFee.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionCustomer.java
@@ -4835,11 +5110,13 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/operations/CreatePaymentOperation.java
   - src/main/java/com/mollie/mollie/operations/CreateProfileOperation.java
   - src/main/java/com/mollie/mollie/operations/CreateRefundOperation.java
+  - src/main/java/com/mollie/mollie/operations/CreateSalesInvoiceOperation.java
   - src/main/java/com/mollie/mollie/operations/CreateSubscriptionOperation.java
   - src/main/java/com/mollie/mollie/operations/CreateWebhookOperation.java
   - src/main/java/com/mollie/mollie/operations/DeleteCustomerOperation.java
   - src/main/java/com/mollie/mollie/operations/DeletePaymentLinkOperation.java
   - src/main/java/com/mollie/mollie/operations/DeleteProfileOperation.java
+  - src/main/java/com/mollie/mollie/operations/DeleteSalesInvoiceOperation.java
   - src/main/java/com/mollie/mollie/operations/DeleteWebhookOperation.java
   - src/main/java/com/mollie/mollie/operations/GetBalanceOperation.java
   - src/main/java/com/mollie/mollie/operations/GetBalanceReportOperation.java
@@ -4864,6 +5141,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/operations/GetPrimaryBalanceOperation.java
   - src/main/java/com/mollie/mollie/operations/GetProfileOperation.java
   - src/main/java/com/mollie/mollie/operations/GetRefundOperation.java
+  - src/main/java/com/mollie/mollie/operations/GetSalesInvoiceOperation.java
   - src/main/java/com/mollie/mollie/operations/GetSettlementCapturesOperation.java
   - src/main/java/com/mollie/mollie/operations/GetSettlementChargebacksOperation.java
   - src/main/java/com/mollie/mollie/operations/GetSettlementOperation.java
@@ -4894,6 +5172,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/operations/ListPermissionsOperation.java
   - src/main/java/com/mollie/mollie/operations/ListProfilesOperation.java
   - src/main/java/com/mollie/mollie/operations/ListRefundsOperation.java
+  - src/main/java/com/mollie/mollie/operations/ListSalesInvoicesOperation.java
   - src/main/java/com/mollie/mollie/operations/ListSettlementsOperation.java
   - src/main/java/com/mollie/mollie/operations/ListSubscriptionPaymentsOperation.java
   - src/main/java/com/mollie/mollie/operations/ListSubscriptionsOperation.java
@@ -4911,6 +5190,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/operations/UpdatePaymentLinkOperation.java
   - src/main/java/com/mollie/mollie/operations/UpdatePaymentOperation.java
   - src/main/java/com/mollie/mollie/operations/UpdateProfileOperation.java
+  - src/main/java/com/mollie/mollie/operations/UpdateSalesInvoiceOperation.java
   - src/main/java/com/mollie/mollie/operations/UpdateSubscriptionOperation.java
   - src/main/java/com/mollie/mollie/operations/UpdateWebhookOperation.java
   - src/main/java/com/mollie/mollie/utils/BackoffStrategy.java
@@ -7665,19 +7945,19 @@ examples:
   create-client-link:
     create-client-link-201-1:
       requestBody:
-        application/json: {"owner": {"email": "Hermina_Johnston15@hotmail.com", "givenName": "<value>", "familyName": "<value>", "locale": "en_US"}, "name": "<value>", "address": {"country": "Panama"}}
+        application/json: {"owner": {"email": "john@example.org", "givenName": "John", "familyName": "Doe", "locale": "en_US"}, "name": "Acme Corporation", "address": {"streetAndNumber": "Main Street 123", "postalCode": "1234AB", "city": "Amsterdam", "country": "NL"}, "registrationNumber": "12345678", "vatNumber": "123456789B01"}
       responses:
         "201":
           application/hal+json: {"resource": "client-link", "id": "cl_vZCnNQsV2UtfXxYifWKWH", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "clientLink": {"href": "https://my.mollie.com/dashboard/client-link/cl_vZCnNQsV2UtfXxYifWKWH", "type": "text/html"}, "documentation": {"href": "https://...", "type": "text/html"}}}
     create-client-link-201-2:
       requestBody:
-        application/json: {"owner": {"email": "Hermina_Johnston15@hotmail.com", "givenName": "<value>", "familyName": "<value>", "locale": "en_US"}, "name": "<value>", "address": {"country": "Panama"}}
+        application/json: {"owner": {"email": "john@example.org", "givenName": "John", "familyName": "Doe", "locale": "en_US"}, "name": "Acme Corporation", "address": {"streetAndNumber": "Main Street 123", "postalCode": "1234AB", "city": "Amsterdam", "country": "NL"}, "registrationNumber": "12345678", "vatNumber": "123456789B01"}
       responses:
         "201":
           application/hal+json: {"resource": "client-link", "id": "csr_ayCz46QLwCbxpTaSYQQZH", "_links": {"clientLink": {"href": "https://my.mollie.com/dashboard/client-link/csr_ayCz46QLwCbxpTaSYQQZH", "type": "text/html"}, "documentation": {"href": "https://...", "type": "text/html"}}}
     create-client-link-201-3:
       requestBody:
-        application/json: {"owner": {"email": "Hermina_Johnston15@hotmail.com", "givenName": "<value>", "familyName": "<value>", "locale": "en_US"}, "name": "<value>", "address": {"country": "Panama"}}
+        application/json: {"owner": {"email": "john@example.org", "givenName": "John", "familyName": "Doe", "locale": "en_US"}, "name": "Acme Corporation", "address": {"streetAndNumber": "Main Street 123", "postalCode": "1234AB", "city": "Amsterdam", "country": "NL"}, "registrationNumber": "12345678", "vatNumber": "123456789B01"}
       responses:
         "201":
           application/hal+json: {"resource": "client-link", "id": "csr_ayCz46QLwCbxpTaSYQQZH", "_links": {"clientLink": {"href": "https://my.mollie.com/dashboard/client-link/csr_ayCz46QLwCbxpTaSYQQZH", "type": "text/html"}, "documentation": {"href": "https://...", "type": "text/html"}}}
@@ -7691,10 +7971,10 @@ examples:
           application/hal+json: {"status": 422, "title": "Unprocessable Entity", "detail": "The 'owner' field is missing", "field": "owner", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
     speakeasy-default-create-client-link:
       requestBody:
-        application/json: {"owner": {"email": "Hermina_Johnston15@hotmail.com", "givenName": "<value>", "familyName": "<value>", "locale": "en_US"}, "name": "<value>", "address": {"country": "Panama"}}
+        application/json: {"owner": {"email": "john@example.org", "givenName": "John", "familyName": "Doe", "locale": "en_US"}, "name": "Acme Corporation", "address": {"streetAndNumber": "Main Street 123", "postalCode": "1234AB", "city": "Amsterdam", "country": "NL"}, "registrationNumber": "12345678", "vatNumber": "123456789B01"}
       responses:
         "201":
-          application/hal+json: {"resource": "client-link", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "clientLink": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"resource": "client-link", "id": "cl_vZCnNQsV2UtfXxYifWKWH", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "clientLink": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
         "422":
@@ -8543,6 +8823,69 @@ examples:
         "200":
           application/hal+json: {"resource": "event", "id": "event_GvJ8WHrp5isUdRub9CJyH", "type": "payment-link.paid", "entityId": "pl_qng5gbbv8NAZ5gpM5ZYgx", "createdAt": "2024-06-10T14:23:45Z", "_embedded": {"entity": {"resource": "profile", "id": "pfl_QkEhN94Ba", "mode": "live", "name": "My website name", "website": "https://example.com", "email": "test@mollie.com", "phone": "+31208202070", "description": "My website description", "countriesOfActivity": ["NL", "GB"], "businessCategory": "OTHER_MERCHANDISE", "status": "unverified", "review": {"status": "pending"}, "createdAt": "2022-01-19T12:30:22+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_7049691/settings/profiles/pfl_2q3RyuMGry", "type": "text/html"}, "chargebacks": {"href": "https://api.mollie.com/v2/chargebacks?profileId=pfl_2q3RyuMGry", "type": "application/hal+json"}, "methods": {"href": "https://api.mollie.com/v2/methods?profileId=pfl_2q3RyuMGry", "type": "application/hal+json"}, "payments": {"href": "https://api.mollie.com/v2/payments?profileId=pfl_2q3RyuMGry", "type": "application/hal+json"}, "refunds": {"href": "https://api.mollie.com/v2/refunds?profileId=pfl_2q3RyuMGry", "type": "application/hal+json"}, "checkoutPreviewUrl": {"href": "https://www.mollie.com/checkout/preview/pfl_2q3RyuMGry", "type": "text/html"}, "documentation": {"href": "https://...", "type": "text/html"}}}}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}, "entity": {"href": "https://...", "type": "application/hal+json"}}}
         "404":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+  create-sales-invoice:
+    speakeasy-default-create-sales-invoice:
+      requestBody:
+        application/json: {"testmode": false, "profileId": "pfl_QkEhN94Ba", "status": "draft", "memo": "This is a memo!", "paymentDetails": {"source": "payment-link", "sourceReference": "pl_d9fQur83kFdhH8hIhaZfq"}, "emailDetails": {"subject": "Your invoice is available", "body": "Please find your invoice enclosed."}, "customerId": "cst_8wmqcHMN4U", "mandateId": "mdt_pWUnw6pkBN", "recipientIdentifier": "customer-xyz-0123", "recipient": {"type": "consumer", "title": "Mrs.", "givenName": "Jane", "familyName": "Doe", "organizationName": "Organization Corp.", "organizationNumber": "12345678", "vatNumber": "NL123456789B01", "email": "example@email.com", "phone": "+0123456789", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "4th floor", "postalCode": "5678AB", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL", "locale": "nl_NL"}, "lines": [], "discount": {"type": "amount", "value": "10.00"}}
+      responses:
+        "201":
+          application/hal+json: {"resource": "sales-invoice", "id": "invoice_4Y0eZitmBnQ6IDoMqZQKh", "invoiceNumber": "INV-0000001", "status": "draft", "memo": "This is a memo!", "paymentDetails": {"source": "payment-link", "sourceReference": "pl_d9fQur83kFdhH8hIhaZfq"}, "emailDetails": {"subject": "Your invoice is available", "body": "Please find your invoice enclosed."}, "customerId": "cst_8wmqcHMN4U", "mandateId": "mdt_pWUnw6pkBN", "recipientIdentifier": "customer-xyz-0123", "recipient": {"type": "consumer", "title": "Mrs.", "givenName": "Jane", "familyName": "Doe", "organizationName": "Organization Corp.", "organizationNumber": "12345678", "vatNumber": "NL123456789B01", "email": "example@email.com", "phone": "+0123456789", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "4th floor", "postalCode": "5678AB", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL", "locale": "nl_NL"}, "lines": [{"description": "LEGO 4440 Forest Police Station", "quantity": 1, "vatRate": "21.00", "unitPrice": {"currency": "EUR", "value": "10.00"}, "discount": {"type": "amount", "value": "10.00"}}], "discount": {"type": "amount", "value": "10.00"}, "amountDue": {"currency": "EUR", "value": "10.00"}, "subtotalAmount": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "totalVatAmount": {"currency": "EUR", "value": "10.00"}, "discountedSubtotalAmount": {"currency": "EUR", "value": "10.00"}, "createdAt": "2024-03-20T09:13:37.0Z", "issuedAt": "2024-10-03T10:47:38.457381+00:00", "dueAt": "2024-11-01T10:47:38.457381+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "invoicePayment": {"href": "https://...", "type": "application/hal+json"}, "pdfLink": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+        "404":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+        "422":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+  list-sales-invoices:
+    speakeasy-default-list-sales-invoices:
+      parameters:
+        query:
+          from: "invoice_4Y0eZitmBnQ6IDoMqZQKh"
+          limit: 50
+          testmode: false
+      responses:
+        "200":
+          application/hal+json: {"count": 5, "_embedded": {"sales_invoices": [{"resource": "sales-invoice", "id": "invoice_4Y0eZitmBnQ6IDoMqZQKh", "invoiceNumber": "INV-0000001", "status": "draft", "memo": "This is a memo!", "paymentDetails": {"source": "payment-link", "sourceReference": "pl_d9fQur83kFdhH8hIhaZfq"}, "emailDetails": null, "customerId": "cst_8wmqcHMN4U", "mandateId": "mdt_pWUnw6pkBN", "recipientIdentifier": "customer-xyz-0123", "recipient": {"type": "consumer", "title": "Mrs.", "givenName": "Jane", "familyName": "Doe", "organizationName": "Organization Corp.", "organizationNumber": "12345678", "vatNumber": "NL123456789B01", "email": "example@email.com", "phone": "+0123456789", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "4th floor", "postalCode": "5678AB", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL", "locale": "nl_NL"}, "lines": [{"description": "LEGO 4440 Forest Police Station", "quantity": 1, "vatRate": "21.00", "unitPrice": {"currency": "EUR", "value": "10.00"}, "discount": {"type": "amount", "value": "10.00"}}], "discount": {"type": "amount", "value": "10.00"}, "amountDue": {"currency": "EUR", "value": "10.00"}, "subtotalAmount": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "totalVatAmount": {"currency": "EUR", "value": "10.00"}, "discountedSubtotalAmount": {"currency": "EUR", "value": "10.00"}, "createdAt": "2024-03-20T09:13:37.0Z", "issuedAt": "2024-10-03T10:47:38.457381+00:00", "dueAt": "2024-11-01T10:47:38.457381+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "invoicePayment": {"href": "https://...", "type": "application/hal+json"}, "pdfLink": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+        "400":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+  get-sales-invoice:
+    speakeasy-default-get-sales-invoice:
+      parameters:
+        path:
+          id: "invoice_4Y0eZitmBnQ6IDoMqZQKh"
+        query:
+          testmode: false
+      responses:
+        "200":
+          application/hal+json: {"resource": "sales-invoice", "id": "invoice_4Y0eZitmBnQ6IDoMqZQKh", "invoiceNumber": "INV-0000001", "status": "draft", "memo": "This is a memo!", "paymentDetails": {"source": "payment-link", "sourceReference": "pl_d9fQur83kFdhH8hIhaZfq"}, "emailDetails": {"subject": "Your invoice is available", "body": "Please find your invoice enclosed."}, "customerId": "cst_8wmqcHMN4U", "mandateId": "mdt_pWUnw6pkBN", "recipientIdentifier": "customer-xyz-0123", "recipient": {"type": "consumer", "title": "Mrs.", "givenName": "Jane", "familyName": "Doe", "organizationName": "Organization Corp.", "organizationNumber": "12345678", "vatNumber": "NL123456789B01", "email": "example@email.com", "phone": "+0123456789", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "4th floor", "postalCode": "5678AB", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL", "locale": "nl_NL"}, "lines": null, "discount": null, "amountDue": {"currency": "EUR", "value": "10.00"}, "subtotalAmount": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "totalVatAmount": {"currency": "EUR", "value": "10.00"}, "discountedSubtotalAmount": {"currency": "EUR", "value": "10.00"}, "createdAt": "2024-03-20T09:13:37.0Z", "issuedAt": "2024-10-03T10:47:38.457381+00:00", "dueAt": "2024-11-01T10:47:38.457381+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "invoicePayment": {"href": "https://...", "type": "application/hal+json"}, "pdfLink": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+        "404":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+  update-sales-invoice:
+    speakeasy-default-update-sales-invoice:
+      parameters:
+        path:
+          id: "invoice_4Y0eZitmBnQ6IDoMqZQKh"
+      requestBody:
+        application/json: {"testmode": false, "status": "paid", "memo": "An updated memo!", "paymentDetails": {"source": "payment-link", "sourceReference": "pl_d9fQur83kFdhH8hIhaZfq"}, "emailDetails": {"subject": "Your invoice is available", "body": "Please find your invoice enclosed."}, "recipientIdentifier": "customer-xyz-0123", "recipient": {"type": "consumer", "title": "Mrs.", "givenName": "Jane", "familyName": "Doe", "organizationName": "Organization Corp.", "organizationNumber": "12345678", "vatNumber": "NL123456789B01", "email": "example@email.com", "phone": "+0123456789", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "4th floor", "postalCode": "5678AB", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL", "locale": "nl_NL"}, "lines": [{"description": "LEGO 4440 Forest Police Station", "quantity": 1, "vatRate": "21.00", "unitPrice": {"currency": "EUR", "value": "10.00"}, "discount": {"type": "amount", "value": "10.00"}}], "discount": {"type": "amount", "value": "10.00"}}
+      responses:
+        "200":
+          application/hal+json: {"resource": "sales-invoice", "id": "invoice_4Y0eZitmBnQ6IDoMqZQKh", "invoiceNumber": "INV-0000001", "status": "draft", "memo": "This is a memo!", "paymentDetails": {"source": "payment-link", "sourceReference": "pl_d9fQur83kFdhH8hIhaZfq"}, "emailDetails": {"subject": "Your invoice is available", "body": "Please find your invoice enclosed."}, "customerId": "cst_8wmqcHMN4U", "mandateId": "mdt_pWUnw6pkBN", "recipientIdentifier": "customer-xyz-0123", "recipient": {"type": "consumer", "title": "Mrs.", "givenName": "Jane", "familyName": "Doe", "organizationName": "Organization Corp.", "organizationNumber": "12345678", "vatNumber": "NL123456789B01", "email": "example@email.com", "phone": "+0123456789", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "4th floor", "postalCode": "5678AB", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL", "locale": "nl_NL"}, "lines": [{"description": "LEGO 4440 Forest Police Station", "quantity": 1, "vatRate": "21.00", "unitPrice": {"currency": "EUR", "value": "10.00"}, "discount": {"type": "amount", "value": "10.00"}}], "discount": null, "amountDue": {"currency": "EUR", "value": "10.00"}, "subtotalAmount": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "totalVatAmount": {"currency": "EUR", "value": "10.00"}, "discountedSubtotalAmount": {"currency": "EUR", "value": "10.00"}, "createdAt": "2024-03-20T09:13:37.0Z", "issuedAt": "2024-10-03T10:47:38.457381+00:00", "dueAt": "2024-11-01T10:47:38.457381+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "invoicePayment": {"href": "https://...", "type": "application/hal+json"}, "pdfLink": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+        "404":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+        "422":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+  delete-sales-invoice:
+    speakeasy-default-delete-sales-invoice:
+      parameters:
+        path:
+          id: "invoice_4Y0eZitmBnQ6IDoMqZQKh"
+      requestBody:
+        application/json: {"testmode": false}
+      responses:
+        "204":
+          application/hal+json: "<value>"
+        "404":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+        "422":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}

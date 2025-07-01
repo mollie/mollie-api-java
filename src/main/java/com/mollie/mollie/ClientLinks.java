@@ -25,10 +25,6 @@ public class ClientLinks {
     /**
      * Create client link
      * 
-     * <p>&gt; 🚧 Open beta
-     * &gt;
-     * &gt; This feature is currently in open beta, and the final specification may still change.
-     * 
      * <p>Link a new or existing organization to your OAuth application, in effect creating a new client. The response contains a `clientLink` where you should redirect your customer to.
      * 
      * <p>The `clientLink` URL behaves similar to the regular OAuth authorization URL. It supports the following parameters from the [Authorize](authorize) endpoint:
@@ -54,10 +50,6 @@ public class ClientLinks {
 
     /**
      * Create client link
-     * 
-     * <p>&gt; 🚧 Open beta
-     * &gt;
-     * &gt; This feature is currently in open beta, and the final specification may still change.
      * 
      * <p>Link a new or existing organization to your OAuth application, in effect creating a new client. The response contains a `clientLink` where you should redirect your customer to.
      * 
@@ -85,10 +77,6 @@ public class ClientLinks {
 
     /**
      * Create client link
-     * 
-     * <p>&gt; 🚧 Open beta
-     * &gt;
-     * &gt; This feature is currently in open beta, and the final specification may still change.
      * 
      * <p>Link a new or existing organization to your OAuth application, in effect creating a new client. The response contains a `clientLink` where you should redirect your customer to.
      * 

@@ -1,0 +1,8 @@
+# CreateSalesInvoiceSalesInvoicesLinks
+
+
+## Fields
+
+| Field                                                                                                               | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `documentation`                                                                                                     | [CreateSalesInvoiceSalesInvoicesDocumentation](../../models/errors/CreateSalesInvoiceSalesInvoicesDocumentation.md) | :heavy_check_mark:                                                                                                  | The URL to the generic Mollie API error handling guide.                                                             |
