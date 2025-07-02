@@ -38,8 +38,6 @@ public class Captures {
     /**
      * Create capture
      * 
-     * <p>**This feature is currently in open beta. The final specification may still change.**
-     * 
      * <p>Capture an *authorized* payment.
      * 
      * <p>Some payment methods allow you to first collect a customer's authorization, and capture the amount at a later point.
@@ -60,8 +58,6 @@ public class Captures {
 
     /**
      * Create capture
-     * 
-     * <p>**This feature is currently in open beta. The final specification may still change.**
      * 
      * <p>Capture an *authorized* payment.
      * 
@@ -85,8 +81,6 @@ public class Captures {
 
     /**
      * Create capture
-     * 
-     * <p>**This feature is currently in open beta. The final specification may still change.**
      * 
      * <p>Capture an *authorized* payment.
      * 
