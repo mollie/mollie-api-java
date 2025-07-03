@@ -13,6 +13,8 @@ import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -70,7 +72,7 @@ public class GetWebhookResponseBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("eventTypes")
-    private Optional<String> eventTypes;
+    private Optional<? extends List<String>> eventTypes;
 
     /**
      * The subscription's current status.
@@ -81,6 +83,15 @@ public class GetWebhookResponseBody {
     @JsonProperty("status")
     private Optional<String> status;
 
+    /**
+     * The subscription's mode.
+     * 
+     * <p>Possible values: `live` `test`
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("mode")
+    private Optional<String> mode;
+
     @JsonCreator
     public GetWebhookResponseBody(
             @JsonProperty("resource") Optional<String> resource,
@@ -89,8 +100,9 @@ public class GetWebhookResponseBody {
             @JsonProperty("profileId") Optional<String> profileId,
             @JsonProperty("createdAt") Optional<String> createdAt,
             @JsonProperty("name") Optional<String> name,
-            @JsonProperty("eventTypes") Optional<String> eventTypes,
-            @JsonProperty("status") Optional<String> status) {
+            @JsonProperty("eventTypes") Optional<? extends List<String>> eventTypes,
+            @JsonProperty("status") Optional<String> status,
+            @JsonProperty("mode") Optional<String> mode) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(url, "url");
@@ -99,6 +111,7 @@ public class GetWebhookResponseBody {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(eventTypes, "eventTypes");
         Utils.checkNotNull(status, "status");
+        Utils.checkNotNull(mode, "mode");
         this.resource = resource;
         this.id = id;
         this.url = url;
@@ -107,10 +120,11 @@ public class GetWebhookResponseBody {
         this.name = name;
         this.eventTypes = eventTypes;
         this.status = status;
+        this.mode = mode;
     }
     
     public GetWebhookResponseBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -164,9 +178,10 @@ public class GetWebhookResponseBody {
     /**
      * The events types that are subscribed.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> eventTypes() {
-        return eventTypes;
+    public Optional<List<String>> eventTypes() {
+        return (Optional<List<String>>) eventTypes;
     }
 
     /**
@@ -177,6 +192,16 @@ public class GetWebhookResponseBody {
     @JsonIgnore
     public Optional<String> status() {
         return status;
+    }
+
+    /**
+     * The subscription's mode.
+     * 
+     * <p>Possible values: `live` `test`
+     */
+    @JsonIgnore
+    public Optional<String> mode() {
+        return mode;
     }
 
     public final static Builder builder() {
@@ -294,7 +319,7 @@ public class GetWebhookResponseBody {
     /**
      * The events types that are subscribed.
      */
-    public GetWebhookResponseBody withEventTypes(String eventTypes) {
+    public GetWebhookResponseBody withEventTypes(List<String> eventTypes) {
         Utils.checkNotNull(eventTypes, "eventTypes");
         this.eventTypes = Optional.ofNullable(eventTypes);
         return this;
@@ -303,7 +328,7 @@ public class GetWebhookResponseBody {
     /**
      * The events types that are subscribed.
      */
-    public GetWebhookResponseBody withEventTypes(Optional<String> eventTypes) {
+    public GetWebhookResponseBody withEventTypes(Optional<? extends List<String>> eventTypes) {
         Utils.checkNotNull(eventTypes, "eventTypes");
         this.eventTypes = eventTypes;
         return this;
@@ -331,6 +356,28 @@ public class GetWebhookResponseBody {
         return this;
     }
 
+    /**
+     * The subscription's mode.
+     * 
+     * <p>Possible values: `live` `test`
+     */
+    public GetWebhookResponseBody withMode(String mode) {
+        Utils.checkNotNull(mode, "mode");
+        this.mode = Optional.ofNullable(mode);
+        return this;
+    }
+
+    /**
+     * The subscription's mode.
+     * 
+     * <p>Possible values: `live` `test`
+     */
+    public GetWebhookResponseBody withMode(Optional<String> mode) {
+        Utils.checkNotNull(mode, "mode");
+        this.mode = mode;
+        return this;
+    }
+
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -349,7 +396,8 @@ public class GetWebhookResponseBody {
             Objects.deepEquals(this.createdAt, other.createdAt) &&
             Objects.deepEquals(this.name, other.name) &&
             Objects.deepEquals(this.eventTypes, other.eventTypes) &&
-            Objects.deepEquals(this.status, other.status);
+            Objects.deepEquals(this.status, other.status) &&
+            Objects.deepEquals(this.mode, other.mode);
     }
     
     @Override
@@ -362,7 +410,8 @@ public class GetWebhookResponseBody {
             createdAt,
             name,
             eventTypes,
-            status);
+            status,
+            mode);
     }
     
     @Override
@@ -375,7 +424,8 @@ public class GetWebhookResponseBody {
                 "createdAt", createdAt,
                 "name", name,
                 "eventTypes", eventTypes,
-                "status", status);
+                "status", status,
+                "mode", mode);
     }
     
     public final static class Builder {
@@ -392,9 +442,11 @@ public class GetWebhookResponseBody {
  
         private Optional<String> name = Optional.empty();
  
-        private Optional<String> eventTypes = Optional.empty();
+        private Optional<? extends List<String>> eventTypes = Optional.empty();
  
         private Optional<String> status = Optional.empty();
+ 
+        private Optional<String> mode = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -511,7 +563,7 @@ public class GetWebhookResponseBody {
         /**
          * The events types that are subscribed.
          */
-        public Builder eventTypes(String eventTypes) {
+        public Builder eventTypes(List<String> eventTypes) {
             Utils.checkNotNull(eventTypes, "eventTypes");
             this.eventTypes = Optional.ofNullable(eventTypes);
             return this;
@@ -520,7 +572,7 @@ public class GetWebhookResponseBody {
         /**
          * The events types that are subscribed.
          */
-        public Builder eventTypes(Optional<String> eventTypes) {
+        public Builder eventTypes(Optional<? extends List<String>> eventTypes) {
             Utils.checkNotNull(eventTypes, "eventTypes");
             this.eventTypes = eventTypes;
             return this;
@@ -547,6 +599,28 @@ public class GetWebhookResponseBody {
             this.status = status;
             return this;
         }
+
+        /**
+         * The subscription's mode.
+         * 
+         * <p>Possible values: `live` `test`
+         */
+        public Builder mode(String mode) {
+            Utils.checkNotNull(mode, "mode");
+            this.mode = Optional.ofNullable(mode);
+            return this;
+        }
+
+        /**
+         * The subscription's mode.
+         * 
+         * <p>Possible values: `live` `test`
+         */
+        public Builder mode(Optional<String> mode) {
+            Utils.checkNotNull(mode, "mode");
+            this.mode = mode;
+            return this;
+        }
         
         public GetWebhookResponseBody build() {
             if (resource == null) {
@@ -560,7 +634,8 @@ public class GetWebhookResponseBody {
                 createdAt,
                 name,
                 eventTypes,
-                status);
+                status,
+                mode);
         }
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =

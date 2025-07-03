@@ -42,7 +42,7 @@ public class ListWebhooksRequest {
     /**
      * Used to filter out only the webhooks that are subscribed to certain types of events.
      * 
-     * <p>Possible values: `payment-link.paid`
+     * <p>Possible values: `payment-link.paid` `sales-invoice.created` `sales-invoice.issued` `sales-invoice.canceled` `sales-invoice.paid`
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=eventTypes")
     private Optional<String> eventTypes;
@@ -107,7 +107,7 @@ public class ListWebhooksRequest {
     /**
      * Used to filter out only the webhooks that are subscribed to certain types of events.
      * 
-     * <p>Possible values: `payment-link.paid`
+     * <p>Possible values: `payment-link.paid` `sales-invoice.created` `sales-invoice.issued` `sales-invoice.canceled` `sales-invoice.paid`
      */
     @JsonIgnore
     public Optional<String> eventTypes() {
@@ -189,7 +189,7 @@ public class ListWebhooksRequest {
     /**
      * Used to filter out only the webhooks that are subscribed to certain types of events.
      * 
-     * <p>Possible values: `payment-link.paid`
+     * <p>Possible values: `payment-link.paid` `sales-invoice.created` `sales-invoice.issued` `sales-invoice.canceled` `sales-invoice.paid`
      */
     public ListWebhooksRequest withEventTypes(String eventTypes) {
         Utils.checkNotNull(eventTypes, "eventTypes");
@@ -200,7 +200,7 @@ public class ListWebhooksRequest {
     /**
      * Used to filter out only the webhooks that are subscribed to certain types of events.
      * 
-     * <p>Possible values: `payment-link.paid`
+     * <p>Possible values: `payment-link.paid` `sales-invoice.created` `sales-invoice.issued` `sales-invoice.canceled` `sales-invoice.paid`
      */
     public ListWebhooksRequest withEventTypes(Optional<String> eventTypes) {
         Utils.checkNotNull(eventTypes, "eventTypes");
@@ -345,7 +345,7 @@ public class ListWebhooksRequest {
         /**
          * Used to filter out only the webhooks that are subscribed to certain types of events.
          * 
-         * <p>Possible values: `payment-link.paid`
+         * <p>Possible values: `payment-link.paid` `sales-invoice.created` `sales-invoice.issued` `sales-invoice.canceled` `sales-invoice.paid`
          */
         public Builder eventTypes(String eventTypes) {
             Utils.checkNotNull(eventTypes, "eventTypes");
@@ -356,7 +356,7 @@ public class ListWebhooksRequest {
         /**
          * Used to filter out only the webhooks that are subscribed to certain types of events.
          * 
-         * <p>Possible values: `payment-link.paid`
+         * <p>Possible values: `payment-link.paid` `sales-invoice.created` `sales-invoice.issued` `sales-invoice.canceled` `sales-invoice.paid`
          */
         public Builder eventTypes(Optional<String> eventTypes) {
             Utils.checkNotNull(eventTypes, "eventTypes");

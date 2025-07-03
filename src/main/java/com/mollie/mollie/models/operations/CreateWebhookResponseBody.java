@@ -14,6 +14,7 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -71,7 +72,7 @@ public class CreateWebhookResponseBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("eventTypes")
-    private Optional<String> eventTypes;
+    private Optional<? extends List<String>> eventTypes;
 
     /**
      * The subscription's current status.
@@ -81,6 +82,15 @@ public class CreateWebhookResponseBody {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
     private Optional<String> status;
+
+    /**
+     * The subscription's mode.
+     * 
+     * <p>Possible values: `live` `test`
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("mode")
+    private Optional<String> mode;
 
     /**
      * The subscription's secret.
@@ -104,8 +114,9 @@ public class CreateWebhookResponseBody {
             @JsonProperty("profileId") Optional<String> profileId,
             @JsonProperty("createdAt") Optional<String> createdAt,
             @JsonProperty("name") Optional<String> name,
-            @JsonProperty("eventTypes") Optional<String> eventTypes,
+            @JsonProperty("eventTypes") Optional<? extends List<String>> eventTypes,
             @JsonProperty("status") Optional<String> status,
+            @JsonProperty("mode") Optional<String> mode,
             @JsonProperty("webhookSecret") Optional<String> webhookSecret,
             @JsonProperty("_links") Optional<? extends CreateWebhookLinks> links) {
         Utils.checkNotNull(resource, "resource");
@@ -116,6 +127,7 @@ public class CreateWebhookResponseBody {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(eventTypes, "eventTypes");
         Utils.checkNotNull(status, "status");
+        Utils.checkNotNull(mode, "mode");
         Utils.checkNotNull(webhookSecret, "webhookSecret");
         Utils.checkNotNull(links, "links");
         this.resource = resource;
@@ -126,12 +138,13 @@ public class CreateWebhookResponseBody {
         this.name = name;
         this.eventTypes = eventTypes;
         this.status = status;
+        this.mode = mode;
         this.webhookSecret = webhookSecret;
         this.links = links;
     }
     
     public CreateWebhookResponseBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -185,9 +198,10 @@ public class CreateWebhookResponseBody {
     /**
      * The events types that are subscribed.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> eventTypes() {
-        return eventTypes;
+    public Optional<List<String>> eventTypes() {
+        return (Optional<List<String>>) eventTypes;
     }
 
     /**
@@ -198,6 +212,16 @@ public class CreateWebhookResponseBody {
     @JsonIgnore
     public Optional<String> status() {
         return status;
+    }
+
+    /**
+     * The subscription's mode.
+     * 
+     * <p>Possible values: `live` `test`
+     */
+    @JsonIgnore
+    public Optional<String> mode() {
+        return mode;
     }
 
     /**
@@ -332,7 +356,7 @@ public class CreateWebhookResponseBody {
     /**
      * The events types that are subscribed.
      */
-    public CreateWebhookResponseBody withEventTypes(String eventTypes) {
+    public CreateWebhookResponseBody withEventTypes(List<String> eventTypes) {
         Utils.checkNotNull(eventTypes, "eventTypes");
         this.eventTypes = Optional.ofNullable(eventTypes);
         return this;
@@ -341,7 +365,7 @@ public class CreateWebhookResponseBody {
     /**
      * The events types that are subscribed.
      */
-    public CreateWebhookResponseBody withEventTypes(Optional<String> eventTypes) {
+    public CreateWebhookResponseBody withEventTypes(Optional<? extends List<String>> eventTypes) {
         Utils.checkNotNull(eventTypes, "eventTypes");
         this.eventTypes = eventTypes;
         return this;
@@ -366,6 +390,28 @@ public class CreateWebhookResponseBody {
     public CreateWebhookResponseBody withStatus(Optional<String> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
+        return this;
+    }
+
+    /**
+     * The subscription's mode.
+     * 
+     * <p>Possible values: `live` `test`
+     */
+    public CreateWebhookResponseBody withMode(String mode) {
+        Utils.checkNotNull(mode, "mode");
+        this.mode = Optional.ofNullable(mode);
+        return this;
+    }
+
+    /**
+     * The subscription's mode.
+     * 
+     * <p>Possible values: `live` `test`
+     */
+    public CreateWebhookResponseBody withMode(Optional<String> mode) {
+        Utils.checkNotNull(mode, "mode");
+        this.mode = mode;
         return this;
     }
 
@@ -424,6 +470,7 @@ public class CreateWebhookResponseBody {
             Objects.deepEquals(this.name, other.name) &&
             Objects.deepEquals(this.eventTypes, other.eventTypes) &&
             Objects.deepEquals(this.status, other.status) &&
+            Objects.deepEquals(this.mode, other.mode) &&
             Objects.deepEquals(this.webhookSecret, other.webhookSecret) &&
             Objects.deepEquals(this.links, other.links);
     }
@@ -439,6 +486,7 @@ public class CreateWebhookResponseBody {
             name,
             eventTypes,
             status,
+            mode,
             webhookSecret,
             links);
     }
@@ -454,6 +502,7 @@ public class CreateWebhookResponseBody {
                 "name", name,
                 "eventTypes", eventTypes,
                 "status", status,
+                "mode", mode,
                 "webhookSecret", webhookSecret,
                 "links", links);
     }
@@ -472,9 +521,11 @@ public class CreateWebhookResponseBody {
  
         private Optional<String> name = Optional.empty();
  
-        private Optional<String> eventTypes = Optional.empty();
+        private Optional<? extends List<String>> eventTypes = Optional.empty();
  
         private Optional<String> status = Optional.empty();
+ 
+        private Optional<String> mode = Optional.empty();
  
         private Optional<String> webhookSecret = Optional.empty();
  
@@ -595,7 +646,7 @@ public class CreateWebhookResponseBody {
         /**
          * The events types that are subscribed.
          */
-        public Builder eventTypes(String eventTypes) {
+        public Builder eventTypes(List<String> eventTypes) {
             Utils.checkNotNull(eventTypes, "eventTypes");
             this.eventTypes = Optional.ofNullable(eventTypes);
             return this;
@@ -604,7 +655,7 @@ public class CreateWebhookResponseBody {
         /**
          * The events types that are subscribed.
          */
-        public Builder eventTypes(Optional<String> eventTypes) {
+        public Builder eventTypes(Optional<? extends List<String>> eventTypes) {
             Utils.checkNotNull(eventTypes, "eventTypes");
             this.eventTypes = eventTypes;
             return this;
@@ -629,6 +680,28 @@ public class CreateWebhookResponseBody {
         public Builder status(Optional<String> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
+            return this;
+        }
+
+        /**
+         * The subscription's mode.
+         * 
+         * <p>Possible values: `live` `test`
+         */
+        public Builder mode(String mode) {
+            Utils.checkNotNull(mode, "mode");
+            this.mode = Optional.ofNullable(mode);
+            return this;
+        }
+
+        /**
+         * The subscription's mode.
+         * 
+         * <p>Possible values: `live` `test`
+         */
+        public Builder mode(Optional<String> mode) {
+            Utils.checkNotNull(mode, "mode");
+            this.mode = mode;
             return this;
         }
 
@@ -681,6 +754,7 @@ public class CreateWebhookResponseBody {
                 name,
                 eventTypes,
                 status,
+                mode,
                 webhookSecret,
                 links);
         }
