@@ -11,7 +11,6 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -310,18 +309,18 @@ public class GetMethodRequest {
         }
         GetMethodRequest other = (GetMethodRequest) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.locale, other.locale) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.profileId, other.profileId) &&
-            Objects.deepEquals(this.include, other.include) &&
-            Objects.deepEquals(this.sequenceType, other.sequenceType) &&
-            Objects.deepEquals(this.testmode, other.testmode);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.locale, other.locale) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
+            Utils.enhancedDeepEquals(this.include, other.include) &&
+            Utils.enhancedDeepEquals(this.sequenceType, other.sequenceType) &&
+            Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             locale,
             currency,

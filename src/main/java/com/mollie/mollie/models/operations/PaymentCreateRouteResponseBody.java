@@ -13,8 +13,6 @@ import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -34,54 +32,48 @@ public class PaymentCreateRouteResponseBody {
     /**
      * The identifier uniquely referring to this route. Mollie assigns this identifier at route creation time. Mollie will always refer to the route by this ID. Example: `crt_dyARQ3JzCgtPDhU2Pbq3J`.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("paymentId")
-    private Optional<String> paymentId;
+    private String paymentId;
 
     /**
      * The amount of the route. That amount that will be routed to the specified destination.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private Optional<? extends PaymentCreateRouteDelayedRoutingAmount> amount;
+    private PaymentCreateRouteDelayedRoutingAmount amount;
 
     /**
      * The description of the route. This description is shown in the reports.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private Optional<String> description;
+    private String description;
 
     /**
      * The destination of the route.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destination")
-    private Optional<? extends PaymentCreateRouteDelayedRoutingDestination> destination;
+    private PaymentCreateRouteDelayedRoutingDestination destination;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends PaymentCreateRouteLinks> links;
+    private PaymentCreateRouteLinks links;
 
     @JsonCreator
     public PaymentCreateRouteResponseBody(
             @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("paymentId") Optional<String> paymentId,
-            @JsonProperty("amount") Optional<? extends PaymentCreateRouteDelayedRoutingAmount> amount,
-            @JsonProperty("description") Optional<String> description,
-            @JsonProperty("destination") Optional<? extends PaymentCreateRouteDelayedRoutingDestination> destination,
-            @JsonProperty("_links") Optional<? extends PaymentCreateRouteLinks> links) {
+            @JsonProperty("id") String id,
+            @JsonProperty("paymentId") String paymentId,
+            @JsonProperty("amount") PaymentCreateRouteDelayedRoutingAmount amount,
+            @JsonProperty("description") String description,
+            @JsonProperty("destination") PaymentCreateRouteDelayedRoutingDestination destination,
+            @JsonProperty("_links") PaymentCreateRouteLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(paymentId, "paymentId");
@@ -98,8 +90,14 @@ public class PaymentCreateRouteResponseBody {
         this.links = links;
     }
     
-    public PaymentCreateRouteResponseBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    public PaymentCreateRouteResponseBody(
+            String id,
+            String paymentId,
+            PaymentCreateRouteDelayedRoutingAmount amount,
+            String description,
+            PaymentCreateRouteDelayedRoutingDestination destination,
+            PaymentCreateRouteLinks links) {
+        this(Optional.empty(), id, paymentId, amount, description, destination, links);
     }
 
     /**
@@ -114,7 +112,7 @@ public class PaymentCreateRouteResponseBody {
      * The identifier uniquely referring to this route. Mollie assigns this identifier at route creation time. Mollie will always refer to the route by this ID. Example: `crt_dyARQ3JzCgtPDhU2Pbq3J`.
      */
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
@@ -122,43 +120,40 @@ public class PaymentCreateRouteResponseBody {
      * The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
      */
     @JsonIgnore
-    public Optional<String> paymentId() {
+    public String paymentId() {
         return paymentId;
     }
 
     /**
      * The amount of the route. That amount that will be routed to the specified destination.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentCreateRouteDelayedRoutingAmount> amount() {
-        return (Optional<PaymentCreateRouteDelayedRoutingAmount>) amount;
+    public PaymentCreateRouteDelayedRoutingAmount amount() {
+        return amount;
     }
 
     /**
      * The description of the route. This description is shown in the reports.
      */
     @JsonIgnore
-    public Optional<String> description() {
+    public String description() {
         return description;
     }
 
     /**
      * The destination of the route.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentCreateRouteDelayedRoutingDestination> destination() {
-        return (Optional<PaymentCreateRouteDelayedRoutingDestination>) destination;
+    public PaymentCreateRouteDelayedRoutingDestination destination() {
+        return destination;
     }
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentCreateRouteLinks> links() {
-        return (Optional<PaymentCreateRouteLinks>) links;
+    public PaymentCreateRouteLinks links() {
+        return links;
     }
 
     public final static Builder builder() {
@@ -188,15 +183,6 @@ public class PaymentCreateRouteResponseBody {
      */
     public PaymentCreateRouteResponseBody withId(String id) {
         Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-    /**
-     * The identifier uniquely referring to this route. Mollie assigns this identifier at route creation time. Mollie will always refer to the route by this ID. Example: `crt_dyARQ3JzCgtPDhU2Pbq3J`.
-     */
-    public PaymentCreateRouteResponseBody withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
@@ -205,15 +191,6 @@ public class PaymentCreateRouteResponseBody {
      * The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
      */
     public PaymentCreateRouteResponseBody withPaymentId(String paymentId) {
-        Utils.checkNotNull(paymentId, "paymentId");
-        this.paymentId = Optional.ofNullable(paymentId);
-        return this;
-    }
-
-    /**
-     * The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
-     */
-    public PaymentCreateRouteResponseBody withPaymentId(Optional<String> paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
         this.paymentId = paymentId;
         return this;
@@ -224,15 +201,6 @@ public class PaymentCreateRouteResponseBody {
      */
     public PaymentCreateRouteResponseBody withAmount(PaymentCreateRouteDelayedRoutingAmount amount) {
         Utils.checkNotNull(amount, "amount");
-        this.amount = Optional.ofNullable(amount);
-        return this;
-    }
-
-    /**
-     * The amount of the route. That amount that will be routed to the specified destination.
-     */
-    public PaymentCreateRouteResponseBody withAmount(Optional<? extends PaymentCreateRouteDelayedRoutingAmount> amount) {
-        Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
@@ -241,15 +209,6 @@ public class PaymentCreateRouteResponseBody {
      * The description of the route. This description is shown in the reports.
      */
     public PaymentCreateRouteResponseBody withDescription(String description) {
-        Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
-        return this;
-    }
-
-    /**
-     * The description of the route. This description is shown in the reports.
-     */
-    public PaymentCreateRouteResponseBody withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
@@ -260,15 +219,6 @@ public class PaymentCreateRouteResponseBody {
      */
     public PaymentCreateRouteResponseBody withDestination(PaymentCreateRouteDelayedRoutingDestination destination) {
         Utils.checkNotNull(destination, "destination");
-        this.destination = Optional.ofNullable(destination);
-        return this;
-    }
-
-    /**
-     * The destination of the route.
-     */
-    public PaymentCreateRouteResponseBody withDestination(Optional<? extends PaymentCreateRouteDelayedRoutingDestination> destination) {
-        Utils.checkNotNull(destination, "destination");
         this.destination = destination;
         return this;
     }
@@ -277,15 +227,6 @@ public class PaymentCreateRouteResponseBody {
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
     public PaymentCreateRouteResponseBody withLinks(PaymentCreateRouteLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public PaymentCreateRouteResponseBody withLinks(Optional<? extends PaymentCreateRouteLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -302,18 +243,18 @@ public class PaymentCreateRouteResponseBody {
         }
         PaymentCreateRouteResponseBody other = (PaymentCreateRouteResponseBody) o;
         return 
-            Objects.deepEquals(this.resource, other.resource) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.paymentId, other.paymentId) &&
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.destination, other.destination) &&
-            Objects.deepEquals(this.links, other.links);
+            Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.destination, other.destination) &&
+            Utils.enhancedDeepEquals(this.links, other.links);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             resource,
             id,
             paymentId,
@@ -339,17 +280,17 @@ public class PaymentCreateRouteResponseBody {
  
         private Optional<String> resource;
  
-        private Optional<String> id = Optional.empty();
+        private String id;
  
-        private Optional<String> paymentId = Optional.empty();
+        private String paymentId;
  
-        private Optional<? extends PaymentCreateRouteDelayedRoutingAmount> amount = Optional.empty();
+        private PaymentCreateRouteDelayedRoutingAmount amount;
  
-        private Optional<String> description = Optional.empty();
+        private String description;
  
-        private Optional<? extends PaymentCreateRouteDelayedRoutingDestination> destination = Optional.empty();
+        private PaymentCreateRouteDelayedRoutingDestination destination;
  
-        private Optional<? extends PaymentCreateRouteLinks> links = Optional.empty();
+        private PaymentCreateRouteLinks links;
         
         private Builder() {
           // force use of static builder() method
@@ -378,15 +319,6 @@ public class PaymentCreateRouteResponseBody {
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The identifier uniquely referring to this route. Mollie assigns this identifier at route creation time. Mollie will always refer to the route by this ID. Example: `crt_dyARQ3JzCgtPDhU2Pbq3J`.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
@@ -395,15 +327,6 @@ public class PaymentCreateRouteResponseBody {
          * The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
          */
         public Builder paymentId(String paymentId) {
-            Utils.checkNotNull(paymentId, "paymentId");
-            this.paymentId = Optional.ofNullable(paymentId);
-            return this;
-        }
-
-        /**
-         * The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
-         */
-        public Builder paymentId(Optional<String> paymentId) {
             Utils.checkNotNull(paymentId, "paymentId");
             this.paymentId = paymentId;
             return this;
@@ -414,15 +337,6 @@ public class PaymentCreateRouteResponseBody {
          */
         public Builder amount(PaymentCreateRouteDelayedRoutingAmount amount) {
             Utils.checkNotNull(amount, "amount");
-            this.amount = Optional.ofNullable(amount);
-            return this;
-        }
-
-        /**
-         * The amount of the route. That amount that will be routed to the specified destination.
-         */
-        public Builder amount(Optional<? extends PaymentCreateRouteDelayedRoutingAmount> amount) {
-            Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;
         }
@@ -431,15 +345,6 @@ public class PaymentCreateRouteResponseBody {
          * The description of the route. This description is shown in the reports.
          */
         public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
-            return this;
-        }
-
-        /**
-         * The description of the route. This description is shown in the reports.
-         */
-        public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
@@ -450,15 +355,6 @@ public class PaymentCreateRouteResponseBody {
          */
         public Builder destination(PaymentCreateRouteDelayedRoutingDestination destination) {
             Utils.checkNotNull(destination, "destination");
-            this.destination = Optional.ofNullable(destination);
-            return this;
-        }
-
-        /**
-         * The destination of the route.
-         */
-        public Builder destination(Optional<? extends PaymentCreateRouteDelayedRoutingDestination> destination) {
-            Utils.checkNotNull(destination, "destination");
             this.destination = destination;
             return this;
         }
@@ -467,15 +363,6 @@ public class PaymentCreateRouteResponseBody {
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
         public Builder links(PaymentCreateRouteLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends PaymentCreateRouteLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

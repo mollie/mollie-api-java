@@ -5,15 +5,10 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Objects;
-import java.util.Optional;
 
 /**
  * PaymentListRoutesDelayedRoutingLinks
@@ -25,47 +20,39 @@ public class PaymentListRoutesDelayedRoutingLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends PaymentListRoutesDelayedRoutingSelf> self;
+    private PaymentListRoutesDelayedRoutingSelf self;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends PaymentListRoutesDelayedRoutingDocumentation> documentation;
+    private PaymentListRoutesDelayedRoutingDocumentation documentation;
 
     @JsonCreator
     public PaymentListRoutesDelayedRoutingLinks(
-            @JsonProperty("self") Optional<? extends PaymentListRoutesDelayedRoutingSelf> self,
-            @JsonProperty("documentation") Optional<? extends PaymentListRoutesDelayedRoutingDocumentation> documentation) {
+            @JsonProperty("self") PaymentListRoutesDelayedRoutingSelf self,
+            @JsonProperty("documentation") PaymentListRoutesDelayedRoutingDocumentation documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(documentation, "documentation");
         this.self = self;
         this.documentation = documentation;
     }
-    
-    public PaymentListRoutesDelayedRoutingLinks() {
-        this(Optional.empty(), Optional.empty());
+
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    @JsonIgnore
+    public PaymentListRoutesDelayedRoutingSelf self() {
+        return self;
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentListRoutesDelayedRoutingSelf> self() {
-        return (Optional<PaymentListRoutesDelayedRoutingSelf>) self;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<PaymentListRoutesDelayedRoutingDocumentation> documentation() {
-        return (Optional<PaymentListRoutesDelayedRoutingDocumentation>) documentation;
+    public PaymentListRoutesDelayedRoutingDocumentation documentation() {
+        return documentation;
     }
 
     public final static Builder builder() {
@@ -77,15 +64,6 @@ public class PaymentListRoutesDelayedRoutingLinks {
      */
     public PaymentListRoutesDelayedRoutingLinks withSelf(PaymentListRoutesDelayedRoutingSelf self) {
         Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public PaymentListRoutesDelayedRoutingLinks withSelf(Optional<? extends PaymentListRoutesDelayedRoutingSelf> self) {
-        Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
@@ -94,15 +72,6 @@ public class PaymentListRoutesDelayedRoutingLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public PaymentListRoutesDelayedRoutingLinks withDocumentation(PaymentListRoutesDelayedRoutingDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public PaymentListRoutesDelayedRoutingLinks withDocumentation(Optional<? extends PaymentListRoutesDelayedRoutingDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -119,13 +88,13 @@ public class PaymentListRoutesDelayedRoutingLinks {
         }
         PaymentListRoutesDelayedRoutingLinks other = (PaymentListRoutesDelayedRoutingLinks) o;
         return 
-            Objects.deepEquals(this.self, other.self) &&
-            Objects.deepEquals(this.documentation, other.documentation);
+            Utils.enhancedDeepEquals(this.self, other.self) &&
+            Utils.enhancedDeepEquals(this.documentation, other.documentation);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             self,
             documentation);
     }
@@ -139,9 +108,9 @@ public class PaymentListRoutesDelayedRoutingLinks {
     
     public final static class Builder {
  
-        private Optional<? extends PaymentListRoutesDelayedRoutingSelf> self = Optional.empty();
+        private PaymentListRoutesDelayedRoutingSelf self;
  
-        private Optional<? extends PaymentListRoutesDelayedRoutingDocumentation> documentation = Optional.empty();
+        private PaymentListRoutesDelayedRoutingDocumentation documentation;
         
         private Builder() {
           // force use of static builder() method
@@ -152,15 +121,6 @@ public class PaymentListRoutesDelayedRoutingLinks {
          */
         public Builder self(PaymentListRoutesDelayedRoutingSelf self) {
             Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder self(Optional<? extends PaymentListRoutesDelayedRoutingSelf> self) {
-            Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
         }
@@ -169,15 +129,6 @@ public class PaymentListRoutesDelayedRoutingLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(PaymentListRoutesDelayedRoutingDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends PaymentListRoutesDelayedRoutingDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

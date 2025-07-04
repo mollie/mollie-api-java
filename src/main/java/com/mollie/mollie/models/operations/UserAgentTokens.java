@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -148,14 +147,14 @@ public class UserAgentTokens {
         }
         UserAgentTokens other = (UserAgentTokens) o;
         return 
-            Objects.deepEquals(this.token, other.token) &&
-            Objects.deepEquals(this.startsAt, other.startsAt) &&
-            Objects.deepEquals(this.endsAt, other.endsAt);
+            Utils.enhancedDeepEquals(this.token, other.token) &&
+            Utils.enhancedDeepEquals(this.startsAt, other.startsAt) &&
+            Utils.enhancedDeepEquals(this.endsAt, other.endsAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             token,
             startsAt,
             endsAt);

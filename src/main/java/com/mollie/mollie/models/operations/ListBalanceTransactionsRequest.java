@@ -13,7 +13,6 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -182,15 +181,15 @@ public class ListBalanceTransactionsRequest {
         }
         ListBalanceTransactionsRequest other = (ListBalanceTransactionsRequest) o;
         return 
-            Objects.deepEquals(this.balanceId, other.balanceId) &&
-            Objects.deepEquals(this.from, other.from) &&
-            Objects.deepEquals(this.limit, other.limit) &&
-            Objects.deepEquals(this.testmode, other.testmode);
+            Utils.enhancedDeepEquals(this.balanceId, other.balanceId) &&
+            Utils.enhancedDeepEquals(this.from, other.from) &&
+            Utils.enhancedDeepEquals(this.limit, other.limit) &&
+            Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             balanceId,
             from,
             limit,

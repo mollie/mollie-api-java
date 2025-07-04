@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class LessThanYearGreaterThan {
@@ -65,12 +64,12 @@ public class LessThanYearGreaterThan {
         }
         LessThanYearGreaterThan other = (LessThanYearGreaterThan) o;
         return 
-            Objects.deepEquals(this.lessThanMonthGreaterThan, other.lessThanMonthGreaterThan);
+            Utils.enhancedDeepEquals(this.lessThanMonthGreaterThan, other.lessThanMonthGreaterThan);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             lessThanMonthGreaterThan);
     }
     

@@ -9,7 +9,6 @@ import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * ListAllMethodsQueryParamAmount
@@ -89,13 +88,13 @@ public class ListAllMethodsQueryParamAmount {
         }
         ListAllMethodsQueryParamAmount other = (ListAllMethodsQueryParamAmount) o;
         return 
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.value, other.value);
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.value, other.value);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             currency,
             value);
     }

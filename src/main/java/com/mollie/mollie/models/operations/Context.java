@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -457,27 +456,27 @@ public class Context {
         }
         Context other = (Context) o;
         return 
-            Objects.deepEquals(this.payment, other.payment) &&
-            Objects.deepEquals(this.capture, other.capture) &&
-            Objects.deepEquals(this.unauthorizedDirectDebit, other.unauthorizedDirectDebit) &&
-            Objects.deepEquals(this.failedPayment, other.failedPayment) &&
-            Objects.deepEquals(this.refund, other.refund) &&
-            Objects.deepEquals(this.returnedRefund, other.returnedRefund) &&
-            Objects.deepEquals(this.chargeback, other.chargeback) &&
-            Objects.deepEquals(this.chargebackReversal, other.chargebackReversal) &&
-            Objects.deepEquals(this.outgoingTransfer, other.outgoingTransfer) &&
-            Objects.deepEquals(this.canceledOutgoingTransfer, other.canceledOutgoingTransfer) &&
-            Objects.deepEquals(this.returnedTransfer, other.returnedTransfer) &&
-            Objects.deepEquals(this.invoiceCompensation, other.invoiceCompensation) &&
-            Objects.deepEquals(this.applicationFee, other.applicationFee) &&
-            Objects.deepEquals(this.splitPayment, other.splitPayment) &&
-            Objects.deepEquals(this.platformPaymentRefund, other.platformPaymentRefund) &&
-            Objects.deepEquals(this.platformPaymentChargeback, other.platformPaymentChargeback);
+            Utils.enhancedDeepEquals(this.payment, other.payment) &&
+            Utils.enhancedDeepEquals(this.capture, other.capture) &&
+            Utils.enhancedDeepEquals(this.unauthorizedDirectDebit, other.unauthorizedDirectDebit) &&
+            Utils.enhancedDeepEquals(this.failedPayment, other.failedPayment) &&
+            Utils.enhancedDeepEquals(this.refund, other.refund) &&
+            Utils.enhancedDeepEquals(this.returnedRefund, other.returnedRefund) &&
+            Utils.enhancedDeepEquals(this.chargeback, other.chargeback) &&
+            Utils.enhancedDeepEquals(this.chargebackReversal, other.chargebackReversal) &&
+            Utils.enhancedDeepEquals(this.outgoingTransfer, other.outgoingTransfer) &&
+            Utils.enhancedDeepEquals(this.canceledOutgoingTransfer, other.canceledOutgoingTransfer) &&
+            Utils.enhancedDeepEquals(this.returnedTransfer, other.returnedTransfer) &&
+            Utils.enhancedDeepEquals(this.invoiceCompensation, other.invoiceCompensation) &&
+            Utils.enhancedDeepEquals(this.applicationFee, other.applicationFee) &&
+            Utils.enhancedDeepEquals(this.splitPayment, other.splitPayment) &&
+            Utils.enhancedDeepEquals(this.platformPaymentRefund, other.platformPaymentRefund) &&
+            Utils.enhancedDeepEquals(this.platformPaymentChargeback, other.platformPaymentChargeback);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             payment,
             capture,
             unauthorizedDirectDebit,

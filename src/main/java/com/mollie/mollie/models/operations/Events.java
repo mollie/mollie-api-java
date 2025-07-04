@@ -15,7 +15,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class Events {
@@ -188,16 +187,16 @@ public class Events {
         }
         Events other = (Events) o;
         return 
-            Objects.deepEquals(this.resource, other.resource) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.message, other.message) &&
-            Objects.deepEquals(this.links, other.links);
+            Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.message, other.message) &&
+            Utils.enhancedDeepEquals(this.links, other.links);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             resource,
             type,
             createdAt,

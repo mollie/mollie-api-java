@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ListClientsClientsEmbedded {
@@ -115,14 +114,14 @@ public class ListClientsClientsEmbedded {
         }
         ListClientsClientsEmbedded other = (ListClientsClientsEmbedded) o;
         return 
-            Objects.deepEquals(this.organization, other.organization) &&
-            Objects.deepEquals(this.onboarding, other.onboarding) &&
-            Objects.deepEquals(this.capabilities, other.capabilities);
+            Utils.enhancedDeepEquals(this.organization, other.organization) &&
+            Utils.enhancedDeepEquals(this.onboarding, other.onboarding) &&
+            Utils.enhancedDeepEquals(this.capabilities, other.capabilities);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             organization,
             onboarding,
             capabilities);

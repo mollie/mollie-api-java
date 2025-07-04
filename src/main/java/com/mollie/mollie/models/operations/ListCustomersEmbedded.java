@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ListCustomersEmbedded {
@@ -78,12 +77,12 @@ public class ListCustomersEmbedded {
         }
         ListCustomersEmbedded other = (ListCustomersEmbedded) o;
         return 
-            Objects.deepEquals(this.customers, other.customers);
+            Utils.enhancedDeepEquals(this.customers, other.customers);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             customers);
     }
     

@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -448,21 +447,21 @@ public class UpdateSalesInvoiceRequestBody {
         }
         UpdateSalesInvoiceRequestBody other = (UpdateSalesInvoiceRequestBody) o;
         return 
-            Objects.deepEquals(this.testmode, other.testmode) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.memo, other.memo) &&
-            Objects.deepEquals(this.paymentTerm, other.paymentTerm) &&
-            Objects.deepEquals(this.paymentDetails, other.paymentDetails) &&
-            Objects.deepEquals(this.emailDetails, other.emailDetails) &&
-            Objects.deepEquals(this.recipientIdentifier, other.recipientIdentifier) &&
-            Objects.deepEquals(this.recipient, other.recipient) &&
-            Objects.deepEquals(this.lines, other.lines) &&
-            Objects.deepEquals(this.discount, other.discount);
+            Utils.enhancedDeepEquals(this.testmode, other.testmode) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.memo, other.memo) &&
+            Utils.enhancedDeepEquals(this.paymentTerm, other.paymentTerm) &&
+            Utils.enhancedDeepEquals(this.paymentDetails, other.paymentDetails) &&
+            Utils.enhancedDeepEquals(this.emailDetails, other.emailDetails) &&
+            Utils.enhancedDeepEquals(this.recipientIdentifier, other.recipientIdentifier) &&
+            Utils.enhancedDeepEquals(this.recipient, other.recipient) &&
+            Utils.enhancedDeepEquals(this.lines, other.lines) &&
+            Utils.enhancedDeepEquals(this.discount, other.discount);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             testmode,
             status,
             memo,

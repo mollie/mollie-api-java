@@ -10,7 +10,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 
 public class ListAllMethodsEmbedded {
 
@@ -59,12 +58,12 @@ public class ListAllMethodsEmbedded {
         }
         ListAllMethodsEmbedded other = (ListAllMethodsEmbedded) o;
         return 
-            Objects.deepEquals(this.methods, other.methods);
+            Utils.enhancedDeepEquals(this.methods, other.methods);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             methods);
     }
     

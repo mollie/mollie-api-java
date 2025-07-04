@@ -13,7 +13,6 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -295,18 +294,18 @@ public class ListSubscriptionPaymentsRequest {
         }
         ListSubscriptionPaymentsRequest other = (ListSubscriptionPaymentsRequest) o;
         return 
-            Objects.deepEquals(this.customerId, other.customerId) &&
-            Objects.deepEquals(this.subscriptionId, other.subscriptionId) &&
-            Objects.deepEquals(this.from, other.from) &&
-            Objects.deepEquals(this.limit, other.limit) &&
-            Objects.deepEquals(this.sort, other.sort) &&
-            Objects.deepEquals(this.profileId, other.profileId) &&
-            Objects.deepEquals(this.testmode, other.testmode);
+            Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
+            Utils.enhancedDeepEquals(this.subscriptionId, other.subscriptionId) &&
+            Utils.enhancedDeepEquals(this.from, other.from) &&
+            Utils.enhancedDeepEquals(this.limit, other.limit) &&
+            Utils.enhancedDeepEquals(this.sort, other.sort) &&
+            Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
+            Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             customerId,
             subscriptionId,
             from,

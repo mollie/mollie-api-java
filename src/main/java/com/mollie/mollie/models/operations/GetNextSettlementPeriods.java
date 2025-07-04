@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -76,12 +75,12 @@ public class GetNextSettlementPeriods {
         }
         GetNextSettlementPeriods other = (GetNextSettlementPeriods) o;
         return 
-            Objects.deepEquals(this.lessThanYearGreaterThan, other.lessThanYearGreaterThan);
+            Utils.enhancedDeepEquals(this.lessThanYearGreaterThan, other.lessThanYearGreaterThan);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             lessThanYearGreaterThan);
     }
     

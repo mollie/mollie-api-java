@@ -10,7 +10,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CancelSubscriptionRequest {
@@ -116,14 +115,14 @@ public class CancelSubscriptionRequest {
         }
         CancelSubscriptionRequest other = (CancelSubscriptionRequest) o;
         return 
-            Objects.deepEquals(this.customerId, other.customerId) &&
-            Objects.deepEquals(this.subscriptionId, other.subscriptionId) &&
-            Objects.deepEquals(this.requestBody, other.requestBody);
+            Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
+            Utils.enhancedDeepEquals(this.subscriptionId, other.subscriptionId) &&
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             customerId,
             subscriptionId,
             requestBody);

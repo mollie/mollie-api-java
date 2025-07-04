@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * CancelPaymentTerminal
@@ -89,13 +88,13 @@ public class CancelPaymentTerminal {
         }
         CancelPaymentTerminal other = (CancelPaymentTerminal) o;
         return 
-            Objects.deepEquals(this.href, other.href) &&
-            Objects.deepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.href, other.href) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             href,
             type);
     }

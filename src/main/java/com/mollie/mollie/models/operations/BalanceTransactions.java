@@ -14,7 +14,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -455,19 +454,19 @@ public class BalanceTransactions {
         }
         BalanceTransactions other = (BalanceTransactions) o;
         return 
-            Objects.deepEquals(this.resource, other.resource) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.resultAmount, other.resultAmount) &&
-            Objects.deepEquals(this.initialAmount, other.initialAmount) &&
-            Objects.deepEquals(this.deductions, other.deductions) &&
-            Objects.deepEquals(this.context, other.context) &&
-            Objects.deepEquals(this.createdAt, other.createdAt);
+            Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.resultAmount, other.resultAmount) &&
+            Utils.enhancedDeepEquals(this.initialAmount, other.initialAmount) &&
+            Utils.enhancedDeepEquals(this.deductions, other.deductions) &&
+            Utils.enhancedDeepEquals(this.context, other.context) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             resource,
             id,
             type,

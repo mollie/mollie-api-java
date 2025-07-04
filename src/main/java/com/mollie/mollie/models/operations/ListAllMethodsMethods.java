@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ListAllMethodsMethods {
@@ -370,21 +369,21 @@ public class ListAllMethodsMethods {
         }
         ListAllMethodsMethods other = (ListAllMethodsMethods) o;
         return 
-            Objects.deepEquals(this.resource, other.resource) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.minimumAmount, other.minimumAmount) &&
-            Objects.deepEquals(this.maximumAmount, other.maximumAmount) &&
-            Objects.deepEquals(this.image, other.image) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.issuers, other.issuers) &&
-            Objects.deepEquals(this.links, other.links) &&
-            Objects.deepEquals(this.pricing, other.pricing);
+            Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.minimumAmount, other.minimumAmount) &&
+            Utils.enhancedDeepEquals(this.maximumAmount, other.maximumAmount) &&
+            Utils.enhancedDeepEquals(this.image, other.image) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.issuers, other.issuers) &&
+            Utils.enhancedDeepEquals(this.links, other.links) &&
+            Utils.enhancedDeepEquals(this.pricing, other.pricing);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             resource,
             id,
             description,

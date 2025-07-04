@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -246,16 +245,16 @@ public class Organization {
         }
         Organization other = (Organization) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.address, other.address) &&
-            Objects.deepEquals(this.registrationNumber, other.registrationNumber) &&
-            Objects.deepEquals(this.vatNumber, other.vatNumber) &&
-            Objects.deepEquals(this.vatRegulation, other.vatRegulation);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.address, other.address) &&
+            Utils.enhancedDeepEquals(this.registrationNumber, other.registrationNumber) &&
+            Utils.enhancedDeepEquals(this.vatNumber, other.vatNumber) &&
+            Utils.enhancedDeepEquals(this.vatRegulation, other.vatRegulation);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name,
             address,
             registrationNumber,

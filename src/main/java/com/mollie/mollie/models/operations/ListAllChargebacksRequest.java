@@ -14,7 +14,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -286,17 +285,17 @@ public class ListAllChargebacksRequest {
         }
         ListAllChargebacksRequest other = (ListAllChargebacksRequest) o;
         return 
-            Objects.deepEquals(this.from, other.from) &&
-            Objects.deepEquals(this.limit, other.limit) &&
-            Objects.deepEquals(this.embed, other.embed) &&
-            Objects.deepEquals(this.sort, other.sort) &&
-            Objects.deepEquals(this.profileId, other.profileId) &&
-            Objects.deepEquals(this.testmode, other.testmode);
+            Utils.enhancedDeepEquals(this.from, other.from) &&
+            Utils.enhancedDeepEquals(this.limit, other.limit) &&
+            Utils.enhancedDeepEquals(this.embed, other.embed) &&
+            Utils.enhancedDeepEquals(this.sort, other.sort) &&
+            Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
+            Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             from,
             limit,
             embed,

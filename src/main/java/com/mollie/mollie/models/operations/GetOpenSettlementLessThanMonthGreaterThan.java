@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -188,15 +187,15 @@ public class GetOpenSettlementLessThanMonthGreaterThan {
         }
         GetOpenSettlementLessThanMonthGreaterThan other = (GetOpenSettlementLessThanMonthGreaterThan) o;
         return 
-            Objects.deepEquals(this.costs, other.costs) &&
-            Objects.deepEquals(this.revenue, other.revenue) &&
-            Objects.deepEquals(this.invoiceId, other.invoiceId) &&
-            Objects.deepEquals(this.invoiceReference, other.invoiceReference);
+            Utils.enhancedDeepEquals(this.costs, other.costs) &&
+            Utils.enhancedDeepEquals(this.revenue, other.revenue) &&
+            Utils.enhancedDeepEquals(this.invoiceId, other.invoiceId) &&
+            Utils.enhancedDeepEquals(this.invoiceReference, other.invoiceReference);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             costs,
             revenue,
             invoiceId,

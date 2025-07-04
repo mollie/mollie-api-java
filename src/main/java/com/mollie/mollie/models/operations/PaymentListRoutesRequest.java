@@ -9,7 +9,6 @@ import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class PaymentListRoutesRequest {
 
@@ -58,12 +57,12 @@ public class PaymentListRoutesRequest {
         }
         PaymentListRoutesRequest other = (PaymentListRoutesRequest) o;
         return 
-            Objects.deepEquals(this.paymentId, other.paymentId);
+            Utils.enhancedDeepEquals(this.paymentId, other.paymentId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             paymentId);
     }
     

@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -162,14 +161,14 @@ public class ListClientsRequest {
         }
         ListClientsRequest other = (ListClientsRequest) o;
         return 
-            Objects.deepEquals(this.embed, other.embed) &&
-            Objects.deepEquals(this.from, other.from) &&
-            Objects.deepEquals(this.limit, other.limit);
+            Utils.enhancedDeepEquals(this.embed, other.embed) &&
+            Utils.enhancedDeepEquals(this.from, other.from) &&
+            Utils.enhancedDeepEquals(this.limit, other.limit);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             embed,
             from,
             limit);

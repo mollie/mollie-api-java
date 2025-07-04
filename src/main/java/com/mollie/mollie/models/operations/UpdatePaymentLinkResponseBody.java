@@ -16,7 +16,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -874,31 +873,31 @@ public class UpdatePaymentLinkResponseBody {
         }
         UpdatePaymentLinkResponseBody other = (UpdatePaymentLinkResponseBody) o;
         return 
-            Objects.deepEquals(this.resource, other.resource) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.mode, other.mode) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.minimumAmount, other.minimumAmount) &&
-            Objects.deepEquals(this.archived, other.archived) &&
-            Objects.deepEquals(this.redirectUrl, other.redirectUrl) &&
-            Objects.deepEquals(this.webhookUrl, other.webhookUrl) &&
-            Objects.deepEquals(this.lines, other.lines) &&
-            Objects.deepEquals(this.billingAddress, other.billingAddress) &&
-            Objects.deepEquals(this.shippingAddress, other.shippingAddress) &&
-            Objects.deepEquals(this.profileId, other.profileId) &&
-            Objects.deepEquals(this.reusable, other.reusable) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.paidAt, other.paidAt) &&
-            Objects.deepEquals(this.expiresAt, other.expiresAt) &&
-            Objects.deepEquals(this.allowedMethods, other.allowedMethods) &&
-            Objects.deepEquals(this.applicationFee, other.applicationFee) &&
-            Objects.deepEquals(this.links, other.links);
+            Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.mode, other.mode) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.minimumAmount, other.minimumAmount) &&
+            Utils.enhancedDeepEquals(this.archived, other.archived) &&
+            Utils.enhancedDeepEquals(this.redirectUrl, other.redirectUrl) &&
+            Utils.enhancedDeepEquals(this.webhookUrl, other.webhookUrl) &&
+            Utils.enhancedDeepEquals(this.lines, other.lines) &&
+            Utils.enhancedDeepEquals(this.billingAddress, other.billingAddress) &&
+            Utils.enhancedDeepEquals(this.shippingAddress, other.shippingAddress) &&
+            Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
+            Utils.enhancedDeepEquals(this.reusable, other.reusable) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.paidAt, other.paidAt) &&
+            Utils.enhancedDeepEquals(this.expiresAt, other.expiresAt) &&
+            Utils.enhancedDeepEquals(this.allowedMethods, other.allowedMethods) &&
+            Utils.enhancedDeepEquals(this.applicationFee, other.applicationFee) &&
+            Utils.enhancedDeepEquals(this.links, other.links);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             resource,
             id,
             mode,

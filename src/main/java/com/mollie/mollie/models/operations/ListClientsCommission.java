@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -81,12 +80,12 @@ public class ListClientsCommission {
         }
         ListClientsCommission other = (ListClientsCommission) o;
         return 
-            Objects.deepEquals(this.count, other.count);
+            Utils.enhancedDeepEquals(this.count, other.count);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             count);
     }
     

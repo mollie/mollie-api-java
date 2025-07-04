@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -120,14 +119,14 @@ public class GetBalanceReportRefunds {
         }
         GetBalanceReportRefunds other = (GetBalanceReportRefunds) o;
         return 
-            Objects.deepEquals(this.pending, other.pending) &&
-            Objects.deepEquals(this.movedToAvailable, other.movedToAvailable) &&
-            Objects.deepEquals(this.immediatelyAvailable, other.immediatelyAvailable);
+            Utils.enhancedDeepEquals(this.pending, other.pending) &&
+            Utils.enhancedDeepEquals(this.movedToAvailable, other.movedToAvailable) &&
+            Utils.enhancedDeepEquals(this.immediatelyAvailable, other.immediatelyAvailable);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             pending,
             movedToAvailable,
             immediatelyAvailable);

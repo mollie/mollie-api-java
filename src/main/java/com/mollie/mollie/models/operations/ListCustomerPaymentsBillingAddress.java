@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -544,23 +543,23 @@ public class ListCustomerPaymentsBillingAddress {
         }
         ListCustomerPaymentsBillingAddress other = (ListCustomerPaymentsBillingAddress) o;
         return 
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.givenName, other.givenName) &&
-            Objects.deepEquals(this.familyName, other.familyName) &&
-            Objects.deepEquals(this.organizationName, other.organizationName) &&
-            Objects.deepEquals(this.streetAndNumber, other.streetAndNumber) &&
-            Objects.deepEquals(this.streetAdditional, other.streetAdditional) &&
-            Objects.deepEquals(this.postalCode, other.postalCode) &&
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.phone, other.phone) &&
-            Objects.deepEquals(this.city, other.city) &&
-            Objects.deepEquals(this.region, other.region) &&
-            Objects.deepEquals(this.country, other.country);
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.givenName, other.givenName) &&
+            Utils.enhancedDeepEquals(this.familyName, other.familyName) &&
+            Utils.enhancedDeepEquals(this.organizationName, other.organizationName) &&
+            Utils.enhancedDeepEquals(this.streetAndNumber, other.streetAndNumber) &&
+            Utils.enhancedDeepEquals(this.streetAdditional, other.streetAdditional) &&
+            Utils.enhancedDeepEquals(this.postalCode, other.postalCode) &&
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.phone, other.phone) &&
+            Utils.enhancedDeepEquals(this.city, other.city) &&
+            Utils.enhancedDeepEquals(this.region, other.region) &&
+            Utils.enhancedDeepEquals(this.country, other.country);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             title,
             givenName,
             familyName,

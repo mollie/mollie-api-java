@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class RequestApplePayPaymentSessionRequestBody {
@@ -143,14 +142,14 @@ public class RequestApplePayPaymentSessionRequestBody {
         }
         RequestApplePayPaymentSessionRequestBody other = (RequestApplePayPaymentSessionRequestBody) o;
         return 
-            Objects.deepEquals(this.validationUrl, other.validationUrl) &&
-            Objects.deepEquals(this.domain, other.domain) &&
-            Objects.deepEquals(this.profileId, other.profileId);
+            Utils.enhancedDeepEquals(this.validationUrl, other.validationUrl) &&
+            Utils.enhancedDeepEquals(this.domain, other.domain) &&
+            Utils.enhancedDeepEquals(this.profileId, other.profileId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             validationUrl,
             domain,
             profileId);

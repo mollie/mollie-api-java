@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -546,24 +545,24 @@ public class GetInvoiceResponseBody {
         }
         GetInvoiceResponseBody other = (GetInvoiceResponseBody) o;
         return 
-            Objects.deepEquals(this.resource, other.resource) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.vatNumber, other.vatNumber) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.netAmount, other.netAmount) &&
-            Objects.deepEquals(this.vatAmount, other.vatAmount) &&
-            Objects.deepEquals(this.grossAmount, other.grossAmount) &&
-            Objects.deepEquals(this.lines, other.lines) &&
-            Objects.deepEquals(this.issuedAt, other.issuedAt) &&
-            Objects.deepEquals(this.paidAt, other.paidAt) &&
-            Objects.deepEquals(this.dueAt, other.dueAt) &&
-            Objects.deepEquals(this.links, other.links);
+            Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.vatNumber, other.vatNumber) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.netAmount, other.netAmount) &&
+            Utils.enhancedDeepEquals(this.vatAmount, other.vatAmount) &&
+            Utils.enhancedDeepEquals(this.grossAmount, other.grossAmount) &&
+            Utils.enhancedDeepEquals(this.lines, other.lines) &&
+            Utils.enhancedDeepEquals(this.issuedAt, other.issuedAt) &&
+            Utils.enhancedDeepEquals(this.paidAt, other.paidAt) &&
+            Utils.enhancedDeepEquals(this.dueAt, other.dueAt) &&
+            Utils.enhancedDeepEquals(this.links, other.links);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             resource,
             id,
             reference,

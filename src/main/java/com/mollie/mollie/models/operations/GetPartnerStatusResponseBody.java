@@ -16,7 +16,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -348,19 +347,19 @@ public class GetPartnerStatusResponseBody {
         }
         GetPartnerStatusResponseBody other = (GetPartnerStatusResponseBody) o;
         return 
-            Objects.deepEquals(this.resource, other.resource) &&
-            Objects.deepEquals(this.partnerType, other.partnerType) &&
-            Objects.deepEquals(this.isCommissionPartner, other.isCommissionPartner) &&
-            Objects.deepEquals(this.userAgentTokens, other.userAgentTokens) &&
-            Objects.deepEquals(this.partnerContractSignedAt, other.partnerContractSignedAt) &&
-            Objects.deepEquals(this.partnerContractUpdateAvailable, other.partnerContractUpdateAvailable) &&
-            Objects.deepEquals(this.partnerContractExpiresAt, other.partnerContractExpiresAt) &&
-            Objects.deepEquals(this.links, other.links);
+            Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.partnerType, other.partnerType) &&
+            Utils.enhancedDeepEquals(this.isCommissionPartner, other.isCommissionPartner) &&
+            Utils.enhancedDeepEquals(this.userAgentTokens, other.userAgentTokens) &&
+            Utils.enhancedDeepEquals(this.partnerContractSignedAt, other.partnerContractSignedAt) &&
+            Utils.enhancedDeepEquals(this.partnerContractUpdateAvailable, other.partnerContractUpdateAvailable) &&
+            Utils.enhancedDeepEquals(this.partnerContractExpiresAt, other.partnerContractExpiresAt) &&
+            Utils.enhancedDeepEquals(this.links, other.links);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             resource,
             partnerType,
             isCommissionPartner,

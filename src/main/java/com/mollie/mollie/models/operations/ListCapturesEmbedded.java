@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ListCapturesEmbedded {
@@ -78,12 +77,12 @@ public class ListCapturesEmbedded {
         }
         ListCapturesEmbedded other = (ListCapturesEmbedded) o;
         return 
-            Objects.deepEquals(this.captures, other.captures);
+            Utils.enhancedDeepEquals(this.captures, other.captures);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             captures);
     }
     

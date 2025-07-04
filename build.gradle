@@ -27,9 +27,6 @@ repositories {
 }
 
 java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
     withSourcesJar()
     withJavadocJar()
 }
@@ -108,7 +105,7 @@ publishing {
             // https://github.com/gradle/gradle/issues/18619
             groupId = "com.mollie"
             artifactId = "mollie"
-            version = "0.9.1"
+            version = "0.10.0"
 
             from components.java
 

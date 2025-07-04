@@ -16,7 +16,6 @@ import java.lang.RuntimeException;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -70,6 +69,7 @@ public class CreateOrderRefundResponseBody extends RuntimeException {
             @JsonProperty("field") Optional<String> field,
             @JsonProperty("_links") CreateOrderRefundLinks links,
             @JsonProperty("RawResponse") Optional<? extends HttpResponse<InputStream>> rawResponse) {
+        super("API error occurred");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(title, "title");
         Utils.checkNotNull(detail, "detail");
@@ -222,17 +222,17 @@ public class CreateOrderRefundResponseBody extends RuntimeException {
         }
         CreateOrderRefundResponseBody other = (CreateOrderRefundResponseBody) o;
         return 
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.detail, other.detail) &&
-            Objects.deepEquals(this.field, other.field) &&
-            Objects.deepEquals(this.links, other.links) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.detail, other.detail) &&
+            Utils.enhancedDeepEquals(this.field, other.field) &&
+            Utils.enhancedDeepEquals(this.links, other.links) &&
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             status,
             title,
             detail,

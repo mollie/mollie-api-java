@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ReturnedTransfer {
@@ -87,13 +86,13 @@ public class ReturnedTransfer {
         }
         ReturnedTransfer other = (ReturnedTransfer) o;
         return 
-            Objects.deepEquals(this.transferId, other.transferId) &&
-            Objects.deepEquals(this.settlementId, other.settlementId);
+            Utils.enhancedDeepEquals(this.transferId, other.transferId) &&
+            Utils.enhancedDeepEquals(this.settlementId, other.settlementId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             transferId,
             settlementId);
     }

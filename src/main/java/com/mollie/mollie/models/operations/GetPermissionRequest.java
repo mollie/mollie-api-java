@@ -10,7 +10,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetPermissionRequest {
@@ -108,13 +107,13 @@ public class GetPermissionRequest {
         }
         GetPermissionRequest other = (GetPermissionRequest) o;
         return 
-            Objects.deepEquals(this.permissionId, other.permissionId) &&
-            Objects.deepEquals(this.testmode, other.testmode);
+            Utils.enhancedDeepEquals(this.permissionId, other.permissionId) &&
+            Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             permissionId,
             testmode);
     }

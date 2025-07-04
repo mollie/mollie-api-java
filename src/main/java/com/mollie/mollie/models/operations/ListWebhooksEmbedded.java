@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ListWebhooksEmbedded {
@@ -78,12 +77,12 @@ public class ListWebhooksEmbedded {
         }
         ListWebhooksEmbedded other = (ListWebhooksEmbedded) o;
         return 
-            Objects.deepEquals(this.webhooks, other.webhooks);
+            Utils.enhancedDeepEquals(this.webhooks, other.webhooks);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             webhooks);
     }
     

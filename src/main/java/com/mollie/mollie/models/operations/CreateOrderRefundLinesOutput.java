@@ -16,7 +16,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -783,36 +782,36 @@ public class CreateOrderRefundLinesOutput {
         }
         CreateOrderRefundLinesOutput other = (CreateOrderRefundLinesOutput) o;
         return 
-            Objects.deepEquals(this.resource, other.resource) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.orderId, other.orderId) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.sku, other.sku) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.isCancelable, other.isCancelable) &&
-            Objects.deepEquals(this.quantity, other.quantity) &&
-            Objects.deepEquals(this.quantityShipped, other.quantityShipped) &&
-            Objects.deepEquals(this.amountShipped, other.amountShipped) &&
-            Objects.deepEquals(this.quantityRefunded, other.quantityRefunded) &&
-            Objects.deepEquals(this.amountRefunded, other.amountRefunded) &&
-            Objects.deepEquals(this.quantityCanceled, other.quantityCanceled) &&
-            Objects.deepEquals(this.amountCanceled, other.amountCanceled) &&
-            Objects.deepEquals(this.shippableQuantity, other.shippableQuantity) &&
-            Objects.deepEquals(this.refundableQuantity, other.refundableQuantity) &&
-            Objects.deepEquals(this.cancelableQuantity, other.cancelableQuantity) &&
-            Objects.deepEquals(this.unitPrice, other.unitPrice) &&
-            Objects.deepEquals(this.totalAmount, other.totalAmount) &&
-            Objects.deepEquals(this.vatRate, other.vatRate) &&
-            Objects.deepEquals(this.vatAmount, other.vatAmount) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.discountedAmount, other.discountedAmount);
+            Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.orderId, other.orderId) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.sku, other.sku) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.isCancelable, other.isCancelable) &&
+            Utils.enhancedDeepEquals(this.quantity, other.quantity) &&
+            Utils.enhancedDeepEquals(this.quantityShipped, other.quantityShipped) &&
+            Utils.enhancedDeepEquals(this.amountShipped, other.amountShipped) &&
+            Utils.enhancedDeepEquals(this.quantityRefunded, other.quantityRefunded) &&
+            Utils.enhancedDeepEquals(this.amountRefunded, other.amountRefunded) &&
+            Utils.enhancedDeepEquals(this.quantityCanceled, other.quantityCanceled) &&
+            Utils.enhancedDeepEquals(this.amountCanceled, other.amountCanceled) &&
+            Utils.enhancedDeepEquals(this.shippableQuantity, other.shippableQuantity) &&
+            Utils.enhancedDeepEquals(this.refundableQuantity, other.refundableQuantity) &&
+            Utils.enhancedDeepEquals(this.cancelableQuantity, other.cancelableQuantity) &&
+            Utils.enhancedDeepEquals(this.unitPrice, other.unitPrice) &&
+            Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
+            Utils.enhancedDeepEquals(this.vatRate, other.vatRate) &&
+            Utils.enhancedDeepEquals(this.vatAmount, other.vatAmount) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.discountedAmount, other.discountedAmount);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             resource,
             id,
             orderId,

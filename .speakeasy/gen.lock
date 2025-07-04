@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 5384f817ec55df8dbaff66644829f7d7
+  docChecksum: 7deac550b5d43d74aea3c03c57151c87
   docVersion: 1.0.0
-  speakeasyVersion: 1.573.0
-  generationVersion: 2.644.1
-  releaseVersion: 0.9.1
-  configChecksum: 515a59a4ae494795f13a82ab18dc91ac
+  speakeasyVersion: 1.575.4
+  generationVersion: 2.648.7
+  releaseVersion: 0.10.0
+  configChecksum: 7066da1d0b024fae815b67b727941484
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 features:
   java:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.41.0
+    core: 3.42.3
     deprecations: 2.81.1
     flattening: 2.81.1
     globalSecurity: 2.82.8
@@ -2242,8 +2242,6 @@ generatedFiles:
   - docs/models/operations/PaymentListRoutesDocumentation.md
   - docs/models/operations/PaymentListRoutesEmbedded.md
   - docs/models/operations/PaymentListRoutesLinks.md
-  - docs/models/operations/PaymentListRoutesNext.md
-  - docs/models/operations/PaymentListRoutesPrevious.md
   - docs/models/operations/PaymentListRoutesRequest.md
   - docs/models/operations/PaymentListRoutesResponse.md
   - docs/models/operations/PaymentListRoutesResponseBody.md
@@ -4841,8 +4839,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/PaymentListRoutesDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentListRoutesEmbedded.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentListRoutesLinks.java
-  - src/main/java/com/mollie/mollie/models/operations/PaymentListRoutesNext.java
-  - src/main/java/com/mollie/mollie/models/operations/PaymentListRoutesPrevious.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentListRoutesRequest.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentListRoutesRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/PaymentListRoutesResponse.java
@@ -6704,7 +6700,7 @@ examples:
         application/json: {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Payment for Order #12345", "destination": {"type": "organization", "organizationId": "org_1234567"}}
       responses:
         "201":
-          application/hal+json: {"resource": "route", "id": "crt_dyARQ3JzCgtPDhU2Pbq3J", "paymentId": "tr_sva3o24VKn", "amount": {"currency": "EUR", "value": "10.00"}, "description": "Payment for Order #12345", "destination": {"type": "organization", "organizationId": "org_123"}, "_links": {"documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"resource": "route", "id": "crt_dyARQ3JzCgtPDhU2Pbq3J", "paymentId": "tr_sva3o24VKn", "amount": {"currency": "EUR", "value": "10.00"}, "description": "Payment for Order #12345", "destination": {"type": "organization", "organizationId": "org_123"}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
     "":
       parameters:
         path:
@@ -6732,7 +6728,7 @@ examples:
           paymentId: "tr_5B8cwPMGnU"
       responses:
         "200":
-          application/hal+json: {"count": 3, "_embedded": {"routes": [{"resource": "route", "id": "crt_kSq9CDTa6FzW7c6gpYq3J", "paymentId": "tr_sva3o24VKn", "createdAt": "2024-05-22T15:11:19+02:00", "amount": {"currency": "EUR", "value": "1.00"}, "destination": {"type": "organization", "organizationId": "org_123"}}, {"resource": "route", "id": "crt_dyARQ3JzCgtPDhU2Pbq3J", "paymentId": "tr_sva3o24VKn", "createdAt": "2024-05-22T15:11:19+02:00", "amount": {"currency": "EUR", "value": "2.00"}, "destination": {"type": "organization", "organizationId": "org_456"}}, {"resource": "route", "id": "crt_tntKsr6tffuVdqnEvhq3J", "paymentId": "tr_sva3o24VKn", "createdAt": "2024-05-22T15:11:19+02:00", "amount": {"currency": "EUR", "value": "3.00"}, "destination": {"type": "organization", "organizationId": "org_789"}}]}, "_links": {"next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"count": 3, "_embedded": {"routes": [{"resource": "route", "id": "crt_kSq9CDTa6FzW7c6gpYq3J", "paymentId": "tr_sva3o24VKn", "amount": {"currency": "EUR", "value": "1.00"}, "description": "Payment for Order #12345", "destination": {"type": "organization", "organizationId": "org_123"}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}, "createdAt": "2024-05-22T15:11:19+02:00"}, {"resource": "route", "id": "crt_dyARQ3JzCgtPDhU2Pbq3J", "paymentId": "tr_sva3o24VKn", "amount": {"currency": "EUR", "value": "2.00"}, "description": "Payment for Order #12346", "destination": {"type": "organization", "organizationId": "org_456"}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}, "createdAt": "2024-05-22T15:11:19+02:00"}, {"resource": "route", "id": "crt_tntKsr6tffuVdqnEvhq3J", "paymentId": "tr_sva3o24VKn", "amount": {"currency": "EUR", "value": "3.00"}, "description": "Payment for Order #12347", "destination": {"type": "organization", "organizationId": "org_789"}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}, "createdAt": "2024-05-22T15:11:19+02:00"}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
     "":
       parameters:
         path:
@@ -6746,7 +6742,7 @@ examples:
           paymentId: "tr_5B8cwPMGnU"
       responses:
         "200":
-          application/hal+json: {"count": 5, "_embedded": {"routes": [{"resource": "route", "id": "crt_dyARQ3JzCgtPDhU2Pbq3J", "paymentId": "tr_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "amount": {"currency": "EUR", "value": "10.00"}, "description": "Payment for Order #12345", "destination": {"type": "organization", "organizationId": "org_1234567"}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"count": 5, "_embedded": {"routes": [{"resource": "route", "id": "crt_dyARQ3JzCgtPDhU2Pbq3J", "paymentId": "tr_5B8cwPMGnU", "amount": {"currency": "EUR", "value": "10.00"}, "description": "Payment for Order #12345", "destination": {"type": "organization", "organizationId": "org_1234567"}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}, "createdAt": "2024-03-20T09:13:37.0Z"}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   create-customer:

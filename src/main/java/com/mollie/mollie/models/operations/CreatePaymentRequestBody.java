@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -1251,34 +1250,34 @@ public class CreatePaymentRequestBody {
         }
         CreatePaymentRequestBody other = (CreatePaymentRequestBody) o;
         return 
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.redirectUrl, other.redirectUrl) &&
-            Objects.deepEquals(this.cancelUrl, other.cancelUrl) &&
-            Objects.deepEquals(this.webhookUrl, other.webhookUrl) &&
-            Objects.deepEquals(this.lines, other.lines) &&
-            Objects.deepEquals(this.billingAddress, other.billingAddress) &&
-            Objects.deepEquals(this.shippingAddress, other.shippingAddress) &&
-            Objects.deepEquals(this.locale, other.locale) &&
-            Objects.deepEquals(this.method, other.method) &&
-            Objects.deepEquals(this.issuer, other.issuer) &&
-            Objects.deepEquals(this.restrictPaymentMethodsToCountry, other.restrictPaymentMethodsToCountry) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.captureMode, other.captureMode) &&
-            Objects.deepEquals(this.captureDelay, other.captureDelay) &&
-            Objects.deepEquals(this.applicationFee, other.applicationFee) &&
-            Objects.deepEquals(this.routing, other.routing) &&
-            Objects.deepEquals(this.sequenceType, other.sequenceType) &&
-            Objects.deepEquals(this.mandateId, other.mandateId) &&
-            Objects.deepEquals(this.customerId, other.customerId) &&
-            Objects.deepEquals(this.profileId, other.profileId) &&
-            Objects.deepEquals(this.dueDate, other.dueDate) &&
-            Objects.deepEquals(this.testmode, other.testmode);
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.redirectUrl, other.redirectUrl) &&
+            Utils.enhancedDeepEquals(this.cancelUrl, other.cancelUrl) &&
+            Utils.enhancedDeepEquals(this.webhookUrl, other.webhookUrl) &&
+            Utils.enhancedDeepEquals(this.lines, other.lines) &&
+            Utils.enhancedDeepEquals(this.billingAddress, other.billingAddress) &&
+            Utils.enhancedDeepEquals(this.shippingAddress, other.shippingAddress) &&
+            Utils.enhancedDeepEquals(this.locale, other.locale) &&
+            Utils.enhancedDeepEquals(this.method, other.method) &&
+            Utils.enhancedDeepEquals(this.issuer, other.issuer) &&
+            Utils.enhancedDeepEquals(this.restrictPaymentMethodsToCountry, other.restrictPaymentMethodsToCountry) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.captureMode, other.captureMode) &&
+            Utils.enhancedDeepEquals(this.captureDelay, other.captureDelay) &&
+            Utils.enhancedDeepEquals(this.applicationFee, other.applicationFee) &&
+            Utils.enhancedDeepEquals(this.routing, other.routing) &&
+            Utils.enhancedDeepEquals(this.sequenceType, other.sequenceType) &&
+            Utils.enhancedDeepEquals(this.mandateId, other.mandateId) &&
+            Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
+            Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
+            Utils.enhancedDeepEquals(this.dueDate, other.dueDate) &&
+            Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             description,
             amount,
             redirectUrl,

@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class DeletePaymentLinkRequestBody {
@@ -84,12 +83,12 @@ public class DeletePaymentLinkRequestBody {
         }
         DeletePaymentLinkRequestBody other = (DeletePaymentLinkRequestBody) o;
         return 
-            Objects.deepEquals(this.testmode, other.testmode);
+            Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             testmode);
     }
     

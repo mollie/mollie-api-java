@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListInvoicesRequest {
@@ -258,17 +257,17 @@ public class ListInvoicesRequest {
         }
         ListInvoicesRequest other = (ListInvoicesRequest) o;
         return 
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.year, other.year) &&
-            Objects.deepEquals(this.month, other.month) &&
-            Objects.deepEquals(this.from, other.from) &&
-            Objects.deepEquals(this.limit, other.limit) &&
-            Objects.deepEquals(this.sort, other.sort);
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.year, other.year) &&
+            Utils.enhancedDeepEquals(this.month, other.month) &&
+            Utils.enhancedDeepEquals(this.from, other.from) &&
+            Utils.enhancedDeepEquals(this.limit, other.limit) &&
+            Utils.enhancedDeepEquals(this.sort, other.sort);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             reference,
             year,
             month,

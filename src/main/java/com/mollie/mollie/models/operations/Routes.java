@@ -13,8 +13,6 @@ import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class Routes {
@@ -29,82 +27,82 @@ public class Routes {
     /**
      * The identifier uniquely referring to this route. Mollie assigns this identifier at route creation time. Mollie will always refer to the route by this ID. Example: `crt_dyARQ3JzCgtPDhU2Pbq3J`.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("paymentId")
-    private Optional<String> paymentId;
-
-    /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("createdAt")
-    private Optional<String> createdAt;
+    private String paymentId;
 
     /**
      * The amount of the route. That amount that will be routed to the specified destination.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private Optional<? extends PaymentListRoutesAmount> amount;
+    private PaymentListRoutesAmount amount;
 
     /**
      * The description of the route. This description is shown in the reports.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private Optional<String> description;
+    private String description;
 
     /**
      * The destination of the route.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destination")
-    private Optional<? extends PaymentListRoutesDestination> destination;
+    private PaymentListRoutesDestination destination;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends PaymentListRoutesDelayedRoutingLinks> links;
+    private PaymentListRoutesDelayedRoutingLinks links;
+
+    /**
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     */
+    @JsonProperty("createdAt")
+    private String createdAt;
 
     @JsonCreator
     public Routes(
             @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("paymentId") Optional<String> paymentId,
-            @JsonProperty("createdAt") Optional<String> createdAt,
-            @JsonProperty("amount") Optional<? extends PaymentListRoutesAmount> amount,
-            @JsonProperty("description") Optional<String> description,
-            @JsonProperty("destination") Optional<? extends PaymentListRoutesDestination> destination,
-            @JsonProperty("_links") Optional<? extends PaymentListRoutesDelayedRoutingLinks> links) {
+            @JsonProperty("id") String id,
+            @JsonProperty("paymentId") String paymentId,
+            @JsonProperty("amount") PaymentListRoutesAmount amount,
+            @JsonProperty("description") String description,
+            @JsonProperty("destination") PaymentListRoutesDestination destination,
+            @JsonProperty("_links") PaymentListRoutesDelayedRoutingLinks links,
+            @JsonProperty("createdAt") String createdAt) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(paymentId, "paymentId");
-        Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(destination, "destination");
         Utils.checkNotNull(links, "links");
+        Utils.checkNotNull(createdAt, "createdAt");
         this.resource = resource;
         this.id = id;
         this.paymentId = paymentId;
-        this.createdAt = createdAt;
         this.amount = amount;
         this.description = description;
         this.destination = destination;
         this.links = links;
+        this.createdAt = createdAt;
     }
     
-    public Routes() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    public Routes(
+            String id,
+            String paymentId,
+            PaymentListRoutesAmount amount,
+            String description,
+            PaymentListRoutesDestination destination,
+            PaymentListRoutesDelayedRoutingLinks links,
+            String createdAt) {
+        this(Optional.empty(), id, paymentId, amount, description, destination, links, createdAt);
     }
 
     /**
@@ -119,7 +117,7 @@ public class Routes {
      * The identifier uniquely referring to this route. Mollie assigns this identifier at route creation time. Mollie will always refer to the route by this ID. Example: `crt_dyARQ3JzCgtPDhU2Pbq3J`.
      */
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
@@ -127,51 +125,48 @@ public class Routes {
      * The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
      */
     @JsonIgnore
-    public Optional<String> paymentId() {
+    public String paymentId() {
         return paymentId;
-    }
-
-    /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-     */
-    @JsonIgnore
-    public Optional<String> createdAt() {
-        return createdAt;
     }
 
     /**
      * The amount of the route. That amount that will be routed to the specified destination.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentListRoutesAmount> amount() {
-        return (Optional<PaymentListRoutesAmount>) amount;
+    public PaymentListRoutesAmount amount() {
+        return amount;
     }
 
     /**
      * The description of the route. This description is shown in the reports.
      */
     @JsonIgnore
-    public Optional<String> description() {
+    public String description() {
         return description;
     }
 
     /**
      * The destination of the route.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentListRoutesDestination> destination() {
-        return (Optional<PaymentListRoutesDestination>) destination;
+    public PaymentListRoutesDestination destination() {
+        return destination;
     }
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentListRoutesDelayedRoutingLinks> links() {
-        return (Optional<PaymentListRoutesDelayedRoutingLinks>) links;
+    public PaymentListRoutesDelayedRoutingLinks links() {
+        return links;
+    }
+
+    /**
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     */
+    @JsonIgnore
+    public String createdAt() {
+        return createdAt;
     }
 
     public final static Builder builder() {
@@ -201,15 +196,6 @@ public class Routes {
      */
     public Routes withId(String id) {
         Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-    /**
-     * The identifier uniquely referring to this route. Mollie assigns this identifier at route creation time. Mollie will always refer to the route by this ID. Example: `crt_dyARQ3JzCgtPDhU2Pbq3J`.
-     */
-    public Routes withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
@@ -219,34 +205,7 @@ public class Routes {
      */
     public Routes withPaymentId(String paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
-        this.paymentId = Optional.ofNullable(paymentId);
-        return this;
-    }
-
-    /**
-     * The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
-     */
-    public Routes withPaymentId(Optional<String> paymentId) {
-        Utils.checkNotNull(paymentId, "paymentId");
         this.paymentId = paymentId;
-        return this;
-    }
-
-    /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-     */
-    public Routes withCreatedAt(String createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = Optional.ofNullable(createdAt);
-        return this;
-    }
-
-    /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-     */
-    public Routes withCreatedAt(Optional<String> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = createdAt;
         return this;
     }
 
@@ -254,15 +213,6 @@ public class Routes {
      * The amount of the route. That amount that will be routed to the specified destination.
      */
     public Routes withAmount(PaymentListRoutesAmount amount) {
-        Utils.checkNotNull(amount, "amount");
-        this.amount = Optional.ofNullable(amount);
-        return this;
-    }
-
-    /**
-     * The amount of the route. That amount that will be routed to the specified destination.
-     */
-    public Routes withAmount(Optional<? extends PaymentListRoutesAmount> amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
@@ -273,15 +223,6 @@ public class Routes {
      */
     public Routes withDescription(String description) {
         Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
-        return this;
-    }
-
-    /**
-     * The description of the route. This description is shown in the reports.
-     */
-    public Routes withDescription(Optional<String> description) {
-        Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
     }
@@ -290,15 +231,6 @@ public class Routes {
      * The destination of the route.
      */
     public Routes withDestination(PaymentListRoutesDestination destination) {
-        Utils.checkNotNull(destination, "destination");
-        this.destination = Optional.ofNullable(destination);
-        return this;
-    }
-
-    /**
-     * The destination of the route.
-     */
-    public Routes withDestination(Optional<? extends PaymentListRoutesDestination> destination) {
         Utils.checkNotNull(destination, "destination");
         this.destination = destination;
         return this;
@@ -309,16 +241,16 @@ public class Routes {
      */
     public Routes withLinks(PaymentListRoutesDelayedRoutingLinks links) {
         Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
+        this.links = links;
         return this;
     }
 
     /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
-    public Routes withLinks(Optional<? extends PaymentListRoutesDelayedRoutingLinks> links) {
-        Utils.checkNotNull(links, "links");
-        this.links = links;
+    public Routes withCreatedAt(String createdAt) {
+        Utils.checkNotNull(createdAt, "createdAt");
+        this.createdAt = createdAt;
         return this;
     }
 
@@ -333,27 +265,27 @@ public class Routes {
         }
         Routes other = (Routes) o;
         return 
-            Objects.deepEquals(this.resource, other.resource) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.paymentId, other.paymentId) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.destination, other.destination) &&
-            Objects.deepEquals(this.links, other.links);
+            Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.destination, other.destination) &&
+            Utils.enhancedDeepEquals(this.links, other.links) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             resource,
             id,
             paymentId,
-            createdAt,
             amount,
             description,
             destination,
-            links);
+            links,
+            createdAt);
     }
     
     @Override
@@ -362,30 +294,30 @@ public class Routes {
                 "resource", resource,
                 "id", id,
                 "paymentId", paymentId,
-                "createdAt", createdAt,
                 "amount", amount,
                 "description", description,
                 "destination", destination,
-                "links", links);
+                "links", links,
+                "createdAt", createdAt);
     }
     
     public final static class Builder {
  
         private Optional<String> resource;
  
-        private Optional<String> id = Optional.empty();
+        private String id;
  
-        private Optional<String> paymentId = Optional.empty();
+        private String paymentId;
  
-        private Optional<String> createdAt = Optional.empty();
+        private PaymentListRoutesAmount amount;
  
-        private Optional<? extends PaymentListRoutesAmount> amount = Optional.empty();
+        private String description;
  
-        private Optional<String> description = Optional.empty();
+        private PaymentListRoutesDestination destination;
  
-        private Optional<? extends PaymentListRoutesDestination> destination = Optional.empty();
+        private PaymentListRoutesDelayedRoutingLinks links;
  
-        private Optional<? extends PaymentListRoutesDelayedRoutingLinks> links = Optional.empty();
+        private String createdAt;
         
         private Builder() {
           // force use of static builder() method
@@ -414,15 +346,6 @@ public class Routes {
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The identifier uniquely referring to this route. Mollie assigns this identifier at route creation time. Mollie will always refer to the route by this ID. Example: `crt_dyARQ3JzCgtPDhU2Pbq3J`.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
@@ -432,34 +355,7 @@ public class Routes {
          */
         public Builder paymentId(String paymentId) {
             Utils.checkNotNull(paymentId, "paymentId");
-            this.paymentId = Optional.ofNullable(paymentId);
-            return this;
-        }
-
-        /**
-         * The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
-         */
-        public Builder paymentId(Optional<String> paymentId) {
-            Utils.checkNotNull(paymentId, "paymentId");
             this.paymentId = paymentId;
-            return this;
-        }
-
-        /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-         */
-        public Builder createdAt(String createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = Optional.ofNullable(createdAt);
-            return this;
-        }
-
-        /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-         */
-        public Builder createdAt(Optional<String> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = createdAt;
             return this;
         }
 
@@ -467,15 +363,6 @@ public class Routes {
          * The amount of the route. That amount that will be routed to the specified destination.
          */
         public Builder amount(PaymentListRoutesAmount amount) {
-            Utils.checkNotNull(amount, "amount");
-            this.amount = Optional.ofNullable(amount);
-            return this;
-        }
-
-        /**
-         * The amount of the route. That amount that will be routed to the specified destination.
-         */
-        public Builder amount(Optional<? extends PaymentListRoutesAmount> amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;
@@ -486,15 +373,6 @@ public class Routes {
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
-            return this;
-        }
-
-        /**
-         * The description of the route. This description is shown in the reports.
-         */
-        public Builder description(Optional<String> description) {
-            Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
         }
@@ -503,15 +381,6 @@ public class Routes {
          * The destination of the route.
          */
         public Builder destination(PaymentListRoutesDestination destination) {
-            Utils.checkNotNull(destination, "destination");
-            this.destination = Optional.ofNullable(destination);
-            return this;
-        }
-
-        /**
-         * The destination of the route.
-         */
-        public Builder destination(Optional<? extends PaymentListRoutesDestination> destination) {
             Utils.checkNotNull(destination, "destination");
             this.destination = destination;
             return this;
@@ -522,16 +391,16 @@ public class Routes {
          */
         public Builder links(PaymentListRoutesDelayedRoutingLinks links) {
             Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
+            this.links = links;
             return this;
         }
 
         /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
          */
-        public Builder links(Optional<? extends PaymentListRoutesDelayedRoutingLinks> links) {
-            Utils.checkNotNull(links, "links");
-            this.links = links;
+        public Builder createdAt(String createdAt) {
+            Utils.checkNotNull(createdAt, "createdAt");
+            this.createdAt = createdAt;
             return this;
         }
         
@@ -543,11 +412,11 @@ public class Routes {
                 resource,
                 id,
                 paymentId,
-                createdAt,
                 amount,
                 description,
                 destination,
-                links);
+                links,
+                createdAt);
         }
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =

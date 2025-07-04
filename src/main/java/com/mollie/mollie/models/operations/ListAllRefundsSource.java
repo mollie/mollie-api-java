@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -80,12 +79,12 @@ public class ListAllRefundsSource {
         }
         ListAllRefundsSource other = (ListAllRefundsSource) o;
         return 
-            Objects.deepEquals(this.organizationId, other.organizationId);
+            Utils.enhancedDeepEquals(this.organizationId, other.organizationId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             organizationId);
     }
     

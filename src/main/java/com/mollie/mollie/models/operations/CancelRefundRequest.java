@@ -10,7 +10,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CancelRefundRequest {
@@ -135,14 +134,14 @@ public class CancelRefundRequest {
         }
         CancelRefundRequest other = (CancelRefundRequest) o;
         return 
-            Objects.deepEquals(this.paymentId, other.paymentId) &&
-            Objects.deepEquals(this.refundId, other.refundId) &&
-            Objects.deepEquals(this.testmode, other.testmode);
+            Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
+            Utils.enhancedDeepEquals(this.refundId, other.refundId) &&
+            Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             paymentId,
             refundId,
             testmode);

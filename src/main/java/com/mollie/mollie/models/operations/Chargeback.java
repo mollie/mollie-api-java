@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class Chargeback {
@@ -87,13 +86,13 @@ public class Chargeback {
         }
         Chargeback other = (Chargeback) o;
         return 
-            Objects.deepEquals(this.paymentId, other.paymentId) &&
-            Objects.deepEquals(this.chargebackId, other.chargebackId);
+            Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
+            Utils.enhancedDeepEquals(this.chargebackId, other.chargebackId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             paymentId,
             chargebackId);
     }

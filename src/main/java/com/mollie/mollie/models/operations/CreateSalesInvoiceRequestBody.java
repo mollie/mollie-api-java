@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -667,27 +666,27 @@ public class CreateSalesInvoiceRequestBody {
         }
         CreateSalesInvoiceRequestBody other = (CreateSalesInvoiceRequestBody) o;
         return 
-            Objects.deepEquals(this.testmode, other.testmode) &&
-            Objects.deepEquals(this.profileId, other.profileId) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.vatScheme, other.vatScheme) &&
-            Objects.deepEquals(this.vatMode, other.vatMode) &&
-            Objects.deepEquals(this.memo, other.memo) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.paymentTerm, other.paymentTerm) &&
-            Objects.deepEquals(this.paymentDetails, other.paymentDetails) &&
-            Objects.deepEquals(this.emailDetails, other.emailDetails) &&
-            Objects.deepEquals(this.customerId, other.customerId) &&
-            Objects.deepEquals(this.mandateId, other.mandateId) &&
-            Objects.deepEquals(this.recipientIdentifier, other.recipientIdentifier) &&
-            Objects.deepEquals(this.recipient, other.recipient) &&
-            Objects.deepEquals(this.lines, other.lines) &&
-            Objects.deepEquals(this.discount, other.discount);
+            Utils.enhancedDeepEquals(this.testmode, other.testmode) &&
+            Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.vatScheme, other.vatScheme) &&
+            Utils.enhancedDeepEquals(this.vatMode, other.vatMode) &&
+            Utils.enhancedDeepEquals(this.memo, other.memo) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.paymentTerm, other.paymentTerm) &&
+            Utils.enhancedDeepEquals(this.paymentDetails, other.paymentDetails) &&
+            Utils.enhancedDeepEquals(this.emailDetails, other.emailDetails) &&
+            Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
+            Utils.enhancedDeepEquals(this.mandateId, other.mandateId) &&
+            Utils.enhancedDeepEquals(this.recipientIdentifier, other.recipientIdentifier) &&
+            Utils.enhancedDeepEquals(this.recipient, other.recipient) &&
+            Utils.enhancedDeepEquals(this.lines, other.lines) &&
+            Utils.enhancedDeepEquals(this.discount, other.discount);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             testmode,
             profileId,
             status,

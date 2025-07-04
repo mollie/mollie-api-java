@@ -10,7 +10,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetTerminalRequest {
@@ -108,13 +107,13 @@ public class GetTerminalRequest {
         }
         GetTerminalRequest other = (GetTerminalRequest) o;
         return 
-            Objects.deepEquals(this.terminalId, other.terminalId) &&
-            Objects.deepEquals(this.testmode, other.testmode);
+            Utils.enhancedDeepEquals(this.terminalId, other.terminalId) &&
+            Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             terminalId,
             testmode);
     }

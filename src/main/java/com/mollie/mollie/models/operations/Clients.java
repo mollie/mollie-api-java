@@ -14,7 +14,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -250,17 +249,17 @@ public class Clients {
         }
         Clients other = (Clients) o;
         return 
-            Objects.deepEquals(this.resource, other.resource) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.commission, other.commission) &&
-            Objects.deepEquals(this.organizationCreatedAt, other.organizationCreatedAt) &&
-            Objects.deepEquals(this.links, other.links) &&
-            Objects.deepEquals(this.embedded, other.embedded);
+            Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.commission, other.commission) &&
+            Utils.enhancedDeepEquals(this.organizationCreatedAt, other.organizationCreatedAt) &&
+            Utils.enhancedDeepEquals(this.links, other.links) &&
+            Utils.enhancedDeepEquals(this.embedded, other.embedded);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             resource,
             id,
             commission,

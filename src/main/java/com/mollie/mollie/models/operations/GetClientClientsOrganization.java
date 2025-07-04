@@ -14,7 +14,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -429,21 +428,21 @@ public class GetClientClientsOrganization {
         }
         GetClientClientsOrganization other = (GetClientClientsOrganization) o;
         return 
-            Objects.deepEquals(this.resource, other.resource) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.locale, other.locale) &&
-            Objects.deepEquals(this.address, other.address) &&
-            Objects.deepEquals(this.registrationNumber, other.registrationNumber) &&
-            Objects.deepEquals(this.vatNumber, other.vatNumber) &&
-            Objects.deepEquals(this.vatRegulation, other.vatRegulation) &&
-            Objects.deepEquals(this.links, other.links);
+            Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.locale, other.locale) &&
+            Utils.enhancedDeepEquals(this.address, other.address) &&
+            Utils.enhancedDeepEquals(this.registrationNumber, other.registrationNumber) &&
+            Utils.enhancedDeepEquals(this.vatNumber, other.vatNumber) &&
+            Utils.enhancedDeepEquals(this.vatRegulation, other.vatRegulation) &&
+            Utils.enhancedDeepEquals(this.links, other.links);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             resource,
             id,
             name,

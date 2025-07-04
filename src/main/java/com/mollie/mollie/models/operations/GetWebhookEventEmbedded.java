@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -70,12 +69,12 @@ public class GetWebhookEventEmbedded {
         }
         GetWebhookEventEmbedded other = (GetWebhookEventEmbedded) o;
         return 
-            Objects.deepEquals(this.entity, other.entity);
+            Utils.enhancedDeepEquals(this.entity, other.entity);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             entity);
     }
     

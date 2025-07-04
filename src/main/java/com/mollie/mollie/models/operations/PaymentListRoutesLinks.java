@@ -12,9 +12,7 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * PaymentListRoutesLinks
@@ -31,20 +29,6 @@ public class PaymentListRoutesLinks {
     private Optional<? extends PaymentListRoutesSelf> self;
 
     /**
-     * The previous set of items, if available.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("previous")
-    private JsonNullable<? extends PaymentListRoutesPrevious> previous;
-
-    /**
-     * The next set of items, if available.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("next")
-    private JsonNullable<? extends PaymentListRoutesNext> next;
-
-    /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -54,21 +38,15 @@ public class PaymentListRoutesLinks {
     @JsonCreator
     public PaymentListRoutesLinks(
             @JsonProperty("self") Optional<? extends PaymentListRoutesSelf> self,
-            @JsonProperty("previous") JsonNullable<? extends PaymentListRoutesPrevious> previous,
-            @JsonProperty("next") JsonNullable<? extends PaymentListRoutesNext> next,
             @JsonProperty("documentation") Optional<? extends PaymentListRoutesDocumentation> documentation) {
         Utils.checkNotNull(self, "self");
-        Utils.checkNotNull(previous, "previous");
-        Utils.checkNotNull(next, "next");
         Utils.checkNotNull(documentation, "documentation");
         this.self = self;
-        this.previous = previous;
-        this.next = next;
         this.documentation = documentation;
     }
     
     public PaymentListRoutesLinks() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -78,24 +56,6 @@ public class PaymentListRoutesLinks {
     @JsonIgnore
     public Optional<PaymentListRoutesSelf> self() {
         return (Optional<PaymentListRoutesSelf>) self;
-    }
-
-    /**
-     * The previous set of items, if available.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<PaymentListRoutesPrevious> previous() {
-        return (JsonNullable<PaymentListRoutesPrevious>) previous;
-    }
-
-    /**
-     * The next set of items, if available.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<PaymentListRoutesNext> next() {
-        return (JsonNullable<PaymentListRoutesNext>) next;
     }
 
     /**
@@ -130,42 +90,6 @@ public class PaymentListRoutesLinks {
     }
 
     /**
-     * The previous set of items, if available.
-     */
-    public PaymentListRoutesLinks withPrevious(PaymentListRoutesPrevious previous) {
-        Utils.checkNotNull(previous, "previous");
-        this.previous = JsonNullable.of(previous);
-        return this;
-    }
-
-    /**
-     * The previous set of items, if available.
-     */
-    public PaymentListRoutesLinks withPrevious(JsonNullable<? extends PaymentListRoutesPrevious> previous) {
-        Utils.checkNotNull(previous, "previous");
-        this.previous = previous;
-        return this;
-    }
-
-    /**
-     * The next set of items, if available.
-     */
-    public PaymentListRoutesLinks withNext(PaymentListRoutesNext next) {
-        Utils.checkNotNull(next, "next");
-        this.next = JsonNullable.of(next);
-        return this;
-    }
-
-    /**
-     * The next set of items, if available.
-     */
-    public PaymentListRoutesLinks withNext(JsonNullable<? extends PaymentListRoutesNext> next) {
-        Utils.checkNotNull(next, "next");
-        this.next = next;
-        return this;
-    }
-
-    /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public PaymentListRoutesLinks withDocumentation(PaymentListRoutesDocumentation documentation) {
@@ -194,18 +118,14 @@ public class PaymentListRoutesLinks {
         }
         PaymentListRoutesLinks other = (PaymentListRoutesLinks) o;
         return 
-            Objects.deepEquals(this.self, other.self) &&
-            Objects.deepEquals(this.previous, other.previous) &&
-            Objects.deepEquals(this.next, other.next) &&
-            Objects.deepEquals(this.documentation, other.documentation);
+            Utils.enhancedDeepEquals(this.self, other.self) &&
+            Utils.enhancedDeepEquals(this.documentation, other.documentation);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             self,
-            previous,
-            next,
             documentation);
     }
     
@@ -213,18 +133,12 @@ public class PaymentListRoutesLinks {
     public String toString() {
         return Utils.toString(PaymentListRoutesLinks.class,
                 "self", self,
-                "previous", previous,
-                "next", next,
                 "documentation", documentation);
     }
     
     public final static class Builder {
  
         private Optional<? extends PaymentListRoutesSelf> self = Optional.empty();
- 
-        private JsonNullable<? extends PaymentListRoutesPrevious> previous = JsonNullable.undefined();
- 
-        private JsonNullable<? extends PaymentListRoutesNext> next = JsonNullable.undefined();
  
         private Optional<? extends PaymentListRoutesDocumentation> documentation = Optional.empty();
         
@@ -251,42 +165,6 @@ public class PaymentListRoutesLinks {
         }
 
         /**
-         * The previous set of items, if available.
-         */
-        public Builder previous(PaymentListRoutesPrevious previous) {
-            Utils.checkNotNull(previous, "previous");
-            this.previous = JsonNullable.of(previous);
-            return this;
-        }
-
-        /**
-         * The previous set of items, if available.
-         */
-        public Builder previous(JsonNullable<? extends PaymentListRoutesPrevious> previous) {
-            Utils.checkNotNull(previous, "previous");
-            this.previous = previous;
-            return this;
-        }
-
-        /**
-         * The next set of items, if available.
-         */
-        public Builder next(PaymentListRoutesNext next) {
-            Utils.checkNotNull(next, "next");
-            this.next = JsonNullable.of(next);
-            return this;
-        }
-
-        /**
-         * The next set of items, if available.
-         */
-        public Builder next(JsonNullable<? extends PaymentListRoutesNext> next) {
-            Utils.checkNotNull(next, "next");
-            this.next = next;
-            return this;
-        }
-
-        /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(PaymentListRoutesDocumentation documentation) {
@@ -307,8 +185,6 @@ public class PaymentListRoutesLinks {
         public PaymentListRoutesLinks build() {
             return new PaymentListRoutesLinks(
                 self,
-                previous,
-                next,
                 documentation);
         }
     }

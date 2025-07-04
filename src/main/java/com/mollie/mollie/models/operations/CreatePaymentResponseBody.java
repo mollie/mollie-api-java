@@ -16,7 +16,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -1978,56 +1977,56 @@ public class CreatePaymentResponseBody {
         }
         CreatePaymentResponseBody other = (CreatePaymentResponseBody) o;
         return 
-            Objects.deepEquals(this.resource, other.resource) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.mode, other.mode) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.amountRefunded, other.amountRefunded) &&
-            Objects.deepEquals(this.amountRemaining, other.amountRemaining) &&
-            Objects.deepEquals(this.amountCaptured, other.amountCaptured) &&
-            Objects.deepEquals(this.amountChargedBack, other.amountChargedBack) &&
-            Objects.deepEquals(this.settlementAmount, other.settlementAmount) &&
-            Objects.deepEquals(this.redirectUrl, other.redirectUrl) &&
-            Objects.deepEquals(this.cancelUrl, other.cancelUrl) &&
-            Objects.deepEquals(this.webhookUrl, other.webhookUrl) &&
-            Objects.deepEquals(this.lines, other.lines) &&
-            Objects.deepEquals(this.billingAddress, other.billingAddress) &&
-            Objects.deepEquals(this.shippingAddress, other.shippingAddress) &&
-            Objects.deepEquals(this.locale, other.locale) &&
-            Objects.deepEquals(this.countryCode, other.countryCode) &&
-            Objects.deepEquals(this.method, other.method) &&
-            Objects.deepEquals(this.restrictPaymentMethodsToCountry, other.restrictPaymentMethodsToCountry) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.captureMode, other.captureMode) &&
-            Objects.deepEquals(this.captureDelay, other.captureDelay) &&
-            Objects.deepEquals(this.captureBefore, other.captureBefore) &&
-            Objects.deepEquals(this.applicationFee, other.applicationFee) &&
-            Objects.deepEquals(this.routing, other.routing) &&
-            Objects.deepEquals(this.sequenceType, other.sequenceType) &&
-            Objects.deepEquals(this.subscriptionId, other.subscriptionId) &&
-            Objects.deepEquals(this.mandateId, other.mandateId) &&
-            Objects.deepEquals(this.customerId, other.customerId) &&
-            Objects.deepEquals(this.profileId, other.profileId) &&
-            Objects.deepEquals(this.settlementId, other.settlementId) &&
-            Objects.deepEquals(this.orderId, other.orderId) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.statusReason, other.statusReason) &&
-            Objects.deepEquals(this.isCancelable, other.isCancelable) &&
-            Objects.deepEquals(this.details, other.details) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.authorizedAt, other.authorizedAt) &&
-            Objects.deepEquals(this.paidAt, other.paidAt) &&
-            Objects.deepEquals(this.canceledAt, other.canceledAt) &&
-            Objects.deepEquals(this.expiresAt, other.expiresAt) &&
-            Objects.deepEquals(this.expiredAt, other.expiredAt) &&
-            Objects.deepEquals(this.failedAt, other.failedAt) &&
-            Objects.deepEquals(this.links, other.links);
+            Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.mode, other.mode) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.amountRefunded, other.amountRefunded) &&
+            Utils.enhancedDeepEquals(this.amountRemaining, other.amountRemaining) &&
+            Utils.enhancedDeepEquals(this.amountCaptured, other.amountCaptured) &&
+            Utils.enhancedDeepEquals(this.amountChargedBack, other.amountChargedBack) &&
+            Utils.enhancedDeepEquals(this.settlementAmount, other.settlementAmount) &&
+            Utils.enhancedDeepEquals(this.redirectUrl, other.redirectUrl) &&
+            Utils.enhancedDeepEquals(this.cancelUrl, other.cancelUrl) &&
+            Utils.enhancedDeepEquals(this.webhookUrl, other.webhookUrl) &&
+            Utils.enhancedDeepEquals(this.lines, other.lines) &&
+            Utils.enhancedDeepEquals(this.billingAddress, other.billingAddress) &&
+            Utils.enhancedDeepEquals(this.shippingAddress, other.shippingAddress) &&
+            Utils.enhancedDeepEquals(this.locale, other.locale) &&
+            Utils.enhancedDeepEquals(this.countryCode, other.countryCode) &&
+            Utils.enhancedDeepEquals(this.method, other.method) &&
+            Utils.enhancedDeepEquals(this.restrictPaymentMethodsToCountry, other.restrictPaymentMethodsToCountry) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.captureMode, other.captureMode) &&
+            Utils.enhancedDeepEquals(this.captureDelay, other.captureDelay) &&
+            Utils.enhancedDeepEquals(this.captureBefore, other.captureBefore) &&
+            Utils.enhancedDeepEquals(this.applicationFee, other.applicationFee) &&
+            Utils.enhancedDeepEquals(this.routing, other.routing) &&
+            Utils.enhancedDeepEquals(this.sequenceType, other.sequenceType) &&
+            Utils.enhancedDeepEquals(this.subscriptionId, other.subscriptionId) &&
+            Utils.enhancedDeepEquals(this.mandateId, other.mandateId) &&
+            Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
+            Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
+            Utils.enhancedDeepEquals(this.settlementId, other.settlementId) &&
+            Utils.enhancedDeepEquals(this.orderId, other.orderId) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.statusReason, other.statusReason) &&
+            Utils.enhancedDeepEquals(this.isCancelable, other.isCancelable) &&
+            Utils.enhancedDeepEquals(this.details, other.details) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.authorizedAt, other.authorizedAt) &&
+            Utils.enhancedDeepEquals(this.paidAt, other.paidAt) &&
+            Utils.enhancedDeepEquals(this.canceledAt, other.canceledAt) &&
+            Utils.enhancedDeepEquals(this.expiresAt, other.expiresAt) &&
+            Utils.enhancedDeepEquals(this.expiredAt, other.expiredAt) &&
+            Utils.enhancedDeepEquals(this.failedAt, other.failedAt) &&
+            Utils.enhancedDeepEquals(this.links, other.links);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             resource,
             id,
             mode,

@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -596,26 +595,26 @@ public class CreatePaymentLinks {
         }
         CreatePaymentLinks other = (CreatePaymentLinks) o;
         return 
-            Objects.deepEquals(this.self, other.self) &&
-            Objects.deepEquals(this.checkout, other.checkout) &&
-            Objects.deepEquals(this.mobileAppCheckout, other.mobileAppCheckout) &&
-            Objects.deepEquals(this.changePaymentState, other.changePaymentState) &&
-            Objects.deepEquals(this.dashboard, other.dashboard) &&
-            Objects.deepEquals(this.refunds, other.refunds) &&
-            Objects.deepEquals(this.chargebacks, other.chargebacks) &&
-            Objects.deepEquals(this.captures, other.captures) &&
-            Objects.deepEquals(this.settlement, other.settlement) &&
-            Objects.deepEquals(this.customer, other.customer) &&
-            Objects.deepEquals(this.mandate, other.mandate) &&
-            Objects.deepEquals(this.subscription, other.subscription) &&
-            Objects.deepEquals(this.order, other.order) &&
-            Objects.deepEquals(this.terminal, other.terminal) &&
-            Objects.deepEquals(this.documentation, other.documentation);
+            Utils.enhancedDeepEquals(this.self, other.self) &&
+            Utils.enhancedDeepEquals(this.checkout, other.checkout) &&
+            Utils.enhancedDeepEquals(this.mobileAppCheckout, other.mobileAppCheckout) &&
+            Utils.enhancedDeepEquals(this.changePaymentState, other.changePaymentState) &&
+            Utils.enhancedDeepEquals(this.dashboard, other.dashboard) &&
+            Utils.enhancedDeepEquals(this.refunds, other.refunds) &&
+            Utils.enhancedDeepEquals(this.chargebacks, other.chargebacks) &&
+            Utils.enhancedDeepEquals(this.captures, other.captures) &&
+            Utils.enhancedDeepEquals(this.settlement, other.settlement) &&
+            Utils.enhancedDeepEquals(this.customer, other.customer) &&
+            Utils.enhancedDeepEquals(this.mandate, other.mandate) &&
+            Utils.enhancedDeepEquals(this.subscription, other.subscription) &&
+            Utils.enhancedDeepEquals(this.order, other.order) &&
+            Utils.enhancedDeepEquals(this.terminal, other.terminal) &&
+            Utils.enhancedDeepEquals(this.documentation, other.documentation);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             self,
             checkout,
             mobileAppCheckout,

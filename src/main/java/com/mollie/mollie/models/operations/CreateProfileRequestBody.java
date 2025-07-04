@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CreateProfileRequestBody {
@@ -258,18 +257,18 @@ public class CreateProfileRequestBody {
         }
         CreateProfileRequestBody other = (CreateProfileRequestBody) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.website, other.website) &&
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.phone, other.phone) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.countriesOfActivity, other.countriesOfActivity) &&
-            Objects.deepEquals(this.businessCategory, other.businessCategory);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.website, other.website) &&
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.phone, other.phone) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.countriesOfActivity, other.countriesOfActivity) &&
+            Utils.enhancedDeepEquals(this.businessCategory, other.businessCategory);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name,
             website,
             email,

@@ -10,7 +10,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetBalanceReportRequest {
@@ -213,16 +212,16 @@ public class GetBalanceReportRequest {
         }
         GetBalanceReportRequest other = (GetBalanceReportRequest) o;
         return 
-            Objects.deepEquals(this.balanceId, other.balanceId) &&
-            Objects.deepEquals(this.from, other.from) &&
-            Objects.deepEquals(this.until, other.until) &&
-            Objects.deepEquals(this.grouping, other.grouping) &&
-            Objects.deepEquals(this.testmode, other.testmode);
+            Utils.enhancedDeepEquals(this.balanceId, other.balanceId) &&
+            Utils.enhancedDeepEquals(this.from, other.from) &&
+            Utils.enhancedDeepEquals(this.until, other.until) &&
+            Utils.enhancedDeepEquals(this.grouping, other.grouping) &&
+            Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             balanceId,
             from,
             until,

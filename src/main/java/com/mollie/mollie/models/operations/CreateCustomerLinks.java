@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -268,17 +267,17 @@ public class CreateCustomerLinks {
         }
         CreateCustomerLinks other = (CreateCustomerLinks) o;
         return 
-            Objects.deepEquals(this.self, other.self) &&
-            Objects.deepEquals(this.dashboard, other.dashboard) &&
-            Objects.deepEquals(this.payments, other.payments) &&
-            Objects.deepEquals(this.mandates, other.mandates) &&
-            Objects.deepEquals(this.subscriptions, other.subscriptions) &&
-            Objects.deepEquals(this.documentation, other.documentation);
+            Utils.enhancedDeepEquals(this.self, other.self) &&
+            Utils.enhancedDeepEquals(this.dashboard, other.dashboard) &&
+            Utils.enhancedDeepEquals(this.payments, other.payments) &&
+            Utils.enhancedDeepEquals(this.mandates, other.mandates) &&
+            Utils.enhancedDeepEquals(this.subscriptions, other.subscriptions) &&
+            Utils.enhancedDeepEquals(this.documentation, other.documentation);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             self,
             dashboard,
             payments,

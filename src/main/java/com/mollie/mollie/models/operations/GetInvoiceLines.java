@@ -13,7 +13,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class GetInvoiceLines {
@@ -222,16 +221,16 @@ public class GetInvoiceLines {
         }
         GetInvoiceLines other = (GetInvoiceLines) o;
         return 
-            Objects.deepEquals(this.period, other.period) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.count, other.count) &&
-            Objects.deepEquals(this.vatPercentage, other.vatPercentage) &&
-            Objects.deepEquals(this.amount, other.amount);
+            Utils.enhancedDeepEquals(this.period, other.period) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.count, other.count) &&
+            Utils.enhancedDeepEquals(this.vatPercentage, other.vatPercentage) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             period,
             description,
             count,

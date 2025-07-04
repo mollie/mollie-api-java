@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -145,15 +144,15 @@ public class PendingBalance {
         }
         PendingBalance other = (PendingBalance) o;
         return 
-            Objects.deepEquals(this.open, other.open) &&
-            Objects.deepEquals(this.close, other.close) &&
-            Objects.deepEquals(this.pending, other.pending) &&
-            Objects.deepEquals(this.movedToAvailable, other.movedToAvailable);
+            Utils.enhancedDeepEquals(this.open, other.open) &&
+            Utils.enhancedDeepEquals(this.close, other.close) &&
+            Utils.enhancedDeepEquals(this.pending, other.pending) &&
+            Utils.enhancedDeepEquals(this.movedToAvailable, other.movedToAvailable);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             open,
             close,
             pending,

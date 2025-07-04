@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -506,23 +505,23 @@ public class Totals {
         }
         Totals other = (Totals) o;
         return 
-            Objects.deepEquals(this.pendingBalance, other.pendingBalance) &&
-            Objects.deepEquals(this.availableBalance, other.availableBalance) &&
-            Objects.deepEquals(this.open, other.open) &&
-            Objects.deepEquals(this.close, other.close) &&
-            Objects.deepEquals(this.payments, other.payments) &&
-            Objects.deepEquals(this.refunds, other.refunds) &&
-            Objects.deepEquals(this.chargebacks, other.chargebacks) &&
-            Objects.deepEquals(this.capital, other.capital) &&
-            Objects.deepEquals(this.transfers, other.transfers) &&
-            Objects.deepEquals(this.feePrepayments, other.feePrepayments) &&
-            Objects.deepEquals(this.corrections, other.corrections) &&
-            Objects.deepEquals(this.topups, other.topups);
+            Utils.enhancedDeepEquals(this.pendingBalance, other.pendingBalance) &&
+            Utils.enhancedDeepEquals(this.availableBalance, other.availableBalance) &&
+            Utils.enhancedDeepEquals(this.open, other.open) &&
+            Utils.enhancedDeepEquals(this.close, other.close) &&
+            Utils.enhancedDeepEquals(this.payments, other.payments) &&
+            Utils.enhancedDeepEquals(this.refunds, other.refunds) &&
+            Utils.enhancedDeepEquals(this.chargebacks, other.chargebacks) &&
+            Utils.enhancedDeepEquals(this.capital, other.capital) &&
+            Utils.enhancedDeepEquals(this.transfers, other.transfers) &&
+            Utils.enhancedDeepEquals(this.feePrepayments, other.feePrepayments) &&
+            Utils.enhancedDeepEquals(this.corrections, other.corrections) &&
+            Utils.enhancedDeepEquals(this.topups, other.topups);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             pendingBalance,
             availableBalance,
             open,

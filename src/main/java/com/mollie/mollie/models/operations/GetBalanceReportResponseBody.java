@@ -14,7 +14,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -425,19 +424,19 @@ public class GetBalanceReportResponseBody {
         }
         GetBalanceReportResponseBody other = (GetBalanceReportResponseBody) o;
         return 
-            Objects.deepEquals(this.resource, other.resource) &&
-            Objects.deepEquals(this.balanceId, other.balanceId) &&
-            Objects.deepEquals(this.timeZone, other.timeZone) &&
-            Objects.deepEquals(this.from, other.from) &&
-            Objects.deepEquals(this.until, other.until) &&
-            Objects.deepEquals(this.grouping, other.grouping) &&
-            Objects.deepEquals(this.totals, other.totals) &&
-            Objects.deepEquals(this.links, other.links);
+            Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.balanceId, other.balanceId) &&
+            Utils.enhancedDeepEquals(this.timeZone, other.timeZone) &&
+            Utils.enhancedDeepEquals(this.from, other.from) &&
+            Utils.enhancedDeepEquals(this.until, other.until) &&
+            Utils.enhancedDeepEquals(this.grouping, other.grouping) &&
+            Utils.enhancedDeepEquals(this.totals, other.totals) &&
+            Utils.enhancedDeepEquals(this.links, other.links);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             resource,
             balanceId,
             timeZone,

@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -193,15 +192,15 @@ public class ListClientsClientsLinks {
         }
         ListClientsClientsLinks other = (ListClientsClientsLinks) o;
         return 
-            Objects.deepEquals(this.self, other.self) &&
-            Objects.deepEquals(this.organization, other.organization) &&
-            Objects.deepEquals(this.onboarding, other.onboarding) &&
-            Objects.deepEquals(this.documentation, other.documentation);
+            Utils.enhancedDeepEquals(this.self, other.self) &&
+            Utils.enhancedDeepEquals(this.organization, other.organization) &&
+            Utils.enhancedDeepEquals(this.onboarding, other.onboarding) &&
+            Utils.enhancedDeepEquals(this.documentation, other.documentation);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             self,
             organization,
             onboarding,

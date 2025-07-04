@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -152,14 +151,14 @@ public class ListMethodsMethodsImage {
         }
         ListMethodsMethodsImage other = (ListMethodsMethodsImage) o;
         return 
-            Objects.deepEquals(this.size1x, other.size1x) &&
-            Objects.deepEquals(this.size2x, other.size2x) &&
-            Objects.deepEquals(this.svg, other.svg);
+            Utils.enhancedDeepEquals(this.size1x, other.size1x) &&
+            Utils.enhancedDeepEquals(this.size2x, other.size2x) &&
+            Utils.enhancedDeepEquals(this.svg, other.svg);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             size1x,
             size2x,
             svg);

@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -194,15 +193,15 @@ public class ListSalesInvoicesSalesInvoicesLinks {
         }
         ListSalesInvoicesSalesInvoicesLinks other = (ListSalesInvoicesSalesInvoicesLinks) o;
         return 
-            Objects.deepEquals(this.self, other.self) &&
-            Objects.deepEquals(this.invoicePayment, other.invoicePayment) &&
-            Objects.deepEquals(this.pdfLink, other.pdfLink) &&
-            Objects.deepEquals(this.documentation, other.documentation);
+            Utils.enhancedDeepEquals(this.self, other.self) &&
+            Utils.enhancedDeepEquals(this.invoicePayment, other.invoicePayment) &&
+            Utils.enhancedDeepEquals(this.pdfLink, other.pdfLink) &&
+            Utils.enhancedDeepEquals(this.documentation, other.documentation);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             self,
             invoicePayment,
             pdfLink,

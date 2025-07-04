@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -439,22 +438,22 @@ public class CreateMandateRequestBody {
         }
         CreateMandateRequestBody other = (CreateMandateRequestBody) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.method, other.method) &&
-            Objects.deepEquals(this.consumerName, other.consumerName) &&
-            Objects.deepEquals(this.consumerAccount, other.consumerAccount) &&
-            Objects.deepEquals(this.consumerBic, other.consumerBic) &&
-            Objects.deepEquals(this.consumerEmail, other.consumerEmail) &&
-            Objects.deepEquals(this.signatureDate, other.signatureDate) &&
-            Objects.deepEquals(this.mandateReference, other.mandateReference) &&
-            Objects.deepEquals(this.paypalBillingAgreementId, other.paypalBillingAgreementId) &&
-            Objects.deepEquals(this.payPalVaultId, other.payPalVaultId) &&
-            Objects.deepEquals(this.testmode, other.testmode);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.method, other.method) &&
+            Utils.enhancedDeepEquals(this.consumerName, other.consumerName) &&
+            Utils.enhancedDeepEquals(this.consumerAccount, other.consumerAccount) &&
+            Utils.enhancedDeepEquals(this.consumerBic, other.consumerBic) &&
+            Utils.enhancedDeepEquals(this.consumerEmail, other.consumerEmail) &&
+            Utils.enhancedDeepEquals(this.signatureDate, other.signatureDate) &&
+            Utils.enhancedDeepEquals(this.mandateReference, other.mandateReference) &&
+            Utils.enhancedDeepEquals(this.paypalBillingAgreementId, other.paypalBillingAgreementId) &&
+            Utils.enhancedDeepEquals(this.payPalVaultId, other.payPalVaultId) &&
+            Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             method,
             consumerName,

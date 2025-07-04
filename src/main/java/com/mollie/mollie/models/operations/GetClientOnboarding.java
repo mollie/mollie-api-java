@@ -15,7 +15,6 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class GetClientOnboarding {
@@ -320,18 +319,18 @@ public class GetClientOnboarding {
         }
         GetClientOnboarding other = (GetClientOnboarding) o;
         return 
-            Objects.deepEquals(this.resource, other.resource) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.canReceivePayments, other.canReceivePayments) &&
-            Objects.deepEquals(this.canReceiveSettlements, other.canReceiveSettlements) &&
-            Objects.deepEquals(this.signedUpAt, other.signedUpAt) &&
-            Objects.deepEquals(this.links, other.links);
+            Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.canReceivePayments, other.canReceivePayments) &&
+            Utils.enhancedDeepEquals(this.canReceiveSettlements, other.canReceiveSettlements) &&
+            Utils.enhancedDeepEquals(this.signedUpAt, other.signedUpAt) &&
+            Utils.enhancedDeepEquals(this.links, other.links);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             resource,
             name,
             status,

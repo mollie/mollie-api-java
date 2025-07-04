@@ -13,7 +13,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -306,18 +305,18 @@ public class ListSettlementsCosts {
         }
         ListSettlementsCosts other = (ListSettlementsCosts) o;
         return 
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.method, other.method) &&
-            Objects.deepEquals(this.count, other.count) &&
-            Objects.deepEquals(this.rate, other.rate) &&
-            Objects.deepEquals(this.amountNet, other.amountNet) &&
-            Objects.deepEquals(this.amountVat, other.amountVat) &&
-            Objects.deepEquals(this.amountGross, other.amountGross);
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.method, other.method) &&
+            Utils.enhancedDeepEquals(this.count, other.count) &&
+            Utils.enhancedDeepEquals(this.rate, other.rate) &&
+            Utils.enhancedDeepEquals(this.amountNet, other.amountNet) &&
+            Utils.enhancedDeepEquals(this.amountVat, other.amountVat) &&
+            Utils.enhancedDeepEquals(this.amountGross, other.amountGross);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             description,
             method,
             count,

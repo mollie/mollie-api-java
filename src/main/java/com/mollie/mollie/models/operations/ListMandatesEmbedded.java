@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ListMandatesEmbedded {
@@ -78,12 +77,12 @@ public class ListMandatesEmbedded {
         }
         ListMandatesEmbedded other = (ListMandatesEmbedded) o;
         return 
-            Objects.deepEquals(this.mandates, other.mandates);
+            Utils.enhancedDeepEquals(this.mandates, other.mandates);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             mandates);
     }
     

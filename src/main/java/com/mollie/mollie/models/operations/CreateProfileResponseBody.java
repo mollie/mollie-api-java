@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -587,25 +586,25 @@ public class CreateProfileResponseBody {
         }
         CreateProfileResponseBody other = (CreateProfileResponseBody) o;
         return 
-            Objects.deepEquals(this.resource, other.resource) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.mode, other.mode) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.website, other.website) &&
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.phone, other.phone) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.countriesOfActivity, other.countriesOfActivity) &&
-            Objects.deepEquals(this.businessCategory, other.businessCategory) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.review, other.review) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.links, other.links);
+            Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.mode, other.mode) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.website, other.website) &&
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.phone, other.phone) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.countriesOfActivity, other.countriesOfActivity) &&
+            Utils.enhancedDeepEquals(this.businessCategory, other.businessCategory) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.review, other.review) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.links, other.links);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             resource,
             id,
             mode,

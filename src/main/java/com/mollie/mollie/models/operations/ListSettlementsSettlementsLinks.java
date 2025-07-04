@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -305,18 +304,18 @@ public class ListSettlementsSettlementsLinks {
         }
         ListSettlementsSettlementsLinks other = (ListSettlementsSettlementsLinks) o;
         return 
-            Objects.deepEquals(this.self, other.self) &&
-            Objects.deepEquals(this.payments, other.payments) &&
-            Objects.deepEquals(this.captures, other.captures) &&
-            Objects.deepEquals(this.refunds, other.refunds) &&
-            Objects.deepEquals(this.chargebacks, other.chargebacks) &&
-            Objects.deepEquals(this.invoice, other.invoice) &&
-            Objects.deepEquals(this.documentation, other.documentation);
+            Utils.enhancedDeepEquals(this.self, other.self) &&
+            Utils.enhancedDeepEquals(this.payments, other.payments) &&
+            Utils.enhancedDeepEquals(this.captures, other.captures) &&
+            Utils.enhancedDeepEquals(this.refunds, other.refunds) &&
+            Utils.enhancedDeepEquals(this.chargebacks, other.chargebacks) &&
+            Utils.enhancedDeepEquals(this.invoice, other.invoice) &&
+            Utils.enhancedDeepEquals(this.documentation, other.documentation);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             self,
             payments,
             captures,

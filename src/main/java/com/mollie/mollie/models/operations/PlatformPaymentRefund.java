@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class PlatformPaymentRefund {
@@ -87,13 +86,13 @@ public class PlatformPaymentRefund {
         }
         PlatformPaymentRefund other = (PlatformPaymentRefund) o;
         return 
-            Objects.deepEquals(this.paymentId, other.paymentId) &&
-            Objects.deepEquals(this.refundId, other.refundId);
+            Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
+            Utils.enhancedDeepEquals(this.refundId, other.refundId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             paymentId,
             refundId);
     }

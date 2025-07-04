@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -119,13 +118,13 @@ public class Rate {
         }
         Rate other = (Rate) o;
         return 
-            Objects.deepEquals(this.fixed, other.fixed) &&
-            Objects.deepEquals(this.percentage, other.percentage);
+            Utils.enhancedDeepEquals(this.fixed, other.fixed) &&
+            Utils.enhancedDeepEquals(this.percentage, other.percentage);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             fixed,
             percentage);
     }

@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -113,13 +112,13 @@ public class UpdateSalesInvoicePaymentDetails {
         }
         UpdateSalesInvoicePaymentDetails other = (UpdateSalesInvoicePaymentDetails) o;
         return 
-            Objects.deepEquals(this.source, other.source) &&
-            Objects.deepEquals(this.sourceReference, other.sourceReference);
+            Utils.enhancedDeepEquals(this.source, other.source) &&
+            Utils.enhancedDeepEquals(this.sourceReference, other.sourceReference);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             source,
             sourceReference);
     }

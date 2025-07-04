@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreateClientLinkRequestBody {
@@ -192,16 +191,16 @@ public class CreateClientLinkRequestBody {
         }
         CreateClientLinkRequestBody other = (CreateClientLinkRequestBody) o;
         return 
-            Objects.deepEquals(this.owner, other.owner) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.address, other.address) &&
-            Objects.deepEquals(this.registrationNumber, other.registrationNumber) &&
-            Objects.deepEquals(this.vatNumber, other.vatNumber);
+            Utils.enhancedDeepEquals(this.owner, other.owner) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.address, other.address) &&
+            Utils.enhancedDeepEquals(this.registrationNumber, other.registrationNumber) &&
+            Utils.enhancedDeepEquals(this.vatNumber, other.vatNumber);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             owner,
             name,
             address,

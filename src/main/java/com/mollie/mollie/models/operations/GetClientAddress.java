@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -176,15 +175,15 @@ public class GetClientAddress {
         }
         GetClientAddress other = (GetClientAddress) o;
         return 
-            Objects.deepEquals(this.streetAndNumber, other.streetAndNumber) &&
-            Objects.deepEquals(this.postalCode, other.postalCode) &&
-            Objects.deepEquals(this.city, other.city) &&
-            Objects.deepEquals(this.country, other.country);
+            Utils.enhancedDeepEquals(this.streetAndNumber, other.streetAndNumber) &&
+            Utils.enhancedDeepEquals(this.postalCode, other.postalCode) &&
+            Utils.enhancedDeepEquals(this.city, other.city) &&
+            Utils.enhancedDeepEquals(this.country, other.country);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             streetAndNumber,
             postalCode,
             city,

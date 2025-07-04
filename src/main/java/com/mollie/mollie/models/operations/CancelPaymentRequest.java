@@ -10,7 +10,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CancelPaymentRequest {
@@ -89,13 +88,13 @@ public class CancelPaymentRequest {
         }
         CancelPaymentRequest other = (CancelPaymentRequest) o;
         return 
-            Objects.deepEquals(this.paymentId, other.paymentId) &&
-            Objects.deepEquals(this.requestBody, other.requestBody);
+            Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             paymentId,
             requestBody);
     }

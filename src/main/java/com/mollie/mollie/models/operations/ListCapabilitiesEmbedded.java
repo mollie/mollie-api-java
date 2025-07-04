@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ListCapabilitiesEmbedded {
@@ -66,12 +65,12 @@ public class ListCapabilitiesEmbedded {
         }
         ListCapabilitiesEmbedded other = (ListCapabilitiesEmbedded) o;
         return 
-            Objects.deepEquals(this.capabilities, other.capabilities);
+            Utils.enhancedDeepEquals(this.capabilities, other.capabilities);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             capabilities);
     }
     

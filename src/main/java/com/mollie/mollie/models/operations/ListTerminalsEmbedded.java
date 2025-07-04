@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ListTerminalsEmbedded {
@@ -78,12 +77,12 @@ public class ListTerminalsEmbedded {
         }
         ListTerminalsEmbedded other = (ListTerminalsEmbedded) o;
         return 
-            Objects.deepEquals(this.terminals, other.terminals);
+            Utils.enhancedDeepEquals(this.terminals, other.terminals);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             terminals);
     }
     

@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -193,15 +192,15 @@ public class GetOnboardingStatusLinks {
         }
         GetOnboardingStatusLinks other = (GetOnboardingStatusLinks) o;
         return 
-            Objects.deepEquals(this.self, other.self) &&
-            Objects.deepEquals(this.dashboard, other.dashboard) &&
-            Objects.deepEquals(this.organization, other.organization) &&
-            Objects.deepEquals(this.documentation, other.documentation);
+            Utils.enhancedDeepEquals(this.self, other.self) &&
+            Utils.enhancedDeepEquals(this.dashboard, other.dashboard) &&
+            Utils.enhancedDeepEquals(this.organization, other.organization) &&
+            Utils.enhancedDeepEquals(this.documentation, other.documentation);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             self,
             dashboard,
             organization,

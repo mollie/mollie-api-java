@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ListClientsClientsResponse200ApplicationHalPlusJsonLinks {
@@ -77,12 +76,12 @@ public class ListClientsClientsResponse200ApplicationHalPlusJsonLinks {
         }
         ListClientsClientsResponse200ApplicationHalPlusJsonLinks other = (ListClientsClientsResponse200ApplicationHalPlusJsonLinks) o;
         return 
-            Objects.deepEquals(this.dashboard, other.dashboard);
+            Utils.enhancedDeepEquals(this.dashboard, other.dashboard);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             dashboard);
     }
     

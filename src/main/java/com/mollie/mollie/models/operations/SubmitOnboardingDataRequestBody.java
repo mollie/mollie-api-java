@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class SubmitOnboardingDataRequestBody {
@@ -90,13 +89,13 @@ public class SubmitOnboardingDataRequestBody {
         }
         SubmitOnboardingDataRequestBody other = (SubmitOnboardingDataRequestBody) o;
         return 
-            Objects.deepEquals(this.organization, other.organization) &&
-            Objects.deepEquals(this.profile, other.profile);
+            Utils.enhancedDeepEquals(this.organization, other.organization) &&
+            Utils.enhancedDeepEquals(this.profile, other.profile);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             organization,
             profile);
     }

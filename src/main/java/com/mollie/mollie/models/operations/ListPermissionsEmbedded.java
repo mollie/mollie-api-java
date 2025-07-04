@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ListPermissionsEmbedded {
@@ -78,12 +77,12 @@ public class ListPermissionsEmbedded {
         }
         ListPermissionsEmbedded other = (ListPermissionsEmbedded) o;
         return 
-            Objects.deepEquals(this.permissions, other.permissions);
+            Utils.enhancedDeepEquals(this.permissions, other.permissions);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             permissions);
     }
     

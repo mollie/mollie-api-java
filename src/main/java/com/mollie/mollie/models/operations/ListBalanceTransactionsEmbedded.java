@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ListBalanceTransactionsEmbedded {
@@ -78,12 +77,12 @@ public class ListBalanceTransactionsEmbedded {
         }
         ListBalanceTransactionsEmbedded other = (ListBalanceTransactionsEmbedded) o;
         return 
-            Objects.deepEquals(this.balanceTransactions, other.balanceTransactions);
+            Utils.enhancedDeepEquals(this.balanceTransactions, other.balanceTransactions);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             balanceTransactions);
     }
     

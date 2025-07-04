@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class PaymentListRoutesEmbedded {
@@ -78,12 +77,12 @@ public class PaymentListRoutesEmbedded {
         }
         PaymentListRoutesEmbedded other = (PaymentListRoutesEmbedded) o;
         return 
-            Objects.deepEquals(this.routes, other.routes);
+            Utils.enhancedDeepEquals(this.routes, other.routes);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             routes);
     }
     

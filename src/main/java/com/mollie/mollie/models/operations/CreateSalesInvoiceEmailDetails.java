@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * CreateSalesInvoiceEmailDetails
@@ -89,13 +88,13 @@ public class CreateSalesInvoiceEmailDetails {
         }
         CreateSalesInvoiceEmailDetails other = (CreateSalesInvoiceEmailDetails) o;
         return 
-            Objects.deepEquals(this.subject, other.subject) &&
-            Objects.deepEquals(this.body, other.body);
+            Utils.enhancedDeepEquals(this.subject, other.subject) &&
+            Utils.enhancedDeepEquals(this.body, other.body);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             subject,
             body);
     }

@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class UpdatePaymentLinkPaymentLinksLines {
@@ -539,24 +538,24 @@ public class UpdatePaymentLinkPaymentLinksLines {
         }
         UpdatePaymentLinkPaymentLinksLines other = (UpdatePaymentLinkPaymentLinksLines) o;
         return 
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.quantity, other.quantity) &&
-            Objects.deepEquals(this.quantityUnit, other.quantityUnit) &&
-            Objects.deepEquals(this.unitPrice, other.unitPrice) &&
-            Objects.deepEquals(this.discountAmount, other.discountAmount) &&
-            Objects.deepEquals(this.totalAmount, other.totalAmount) &&
-            Objects.deepEquals(this.vatRate, other.vatRate) &&
-            Objects.deepEquals(this.vatAmount, other.vatAmount) &&
-            Objects.deepEquals(this.sku, other.sku) &&
-            Objects.deepEquals(this.categories, other.categories) &&
-            Objects.deepEquals(this.imageUrl, other.imageUrl) &&
-            Objects.deepEquals(this.productUrl, other.productUrl);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.quantity, other.quantity) &&
+            Utils.enhancedDeepEquals(this.quantityUnit, other.quantityUnit) &&
+            Utils.enhancedDeepEquals(this.unitPrice, other.unitPrice) &&
+            Utils.enhancedDeepEquals(this.discountAmount, other.discountAmount) &&
+            Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
+            Utils.enhancedDeepEquals(this.vatRate, other.vatRate) &&
+            Utils.enhancedDeepEquals(this.vatAmount, other.vatAmount) &&
+            Utils.enhancedDeepEquals(this.sku, other.sku) &&
+            Utils.enhancedDeepEquals(this.categories, other.categories) &&
+            Utils.enhancedDeepEquals(this.imageUrl, other.imageUrl) &&
+            Utils.enhancedDeepEquals(this.productUrl, other.productUrl);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             type,
             description,
             quantity,

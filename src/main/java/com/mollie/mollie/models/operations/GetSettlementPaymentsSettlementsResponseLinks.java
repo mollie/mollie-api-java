@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * GetSettlementPaymentsSettlementsResponseLinks
@@ -89,13 +88,13 @@ public class GetSettlementPaymentsSettlementsResponseLinks {
         }
         GetSettlementPaymentsSettlementsResponseLinks other = (GetSettlementPaymentsSettlementsResponseLinks) o;
         return 
-            Objects.deepEquals(this.self, other.self) &&
-            Objects.deepEquals(this.payment, other.payment);
+            Utils.enhancedDeepEquals(this.self, other.self) &&
+            Utils.enhancedDeepEquals(this.payment, other.payment);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             self,
             payment);
     }

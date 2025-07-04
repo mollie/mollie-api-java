@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -104,13 +103,13 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
         }
         GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPending other = (GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPending) o;
         return 
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.subtotals, other.subtotals);
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.subtotals, other.subtotals);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             amount,
             subtotals);
     }

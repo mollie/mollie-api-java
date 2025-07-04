@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreateSalesInvoiceRecipient {
@@ -564,27 +563,27 @@ public class CreateSalesInvoiceRecipient {
         }
         CreateSalesInvoiceRecipient other = (CreateSalesInvoiceRecipient) o;
         return 
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.givenName, other.givenName) &&
-            Objects.deepEquals(this.familyName, other.familyName) &&
-            Objects.deepEquals(this.organizationName, other.organizationName) &&
-            Objects.deepEquals(this.organizationNumber, other.organizationNumber) &&
-            Objects.deepEquals(this.vatNumber, other.vatNumber) &&
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.phone, other.phone) &&
-            Objects.deepEquals(this.streetAndNumber, other.streetAndNumber) &&
-            Objects.deepEquals(this.streetAdditional, other.streetAdditional) &&
-            Objects.deepEquals(this.postalCode, other.postalCode) &&
-            Objects.deepEquals(this.city, other.city) &&
-            Objects.deepEquals(this.region, other.region) &&
-            Objects.deepEquals(this.country, other.country) &&
-            Objects.deepEquals(this.locale, other.locale);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.givenName, other.givenName) &&
+            Utils.enhancedDeepEquals(this.familyName, other.familyName) &&
+            Utils.enhancedDeepEquals(this.organizationName, other.organizationName) &&
+            Utils.enhancedDeepEquals(this.organizationNumber, other.organizationNumber) &&
+            Utils.enhancedDeepEquals(this.vatNumber, other.vatNumber) &&
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.phone, other.phone) &&
+            Utils.enhancedDeepEquals(this.streetAndNumber, other.streetAndNumber) &&
+            Utils.enhancedDeepEquals(this.streetAdditional, other.streetAdditional) &&
+            Utils.enhancedDeepEquals(this.postalCode, other.postalCode) &&
+            Utils.enhancedDeepEquals(this.city, other.city) &&
+            Utils.enhancedDeepEquals(this.region, other.region) &&
+            Utils.enhancedDeepEquals(this.country, other.country) &&
+            Utils.enhancedDeepEquals(this.locale, other.locale);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             type,
             title,
             givenName,

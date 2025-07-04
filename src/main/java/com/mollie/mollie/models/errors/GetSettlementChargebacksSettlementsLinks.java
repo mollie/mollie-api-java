@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class GetSettlementChargebacksSettlementsLinks {
 
@@ -58,12 +57,12 @@ public class GetSettlementChargebacksSettlementsLinks {
         }
         GetSettlementChargebacksSettlementsLinks other = (GetSettlementChargebacksSettlementsLinks) o;
         return 
-            Objects.deepEquals(this.documentation, other.documentation);
+            Utils.enhancedDeepEquals(this.documentation, other.documentation);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             documentation);
     }
     

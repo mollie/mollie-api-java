@@ -12,7 +12,6 @@ import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -501,21 +500,21 @@ public class ListMethodsRequest {
         }
         ListMethodsRequest other = (ListMethodsRequest) o;
         return 
-            Objects.deepEquals(this.sequenceType, other.sequenceType) &&
-            Objects.deepEquals(this.locale, other.locale) &&
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.resource, other.resource) &&
-            Objects.deepEquals(this.billingCountry, other.billingCountry) &&
-            Objects.deepEquals(this.includeWallets, other.includeWallets) &&
-            Objects.deepEquals(this.orderLineCategories, other.orderLineCategories) &&
-            Objects.deepEquals(this.profileId, other.profileId) &&
-            Objects.deepEquals(this.include, other.include) &&
-            Objects.deepEquals(this.testmode, other.testmode);
+            Utils.enhancedDeepEquals(this.sequenceType, other.sequenceType) &&
+            Utils.enhancedDeepEquals(this.locale, other.locale) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.billingCountry, other.billingCountry) &&
+            Utils.enhancedDeepEquals(this.includeWallets, other.includeWallets) &&
+            Utils.enhancedDeepEquals(this.orderLineCategories, other.orderLineCategories) &&
+            Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
+            Utils.enhancedDeepEquals(this.include, other.include) &&
+            Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             sequenceType,
             locale,
             amount,

@@ -14,7 +14,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -590,25 +589,25 @@ public class GetBalanceResponseBody {
         }
         GetBalanceResponseBody other = (GetBalanceResponseBody) o;
         return 
-            Objects.deepEquals(this.resource, other.resource) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.mode, other.mode) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.transferFrequency, other.transferFrequency) &&
-            Objects.deepEquals(this.transferThreshold, other.transferThreshold) &&
-            Objects.deepEquals(this.transferReference, other.transferReference) &&
-            Objects.deepEquals(this.transferDestination, other.transferDestination) &&
-            Objects.deepEquals(this.availableAmount, other.availableAmount) &&
-            Objects.deepEquals(this.pendingAmount, other.pendingAmount) &&
-            Objects.deepEquals(this.links, other.links);
+            Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.mode, other.mode) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.transferFrequency, other.transferFrequency) &&
+            Utils.enhancedDeepEquals(this.transferThreshold, other.transferThreshold) &&
+            Utils.enhancedDeepEquals(this.transferReference, other.transferReference) &&
+            Utils.enhancedDeepEquals(this.transferDestination, other.transferDestination) &&
+            Utils.enhancedDeepEquals(this.availableAmount, other.availableAmount) &&
+            Utils.enhancedDeepEquals(this.pendingAmount, other.pendingAmount) &&
+            Utils.enhancedDeepEquals(this.links, other.links);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             resource,
             id,
             mode,

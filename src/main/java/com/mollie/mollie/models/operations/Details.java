@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Details {
@@ -335,19 +334,19 @@ public class Details {
         }
         Details other = (Details) o;
         return 
-            Objects.deepEquals(this.consumerName, other.consumerName) &&
-            Objects.deepEquals(this.consumerAccount, other.consumerAccount) &&
-            Objects.deepEquals(this.consumerBic, other.consumerBic) &&
-            Objects.deepEquals(this.cardHolder, other.cardHolder) &&
-            Objects.deepEquals(this.cardNumber, other.cardNumber) &&
-            Objects.deepEquals(this.cardExpiryDate, other.cardExpiryDate) &&
-            Objects.deepEquals(this.cardLabel, other.cardLabel) &&
-            Objects.deepEquals(this.cardFingerprint, other.cardFingerprint);
+            Utils.enhancedDeepEquals(this.consumerName, other.consumerName) &&
+            Utils.enhancedDeepEquals(this.consumerAccount, other.consumerAccount) &&
+            Utils.enhancedDeepEquals(this.consumerBic, other.consumerBic) &&
+            Utils.enhancedDeepEquals(this.cardHolder, other.cardHolder) &&
+            Utils.enhancedDeepEquals(this.cardNumber, other.cardNumber) &&
+            Utils.enhancedDeepEquals(this.cardExpiryDate, other.cardExpiryDate) &&
+            Utils.enhancedDeepEquals(this.cardLabel, other.cardLabel) &&
+            Utils.enhancedDeepEquals(this.cardFingerprint, other.cardFingerprint);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             consumerName,
             consumerAccount,
             consumerBic,

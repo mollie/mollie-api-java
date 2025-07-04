@@ -10,7 +10,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * ListAllMethodsResponseBody
@@ -98,14 +97,14 @@ public class ListAllMethodsResponseBody {
         }
         ListAllMethodsResponseBody other = (ListAllMethodsResponseBody) o;
         return 
-            Objects.deepEquals(this.count, other.count) &&
-            Objects.deepEquals(this.embedded, other.embedded) &&
-            Objects.deepEquals(this.links, other.links);
+            Utils.enhancedDeepEquals(this.count, other.count) &&
+            Utils.enhancedDeepEquals(this.embedded, other.embedded) &&
+            Utils.enhancedDeepEquals(this.links, other.links);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             count,
             embedded,
             links);

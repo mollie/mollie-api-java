@@ -11,7 +11,6 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -173,15 +172,15 @@ public class GetCaptureRequest {
         }
         GetCaptureRequest other = (GetCaptureRequest) o;
         return 
-            Objects.deepEquals(this.paymentId, other.paymentId) &&
-            Objects.deepEquals(this.captureId, other.captureId) &&
-            Objects.deepEquals(this.embed, other.embed) &&
-            Objects.deepEquals(this.testmode, other.testmode);
+            Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
+            Utils.enhancedDeepEquals(this.captureId, other.captureId) &&
+            Utils.enhancedDeepEquals(this.embed, other.embed) &&
+            Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             paymentId,
             captureId,
             embed,

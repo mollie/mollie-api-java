@@ -9,7 +9,6 @@ import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class GetWebhookEventRequest {
 
@@ -58,12 +57,12 @@ public class GetWebhookEventRequest {
         }
         GetWebhookEventRequest other = (GetWebhookEventRequest) o;
         return 
-            Objects.deepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id);
     }
     

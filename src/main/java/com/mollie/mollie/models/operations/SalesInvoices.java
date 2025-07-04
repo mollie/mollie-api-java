@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -1044,37 +1043,37 @@ public class SalesInvoices {
         }
         SalesInvoices other = (SalesInvoices) o;
         return 
-            Objects.deepEquals(this.resource, other.resource) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.invoiceNumber, other.invoiceNumber) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.vatScheme, other.vatScheme) &&
-            Objects.deepEquals(this.vatMode, other.vatMode) &&
-            Objects.deepEquals(this.memo, other.memo) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.paymentTerm, other.paymentTerm) &&
-            Objects.deepEquals(this.paymentDetails, other.paymentDetails) &&
-            Objects.deepEquals(this.emailDetails, other.emailDetails) &&
-            Objects.deepEquals(this.customerId, other.customerId) &&
-            Objects.deepEquals(this.mandateId, other.mandateId) &&
-            Objects.deepEquals(this.recipientIdentifier, other.recipientIdentifier) &&
-            Objects.deepEquals(this.recipient, other.recipient) &&
-            Objects.deepEquals(this.lines, other.lines) &&
-            Objects.deepEquals(this.discount, other.discount) &&
-            Objects.deepEquals(this.amountDue, other.amountDue) &&
-            Objects.deepEquals(this.subtotalAmount, other.subtotalAmount) &&
-            Objects.deepEquals(this.totalAmount, other.totalAmount) &&
-            Objects.deepEquals(this.totalVatAmount, other.totalVatAmount) &&
-            Objects.deepEquals(this.discountedSubtotalAmount, other.discountedSubtotalAmount) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.issuedAt, other.issuedAt) &&
-            Objects.deepEquals(this.dueAt, other.dueAt) &&
-            Objects.deepEquals(this.links, other.links);
+            Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.invoiceNumber, other.invoiceNumber) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.vatScheme, other.vatScheme) &&
+            Utils.enhancedDeepEquals(this.vatMode, other.vatMode) &&
+            Utils.enhancedDeepEquals(this.memo, other.memo) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.paymentTerm, other.paymentTerm) &&
+            Utils.enhancedDeepEquals(this.paymentDetails, other.paymentDetails) &&
+            Utils.enhancedDeepEquals(this.emailDetails, other.emailDetails) &&
+            Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
+            Utils.enhancedDeepEquals(this.mandateId, other.mandateId) &&
+            Utils.enhancedDeepEquals(this.recipientIdentifier, other.recipientIdentifier) &&
+            Utils.enhancedDeepEquals(this.recipient, other.recipient) &&
+            Utils.enhancedDeepEquals(this.lines, other.lines) &&
+            Utils.enhancedDeepEquals(this.discount, other.discount) &&
+            Utils.enhancedDeepEquals(this.amountDue, other.amountDue) &&
+            Utils.enhancedDeepEquals(this.subtotalAmount, other.subtotalAmount) &&
+            Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
+            Utils.enhancedDeepEquals(this.totalVatAmount, other.totalVatAmount) &&
+            Utils.enhancedDeepEquals(this.discountedSubtotalAmount, other.discountedSubtotalAmount) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.issuedAt, other.issuedAt) &&
+            Utils.enhancedDeepEquals(this.dueAt, other.dueAt) &&
+            Utils.enhancedDeepEquals(this.links, other.links);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             resource,
             id,
             invoiceNumber,

@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -377,19 +376,19 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
         }
         GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsTopupsPendingSubTotals other = (GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsTopupsPendingSubTotals) o;
         return 
-            Objects.deepEquals(this.count, other.count) &&
-            Objects.deepEquals(this.method, other.method) &&
-            Objects.deepEquals(this.cardIssuer, other.cardIssuer) &&
-            Objects.deepEquals(this.cardAudience, other.cardAudience) &&
-            Objects.deepEquals(this.cardRegion, other.cardRegion) &&
-            Objects.deepEquals(this.feeType, other.feeType) &&
-            Objects.deepEquals(this.prepaymentPartType, other.prepaymentPartType) &&
-            Objects.deepEquals(this.transactionType, other.transactionType);
+            Utils.enhancedDeepEquals(this.count, other.count) &&
+            Utils.enhancedDeepEquals(this.method, other.method) &&
+            Utils.enhancedDeepEquals(this.cardIssuer, other.cardIssuer) &&
+            Utils.enhancedDeepEquals(this.cardAudience, other.cardAudience) &&
+            Utils.enhancedDeepEquals(this.cardRegion, other.cardRegion) &&
+            Utils.enhancedDeepEquals(this.feeType, other.feeType) &&
+            Utils.enhancedDeepEquals(this.prepaymentPartType, other.prepaymentPartType) &&
+            Utils.enhancedDeepEquals(this.transactionType, other.transactionType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             count,
             method,
             cardIssuer,

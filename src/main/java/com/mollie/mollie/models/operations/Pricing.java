@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Pricing {
@@ -156,15 +155,15 @@ public class Pricing {
         }
         Pricing other = (Pricing) o;
         return 
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.fixed, other.fixed) &&
-            Objects.deepEquals(this.variable, other.variable) &&
-            Objects.deepEquals(this.feeRegion, other.feeRegion);
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.fixed, other.fixed) &&
+            Utils.enhancedDeepEquals(this.variable, other.variable) &&
+            Utils.enhancedDeepEquals(this.feeRegion, other.feeRegion);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             description,
             fixed,
             variable,

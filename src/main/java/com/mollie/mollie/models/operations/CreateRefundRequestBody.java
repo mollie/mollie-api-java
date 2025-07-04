@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -341,18 +340,18 @@ public class CreateRefundRequestBody {
         }
         CreateRefundRequestBody other = (CreateRefundRequestBody) o;
         return 
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.externalReference, other.externalReference) &&
-            Objects.deepEquals(this.reverseRouting, other.reverseRouting) &&
-            Objects.deepEquals(this.routingReversals, other.routingReversals) &&
-            Objects.deepEquals(this.testmode, other.testmode);
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.externalReference, other.externalReference) &&
+            Utils.enhancedDeepEquals(this.reverseRouting, other.reverseRouting) &&
+            Utils.enhancedDeepEquals(this.routingReversals, other.routingReversals) &&
+            Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             description,
             amount,
             metadata,

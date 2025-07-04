@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -95,13 +94,13 @@ public class Close {
         }
         Close other = (Close) o;
         return 
-            Objects.deepEquals(this.pending, other.pending) &&
-            Objects.deepEquals(this.available, other.available);
+            Utils.enhancedDeepEquals(this.pending, other.pending) &&
+            Utils.enhancedDeepEquals(this.available, other.available);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             pending,
             available);
     }
