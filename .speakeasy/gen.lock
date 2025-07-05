@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 7deac550b5d43d74aea3c03c57151c87
+  docChecksum: 228bca44011f6eb8e1599d7affc3bbc1
   docVersion: 1.0.0
-  speakeasyVersion: 1.575.4
+  speakeasyVersion: 1.575.5
   generationVersion: 2.648.7
-  releaseVersion: 0.10.0
-  configChecksum: 7066da1d0b024fae815b67b727941484
+  releaseVersion: 0.10.1
+  configChecksum: 99b6a0aac414be1bd9774374a83baa72
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 features:
@@ -6628,7 +6628,7 @@ examples:
           testmode: false
       responses:
         "200":
-          application/hal+json: {"count": 3, "_embedded": {"terminals": [{"resource": "terminal", "id": "term_7MgL4wea46qkRcoTZjWEH", "mode": "live", "description": "Terminal #12345", "status": "active", "brand": "PAX", "model": "A920", "serialNumber": "1234567890", "currency": "EUR", "profileId": "pfl_QkEhN94Ba", "createdAt": "2022-02-12T11:58:35.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}}}, {"resource": "terminal"}, {"resource": "terminal"}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": null, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"count": 1, "_embedded": {"terminals": [{"resource": "terminal", "id": "term_7MgL4wea46qkRcoTZjWEH", "mode": "live", "description": "Terminal #12345", "status": "active", "brand": "PAX", "model": "A920", "serialNumber": "1234567890", "currency": "EUR", "profileId": "pfl_QkEhN94Ba", "createdAt": "2022-02-12T11:58:35.0Z", "updatedAt": "2022-02-12T11:58:35.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": null, "documentation": {"href": "https://...", "type": "text/html"}}}
     list-terminals-200-2:
       parameters:
         query:
@@ -6638,7 +6638,7 @@ examples:
           testmode: false
       responses:
         "200":
-          application/hal+json: {"count": 21, "_embedded": {"terminals": [{"resource": "terminal", "id": "term_5YQ8WDcA4UWB5bo7AfDZH", "description": "Counter in store Amsterdam", "status": "active", "brand": "PAX", "model": "A920", "serialNumber": "1851664277", "currency": "EUR", "profileId": "pfl_zcfJRjkf6P", "createdAt": "2023-06-01T08:22:07+00:00", "updatedAt": "2023-06-01T08:36:25+00:00"}, {"resource": "terminal", "id": "term_fmA5H4CAMsAMZz8bPgzMH", "description": "Terminal #12346", "status": "active", "brand": "PAX", "model": "A920", "serialNumber": "1850009788", "currency": "EUR", "profileId": "pfl_zcfJRjkf6P", "createdAt": "2022-09-27T13:30:36+00:00", "updatedAt": "2022-09-27T13:37:27+00:00"}, {"resource": "terminal", "id": "term_2rfs4P5CfsEPaene6RgMH", "description": "Mollie1", "status": "active", "brand": "PAX", "model": "A920", "serialNumber": "1850009794", "currency": "EUR", "profileId": "pfl_zcfJRjkf6P", "createdAt": "2022-09-20T12:10:33+00:00", "updatedAt": "2022-11-14T10:49:06+00:00"}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": null, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"count": 3, "_embedded": {"terminals": [{"resource": "terminal", "id": "term_5YQ8WDcA4UWB5bo7AfDZH", "mode": "live", "description": "Counter in store Amsterdam", "status": "active", "brand": "PAX", "model": "A920", "serialNumber": "1851664277", "currency": "EUR", "profileId": "pfl_zcfJRjkf6P", "createdAt": "2023-06-01T08:22:07+00:00", "updatedAt": "2023-06-01T08:36:25+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}, {"resource": "terminal", "id": "term_fmA5H4CAMsAMZz8bPgzMH", "mode": "live", "description": "Terminal #12346", "status": "active", "brand": "PAX", "model": "A920", "serialNumber": "1850009788", "currency": "EUR", "profileId": "pfl_zcfJRjkf6P", "createdAt": "2022-09-27T13:30:36+00:00", "updatedAt": "2022-09-27T13:37:27+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}, {"resource": "terminal", "id": "term_2rfs4P5CfsEPaene6RgMH", "mode": "live", "description": "Mollie1", "status": "active", "brand": "PAX", "model": "A920", "serialNumber": "1850009794", "currency": "EUR", "profileId": "pfl_zcfJRjkf6P", "createdAt": "2022-09-20T12:10:33+00:00", "updatedAt": "2022-11-14T10:49:06+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": null, "documentation": {"href": "https://...", "type": "text/html"}}}
     "":
       parameters:
         query:
@@ -6670,7 +6670,7 @@ examples:
           testmode: false
       responses:
         "200":
-          application/hal+json: {"resource": "terminal", "id": "term_7MgL4wea46qkRcoTZjWEH", "mode": "live", "description": "Terminal #12345", "status": "active", "brand": "PAX", "model": "A920", "serialNumber": "1234567890", "currency": "EUR", "profileId": "pfl_QkEhN94Ba", "createdAt": "2022-02-12T11:58:35.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"resource": "terminal", "id": "term_7MgL4wea46qkRcoTZjWEH", "mode": "live", "description": "Terminal #12345", "status": "active", "brand": "PAX", "model": "A920", "serialNumber": "1234567890", "currency": "EUR", "profileId": "pfl_QkEhN94Ba", "createdAt": "2022-02-12T11:58:35.0Z", "updatedAt": "2022-02-12T11:58:35.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
     "":
       parameters:
         path:

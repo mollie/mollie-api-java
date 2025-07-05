@@ -13,9 +13,7 @@ import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Terminals {
 
@@ -29,112 +27,103 @@ public class Terminals {
     /**
      * The identifier uniquely referring to this terminal. Example: `term_7MgL4wea46qkRcoTZjWEH`.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * Whether this entity was created in live mode or in test mode.
      * 
      * <p>Possible values: `live` `test`
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<String> mode;
+    private String mode;
 
     /**
      * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it may be visible on the device itself depending on the device.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private Optional<String> description;
+    private String description;
 
     /**
      * The status of the terminal.
      * 
      * <p>Possible values: `pending` `active` `inactive`
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<String> status;
+    private String status;
 
     /**
      * The brand of the terminal.
      * 
      * <p>Possible values: `PAX`
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("brand")
-    private JsonNullable<String> brand;
+    private Optional<String> brand;
 
     /**
      * The model of the terminal. For example for a PAX A920, this field's value will be `A920`.
      * 
      * <p>Possible values: `A35` `A77` `A920` `A920 Pro` `IM30`
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("model")
-    private JsonNullable<String> model;
+    private Optional<String> model;
 
     /**
      * The serial number of the terminal. The serial number is provided at terminal creation time.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("serialNumber")
-    private JsonNullable<String> serialNumber;
+    private Optional<String> serialNumber;
 
     /**
      * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a specific currency, chosen during setup.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
-    private Optional<String> currency;
+    private String currency;
 
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
      * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("profileId")
-    private Optional<String> profileId;
+    private String profileId;
 
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
-    private Optional<String> createdAt;
+    private String createdAt;
 
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("updatedAt")
-    private Optional<String> updatedAt;
+    private String updatedAt;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends ListTerminalsTerminalsLinks> links;
+    private ListTerminalsTerminalsLinks links;
 
     @JsonCreator
     public Terminals(
             @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("mode") Optional<String> mode,
-            @JsonProperty("description") Optional<String> description,
-            @JsonProperty("status") Optional<String> status,
-            @JsonProperty("brand") JsonNullable<String> brand,
-            @JsonProperty("model") JsonNullable<String> model,
-            @JsonProperty("serialNumber") JsonNullable<String> serialNumber,
-            @JsonProperty("currency") Optional<String> currency,
-            @JsonProperty("profileId") Optional<String> profileId,
-            @JsonProperty("createdAt") Optional<String> createdAt,
-            @JsonProperty("updatedAt") Optional<String> updatedAt,
-            @JsonProperty("_links") Optional<? extends ListTerminalsTerminalsLinks> links) {
+            @JsonProperty("id") String id,
+            @JsonProperty("mode") String mode,
+            @JsonProperty("description") String description,
+            @JsonProperty("status") String status,
+            @JsonProperty("brand") Optional<String> brand,
+            @JsonProperty("model") Optional<String> model,
+            @JsonProperty("serialNumber") Optional<String> serialNumber,
+            @JsonProperty("currency") String currency,
+            @JsonProperty("profileId") String profileId,
+            @JsonProperty("createdAt") String createdAt,
+            @JsonProperty("updatedAt") String updatedAt,
+            @JsonProperty("_links") ListTerminalsTerminalsLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(mode, "mode");
@@ -163,8 +152,17 @@ public class Terminals {
         this.links = links;
     }
     
-    public Terminals() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    public Terminals(
+            String id,
+            String mode,
+            String description,
+            String status,
+            String currency,
+            String profileId,
+            String createdAt,
+            String updatedAt,
+            ListTerminalsTerminalsLinks links) {
+        this(Optional.empty(), id, mode, description, status, Optional.empty(), Optional.empty(), Optional.empty(), currency, profileId, createdAt, updatedAt, links);
     }
 
     /**
@@ -179,7 +177,7 @@ public class Terminals {
      * The identifier uniquely referring to this terminal. Example: `term_7MgL4wea46qkRcoTZjWEH`.
      */
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
@@ -189,7 +187,7 @@ public class Terminals {
      * <p>Possible values: `live` `test`
      */
     @JsonIgnore
-    public Optional<String> mode() {
+    public String mode() {
         return mode;
     }
 
@@ -197,7 +195,7 @@ public class Terminals {
      * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it may be visible on the device itself depending on the device.
      */
     @JsonIgnore
-    public Optional<String> description() {
+    public String description() {
         return description;
     }
 
@@ -207,7 +205,7 @@ public class Terminals {
      * <p>Possible values: `pending` `active` `inactive`
      */
     @JsonIgnore
-    public Optional<String> status() {
+    public String status() {
         return status;
     }
 
@@ -217,7 +215,7 @@ public class Terminals {
      * <p>Possible values: `PAX`
      */
     @JsonIgnore
-    public JsonNullable<String> brand() {
+    public Optional<String> brand() {
         return brand;
     }
 
@@ -227,7 +225,7 @@ public class Terminals {
      * <p>Possible values: `A35` `A77` `A920` `A920 Pro` `IM30`
      */
     @JsonIgnore
-    public JsonNullable<String> model() {
+    public Optional<String> model() {
         return model;
     }
 
@@ -235,7 +233,7 @@ public class Terminals {
      * The serial number of the terminal. The serial number is provided at terminal creation time.
      */
     @JsonIgnore
-    public JsonNullable<String> serialNumber() {
+    public Optional<String> serialNumber() {
         return serialNumber;
     }
 
@@ -243,7 +241,7 @@ public class Terminals {
      * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a specific currency, chosen during setup.
      */
     @JsonIgnore
-    public Optional<String> currency() {
+    public String currency() {
         return currency;
     }
 
@@ -253,7 +251,7 @@ public class Terminals {
      * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     @JsonIgnore
-    public Optional<String> profileId() {
+    public String profileId() {
         return profileId;
     }
 
@@ -261,7 +259,7 @@ public class Terminals {
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
     @JsonIgnore
-    public Optional<String> createdAt() {
+    public String createdAt() {
         return createdAt;
     }
 
@@ -269,17 +267,16 @@ public class Terminals {
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
     @JsonIgnore
-    public Optional<String> updatedAt() {
+    public String updatedAt() {
         return updatedAt;
     }
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListTerminalsTerminalsLinks> links() {
-        return (Optional<ListTerminalsTerminalsLinks>) links;
+    public ListTerminalsTerminalsLinks links() {
+        return links;
     }
 
     public final static Builder builder() {
@@ -309,15 +306,6 @@ public class Terminals {
      */
     public Terminals withId(String id) {
         Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-    /**
-     * The identifier uniquely referring to this terminal. Example: `term_7MgL4wea46qkRcoTZjWEH`.
-     */
-    public Terminals withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
@@ -329,17 +317,6 @@ public class Terminals {
      */
     public Terminals withMode(String mode) {
         Utils.checkNotNull(mode, "mode");
-        this.mode = Optional.ofNullable(mode);
-        return this;
-    }
-
-    /**
-     * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
-     */
-    public Terminals withMode(Optional<String> mode) {
-        Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
     }
@@ -348,15 +325,6 @@ public class Terminals {
      * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it may be visible on the device itself depending on the device.
      */
     public Terminals withDescription(String description) {
-        Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
-        return this;
-    }
-
-    /**
-     * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it may be visible on the device itself depending on the device.
-     */
-    public Terminals withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
@@ -369,17 +337,6 @@ public class Terminals {
      */
     public Terminals withStatus(String status) {
         Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-    /**
-     * The status of the terminal.
-     * 
-     * <p>Possible values: `pending` `active` `inactive`
-     */
-    public Terminals withStatus(Optional<String> status) {
-        Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
@@ -391,7 +348,7 @@ public class Terminals {
      */
     public Terminals withBrand(String brand) {
         Utils.checkNotNull(brand, "brand");
-        this.brand = JsonNullable.of(brand);
+        this.brand = Optional.ofNullable(brand);
         return this;
     }
 
@@ -400,7 +357,7 @@ public class Terminals {
      * 
      * <p>Possible values: `PAX`
      */
-    public Terminals withBrand(JsonNullable<String> brand) {
+    public Terminals withBrand(Optional<String> brand) {
         Utils.checkNotNull(brand, "brand");
         this.brand = brand;
         return this;
@@ -413,7 +370,7 @@ public class Terminals {
      */
     public Terminals withModel(String model) {
         Utils.checkNotNull(model, "model");
-        this.model = JsonNullable.of(model);
+        this.model = Optional.ofNullable(model);
         return this;
     }
 
@@ -422,7 +379,7 @@ public class Terminals {
      * 
      * <p>Possible values: `A35` `A77` `A920` `A920 Pro` `IM30`
      */
-    public Terminals withModel(JsonNullable<String> model) {
+    public Terminals withModel(Optional<String> model) {
         Utils.checkNotNull(model, "model");
         this.model = model;
         return this;
@@ -433,14 +390,14 @@ public class Terminals {
      */
     public Terminals withSerialNumber(String serialNumber) {
         Utils.checkNotNull(serialNumber, "serialNumber");
-        this.serialNumber = JsonNullable.of(serialNumber);
+        this.serialNumber = Optional.ofNullable(serialNumber);
         return this;
     }
 
     /**
      * The serial number of the terminal. The serial number is provided at terminal creation time.
      */
-    public Terminals withSerialNumber(JsonNullable<String> serialNumber) {
+    public Terminals withSerialNumber(Optional<String> serialNumber) {
         Utils.checkNotNull(serialNumber, "serialNumber");
         this.serialNumber = serialNumber;
         return this;
@@ -450,15 +407,6 @@ public class Terminals {
      * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a specific currency, chosen during setup.
      */
     public Terminals withCurrency(String currency) {
-        Utils.checkNotNull(currency, "currency");
-        this.currency = Optional.ofNullable(currency);
-        return this;
-    }
-
-    /**
-     * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a specific currency, chosen during setup.
-     */
-    public Terminals withCurrency(Optional<String> currency) {
         Utils.checkNotNull(currency, "currency");
         this.currency = currency;
         return this;
@@ -471,17 +419,6 @@ public class Terminals {
      */
     public Terminals withProfileId(String profileId) {
         Utils.checkNotNull(profileId, "profileId");
-        this.profileId = Optional.ofNullable(profileId);
-        return this;
-    }
-
-    /**
-     * The identifier referring to the [profile](get-profile) this entity belongs to.
-     * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
-     */
-    public Terminals withProfileId(Optional<String> profileId) {
-        Utils.checkNotNull(profileId, "profileId");
         this.profileId = profileId;
         return this;
     }
@@ -490,15 +427,6 @@ public class Terminals {
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
     public Terminals withCreatedAt(String createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = Optional.ofNullable(createdAt);
-        return this;
-    }
-
-    /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-     */
-    public Terminals withCreatedAt(Optional<String> createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
@@ -509,15 +437,6 @@ public class Terminals {
      */
     public Terminals withUpdatedAt(String updatedAt) {
         Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = Optional.ofNullable(updatedAt);
-        return this;
-    }
-
-    /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-     */
-    public Terminals withUpdatedAt(Optional<String> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
         this.updatedAt = updatedAt;
         return this;
     }
@@ -526,15 +445,6 @@ public class Terminals {
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
     public Terminals withLinks(ListTerminalsTerminalsLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public Terminals withLinks(Optional<? extends ListTerminalsTerminalsLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -606,29 +516,29 @@ public class Terminals {
  
         private Optional<String> resource;
  
-        private Optional<String> id = Optional.empty();
+        private String id;
  
-        private Optional<String> mode = Optional.empty();
+        private String mode;
  
-        private Optional<String> description = Optional.empty();
+        private String description;
  
-        private Optional<String> status = Optional.empty();
+        private String status;
  
-        private JsonNullable<String> brand = JsonNullable.undefined();
+        private Optional<String> brand = Optional.empty();
  
-        private JsonNullable<String> model = JsonNullable.undefined();
+        private Optional<String> model = Optional.empty();
  
-        private JsonNullable<String> serialNumber = JsonNullable.undefined();
+        private Optional<String> serialNumber = Optional.empty();
  
-        private Optional<String> currency = Optional.empty();
+        private String currency;
  
-        private Optional<String> profileId = Optional.empty();
+        private String profileId;
  
-        private Optional<String> createdAt = Optional.empty();
+        private String createdAt;
  
-        private Optional<String> updatedAt = Optional.empty();
+        private String updatedAt;
  
-        private Optional<? extends ListTerminalsTerminalsLinks> links = Optional.empty();
+        private ListTerminalsTerminalsLinks links;
         
         private Builder() {
           // force use of static builder() method
@@ -657,15 +567,6 @@ public class Terminals {
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The identifier uniquely referring to this terminal. Example: `term_7MgL4wea46qkRcoTZjWEH`.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
@@ -677,17 +578,6 @@ public class Terminals {
          */
         public Builder mode(String mode) {
             Utils.checkNotNull(mode, "mode");
-            this.mode = Optional.ofNullable(mode);
-            return this;
-        }
-
-        /**
-         * Whether this entity was created in live mode or in test mode.
-         * 
-         * <p>Possible values: `live` `test`
-         */
-        public Builder mode(Optional<String> mode) {
-            Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
         }
@@ -696,15 +586,6 @@ public class Terminals {
          * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it may be visible on the device itself depending on the device.
          */
         public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
-            return this;
-        }
-
-        /**
-         * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it may be visible on the device itself depending on the device.
-         */
-        public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
@@ -717,17 +598,6 @@ public class Terminals {
          */
         public Builder status(String status) {
             Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * The status of the terminal.
-         * 
-         * <p>Possible values: `pending` `active` `inactive`
-         */
-        public Builder status(Optional<String> status) {
-            Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
@@ -739,7 +609,7 @@ public class Terminals {
          */
         public Builder brand(String brand) {
             Utils.checkNotNull(brand, "brand");
-            this.brand = JsonNullable.of(brand);
+            this.brand = Optional.ofNullable(brand);
             return this;
         }
 
@@ -748,7 +618,7 @@ public class Terminals {
          * 
          * <p>Possible values: `PAX`
          */
-        public Builder brand(JsonNullable<String> brand) {
+        public Builder brand(Optional<String> brand) {
             Utils.checkNotNull(brand, "brand");
             this.brand = brand;
             return this;
@@ -761,7 +631,7 @@ public class Terminals {
          */
         public Builder model(String model) {
             Utils.checkNotNull(model, "model");
-            this.model = JsonNullable.of(model);
+            this.model = Optional.ofNullable(model);
             return this;
         }
 
@@ -770,7 +640,7 @@ public class Terminals {
          * 
          * <p>Possible values: `A35` `A77` `A920` `A920 Pro` `IM30`
          */
-        public Builder model(JsonNullable<String> model) {
+        public Builder model(Optional<String> model) {
             Utils.checkNotNull(model, "model");
             this.model = model;
             return this;
@@ -781,14 +651,14 @@ public class Terminals {
          */
         public Builder serialNumber(String serialNumber) {
             Utils.checkNotNull(serialNumber, "serialNumber");
-            this.serialNumber = JsonNullable.of(serialNumber);
+            this.serialNumber = Optional.ofNullable(serialNumber);
             return this;
         }
 
         /**
          * The serial number of the terminal. The serial number is provided at terminal creation time.
          */
-        public Builder serialNumber(JsonNullable<String> serialNumber) {
+        public Builder serialNumber(Optional<String> serialNumber) {
             Utils.checkNotNull(serialNumber, "serialNumber");
             this.serialNumber = serialNumber;
             return this;
@@ -798,15 +668,6 @@ public class Terminals {
          * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a specific currency, chosen during setup.
          */
         public Builder currency(String currency) {
-            Utils.checkNotNull(currency, "currency");
-            this.currency = Optional.ofNullable(currency);
-            return this;
-        }
-
-        /**
-         * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a specific currency, chosen during setup.
-         */
-        public Builder currency(Optional<String> currency) {
             Utils.checkNotNull(currency, "currency");
             this.currency = currency;
             return this;
@@ -819,17 +680,6 @@ public class Terminals {
          */
         public Builder profileId(String profileId) {
             Utils.checkNotNull(profileId, "profileId");
-            this.profileId = Optional.ofNullable(profileId);
-            return this;
-        }
-
-        /**
-         * The identifier referring to the [profile](get-profile) this entity belongs to.
-         * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
-         */
-        public Builder profileId(Optional<String> profileId) {
-            Utils.checkNotNull(profileId, "profileId");
             this.profileId = profileId;
             return this;
         }
@@ -838,15 +688,6 @@ public class Terminals {
          * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
          */
         public Builder createdAt(String createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = Optional.ofNullable(createdAt);
-            return this;
-        }
-
-        /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-         */
-        public Builder createdAt(Optional<String> createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
@@ -857,15 +698,6 @@ public class Terminals {
          */
         public Builder updatedAt(String updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = Optional.ofNullable(updatedAt);
-            return this;
-        }
-
-        /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-         */
-        public Builder updatedAt(Optional<String> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = updatedAt;
             return this;
         }
@@ -874,15 +706,6 @@ public class Terminals {
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
         public Builder links(ListTerminalsTerminalsLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends ListTerminalsTerminalsLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

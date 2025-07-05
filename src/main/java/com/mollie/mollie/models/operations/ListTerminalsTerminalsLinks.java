@@ -5,14 +5,10 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Optional;
 
 /**
  * ListTerminalsTerminalsLinks
@@ -24,47 +20,39 @@ public class ListTerminalsTerminalsLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends ListTerminalsTerminalsSelf> self;
+    private ListTerminalsTerminalsSelf self;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends ListTerminalsTerminalsDocumentation> documentation;
+    private ListTerminalsTerminalsDocumentation documentation;
 
     @JsonCreator
     public ListTerminalsTerminalsLinks(
-            @JsonProperty("self") Optional<? extends ListTerminalsTerminalsSelf> self,
-            @JsonProperty("documentation") Optional<? extends ListTerminalsTerminalsDocumentation> documentation) {
+            @JsonProperty("self") ListTerminalsTerminalsSelf self,
+            @JsonProperty("documentation") ListTerminalsTerminalsDocumentation documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(documentation, "documentation");
         this.self = self;
         this.documentation = documentation;
     }
-    
-    public ListTerminalsTerminalsLinks() {
-        this(Optional.empty(), Optional.empty());
+
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    @JsonIgnore
+    public ListTerminalsTerminalsSelf self() {
+        return self;
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListTerminalsTerminalsSelf> self() {
-        return (Optional<ListTerminalsTerminalsSelf>) self;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<ListTerminalsTerminalsDocumentation> documentation() {
-        return (Optional<ListTerminalsTerminalsDocumentation>) documentation;
+    public ListTerminalsTerminalsDocumentation documentation() {
+        return documentation;
     }
 
     public final static Builder builder() {
@@ -76,15 +64,6 @@ public class ListTerminalsTerminalsLinks {
      */
     public ListTerminalsTerminalsLinks withSelf(ListTerminalsTerminalsSelf self) {
         Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListTerminalsTerminalsLinks withSelf(Optional<? extends ListTerminalsTerminalsSelf> self) {
-        Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
@@ -93,15 +72,6 @@ public class ListTerminalsTerminalsLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public ListTerminalsTerminalsLinks withDocumentation(ListTerminalsTerminalsDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListTerminalsTerminalsLinks withDocumentation(Optional<? extends ListTerminalsTerminalsDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -138,9 +108,9 @@ public class ListTerminalsTerminalsLinks {
     
     public final static class Builder {
  
-        private Optional<? extends ListTerminalsTerminalsSelf> self = Optional.empty();
+        private ListTerminalsTerminalsSelf self;
  
-        private Optional<? extends ListTerminalsTerminalsDocumentation> documentation = Optional.empty();
+        private ListTerminalsTerminalsDocumentation documentation;
         
         private Builder() {
           // force use of static builder() method
@@ -151,15 +121,6 @@ public class ListTerminalsTerminalsLinks {
          */
         public Builder self(ListTerminalsTerminalsSelf self) {
             Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder self(Optional<? extends ListTerminalsTerminalsSelf> self) {
-            Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
         }
@@ -168,15 +129,6 @@ public class ListTerminalsTerminalsLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(ListTerminalsTerminalsDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends ListTerminalsTerminalsDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

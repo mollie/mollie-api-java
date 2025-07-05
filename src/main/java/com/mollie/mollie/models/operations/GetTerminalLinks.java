@@ -5,14 +5,10 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Optional;
 
 /**
  * GetTerminalLinks
@@ -24,47 +20,39 @@ public class GetTerminalLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends GetTerminalSelf> self;
+    private GetTerminalSelf self;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends GetTerminalDocumentation> documentation;
+    private GetTerminalDocumentation documentation;
 
     @JsonCreator
     public GetTerminalLinks(
-            @JsonProperty("self") Optional<? extends GetTerminalSelf> self,
-            @JsonProperty("documentation") Optional<? extends GetTerminalDocumentation> documentation) {
+            @JsonProperty("self") GetTerminalSelf self,
+            @JsonProperty("documentation") GetTerminalDocumentation documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(documentation, "documentation");
         this.self = self;
         this.documentation = documentation;
     }
-    
-    public GetTerminalLinks() {
-        this(Optional.empty(), Optional.empty());
+
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    @JsonIgnore
+    public GetTerminalSelf self() {
+        return self;
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetTerminalSelf> self() {
-        return (Optional<GetTerminalSelf>) self;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<GetTerminalDocumentation> documentation() {
-        return (Optional<GetTerminalDocumentation>) documentation;
+    public GetTerminalDocumentation documentation() {
+        return documentation;
     }
 
     public final static Builder builder() {
@@ -76,15 +64,6 @@ public class GetTerminalLinks {
      */
     public GetTerminalLinks withSelf(GetTerminalSelf self) {
         Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public GetTerminalLinks withSelf(Optional<? extends GetTerminalSelf> self) {
-        Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
@@ -93,15 +72,6 @@ public class GetTerminalLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public GetTerminalLinks withDocumentation(GetTerminalDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public GetTerminalLinks withDocumentation(Optional<? extends GetTerminalDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -138,9 +108,9 @@ public class GetTerminalLinks {
     
     public final static class Builder {
  
-        private Optional<? extends GetTerminalSelf> self = Optional.empty();
+        private GetTerminalSelf self;
  
-        private Optional<? extends GetTerminalDocumentation> documentation = Optional.empty();
+        private GetTerminalDocumentation documentation;
         
         private Builder() {
           // force use of static builder() method
@@ -151,15 +121,6 @@ public class GetTerminalLinks {
          */
         public Builder self(GetTerminalSelf self) {
             Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder self(Optional<? extends GetTerminalSelf> self) {
-            Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
         }
@@ -168,15 +129,6 @@ public class GetTerminalLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(GetTerminalDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends GetTerminalDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;
