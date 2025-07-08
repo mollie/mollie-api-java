@@ -75,7 +75,7 @@ public class GetWebhookEventEntityLinks {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends GetWebhookEventEntityDocumentation> documentation;
+    private Optional<? extends EntityDocumentation> documentation;
 
     @JsonCreator
     public GetWebhookEventEntityLinks(
@@ -86,7 +86,7 @@ public class GetWebhookEventEntityLinks {
             @JsonProperty("payments") Optional<? extends EntityPayments> payments,
             @JsonProperty("refunds") Optional<? extends EntityRefunds> refunds,
             @JsonProperty("checkoutPreviewUrl") Optional<? extends EntityCheckoutPreviewUrl> checkoutPreviewUrl,
-            @JsonProperty("documentation") Optional<? extends GetWebhookEventEntityDocumentation> documentation) {
+            @JsonProperty("documentation") Optional<? extends EntityDocumentation> documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(dashboard, "dashboard");
         Utils.checkNotNull(chargebacks, "chargebacks");
@@ -177,8 +177,8 @@ public class GetWebhookEventEntityLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetWebhookEventEntityDocumentation> documentation() {
-        return (Optional<GetWebhookEventEntityDocumentation>) documentation;
+    public Optional<EntityDocumentation> documentation() {
+        return (Optional<EntityDocumentation>) documentation;
     }
 
     public final static Builder builder() {
@@ -314,7 +314,7 @@ public class GetWebhookEventEntityLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public GetWebhookEventEntityLinks withDocumentation(GetWebhookEventEntityDocumentation documentation) {
+    public GetWebhookEventEntityLinks withDocumentation(EntityDocumentation documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = Optional.ofNullable(documentation);
         return this;
@@ -323,7 +323,7 @@ public class GetWebhookEventEntityLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public GetWebhookEventEntityLinks withDocumentation(Optional<? extends GetWebhookEventEntityDocumentation> documentation) {
+    public GetWebhookEventEntityLinks withDocumentation(Optional<? extends EntityDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -392,7 +392,7 @@ public class GetWebhookEventEntityLinks {
  
         private Optional<? extends EntityCheckoutPreviewUrl> checkoutPreviewUrl = Optional.empty();
  
-        private Optional<? extends GetWebhookEventEntityDocumentation> documentation = Optional.empty();
+        private Optional<? extends EntityDocumentation> documentation = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -527,7 +527,7 @@ public class GetWebhookEventEntityLinks {
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder documentation(GetWebhookEventEntityDocumentation documentation) {
+        public Builder documentation(EntityDocumentation documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = Optional.ofNullable(documentation);
             return this;
@@ -536,7 +536,7 @@ public class GetWebhookEventEntityLinks {
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder documentation(Optional<? extends GetWebhookEventEntityDocumentation> documentation) {
+        public Builder documentation(Optional<? extends EntityDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

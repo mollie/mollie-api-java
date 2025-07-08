@@ -5,14 +5,10 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Optional;
 
 /**
  * UpdatePaymentLinkApplicationFee
@@ -28,29 +24,23 @@ public class UpdatePaymentLinkApplicationFee {
      * 
      * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge a €0.99 fee on a €1.00 payment.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private Optional<? extends UpdatePaymentLinkPaymentLinksAmount> amount;
+    private UpdatePaymentLinkPaymentLinksAmount amount;
 
     /**
      * The description of the application fee. This will appear on settlement reports towards both you and the connected merchant.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private Optional<String> description;
+    private String description;
 
     @JsonCreator
     public UpdatePaymentLinkApplicationFee(
-            @JsonProperty("amount") Optional<? extends UpdatePaymentLinkPaymentLinksAmount> amount,
-            @JsonProperty("description") Optional<String> description) {
+            @JsonProperty("amount") UpdatePaymentLinkPaymentLinksAmount amount,
+            @JsonProperty("description") String description) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(description, "description");
         this.amount = amount;
         this.description = description;
-    }
-    
-    public UpdatePaymentLinkApplicationFee() {
-        this(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -58,17 +48,16 @@ public class UpdatePaymentLinkApplicationFee {
      * 
      * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge a €0.99 fee on a €1.00 payment.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<UpdatePaymentLinkPaymentLinksAmount> amount() {
-        return (Optional<UpdatePaymentLinkPaymentLinksAmount>) amount;
+    public UpdatePaymentLinkPaymentLinksAmount amount() {
+        return amount;
     }
 
     /**
      * The description of the application fee. This will appear on settlement reports towards both you and the connected merchant.
      */
     @JsonIgnore
-    public Optional<String> description() {
+    public String description() {
         return description;
     }
 
@@ -83,17 +72,6 @@ public class UpdatePaymentLinkApplicationFee {
      */
     public UpdatePaymentLinkApplicationFee withAmount(UpdatePaymentLinkPaymentLinksAmount amount) {
         Utils.checkNotNull(amount, "amount");
-        this.amount = Optional.ofNullable(amount);
-        return this;
-    }
-
-    /**
-     * The fee that you wish to charge.
-     * 
-     * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge a €0.99 fee on a €1.00 payment.
-     */
-    public UpdatePaymentLinkApplicationFee withAmount(Optional<? extends UpdatePaymentLinkPaymentLinksAmount> amount) {
-        Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
@@ -102,15 +80,6 @@ public class UpdatePaymentLinkApplicationFee {
      * The description of the application fee. This will appear on settlement reports towards both you and the connected merchant.
      */
     public UpdatePaymentLinkApplicationFee withDescription(String description) {
-        Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
-        return this;
-    }
-
-    /**
-     * The description of the application fee. This will appear on settlement reports towards both you and the connected merchant.
-     */
-    public UpdatePaymentLinkApplicationFee withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
@@ -147,9 +116,9 @@ public class UpdatePaymentLinkApplicationFee {
     
     public final static class Builder {
  
-        private Optional<? extends UpdatePaymentLinkPaymentLinksAmount> amount = Optional.empty();
+        private UpdatePaymentLinkPaymentLinksAmount amount;
  
-        private Optional<String> description = Optional.empty();
+        private String description;
         
         private Builder() {
           // force use of static builder() method
@@ -162,17 +131,6 @@ public class UpdatePaymentLinkApplicationFee {
          */
         public Builder amount(UpdatePaymentLinkPaymentLinksAmount amount) {
             Utils.checkNotNull(amount, "amount");
-            this.amount = Optional.ofNullable(amount);
-            return this;
-        }
-
-        /**
-         * The fee that you wish to charge.
-         * 
-         * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge a €0.99 fee on a €1.00 payment.
-         */
-        public Builder amount(Optional<? extends UpdatePaymentLinkPaymentLinksAmount> amount) {
-            Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;
         }
@@ -181,15 +139,6 @@ public class UpdatePaymentLinkApplicationFee {
          * The description of the application fee. This will appear on settlement reports towards both you and the connected merchant.
          */
         public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
-            return this;
-        }
-
-        /**
-         * The description of the application fee. This will appear on settlement reports towards both you and the connected merchant.
-         */
-        public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
             return this;

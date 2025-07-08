@@ -5,14 +5,10 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Optional;
 
 /**
  * EntityApplicationFee
@@ -28,29 +24,23 @@ public class EntityApplicationFee {
      * 
      * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge a €0.99 fee on a €1.00 payment.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private Optional<? extends GetWebhookEventEntityAmount> amount;
+    private GetWebhookEventEntityAmount amount;
 
     /**
      * The description of the application fee. This will appear on settlement reports towards both you and the connected merchant.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private Optional<String> description;
+    private String description;
 
     @JsonCreator
     public EntityApplicationFee(
-            @JsonProperty("amount") Optional<? extends GetWebhookEventEntityAmount> amount,
-            @JsonProperty("description") Optional<String> description) {
+            @JsonProperty("amount") GetWebhookEventEntityAmount amount,
+            @JsonProperty("description") String description) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(description, "description");
         this.amount = amount;
         this.description = description;
-    }
-    
-    public EntityApplicationFee() {
-        this(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -58,17 +48,16 @@ public class EntityApplicationFee {
      * 
      * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge a €0.99 fee on a €1.00 payment.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetWebhookEventEntityAmount> amount() {
-        return (Optional<GetWebhookEventEntityAmount>) amount;
+    public GetWebhookEventEntityAmount amount() {
+        return amount;
     }
 
     /**
      * The description of the application fee. This will appear on settlement reports towards both you and the connected merchant.
      */
     @JsonIgnore
-    public Optional<String> description() {
+    public String description() {
         return description;
     }
 
@@ -83,17 +72,6 @@ public class EntityApplicationFee {
      */
     public EntityApplicationFee withAmount(GetWebhookEventEntityAmount amount) {
         Utils.checkNotNull(amount, "amount");
-        this.amount = Optional.ofNullable(amount);
-        return this;
-    }
-
-    /**
-     * The fee that you wish to charge.
-     * 
-     * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge a €0.99 fee on a €1.00 payment.
-     */
-    public EntityApplicationFee withAmount(Optional<? extends GetWebhookEventEntityAmount> amount) {
-        Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
@@ -102,15 +80,6 @@ public class EntityApplicationFee {
      * The description of the application fee. This will appear on settlement reports towards both you and the connected merchant.
      */
     public EntityApplicationFee withDescription(String description) {
-        Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
-        return this;
-    }
-
-    /**
-     * The description of the application fee. This will appear on settlement reports towards both you and the connected merchant.
-     */
-    public EntityApplicationFee withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
@@ -147,9 +116,9 @@ public class EntityApplicationFee {
     
     public final static class Builder {
  
-        private Optional<? extends GetWebhookEventEntityAmount> amount = Optional.empty();
+        private GetWebhookEventEntityAmount amount;
  
-        private Optional<String> description = Optional.empty();
+        private String description;
         
         private Builder() {
           // force use of static builder() method
@@ -162,17 +131,6 @@ public class EntityApplicationFee {
          */
         public Builder amount(GetWebhookEventEntityAmount amount) {
             Utils.checkNotNull(amount, "amount");
-            this.amount = Optional.ofNullable(amount);
-            return this;
-        }
-
-        /**
-         * The fee that you wish to charge.
-         * 
-         * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge a €0.99 fee on a €1.00 payment.
-         */
-        public Builder amount(Optional<? extends GetWebhookEventEntityAmount> amount) {
-            Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;
         }
@@ -181,15 +139,6 @@ public class EntityApplicationFee {
          * The description of the application fee. This will appear on settlement reports towards both you and the connected merchant.
          */
         public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
-            return this;
-        }
-
-        /**
-         * The description of the application fee. This will appear on settlement reports towards both you and the connected merchant.
-         */
-        public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
             return this;

@@ -5,14 +5,10 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Optional;
 
 /**
  * EntityLinks
@@ -24,66 +20,39 @@ public class EntityLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends EntitySelf> self;
+    private EntitySelf self;
 
     /**
      * The URL your customer should visit to make the payment. This is where you should redirect the customer to.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("paymentLink")
-    private Optional<? extends GetWebhookEventEntityPaymentLink> paymentLink;
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("documentation")
-    private Optional<? extends EntityDocumentation> documentation;
+    private GetWebhookEventEntityPaymentLink paymentLink;
 
     @JsonCreator
     public EntityLinks(
-            @JsonProperty("self") Optional<? extends EntitySelf> self,
-            @JsonProperty("paymentLink") Optional<? extends GetWebhookEventEntityPaymentLink> paymentLink,
-            @JsonProperty("documentation") Optional<? extends EntityDocumentation> documentation) {
+            @JsonProperty("self") EntitySelf self,
+            @JsonProperty("paymentLink") GetWebhookEventEntityPaymentLink paymentLink) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(paymentLink, "paymentLink");
-        Utils.checkNotNull(documentation, "documentation");
         this.self = self;
         this.paymentLink = paymentLink;
-        this.documentation = documentation;
-    }
-    
-    public EntityLinks() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntitySelf> self() {
-        return (Optional<EntitySelf>) self;
+    public EntitySelf self() {
+        return self;
     }
 
     /**
      * The URL your customer should visit to make the payment. This is where you should redirect the customer to.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetWebhookEventEntityPaymentLink> paymentLink() {
-        return (Optional<GetWebhookEventEntityPaymentLink>) paymentLink;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<EntityDocumentation> documentation() {
-        return (Optional<EntityDocumentation>) documentation;
+    public GetWebhookEventEntityPaymentLink paymentLink() {
+        return paymentLink;
     }
 
     public final static Builder builder() {
@@ -95,15 +64,6 @@ public class EntityLinks {
      */
     public EntityLinks withSelf(EntitySelf self) {
         Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public EntityLinks withSelf(Optional<? extends EntitySelf> self) {
-        Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
@@ -113,34 +73,7 @@ public class EntityLinks {
      */
     public EntityLinks withPaymentLink(GetWebhookEventEntityPaymentLink paymentLink) {
         Utils.checkNotNull(paymentLink, "paymentLink");
-        this.paymentLink = Optional.ofNullable(paymentLink);
-        return this;
-    }
-
-    /**
-     * The URL your customer should visit to make the payment. This is where you should redirect the customer to.
-     */
-    public EntityLinks withPaymentLink(Optional<? extends GetWebhookEventEntityPaymentLink> paymentLink) {
-        Utils.checkNotNull(paymentLink, "paymentLink");
         this.paymentLink = paymentLink;
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public EntityLinks withDocumentation(EntityDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public EntityLinks withDocumentation(Optional<? extends EntityDocumentation> documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = documentation;
         return this;
     }
 
@@ -156,33 +89,28 @@ public class EntityLinks {
         EntityLinks other = (EntityLinks) o;
         return 
             Utils.enhancedDeepEquals(this.self, other.self) &&
-            Utils.enhancedDeepEquals(this.paymentLink, other.paymentLink) &&
-            Utils.enhancedDeepEquals(this.documentation, other.documentation);
+            Utils.enhancedDeepEquals(this.paymentLink, other.paymentLink);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             self,
-            paymentLink,
-            documentation);
+            paymentLink);
     }
     
     @Override
     public String toString() {
         return Utils.toString(EntityLinks.class,
                 "self", self,
-                "paymentLink", paymentLink,
-                "documentation", documentation);
+                "paymentLink", paymentLink);
     }
     
     public final static class Builder {
  
-        private Optional<? extends EntitySelf> self = Optional.empty();
+        private EntitySelf self;
  
-        private Optional<? extends GetWebhookEventEntityPaymentLink> paymentLink = Optional.empty();
- 
-        private Optional<? extends EntityDocumentation> documentation = Optional.empty();
+        private GetWebhookEventEntityPaymentLink paymentLink;
         
         private Builder() {
           // force use of static builder() method
@@ -193,15 +121,6 @@ public class EntityLinks {
          */
         public Builder self(EntitySelf self) {
             Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder self(Optional<? extends EntitySelf> self) {
-            Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
         }
@@ -211,42 +130,14 @@ public class EntityLinks {
          */
         public Builder paymentLink(GetWebhookEventEntityPaymentLink paymentLink) {
             Utils.checkNotNull(paymentLink, "paymentLink");
-            this.paymentLink = Optional.ofNullable(paymentLink);
-            return this;
-        }
-
-        /**
-         * The URL your customer should visit to make the payment. This is where you should redirect the customer to.
-         */
-        public Builder paymentLink(Optional<? extends GetWebhookEventEntityPaymentLink> paymentLink) {
-            Utils.checkNotNull(paymentLink, "paymentLink");
             this.paymentLink = paymentLink;
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(EntityDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends EntityDocumentation> documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = documentation;
             return this;
         }
         
         public EntityLinks build() {
             return new EntityLinks(
                 self,
-                paymentLink,
-                documentation);
+                paymentLink);
         }
     }
 }

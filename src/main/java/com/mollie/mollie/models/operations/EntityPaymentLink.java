@@ -31,32 +31,29 @@ public class EntityPaymentLink {
     /**
      * The identifier uniquely referring to this payment link. Example: `pl_4Y0eZitmBnQ6IDoMqZQKh`.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * Whether this entity was created in live mode or in test mode.
      * 
      * <p>Possible values: `live` `test`
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<String> mode;
+    private String mode;
 
     /**
      * A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private Optional<String> description;
+    private String description;
 
     /**
      * The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an amount.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("amount")
-    private JsonNullable<? extends EntityAmount> amount;
+    private Optional<? extends EntityAmount> amount;
 
     /**
      * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The customer will be prompted to enter a value greater than or equal to the minimum amount.
@@ -68,16 +65,15 @@ public class EntityPaymentLink {
     /**
      * Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("archived")
-    private Optional<Boolean> archived;
+    private boolean archived;
 
     /**
      * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided, the customer will be shown a generic message after completing the payment.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("redirectUrl")
-    private JsonNullable<String> redirectUrl;
+    private Optional<String> redirectUrl;
 
     /**
      * The webhook URL where we will send payment status updates to.
@@ -86,9 +82,9 @@ public class EntityPaymentLink {
      * 
      * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your local machine.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("webhookUrl")
-    private JsonNullable<String> webhookUrl;
+    private Optional<String> webhookUrl;
 
     /**
      * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
@@ -126,9 +122,9 @@ public class EntityPaymentLink {
      * 
      * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("profileId")
-    private JsonNullable<String> profileId;
+    private Optional<String> profileId;
 
     /**
      * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make multiple payments using the same link.
@@ -142,32 +138,31 @@ public class EntityPaymentLink {
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
-    private Optional<String> createdAt;
+    private String createdAt;
 
     /**
      * The date and time the payment link became paid, in ISO 8601 format.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("paidAt")
-    private JsonNullable<String> paidAt;
+    private Optional<String> paidAt;
 
     /**
      * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front, the payment link will not expire automatically.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("expiresAt")
-    private JsonNullable<String> expiresAt;
+    private Optional<String> expiresAt;
 
     /**
      * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
      * 
      * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint'.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("allowedMethods")
-    private JsonNullable<? extends List<String>> allowedMethods;
+    private Optional<? extends List<String>> allowedMethods;
 
     /**
      * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie merchants.
@@ -181,32 +176,31 @@ public class EntityPaymentLink {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends EntityLinks> links;
+    private EntityLinks links;
 
     @JsonCreator
     public EntityPaymentLink(
             @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("mode") Optional<String> mode,
-            @JsonProperty("description") Optional<String> description,
-            @JsonProperty("amount") JsonNullable<? extends EntityAmount> amount,
+            @JsonProperty("id") String id,
+            @JsonProperty("mode") String mode,
+            @JsonProperty("description") String description,
+            @JsonProperty("amount") Optional<? extends EntityAmount> amount,
             @JsonProperty("minimumAmount") JsonNullable<? extends EntityMinimumAmount> minimumAmount,
-            @JsonProperty("archived") Optional<Boolean> archived,
-            @JsonProperty("redirectUrl") JsonNullable<String> redirectUrl,
-            @JsonProperty("webhookUrl") JsonNullable<String> webhookUrl,
+            @JsonProperty("archived") boolean archived,
+            @JsonProperty("redirectUrl") Optional<String> redirectUrl,
+            @JsonProperty("webhookUrl") Optional<String> webhookUrl,
             @JsonProperty("lines") JsonNullable<? extends List<EntityLines>> lines,
             @JsonProperty("billingAddress") Optional<? extends EntityBillingAddress> billingAddress,
             @JsonProperty("shippingAddress") Optional<? extends EntityShippingAddress> shippingAddress,
-            @JsonProperty("profileId") JsonNullable<String> profileId,
+            @JsonProperty("profileId") Optional<String> profileId,
             @JsonProperty("reusable") JsonNullable<Boolean> reusable,
-            @JsonProperty("createdAt") Optional<String> createdAt,
-            @JsonProperty("paidAt") JsonNullable<String> paidAt,
-            @JsonProperty("expiresAt") JsonNullable<String> expiresAt,
-            @JsonProperty("allowedMethods") JsonNullable<? extends List<String>> allowedMethods,
+            @JsonProperty("createdAt") String createdAt,
+            @JsonProperty("paidAt") Optional<String> paidAt,
+            @JsonProperty("expiresAt") Optional<String> expiresAt,
+            @JsonProperty("allowedMethods") Optional<? extends List<String>> allowedMethods,
             @JsonProperty("applicationFee") Optional<? extends EntityApplicationFee> applicationFee,
-            @JsonProperty("_links") Optional<? extends EntityLinks> links) {
+            @JsonProperty("_links") EntityLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(mode, "mode");
@@ -249,8 +243,14 @@ public class EntityPaymentLink {
         this.links = links;
     }
     
-    public EntityPaymentLink() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+    public EntityPaymentLink(
+            String id,
+            String mode,
+            String description,
+            boolean archived,
+            String createdAt,
+            EntityLinks links) {
+        this(Optional.empty(), id, mode, description, Optional.empty(), JsonNullable.undefined(), archived, Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), createdAt, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), links);
     }
 
     /**
@@ -265,7 +265,7 @@ public class EntityPaymentLink {
      * The identifier uniquely referring to this payment link. Example: `pl_4Y0eZitmBnQ6IDoMqZQKh`.
      */
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
@@ -275,7 +275,7 @@ public class EntityPaymentLink {
      * <p>Possible values: `live` `test`
      */
     @JsonIgnore
-    public Optional<String> mode() {
+    public String mode() {
         return mode;
     }
 
@@ -283,7 +283,7 @@ public class EntityPaymentLink {
      * A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
      */
     @JsonIgnore
-    public Optional<String> description() {
+    public String description() {
         return description;
     }
 
@@ -292,8 +292,8 @@ public class EntityPaymentLink {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<EntityAmount> amount() {
-        return (JsonNullable<EntityAmount>) amount;
+    public Optional<EntityAmount> amount() {
+        return (Optional<EntityAmount>) amount;
     }
 
     /**
@@ -309,7 +309,7 @@ public class EntityPaymentLink {
      * Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
      */
     @JsonIgnore
-    public Optional<Boolean> archived() {
+    public boolean archived() {
         return archived;
     }
 
@@ -317,7 +317,7 @@ public class EntityPaymentLink {
      * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided, the customer will be shown a generic message after completing the payment.
      */
     @JsonIgnore
-    public JsonNullable<String> redirectUrl() {
+    public Optional<String> redirectUrl() {
         return redirectUrl;
     }
 
@@ -329,7 +329,7 @@ public class EntityPaymentLink {
      * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your local machine.
      */
     @JsonIgnore
-    public JsonNullable<String> webhookUrl() {
+    public Optional<String> webhookUrl() {
         return webhookUrl;
     }
 
@@ -376,7 +376,7 @@ public class EntityPaymentLink {
      * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     @JsonIgnore
-    public JsonNullable<String> profileId() {
+    public Optional<String> profileId() {
         return profileId;
     }
 
@@ -394,7 +394,7 @@ public class EntityPaymentLink {
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
     @JsonIgnore
-    public Optional<String> createdAt() {
+    public String createdAt() {
         return createdAt;
     }
 
@@ -402,7 +402,7 @@ public class EntityPaymentLink {
      * The date and time the payment link became paid, in ISO 8601 format.
      */
     @JsonIgnore
-    public JsonNullable<String> paidAt() {
+    public Optional<String> paidAt() {
         return paidAt;
     }
 
@@ -410,7 +410,7 @@ public class EntityPaymentLink {
      * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front, the payment link will not expire automatically.
      */
     @JsonIgnore
-    public JsonNullable<String> expiresAt() {
+    public Optional<String> expiresAt() {
         return expiresAt;
     }
 
@@ -421,8 +421,8 @@ public class EntityPaymentLink {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<List<String>> allowedMethods() {
-        return (JsonNullable<List<String>>) allowedMethods;
+    public Optional<List<String>> allowedMethods() {
+        return (Optional<List<String>>) allowedMethods;
     }
 
     /**
@@ -439,10 +439,9 @@ public class EntityPaymentLink {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityLinks> links() {
-        return (Optional<EntityLinks>) links;
+    public EntityLinks links() {
+        return links;
     }
 
     public final static Builder builder() {
@@ -472,15 +471,6 @@ public class EntityPaymentLink {
      */
     public EntityPaymentLink withId(String id) {
         Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-    /**
-     * The identifier uniquely referring to this payment link. Example: `pl_4Y0eZitmBnQ6IDoMqZQKh`.
-     */
-    public EntityPaymentLink withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
@@ -492,17 +482,6 @@ public class EntityPaymentLink {
      */
     public EntityPaymentLink withMode(String mode) {
         Utils.checkNotNull(mode, "mode");
-        this.mode = Optional.ofNullable(mode);
-        return this;
-    }
-
-    /**
-     * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
-     */
-    public EntityPaymentLink withMode(Optional<String> mode) {
-        Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
     }
@@ -511,15 +490,6 @@ public class EntityPaymentLink {
      * A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
      */
     public EntityPaymentLink withDescription(String description) {
-        Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
-        return this;
-    }
-
-    /**
-     * A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
-     */
-    public EntityPaymentLink withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
@@ -530,14 +500,14 @@ public class EntityPaymentLink {
      */
     public EntityPaymentLink withAmount(EntityAmount amount) {
         Utils.checkNotNull(amount, "amount");
-        this.amount = JsonNullable.of(amount);
+        this.amount = Optional.ofNullable(amount);
         return this;
     }
 
     /**
      * The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an amount.
      */
-    public EntityPaymentLink withAmount(JsonNullable<? extends EntityAmount> amount) {
+    public EntityPaymentLink withAmount(Optional<? extends EntityAmount> amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
@@ -566,15 +536,6 @@ public class EntityPaymentLink {
      */
     public EntityPaymentLink withArchived(boolean archived) {
         Utils.checkNotNull(archived, "archived");
-        this.archived = Optional.ofNullable(archived);
-        return this;
-    }
-
-    /**
-     * Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
-     */
-    public EntityPaymentLink withArchived(Optional<Boolean> archived) {
-        Utils.checkNotNull(archived, "archived");
         this.archived = archived;
         return this;
     }
@@ -584,14 +545,14 @@ public class EntityPaymentLink {
      */
     public EntityPaymentLink withRedirectUrl(String redirectUrl) {
         Utils.checkNotNull(redirectUrl, "redirectUrl");
-        this.redirectUrl = JsonNullable.of(redirectUrl);
+        this.redirectUrl = Optional.ofNullable(redirectUrl);
         return this;
     }
 
     /**
      * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided, the customer will be shown a generic message after completing the payment.
      */
-    public EntityPaymentLink withRedirectUrl(JsonNullable<String> redirectUrl) {
+    public EntityPaymentLink withRedirectUrl(Optional<String> redirectUrl) {
         Utils.checkNotNull(redirectUrl, "redirectUrl");
         this.redirectUrl = redirectUrl;
         return this;
@@ -606,7 +567,7 @@ public class EntityPaymentLink {
      */
     public EntityPaymentLink withWebhookUrl(String webhookUrl) {
         Utils.checkNotNull(webhookUrl, "webhookUrl");
-        this.webhookUrl = JsonNullable.of(webhookUrl);
+        this.webhookUrl = Optional.ofNullable(webhookUrl);
         return this;
     }
 
@@ -617,7 +578,7 @@ public class EntityPaymentLink {
      * 
      * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your local machine.
      */
-    public EntityPaymentLink withWebhookUrl(JsonNullable<String> webhookUrl) {
+    public EntityPaymentLink withWebhookUrl(Optional<String> webhookUrl) {
         Utils.checkNotNull(webhookUrl, "webhookUrl");
         this.webhookUrl = webhookUrl;
         return this;
@@ -704,7 +665,7 @@ public class EntityPaymentLink {
      */
     public EntityPaymentLink withProfileId(String profileId) {
         Utils.checkNotNull(profileId, "profileId");
-        this.profileId = JsonNullable.of(profileId);
+        this.profileId = Optional.ofNullable(profileId);
         return this;
     }
 
@@ -713,7 +674,7 @@ public class EntityPaymentLink {
      * 
      * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
-    public EntityPaymentLink withProfileId(JsonNullable<String> profileId) {
+    public EntityPaymentLink withProfileId(Optional<String> profileId) {
         Utils.checkNotNull(profileId, "profileId");
         this.profileId = profileId;
         return this;
@@ -746,15 +707,6 @@ public class EntityPaymentLink {
      */
     public EntityPaymentLink withCreatedAt(String createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = Optional.ofNullable(createdAt);
-        return this;
-    }
-
-    /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-     */
-    public EntityPaymentLink withCreatedAt(Optional<String> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
@@ -764,14 +716,14 @@ public class EntityPaymentLink {
      */
     public EntityPaymentLink withPaidAt(String paidAt) {
         Utils.checkNotNull(paidAt, "paidAt");
-        this.paidAt = JsonNullable.of(paidAt);
+        this.paidAt = Optional.ofNullable(paidAt);
         return this;
     }
 
     /**
      * The date and time the payment link became paid, in ISO 8601 format.
      */
-    public EntityPaymentLink withPaidAt(JsonNullable<String> paidAt) {
+    public EntityPaymentLink withPaidAt(Optional<String> paidAt) {
         Utils.checkNotNull(paidAt, "paidAt");
         this.paidAt = paidAt;
         return this;
@@ -782,14 +734,14 @@ public class EntityPaymentLink {
      */
     public EntityPaymentLink withExpiresAt(String expiresAt) {
         Utils.checkNotNull(expiresAt, "expiresAt");
-        this.expiresAt = JsonNullable.of(expiresAt);
+        this.expiresAt = Optional.ofNullable(expiresAt);
         return this;
     }
 
     /**
      * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front, the payment link will not expire automatically.
      */
-    public EntityPaymentLink withExpiresAt(JsonNullable<String> expiresAt) {
+    public EntityPaymentLink withExpiresAt(Optional<String> expiresAt) {
         Utils.checkNotNull(expiresAt, "expiresAt");
         this.expiresAt = expiresAt;
         return this;
@@ -802,7 +754,7 @@ public class EntityPaymentLink {
      */
     public EntityPaymentLink withAllowedMethods(List<String> allowedMethods) {
         Utils.checkNotNull(allowedMethods, "allowedMethods");
-        this.allowedMethods = JsonNullable.of(allowedMethods);
+        this.allowedMethods = Optional.ofNullable(allowedMethods);
         return this;
     }
 
@@ -811,7 +763,7 @@ public class EntityPaymentLink {
      * 
      * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint'.
      */
-    public EntityPaymentLink withAllowedMethods(JsonNullable<? extends List<String>> allowedMethods) {
+    public EntityPaymentLink withAllowedMethods(Optional<? extends List<String>> allowedMethods) {
         Utils.checkNotNull(allowedMethods, "allowedMethods");
         this.allowedMethods = allowedMethods;
         return this;
@@ -843,15 +795,6 @@ public class EntityPaymentLink {
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
     public EntityPaymentLink withLinks(EntityLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public EntityPaymentLink withLinks(Optional<? extends EntityLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -944,21 +887,21 @@ public class EntityPaymentLink {
  
         private Optional<String> resource;
  
-        private Optional<String> id = Optional.empty();
+        private String id;
  
-        private Optional<String> mode = Optional.empty();
+        private String mode;
  
-        private Optional<String> description = Optional.empty();
+        private String description;
  
-        private JsonNullable<? extends EntityAmount> amount = JsonNullable.undefined();
+        private Optional<? extends EntityAmount> amount = Optional.empty();
  
         private JsonNullable<? extends EntityMinimumAmount> minimumAmount = JsonNullable.undefined();
  
-        private Optional<Boolean> archived = Optional.empty();
+        private Boolean archived;
  
-        private JsonNullable<String> redirectUrl = JsonNullable.undefined();
+        private Optional<String> redirectUrl = Optional.empty();
  
-        private JsonNullable<String> webhookUrl = JsonNullable.undefined();
+        private Optional<String> webhookUrl = Optional.empty();
  
         private JsonNullable<? extends List<EntityLines>> lines = JsonNullable.undefined();
  
@@ -966,21 +909,21 @@ public class EntityPaymentLink {
  
         private Optional<? extends EntityShippingAddress> shippingAddress = Optional.empty();
  
-        private JsonNullable<String> profileId = JsonNullable.undefined();
+        private Optional<String> profileId = Optional.empty();
  
         private JsonNullable<Boolean> reusable;
  
-        private Optional<String> createdAt = Optional.empty();
+        private String createdAt;
  
-        private JsonNullable<String> paidAt = JsonNullable.undefined();
+        private Optional<String> paidAt = Optional.empty();
  
-        private JsonNullable<String> expiresAt = JsonNullable.undefined();
+        private Optional<String> expiresAt = Optional.empty();
  
-        private JsonNullable<? extends List<String>> allowedMethods = JsonNullable.undefined();
+        private Optional<? extends List<String>> allowedMethods = Optional.empty();
  
         private Optional<? extends EntityApplicationFee> applicationFee = Optional.empty();
  
-        private Optional<? extends EntityLinks> links = Optional.empty();
+        private EntityLinks links;
         
         private Builder() {
           // force use of static builder() method
@@ -1009,15 +952,6 @@ public class EntityPaymentLink {
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The identifier uniquely referring to this payment link. Example: `pl_4Y0eZitmBnQ6IDoMqZQKh`.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
@@ -1029,17 +963,6 @@ public class EntityPaymentLink {
          */
         public Builder mode(String mode) {
             Utils.checkNotNull(mode, "mode");
-            this.mode = Optional.ofNullable(mode);
-            return this;
-        }
-
-        /**
-         * Whether this entity was created in live mode or in test mode.
-         * 
-         * <p>Possible values: `live` `test`
-         */
-        public Builder mode(Optional<String> mode) {
-            Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
         }
@@ -1048,15 +971,6 @@ public class EntityPaymentLink {
          * A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
          */
         public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
-            return this;
-        }
-
-        /**
-         * A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
-         */
-        public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
@@ -1067,14 +981,14 @@ public class EntityPaymentLink {
          */
         public Builder amount(EntityAmount amount) {
             Utils.checkNotNull(amount, "amount");
-            this.amount = JsonNullable.of(amount);
+            this.amount = Optional.ofNullable(amount);
             return this;
         }
 
         /**
          * The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an amount.
          */
-        public Builder amount(JsonNullable<? extends EntityAmount> amount) {
+        public Builder amount(Optional<? extends EntityAmount> amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;
@@ -1103,15 +1017,6 @@ public class EntityPaymentLink {
          */
         public Builder archived(boolean archived) {
             Utils.checkNotNull(archived, "archived");
-            this.archived = Optional.ofNullable(archived);
-            return this;
-        }
-
-        /**
-         * Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
-         */
-        public Builder archived(Optional<Boolean> archived) {
-            Utils.checkNotNull(archived, "archived");
             this.archived = archived;
             return this;
         }
@@ -1121,14 +1026,14 @@ public class EntityPaymentLink {
          */
         public Builder redirectUrl(String redirectUrl) {
             Utils.checkNotNull(redirectUrl, "redirectUrl");
-            this.redirectUrl = JsonNullable.of(redirectUrl);
+            this.redirectUrl = Optional.ofNullable(redirectUrl);
             return this;
         }
 
         /**
          * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided, the customer will be shown a generic message after completing the payment.
          */
-        public Builder redirectUrl(JsonNullable<String> redirectUrl) {
+        public Builder redirectUrl(Optional<String> redirectUrl) {
             Utils.checkNotNull(redirectUrl, "redirectUrl");
             this.redirectUrl = redirectUrl;
             return this;
@@ -1143,7 +1048,7 @@ public class EntityPaymentLink {
          */
         public Builder webhookUrl(String webhookUrl) {
             Utils.checkNotNull(webhookUrl, "webhookUrl");
-            this.webhookUrl = JsonNullable.of(webhookUrl);
+            this.webhookUrl = Optional.ofNullable(webhookUrl);
             return this;
         }
 
@@ -1154,7 +1059,7 @@ public class EntityPaymentLink {
          * 
          * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your local machine.
          */
-        public Builder webhookUrl(JsonNullable<String> webhookUrl) {
+        public Builder webhookUrl(Optional<String> webhookUrl) {
             Utils.checkNotNull(webhookUrl, "webhookUrl");
             this.webhookUrl = webhookUrl;
             return this;
@@ -1241,7 +1146,7 @@ public class EntityPaymentLink {
          */
         public Builder profileId(String profileId) {
             Utils.checkNotNull(profileId, "profileId");
-            this.profileId = JsonNullable.of(profileId);
+            this.profileId = Optional.ofNullable(profileId);
             return this;
         }
 
@@ -1250,7 +1155,7 @@ public class EntityPaymentLink {
          * 
          * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
          */
-        public Builder profileId(JsonNullable<String> profileId) {
+        public Builder profileId(Optional<String> profileId) {
             Utils.checkNotNull(profileId, "profileId");
             this.profileId = profileId;
             return this;
@@ -1283,15 +1188,6 @@ public class EntityPaymentLink {
          */
         public Builder createdAt(String createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = Optional.ofNullable(createdAt);
-            return this;
-        }
-
-        /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-         */
-        public Builder createdAt(Optional<String> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
@@ -1301,14 +1197,14 @@ public class EntityPaymentLink {
          */
         public Builder paidAt(String paidAt) {
             Utils.checkNotNull(paidAt, "paidAt");
-            this.paidAt = JsonNullable.of(paidAt);
+            this.paidAt = Optional.ofNullable(paidAt);
             return this;
         }
 
         /**
          * The date and time the payment link became paid, in ISO 8601 format.
          */
-        public Builder paidAt(JsonNullable<String> paidAt) {
+        public Builder paidAt(Optional<String> paidAt) {
             Utils.checkNotNull(paidAt, "paidAt");
             this.paidAt = paidAt;
             return this;
@@ -1319,14 +1215,14 @@ public class EntityPaymentLink {
          */
         public Builder expiresAt(String expiresAt) {
             Utils.checkNotNull(expiresAt, "expiresAt");
-            this.expiresAt = JsonNullable.of(expiresAt);
+            this.expiresAt = Optional.ofNullable(expiresAt);
             return this;
         }
 
         /**
          * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front, the payment link will not expire automatically.
          */
-        public Builder expiresAt(JsonNullable<String> expiresAt) {
+        public Builder expiresAt(Optional<String> expiresAt) {
             Utils.checkNotNull(expiresAt, "expiresAt");
             this.expiresAt = expiresAt;
             return this;
@@ -1339,7 +1235,7 @@ public class EntityPaymentLink {
          */
         public Builder allowedMethods(List<String> allowedMethods) {
             Utils.checkNotNull(allowedMethods, "allowedMethods");
-            this.allowedMethods = JsonNullable.of(allowedMethods);
+            this.allowedMethods = Optional.ofNullable(allowedMethods);
             return this;
         }
 
@@ -1348,7 +1244,7 @@ public class EntityPaymentLink {
          * 
          * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint'.
          */
-        public Builder allowedMethods(JsonNullable<? extends List<String>> allowedMethods) {
+        public Builder allowedMethods(Optional<? extends List<String>> allowedMethods) {
             Utils.checkNotNull(allowedMethods, "allowedMethods");
             this.allowedMethods = allowedMethods;
             return this;
@@ -1380,15 +1276,6 @@ public class EntityPaymentLink {
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
         public Builder links(EntityLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends EntityLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

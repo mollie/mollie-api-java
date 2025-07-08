@@ -5,14 +5,10 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Optional;
 
 /**
  * UpdatePaymentLinkLinks
@@ -24,66 +20,39 @@ public class UpdatePaymentLinkLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends UpdatePaymentLinkSelf> self;
+    private UpdatePaymentLinkSelf self;
 
     /**
      * The URL your customer should visit to make the payment. This is where you should redirect the customer to.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("paymentLink")
-    private Optional<? extends UpdatePaymentLinkPaymentLink> paymentLink;
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("documentation")
-    private Optional<? extends UpdatePaymentLinkDocumentation> documentation;
+    private UpdatePaymentLinkPaymentLink paymentLink;
 
     @JsonCreator
     public UpdatePaymentLinkLinks(
-            @JsonProperty("self") Optional<? extends UpdatePaymentLinkSelf> self,
-            @JsonProperty("paymentLink") Optional<? extends UpdatePaymentLinkPaymentLink> paymentLink,
-            @JsonProperty("documentation") Optional<? extends UpdatePaymentLinkDocumentation> documentation) {
+            @JsonProperty("self") UpdatePaymentLinkSelf self,
+            @JsonProperty("paymentLink") UpdatePaymentLinkPaymentLink paymentLink) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(paymentLink, "paymentLink");
-        Utils.checkNotNull(documentation, "documentation");
         this.self = self;
         this.paymentLink = paymentLink;
-        this.documentation = documentation;
-    }
-    
-    public UpdatePaymentLinkLinks() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<UpdatePaymentLinkSelf> self() {
-        return (Optional<UpdatePaymentLinkSelf>) self;
+    public UpdatePaymentLinkSelf self() {
+        return self;
     }
 
     /**
      * The URL your customer should visit to make the payment. This is where you should redirect the customer to.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<UpdatePaymentLinkPaymentLink> paymentLink() {
-        return (Optional<UpdatePaymentLinkPaymentLink>) paymentLink;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<UpdatePaymentLinkDocumentation> documentation() {
-        return (Optional<UpdatePaymentLinkDocumentation>) documentation;
+    public UpdatePaymentLinkPaymentLink paymentLink() {
+        return paymentLink;
     }
 
     public final static Builder builder() {
@@ -95,15 +64,6 @@ public class UpdatePaymentLinkLinks {
      */
     public UpdatePaymentLinkLinks withSelf(UpdatePaymentLinkSelf self) {
         Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public UpdatePaymentLinkLinks withSelf(Optional<? extends UpdatePaymentLinkSelf> self) {
-        Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
@@ -113,34 +73,7 @@ public class UpdatePaymentLinkLinks {
      */
     public UpdatePaymentLinkLinks withPaymentLink(UpdatePaymentLinkPaymentLink paymentLink) {
         Utils.checkNotNull(paymentLink, "paymentLink");
-        this.paymentLink = Optional.ofNullable(paymentLink);
-        return this;
-    }
-
-    /**
-     * The URL your customer should visit to make the payment. This is where you should redirect the customer to.
-     */
-    public UpdatePaymentLinkLinks withPaymentLink(Optional<? extends UpdatePaymentLinkPaymentLink> paymentLink) {
-        Utils.checkNotNull(paymentLink, "paymentLink");
         this.paymentLink = paymentLink;
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public UpdatePaymentLinkLinks withDocumentation(UpdatePaymentLinkDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public UpdatePaymentLinkLinks withDocumentation(Optional<? extends UpdatePaymentLinkDocumentation> documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = documentation;
         return this;
     }
 
@@ -156,33 +89,28 @@ public class UpdatePaymentLinkLinks {
         UpdatePaymentLinkLinks other = (UpdatePaymentLinkLinks) o;
         return 
             Utils.enhancedDeepEquals(this.self, other.self) &&
-            Utils.enhancedDeepEquals(this.paymentLink, other.paymentLink) &&
-            Utils.enhancedDeepEquals(this.documentation, other.documentation);
+            Utils.enhancedDeepEquals(this.paymentLink, other.paymentLink);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             self,
-            paymentLink,
-            documentation);
+            paymentLink);
     }
     
     @Override
     public String toString() {
         return Utils.toString(UpdatePaymentLinkLinks.class,
                 "self", self,
-                "paymentLink", paymentLink,
-                "documentation", documentation);
+                "paymentLink", paymentLink);
     }
     
     public final static class Builder {
  
-        private Optional<? extends UpdatePaymentLinkSelf> self = Optional.empty();
+        private UpdatePaymentLinkSelf self;
  
-        private Optional<? extends UpdatePaymentLinkPaymentLink> paymentLink = Optional.empty();
- 
-        private Optional<? extends UpdatePaymentLinkDocumentation> documentation = Optional.empty();
+        private UpdatePaymentLinkPaymentLink paymentLink;
         
         private Builder() {
           // force use of static builder() method
@@ -193,15 +121,6 @@ public class UpdatePaymentLinkLinks {
          */
         public Builder self(UpdatePaymentLinkSelf self) {
             Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder self(Optional<? extends UpdatePaymentLinkSelf> self) {
-            Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
         }
@@ -211,42 +130,14 @@ public class UpdatePaymentLinkLinks {
          */
         public Builder paymentLink(UpdatePaymentLinkPaymentLink paymentLink) {
             Utils.checkNotNull(paymentLink, "paymentLink");
-            this.paymentLink = Optional.ofNullable(paymentLink);
-            return this;
-        }
-
-        /**
-         * The URL your customer should visit to make the payment. This is where you should redirect the customer to.
-         */
-        public Builder paymentLink(Optional<? extends UpdatePaymentLinkPaymentLink> paymentLink) {
-            Utils.checkNotNull(paymentLink, "paymentLink");
             this.paymentLink = paymentLink;
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(UpdatePaymentLinkDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends UpdatePaymentLinkDocumentation> documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = documentation;
             return this;
         }
         
         public UpdatePaymentLinkLinks build() {
             return new UpdatePaymentLinkLinks(
                 self,
-                paymentLink,
-                documentation);
+                paymentLink);
         }
     }
 }

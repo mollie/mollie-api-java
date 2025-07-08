@@ -16,7 +16,7 @@ public class Application {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
-                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                     .build())
             .build();
 

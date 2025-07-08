@@ -47,7 +47,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:0.10.1'
+implementation 'com.mollie:mollie:0.11.0'
 ```
 
 Maven:
@@ -55,7 +55,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>0.10.1</version>
+    <version>0.11.0</version>
 </dependency>
 ```
 
@@ -123,7 +123,7 @@ public class Application {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
-                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                     .build())
             .build();
 
@@ -384,7 +384,7 @@ public class Application {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
-                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                     .build())
             .build();
 
@@ -821,7 +821,7 @@ public class Application {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
-                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                     .build())
             .build();
 
@@ -1092,7 +1092,7 @@ public class Application {
                         .build())
                     .build())
                 .security(Security.builder()
-                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                     .build())
             .build();
 
@@ -1355,7 +1355,7 @@ public class Application {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
-                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                     .build())
             .build();
 
@@ -1610,7 +1610,7 @@ public class Application {
         Client sdk = Client.builder()
                 .serverURL("https://api.mollie.com/v2")
                 .security(Security.builder()
-                    .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                     .build())
             .build();
 
