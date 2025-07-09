@@ -19,7 +19,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>The recipient object should contain all the information relevant to create an invoice for an intended recipient. This data will be stored, updated, and re-used as appropriate, based on the `recipientIdentifier`.
  */
 public class UpdateSalesInvoiceRecipient {
-
     /**
      * The type of recipient, either `consumer` or `business`. This will determine what further fields are required on the `recipient` object.
      * 
@@ -189,7 +188,12 @@ public class UpdateSalesInvoiceRecipient {
             String city,
             String country,
             String locale) {
-        this(type, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), email, JsonNullable.undefined(), streetAndNumber, JsonNullable.undefined(), postalCode, city, JsonNullable.undefined(), country, locale);
+        this(type, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), email, JsonNullable.undefined(),
+            streetAndNumber, JsonNullable.undefined(), postalCode,
+            city, JsonNullable.undefined(), country,
+            locale);
     }
 
     /**
@@ -324,9 +328,10 @@ public class UpdateSalesInvoiceRecipient {
         return locale;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The type of recipient, either `consumer` or `business`. This will determine what further fields are required on the `recipient` object.
@@ -557,7 +562,6 @@ public class UpdateSalesInvoiceRecipient {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -589,21 +593,11 @@ public class UpdateSalesInvoiceRecipient {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            title,
-            givenName,
-            familyName,
-            organizationName,
-            organizationNumber,
-            vatNumber,
-            email,
-            phone,
-            streetAndNumber,
-            streetAdditional,
-            postalCode,
-            city,
-            region,
-            country,
+            type, title, givenName,
+            familyName, organizationName, organizationNumber,
+            vatNumber, email, phone,
+            streetAndNumber, streetAdditional, postalCode,
+            city, region, country,
             locale);
     }
     
@@ -627,44 +621,46 @@ public class UpdateSalesInvoiceRecipient {
                 "country", country,
                 "locale", locale);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String type;
- 
+
         private JsonNullable<String> title = JsonNullable.undefined();
- 
+
         private JsonNullable<String> givenName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> familyName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> organizationName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> organizationNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<String> vatNumber = JsonNullable.undefined();
- 
+
         private String email;
- 
+
         private JsonNullable<String> phone = JsonNullable.undefined();
- 
+
         private String streetAndNumber;
- 
+
         private JsonNullable<String> streetAdditional = JsonNullable.undefined();
- 
+
         private String postalCode;
- 
+
         private String city;
- 
+
         private JsonNullable<String> region = JsonNullable.undefined();
- 
+
         private String country;
- 
+
         private String locale;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The type of recipient, either `consumer` or `business`. This will determine what further fields are required on the `recipient` object.
@@ -676,6 +672,7 @@ public class UpdateSalesInvoiceRecipient {
             this.type = type;
             return this;
         }
+
 
         /**
          * The title of the `consumer` type recipient, for example Mr. or Mrs..
@@ -695,6 +692,7 @@ public class UpdateSalesInvoiceRecipient {
             return this;
         }
 
+
         /**
          * The given name (first name) of the `consumer` type recipient should be at least two characters and cannot contain only numbers.
          */
@@ -712,6 +710,7 @@ public class UpdateSalesInvoiceRecipient {
             this.givenName = givenName;
             return this;
         }
+
 
         /**
          * The given name (last name) of the `consumer` type recipient should be at least two characters and cannot contain only numbers.
@@ -731,6 +730,7 @@ public class UpdateSalesInvoiceRecipient {
             return this;
         }
 
+
         /**
          * The trading name of the `business` type recipient.
          */
@@ -748,6 +748,7 @@ public class UpdateSalesInvoiceRecipient {
             this.organizationName = organizationName;
             return this;
         }
+
 
         /**
          * The Chamber of Commerce number of the organization for a `business` type recipient. Either this or `vatNumber` has to be provided.
@@ -767,6 +768,7 @@ public class UpdateSalesInvoiceRecipient {
             return this;
         }
 
+
         /**
          * The VAT number of the organization for a `business` type recipient. Either this or `organizationNumber` has to be provided.
          */
@@ -785,6 +787,7 @@ public class UpdateSalesInvoiceRecipient {
             return this;
         }
 
+
         /**
          * The email address of the recipient.
          */
@@ -793,6 +796,7 @@ public class UpdateSalesInvoiceRecipient {
             this.email = email;
             return this;
         }
+
 
         /**
          * The phone number of the recipient.
@@ -812,6 +816,7 @@ public class UpdateSalesInvoiceRecipient {
             return this;
         }
 
+
         /**
          * A street and street number.
          */
@@ -820,6 +825,7 @@ public class UpdateSalesInvoiceRecipient {
             this.streetAndNumber = streetAndNumber;
             return this;
         }
+
 
         /**
          * Any additional addressing details, for example an apartment number.
@@ -839,6 +845,7 @@ public class UpdateSalesInvoiceRecipient {
             return this;
         }
 
+
         /**
          * A postal code.
          */
@@ -848,6 +855,7 @@ public class UpdateSalesInvoiceRecipient {
             return this;
         }
 
+
         /**
          * The recipient's city.
          */
@@ -856,6 +864,7 @@ public class UpdateSalesInvoiceRecipient {
             this.city = city;
             return this;
         }
+
 
         /**
          * The recipient's region.
@@ -875,6 +884,7 @@ public class UpdateSalesInvoiceRecipient {
             return this;
         }
 
+
         /**
          * A country code in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
          */
@@ -883,6 +893,7 @@ public class UpdateSalesInvoiceRecipient {
             this.country = country;
             return this;
         }
+
 
         /**
          * The locale for the recipient, to be used for translations in PDF generation and payment pages.
@@ -894,25 +905,17 @@ public class UpdateSalesInvoiceRecipient {
             this.locale = locale;
             return this;
         }
-        
+
         public UpdateSalesInvoiceRecipient build() {
+
             return new UpdateSalesInvoiceRecipient(
-                type,
-                title,
-                givenName,
-                familyName,
-                organizationName,
-                organizationNumber,
-                vatNumber,
-                email,
-                phone,
-                streetAndNumber,
-                streetAdditional,
-                postalCode,
-                city,
-                region,
-                country,
+                type, title, givenName,
+                familyName, organizationName, organizationNumber,
+                vatNumber, email, phone,
+                streetAndNumber, streetAdditional, postalCode,
+                city, region, country,
                 locale);
         }
+
     }
 }

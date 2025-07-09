@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
 public class GetCustomerCustomersLinks {
-
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -48,9 +47,10 @@ public class GetCustomerCustomersLinks {
         return (Optional<Url>) url;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -61,6 +61,7 @@ public class GetCustomerCustomersLinks {
         return this;
     }
 
+
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -70,7 +71,6 @@ public class GetCustomerCustomersLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -95,14 +95,16 @@ public class GetCustomerCustomersLinks {
         return Utils.toString(GetCustomerCustomersLinks.class,
                 "url", url);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Url> url = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -121,10 +123,12 @@ public class GetCustomerCustomersLinks {
             this.url = url;
             return this;
         }
-        
+
         public GetCustomerCustomersLinks build() {
+
             return new GetCustomerCustomersLinks(
                 url);
         }
+
     }
 }

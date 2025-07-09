@@ -28,7 +28,6 @@ public class Clients {
     Clients(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List clients
      * 
@@ -61,7 +60,8 @@ public class Clients {
      * @throws Exception if the API call fails
      */
     public ListClientsResponse listDirect() throws Exception {
-        return list(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        return list(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -100,11 +100,10 @@ public class Clients {
                 .build();
         RequestOperation<ListClientsRequest, ListClientsResponse> operation
               = new ListClientsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get client
@@ -169,8 +168,8 @@ public class Clients {
                 .build();
         RequestOperation<GetClientRequest, GetClientResponse> operation
               = new GetClientOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

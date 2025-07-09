@@ -15,6 +15,7 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
+
 public class ListCapabilitiesEmbedded {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -38,9 +39,10 @@ public class ListCapabilitiesEmbedded {
         return (Optional<List<Capabilities>>) capabilities;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ListCapabilitiesEmbedded withCapabilities(List<Capabilities> capabilities) {
         Utils.checkNotNull(capabilities, "capabilities");
@@ -48,13 +50,13 @@ public class ListCapabilitiesEmbedded {
         return this;
     }
 
+
     public ListCapabilitiesEmbedded withCapabilities(Optional<? extends List<Capabilities>> capabilities) {
         Utils.checkNotNull(capabilities, "capabilities");
         this.capabilities = capabilities;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -79,14 +81,16 @@ public class ListCapabilitiesEmbedded {
         return Utils.toString(ListCapabilitiesEmbedded.class,
                 "capabilities", capabilities);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<Capabilities>> capabilities = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder capabilities(List<Capabilities> capabilities) {
             Utils.checkNotNull(capabilities, "capabilities");
@@ -99,10 +103,12 @@ public class ListCapabilitiesEmbedded {
             this.capabilities = capabilities;
             return this;
         }
-        
+
         public ListCapabilitiesEmbedded build() {
+
             return new ListCapabilitiesEmbedded(
                 capabilities);
         }
+
     }
 }

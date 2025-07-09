@@ -23,7 +23,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>The newly created mandate object.
  */
 public class CreateMandateResponseBody {
-
     /**
      * Indicates the response contains a mandate object. Will always contain the string `mandate` for this endpoint.
      */
@@ -57,6 +56,7 @@ public class CreateMandateResponseBody {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("method")
     private Optional<String> method;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("details")
@@ -144,7 +144,10 @@ public class CreateMandateResponseBody {
     }
     
     public CreateMandateResponseBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -242,9 +245,10 @@ public class CreateMandateResponseBody {
         return (Optional<CreateMandateLinks>) links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a mandate object. Will always contain the string `mandate` for this endpoint.
@@ -254,6 +258,7 @@ public class CreateMandateResponseBody {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Indicates the response contains a mandate object. Will always contain the string `mandate` for this endpoint.
@@ -272,6 +277,7 @@ public class CreateMandateResponseBody {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The identifier uniquely referring to this mandate. Example: `mdt_pWUnw6pkBN`.
@@ -292,6 +298,7 @@ public class CreateMandateResponseBody {
         this.mode = Optional.ofNullable(mode);
         return this;
     }
+
 
     /**
      * Whether this entity was created in live mode or in test mode.
@@ -317,6 +324,7 @@ public class CreateMandateResponseBody {
         return this;
     }
 
+
     /**
      * Payment method of the mandate.
      * 
@@ -335,6 +343,7 @@ public class CreateMandateResponseBody {
         this.details = Optional.ofNullable(details);
         return this;
     }
+
 
     public CreateMandateResponseBody withDetails(Optional<? extends Details> details) {
         Utils.checkNotNull(details, "details");
@@ -389,6 +398,7 @@ public class CreateMandateResponseBody {
         return this;
     }
 
+
     /**
      * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or when we did not received the IBAN yet from the first payment.
      * 
@@ -409,6 +419,7 @@ public class CreateMandateResponseBody {
         return this;
     }
 
+
     /**
      * The identifier referring to the [customer](get-customer) this mandate was linked to.
      */
@@ -426,6 +437,7 @@ public class CreateMandateResponseBody {
         this.createdAt = Optional.ofNullable(createdAt);
         return this;
     }
+
 
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -445,6 +457,7 @@ public class CreateMandateResponseBody {
         return this;
     }
 
+
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
@@ -454,7 +467,6 @@ public class CreateMandateResponseBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -481,17 +493,10 @@ public class CreateMandateResponseBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            mode,
-            method,
-            details,
-            signatureDate,
-            mandateReference,
-            status,
-            customerId,
-            createdAt,
-            links);
+            resource, id, mode,
+            method, details, signatureDate,
+            mandateReference, status, customerId,
+            createdAt, links);
     }
     
     @Override
@@ -509,34 +514,36 @@ public class CreateMandateResponseBody {
                 "createdAt", createdAt,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> mode = Optional.empty();
- 
+
         private Optional<String> method = Optional.empty();
- 
+
         private Optional<? extends Details> details = Optional.empty();
- 
+
         private JsonNullable<String> signatureDate = JsonNullable.undefined();
- 
+
         private JsonNullable<String> mandateReference = JsonNullable.undefined();
- 
+
         private Optional<String> status = Optional.empty();
- 
+
         private Optional<String> customerId = Optional.empty();
- 
+
         private Optional<String> createdAt = Optional.empty();
- 
+
         private Optional<? extends CreateMandateLinks> links = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a mandate object. Will always contain the string `mandate` for this endpoint.
@@ -556,6 +563,7 @@ public class CreateMandateResponseBody {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this mandate. Example: `mdt_pWUnw6pkBN`.
          */
@@ -573,6 +581,7 @@ public class CreateMandateResponseBody {
             this.id = id;
             return this;
         }
+
 
         /**
          * Whether this entity was created in live mode or in test mode.
@@ -595,6 +604,7 @@ public class CreateMandateResponseBody {
             this.mode = mode;
             return this;
         }
+
 
         /**
          * Payment method of the mandate.
@@ -622,6 +632,7 @@ public class CreateMandateResponseBody {
             return this;
         }
 
+
         public Builder details(Details details) {
             Utils.checkNotNull(details, "details");
             this.details = Optional.ofNullable(details);
@@ -633,6 +644,7 @@ public class CreateMandateResponseBody {
             this.details = details;
             return this;
         }
+
 
         /**
          * The date when the mandate was signed in `YYYY-MM-DD` format.
@@ -652,6 +664,7 @@ public class CreateMandateResponseBody {
             return this;
         }
 
+
         /**
          * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will decline Direct Debit payments if the mandate reference is not unique.
          */
@@ -669,6 +682,7 @@ public class CreateMandateResponseBody {
             this.mandateReference = mandateReference;
             return this;
         }
+
 
         /**
          * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or when we did not received the IBAN yet from the first payment.
@@ -692,6 +706,7 @@ public class CreateMandateResponseBody {
             return this;
         }
 
+
         /**
          * The identifier referring to the [customer](get-customer) this mandate was linked to.
          */
@@ -709,6 +724,7 @@ public class CreateMandateResponseBody {
             this.customerId = customerId;
             return this;
         }
+
 
         /**
          * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -728,6 +744,7 @@ public class CreateMandateResponseBody {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -745,24 +762,19 @@ public class CreateMandateResponseBody {
             this.links = links;
             return this;
         }
-        
+
         public CreateMandateResponseBody build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new CreateMandateResponseBody(
-                resource,
-                id,
-                mode,
-                method,
-                details,
-                signatureDate,
-                mandateReference,
-                status,
-                customerId,
-                createdAt,
-                links);
+                resource, id, mode,
+                method, details, signatureDate,
+                mandateReference, status, customerId,
+                createdAt, links);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

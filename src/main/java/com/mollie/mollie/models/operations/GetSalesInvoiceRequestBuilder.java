@@ -73,8 +73,8 @@ public class GetSalesInvoiceRequestBuilder {
 
         RequestOperation<GetSalesInvoiceRequest, GetSalesInvoiceResponse> operation
               = new GetSalesInvoiceOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         GetSalesInvoiceRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

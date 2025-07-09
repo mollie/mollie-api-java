@@ -16,7 +16,6 @@ import java.lang.String;
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
 public class GetTerminalLinks {
-
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -55,9 +54,10 @@ public class GetTerminalLinks {
         return documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -77,7 +77,6 @@ public class GetTerminalLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -95,8 +94,7 @@ public class GetTerminalLinks {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self,
-            documentation);
+            self, documentation);
     }
     
     @Override
@@ -105,16 +103,18 @@ public class GetTerminalLinks {
                 "self", self,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private GetTerminalSelf self;
- 
+
         private GetTerminalDocumentation documentation;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -125,6 +125,7 @@ public class GetTerminalLinks {
             return this;
         }
 
+
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
@@ -133,11 +134,12 @@ public class GetTerminalLinks {
             this.documentation = documentation;
             return this;
         }
-        
+
         public GetTerminalLinks build() {
+
             return new GetTerminalLinks(
-                self,
-                documentation);
+                self, documentation);
         }
+
     }
 }

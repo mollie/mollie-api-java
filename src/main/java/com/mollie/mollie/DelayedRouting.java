@@ -27,7 +27,6 @@ public class DelayedRouting {
     DelayedRouting(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Create a delayed route
      * 
@@ -87,11 +86,10 @@ public class DelayedRouting {
                 .build();
         RequestOperation<PaymentCreateRouteRequest, PaymentCreateRouteResponse> operation
               = new PaymentCreateRouteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List payment routes
@@ -149,8 +147,8 @@ public class DelayedRouting {
                 .build();
         RequestOperation<PaymentListRoutesRequest, PaymentListRoutesResponse> operation
               = new PaymentListRoutesOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

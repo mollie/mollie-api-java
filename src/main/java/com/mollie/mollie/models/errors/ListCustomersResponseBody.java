@@ -25,7 +25,6 @@ import java.util.Optional;
  */
 @SuppressWarnings("serial")
 public class ListCustomersResponseBody extends RuntimeException {
-
     /**
      * The status code of the error message. This is always the same code as the status code of the HTTP message itself.
      */
@@ -50,6 +49,7 @@ public class ListCustomersResponseBody extends RuntimeException {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("field")
     private Optional<String> field;
+
 
     @JsonProperty("_links")
     private ListCustomersLinks links;
@@ -89,7 +89,8 @@ public class ListCustomersResponseBody extends RuntimeException {
             String title,
             String detail,
             ListCustomersLinks links) {
-        this(status, title, detail, Optional.empty(), links, Optional.empty());
+        this(status, title, detail,
+            Optional.empty(), links, Optional.empty());
     }
 
     /**
@@ -138,9 +139,10 @@ public class ListCustomersResponseBody extends RuntimeException {
         return (Optional<HttpResponse<InputStream>>) rawResponse;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The status code of the error message. This is always the same code as the status code of the HTTP message itself.
@@ -178,6 +180,7 @@ public class ListCustomersResponseBody extends RuntimeException {
         return this;
     }
 
+
     /**
      * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
      */
@@ -202,6 +205,7 @@ public class ListCustomersResponseBody extends RuntimeException {
         return this;
     }
 
+
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
@@ -211,7 +215,6 @@ public class ListCustomersResponseBody extends RuntimeException {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -233,12 +236,8 @@ public class ListCustomersResponseBody extends RuntimeException {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            status,
-            title,
-            detail,
-            field,
-            links,
-            rawResponse);
+            status, title, detail,
+            field, links, rawResponse);
     }
     
     @Override
@@ -251,24 +250,26 @@ public class ListCustomersResponseBody extends RuntimeException {
                 "links", links,
                 "rawResponse", rawResponse);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long status;
- 
+
         private String title;
- 
+
         private String detail;
- 
+
         private Optional<String> field = Optional.empty();
- 
+
         private ListCustomersLinks links;
- 
+
         private Optional<? extends HttpResponse<InputStream>> rawResponse;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The status code of the error message. This is always the same code as the status code of the HTTP message itself.
@@ -279,6 +280,7 @@ public class ListCustomersResponseBody extends RuntimeException {
             return this;
         }
 
+
         /**
          * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not Found`.
          */
@@ -288,6 +290,7 @@ public class ListCustomersResponseBody extends RuntimeException {
             return this;
         }
 
+
         /**
          * A detailed human-readable description of the error that occurred.
          */
@@ -296,6 +299,7 @@ public class ListCustomersResponseBody extends RuntimeException {
             this.detail = detail;
             return this;
         }
+
 
         /**
          * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
@@ -315,11 +319,13 @@ public class ListCustomersResponseBody extends RuntimeException {
             return this;
         }
 
+
         public Builder links(ListCustomersLinks links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;
         }
+
 
         /**
          * Raw HTTP response; suitable for custom response parsing
@@ -338,16 +344,14 @@ public class ListCustomersResponseBody extends RuntimeException {
             this.rawResponse = rawResponse;
             return this;
         }
-        
+
         public ListCustomersResponseBody build() {
+
             return new ListCustomersResponseBody(
-                status,
-                title,
-                detail,
-                field,
-                links,
-                rawResponse);
+                status, title, detail,
+                field, links, rawResponse);
         }
+
     }
 }
 

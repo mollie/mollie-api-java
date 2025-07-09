@@ -21,7 +21,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
 public class CreateSalesInvoiceLinks {
-
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -67,7 +66,8 @@ public class CreateSalesInvoiceLinks {
     }
     
     public CreateSalesInvoiceLinks() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -106,9 +106,10 @@ public class CreateSalesInvoiceLinks {
         return (Optional<CreateSalesInvoiceDocumentation>) documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -118,6 +119,7 @@ public class CreateSalesInvoiceLinks {
         this.self = Optional.ofNullable(self);
         return this;
     }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -136,6 +138,7 @@ public class CreateSalesInvoiceLinks {
         this.invoicePayment = Optional.ofNullable(invoicePayment);
         return this;
     }
+
 
     /**
      * The URL your customer should visit to make payment for the invoice. This is where you should redirect the customer to unless the `status` is set to `paid`.
@@ -173,6 +176,7 @@ public class CreateSalesInvoiceLinks {
         return this;
     }
 
+
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -182,7 +186,6 @@ public class CreateSalesInvoiceLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -202,9 +205,7 @@ public class CreateSalesInvoiceLinks {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self,
-            invoicePayment,
-            pdfLink,
+            self, invoicePayment, pdfLink,
             documentation);
     }
     
@@ -216,20 +217,22 @@ public class CreateSalesInvoiceLinks {
                 "pdfLink", pdfLink,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends CreateSalesInvoiceSelf> self = Optional.empty();
- 
+
         private Optional<? extends InvoicePayment> invoicePayment = Optional.empty();
- 
+
         private JsonNullable<? extends PdfLink> pdfLink = JsonNullable.undefined();
- 
+
         private Optional<? extends CreateSalesInvoiceDocumentation> documentation = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -249,6 +252,7 @@ public class CreateSalesInvoiceLinks {
             return this;
         }
 
+
         /**
          * The URL your customer should visit to make payment for the invoice. This is where you should redirect the customer to unless the `status` is set to `paid`.
          */
@@ -266,6 +270,7 @@ public class CreateSalesInvoiceLinks {
             this.invoicePayment = invoicePayment;
             return this;
         }
+
 
         /**
          * The URL the invoice is available at, if generated.
@@ -285,6 +290,7 @@ public class CreateSalesInvoiceLinks {
             return this;
         }
 
+
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
@@ -302,13 +308,13 @@ public class CreateSalesInvoiceLinks {
             this.documentation = documentation;
             return this;
         }
-        
+
         public CreateSalesInvoiceLinks build() {
+
             return new CreateSalesInvoiceLinks(
-                self,
-                invoicePayment,
-                pdfLink,
+                self, invoicePayment, pdfLink,
                 documentation);
         }
+
     }
 }

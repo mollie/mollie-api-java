@@ -17,8 +17,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class Permissions {
 
+public class Permissions {
     /**
      * Indicates the response contains a permission object. Will always contain the string `permission` for this endpoint.
      */
@@ -74,7 +74,8 @@ public class Permissions {
     }
     
     public Permissions() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -118,9 +119,10 @@ public class Permissions {
         return (Optional<ListPermissionsPermissionsLinks>) links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a permission object. Will always contain the string `permission` for this endpoint.
@@ -130,6 +132,7 @@ public class Permissions {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Indicates the response contains a permission object. Will always contain the string `permission` for this endpoint.
@@ -149,6 +152,7 @@ public class Permissions {
         return this;
     }
 
+
     /**
      * The identifier uniquely referring to this permission. Example: `payments.read`.
      */
@@ -166,6 +170,7 @@ public class Permissions {
         this.description = Optional.ofNullable(description);
         return this;
     }
+
 
     /**
      * A short description of what kind of access the permission enables.
@@ -185,6 +190,7 @@ public class Permissions {
         return this;
     }
 
+
     /**
      * Whether this permission is granted to the app by the organization.
      */
@@ -203,6 +209,7 @@ public class Permissions {
         return this;
     }
 
+
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
@@ -212,7 +219,6 @@ public class Permissions {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -233,11 +239,8 @@ public class Permissions {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            description,
-            granted,
-            links);
+            resource, id, description,
+            granted, links);
     }
     
     @Override
@@ -249,22 +252,24 @@ public class Permissions {
                 "granted", granted,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<Boolean> granted = Optional.empty();
- 
+
         private Optional<? extends ListPermissionsPermissionsLinks> links = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a permission object. Will always contain the string `permission` for this endpoint.
@@ -284,6 +289,7 @@ public class Permissions {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this permission. Example: `payments.read`.
          */
@@ -301,6 +307,7 @@ public class Permissions {
             this.id = id;
             return this;
         }
+
 
         /**
          * A short description of what kind of access the permission enables.
@@ -320,6 +327,7 @@ public class Permissions {
             return this;
         }
 
+
         /**
          * Whether this permission is granted to the app by the organization.
          */
@@ -338,6 +346,7 @@ public class Permissions {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -355,18 +364,17 @@ public class Permissions {
             this.links = links;
             return this;
         }
-        
+
         public Permissions build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new Permissions(
-                resource,
-                id,
-                description,
-                granted,
-                links);
+                resource, id, description,
+                granted, links);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

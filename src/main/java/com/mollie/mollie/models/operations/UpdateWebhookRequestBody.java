@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class UpdateWebhookRequestBody {
 
+public class UpdateWebhookRequestBody {
     /**
      * A name that identifies the webhook.
      */
@@ -65,7 +65,8 @@ public class UpdateWebhookRequestBody {
     }
     
     public UpdateWebhookRequestBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -103,9 +104,10 @@ public class UpdateWebhookRequestBody {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A name that identifies the webhook.
@@ -115,6 +117,7 @@ public class UpdateWebhookRequestBody {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * A name that identifies the webhook.
@@ -134,6 +137,7 @@ public class UpdateWebhookRequestBody {
         return this;
     }
 
+
     /**
      * The URL Mollie will send the events to. This URL must be publicly accessible.
      */
@@ -151,6 +155,7 @@ public class UpdateWebhookRequestBody {
         this.eventTypes = Optional.ofNullable(eventTypes);
         return this;
     }
+
 
     /**
      * The list of events to enable for this webhook. You may specify `'*'` to add all events, except those that require explicit selection. Separate multiple event types with a comma.
@@ -183,7 +188,6 @@ public class UpdateWebhookRequestBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -203,9 +207,7 @@ public class UpdateWebhookRequestBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            url,
-            eventTypes,
+            name, url, eventTypes,
             testmode);
     }
     
@@ -217,20 +219,22 @@ public class UpdateWebhookRequestBody {
                 "eventTypes", eventTypes,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> url = Optional.empty();
- 
+
         private Optional<? extends UpdateWebhookEventTypes> eventTypes = Optional.empty();
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A name that identifies the webhook.
@@ -250,6 +254,7 @@ public class UpdateWebhookRequestBody {
             return this;
         }
 
+
         /**
          * The URL Mollie will send the events to. This URL must be publicly accessible.
          */
@@ -268,6 +273,7 @@ public class UpdateWebhookRequestBody {
             return this;
         }
 
+
         /**
          * The list of events to enable for this webhook. You may specify `'*'` to add all events, except those that require explicit selection. Separate multiple event types with a comma.
          */
@@ -285,6 +291,7 @@ public class UpdateWebhookRequestBody {
             this.eventTypes = eventTypes;
             return this;
         }
+
 
         /**
          * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
@@ -307,13 +314,13 @@ public class UpdateWebhookRequestBody {
             this.testmode = testmode;
             return this;
         }
-        
+
         public UpdateWebhookRequestBody build() {
+
             return new UpdateWebhookRequestBody(
-                name,
-                url,
-                eventTypes,
+                name, url, eventTypes,
                 testmode);
         }
+
     }
 }

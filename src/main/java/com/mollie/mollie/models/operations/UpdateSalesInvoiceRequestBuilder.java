@@ -71,8 +71,8 @@ public class UpdateSalesInvoiceRequestBuilder {
 
         RequestOperation<UpdateSalesInvoiceRequest, UpdateSalesInvoiceResponse> operation
               = new UpdateSalesInvoiceOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         UpdateSalesInvoiceRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

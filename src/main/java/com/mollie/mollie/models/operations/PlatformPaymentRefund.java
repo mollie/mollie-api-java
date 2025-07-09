@@ -13,11 +13,13 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
+
 public class PlatformPaymentRefund {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("paymentId")
     private Optional<String> paymentId;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("refundId")
@@ -47,15 +49,17 @@ public class PlatformPaymentRefund {
         return refundId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PlatformPaymentRefund withPaymentId(String paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
         this.paymentId = Optional.ofNullable(paymentId);
         return this;
     }
+
 
     public PlatformPaymentRefund withPaymentId(Optional<String> paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
@@ -69,13 +73,13 @@ public class PlatformPaymentRefund {
         return this;
     }
 
+
     public PlatformPaymentRefund withRefundId(Optional<String> refundId) {
         Utils.checkNotNull(refundId, "refundId");
         this.refundId = refundId;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -93,8 +97,7 @@ public class PlatformPaymentRefund {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentId,
-            refundId);
+            paymentId, refundId);
     }
     
     @Override
@@ -103,16 +106,18 @@ public class PlatformPaymentRefund {
                 "paymentId", paymentId,
                 "refundId", refundId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> paymentId = Optional.empty();
- 
+
         private Optional<String> refundId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder paymentId(String paymentId) {
             Utils.checkNotNull(paymentId, "paymentId");
@@ -126,6 +131,7 @@ public class PlatformPaymentRefund {
             return this;
         }
 
+
         public Builder refundId(String refundId) {
             Utils.checkNotNull(refundId, "refundId");
             this.refundId = Optional.ofNullable(refundId);
@@ -137,11 +143,12 @@ public class PlatformPaymentRefund {
             this.refundId = refundId;
             return this;
         }
-        
+
         public PlatformPaymentRefund build() {
+
             return new PlatformPaymentRefund(
-                paymentId,
-                refundId);
+                paymentId, refundId);
         }
+
     }
 }

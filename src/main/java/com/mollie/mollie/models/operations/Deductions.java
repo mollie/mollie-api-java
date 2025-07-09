@@ -18,7 +18,6 @@ import java.lang.String;
  * <p>When moving funds to a balance, we always round the deduction to a 'real' amount. Any differences between these real-time rounded amounts and the final invoice will be compensated when the invoice is generated.
  */
 public class Deductions {
-
     /**
      * A three-character ISO 4217 currency code.
      */
@@ -57,9 +56,10 @@ public class Deductions {
         return value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A three-character ISO 4217 currency code.
@@ -79,7 +79,6 @@ public class Deductions {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -97,8 +96,7 @@ public class Deductions {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            currency,
-            value);
+            currency, value);
     }
     
     @Override
@@ -107,16 +105,18 @@ public class Deductions {
                 "currency", currency,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String currency;
- 
+
         private String value;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A three-character ISO 4217 currency code.
@@ -127,6 +127,7 @@ public class Deductions {
             return this;
         }
 
+
         /**
          * A string containing an exact monetary amount in the given currency.
          */
@@ -135,11 +136,12 @@ public class Deductions {
             this.value = value;
             return this;
         }
-        
+
         public Deductions build() {
+
             return new Deductions(
-                currency,
-                value);
+                currency, value);
         }
+
     }
 }

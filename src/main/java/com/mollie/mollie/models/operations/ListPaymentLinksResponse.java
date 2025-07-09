@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-public class ListPaymentLinksResponse implements Response {
 
+public class ListPaymentLinksResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
@@ -57,7 +57,8 @@ public class ListPaymentLinksResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, statusCode, rawResponse, Optional.empty());
+        this(contentType, statusCode, rawResponse,
+            Optional.empty());
     }
 
     /**
@@ -93,9 +94,10 @@ public class ListPaymentLinksResponse implements Response {
         return (Optional<ListPaymentLinksResponseBody>) object;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP response content type for this operation
@@ -133,6 +135,7 @@ public class ListPaymentLinksResponse implements Response {
         return this;
     }
 
+
     /**
      * A list of payment link objects.
      */
@@ -142,7 +145,6 @@ public class ListPaymentLinksResponse implements Response {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -162,9 +164,7 @@ public class ListPaymentLinksResponse implements Response {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            contentType,
-            statusCode,
-            rawResponse,
+            contentType, statusCode, rawResponse,
             object);
     }
     
@@ -176,20 +176,22 @@ public class ListPaymentLinksResponse implements Response {
                 "rawResponse", rawResponse,
                 "object", object);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String contentType;
- 
+
         private Integer statusCode;
- 
+
         private HttpResponse<InputStream> rawResponse;
- 
+
         private Optional<? extends ListPaymentLinksResponseBody> object = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP response content type for this operation
@@ -200,6 +202,7 @@ public class ListPaymentLinksResponse implements Response {
             return this;
         }
 
+
         /**
          * HTTP response status code for this operation
          */
@@ -209,6 +212,7 @@ public class ListPaymentLinksResponse implements Response {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -217,6 +221,7 @@ public class ListPaymentLinksResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
+
 
         /**
          * A list of payment link objects.
@@ -235,13 +240,13 @@ public class ListPaymentLinksResponse implements Response {
             this.object = object;
             return this;
         }
-        
+
         public ListPaymentLinksResponse build() {
+
             return new ListPaymentLinksResponse(
-                contentType,
-                statusCode,
-                rawResponse,
+                contentType, statusCode, rawResponse,
                 object);
         }
+
     }
 }

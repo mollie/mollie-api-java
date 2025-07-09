@@ -13,8 +13,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetRefundRequest {
 
+public class GetRefundRequest {
     /**
      * Provide the ID of the related payment.
      */
@@ -60,7 +60,8 @@ public class GetRefundRequest {
     public GetRefundRequest(
             String paymentId,
             String refundId) {
-        this(paymentId, refundId, JsonNullable.undefined(), JsonNullable.undefined());
+        this(paymentId, refundId, JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -98,9 +99,10 @@ public class GetRefundRequest {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the related payment.
@@ -160,7 +162,6 @@ public class GetRefundRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -180,9 +181,7 @@ public class GetRefundRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentId,
-            refundId,
-            include,
+            paymentId, refundId, include,
             testmode);
     }
     
@@ -194,20 +193,22 @@ public class GetRefundRequest {
                 "include", include,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String paymentId;
- 
+
         private String refundId;
- 
+
         private JsonNullable<? extends GetRefundQueryParamInclude> include = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the related payment.
@@ -218,6 +219,7 @@ public class GetRefundRequest {
             return this;
         }
 
+
         /**
          * Provide the ID of the related refund.
          */
@@ -226,6 +228,7 @@ public class GetRefundRequest {
             this.refundId = refundId;
             return this;
         }
+
 
         /**
          * This endpoint allows you to include additional information via the `include` query string parameter.
@@ -244,6 +247,7 @@ public class GetRefundRequest {
             this.include = include;
             return this;
         }
+
 
         /**
          * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
@@ -266,13 +270,13 @@ public class GetRefundRequest {
             this.testmode = testmode;
             return this;
         }
-        
+
         public GetRefundRequest build() {
+
             return new GetRefundRequest(
-                paymentId,
-                refundId,
-                include,
+                paymentId, refundId, include,
                 testmode);
         }
+
     }
 }

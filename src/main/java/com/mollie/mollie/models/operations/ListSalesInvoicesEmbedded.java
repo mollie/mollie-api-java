@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class ListSalesInvoicesEmbedded {
 
+public class ListSalesInvoicesEmbedded {
     /**
      * An array of sales invoice objects. For a complete reference of the sales invoice object, refer to the [Get sales invoice endpoint](get-sales-invoice) documentation.
      */
@@ -44,9 +44,10 @@ public class ListSalesInvoicesEmbedded {
         return (Optional<List<SalesInvoices>>) salesInvoices;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An array of sales invoice objects. For a complete reference of the sales invoice object, refer to the [Get sales invoice endpoint](get-sales-invoice) documentation.
@@ -57,6 +58,7 @@ public class ListSalesInvoicesEmbedded {
         return this;
     }
 
+
     /**
      * An array of sales invoice objects. For a complete reference of the sales invoice object, refer to the [Get sales invoice endpoint](get-sales-invoice) documentation.
      */
@@ -66,7 +68,6 @@ public class ListSalesInvoicesEmbedded {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,14 +92,16 @@ public class ListSalesInvoicesEmbedded {
         return Utils.toString(ListSalesInvoicesEmbedded.class,
                 "salesInvoices", salesInvoices);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<SalesInvoices>> salesInvoices = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An array of sales invoice objects. For a complete reference of the sales invoice object, refer to the [Get sales invoice endpoint](get-sales-invoice) documentation.
@@ -117,10 +120,12 @@ public class ListSalesInvoicesEmbedded {
             this.salesInvoices = salesInvoices;
             return this;
         }
-        
+
         public ListSalesInvoicesEmbedded build() {
+
             return new ListSalesInvoicesEmbedded(
                 salesInvoices);
         }
+
     }
 }

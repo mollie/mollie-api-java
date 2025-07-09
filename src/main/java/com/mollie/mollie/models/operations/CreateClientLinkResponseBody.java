@@ -22,7 +22,6 @@ import java.util.Optional;
  * <p>The newly created client link object.
  */
 public class CreateClientLinkResponseBody {
-
     /**
      * Indicates the response contains a client link object. Will always contain the string `client-link` for this endpoint.
      */
@@ -86,9 +85,10 @@ public class CreateClientLinkResponseBody {
         return (Optional<CreateClientLinkLinks>) links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a client link object. Will always contain the string `client-link` for this endpoint.
@@ -98,6 +98,7 @@ public class CreateClientLinkResponseBody {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Indicates the response contains a client link object. Will always contain the string `client-link` for this endpoint.
@@ -117,6 +118,7 @@ public class CreateClientLinkResponseBody {
         return this;
     }
 
+
     /**
      * The identifier uniquely referring to this client link. Example: `cl_vZCnNQsV2UtfXxYifWKWH`.
      */
@@ -135,6 +137,7 @@ public class CreateClientLinkResponseBody {
         return this;
     }
 
+
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
@@ -144,7 +147,6 @@ public class CreateClientLinkResponseBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -163,9 +165,7 @@ public class CreateClientLinkResponseBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            links);
+            resource, id, links);
     }
     
     @Override
@@ -175,18 +175,20 @@ public class CreateClientLinkResponseBody {
                 "id", id,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<? extends CreateClientLinkLinks> links = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a client link object. Will always contain the string `client-link` for this endpoint.
@@ -206,6 +208,7 @@ public class CreateClientLinkResponseBody {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this client link. Example: `cl_vZCnNQsV2UtfXxYifWKWH`.
          */
@@ -224,6 +227,7 @@ public class CreateClientLinkResponseBody {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -241,16 +245,16 @@ public class CreateClientLinkResponseBody {
             this.links = links;
             return this;
         }
-        
+
         public CreateClientLinkResponseBody build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new CreateClientLinkResponseBody(
-                resource,
-                id,
-                links);
+                resource, id, links);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

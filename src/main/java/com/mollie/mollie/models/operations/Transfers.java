@@ -25,9 +25,11 @@ public class Transfers {
     @JsonProperty("pending")
     private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPending> pending;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("movedToAvailable")
     private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonMovedToAvailable> movedToAvailable;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("immediatelyAvailable")
@@ -68,15 +70,17 @@ public class Transfers {
         return (Optional<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonImmediatelyAvailable>) immediatelyAvailable;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Transfers withPending(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPending pending) {
         Utils.checkNotNull(pending, "pending");
         this.pending = Optional.ofNullable(pending);
         return this;
     }
+
 
     public Transfers withPending(Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPending> pending) {
         Utils.checkNotNull(pending, "pending");
@@ -90,6 +94,7 @@ public class Transfers {
         return this;
     }
 
+
     public Transfers withMovedToAvailable(Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonMovedToAvailable> movedToAvailable) {
         Utils.checkNotNull(movedToAvailable, "movedToAvailable");
         this.movedToAvailable = movedToAvailable;
@@ -102,13 +107,13 @@ public class Transfers {
         return this;
     }
 
+
     public Transfers withImmediatelyAvailable(Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonImmediatelyAvailable> immediatelyAvailable) {
         Utils.checkNotNull(immediatelyAvailable, "immediatelyAvailable");
         this.immediatelyAvailable = immediatelyAvailable;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -127,9 +132,7 @@ public class Transfers {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            pending,
-            movedToAvailable,
-            immediatelyAvailable);
+            pending, movedToAvailable, immediatelyAvailable);
     }
     
     @Override
@@ -139,18 +142,20 @@ public class Transfers {
                 "movedToAvailable", movedToAvailable,
                 "immediatelyAvailable", immediatelyAvailable);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPending> pending = Optional.empty();
- 
+
         private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonMovedToAvailable> movedToAvailable = Optional.empty();
- 
+
         private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonImmediatelyAvailable> immediatelyAvailable = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder pending(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPending pending) {
             Utils.checkNotNull(pending, "pending");
@@ -164,6 +169,7 @@ public class Transfers {
             return this;
         }
 
+
         public Builder movedToAvailable(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonMovedToAvailable movedToAvailable) {
             Utils.checkNotNull(movedToAvailable, "movedToAvailable");
             this.movedToAvailable = Optional.ofNullable(movedToAvailable);
@@ -176,6 +182,7 @@ public class Transfers {
             return this;
         }
 
+
         public Builder immediatelyAvailable(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonImmediatelyAvailable immediatelyAvailable) {
             Utils.checkNotNull(immediatelyAvailable, "immediatelyAvailable");
             this.immediatelyAvailable = Optional.ofNullable(immediatelyAvailable);
@@ -187,12 +194,12 @@ public class Transfers {
             this.immediatelyAvailable = immediatelyAvailable;
             return this;
         }
-        
+
         public Transfers build() {
+
             return new Transfers(
-                pending,
-                movedToAvailable,
-                immediatelyAvailable);
+                pending, movedToAvailable, immediatelyAvailable);
         }
+
     }
 }

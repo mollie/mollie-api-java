@@ -54,8 +54,8 @@ public class CreateSalesInvoiceRequestBuilder {
 
         RequestOperation<Optional<? extends CreateSalesInvoiceRequestBody>, CreateSalesInvoiceResponse> operation
               = new CreateSalesInvoiceOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

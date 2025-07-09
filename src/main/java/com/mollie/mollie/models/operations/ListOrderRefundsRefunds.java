@@ -18,8 +18,8 @@ import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListOrderRefundsRefunds {
 
+public class ListOrderRefundsRefunds {
     /**
      * Indicates the response contains a refund object. Will always contain the string `refund` for this endpoint.
      */
@@ -109,6 +109,7 @@ public class ListOrderRefundsRefunds {
     @JsonProperty("createdAt")
     private Optional<String> createdAt;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("externalReference")
     private Optional<? extends ListOrderRefundsExternalReference> externalReference;
@@ -176,7 +177,11 @@ public class ListOrderRefundsRefunds {
     }
     
     public ListOrderRefundsRefunds() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -308,9 +313,10 @@ public class ListOrderRefundsRefunds {
         return (Optional<ListOrderRefundsRefundsLinks>) links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a refund object. Will always contain the string `refund` for this endpoint.
@@ -320,6 +326,7 @@ public class ListOrderRefundsRefunds {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Indicates the response contains a refund object. Will always contain the string `refund` for this endpoint.
@@ -338,6 +345,7 @@ public class ListOrderRefundsRefunds {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
@@ -359,6 +367,7 @@ public class ListOrderRefundsRefunds {
         return this;
     }
 
+
     /**
      * Whether this entity was created in live mode or in test mode.
      * 
@@ -379,6 +388,7 @@ public class ListOrderRefundsRefunds {
         return this;
     }
 
+
     /**
      * The description of the refund that may be shown to your customer, depending on the payment method used.
      */
@@ -396,6 +406,7 @@ public class ListOrderRefundsRefunds {
         this.amount = Optional.ofNullable(amount);
         return this;
     }
+
 
     /**
      * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment amount.
@@ -467,6 +478,7 @@ public class ListOrderRefundsRefunds {
         return this;
     }
 
+
     /**
      * The unique identifier of the order this refund was created for. For example: `ord_8wmqcHMN4U`. Not present if the refund was not created for an order.
      */
@@ -505,6 +517,7 @@ public class ListOrderRefundsRefunds {
         return this;
     }
 
+
     /**
      * Refunds may take some time to get confirmed.
      * 
@@ -525,6 +538,7 @@ public class ListOrderRefundsRefunds {
         return this;
     }
 
+
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
@@ -539,6 +553,7 @@ public class ListOrderRefundsRefunds {
         this.externalReference = Optional.ofNullable(externalReference);
         return this;
     }
+
 
     public ListOrderRefundsRefunds withExternalReference(Optional<? extends ListOrderRefundsExternalReference> externalReference) {
         Utils.checkNotNull(externalReference, "externalReference");
@@ -556,6 +571,7 @@ public class ListOrderRefundsRefunds {
         this.lines = Optional.ofNullable(lines);
         return this;
     }
+
 
     /**
      * A refund can optionally be linked to specific order lines.
@@ -577,6 +593,7 @@ public class ListOrderRefundsRefunds {
         return this;
     }
 
+
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
@@ -586,7 +603,6 @@ public class ListOrderRefundsRefunds {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -616,20 +632,11 @@ public class ListOrderRefundsRefunds {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            mode,
-            description,
-            amount,
-            settlementAmount,
-            metadata,
-            orderId,
-            settlementId,
-            status,
-            createdAt,
-            externalReference,
-            lines,
-            links);
+            resource, id, mode,
+            description, amount, settlementAmount,
+            metadata, orderId, settlementId,
+            status, createdAt, externalReference,
+            lines, links);
     }
     
     @Override
@@ -650,40 +657,42 @@ public class ListOrderRefundsRefunds {
                 "lines", lines,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> mode = Optional.empty();
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<? extends ListOrderRefundsAmount> amount = Optional.empty();
- 
+
         private JsonNullable<? extends ListOrderRefundsSettlementAmount> settlementAmount = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends ListOrderRefundsMetadata> metadata = JsonNullable.undefined();
- 
+
         private Optional<String> orderId = Optional.empty();
- 
+
         private JsonNullable<String> settlementId = JsonNullable.undefined();
- 
+
         private Optional<String> status = Optional.empty();
- 
+
         private Optional<String> createdAt = Optional.empty();
- 
+
         private Optional<? extends ListOrderRefundsExternalReference> externalReference = Optional.empty();
- 
+
         private Optional<? extends List<ListOrderRefundsLines>> lines = Optional.empty();
- 
+
         private Optional<? extends ListOrderRefundsRefundsLinks> links = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a refund object. Will always contain the string `refund` for this endpoint.
@@ -703,6 +712,7 @@ public class ListOrderRefundsRefunds {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
          */
@@ -720,6 +730,7 @@ public class ListOrderRefundsRefunds {
             this.id = id;
             return this;
         }
+
 
         /**
          * Whether this entity was created in live mode or in test mode.
@@ -743,6 +754,7 @@ public class ListOrderRefundsRefunds {
             return this;
         }
 
+
         /**
          * The description of the refund that may be shown to your customer, depending on the payment method used.
          */
@@ -761,6 +773,7 @@ public class ListOrderRefundsRefunds {
             return this;
         }
 
+
         /**
          * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment amount.
          */
@@ -778,6 +791,7 @@ public class ListOrderRefundsRefunds {
             this.amount = amount;
             return this;
         }
+
 
         /**
          * This optional field will contain the approximate amount that will be deducted from your account balance, converted to the currency your account is settled in.
@@ -813,6 +827,7 @@ public class ListOrderRefundsRefunds {
             return this;
         }
 
+
         /**
          * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
@@ -830,6 +845,7 @@ public class ListOrderRefundsRefunds {
             this.metadata = metadata;
             return this;
         }
+
 
         /**
          * The unique identifier of the order this refund was created for. For example: `ord_8wmqcHMN4U`. Not present if the refund was not created for an order.
@@ -849,6 +865,7 @@ public class ListOrderRefundsRefunds {
             return this;
         }
 
+
         /**
          * The identifier referring to the settlement this refund was settled with. This field is omitted if the refund is not settled (yet).
          */
@@ -866,6 +883,7 @@ public class ListOrderRefundsRefunds {
             this.settlementId = settlementId;
             return this;
         }
+
 
         /**
          * Refunds may take some time to get confirmed.
@@ -889,6 +907,7 @@ public class ListOrderRefundsRefunds {
             return this;
         }
 
+
         /**
          * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
          */
@@ -907,6 +926,7 @@ public class ListOrderRefundsRefunds {
             return this;
         }
 
+
         public Builder externalReference(ListOrderRefundsExternalReference externalReference) {
             Utils.checkNotNull(externalReference, "externalReference");
             this.externalReference = Optional.ofNullable(externalReference);
@@ -918,6 +938,7 @@ public class ListOrderRefundsRefunds {
             this.externalReference = externalReference;
             return this;
         }
+
 
         /**
          * A refund can optionally be linked to specific order lines.
@@ -941,6 +962,7 @@ public class ListOrderRefundsRefunds {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -958,27 +980,20 @@ public class ListOrderRefundsRefunds {
             this.links = links;
             return this;
         }
-        
+
         public ListOrderRefundsRefunds build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new ListOrderRefundsRefunds(
-                resource,
-                id,
-                mode,
-                description,
-                amount,
-                settlementAmount,
-                metadata,
-                orderId,
-                settlementId,
-                status,
-                createdAt,
-                externalReference,
-                lines,
-                links);
+                resource, id, mode,
+                description, amount, settlementAmount,
+                metadata, orderId, settlementId,
+                status, createdAt, externalReference,
+                lines, links);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

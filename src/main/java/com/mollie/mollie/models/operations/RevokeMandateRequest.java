@@ -12,8 +12,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class RevokeMandateRequest {
 
+public class RevokeMandateRequest {
     /**
      * Provide the ID of the related customer.
      */
@@ -25,6 +25,7 @@ public class RevokeMandateRequest {
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=mandateId")
     private String mandateId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends RevokeMandateRequestBody> requestBody;
@@ -70,9 +71,10 @@ public class RevokeMandateRequest {
         return (Optional<RevokeMandateRequestBody>) requestBody;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the related customer.
@@ -98,13 +100,13 @@ public class RevokeMandateRequest {
         return this;
     }
 
+
     public RevokeMandateRequest withRequestBody(Optional<? extends RevokeMandateRequestBody> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -123,9 +125,7 @@ public class RevokeMandateRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            customerId,
-            mandateId,
-            requestBody);
+            customerId, mandateId, requestBody);
     }
     
     @Override
@@ -135,18 +135,20 @@ public class RevokeMandateRequest {
                 "mandateId", mandateId,
                 "requestBody", requestBody);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String customerId;
- 
+
         private String mandateId;
- 
+
         private Optional<? extends RevokeMandateRequestBody> requestBody = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the related customer.
@@ -157,6 +159,7 @@ public class RevokeMandateRequest {
             return this;
         }
 
+
         /**
          * Provide the ID of the related mandate.
          */
@@ -165,6 +168,7 @@ public class RevokeMandateRequest {
             this.mandateId = mandateId;
             return this;
         }
+
 
         public Builder requestBody(RevokeMandateRequestBody requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
@@ -177,12 +181,12 @@ public class RevokeMandateRequest {
             this.requestBody = requestBody;
             return this;
         }
-        
+
         public RevokeMandateRequest build() {
+
             return new RevokeMandateRequest(
-                customerId,
-                mandateId,
-                requestBody);
+                customerId, mandateId, requestBody);
         }
+
     }
 }

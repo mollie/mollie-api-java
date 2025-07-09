@@ -12,8 +12,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetSubscriptionRequest {
 
+public class GetSubscriptionRequest {
     /**
      * Provide the ID of the related customer.
      */
@@ -79,9 +79,10 @@ public class GetSubscriptionRequest {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the related customer.
@@ -123,7 +124,6 @@ public class GetSubscriptionRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -142,9 +142,7 @@ public class GetSubscriptionRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            customerId,
-            subscriptionId,
-            testmode);
+            customerId, subscriptionId, testmode);
     }
     
     @Override
@@ -154,18 +152,20 @@ public class GetSubscriptionRequest {
                 "subscriptionId", subscriptionId,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String customerId;
- 
+
         private String subscriptionId;
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the related customer.
@@ -176,6 +176,7 @@ public class GetSubscriptionRequest {
             return this;
         }
 
+
         /**
          * Provide the ID of the related subscription.
          */
@@ -184,6 +185,7 @@ public class GetSubscriptionRequest {
             this.subscriptionId = subscriptionId;
             return this;
         }
+
 
         /**
          * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
@@ -206,12 +208,12 @@ public class GetSubscriptionRequest {
             this.testmode = testmode;
             return this;
         }
-        
+
         public GetSubscriptionRequest build() {
+
             return new GetSubscriptionRequest(
-                customerId,
-                subscriptionId,
-                testmode);
+                customerId, subscriptionId, testmode);
         }
+
     }
 }

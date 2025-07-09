@@ -52,7 +52,8 @@ public class CreateCaptureOperation implements RequestOperation<CreateCaptureReq
     
     @Override
     public HttpResponse<InputStream> doRequest(CreateCaptureRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 CreateCaptureRequest.class,

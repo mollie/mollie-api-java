@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreateOrderRefundLines {
 
+public class CreateOrderRefundLines {
     /**
      * The ID of the order line you wish to refund. For example: `odl_jp31y97yjz`.
      */
@@ -26,17 +26,21 @@ public class CreateOrderRefundLines {
     @JsonProperty("id")
     private Optional<String> id;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private Optional<String> name;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sku")
     private JsonNullable<String> sku;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
     private Optional<? extends Type> type;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
@@ -48,6 +52,7 @@ public class CreateOrderRefundLines {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends CreateOrderRefundRefundsMetadata> metadata;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("isCancelable")
@@ -62,6 +67,7 @@ public class CreateOrderRefundLines {
     @JsonProperty("quantity")
     private Optional<Long> quantity;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("quantityShipped")
     private Optional<Long> quantityShipped;
@@ -73,6 +79,7 @@ public class CreateOrderRefundLines {
     @JsonProperty("amountShipped")
     private Optional<? extends AmountShipped> amountShipped;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("quantityRefunded")
     private Optional<Long> quantityRefunded;
@@ -83,6 +90,7 @@ public class CreateOrderRefundLines {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amountRefunded")
     private Optional<? extends AmountRefunded> amountRefunded;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("quantityCanceled")
@@ -110,21 +118,26 @@ public class CreateOrderRefundLines {
     @JsonProperty("amount")
     private Optional<? extends CreateOrderRefundRefundsAmount> amount;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shippableQuantity")
     private Optional<Long> shippableQuantity;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("refundableQuantity")
     private Optional<Long> refundableQuantity;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cancelableQuantity")
     private Optional<Long> cancelableQuantity;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatRate")
     private Optional<String> vatRate;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
@@ -195,7 +208,13 @@ public class CreateOrderRefundLines {
     }
     
     public CreateOrderRefundLines() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -336,9 +355,10 @@ public class CreateOrderRefundLines {
         return createdAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the order line you wish to refund. For example: `odl_jp31y97yjz`.
@@ -348,6 +368,7 @@ public class CreateOrderRefundLines {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The ID of the order line you wish to refund. For example: `odl_jp31y97yjz`.
@@ -363,6 +384,7 @@ public class CreateOrderRefundLines {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     public CreateOrderRefundLines withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
@@ -388,6 +410,7 @@ public class CreateOrderRefundLines {
         return this;
     }
 
+
     public CreateOrderRefundLines withType(Optional<? extends Type> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
@@ -399,6 +422,7 @@ public class CreateOrderRefundLines {
         this.status = Optional.ofNullable(status);
         return this;
     }
+
 
     public CreateOrderRefundLines withStatus(Optional<? extends Status> status) {
         Utils.checkNotNull(status, "status");
@@ -430,6 +454,7 @@ public class CreateOrderRefundLines {
         return this;
     }
 
+
     public CreateOrderRefundLines withIsCancelable(Optional<Boolean> isCancelable) {
         Utils.checkNotNull(isCancelable, "isCancelable");
         this.isCancelable = isCancelable;
@@ -446,6 +471,7 @@ public class CreateOrderRefundLines {
         this.quantity = Optional.ofNullable(quantity);
         return this;
     }
+
 
     /**
      * The number of items that should be refunded for this order line. When this parameter is omitted, the whole order line will be refunded.
@@ -464,6 +490,7 @@ public class CreateOrderRefundLines {
         return this;
     }
 
+
     public CreateOrderRefundLines withQuantityShipped(Optional<Long> quantityShipped) {
         Utils.checkNotNull(quantityShipped, "quantityShipped");
         this.quantityShipped = quantityShipped;
@@ -478,6 +505,7 @@ public class CreateOrderRefundLines {
         this.amountShipped = Optional.ofNullable(amountShipped);
         return this;
     }
+
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -494,6 +522,7 @@ public class CreateOrderRefundLines {
         return this;
     }
 
+
     public CreateOrderRefundLines withQuantityRefunded(Optional<Long> quantityRefunded) {
         Utils.checkNotNull(quantityRefunded, "quantityRefunded");
         this.quantityRefunded = quantityRefunded;
@@ -508,6 +537,7 @@ public class CreateOrderRefundLines {
         this.amountRefunded = Optional.ofNullable(amountRefunded);
         return this;
     }
+
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -524,6 +554,7 @@ public class CreateOrderRefundLines {
         return this;
     }
 
+
     public CreateOrderRefundLines withQuantityCanceled(Optional<Long> quantityCanceled) {
         Utils.checkNotNull(quantityCanceled, "quantityCanceled");
         this.quantityCanceled = quantityCanceled;
@@ -538,6 +569,7 @@ public class CreateOrderRefundLines {
         this.amountCanceled = Optional.ofNullable(amountCanceled);
         return this;
     }
+
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -565,6 +597,7 @@ public class CreateOrderRefundLines {
         return this;
     }
 
+
     /**
      * The amount that you want to refund. In almost all cases, Mollie can determine the amount automatically.
      * 
@@ -588,6 +621,7 @@ public class CreateOrderRefundLines {
         return this;
     }
 
+
     public CreateOrderRefundLines withShippableQuantity(Optional<Long> shippableQuantity) {
         Utils.checkNotNull(shippableQuantity, "shippableQuantity");
         this.shippableQuantity = shippableQuantity;
@@ -599,6 +633,7 @@ public class CreateOrderRefundLines {
         this.refundableQuantity = Optional.ofNullable(refundableQuantity);
         return this;
     }
+
 
     public CreateOrderRefundLines withRefundableQuantity(Optional<Long> refundableQuantity) {
         Utils.checkNotNull(refundableQuantity, "refundableQuantity");
@@ -612,6 +647,7 @@ public class CreateOrderRefundLines {
         return this;
     }
 
+
     public CreateOrderRefundLines withCancelableQuantity(Optional<Long> cancelableQuantity) {
         Utils.checkNotNull(cancelableQuantity, "cancelableQuantity");
         this.cancelableQuantity = cancelableQuantity;
@@ -623,6 +659,7 @@ public class CreateOrderRefundLines {
         this.vatRate = Optional.ofNullable(vatRate);
         return this;
     }
+
 
     public CreateOrderRefundLines withVatRate(Optional<String> vatRate) {
         Utils.checkNotNull(vatRate, "vatRate");
@@ -636,13 +673,13 @@ public class CreateOrderRefundLines {
         return this;
     }
 
+
     public CreateOrderRefundLines withCreatedAt(Optional<String> createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -678,26 +715,13 @@ public class CreateOrderRefundLines {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            name,
-            sku,
-            type,
-            status,
-            metadata,
-            isCancelable,
-            quantity,
-            quantityShipped,
-            amountShipped,
-            quantityRefunded,
-            amountRefunded,
-            quantityCanceled,
-            amountCanceled,
-            amount,
-            shippableQuantity,
-            refundableQuantity,
-            cancelableQuantity,
-            vatRate,
-            createdAt);
+            id, name, sku,
+            type, status, metadata,
+            isCancelable, quantity, quantityShipped,
+            amountShipped, quantityRefunded, amountRefunded,
+            quantityCanceled, amountCanceled, amount,
+            shippableQuantity, refundableQuantity, cancelableQuantity,
+            vatRate, createdAt);
     }
     
     @Override
@@ -724,52 +748,54 @@ public class CreateOrderRefundLines {
                 "vatRate", vatRate,
                 "createdAt", createdAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private JsonNullable<String> sku = JsonNullable.undefined();
- 
+
         private Optional<? extends Type> type = Optional.empty();
- 
+
         private Optional<? extends Status> status = Optional.empty();
- 
+
         private JsonNullable<? extends CreateOrderRefundRefundsMetadata> metadata = JsonNullable.undefined();
- 
+
         private Optional<Boolean> isCancelable = Optional.empty();
- 
+
         private Optional<Long> quantity = Optional.empty();
- 
+
         private Optional<Long> quantityShipped = Optional.empty();
- 
+
         private Optional<? extends AmountShipped> amountShipped = Optional.empty();
- 
+
         private Optional<Long> quantityRefunded = Optional.empty();
- 
+
         private Optional<? extends AmountRefunded> amountRefunded = Optional.empty();
- 
+
         private Optional<Long> quantityCanceled = Optional.empty();
- 
+
         private Optional<? extends AmountCanceled> amountCanceled = Optional.empty();
- 
+
         private Optional<? extends CreateOrderRefundRefundsAmount> amount = Optional.empty();
- 
+
         private Optional<Long> shippableQuantity = Optional.empty();
- 
+
         private Optional<Long> refundableQuantity = Optional.empty();
- 
+
         private Optional<Long> cancelableQuantity = Optional.empty();
- 
+
         private Optional<String> vatRate = Optional.empty();
- 
+
         private Optional<String> createdAt = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the order line you wish to refund. For example: `odl_jp31y97yjz`.
@@ -789,6 +815,7 @@ public class CreateOrderRefundLines {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = Optional.ofNullable(name);
@@ -800,6 +827,7 @@ public class CreateOrderRefundLines {
             this.name = name;
             return this;
         }
+
 
         public Builder sku(String sku) {
             Utils.checkNotNull(sku, "sku");
@@ -813,6 +841,7 @@ public class CreateOrderRefundLines {
             return this;
         }
 
+
         public Builder type(Type type) {
             Utils.checkNotNull(type, "type");
             this.type = Optional.ofNullable(type);
@@ -825,6 +854,7 @@ public class CreateOrderRefundLines {
             return this;
         }
 
+
         public Builder status(Status status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
@@ -836,6 +866,7 @@ public class CreateOrderRefundLines {
             this.status = status;
             return this;
         }
+
 
         /**
          * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
@@ -855,6 +886,7 @@ public class CreateOrderRefundLines {
             return this;
         }
 
+
         public Builder isCancelable(boolean isCancelable) {
             Utils.checkNotNull(isCancelable, "isCancelable");
             this.isCancelable = Optional.ofNullable(isCancelable);
@@ -866,6 +898,7 @@ public class CreateOrderRefundLines {
             this.isCancelable = isCancelable;
             return this;
         }
+
 
         /**
          * The number of items that should be refunded for this order line. When this parameter is omitted, the whole order line will be refunded.
@@ -889,6 +922,7 @@ public class CreateOrderRefundLines {
             return this;
         }
 
+
         public Builder quantityShipped(long quantityShipped) {
             Utils.checkNotNull(quantityShipped, "quantityShipped");
             this.quantityShipped = Optional.ofNullable(quantityShipped);
@@ -900,6 +934,7 @@ public class CreateOrderRefundLines {
             this.quantityShipped = quantityShipped;
             return this;
         }
+
 
         /**
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -919,6 +954,7 @@ public class CreateOrderRefundLines {
             return this;
         }
 
+
         public Builder quantityRefunded(long quantityRefunded) {
             Utils.checkNotNull(quantityRefunded, "quantityRefunded");
             this.quantityRefunded = Optional.ofNullable(quantityRefunded);
@@ -930,6 +966,7 @@ public class CreateOrderRefundLines {
             this.quantityRefunded = quantityRefunded;
             return this;
         }
+
 
         /**
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -949,6 +986,7 @@ public class CreateOrderRefundLines {
             return this;
         }
 
+
         public Builder quantityCanceled(long quantityCanceled) {
             Utils.checkNotNull(quantityCanceled, "quantityCanceled");
             this.quantityCanceled = Optional.ofNullable(quantityCanceled);
@@ -960,6 +998,7 @@ public class CreateOrderRefundLines {
             this.quantityCanceled = quantityCanceled;
             return this;
         }
+
 
         /**
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -978,6 +1017,7 @@ public class CreateOrderRefundLines {
             this.amountCanceled = amountCanceled;
             return this;
         }
+
 
         /**
          * The amount that you want to refund. In almost all cases, Mollie can determine the amount automatically.
@@ -1013,6 +1053,7 @@ public class CreateOrderRefundLines {
             return this;
         }
 
+
         public Builder shippableQuantity(long shippableQuantity) {
             Utils.checkNotNull(shippableQuantity, "shippableQuantity");
             this.shippableQuantity = Optional.ofNullable(shippableQuantity);
@@ -1024,6 +1065,7 @@ public class CreateOrderRefundLines {
             this.shippableQuantity = shippableQuantity;
             return this;
         }
+
 
         public Builder refundableQuantity(long refundableQuantity) {
             Utils.checkNotNull(refundableQuantity, "refundableQuantity");
@@ -1037,6 +1079,7 @@ public class CreateOrderRefundLines {
             return this;
         }
 
+
         public Builder cancelableQuantity(long cancelableQuantity) {
             Utils.checkNotNull(cancelableQuantity, "cancelableQuantity");
             this.cancelableQuantity = Optional.ofNullable(cancelableQuantity);
@@ -1048,6 +1091,7 @@ public class CreateOrderRefundLines {
             this.cancelableQuantity = cancelableQuantity;
             return this;
         }
+
 
         public Builder vatRate(String vatRate) {
             Utils.checkNotNull(vatRate, "vatRate");
@@ -1061,6 +1105,7 @@ public class CreateOrderRefundLines {
             return this;
         }
 
+
         public Builder createdAt(String createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = Optional.ofNullable(createdAt);
@@ -1072,29 +1117,18 @@ public class CreateOrderRefundLines {
             this.createdAt = createdAt;
             return this;
         }
-        
+
         public CreateOrderRefundLines build() {
+
             return new CreateOrderRefundLines(
-                id,
-                name,
-                sku,
-                type,
-                status,
-                metadata,
-                isCancelable,
-                quantity,
-                quantityShipped,
-                amountShipped,
-                quantityRefunded,
-                amountRefunded,
-                quantityCanceled,
-                amountCanceled,
-                amount,
-                shippableQuantity,
-                refundableQuantity,
-                cancelableQuantity,
-                vatRate,
-                createdAt);
+                id, name, sku,
+                type, status, metadata,
+                isCancelable, quantity, quantityShipped,
+                amountShipped, quantityRefunded, amountRefunded,
+                quantityCanceled, amountCanceled, amount,
+                shippableQuantity, refundableQuantity, cancelableQuantity,
+                vatRate, createdAt);
         }
+
     }
 }

@@ -57,8 +57,8 @@ public class DeleteProfileRequestBuilder {
 
         RequestOperation<DeleteProfileRequest, DeleteProfileResponse> operation
               = new DeleteProfileOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         DeleteProfileRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

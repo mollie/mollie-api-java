@@ -21,7 +21,6 @@ import java.util.Optional;
  * <p>A list of client objects. For a complete reference of the client object, refer to the [Get client endpoint](get-client) documentation.
  */
 public class ListClientsResponseBody {
-
     /**
      * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result as well.
      * 
@@ -30,6 +29,7 @@ public class ListClientsResponseBody {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("count")
     private Optional<Long> count;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_embedded")
@@ -84,9 +84,10 @@ public class ListClientsResponseBody {
         return (Optional<ListClientsLinks>) links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result as well.
@@ -98,6 +99,7 @@ public class ListClientsResponseBody {
         this.count = Optional.ofNullable(count);
         return this;
     }
+
 
     /**
      * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result as well.
@@ -116,6 +118,7 @@ public class ListClientsResponseBody {
         return this;
     }
 
+
     public ListClientsResponseBody withEmbedded(Optional<? extends ListClientsEmbedded> embedded) {
         Utils.checkNotNull(embedded, "embedded");
         this.embedded = embedded;
@@ -131,6 +134,7 @@ public class ListClientsResponseBody {
         return this;
     }
 
+
     /**
      * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
      */
@@ -140,7 +144,6 @@ public class ListClientsResponseBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -159,9 +162,7 @@ public class ListClientsResponseBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            count,
-            embedded,
-            links);
+            count, embedded, links);
     }
     
     @Override
@@ -171,18 +172,20 @@ public class ListClientsResponseBody {
                 "embedded", embedded,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> count = Optional.empty();
- 
+
         private Optional<? extends ListClientsEmbedded> embedded = Optional.empty();
- 
+
         private Optional<? extends ListClientsLinks> links = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result as well.
@@ -206,6 +209,7 @@ public class ListClientsResponseBody {
             return this;
         }
 
+
         public Builder embedded(ListClientsEmbedded embedded) {
             Utils.checkNotNull(embedded, "embedded");
             this.embedded = Optional.ofNullable(embedded);
@@ -217,6 +221,7 @@ public class ListClientsResponseBody {
             this.embedded = embedded;
             return this;
         }
+
 
         /**
          * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
@@ -235,12 +240,12 @@ public class ListClientsResponseBody {
             this.links = links;
             return this;
         }
-        
+
         public ListClientsResponseBody build() {
+
             return new ListClientsResponseBody(
-                count,
-                embedded,
-                links);
+                count, embedded, links);
         }
+
     }
 }

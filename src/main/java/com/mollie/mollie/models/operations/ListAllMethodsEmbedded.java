@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.List;
 
-public class ListAllMethodsEmbedded {
 
+public class ListAllMethodsEmbedded {
     /**
      * An array of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
      */
@@ -34,9 +34,10 @@ public class ListAllMethodsEmbedded {
         return methods;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An array of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
@@ -47,7 +48,6 @@ public class ListAllMethodsEmbedded {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -72,14 +72,16 @@ public class ListAllMethodsEmbedded {
         return Utils.toString(ListAllMethodsEmbedded.class,
                 "methods", methods);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<ListAllMethodsMethods> methods;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An array of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
@@ -89,10 +91,12 @@ public class ListAllMethodsEmbedded {
             this.methods = methods;
             return this;
         }
-        
+
         public ListAllMethodsEmbedded build() {
+
             return new ListAllMethodsEmbedded(
                 methods);
         }
+
     }
 }

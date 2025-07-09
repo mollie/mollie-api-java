@@ -28,7 +28,6 @@ public class Permissions {
     Permissions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List permissions
      * 
@@ -79,15 +78,13 @@ public class Permissions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListPermissionsResponse list(
-            Optional<Options> options) throws Exception {
+    public ListPermissionsResponse list(Optional<Options> options) throws Exception {
         RequestlessOperation<ListPermissionsResponse> operation
             = new ListPermissionsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest());
     }
-
 
     /**
      * Get permission
@@ -150,8 +147,8 @@ public class Permissions {
                 .build();
         RequestOperation<GetPermissionRequest, GetPermissionResponse> operation
               = new GetPermissionOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

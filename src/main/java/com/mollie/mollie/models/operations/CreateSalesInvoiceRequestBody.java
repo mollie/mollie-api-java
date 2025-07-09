@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreateSalesInvoiceRequestBody {
 
+public class CreateSalesInvoiceRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
@@ -126,6 +126,7 @@ public class CreateSalesInvoiceRequestBody {
     @JsonProperty("recipientIdentifier")
     private String recipientIdentifier;
 
+
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("recipient")
     private Optional<? extends Recipient> recipient;
@@ -201,7 +202,12 @@ public class CreateSalesInvoiceRequestBody {
     public CreateSalesInvoiceRequestBody(
             String status,
             String recipientIdentifier) {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), status, Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), recipientIdentifier, Optional.empty(), Optional.empty(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), status,
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            recipientIdentifier, Optional.empty(), Optional.empty(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -355,9 +361,10 @@ public class CreateSalesInvoiceRequestBody {
         return (JsonNullable<CreateSalesInvoiceDiscount>) discount;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Whether to create the entity in test mode or live mode.
@@ -431,6 +438,7 @@ public class CreateSalesInvoiceRequestBody {
         return this;
     }
 
+
     /**
      * The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
      * 
@@ -452,6 +460,7 @@ public class CreateSalesInvoiceRequestBody {
         this.vatMode = Optional.ofNullable(vatMode);
         return this;
     }
+
 
     /**
      * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
@@ -567,6 +576,7 @@ public class CreateSalesInvoiceRequestBody {
         return this;
     }
 
+
     /**
      * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
      */
@@ -584,6 +594,7 @@ public class CreateSalesInvoiceRequestBody {
         this.mandateId = Optional.ofNullable(mandateId);
         return this;
     }
+
 
     /**
      * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided, `customerId` becomes required as well. Only allowed for invoices with status `paid`.
@@ -609,6 +620,7 @@ public class CreateSalesInvoiceRequestBody {
         return this;
     }
 
+
     public CreateSalesInvoiceRequestBody withRecipient(Optional<? extends Recipient> recipient) {
         Utils.checkNotNull(recipient, "recipient");
         this.recipient = recipient;
@@ -625,6 +637,7 @@ public class CreateSalesInvoiceRequestBody {
         this.lines = Optional.ofNullable(lines);
         return this;
     }
+
 
     /**
      * Provide the line items for the invoice. Each line contains details such as a description of the item ordered and its price.
@@ -655,7 +668,6 @@ public class CreateSalesInvoiceRequestBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -687,21 +699,11 @@ public class CreateSalesInvoiceRequestBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            testmode,
-            profileId,
-            status,
-            vatScheme,
-            vatMode,
-            memo,
-            metadata,
-            paymentTerm,
-            paymentDetails,
-            emailDetails,
-            customerId,
-            mandateId,
-            recipientIdentifier,
-            recipient,
-            lines,
+            testmode, profileId, status,
+            vatScheme, vatMode, memo,
+            metadata, paymentTerm, paymentDetails,
+            emailDetails, customerId, mandateId,
+            recipientIdentifier, recipient, lines,
             discount);
     }
     
@@ -725,44 +727,46 @@ public class CreateSalesInvoiceRequestBody {
                 "lines", lines,
                 "discount", discount);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> profileId = JsonNullable.undefined();
- 
+
         private String status;
- 
+
         private Optional<String> vatScheme = Optional.empty();
- 
+
         private Optional<String> vatMode = Optional.empty();
- 
+
         private JsonNullable<String> memo = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends CreateSalesInvoiceMetadata> metadata = JsonNullable.undefined();
- 
+
         private JsonNullable<String> paymentTerm = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends PaymentDetails> paymentDetails = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends EmailDetails> emailDetails = JsonNullable.undefined();
- 
+
         private Optional<String> customerId = Optional.empty();
- 
+
         private Optional<String> mandateId = Optional.empty();
- 
+
         private String recipientIdentifier;
- 
+
         private Optional<? extends Recipient> recipient = Optional.empty();
- 
+
         private Optional<? extends List<CreateSalesInvoiceLines>> lines = Optional.empty();
- 
+
         private JsonNullable<? extends CreateSalesInvoiceDiscount> discount = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Whether to create the entity in test mode or live mode.
@@ -786,6 +790,7 @@ public class CreateSalesInvoiceRequestBody {
             return this;
         }
 
+
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
@@ -808,6 +813,7 @@ public class CreateSalesInvoiceRequestBody {
             return this;
         }
 
+
         /**
          * The status for the invoice to end up in.
          * 
@@ -824,6 +830,7 @@ public class CreateSalesInvoiceRequestBody {
             this.status = status;
             return this;
         }
+
 
         /**
          * The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
@@ -847,6 +854,7 @@ public class CreateSalesInvoiceRequestBody {
             return this;
         }
 
+
         /**
          * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
          * 
@@ -869,6 +877,7 @@ public class CreateSalesInvoiceRequestBody {
             return this;
         }
 
+
         /**
          * A free-form memo you can set on the invoice, and will be shown on the invoice PDF.
          */
@@ -887,6 +896,7 @@ public class CreateSalesInvoiceRequestBody {
             return this;
         }
 
+
         /**
          * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
@@ -904,6 +914,7 @@ public class CreateSalesInvoiceRequestBody {
             this.metadata = metadata;
             return this;
         }
+
 
         /**
          * The payment term to be set on the invoice.
@@ -927,6 +938,7 @@ public class CreateSalesInvoiceRequestBody {
             return this;
         }
 
+
         /**
          * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the provided details. Required for `paid` status.
          */
@@ -944,6 +956,7 @@ public class CreateSalesInvoiceRequestBody {
             this.paymentDetails = paymentDetails;
             return this;
         }
+
 
         /**
          * Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the recipient with the provided `subject` and `body`. Required for `issued` status.
@@ -963,6 +976,7 @@ public class CreateSalesInvoiceRequestBody {
             return this;
         }
 
+
         /**
          * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
          */
@@ -980,6 +994,7 @@ public class CreateSalesInvoiceRequestBody {
             this.customerId = customerId;
             return this;
         }
+
 
         /**
          * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided, `customerId` becomes required as well. Only allowed for invoices with status `paid`.
@@ -999,6 +1014,7 @@ public class CreateSalesInvoiceRequestBody {
             return this;
         }
 
+
         /**
          * An identifier tied to the recipient data. This should be a unique value based on data your system contains, so that both you and us know who we're referring to. It is a value you provide to us so that recipient management is not required to send a first invoice to a recipient.
          */
@@ -1007,6 +1023,7 @@ public class CreateSalesInvoiceRequestBody {
             this.recipientIdentifier = recipientIdentifier;
             return this;
         }
+
 
         public Builder recipient(Recipient recipient) {
             Utils.checkNotNull(recipient, "recipient");
@@ -1019,6 +1036,7 @@ public class CreateSalesInvoiceRequestBody {
             this.recipient = recipient;
             return this;
         }
+
 
         /**
          * Provide the line items for the invoice. Each line contains details such as a description of the item ordered and its price.
@@ -1042,6 +1060,7 @@ public class CreateSalesInvoiceRequestBody {
             return this;
         }
 
+
         /**
          * The discount to be applied to the entire invoice, applied on top of any line item discounts.
          */
@@ -1059,25 +1078,17 @@ public class CreateSalesInvoiceRequestBody {
             this.discount = discount;
             return this;
         }
-        
+
         public CreateSalesInvoiceRequestBody build() {
+
             return new CreateSalesInvoiceRequestBody(
-                testmode,
-                profileId,
-                status,
-                vatScheme,
-                vatMode,
-                memo,
-                metadata,
-                paymentTerm,
-                paymentDetails,
-                emailDetails,
-                customerId,
-                mandateId,
-                recipientIdentifier,
-                recipient,
-                lines,
+                testmode, profileId, status,
+                vatScheme, vatMode, memo,
+                metadata, paymentTerm, paymentDetails,
+                emailDetails, customerId, mandateId,
+                recipientIdentifier, recipient, lines,
                 discount);
         }
+
     }
 }

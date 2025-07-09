@@ -14,6 +14,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class GetOpenSettlementLessThanYearGreaterThan {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -37,9 +38,10 @@ public class GetOpenSettlementLessThanYearGreaterThan {
         return (Optional<GetOpenSettlementLessThanMonthGreaterThan>) lessThanMonthGreaterThan;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetOpenSettlementLessThanYearGreaterThan withLessThanMonthGreaterThan(GetOpenSettlementLessThanMonthGreaterThan lessThanMonthGreaterThan) {
         Utils.checkNotNull(lessThanMonthGreaterThan, "lessThanMonthGreaterThan");
@@ -47,13 +49,13 @@ public class GetOpenSettlementLessThanYearGreaterThan {
         return this;
     }
 
+
     public GetOpenSettlementLessThanYearGreaterThan withLessThanMonthGreaterThan(Optional<? extends GetOpenSettlementLessThanMonthGreaterThan> lessThanMonthGreaterThan) {
         Utils.checkNotNull(lessThanMonthGreaterThan, "lessThanMonthGreaterThan");
         this.lessThanMonthGreaterThan = lessThanMonthGreaterThan;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -78,14 +80,16 @@ public class GetOpenSettlementLessThanYearGreaterThan {
         return Utils.toString(GetOpenSettlementLessThanYearGreaterThan.class,
                 "lessThanMonthGreaterThan", lessThanMonthGreaterThan);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends GetOpenSettlementLessThanMonthGreaterThan> lessThanMonthGreaterThan = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder lessThanMonthGreaterThan(GetOpenSettlementLessThanMonthGreaterThan lessThanMonthGreaterThan) {
             Utils.checkNotNull(lessThanMonthGreaterThan, "lessThanMonthGreaterThan");
@@ -98,10 +102,12 @@ public class GetOpenSettlementLessThanYearGreaterThan {
             this.lessThanMonthGreaterThan = lessThanMonthGreaterThan;
             return this;
         }
-        
+
         public GetOpenSettlementLessThanYearGreaterThan build() {
+
             return new GetOpenSettlementLessThanYearGreaterThan(
                 lessThanMonthGreaterThan);
         }
+
     }
 }

@@ -16,8 +16,8 @@ import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListSalesInvoicesRequest {
 
+public class ListSalesInvoicesRequest {
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      */
@@ -81,9 +81,10 @@ public class ListSalesInvoicesRequest {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
@@ -93,6 +94,7 @@ public class ListSalesInvoicesRequest {
         this.from = Optional.ofNullable(from);
         return this;
     }
+
 
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
@@ -143,7 +145,6 @@ public class ListSalesInvoicesRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -162,9 +163,7 @@ public class ListSalesInvoicesRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            from,
-            limit,
-            testmode);
+            from, limit, testmode);
     }
     
     @Override
@@ -174,18 +173,20 @@ public class ListSalesInvoicesRequest {
                 "limit", limit,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> from = Optional.empty();
- 
+
         private JsonNullable<Long> limit;
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
@@ -205,6 +206,7 @@ public class ListSalesInvoicesRequest {
             return this;
         }
 
+
         /**
          * The maximum number of items to return. Defaults to 50 items.
          */
@@ -222,6 +224,7 @@ public class ListSalesInvoicesRequest {
             this.limit = limit;
             return this;
         }
+
 
         /**
          * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
@@ -244,16 +247,16 @@ public class ListSalesInvoicesRequest {
             this.testmode = testmode;
             return this;
         }
-        
+
         public ListSalesInvoicesRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+
             return new ListSalesInvoicesRequest(
-                from,
-                limit,
-                testmode);
+                from, limit, testmode);
         }
+
 
         private static final LazySingletonValue<JsonNullable<Long>> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(

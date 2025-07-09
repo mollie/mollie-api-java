@@ -24,7 +24,6 @@ import java.lang.String;
  * <p>If you do not send an amount, Mollie will determine the amount automatically or respond with an error if the amount cannot be determined automatically. The error will contain the `extra.minimumAmount` and `extra.maximumAmount` properties that allow you pick the right amount.
  */
 public class CreateOrderRefundRefundsAmount {
-
     /**
      * A three-character ISO 4217 currency code.
      */
@@ -63,9 +62,10 @@ public class CreateOrderRefundRefundsAmount {
         return value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A three-character ISO 4217 currency code.
@@ -85,7 +85,6 @@ public class CreateOrderRefundRefundsAmount {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -103,8 +102,7 @@ public class CreateOrderRefundRefundsAmount {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            currency,
-            value);
+            currency, value);
     }
     
     @Override
@@ -113,16 +111,18 @@ public class CreateOrderRefundRefundsAmount {
                 "currency", currency,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String currency;
- 
+
         private String value;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A three-character ISO 4217 currency code.
@@ -133,6 +133,7 @@ public class CreateOrderRefundRefundsAmount {
             return this;
         }
 
+
         /**
          * A string containing an exact monetary amount in the given currency.
          */
@@ -141,11 +142,12 @@ public class CreateOrderRefundRefundsAmount {
             this.value = value;
             return this;
         }
-        
+
         public CreateOrderRefundRefundsAmount build() {
+
             return new CreateOrderRefundRefundsAmount(
-                currency,
-                value);
+                currency, value);
         }
+
     }
 }

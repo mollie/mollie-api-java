@@ -102,8 +102,8 @@ public class ListSalesInvoicesRequestBuilder {
 
         RequestOperation<ListSalesInvoicesRequest, ListSalesInvoicesResponse> operation
               = new ListSalesInvoicesOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         ListSalesInvoicesRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

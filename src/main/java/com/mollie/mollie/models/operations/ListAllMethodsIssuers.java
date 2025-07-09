@@ -15,11 +15,13 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
+
 public class ListAllMethodsIssuers {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
     private Optional<String> resource;
+
 
     @JsonProperty("id")
     private String id;
@@ -56,7 +58,8 @@ public class ListAllMethodsIssuers {
             String id,
             String name,
             ListAllMethodsMethodsImage image) {
-        this(Optional.empty(), id, name, image);
+        this(Optional.empty(), id, name,
+            image);
     }
 
     @JsonIgnore
@@ -85,15 +88,17 @@ public class ListAllMethodsIssuers {
         return image;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ListAllMethodsIssuers withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     public ListAllMethodsIssuers withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
@@ -125,7 +130,6 @@ public class ListAllMethodsIssuers {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -145,9 +149,7 @@ public class ListAllMethodsIssuers {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            name,
+            resource, id, name,
             image);
     }
     
@@ -159,20 +161,22 @@ public class ListAllMethodsIssuers {
                 "name", name,
                 "image", image);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private String id;
- 
+
         private String name;
- 
+
         private ListAllMethodsMethodsImage image;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -186,11 +190,13 @@ public class ListAllMethodsIssuers {
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
+
 
         /**
          * The full name of the issuer.
@@ -201,6 +207,7 @@ public class ListAllMethodsIssuers {
             return this;
         }
 
+
         /**
          * URLs of images representing the issuer. required: - size1x - size2x - svg
          */
@@ -209,17 +216,17 @@ public class ListAllMethodsIssuers {
             this.image = image;
             return this;
         }
-        
+
         public ListAllMethodsIssuers build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new ListAllMethodsIssuers(
-                resource,
-                id,
-                name,
+                resource, id, name,
                 image);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

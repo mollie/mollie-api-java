@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Pricing {
 
+public class Pricing {
     /**
      * A description of what the pricing applies to. For example, a specific country (`The Netherlands`) or a category of cards (`American Express`). If a `locale` is provided, the description may be translated.
      */
@@ -60,7 +60,8 @@ public class Pricing {
             String description,
             Fixed fixed,
             String variable) {
-        this(description, fixed, variable, JsonNullable.undefined());
+        this(description, fixed, variable,
+            JsonNullable.undefined());
     }
 
     /**
@@ -95,9 +96,10 @@ public class Pricing {
         return feeRegion;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A description of what the pricing applies to. For example, a specific country (`The Netherlands`) or a category of cards (`American Express`). If a `locale` is provided, the description may be translated.
@@ -144,7 +146,6 @@ public class Pricing {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -164,9 +165,7 @@ public class Pricing {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            description,
-            fixed,
-            variable,
+            description, fixed, variable,
             feeRegion);
     }
     
@@ -178,20 +177,22 @@ public class Pricing {
                 "variable", variable,
                 "feeRegion", feeRegion);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String description;
- 
+
         private Fixed fixed;
- 
+
         private String variable;
- 
+
         private JsonNullable<String> feeRegion = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A description of what the pricing applies to. For example, a specific country (`The Netherlands`) or a category of cards (`American Express`). If a `locale` is provided, the description may be translated.
@@ -202,6 +203,7 @@ public class Pricing {
             return this;
         }
 
+
         /**
          * The fixed price charged per payment.
          */
@@ -211,6 +213,7 @@ public class Pricing {
             return this;
         }
 
+
         /**
          * The variable price charged per payment, as a percentage string.
          */
@@ -219,6 +222,7 @@ public class Pricing {
             this.variable = variable;
             return this;
         }
+
 
         /**
          * Only present for credit card pricing. It will correspond with the `feeRegion` of credit card payments as returned in the [Payments API](get-payment).
@@ -237,13 +241,13 @@ public class Pricing {
             this.feeRegion = feeRegion;
             return this;
         }
-        
+
         public Pricing build() {
+
             return new Pricing(
-                description,
-                fixed,
-                variable,
+                description, fixed, variable,
                 feeRegion);
         }
+
     }
 }

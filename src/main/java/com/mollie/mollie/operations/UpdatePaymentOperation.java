@@ -52,7 +52,8 @@ public class UpdatePaymentOperation implements RequestOperation<UpdatePaymentReq
     
     @Override
     public HttpResponse<InputStream> doRequest(UpdatePaymentRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 UpdatePaymentRequest.class,

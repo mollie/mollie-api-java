@@ -22,7 +22,6 @@ public class WebhookEvents {
     WebhookEvents(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Get a Webhook Event
      * 
@@ -79,8 +78,8 @@ public class WebhookEvents {
                 .build();
         RequestOperation<GetWebhookEventRequest, GetWebhookEventResponse> operation
               = new GetWebhookEventOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -14,15 +14,18 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class GetClientEmbedded {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("organization")
     private Optional<? extends GetClientClientsOrganization> organization;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("onboarding")
     private Optional<? extends GetClientOnboarding> onboarding;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("capabilities")
@@ -63,15 +66,17 @@ public class GetClientEmbedded {
         return (Optional<GetClientCapabilities>) capabilities;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetClientEmbedded withOrganization(GetClientClientsOrganization organization) {
         Utils.checkNotNull(organization, "organization");
         this.organization = Optional.ofNullable(organization);
         return this;
     }
+
 
     public GetClientEmbedded withOrganization(Optional<? extends GetClientClientsOrganization> organization) {
         Utils.checkNotNull(organization, "organization");
@@ -85,6 +90,7 @@ public class GetClientEmbedded {
         return this;
     }
 
+
     public GetClientEmbedded withOnboarding(Optional<? extends GetClientOnboarding> onboarding) {
         Utils.checkNotNull(onboarding, "onboarding");
         this.onboarding = onboarding;
@@ -97,13 +103,13 @@ public class GetClientEmbedded {
         return this;
     }
 
+
     public GetClientEmbedded withCapabilities(Optional<? extends GetClientCapabilities> capabilities) {
         Utils.checkNotNull(capabilities, "capabilities");
         this.capabilities = capabilities;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -122,9 +128,7 @@ public class GetClientEmbedded {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            organization,
-            onboarding,
-            capabilities);
+            organization, onboarding, capabilities);
     }
     
     @Override
@@ -134,18 +138,20 @@ public class GetClientEmbedded {
                 "onboarding", onboarding,
                 "capabilities", capabilities);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends GetClientClientsOrganization> organization = Optional.empty();
- 
+
         private Optional<? extends GetClientOnboarding> onboarding = Optional.empty();
- 
+
         private Optional<? extends GetClientCapabilities> capabilities = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder organization(GetClientClientsOrganization organization) {
             Utils.checkNotNull(organization, "organization");
@@ -159,6 +165,7 @@ public class GetClientEmbedded {
             return this;
         }
 
+
         public Builder onboarding(GetClientOnboarding onboarding) {
             Utils.checkNotNull(onboarding, "onboarding");
             this.onboarding = Optional.ofNullable(onboarding);
@@ -171,6 +178,7 @@ public class GetClientEmbedded {
             return this;
         }
 
+
         public Builder capabilities(GetClientCapabilities capabilities) {
             Utils.checkNotNull(capabilities, "capabilities");
             this.capabilities = Optional.ofNullable(capabilities);
@@ -182,12 +190,12 @@ public class GetClientEmbedded {
             this.capabilities = capabilities;
             return this;
         }
-        
+
         public GetClientEmbedded build() {
+
             return new GetClientEmbedded(
-                organization,
-                onboarding,
-                capabilities);
+                organization, onboarding, capabilities);
         }
+
     }
 }

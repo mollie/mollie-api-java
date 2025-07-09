@@ -41,8 +41,8 @@ public class GetPartnerStatusRequestBuilder {
 
         RequestlessOperation<GetPartnerStatusResponse> operation
             = new GetPartnerStatusOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest());
     }

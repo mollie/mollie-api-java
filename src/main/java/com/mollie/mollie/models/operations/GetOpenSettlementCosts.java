@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetOpenSettlementCosts {
 
+public class GetOpenSettlementCosts {
     /**
      * A description of the cost subtotal
      */
@@ -95,7 +95,9 @@ public class GetOpenSettlementCosts {
     }
     
     public GetOpenSettlementCosts() {
-        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -160,9 +162,10 @@ public class GetOpenSettlementCosts {
         return (Optional<GetOpenSettlementAmountGross>) amountGross;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A description of the cost subtotal
@@ -172,6 +175,7 @@ public class GetOpenSettlementCosts {
         this.description = Optional.ofNullable(description);
         return this;
     }
+
 
     /**
      * A description of the cost subtotal
@@ -213,6 +217,7 @@ public class GetOpenSettlementCosts {
         return this;
     }
 
+
     /**
      * The number of fees
      */
@@ -230,6 +235,7 @@ public class GetOpenSettlementCosts {
         this.rate = Optional.ofNullable(rate);
         return this;
     }
+
 
     /**
      * The service rates, further divided into `fixed` and `percentage` costs.
@@ -249,6 +255,7 @@ public class GetOpenSettlementCosts {
         return this;
     }
 
+
     /**
      * The net total cost, i.e. excluding VAT
      */
@@ -266,6 +273,7 @@ public class GetOpenSettlementCosts {
         this.amountVat = Optional.ofNullable(amountVat);
         return this;
     }
+
 
     /**
      * The applicable VAT
@@ -285,6 +293,7 @@ public class GetOpenSettlementCosts {
         return this;
     }
 
+
     /**
      * The gross total cost, i.e. including VAT
      */
@@ -294,7 +303,6 @@ public class GetOpenSettlementCosts {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -317,12 +325,8 @@ public class GetOpenSettlementCosts {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            description,
-            method,
-            count,
-            rate,
-            amountNet,
-            amountVat,
+            description, method, count,
+            rate, amountNet, amountVat,
             amountGross);
     }
     
@@ -337,26 +341,28 @@ public class GetOpenSettlementCosts {
                 "amountVat", amountVat,
                 "amountGross", amountGross);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private JsonNullable<String> method = JsonNullable.undefined();
- 
+
         private Optional<Long> count = Optional.empty();
- 
+
         private Optional<? extends GetOpenSettlementRate> rate = Optional.empty();
- 
+
         private Optional<? extends GetOpenSettlementAmountNet> amountNet = Optional.empty();
- 
+
         private Optional<? extends GetOpenSettlementAmountVat> amountVat = Optional.empty();
- 
+
         private Optional<? extends GetOpenSettlementAmountGross> amountGross = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A description of the cost subtotal
@@ -375,6 +381,7 @@ public class GetOpenSettlementCosts {
             this.description = description;
             return this;
         }
+
 
         /**
          * The payment method, if applicable
@@ -398,6 +405,7 @@ public class GetOpenSettlementCosts {
             return this;
         }
 
+
         /**
          * The number of fees
          */
@@ -415,6 +423,7 @@ public class GetOpenSettlementCosts {
             this.count = count;
             return this;
         }
+
 
         /**
          * The service rates, further divided into `fixed` and `percentage` costs.
@@ -434,6 +443,7 @@ public class GetOpenSettlementCosts {
             return this;
         }
 
+
         /**
          * The net total cost, i.e. excluding VAT
          */
@@ -451,6 +461,7 @@ public class GetOpenSettlementCosts {
             this.amountNet = amountNet;
             return this;
         }
+
 
         /**
          * The applicable VAT
@@ -470,6 +481,7 @@ public class GetOpenSettlementCosts {
             return this;
         }
 
+
         /**
          * The gross total cost, i.e. including VAT
          */
@@ -487,16 +499,14 @@ public class GetOpenSettlementCosts {
             this.amountGross = amountGross;
             return this;
         }
-        
+
         public GetOpenSettlementCosts build() {
+
             return new GetOpenSettlementCosts(
-                description,
-                method,
-                count,
-                rate,
-                amountNet,
-                amountVat,
+                description, method, count,
+                rate, amountNet, amountVat,
                 amountGross);
         }
+
     }
 }

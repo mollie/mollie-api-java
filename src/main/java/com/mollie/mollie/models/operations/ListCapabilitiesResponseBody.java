@@ -21,7 +21,6 @@ import java.util.Optional;
  * <p>A list of capabilities.
  */
 public class ListCapabilitiesResponseBody {
-
     /**
      * The number of items in this result set.
      */
@@ -29,9 +28,11 @@ public class ListCapabilitiesResponseBody {
     @JsonProperty("count")
     private Optional<Long> count;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_embedded")
     private Optional<? extends ListCapabilitiesEmbedded> embedded;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
@@ -74,9 +75,10 @@ public class ListCapabilitiesResponseBody {
         return (Optional<ListCapabilitiesLinks>) links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The number of items in this result set.
@@ -86,6 +88,7 @@ public class ListCapabilitiesResponseBody {
         this.count = Optional.ofNullable(count);
         return this;
     }
+
 
     /**
      * The number of items in this result set.
@@ -102,6 +105,7 @@ public class ListCapabilitiesResponseBody {
         return this;
     }
 
+
     public ListCapabilitiesResponseBody withEmbedded(Optional<? extends ListCapabilitiesEmbedded> embedded) {
         Utils.checkNotNull(embedded, "embedded");
         this.embedded = embedded;
@@ -114,13 +118,13 @@ public class ListCapabilitiesResponseBody {
         return this;
     }
 
+
     public ListCapabilitiesResponseBody withLinks(Optional<? extends ListCapabilitiesLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -139,9 +143,7 @@ public class ListCapabilitiesResponseBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            count,
-            embedded,
-            links);
+            count, embedded, links);
     }
     
     @Override
@@ -151,18 +153,20 @@ public class ListCapabilitiesResponseBody {
                 "embedded", embedded,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> count = Optional.empty();
- 
+
         private Optional<? extends ListCapabilitiesEmbedded> embedded = Optional.empty();
- 
+
         private Optional<? extends ListCapabilitiesLinks> links = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The number of items in this result set.
@@ -182,6 +186,7 @@ public class ListCapabilitiesResponseBody {
             return this;
         }
 
+
         public Builder embedded(ListCapabilitiesEmbedded embedded) {
             Utils.checkNotNull(embedded, "embedded");
             this.embedded = Optional.ofNullable(embedded);
@@ -194,6 +199,7 @@ public class ListCapabilitiesResponseBody {
             return this;
         }
 
+
         public Builder links(ListCapabilitiesLinks links) {
             Utils.checkNotNull(links, "links");
             this.links = Optional.ofNullable(links);
@@ -205,12 +211,12 @@ public class ListCapabilitiesResponseBody {
             this.links = links;
             return this;
         }
-        
+
         public ListCapabilitiesResponseBody build() {
+
             return new ListCapabilitiesResponseBody(
-                count,
-                embedded,
-                links);
+                count, embedded, links);
         }
+
     }
 }

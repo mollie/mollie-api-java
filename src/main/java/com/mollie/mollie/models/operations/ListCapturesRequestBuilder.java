@@ -48,8 +48,8 @@ public class ListCapturesRequestBuilder {
 
         RequestOperation<ListCapturesRequest, ListCapturesResponse> operation
               = new ListCapturesOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

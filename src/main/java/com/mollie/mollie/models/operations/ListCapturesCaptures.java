@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListCapturesCaptures {
 
+public class ListCapturesCaptures {
     /**
      * Indicates the response contains a capture object. Will always contain the string `capture` for this endpoint.
      */
@@ -158,7 +158,11 @@ public class ListCapturesCaptures {
             String paymentId,
             String createdAt,
             ListCapturesCapturesLinks links) {
-        this(resource, id, mode, Optional.empty(), Optional.empty(), JsonNullable.undefined(), status, JsonNullable.undefined(), paymentId, JsonNullable.undefined(), JsonNullable.undefined(), createdAt, links);
+        this(resource, id, mode,
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            status, JsonNullable.undefined(), paymentId,
+            JsonNullable.undefined(), JsonNullable.undefined(), createdAt,
+            links);
     }
 
     /**
@@ -274,9 +278,10 @@ public class ListCapturesCaptures {
         return links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a capture object. Will always contain the string `capture` for this endpoint.
@@ -316,6 +321,7 @@ public class ListCapturesCaptures {
         return this;
     }
 
+
     /**
      * The description of the capture.
      */
@@ -333,6 +339,7 @@ public class ListCapturesCaptures {
         this.amount = Optional.ofNullable(amount);
         return this;
     }
+
 
     /**
      * The amount captured. If no amount is provided, the full authorized amount is captured.
@@ -457,7 +464,6 @@ public class ListCapturesCaptures {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -486,18 +492,10 @@ public class ListCapturesCaptures {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            mode,
-            description,
-            amount,
-            settlementAmount,
-            status,
-            metadata,
-            paymentId,
-            shipmentId,
-            settlementId,
-            createdAt,
+            resource, id, mode,
+            description, amount, settlementAmount,
+            status, metadata, paymentId,
+            shipmentId, settlementId, createdAt,
             links);
     }
     
@@ -518,38 +516,40 @@ public class ListCapturesCaptures {
                 "createdAt", createdAt,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String resource;
- 
+
         private String id;
- 
+
         private String mode;
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<? extends ListCapturesAmount> amount = Optional.empty();
- 
+
         private JsonNullable<? extends ListCapturesSettlementAmount> settlementAmount = JsonNullable.undefined();
- 
+
         private String status;
- 
+
         private JsonNullable<? extends ListCapturesMetadata> metadata = JsonNullable.undefined();
- 
+
         private String paymentId;
- 
+
         private JsonNullable<String> shipmentId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> settlementId = JsonNullable.undefined();
- 
+
         private String createdAt;
- 
+
         private ListCapturesCapturesLinks links;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a capture object. Will always contain the string `capture` for this endpoint.
@@ -560,6 +560,7 @@ public class ListCapturesCaptures {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this capture. Example: `cpt_mNepDkEtco6ah3QNPUGYH`.
          */
@@ -568,6 +569,7 @@ public class ListCapturesCaptures {
             this.id = id;
             return this;
         }
+
 
         /**
          * Whether this entity was created in live mode or in test mode.
@@ -579,6 +581,7 @@ public class ListCapturesCaptures {
             this.mode = mode;
             return this;
         }
+
 
         /**
          * The description of the capture.
@@ -598,6 +601,7 @@ public class ListCapturesCaptures {
             return this;
         }
 
+
         /**
          * The amount captured. If no amount is provided, the full authorized amount is captured.
          */
@@ -615,6 +619,7 @@ public class ListCapturesCaptures {
             this.amount = amount;
             return this;
         }
+
 
         /**
          * This optional field will contain the approximate amount that will be settled to your account, converted to the currency your account is settled in.
@@ -638,6 +643,7 @@ public class ListCapturesCaptures {
             return this;
         }
 
+
         /**
          * The capture's status.
          * 
@@ -648,6 +654,7 @@ public class ListCapturesCaptures {
             this.status = status;
             return this;
         }
+
 
         /**
          * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
@@ -667,6 +674,7 @@ public class ListCapturesCaptures {
             return this;
         }
 
+
         /**
          * The unique identifier of the payment this capture was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
          */
@@ -675,6 +683,7 @@ public class ListCapturesCaptures {
             this.paymentId = paymentId;
             return this;
         }
+
 
         /**
          * The unique identifier of the shipment that triggered the creation of this capture, if applicable. For example: `shp_gNapNy9qQTUFZYnCrCF7J`.
@@ -694,6 +703,7 @@ public class ListCapturesCaptures {
             return this;
         }
 
+
         /**
          * The identifier referring to the settlement this capture was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the capture is not settled (yet).
          */
@@ -712,6 +722,7 @@ public class ListCapturesCaptures {
             return this;
         }
 
+
         /**
          * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
          */
@@ -721,6 +732,7 @@ public class ListCapturesCaptures {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -729,22 +741,16 @@ public class ListCapturesCaptures {
             this.links = links;
             return this;
         }
-        
+
         public ListCapturesCaptures build() {
+
             return new ListCapturesCaptures(
-                resource,
-                id,
-                mode,
-                description,
-                amount,
-                settlementAmount,
-                status,
-                metadata,
-                paymentId,
-                shipmentId,
-                settlementId,
-                createdAt,
+                resource, id, mode,
+                description, amount, settlementAmount,
+                status, metadata, paymentId,
+                shipmentId, settlementId, createdAt,
                 links);
         }
+
     }
 }

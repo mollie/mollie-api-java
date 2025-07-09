@@ -73,8 +73,8 @@ public class GetBalanceRequestBuilder {
 
         RequestOperation<GetBalanceRequest, GetBalanceResponse> operation
               = new GetBalanceOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         GetBalanceRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

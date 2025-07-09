@@ -12,13 +12,14 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class UpdateWebhookRequest {
 
+public class UpdateWebhookRequest {
     /**
      * Provide the ID of the item you want to perform this operation on.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
     private String id;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends UpdateWebhookRequestBody> requestBody;
@@ -52,9 +53,10 @@ public class UpdateWebhookRequest {
         return (Optional<UpdateWebhookRequestBody>) requestBody;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the item you want to perform this operation on.
@@ -71,13 +73,13 @@ public class UpdateWebhookRequest {
         return this;
     }
 
+
     public UpdateWebhookRequest withRequestBody(Optional<? extends UpdateWebhookRequestBody> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -95,8 +97,7 @@ public class UpdateWebhookRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            requestBody);
+            id, requestBody);
     }
     
     @Override
@@ -105,16 +106,18 @@ public class UpdateWebhookRequest {
                 "id", id,
                 "requestBody", requestBody);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private Optional<? extends UpdateWebhookRequestBody> requestBody = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the item you want to perform this operation on.
@@ -124,6 +127,7 @@ public class UpdateWebhookRequest {
             this.id = id;
             return this;
         }
+
 
         public Builder requestBody(UpdateWebhookRequestBody requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
@@ -136,11 +140,12 @@ public class UpdateWebhookRequest {
             this.requestBody = requestBody;
             return this;
         }
-        
+
         public UpdateWebhookRequest build() {
+
             return new UpdateWebhookRequest(
-                id,
-                requestBody);
+                id, requestBody);
         }
+
     }
 }

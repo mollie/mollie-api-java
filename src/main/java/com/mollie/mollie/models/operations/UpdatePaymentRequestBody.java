@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class UpdatePaymentRequestBody {
 
+public class UpdatePaymentRequestBody {
     /**
      * The description of the payment. This will be shown to your customer on their card or bank statement when possible. We truncate the description automatically according to the limits of the used payment method. The description is also visible in any exports you generate.
      * 
@@ -133,13 +133,16 @@ public class UpdatePaymentRequestBody {
     @JsonProperty("issuer")
     private JsonNullable<String> issuer;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billingAddress")
     private Optional<? extends UpdatePaymentBillingAddress> billingAddress;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shippingAddress")
     private Optional<? extends UpdatePaymentShippingAddress> shippingAddress;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billingEmail")
@@ -192,7 +195,11 @@ public class UpdatePaymentRequestBody {
     }
     
     public UpdatePaymentRequestBody() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -339,9 +346,10 @@ public class UpdatePaymentRequestBody {
         return billingEmail;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The description of the payment. This will be shown to your customer on their card or bank statement when possible. We truncate the description automatically according to the limits of the used payment method. The description is also visible in any exports you generate.
@@ -355,6 +363,7 @@ public class UpdatePaymentRequestBody {
         this.description = Optional.ofNullable(description);
         return this;
     }
+
 
     /**
      * The description of the payment. This will be shown to your customer on their card or bank statement when possible. We truncate the description automatically according to the limits of the used payment method. The description is also visible in any exports you generate.
@@ -498,6 +507,7 @@ public class UpdatePaymentRequestBody {
         return this;
     }
 
+
     /**
      * Allows you to preset the language to be used.
      * 
@@ -517,6 +527,7 @@ public class UpdatePaymentRequestBody {
         this.dueDate = Optional.ofNullable(dueDate);
         return this;
     }
+
 
     /**
      * The date by which the payment should be completed in `YYYY-MM-DD` format
@@ -623,6 +634,7 @@ public class UpdatePaymentRequestBody {
         return this;
     }
 
+
     public UpdatePaymentRequestBody withBillingAddress(Optional<? extends UpdatePaymentBillingAddress> billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
         this.billingAddress = billingAddress;
@@ -634,6 +646,7 @@ public class UpdatePaymentRequestBody {
         this.shippingAddress = Optional.ofNullable(shippingAddress);
         return this;
     }
+
 
     public UpdatePaymentRequestBody withShippingAddress(Optional<? extends UpdatePaymentShippingAddress> shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
@@ -647,13 +660,13 @@ public class UpdatePaymentRequestBody {
         return this;
     }
 
+
     public UpdatePaymentRequestBody withBillingEmail(Optional<String> billingEmail) {
         Utils.checkNotNull(billingEmail, "billingEmail");
         this.billingEmail = billingEmail;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -683,20 +696,11 @@ public class UpdatePaymentRequestBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            description,
-            redirectUrl,
-            cancelUrl,
-            webhookUrl,
-            metadata,
-            method,
-            locale,
-            dueDate,
-            restrictPaymentMethodsToCountry,
-            testmode,
-            issuer,
-            billingAddress,
-            shippingAddress,
-            billingEmail);
+            description, redirectUrl, cancelUrl,
+            webhookUrl, metadata, method,
+            locale, dueDate, restrictPaymentMethodsToCountry,
+            testmode, issuer, billingAddress,
+            shippingAddress, billingEmail);
     }
     
     @Override
@@ -717,40 +721,42 @@ public class UpdatePaymentRequestBody {
                 "shippingAddress", shippingAddress,
                 "billingEmail", billingEmail);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private JsonNullable<String> redirectUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cancelUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<String> webhookUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends UpdatePaymentMetadata> metadata = JsonNullable.undefined();
- 
+
         private JsonNullable<String> method = JsonNullable.undefined();
- 
+
         private Optional<String> locale = Optional.empty();
- 
+
         private Optional<String> dueDate = Optional.empty();
- 
+
         private JsonNullable<String> restrictPaymentMethodsToCountry = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> issuer = JsonNullable.undefined();
- 
+
         private Optional<? extends UpdatePaymentBillingAddress> billingAddress = Optional.empty();
- 
+
         private Optional<? extends UpdatePaymentShippingAddress> shippingAddress = Optional.empty();
- 
+
         private Optional<String> billingEmail = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The description of the payment. This will be shown to your customer on their card or bank statement when possible. We truncate the description automatically according to the limits of the used payment method. The description is also visible in any exports you generate.
@@ -778,6 +784,7 @@ public class UpdatePaymentRequestBody {
             return this;
         }
 
+
         /**
          * The URL your customer will be redirected to after the payment process.
          * 
@@ -804,6 +811,7 @@ public class UpdatePaymentRequestBody {
             return this;
         }
 
+
         /**
          * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not provided, the customer will be redirected to the `redirectUrl` instead — see above.
          * 
@@ -825,6 +833,7 @@ public class UpdatePaymentRequestBody {
             this.cancelUrl = cancelUrl;
             return this;
         }
+
 
         /**
          * The webhook URL where we will send payment status updates to.
@@ -852,6 +861,7 @@ public class UpdatePaymentRequestBody {
             return this;
         }
 
+
         /**
          * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
@@ -869,6 +879,7 @@ public class UpdatePaymentRequestBody {
             this.metadata = metadata;
             return this;
         }
+
 
         /**
          * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment method and your customer will skip the selection screen and is sent directly to the chosen payment method. The parameter enables you to fully integrate the payment method selection into your website.
@@ -896,6 +907,7 @@ public class UpdatePaymentRequestBody {
             return this;
         }
 
+
         /**
          * Allows you to preset the language to be used.
          * 
@@ -918,6 +930,7 @@ public class UpdatePaymentRequestBody {
             return this;
         }
 
+
         /**
          * The date by which the payment should be completed in `YYYY-MM-DD` format
          */
@@ -935,6 +948,7 @@ public class UpdatePaymentRequestBody {
             this.dueDate = dueDate;
             return this;
         }
+
 
         /**
          * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT rates you have used for the order to ensure your customer's country matches the VAT country.
@@ -966,6 +980,7 @@ public class UpdatePaymentRequestBody {
             return this;
         }
 
+
         /**
          * Whether to create the entity in test mode or live mode.
          * 
@@ -987,6 +1002,7 @@ public class UpdatePaymentRequestBody {
             this.testmode = testmode;
             return this;
         }
+
 
         /**
          * **Only relevant for iDEAL, KBC/CBC, gift card, and voucher payments.**
@@ -1026,6 +1042,7 @@ public class UpdatePaymentRequestBody {
             return this;
         }
 
+
         public Builder billingAddress(UpdatePaymentBillingAddress billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
             this.billingAddress = Optional.ofNullable(billingAddress);
@@ -1037,6 +1054,7 @@ public class UpdatePaymentRequestBody {
             this.billingAddress = billingAddress;
             return this;
         }
+
 
         public Builder shippingAddress(UpdatePaymentShippingAddress shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
@@ -1050,6 +1068,7 @@ public class UpdatePaymentRequestBody {
             return this;
         }
 
+
         public Builder billingEmail(String billingEmail) {
             Utils.checkNotNull(billingEmail, "billingEmail");
             this.billingEmail = Optional.ofNullable(billingEmail);
@@ -1061,23 +1080,16 @@ public class UpdatePaymentRequestBody {
             this.billingEmail = billingEmail;
             return this;
         }
-        
+
         public UpdatePaymentRequestBody build() {
+
             return new UpdatePaymentRequestBody(
-                description,
-                redirectUrl,
-                cancelUrl,
-                webhookUrl,
-                metadata,
-                method,
-                locale,
-                dueDate,
-                restrictPaymentMethodsToCountry,
-                testmode,
-                issuer,
-                billingAddress,
-                shippingAddress,
-                billingEmail);
+                description, redirectUrl, cancelUrl,
+                webhookUrl, metadata, method,
+                locale, dueDate, restrictPaymentMethodsToCountry,
+                testmode, issuer, billingAddress,
+                shippingAddress, billingEmail);
         }
+
     }
 }

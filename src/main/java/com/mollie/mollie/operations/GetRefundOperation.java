@@ -48,7 +48,8 @@ public class GetRefundOperation implements RequestOperation<GetRefundRequest, Ge
     
     @Override
     public HttpResponse<InputStream> doRequest(GetRefundRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 GetRefundRequest.class,

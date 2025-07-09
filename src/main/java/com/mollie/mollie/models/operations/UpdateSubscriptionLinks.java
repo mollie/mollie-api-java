@@ -21,7 +21,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
 public class UpdateSubscriptionLinks {
-
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -87,7 +86,8 @@ public class UpdateSubscriptionLinks {
     }
     
     public UpdateSubscriptionLinks() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -144,9 +144,10 @@ public class UpdateSubscriptionLinks {
         return (Optional<UpdateSubscriptionDocumentation>) documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -156,6 +157,7 @@ public class UpdateSubscriptionLinks {
         this.self = Optional.ofNullable(self);
         return this;
     }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -247,6 +249,7 @@ public class UpdateSubscriptionLinks {
         return this;
     }
 
+
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -256,7 +259,6 @@ public class UpdateSubscriptionLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -278,12 +280,8 @@ public class UpdateSubscriptionLinks {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self,
-            customer,
-            mandate,
-            profile,
-            payments,
-            documentation);
+            self, customer, mandate,
+            profile, payments, documentation);
     }
     
     @Override
@@ -296,24 +294,26 @@ public class UpdateSubscriptionLinks {
                 "payments", payments,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends UpdateSubscriptionSelf> self = Optional.empty();
- 
+
         private JsonNullable<? extends UpdateSubscriptionCustomer> customer = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends UpdateSubscriptionMandate> mandate = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends UpdateSubscriptionProfile> profile = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends UpdateSubscriptionPayments> payments = JsonNullable.undefined();
- 
+
         private Optional<? extends UpdateSubscriptionDocumentation> documentation = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -333,6 +333,7 @@ public class UpdateSubscriptionLinks {
             return this;
         }
 
+
         /**
          * The API resource URL of the [customer](get-customer) this subscription was created for.
          */
@@ -350,6 +351,7 @@ public class UpdateSubscriptionLinks {
             this.customer = customer;
             return this;
         }
+
 
         /**
          * The API resource URL of the [mandate](get-mandate) this subscription was created for.
@@ -369,6 +371,7 @@ public class UpdateSubscriptionLinks {
             return this;
         }
 
+
         /**
          * The API resource URL of the [profile](get-profile) this subscription was created for.
          */
@@ -386,6 +389,7 @@ public class UpdateSubscriptionLinks {
             this.profile = profile;
             return this;
         }
+
 
         /**
          * The API resource URL of the [payments](list-payments) created for this subscription. Omitted if no such payments exist (yet).
@@ -405,6 +409,7 @@ public class UpdateSubscriptionLinks {
             return this;
         }
 
+
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
@@ -422,15 +427,13 @@ public class UpdateSubscriptionLinks {
             this.documentation = documentation;
             return this;
         }
-        
+
         public UpdateSubscriptionLinks build() {
+
             return new UpdateSubscriptionLinks(
-                self,
-                customer,
-                mandate,
-                profile,
-                payments,
-                documentation);
+                self, customer, mandate,
+                profile, payments, documentation);
         }
+
     }
 }

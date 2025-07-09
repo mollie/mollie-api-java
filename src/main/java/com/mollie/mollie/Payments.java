@@ -51,7 +51,6 @@ public class Payments {
     Payments(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Create payment
      * 
@@ -134,11 +133,10 @@ public class Payments {
                 .build();
         RequestOperation<CreatePaymentRequest, CreatePaymentResponse> operation
               = new CreatePaymentOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List payments
@@ -203,11 +201,10 @@ public class Payments {
             Optional<Options> options) throws Exception {
         RequestOperation<ListPaymentsRequest, ListPaymentsResponse> operation
               = new ListPaymentsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get payment
@@ -242,7 +239,8 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public GetPaymentResponse get(String paymentId) throws Exception {
-        return get(paymentId, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        return get(paymentId, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -282,11 +280,10 @@ public class Payments {
                 .build();
         RequestOperation<GetPaymentRequest, GetPaymentResponse> operation
               = new GetPaymentOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update payment
@@ -359,11 +356,10 @@ public class Payments {
                 .build();
         RequestOperation<UpdatePaymentRequest, UpdatePaymentResponse> operation
               = new UpdatePaymentOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Cancel payment
@@ -442,11 +438,10 @@ public class Payments {
                 .build();
         RequestOperation<CancelPaymentRequest, CancelPaymentResponse> operation
               = new CancelPaymentOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Release payment authorization
@@ -525,8 +520,8 @@ public class Payments {
                 .build();
         RequestOperation<ReleaseAuthorizationRequest, ReleaseAuthorizationResponse> operation
               = new ReleaseAuthorizationOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

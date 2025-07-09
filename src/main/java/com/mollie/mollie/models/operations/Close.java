@@ -25,6 +25,7 @@ public class Close {
     @JsonProperty("pending")
     private Optional<? extends GetBalanceReportBalancesPending> pending;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("available")
     private Optional<? extends GetBalanceReportAvailable> available;
@@ -55,15 +56,17 @@ public class Close {
         return (Optional<GetBalanceReportAvailable>) available;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Close withPending(GetBalanceReportBalancesPending pending) {
         Utils.checkNotNull(pending, "pending");
         this.pending = Optional.ofNullable(pending);
         return this;
     }
+
 
     public Close withPending(Optional<? extends GetBalanceReportBalancesPending> pending) {
         Utils.checkNotNull(pending, "pending");
@@ -77,13 +80,13 @@ public class Close {
         return this;
     }
 
+
     public Close withAvailable(Optional<? extends GetBalanceReportAvailable> available) {
         Utils.checkNotNull(available, "available");
         this.available = available;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -101,8 +104,7 @@ public class Close {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            pending,
-            available);
+            pending, available);
     }
     
     @Override
@@ -111,16 +113,18 @@ public class Close {
                 "pending", pending,
                 "available", available);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends GetBalanceReportBalancesPending> pending = Optional.empty();
- 
+
         private Optional<? extends GetBalanceReportAvailable> available = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder pending(GetBalanceReportBalancesPending pending) {
             Utils.checkNotNull(pending, "pending");
@@ -134,6 +138,7 @@ public class Close {
             return this;
         }
 
+
         public Builder available(GetBalanceReportAvailable available) {
             Utils.checkNotNull(available, "available");
             this.available = Optional.ofNullable(available);
@@ -145,11 +150,12 @@ public class Close {
             this.available = available;
             return this;
         }
-        
+
         public Close build() {
+
             return new Close(
-                pending,
-                available);
+                pending, available);
         }
+
     }
 }

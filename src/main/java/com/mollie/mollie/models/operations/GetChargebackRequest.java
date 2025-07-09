@@ -13,8 +13,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetChargebackRequest {
 
+public class GetChargebackRequest {
     /**
      * Provide the ID of the related payment.
      */
@@ -60,7 +60,8 @@ public class GetChargebackRequest {
     public GetChargebackRequest(
             String paymentId,
             String chargebackId) {
-        this(paymentId, chargebackId, JsonNullable.undefined(), JsonNullable.undefined());
+        this(paymentId, chargebackId, JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -98,9 +99,10 @@ public class GetChargebackRequest {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the related payment.
@@ -160,7 +162,6 @@ public class GetChargebackRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -180,9 +181,7 @@ public class GetChargebackRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentId,
-            chargebackId,
-            embed,
+            paymentId, chargebackId, embed,
             testmode);
     }
     
@@ -194,20 +193,22 @@ public class GetChargebackRequest {
                 "embed", embed,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String paymentId;
- 
+
         private String chargebackId;
- 
+
         private JsonNullable<? extends GetChargebackQueryParamEmbed> embed = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the related payment.
@@ -218,6 +219,7 @@ public class GetChargebackRequest {
             return this;
         }
 
+
         /**
          * Provide the ID of the related chargeback.
          */
@@ -226,6 +228,7 @@ public class GetChargebackRequest {
             this.chargebackId = chargebackId;
             return this;
         }
+
 
         /**
          * This endpoint allows you to embed additional information via the `embed` query string parameter.
@@ -244,6 +247,7 @@ public class GetChargebackRequest {
             this.embed = embed;
             return this;
         }
+
 
         /**
          * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
@@ -266,13 +270,13 @@ public class GetChargebackRequest {
             this.testmode = testmode;
             return this;
         }
-        
+
         public GetChargebackRequest build() {
+
             return new GetChargebackRequest(
-                paymentId,
-                chargebackId,
-                embed,
+                paymentId, chargebackId, embed,
                 testmode);
         }
+
     }
 }

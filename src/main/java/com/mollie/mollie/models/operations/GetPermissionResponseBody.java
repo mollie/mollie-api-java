@@ -23,7 +23,6 @@ import java.util.Optional;
  * <p>The permission object.
  */
 public class GetPermissionResponseBody {
-
     /**
      * Indicates the response contains a permission object. Will always contain the string `permission` for this endpoint.
      */
@@ -79,7 +78,8 @@ public class GetPermissionResponseBody {
     }
     
     public GetPermissionResponseBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -123,9 +123,10 @@ public class GetPermissionResponseBody {
         return (Optional<GetPermissionLinks>) links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a permission object. Will always contain the string `permission` for this endpoint.
@@ -135,6 +136,7 @@ public class GetPermissionResponseBody {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Indicates the response contains a permission object. Will always contain the string `permission` for this endpoint.
@@ -154,6 +156,7 @@ public class GetPermissionResponseBody {
         return this;
     }
 
+
     /**
      * The identifier uniquely referring to this permission. Example: `payments.read`.
      */
@@ -171,6 +174,7 @@ public class GetPermissionResponseBody {
         this.description = Optional.ofNullable(description);
         return this;
     }
+
 
     /**
      * A short description of what kind of access the permission enables.
@@ -190,6 +194,7 @@ public class GetPermissionResponseBody {
         return this;
     }
 
+
     /**
      * Whether this permission is granted to the app by the organization.
      */
@@ -208,6 +213,7 @@ public class GetPermissionResponseBody {
         return this;
     }
 
+
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
@@ -217,7 +223,6 @@ public class GetPermissionResponseBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -238,11 +243,8 @@ public class GetPermissionResponseBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            description,
-            granted,
-            links);
+            resource, id, description,
+            granted, links);
     }
     
     @Override
@@ -254,22 +256,24 @@ public class GetPermissionResponseBody {
                 "granted", granted,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<Boolean> granted = Optional.empty();
- 
+
         private Optional<? extends GetPermissionLinks> links = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a permission object. Will always contain the string `permission` for this endpoint.
@@ -289,6 +293,7 @@ public class GetPermissionResponseBody {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this permission. Example: `payments.read`.
          */
@@ -306,6 +311,7 @@ public class GetPermissionResponseBody {
             this.id = id;
             return this;
         }
+
 
         /**
          * A short description of what kind of access the permission enables.
@@ -325,6 +331,7 @@ public class GetPermissionResponseBody {
             return this;
         }
 
+
         /**
          * Whether this permission is granted to the app by the organization.
          */
@@ -343,6 +350,7 @@ public class GetPermissionResponseBody {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -360,18 +368,17 @@ public class GetPermissionResponseBody {
             this.links = links;
             return this;
         }
-        
+
         public GetPermissionResponseBody build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new GetPermissionResponseBody(
-                resource,
-                id,
-                description,
-                granted,
-                links);
+                resource, id, description,
+                granted, links);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

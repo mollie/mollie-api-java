@@ -31,7 +31,6 @@ public class Organizations {
     Organizations(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Get organization
      * 
@@ -105,11 +104,10 @@ public class Organizations {
                 .build();
         RequestOperation<GetOrganizationRequest, GetOrganizationResponse> operation
               = new GetOrganizationOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get current organization
@@ -161,15 +159,13 @@ public class Organizations {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetCurrentOrganizationResponse getCurrent(
-            Optional<Options> options) throws Exception {
+    public GetCurrentOrganizationResponse getCurrent(Optional<Options> options) throws Exception {
         RequestlessOperation<GetCurrentOrganizationResponse> operation
             = new GetCurrentOrganizationOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest());
     }
-
 
     /**
      * Get partner status
@@ -215,12 +211,11 @@ public class Organizations {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetPartnerStatusResponse getPartner(
-            Optional<Options> options) throws Exception {
+    public GetPartnerStatusResponse getPartner(Optional<Options> options) throws Exception {
         RequestlessOperation<GetPartnerStatusResponse> operation
             = new GetPartnerStatusOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest());
     }
 

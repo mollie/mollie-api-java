@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class ListPermissionsEmbedded {
 
+public class ListPermissionsEmbedded {
     /**
      * An array of permission objects.
      */
@@ -44,9 +44,10 @@ public class ListPermissionsEmbedded {
         return (Optional<List<Permissions>>) permissions;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An array of permission objects.
@@ -57,6 +58,7 @@ public class ListPermissionsEmbedded {
         return this;
     }
 
+
     /**
      * An array of permission objects.
      */
@@ -66,7 +68,6 @@ public class ListPermissionsEmbedded {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,14 +92,16 @@ public class ListPermissionsEmbedded {
         return Utils.toString(ListPermissionsEmbedded.class,
                 "permissions", permissions);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<Permissions>> permissions = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An array of permission objects.
@@ -117,10 +120,12 @@ public class ListPermissionsEmbedded {
             this.permissions = permissions;
             return this;
         }
-        
+
         public ListPermissionsEmbedded build() {
+
             return new ListPermissionsEmbedded(
                 permissions);
         }
+
     }
 }

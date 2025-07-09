@@ -10,8 +10,8 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class PaymentListRoutesRequest {
 
+public class PaymentListRoutesRequest {
     /**
      * Provide the ID of the related payment.
      */
@@ -33,9 +33,10 @@ public class PaymentListRoutesRequest {
         return paymentId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the related payment.
@@ -46,7 +47,6 @@ public class PaymentListRoutesRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -71,14 +71,16 @@ public class PaymentListRoutesRequest {
         return Utils.toString(PaymentListRoutesRequest.class,
                 "paymentId", paymentId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String paymentId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the related payment.
@@ -88,10 +90,12 @@ public class PaymentListRoutesRequest {
             this.paymentId = paymentId;
             return this;
         }
-        
+
         public PaymentListRoutesRequest build() {
+
             return new PaymentListRoutesRequest(
                 paymentId);
         }
+
     }
 }

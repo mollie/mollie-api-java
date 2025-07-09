@@ -12,13 +12,14 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class DeleteCustomerRequest {
 
+public class DeleteCustomerRequest {
     /**
      * Provide the ID of the related customer.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=customerId")
     private String customerId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends DeleteCustomerRequestBody> requestBody;
@@ -52,9 +53,10 @@ public class DeleteCustomerRequest {
         return (Optional<DeleteCustomerRequestBody>) requestBody;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the related customer.
@@ -71,13 +73,13 @@ public class DeleteCustomerRequest {
         return this;
     }
 
+
     public DeleteCustomerRequest withRequestBody(Optional<? extends DeleteCustomerRequestBody> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -95,8 +97,7 @@ public class DeleteCustomerRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            customerId,
-            requestBody);
+            customerId, requestBody);
     }
     
     @Override
@@ -105,16 +106,18 @@ public class DeleteCustomerRequest {
                 "customerId", customerId,
                 "requestBody", requestBody);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String customerId;
- 
+
         private Optional<? extends DeleteCustomerRequestBody> requestBody = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the related customer.
@@ -124,6 +127,7 @@ public class DeleteCustomerRequest {
             this.customerId = customerId;
             return this;
         }
+
 
         public Builder requestBody(DeleteCustomerRequestBody requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
@@ -136,11 +140,12 @@ public class DeleteCustomerRequest {
             this.requestBody = requestBody;
             return this;
         }
-        
+
         public DeleteCustomerRequest build() {
+
             return new DeleteCustomerRequest(
-                customerId,
-                requestBody);
+                customerId, requestBody);
         }
+
     }
 }

@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class UpdateSubscriptionRequestBody {
 
+public class UpdateSubscriptionRequestBody {
     /**
      * Update the amount for future payments of this subscription.
      */
@@ -128,7 +128,9 @@ public class UpdateSubscriptionRequestBody {
     }
     
     public UpdateSubscriptionRequestBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -219,9 +221,10 @@ public class UpdateSubscriptionRequestBody {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Update the amount for future payments of this subscription.
@@ -231,6 +234,7 @@ public class UpdateSubscriptionRequestBody {
         this.amount = Optional.ofNullable(amount);
         return this;
     }
+
 
     /**
      * Update the amount for future payments of this subscription.
@@ -251,6 +255,7 @@ public class UpdateSubscriptionRequestBody {
         this.description = Optional.ofNullable(description);
         return this;
     }
+
 
     /**
      * The subscription's description will be used as the description of the resulting individual payments and so showing up on the bank statement of the consumer.
@@ -276,6 +281,7 @@ public class UpdateSubscriptionRequestBody {
         return this;
     }
 
+
     /**
      * Interval to wait between payments, for example `1 month` or `14 days`.
      * 
@@ -298,6 +304,7 @@ public class UpdateSubscriptionRequestBody {
         return this;
     }
 
+
     /**
      * The start date of the subscription in `YYYY-MM-DD` format.
      */
@@ -317,6 +324,7 @@ public class UpdateSubscriptionRequestBody {
         this.times = Optional.ofNullable(times);
         return this;
     }
+
 
     /**
      * Total number of payments for the subscription. Once this number of payments is reached, the subscription is considered completed.
@@ -362,6 +370,7 @@ public class UpdateSubscriptionRequestBody {
         return this;
     }
 
+
     /**
      * We will call this URL for any payment status changes of payments resulting from this subscription.
      * 
@@ -381,6 +390,7 @@ public class UpdateSubscriptionRequestBody {
         this.mandateId = Optional.ofNullable(mandateId);
         return this;
     }
+
 
     /**
      * The mandate used for this subscription, if any.
@@ -413,7 +423,6 @@ public class UpdateSubscriptionRequestBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -438,15 +447,9 @@ public class UpdateSubscriptionRequestBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            amount,
-            description,
-            interval,
-            startDate,
-            times,
-            metadata,
-            webhookUrl,
-            mandateId,
-            testmode);
+            amount, description, interval,
+            startDate, times, metadata,
+            webhookUrl, mandateId, testmode);
     }
     
     @Override
@@ -462,30 +465,32 @@ public class UpdateSubscriptionRequestBody {
                 "mandateId", mandateId,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends UpdateSubscriptionAmount> amount = Optional.empty();
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<String> interval = Optional.empty();
- 
+
         private Optional<String> startDate = Optional.empty();
- 
+
         private Optional<Long> times = Optional.empty();
- 
+
         private JsonNullable<? extends UpdateSubscriptionMetadata> metadata = JsonNullable.undefined();
- 
+
         private Optional<String> webhookUrl = Optional.empty();
- 
+
         private Optional<String> mandateId = Optional.empty();
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Update the amount for future payments of this subscription.
@@ -504,6 +509,7 @@ public class UpdateSubscriptionRequestBody {
             this.amount = amount;
             return this;
         }
+
 
         /**
          * The subscription's description will be used as the description of the resulting individual payments and so showing up on the bank statement of the consumer.
@@ -526,6 +532,7 @@ public class UpdateSubscriptionRequestBody {
             this.description = description;
             return this;
         }
+
 
         /**
          * Interval to wait between payments, for example `1 month` or `14 days`.
@@ -553,6 +560,7 @@ public class UpdateSubscriptionRequestBody {
             return this;
         }
 
+
         /**
          * The start date of the subscription in `YYYY-MM-DD` format.
          */
@@ -570,6 +578,7 @@ public class UpdateSubscriptionRequestBody {
             this.startDate = startDate;
             return this;
         }
+
 
         /**
          * Total number of payments for the subscription. Once this number of payments is reached, the subscription is considered completed.
@@ -593,6 +602,7 @@ public class UpdateSubscriptionRequestBody {
             return this;
         }
 
+
         /**
          * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          * 
@@ -614,6 +624,7 @@ public class UpdateSubscriptionRequestBody {
             this.metadata = metadata;
             return this;
         }
+
 
         /**
          * We will call this URL for any payment status changes of payments resulting from this subscription.
@@ -637,6 +648,7 @@ public class UpdateSubscriptionRequestBody {
             return this;
         }
 
+
         /**
          * The mandate used for this subscription, if any.
          */
@@ -654,6 +666,7 @@ public class UpdateSubscriptionRequestBody {
             this.mandateId = mandateId;
             return this;
         }
+
 
         /**
          * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
@@ -676,18 +689,14 @@ public class UpdateSubscriptionRequestBody {
             this.testmode = testmode;
             return this;
         }
-        
+
         public UpdateSubscriptionRequestBody build() {
+
             return new UpdateSubscriptionRequestBody(
-                amount,
-                description,
-                interval,
-                startDate,
-                times,
-                metadata,
-                webhookUrl,
-                mandateId,
-                testmode);
+                amount, description, interval,
+                startDate, times, metadata,
+                webhookUrl, mandateId, testmode);
         }
+
     }
 }

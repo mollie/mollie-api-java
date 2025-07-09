@@ -17,8 +17,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class ListClientsOnboarding {
 
+public class ListClientsOnboarding {
     /**
      * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this resource type.
      */
@@ -100,7 +100,9 @@ public class ListClientsOnboarding {
     }
     
     public ListClientsOnboarding() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -166,9 +168,10 @@ public class ListClientsOnboarding {
         return (Optional<ListClientsClientsResponseLinks>) links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this resource type.
@@ -178,6 +181,7 @@ public class ListClientsOnboarding {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this resource type.
@@ -196,6 +200,7 @@ public class ListClientsOnboarding {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * The name of the organization.
@@ -221,6 +226,7 @@ public class ListClientsOnboarding {
         return this;
     }
 
+
     /**
      * The current status of the organization's onboarding process.
      * 
@@ -245,6 +251,7 @@ public class ListClientsOnboarding {
         return this;
     }
 
+
     /**
      * Whether the organization can receive payments.
      */
@@ -262,6 +269,7 @@ public class ListClientsOnboarding {
         this.canReceiveSettlements = Optional.ofNullable(canReceiveSettlements);
         return this;
     }
+
 
     /**
      * Whether the organization can receive settlements to their external bank account.
@@ -281,6 +289,7 @@ public class ListClientsOnboarding {
         return this;
     }
 
+
     /**
      * The sign up date time of the organization in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
@@ -299,6 +308,7 @@ public class ListClientsOnboarding {
         return this;
     }
 
+
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
@@ -308,7 +318,6 @@ public class ListClientsOnboarding {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -331,12 +340,8 @@ public class ListClientsOnboarding {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            name,
-            status,
-            canReceivePayments,
-            canReceiveSettlements,
-            signedUpAt,
+            resource, name, status,
+            canReceivePayments, canReceiveSettlements, signedUpAt,
             links);
     }
     
@@ -351,26 +356,28 @@ public class ListClientsOnboarding {
                 "signedUpAt", signedUpAt,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> status = Optional.empty();
- 
+
         private Optional<Boolean> canReceivePayments = Optional.empty();
- 
+
         private Optional<Boolean> canReceiveSettlements = Optional.empty();
- 
+
         private Optional<String> signedUpAt = Optional.empty();
- 
+
         private Optional<? extends ListClientsClientsResponseLinks> links = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this resource type.
@@ -390,6 +397,7 @@ public class ListClientsOnboarding {
             return this;
         }
 
+
         /**
          * The name of the organization.
          */
@@ -407,6 +415,7 @@ public class ListClientsOnboarding {
             this.name = name;
             return this;
         }
+
 
         /**
          * The current status of the organization's onboarding process.
@@ -438,6 +447,7 @@ public class ListClientsOnboarding {
             return this;
         }
 
+
         /**
          * Whether the organization can receive payments.
          */
@@ -455,6 +465,7 @@ public class ListClientsOnboarding {
             this.canReceivePayments = canReceivePayments;
             return this;
         }
+
 
         /**
          * Whether the organization can receive settlements to their external bank account.
@@ -474,6 +485,7 @@ public class ListClientsOnboarding {
             return this;
         }
 
+
         /**
          * The sign up date time of the organization in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
          */
@@ -492,6 +504,7 @@ public class ListClientsOnboarding {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -509,20 +522,18 @@ public class ListClientsOnboarding {
             this.links = links;
             return this;
         }
-        
+
         public ListClientsOnboarding build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new ListClientsOnboarding(
-                resource,
-                name,
-                status,
-                canReceivePayments,
-                canReceiveSettlements,
-                signedUpAt,
+                resource, name, status,
+                canReceivePayments, canReceiveSettlements, signedUpAt,
                 links);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

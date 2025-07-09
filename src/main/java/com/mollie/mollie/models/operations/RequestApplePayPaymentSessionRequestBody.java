@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class RequestApplePayPaymentSessionRequestBody {
 
+public class RequestApplePayPaymentSessionRequestBody {
     /**
      * The validationUrl you got from the [ApplePayValidateMerchant event](https://developer.apple.com/documentation/apple_pay_on_the_web/applepayvalidatemerchantevent).
      * 
@@ -85,9 +85,10 @@ public class RequestApplePayPaymentSessionRequestBody {
         return profileId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The validationUrl you got from the [ApplePayValidateMerchant event](https://developer.apple.com/documentation/apple_pay_on_the_web/applepayvalidatemerchantevent).
@@ -131,7 +132,6 @@ public class RequestApplePayPaymentSessionRequestBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -150,9 +150,7 @@ public class RequestApplePayPaymentSessionRequestBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            validationUrl,
-            domain,
-            profileId);
+            validationUrl, domain, profileId);
     }
     
     @Override
@@ -162,18 +160,20 @@ public class RequestApplePayPaymentSessionRequestBody {
                 "domain", domain,
                 "profileId", profileId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String validationUrl;
- 
+
         private String domain;
- 
+
         private JsonNullable<String> profileId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The validationUrl you got from the [ApplePayValidateMerchant event](https://developer.apple.com/documentation/apple_pay_on_the_web/applepayvalidatemerchantevent).
@@ -186,6 +186,7 @@ public class RequestApplePayPaymentSessionRequestBody {
             return this;
         }
 
+
         /**
          * The domain of your web shop, that is visible in the browser's location bar. For example `pay.myshop.com`.
          */
@@ -194,6 +195,7 @@ public class RequestApplePayPaymentSessionRequestBody {
             this.domain = domain;
             return this;
         }
+
 
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
@@ -216,12 +218,12 @@ public class RequestApplePayPaymentSessionRequestBody {
             this.profileId = profileId;
             return this;
         }
-        
+
         public RequestApplePayPaymentSessionRequestBody build() {
+
             return new RequestApplePayPaymentSessionRequestBody(
-                validationUrl,
-                domain,
-                profileId);
+                validationUrl, domain, profileId);
         }
+
     }
 }

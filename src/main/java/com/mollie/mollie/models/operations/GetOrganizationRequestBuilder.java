@@ -73,8 +73,8 @@ public class GetOrganizationRequestBuilder {
 
         RequestOperation<GetOrganizationRequest, GetOrganizationResponse> operation
               = new GetOrganizationOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         GetOrganizationRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

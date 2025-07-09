@@ -20,7 +20,6 @@ import java.lang.String;
  * <p>For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
  */
 public class ListCustomerPaymentsVatAmount {
-
     /**
      * A three-character ISO 4217 currency code.
      */
@@ -59,9 +58,10 @@ public class ListCustomerPaymentsVatAmount {
         return value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A three-character ISO 4217 currency code.
@@ -81,7 +81,6 @@ public class ListCustomerPaymentsVatAmount {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -99,8 +98,7 @@ public class ListCustomerPaymentsVatAmount {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            currency,
-            value);
+            currency, value);
     }
     
     @Override
@@ -109,16 +107,18 @@ public class ListCustomerPaymentsVatAmount {
                 "currency", currency,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String currency;
- 
+
         private String value;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A three-character ISO 4217 currency code.
@@ -129,6 +129,7 @@ public class ListCustomerPaymentsVatAmount {
             return this;
         }
 
+
         /**
          * A string containing an exact monetary amount in the given currency.
          */
@@ -137,11 +138,12 @@ public class ListCustomerPaymentsVatAmount {
             this.value = value;
             return this;
         }
-        
+
         public ListCustomerPaymentsVatAmount build() {
+
             return new ListCustomerPaymentsVatAmount(
-                currency,
-                value);
+                currency, value);
         }
+
     }
 }

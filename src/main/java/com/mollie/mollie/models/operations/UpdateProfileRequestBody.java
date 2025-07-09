@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class UpdateProfileRequestBody {
 
+public class UpdateProfileRequestBody {
     /**
      * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
      */
@@ -104,7 +104,9 @@ public class UpdateProfileRequestBody {
     }
     
     public UpdateProfileRequestBody() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -174,9 +176,10 @@ public class UpdateProfileRequestBody {
         return mode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
@@ -326,7 +329,6 @@ public class UpdateProfileRequestBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -350,14 +352,9 @@ public class UpdateProfileRequestBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            website,
-            email,
-            phone,
-            description,
-            countriesOfActivity,
-            businessCategory,
-            mode);
+            name, website, email,
+            phone, description, countriesOfActivity,
+            businessCategory, mode);
     }
     
     @Override
@@ -372,28 +369,30 @@ public class UpdateProfileRequestBody {
                 "businessCategory", businessCategory,
                 "mode", mode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<String> website = JsonNullable.undefined();
- 
+
         private JsonNullable<String> email = JsonNullable.undefined();
- 
+
         private JsonNullable<String> phone = JsonNullable.undefined();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<String>> countriesOfActivity = JsonNullable.undefined();
- 
+
         private JsonNullable<String> businessCategory = JsonNullable.undefined();
- 
+
         private JsonNullable<String> mode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
@@ -413,6 +412,7 @@ public class UpdateProfileRequestBody {
             return this;
         }
 
+
         /**
          * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
          */
@@ -430,6 +430,7 @@ public class UpdateProfileRequestBody {
             this.website = website;
             return this;
         }
+
 
         /**
          * The email address associated with the profile's trade name or brand.
@@ -449,6 +450,7 @@ public class UpdateProfileRequestBody {
             return this;
         }
 
+
         /**
          * The phone number associated with the profile's trade name or brand.
          */
@@ -466,6 +468,7 @@ public class UpdateProfileRequestBody {
             this.phone = phone;
             return this;
         }
+
 
         /**
          * The products or services offered by the profile's website or application.
@@ -485,6 +488,7 @@ public class UpdateProfileRequestBody {
             return this;
         }
 
+
         /**
          * A list of countries where you expect that the majority of the profile's customers reside, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
          */
@@ -503,6 +507,7 @@ public class UpdateProfileRequestBody {
             return this;
         }
 
+
         /**
          * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types) for all possible options.
          */
@@ -520,6 +525,7 @@ public class UpdateProfileRequestBody {
             this.businessCategory = businessCategory;
             return this;
         }
+
 
         /**
          * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we review the profile before it can start accepting payments.
@@ -542,17 +548,14 @@ public class UpdateProfileRequestBody {
             this.mode = mode;
             return this;
         }
-        
+
         public UpdateProfileRequestBody build() {
+
             return new UpdateProfileRequestBody(
-                name,
-                website,
-                email,
-                phone,
-                description,
-                countriesOfActivity,
-                businessCategory,
-                mode);
+                name, website, email,
+                phone, description, countriesOfActivity,
+                businessCategory, mode);
         }
+
     }
 }

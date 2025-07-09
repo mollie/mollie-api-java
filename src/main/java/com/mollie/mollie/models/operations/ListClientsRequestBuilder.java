@@ -101,8 +101,8 @@ public class ListClientsRequestBuilder {
 
         RequestOperation<ListClientsRequest, ListClientsResponse> operation
               = new ListClientsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         ListClientsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

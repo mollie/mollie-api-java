@@ -14,11 +14,13 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class SubmitOnboardingDataRequestBody {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("organization")
     private Optional<? extends Organization> organization;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("profile")
@@ -50,15 +52,17 @@ public class SubmitOnboardingDataRequestBody {
         return (Optional<Profile>) profile;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public SubmitOnboardingDataRequestBody withOrganization(Organization organization) {
         Utils.checkNotNull(organization, "organization");
         this.organization = Optional.ofNullable(organization);
         return this;
     }
+
 
     public SubmitOnboardingDataRequestBody withOrganization(Optional<? extends Organization> organization) {
         Utils.checkNotNull(organization, "organization");
@@ -72,13 +76,13 @@ public class SubmitOnboardingDataRequestBody {
         return this;
     }
 
+
     public SubmitOnboardingDataRequestBody withProfile(Optional<? extends Profile> profile) {
         Utils.checkNotNull(profile, "profile");
         this.profile = profile;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -96,8 +100,7 @@ public class SubmitOnboardingDataRequestBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            organization,
-            profile);
+            organization, profile);
     }
     
     @Override
@@ -106,16 +109,18 @@ public class SubmitOnboardingDataRequestBody {
                 "organization", organization,
                 "profile", profile);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Organization> organization = Optional.empty();
- 
+
         private Optional<? extends Profile> profile = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder organization(Organization organization) {
             Utils.checkNotNull(organization, "organization");
@@ -129,6 +134,7 @@ public class SubmitOnboardingDataRequestBody {
             return this;
         }
 
+
         public Builder profile(Profile profile) {
             Utils.checkNotNull(profile, "profile");
             this.profile = Optional.ofNullable(profile);
@@ -140,11 +146,12 @@ public class SubmitOnboardingDataRequestBody {
             this.profile = profile;
             return this;
         }
-        
+
         public SubmitOnboardingDataRequestBody build() {
+
             return new SubmitOnboardingDataRequestBody(
-                organization,
-                profile);
+                organization, profile);
         }
+
     }
 }

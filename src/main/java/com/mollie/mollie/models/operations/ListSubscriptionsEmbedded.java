@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class ListSubscriptionsEmbedded {
 
+public class ListSubscriptionsEmbedded {
     /**
      * An array of subscription objects.
      */
@@ -44,9 +44,10 @@ public class ListSubscriptionsEmbedded {
         return (Optional<List<ListSubscriptionsSubscriptions>>) subscriptions;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An array of subscription objects.
@@ -57,6 +58,7 @@ public class ListSubscriptionsEmbedded {
         return this;
     }
 
+
     /**
      * An array of subscription objects.
      */
@@ -66,7 +68,6 @@ public class ListSubscriptionsEmbedded {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,14 +92,16 @@ public class ListSubscriptionsEmbedded {
         return Utils.toString(ListSubscriptionsEmbedded.class,
                 "subscriptions", subscriptions);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<ListSubscriptionsSubscriptions>> subscriptions = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An array of subscription objects.
@@ -117,10 +120,12 @@ public class ListSubscriptionsEmbedded {
             this.subscriptions = subscriptions;
             return this;
         }
-        
+
         public ListSubscriptionsEmbedded build() {
+
             return new ListSubscriptionsEmbedded(
                 subscriptions);
         }
+
     }
 }

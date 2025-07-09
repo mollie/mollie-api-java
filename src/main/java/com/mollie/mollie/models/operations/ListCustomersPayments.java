@@ -19,7 +19,6 @@ import java.util.Optional;
  * <p>The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments exist (yet).
  */
 public class ListCustomersPayments {
-
     /**
      * The actual URL string.
      */
@@ -64,9 +63,10 @@ public class ListCustomersPayments {
         return type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The actual URL string.
@@ -76,6 +76,7 @@ public class ListCustomersPayments {
         this.href = Optional.ofNullable(href);
         return this;
     }
+
 
     /**
      * The actual URL string.
@@ -95,6 +96,7 @@ public class ListCustomersPayments {
         return this;
     }
 
+
     /**
      * The content type of the page or endpoint the URL points to.
      */
@@ -104,7 +106,6 @@ public class ListCustomersPayments {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -122,8 +123,7 @@ public class ListCustomersPayments {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            href,
-            type);
+            href, type);
     }
     
     @Override
@@ -132,16 +132,18 @@ public class ListCustomersPayments {
                 "href", href,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> href = Optional.empty();
- 
+
         private Optional<String> type = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The actual URL string.
@@ -161,6 +163,7 @@ public class ListCustomersPayments {
             return this;
         }
 
+
         /**
          * The content type of the page or endpoint the URL points to.
          */
@@ -178,11 +181,12 @@ public class ListCustomersPayments {
             this.type = type;
             return this;
         }
-        
+
         public ListCustomersPayments build() {
+
             return new ListCustomersPayments(
-                href,
-                type);
+                href, type);
         }
+
     }
 }

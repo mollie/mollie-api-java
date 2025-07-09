@@ -20,7 +20,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
 public class GetSettlementChargebacksSettlementsLinks {
-
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -66,7 +65,8 @@ public class GetSettlementChargebacksSettlementsLinks {
             GetSettlementChargebacksSettlementsSelf self,
             GetSettlementChargebacksPayment payment,
             GetSettlementChargebacksSettlementsDocumentation documentation) {
-        this(self, payment, JsonNullable.undefined(), documentation);
+        this(self, payment, JsonNullable.undefined(),
+            documentation);
     }
 
     /**
@@ -102,9 +102,10 @@ public class GetSettlementChargebacksSettlementsLinks {
         return documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -151,7 +152,6 @@ public class GetSettlementChargebacksSettlementsLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -171,9 +171,7 @@ public class GetSettlementChargebacksSettlementsLinks {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self,
-            payment,
-            settlement,
+            self, payment, settlement,
             documentation);
     }
     
@@ -185,20 +183,22 @@ public class GetSettlementChargebacksSettlementsLinks {
                 "settlement", settlement,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private GetSettlementChargebacksSettlementsSelf self;
- 
+
         private GetSettlementChargebacksPayment payment;
- 
+
         private JsonNullable<? extends GetSettlementChargebacksSettlement> settlement = JsonNullable.undefined();
- 
+
         private GetSettlementChargebacksSettlementsDocumentation documentation;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -209,6 +209,7 @@ public class GetSettlementChargebacksSettlementsLinks {
             return this;
         }
 
+
         /**
          * The API resource URL of the [payment](get-payment) that this chargeback belongs to.
          */
@@ -217,6 +218,7 @@ public class GetSettlementChargebacksSettlementsLinks {
             this.payment = payment;
             return this;
         }
+
 
         /**
          * The API resource URL of the [settlement](get-settlement) this chargeback has been settled with. Not present if not yet settled.
@@ -236,6 +238,7 @@ public class GetSettlementChargebacksSettlementsLinks {
             return this;
         }
 
+
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
@@ -244,13 +247,13 @@ public class GetSettlementChargebacksSettlementsLinks {
             this.documentation = documentation;
             return this;
         }
-        
+
         public GetSettlementChargebacksSettlementsLinks build() {
+
             return new GetSettlementChargebacksSettlementsLinks(
-                self,
-                payment,
-                settlement,
+                self, payment, settlement,
                 documentation);
         }
+
     }
 }

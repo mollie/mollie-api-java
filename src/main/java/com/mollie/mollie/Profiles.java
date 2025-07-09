@@ -46,7 +46,6 @@ public class Profiles {
     Profiles(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Create profile
      * 
@@ -104,11 +103,10 @@ public class Profiles {
             Optional<Options> options) throws Exception {
         RequestOperation<CreateProfileRequestBody, CreateProfileResponse> operation
               = new CreateProfileOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List profiles
@@ -174,11 +172,10 @@ public class Profiles {
                 .build();
         RequestOperation<ListProfilesRequest, ListProfilesResponse> operation
               = new ListProfilesOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get profile
@@ -241,11 +238,10 @@ public class Profiles {
                 .build();
         RequestOperation<GetProfileRequest, GetProfileResponse> operation
               = new GetProfileOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update profile
@@ -315,11 +311,10 @@ public class Profiles {
                 .build();
         RequestOperation<UpdateProfileRequest, UpdateProfileResponse> operation
               = new UpdateProfileOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete profile
@@ -377,11 +372,10 @@ public class Profiles {
                 .build();
         RequestOperation<DeleteProfileRequest, DeleteProfileResponse> operation
               = new DeleteProfileOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get current profile
@@ -433,12 +427,11 @@ public class Profiles {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetCurrentProfileResponse getCurrent(
-            Optional<Options> options) throws Exception {
+    public GetCurrentProfileResponse getCurrent(Optional<Options> options) throws Exception {
         RequestlessOperation<GetCurrentProfileResponse> operation
             = new GetCurrentProfileOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest());
     }
 

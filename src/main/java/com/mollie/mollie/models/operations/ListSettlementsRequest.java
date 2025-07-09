@@ -15,8 +15,8 @@ import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListSettlementsRequest {
 
+public class ListSettlementsRequest {
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      */
@@ -78,7 +78,8 @@ public class ListSettlementsRequest {
     }
     
     public ListSettlementsRequest() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -131,9 +132,10 @@ public class ListSettlementsRequest {
         return currencies;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
@@ -143,6 +145,7 @@ public class ListSettlementsRequest {
         this.from = Optional.ofNullable(from);
         return this;
     }
+
 
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
@@ -247,7 +250,6 @@ public class ListSettlementsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -269,12 +271,8 @@ public class ListSettlementsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            from,
-            limit,
-            balanceId,
-            year,
-            month,
-            currencies);
+            from, limit, balanceId,
+            year, month, currencies);
     }
     
     @Override
@@ -287,24 +285,26 @@ public class ListSettlementsRequest {
                 "month", month,
                 "currencies", currencies);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> from = Optional.empty();
- 
+
         private JsonNullable<Long> limit;
- 
+
         private JsonNullable<String> balanceId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> year = JsonNullable.undefined();
- 
+
         private JsonNullable<String> month = JsonNullable.undefined();
- 
+
         private JsonNullable<String> currencies = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
@@ -324,6 +324,7 @@ public class ListSettlementsRequest {
             return this;
         }
 
+
         /**
          * The maximum number of items to return. Defaults to 50 items.
          */
@@ -341,6 +342,7 @@ public class ListSettlementsRequest {
             this.limit = limit;
             return this;
         }
+
 
         /**
          * Provide the token of the balance to filter the settlements by. This is the balance token that the settlement was settled to.
@@ -360,6 +362,7 @@ public class ListSettlementsRequest {
             return this;
         }
 
+
         /**
          * Provide the year to query the settlements. Must be used combined with `month` parameter
          */
@@ -378,6 +381,7 @@ public class ListSettlementsRequest {
             return this;
         }
 
+
         /**
          * Provide the month to query the settlements. Must be used combined with `year` parameter
          */
@@ -395,6 +399,7 @@ public class ListSettlementsRequest {
             this.month = month;
             return this;
         }
+
 
         /**
          * Provides the currencies to retrieve the settlements. It accepts multiple currencies in a comma-separated format.
@@ -417,19 +422,17 @@ public class ListSettlementsRequest {
             this.currencies = currencies;
             return this;
         }
-        
+
         public ListSettlementsRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+
             return new ListSettlementsRequest(
-                from,
-                limit,
-                balanceId,
-                year,
-                month,
-                currencies);
+                from, limit, balanceId,
+                year, month, currencies);
         }
+
 
         private static final LazySingletonValue<JsonNullable<Long>> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(

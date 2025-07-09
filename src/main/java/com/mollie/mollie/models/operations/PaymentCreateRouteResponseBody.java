@@ -21,7 +21,6 @@ import java.util.Optional;
  * <p>The route object.
  */
 public class PaymentCreateRouteResponseBody {
-
     /**
      * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
      */
@@ -97,7 +96,9 @@ public class PaymentCreateRouteResponseBody {
             String description,
             PaymentCreateRouteDelayedRoutingDestination destination,
             PaymentCreateRouteLinks links) {
-        this(Optional.empty(), id, paymentId, amount, description, destination, links);
+        this(Optional.empty(), id, paymentId,
+            amount, description, destination,
+            links);
     }
 
     /**
@@ -156,9 +157,10 @@ public class PaymentCreateRouteResponseBody {
         return links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
@@ -168,6 +170,7 @@ public class PaymentCreateRouteResponseBody {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
@@ -232,7 +235,6 @@ public class PaymentCreateRouteResponseBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -255,12 +257,8 @@ public class PaymentCreateRouteResponseBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            paymentId,
-            amount,
-            description,
-            destination,
+            resource, id, paymentId,
+            amount, description, destination,
             links);
     }
     
@@ -275,26 +273,28 @@ public class PaymentCreateRouteResponseBody {
                 "destination", destination,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private String id;
- 
+
         private String paymentId;
- 
+
         private PaymentCreateRouteDelayedRoutingAmount amount;
- 
+
         private String description;
- 
+
         private PaymentCreateRouteDelayedRoutingDestination destination;
- 
+
         private PaymentCreateRouteLinks links;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
@@ -314,6 +314,7 @@ public class PaymentCreateRouteResponseBody {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this route. Mollie assigns this identifier at route creation time. Mollie will always refer to the route by this ID. Example: `crt_dyARQ3JzCgtPDhU2Pbq3J`.
          */
@@ -322,6 +323,7 @@ public class PaymentCreateRouteResponseBody {
             this.id = id;
             return this;
         }
+
 
         /**
          * The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
@@ -332,6 +334,7 @@ public class PaymentCreateRouteResponseBody {
             return this;
         }
 
+
         /**
          * The amount of the route. That amount that will be routed to the specified destination.
          */
@@ -340,6 +343,7 @@ public class PaymentCreateRouteResponseBody {
             this.amount = amount;
             return this;
         }
+
 
         /**
          * The description of the route. This description is shown in the reports.
@@ -350,6 +354,7 @@ public class PaymentCreateRouteResponseBody {
             return this;
         }
 
+
         /**
          * The destination of the route.
          */
@@ -359,6 +364,7 @@ public class PaymentCreateRouteResponseBody {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -367,20 +373,18 @@ public class PaymentCreateRouteResponseBody {
             this.links = links;
             return this;
         }
-        
+
         public PaymentCreateRouteResponseBody build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new PaymentCreateRouteResponseBody(
-                resource,
-                id,
-                paymentId,
-                amount,
-                description,
-                destination,
+                resource, id, paymentId,
+                amount, description, destination,
                 links);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

@@ -51,7 +51,8 @@ public class CreateSubscriptionOperation implements RequestOperation<CreateSubsc
     
     @Override
     public HttpResponse<InputStream> doRequest(CreateSubscriptionRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 CreateSubscriptionRequest.class,

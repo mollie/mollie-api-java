@@ -10,8 +10,8 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class RequestApplePayPaymentSessionLinks {
 
+public class RequestApplePayPaymentSessionLinks {
     /**
      * The URL to the generic Mollie API error handling guide.
      */
@@ -33,9 +33,10 @@ public class RequestApplePayPaymentSessionLinks {
         return documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The URL to the generic Mollie API error handling guide.
@@ -46,7 +47,6 @@ public class RequestApplePayPaymentSessionLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -71,14 +71,16 @@ public class RequestApplePayPaymentSessionLinks {
         return Utils.toString(RequestApplePayPaymentSessionLinks.class,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private RequestApplePayPaymentSessionDocumentation documentation;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The URL to the generic Mollie API error handling guide.
@@ -88,10 +90,12 @@ public class RequestApplePayPaymentSessionLinks {
             this.documentation = documentation;
             return this;
         }
-        
+
         public RequestApplePayPaymentSessionLinks build() {
+
             return new RequestApplePayPaymentSessionLinks(
                 documentation);
         }
+
     }
 }

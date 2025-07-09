@@ -20,6 +20,7 @@ public class GetInvoiceDocumentation {
     @JsonProperty("href")
     private String href;
 
+
     @JsonProperty("type")
     private String type;
 
@@ -43,9 +44,10 @@ public class GetInvoiceDocumentation {
         return type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetInvoiceDocumentation withHref(String href) {
         Utils.checkNotNull(href, "href");
@@ -59,7 +61,6 @@ public class GetInvoiceDocumentation {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -77,8 +78,7 @@ public class GetInvoiceDocumentation {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            href,
-            type);
+            href, type);
     }
     
     @Override
@@ -87,16 +87,18 @@ public class GetInvoiceDocumentation {
                 "href", href,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String href;
- 
+
         private String type;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder href(String href) {
             Utils.checkNotNull(href, "href");
@@ -104,16 +106,18 @@ public class GetInvoiceDocumentation {
             return this;
         }
 
+
         public Builder type(String type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
         }
-        
+
         public GetInvoiceDocumentation build() {
+
             return new GetInvoiceDocumentation(
-                href,
-                type);
+                href, type);
         }
+
     }
 }

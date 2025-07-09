@@ -13,11 +13,13 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
+
 public class Capture {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("paymentId")
     private Optional<String> paymentId;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("captureId")
@@ -47,15 +49,17 @@ public class Capture {
         return captureId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Capture withPaymentId(String paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
         this.paymentId = Optional.ofNullable(paymentId);
         return this;
     }
+
 
     public Capture withPaymentId(Optional<String> paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
@@ -69,13 +73,13 @@ public class Capture {
         return this;
     }
 
+
     public Capture withCaptureId(Optional<String> captureId) {
         Utils.checkNotNull(captureId, "captureId");
         this.captureId = captureId;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -93,8 +97,7 @@ public class Capture {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentId,
-            captureId);
+            paymentId, captureId);
     }
     
     @Override
@@ -103,16 +106,18 @@ public class Capture {
                 "paymentId", paymentId,
                 "captureId", captureId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> paymentId = Optional.empty();
- 
+
         private Optional<String> captureId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder paymentId(String paymentId) {
             Utils.checkNotNull(paymentId, "paymentId");
@@ -126,6 +131,7 @@ public class Capture {
             return this;
         }
 
+
         public Builder captureId(String captureId) {
             Utils.checkNotNull(captureId, "captureId");
             this.captureId = Optional.ofNullable(captureId);
@@ -137,11 +143,12 @@ public class Capture {
             this.captureId = captureId;
             return this;
         }
-        
+
         public Capture build() {
+
             return new Capture(
-                paymentId,
-                captureId);
+                paymentId, captureId);
         }
+
     }
 }

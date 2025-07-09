@@ -20,7 +20,6 @@ public class Capabilities {
     Capabilities(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List capabilities
      * 
@@ -95,12 +94,11 @@ public class Capabilities {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListCapabilitiesResponse list(
-            Optional<Options> options) throws Exception {
+    public ListCapabilitiesResponse list(Optional<Options> options) throws Exception {
         RequestlessOperation<ListCapabilitiesResponse> operation
             = new ListCapabilitiesOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest());
     }
 

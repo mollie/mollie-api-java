@@ -51,7 +51,6 @@ public class Refunds {
     Refunds(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Create payment refund
      * 
@@ -117,11 +116,10 @@ public class Refunds {
                 .build();
         RequestOperation<CreateRefundRequest, CreateRefundResponse> operation
               = new CreateRefundOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List payment refunds
@@ -186,11 +184,10 @@ public class Refunds {
             Optional<Options> options) throws Exception {
         RequestOperation<ListRefundsRequest, ListRefundsResponse> operation
               = new ListRefundsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get payment refund
@@ -228,7 +225,8 @@ public class Refunds {
     public GetRefundResponse get(
             String paymentId,
             String refundId) throws Exception {
-        return get(paymentId, refundId, JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        return get(paymentId, refundId, JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -268,11 +266,10 @@ public class Refunds {
                 .build();
         RequestOperation<GetRefundRequest, GetRefundResponse> operation
               = new GetRefundOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Cancel payment refund
@@ -314,7 +311,8 @@ public class Refunds {
     public CancelRefundResponse cancel(
             String paymentId,
             String refundId) throws Exception {
-        return cancel(paymentId, refundId, JsonNullable.undefined(), Optional.empty());
+        return cancel(paymentId, refundId, JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -353,11 +351,10 @@ public class Refunds {
                 .build();
         RequestOperation<CancelRefundRequest, CancelRefundResponse> operation
               = new CancelRefundOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create order refund
@@ -436,11 +433,10 @@ public class Refunds {
                 .build();
         RequestOperation<CreateOrderRefundRequest, CreateOrderRefundResponse> operation
               = new CreateOrderRefundOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List order refunds
@@ -505,11 +501,10 @@ public class Refunds {
             Optional<Options> options) throws Exception {
         RequestOperation<ListOrderRefundsRequest, ListOrderRefundsResponse> operation
               = new ListOrderRefundsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List all refunds
@@ -574,8 +569,8 @@ public class Refunds {
             Optional<Options> options) throws Exception {
         RequestOperation<ListAllRefundsRequest, ListAllRefundsResponse> operation
               = new ListAllRefundsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

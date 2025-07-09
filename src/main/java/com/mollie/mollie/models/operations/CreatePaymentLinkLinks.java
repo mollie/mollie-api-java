@@ -16,7 +16,6 @@ import java.lang.String;
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
 public class CreatePaymentLinkLinks {
-
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -55,9 +54,10 @@ public class CreatePaymentLinkLinks {
         return paymentLink;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -77,7 +77,6 @@ public class CreatePaymentLinkLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -95,8 +94,7 @@ public class CreatePaymentLinkLinks {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self,
-            paymentLink);
+            self, paymentLink);
     }
     
     @Override
@@ -105,16 +103,18 @@ public class CreatePaymentLinkLinks {
                 "self", self,
                 "paymentLink", paymentLink);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private CreatePaymentLinkSelf self;
- 
+
         private PaymentLink paymentLink;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -125,6 +125,7 @@ public class CreatePaymentLinkLinks {
             return this;
         }
 
+
         /**
          * The URL your customer should visit to make the payment. This is where you should redirect the customer to.
          */
@@ -133,11 +134,12 @@ public class CreatePaymentLinkLinks {
             this.paymentLink = paymentLink;
             return this;
         }
-        
+
         public CreatePaymentLinkLinks build() {
+
             return new CreatePaymentLinkLinks(
-                self,
-                paymentLink);
+                self, paymentLink);
         }
+
     }
 }

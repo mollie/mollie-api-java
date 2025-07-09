@@ -72,8 +72,8 @@ public class GetClientRequestBuilder {
 
         RequestOperation<GetClientRequest, GetClientResponse> operation
               = new GetClientOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         GetClientRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

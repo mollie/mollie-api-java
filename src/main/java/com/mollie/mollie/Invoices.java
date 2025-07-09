@@ -26,7 +26,6 @@ public class Invoices {
     Invoices(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List invoices
      * 
@@ -84,11 +83,10 @@ public class Invoices {
             Optional<Options> options) throws Exception {
         RequestOperation<ListInvoicesRequest, ListInvoicesResponse> operation
               = new ListInvoicesOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get invoice
@@ -152,8 +150,8 @@ public class Invoices {
                 .build();
         RequestOperation<GetInvoiceRequest, GetInvoiceResponse> operation
               = new GetInvoiceOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

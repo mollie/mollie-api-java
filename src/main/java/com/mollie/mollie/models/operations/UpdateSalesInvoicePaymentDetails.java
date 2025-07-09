@@ -19,7 +19,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the provided details. Required for `paid` status.
  */
 public class UpdateSalesInvoicePaymentDetails {
-
     /**
      * The way through which the invoice is to be set to paid.
      * 
@@ -68,9 +67,10 @@ public class UpdateSalesInvoicePaymentDetails {
         return sourceReference;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The way through which the invoice is to be set to paid.
@@ -101,7 +101,6 @@ public class UpdateSalesInvoicePaymentDetails {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -119,8 +118,7 @@ public class UpdateSalesInvoicePaymentDetails {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            source,
-            sourceReference);
+            source, sourceReference);
     }
     
     @Override
@@ -129,16 +127,18 @@ public class UpdateSalesInvoicePaymentDetails {
                 "source", source,
                 "sourceReference", sourceReference);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String source;
- 
+
         private JsonNullable<String> sourceReference = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The way through which the invoice is to be set to paid.
@@ -150,6 +150,7 @@ public class UpdateSalesInvoicePaymentDetails {
             this.source = source;
             return this;
         }
+
 
         /**
          * A reference to the payment the sales invoice is paid by. Required for `source` values `payment-link` and `payment`.
@@ -168,11 +169,12 @@ public class UpdateSalesInvoicePaymentDetails {
             this.sourceReference = sourceReference;
             return this;
         }
-        
+
         public UpdateSalesInvoicePaymentDetails build() {
+
             return new UpdateSalesInvoicePaymentDetails(
-                source,
-                sourceReference);
+                source, sourceReference);
         }
+
     }
 }

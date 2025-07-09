@@ -12,13 +12,14 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class UpdateSalesInvoiceRequest {
 
+public class UpdateSalesInvoiceRequest {
     /**
      * Provide the ID of the item you want to perform this operation on.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
     private String id;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends UpdateSalesInvoiceRequestBody> requestBody;
@@ -52,9 +53,10 @@ public class UpdateSalesInvoiceRequest {
         return (Optional<UpdateSalesInvoiceRequestBody>) requestBody;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the item you want to perform this operation on.
@@ -71,13 +73,13 @@ public class UpdateSalesInvoiceRequest {
         return this;
     }
 
+
     public UpdateSalesInvoiceRequest withRequestBody(Optional<? extends UpdateSalesInvoiceRequestBody> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -95,8 +97,7 @@ public class UpdateSalesInvoiceRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            requestBody);
+            id, requestBody);
     }
     
     @Override
@@ -105,16 +106,18 @@ public class UpdateSalesInvoiceRequest {
                 "id", id,
                 "requestBody", requestBody);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private Optional<? extends UpdateSalesInvoiceRequestBody> requestBody = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the item you want to perform this operation on.
@@ -124,6 +127,7 @@ public class UpdateSalesInvoiceRequest {
             this.id = id;
             return this;
         }
+
 
         public Builder requestBody(UpdateSalesInvoiceRequestBody requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
@@ -136,11 +140,12 @@ public class UpdateSalesInvoiceRequest {
             this.requestBody = requestBody;
             return this;
         }
-        
+
         public UpdateSalesInvoiceRequest build() {
+
             return new UpdateSalesInvoiceRequest(
-                id,
-                requestBody);
+                id, requestBody);
         }
+
     }
 }

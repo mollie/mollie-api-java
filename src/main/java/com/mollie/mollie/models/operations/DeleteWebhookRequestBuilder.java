@@ -73,8 +73,8 @@ public class DeleteWebhookRequestBuilder {
 
         RequestOperation<DeleteWebhookRequest, DeleteWebhookResponse> operation
               = new DeleteWebhookOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         DeleteWebhookRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

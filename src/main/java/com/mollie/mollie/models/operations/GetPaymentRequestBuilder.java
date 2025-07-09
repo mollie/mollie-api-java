@@ -101,8 +101,8 @@ public class GetPaymentRequestBuilder {
 
         RequestOperation<GetPaymentRequest, GetPaymentResponse> operation
               = new GetPaymentOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         GetPaymentRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

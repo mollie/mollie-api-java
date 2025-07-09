@@ -8,19 +8,17 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class UpdateCustomerMetadata2 {
 
+public class UpdateCustomerMetadata2 {
     @JsonCreator
     public UpdateCustomerMetadata2() {
-        
-        
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
 
-    
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -42,16 +40,19 @@ public class UpdateCustomerMetadata2 {
     public String toString() {
         return Utils.toString(UpdateCustomerMetadata2.class);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-        
+
         private Builder() {
           // force use of static builder() method
         }
-        
+
         public UpdateCustomerMetadata2 build() {
+
             return new UpdateCustomerMetadata2(
                 );
         }
+
     }
 }

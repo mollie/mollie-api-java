@@ -43,7 +43,6 @@ public class SalesInvoices {
     SalesInvoices(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Create sales invoice
      * 
@@ -112,11 +111,10 @@ public class SalesInvoices {
             Optional<Options> options) throws Exception {
         RequestOperation<Optional<? extends CreateSalesInvoiceRequestBody>, CreateSalesInvoiceResponse> operation
               = new CreateSalesInvoiceOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List sales invoices
@@ -162,7 +160,8 @@ public class SalesInvoices {
      * @throws Exception if the API call fails
      */
     public ListSalesInvoicesResponse listDirect() throws Exception {
-        return list(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        return list(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -205,11 +204,10 @@ public class SalesInvoices {
                 .build();
         RequestOperation<ListSalesInvoicesRequest, ListSalesInvoicesResponse> operation
               = new ListSalesInvoicesOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get sales invoice
@@ -290,11 +288,10 @@ public class SalesInvoices {
                 .build();
         RequestOperation<GetSalesInvoiceRequest, GetSalesInvoiceResponse> operation
               = new GetSalesInvoiceOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update sales invoice
@@ -373,11 +370,10 @@ public class SalesInvoices {
                 .build();
         RequestOperation<UpdateSalesInvoiceRequest, UpdateSalesInvoiceResponse> operation
               = new UpdateSalesInvoiceOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete sales invoice
@@ -456,8 +452,8 @@ public class SalesInvoices {
                 .build();
         RequestOperation<DeleteSalesInvoiceRequest, DeleteSalesInvoiceResponse> operation
               = new DeleteSalesInvoiceOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -14,6 +14,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class ListCapabilitiesLinks {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -37,9 +38,10 @@ public class ListCapabilitiesLinks {
         return (Optional<ListCapabilitiesDocumentation>) documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ListCapabilitiesLinks withDocumentation(ListCapabilitiesDocumentation documentation) {
         Utils.checkNotNull(documentation, "documentation");
@@ -47,13 +49,13 @@ public class ListCapabilitiesLinks {
         return this;
     }
 
+
     public ListCapabilitiesLinks withDocumentation(Optional<? extends ListCapabilitiesDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -78,14 +80,16 @@ public class ListCapabilitiesLinks {
         return Utils.toString(ListCapabilitiesLinks.class,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ListCapabilitiesDocumentation> documentation = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder documentation(ListCapabilitiesDocumentation documentation) {
             Utils.checkNotNull(documentation, "documentation");
@@ -98,10 +102,12 @@ public class ListCapabilitiesLinks {
             this.documentation = documentation;
             return this;
         }
-        
+
         public ListCapabilitiesLinks build() {
+
             return new ListCapabilitiesLinks(
                 documentation);
         }
+
     }
 }

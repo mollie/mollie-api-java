@@ -24,7 +24,6 @@ import java.util.Optional;
  * <p>If instead you want to split a payment on your own account between yourself and a connected merchant, refer to the `routing` parameter.
  */
 public class ApplicationFee {
-
     /**
      * The fee that you wish to charge.
      * 
@@ -74,9 +73,10 @@ public class ApplicationFee {
         return description;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The fee that you wish to charge.
@@ -88,6 +88,7 @@ public class ApplicationFee {
         this.amount = Optional.ofNullable(amount);
         return this;
     }
+
 
     /**
      * The fee that you wish to charge.
@@ -109,6 +110,7 @@ public class ApplicationFee {
         return this;
     }
 
+
     /**
      * The description of the application fee. This will appear on settlement reports towards both you and the connected merchant.
      */
@@ -118,7 +120,6 @@ public class ApplicationFee {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -136,8 +137,7 @@ public class ApplicationFee {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            amount,
-            description);
+            amount, description);
     }
     
     @Override
@@ -146,16 +146,18 @@ public class ApplicationFee {
                 "amount", amount,
                 "description", description);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends CreatePaymentPaymentsAmount> amount = Optional.empty();
- 
+
         private Optional<String> description = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The fee that you wish to charge.
@@ -179,6 +181,7 @@ public class ApplicationFee {
             return this;
         }
 
+
         /**
          * The description of the application fee. This will appear on settlement reports towards both you and the connected merchant.
          */
@@ -196,11 +199,12 @@ public class ApplicationFee {
             this.description = description;
             return this;
         }
-        
+
         public ApplicationFee build() {
+
             return new ApplicationFee(
-                amount,
-                description);
+                amount, description);
         }
+
     }
 }

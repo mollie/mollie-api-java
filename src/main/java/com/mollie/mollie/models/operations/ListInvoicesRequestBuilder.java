@@ -48,8 +48,8 @@ public class ListInvoicesRequestBuilder {
 
         RequestOperation<ListInvoicesRequest, ListInvoicesResponse> operation
               = new ListInvoicesOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

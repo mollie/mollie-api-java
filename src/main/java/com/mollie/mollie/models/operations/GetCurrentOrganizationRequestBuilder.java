@@ -41,8 +41,8 @@ public class GetCurrentOrganizationRequestBuilder {
 
         RequestlessOperation<GetCurrentOrganizationResponse> operation
             = new GetCurrentOrganizationOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest());
     }

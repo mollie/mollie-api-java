@@ -71,8 +71,8 @@ public class CreateSubscriptionRequestBuilder {
 
         RequestOperation<CreateSubscriptionRequest, CreateSubscriptionResponse> operation
               = new CreateSubscriptionOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         CreateSubscriptionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

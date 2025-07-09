@@ -25,9 +25,11 @@ public class Capital {
     @JsonProperty("pending")
     private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyPending> pending;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("movedToAvailable")
     private Optional<? extends GetBalanceReportBalancesResponse200MovedToAvailable> movedToAvailable;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("immediatelyAvailable")
@@ -68,15 +70,17 @@ public class Capital {
         return (Optional<GetBalanceReportBalancesResponse200ImmediatelyAvailable>) immediatelyAvailable;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Capital withPending(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyPending pending) {
         Utils.checkNotNull(pending, "pending");
         this.pending = Optional.ofNullable(pending);
         return this;
     }
+
 
     public Capital withPending(Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyPending> pending) {
         Utils.checkNotNull(pending, "pending");
@@ -90,6 +94,7 @@ public class Capital {
         return this;
     }
 
+
     public Capital withMovedToAvailable(Optional<? extends GetBalanceReportBalancesResponse200MovedToAvailable> movedToAvailable) {
         Utils.checkNotNull(movedToAvailable, "movedToAvailable");
         this.movedToAvailable = movedToAvailable;
@@ -102,13 +107,13 @@ public class Capital {
         return this;
     }
 
+
     public Capital withImmediatelyAvailable(Optional<? extends GetBalanceReportBalancesResponse200ImmediatelyAvailable> immediatelyAvailable) {
         Utils.checkNotNull(immediatelyAvailable, "immediatelyAvailable");
         this.immediatelyAvailable = immediatelyAvailable;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -127,9 +132,7 @@ public class Capital {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            pending,
-            movedToAvailable,
-            immediatelyAvailable);
+            pending, movedToAvailable, immediatelyAvailable);
     }
     
     @Override
@@ -139,18 +142,20 @@ public class Capital {
                 "movedToAvailable", movedToAvailable,
                 "immediatelyAvailable", immediatelyAvailable);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyPending> pending = Optional.empty();
- 
+
         private Optional<? extends GetBalanceReportBalancesResponse200MovedToAvailable> movedToAvailable = Optional.empty();
- 
+
         private Optional<? extends GetBalanceReportBalancesResponse200ImmediatelyAvailable> immediatelyAvailable = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder pending(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyPending pending) {
             Utils.checkNotNull(pending, "pending");
@@ -164,6 +169,7 @@ public class Capital {
             return this;
         }
 
+
         public Builder movedToAvailable(GetBalanceReportBalancesResponse200MovedToAvailable movedToAvailable) {
             Utils.checkNotNull(movedToAvailable, "movedToAvailable");
             this.movedToAvailable = Optional.ofNullable(movedToAvailable);
@@ -176,6 +182,7 @@ public class Capital {
             return this;
         }
 
+
         public Builder immediatelyAvailable(GetBalanceReportBalancesResponse200ImmediatelyAvailable immediatelyAvailable) {
             Utils.checkNotNull(immediatelyAvailable, "immediatelyAvailable");
             this.immediatelyAvailable = Optional.ofNullable(immediatelyAvailable);
@@ -187,12 +194,12 @@ public class Capital {
             this.immediatelyAvailable = immediatelyAvailable;
             return this;
         }
-        
+
         public Capital build() {
+
             return new Capital(
-                pending,
-                movedToAvailable,
-                immediatelyAvailable);
+                pending, movedToAvailable, immediatelyAvailable);
         }
+
     }
 }

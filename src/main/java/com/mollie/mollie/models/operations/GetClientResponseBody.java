@@ -23,7 +23,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>The client object.
  */
 public class GetClientResponseBody {
-
     /**
      * Indicates the response contains a client object. Will always contain the string `client` for this resource type.
      */
@@ -59,6 +58,7 @@ public class GetClientResponseBody {
     @JsonProperty("_links")
     private Optional<? extends GetClientLinks> links;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_embedded")
     private Optional<? extends GetClientEmbedded> embedded;
@@ -86,7 +86,8 @@ public class GetClientResponseBody {
     }
     
     public GetClientResponseBody() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -137,9 +138,10 @@ public class GetClientResponseBody {
         return (Optional<GetClientEmbedded>) embedded;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a client object. Will always contain the string `client` for this resource type.
@@ -149,6 +151,7 @@ public class GetClientResponseBody {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Indicates the response contains a client object. Will always contain the string `client` for this resource type.
@@ -167,6 +170,7 @@ public class GetClientResponseBody {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The identifier uniquely referring to this client. Example: `org_12345678`.
@@ -204,6 +208,7 @@ public class GetClientResponseBody {
         return this;
     }
 
+
     /**
      * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
@@ -222,6 +227,7 @@ public class GetClientResponseBody {
         return this;
     }
 
+
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
@@ -237,13 +243,13 @@ public class GetClientResponseBody {
         return this;
     }
 
+
     public GetClientResponseBody withEmbedded(Optional<? extends GetClientEmbedded> embedded) {
         Utils.checkNotNull(embedded, "embedded");
         this.embedded = embedded;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -265,12 +271,8 @@ public class GetClientResponseBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            commission,
-            organizationCreatedAt,
-            links,
-            embedded);
+            resource, id, commission,
+            organizationCreatedAt, links, embedded);
     }
     
     @Override
@@ -283,24 +285,26 @@ public class GetClientResponseBody {
                 "links", links,
                 "embedded", embedded);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<? extends Commission> commission = JsonNullable.undefined();
- 
+
         private Optional<String> organizationCreatedAt = Optional.empty();
- 
+
         private Optional<? extends GetClientLinks> links = Optional.empty();
- 
+
         private Optional<? extends GetClientEmbedded> embedded = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a client object. Will always contain the string `client` for this resource type.
@@ -320,6 +324,7 @@ public class GetClientResponseBody {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this client. Example: `org_12345678`.
          */
@@ -337,6 +342,7 @@ public class GetClientResponseBody {
             this.id = id;
             return this;
         }
+
 
         /**
          * The commission object.
@@ -356,6 +362,7 @@ public class GetClientResponseBody {
             return this;
         }
 
+
         /**
          * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
          */
@@ -373,6 +380,7 @@ public class GetClientResponseBody {
             this.organizationCreatedAt = organizationCreatedAt;
             return this;
         }
+
 
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -392,6 +400,7 @@ public class GetClientResponseBody {
             return this;
         }
 
+
         public Builder embedded(GetClientEmbedded embedded) {
             Utils.checkNotNull(embedded, "embedded");
             this.embedded = Optional.ofNullable(embedded);
@@ -403,19 +412,17 @@ public class GetClientResponseBody {
             this.embedded = embedded;
             return this;
         }
-        
+
         public GetClientResponseBody build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new GetClientResponseBody(
-                resource,
-                id,
-                commission,
-                organizationCreatedAt,
-                links,
-                embedded);
+                resource, id, commission,
+                organizationCreatedAt, links, embedded);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

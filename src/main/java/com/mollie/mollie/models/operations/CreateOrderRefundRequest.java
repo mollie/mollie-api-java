@@ -12,13 +12,14 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class CreateOrderRefundRequest {
 
+public class CreateOrderRefundRequest {
     /**
      * Provide the ID of the related order.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=orderId")
     private String orderId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends CreateOrderRefundRequestBody> requestBody;
@@ -52,9 +53,10 @@ public class CreateOrderRefundRequest {
         return (Optional<CreateOrderRefundRequestBody>) requestBody;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the related order.
@@ -71,13 +73,13 @@ public class CreateOrderRefundRequest {
         return this;
     }
 
+
     public CreateOrderRefundRequest withRequestBody(Optional<? extends CreateOrderRefundRequestBody> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -95,8 +97,7 @@ public class CreateOrderRefundRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            orderId,
-            requestBody);
+            orderId, requestBody);
     }
     
     @Override
@@ -105,16 +106,18 @@ public class CreateOrderRefundRequest {
                 "orderId", orderId,
                 "requestBody", requestBody);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String orderId;
- 
+
         private Optional<? extends CreateOrderRefundRequestBody> requestBody = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the related order.
@@ -124,6 +127,7 @@ public class CreateOrderRefundRequest {
             this.orderId = orderId;
             return this;
         }
+
 
         public Builder requestBody(CreateOrderRefundRequestBody requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
@@ -136,11 +140,12 @@ public class CreateOrderRefundRequest {
             this.requestBody = requestBody;
             return this;
         }
-        
+
         public CreateOrderRefundRequest build() {
+
             return new CreateOrderRefundRequest(
-                orderId,
-                requestBody);
+                orderId, requestBody);
         }
+
     }
 }

@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class UpdateSalesInvoiceRequestBody {
 
+public class UpdateSalesInvoiceRequestBody {
     /**
      * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
@@ -134,7 +134,10 @@ public class UpdateSalesInvoiceRequestBody {
     }
     
     public UpdateSalesInvoiceRequestBody() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -232,9 +235,10 @@ public class UpdateSalesInvoiceRequestBody {
         return (JsonNullable<UpdateSalesInvoiceSalesInvoicesDiscount>) discount;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
@@ -270,6 +274,7 @@ public class UpdateSalesInvoiceRequestBody {
         this.status = Optional.ofNullable(status);
         return this;
     }
+
 
     /**
      * The status for the invoice to end up in.
@@ -369,6 +374,7 @@ public class UpdateSalesInvoiceRequestBody {
         return this;
     }
 
+
     /**
      * An identifier tied to the recipient data. This should be a unique value based on data your system contains, so that both you and us know who we're referring to. It is a value you provide to us so that recipient management is not required to send a first invoice to a recipient.
      */
@@ -436,7 +442,6 @@ public class UpdateSalesInvoiceRequestBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -462,15 +467,9 @@ public class UpdateSalesInvoiceRequestBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            testmode,
-            status,
-            memo,
-            paymentTerm,
-            paymentDetails,
-            emailDetails,
-            recipientIdentifier,
-            recipient,
-            lines,
+            testmode, status, memo,
+            paymentTerm, paymentDetails, emailDetails,
+            recipientIdentifier, recipient, lines,
             discount);
     }
     
@@ -488,32 +487,34 @@ public class UpdateSalesInvoiceRequestBody {
                 "lines", lines,
                 "discount", discount);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
- 
+
         private Optional<String> status = Optional.empty();
- 
+
         private JsonNullable<String> memo = JsonNullable.undefined();
- 
+
         private JsonNullable<String> paymentTerm = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends UpdateSalesInvoicePaymentDetails> paymentDetails = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends UpdateSalesInvoiceEmailDetails> emailDetails = JsonNullable.undefined();
- 
+
         private Optional<String> recipientIdentifier = Optional.empty();
- 
+
         private JsonNullable<? extends UpdateSalesInvoiceRecipient> recipient = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<UpdateSalesInvoiceLines>> lines = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends UpdateSalesInvoiceSalesInvoicesDiscount> discount = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
@@ -536,6 +537,7 @@ public class UpdateSalesInvoiceRequestBody {
             this.testmode = testmode;
             return this;
         }
+
 
         /**
          * The status for the invoice to end up in.
@@ -563,6 +565,7 @@ public class UpdateSalesInvoiceRequestBody {
             return this;
         }
 
+
         /**
          * A free-form memo you can set on the invoice, and will be shown on the invoice PDF.
          */
@@ -580,6 +583,7 @@ public class UpdateSalesInvoiceRequestBody {
             this.memo = memo;
             return this;
         }
+
 
         /**
          * The payment term to be set on the invoice.
@@ -603,6 +607,7 @@ public class UpdateSalesInvoiceRequestBody {
             return this;
         }
 
+
         /**
          * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the provided details. Required for `paid` status.
          */
@@ -620,6 +625,7 @@ public class UpdateSalesInvoiceRequestBody {
             this.paymentDetails = paymentDetails;
             return this;
         }
+
 
         /**
          * Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the recipient with the provided `subject` and `body`. Required for `issued` status.
@@ -639,6 +645,7 @@ public class UpdateSalesInvoiceRequestBody {
             return this;
         }
 
+
         /**
          * An identifier tied to the recipient data. This should be a unique value based on data your system contains, so that both you and us know who we're referring to. It is a value you provide to us so that recipient management is not required to send a first invoice to a recipient.
          */
@@ -657,6 +664,7 @@ public class UpdateSalesInvoiceRequestBody {
             return this;
         }
 
+
         /**
          * The recipient object should contain all the information relevant to create an invoice for an intended recipient. This data will be stored, updated, and re-used as appropriate, based on the `recipientIdentifier`.
          */
@@ -674,6 +682,7 @@ public class UpdateSalesInvoiceRequestBody {
             this.recipient = recipient;
             return this;
         }
+
 
         /**
          * Provide the line items for the invoice. Each line contains details such as a description of the item ordered and its price.
@@ -697,6 +706,7 @@ public class UpdateSalesInvoiceRequestBody {
             return this;
         }
 
+
         /**
          * The discount to be applied to the entire invoice, possibly on top of the line item discounts.
          */
@@ -714,19 +724,15 @@ public class UpdateSalesInvoiceRequestBody {
             this.discount = discount;
             return this;
         }
-        
+
         public UpdateSalesInvoiceRequestBody build() {
+
             return new UpdateSalesInvoiceRequestBody(
-                testmode,
-                status,
-                memo,
-                paymentTerm,
-                paymentDetails,
-                emailDetails,
-                recipientIdentifier,
-                recipient,
-                lines,
+                testmode, status, memo,
+                paymentTerm, paymentDetails, emailDetails,
+                recipientIdentifier, recipient, lines,
                 discount);
         }
+
     }
 }

@@ -71,8 +71,8 @@ public class PaymentCreateRouteRequestBuilder {
 
         RequestOperation<PaymentCreateRouteRequest, PaymentCreateRouteResponse> operation
               = new PaymentCreateRouteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         PaymentCreateRouteRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -57,8 +57,8 @@ public class GetWebhookEventRequestBuilder {
 
         RequestOperation<GetWebhookEventRequest, GetWebhookEventResponse> operation
               = new GetWebhookEventOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         GetWebhookEventRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

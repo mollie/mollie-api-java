@@ -19,7 +19,6 @@ import java.util.Optional;
  * <p>The API resource URL of the [mandate](get-mandate) this subscription was created for.
  */
 public class UpdateSubscriptionMandate {
-
     /**
      * The actual URL string.
      */
@@ -64,9 +63,10 @@ public class UpdateSubscriptionMandate {
         return type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The actual URL string.
@@ -76,6 +76,7 @@ public class UpdateSubscriptionMandate {
         this.href = Optional.ofNullable(href);
         return this;
     }
+
 
     /**
      * The actual URL string.
@@ -95,6 +96,7 @@ public class UpdateSubscriptionMandate {
         return this;
     }
 
+
     /**
      * The content type of the page or endpoint the URL points to.
      */
@@ -104,7 +106,6 @@ public class UpdateSubscriptionMandate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -122,8 +123,7 @@ public class UpdateSubscriptionMandate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            href,
-            type);
+            href, type);
     }
     
     @Override
@@ -132,16 +132,18 @@ public class UpdateSubscriptionMandate {
                 "href", href,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> href = Optional.empty();
- 
+
         private Optional<String> type = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The actual URL string.
@@ -161,6 +163,7 @@ public class UpdateSubscriptionMandate {
             return this;
         }
 
+
         /**
          * The content type of the page or endpoint the URL points to.
          */
@@ -178,11 +181,12 @@ public class UpdateSubscriptionMandate {
             this.type = type;
             return this;
         }
-        
+
         public UpdateSubscriptionMandate build() {
+
             return new UpdateSubscriptionMandate(
-                href,
-                type);
+                href, type);
         }
+
     }
 }

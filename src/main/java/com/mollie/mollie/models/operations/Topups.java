@@ -25,9 +25,11 @@ public class Topups {
     @JsonProperty("pending")
     private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsTopupsPending> pending;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("movedToAvailable")
     private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsTopupsMovedToAvailable> movedToAvailable;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("immediatelyAvailable")
@@ -68,15 +70,17 @@ public class Topups {
         return (Optional<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsTopupsImmediatelyAvailable>) immediatelyAvailable;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Topups withPending(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsTopupsPending pending) {
         Utils.checkNotNull(pending, "pending");
         this.pending = Optional.ofNullable(pending);
         return this;
     }
+
 
     public Topups withPending(Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsTopupsPending> pending) {
         Utils.checkNotNull(pending, "pending");
@@ -90,6 +94,7 @@ public class Topups {
         return this;
     }
 
+
     public Topups withMovedToAvailable(Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsTopupsMovedToAvailable> movedToAvailable) {
         Utils.checkNotNull(movedToAvailable, "movedToAvailable");
         this.movedToAvailable = movedToAvailable;
@@ -102,13 +107,13 @@ public class Topups {
         return this;
     }
 
+
     public Topups withImmediatelyAvailable(Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsTopupsImmediatelyAvailable> immediatelyAvailable) {
         Utils.checkNotNull(immediatelyAvailable, "immediatelyAvailable");
         this.immediatelyAvailable = immediatelyAvailable;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -127,9 +132,7 @@ public class Topups {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            pending,
-            movedToAvailable,
-            immediatelyAvailable);
+            pending, movedToAvailable, immediatelyAvailable);
     }
     
     @Override
@@ -139,18 +142,20 @@ public class Topups {
                 "movedToAvailable", movedToAvailable,
                 "immediatelyAvailable", immediatelyAvailable);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsTopupsPending> pending = Optional.empty();
- 
+
         private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsTopupsMovedToAvailable> movedToAvailable = Optional.empty();
- 
+
         private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsTopupsImmediatelyAvailable> immediatelyAvailable = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder pending(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsTopupsPending pending) {
             Utils.checkNotNull(pending, "pending");
@@ -164,6 +169,7 @@ public class Topups {
             return this;
         }
 
+
         public Builder movedToAvailable(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsTopupsMovedToAvailable movedToAvailable) {
             Utils.checkNotNull(movedToAvailable, "movedToAvailable");
             this.movedToAvailable = Optional.ofNullable(movedToAvailable);
@@ -176,6 +182,7 @@ public class Topups {
             return this;
         }
 
+
         public Builder immediatelyAvailable(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsTopupsImmediatelyAvailable immediatelyAvailable) {
             Utils.checkNotNull(immediatelyAvailable, "immediatelyAvailable");
             this.immediatelyAvailable = Optional.ofNullable(immediatelyAvailable);
@@ -187,12 +194,12 @@ public class Topups {
             this.immediatelyAvailable = immediatelyAvailable;
             return this;
         }
-        
+
         public Topups build() {
+
             return new Topups(
-                pending,
-                movedToAvailable,
-                immediatelyAvailable);
+                pending, movedToAvailable, immediatelyAvailable);
         }
+
     }
 }

@@ -10,13 +10,14 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class UpdateProfileRequest {
 
+public class UpdateProfileRequest {
     /**
      * Provide the ID of the item you want to perform this operation on.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
     private String id;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private UpdateProfileRequestBody requestBody;
@@ -44,9 +45,10 @@ public class UpdateProfileRequest {
         return requestBody;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the item you want to perform this operation on.
@@ -63,7 +65,6 @@ public class UpdateProfileRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -81,8 +82,7 @@ public class UpdateProfileRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            requestBody);
+            id, requestBody);
     }
     
     @Override
@@ -91,16 +91,18 @@ public class UpdateProfileRequest {
                 "id", id,
                 "requestBody", requestBody);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private UpdateProfileRequestBody requestBody;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the item you want to perform this operation on.
@@ -111,16 +113,18 @@ public class UpdateProfileRequest {
             return this;
         }
 
+
         public Builder requestBody(UpdateProfileRequestBody requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;
         }
-        
+
         public UpdateProfileRequest build() {
+
             return new UpdateProfileRequest(
-                id,
-                requestBody);
+                id, requestBody);
         }
+
     }
 }

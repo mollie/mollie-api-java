@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class ListBalancesEmbedded {
 
+public class ListBalancesEmbedded {
     /**
      * An array of balance objects. For a complete reference of the balance object, refer to the [Get balance endpoint](get-balance) documentation.
      */
@@ -44,9 +44,10 @@ public class ListBalancesEmbedded {
         return (Optional<List<Balances>>) balances;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An array of balance objects. For a complete reference of the balance object, refer to the [Get balance endpoint](get-balance) documentation.
@@ -57,6 +58,7 @@ public class ListBalancesEmbedded {
         return this;
     }
 
+
     /**
      * An array of balance objects. For a complete reference of the balance object, refer to the [Get balance endpoint](get-balance) documentation.
      */
@@ -66,7 +68,6 @@ public class ListBalancesEmbedded {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,14 +92,16 @@ public class ListBalancesEmbedded {
         return Utils.toString(ListBalancesEmbedded.class,
                 "balances", balances);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<Balances>> balances = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An array of balance objects. For a complete reference of the balance object, refer to the [Get balance endpoint](get-balance) documentation.
@@ -117,10 +120,12 @@ public class ListBalancesEmbedded {
             this.balances = balances;
             return this;
         }
-        
+
         public ListBalancesEmbedded build() {
+
             return new ListBalancesEmbedded(
                 balances);
         }
+
     }
 }

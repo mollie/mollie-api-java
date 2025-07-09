@@ -110,8 +110,8 @@ public class ListBalanceTransactionsRequestBuilder {
 
         RequestOperation<ListBalanceTransactionsRequest, ListBalanceTransactionsResponse> operation
               = new ListBalanceTransactionsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         ListBalanceTransactionsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

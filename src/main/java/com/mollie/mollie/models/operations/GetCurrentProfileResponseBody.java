@@ -23,7 +23,6 @@ import java.util.Optional;
  * <p>The current profile object. For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint documentation.
  */
 public class GetCurrentProfileResponseBody {
-
     /**
      * Indicates the response contains a profile object. Will always contain the string `profile` for this endpoint.
      */
@@ -177,7 +176,11 @@ public class GetCurrentProfileResponseBody {
     }
     
     public GetCurrentProfileResponseBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -303,9 +306,10 @@ public class GetCurrentProfileResponseBody {
         return (Optional<GetCurrentProfileLinks>) links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a profile object. Will always contain the string `profile` for this endpoint.
@@ -315,6 +319,7 @@ public class GetCurrentProfileResponseBody {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Indicates the response contains a profile object. Will always contain the string `profile` for this endpoint.
@@ -333,6 +338,7 @@ public class GetCurrentProfileResponseBody {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The identifier uniquely referring to this profile. Example: `pfl_v9hTwCvYqw`.
@@ -354,6 +360,7 @@ public class GetCurrentProfileResponseBody {
         return this;
     }
 
+
     /**
      * Whether this entity was created in live mode or in test mode.
      * 
@@ -374,6 +381,7 @@ public class GetCurrentProfileResponseBody {
         return this;
     }
 
+
     /**
      * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
      */
@@ -391,6 +399,7 @@ public class GetCurrentProfileResponseBody {
         this.website = Optional.ofNullable(website);
         return this;
     }
+
 
     /**
      * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
@@ -410,6 +419,7 @@ public class GetCurrentProfileResponseBody {
         return this;
     }
 
+
     /**
      * The email address associated with the profile's trade name or brand.
      */
@@ -427,6 +437,7 @@ public class GetCurrentProfileResponseBody {
         this.phone = Optional.ofNullable(phone);
         return this;
     }
+
 
     /**
      * The phone number associated with the profile's trade name or brand.
@@ -446,6 +457,7 @@ public class GetCurrentProfileResponseBody {
         return this;
     }
 
+
     /**
      * The products or services offered by the profile's website or application.
      */
@@ -464,6 +476,7 @@ public class GetCurrentProfileResponseBody {
         return this;
     }
 
+
     /**
      * A list of countries where you expect that the majority of the profile's customers reside, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
      */
@@ -481,6 +494,7 @@ public class GetCurrentProfileResponseBody {
         this.businessCategory = Optional.ofNullable(businessCategory);
         return this;
     }
+
 
     /**
      * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types#business-category) for all possible options.
@@ -506,6 +520,7 @@ public class GetCurrentProfileResponseBody {
         return this;
     }
 
+
     /**
      * The profile status determines whether the profile is able to receive live payments.
      * 
@@ -530,6 +545,7 @@ public class GetCurrentProfileResponseBody {
         return this;
     }
 
+
     /**
      * Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved automatically, unless a switch to a live profile has been requested. The review object will therefore usually be `null` in test mode.
      */
@@ -547,6 +563,7 @@ public class GetCurrentProfileResponseBody {
         this.createdAt = Optional.ofNullable(createdAt);
         return this;
     }
+
 
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -566,6 +583,7 @@ public class GetCurrentProfileResponseBody {
         return this;
     }
 
+
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
@@ -575,7 +593,6 @@ public class GetCurrentProfileResponseBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -605,20 +622,11 @@ public class GetCurrentProfileResponseBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            mode,
-            name,
-            website,
-            email,
-            phone,
-            description,
-            countriesOfActivity,
-            businessCategory,
-            status,
-            review,
-            createdAt,
-            links);
+            resource, id, mode,
+            name, website, email,
+            phone, description, countriesOfActivity,
+            businessCategory, status, review,
+            createdAt, links);
     }
     
     @Override
@@ -639,40 +647,42 @@ public class GetCurrentProfileResponseBody {
                 "createdAt", createdAt,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> mode = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> website = Optional.empty();
- 
+
         private Optional<String> email = Optional.empty();
- 
+
         private Optional<String> phone = Optional.empty();
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<? extends List<String>> countriesOfActivity = Optional.empty();
- 
+
         private Optional<String> businessCategory = Optional.empty();
- 
+
         private Optional<String> status = Optional.empty();
- 
+
         private Optional<? extends GetCurrentProfileReview> review = Optional.empty();
- 
+
         private Optional<String> createdAt = Optional.empty();
- 
+
         private Optional<? extends GetCurrentProfileLinks> links = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a profile object. Will always contain the string `profile` for this endpoint.
@@ -692,6 +702,7 @@ public class GetCurrentProfileResponseBody {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this profile. Example: `pfl_v9hTwCvYqw`.
          */
@@ -709,6 +720,7 @@ public class GetCurrentProfileResponseBody {
             this.id = id;
             return this;
         }
+
 
         /**
          * Whether this entity was created in live mode or in test mode.
@@ -732,6 +744,7 @@ public class GetCurrentProfileResponseBody {
             return this;
         }
 
+
         /**
          * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
          */
@@ -749,6 +762,7 @@ public class GetCurrentProfileResponseBody {
             this.name = name;
             return this;
         }
+
 
         /**
          * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
@@ -768,6 +782,7 @@ public class GetCurrentProfileResponseBody {
             return this;
         }
 
+
         /**
          * The email address associated with the profile's trade name or brand.
          */
@@ -785,6 +800,7 @@ public class GetCurrentProfileResponseBody {
             this.email = email;
             return this;
         }
+
 
         /**
          * The phone number associated with the profile's trade name or brand.
@@ -804,6 +820,7 @@ public class GetCurrentProfileResponseBody {
             return this;
         }
 
+
         /**
          * The products or services offered by the profile's website or application.
          */
@@ -821,6 +838,7 @@ public class GetCurrentProfileResponseBody {
             this.description = description;
             return this;
         }
+
 
         /**
          * A list of countries where you expect that the majority of the profile's customers reside, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
@@ -840,6 +858,7 @@ public class GetCurrentProfileResponseBody {
             return this;
         }
 
+
         /**
          * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types#business-category) for all possible options.
          */
@@ -857,6 +876,7 @@ public class GetCurrentProfileResponseBody {
             this.businessCategory = businessCategory;
             return this;
         }
+
 
         /**
          * The profile status determines whether the profile is able to receive live payments.
@@ -888,6 +908,7 @@ public class GetCurrentProfileResponseBody {
             return this;
         }
 
+
         /**
          * Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved automatically, unless a switch to a live profile has been requested. The review object will therefore usually be `null` in test mode.
          */
@@ -905,6 +926,7 @@ public class GetCurrentProfileResponseBody {
             this.review = review;
             return this;
         }
+
 
         /**
          * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -924,6 +946,7 @@ public class GetCurrentProfileResponseBody {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -941,27 +964,20 @@ public class GetCurrentProfileResponseBody {
             this.links = links;
             return this;
         }
-        
+
         public GetCurrentProfileResponseBody build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new GetCurrentProfileResponseBody(
-                resource,
-                id,
-                mode,
-                name,
-                website,
-                email,
-                phone,
-                description,
-                countriesOfActivity,
-                businessCategory,
-                status,
-                review,
-                createdAt,
-                links);
+                resource, id, mode,
+                name, website, email,
+                phone, description, countriesOfActivity,
+                businessCategory, status, review,
+                createdAt, links);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

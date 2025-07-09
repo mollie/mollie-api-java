@@ -25,9 +25,11 @@ public class Corrections {
     @JsonProperty("pending")
     private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCorrectionsPending> pending;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("movedToAvailable")
     private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsMovedToAvailable> movedToAvailable;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("immediatelyAvailable")
@@ -68,15 +70,17 @@ public class Corrections {
         return (Optional<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsImmediatelyAvailable>) immediatelyAvailable;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Corrections withPending(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCorrectionsPending pending) {
         Utils.checkNotNull(pending, "pending");
         this.pending = Optional.ofNullable(pending);
         return this;
     }
+
 
     public Corrections withPending(Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCorrectionsPending> pending) {
         Utils.checkNotNull(pending, "pending");
@@ -90,6 +94,7 @@ public class Corrections {
         return this;
     }
 
+
     public Corrections withMovedToAvailable(Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsMovedToAvailable> movedToAvailable) {
         Utils.checkNotNull(movedToAvailable, "movedToAvailable");
         this.movedToAvailable = movedToAvailable;
@@ -102,13 +107,13 @@ public class Corrections {
         return this;
     }
 
+
     public Corrections withImmediatelyAvailable(Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsImmediatelyAvailable> immediatelyAvailable) {
         Utils.checkNotNull(immediatelyAvailable, "immediatelyAvailable");
         this.immediatelyAvailable = immediatelyAvailable;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -127,9 +132,7 @@ public class Corrections {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            pending,
-            movedToAvailable,
-            immediatelyAvailable);
+            pending, movedToAvailable, immediatelyAvailable);
     }
     
     @Override
@@ -139,18 +142,20 @@ public class Corrections {
                 "movedToAvailable", movedToAvailable,
                 "immediatelyAvailable", immediatelyAvailable);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCorrectionsPending> pending = Optional.empty();
- 
+
         private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsMovedToAvailable> movedToAvailable = Optional.empty();
- 
+
         private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsImmediatelyAvailable> immediatelyAvailable = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder pending(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCorrectionsPending pending) {
             Utils.checkNotNull(pending, "pending");
@@ -164,6 +169,7 @@ public class Corrections {
             return this;
         }
 
+
         public Builder movedToAvailable(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsMovedToAvailable movedToAvailable) {
             Utils.checkNotNull(movedToAvailable, "movedToAvailable");
             this.movedToAvailable = Optional.ofNullable(movedToAvailable);
@@ -176,6 +182,7 @@ public class Corrections {
             return this;
         }
 
+
         public Builder immediatelyAvailable(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsImmediatelyAvailable immediatelyAvailable) {
             Utils.checkNotNull(immediatelyAvailable, "immediatelyAvailable");
             this.immediatelyAvailable = Optional.ofNullable(immediatelyAvailable);
@@ -187,12 +194,12 @@ public class Corrections {
             this.immediatelyAvailable = immediatelyAvailable;
             return this;
         }
-        
+
         public Corrections build() {
+
             return new Corrections(
-                pending,
-                movedToAvailable,
-                immediatelyAvailable);
+                pending, movedToAvailable, immediatelyAvailable);
         }
+
     }
 }

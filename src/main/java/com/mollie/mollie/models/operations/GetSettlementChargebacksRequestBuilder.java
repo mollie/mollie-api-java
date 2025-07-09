@@ -48,8 +48,8 @@ public class GetSettlementChargebacksRequestBuilder {
 
         RequestOperation<GetSettlementChargebacksRequest, GetSettlementChargebacksResponse> operation
               = new GetSettlementChargebacksOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

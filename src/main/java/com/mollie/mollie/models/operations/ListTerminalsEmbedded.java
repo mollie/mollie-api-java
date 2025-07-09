@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class ListTerminalsEmbedded {
 
+public class ListTerminalsEmbedded {
     /**
      * An array of terminal objects.
      */
@@ -44,9 +44,10 @@ public class ListTerminalsEmbedded {
         return (Optional<List<Terminals>>) terminals;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An array of terminal objects.
@@ -57,6 +58,7 @@ public class ListTerminalsEmbedded {
         return this;
     }
 
+
     /**
      * An array of terminal objects.
      */
@@ -66,7 +68,6 @@ public class ListTerminalsEmbedded {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,14 +92,16 @@ public class ListTerminalsEmbedded {
         return Utils.toString(ListTerminalsEmbedded.class,
                 "terminals", terminals);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<Terminals>> terminals = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An array of terminal objects.
@@ -117,10 +120,12 @@ public class ListTerminalsEmbedded {
             this.terminals = terminals;
             return this;
         }
-        
+
         public ListTerminalsEmbedded build() {
+
             return new ListTerminalsEmbedded(
                 terminals);
         }
+
     }
 }

@@ -14,8 +14,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListAllMethodsRequest {
 
+public class ListAllMethodsRequest {
     /**
      * Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
      */
@@ -85,7 +85,8 @@ public class ListAllMethodsRequest {
     }
     
     public ListAllMethodsRequest() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
+        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -148,9 +149,10 @@ public class ListAllMethodsRequest {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
@@ -160,6 +162,7 @@ public class ListAllMethodsRequest {
         this.locale = Optional.ofNullable(locale);
         return this;
     }
+
 
     /**
      * Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
@@ -180,6 +183,7 @@ public class ListAllMethodsRequest {
         this.amount = Optional.ofNullable(amount);
         return this;
     }
+
 
     /**
      * If supplied, only payment methods that support the amount and currency are returned.
@@ -223,6 +227,7 @@ public class ListAllMethodsRequest {
         return this;
     }
 
+
     /**
      * Set this parameter to `first` to only return the methods that can be used for the first payment of a recurring sequence.
      * 
@@ -246,6 +251,7 @@ public class ListAllMethodsRequest {
         this.profileId = Optional.ofNullable(profileId);
         return this;
     }
+
 
     /**
      * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
@@ -280,7 +286,6 @@ public class ListAllMethodsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -302,12 +307,8 @@ public class ListAllMethodsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            locale,
-            amount,
-            include,
-            sequenceType,
-            profileId,
-            testmode);
+            locale, amount, include,
+            sequenceType, profileId, testmode);
     }
     
     @Override
@@ -320,24 +321,26 @@ public class ListAllMethodsRequest {
                 "profileId", profileId,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> locale = Optional.empty();
- 
+
         private Optional<? extends ListAllMethodsQueryParamAmount> amount = Optional.empty();
- 
+
         private JsonNullable<? extends ListAllMethodsQueryParamInclude> include = JsonNullable.undefined();
- 
+
         private Optional<String> sequenceType = Optional.empty();
- 
+
         private Optional<String> profileId = Optional.empty();
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
@@ -356,6 +359,7 @@ public class ListAllMethodsRequest {
             this.locale = locale;
             return this;
         }
+
 
         /**
          * If supplied, only payment methods that support the amount and currency are returned.
@@ -379,6 +383,7 @@ public class ListAllMethodsRequest {
             return this;
         }
 
+
         /**
          * This endpoint allows you to include additional information via the `include` query string parameter.
          */
@@ -396,6 +401,7 @@ public class ListAllMethodsRequest {
             this.include = include;
             return this;
         }
+
 
         /**
          * Set this parameter to `first` to only return the methods that can be used for the first payment of a recurring sequence.
@@ -423,6 +429,7 @@ public class ListAllMethodsRequest {
             return this;
         }
 
+
         /**
          * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
          * 
@@ -445,6 +452,7 @@ public class ListAllMethodsRequest {
             return this;
         }
 
+
         /**
          * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
          * 
@@ -466,15 +474,13 @@ public class ListAllMethodsRequest {
             this.testmode = testmode;
             return this;
         }
-        
+
         public ListAllMethodsRequest build() {
+
             return new ListAllMethodsRequest(
-                locale,
-                amount,
-                include,
-                sequenceType,
-                profileId,
-                testmode);
+                locale, amount, include,
+                sequenceType, profileId, testmode);
         }
+
     }
 }

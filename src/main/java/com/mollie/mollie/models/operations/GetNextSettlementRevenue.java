@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetNextSettlementRevenue {
 
+public class GetNextSettlementRevenue {
     /**
      * A description of the revenue subtotal
      */
@@ -85,7 +85,8 @@ public class GetNextSettlementRevenue {
     }
     
     public GetNextSettlementRevenue() {
-        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -141,9 +142,10 @@ public class GetNextSettlementRevenue {
         return (Optional<GetNextSettlementSettlementsAmountGross>) amountGross;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A description of the revenue subtotal
@@ -153,6 +155,7 @@ public class GetNextSettlementRevenue {
         this.description = Optional.ofNullable(description);
         return this;
     }
+
 
     /**
      * A description of the revenue subtotal
@@ -194,6 +197,7 @@ public class GetNextSettlementRevenue {
         return this;
     }
 
+
     /**
      * The number of payments
      */
@@ -211,6 +215,7 @@ public class GetNextSettlementRevenue {
         this.amountNet = Optional.ofNullable(amountNet);
         return this;
     }
+
 
     /**
      * The net total of received funds, i.e. excluding VAT
@@ -230,6 +235,7 @@ public class GetNextSettlementRevenue {
         return this;
     }
 
+
     /**
      * The applicable VAT
      */
@@ -248,6 +254,7 @@ public class GetNextSettlementRevenue {
         return this;
     }
 
+
     /**
      * The gross total of received funds, i.e. including VAT
      */
@@ -257,7 +264,6 @@ public class GetNextSettlementRevenue {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -279,12 +285,8 @@ public class GetNextSettlementRevenue {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            description,
-            method,
-            count,
-            amountNet,
-            amountVat,
-            amountGross);
+            description, method, count,
+            amountNet, amountVat, amountGross);
     }
     
     @Override
@@ -297,24 +299,26 @@ public class GetNextSettlementRevenue {
                 "amountVat", amountVat,
                 "amountGross", amountGross);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private JsonNullable<String> method = JsonNullable.undefined();
- 
+
         private Optional<Long> count = Optional.empty();
- 
+
         private Optional<? extends GetNextSettlementSettlementsAmountNet> amountNet = Optional.empty();
- 
+
         private Optional<? extends GetNextSettlementSettlementsAmountVat> amountVat = Optional.empty();
- 
+
         private Optional<? extends GetNextSettlementSettlementsAmountGross> amountGross = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A description of the revenue subtotal
@@ -333,6 +337,7 @@ public class GetNextSettlementRevenue {
             this.description = description;
             return this;
         }
+
 
         /**
          * The payment method, if applicable
@@ -356,6 +361,7 @@ public class GetNextSettlementRevenue {
             return this;
         }
 
+
         /**
          * The number of payments
          */
@@ -373,6 +379,7 @@ public class GetNextSettlementRevenue {
             this.count = count;
             return this;
         }
+
 
         /**
          * The net total of received funds, i.e. excluding VAT
@@ -392,6 +399,7 @@ public class GetNextSettlementRevenue {
             return this;
         }
 
+
         /**
          * The applicable VAT
          */
@@ -410,6 +418,7 @@ public class GetNextSettlementRevenue {
             return this;
         }
 
+
         /**
          * The gross total of received funds, i.e. including VAT
          */
@@ -427,15 +436,13 @@ public class GetNextSettlementRevenue {
             this.amountGross = amountGross;
             return this;
         }
-        
+
         public GetNextSettlementRevenue build() {
+
             return new GetNextSettlementRevenue(
-                description,
-                method,
-                count,
-                amountNet,
-                amountVat,
-                amountGross);
+                description, method, count,
+                amountNet, amountVat, amountGross);
         }
+
     }
 }

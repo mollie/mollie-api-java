@@ -18,7 +18,6 @@ import java.lang.String;
  * <p>Since the field contains an estimated amount during capture processing, it may change over time. To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
  */
 public class CreateCaptureSettlementAmount {
-
     /**
      * A three-character ISO 4217 currency code.
      */
@@ -57,9 +56,10 @@ public class CreateCaptureSettlementAmount {
         return value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A three-character ISO 4217 currency code.
@@ -79,7 +79,6 @@ public class CreateCaptureSettlementAmount {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -97,8 +96,7 @@ public class CreateCaptureSettlementAmount {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            currency,
-            value);
+            currency, value);
     }
     
     @Override
@@ -107,16 +105,18 @@ public class CreateCaptureSettlementAmount {
                 "currency", currency,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String currency;
- 
+
         private String value;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A three-character ISO 4217 currency code.
@@ -127,6 +127,7 @@ public class CreateCaptureSettlementAmount {
             return this;
         }
 
+
         /**
          * A string containing an exact monetary amount in the given currency.
          */
@@ -135,11 +136,12 @@ public class CreateCaptureSettlementAmount {
             this.value = value;
             return this;
         }
-        
+
         public CreateCaptureSettlementAmount build() {
+
             return new CreateCaptureSettlementAmount(
-                currency,
-                value);
+                currency, value);
         }
+
     }
 }

@@ -46,7 +46,6 @@ public class Webhooks {
     Webhooks(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Create a webhook
      * 
@@ -97,11 +96,10 @@ public class Webhooks {
             Optional<Options> options) throws Exception {
         RequestOperation<Optional<? extends CreateWebhookRequestBody>, CreateWebhookResponse> operation
               = new CreateWebhookOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List all webhooks
@@ -154,11 +152,10 @@ public class Webhooks {
             Optional<Options> options) throws Exception {
         RequestOperation<ListWebhooksRequest, ListWebhooksResponse> operation
               = new ListWebhooksOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update a webhook
@@ -219,11 +216,10 @@ public class Webhooks {
                 .build();
         RequestOperation<UpdateWebhookRequest, UpdateWebhookResponse> operation
               = new UpdateWebhookOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get a webhook
@@ -286,11 +282,10 @@ public class Webhooks {
                 .build();
         RequestOperation<GetWebhookRequest, GetWebhookResponse> operation
               = new GetWebhookOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete a webhook
@@ -353,11 +348,10 @@ public class Webhooks {
                 .build();
         RequestOperation<DeleteWebhookRequest, DeleteWebhookResponse> operation
               = new DeleteWebhookOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Test a webhook
@@ -418,8 +412,8 @@ public class Webhooks {
                 .build();
         RequestOperation<TestWebhookRequest, TestWebhookResponse> operation
               = new TestWebhookOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

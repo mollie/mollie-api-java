@@ -37,7 +37,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * * A `subtotals` array containing more sub-group objects if applicable
  */
 public class Totals {
-
     /**
      * The pending balance. Only available if grouping is `status-balances`.
      */
@@ -163,7 +162,10 @@ public class Totals {
     }
     
     public Totals() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -274,9 +276,10 @@ public class Totals {
         return (Optional<Topups>) topups;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The pending balance. Only available if grouping is `status-balances`.
@@ -323,6 +326,7 @@ public class Totals {
         return this;
     }
 
+
     /**
      * Only available on `transaction-categories` grouping.
      */
@@ -340,6 +344,7 @@ public class Totals {
         this.close = Optional.ofNullable(close);
         return this;
     }
+
 
     /**
      * Only available on `transaction-categories` grouping.
@@ -359,6 +364,7 @@ public class Totals {
         return this;
     }
 
+
     /**
      * Only available on `transaction-categories` grouping.
      */
@@ -376,6 +382,7 @@ public class Totals {
         this.refunds = Optional.ofNullable(refunds);
         return this;
     }
+
 
     /**
      * Only available on `transaction-categories` grouping.
@@ -395,6 +402,7 @@ public class Totals {
         return this;
     }
 
+
     /**
      * Only available on `transaction-categories` grouping.
      */
@@ -412,6 +420,7 @@ public class Totals {
         this.capital = Optional.ofNullable(capital);
         return this;
     }
+
 
     /**
      * Only available on `transaction-categories` grouping.
@@ -431,6 +440,7 @@ public class Totals {
         return this;
     }
 
+
     /**
      * Only available on `transaction-categories` grouping.
      */
@@ -448,6 +458,7 @@ public class Totals {
         this.feePrepayments = Optional.ofNullable(feePrepayments);
         return this;
     }
+
 
     /**
      * Only available on `transaction-categories` grouping.
@@ -467,6 +478,7 @@ public class Totals {
         return this;
     }
 
+
     /**
      * Only available on `transaction-categories` grouping.
      */
@@ -485,6 +497,7 @@ public class Totals {
         return this;
     }
 
+
     /**
      * Only available on `transaction-categories` grouping.
      */
@@ -494,7 +507,6 @@ public class Totals {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -522,18 +534,10 @@ public class Totals {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            pendingBalance,
-            availableBalance,
-            open,
-            close,
-            payments,
-            refunds,
-            chargebacks,
-            capital,
-            transfers,
-            feePrepayments,
-            corrections,
-            topups);
+            pendingBalance, availableBalance, open,
+            close, payments, refunds,
+            chargebacks, capital, transfers,
+            feePrepayments, corrections, topups);
     }
     
     @Override
@@ -552,36 +556,38 @@ public class Totals {
                 "corrections", corrections,
                 "topups", topups);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<? extends PendingBalance> pendingBalance = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends AvailableBalance> availableBalance = JsonNullable.undefined();
- 
+
         private Optional<? extends Open> open = Optional.empty();
- 
+
         private Optional<? extends Close> close = Optional.empty();
- 
+
         private Optional<? extends GetBalanceReportPayments> payments = Optional.empty();
- 
+
         private Optional<? extends GetBalanceReportRefunds> refunds = Optional.empty();
- 
+
         private Optional<? extends GetBalanceReportChargebacks> chargebacks = Optional.empty();
- 
+
         private Optional<? extends Capital> capital = Optional.empty();
- 
+
         private Optional<? extends Transfers> transfers = Optional.empty();
- 
+
         private Optional<? extends FeePrepayments> feePrepayments = Optional.empty();
- 
+
         private Optional<? extends Corrections> corrections = Optional.empty();
- 
+
         private Optional<? extends Topups> topups = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The pending balance. Only available if grouping is `status-balances`.
@@ -601,6 +607,7 @@ public class Totals {
             return this;
         }
 
+
         /**
          * The available balance. Only available if grouping is `status-balances`.
          */
@@ -618,6 +625,7 @@ public class Totals {
             this.availableBalance = availableBalance;
             return this;
         }
+
 
         /**
          * Only available on `transaction-categories` grouping.
@@ -637,6 +645,7 @@ public class Totals {
             return this;
         }
 
+
         /**
          * Only available on `transaction-categories` grouping.
          */
@@ -654,6 +663,7 @@ public class Totals {
             this.close = close;
             return this;
         }
+
 
         /**
          * Only available on `transaction-categories` grouping.
@@ -673,6 +683,7 @@ public class Totals {
             return this;
         }
 
+
         /**
          * Only available on `transaction-categories` grouping.
          */
@@ -690,6 +701,7 @@ public class Totals {
             this.refunds = refunds;
             return this;
         }
+
 
         /**
          * Only available on `transaction-categories` grouping.
@@ -709,6 +721,7 @@ public class Totals {
             return this;
         }
 
+
         /**
          * Only available on `transaction-categories` grouping.
          */
@@ -726,6 +739,7 @@ public class Totals {
             this.capital = capital;
             return this;
         }
+
 
         /**
          * Only available on `transaction-categories` grouping.
@@ -745,6 +759,7 @@ public class Totals {
             return this;
         }
 
+
         /**
          * Only available on `transaction-categories` grouping.
          */
@@ -762,6 +777,7 @@ public class Totals {
             this.feePrepayments = feePrepayments;
             return this;
         }
+
 
         /**
          * Only available on `transaction-categories` grouping.
@@ -781,6 +797,7 @@ public class Totals {
             return this;
         }
 
+
         /**
          * Only available on `transaction-categories` grouping.
          */
@@ -798,21 +815,15 @@ public class Totals {
             this.topups = topups;
             return this;
         }
-        
+
         public Totals build() {
+
             return new Totals(
-                pendingBalance,
-                availableBalance,
-                open,
-                close,
-                payments,
-                refunds,
-                chargebacks,
-                capital,
-                transfers,
-                feePrepayments,
-                corrections,
-                topups);
+                pendingBalance, availableBalance, open,
+                close, payments, refunds,
+                chargebacks, capital, transfers,
+                feePrepayments, corrections, topups);
         }
+
     }
 }

@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class PaymentListRoutesEmbedded {
 
+public class PaymentListRoutesEmbedded {
     /**
      * An array of route objects.
      */
@@ -44,9 +44,10 @@ public class PaymentListRoutesEmbedded {
         return (Optional<List<Routes>>) routes;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An array of route objects.
@@ -57,6 +58,7 @@ public class PaymentListRoutesEmbedded {
         return this;
     }
 
+
     /**
      * An array of route objects.
      */
@@ -66,7 +68,6 @@ public class PaymentListRoutesEmbedded {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,14 +92,16 @@ public class PaymentListRoutesEmbedded {
         return Utils.toString(PaymentListRoutesEmbedded.class,
                 "routes", routes);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<Routes>> routes = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An array of route objects.
@@ -117,10 +120,12 @@ public class PaymentListRoutesEmbedded {
             this.routes = routes;
             return this;
         }
-        
+
         public PaymentListRoutesEmbedded build() {
+
             return new PaymentListRoutesEmbedded(
                 routes);
         }
+
     }
 }

@@ -24,7 +24,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>The sales invoice object.
  */
 public class UpdateSalesInvoiceResponseBody {
-
     /**
      * Indicates the response contains a sales invoice object. Will always contain the string `sales-invoice` for this endpoint.
      */
@@ -136,6 +135,7 @@ public class UpdateSalesInvoiceResponseBody {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("recipientIdentifier")
     private Optional<String> recipientIdentifier;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("recipient")
@@ -303,7 +303,15 @@ public class UpdateSalesInvoiceResponseBody {
     }
     
     public UpdateSalesInvoiceResponseBody() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -539,9 +547,10 @@ public class UpdateSalesInvoiceResponseBody {
         return (Optional<UpdateSalesInvoiceLinks>) links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a sales invoice object. Will always contain the string `sales-invoice` for this endpoint.
@@ -551,6 +560,7 @@ public class UpdateSalesInvoiceResponseBody {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Indicates the response contains a sales invoice object. Will always contain the string `sales-invoice` for this endpoint.
@@ -569,6 +579,7 @@ public class UpdateSalesInvoiceResponseBody {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The identifier uniquely referring to this invoice. Example: `invoice_4Y0eZitmBnQ6IDoMqZQKh`.
@@ -614,6 +625,7 @@ public class UpdateSalesInvoiceResponseBody {
         return this;
     }
 
+
     /**
      * The status for the invoice to end up in.
      * 
@@ -642,6 +654,7 @@ public class UpdateSalesInvoiceResponseBody {
         return this;
     }
 
+
     /**
      * The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
      * 
@@ -663,6 +676,7 @@ public class UpdateSalesInvoiceResponseBody {
         this.vatMode = Optional.ofNullable(vatMode);
         return this;
     }
+
 
     /**
      * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
@@ -778,6 +792,7 @@ public class UpdateSalesInvoiceResponseBody {
         return this;
     }
 
+
     /**
      * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
      */
@@ -796,6 +811,7 @@ public class UpdateSalesInvoiceResponseBody {
         return this;
     }
 
+
     /**
      * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided, `customerId` becomes required as well. Only allowed for invoices with status `paid`.
      */
@@ -813,6 +829,7 @@ public class UpdateSalesInvoiceResponseBody {
         this.recipientIdentifier = Optional.ofNullable(recipientIdentifier);
         return this;
     }
+
 
     /**
      * An identifier tied to the recipient data. This should be a unique value based on data your system contains, so that both you and us know who we're referring to. It is a value you provide to us so that recipient management is not required to send a first invoice to a recipient.
@@ -884,6 +901,7 @@ public class UpdateSalesInvoiceResponseBody {
         return this;
     }
 
+
     /**
      * The amount that is left to be paid.
      */
@@ -901,6 +919,7 @@ public class UpdateSalesInvoiceResponseBody {
         this.subtotalAmount = Optional.ofNullable(subtotalAmount);
         return this;
     }
+
 
     /**
      * The total amount without VAT before discounts.
@@ -920,6 +939,7 @@ public class UpdateSalesInvoiceResponseBody {
         return this;
     }
 
+
     /**
      * The total amount with VAT.
      */
@@ -937,6 +957,7 @@ public class UpdateSalesInvoiceResponseBody {
         this.totalVatAmount = Optional.ofNullable(totalVatAmount);
         return this;
     }
+
 
     /**
      * The total VAT amount.
@@ -956,6 +977,7 @@ public class UpdateSalesInvoiceResponseBody {
         return this;
     }
 
+
     /**
      * The total amount without VAT after discounts.
      */
@@ -973,6 +995,7 @@ public class UpdateSalesInvoiceResponseBody {
         this.createdAt = Optional.ofNullable(createdAt);
         return this;
     }
+
 
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -1028,6 +1051,7 @@ public class UpdateSalesInvoiceResponseBody {
         return this;
     }
 
+
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
@@ -1037,7 +1061,6 @@ public class UpdateSalesInvoiceResponseBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1079,32 +1102,15 @@ public class UpdateSalesInvoiceResponseBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            invoiceNumber,
-            status,
-            vatScheme,
-            vatMode,
-            memo,
-            metadata,
-            paymentTerm,
-            paymentDetails,
-            emailDetails,
-            customerId,
-            mandateId,
-            recipientIdentifier,
-            recipient,
-            lines,
-            discount,
-            amountDue,
-            subtotalAmount,
-            totalAmount,
-            totalVatAmount,
-            discountedSubtotalAmount,
-            createdAt,
-            issuedAt,
-            dueAt,
-            links);
+            resource, id, invoiceNumber,
+            status, vatScheme, vatMode,
+            memo, metadata, paymentTerm,
+            paymentDetails, emailDetails, customerId,
+            mandateId, recipientIdentifier, recipient,
+            lines, discount, amountDue,
+            subtotalAmount, totalAmount, totalVatAmount,
+            discountedSubtotalAmount, createdAt, issuedAt,
+            dueAt, links);
     }
     
     @Override
@@ -1137,64 +1143,66 @@ public class UpdateSalesInvoiceResponseBody {
                 "dueAt", dueAt,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> invoiceNumber = JsonNullable.undefined();
- 
+
         private Optional<String> status = Optional.empty();
- 
+
         private Optional<String> vatScheme = Optional.empty();
- 
+
         private Optional<String> vatMode = Optional.empty();
- 
+
         private JsonNullable<String> memo = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends UpdateSalesInvoiceMetadata> metadata = JsonNullable.undefined();
- 
+
         private JsonNullable<String> paymentTerm = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends UpdateSalesInvoiceSalesInvoicesPaymentDetails> paymentDetails = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends UpdateSalesInvoiceSalesInvoicesEmailDetails> emailDetails = JsonNullable.undefined();
- 
+
         private Optional<String> customerId = Optional.empty();
- 
+
         private Optional<String> mandateId = Optional.empty();
- 
+
         private Optional<String> recipientIdentifier = Optional.empty();
- 
+
         private JsonNullable<? extends UpdateSalesInvoiceSalesInvoicesRecipient> recipient = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<UpdateSalesInvoiceSalesInvoicesLines>> lines = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends UpdateSalesInvoiceSalesInvoicesResponseDiscount> discount = JsonNullable.undefined();
- 
+
         private Optional<? extends UpdateSalesInvoiceAmountDue> amountDue = Optional.empty();
- 
+
         private Optional<? extends UpdateSalesInvoiceSubtotalAmount> subtotalAmount = Optional.empty();
- 
+
         private Optional<? extends UpdateSalesInvoiceTotalAmount> totalAmount = Optional.empty();
- 
+
         private Optional<? extends UpdateSalesInvoiceTotalVatAmount> totalVatAmount = Optional.empty();
- 
+
         private Optional<? extends UpdateSalesInvoiceDiscountedSubtotalAmount> discountedSubtotalAmount = Optional.empty();
- 
+
         private Optional<String> createdAt = Optional.empty();
- 
+
         private JsonNullable<String> issuedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<String> dueAt = JsonNullable.undefined();
- 
+
         private Optional<? extends UpdateSalesInvoiceLinks> links = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a sales invoice object. Will always contain the string `sales-invoice` for this endpoint.
@@ -1214,6 +1222,7 @@ public class UpdateSalesInvoiceResponseBody {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this invoice. Example: `invoice_4Y0eZitmBnQ6IDoMqZQKh`.
          */
@@ -1232,6 +1241,7 @@ public class UpdateSalesInvoiceResponseBody {
             return this;
         }
 
+
         /**
          * When issued, an invoice number will be set for the sales invoice.
          */
@@ -1249,6 +1259,7 @@ public class UpdateSalesInvoiceResponseBody {
             this.invoiceNumber = invoiceNumber;
             return this;
         }
+
 
         /**
          * The status for the invoice to end up in.
@@ -1284,6 +1295,7 @@ public class UpdateSalesInvoiceResponseBody {
             return this;
         }
 
+
         /**
          * The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
          * 
@@ -1305,6 +1317,7 @@ public class UpdateSalesInvoiceResponseBody {
             this.vatScheme = vatScheme;
             return this;
         }
+
 
         /**
          * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
@@ -1328,6 +1341,7 @@ public class UpdateSalesInvoiceResponseBody {
             return this;
         }
 
+
         /**
          * A free-form memo you can set on the invoice, and will be shown on the invoice PDF.
          */
@@ -1346,6 +1360,7 @@ public class UpdateSalesInvoiceResponseBody {
             return this;
         }
 
+
         /**
          * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
@@ -1363,6 +1378,7 @@ public class UpdateSalesInvoiceResponseBody {
             this.metadata = metadata;
             return this;
         }
+
 
         /**
          * The payment term to be set on the invoice.
@@ -1386,6 +1402,7 @@ public class UpdateSalesInvoiceResponseBody {
             return this;
         }
 
+
         /**
          * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the provided details. Required for `paid` status.
          */
@@ -1403,6 +1420,7 @@ public class UpdateSalesInvoiceResponseBody {
             this.paymentDetails = paymentDetails;
             return this;
         }
+
 
         /**
          * Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the recipient with the provided `subject` and `body`. Required for `issued` status.
@@ -1422,6 +1440,7 @@ public class UpdateSalesInvoiceResponseBody {
             return this;
         }
 
+
         /**
          * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
          */
@@ -1439,6 +1458,7 @@ public class UpdateSalesInvoiceResponseBody {
             this.customerId = customerId;
             return this;
         }
+
 
         /**
          * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided, `customerId` becomes required as well. Only allowed for invoices with status `paid`.
@@ -1458,6 +1478,7 @@ public class UpdateSalesInvoiceResponseBody {
             return this;
         }
 
+
         /**
          * An identifier tied to the recipient data. This should be a unique value based on data your system contains, so that both you and us know who we're referring to. It is a value you provide to us so that recipient management is not required to send a first invoice to a recipient.
          */
@@ -1476,6 +1497,7 @@ public class UpdateSalesInvoiceResponseBody {
             return this;
         }
 
+
         public Builder recipient(UpdateSalesInvoiceSalesInvoicesRecipient recipient) {
             Utils.checkNotNull(recipient, "recipient");
             this.recipient = JsonNullable.of(recipient);
@@ -1487,6 +1509,7 @@ public class UpdateSalesInvoiceResponseBody {
             this.recipient = recipient;
             return this;
         }
+
 
         /**
          * Provide the line items for the invoice. Each line contains details such as a description of the item ordered and its price.
@@ -1510,6 +1533,7 @@ public class UpdateSalesInvoiceResponseBody {
             return this;
         }
 
+
         /**
          * The discount to be applied to the entire invoice, applied on top of any line item discounts.
          */
@@ -1527,6 +1551,7 @@ public class UpdateSalesInvoiceResponseBody {
             this.discount = discount;
             return this;
         }
+
 
         /**
          * The amount that is left to be paid.
@@ -1546,6 +1571,7 @@ public class UpdateSalesInvoiceResponseBody {
             return this;
         }
 
+
         /**
          * The total amount without VAT before discounts.
          */
@@ -1563,6 +1589,7 @@ public class UpdateSalesInvoiceResponseBody {
             this.subtotalAmount = subtotalAmount;
             return this;
         }
+
 
         /**
          * The total amount with VAT.
@@ -1582,6 +1609,7 @@ public class UpdateSalesInvoiceResponseBody {
             return this;
         }
 
+
         /**
          * The total VAT amount.
          */
@@ -1599,6 +1627,7 @@ public class UpdateSalesInvoiceResponseBody {
             this.totalVatAmount = totalVatAmount;
             return this;
         }
+
 
         /**
          * The total amount without VAT after discounts.
@@ -1618,6 +1647,7 @@ public class UpdateSalesInvoiceResponseBody {
             return this;
         }
 
+
         /**
          * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
          */
@@ -1635,6 +1665,7 @@ public class UpdateSalesInvoiceResponseBody {
             this.createdAt = createdAt;
             return this;
         }
+
 
         /**
          * If issued, the date when the sales invoice was issued, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -1654,6 +1685,7 @@ public class UpdateSalesInvoiceResponseBody {
             return this;
         }
 
+
         /**
          * If issued, the date when the sales invoice payment is due, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
          */
@@ -1672,6 +1704,7 @@ public class UpdateSalesInvoiceResponseBody {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -1689,39 +1722,24 @@ public class UpdateSalesInvoiceResponseBody {
             this.links = links;
             return this;
         }
-        
+
         public UpdateSalesInvoiceResponseBody build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new UpdateSalesInvoiceResponseBody(
-                resource,
-                id,
-                invoiceNumber,
-                status,
-                vatScheme,
-                vatMode,
-                memo,
-                metadata,
-                paymentTerm,
-                paymentDetails,
-                emailDetails,
-                customerId,
-                mandateId,
-                recipientIdentifier,
-                recipient,
-                lines,
-                discount,
-                amountDue,
-                subtotalAmount,
-                totalAmount,
-                totalVatAmount,
-                discountedSubtotalAmount,
-                createdAt,
-                issuedAt,
-                dueAt,
-                links);
+                resource, id, invoiceNumber,
+                status, vatScheme, vatMode,
+                memo, metadata, paymentTerm,
+                paymentDetails, emailDetails, customerId,
+                mandateId, recipientIdentifier, recipient,
+                lines, discount, amountDue,
+                subtotalAmount, totalAmount, totalVatAmount,
+                discountedSubtotalAmount, createdAt, issuedAt,
+                dueAt, links);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

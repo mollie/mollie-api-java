@@ -20,7 +20,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
 public class CreateCaptureLinks {
-
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -76,7 +75,8 @@ public class CreateCaptureLinks {
             CreateCaptureSelf self,
             CreateCapturePayment payment,
             CreateCaptureDocumentation documentation) {
-        this(self, payment, JsonNullable.undefined(), JsonNullable.undefined(), documentation);
+        this(self, payment, JsonNullable.undefined(),
+            JsonNullable.undefined(), documentation);
     }
 
     /**
@@ -121,9 +121,10 @@ public class CreateCaptureLinks {
         return documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -188,7 +189,6 @@ public class CreateCaptureLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -209,11 +209,8 @@ public class CreateCaptureLinks {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self,
-            payment,
-            settlement,
-            shipment,
-            documentation);
+            self, payment, settlement,
+            shipment, documentation);
     }
     
     @Override
@@ -225,22 +222,24 @@ public class CreateCaptureLinks {
                 "shipment", shipment,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private CreateCaptureSelf self;
- 
+
         private CreateCapturePayment payment;
- 
+
         private JsonNullable<? extends CreateCaptureSettlement> settlement = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Shipment> shipment = JsonNullable.undefined();
- 
+
         private CreateCaptureDocumentation documentation;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -251,6 +250,7 @@ public class CreateCaptureLinks {
             return this;
         }
 
+
         /**
          * The API resource URL of the [payment](get-payment) that this capture belongs to.
          */
@@ -259,6 +259,7 @@ public class CreateCaptureLinks {
             this.payment = payment;
             return this;
         }
+
 
         /**
          * The API resource URL of the [settlement](get-settlement) this capture has been settled with. Not present if not yet settled.
@@ -278,6 +279,7 @@ public class CreateCaptureLinks {
             return this;
         }
 
+
         /**
          * The API resource URL of the [shipment](get-shipment) this capture is associated with. Not present if it isn't associated with a shipment.
          */
@@ -296,6 +298,7 @@ public class CreateCaptureLinks {
             return this;
         }
 
+
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
@@ -304,14 +307,13 @@ public class CreateCaptureLinks {
             this.documentation = documentation;
             return this;
         }
-        
+
         public CreateCaptureLinks build() {
+
             return new CreateCaptureLinks(
-                self,
-                payment,
-                settlement,
-                shipment,
-                documentation);
+                self, payment, settlement,
+                shipment, documentation);
         }
+
     }
 }

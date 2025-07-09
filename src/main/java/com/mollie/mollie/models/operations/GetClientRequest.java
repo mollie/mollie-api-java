@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetClientRequest {
 
+public class GetClientRequest {
     /**
      * Provide the ID of the item you want to perform this operation on.
      */
@@ -64,9 +64,10 @@ public class GetClientRequest {
         return embed;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the item you want to perform this operation on.
@@ -103,7 +104,6 @@ public class GetClientRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -121,8 +121,7 @@ public class GetClientRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            embed);
+            id, embed);
     }
     
     @Override
@@ -131,16 +130,18 @@ public class GetClientRequest {
                 "id", id,
                 "embed", embed);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private JsonNullable<String> embed = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the item you want to perform this operation on.
@@ -150,6 +151,7 @@ public class GetClientRequest {
             this.id = id;
             return this;
         }
+
 
         /**
          * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
@@ -176,11 +178,12 @@ public class GetClientRequest {
             this.embed = embed;
             return this;
         }
-        
+
         public GetClientRequest build() {
+
             return new GetClientRequest(
-                id,
-                embed);
+                id, embed);
         }
+
     }
 }

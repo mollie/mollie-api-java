@@ -51,7 +51,6 @@ public class Subscriptions {
     Subscriptions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Create subscription
      * 
@@ -153,11 +152,10 @@ public class Subscriptions {
                 .build();
         RequestOperation<CreateSubscriptionRequest, CreateSubscriptionResponse> operation
               = new CreateSubscriptionOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List customer subscriptions
@@ -222,11 +220,10 @@ public class Subscriptions {
             Optional<Options> options) throws Exception {
         RequestOperation<ListSubscriptionsRequest, ListSubscriptionsResponse> operation
               = new ListSubscriptionsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get subscription
@@ -264,7 +261,8 @@ public class Subscriptions {
     public GetSubscriptionResponse get(
             String customerId,
             String subscriptionId) throws Exception {
-        return get(customerId, subscriptionId, JsonNullable.undefined(), Optional.empty());
+        return get(customerId, subscriptionId, JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -301,11 +299,10 @@ public class Subscriptions {
                 .build();
         RequestOperation<GetSubscriptionRequest, GetSubscriptionResponse> operation
               = new GetSubscriptionOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update subscription
@@ -351,7 +348,8 @@ public class Subscriptions {
     public UpdateSubscriptionResponse update(
             String customerId,
             String subscriptionId) throws Exception {
-        return update(customerId, subscriptionId, Optional.empty(), Optional.empty());
+        return update(customerId, subscriptionId, Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -390,11 +388,10 @@ public class Subscriptions {
                 .build();
         RequestOperation<UpdateSubscriptionRequest, UpdateSubscriptionResponse> operation
               = new UpdateSubscriptionOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Cancel subscription
@@ -432,7 +429,8 @@ public class Subscriptions {
     public CancelSubscriptionResponse cancel(
             String customerId,
             String subscriptionId) throws Exception {
-        return cancel(customerId, subscriptionId, Optional.empty(), Optional.empty());
+        return cancel(customerId, subscriptionId, Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -467,11 +465,10 @@ public class Subscriptions {
                 .build();
         RequestOperation<CancelSubscriptionRequest, CancelSubscriptionResponse> operation
               = new CancelSubscriptionOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List all subscriptions
@@ -536,11 +533,10 @@ public class Subscriptions {
             Optional<Options> options) throws Exception {
         RequestOperation<ListAllSubscriptionsRequest, ListAllSubscriptionsResponse> operation
               = new ListAllSubscriptionsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List subscription payments
@@ -605,8 +601,8 @@ public class Subscriptions {
             Optional<Options> options) throws Exception {
         RequestOperation<ListSubscriptionPaymentsRequest, ListSubscriptionPaymentsResponse> operation
               = new ListSubscriptionPaymentsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

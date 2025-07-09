@@ -14,8 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListInvoicesRequest {
 
+public class ListInvoicesRequest {
     /**
      * Filter for an invoice with a specific invoice reference, for example `2024.10000`.
      */
@@ -77,7 +77,8 @@ public class ListInvoicesRequest {
     }
     
     public ListInvoicesRequest() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -130,9 +131,10 @@ public class ListInvoicesRequest {
         return sort;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Filter for an invoice with a specific invoice reference, for example `2024.10000`.
@@ -246,7 +248,6 @@ public class ListInvoicesRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -268,12 +269,8 @@ public class ListInvoicesRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            reference,
-            year,
-            month,
-            from,
-            limit,
-            sort);
+            reference, year, month,
+            from, limit, sort);
     }
     
     @Override
@@ -286,24 +283,26 @@ public class ListInvoicesRequest {
                 "limit", limit,
                 "sort", sort);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> reference = JsonNullable.undefined();
- 
+
         private JsonNullable<String> year = JsonNullable.undefined();
- 
+
         private JsonNullable<String> month = JsonNullable.undefined();
- 
+
         private JsonNullable<String> from = JsonNullable.undefined();
- 
+
         private JsonNullable<Long> limit;
- 
+
         private JsonNullable<String> sort = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Filter for an invoice with a specific invoice reference, for example `2024.10000`.
@@ -323,6 +322,7 @@ public class ListInvoicesRequest {
             return this;
         }
 
+
         /**
          * Filter for invoices of a specific year, for example `2024`.
          */
@@ -340,6 +340,7 @@ public class ListInvoicesRequest {
             this.year = year;
             return this;
         }
+
 
         /**
          * Filter for invoices of a specific month, for example `01`.
@@ -359,6 +360,7 @@ public class ListInvoicesRequest {
             return this;
         }
 
+
         /**
          * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
          */
@@ -377,6 +379,7 @@ public class ListInvoicesRequest {
             return this;
         }
 
+
         /**
          * The maximum number of items to return. Defaults to 50 items.
          */
@@ -394,6 +397,7 @@ public class ListInvoicesRequest {
             this.limit = limit;
             return this;
         }
+
 
         /**
          * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
@@ -416,19 +420,17 @@ public class ListInvoicesRequest {
             this.sort = sort;
             return this;
         }
-        
+
         public ListInvoicesRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+
             return new ListInvoicesRequest(
-                reference,
-                year,
-                month,
-                from,
-                limit,
-                sort);
+                reference, year, month,
+                from, limit, sort);
         }
+
 
         private static final LazySingletonValue<JsonNullable<Long>> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(

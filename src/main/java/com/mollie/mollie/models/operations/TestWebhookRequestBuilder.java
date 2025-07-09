@@ -71,8 +71,8 @@ public class TestWebhookRequestBuilder {
 
         RequestOperation<TestWebhookRequest, TestWebhookResponse> operation
               = new TestWebhookOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         TestWebhookRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

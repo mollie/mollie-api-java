@@ -33,7 +33,6 @@ public class Chargebacks {
     Chargebacks(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List payment chargebacks
      * 
@@ -97,11 +96,10 @@ public class Chargebacks {
             Optional<Options> options) throws Exception {
         RequestOperation<ListChargebacksRequest, ListChargebacksResponse> operation
               = new ListChargebacksOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get payment chargeback
@@ -139,7 +137,8 @@ public class Chargebacks {
     public GetChargebackResponse get(
             String paymentId,
             String chargebackId) throws Exception {
-        return get(paymentId, chargebackId, JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        return get(paymentId, chargebackId, JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -179,11 +178,10 @@ public class Chargebacks {
                 .build();
         RequestOperation<GetChargebackRequest, GetChargebackResponse> operation
               = new GetChargebackOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List all chargebacks
@@ -248,8 +246,8 @@ public class Chargebacks {
             Optional<Options> options) throws Exception {
         RequestOperation<ListAllChargebacksRequest, ListAllChargebacksResponse> operation
               = new ListAllChargebacksOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

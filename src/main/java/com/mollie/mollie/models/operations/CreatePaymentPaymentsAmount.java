@@ -18,7 +18,6 @@ import java.lang.String;
  * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge a €0.99 fee on a €1.00 payment.
  */
 public class CreatePaymentPaymentsAmount {
-
     /**
      * A three-character ISO 4217 currency code.
      */
@@ -57,9 +56,10 @@ public class CreatePaymentPaymentsAmount {
         return value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A three-character ISO 4217 currency code.
@@ -79,7 +79,6 @@ public class CreatePaymentPaymentsAmount {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -97,8 +96,7 @@ public class CreatePaymentPaymentsAmount {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            currency,
-            value);
+            currency, value);
     }
     
     @Override
@@ -107,16 +105,18 @@ public class CreatePaymentPaymentsAmount {
                 "currency", currency,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String currency;
- 
+
         private String value;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A three-character ISO 4217 currency code.
@@ -127,6 +127,7 @@ public class CreatePaymentPaymentsAmount {
             return this;
         }
 
+
         /**
          * A string containing an exact monetary amount in the given currency.
          */
@@ -135,11 +136,12 @@ public class CreatePaymentPaymentsAmount {
             this.value = value;
             return this;
         }
-        
+
         public CreatePaymentPaymentsAmount build() {
+
             return new CreatePaymentPaymentsAmount(
-                currency,
-                value);
+                currency, value);
         }
+
     }
 }

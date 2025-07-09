@@ -16,7 +16,6 @@ import java.lang.String;
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
 public class Links {
-
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -55,9 +54,10 @@ public class Links {
         return payment;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -77,7 +77,6 @@ public class Links {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -95,8 +94,7 @@ public class Links {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self,
-            payment);
+            self, payment);
     }
     
     @Override
@@ -105,16 +103,18 @@ public class Links {
                 "self", self,
                 "payment", payment);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Self self;
- 
+
         private Payment payment;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -125,6 +125,7 @@ public class Links {
             return this;
         }
 
+
         /**
          * The API resource URL of the [payment](get-payment) that belong to this route.
          */
@@ -133,11 +134,12 @@ public class Links {
             this.payment = payment;
             return this;
         }
-        
+
         public Links build() {
+
             return new Links(
-                self,
-                payment);
+                self, payment);
         }
+
     }
 }

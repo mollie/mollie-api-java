@@ -10,8 +10,8 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class GetCaptureLinks {
 
+public class GetCaptureLinks {
     /**
      * The URL to the generic Mollie API error handling guide.
      */
@@ -33,9 +33,10 @@ public class GetCaptureLinks {
         return documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The URL to the generic Mollie API error handling guide.
@@ -46,7 +47,6 @@ public class GetCaptureLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -71,14 +71,16 @@ public class GetCaptureLinks {
         return Utils.toString(GetCaptureLinks.class,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private GetCaptureDocumentation documentation;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The URL to the generic Mollie API error handling guide.
@@ -88,10 +90,12 @@ public class GetCaptureLinks {
             this.documentation = documentation;
             return this;
         }
-        
+
         public GetCaptureLinks build() {
+
             return new GetCaptureLinks(
                 documentation);
         }
+
     }
 }

@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class ListClientsEmbedded {
 
+public class ListClientsEmbedded {
     /**
      * An array of client objects. For a complete reference of the client object, refer to the [Get client endpoint](get-client) documentation.
      */
@@ -44,9 +44,10 @@ public class ListClientsEmbedded {
         return (Optional<List<Clients>>) clients;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An array of client objects. For a complete reference of the client object, refer to the [Get client endpoint](get-client) documentation.
@@ -57,6 +58,7 @@ public class ListClientsEmbedded {
         return this;
     }
 
+
     /**
      * An array of client objects. For a complete reference of the client object, refer to the [Get client endpoint](get-client) documentation.
      */
@@ -66,7 +68,6 @@ public class ListClientsEmbedded {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,14 +92,16 @@ public class ListClientsEmbedded {
         return Utils.toString(ListClientsEmbedded.class,
                 "clients", clients);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<Clients>> clients = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An array of client objects. For a complete reference of the client object, refer to the [Get client endpoint](get-client) documentation.
@@ -117,10 +120,12 @@ public class ListClientsEmbedded {
             this.clients = clients;
             return this;
         }
-        
+
         public ListClientsEmbedded build() {
+
             return new ListClientsEmbedded(
                 clients);
         }
+
     }
 }

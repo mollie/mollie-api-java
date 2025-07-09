@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListAllChargebacksRequest {
 
+public class ListAllChargebacksRequest {
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      */
@@ -86,7 +86,8 @@ public class ListAllChargebacksRequest {
     }
     
     public ListAllChargebacksRequest() {
-        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -146,9 +147,10 @@ public class ListAllChargebacksRequest {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
@@ -158,6 +160,7 @@ public class ListAllChargebacksRequest {
         this.from = Optional.ofNullable(from);
         return this;
     }
+
 
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
@@ -194,6 +197,7 @@ public class ListAllChargebacksRequest {
         this.embed = Optional.ofNullable(embed);
         return this;
     }
+
 
     /**
      * This endpoint allows you to embed additional information via the `embed` query string parameter.
@@ -274,7 +278,6 @@ public class ListAllChargebacksRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -296,12 +299,8 @@ public class ListAllChargebacksRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            from,
-            limit,
-            embed,
-            sort,
-            profileId,
-            testmode);
+            from, limit, embed,
+            sort, profileId, testmode);
     }
     
     @Override
@@ -314,24 +313,26 @@ public class ListAllChargebacksRequest {
                 "profileId", profileId,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> from = Optional.empty();
- 
+
         private JsonNullable<Long> limit;
- 
+
         private Optional<? extends ListAllChargebacksQueryParamEmbed> embed = Optional.empty();
- 
+
         private JsonNullable<String> sort = JsonNullable.undefined();
- 
+
         private JsonNullable<String> profileId = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
@@ -351,6 +352,7 @@ public class ListAllChargebacksRequest {
             return this;
         }
 
+
         /**
          * The maximum number of items to return. Defaults to 50 items.
          */
@@ -369,6 +371,7 @@ public class ListAllChargebacksRequest {
             return this;
         }
 
+
         /**
          * This endpoint allows you to embed additional information via the `embed` query string parameter.
          */
@@ -386,6 +389,7 @@ public class ListAllChargebacksRequest {
             this.embed = embed;
             return this;
         }
+
 
         /**
          * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
@@ -408,6 +412,7 @@ public class ListAllChargebacksRequest {
             this.sort = sort;
             return this;
         }
+
 
         /**
          * The identifier referring to the [profile](get-profile) you wish to retrieve chargebacks for.
@@ -435,6 +440,7 @@ public class ListAllChargebacksRequest {
             return this;
         }
 
+
         /**
          * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
          * 
@@ -456,19 +462,17 @@ public class ListAllChargebacksRequest {
             this.testmode = testmode;
             return this;
         }
-        
+
         public ListAllChargebacksRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+
             return new ListAllChargebacksRequest(
-                from,
-                limit,
-                embed,
-                sort,
-                profileId,
-                testmode);
+                from, limit, embed,
+                sort, profileId, testmode);
         }
+
 
         private static final LazySingletonValue<JsonNullable<Long>> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(

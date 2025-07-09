@@ -12,8 +12,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetMandateRequest {
 
+public class GetMandateRequest {
     /**
      * Provide the ID of the related customer.
      */
@@ -79,9 +79,10 @@ public class GetMandateRequest {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the related customer.
@@ -123,7 +124,6 @@ public class GetMandateRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -142,9 +142,7 @@ public class GetMandateRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            customerId,
-            mandateId,
-            testmode);
+            customerId, mandateId, testmode);
     }
     
     @Override
@@ -154,18 +152,20 @@ public class GetMandateRequest {
                 "mandateId", mandateId,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String customerId;
- 
+
         private String mandateId;
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the related customer.
@@ -176,6 +176,7 @@ public class GetMandateRequest {
             return this;
         }
 
+
         /**
          * Provide the ID of the related mandate.
          */
@@ -184,6 +185,7 @@ public class GetMandateRequest {
             this.mandateId = mandateId;
             return this;
         }
+
 
         /**
          * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
@@ -206,12 +208,12 @@ public class GetMandateRequest {
             this.testmode = testmode;
             return this;
         }
-        
+
         public GetMandateRequest build() {
+
             return new GetMandateRequest(
-                customerId,
-                mandateId,
-                testmode);
+                customerId, mandateId, testmode);
         }
+
     }
 }

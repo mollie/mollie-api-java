@@ -20,7 +20,6 @@ import java.lang.String;
  * <p>The sum of all `totalAmount` values of all order lines should be equal to the full payment amount.
  */
 public class CancelPaymentTotalAmount {
-
     /**
      * A three-character ISO 4217 currency code.
      */
@@ -59,9 +58,10 @@ public class CancelPaymentTotalAmount {
         return value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A three-character ISO 4217 currency code.
@@ -81,7 +81,6 @@ public class CancelPaymentTotalAmount {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -99,8 +98,7 @@ public class CancelPaymentTotalAmount {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            currency,
-            value);
+            currency, value);
     }
     
     @Override
@@ -109,16 +107,18 @@ public class CancelPaymentTotalAmount {
                 "currency", currency,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String currency;
- 
+
         private String value;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A three-character ISO 4217 currency code.
@@ -129,6 +129,7 @@ public class CancelPaymentTotalAmount {
             return this;
         }
 
+
         /**
          * A string containing an exact monetary amount in the given currency.
          */
@@ -137,11 +138,12 @@ public class CancelPaymentTotalAmount {
             this.value = value;
             return this;
         }
-        
+
         public CancelPaymentTotalAmount build() {
+
             return new CancelPaymentTotalAmount(
-                currency,
-                value);
+                currency, value);
         }
+
     }
 }

@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class ListOrderRefundsEmbedded {
 
+public class ListOrderRefundsEmbedded {
     /**
      * An array of refund objects.
      */
@@ -44,9 +44,10 @@ public class ListOrderRefundsEmbedded {
         return (Optional<List<ListOrderRefundsRefunds>>) refunds;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An array of refund objects.
@@ -57,6 +58,7 @@ public class ListOrderRefundsEmbedded {
         return this;
     }
 
+
     /**
      * An array of refund objects.
      */
@@ -66,7 +68,6 @@ public class ListOrderRefundsEmbedded {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,14 +92,16 @@ public class ListOrderRefundsEmbedded {
         return Utils.toString(ListOrderRefundsEmbedded.class,
                 "refunds", refunds);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<ListOrderRefundsRefunds>> refunds = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An array of refund objects.
@@ -117,10 +120,12 @@ public class ListOrderRefundsEmbedded {
             this.refunds = refunds;
             return this;
         }
-        
+
         public ListOrderRefundsEmbedded build() {
+
             return new ListOrderRefundsEmbedded(
                 refunds);
         }
+
     }
 }

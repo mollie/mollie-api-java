@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetSettlementChargebacksRequest {
 
+public class GetSettlementChargebacksRequest {
     /**
      * Provide the ID of the related settlement.
      */
@@ -72,7 +72,8 @@ public class GetSettlementChargebacksRequest {
     
     public GetSettlementChargebacksRequest(
             String settlementId) {
-        this(settlementId, Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
+        this(settlementId, Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -118,9 +119,10 @@ public class GetSettlementChargebacksRequest {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the related settlement.
@@ -139,6 +141,7 @@ public class GetSettlementChargebacksRequest {
         this.from = Optional.ofNullable(from);
         return this;
     }
+
 
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
@@ -176,6 +179,7 @@ public class GetSettlementChargebacksRequest {
         return this;
     }
 
+
     /**
      * This endpoint allows you to embed additional information via the `embed` query string parameter.
      */
@@ -207,7 +211,6 @@ public class GetSettlementChargebacksRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -228,11 +231,8 @@ public class GetSettlementChargebacksRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            settlementId,
-            from,
-            limit,
-            embed,
-            testmode);
+            settlementId, from, limit,
+            embed, testmode);
     }
     
     @Override
@@ -244,22 +244,24 @@ public class GetSettlementChargebacksRequest {
                 "embed", embed,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String settlementId;
- 
+
         private Optional<String> from = Optional.empty();
- 
+
         private JsonNullable<Long> limit;
- 
+
         private Optional<? extends GetSettlementChargebacksQueryParamEmbed> embed = Optional.empty();
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the related settlement.
@@ -269,6 +271,7 @@ public class GetSettlementChargebacksRequest {
             this.settlementId = settlementId;
             return this;
         }
+
 
         /**
          * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
@@ -288,6 +291,7 @@ public class GetSettlementChargebacksRequest {
             return this;
         }
 
+
         /**
          * The maximum number of items to return. Defaults to 50 items.
          */
@@ -306,6 +310,7 @@ public class GetSettlementChargebacksRequest {
             return this;
         }
 
+
         /**
          * This endpoint allows you to embed additional information via the `embed` query string parameter.
          */
@@ -323,6 +328,7 @@ public class GetSettlementChargebacksRequest {
             this.embed = embed;
             return this;
         }
+
 
         /**
          * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
@@ -345,18 +351,17 @@ public class GetSettlementChargebacksRequest {
             this.testmode = testmode;
             return this;
         }
-        
+
         public GetSettlementChargebacksRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+
             return new GetSettlementChargebacksRequest(
-                settlementId,
-                from,
-                limit,
-                embed,
-                testmode);
+                settlementId, from, limit,
+                embed, testmode);
         }
+
 
         private static final LazySingletonValue<JsonNullable<Long>> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(

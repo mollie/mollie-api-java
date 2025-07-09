@@ -16,7 +16,6 @@ import java.lang.String;
  * <p>The discount to be applied to the entire invoice, applied on top of any line item discounts.
  */
 public class CreateSalesInvoiceDiscount {
-
     /**
      * The type of discount.
      * 
@@ -59,9 +58,10 @@ public class CreateSalesInvoiceDiscount {
         return value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The type of discount.
@@ -83,7 +83,6 @@ public class CreateSalesInvoiceDiscount {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -101,8 +100,7 @@ public class CreateSalesInvoiceDiscount {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            value);
+            type, value);
     }
     
     @Override
@@ -111,16 +109,18 @@ public class CreateSalesInvoiceDiscount {
                 "type", type,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String type;
- 
+
         private String value;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The type of discount.
@@ -133,6 +133,7 @@ public class CreateSalesInvoiceDiscount {
             return this;
         }
 
+
         /**
          * A string containing an exact monetary amount in the given currency, or the percentage.
          */
@@ -141,11 +142,12 @@ public class CreateSalesInvoiceDiscount {
             this.value = value;
             return this;
         }
-        
+
         public CreateSalesInvoiceDiscount build() {
+
             return new CreateSalesInvoiceDiscount(
-                type,
-                value);
+                type, value);
         }
+
     }
 }

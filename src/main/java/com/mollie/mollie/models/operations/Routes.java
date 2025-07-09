@@ -15,8 +15,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class Routes {
 
+public class Routes {
     /**
      * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
      */
@@ -102,7 +102,9 @@ public class Routes {
             PaymentListRoutesDestination destination,
             PaymentListRoutesDelayedRoutingLinks links,
             String createdAt) {
-        this(Optional.empty(), id, paymentId, amount, description, destination, links, createdAt);
+        this(Optional.empty(), id, paymentId,
+            amount, description, destination,
+            links, createdAt);
     }
 
     /**
@@ -169,9 +171,10 @@ public class Routes {
         return createdAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
@@ -181,6 +184,7 @@ public class Routes {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
@@ -254,7 +258,6 @@ public class Routes {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -278,14 +281,9 @@ public class Routes {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            paymentId,
-            amount,
-            description,
-            destination,
-            links,
-            createdAt);
+            resource, id, paymentId,
+            amount, description, destination,
+            links, createdAt);
     }
     
     @Override
@@ -300,28 +298,30 @@ public class Routes {
                 "links", links,
                 "createdAt", createdAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private String id;
- 
+
         private String paymentId;
- 
+
         private PaymentListRoutesAmount amount;
- 
+
         private String description;
- 
+
         private PaymentListRoutesDestination destination;
- 
+
         private PaymentListRoutesDelayedRoutingLinks links;
- 
+
         private String createdAt;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
@@ -341,6 +341,7 @@ public class Routes {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this route. Mollie assigns this identifier at route creation time. Mollie will always refer to the route by this ID. Example: `crt_dyARQ3JzCgtPDhU2Pbq3J`.
          */
@@ -349,6 +350,7 @@ public class Routes {
             this.id = id;
             return this;
         }
+
 
         /**
          * The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
@@ -359,6 +361,7 @@ public class Routes {
             return this;
         }
 
+
         /**
          * The amount of the route. That amount that will be routed to the specified destination.
          */
@@ -367,6 +370,7 @@ public class Routes {
             this.amount = amount;
             return this;
         }
+
 
         /**
          * The description of the route. This description is shown in the reports.
@@ -377,6 +381,7 @@ public class Routes {
             return this;
         }
 
+
         /**
          * The destination of the route.
          */
@@ -385,6 +390,7 @@ public class Routes {
             this.destination = destination;
             return this;
         }
+
 
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -395,6 +401,7 @@ public class Routes {
             return this;
         }
 
+
         /**
          * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
          */
@@ -403,21 +410,18 @@ public class Routes {
             this.createdAt = createdAt;
             return this;
         }
-        
+
         public Routes build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new Routes(
-                resource,
-                id,
-                paymentId,
-                amount,
-                description,
-                destination,
-                links,
-                createdAt);
+                resource, id, paymentId,
+                amount, description, destination,
+                links, createdAt);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

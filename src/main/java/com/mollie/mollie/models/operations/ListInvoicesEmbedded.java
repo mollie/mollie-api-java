@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class ListInvoicesEmbedded {
 
+public class ListInvoicesEmbedded {
     /**
      * An array of invoice objects. For a complete reference of the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
      */
@@ -44,9 +44,10 @@ public class ListInvoicesEmbedded {
         return (Optional<List<Invoices>>) invoices;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An array of invoice objects. For a complete reference of the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
@@ -57,6 +58,7 @@ public class ListInvoicesEmbedded {
         return this;
     }
 
+
     /**
      * An array of invoice objects. For a complete reference of the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
      */
@@ -66,7 +68,6 @@ public class ListInvoicesEmbedded {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,14 +92,16 @@ public class ListInvoicesEmbedded {
         return Utils.toString(ListInvoicesEmbedded.class,
                 "invoices", invoices);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<Invoices>> invoices = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An array of invoice objects. For a complete reference of the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
@@ -117,10 +120,12 @@ public class ListInvoicesEmbedded {
             this.invoices = invoices;
             return this;
         }
-        
+
         public ListInvoicesEmbedded build() {
+
             return new ListInvoicesEmbedded(
                 invoices);
         }
+
     }
 }

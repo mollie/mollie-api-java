@@ -13,8 +13,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetCustomerRequest {
 
+public class GetCustomerRequest {
     /**
      * Provide the ID of the related customer.
      */
@@ -80,9 +80,10 @@ public class GetCustomerRequest {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the related customer.
@@ -133,7 +134,6 @@ public class GetCustomerRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -152,9 +152,7 @@ public class GetCustomerRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            customerId,
-            include,
-            testmode);
+            customerId, include, testmode);
     }
     
     @Override
@@ -164,18 +162,20 @@ public class GetCustomerRequest {
                 "include", include,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String customerId;
- 
+
         private JsonNullable<? extends GetCustomerQueryParamInclude> include = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the related customer.
@@ -185,6 +185,7 @@ public class GetCustomerRequest {
             this.customerId = customerId;
             return this;
         }
+
 
         /**
          * This endpoint allows you to include additional information via the `include` query string parameter.
@@ -203,6 +204,7 @@ public class GetCustomerRequest {
             this.include = include;
             return this;
         }
+
 
         /**
          * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
@@ -225,12 +227,12 @@ public class GetCustomerRequest {
             this.testmode = testmode;
             return this;
         }
-        
+
         public GetCustomerRequest build() {
+
             return new GetCustomerRequest(
-                customerId,
-                include,
-                testmode);
+                customerId, include, testmode);
         }
+
     }
 }

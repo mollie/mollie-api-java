@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
 public class GetMethodLinks {
-
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -66,9 +65,10 @@ public class GetMethodLinks {
         return (Optional<GetMethodDocumentation>) documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -88,6 +88,7 @@ public class GetMethodLinks {
         return this;
     }
 
+
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -97,7 +98,6 @@ public class GetMethodLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -115,8 +115,7 @@ public class GetMethodLinks {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self,
-            documentation);
+            self, documentation);
     }
     
     @Override
@@ -125,16 +124,18 @@ public class GetMethodLinks {
                 "self", self,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private GetMethodSelf self;
- 
+
         private Optional<? extends GetMethodDocumentation> documentation = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -144,6 +145,7 @@ public class GetMethodLinks {
             this.self = self;
             return this;
         }
+
 
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -162,11 +164,12 @@ public class GetMethodLinks {
             this.documentation = documentation;
             return this;
         }
-        
+
         public GetMethodLinks build() {
+
             return new GetMethodLinks(
-                self,
-                documentation);
+                self, documentation);
         }
+
     }
 }

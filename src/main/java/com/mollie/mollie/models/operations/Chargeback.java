@@ -13,11 +13,13 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
+
 public class Chargeback {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("paymentId")
     private Optional<String> paymentId;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("chargebackId")
@@ -47,15 +49,17 @@ public class Chargeback {
         return chargebackId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Chargeback withPaymentId(String paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
         this.paymentId = Optional.ofNullable(paymentId);
         return this;
     }
+
 
     public Chargeback withPaymentId(Optional<String> paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
@@ -69,13 +73,13 @@ public class Chargeback {
         return this;
     }
 
+
     public Chargeback withChargebackId(Optional<String> chargebackId) {
         Utils.checkNotNull(chargebackId, "chargebackId");
         this.chargebackId = chargebackId;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -93,8 +97,7 @@ public class Chargeback {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentId,
-            chargebackId);
+            paymentId, chargebackId);
     }
     
     @Override
@@ -103,16 +106,18 @@ public class Chargeback {
                 "paymentId", paymentId,
                 "chargebackId", chargebackId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> paymentId = Optional.empty();
- 
+
         private Optional<String> chargebackId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder paymentId(String paymentId) {
             Utils.checkNotNull(paymentId, "paymentId");
@@ -126,6 +131,7 @@ public class Chargeback {
             return this;
         }
 
+
         public Builder chargebackId(String chargebackId) {
             Utils.checkNotNull(chargebackId, "chargebackId");
             this.chargebackId = Optional.ofNullable(chargebackId);
@@ -137,11 +143,12 @@ public class Chargeback {
             this.chargebackId = chargebackId;
             return this;
         }
-        
+
         public Chargeback build() {
+
             return new Chargeback(
-                paymentId,
-                chargebackId);
+                paymentId, chargebackId);
         }
+
     }
 }

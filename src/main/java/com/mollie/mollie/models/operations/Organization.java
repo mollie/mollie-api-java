@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Organization {
 
+public class Organization {
     /**
      * The name of the organization.
      */
@@ -78,7 +78,8 @@ public class Organization {
     }
     
     public Organization() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -128,9 +129,10 @@ public class Organization {
         return vatRegulation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the organization.
@@ -140,6 +142,7 @@ public class Organization {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * The name of the organization.
@@ -159,6 +162,7 @@ public class Organization {
         return this;
     }
 
+
     /**
      * The address of the organization.
      */
@@ -176,6 +180,7 @@ public class Organization {
         this.registrationNumber = Optional.ofNullable(registrationNumber);
         return this;
     }
+
 
     /**
      * The registration number of the organization at their local chamber of commerce.
@@ -234,7 +239,6 @@ public class Organization {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -255,11 +259,8 @@ public class Organization {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            address,
-            registrationNumber,
-            vatNumber,
-            vatRegulation);
+            name, address, registrationNumber,
+            vatNumber, vatRegulation);
     }
     
     @Override
@@ -271,22 +272,24 @@ public class Organization {
                 "vatNumber", vatNumber,
                 "vatRegulation", vatRegulation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<? extends Address> address = Optional.empty();
- 
+
         private Optional<String> registrationNumber = Optional.empty();
- 
+
         private JsonNullable<String> vatNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<String> vatRegulation = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the organization.
@@ -306,6 +309,7 @@ public class Organization {
             return this;
         }
 
+
         /**
          * The address of the organization.
          */
@@ -324,6 +328,7 @@ public class Organization {
             return this;
         }
 
+
         /**
          * The registration number of the organization at their local chamber of commerce.
          */
@@ -341,6 +346,7 @@ public class Organization {
             this.registrationNumber = registrationNumber;
             return this;
         }
+
 
         /**
          * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are verified against the international registry *VIES*.
@@ -363,6 +369,7 @@ public class Organization {
             this.vatNumber = vatNumber;
             return this;
         }
+
 
         /**
          * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in The United Kingdom, and shifted VAT for merchants in the European Union.
@@ -389,14 +396,13 @@ public class Organization {
             this.vatRegulation = vatRegulation;
             return this;
         }
-        
+
         public Organization build() {
+
             return new Organization(
-                name,
-                address,
-                registrationNumber,
-                vatNumber,
-                vatRegulation);
+                name, address, registrationNumber,
+                vatNumber, vatRegulation);
         }
+
     }
 }

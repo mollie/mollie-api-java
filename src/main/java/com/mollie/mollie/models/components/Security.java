@@ -12,10 +12,12 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
+
 public class Security implements HasSecurity {
 
     @SpeakeasyMetadata("security:scheme=true,type=http,subtype=bearer,name=Authorization")
     private Optional<String> apiKey;
+
 
     @SpeakeasyMetadata("security:scheme=true,type=oauth2,name=Authorization")
     private Optional<String> oAuth;
@@ -44,15 +46,17 @@ public class Security implements HasSecurity {
         return oAuth;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Security withApiKey(String apiKey) {
         Utils.checkNotNull(apiKey, "apiKey");
         this.apiKey = Optional.ofNullable(apiKey);
         return this;
     }
+
 
     public Security withApiKey(Optional<String> apiKey) {
         Utils.checkNotNull(apiKey, "apiKey");
@@ -66,13 +70,13 @@ public class Security implements HasSecurity {
         return this;
     }
 
+
     public Security withOAuth(Optional<String> oAuth) {
         Utils.checkNotNull(oAuth, "oAuth");
         this.oAuth = oAuth;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,8 +94,7 @@ public class Security implements HasSecurity {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            apiKey,
-            oAuth);
+            apiKey, oAuth);
     }
     
     @Override
@@ -100,16 +103,18 @@ public class Security implements HasSecurity {
                 "apiKey", apiKey,
                 "oAuth", oAuth);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> apiKey = Optional.empty();
- 
+
         private Optional<String> oAuth = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder apiKey(String apiKey) {
             Utils.checkNotNull(apiKey, "apiKey");
@@ -123,6 +128,7 @@ public class Security implements HasSecurity {
             return this;
         }
 
+
         public Builder oAuth(String oAuth) {
             Utils.checkNotNull(oAuth, "oAuth");
             this.oAuth = Optional.ofNullable(oAuth);
@@ -134,11 +140,12 @@ public class Security implements HasSecurity {
             this.oAuth = oAuth;
             return this;
         }
-        
+
         public Security build() {
+
             return new Security(
-                apiKey,
-                oAuth);
+                apiKey, oAuth);
         }
+
     }
 }

@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class UpdatePaymentLinkLines {
 
+public class UpdatePaymentLinkLines {
     /**
      * The type of product purchased. For example, a physical or a digital product.
      * 
@@ -171,7 +171,11 @@ public class UpdatePaymentLinkLines {
             long quantity,
             UpdatePaymentLinkUnitPrice unitPrice,
             UpdatePaymentLinkTotalAmount totalAmount) {
-        this(Optional.empty(), description, quantity, Optional.empty(), unitPrice, Optional.empty(), totalAmount, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), description, quantity,
+            Optional.empty(), unitPrice, Optional.empty(),
+            totalAmount, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -299,9 +303,10 @@ public class UpdatePaymentLinkLines {
         return productUrl;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The type of product purchased. For example, a physical or a digital product.
@@ -315,6 +320,7 @@ public class UpdatePaymentLinkLines {
         this.type = Optional.ofNullable(type);
         return this;
     }
+
 
     /**
      * The type of product purchased. For example, a physical or a digital product.
@@ -356,6 +362,7 @@ public class UpdatePaymentLinkLines {
         return this;
     }
 
+
     /**
      * The unit for the quantity. For example *pcs*, *kg*, or *cm*.
      */
@@ -389,6 +396,7 @@ public class UpdatePaymentLinkLines {
         return this;
     }
 
+
     /**
      * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
      */
@@ -420,6 +428,7 @@ public class UpdatePaymentLinkLines {
         return this;
     }
 
+
     /**
      * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
      */
@@ -441,6 +450,7 @@ public class UpdatePaymentLinkLines {
         this.vatAmount = Optional.ofNullable(vatAmount);
         return this;
     }
+
 
     /**
      * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
@@ -464,6 +474,7 @@ public class UpdatePaymentLinkLines {
         return this;
     }
 
+
     /**
      * The SKU, EAN, ISBN or UPC of the product sold.
      */
@@ -481,6 +492,7 @@ public class UpdatePaymentLinkLines {
         this.categories = Optional.ofNullable(categories);
         return this;
     }
+
 
     /**
      * An array with the voucher categories, in case of a line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
@@ -500,6 +512,7 @@ public class UpdatePaymentLinkLines {
         return this;
     }
 
+
     /**
      * A link pointing to an image of the product sold.
      */
@@ -518,6 +531,7 @@ public class UpdatePaymentLinkLines {
         return this;
     }
 
+
     /**
      * A link pointing to the product page in your web shop of the product sold.
      */
@@ -527,7 +541,6 @@ public class UpdatePaymentLinkLines {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -556,18 +569,10 @@ public class UpdatePaymentLinkLines {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            description,
-            quantity,
-            quantityUnit,
-            unitPrice,
-            discountAmount,
-            totalAmount,
-            vatRate,
-            vatAmount,
-            sku,
-            categories,
-            imageUrl,
+            type, description, quantity,
+            quantityUnit, unitPrice, discountAmount,
+            totalAmount, vatRate, vatAmount,
+            sku, categories, imageUrl,
             productUrl);
     }
     
@@ -588,38 +593,40 @@ public class UpdatePaymentLinkLines {
                 "imageUrl", imageUrl,
                 "productUrl", productUrl);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> type = Optional.empty();
- 
+
         private String description;
- 
+
         private Long quantity;
- 
+
         private Optional<String> quantityUnit = Optional.empty();
- 
+
         private UpdatePaymentLinkUnitPrice unitPrice;
- 
+
         private Optional<? extends UpdatePaymentLinkDiscountAmount> discountAmount = Optional.empty();
- 
+
         private UpdatePaymentLinkTotalAmount totalAmount;
- 
+
         private Optional<String> vatRate = Optional.empty();
- 
+
         private Optional<? extends UpdatePaymentLinkVatAmount> vatAmount = Optional.empty();
- 
+
         private Optional<String> sku = Optional.empty();
- 
+
         private Optional<? extends List<UpdatePaymentLinkCategories>> categories = Optional.empty();
- 
+
         private Optional<String> imageUrl = Optional.empty();
- 
+
         private Optional<String> productUrl = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The type of product purchased. For example, a physical or a digital product.
@@ -647,6 +654,7 @@ public class UpdatePaymentLinkLines {
             return this;
         }
 
+
         /**
          * A description of the line item. For example *LEGO 4440 Forest Police Station*.
          */
@@ -656,6 +664,7 @@ public class UpdatePaymentLinkLines {
             return this;
         }
 
+
         /**
          * The number of items.
          */
@@ -664,6 +673,7 @@ public class UpdatePaymentLinkLines {
             this.quantity = quantity;
             return this;
         }
+
 
         /**
          * The unit for the quantity. For example *pcs*, *kg*, or *cm*.
@@ -683,6 +693,7 @@ public class UpdatePaymentLinkLines {
             return this;
         }
 
+
         /**
          * The price of a single item including VAT.
          * 
@@ -697,6 +708,7 @@ public class UpdatePaymentLinkLines {
             this.unitPrice = unitPrice;
             return this;
         }
+
 
         /**
          * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
@@ -716,6 +728,7 @@ public class UpdatePaymentLinkLines {
             return this;
         }
 
+
         /**
          * The total amount of the line, including VAT and discounts.
          * 
@@ -728,6 +741,7 @@ public class UpdatePaymentLinkLines {
             this.totalAmount = totalAmount;
             return this;
         }
+
 
         /**
          * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
@@ -746,6 +760,7 @@ public class UpdatePaymentLinkLines {
             this.vatRate = vatRate;
             return this;
         }
+
 
         /**
          * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
@@ -773,6 +788,7 @@ public class UpdatePaymentLinkLines {
             return this;
         }
 
+
         /**
          * The SKU, EAN, ISBN or UPC of the product sold.
          */
@@ -790,6 +806,7 @@ public class UpdatePaymentLinkLines {
             this.sku = sku;
             return this;
         }
+
 
         /**
          * An array with the voucher categories, in case of a line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
@@ -809,6 +826,7 @@ public class UpdatePaymentLinkLines {
             return this;
         }
 
+
         /**
          * A link pointing to an image of the product sold.
          */
@@ -827,6 +845,7 @@ public class UpdatePaymentLinkLines {
             return this;
         }
 
+
         /**
          * A link pointing to the product page in your web shop of the product sold.
          */
@@ -844,22 +863,16 @@ public class UpdatePaymentLinkLines {
             this.productUrl = productUrl;
             return this;
         }
-        
+
         public UpdatePaymentLinkLines build() {
+
             return new UpdatePaymentLinkLines(
-                type,
-                description,
-                quantity,
-                quantityUnit,
-                unitPrice,
-                discountAmount,
-                totalAmount,
-                vatRate,
-                vatAmount,
-                sku,
-                categories,
-                imageUrl,
+                type, description, quantity,
+                quantityUnit, unitPrice, discountAmount,
+                totalAmount, vatRate, vatAmount,
+                sku, categories, imageUrl,
                 productUrl);
         }
+
     }
 }

@@ -16,7 +16,6 @@ import java.lang.String;
  * <p>Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the recipient with the provided `subject` and `body`. Required for `issued` status.
  */
 public class UpdateSalesInvoiceEmailDetails {
-
     /**
      * The subject of the email to be sent.
      */
@@ -55,9 +54,10 @@ public class UpdateSalesInvoiceEmailDetails {
         return body;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The subject of the email to be sent.
@@ -77,7 +77,6 @@ public class UpdateSalesInvoiceEmailDetails {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -95,8 +94,7 @@ public class UpdateSalesInvoiceEmailDetails {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            subject,
-            body);
+            subject, body);
     }
     
     @Override
@@ -105,16 +103,18 @@ public class UpdateSalesInvoiceEmailDetails {
                 "subject", subject,
                 "body", body);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String subject;
- 
+
         private String body;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The subject of the email to be sent.
@@ -125,6 +125,7 @@ public class UpdateSalesInvoiceEmailDetails {
             return this;
         }
 
+
         /**
          * The body of the email to be sent. To add newline characters, you can use `\n`.
          */
@@ -133,11 +134,12 @@ public class UpdateSalesInvoiceEmailDetails {
             this.body = body;
             return this;
         }
-        
+
         public UpdateSalesInvoiceEmailDetails build() {
+
             return new UpdateSalesInvoiceEmailDetails(
-                subject,
-                body);
+                subject, body);
         }
+
     }
 }

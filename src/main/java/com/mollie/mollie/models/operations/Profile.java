@@ -14,8 +14,8 @@ import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Profile {
 
+public class Profile {
     /**
      * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
      */
@@ -81,7 +81,8 @@ public class Profile {
     }
     
     public Profile() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -132,9 +133,10 @@ public class Profile {
         return businessCategory;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
@@ -144,6 +146,7 @@ public class Profile {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
@@ -163,6 +166,7 @@ public class Profile {
         return this;
     }
 
+
     /**
      * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
      */
@@ -181,6 +185,7 @@ public class Profile {
         return this;
     }
 
+
     /**
      * The email address associated with the profile's trade name or brand.
      */
@@ -198,6 +203,7 @@ public class Profile {
         this.phone = Optional.ofNullable(phone);
         return this;
     }
+
 
     /**
      * The phone number associated with the profile's trade name or brand.
@@ -235,6 +241,7 @@ public class Profile {
         return this;
     }
 
+
     /**
      * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types) for all possible options.
      */
@@ -244,7 +251,6 @@ public class Profile {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -266,12 +272,8 @@ public class Profile {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            url,
-            email,
-            phone,
-            description,
-            businessCategory);
+            name, url, email,
+            phone, description, businessCategory);
     }
     
     @Override
@@ -284,24 +286,26 @@ public class Profile {
                 "description", description,
                 "businessCategory", businessCategory);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> url = Optional.empty();
- 
+
         private Optional<String> email = Optional.empty();
- 
+
         private Optional<String> phone = Optional.empty();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private Optional<String> businessCategory = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
@@ -321,6 +325,7 @@ public class Profile {
             return this;
         }
 
+
         /**
          * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
          */
@@ -338,6 +343,7 @@ public class Profile {
             this.url = url;
             return this;
         }
+
 
         /**
          * The email address associated with the profile's trade name or brand.
@@ -357,6 +363,7 @@ public class Profile {
             return this;
         }
 
+
         /**
          * The phone number associated with the profile's trade name or brand.
          */
@@ -374,6 +381,7 @@ public class Profile {
             this.phone = phone;
             return this;
         }
+
 
         /**
          * The products or services offered by the profile's website or application.
@@ -393,6 +401,7 @@ public class Profile {
             return this;
         }
 
+
         /**
          * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types) for all possible options.
          */
@@ -410,15 +419,13 @@ public class Profile {
             this.businessCategory = businessCategory;
             return this;
         }
-        
+
         public Profile build() {
+
             return new Profile(
-                name,
-                url,
-                email,
-                phone,
-                description,
-                businessCategory);
+                name, url, email,
+                phone, description, businessCategory);
         }
+
     }
 }

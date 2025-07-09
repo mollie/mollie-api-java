@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class GetSettlementChargebacksEmbedded {
 
+public class GetSettlementChargebacksEmbedded {
     /**
      * A list of chargeback objects.
      */
@@ -44,9 +44,10 @@ public class GetSettlementChargebacksEmbedded {
         return (Optional<List<GetSettlementChargebacksChargebacks>>) chargebacks;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A list of chargeback objects.
@@ -57,6 +58,7 @@ public class GetSettlementChargebacksEmbedded {
         return this;
     }
 
+
     /**
      * A list of chargeback objects.
      */
@@ -66,7 +68,6 @@ public class GetSettlementChargebacksEmbedded {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,14 +92,16 @@ public class GetSettlementChargebacksEmbedded {
         return Utils.toString(GetSettlementChargebacksEmbedded.class,
                 "chargebacks", chargebacks);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<GetSettlementChargebacksChargebacks>> chargebacks = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A list of chargeback objects.
@@ -117,10 +120,12 @@ public class GetSettlementChargebacksEmbedded {
             this.chargebacks = chargebacks;
             return this;
         }
-        
+
         public GetSettlementChargebacksEmbedded build() {
+
             return new GetSettlementChargebacksEmbedded(
                 chargebacks);
         }
+
     }
 }

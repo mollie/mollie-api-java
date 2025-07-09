@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetClientCapabilities {
 
+public class GetClientCapabilities {
     /**
      * Always the word `capability` for this resource type.
      */
@@ -32,13 +32,16 @@ public class GetClientCapabilities {
     @JsonProperty("name")
     private Optional<String> name;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
     private Optional<? extends GetClientStatus> status;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("statusReason")
     private JsonNullable<? extends GetClientStatusReason> statusReason;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("requirements")
@@ -64,7 +67,8 @@ public class GetClientCapabilities {
     }
     
     public GetClientCapabilities() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -101,9 +105,10 @@ public class GetClientCapabilities {
         return (Optional<List<GetClientRequirements>>) requirements;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Always the word `capability` for this resource type.
@@ -113,6 +118,7 @@ public class GetClientCapabilities {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Always the word `capability` for this resource type.
@@ -132,6 +138,7 @@ public class GetClientCapabilities {
         return this;
     }
 
+
     /**
      * A unique name for this capability like `payments` / `settlements`.
      */
@@ -146,6 +153,7 @@ public class GetClientCapabilities {
         this.status = Optional.ofNullable(status);
         return this;
     }
+
 
     public GetClientCapabilities withStatus(Optional<? extends GetClientStatus> status) {
         Utils.checkNotNull(status, "status");
@@ -171,13 +179,13 @@ public class GetClientCapabilities {
         return this;
     }
 
+
     public GetClientCapabilities withRequirements(Optional<? extends List<GetClientRequirements>> requirements) {
         Utils.checkNotNull(requirements, "requirements");
         this.requirements = requirements;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -198,11 +206,8 @@ public class GetClientCapabilities {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            name,
-            status,
-            statusReason,
-            requirements);
+            resource, name, status,
+            statusReason, requirements);
     }
     
     @Override
@@ -214,22 +219,24 @@ public class GetClientCapabilities {
                 "statusReason", statusReason,
                 "requirements", requirements);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<? extends GetClientStatus> status = Optional.empty();
- 
+
         private JsonNullable<? extends GetClientStatusReason> statusReason = JsonNullable.undefined();
- 
+
         private Optional<? extends List<GetClientRequirements>> requirements = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Always the word `capability` for this resource type.
@@ -249,6 +256,7 @@ public class GetClientCapabilities {
             return this;
         }
 
+
         /**
          * A unique name for this capability like `payments` / `settlements`.
          */
@@ -267,6 +275,7 @@ public class GetClientCapabilities {
             return this;
         }
 
+
         public Builder status(GetClientStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
@@ -278,6 +287,7 @@ public class GetClientCapabilities {
             this.status = status;
             return this;
         }
+
 
         public Builder statusReason(GetClientStatusReason statusReason) {
             Utils.checkNotNull(statusReason, "statusReason");
@@ -291,6 +301,7 @@ public class GetClientCapabilities {
             return this;
         }
 
+
         public Builder requirements(List<GetClientRequirements> requirements) {
             Utils.checkNotNull(requirements, "requirements");
             this.requirements = Optional.ofNullable(requirements);
@@ -302,14 +313,13 @@ public class GetClientCapabilities {
             this.requirements = requirements;
             return this;
         }
-        
+
         public GetClientCapabilities build() {
+
             return new GetClientCapabilities(
-                resource,
-                name,
-                status,
-                statusReason,
-                requirements);
+                resource, name, status,
+                statusReason, requirements);
         }
+
     }
 }

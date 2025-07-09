@@ -18,7 +18,6 @@ import java.lang.String;
  * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent to your own account balance.
  */
 public class EntityApplicationFee {
-
     /**
      * The fee that you wish to charge.
      * 
@@ -61,9 +60,10 @@ public class EntityApplicationFee {
         return description;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The fee that you wish to charge.
@@ -85,7 +85,6 @@ public class EntityApplicationFee {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -103,8 +102,7 @@ public class EntityApplicationFee {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            amount,
-            description);
+            amount, description);
     }
     
     @Override
@@ -113,16 +111,18 @@ public class EntityApplicationFee {
                 "amount", amount,
                 "description", description);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private GetWebhookEventEntityAmount amount;
- 
+
         private String description;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The fee that you wish to charge.
@@ -135,6 +135,7 @@ public class EntityApplicationFee {
             return this;
         }
 
+
         /**
          * The description of the application fee. This will appear on settlement reports towards both you and the connected merchant.
          */
@@ -143,11 +144,12 @@ public class EntityApplicationFee {
             this.description = description;
             return this;
         }
-        
+
         public EntityApplicationFee build() {
+
             return new EntityApplicationFee(
-                amount,
-                description);
+                amount, description);
         }
+
     }
 }

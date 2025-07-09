@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class ListSettlementsEmbedded {
 
+public class ListSettlementsEmbedded {
     /**
      * An array of settlement objects. For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
      */
@@ -44,9 +44,10 @@ public class ListSettlementsEmbedded {
         return (Optional<List<Settlements>>) settlements;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An array of settlement objects. For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
@@ -57,6 +58,7 @@ public class ListSettlementsEmbedded {
         return this;
     }
 
+
     /**
      * An array of settlement objects. For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
      */
@@ -66,7 +68,6 @@ public class ListSettlementsEmbedded {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,14 +92,16 @@ public class ListSettlementsEmbedded {
         return Utils.toString(ListSettlementsEmbedded.class,
                 "settlements", settlements);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<Settlements>> settlements = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An array of settlement objects. For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
@@ -117,10 +120,12 @@ public class ListSettlementsEmbedded {
             this.settlements = settlements;
             return this;
         }
-        
+
         public ListSettlementsEmbedded build() {
+
             return new ListSettlementsEmbedded(
                 settlements);
         }
+
     }
 }

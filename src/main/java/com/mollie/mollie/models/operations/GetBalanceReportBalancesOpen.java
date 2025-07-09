@@ -16,14 +16,15 @@ import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetBalanceReportBalancesOpen {
 
+public class GetBalanceReportBalancesOpen {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
     private Optional<? extends GetBalanceReportAmount> amount;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subtotals")
@@ -58,9 +59,10 @@ public class GetBalanceReportBalancesOpen {
         return (JsonNullable<List<Subtotals>>) subtotals;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -70,6 +72,7 @@ public class GetBalanceReportBalancesOpen {
         this.amount = Optional.ofNullable(amount);
         return this;
     }
+
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -92,7 +95,6 @@ public class GetBalanceReportBalancesOpen {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -110,8 +112,7 @@ public class GetBalanceReportBalancesOpen {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            amount,
-            subtotals);
+            amount, subtotals);
     }
     
     @Override
@@ -120,16 +121,18 @@ public class GetBalanceReportBalancesOpen {
                 "amount", amount,
                 "subtotals", subtotals);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends GetBalanceReportAmount> amount = Optional.empty();
- 
+
         private JsonNullable<? extends List<Subtotals>> subtotals = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -149,6 +152,7 @@ public class GetBalanceReportBalancesOpen {
             return this;
         }
 
+
         public Builder subtotals(List<Subtotals> subtotals) {
             Utils.checkNotNull(subtotals, "subtotals");
             this.subtotals = JsonNullable.of(subtotals);
@@ -160,11 +164,12 @@ public class GetBalanceReportBalancesOpen {
             this.subtotals = subtotals;
             return this;
         }
-        
+
         public GetBalanceReportBalancesOpen build() {
+
             return new GetBalanceReportBalancesOpen(
-                amount,
-                subtotals);
+                amount, subtotals);
         }
+
     }
 }

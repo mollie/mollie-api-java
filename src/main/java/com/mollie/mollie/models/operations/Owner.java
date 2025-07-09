@@ -19,7 +19,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Personal data of your customer.
  */
 public class Owner {
-
     /**
      * The email address of your customer.
      */
@@ -67,7 +66,8 @@ public class Owner {
             String email,
             String givenName,
             String familyName) {
-        this(email, givenName, familyName, JsonNullable.undefined());
+        this(email, givenName, familyName,
+            JsonNullable.undefined());
     }
 
     /**
@@ -104,9 +104,10 @@ public class Owner {
         return locale;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The email address of your customer.
@@ -157,7 +158,6 @@ public class Owner {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -177,9 +177,7 @@ public class Owner {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            email,
-            givenName,
-            familyName,
+            email, givenName, familyName,
             locale);
     }
     
@@ -191,20 +189,22 @@ public class Owner {
                 "familyName", familyName,
                 "locale", locale);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String email;
- 
+
         private String givenName;
- 
+
         private String familyName;
- 
+
         private JsonNullable<String> locale = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The email address of your customer.
@@ -215,6 +215,7 @@ public class Owner {
             return this;
         }
 
+
         /**
          * The given name (first name) of your customer.
          */
@@ -224,6 +225,7 @@ public class Owner {
             return this;
         }
 
+
         /**
          * The family name (surname) of your customer.
          */
@@ -232,6 +234,7 @@ public class Owner {
             this.familyName = familyName;
             return this;
         }
+
 
         /**
          * Preset the language to be used for the login screen, if applicable. For the consent screen, the preferred language of the logged in merchant will be used and this parameter is ignored.
@@ -254,13 +257,13 @@ public class Owner {
             this.locale = locale;
             return this;
         }
-        
+
         public Owner build() {
+
             return new Owner(
-                email,
-                givenName,
-                familyName,
+                email, givenName, familyName,
                 locale);
         }
+
     }
 }

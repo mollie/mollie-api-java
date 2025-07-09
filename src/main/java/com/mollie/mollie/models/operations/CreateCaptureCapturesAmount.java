@@ -16,7 +16,6 @@ import java.lang.String;
  * <p>The amount captured. If no amount is provided, the full authorized amount is captured.
  */
 public class CreateCaptureCapturesAmount {
-
     /**
      * A three-character ISO 4217 currency code.
      */
@@ -55,9 +54,10 @@ public class CreateCaptureCapturesAmount {
         return value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A three-character ISO 4217 currency code.
@@ -77,7 +77,6 @@ public class CreateCaptureCapturesAmount {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -95,8 +94,7 @@ public class CreateCaptureCapturesAmount {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            currency,
-            value);
+            currency, value);
     }
     
     @Override
@@ -105,16 +103,18 @@ public class CreateCaptureCapturesAmount {
                 "currency", currency,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String currency;
- 
+
         private String value;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A three-character ISO 4217 currency code.
@@ -125,6 +125,7 @@ public class CreateCaptureCapturesAmount {
             return this;
         }
 
+
         /**
          * A string containing an exact monetary amount in the given currency.
          */
@@ -133,11 +134,12 @@ public class CreateCaptureCapturesAmount {
             this.value = value;
             return this;
         }
-        
+
         public CreateCaptureCapturesAmount build() {
+
             return new CreateCaptureCapturesAmount(
-                currency,
-                value);
+                currency, value);
         }
+
     }
 }

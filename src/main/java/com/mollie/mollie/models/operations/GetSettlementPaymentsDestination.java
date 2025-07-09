@@ -16,7 +16,6 @@ import java.lang.String;
  * <p>The destination of this portion of the payment.
  */
 public class GetSettlementPaymentsDestination {
-
     /**
      * The type of destination. Currently only the destination type `organization` is supported.
      * 
@@ -59,9 +58,10 @@ public class GetSettlementPaymentsDestination {
         return organizationId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The type of destination. Currently only the destination type `organization` is supported.
@@ -83,7 +83,6 @@ public class GetSettlementPaymentsDestination {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -101,8 +100,7 @@ public class GetSettlementPaymentsDestination {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            organizationId);
+            type, organizationId);
     }
     
     @Override
@@ -111,16 +109,18 @@ public class GetSettlementPaymentsDestination {
                 "type", type,
                 "organizationId", organizationId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String type;
- 
+
         private String organizationId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The type of destination. Currently only the destination type `organization` is supported.
@@ -133,6 +133,7 @@ public class GetSettlementPaymentsDestination {
             return this;
         }
 
+
         /**
          * Required for destination type `organization`. The ID of the connected organization the funds should be routed to.
          */
@@ -141,11 +142,12 @@ public class GetSettlementPaymentsDestination {
             this.organizationId = organizationId;
             return this;
         }
-        
+
         public GetSettlementPaymentsDestination build() {
+
             return new GetSettlementPaymentsDestination(
-                type,
-                organizationId);
+                type, organizationId);
         }
+
     }
 }

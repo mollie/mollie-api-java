@@ -23,7 +23,6 @@ import java.util.Optional;
  * <p>The webhook object.
  */
 public class CreateWebhookResponseBody {
-
     /**
      * Indicates the response contains a webhook subscription object. Will always contain the string `webhook` for this endpoint.
      */
@@ -143,7 +142,10 @@ public class CreateWebhookResponseBody {
     }
     
     public CreateWebhookResponseBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -240,9 +242,10 @@ public class CreateWebhookResponseBody {
         return (Optional<CreateWebhookLinks>) links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a webhook subscription object. Will always contain the string `webhook` for this endpoint.
@@ -252,6 +255,7 @@ public class CreateWebhookResponseBody {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Indicates the response contains a webhook subscription object. Will always contain the string `webhook` for this endpoint.
@@ -271,6 +275,7 @@ public class CreateWebhookResponseBody {
         return this;
     }
 
+
     /**
      * The identifier uniquely referring to this subscription.
      */
@@ -288,6 +293,7 @@ public class CreateWebhookResponseBody {
         this.url = Optional.ofNullable(url);
         return this;
     }
+
 
     /**
      * The subscription's events destination.
@@ -307,6 +313,7 @@ public class CreateWebhookResponseBody {
         return this;
     }
 
+
     /**
      * The identifier uniquely referring to the profile that created the subscription.
      */
@@ -324,6 +331,7 @@ public class CreateWebhookResponseBody {
         this.createdAt = Optional.ofNullable(createdAt);
         return this;
     }
+
 
     /**
      * The subscription's date time of creation.
@@ -343,6 +351,7 @@ public class CreateWebhookResponseBody {
         return this;
     }
 
+
     /**
      * The subscription's name.
      */
@@ -360,6 +369,7 @@ public class CreateWebhookResponseBody {
         this.eventTypes = Optional.ofNullable(eventTypes);
         return this;
     }
+
 
     /**
      * The events types that are subscribed.
@@ -380,6 +390,7 @@ public class CreateWebhookResponseBody {
         this.status = Optional.ofNullable(status);
         return this;
     }
+
 
     /**
      * The subscription's current status.
@@ -403,6 +414,7 @@ public class CreateWebhookResponseBody {
         return this;
     }
 
+
     /**
      * The subscription's mode.
      * 
@@ -423,6 +435,7 @@ public class CreateWebhookResponseBody {
         return this;
     }
 
+
     /**
      * The subscription's secret.
      */
@@ -441,6 +454,7 @@ public class CreateWebhookResponseBody {
         return this;
     }
 
+
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
@@ -450,7 +464,6 @@ public class CreateWebhookResponseBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -477,17 +490,10 @@ public class CreateWebhookResponseBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            url,
-            profileId,
-            createdAt,
-            name,
-            eventTypes,
-            status,
-            mode,
-            webhookSecret,
-            links);
+            resource, id, url,
+            profileId, createdAt, name,
+            eventTypes, status, mode,
+            webhookSecret, links);
     }
     
     @Override
@@ -505,34 +511,36 @@ public class CreateWebhookResponseBody {
                 "webhookSecret", webhookSecret,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> url = Optional.empty();
- 
+
         private Optional<String> profileId = Optional.empty();
- 
+
         private Optional<String> createdAt = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<? extends List<String>> eventTypes = Optional.empty();
- 
+
         private Optional<String> status = Optional.empty();
- 
+
         private Optional<String> mode = Optional.empty();
- 
+
         private Optional<String> webhookSecret = Optional.empty();
- 
+
         private Optional<? extends CreateWebhookLinks> links = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a webhook subscription object. Will always contain the string `webhook` for this endpoint.
@@ -552,6 +560,7 @@ public class CreateWebhookResponseBody {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this subscription.
          */
@@ -569,6 +578,7 @@ public class CreateWebhookResponseBody {
             this.id = id;
             return this;
         }
+
 
         /**
          * The subscription's events destination.
@@ -588,6 +598,7 @@ public class CreateWebhookResponseBody {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to the profile that created the subscription.
          */
@@ -605,6 +616,7 @@ public class CreateWebhookResponseBody {
             this.profileId = profileId;
             return this;
         }
+
 
         /**
          * The subscription's date time of creation.
@@ -624,6 +636,7 @@ public class CreateWebhookResponseBody {
             return this;
         }
 
+
         /**
          * The subscription's name.
          */
@@ -642,6 +655,7 @@ public class CreateWebhookResponseBody {
             return this;
         }
 
+
         /**
          * The events types that are subscribed.
          */
@@ -659,6 +673,7 @@ public class CreateWebhookResponseBody {
             this.eventTypes = eventTypes;
             return this;
         }
+
 
         /**
          * The subscription's current status.
@@ -682,6 +697,7 @@ public class CreateWebhookResponseBody {
             return this;
         }
 
+
         /**
          * The subscription's mode.
          * 
@@ -704,6 +720,7 @@ public class CreateWebhookResponseBody {
             return this;
         }
 
+
         /**
          * The subscription's secret.
          */
@@ -722,6 +739,7 @@ public class CreateWebhookResponseBody {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -739,24 +757,19 @@ public class CreateWebhookResponseBody {
             this.links = links;
             return this;
         }
-        
+
         public CreateWebhookResponseBody build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new CreateWebhookResponseBody(
-                resource,
-                id,
-                url,
-                profileId,
-                createdAt,
-                name,
-                eventTypes,
-                status,
-                mode,
-                webhookSecret,
-                links);
+                resource, id, url,
+                profileId, createdAt, name,
+                eventTypes, status, mode,
+                webhookSecret, links);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

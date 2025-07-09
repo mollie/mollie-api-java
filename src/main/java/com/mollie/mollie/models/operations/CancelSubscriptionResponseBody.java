@@ -24,7 +24,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>The updated subscription object with status `canceled`. For a complete reference of the subscription object, refer to the [Get subscription endpoint](get-subscription) documentation.
  */
 public class CancelSubscriptionResponseBody {
-
     /**
      * Indicates the response contains a subscription object. Will always contain the string `subscription` for this endpoint.
      */
@@ -252,7 +251,13 @@ public class CancelSubscriptionResponseBody {
     }
     
     public CancelSubscriptionResponseBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -441,9 +446,10 @@ public class CancelSubscriptionResponseBody {
         return (Optional<CancelSubscriptionLinks>) links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a subscription object. Will always contain the string `subscription` for this endpoint.
@@ -453,6 +459,7 @@ public class CancelSubscriptionResponseBody {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Indicates the response contains a subscription object. Will always contain the string `subscription` for this endpoint.
@@ -471,6 +478,7 @@ public class CancelSubscriptionResponseBody {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The identifier uniquely referring to this subscription. Example: `sub_rVKGtNd6s3`.
@@ -491,6 +499,7 @@ public class CancelSubscriptionResponseBody {
         this.mode = Optional.ofNullable(mode);
         return this;
     }
+
 
     /**
      * Whether this entity was created in live mode or in test mode.
@@ -514,6 +523,7 @@ public class CancelSubscriptionResponseBody {
         return this;
     }
 
+
     /**
      * The subscription's current status is directly related to the status of the underlying customer or mandate that is enabling the subscription.
      * 
@@ -533,6 +543,7 @@ public class CancelSubscriptionResponseBody {
         this.amount = Optional.ofNullable(amount);
         return this;
     }
+
 
     /**
      * The amount for each individual payment that is charged with this subscription. For example, for a monthly subscription of €10, the subscription amount should be set to €10.
@@ -574,6 +585,7 @@ public class CancelSubscriptionResponseBody {
         return this;
     }
 
+
     /**
      * Number of payments left for the subscription.
      */
@@ -596,6 +608,7 @@ public class CancelSubscriptionResponseBody {
         return this;
     }
 
+
     /**
      * Interval to wait between payments, for example `1 month` or `14 days`.
      * 
@@ -617,6 +630,7 @@ public class CancelSubscriptionResponseBody {
         this.startDate = Optional.ofNullable(startDate);
         return this;
     }
+
 
     /**
      * The start date of the subscription in `YYYY-MM-DD` format.
@@ -655,6 +669,7 @@ public class CancelSubscriptionResponseBody {
         this.description = Optional.ofNullable(description);
         return this;
     }
+
 
     /**
      * The subscription's description will be used as the description of the resulting individual payments and so showing up on the bank statement of the consumer.
@@ -702,6 +717,7 @@ public class CancelSubscriptionResponseBody {
         return this;
     }
 
+
     /**
      * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
      * 
@@ -748,6 +764,7 @@ public class CancelSubscriptionResponseBody {
         return this;
     }
 
+
     /**
      * We will call this URL for any payment status changes of payments resulting from this subscription.
      * 
@@ -767,6 +784,7 @@ public class CancelSubscriptionResponseBody {
         this.customerId = Optional.ofNullable(customerId);
         return this;
     }
+
 
     /**
      * The customer this subscription belongs to.
@@ -804,6 +822,7 @@ public class CancelSubscriptionResponseBody {
         return this;
     }
 
+
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
@@ -840,6 +859,7 @@ public class CancelSubscriptionResponseBody {
         return this;
     }
 
+
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
@@ -849,7 +869,6 @@ public class CancelSubscriptionResponseBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -885,26 +904,13 @@ public class CancelSubscriptionResponseBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            mode,
-            status,
-            amount,
-            times,
-            timesRemaining,
-            interval,
-            startDate,
-            nextPaymentDate,
-            description,
-            method,
-            applicationFee,
-            metadata,
-            webhookUrl,
-            customerId,
-            mandateId,
-            createdAt,
-            canceledAt,
-            links);
+            resource, id, mode,
+            status, amount, times,
+            timesRemaining, interval, startDate,
+            nextPaymentDate, description, method,
+            applicationFee, metadata, webhookUrl,
+            customerId, mandateId, createdAt,
+            canceledAt, links);
     }
     
     @Override
@@ -931,52 +937,54 @@ public class CancelSubscriptionResponseBody {
                 "canceledAt", canceledAt,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> mode = Optional.empty();
- 
+
         private Optional<String> status = Optional.empty();
- 
+
         private Optional<? extends CancelSubscriptionAmount> amount = Optional.empty();
- 
+
         private JsonNullable<Long> times = JsonNullable.undefined();
- 
+
         private Optional<Long> timesRemaining = Optional.empty();
- 
+
         private Optional<String> interval = Optional.empty();
- 
+
         private Optional<String> startDate = Optional.empty();
- 
+
         private JsonNullable<String> nextPaymentDate = JsonNullable.undefined();
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private JsonNullable<String> method = JsonNullable.undefined();
- 
+
         private Optional<? extends CancelSubscriptionApplicationFee> applicationFee = Optional.empty();
- 
+
         private JsonNullable<? extends CancelSubscriptionMetadata> metadata = JsonNullable.undefined();
- 
+
         private Optional<String> webhookUrl = Optional.empty();
- 
+
         private Optional<String> customerId = Optional.empty();
- 
+
         private JsonNullable<String> mandateId = JsonNullable.undefined();
- 
+
         private Optional<String> createdAt = Optional.empty();
- 
+
         private JsonNullable<String> canceledAt = JsonNullable.undefined();
- 
+
         private Optional<? extends CancelSubscriptionLinks> links = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a subscription object. Will always contain the string `subscription` for this endpoint.
@@ -996,6 +1004,7 @@ public class CancelSubscriptionResponseBody {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this subscription. Example: `sub_rVKGtNd6s3`.
          */
@@ -1013,6 +1022,7 @@ public class CancelSubscriptionResponseBody {
             this.id = id;
             return this;
         }
+
 
         /**
          * Whether this entity was created in live mode or in test mode.
@@ -1036,6 +1046,7 @@ public class CancelSubscriptionResponseBody {
             return this;
         }
 
+
         /**
          * The subscription's current status is directly related to the status of the underlying customer or mandate that is enabling the subscription.
          * 
@@ -1058,6 +1069,7 @@ public class CancelSubscriptionResponseBody {
             return this;
         }
 
+
         /**
          * The amount for each individual payment that is charged with this subscription. For example, for a monthly subscription of €10, the subscription amount should be set to €10.
          */
@@ -1075,6 +1087,7 @@ public class CancelSubscriptionResponseBody {
             this.amount = amount;
             return this;
         }
+
 
         /**
          * Total number of payments for the subscription. Once this number of payments is reached, the subscription is considered completed.
@@ -1098,6 +1111,7 @@ public class CancelSubscriptionResponseBody {
             return this;
         }
 
+
         /**
          * Number of payments left for the subscription.
          */
@@ -1115,6 +1129,7 @@ public class CancelSubscriptionResponseBody {
             this.timesRemaining = timesRemaining;
             return this;
         }
+
 
         /**
          * Interval to wait between payments, for example `1 month` or `14 days`.
@@ -1142,6 +1157,7 @@ public class CancelSubscriptionResponseBody {
             return this;
         }
 
+
         /**
          * The start date of the subscription in `YYYY-MM-DD` format.
          */
@@ -1160,6 +1176,7 @@ public class CancelSubscriptionResponseBody {
             return this;
         }
 
+
         /**
          * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled, this parameter will not be returned.
          */
@@ -1177,6 +1194,7 @@ public class CancelSubscriptionResponseBody {
             this.nextPaymentDate = nextPaymentDate;
             return this;
         }
+
 
         /**
          * The subscription's description will be used as the description of the resulting individual payments and so showing up on the bank statement of the consumer.
@@ -1200,6 +1218,7 @@ public class CancelSubscriptionResponseBody {
             return this;
         }
 
+
         /**
          * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
          * 
@@ -1221,6 +1240,7 @@ public class CancelSubscriptionResponseBody {
             this.method = method;
             return this;
         }
+
 
         /**
          * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
@@ -1248,6 +1268,7 @@ public class CancelSubscriptionResponseBody {
             return this;
         }
 
+
         /**
          * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          * 
@@ -1269,6 +1290,7 @@ public class CancelSubscriptionResponseBody {
             this.metadata = metadata;
             return this;
         }
+
 
         /**
          * We will call this URL for any payment status changes of payments resulting from this subscription.
@@ -1292,6 +1314,7 @@ public class CancelSubscriptionResponseBody {
             return this;
         }
 
+
         /**
          * The customer this subscription belongs to.
          */
@@ -1309,6 +1332,7 @@ public class CancelSubscriptionResponseBody {
             this.customerId = customerId;
             return this;
         }
+
 
         /**
          * The mandate used for this subscription, if any.
@@ -1328,6 +1352,7 @@ public class CancelSubscriptionResponseBody {
             return this;
         }
 
+
         /**
          * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
          */
@@ -1345,6 +1370,7 @@ public class CancelSubscriptionResponseBody {
             this.createdAt = createdAt;
             return this;
         }
+
 
         /**
          * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the subscription is not canceled (yet).
@@ -1364,6 +1390,7 @@ public class CancelSubscriptionResponseBody {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -1381,33 +1408,22 @@ public class CancelSubscriptionResponseBody {
             this.links = links;
             return this;
         }
-        
+
         public CancelSubscriptionResponseBody build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new CancelSubscriptionResponseBody(
-                resource,
-                id,
-                mode,
-                status,
-                amount,
-                times,
-                timesRemaining,
-                interval,
-                startDate,
-                nextPaymentDate,
-                description,
-                method,
-                applicationFee,
-                metadata,
-                webhookUrl,
-                customerId,
-                mandateId,
-                createdAt,
-                canceledAt,
-                links);
+                resource, id, mode,
+                status, amount, times,
+                timesRemaining, interval, startDate,
+                nextPaymentDate, description, method,
+                applicationFee, metadata, webhookUrl,
+                customerId, mandateId, createdAt,
+                canceledAt, links);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

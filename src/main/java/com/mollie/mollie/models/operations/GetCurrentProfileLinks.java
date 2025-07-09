@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
 public class GetCurrentProfileLinks {
-
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -106,7 +105,9 @@ public class GetCurrentProfileLinks {
     }
     
     public GetCurrentProfileLinks() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -181,9 +182,10 @@ public class GetCurrentProfileLinks {
         return (Optional<GetCurrentProfileDocumentation>) documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -193,6 +195,7 @@ public class GetCurrentProfileLinks {
         this.self = Optional.ofNullable(self);
         return this;
     }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -212,6 +215,7 @@ public class GetCurrentProfileLinks {
         return this;
     }
 
+
     /**
      * Link to the profile in the Mollie dashboard.
      */
@@ -229,6 +233,7 @@ public class GetCurrentProfileLinks {
         this.chargebacks = Optional.ofNullable(chargebacks);
         return this;
     }
+
 
     /**
      * The API resource URL of the chargebacks that belong to this profile.
@@ -248,6 +253,7 @@ public class GetCurrentProfileLinks {
         return this;
     }
 
+
     /**
      * The API resource URL of the methods that are enabled for this profile.
      */
@@ -265,6 +271,7 @@ public class GetCurrentProfileLinks {
         this.payments = Optional.ofNullable(payments);
         return this;
     }
+
 
     /**
      * The API resource URL of the payments that belong to this profile.
@@ -284,6 +291,7 @@ public class GetCurrentProfileLinks {
         return this;
     }
 
+
     /**
      * The API resource URL of the refunds that belong to this profile.
      */
@@ -301,6 +309,7 @@ public class GetCurrentProfileLinks {
         this.checkoutPreviewUrl = Optional.ofNullable(checkoutPreviewUrl);
         return this;
     }
+
 
     /**
      * The hosted checkout preview URL. You need to be logged in to access this page.
@@ -320,6 +329,7 @@ public class GetCurrentProfileLinks {
         return this;
     }
 
+
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -329,7 +339,6 @@ public class GetCurrentProfileLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -353,14 +362,9 @@ public class GetCurrentProfileLinks {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self,
-            dashboard,
-            chargebacks,
-            methods,
-            payments,
-            refunds,
-            checkoutPreviewUrl,
-            documentation);
+            self, dashboard, chargebacks,
+            methods, payments, refunds,
+            checkoutPreviewUrl, documentation);
     }
     
     @Override
@@ -375,28 +379,30 @@ public class GetCurrentProfileLinks {
                 "checkoutPreviewUrl", checkoutPreviewUrl,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends GetCurrentProfileSelf> self = Optional.empty();
- 
+
         private Optional<? extends GetCurrentProfileDashboard> dashboard = Optional.empty();
- 
+
         private Optional<? extends GetCurrentProfileChargebacks> chargebacks = Optional.empty();
- 
+
         private Optional<? extends GetCurrentProfileMethods> methods = Optional.empty();
- 
+
         private Optional<? extends GetCurrentProfilePayments> payments = Optional.empty();
- 
+
         private Optional<? extends GetCurrentProfileRefunds> refunds = Optional.empty();
- 
+
         private Optional<? extends GetCurrentProfileCheckoutPreviewUrl> checkoutPreviewUrl = Optional.empty();
- 
+
         private Optional<? extends GetCurrentProfileDocumentation> documentation = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -416,6 +422,7 @@ public class GetCurrentProfileLinks {
             return this;
         }
 
+
         /**
          * Link to the profile in the Mollie dashboard.
          */
@@ -433,6 +440,7 @@ public class GetCurrentProfileLinks {
             this.dashboard = dashboard;
             return this;
         }
+
 
         /**
          * The API resource URL of the chargebacks that belong to this profile.
@@ -452,6 +460,7 @@ public class GetCurrentProfileLinks {
             return this;
         }
 
+
         /**
          * The API resource URL of the methods that are enabled for this profile.
          */
@@ -469,6 +478,7 @@ public class GetCurrentProfileLinks {
             this.methods = methods;
             return this;
         }
+
 
         /**
          * The API resource URL of the payments that belong to this profile.
@@ -488,6 +498,7 @@ public class GetCurrentProfileLinks {
             return this;
         }
 
+
         /**
          * The API resource URL of the refunds that belong to this profile.
          */
@@ -505,6 +516,7 @@ public class GetCurrentProfileLinks {
             this.refunds = refunds;
             return this;
         }
+
 
         /**
          * The hosted checkout preview URL. You need to be logged in to access this page.
@@ -524,6 +536,7 @@ public class GetCurrentProfileLinks {
             return this;
         }
 
+
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
@@ -541,17 +554,14 @@ public class GetCurrentProfileLinks {
             this.documentation = documentation;
             return this;
         }
-        
+
         public GetCurrentProfileLinks build() {
+
             return new GetCurrentProfileLinks(
-                self,
-                dashboard,
-                chargebacks,
-                methods,
-                payments,
-                refunds,
-                checkoutPreviewUrl,
-                documentation);
+                self, dashboard, chargebacks,
+                methods, payments, refunds,
+                checkoutPreviewUrl, documentation);
         }
+
     }
 }

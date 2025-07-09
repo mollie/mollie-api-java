@@ -12,13 +12,14 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class CreateCustomerPaymentRequest {
 
+public class CreateCustomerPaymentRequest {
     /**
      * Provide the ID of the related customer.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=customerId")
     private String customerId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends CreateCustomerPaymentRequestBody> requestBody;
@@ -52,9 +53,10 @@ public class CreateCustomerPaymentRequest {
         return (Optional<CreateCustomerPaymentRequestBody>) requestBody;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the related customer.
@@ -71,13 +73,13 @@ public class CreateCustomerPaymentRequest {
         return this;
     }
 
+
     public CreateCustomerPaymentRequest withRequestBody(Optional<? extends CreateCustomerPaymentRequestBody> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -95,8 +97,7 @@ public class CreateCustomerPaymentRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            customerId,
-            requestBody);
+            customerId, requestBody);
     }
     
     @Override
@@ -105,16 +106,18 @@ public class CreateCustomerPaymentRequest {
                 "customerId", customerId,
                 "requestBody", requestBody);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String customerId;
- 
+
         private Optional<? extends CreateCustomerPaymentRequestBody> requestBody = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the related customer.
@@ -124,6 +127,7 @@ public class CreateCustomerPaymentRequest {
             this.customerId = customerId;
             return this;
         }
+
 
         public Builder requestBody(CreateCustomerPaymentRequestBody requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
@@ -136,11 +140,12 @@ public class CreateCustomerPaymentRequest {
             this.requestBody = requestBody;
             return this;
         }
-        
+
         public CreateCustomerPaymentRequest build() {
+
             return new CreateCustomerPaymentRequest(
-                customerId,
-                requestBody);
+                customerId, requestBody);
         }
+
     }
 }

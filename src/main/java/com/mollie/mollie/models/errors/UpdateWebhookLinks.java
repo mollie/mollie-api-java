@@ -10,8 +10,8 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class UpdateWebhookLinks {
 
+public class UpdateWebhookLinks {
     /**
      * The URL to the generic Mollie API error handling guide.
      */
@@ -33,9 +33,10 @@ public class UpdateWebhookLinks {
         return documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The URL to the generic Mollie API error handling guide.
@@ -46,7 +47,6 @@ public class UpdateWebhookLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -71,14 +71,16 @@ public class UpdateWebhookLinks {
         return Utils.toString(UpdateWebhookLinks.class,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private UpdateWebhookDocumentation documentation;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The URL to the generic Mollie API error handling guide.
@@ -88,10 +90,12 @@ public class UpdateWebhookLinks {
             this.documentation = documentation;
             return this;
         }
-        
+
         public UpdateWebhookLinks build() {
+
             return new UpdateWebhookLinks(
                 documentation);
         }
+
     }
 }

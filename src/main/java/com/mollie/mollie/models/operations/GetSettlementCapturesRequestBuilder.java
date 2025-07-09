@@ -48,8 +48,8 @@ public class GetSettlementCapturesRequestBuilder {
 
         RequestOperation<GetSettlementCapturesRequest, GetSettlementCapturesResponse> operation
               = new GetSettlementCapturesOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

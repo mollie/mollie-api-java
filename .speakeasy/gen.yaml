@@ -21,7 +21,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 0.11.0
+  version: 0.12.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: mollie
@@ -50,6 +50,7 @@ java:
     shortName: MIT
     url: https://mit-license.org/
   maxMethodParams: 4
+  nullFriendlyParameters: false
   outputModelSuffix: output
   projectName: openapi
   templateVersion: v2

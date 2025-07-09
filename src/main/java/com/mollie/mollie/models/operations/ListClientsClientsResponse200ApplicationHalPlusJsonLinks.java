@@ -14,8 +14,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class ListClientsClientsResponse200ApplicationHalPlusJsonLinks {
 
+public class ListClientsClientsResponse200ApplicationHalPlusJsonLinks {
     /**
      * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled. For example, where necessary documents are to be uploaded.
      */
@@ -43,9 +43,10 @@ public class ListClientsClientsResponse200ApplicationHalPlusJsonLinks {
         return (Optional<ListClientsClientsResponseDashboard>) dashboard;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled. For example, where necessary documents are to be uploaded.
@@ -56,6 +57,7 @@ public class ListClientsClientsResponse200ApplicationHalPlusJsonLinks {
         return this;
     }
 
+
     /**
      * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled. For example, where necessary documents are to be uploaded.
      */
@@ -65,7 +67,6 @@ public class ListClientsClientsResponse200ApplicationHalPlusJsonLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,14 +91,16 @@ public class ListClientsClientsResponse200ApplicationHalPlusJsonLinks {
         return Utils.toString(ListClientsClientsResponse200ApplicationHalPlusJsonLinks.class,
                 "dashboard", dashboard);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ListClientsClientsResponseDashboard> dashboard = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled. For example, where necessary documents are to be uploaded.
@@ -116,10 +119,12 @@ public class ListClientsClientsResponse200ApplicationHalPlusJsonLinks {
             this.dashboard = dashboard;
             return this;
         }
-        
+
         public ListClientsClientsResponse200ApplicationHalPlusJsonLinks build() {
+
             return new ListClientsClientsResponse200ApplicationHalPlusJsonLinks(
                 dashboard);
         }
+
     }
 }

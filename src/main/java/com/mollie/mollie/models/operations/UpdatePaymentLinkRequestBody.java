@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class UpdatePaymentLinkRequestBody {
 
+public class UpdatePaymentLinkRequestBody {
     /**
      * A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
      * 
@@ -45,7 +45,7 @@ public class UpdatePaymentLinkRequestBody {
     /**
      * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint'.
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint', 'in3', 'riverty', 'klarna', 'billie'.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("allowedMethods")
@@ -120,7 +120,9 @@ public class UpdatePaymentLinkRequestBody {
     }
     
     public UpdatePaymentLinkRequestBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -153,7 +155,7 @@ public class UpdatePaymentLinkRequestBody {
     /**
      * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint'.
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint', 'in3', 'riverty', 'klarna', 'billie'.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -208,9 +210,10 @@ public class UpdatePaymentLinkRequestBody {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
@@ -222,6 +225,7 @@ public class UpdatePaymentLinkRequestBody {
         this.description = Optional.ofNullable(description);
         return this;
     }
+
 
     /**
      * A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
@@ -243,6 +247,7 @@ public class UpdatePaymentLinkRequestBody {
         return this;
     }
 
+
     /**
      * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The customer will be prompted to enter a value greater than or equal to the minimum amount.
      */
@@ -261,6 +266,7 @@ public class UpdatePaymentLinkRequestBody {
         return this;
     }
 
+
     /**
      * Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
      */
@@ -273,7 +279,7 @@ public class UpdatePaymentLinkRequestBody {
     /**
      * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint'.
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint', 'in3', 'riverty', 'klarna', 'billie'.
      */
     public UpdatePaymentLinkRequestBody withAllowedMethods(List<String> allowedMethods) {
         Utils.checkNotNull(allowedMethods, "allowedMethods");
@@ -284,7 +290,7 @@ public class UpdatePaymentLinkRequestBody {
     /**
      * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint'.
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint', 'in3', 'riverty', 'klarna', 'billie'.
      */
     public UpdatePaymentLinkRequestBody withAllowedMethods(JsonNullable<? extends List<String>> allowedMethods) {
         Utils.checkNotNull(allowedMethods, "allowedMethods");
@@ -331,6 +337,7 @@ public class UpdatePaymentLinkRequestBody {
         return this;
     }
 
+
     /**
      * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
      * 
@@ -354,6 +361,7 @@ public class UpdatePaymentLinkRequestBody {
         this.shippingAddress = Optional.ofNullable(shippingAddress);
         return this;
     }
+
 
     /**
      * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
@@ -388,7 +396,6 @@ public class UpdatePaymentLinkRequestBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -412,14 +419,9 @@ public class UpdatePaymentLinkRequestBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            description,
-            minimumAmount,
-            archived,
-            allowedMethods,
-            lines,
-            billingAddress,
-            shippingAddress,
-            testmode);
+            description, minimumAmount, archived,
+            allowedMethods, lines, billingAddress,
+            shippingAddress, testmode);
     }
     
     @Override
@@ -434,28 +436,30 @@ public class UpdatePaymentLinkRequestBody {
                 "shippingAddress", shippingAddress,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<? extends UpdatePaymentLinkMinimumAmount> minimumAmount = Optional.empty();
- 
+
         private Optional<Boolean> archived = Optional.empty();
- 
+
         private JsonNullable<? extends List<String>> allowedMethods = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<UpdatePaymentLinkLines>> lines = JsonNullable.undefined();
- 
+
         private Optional<? extends UpdatePaymentLinkBillingAddress> billingAddress = Optional.empty();
- 
+
         private Optional<? extends UpdatePaymentLinkShippingAddress> shippingAddress = Optional.empty();
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
@@ -479,6 +483,7 @@ public class UpdatePaymentLinkRequestBody {
             return this;
         }
 
+
         /**
          * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The customer will be prompted to enter a value greater than or equal to the minimum amount.
          */
@@ -496,6 +501,7 @@ public class UpdatePaymentLinkRequestBody {
             this.minimumAmount = minimumAmount;
             return this;
         }
+
 
         /**
          * Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
@@ -515,10 +521,11 @@ public class UpdatePaymentLinkRequestBody {
             return this;
         }
 
+
         /**
          * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
          * 
-         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint'.
+         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint', 'in3', 'riverty', 'klarna', 'billie'.
          */
         public Builder allowedMethods(List<String> allowedMethods) {
             Utils.checkNotNull(allowedMethods, "allowedMethods");
@@ -529,13 +536,14 @@ public class UpdatePaymentLinkRequestBody {
         /**
          * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
          * 
-         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint'.
+         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint', 'in3', 'riverty', 'klarna', 'billie'.
          */
         public Builder allowedMethods(JsonNullable<? extends List<String>> allowedMethods) {
             Utils.checkNotNull(allowedMethods, "allowedMethods");
             this.allowedMethods = allowedMethods;
             return this;
         }
+
 
         /**
          * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
@@ -563,6 +571,7 @@ public class UpdatePaymentLinkRequestBody {
             return this;
         }
 
+
         /**
          * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
          * 
@@ -589,6 +598,7 @@ public class UpdatePaymentLinkRequestBody {
             return this;
         }
 
+
         /**
          * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
          * 
@@ -611,6 +621,7 @@ public class UpdatePaymentLinkRequestBody {
             return this;
         }
 
+
         /**
          * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
          * 
@@ -632,17 +643,14 @@ public class UpdatePaymentLinkRequestBody {
             this.testmode = testmode;
             return this;
         }
-        
+
         public UpdatePaymentLinkRequestBody build() {
+
             return new UpdatePaymentLinkRequestBody(
-                description,
-                minimumAmount,
-                archived,
-                allowedMethods,
-                lines,
-                billingAddress,
-                shippingAddress,
-                testmode);
+                description, minimumAmount, archived,
+                allowedMethods, lines, billingAddress,
+                shippingAddress, testmode);
         }
+
     }
 }

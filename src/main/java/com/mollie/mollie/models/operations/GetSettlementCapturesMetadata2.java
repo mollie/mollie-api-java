@@ -8,19 +8,17 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class GetSettlementCapturesMetadata2 {
 
+public class GetSettlementCapturesMetadata2 {
     @JsonCreator
     public GetSettlementCapturesMetadata2() {
-        
-        
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
 
-    
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -42,16 +40,19 @@ public class GetSettlementCapturesMetadata2 {
     public String toString() {
         return Utils.toString(GetSettlementCapturesMetadata2.class);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-        
+
         private Builder() {
           // force use of static builder() method
         }
-        
+
         public GetSettlementCapturesMetadata2 build() {
+
             return new GetSettlementCapturesMetadata2(
                 );
         }
+
     }
 }

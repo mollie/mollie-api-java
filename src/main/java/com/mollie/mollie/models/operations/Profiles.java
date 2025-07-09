@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class Profiles {
 
+public class Profiles {
     /**
      * Indicates the response contains a profile object. Will always contain the string `profile` for this endpoint.
      */
@@ -172,7 +172,11 @@ public class Profiles {
     }
     
     public Profiles() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -298,9 +302,10 @@ public class Profiles {
         return (Optional<ListProfilesProfilesLinks>) links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a profile object. Will always contain the string `profile` for this endpoint.
@@ -310,6 +315,7 @@ public class Profiles {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Indicates the response contains a profile object. Will always contain the string `profile` for this endpoint.
@@ -328,6 +334,7 @@ public class Profiles {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The identifier uniquely referring to this profile. Example: `pfl_v9hTwCvYqw`.
@@ -349,6 +356,7 @@ public class Profiles {
         return this;
     }
 
+
     /**
      * Whether this entity was created in live mode or in test mode.
      * 
@@ -369,6 +377,7 @@ public class Profiles {
         return this;
     }
 
+
     /**
      * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
      */
@@ -386,6 +395,7 @@ public class Profiles {
         this.website = Optional.ofNullable(website);
         return this;
     }
+
 
     /**
      * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
@@ -405,6 +415,7 @@ public class Profiles {
         return this;
     }
 
+
     /**
      * The email address associated with the profile's trade name or brand.
      */
@@ -422,6 +433,7 @@ public class Profiles {
         this.phone = Optional.ofNullable(phone);
         return this;
     }
+
 
     /**
      * The phone number associated with the profile's trade name or brand.
@@ -441,6 +453,7 @@ public class Profiles {
         return this;
     }
 
+
     /**
      * The products or services offered by the profile's website or application.
      */
@@ -459,6 +472,7 @@ public class Profiles {
         return this;
     }
 
+
     /**
      * A list of countries where you expect that the majority of the profile's customers reside, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
      */
@@ -476,6 +490,7 @@ public class Profiles {
         this.businessCategory = Optional.ofNullable(businessCategory);
         return this;
     }
+
 
     /**
      * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types#business-category) for all possible options.
@@ -501,6 +516,7 @@ public class Profiles {
         return this;
     }
 
+
     /**
      * The profile status determines whether the profile is able to receive live payments.
      * 
@@ -525,6 +541,7 @@ public class Profiles {
         return this;
     }
 
+
     /**
      * Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved automatically, unless a switch to a live profile has been requested. The review object will therefore usually be `null` in test mode.
      */
@@ -542,6 +559,7 @@ public class Profiles {
         this.createdAt = Optional.ofNullable(createdAt);
         return this;
     }
+
 
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -561,6 +579,7 @@ public class Profiles {
         return this;
     }
 
+
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
@@ -570,7 +589,6 @@ public class Profiles {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -600,20 +618,11 @@ public class Profiles {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            mode,
-            name,
-            website,
-            email,
-            phone,
-            description,
-            countriesOfActivity,
-            businessCategory,
-            status,
-            review,
-            createdAt,
-            links);
+            resource, id, mode,
+            name, website, email,
+            phone, description, countriesOfActivity,
+            businessCategory, status, review,
+            createdAt, links);
     }
     
     @Override
@@ -634,40 +643,42 @@ public class Profiles {
                 "createdAt", createdAt,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> mode = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> website = Optional.empty();
- 
+
         private Optional<String> email = Optional.empty();
- 
+
         private Optional<String> phone = Optional.empty();
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<? extends List<String>> countriesOfActivity = Optional.empty();
- 
+
         private Optional<String> businessCategory = Optional.empty();
- 
+
         private Optional<String> status = Optional.empty();
- 
+
         private Optional<? extends ListProfilesReview> review = Optional.empty();
- 
+
         private Optional<String> createdAt = Optional.empty();
- 
+
         private Optional<? extends ListProfilesProfilesLinks> links = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a profile object. Will always contain the string `profile` for this endpoint.
@@ -687,6 +698,7 @@ public class Profiles {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this profile. Example: `pfl_v9hTwCvYqw`.
          */
@@ -704,6 +716,7 @@ public class Profiles {
             this.id = id;
             return this;
         }
+
 
         /**
          * Whether this entity was created in live mode or in test mode.
@@ -727,6 +740,7 @@ public class Profiles {
             return this;
         }
 
+
         /**
          * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
          */
@@ -744,6 +758,7 @@ public class Profiles {
             this.name = name;
             return this;
         }
+
 
         /**
          * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
@@ -763,6 +778,7 @@ public class Profiles {
             return this;
         }
 
+
         /**
          * The email address associated with the profile's trade name or brand.
          */
@@ -780,6 +796,7 @@ public class Profiles {
             this.email = email;
             return this;
         }
+
 
         /**
          * The phone number associated with the profile's trade name or brand.
@@ -799,6 +816,7 @@ public class Profiles {
             return this;
         }
 
+
         /**
          * The products or services offered by the profile's website or application.
          */
@@ -816,6 +834,7 @@ public class Profiles {
             this.description = description;
             return this;
         }
+
 
         /**
          * A list of countries where you expect that the majority of the profile's customers reside, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
@@ -835,6 +854,7 @@ public class Profiles {
             return this;
         }
 
+
         /**
          * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types#business-category) for all possible options.
          */
@@ -852,6 +872,7 @@ public class Profiles {
             this.businessCategory = businessCategory;
             return this;
         }
+
 
         /**
          * The profile status determines whether the profile is able to receive live payments.
@@ -883,6 +904,7 @@ public class Profiles {
             return this;
         }
 
+
         /**
          * Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved automatically, unless a switch to a live profile has been requested. The review object will therefore usually be `null` in test mode.
          */
@@ -900,6 +922,7 @@ public class Profiles {
             this.review = review;
             return this;
         }
+
 
         /**
          * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -919,6 +942,7 @@ public class Profiles {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -936,27 +960,20 @@ public class Profiles {
             this.links = links;
             return this;
         }
-        
+
         public Profiles build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new Profiles(
-                resource,
-                id,
-                mode,
-                name,
-                website,
-                email,
-                phone,
-                description,
-                countriesOfActivity,
-                businessCategory,
-                status,
-                review,
-                createdAt,
-                links);
+                resource, id, mode,
+                name, website, email,
+                phone, description, countriesOfActivity,
+                businessCategory, status, review,
+                createdAt, links);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

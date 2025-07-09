@@ -41,8 +41,8 @@ public class GetOnboardingStatusRequestBuilder {
 
         RequestlessOperation<GetOnboardingStatusResponse> operation
             = new GetOnboardingStatusOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest());
     }

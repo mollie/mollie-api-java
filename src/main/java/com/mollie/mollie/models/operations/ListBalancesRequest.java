@@ -16,8 +16,8 @@ import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListBalancesRequest {
 
+public class ListBalancesRequest {
     /**
      * Optionally only return balances with the given currency. For example: `EUR`.
      */
@@ -61,7 +61,8 @@ public class ListBalancesRequest {
     }
     
     public ListBalancesRequest() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -98,9 +99,10 @@ public class ListBalancesRequest {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Optionally only return balances with the given currency. For example: `EUR`.
@@ -128,6 +130,7 @@ public class ListBalancesRequest {
         this.from = Optional.ofNullable(from);
         return this;
     }
+
 
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
@@ -178,7 +181,6 @@ public class ListBalancesRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -198,9 +200,7 @@ public class ListBalancesRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            currency,
-            from,
-            limit,
+            currency, from, limit,
             testmode);
     }
     
@@ -212,20 +212,22 @@ public class ListBalancesRequest {
                 "limit", limit,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> currency = JsonNullable.undefined();
- 
+
         private Optional<String> from = Optional.empty();
- 
+
         private JsonNullable<Long> limit;
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Optionally only return balances with the given currency. For example: `EUR`.
@@ -245,6 +247,7 @@ public class ListBalancesRequest {
             return this;
         }
 
+
         /**
          * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
          */
@@ -263,6 +266,7 @@ public class ListBalancesRequest {
             return this;
         }
 
+
         /**
          * The maximum number of items to return. Defaults to 50 items.
          */
@@ -280,6 +284,7 @@ public class ListBalancesRequest {
             this.limit = limit;
             return this;
         }
+
 
         /**
          * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
@@ -302,17 +307,17 @@ public class ListBalancesRequest {
             this.testmode = testmode;
             return this;
         }
-        
+
         public ListBalancesRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+
             return new ListBalancesRequest(
-                currency,
-                from,
-                limit,
+                currency, from, limit,
                 testmode);
         }
+
 
         private static final LazySingletonValue<JsonNullable<Long>> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(

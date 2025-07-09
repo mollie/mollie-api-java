@@ -15,8 +15,8 @@ import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreateMandateRequestBody {
 
+public class CreateMandateRequestBody {
     /**
      * The identifier uniquely referring to this mandate. Example: `mdt_pWUnw6pkBN`.
      */
@@ -138,7 +138,10 @@ public class CreateMandateRequestBody {
     public CreateMandateRequestBody(
             String method,
             String consumerName) {
-        this(Optional.empty(), method, consumerName, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), method, consumerName,
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -235,9 +238,10 @@ public class CreateMandateRequestBody {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The identifier uniquely referring to this mandate. Example: `mdt_pWUnw6pkBN`.
@@ -247,6 +251,7 @@ public class CreateMandateRequestBody {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The identifier uniquely referring to this mandate. Example: `mdt_pWUnw6pkBN`.
@@ -427,7 +432,6 @@ public class CreateMandateRequestBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -454,17 +458,10 @@ public class CreateMandateRequestBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            method,
-            consumerName,
-            consumerAccount,
-            consumerBic,
-            consumerEmail,
-            signatureDate,
-            mandateReference,
-            paypalBillingAgreementId,
-            payPalVaultId,
-            testmode);
+            id, method, consumerName,
+            consumerAccount, consumerBic, consumerEmail,
+            signatureDate, mandateReference, paypalBillingAgreementId,
+            payPalVaultId, testmode);
     }
     
     @Override
@@ -482,34 +479,36 @@ public class CreateMandateRequestBody {
                 "payPalVaultId", payPalVaultId,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private String method;
- 
+
         private String consumerName;
- 
+
         private JsonNullable<String> consumerAccount = JsonNullable.undefined();
- 
+
         private JsonNullable<String> consumerBic = JsonNullable.undefined();
- 
+
         private JsonNullable<String> consumerEmail = JsonNullable.undefined();
- 
+
         private JsonNullable<String> signatureDate = JsonNullable.undefined();
- 
+
         private JsonNullable<String> mandateReference = JsonNullable.undefined();
- 
+
         private JsonNullable<String> paypalBillingAgreementId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> payPalVaultId = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The identifier uniquely referring to this mandate. Example: `mdt_pWUnw6pkBN`.
@@ -529,6 +528,7 @@ public class CreateMandateRequestBody {
             return this;
         }
 
+
         /**
          * Payment method of the mandate.
          * 
@@ -542,6 +542,7 @@ public class CreateMandateRequestBody {
             return this;
         }
 
+
         /**
          * The customer's name.
          */
@@ -550,6 +551,7 @@ public class CreateMandateRequestBody {
             this.consumerName = consumerName;
             return this;
         }
+
 
         /**
          * The customer's IBAN. Required for SEPA Direct Debit mandates.
@@ -569,6 +571,7 @@ public class CreateMandateRequestBody {
             return this;
         }
 
+
         /**
          * The BIC of the customer's bank.
          */
@@ -586,6 +589,7 @@ public class CreateMandateRequestBody {
             this.consumerBic = consumerBic;
             return this;
         }
+
 
         /**
          * The customer's email address. Required for PayPal mandates.
@@ -605,6 +609,7 @@ public class CreateMandateRequestBody {
             return this;
         }
 
+
         /**
          * The date when the mandate was signed in `YYYY-MM-DD` format.
          */
@@ -622,6 +627,7 @@ public class CreateMandateRequestBody {
             this.signatureDate = signatureDate;
             return this;
         }
+
 
         /**
          * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will decline Direct Debit payments if the mandate reference is not unique.
@@ -641,6 +647,7 @@ public class CreateMandateRequestBody {
             return this;
         }
 
+
         /**
          * The billing agreement ID given by PayPal. For example: `B-12A34567B8901234CD`. Required for PayPal mandates. Must provide either this field or `payPalVaultId`, but not both.
          */
@@ -659,6 +666,7 @@ public class CreateMandateRequestBody {
             return this;
         }
 
+
         /**
          * The Vault ID given by PayPal. For example: `8kk8451t`. Required for PayPal mandates. Must provide either this field or `paypalBillingAgreementId`, but not both.
          */
@@ -676,6 +684,7 @@ public class CreateMandateRequestBody {
             this.payPalVaultId = payPalVaultId;
             return this;
         }
+
 
         /**
          * Whether to create the entity in test mode or live mode.
@@ -698,20 +707,15 @@ public class CreateMandateRequestBody {
             this.testmode = testmode;
             return this;
         }
-        
+
         public CreateMandateRequestBody build() {
+
             return new CreateMandateRequestBody(
-                id,
-                method,
-                consumerName,
-                consumerAccount,
-                consumerBic,
-                consumerEmail,
-                signatureDate,
-                mandateReference,
-                paypalBillingAgreementId,
-                payPalVaultId,
-                testmode);
+                id, method, consumerName,
+                consumerAccount, consumerBic, consumerEmail,
+                signatureDate, mandateReference, paypalBillingAgreementId,
+                payPalVaultId, testmode);
         }
+
     }
 }

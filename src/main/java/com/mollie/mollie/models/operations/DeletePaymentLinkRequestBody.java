@@ -14,8 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class DeletePaymentLinkRequestBody {
 
+public class DeletePaymentLinkRequestBody {
     /**
      * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
@@ -46,9 +46,10 @@ public class DeletePaymentLinkRequestBody {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
@@ -72,7 +73,6 @@ public class DeletePaymentLinkRequestBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -97,14 +97,16 @@ public class DeletePaymentLinkRequestBody {
         return Utils.toString(DeletePaymentLinkRequestBody.class,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
@@ -127,10 +129,12 @@ public class DeletePaymentLinkRequestBody {
             this.testmode = testmode;
             return this;
         }
-        
+
         public DeletePaymentLinkRequestBody build() {
+
             return new DeletePaymentLinkRequestBody(
                 testmode);
         }
+
     }
 }

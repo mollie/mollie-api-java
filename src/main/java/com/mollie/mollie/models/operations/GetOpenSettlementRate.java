@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>The service rates, further divided into `fixed` and `percentage` costs.
  */
 public class GetOpenSettlementRate {
-
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
@@ -67,9 +66,10 @@ public class GetOpenSettlementRate {
         return (Optional<GetOpenSettlementPercentage>) percentage;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -79,6 +79,7 @@ public class GetOpenSettlementRate {
         this.fixed = Optional.ofNullable(fixed);
         return this;
     }
+
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -98,6 +99,7 @@ public class GetOpenSettlementRate {
         return this;
     }
 
+
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
@@ -107,7 +109,6 @@ public class GetOpenSettlementRate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -125,8 +126,7 @@ public class GetOpenSettlementRate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            fixed,
-            percentage);
+            fixed, percentage);
     }
     
     @Override
@@ -135,16 +135,18 @@ public class GetOpenSettlementRate {
                 "fixed", fixed,
                 "percentage", percentage);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends GetOpenSettlementFixed> fixed = Optional.empty();
- 
+
         private Optional<? extends GetOpenSettlementPercentage> percentage = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -164,6 +166,7 @@ public class GetOpenSettlementRate {
             return this;
         }
 
+
         /**
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
@@ -181,11 +184,12 @@ public class GetOpenSettlementRate {
             this.percentage = percentage;
             return this;
         }
-        
+
         public GetOpenSettlementRate build() {
+
             return new GetOpenSettlementRate(
-                fixed,
-                percentage);
+                fixed, percentage);
         }
+
     }
 }

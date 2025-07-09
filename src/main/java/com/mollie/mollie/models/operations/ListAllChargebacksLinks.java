@@ -21,7 +21,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
  */
 public class ListAllChargebacksLinks {
-
     /**
      * The URL to the current set of items.
      */
@@ -67,7 +66,8 @@ public class ListAllChargebacksLinks {
     }
     
     public ListAllChargebacksLinks() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -106,9 +106,10 @@ public class ListAllChargebacksLinks {
         return (Optional<ListAllChargebacksDocumentation>) documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The URL to the current set of items.
@@ -118,6 +119,7 @@ public class ListAllChargebacksLinks {
         this.self = Optional.ofNullable(self);
         return this;
     }
+
 
     /**
      * The URL to the current set of items.
@@ -173,6 +175,7 @@ public class ListAllChargebacksLinks {
         return this;
     }
 
+
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -182,7 +185,6 @@ public class ListAllChargebacksLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -202,9 +204,7 @@ public class ListAllChargebacksLinks {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self,
-            previous,
-            next,
+            self, previous, next,
             documentation);
     }
     
@@ -216,20 +216,22 @@ public class ListAllChargebacksLinks {
                 "next", next,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ListAllChargebacksSelf> self = Optional.empty();
- 
+
         private JsonNullable<? extends ListAllChargebacksPrevious> previous = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends ListAllChargebacksNext> next = JsonNullable.undefined();
- 
+
         private Optional<? extends ListAllChargebacksDocumentation> documentation = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The URL to the current set of items.
@@ -249,6 +251,7 @@ public class ListAllChargebacksLinks {
             return this;
         }
 
+
         /**
          * The previous set of items, if available.
          */
@@ -266,6 +269,7 @@ public class ListAllChargebacksLinks {
             this.previous = previous;
             return this;
         }
+
 
         /**
          * The next set of items, if available.
@@ -285,6 +289,7 @@ public class ListAllChargebacksLinks {
             return this;
         }
 
+
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
@@ -302,13 +307,13 @@ public class ListAllChargebacksLinks {
             this.documentation = documentation;
             return this;
         }
-        
+
         public ListAllChargebacksLinks build() {
+
             return new ListAllChargebacksLinks(
-                self,
-                previous,
-                next,
+                self, previous, next,
                 documentation);
         }
+
     }
 }

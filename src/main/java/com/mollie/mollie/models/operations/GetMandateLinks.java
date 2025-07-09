@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
 public class GetMandateLinks {
-
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -86,9 +85,10 @@ public class GetMandateLinks {
         return (Optional<GetMandateDocumentation>) documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -98,6 +98,7 @@ public class GetMandateLinks {
         this.self = Optional.ofNullable(self);
         return this;
     }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -117,6 +118,7 @@ public class GetMandateLinks {
         return this;
     }
 
+
     /**
      * The API resource URL of the [customer](get-customer) that this mandate belongs to.
      */
@@ -135,6 +137,7 @@ public class GetMandateLinks {
         return this;
     }
 
+
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -144,7 +147,6 @@ public class GetMandateLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -163,9 +165,7 @@ public class GetMandateLinks {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self,
-            customer,
-            documentation);
+            self, customer, documentation);
     }
     
     @Override
@@ -175,18 +175,20 @@ public class GetMandateLinks {
                 "customer", customer,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends GetMandateSelf> self = Optional.empty();
- 
+
         private Optional<? extends GetMandateCustomer> customer = Optional.empty();
- 
+
         private Optional<? extends GetMandateDocumentation> documentation = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -206,6 +208,7 @@ public class GetMandateLinks {
             return this;
         }
 
+
         /**
          * The API resource URL of the [customer](get-customer) that this mandate belongs to.
          */
@@ -224,6 +227,7 @@ public class GetMandateLinks {
             return this;
         }
 
+
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
@@ -241,12 +245,12 @@ public class GetMandateLinks {
             this.documentation = documentation;
             return this;
         }
-        
+
         public GetMandateLinks build() {
+
             return new GetMandateLinks(
-                self,
-                customer,
-                documentation);
+                self, customer, documentation);
         }
+
     }
 }

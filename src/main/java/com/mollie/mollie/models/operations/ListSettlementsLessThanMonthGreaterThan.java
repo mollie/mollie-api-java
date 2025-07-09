@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListSettlementsLessThanMonthGreaterThan {
 
+public class ListSettlementsLessThanMonthGreaterThan {
     /**
      * An array of cost objects, describing the fees withheld for each payment method during this period.
      */
@@ -63,7 +63,8 @@ public class ListSettlementsLessThanMonthGreaterThan {
     }
     
     public ListSettlementsLessThanMonthGreaterThan() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -100,9 +101,10 @@ public class ListSettlementsLessThanMonthGreaterThan {
         return invoiceReference;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An array of cost objects, describing the fees withheld for each payment method during this period.
@@ -112,6 +114,7 @@ public class ListSettlementsLessThanMonthGreaterThan {
         this.costs = Optional.ofNullable(costs);
         return this;
     }
+
 
     /**
      * An array of cost objects, describing the fees withheld for each payment method during this period.
@@ -130,6 +133,7 @@ public class ListSettlementsLessThanMonthGreaterThan {
         this.revenue = Optional.ofNullable(revenue);
         return this;
     }
+
 
     /**
      * An array of revenue objects containing the total revenue for each payment method during this period.
@@ -176,7 +180,6 @@ public class ListSettlementsLessThanMonthGreaterThan {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -196,9 +199,7 @@ public class ListSettlementsLessThanMonthGreaterThan {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            costs,
-            revenue,
-            invoiceId,
+            costs, revenue, invoiceId,
             invoiceReference);
     }
     
@@ -210,20 +211,22 @@ public class ListSettlementsLessThanMonthGreaterThan {
                 "invoiceId", invoiceId,
                 "invoiceReference", invoiceReference);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<ListSettlementsCosts>> costs = Optional.empty();
- 
+
         private Optional<? extends List<ListSettlementsRevenue>> revenue = Optional.empty();
- 
+
         private JsonNullable<String> invoiceId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> invoiceReference = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An array of cost objects, describing the fees withheld for each payment method during this period.
@@ -243,6 +246,7 @@ public class ListSettlementsLessThanMonthGreaterThan {
             return this;
         }
 
+
         /**
          * An array of revenue objects containing the total revenue for each payment method during this period.
          */
@@ -260,6 +264,7 @@ public class ListSettlementsLessThanMonthGreaterThan {
             this.revenue = revenue;
             return this;
         }
+
 
         /**
          * The ID of the invoice created for this period, if the invoice has been created already.
@@ -279,6 +284,7 @@ public class ListSettlementsLessThanMonthGreaterThan {
             return this;
         }
 
+
         /**
          * The invoice reference, if the invoice has been created already.
          */
@@ -296,13 +302,13 @@ public class ListSettlementsLessThanMonthGreaterThan {
             this.invoiceReference = invoiceReference;
             return this;
         }
-        
+
         public ListSettlementsLessThanMonthGreaterThan build() {
+
             return new ListSettlementsLessThanMonthGreaterThan(
-                costs,
-                revenue,
-                invoiceId,
+                costs, revenue, invoiceId,
                 invoiceReference);
         }
+
     }
 }

@@ -25,13 +25,16 @@ public class AvailableBalance {
     @JsonProperty("open")
     private Optional<? extends GetBalanceReportOpen> open;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("movedFromPending")
     private Optional<? extends MovedFromPending> movedFromPending;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("immediatelyAvailable")
     private Optional<? extends ImmediatelyAvailable> immediatelyAvailable;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("close")
@@ -54,7 +57,8 @@ public class AvailableBalance {
     }
     
     public AvailableBalance() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -81,15 +85,17 @@ public class AvailableBalance {
         return (Optional<GetBalanceReportClose>) close;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public AvailableBalance withOpen(GetBalanceReportOpen open) {
         Utils.checkNotNull(open, "open");
         this.open = Optional.ofNullable(open);
         return this;
     }
+
 
     public AvailableBalance withOpen(Optional<? extends GetBalanceReportOpen> open) {
         Utils.checkNotNull(open, "open");
@@ -103,6 +109,7 @@ public class AvailableBalance {
         return this;
     }
 
+
     public AvailableBalance withMovedFromPending(Optional<? extends MovedFromPending> movedFromPending) {
         Utils.checkNotNull(movedFromPending, "movedFromPending");
         this.movedFromPending = movedFromPending;
@@ -114,6 +121,7 @@ public class AvailableBalance {
         this.immediatelyAvailable = Optional.ofNullable(immediatelyAvailable);
         return this;
     }
+
 
     public AvailableBalance withImmediatelyAvailable(Optional<? extends ImmediatelyAvailable> immediatelyAvailable) {
         Utils.checkNotNull(immediatelyAvailable, "immediatelyAvailable");
@@ -127,13 +135,13 @@ public class AvailableBalance {
         return this;
     }
 
+
     public AvailableBalance withClose(Optional<? extends GetBalanceReportClose> close) {
         Utils.checkNotNull(close, "close");
         this.close = close;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -153,9 +161,7 @@ public class AvailableBalance {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            open,
-            movedFromPending,
-            immediatelyAvailable,
+            open, movedFromPending, immediatelyAvailable,
             close);
     }
     
@@ -167,20 +173,22 @@ public class AvailableBalance {
                 "immediatelyAvailable", immediatelyAvailable,
                 "close", close);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends GetBalanceReportOpen> open = Optional.empty();
- 
+
         private Optional<? extends MovedFromPending> movedFromPending = Optional.empty();
- 
+
         private Optional<? extends ImmediatelyAvailable> immediatelyAvailable = Optional.empty();
- 
+
         private Optional<? extends GetBalanceReportClose> close = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder open(GetBalanceReportOpen open) {
             Utils.checkNotNull(open, "open");
@@ -194,6 +202,7 @@ public class AvailableBalance {
             return this;
         }
 
+
         public Builder movedFromPending(MovedFromPending movedFromPending) {
             Utils.checkNotNull(movedFromPending, "movedFromPending");
             this.movedFromPending = Optional.ofNullable(movedFromPending);
@@ -205,6 +214,7 @@ public class AvailableBalance {
             this.movedFromPending = movedFromPending;
             return this;
         }
+
 
         public Builder immediatelyAvailable(ImmediatelyAvailable immediatelyAvailable) {
             Utils.checkNotNull(immediatelyAvailable, "immediatelyAvailable");
@@ -218,6 +228,7 @@ public class AvailableBalance {
             return this;
         }
 
+
         public Builder close(GetBalanceReportClose close) {
             Utils.checkNotNull(close, "close");
             this.close = Optional.ofNullable(close);
@@ -229,13 +240,13 @@ public class AvailableBalance {
             this.close = close;
             return this;
         }
-        
+
         public AvailableBalance build() {
+
             return new AvailableBalance(
-                open,
-                movedFromPending,
-                immediatelyAvailable,
+                open, movedFromPending, immediatelyAvailable,
                 close);
         }
+
     }
 }

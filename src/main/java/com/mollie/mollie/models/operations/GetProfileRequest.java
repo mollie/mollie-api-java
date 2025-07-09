@@ -12,8 +12,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetProfileRequest {
 
+public class GetProfileRequest {
     /**
      * Provide the ID of the item you want to perform this operation on.
      */
@@ -61,9 +61,10 @@ public class GetProfileRequest {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the item you want to perform this operation on.
@@ -96,7 +97,6 @@ public class GetProfileRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -114,8 +114,7 @@ public class GetProfileRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            testmode);
+            id, testmode);
     }
     
     @Override
@@ -124,16 +123,18 @@ public class GetProfileRequest {
                 "id", id,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the item you want to perform this operation on.
@@ -143,6 +144,7 @@ public class GetProfileRequest {
             this.id = id;
             return this;
         }
+
 
         /**
          * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
@@ -165,11 +167,12 @@ public class GetProfileRequest {
             this.testmode = testmode;
             return this;
         }
-        
+
         public GetProfileRequest build() {
+
             return new GetProfileRequest(
-                id,
-                testmode);
+                id, testmode);
         }
+
     }
 }

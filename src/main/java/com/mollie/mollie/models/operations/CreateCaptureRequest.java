@@ -12,13 +12,14 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class CreateCaptureRequest {
 
+public class CreateCaptureRequest {
     /**
      * Provide the ID of the related payment.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=paymentId")
     private String paymentId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends CreateCaptureRequestBody> requestBody;
@@ -52,9 +53,10 @@ public class CreateCaptureRequest {
         return (Optional<CreateCaptureRequestBody>) requestBody;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the related payment.
@@ -71,13 +73,13 @@ public class CreateCaptureRequest {
         return this;
     }
 
+
     public CreateCaptureRequest withRequestBody(Optional<? extends CreateCaptureRequestBody> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -95,8 +97,7 @@ public class CreateCaptureRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentId,
-            requestBody);
+            paymentId, requestBody);
     }
     
     @Override
@@ -105,16 +106,18 @@ public class CreateCaptureRequest {
                 "paymentId", paymentId,
                 "requestBody", requestBody);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String paymentId;
- 
+
         private Optional<? extends CreateCaptureRequestBody> requestBody = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the related payment.
@@ -124,6 +127,7 @@ public class CreateCaptureRequest {
             this.paymentId = paymentId;
             return this;
         }
+
 
         public Builder requestBody(CreateCaptureRequestBody requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
@@ -136,11 +140,12 @@ public class CreateCaptureRequest {
             this.requestBody = requestBody;
             return this;
         }
-        
+
         public CreateCaptureRequest build() {
+
             return new CreateCaptureRequest(
-                paymentId,
-                requestBody);
+                paymentId, requestBody);
         }
+
     }
 }

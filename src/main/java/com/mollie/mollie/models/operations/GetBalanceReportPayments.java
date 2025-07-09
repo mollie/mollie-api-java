@@ -25,9 +25,11 @@ public class GetBalanceReportPayments {
     @JsonProperty("pending")
     private Optional<? extends GetBalanceReportBalancesResponsePending> pending;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("movedToAvailable")
     private Optional<? extends GetBalanceReportMovedToAvailable> movedToAvailable;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("immediatelyAvailable")
@@ -68,15 +70,17 @@ public class GetBalanceReportPayments {
         return (Optional<GetBalanceReportImmediatelyAvailable>) immediatelyAvailable;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetBalanceReportPayments withPending(GetBalanceReportBalancesResponsePending pending) {
         Utils.checkNotNull(pending, "pending");
         this.pending = Optional.ofNullable(pending);
         return this;
     }
+
 
     public GetBalanceReportPayments withPending(Optional<? extends GetBalanceReportBalancesResponsePending> pending) {
         Utils.checkNotNull(pending, "pending");
@@ -90,6 +94,7 @@ public class GetBalanceReportPayments {
         return this;
     }
 
+
     public GetBalanceReportPayments withMovedToAvailable(Optional<? extends GetBalanceReportMovedToAvailable> movedToAvailable) {
         Utils.checkNotNull(movedToAvailable, "movedToAvailable");
         this.movedToAvailable = movedToAvailable;
@@ -102,13 +107,13 @@ public class GetBalanceReportPayments {
         return this;
     }
 
+
     public GetBalanceReportPayments withImmediatelyAvailable(Optional<? extends GetBalanceReportImmediatelyAvailable> immediatelyAvailable) {
         Utils.checkNotNull(immediatelyAvailable, "immediatelyAvailable");
         this.immediatelyAvailable = immediatelyAvailable;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -127,9 +132,7 @@ public class GetBalanceReportPayments {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            pending,
-            movedToAvailable,
-            immediatelyAvailable);
+            pending, movedToAvailable, immediatelyAvailable);
     }
     
     @Override
@@ -139,18 +142,20 @@ public class GetBalanceReportPayments {
                 "movedToAvailable", movedToAvailable,
                 "immediatelyAvailable", immediatelyAvailable);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends GetBalanceReportBalancesResponsePending> pending = Optional.empty();
- 
+
         private Optional<? extends GetBalanceReportMovedToAvailable> movedToAvailable = Optional.empty();
- 
+
         private Optional<? extends GetBalanceReportImmediatelyAvailable> immediatelyAvailable = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder pending(GetBalanceReportBalancesResponsePending pending) {
             Utils.checkNotNull(pending, "pending");
@@ -164,6 +169,7 @@ public class GetBalanceReportPayments {
             return this;
         }
 
+
         public Builder movedToAvailable(GetBalanceReportMovedToAvailable movedToAvailable) {
             Utils.checkNotNull(movedToAvailable, "movedToAvailable");
             this.movedToAvailable = Optional.ofNullable(movedToAvailable);
@@ -176,6 +182,7 @@ public class GetBalanceReportPayments {
             return this;
         }
 
+
         public Builder immediatelyAvailable(GetBalanceReportImmediatelyAvailable immediatelyAvailable) {
             Utils.checkNotNull(immediatelyAvailable, "immediatelyAvailable");
             this.immediatelyAvailable = Optional.ofNullable(immediatelyAvailable);
@@ -187,12 +194,12 @@ public class GetBalanceReportPayments {
             this.immediatelyAvailable = immediatelyAvailable;
             return this;
         }
-        
+
         public GetBalanceReportPayments build() {
+
             return new GetBalanceReportPayments(
-                pending,
-                movedToAvailable,
-                immediatelyAvailable);
+                pending, movedToAvailable, immediatelyAvailable);
         }
+
     }
 }

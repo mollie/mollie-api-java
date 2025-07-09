@@ -21,7 +21,6 @@ import java.util.Optional;
  * <p>A list of chargeback objects.
  */
 public class ListAllChargebacksResponseBody {
-
     /**
      * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result as well.
      * 
@@ -30,6 +29,7 @@ public class ListAllChargebacksResponseBody {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("count")
     private Optional<Long> count;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_embedded")
@@ -84,9 +84,10 @@ public class ListAllChargebacksResponseBody {
         return (Optional<ListAllChargebacksLinks>) links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result as well.
@@ -98,6 +99,7 @@ public class ListAllChargebacksResponseBody {
         this.count = Optional.ofNullable(count);
         return this;
     }
+
 
     /**
      * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result as well.
@@ -116,6 +118,7 @@ public class ListAllChargebacksResponseBody {
         return this;
     }
 
+
     public ListAllChargebacksResponseBody withEmbedded(Optional<? extends ListAllChargebacksEmbedded> embedded) {
         Utils.checkNotNull(embedded, "embedded");
         this.embedded = embedded;
@@ -131,6 +134,7 @@ public class ListAllChargebacksResponseBody {
         return this;
     }
 
+
     /**
      * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
      */
@@ -140,7 +144,6 @@ public class ListAllChargebacksResponseBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -159,9 +162,7 @@ public class ListAllChargebacksResponseBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            count,
-            embedded,
-            links);
+            count, embedded, links);
     }
     
     @Override
@@ -171,18 +172,20 @@ public class ListAllChargebacksResponseBody {
                 "embedded", embedded,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> count = Optional.empty();
- 
+
         private Optional<? extends ListAllChargebacksEmbedded> embedded = Optional.empty();
- 
+
         private Optional<? extends ListAllChargebacksLinks> links = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result as well.
@@ -206,6 +209,7 @@ public class ListAllChargebacksResponseBody {
             return this;
         }
 
+
         public Builder embedded(ListAllChargebacksEmbedded embedded) {
             Utils.checkNotNull(embedded, "embedded");
             this.embedded = Optional.ofNullable(embedded);
@@ -217,6 +221,7 @@ public class ListAllChargebacksResponseBody {
             this.embedded = embedded;
             return this;
         }
+
 
         /**
          * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
@@ -235,12 +240,12 @@ public class ListAllChargebacksResponseBody {
             this.links = links;
             return this;
         }
-        
+
         public ListAllChargebacksResponseBody build() {
+
             return new ListAllChargebacksResponseBody(
-                count,
-                embedded,
-                links);
+                count, embedded, links);
         }
+
     }
 }

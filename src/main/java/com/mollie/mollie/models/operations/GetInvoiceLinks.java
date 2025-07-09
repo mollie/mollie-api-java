@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
 public class GetInvoiceLinks {
-
     /**
      * URL to the current invoice resource.
      */
@@ -86,9 +85,10 @@ public class GetInvoiceLinks {
         return (Optional<GetInvoiceDocumentation>) documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * URL to the current invoice resource.
@@ -98,6 +98,7 @@ public class GetInvoiceLinks {
         this.self = Optional.ofNullable(self);
         return this;
     }
+
 
     /**
      * URL to the current invoice resource.
@@ -117,6 +118,7 @@ public class GetInvoiceLinks {
         return this;
     }
 
+
     /**
      * URL to a downloadable PDF of the invoice.
      */
@@ -135,6 +137,7 @@ public class GetInvoiceLinks {
         return this;
     }
 
+
     /**
      * URL to the API documentation.
      */
@@ -144,7 +147,6 @@ public class GetInvoiceLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -163,9 +165,7 @@ public class GetInvoiceLinks {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self,
-            pdf,
-            documentation);
+            self, pdf, documentation);
     }
     
     @Override
@@ -175,18 +175,20 @@ public class GetInvoiceLinks {
                 "pdf", pdf,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends GetInvoiceSelf> self = Optional.empty();
- 
+
         private Optional<? extends Pdf> pdf = Optional.empty();
- 
+
         private Optional<? extends GetInvoiceDocumentation> documentation = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * URL to the current invoice resource.
@@ -206,6 +208,7 @@ public class GetInvoiceLinks {
             return this;
         }
 
+
         /**
          * URL to a downloadable PDF of the invoice.
          */
@@ -224,6 +227,7 @@ public class GetInvoiceLinks {
             return this;
         }
 
+
         /**
          * URL to the API documentation.
          */
@@ -241,12 +245,12 @@ public class GetInvoiceLinks {
             this.documentation = documentation;
             return this;
         }
-        
+
         public GetInvoiceLinks build() {
+
             return new GetInvoiceLinks(
-                self,
-                pdf,
-                documentation);
+                self, pdf, documentation);
         }
+
     }
 }

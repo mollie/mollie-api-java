@@ -42,9 +42,10 @@ public class GetWebhookEventEmbedded {
         return (Optional<Entity>) entity;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetWebhookEventEmbedded withEntity(Entity entity) {
         Utils.checkNotNull(entity, "entity");
@@ -52,13 +53,13 @@ public class GetWebhookEventEmbedded {
         return this;
     }
 
+
     public GetWebhookEventEmbedded withEntity(Optional<? extends Entity> entity) {
         Utils.checkNotNull(entity, "entity");
         this.entity = entity;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -83,14 +84,16 @@ public class GetWebhookEventEmbedded {
         return Utils.toString(GetWebhookEventEmbedded.class,
                 "entity", entity);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Entity> entity = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder entity(Entity entity) {
             Utils.checkNotNull(entity, "entity");
@@ -103,10 +106,12 @@ public class GetWebhookEventEmbedded {
             this.entity = entity;
             return this;
         }
-        
+
         public GetWebhookEventEmbedded build() {
+
             return new GetWebhookEventEmbedded(
                 entity);
         }
+
     }
 }

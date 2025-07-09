@@ -15,8 +15,8 @@ import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ReleaseAuthorizationRequestBody {
 
+public class ReleaseAuthorizationRequestBody {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
@@ -69,9 +69,10 @@ public class ReleaseAuthorizationRequestBody {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
@@ -83,6 +84,7 @@ public class ReleaseAuthorizationRequestBody {
         this.profileId = Optional.ofNullable(profileId);
         return this;
     }
+
 
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
@@ -117,7 +119,6 @@ public class ReleaseAuthorizationRequestBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -135,8 +136,7 @@ public class ReleaseAuthorizationRequestBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            profileId,
-            testmode);
+            profileId, testmode);
     }
     
     @Override
@@ -145,16 +145,18 @@ public class ReleaseAuthorizationRequestBody {
                 "profileId", profileId,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> profileId = Optional.empty();
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
@@ -178,6 +180,7 @@ public class ReleaseAuthorizationRequestBody {
             return this;
         }
 
+
         /**
          * Whether to create the entity in test mode or live mode.
          * 
@@ -199,11 +202,12 @@ public class ReleaseAuthorizationRequestBody {
             this.testmode = testmode;
             return this;
         }
-        
+
         public ReleaseAuthorizationRequestBody build() {
+
             return new ReleaseAuthorizationRequestBody(
-                profileId,
-                testmode);
+                profileId, testmode);
         }
+
     }
 }

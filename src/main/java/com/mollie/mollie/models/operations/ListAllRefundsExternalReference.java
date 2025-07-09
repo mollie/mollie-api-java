@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class ListAllRefundsExternalReference {
 
+public class ListAllRefundsExternalReference {
     /**
      * Specifies the reference type
      * 
@@ -63,9 +63,10 @@ public class ListAllRefundsExternalReference {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Specifies the reference type
@@ -77,6 +78,7 @@ public class ListAllRefundsExternalReference {
         this.type = Optional.ofNullable(type);
         return this;
     }
+
 
     /**
      * Specifies the reference type
@@ -98,6 +100,7 @@ public class ListAllRefundsExternalReference {
         return this;
     }
 
+
     /**
      * Unique reference from the payment provider
      */
@@ -107,7 +110,6 @@ public class ListAllRefundsExternalReference {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -125,8 +127,7 @@ public class ListAllRefundsExternalReference {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id);
+            type, id);
     }
     
     @Override
@@ -135,16 +136,18 @@ public class ListAllRefundsExternalReference {
                 "type", type,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> type = Optional.empty();
- 
+
         private Optional<String> id = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Specifies the reference type
@@ -168,6 +171,7 @@ public class ListAllRefundsExternalReference {
             return this;
         }
 
+
         /**
          * Unique reference from the payment provider
          */
@@ -185,11 +189,12 @@ public class ListAllRefundsExternalReference {
             this.id = id;
             return this;
         }
-        
+
         public ListAllRefundsExternalReference build() {
+
             return new ListAllRefundsExternalReference(
-                type,
-                id);
+                type, id);
         }
+
     }
 }

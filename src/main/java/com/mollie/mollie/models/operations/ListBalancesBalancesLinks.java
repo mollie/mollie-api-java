@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
 public class ListBalancesBalancesLinks {
-
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -67,9 +66,10 @@ public class ListBalancesBalancesLinks {
         return (Optional<ListBalancesBalancesDocumentation>) documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -79,6 +79,7 @@ public class ListBalancesBalancesLinks {
         this.self = Optional.ofNullable(self);
         return this;
     }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -98,6 +99,7 @@ public class ListBalancesBalancesLinks {
         return this;
     }
 
+
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -107,7 +109,6 @@ public class ListBalancesBalancesLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -125,8 +126,7 @@ public class ListBalancesBalancesLinks {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self,
-            documentation);
+            self, documentation);
     }
     
     @Override
@@ -135,16 +135,18 @@ public class ListBalancesBalancesLinks {
                 "self", self,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ListBalancesBalancesSelf> self = Optional.empty();
- 
+
         private Optional<? extends ListBalancesBalancesDocumentation> documentation = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -164,6 +166,7 @@ public class ListBalancesBalancesLinks {
             return this;
         }
 
+
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
@@ -181,11 +184,12 @@ public class ListBalancesBalancesLinks {
             this.documentation = documentation;
             return this;
         }
-        
+
         public ListBalancesBalancesLinks build() {
+
             return new ListBalancesBalancesLinks(
-                self,
-                documentation);
+                self, documentation);
         }
+
     }
 }

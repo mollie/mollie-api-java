@@ -15,8 +15,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetSalesInvoiceLines {
 
+public class GetSalesInvoiceLines {
     /**
      * A description of the line item. For example *LEGO 4440 Forest Police Station*.
      */
@@ -76,7 +76,8 @@ public class GetSalesInvoiceLines {
             long quantity,
             String vatRate,
             GetSalesInvoiceUnitPrice unitPrice) {
-        this(description, quantity, vatRate, unitPrice, JsonNullable.undefined());
+        this(description, quantity, vatRate,
+            unitPrice, JsonNullable.undefined());
     }
 
     /**
@@ -124,9 +125,10 @@ public class GetSalesInvoiceLines {
         return (JsonNullable<GetSalesInvoiceSalesInvoicesDiscount>) discount;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A description of the line item. For example *LEGO 4440 Forest Police Station*.
@@ -186,7 +188,6 @@ public class GetSalesInvoiceLines {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -207,11 +208,8 @@ public class GetSalesInvoiceLines {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            description,
-            quantity,
-            vatRate,
-            unitPrice,
-            discount);
+            description, quantity, vatRate,
+            unitPrice, discount);
     }
     
     @Override
@@ -223,22 +221,24 @@ public class GetSalesInvoiceLines {
                 "unitPrice", unitPrice,
                 "discount", discount);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String description;
- 
+
         private Long quantity;
- 
+
         private String vatRate;
- 
+
         private GetSalesInvoiceUnitPrice unitPrice;
- 
+
         private JsonNullable<? extends GetSalesInvoiceSalesInvoicesDiscount> discount = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A description of the line item. For example *LEGO 4440 Forest Police Station*.
@@ -249,6 +249,7 @@ public class GetSalesInvoiceLines {
             return this;
         }
 
+
         /**
          * The number of items.
          */
@@ -258,6 +259,7 @@ public class GetSalesInvoiceLines {
             return this;
         }
 
+
         /**
          * The vat rate to be applied to this line item.
          */
@@ -266,6 +268,7 @@ public class GetSalesInvoiceLines {
             this.vatRate = vatRate;
             return this;
         }
+
 
         /**
          * The price of a single item excluding VAT.
@@ -279,6 +282,7 @@ public class GetSalesInvoiceLines {
             this.unitPrice = unitPrice;
             return this;
         }
+
 
         /**
          * The discount to be applied to the line item.
@@ -297,14 +301,13 @@ public class GetSalesInvoiceLines {
             this.discount = discount;
             return this;
         }
-        
+
         public GetSalesInvoiceLines build() {
+
             return new GetSalesInvoiceLines(
-                description,
-                quantity,
-                vatRate,
-                unitPrice,
-                discount);
+                description, quantity, vatRate,
+                unitPrice, discount);
         }
+
     }
 }

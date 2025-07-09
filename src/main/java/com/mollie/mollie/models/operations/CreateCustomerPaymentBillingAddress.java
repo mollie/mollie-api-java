@@ -23,7 +23,6 @@ import java.util.Optional;
  * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
  */
 public class CreateCustomerPaymentBillingAddress {
-
     /**
      * The title of the person, for example *Mr.* or *Mrs.*.
      */
@@ -165,7 +164,10 @@ public class CreateCustomerPaymentBillingAddress {
     }
     
     public CreateCustomerPaymentBillingAddress() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -280,9 +282,10 @@ public class CreateCustomerPaymentBillingAddress {
         return country;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The title of the person, for example *Mr.* or *Mrs.*.
@@ -292,6 +295,7 @@ public class CreateCustomerPaymentBillingAddress {
         this.title = Optional.ofNullable(title);
         return this;
     }
+
 
     /**
      * The title of the person, for example *Mr.* or *Mrs.*.
@@ -312,6 +316,7 @@ public class CreateCustomerPaymentBillingAddress {
         this.givenName = Optional.ofNullable(givenName);
         return this;
     }
+
 
     /**
      * The given name (first name) of the person should be at least two characters and cannot contain only numbers.
@@ -335,6 +340,7 @@ public class CreateCustomerPaymentBillingAddress {
         return this;
     }
 
+
     /**
      * The given family name (surname) of the person should be at least two characters and cannot contain only numbers.
      * 
@@ -354,6 +360,7 @@ public class CreateCustomerPaymentBillingAddress {
         this.organizationName = Optional.ofNullable(organizationName);
         return this;
     }
+
 
     /**
      * The name of the organization, in case the addressee is an organization.
@@ -375,6 +382,7 @@ public class CreateCustomerPaymentBillingAddress {
         return this;
     }
 
+
     /**
      * A street and street number.
      * 
@@ -395,6 +403,7 @@ public class CreateCustomerPaymentBillingAddress {
         return this;
     }
 
+
     /**
      * Any additional addressing details, for example an apartment number.
      */
@@ -414,6 +423,7 @@ public class CreateCustomerPaymentBillingAddress {
         this.postalCode = Optional.ofNullable(postalCode);
         return this;
     }
+
 
     /**
      * A postal code. This field may be required if the provided country has a postal code system.
@@ -439,6 +449,7 @@ public class CreateCustomerPaymentBillingAddress {
         return this;
     }
 
+
     /**
      * A valid e-mail address.
      * 
@@ -461,6 +472,7 @@ public class CreateCustomerPaymentBillingAddress {
         return this;
     }
 
+
     /**
      * If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example: +31208202070.
      */
@@ -480,6 +492,7 @@ public class CreateCustomerPaymentBillingAddress {
         this.city = Optional.ofNullable(city);
         return this;
     }
+
 
     /**
      * A city name.
@@ -501,6 +514,7 @@ public class CreateCustomerPaymentBillingAddress {
         return this;
     }
 
+
     /**
      * The top-level administrative subdivision of the country. For example: Noord-Holland.
      */
@@ -521,6 +535,7 @@ public class CreateCustomerPaymentBillingAddress {
         return this;
     }
 
+
     /**
      * A country code in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
      * 
@@ -532,7 +547,6 @@ public class CreateCustomerPaymentBillingAddress {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -560,18 +574,10 @@ public class CreateCustomerPaymentBillingAddress {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            title,
-            givenName,
-            familyName,
-            organizationName,
-            streetAndNumber,
-            streetAdditional,
-            postalCode,
-            email,
-            phone,
-            city,
-            region,
-            country);
+            title, givenName, familyName,
+            organizationName, streetAndNumber, streetAdditional,
+            postalCode, email, phone,
+            city, region, country);
     }
     
     @Override
@@ -590,36 +596,38 @@ public class CreateCustomerPaymentBillingAddress {
                 "region", region,
                 "country", country);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> title = Optional.empty();
- 
+
         private Optional<String> givenName = Optional.empty();
- 
+
         private Optional<String> familyName = Optional.empty();
- 
+
         private Optional<String> organizationName = Optional.empty();
- 
+
         private Optional<String> streetAndNumber = Optional.empty();
- 
+
         private Optional<String> streetAdditional = Optional.empty();
- 
+
         private Optional<String> postalCode = Optional.empty();
- 
+
         private Optional<String> email = Optional.empty();
- 
+
         private Optional<String> phone = Optional.empty();
- 
+
         private Optional<String> city = Optional.empty();
- 
+
         private Optional<String> region = Optional.empty();
- 
+
         private Optional<String> country = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The title of the person, for example *Mr.* or *Mrs.*.
@@ -638,6 +646,7 @@ public class CreateCustomerPaymentBillingAddress {
             this.title = title;
             return this;
         }
+
 
         /**
          * The given name (first name) of the person should be at least two characters and cannot contain only numbers.
@@ -661,6 +670,7 @@ public class CreateCustomerPaymentBillingAddress {
             return this;
         }
 
+
         /**
          * The given family name (surname) of the person should be at least two characters and cannot contain only numbers.
          * 
@@ -683,6 +693,7 @@ public class CreateCustomerPaymentBillingAddress {
             return this;
         }
 
+
         /**
          * The name of the organization, in case the addressee is an organization.
          */
@@ -700,6 +711,7 @@ public class CreateCustomerPaymentBillingAddress {
             this.organizationName = organizationName;
             return this;
         }
+
 
         /**
          * A street and street number.
@@ -723,6 +735,7 @@ public class CreateCustomerPaymentBillingAddress {
             return this;
         }
 
+
         /**
          * Any additional addressing details, for example an apartment number.
          */
@@ -740,6 +753,7 @@ public class CreateCustomerPaymentBillingAddress {
             this.streetAdditional = streetAdditional;
             return this;
         }
+
 
         /**
          * A postal code. This field may be required if the provided country has a postal code system.
@@ -762,6 +776,7 @@ public class CreateCustomerPaymentBillingAddress {
             this.postalCode = postalCode;
             return this;
         }
+
 
         /**
          * A valid e-mail address.
@@ -789,6 +804,7 @@ public class CreateCustomerPaymentBillingAddress {
             return this;
         }
 
+
         /**
          * If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example: +31208202070.
          */
@@ -806,6 +822,7 @@ public class CreateCustomerPaymentBillingAddress {
             this.phone = phone;
             return this;
         }
+
 
         /**
          * A city name.
@@ -829,6 +846,7 @@ public class CreateCustomerPaymentBillingAddress {
             return this;
         }
 
+
         /**
          * The top-level administrative subdivision of the country. For example: Noord-Holland.
          */
@@ -846,6 +864,7 @@ public class CreateCustomerPaymentBillingAddress {
             this.region = region;
             return this;
         }
+
 
         /**
          * A country code in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
@@ -868,21 +887,15 @@ public class CreateCustomerPaymentBillingAddress {
             this.country = country;
             return this;
         }
-        
+
         public CreateCustomerPaymentBillingAddress build() {
+
             return new CreateCustomerPaymentBillingAddress(
-                title,
-                givenName,
-                familyName,
-                organizationName,
-                streetAndNumber,
-                streetAdditional,
-                postalCode,
-                email,
-                phone,
-                city,
-                region,
-                country);
+                title, givenName, familyName,
+                organizationName, streetAndNumber, streetAdditional,
+                postalCode, email, phone,
+                city, region, country);
         }
+
     }
 }

@@ -71,8 +71,8 @@ public class CreateMandateRequestBuilder {
 
         RequestOperation<CreateMandateRequest, CreateMandateResponse> operation
               = new CreateMandateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         CreateMandateRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

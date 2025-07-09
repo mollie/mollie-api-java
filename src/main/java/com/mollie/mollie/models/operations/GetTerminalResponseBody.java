@@ -21,7 +21,6 @@ import java.util.Optional;
  * <p>The terminal object.
  */
 public class GetTerminalResponseBody {
-
     /**
      * Indicates the response contains a terminal object. Will always contain the string `terminal` for this endpoint.
      */
@@ -167,7 +166,11 @@ public class GetTerminalResponseBody {
             String createdAt,
             String updatedAt,
             GetTerminalLinks links) {
-        this(Optional.empty(), id, mode, description, status, Optional.empty(), Optional.empty(), Optional.empty(), currency, profileId, createdAt, updatedAt, links);
+        this(Optional.empty(), id, mode,
+            description, status, Optional.empty(),
+            Optional.empty(), Optional.empty(), currency,
+            profileId, createdAt, updatedAt,
+            links);
     }
 
     /**
@@ -284,9 +287,10 @@ public class GetTerminalResponseBody {
         return links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a terminal object. Will always contain the string `terminal` for this endpoint.
@@ -296,6 +300,7 @@ public class GetTerminalResponseBody {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Indicates the response contains a terminal object. Will always contain the string `terminal` for this endpoint.
@@ -357,6 +362,7 @@ public class GetTerminalResponseBody {
         return this;
     }
 
+
     /**
      * The brand of the terminal.
      * 
@@ -379,6 +385,7 @@ public class GetTerminalResponseBody {
         return this;
     }
 
+
     /**
      * The model of the terminal. For example for a PAX A920, this field's value will be `A920`.
      * 
@@ -398,6 +405,7 @@ public class GetTerminalResponseBody {
         this.serialNumber = Optional.ofNullable(serialNumber);
         return this;
     }
+
 
     /**
      * The serial number of the terminal. The serial number is provided at terminal creation time.
@@ -455,7 +463,6 @@ public class GetTerminalResponseBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -484,18 +491,10 @@ public class GetTerminalResponseBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            mode,
-            description,
-            status,
-            brand,
-            model,
-            serialNumber,
-            currency,
-            profileId,
-            createdAt,
-            updatedAt,
+            resource, id, mode,
+            description, status, brand,
+            model, serialNumber, currency,
+            profileId, createdAt, updatedAt,
             links);
     }
     
@@ -516,38 +515,40 @@ public class GetTerminalResponseBody {
                 "updatedAt", updatedAt,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private String id;
- 
+
         private String mode;
- 
+
         private String description;
- 
+
         private String status;
- 
+
         private Optional<String> brand = Optional.empty();
- 
+
         private Optional<String> model = Optional.empty();
- 
+
         private Optional<String> serialNumber = Optional.empty();
- 
+
         private String currency;
- 
+
         private String profileId;
- 
+
         private String createdAt;
- 
+
         private String updatedAt;
- 
+
         private GetTerminalLinks links;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a terminal object. Will always contain the string `terminal` for this endpoint.
@@ -567,6 +568,7 @@ public class GetTerminalResponseBody {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this terminal. Example: `term_7MgL4wea46qkRcoTZjWEH`.
          */
@@ -575,6 +577,7 @@ public class GetTerminalResponseBody {
             this.id = id;
             return this;
         }
+
 
         /**
          * Whether this entity was created in live mode or in test mode.
@@ -587,6 +590,7 @@ public class GetTerminalResponseBody {
             return this;
         }
 
+
         /**
          * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it may be visible on the device itself depending on the device.
          */
@@ -595,6 +599,7 @@ public class GetTerminalResponseBody {
             this.description = description;
             return this;
         }
+
 
         /**
          * The status of the terminal.
@@ -606,6 +611,7 @@ public class GetTerminalResponseBody {
             this.status = status;
             return this;
         }
+
 
         /**
          * The brand of the terminal.
@@ -629,6 +635,7 @@ public class GetTerminalResponseBody {
             return this;
         }
 
+
         /**
          * The model of the terminal. For example for a PAX A920, this field's value will be `A920`.
          * 
@@ -651,6 +658,7 @@ public class GetTerminalResponseBody {
             return this;
         }
 
+
         /**
          * The serial number of the terminal. The serial number is provided at terminal creation time.
          */
@@ -669,6 +677,7 @@ public class GetTerminalResponseBody {
             return this;
         }
 
+
         /**
          * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a specific currency, chosen during setup.
          */
@@ -677,6 +686,7 @@ public class GetTerminalResponseBody {
             this.currency = currency;
             return this;
         }
+
 
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
@@ -689,6 +699,7 @@ public class GetTerminalResponseBody {
             return this;
         }
 
+
         /**
          * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
          */
@@ -697,6 +708,7 @@ public class GetTerminalResponseBody {
             this.createdAt = createdAt;
             return this;
         }
+
 
         /**
          * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -707,6 +719,7 @@ public class GetTerminalResponseBody {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -715,26 +728,20 @@ public class GetTerminalResponseBody {
             this.links = links;
             return this;
         }
-        
+
         public GetTerminalResponseBody build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new GetTerminalResponseBody(
-                resource,
-                id,
-                mode,
-                description,
-                status,
-                brand,
-                model,
-                serialNumber,
-                currency,
-                profileId,
-                createdAt,
-                updatedAt,
+                resource, id, mode,
+                description, status, brand,
+                model, serialNumber, currency,
+                profileId, createdAt, updatedAt,
                 links);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

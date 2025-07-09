@@ -19,7 +19,6 @@ import java.util.Optional;
  * <p>Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved automatically, unless a switch to a live profile has been requested. The review object will therefore usually be `null` in test mode.
  */
 public class ListProfilesReview {
-
     /**
      * The status of the requested changes.
      * 
@@ -50,9 +49,10 @@ public class ListProfilesReview {
         return status;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The status of the requested changes.
@@ -65,6 +65,7 @@ public class ListProfilesReview {
         return this;
     }
 
+
     /**
      * The status of the requested changes.
      * 
@@ -76,7 +77,6 @@ public class ListProfilesReview {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -101,14 +101,16 @@ public class ListProfilesReview {
         return Utils.toString(ListProfilesReview.class,
                 "status", status);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> status = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The status of the requested changes.
@@ -131,10 +133,12 @@ public class ListProfilesReview {
             this.status = status;
             return this;
         }
-        
+
         public ListProfilesReview build() {
+
             return new ListProfilesReview(
                 status);
         }
+
     }
 }

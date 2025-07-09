@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-public class GetPaymentResponse implements Response {
 
+public class GetPaymentResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
@@ -57,7 +57,8 @@ public class GetPaymentResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, statusCode, rawResponse, Optional.empty());
+        this(contentType, statusCode, rawResponse,
+            Optional.empty());
     }
 
     /**
@@ -93,9 +94,10 @@ public class GetPaymentResponse implements Response {
         return (Optional<GetPaymentResponseBody>) object;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP response content type for this operation
@@ -133,6 +135,7 @@ public class GetPaymentResponse implements Response {
         return this;
     }
 
+
     /**
      * The payment object.
      */
@@ -142,7 +145,6 @@ public class GetPaymentResponse implements Response {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -162,9 +164,7 @@ public class GetPaymentResponse implements Response {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            contentType,
-            statusCode,
-            rawResponse,
+            contentType, statusCode, rawResponse,
             object);
     }
     
@@ -176,20 +176,22 @@ public class GetPaymentResponse implements Response {
                 "rawResponse", rawResponse,
                 "object", object);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String contentType;
- 
+
         private Integer statusCode;
- 
+
         private HttpResponse<InputStream> rawResponse;
- 
+
         private Optional<? extends GetPaymentResponseBody> object = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP response content type for this operation
@@ -200,6 +202,7 @@ public class GetPaymentResponse implements Response {
             return this;
         }
 
+
         /**
          * HTTP response status code for this operation
          */
@@ -209,6 +212,7 @@ public class GetPaymentResponse implements Response {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -217,6 +221,7 @@ public class GetPaymentResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
+
 
         /**
          * The payment object.
@@ -235,13 +240,13 @@ public class GetPaymentResponse implements Response {
             this.object = object;
             return this;
         }
-        
+
         public GetPaymentResponse build() {
+
             return new GetPaymentResponse(
-                contentType,
-                statusCode,
-                rawResponse,
+                contentType, statusCode, rawResponse,
                 object);
         }
+
     }
 }

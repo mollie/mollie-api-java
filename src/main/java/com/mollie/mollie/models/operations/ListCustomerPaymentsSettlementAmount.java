@@ -20,7 +20,6 @@ import java.lang.String;
  * <p>Please note that this amount might be recalculated and changed when the status of the payment changes. We suggest using the List balance transactions endpoint instead to get more accurate settlement amounts for your payments.
  */
 public class ListCustomerPaymentsSettlementAmount {
-
     /**
      * A three-character ISO 4217 currency code.
      */
@@ -59,9 +58,10 @@ public class ListCustomerPaymentsSettlementAmount {
         return value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A three-character ISO 4217 currency code.
@@ -81,7 +81,6 @@ public class ListCustomerPaymentsSettlementAmount {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -99,8 +98,7 @@ public class ListCustomerPaymentsSettlementAmount {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            currency,
-            value);
+            currency, value);
     }
     
     @Override
@@ -109,16 +107,18 @@ public class ListCustomerPaymentsSettlementAmount {
                 "currency", currency,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String currency;
- 
+
         private String value;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A three-character ISO 4217 currency code.
@@ -129,6 +129,7 @@ public class ListCustomerPaymentsSettlementAmount {
             return this;
         }
 
+
         /**
          * A string containing an exact monetary amount in the given currency.
          */
@@ -137,11 +138,12 @@ public class ListCustomerPaymentsSettlementAmount {
             this.value = value;
             return this;
         }
-        
+
         public ListCustomerPaymentsSettlementAmount build() {
+
             return new ListCustomerPaymentsSettlementAmount(
-                currency,
-                value);
+                currency, value);
         }
+
     }
 }

@@ -16,7 +16,6 @@ import java.lang.String;
  * <p>The URL that can be used to have new organizations sign up and be automatically linked to this partner. Will be omitted if the partner is not of type `signuplink`.
  */
 public class Signuplink {
-
     /**
      * The actual URL string.
      */
@@ -55,9 +54,10 @@ public class Signuplink {
         return type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The actual URL string.
@@ -77,7 +77,6 @@ public class Signuplink {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -95,8 +94,7 @@ public class Signuplink {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            href,
-            type);
+            href, type);
     }
     
     @Override
@@ -105,16 +103,18 @@ public class Signuplink {
                 "href", href,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String href;
- 
+
         private String type;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The actual URL string.
@@ -125,6 +125,7 @@ public class Signuplink {
             return this;
         }
 
+
         /**
          * The content type of the page or endpoint the URL points to.
          */
@@ -133,11 +134,12 @@ public class Signuplink {
             this.type = type;
             return this;
         }
-        
+
         public Signuplink build() {
+
             return new Signuplink(
-                href,
-                type);
+                href, type);
         }
+
     }
 }

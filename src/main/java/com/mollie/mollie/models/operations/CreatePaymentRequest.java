@@ -13,13 +13,14 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreatePaymentRequest {
 
+public class CreatePaymentRequest {
     /**
      * This endpoint allows you to include additional information via the `include` query string parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=include")
     private JsonNullable<? extends Include> include;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends CreatePaymentRequestBody> requestBody;
@@ -53,9 +54,10 @@ public class CreatePaymentRequest {
         return (Optional<CreatePaymentRequestBody>) requestBody;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * This endpoint allows you to include additional information via the `include` query string parameter.
@@ -81,13 +83,13 @@ public class CreatePaymentRequest {
         return this;
     }
 
+
     public CreatePaymentRequest withRequestBody(Optional<? extends CreatePaymentRequestBody> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -105,8 +107,7 @@ public class CreatePaymentRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            include,
-            requestBody);
+            include, requestBody);
     }
     
     @Override
@@ -115,16 +116,18 @@ public class CreatePaymentRequest {
                 "include", include,
                 "requestBody", requestBody);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<? extends Include> include = JsonNullable.undefined();
- 
+
         private Optional<? extends CreatePaymentRequestBody> requestBody = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * This endpoint allows you to include additional information via the `include` query string parameter.
@@ -144,6 +147,7 @@ public class CreatePaymentRequest {
             return this;
         }
 
+
         public Builder requestBody(CreatePaymentRequestBody requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = Optional.ofNullable(requestBody);
@@ -155,11 +159,12 @@ public class CreatePaymentRequest {
             this.requestBody = requestBody;
             return this;
         }
-        
+
         public CreatePaymentRequest build() {
+
             return new CreatePaymentRequest(
-                include,
-                requestBody);
+                include, requestBody);
         }
+
     }
 }

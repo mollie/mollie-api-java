@@ -48,9 +48,10 @@ public class GetOpenSettlementPeriods {
         return (Optional<GetOpenSettlementLessThanYearGreaterThan>) lessThanYearGreaterThan;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetOpenSettlementPeriods withLessThanYearGreaterThan(GetOpenSettlementLessThanYearGreaterThan lessThanYearGreaterThan) {
         Utils.checkNotNull(lessThanYearGreaterThan, "lessThanYearGreaterThan");
@@ -58,13 +59,13 @@ public class GetOpenSettlementPeriods {
         return this;
     }
 
+
     public GetOpenSettlementPeriods withLessThanYearGreaterThan(Optional<? extends GetOpenSettlementLessThanYearGreaterThan> lessThanYearGreaterThan) {
         Utils.checkNotNull(lessThanYearGreaterThan, "lessThanYearGreaterThan");
         this.lessThanYearGreaterThan = lessThanYearGreaterThan;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -89,14 +90,16 @@ public class GetOpenSettlementPeriods {
         return Utils.toString(GetOpenSettlementPeriods.class,
                 "lessThanYearGreaterThan", lessThanYearGreaterThan);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends GetOpenSettlementLessThanYearGreaterThan> lessThanYearGreaterThan = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder lessThanYearGreaterThan(GetOpenSettlementLessThanYearGreaterThan lessThanYearGreaterThan) {
             Utils.checkNotNull(lessThanYearGreaterThan, "lessThanYearGreaterThan");
@@ -109,10 +112,12 @@ public class GetOpenSettlementPeriods {
             this.lessThanYearGreaterThan = lessThanYearGreaterThan;
             return this;
         }
-        
+
         public GetOpenSettlementPeriods build() {
+
             return new GetOpenSettlementPeriods(
                 lessThanYearGreaterThan);
         }
+
     }
 }

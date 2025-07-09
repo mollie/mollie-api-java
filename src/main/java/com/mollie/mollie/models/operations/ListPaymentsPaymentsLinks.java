@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
 public class ListPaymentsPaymentsLinks {
-
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -180,7 +179,11 @@ public class ListPaymentsPaymentsLinks {
     public ListPaymentsPaymentsLinks(
             ListPaymentsPaymentsSelf self,
             ListPaymentsDashboard dashboard) {
-        this(self, Optional.empty(), Optional.empty(), Optional.empty(), dashboard, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(self, Optional.empty(), Optional.empty(),
+            Optional.empty(), dashboard, Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -320,9 +323,10 @@ public class ListPaymentsPaymentsLinks {
         return (Optional<ListPaymentsPaymentsDocumentation>) documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -342,6 +346,7 @@ public class ListPaymentsPaymentsLinks {
         return this;
     }
 
+
     /**
      * The URL your customer should visit to make the payment. This is where you should redirect the customer to.
      */
@@ -359,6 +364,7 @@ public class ListPaymentsPaymentsLinks {
         this.mobileAppCheckout = Optional.ofNullable(mobileAppCheckout);
         return this;
     }
+
 
     /**
      * The deeplink URL to the app of the payment method. Currently only available for `bancontact`.
@@ -381,6 +387,7 @@ public class ListPaymentsPaymentsLinks {
         this.changePaymentState = Optional.ofNullable(changePaymentState);
         return this;
     }
+
 
     /**
      * For test mode payments in certain scenarios, a hosted interface is available to help you test different payment states.
@@ -413,6 +420,7 @@ public class ListPaymentsPaymentsLinks {
         return this;
     }
 
+
     /**
      * The API resource URL of the [refunds](list-payment-refunds) that belong to this payment.
      */
@@ -430,6 +438,7 @@ public class ListPaymentsPaymentsLinks {
         this.chargebacks = Optional.ofNullable(chargebacks);
         return this;
     }
+
 
     /**
      * The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this payment.
@@ -449,6 +458,7 @@ public class ListPaymentsPaymentsLinks {
         return this;
     }
 
+
     /**
      * The API resource URL of the [captures](list-payment-captures) that belong to this payment.
      */
@@ -466,6 +476,7 @@ public class ListPaymentsPaymentsLinks {
         this.settlement = Optional.ofNullable(settlement);
         return this;
     }
+
 
     /**
      * The API resource URL of the [settlement](get-settlement) this payment has been settled with. Not present if not yet settled.
@@ -485,6 +496,7 @@ public class ListPaymentsPaymentsLinks {
         return this;
     }
 
+
     /**
      * The API resource URL of the [customer](get-customer).
      */
@@ -502,6 +514,7 @@ public class ListPaymentsPaymentsLinks {
         this.mandate = Optional.ofNullable(mandate);
         return this;
     }
+
 
     /**
      * The API resource URL of the [mandate](get-mandate).
@@ -521,6 +534,7 @@ public class ListPaymentsPaymentsLinks {
         return this;
     }
 
+
     /**
      * The API resource URL of the [subscription](get-subscription).
      */
@@ -538,6 +552,7 @@ public class ListPaymentsPaymentsLinks {
         this.order = Optional.ofNullable(order);
         return this;
     }
+
 
     /**
      * The API resource URL of the [order](get-order) this payment was created for. Not present if not created for an order.
@@ -557,6 +572,7 @@ public class ListPaymentsPaymentsLinks {
         return this;
     }
 
+
     /**
      * The API resource URL of the [terminal](get-terminal) this payment was created for. Only present for point-of-sale payments.
      */
@@ -575,6 +591,7 @@ public class ListPaymentsPaymentsLinks {
         return this;
     }
 
+
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -584,7 +601,6 @@ public class ListPaymentsPaymentsLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -615,21 +631,11 @@ public class ListPaymentsPaymentsLinks {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self,
-            checkout,
-            mobileAppCheckout,
-            changePaymentState,
-            dashboard,
-            refunds,
-            chargebacks,
-            captures,
-            settlement,
-            customer,
-            mandate,
-            subscription,
-            order,
-            terminal,
-            documentation);
+            self, checkout, mobileAppCheckout,
+            changePaymentState, dashboard, refunds,
+            chargebacks, captures, settlement,
+            customer, mandate, subscription,
+            order, terminal, documentation);
     }
     
     @Override
@@ -651,42 +657,44 @@ public class ListPaymentsPaymentsLinks {
                 "terminal", terminal,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private ListPaymentsPaymentsSelf self;
- 
+
         private Optional<? extends ListPaymentsCheckout> checkout = Optional.empty();
- 
+
         private Optional<? extends ListPaymentsMobileAppCheckout> mobileAppCheckout = Optional.empty();
- 
+
         private Optional<? extends ListPaymentsChangePaymentState> changePaymentState = Optional.empty();
- 
+
         private ListPaymentsDashboard dashboard;
- 
+
         private Optional<? extends ListPaymentsRefunds> refunds = Optional.empty();
- 
+
         private Optional<? extends ListPaymentsChargebacks> chargebacks = Optional.empty();
- 
+
         private Optional<? extends ListPaymentsCaptures> captures = Optional.empty();
- 
+
         private Optional<? extends ListPaymentsSettlement> settlement = Optional.empty();
- 
+
         private Optional<? extends ListPaymentsCustomer> customer = Optional.empty();
- 
+
         private Optional<? extends ListPaymentsMandate> mandate = Optional.empty();
- 
+
         private Optional<? extends ListPaymentsSubscription> subscription = Optional.empty();
- 
+
         private Optional<? extends ListPaymentsOrder> order = Optional.empty();
- 
+
         private Optional<? extends ListPaymentsTerminal> terminal = Optional.empty();
- 
+
         private Optional<? extends ListPaymentsPaymentsDocumentation> documentation = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -696,6 +704,7 @@ public class ListPaymentsPaymentsLinks {
             this.self = self;
             return this;
         }
+
 
         /**
          * The URL your customer should visit to make the payment. This is where you should redirect the customer to.
@@ -715,6 +724,7 @@ public class ListPaymentsPaymentsLinks {
             return this;
         }
 
+
         /**
          * The deeplink URL to the app of the payment method. Currently only available for `bancontact`.
          */
@@ -732,6 +742,7 @@ public class ListPaymentsPaymentsLinks {
             this.mobileAppCheckout = mobileAppCheckout;
             return this;
         }
+
 
         /**
          * For test mode payments in certain scenarios, a hosted interface is available to help you test different payment states.
@@ -759,6 +770,7 @@ public class ListPaymentsPaymentsLinks {
             return this;
         }
 
+
         /**
          * Direct link to the payment in the Mollie Dashboard.
          */
@@ -767,6 +779,7 @@ public class ListPaymentsPaymentsLinks {
             this.dashboard = dashboard;
             return this;
         }
+
 
         /**
          * The API resource URL of the [refunds](list-payment-refunds) that belong to this payment.
@@ -786,6 +799,7 @@ public class ListPaymentsPaymentsLinks {
             return this;
         }
 
+
         /**
          * The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this payment.
          */
@@ -803,6 +817,7 @@ public class ListPaymentsPaymentsLinks {
             this.chargebacks = chargebacks;
             return this;
         }
+
 
         /**
          * The API resource URL of the [captures](list-payment-captures) that belong to this payment.
@@ -822,6 +837,7 @@ public class ListPaymentsPaymentsLinks {
             return this;
         }
 
+
         /**
          * The API resource URL of the [settlement](get-settlement) this payment has been settled with. Not present if not yet settled.
          */
@@ -839,6 +855,7 @@ public class ListPaymentsPaymentsLinks {
             this.settlement = settlement;
             return this;
         }
+
 
         /**
          * The API resource URL of the [customer](get-customer).
@@ -858,6 +875,7 @@ public class ListPaymentsPaymentsLinks {
             return this;
         }
 
+
         /**
          * The API resource URL of the [mandate](get-mandate).
          */
@@ -875,6 +893,7 @@ public class ListPaymentsPaymentsLinks {
             this.mandate = mandate;
             return this;
         }
+
 
         /**
          * The API resource URL of the [subscription](get-subscription).
@@ -894,6 +913,7 @@ public class ListPaymentsPaymentsLinks {
             return this;
         }
 
+
         /**
          * The API resource URL of the [order](get-order) this payment was created for. Not present if not created for an order.
          */
@@ -911,6 +931,7 @@ public class ListPaymentsPaymentsLinks {
             this.order = order;
             return this;
         }
+
 
         /**
          * The API resource URL of the [terminal](get-terminal) this payment was created for. Only present for point-of-sale payments.
@@ -930,6 +951,7 @@ public class ListPaymentsPaymentsLinks {
             return this;
         }
 
+
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
@@ -947,24 +969,16 @@ public class ListPaymentsPaymentsLinks {
             this.documentation = documentation;
             return this;
         }
-        
+
         public ListPaymentsPaymentsLinks build() {
+
             return new ListPaymentsPaymentsLinks(
-                self,
-                checkout,
-                mobileAppCheckout,
-                changePaymentState,
-                dashboard,
-                refunds,
-                chargebacks,
-                captures,
-                settlement,
-                customer,
-                mandate,
-                subscription,
-                order,
-                terminal,
-                documentation);
+                self, checkout, mobileAppCheckout,
+                changePaymentState, dashboard, refunds,
+                chargebacks, captures, settlement,
+                customer, mandate, subscription,
+                order, terminal, documentation);
         }
+
     }
 }

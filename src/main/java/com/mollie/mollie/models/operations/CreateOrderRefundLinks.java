@@ -21,7 +21,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
 public class CreateOrderRefundLinks {
-
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -67,7 +66,8 @@ public class CreateOrderRefundLinks {
     }
     
     public CreateOrderRefundLinks() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -106,9 +106,10 @@ public class CreateOrderRefundLinks {
         return (Optional<CreateOrderRefundDocumentation>) documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -118,6 +119,7 @@ public class CreateOrderRefundLinks {
         this.self = Optional.ofNullable(self);
         return this;
     }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -136,6 +138,7 @@ public class CreateOrderRefundLinks {
         this.order = Optional.ofNullable(order);
         return this;
     }
+
 
     /**
      * The API resource URL of the [order](get-order) that this refund belongs to, if applicable.
@@ -173,6 +176,7 @@ public class CreateOrderRefundLinks {
         return this;
     }
 
+
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -182,7 +186,6 @@ public class CreateOrderRefundLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -202,9 +205,7 @@ public class CreateOrderRefundLinks {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self,
-            order,
-            settlement,
+            self, order, settlement,
             documentation);
     }
     
@@ -216,20 +217,22 @@ public class CreateOrderRefundLinks {
                 "settlement", settlement,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends CreateOrderRefundSelf> self = Optional.empty();
- 
+
         private Optional<? extends CreateOrderRefundOrder> order = Optional.empty();
- 
+
         private JsonNullable<? extends CreateOrderRefundSettlement> settlement = JsonNullable.undefined();
- 
+
         private Optional<? extends CreateOrderRefundDocumentation> documentation = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -249,6 +252,7 @@ public class CreateOrderRefundLinks {
             return this;
         }
 
+
         /**
          * The API resource URL of the [order](get-order) that this refund belongs to, if applicable.
          */
@@ -266,6 +270,7 @@ public class CreateOrderRefundLinks {
             this.order = order;
             return this;
         }
+
 
         /**
          * The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not yet settled.
@@ -285,6 +290,7 @@ public class CreateOrderRefundLinks {
             return this;
         }
 
+
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
@@ -302,13 +308,13 @@ public class CreateOrderRefundLinks {
             this.documentation = documentation;
             return this;
         }
-        
+
         public CreateOrderRefundLinks build() {
+
             return new CreateOrderRefundLinks(
-                self,
-                order,
-                settlement,
+                self, order, settlement,
                 documentation);
         }
+
     }
 }

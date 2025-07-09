@@ -12,8 +12,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class CancelSubscriptionRequest {
 
+public class CancelSubscriptionRequest {
     /**
      * Provide the ID of the related customer.
      */
@@ -25,6 +25,7 @@ public class CancelSubscriptionRequest {
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=subscriptionId")
     private String subscriptionId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends CancelSubscriptionRequestBody> requestBody;
@@ -70,9 +71,10 @@ public class CancelSubscriptionRequest {
         return (Optional<CancelSubscriptionRequestBody>) requestBody;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the related customer.
@@ -98,13 +100,13 @@ public class CancelSubscriptionRequest {
         return this;
     }
 
+
     public CancelSubscriptionRequest withRequestBody(Optional<? extends CancelSubscriptionRequestBody> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -123,9 +125,7 @@ public class CancelSubscriptionRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            customerId,
-            subscriptionId,
-            requestBody);
+            customerId, subscriptionId, requestBody);
     }
     
     @Override
@@ -135,18 +135,20 @@ public class CancelSubscriptionRequest {
                 "subscriptionId", subscriptionId,
                 "requestBody", requestBody);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String customerId;
- 
+
         private String subscriptionId;
- 
+
         private Optional<? extends CancelSubscriptionRequestBody> requestBody = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the related customer.
@@ -157,6 +159,7 @@ public class CancelSubscriptionRequest {
             return this;
         }
 
+
         /**
          * Provide the ID of the related subscription.
          */
@@ -165,6 +168,7 @@ public class CancelSubscriptionRequest {
             this.subscriptionId = subscriptionId;
             return this;
         }
+
 
         public Builder requestBody(CancelSubscriptionRequestBody requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
@@ -177,12 +181,12 @@ public class CancelSubscriptionRequest {
             this.requestBody = requestBody;
             return this;
         }
-        
+
         public CancelSubscriptionRequest build() {
+
             return new CancelSubscriptionRequest(
-                customerId,
-                subscriptionId,
-                requestBody);
+                customerId, subscriptionId, requestBody);
         }
+
     }
 }

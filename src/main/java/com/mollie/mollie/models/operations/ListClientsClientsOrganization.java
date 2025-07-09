@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListClientsClientsOrganization {
 
+public class ListClientsClientsOrganization {
     /**
      * Indicates the response contains an organization object. Will always contain the string `organization` for this resource type.
      */
@@ -130,7 +130,10 @@ public class ListClientsClientsOrganization {
     }
     
     public ListClientsClientsOrganization() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -221,9 +224,10 @@ public class ListClientsClientsOrganization {
         return (Optional<ListClientsClientsResponse200Links>) links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains an organization object. Will always contain the string `organization` for this resource type.
@@ -233,6 +237,7 @@ public class ListClientsClientsOrganization {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Indicates the response contains an organization object. Will always contain the string `organization` for this resource type.
@@ -252,6 +257,7 @@ public class ListClientsClientsOrganization {
         return this;
     }
 
+
     /**
      * The identifier uniquely referring to this organization. Example: `org_12345678`.
      */
@@ -269,6 +275,7 @@ public class ListClientsClientsOrganization {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * The name of the organization.
@@ -288,6 +295,7 @@ public class ListClientsClientsOrganization {
         return this;
     }
 
+
     /**
      * The email address associated with the organization.
      */
@@ -305,6 +313,7 @@ public class ListClientsClientsOrganization {
         this.locale = Optional.ofNullable(locale);
         return this;
     }
+
 
     /**
      * The preferred locale of the merchant, as set in their Mollie dashboard.
@@ -324,6 +333,7 @@ public class ListClientsClientsOrganization {
         return this;
     }
 
+
     /**
      * The address of the organization.
      */
@@ -341,6 +351,7 @@ public class ListClientsClientsOrganization {
         this.registrationNumber = Optional.ofNullable(registrationNumber);
         return this;
     }
+
 
     /**
      * The registration number of the organization at their local chamber of commerce.
@@ -408,6 +419,7 @@ public class ListClientsClientsOrganization {
         return this;
     }
 
+
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
@@ -417,7 +429,6 @@ public class ListClientsClientsOrganization {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -443,15 +454,9 @@ public class ListClientsClientsOrganization {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            name,
-            email,
-            locale,
-            address,
-            registrationNumber,
-            vatNumber,
-            vatRegulation,
+            resource, id, name,
+            email, locale, address,
+            registrationNumber, vatNumber, vatRegulation,
             links);
     }
     
@@ -469,32 +474,34 @@ public class ListClientsClientsOrganization {
                 "vatRegulation", vatRegulation,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> email = Optional.empty();
- 
+
         private Optional<String> locale = Optional.empty();
- 
+
         private Optional<? extends ListClientsAddress> address = Optional.empty();
- 
+
         private Optional<String> registrationNumber = Optional.empty();
- 
+
         private JsonNullable<String> vatNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<String> vatRegulation = JsonNullable.undefined();
- 
+
         private Optional<? extends ListClientsClientsResponse200Links> links = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains an organization object. Will always contain the string `organization` for this resource type.
@@ -514,6 +521,7 @@ public class ListClientsClientsOrganization {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this organization. Example: `org_12345678`.
          */
@@ -531,6 +539,7 @@ public class ListClientsClientsOrganization {
             this.id = id;
             return this;
         }
+
 
         /**
          * The name of the organization.
@@ -550,6 +559,7 @@ public class ListClientsClientsOrganization {
             return this;
         }
 
+
         /**
          * The email address associated with the organization.
          */
@@ -567,6 +577,7 @@ public class ListClientsClientsOrganization {
             this.email = email;
             return this;
         }
+
 
         /**
          * The preferred locale of the merchant, as set in their Mollie dashboard.
@@ -586,6 +597,7 @@ public class ListClientsClientsOrganization {
             return this;
         }
 
+
         /**
          * The address of the organization.
          */
@@ -604,6 +616,7 @@ public class ListClientsClientsOrganization {
             return this;
         }
 
+
         /**
          * The registration number of the organization at their local chamber of commerce.
          */
@@ -621,6 +634,7 @@ public class ListClientsClientsOrganization {
             this.registrationNumber = registrationNumber;
             return this;
         }
+
 
         /**
          * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are verified against the international registry *VIES*.
@@ -643,6 +657,7 @@ public class ListClientsClientsOrganization {
             this.vatNumber = vatNumber;
             return this;
         }
+
 
         /**
          * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in The United Kingdom, and shifted VAT for merchants in the European Union.
@@ -670,6 +685,7 @@ public class ListClientsClientsOrganization {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -687,23 +703,19 @@ public class ListClientsClientsOrganization {
             this.links = links;
             return this;
         }
-        
+
         public ListClientsClientsOrganization build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new ListClientsClientsOrganization(
-                resource,
-                id,
-                name,
-                email,
-                locale,
-                address,
-                registrationNumber,
-                vatNumber,
-                vatRegulation,
+                resource, id, name,
+                email, locale, address,
+                registrationNumber, vatNumber, vatRegulation,
                 links);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

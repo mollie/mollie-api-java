@@ -48,9 +48,10 @@ public class Periods {
         return (Optional<LessThanYearGreaterThan>) lessThanYearGreaterThan;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Periods withLessThanYearGreaterThan(LessThanYearGreaterThan lessThanYearGreaterThan) {
         Utils.checkNotNull(lessThanYearGreaterThan, "lessThanYearGreaterThan");
@@ -58,13 +59,13 @@ public class Periods {
         return this;
     }
 
+
     public Periods withLessThanYearGreaterThan(Optional<? extends LessThanYearGreaterThan> lessThanYearGreaterThan) {
         Utils.checkNotNull(lessThanYearGreaterThan, "lessThanYearGreaterThan");
         this.lessThanYearGreaterThan = lessThanYearGreaterThan;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -89,14 +90,16 @@ public class Periods {
         return Utils.toString(Periods.class,
                 "lessThanYearGreaterThan", lessThanYearGreaterThan);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends LessThanYearGreaterThan> lessThanYearGreaterThan = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder lessThanYearGreaterThan(LessThanYearGreaterThan lessThanYearGreaterThan) {
             Utils.checkNotNull(lessThanYearGreaterThan, "lessThanYearGreaterThan");
@@ -109,10 +112,12 @@ public class Periods {
             this.lessThanYearGreaterThan = lessThanYearGreaterThan;
             return this;
         }
-        
+
         public Periods build() {
+
             return new Periods(
                 lessThanYearGreaterThan);
         }
+
     }
 }

@@ -21,7 +21,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
 public class GetOpenSettlementLinks {
-
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -97,7 +96,9 @@ public class GetOpenSettlementLinks {
     }
     
     public GetOpenSettlementLinks() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -163,9 +164,10 @@ public class GetOpenSettlementLinks {
         return (Optional<GetOpenSettlementDocumentation>) documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -175,6 +177,7 @@ public class GetOpenSettlementLinks {
         this.self = Optional.ofNullable(self);
         return this;
     }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -194,6 +197,7 @@ public class GetOpenSettlementLinks {
         return this;
     }
 
+
     /**
      * The API resource URL of the [payments](list-payments) included in this settlement.
      */
@@ -211,6 +215,7 @@ public class GetOpenSettlementLinks {
         this.captures = Optional.ofNullable(captures);
         return this;
     }
+
 
     /**
      * The API resource URL of the [captures](list-captures) included in this settlement.
@@ -230,6 +235,7 @@ public class GetOpenSettlementLinks {
         return this;
     }
 
+
     /**
      * The API resource URL of the [refunds](list-refunds) deducted from this settlement.
      */
@@ -247,6 +253,7 @@ public class GetOpenSettlementLinks {
         this.chargebacks = Optional.ofNullable(chargebacks);
         return this;
     }
+
 
     /**
      * The API resource URL of the [chargebacks](list-chargebacks) deducted from this settlement.
@@ -284,6 +291,7 @@ public class GetOpenSettlementLinks {
         return this;
     }
 
+
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -293,7 +301,6 @@ public class GetOpenSettlementLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -316,12 +323,8 @@ public class GetOpenSettlementLinks {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self,
-            payments,
-            captures,
-            refunds,
-            chargebacks,
-            invoice,
+            self, payments, captures,
+            refunds, chargebacks, invoice,
             documentation);
     }
     
@@ -336,26 +339,28 @@ public class GetOpenSettlementLinks {
                 "invoice", invoice,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends GetOpenSettlementSelf> self = Optional.empty();
- 
+
         private Optional<? extends GetOpenSettlementPayments> payments = Optional.empty();
- 
+
         private Optional<? extends GetOpenSettlementCaptures> captures = Optional.empty();
- 
+
         private Optional<? extends GetOpenSettlementRefunds> refunds = Optional.empty();
- 
+
         private Optional<? extends GetOpenSettlementChargebacks> chargebacks = Optional.empty();
- 
+
         private JsonNullable<? extends GetOpenSettlementInvoice> invoice = JsonNullable.undefined();
- 
+
         private Optional<? extends GetOpenSettlementDocumentation> documentation = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -375,6 +380,7 @@ public class GetOpenSettlementLinks {
             return this;
         }
 
+
         /**
          * The API resource URL of the [payments](list-payments) included in this settlement.
          */
@@ -392,6 +398,7 @@ public class GetOpenSettlementLinks {
             this.payments = payments;
             return this;
         }
+
 
         /**
          * The API resource URL of the [captures](list-captures) included in this settlement.
@@ -411,6 +418,7 @@ public class GetOpenSettlementLinks {
             return this;
         }
 
+
         /**
          * The API resource URL of the [refunds](list-refunds) deducted from this settlement.
          */
@@ -428,6 +436,7 @@ public class GetOpenSettlementLinks {
             this.refunds = refunds;
             return this;
         }
+
 
         /**
          * The API resource URL of the [chargebacks](list-chargebacks) deducted from this settlement.
@@ -447,6 +456,7 @@ public class GetOpenSettlementLinks {
             return this;
         }
 
+
         /**
          * The API resource URL of the [invoice](list-invoices).
          */
@@ -465,6 +475,7 @@ public class GetOpenSettlementLinks {
             return this;
         }
 
+
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
@@ -482,16 +493,14 @@ public class GetOpenSettlementLinks {
             this.documentation = documentation;
             return this;
         }
-        
+
         public GetOpenSettlementLinks build() {
+
             return new GetOpenSettlementLinks(
-                self,
-                payments,
-                captures,
-                refunds,
-                chargebacks,
-                invoice,
+                self, payments, captures,
+                refunds, chargebacks, invoice,
                 documentation);
         }
+
     }
 }

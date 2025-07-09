@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class Webhooks {
 
+public class Webhooks {
     /**
      * Indicates the response contains a webhook subscription object. Will always contain the string `webhook` for this endpoint.
      */
@@ -118,7 +118,9 @@ public class Webhooks {
     }
     
     public Webhooks() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -198,9 +200,10 @@ public class Webhooks {
         return mode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a webhook subscription object. Will always contain the string `webhook` for this endpoint.
@@ -210,6 +213,7 @@ public class Webhooks {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Indicates the response contains a webhook subscription object. Will always contain the string `webhook` for this endpoint.
@@ -229,6 +233,7 @@ public class Webhooks {
         return this;
     }
 
+
     /**
      * The identifier uniquely referring to this subscription.
      */
@@ -246,6 +251,7 @@ public class Webhooks {
         this.url = Optional.ofNullable(url);
         return this;
     }
+
 
     /**
      * The subscription's events destination.
@@ -265,6 +271,7 @@ public class Webhooks {
         return this;
     }
 
+
     /**
      * The identifier uniquely referring to the profile that created the subscription.
      */
@@ -282,6 +289,7 @@ public class Webhooks {
         this.createdAt = Optional.ofNullable(createdAt);
         return this;
     }
+
 
     /**
      * The subscription's date time of creation.
@@ -301,6 +309,7 @@ public class Webhooks {
         return this;
     }
 
+
     /**
      * The subscription's name.
      */
@@ -318,6 +327,7 @@ public class Webhooks {
         this.eventTypes = Optional.ofNullable(eventTypes);
         return this;
     }
+
 
     /**
      * The events types that are subscribed.
@@ -338,6 +348,7 @@ public class Webhooks {
         this.status = Optional.ofNullable(status);
         return this;
     }
+
 
     /**
      * The subscription's current status.
@@ -361,6 +372,7 @@ public class Webhooks {
         return this;
     }
 
+
     /**
      * The subscription's mode.
      * 
@@ -372,7 +384,6 @@ public class Webhooks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -397,15 +408,9 @@ public class Webhooks {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            url,
-            profileId,
-            createdAt,
-            name,
-            eventTypes,
-            status,
-            mode);
+            resource, id, url,
+            profileId, createdAt, name,
+            eventTypes, status, mode);
     }
     
     @Override
@@ -421,30 +426,32 @@ public class Webhooks {
                 "status", status,
                 "mode", mode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> url = Optional.empty();
- 
+
         private Optional<String> profileId = Optional.empty();
- 
+
         private Optional<String> createdAt = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<? extends List<String>> eventTypes = Optional.empty();
- 
+
         private Optional<String> status = Optional.empty();
- 
+
         private Optional<String> mode = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a webhook subscription object. Will always contain the string `webhook` for this endpoint.
@@ -464,6 +471,7 @@ public class Webhooks {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this subscription.
          */
@@ -481,6 +489,7 @@ public class Webhooks {
             this.id = id;
             return this;
         }
+
 
         /**
          * The subscription's events destination.
@@ -500,6 +509,7 @@ public class Webhooks {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to the profile that created the subscription.
          */
@@ -517,6 +527,7 @@ public class Webhooks {
             this.profileId = profileId;
             return this;
         }
+
 
         /**
          * The subscription's date time of creation.
@@ -536,6 +547,7 @@ public class Webhooks {
             return this;
         }
 
+
         /**
          * The subscription's name.
          */
@@ -554,6 +566,7 @@ public class Webhooks {
             return this;
         }
 
+
         /**
          * The events types that are subscribed.
          */
@@ -571,6 +584,7 @@ public class Webhooks {
             this.eventTypes = eventTypes;
             return this;
         }
+
 
         /**
          * The subscription's current status.
@@ -594,6 +608,7 @@ public class Webhooks {
             return this;
         }
 
+
         /**
          * The subscription's mode.
          * 
@@ -615,22 +630,18 @@ public class Webhooks {
             this.mode = mode;
             return this;
         }
-        
+
         public Webhooks build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new Webhooks(
-                resource,
-                id,
-                url,
-                profileId,
-                createdAt,
-                name,
-                eventTypes,
-                status,
-                mode);
+                resource, id, url,
+                profileId, createdAt, name,
+                eventTypes, status, mode);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

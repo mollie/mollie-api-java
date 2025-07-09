@@ -17,11 +17,13 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class Events {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
     private Optional<String> resource;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
@@ -33,6 +35,7 @@ public class Events {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
     private Optional<String> createdAt;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("message")
@@ -65,7 +68,8 @@ public class Events {
     }
     
     public Events() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -100,15 +104,17 @@ public class Events {
         return (Optional<GetCustomerCustomersLinks>) links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Events withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     public Events withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
@@ -121,6 +127,7 @@ public class Events {
         this.type = Optional.ofNullable(type);
         return this;
     }
+
 
     public Events withType(Optional<Long> type) {
         Utils.checkNotNull(type, "type");
@@ -137,6 +144,7 @@ public class Events {
         return this;
     }
 
+
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
@@ -151,6 +159,7 @@ public class Events {
         this.message = Optional.ofNullable(message);
         return this;
     }
+
 
     public Events withMessage(Optional<String> message) {
         Utils.checkNotNull(message, "message");
@@ -167,6 +176,7 @@ public class Events {
         return this;
     }
 
+
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
@@ -176,7 +186,6 @@ public class Events {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -197,11 +206,8 @@ public class Events {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            type,
-            createdAt,
-            message,
-            links);
+            resource, type, createdAt,
+            message, links);
     }
     
     @Override
@@ -213,22 +219,24 @@ public class Events {
                 "message", message,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private Optional<Long> type = Optional.empty();
- 
+
         private Optional<String> createdAt = Optional.empty();
- 
+
         private Optional<String> message = Optional.empty();
- 
+
         private Optional<? extends GetCustomerCustomersLinks> links = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -242,6 +250,7 @@ public class Events {
             return this;
         }
 
+
         public Builder type(long type) {
             Utils.checkNotNull(type, "type");
             this.type = Optional.ofNullable(type);
@@ -253,6 +262,7 @@ public class Events {
             this.type = type;
             return this;
         }
+
 
         /**
          * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -272,6 +282,7 @@ public class Events {
             return this;
         }
 
+
         public Builder message(String message) {
             Utils.checkNotNull(message, "message");
             this.message = Optional.ofNullable(message);
@@ -283,6 +294,7 @@ public class Events {
             this.message = message;
             return this;
         }
+
 
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -301,18 +313,17 @@ public class Events {
             this.links = links;
             return this;
         }
-        
+
         public Events build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new Events(
-                resource,
-                type,
-                createdAt,
-                message,
-                links);
+                resource, type, createdAt,
+                message, links);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

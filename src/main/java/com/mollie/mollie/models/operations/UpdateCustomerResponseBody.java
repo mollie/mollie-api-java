@@ -23,7 +23,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>The updated customer object.
  */
 public class UpdateCustomerResponseBody {
-
     /**
      * Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
      */
@@ -121,7 +120,9 @@ public class UpdateCustomerResponseBody {
     }
     
     public UpdateCustomerResponseBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -200,9 +201,10 @@ public class UpdateCustomerResponseBody {
         return (Optional<UpdateCustomerLinks>) links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
@@ -212,6 +214,7 @@ public class UpdateCustomerResponseBody {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
@@ -230,6 +233,7 @@ public class UpdateCustomerResponseBody {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The identifier uniquely referring to this customer. Example: `cst_vsKJpSsabw`.
@@ -250,6 +254,7 @@ public class UpdateCustomerResponseBody {
         this.mode = Optional.ofNullable(mode);
         return this;
     }
+
 
     /**
      * Whether this entity was created in live mode or in test mode.
@@ -343,6 +348,7 @@ public class UpdateCustomerResponseBody {
         return this;
     }
 
+
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
@@ -361,6 +367,7 @@ public class UpdateCustomerResponseBody {
         return this;
     }
 
+
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
@@ -370,7 +377,6 @@ public class UpdateCustomerResponseBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -395,15 +401,9 @@ public class UpdateCustomerResponseBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            mode,
-            name,
-            email,
-            locale,
-            metadata,
-            createdAt,
-            links);
+            resource, id, mode,
+            name, email, locale,
+            metadata, createdAt, links);
     }
     
     @Override
@@ -419,30 +419,32 @@ public class UpdateCustomerResponseBody {
                 "createdAt", createdAt,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> mode = Optional.empty();
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<String> email = JsonNullable.undefined();
- 
+
         private JsonNullable<String> locale = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends UpdateCustomerCustomersMetadata> metadata = JsonNullable.undefined();
- 
+
         private Optional<String> createdAt = Optional.empty();
- 
+
         private Optional<? extends UpdateCustomerLinks> links = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
@@ -462,6 +464,7 @@ public class UpdateCustomerResponseBody {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this customer. Example: `cst_vsKJpSsabw`.
          */
@@ -479,6 +482,7 @@ public class UpdateCustomerResponseBody {
             this.id = id;
             return this;
         }
+
 
         /**
          * Whether this entity was created in live mode or in test mode.
@@ -502,6 +506,7 @@ public class UpdateCustomerResponseBody {
             return this;
         }
 
+
         /**
          * The full name of the customer.
          */
@@ -519,6 +524,7 @@ public class UpdateCustomerResponseBody {
             this.name = name;
             return this;
         }
+
 
         /**
          * The email address of the customer.
@@ -538,6 +544,7 @@ public class UpdateCustomerResponseBody {
             return this;
         }
 
+
         /**
          * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
          */
@@ -555,6 +562,7 @@ public class UpdateCustomerResponseBody {
             this.locale = locale;
             return this;
         }
+
 
         /**
          * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
@@ -574,6 +582,7 @@ public class UpdateCustomerResponseBody {
             return this;
         }
 
+
         /**
          * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
          */
@@ -592,6 +601,7 @@ public class UpdateCustomerResponseBody {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -609,22 +619,18 @@ public class UpdateCustomerResponseBody {
             this.links = links;
             return this;
         }
-        
+
         public UpdateCustomerResponseBody build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new UpdateCustomerResponseBody(
-                resource,
-                id,
-                mode,
-                name,
-                email,
-                locale,
-                metadata,
-                createdAt,
-                links);
+                resource, id, mode,
+                name, email, locale,
+                metadata, createdAt, links);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

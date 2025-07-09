@@ -50,7 +50,8 @@ public class DeleteProfileOperation implements RequestOperation<DeleteProfileReq
     
     @Override
     public HttpResponse<InputStream> doRequest(DeleteProfileRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 DeleteProfileRequest.class,

@@ -25,7 +25,6 @@ public class Onboarding {
     Onboarding(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Get onboarding status
      * 
@@ -70,15 +69,13 @@ public class Onboarding {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetOnboardingStatusResponse get(
-            Optional<Options> options) throws Exception {
+    public GetOnboardingStatusResponse get(Optional<Options> options) throws Exception {
         RequestlessOperation<GetOnboardingStatusResponse> operation
             = new GetOnboardingStatusOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest());
     }
-
 
     /**
      * Submit onboarding data
@@ -136,8 +133,8 @@ public class Onboarding {
             Optional<Options> options) throws Exception {
         RequestOperation<Optional<? extends SubmitOnboardingDataRequestBody>, SubmitOnboardingDataResponse> operation
               = new SubmitOnboardingDataOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

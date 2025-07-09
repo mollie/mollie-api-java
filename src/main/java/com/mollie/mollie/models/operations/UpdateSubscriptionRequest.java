@@ -12,8 +12,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class UpdateSubscriptionRequest {
 
+public class UpdateSubscriptionRequest {
     /**
      * Provide the ID of the related customer.
      */
@@ -25,6 +25,7 @@ public class UpdateSubscriptionRequest {
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=subscriptionId")
     private String subscriptionId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends UpdateSubscriptionRequestBody> requestBody;
@@ -70,9 +71,10 @@ public class UpdateSubscriptionRequest {
         return (Optional<UpdateSubscriptionRequestBody>) requestBody;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the related customer.
@@ -98,13 +100,13 @@ public class UpdateSubscriptionRequest {
         return this;
     }
 
+
     public UpdateSubscriptionRequest withRequestBody(Optional<? extends UpdateSubscriptionRequestBody> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -123,9 +125,7 @@ public class UpdateSubscriptionRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            customerId,
-            subscriptionId,
-            requestBody);
+            customerId, subscriptionId, requestBody);
     }
     
     @Override
@@ -135,18 +135,20 @@ public class UpdateSubscriptionRequest {
                 "subscriptionId", subscriptionId,
                 "requestBody", requestBody);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String customerId;
- 
+
         private String subscriptionId;
- 
+
         private Optional<? extends UpdateSubscriptionRequestBody> requestBody = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the related customer.
@@ -157,6 +159,7 @@ public class UpdateSubscriptionRequest {
             return this;
         }
 
+
         /**
          * Provide the ID of the related subscription.
          */
@@ -165,6 +168,7 @@ public class UpdateSubscriptionRequest {
             this.subscriptionId = subscriptionId;
             return this;
         }
+
 
         public Builder requestBody(UpdateSubscriptionRequestBody requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
@@ -177,12 +181,12 @@ public class UpdateSubscriptionRequest {
             this.requestBody = requestBody;
             return this;
         }
-        
+
         public UpdateSubscriptionRequest build() {
+
             return new UpdateSubscriptionRequest(
-                customerId,
-                subscriptionId,
-                requestBody);
+                customerId, subscriptionId, requestBody);
         }
+
     }
 }

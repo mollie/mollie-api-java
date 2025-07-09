@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreateCaptureRequestBody {
 
+public class CreateCaptureRequestBody {
     /**
      * The description of the capture.
      */
@@ -81,9 +81,10 @@ public class CreateCaptureRequestBody {
         return (JsonNullable<CreateCaptureMetadata>) metadata;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The description of the capture.
@@ -93,6 +94,7 @@ public class CreateCaptureRequestBody {
         this.description = Optional.ofNullable(description);
         return this;
     }
+
 
     /**
      * The description of the capture.
@@ -139,7 +141,6 @@ public class CreateCaptureRequestBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -158,9 +159,7 @@ public class CreateCaptureRequestBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            description,
-            amount,
-            metadata);
+            description, amount, metadata);
     }
     
     @Override
@@ -170,18 +169,20 @@ public class CreateCaptureRequestBody {
                 "amount", amount,
                 "metadata", metadata);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private JsonNullable<? extends CreateCaptureAmount> amount = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends CreateCaptureMetadata> metadata = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The description of the capture.
@@ -201,6 +202,7 @@ public class CreateCaptureRequestBody {
             return this;
         }
 
+
         /**
          * The amount captured. If no amount is provided, the full authorized amount is captured.
          */
@@ -219,6 +221,7 @@ public class CreateCaptureRequestBody {
             return this;
         }
 
+
         /**
          * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
@@ -236,12 +239,12 @@ public class CreateCaptureRequestBody {
             this.metadata = metadata;
             return this;
         }
-        
+
         public CreateCaptureRequestBody build() {
+
             return new CreateCaptureRequestBody(
-                description,
-                amount,
-                metadata);
+                description, amount, metadata);
         }
+
     }
 }

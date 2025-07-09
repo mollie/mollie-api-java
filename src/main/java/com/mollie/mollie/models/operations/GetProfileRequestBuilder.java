@@ -73,8 +73,8 @@ public class GetProfileRequestBuilder {
 
         RequestOperation<GetProfileRequest, GetProfileResponse> operation
               = new GetProfileOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         GetProfileRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

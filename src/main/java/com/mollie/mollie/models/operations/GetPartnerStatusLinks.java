@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
 public class GetPartnerStatusLinks {
-
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -86,9 +85,10 @@ public class GetPartnerStatusLinks {
         return (Optional<GetPartnerStatusDocumentation>) documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -98,6 +98,7 @@ public class GetPartnerStatusLinks {
         this.self = Optional.ofNullable(self);
         return this;
     }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -117,6 +118,7 @@ public class GetPartnerStatusLinks {
         return this;
     }
 
+
     /**
      * The URL that can be used to have new organizations sign up and be automatically linked to this partner. Will be omitted if the partner is not of type `signuplink`.
      */
@@ -135,6 +137,7 @@ public class GetPartnerStatusLinks {
         return this;
     }
 
+
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -144,7 +147,6 @@ public class GetPartnerStatusLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -163,9 +165,7 @@ public class GetPartnerStatusLinks {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self,
-            signuplink,
-            documentation);
+            self, signuplink, documentation);
     }
     
     @Override
@@ -175,18 +175,20 @@ public class GetPartnerStatusLinks {
                 "signuplink", signuplink,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends GetPartnerStatusSelf> self = Optional.empty();
- 
+
         private Optional<? extends Signuplink> signuplink = Optional.empty();
- 
+
         private Optional<? extends GetPartnerStatusDocumentation> documentation = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -206,6 +208,7 @@ public class GetPartnerStatusLinks {
             return this;
         }
 
+
         /**
          * The URL that can be used to have new organizations sign up and be automatically linked to this partner. Will be omitted if the partner is not of type `signuplink`.
          */
@@ -224,6 +227,7 @@ public class GetPartnerStatusLinks {
             return this;
         }
 
+
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
@@ -241,12 +245,12 @@ public class GetPartnerStatusLinks {
             this.documentation = documentation;
             return this;
         }
-        
+
         public GetPartnerStatusLinks build() {
+
             return new GetPartnerStatusLinks(
-                self,
-                signuplink,
-                documentation);
+                self, signuplink, documentation);
         }
+
     }
 }

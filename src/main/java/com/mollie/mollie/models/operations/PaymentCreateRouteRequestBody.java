@@ -14,8 +14,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class PaymentCreateRouteRequestBody {
 
+public class PaymentCreateRouteRequestBody {
     /**
      * The amount of the route. That amount that will be routed to the specified destination.
      */
@@ -80,9 +80,10 @@ public class PaymentCreateRouteRequestBody {
         return (Optional<PaymentCreateRouteDestination>) destination;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The amount of the route. That amount that will be routed to the specified destination.
@@ -92,6 +93,7 @@ public class PaymentCreateRouteRequestBody {
         this.amount = Optional.ofNullable(amount);
         return this;
     }
+
 
     /**
      * The amount of the route. That amount that will be routed to the specified destination.
@@ -111,6 +113,7 @@ public class PaymentCreateRouteRequestBody {
         return this;
     }
 
+
     /**
      * The description of the route. This description is shown in the reports.
      */
@@ -129,6 +132,7 @@ public class PaymentCreateRouteRequestBody {
         return this;
     }
 
+
     /**
      * The destination of the route.
      */
@@ -138,7 +142,6 @@ public class PaymentCreateRouteRequestBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -157,9 +160,7 @@ public class PaymentCreateRouteRequestBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            amount,
-            description,
-            destination);
+            amount, description, destination);
     }
     
     @Override
@@ -169,18 +170,20 @@ public class PaymentCreateRouteRequestBody {
                 "description", description,
                 "destination", destination);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends PaymentCreateRouteAmount> amount = Optional.empty();
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<? extends PaymentCreateRouteDestination> destination = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The amount of the route. That amount that will be routed to the specified destination.
@@ -200,6 +203,7 @@ public class PaymentCreateRouteRequestBody {
             return this;
         }
 
+
         /**
          * The description of the route. This description is shown in the reports.
          */
@@ -218,6 +222,7 @@ public class PaymentCreateRouteRequestBody {
             return this;
         }
 
+
         /**
          * The destination of the route.
          */
@@ -235,12 +240,12 @@ public class PaymentCreateRouteRequestBody {
             this.destination = destination;
             return this;
         }
-        
+
         public PaymentCreateRouteRequestBody build() {
+
             return new PaymentCreateRouteRequestBody(
-                amount,
-                description,
-                destination);
+                amount, description, destination);
         }
+
     }
 }

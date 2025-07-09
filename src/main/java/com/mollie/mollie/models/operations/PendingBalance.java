@@ -25,13 +25,16 @@ public class PendingBalance {
     @JsonProperty("open")
     private Optional<? extends GetBalanceReportBalancesOpen> open;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("close")
     private Optional<? extends GetBalanceReportBalancesClose> close;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pending")
     private Optional<? extends Pending> pending;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("movedToAvailable")
@@ -54,7 +57,8 @@ public class PendingBalance {
     }
     
     public PendingBalance() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -81,15 +85,17 @@ public class PendingBalance {
         return (Optional<MovedToAvailable>) movedToAvailable;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PendingBalance withOpen(GetBalanceReportBalancesOpen open) {
         Utils.checkNotNull(open, "open");
         this.open = Optional.ofNullable(open);
         return this;
     }
+
 
     public PendingBalance withOpen(Optional<? extends GetBalanceReportBalancesOpen> open) {
         Utils.checkNotNull(open, "open");
@@ -103,6 +109,7 @@ public class PendingBalance {
         return this;
     }
 
+
     public PendingBalance withClose(Optional<? extends GetBalanceReportBalancesClose> close) {
         Utils.checkNotNull(close, "close");
         this.close = close;
@@ -114,6 +121,7 @@ public class PendingBalance {
         this.pending = Optional.ofNullable(pending);
         return this;
     }
+
 
     public PendingBalance withPending(Optional<? extends Pending> pending) {
         Utils.checkNotNull(pending, "pending");
@@ -127,13 +135,13 @@ public class PendingBalance {
         return this;
     }
 
+
     public PendingBalance withMovedToAvailable(Optional<? extends MovedToAvailable> movedToAvailable) {
         Utils.checkNotNull(movedToAvailable, "movedToAvailable");
         this.movedToAvailable = movedToAvailable;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -153,9 +161,7 @@ public class PendingBalance {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            open,
-            close,
-            pending,
+            open, close, pending,
             movedToAvailable);
     }
     
@@ -167,20 +173,22 @@ public class PendingBalance {
                 "pending", pending,
                 "movedToAvailable", movedToAvailable);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends GetBalanceReportBalancesOpen> open = Optional.empty();
- 
+
         private Optional<? extends GetBalanceReportBalancesClose> close = Optional.empty();
- 
+
         private Optional<? extends Pending> pending = Optional.empty();
- 
+
         private Optional<? extends MovedToAvailable> movedToAvailable = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder open(GetBalanceReportBalancesOpen open) {
             Utils.checkNotNull(open, "open");
@@ -194,6 +202,7 @@ public class PendingBalance {
             return this;
         }
 
+
         public Builder close(GetBalanceReportBalancesClose close) {
             Utils.checkNotNull(close, "close");
             this.close = Optional.ofNullable(close);
@@ -205,6 +214,7 @@ public class PendingBalance {
             this.close = close;
             return this;
         }
+
 
         public Builder pending(Pending pending) {
             Utils.checkNotNull(pending, "pending");
@@ -218,6 +228,7 @@ public class PendingBalance {
             return this;
         }
 
+
         public Builder movedToAvailable(MovedToAvailable movedToAvailable) {
             Utils.checkNotNull(movedToAvailable, "movedToAvailable");
             this.movedToAvailable = Optional.ofNullable(movedToAvailable);
@@ -229,13 +240,13 @@ public class PendingBalance {
             this.movedToAvailable = movedToAvailable;
             return this;
         }
-        
+
         public PendingBalance build() {
+
             return new PendingBalance(
-                open,
-                close,
-                pending,
+                open, close, pending,
                 movedToAvailable);
         }
+
     }
 }

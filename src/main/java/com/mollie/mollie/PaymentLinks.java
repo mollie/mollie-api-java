@@ -47,7 +47,6 @@ public class PaymentLinks {
     PaymentLinks(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Create payment link
      * 
@@ -104,11 +103,10 @@ public class PaymentLinks {
             Optional<Options> options) throws Exception {
         RequestOperation<Optional<? extends CreatePaymentLinkRequestBody>, CreatePaymentLinkResponse> operation
               = new CreatePaymentLinkOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List payment links
@@ -146,7 +144,8 @@ public class PaymentLinks {
      * @throws Exception if the API call fails
      */
     public ListPaymentLinksResponse listDirect() throws Exception {
-        return list(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        return list(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -185,11 +184,10 @@ public class PaymentLinks {
                 .build();
         RequestOperation<ListPaymentLinksRequest, ListPaymentLinksResponse> operation
               = new ListPaymentLinksOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get payment link
@@ -258,11 +256,10 @@ public class PaymentLinks {
                 .build();
         RequestOperation<GetPaymentLinkRequest, GetPaymentLinkResponse> operation
               = new GetPaymentLinkOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update payment link
@@ -329,11 +326,10 @@ public class PaymentLinks {
                 .build();
         RequestOperation<UpdatePaymentLinkRequest, UpdatePaymentLinkResponse> operation
               = new UpdatePaymentLinkOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete payment link
@@ -412,11 +408,10 @@ public class PaymentLinks {
                 .build();
         RequestOperation<DeletePaymentLinkRequest, DeletePaymentLinkResponse> operation
               = new DeletePaymentLinkOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get payment link payments
@@ -481,8 +476,8 @@ public class PaymentLinks {
             Optional<Options> options) throws Exception {
         RequestOperation<GetPaymentLinkPaymentsRequest, GetPaymentLinkPaymentsResponse> operation
               = new GetPaymentLinkPaymentsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

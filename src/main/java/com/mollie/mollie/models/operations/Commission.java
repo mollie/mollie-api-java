@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>The commission object.
  */
 public class Commission {
-
     /**
      * The commission count.
      */
@@ -47,9 +46,10 @@ public class Commission {
         return count;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The commission count.
@@ -60,6 +60,7 @@ public class Commission {
         return this;
     }
 
+
     /**
      * The commission count.
      */
@@ -69,7 +70,6 @@ public class Commission {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -94,14 +94,16 @@ public class Commission {
         return Utils.toString(Commission.class,
                 "count", count);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> count = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The commission count.
@@ -120,10 +122,12 @@ public class Commission {
             this.count = count;
             return this;
         }
-        
+
         public Commission build() {
+
             return new Commission(
                 count);
         }
+
     }
 }

@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
+
 public class GetBalanceReportBalancesSubtotals {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -123,7 +124,9 @@ public class GetBalanceReportBalancesSubtotals {
     }
     
     public GetBalanceReportBalancesSubtotals() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     @SuppressWarnings("unchecked")
@@ -208,9 +211,10 @@ public class GetBalanceReportBalancesSubtotals {
         return transactionType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetBalanceReportBalancesSubtotals withSubTotals(List<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceSubTotals> subTotals) {
         Utils.checkNotNull(subTotals, "subTotals");
@@ -232,6 +236,7 @@ public class GetBalanceReportBalancesSubtotals {
         this.count = Optional.ofNullable(count);
         return this;
     }
+
 
     /**
      * Number of transactions of this type
@@ -392,7 +397,6 @@ public class GetBalanceReportBalancesSubtotals {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -417,15 +421,9 @@ public class GetBalanceReportBalancesSubtotals {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            subTotals,
-            count,
-            method,
-            cardIssuer,
-            cardAudience,
-            cardRegion,
-            feeType,
-            prepaymentPartType,
-            transactionType);
+            subTotals, count, method,
+            cardIssuer, cardAudience, cardRegion,
+            feeType, prepaymentPartType, transactionType);
     }
     
     @Override
@@ -441,30 +439,32 @@ public class GetBalanceReportBalancesSubtotals {
                 "prepaymentPartType", prepaymentPartType,
                 "transactionType", transactionType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<? extends List<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceSubTotals>> subTotals = JsonNullable.undefined();
- 
+
         private Optional<Long> count = Optional.empty();
- 
+
         private JsonNullable<String> method = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cardIssuer = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cardAudience = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cardRegion = JsonNullable.undefined();
- 
+
         private JsonNullable<String> feeType = JsonNullable.undefined();
- 
+
         private JsonNullable<String> prepaymentPartType = JsonNullable.undefined();
- 
+
         private JsonNullable<String> transactionType = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder subTotals(List<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceSubTotals> subTotals) {
             Utils.checkNotNull(subTotals, "subTotals");
@@ -477,6 +477,7 @@ public class GetBalanceReportBalancesSubtotals {
             this.subTotals = subTotals;
             return this;
         }
+
 
         /**
          * Number of transactions of this type
@@ -496,6 +497,7 @@ public class GetBalanceReportBalancesSubtotals {
             return this;
         }
 
+
         /**
          * Payment type of the transactions
          */
@@ -513,6 +515,7 @@ public class GetBalanceReportBalancesSubtotals {
             this.method = method;
             return this;
         }
+
 
         /**
          * In case of payments transactions with card, the card issuer will be available
@@ -536,6 +539,7 @@ public class GetBalanceReportBalancesSubtotals {
             return this;
         }
 
+
         /**
          * In case of payments trnsactions with card, the card audience will be available.
          * 
@@ -557,6 +561,7 @@ public class GetBalanceReportBalancesSubtotals {
             this.cardAudience = cardAudience;
             return this;
         }
+
 
         /**
          * In case of payments transactions with card, the card region will be available.
@@ -580,6 +585,7 @@ public class GetBalanceReportBalancesSubtotals {
             return this;
         }
 
+
         /**
          * Present when the transaction represents a fee.
          * 
@@ -601,6 +607,7 @@ public class GetBalanceReportBalancesSubtotals {
             this.feeType = feeType;
             return this;
         }
+
 
         /**
          * Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
@@ -624,6 +631,7 @@ public class GetBalanceReportBalancesSubtotals {
             return this;
         }
 
+
         /**
          * Represents the transaction type
          * 
@@ -645,18 +653,14 @@ public class GetBalanceReportBalancesSubtotals {
             this.transactionType = transactionType;
             return this;
         }
-        
+
         public GetBalanceReportBalancesSubtotals build() {
+
             return new GetBalanceReportBalancesSubtotals(
-                subTotals,
-                count,
-                method,
-                cardIssuer,
-                cardAudience,
-                cardRegion,
-                feeType,
-                prepaymentPartType,
-                transactionType);
+                subTotals, count, method,
+                cardIssuer, cardAudience, cardRegion,
+                feeType, prepaymentPartType, transactionType);
         }
+
     }
 }

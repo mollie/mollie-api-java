@@ -21,7 +21,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
  */
 public class GetSettlementChargebacksLinks {
-
     /**
      * The URL to the current set of items.
      */
@@ -67,7 +66,8 @@ public class GetSettlementChargebacksLinks {
     }
     
     public GetSettlementChargebacksLinks() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -106,9 +106,10 @@ public class GetSettlementChargebacksLinks {
         return (Optional<GetSettlementChargebacksDocumentation>) documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The URL to the current set of items.
@@ -118,6 +119,7 @@ public class GetSettlementChargebacksLinks {
         this.self = Optional.ofNullable(self);
         return this;
     }
+
 
     /**
      * The URL to the current set of items.
@@ -173,6 +175,7 @@ public class GetSettlementChargebacksLinks {
         return this;
     }
 
+
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -182,7 +185,6 @@ public class GetSettlementChargebacksLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -202,9 +204,7 @@ public class GetSettlementChargebacksLinks {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self,
-            previous,
-            next,
+            self, previous, next,
             documentation);
     }
     
@@ -216,20 +216,22 @@ public class GetSettlementChargebacksLinks {
                 "next", next,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends GetSettlementChargebacksSelf> self = Optional.empty();
- 
+
         private JsonNullable<? extends GetSettlementChargebacksPrevious> previous = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends GetSettlementChargebacksNext> next = JsonNullable.undefined();
- 
+
         private Optional<? extends GetSettlementChargebacksDocumentation> documentation = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The URL to the current set of items.
@@ -249,6 +251,7 @@ public class GetSettlementChargebacksLinks {
             return this;
         }
 
+
         /**
          * The previous set of items, if available.
          */
@@ -266,6 +269,7 @@ public class GetSettlementChargebacksLinks {
             this.previous = previous;
             return this;
         }
+
 
         /**
          * The next set of items, if available.
@@ -285,6 +289,7 @@ public class GetSettlementChargebacksLinks {
             return this;
         }
 
+
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
@@ -302,13 +307,13 @@ public class GetSettlementChargebacksLinks {
             this.documentation = documentation;
             return this;
         }
-        
+
         public GetSettlementChargebacksLinks build() {
+
             return new GetSettlementChargebacksLinks(
-                self,
-                previous,
-                next,
+                self, previous, next,
                 documentation);
         }
+
     }
 }

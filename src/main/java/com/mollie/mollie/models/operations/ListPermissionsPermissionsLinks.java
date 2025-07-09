@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
 public class ListPermissionsPermissionsLinks {
-
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -67,9 +66,10 @@ public class ListPermissionsPermissionsLinks {
         return (Optional<ListPermissionsPermissionsDocumentation>) documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -79,6 +79,7 @@ public class ListPermissionsPermissionsLinks {
         this.self = Optional.ofNullable(self);
         return this;
     }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -98,6 +99,7 @@ public class ListPermissionsPermissionsLinks {
         return this;
     }
 
+
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -107,7 +109,6 @@ public class ListPermissionsPermissionsLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -125,8 +126,7 @@ public class ListPermissionsPermissionsLinks {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self,
-            documentation);
+            self, documentation);
     }
     
     @Override
@@ -135,16 +135,18 @@ public class ListPermissionsPermissionsLinks {
                 "self", self,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ListPermissionsPermissionsSelf> self = Optional.empty();
- 
+
         private Optional<? extends ListPermissionsPermissionsDocumentation> documentation = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -164,6 +166,7 @@ public class ListPermissionsPermissionsLinks {
             return this;
         }
 
+
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
@@ -181,11 +184,12 @@ public class ListPermissionsPermissionsLinks {
             this.documentation = documentation;
             return this;
         }
-        
+
         public ListPermissionsPermissionsLinks build() {
+
             return new ListPermissionsPermissionsLinks(
-                self,
-                documentation);
+                self, documentation);
         }
+
     }
 }

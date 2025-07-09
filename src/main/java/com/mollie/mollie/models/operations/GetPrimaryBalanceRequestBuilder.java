@@ -41,8 +41,8 @@ public class GetPrimaryBalanceRequestBuilder {
 
         RequestlessOperation<GetPrimaryBalanceResponse> operation
             = new GetPrimaryBalanceOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest());
     }

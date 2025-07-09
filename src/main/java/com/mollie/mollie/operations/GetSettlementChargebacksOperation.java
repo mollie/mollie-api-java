@@ -49,7 +49,8 @@ public class GetSettlementChargebacksOperation implements RequestOperation<GetSe
     
     @Override
     public HttpResponse<InputStream> doRequest(GetSettlementChargebacksRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 GetSettlementChargebacksRequest.class,

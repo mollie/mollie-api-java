@@ -14,6 +14,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class ListSettlementsLessThanYearGreaterThan {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -37,9 +38,10 @@ public class ListSettlementsLessThanYearGreaterThan {
         return (Optional<ListSettlementsLessThanMonthGreaterThan>) lessThanMonthGreaterThan;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ListSettlementsLessThanYearGreaterThan withLessThanMonthGreaterThan(ListSettlementsLessThanMonthGreaterThan lessThanMonthGreaterThan) {
         Utils.checkNotNull(lessThanMonthGreaterThan, "lessThanMonthGreaterThan");
@@ -47,13 +49,13 @@ public class ListSettlementsLessThanYearGreaterThan {
         return this;
     }
 
+
     public ListSettlementsLessThanYearGreaterThan withLessThanMonthGreaterThan(Optional<? extends ListSettlementsLessThanMonthGreaterThan> lessThanMonthGreaterThan) {
         Utils.checkNotNull(lessThanMonthGreaterThan, "lessThanMonthGreaterThan");
         this.lessThanMonthGreaterThan = lessThanMonthGreaterThan;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -78,14 +80,16 @@ public class ListSettlementsLessThanYearGreaterThan {
         return Utils.toString(ListSettlementsLessThanYearGreaterThan.class,
                 "lessThanMonthGreaterThan", lessThanMonthGreaterThan);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ListSettlementsLessThanMonthGreaterThan> lessThanMonthGreaterThan = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder lessThanMonthGreaterThan(ListSettlementsLessThanMonthGreaterThan lessThanMonthGreaterThan) {
             Utils.checkNotNull(lessThanMonthGreaterThan, "lessThanMonthGreaterThan");
@@ -98,10 +102,12 @@ public class ListSettlementsLessThanYearGreaterThan {
             this.lessThanMonthGreaterThan = lessThanMonthGreaterThan;
             return this;
         }
-        
+
         public ListSettlementsLessThanYearGreaterThan build() {
+
             return new ListSettlementsLessThanYearGreaterThan(
                 lessThanMonthGreaterThan);
         }
+
     }
 }

@@ -45,61 +45,76 @@ public class Context {
     @JsonProperty("payment")
     private JsonNullable<String> payment;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("capture")
     private JsonNullable<? extends Capture> capture;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("unauthorized-direct-debit")
     private JsonNullable<String> unauthorizedDirectDebit;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("failed-payment")
     private JsonNullable<String> failedPayment;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("refund")
     private JsonNullable<String> refund;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("returned-refund")
     private JsonNullable<? extends ReturnedRefund> returnedRefund;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("chargeback")
     private JsonNullable<? extends Chargeback> chargeback;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("chargeback-reversal")
     private JsonNullable<String> chargebackReversal;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("outgoing-transfer")
     private JsonNullable<? extends OutgoingTransfer> outgoingTransfer;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("canceled-outgoing-transfer")
     private JsonNullable<? extends CanceledOutgoingTransfer> canceledOutgoingTransfer;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("returned-transfer")
     private JsonNullable<? extends ReturnedTransfer> returnedTransfer;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("invoice-compensation")
     private JsonNullable<String> invoiceCompensation;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("application-fee")
     private JsonNullable<String> applicationFee;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("split-payment")
     private JsonNullable<String> splitPayment;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("platform-payment-refund")
     private JsonNullable<? extends PlatformPaymentRefund> platformPaymentRefund;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("platform-payment-chargeback")
@@ -158,7 +173,12 @@ public class Context {
     }
     
     public Context() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     @JsonIgnore
@@ -249,9 +269,10 @@ public class Context {
         return (JsonNullable<PlatformPaymentChargeback>) platformPaymentChargeback;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Context withPayment(String payment) {
         Utils.checkNotNull(payment, "payment");
@@ -445,7 +466,6 @@ public class Context {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -477,21 +497,11 @@ public class Context {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            payment,
-            capture,
-            unauthorizedDirectDebit,
-            failedPayment,
-            refund,
-            returnedRefund,
-            chargeback,
-            chargebackReversal,
-            outgoingTransfer,
-            canceledOutgoingTransfer,
-            returnedTransfer,
-            invoiceCompensation,
-            applicationFee,
-            splitPayment,
-            platformPaymentRefund,
+            payment, capture, unauthorizedDirectDebit,
+            failedPayment, refund, returnedRefund,
+            chargeback, chargebackReversal, outgoingTransfer,
+            canceledOutgoingTransfer, returnedTransfer, invoiceCompensation,
+            applicationFee, splitPayment, platformPaymentRefund,
             platformPaymentChargeback);
     }
     
@@ -515,44 +525,46 @@ public class Context {
                 "platformPaymentRefund", platformPaymentRefund,
                 "platformPaymentChargeback", platformPaymentChargeback);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> payment = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Capture> capture = JsonNullable.undefined();
- 
+
         private JsonNullable<String> unauthorizedDirectDebit = JsonNullable.undefined();
- 
+
         private JsonNullable<String> failedPayment = JsonNullable.undefined();
- 
+
         private JsonNullable<String> refund = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends ReturnedRefund> returnedRefund = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Chargeback> chargeback = JsonNullable.undefined();
- 
+
         private JsonNullable<String> chargebackReversal = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends OutgoingTransfer> outgoingTransfer = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends CanceledOutgoingTransfer> canceledOutgoingTransfer = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends ReturnedTransfer> returnedTransfer = JsonNullable.undefined();
- 
+
         private JsonNullable<String> invoiceCompensation = JsonNullable.undefined();
- 
+
         private JsonNullable<String> applicationFee = JsonNullable.undefined();
- 
+
         private JsonNullable<String> splitPayment = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends PlatformPaymentRefund> platformPaymentRefund = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends PlatformPaymentChargeback> platformPaymentChargeback = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder payment(String payment) {
             Utils.checkNotNull(payment, "payment");
@@ -566,6 +578,7 @@ public class Context {
             return this;
         }
 
+
         public Builder capture(Capture capture) {
             Utils.checkNotNull(capture, "capture");
             this.capture = JsonNullable.of(capture);
@@ -577,6 +590,7 @@ public class Context {
             this.capture = capture;
             return this;
         }
+
 
         public Builder unauthorizedDirectDebit(String unauthorizedDirectDebit) {
             Utils.checkNotNull(unauthorizedDirectDebit, "unauthorizedDirectDebit");
@@ -590,6 +604,7 @@ public class Context {
             return this;
         }
 
+
         public Builder failedPayment(String failedPayment) {
             Utils.checkNotNull(failedPayment, "failedPayment");
             this.failedPayment = JsonNullable.of(failedPayment);
@@ -601,6 +616,7 @@ public class Context {
             this.failedPayment = failedPayment;
             return this;
         }
+
 
         public Builder refund(String refund) {
             Utils.checkNotNull(refund, "refund");
@@ -614,6 +630,7 @@ public class Context {
             return this;
         }
 
+
         public Builder returnedRefund(ReturnedRefund returnedRefund) {
             Utils.checkNotNull(returnedRefund, "returnedRefund");
             this.returnedRefund = JsonNullable.of(returnedRefund);
@@ -625,6 +642,7 @@ public class Context {
             this.returnedRefund = returnedRefund;
             return this;
         }
+
 
         public Builder chargeback(Chargeback chargeback) {
             Utils.checkNotNull(chargeback, "chargeback");
@@ -638,6 +656,7 @@ public class Context {
             return this;
         }
 
+
         public Builder chargebackReversal(String chargebackReversal) {
             Utils.checkNotNull(chargebackReversal, "chargebackReversal");
             this.chargebackReversal = JsonNullable.of(chargebackReversal);
@@ -649,6 +668,7 @@ public class Context {
             this.chargebackReversal = chargebackReversal;
             return this;
         }
+
 
         public Builder outgoingTransfer(OutgoingTransfer outgoingTransfer) {
             Utils.checkNotNull(outgoingTransfer, "outgoingTransfer");
@@ -662,6 +682,7 @@ public class Context {
             return this;
         }
 
+
         public Builder canceledOutgoingTransfer(CanceledOutgoingTransfer canceledOutgoingTransfer) {
             Utils.checkNotNull(canceledOutgoingTransfer, "canceledOutgoingTransfer");
             this.canceledOutgoingTransfer = JsonNullable.of(canceledOutgoingTransfer);
@@ -673,6 +694,7 @@ public class Context {
             this.canceledOutgoingTransfer = canceledOutgoingTransfer;
             return this;
         }
+
 
         public Builder returnedTransfer(ReturnedTransfer returnedTransfer) {
             Utils.checkNotNull(returnedTransfer, "returnedTransfer");
@@ -686,6 +708,7 @@ public class Context {
             return this;
         }
 
+
         public Builder invoiceCompensation(String invoiceCompensation) {
             Utils.checkNotNull(invoiceCompensation, "invoiceCompensation");
             this.invoiceCompensation = JsonNullable.of(invoiceCompensation);
@@ -697,6 +720,7 @@ public class Context {
             this.invoiceCompensation = invoiceCompensation;
             return this;
         }
+
 
         public Builder applicationFee(String applicationFee) {
             Utils.checkNotNull(applicationFee, "applicationFee");
@@ -710,6 +734,7 @@ public class Context {
             return this;
         }
 
+
         public Builder splitPayment(String splitPayment) {
             Utils.checkNotNull(splitPayment, "splitPayment");
             this.splitPayment = JsonNullable.of(splitPayment);
@@ -721,6 +746,7 @@ public class Context {
             this.splitPayment = splitPayment;
             return this;
         }
+
 
         public Builder platformPaymentRefund(PlatformPaymentRefund platformPaymentRefund) {
             Utils.checkNotNull(platformPaymentRefund, "platformPaymentRefund");
@@ -734,6 +760,7 @@ public class Context {
             return this;
         }
 
+
         public Builder platformPaymentChargeback(PlatformPaymentChargeback platformPaymentChargeback) {
             Utils.checkNotNull(platformPaymentChargeback, "platformPaymentChargeback");
             this.platformPaymentChargeback = JsonNullable.of(platformPaymentChargeback);
@@ -745,25 +772,17 @@ public class Context {
             this.platformPaymentChargeback = platformPaymentChargeback;
             return this;
         }
-        
+
         public Context build() {
+
             return new Context(
-                payment,
-                capture,
-                unauthorizedDirectDebit,
-                failedPayment,
-                refund,
-                returnedRefund,
-                chargeback,
-                chargebackReversal,
-                outgoingTransfer,
-                canceledOutgoingTransfer,
-                returnedTransfer,
-                invoiceCompensation,
-                applicationFee,
-                splitPayment,
-                platformPaymentRefund,
+                payment, capture, unauthorizedDirectDebit,
+                failedPayment, refund, returnedRefund,
+                chargeback, chargebackReversal, outgoingTransfer,
+                canceledOutgoingTransfer, returnedTransfer, invoiceCompensation,
+                applicationFee, splitPayment, platformPaymentRefund,
                 platformPaymentChargeback);
         }
+
     }
 }

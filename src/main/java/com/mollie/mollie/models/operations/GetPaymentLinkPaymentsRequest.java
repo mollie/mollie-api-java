@@ -16,8 +16,8 @@ import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetPaymentLinkPaymentsRequest {
 
+public class GetPaymentLinkPaymentsRequest {
     /**
      * Provide the ID of the related payment link.
      */
@@ -73,7 +73,8 @@ public class GetPaymentLinkPaymentsRequest {
     
     public GetPaymentLinkPaymentsRequest(
             String paymentLinkId) {
-        this(paymentLinkId, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(paymentLinkId, Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -120,9 +121,10 @@ public class GetPaymentLinkPaymentsRequest {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the related payment link.
@@ -141,6 +143,7 @@ public class GetPaymentLinkPaymentsRequest {
         this.from = Optional.ofNullable(from);
         return this;
     }
+
 
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
@@ -213,7 +216,6 @@ public class GetPaymentLinkPaymentsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -234,11 +236,8 @@ public class GetPaymentLinkPaymentsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentLinkId,
-            from,
-            limit,
-            sort,
-            testmode);
+            paymentLinkId, from, limit,
+            sort, testmode);
     }
     
     @Override
@@ -250,22 +249,24 @@ public class GetPaymentLinkPaymentsRequest {
                 "sort", sort,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String paymentLinkId;
- 
+
         private Optional<String> from = Optional.empty();
- 
+
         private JsonNullable<Long> limit;
- 
+
         private JsonNullable<String> sort = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the related payment link.
@@ -275,6 +276,7 @@ public class GetPaymentLinkPaymentsRequest {
             this.paymentLinkId = paymentLinkId;
             return this;
         }
+
 
         /**
          * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
@@ -294,6 +296,7 @@ public class GetPaymentLinkPaymentsRequest {
             return this;
         }
 
+
         /**
          * The maximum number of items to return. Defaults to 50 items.
          */
@@ -311,6 +314,7 @@ public class GetPaymentLinkPaymentsRequest {
             this.limit = limit;
             return this;
         }
+
 
         /**
          * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
@@ -334,6 +338,7 @@ public class GetPaymentLinkPaymentsRequest {
             return this;
         }
 
+
         /**
          * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
          * 
@@ -355,18 +360,17 @@ public class GetPaymentLinkPaymentsRequest {
             this.testmode = testmode;
             return this;
         }
-        
+
         public GetPaymentLinkPaymentsRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+
             return new GetPaymentLinkPaymentsRequest(
-                paymentLinkId,
-                from,
-                limit,
-                sort,
-                testmode);
+                paymentLinkId, from, limit,
+                sort, testmode);
         }
+
 
         private static final LazySingletonValue<JsonNullable<Long>> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(

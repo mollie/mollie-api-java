@@ -13,8 +13,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetPaymentRequest {
 
+public class GetPaymentRequest {
     /**
      * Provide the ID of the related payment.
      */
@@ -59,7 +59,8 @@ public class GetPaymentRequest {
     
     public GetPaymentRequest(
             String paymentId) {
-        this(paymentId, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(paymentId, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -98,9 +99,10 @@ public class GetPaymentRequest {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the related payment.
@@ -169,7 +171,6 @@ public class GetPaymentRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -189,9 +190,7 @@ public class GetPaymentRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentId,
-            include,
-            embed,
+            paymentId, include, embed,
             testmode);
     }
     
@@ -203,20 +202,22 @@ public class GetPaymentRequest {
                 "embed", embed,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String paymentId;
- 
+
         private JsonNullable<? extends QueryParamInclude> include = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Embed> embed = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the related payment.
@@ -226,6 +227,7 @@ public class GetPaymentRequest {
             this.paymentId = paymentId;
             return this;
         }
+
 
         /**
          * This endpoint allows you to include additional information via the `include` query string parameter.
@@ -245,6 +247,7 @@ public class GetPaymentRequest {
             return this;
         }
 
+
         /**
          * This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
          */
@@ -262,6 +265,7 @@ public class GetPaymentRequest {
             this.embed = embed;
             return this;
         }
+
 
         /**
          * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
@@ -284,13 +288,13 @@ public class GetPaymentRequest {
             this.testmode = testmode;
             return this;
         }
-        
+
         public GetPaymentRequest build() {
+
             return new GetPaymentRequest(
-                paymentId,
-                include,
-                embed,
+                paymentId, include, embed,
                 testmode);
         }
+
     }
 }

@@ -20,161 +20,211 @@ public class Client {
      * SERVERS contains the list of server urls available to the SDK.
      */
     public static final String[] SERVERS = {
+
         "https://api.mollie.com/v2",
     };
 
-    
 
     private final Payments payments;
 
+
     private final Methods methods;
+
 
     private final Refunds refunds;
 
+
     private final Chargebacks chargebacks;
+
 
     private final Captures captures;
 
+
     private final Wallets wallets;
+
 
     private final PaymentLinks paymentLinks;
 
+
     private final Terminals terminals;
+
 
     private final DelayedRouting delayedRouting;
 
+
     private final Customers customers;
+
 
     private final Mandates mandates;
 
+
     private final Subscriptions subscriptions;
+
 
     private final Permissions permissions;
 
+
     private final Organizations organizations;
+
 
     private final Profiles profiles;
 
+
     private final Onboarding onboarding;
+
 
     private final Capabilities capabilities;
 
+
     private final Clients clients;
+
 
     private final ClientLinks clientLinks;
 
+
     private final Webhooks webhooks;
+
 
     private final WebhookEvents webhookEvents;
 
+
     private final Balances balances;
+
 
     private final Settlements settlements;
 
+
     private final Invoices invoices;
 
+
     private final SalesInvoices salesInvoices;
+
 
     public Payments payments() {
         return payments;
     }
 
+
     public Methods methods() {
         return methods;
     }
+
 
     public Refunds refunds() {
         return refunds;
     }
 
+
     public Chargebacks chargebacks() {
         return chargebacks;
     }
+
 
     public Captures captures() {
         return captures;
     }
 
+
     public Wallets wallets() {
         return wallets;
     }
+
 
     public PaymentLinks paymentLinks() {
         return paymentLinks;
     }
 
+
     public Terminals terminals() {
         return terminals;
     }
+
 
     public DelayedRouting delayedRouting() {
         return delayedRouting;
     }
 
+
     public Customers customers() {
         return customers;
     }
+
 
     public Mandates mandates() {
         return mandates;
     }
 
+
     public Subscriptions subscriptions() {
         return subscriptions;
     }
+
 
     public Permissions permissions() {
         return permissions;
     }
 
+
     public Organizations organizations() {
         return organizations;
     }
+
 
     public Profiles profiles() {
         return profiles;
     }
 
+
     public Onboarding onboarding() {
         return onboarding;
     }
+
 
     public Capabilities capabilities() {
         return capabilities;
     }
 
+
     public Clients clients() {
         return clients;
     }
+
 
     public ClientLinks clientLinks() {
         return clientLinks;
     }
 
+
     public Webhooks webhooks() {
         return webhooks;
     }
+
 
     public WebhookEvents webhookEvents() {
         return webhookEvents;
     }
 
+
     public Balances balances() {
         return balances;
     }
+
 
     public Settlements settlements() {
         return settlements;
     }
 
+
     public Invoices invoices() {
         return invoices;
     }
 
+
     public SalesInvoices salesInvoices() {
         return salesInvoices;
     }
-    private SDKConfiguration sdkConfiguration;
+
+    private final SDKConfiguration sdkConfiguration;
 
     /**
      * The Builder class allows the configuration of a new instance of the SDK.
@@ -271,11 +321,13 @@ public class Client {
 
         /**
          * Enables debug logging for HTTP requests and responses, including JSON body content.
-         *
+         * <p>
          * Convenience method that calls {@link HTTPClient#enableDebugLogging(boolean)}.
          * {@link SpeakeasyHTTPClient} honors this setting. If you are using a custom HTTP client,
          * it is up to the custom client to honor this setting.
+         * </p>
          *
+         * @param enabled Whether to enable debug logging.
          * @return The builder instance.
          */
         public Builder enableHTTPDebugLogging(boolean enabled) {
@@ -347,8 +399,10 @@ public class Client {
         this.settlements = new Settlements(sdkConfiguration);
         this.invoices = new Invoices(sdkConfiguration);
         this.salesInvoices = new SalesInvoices(sdkConfiguration);
-        
-        SdkInitData data = this.sdkConfiguration.hooks().sdkInit(new SdkInitData(this.sdkConfiguration.resolvedServerUrl(), this.sdkConfiguration.client()));
+        SdkInitData data = this.sdkConfiguration.hooks().sdkInit(
+                new SdkInitData(
+                        this.sdkConfiguration.resolvedServerUrl(), 
+                        this.sdkConfiguration.client()));
         this.sdkConfiguration.setServerUrl(data.baseUrl());
         this.sdkConfiguration.setClient(data.client());
     }

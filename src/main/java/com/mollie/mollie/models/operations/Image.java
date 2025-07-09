@@ -16,7 +16,6 @@ import java.lang.String;
  * <p>URLs of images representing the payment method.
  */
 public class Image {
-
     /**
      * The URL pointing to an icon of 32 by 24 pixels.
      */
@@ -72,9 +71,10 @@ public class Image {
         return svg;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The URL pointing to an icon of 32 by 24 pixels.
@@ -103,7 +103,6 @@ public class Image {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -122,9 +121,7 @@ public class Image {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            size1x,
-            size2x,
-            svg);
+            size1x, size2x, svg);
     }
     
     @Override
@@ -134,18 +131,20 @@ public class Image {
                 "size2x", size2x,
                 "svg", svg);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String size1x;
- 
+
         private String size2x;
- 
+
         private String svg;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The URL pointing to an icon of 32 by 24 pixels.
@@ -156,6 +155,7 @@ public class Image {
             return this;
         }
 
+
         /**
          * The URL pointing to an icon of 64 by 48 pixels.
          */
@@ -165,6 +165,7 @@ public class Image {
             return this;
         }
 
+
         /**
          * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
          */
@@ -173,12 +174,12 @@ public class Image {
             this.svg = svg;
             return this;
         }
-        
+
         public Image build() {
+
             return new Image(
-                size1x,
-                size2x,
-                svg);
+                size1x, size2x, svg);
         }
+
     }
 }

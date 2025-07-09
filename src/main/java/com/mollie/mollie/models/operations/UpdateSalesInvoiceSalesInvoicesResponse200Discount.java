@@ -16,7 +16,6 @@ import java.lang.String;
  * <p>The discount to be applied to the line item.
  */
 public class UpdateSalesInvoiceSalesInvoicesResponse200Discount {
-
     /**
      * The type of discount.
      * 
@@ -59,9 +58,10 @@ public class UpdateSalesInvoiceSalesInvoicesResponse200Discount {
         return value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The type of discount.
@@ -83,7 +83,6 @@ public class UpdateSalesInvoiceSalesInvoicesResponse200Discount {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -101,8 +100,7 @@ public class UpdateSalesInvoiceSalesInvoicesResponse200Discount {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            value);
+            type, value);
     }
     
     @Override
@@ -111,16 +109,18 @@ public class UpdateSalesInvoiceSalesInvoicesResponse200Discount {
                 "type", type,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String type;
- 
+
         private String value;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The type of discount.
@@ -133,6 +133,7 @@ public class UpdateSalesInvoiceSalesInvoicesResponse200Discount {
             return this;
         }
 
+
         /**
          * A string containing an exact monetary amount in the given currency, or the percentage.
          */
@@ -141,11 +142,12 @@ public class UpdateSalesInvoiceSalesInvoicesResponse200Discount {
             this.value = value;
             return this;
         }
-        
+
         public UpdateSalesInvoiceSalesInvoicesResponse200Discount build() {
+
             return new UpdateSalesInvoiceSalesInvoicesResponse200Discount(
-                type,
-                value);
+                type, value);
         }
+
     }
 }

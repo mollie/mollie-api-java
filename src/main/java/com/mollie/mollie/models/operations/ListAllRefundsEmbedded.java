@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class ListAllRefundsEmbedded {
 
+public class ListAllRefundsEmbedded {
     /**
      * An array of refund objects. For a complete reference of the refund object, refer to the [Get refund endpoint](get-refund) documentation.
      */
@@ -44,9 +44,10 @@ public class ListAllRefundsEmbedded {
         return (Optional<List<ListAllRefundsRefunds>>) refunds;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An array of refund objects. For a complete reference of the refund object, refer to the [Get refund endpoint](get-refund) documentation.
@@ -57,6 +58,7 @@ public class ListAllRefundsEmbedded {
         return this;
     }
 
+
     /**
      * An array of refund objects. For a complete reference of the refund object, refer to the [Get refund endpoint](get-refund) documentation.
      */
@@ -66,7 +68,6 @@ public class ListAllRefundsEmbedded {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,14 +92,16 @@ public class ListAllRefundsEmbedded {
         return Utils.toString(ListAllRefundsEmbedded.class,
                 "refunds", refunds);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<ListAllRefundsRefunds>> refunds = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An array of refund objects. For a complete reference of the refund object, refer to the [Get refund endpoint](get-refund) documentation.
@@ -117,10 +120,12 @@ public class ListAllRefundsEmbedded {
             this.refunds = refunds;
             return this;
         }
-        
+
         public ListAllRefundsEmbedded build() {
+
             return new ListAllRefundsEmbedded(
                 refunds);
         }
+
     }
 }

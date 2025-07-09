@@ -19,8 +19,8 @@ import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetPaymentLinkPaymentsPayments {
 
+public class GetPaymentLinkPaymentsPayments {
     /**
      * Indicates the response contains a payment object. Will always contain the string `payment` for this endpoint.
      */
@@ -574,7 +574,21 @@ public class GetPaymentLinkPaymentsPayments {
             String status,
             String createdAt,
             GetPaymentLinkPaymentsPaymentLinksLinks links) {
-        this(resource, id, mode, description, amount, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), profileId, JsonNullable.undefined(), JsonNullable.undefined(), status, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), createdAt, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), links);
+        this(resource, id, mode,
+            description, amount, Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            profileId, JsonNullable.undefined(), JsonNullable.undefined(),
+            status, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), createdAt, JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), links);
     }
 
     /**
@@ -1048,9 +1062,10 @@ public class GetPaymentLinkPaymentsPayments {
         return links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a payment object. Will always contain the string `payment` for this endpoint.
@@ -1116,6 +1131,7 @@ public class GetPaymentLinkPaymentsPayments {
         return this;
     }
 
+
     /**
      * The total amount that is already refunded. Only available when refunds are available for this payment. For some payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the costs for a return shipment to the customer.
      */
@@ -1133,6 +1149,7 @@ public class GetPaymentLinkPaymentsPayments {
         this.amountRemaining = Optional.ofNullable(amountRemaining);
         return this;
     }
+
 
     /**
      * The remaining amount that can be refunded. Only available when refunds are available for this payment.
@@ -1152,6 +1169,7 @@ public class GetPaymentLinkPaymentsPayments {
         return this;
     }
 
+
     /**
      * The total amount that is already captured for this payment. Only available when this payment supports captures.
      */
@@ -1169,6 +1187,7 @@ public class GetPaymentLinkPaymentsPayments {
         this.amountChargedBack = Optional.ofNullable(amountChargedBack);
         return this;
     }
+
 
     /**
      * The total amount that was charged back for this payment. Only available when the total charged back amount is not zero.
@@ -1191,6 +1210,7 @@ public class GetPaymentLinkPaymentsPayments {
         this.settlementAmount = Optional.ofNullable(settlementAmount);
         return this;
     }
+
 
     /**
      * This optional field will contain the approximate amount that will be settled to your account, converted to the currency your account is settled in.
@@ -1318,6 +1338,7 @@ public class GetPaymentLinkPaymentsPayments {
         return this;
     }
 
+
     /**
      * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
      * 
@@ -1341,6 +1362,7 @@ public class GetPaymentLinkPaymentsPayments {
         this.shippingAddress = Optional.ofNullable(shippingAddress);
         return this;
     }
+
 
     /**
      * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
@@ -1633,6 +1655,7 @@ public class GetPaymentLinkPaymentsPayments {
         this.sequenceType = Optional.ofNullable(sequenceType);
         return this;
     }
+
 
     /**
      * **Only relevant for recurring payments.**
@@ -1961,7 +1984,6 @@ public class GetPaymentLinkPaymentsPayments {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -2022,51 +2044,21 @@ public class GetPaymentLinkPaymentsPayments {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            mode,
-            description,
-            amount,
-            amountRefunded,
-            amountRemaining,
-            amountCaptured,
-            amountChargedBack,
-            settlementAmount,
-            redirectUrl,
-            cancelUrl,
-            webhookUrl,
-            lines,
-            billingAddress,
-            shippingAddress,
-            locale,
-            countryCode,
-            method,
-            restrictPaymentMethodsToCountry,
-            metadata,
-            captureMode,
-            captureDelay,
-            captureBefore,
-            applicationFee,
-            routing,
-            sequenceType,
-            subscriptionId,
-            mandateId,
-            customerId,
-            profileId,
-            settlementId,
-            orderId,
-            status,
-            statusReason,
-            isCancelable,
-            details,
-            createdAt,
-            authorizedAt,
-            paidAt,
-            canceledAt,
-            expiresAt,
-            expiredAt,
-            failedAt,
-            links);
+            resource, id, mode,
+            description, amount, amountRefunded,
+            amountRemaining, amountCaptured, amountChargedBack,
+            settlementAmount, redirectUrl, cancelUrl,
+            webhookUrl, lines, billingAddress,
+            shippingAddress, locale, countryCode,
+            method, restrictPaymentMethodsToCountry, metadata,
+            captureMode, captureDelay, captureBefore,
+            applicationFee, routing, sequenceType,
+            subscriptionId, mandateId, customerId,
+            profileId, settlementId, orderId,
+            status, statusReason, isCancelable,
+            details, createdAt, authorizedAt,
+            paidAt, canceledAt, expiresAt,
+            expiredAt, failedAt, links);
     }
     
     @Override
@@ -2118,102 +2110,104 @@ public class GetPaymentLinkPaymentsPayments {
                 "failedAt", failedAt,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String resource;
- 
+
         private String id;
- 
+
         private String mode;
- 
+
         private String description;
- 
+
         private GetPaymentLinkPaymentsAmount amount;
- 
+
         private Optional<? extends GetPaymentLinkPaymentsAmountRefunded> amountRefunded = Optional.empty();
- 
+
         private Optional<? extends GetPaymentLinkPaymentsAmountRemaining> amountRemaining = Optional.empty();
- 
+
         private Optional<? extends GetPaymentLinkPaymentsAmountCaptured> amountCaptured = Optional.empty();
- 
+
         private Optional<? extends GetPaymentLinkPaymentsAmountChargedBack> amountChargedBack = Optional.empty();
- 
+
         private Optional<? extends GetPaymentLinkPaymentsSettlementAmount> settlementAmount = Optional.empty();
- 
+
         private JsonNullable<String> redirectUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cancelUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<String> webhookUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<GetPaymentLinkPaymentsLines>> lines = JsonNullable.undefined();
- 
+
         private Optional<? extends GetPaymentLinkPaymentsBillingAddress> billingAddress = Optional.empty();
- 
+
         private Optional<? extends GetPaymentLinkPaymentsShippingAddress> shippingAddress = Optional.empty();
- 
+
         private JsonNullable<String> locale = JsonNullable.undefined();
- 
+
         private JsonNullable<String> countryCode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> method = JsonNullable.undefined();
- 
+
         private JsonNullable<String> restrictPaymentMethodsToCountry = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends GetPaymentLinkPaymentsMetadata> metadata = JsonNullable.undefined();
- 
+
         private JsonNullable<String> captureMode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> captureDelay = JsonNullable.undefined();
- 
+
         private JsonNullable<String> captureBefore = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends GetPaymentLinkPaymentsApplicationFee> applicationFee = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<GetPaymentLinkPaymentsRouting>> routing = JsonNullable.undefined();
- 
+
         private Optional<String> sequenceType = Optional.empty();
- 
+
         private JsonNullable<String> subscriptionId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> mandateId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> customerId = JsonNullable.undefined();
- 
+
         private String profileId;
- 
+
         private JsonNullable<String> settlementId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> orderId = JsonNullable.undefined();
- 
+
         private String status;
- 
+
         private JsonNullable<? extends GetPaymentLinkPaymentsStatusReason> statusReason = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> isCancelable = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, Object>> details = JsonNullable.undefined();
- 
+
         private String createdAt;
- 
+
         private JsonNullable<String> authorizedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<String> paidAt = JsonNullable.undefined();
- 
+
         private JsonNullable<String> canceledAt = JsonNullable.undefined();
- 
+
         private JsonNullable<String> expiresAt = JsonNullable.undefined();
- 
+
         private JsonNullable<String> expiredAt = JsonNullable.undefined();
- 
+
         private JsonNullable<String> failedAt = JsonNullable.undefined();
- 
+
         private GetPaymentLinkPaymentsPaymentLinksLinks links;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a payment object. Will always contain the string `payment` for this endpoint.
@@ -2224,6 +2218,7 @@ public class GetPaymentLinkPaymentsPayments {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this payment. Mollie assigns this identifier at payment creation time. Mollie will always refer to the payment by this ID. Example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
          */
@@ -2232,6 +2227,7 @@ public class GetPaymentLinkPaymentsPayments {
             this.id = id;
             return this;
         }
+
 
         /**
          * Whether this entity was created in live mode or in test mode.
@@ -2243,6 +2239,7 @@ public class GetPaymentLinkPaymentsPayments {
             this.mode = mode;
             return this;
         }
+
 
         /**
          * The description of the payment. This will be shown to your customer on their card or bank statement when possible. We truncate the description automatically according to the limits of the used payment method. The description is also visible in any exports you generate.
@@ -2257,6 +2254,7 @@ public class GetPaymentLinkPaymentsPayments {
             return this;
         }
 
+
         /**
          * The amount that you want to charge, e.g. `{currency:"EUR", value:"1000.00"}` if you would want to charge €1000.00.
          * 
@@ -2269,6 +2267,7 @@ public class GetPaymentLinkPaymentsPayments {
             this.amount = amount;
             return this;
         }
+
 
         /**
          * The total amount that is already refunded. Only available when refunds are available for this payment. For some payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the costs for a return shipment to the customer.
@@ -2288,6 +2287,7 @@ public class GetPaymentLinkPaymentsPayments {
             return this;
         }
 
+
         /**
          * The remaining amount that can be refunded. Only available when refunds are available for this payment.
          */
@@ -2305,6 +2305,7 @@ public class GetPaymentLinkPaymentsPayments {
             this.amountRemaining = amountRemaining;
             return this;
         }
+
 
         /**
          * The total amount that is already captured for this payment. Only available when this payment supports captures.
@@ -2324,6 +2325,7 @@ public class GetPaymentLinkPaymentsPayments {
             return this;
         }
 
+
         /**
          * The total amount that was charged back for this payment. Only available when the total charged back amount is not zero.
          */
@@ -2341,6 +2343,7 @@ public class GetPaymentLinkPaymentsPayments {
             this.amountChargedBack = amountChargedBack;
             return this;
         }
+
 
         /**
          * This optional field will contain the approximate amount that will be settled to your account, converted to the currency your account is settled in.
@@ -2368,6 +2371,7 @@ public class GetPaymentLinkPaymentsPayments {
             return this;
         }
 
+
         /**
          * The URL your customer will be redirected to after the payment process.
          * 
@@ -2394,6 +2398,7 @@ public class GetPaymentLinkPaymentsPayments {
             return this;
         }
 
+
         /**
          * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not provided, the customer will be redirected to the `redirectUrl` instead — see above.
          * 
@@ -2415,6 +2420,7 @@ public class GetPaymentLinkPaymentsPayments {
             this.cancelUrl = cancelUrl;
             return this;
         }
+
 
         /**
          * The webhook URL where we will send payment status updates to.
@@ -2442,6 +2448,7 @@ public class GetPaymentLinkPaymentsPayments {
             return this;
         }
 
+
         /**
          * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
          * 
@@ -2467,6 +2474,7 @@ public class GetPaymentLinkPaymentsPayments {
             this.lines = lines;
             return this;
         }
+
 
         /**
          * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
@@ -2494,6 +2502,7 @@ public class GetPaymentLinkPaymentsPayments {
             return this;
         }
 
+
         /**
          * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
          * 
@@ -2515,6 +2524,7 @@ public class GetPaymentLinkPaymentsPayments {
             this.shippingAddress = shippingAddress;
             return this;
         }
+
 
         /**
          * Allows you to preset the language to be used in the hosted payment pages shown to the customer. Setting a locale is highly recommended and will greatly improve your conversion rate. When this parameter is omitted the browser language will be used instead if supported by the payment method. You can provide any `xx_XX` format ISO 15897 locale, but our hosted payment pages currently only support the specified languages.
@@ -2538,6 +2548,7 @@ public class GetPaymentLinkPaymentsPayments {
             return this;
         }
 
+
         /**
          * This optional field contains your customer's ISO 3166-1 alpha-2 country code, detected by us during checkout. This field is omitted if the country code was not detected.
          */
@@ -2555,6 +2566,7 @@ public class GetPaymentLinkPaymentsPayments {
             this.countryCode = countryCode;
             return this;
         }
+
 
         /**
          * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment method and your customer will skip the selection screen and is sent directly to the chosen payment method. The parameter enables you to fully integrate the payment method selection into your website.
@@ -2581,6 +2593,7 @@ public class GetPaymentLinkPaymentsPayments {
             this.method = method;
             return this;
         }
+
 
         /**
          * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT rates you have used for the order to ensure your customer's country matches the VAT country.
@@ -2612,6 +2625,7 @@ public class GetPaymentLinkPaymentsPayments {
             return this;
         }
 
+
         /**
          * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
@@ -2629,6 +2643,7 @@ public class GetPaymentLinkPaymentsPayments {
             this.metadata = metadata;
             return this;
         }
+
 
         /**
          * Indicate if the funds should be captured immediately or if you want to [place a hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/) and capture at a later time.
@@ -2655,6 +2670,7 @@ public class GetPaymentLinkPaymentsPayments {
             this.captureMode = captureMode;
             return this;
         }
+
 
         /**
          * **Only relevant if you wish to manage authorization and capturing separately.**
@@ -2694,6 +2710,7 @@ public class GetPaymentLinkPaymentsPayments {
             return this;
         }
 
+
         /**
          * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
          */
@@ -2711,6 +2728,7 @@ public class GetPaymentLinkPaymentsPayments {
             this.captureBefore = captureBefore;
             return this;
         }
+
 
         /**
          * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
@@ -2737,6 +2755,7 @@ public class GetPaymentLinkPaymentsPayments {
             this.applicationFee = applicationFee;
             return this;
         }
+
 
         /**
          * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
@@ -2775,6 +2794,7 @@ public class GetPaymentLinkPaymentsPayments {
             this.routing = routing;
             return this;
         }
+
 
         /**
          * **Only relevant for recurring payments.**
@@ -2818,6 +2838,7 @@ public class GetPaymentLinkPaymentsPayments {
             return this;
         }
 
+
         /**
          * If the payment was automatically created via a subscription, the ID of the [subscription](get-subscription) will be added to the response.
          */
@@ -2835,6 +2856,7 @@ public class GetPaymentLinkPaymentsPayments {
             this.subscriptionId = subscriptionId;
             return this;
         }
+
 
         /**
          * **Only relevant for recurring payments.**
@@ -2858,6 +2880,7 @@ public class GetPaymentLinkPaymentsPayments {
             return this;
         }
 
+
         /**
          * The ID of the [customer](get-customer) the payment is being created for. This is used primarily for recurring payments, but can also be used on regular payments to enable single-click payments.
          * 
@@ -2880,6 +2903,7 @@ public class GetPaymentLinkPaymentsPayments {
             return this;
         }
 
+
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
@@ -2892,6 +2916,7 @@ public class GetPaymentLinkPaymentsPayments {
             this.profileId = profileId;
             return this;
         }
+
 
         /**
          * The identifier referring to the [settlement](get-settlement) this payment was settled with.
@@ -2911,6 +2936,7 @@ public class GetPaymentLinkPaymentsPayments {
             return this;
         }
 
+
         /**
          * If the payment was created for an [order](get-order), the ID of that order will be part of the response.
          */
@@ -2929,6 +2955,7 @@ public class GetPaymentLinkPaymentsPayments {
             return this;
         }
 
+
         /**
          * The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which statuses occur at what point.
          * 
@@ -2939,6 +2966,7 @@ public class GetPaymentLinkPaymentsPayments {
             this.status = status;
             return this;
         }
+
 
         /**
          * This object offers details about the status of a payment. Currently it is only available for point-of-sale payments.
@@ -2962,6 +2990,7 @@ public class GetPaymentLinkPaymentsPayments {
             return this;
         }
 
+
         /**
          * Whether the payment can be canceled. This parameter is omitted if the payment reaches a final state.
          */
@@ -2979,6 +3008,7 @@ public class GetPaymentLinkPaymentsPayments {
             this.isCancelable = isCancelable;
             return this;
         }
+
 
         /**
          * An object containing payment details collected during the payment process. For example, details may include the customer's card or bank details and a payment reference. For the full list of details, please refer to the [method-specific parameters](extra-payment-parameters) guide.
@@ -2998,6 +3028,7 @@ public class GetPaymentLinkPaymentsPayments {
             return this;
         }
 
+
         /**
          * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
          */
@@ -3006,6 +3037,7 @@ public class GetPaymentLinkPaymentsPayments {
             this.createdAt = createdAt;
             return this;
         }
+
 
         /**
          * The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if the payment is not authorized (yet).
@@ -3025,6 +3057,7 @@ public class GetPaymentLinkPaymentsPayments {
             return this;
         }
 
+
         /**
          * The date and time the payment became paid, in ISO 8601 format. This parameter is omitted if the payment is not completed (yet).
          */
@@ -3042,6 +3075,7 @@ public class GetPaymentLinkPaymentsPayments {
             this.paidAt = paidAt;
             return this;
         }
+
 
         /**
          * The date and time the payment was canceled, in ISO 8601 format. This parameter is omitted if the payment is not canceled (yet).
@@ -3061,6 +3095,7 @@ public class GetPaymentLinkPaymentsPayments {
             return this;
         }
 
+
         /**
          * The date and time the payment will expire, in ISO 8601 format. This parameter is omitted if the payment can no longer expire.
          */
@@ -3078,6 +3113,7 @@ public class GetPaymentLinkPaymentsPayments {
             this.expiresAt = expiresAt;
             return this;
         }
+
 
         /**
          * The date and time the payment was expired, in ISO 8601 format. This parameter is omitted if the payment did not expire (yet).
@@ -3097,6 +3133,7 @@ public class GetPaymentLinkPaymentsPayments {
             return this;
         }
 
+
         /**
          * The date and time the payment failed, in ISO 8601 format. This parameter is omitted if the payment did not fail (yet).
          */
@@ -3115,6 +3152,7 @@ public class GetPaymentLinkPaymentsPayments {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -3123,54 +3161,26 @@ public class GetPaymentLinkPaymentsPayments {
             this.links = links;
             return this;
         }
-        
+
         public GetPaymentLinkPaymentsPayments build() {
+
             return new GetPaymentLinkPaymentsPayments(
-                resource,
-                id,
-                mode,
-                description,
-                amount,
-                amountRefunded,
-                amountRemaining,
-                amountCaptured,
-                amountChargedBack,
-                settlementAmount,
-                redirectUrl,
-                cancelUrl,
-                webhookUrl,
-                lines,
-                billingAddress,
-                shippingAddress,
-                locale,
-                countryCode,
-                method,
-                restrictPaymentMethodsToCountry,
-                metadata,
-                captureMode,
-                captureDelay,
-                captureBefore,
-                applicationFee,
-                routing,
-                sequenceType,
-                subscriptionId,
-                mandateId,
-                customerId,
-                profileId,
-                settlementId,
-                orderId,
-                status,
-                statusReason,
-                isCancelable,
-                details,
-                createdAt,
-                authorizedAt,
-                paidAt,
-                canceledAt,
-                expiresAt,
-                expiredAt,
-                failedAt,
-                links);
+                resource, id, mode,
+                description, amount, amountRefunded,
+                amountRemaining, amountCaptured, amountChargedBack,
+                settlementAmount, redirectUrl, cancelUrl,
+                webhookUrl, lines, billingAddress,
+                shippingAddress, locale, countryCode,
+                method, restrictPaymentMethodsToCountry, metadata,
+                captureMode, captureDelay, captureBefore,
+                applicationFee, routing, sequenceType,
+                subscriptionId, mandateId, customerId,
+                profileId, settlementId, orderId,
+                status, statusReason, isCancelable,
+                details, createdAt, authorizedAt,
+                paidAt, canceledAt, expiresAt,
+                expiredAt, failedAt, links);
         }
+
     }
 }

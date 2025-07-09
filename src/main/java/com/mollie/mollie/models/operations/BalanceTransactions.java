@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class BalanceTransactions {
 
+public class BalanceTransactions {
     /**
      * Indicates the response contains a balance transaction object. Will always contain the string `balance_transaction` for this endpoint.
      */
@@ -134,7 +134,9 @@ public class BalanceTransactions {
     }
     
     public BalanceTransactions() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -235,9 +237,10 @@ public class BalanceTransactions {
         return createdAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a balance transaction object. Will always contain the string `balance_transaction` for this endpoint.
@@ -247,6 +250,7 @@ public class BalanceTransactions {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Indicates the response contains a balance transaction object. Will always contain the string `balance_transaction` for this endpoint.
@@ -265,6 +269,7 @@ public class BalanceTransactions {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The identifier uniquely referring to this balance transaction.
@@ -292,6 +297,7 @@ public class BalanceTransactions {
         return this;
     }
 
+
     /**
      * The type of transaction, for example `payment` or `refund`. Values include the below examples, although this list is not definitive.
      * 
@@ -318,6 +324,7 @@ public class BalanceTransactions {
         return this;
     }
 
+
     /**
      * The final amount that was moved to or from the balance. If the transaction moves funds away from the balance, for example when it concerns a refund, the amount will be negative.
      */
@@ -335,6 +342,7 @@ public class BalanceTransactions {
         this.initialAmount = Optional.ofNullable(initialAmount);
         return this;
     }
+
 
     /**
      * The amount that was to be moved to or from the balance, excluding deductions. If the transaction moves funds away from the balance, for example when it concerns a refund, the amount will be negative.
@@ -396,6 +404,7 @@ public class BalanceTransactions {
         return this;
     }
 
+
     /**
      * Depending on the type of the balance transaction, we will try to give more context about the specific event that triggered it. For example, the context object for a payment transaction will look like `{"paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo"}`.
      * 
@@ -434,6 +443,7 @@ public class BalanceTransactions {
         return this;
     }
 
+
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
@@ -443,7 +453,6 @@ public class BalanceTransactions {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -467,14 +476,9 @@ public class BalanceTransactions {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            type,
-            resultAmount,
-            initialAmount,
-            deductions,
-            context,
-            createdAt);
+            resource, id, type,
+            resultAmount, initialAmount, deductions,
+            context, createdAt);
     }
     
     @Override
@@ -489,28 +493,30 @@ public class BalanceTransactions {
                 "context", context,
                 "createdAt", createdAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> type = Optional.empty();
- 
+
         private Optional<? extends ResultAmount> resultAmount = Optional.empty();
- 
+
         private Optional<? extends InitialAmount> initialAmount = Optional.empty();
- 
+
         private JsonNullable<? extends Deductions> deductions = JsonNullable.undefined();
- 
+
         private Optional<? extends Context> context = Optional.empty();
- 
+
         private Optional<String> createdAt = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a balance transaction object. Will always contain the string `balance_transaction` for this endpoint.
@@ -530,6 +536,7 @@ public class BalanceTransactions {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this balance transaction.
          */
@@ -547,6 +554,7 @@ public class BalanceTransactions {
             this.id = id;
             return this;
         }
+
 
         /**
          * The type of transaction, for example `payment` or `refund`. Values include the below examples, although this list is not definitive.
@@ -582,6 +590,7 @@ public class BalanceTransactions {
             return this;
         }
 
+
         /**
          * The final amount that was moved to or from the balance. If the transaction moves funds away from the balance, for example when it concerns a refund, the amount will be negative.
          */
@@ -600,6 +609,7 @@ public class BalanceTransactions {
             return this;
         }
 
+
         /**
          * The amount that was to be moved to or from the balance, excluding deductions. If the transaction moves funds away from the balance, for example when it concerns a refund, the amount will be negative.
          */
@@ -617,6 +627,7 @@ public class BalanceTransactions {
             this.initialAmount = initialAmount;
             return this;
         }
+
 
         /**
          * The total amount of deductions withheld from the movement. For example, if we charge a €0.29 fee on a €10 payment, the deductions amount will be `{"currency":"EUR", "value":"-0.29"}`.
@@ -639,6 +650,7 @@ public class BalanceTransactions {
             this.deductions = deductions;
             return this;
         }
+
 
         /**
          * Depending on the type of the balance transaction, we will try to give more context about the specific event that triggered it. For example, the context object for a payment transaction will look like `{"paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo"}`.
@@ -698,6 +710,7 @@ public class BalanceTransactions {
             return this;
         }
 
+
         /**
          * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
          */
@@ -715,21 +728,18 @@ public class BalanceTransactions {
             this.createdAt = createdAt;
             return this;
         }
-        
+
         public BalanceTransactions build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new BalanceTransactions(
-                resource,
-                id,
-                type,
-                resultAmount,
-                initialAmount,
-                deductions,
-                context,
-                createdAt);
+                resource, id, type,
+                resultAmount, initialAmount, deductions,
+                context, createdAt);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

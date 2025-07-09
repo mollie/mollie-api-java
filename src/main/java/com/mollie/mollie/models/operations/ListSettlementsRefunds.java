@@ -16,7 +16,6 @@ import java.lang.String;
  * <p>The API resource URL of the [refunds](list-refunds) deducted from this settlement.
  */
 public class ListSettlementsRefunds {
-
     /**
      * The actual URL string.
      */
@@ -55,9 +54,10 @@ public class ListSettlementsRefunds {
         return type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The actual URL string.
@@ -77,7 +77,6 @@ public class ListSettlementsRefunds {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -95,8 +94,7 @@ public class ListSettlementsRefunds {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            href,
-            type);
+            href, type);
     }
     
     @Override
@@ -105,16 +103,18 @@ public class ListSettlementsRefunds {
                 "href", href,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String href;
- 
+
         private String type;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The actual URL string.
@@ -125,6 +125,7 @@ public class ListSettlementsRefunds {
             return this;
         }
 
+
         /**
          * The content type of the page or endpoint the URL points to.
          */
@@ -133,11 +134,12 @@ public class ListSettlementsRefunds {
             this.type = type;
             return this;
         }
-        
+
         public ListSettlementsRefunds build() {
+
             return new ListSettlementsRefunds(
-                href,
-                type);
+                href, type);
         }
+
     }
 }

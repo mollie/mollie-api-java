@@ -95,8 +95,8 @@ public class GetChargebackRequestBuilder {
 
         RequestOperation<GetChargebackRequest, GetChargebackResponse> operation
               = new GetChargebackOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         GetChargebackRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

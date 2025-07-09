@@ -52,7 +52,8 @@ public class TestWebhookOperation implements RequestOperation<TestWebhookRequest
     
     @Override
     public HttpResponse<InputStream> doRequest(TestWebhookRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 TestWebhookRequest.class,

@@ -102,8 +102,8 @@ public class ListPaymentLinksRequestBuilder {
 
         RequestOperation<ListPaymentLinksRequest, ListPaymentLinksResponse> operation
               = new ListPaymentLinksOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         ListPaymentLinksRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

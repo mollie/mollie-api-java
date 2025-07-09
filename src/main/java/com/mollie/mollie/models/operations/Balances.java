@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Balances {
 
+public class Balances {
     /**
      * Indicates the response contains a balance object. Will always contain the string `balance` for this endpoint.
      */
@@ -172,7 +172,11 @@ public class Balances {
     }
     
     public Balances() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -301,9 +305,10 @@ public class Balances {
         return (Optional<ListBalancesBalancesLinks>) links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a balance object. Will always contain the string `balance` for this endpoint.
@@ -313,6 +318,7 @@ public class Balances {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Indicates the response contains a balance object. Will always contain the string `balance` for this endpoint.
@@ -331,6 +337,7 @@ public class Balances {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The identifier uniquely referring to this balance.
@@ -352,6 +359,7 @@ public class Balances {
         return this;
     }
 
+
     /**
      * Whether this entity was created in live mode or in test mode.
      * 
@@ -372,6 +380,7 @@ public class Balances {
         return this;
     }
 
+
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
@@ -390,6 +399,7 @@ public class Balances {
         return this;
     }
 
+
     /**
      * The balance's ISO 4217 currency code.
      */
@@ -407,6 +417,7 @@ public class Balances {
         this.description = Optional.ofNullable(description);
         return this;
     }
+
 
     /**
      * The description or name of the balance. Can be used to denote the purpose of the balance.
@@ -427,6 +438,7 @@ public class Balances {
         this.status = Optional.ofNullable(status);
         return this;
     }
+
 
     /**
      * The status of the balance.
@@ -452,6 +464,7 @@ public class Balances {
         return this;
     }
 
+
     /**
      * The frequency with which the available amount on the balance will be settled to the configured transfer destination.
      * 
@@ -473,6 +486,7 @@ public class Balances {
         this.transferThreshold = Optional.ofNullable(transferThreshold);
         return this;
     }
+
 
     /**
      * The minimum amount configured for scheduled automatic settlements. As soon as the amount on the balance exceeds this threshold, the complete balance will be paid out to the transfer destination according to the configured frequency.
@@ -528,6 +542,7 @@ public class Balances {
         return this;
     }
 
+
     /**
      * The amount directly available on the balance, e.g. `{"currency":"EUR", "value":"100.00"}`.
      */
@@ -545,6 +560,7 @@ public class Balances {
         this.pendingAmount = Optional.ofNullable(pendingAmount);
         return this;
     }
+
 
     /**
      * The total amount that is queued to be transferred to your balance. For example, a credit card payment can take a few days to clear.
@@ -564,6 +580,7 @@ public class Balances {
         return this;
     }
 
+
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
@@ -573,7 +590,6 @@ public class Balances {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -603,20 +619,11 @@ public class Balances {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            mode,
-            createdAt,
-            currency,
-            description,
-            status,
-            transferFrequency,
-            transferThreshold,
-            transferReference,
-            transferDestination,
-            availableAmount,
-            pendingAmount,
-            links);
+            resource, id, mode,
+            createdAt, currency, description,
+            status, transferFrequency, transferThreshold,
+            transferReference, transferDestination, availableAmount,
+            pendingAmount, links);
     }
     
     @Override
@@ -637,40 +644,42 @@ public class Balances {
                 "pendingAmount", pendingAmount,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> mode = Optional.empty();
- 
+
         private Optional<String> createdAt = Optional.empty();
- 
+
         private Optional<? extends ListBalancesCurrency> currency = Optional.empty();
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<String> status = Optional.empty();
- 
+
         private Optional<String> transferFrequency = Optional.empty();
- 
+
         private Optional<? extends ListBalancesTransferThreshold> transferThreshold = Optional.empty();
- 
+
         private JsonNullable<String> transferReference = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends ListBalancesTransferDestination> transferDestination = JsonNullable.undefined();
- 
+
         private Optional<? extends ListBalancesAvailableAmount> availableAmount = Optional.empty();
- 
+
         private Optional<? extends ListBalancesPendingAmount> pendingAmount = Optional.empty();
- 
+
         private Optional<? extends ListBalancesBalancesLinks> links = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a balance object. Will always contain the string `balance` for this endpoint.
@@ -690,6 +699,7 @@ public class Balances {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this balance.
          */
@@ -707,6 +717,7 @@ public class Balances {
             this.id = id;
             return this;
         }
+
 
         /**
          * Whether this entity was created in live mode or in test mode.
@@ -730,6 +741,7 @@ public class Balances {
             return this;
         }
 
+
         /**
          * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
          */
@@ -747,6 +759,7 @@ public class Balances {
             this.createdAt = createdAt;
             return this;
         }
+
 
         /**
          * The balance's ISO 4217 currency code.
@@ -766,6 +779,7 @@ public class Balances {
             return this;
         }
 
+
         /**
          * The description or name of the balance. Can be used to denote the purpose of the balance.
          */
@@ -783,6 +797,7 @@ public class Balances {
             this.description = description;
             return this;
         }
+
 
         /**
          * The status of the balance.
@@ -805,6 +820,7 @@ public class Balances {
             this.status = status;
             return this;
         }
+
 
         /**
          * The frequency with which the available amount on the balance will be settled to the configured transfer destination.
@@ -832,6 +848,7 @@ public class Balances {
             return this;
         }
 
+
         /**
          * The minimum amount configured for scheduled automatic settlements. As soon as the amount on the balance exceeds this threshold, the complete balance will be paid out to the transfer destination according to the configured frequency.
          */
@@ -849,6 +866,7 @@ public class Balances {
             this.transferThreshold = transferThreshold;
             return this;
         }
+
 
         /**
          * The transfer reference set to be included in all the transfers for this balance.
@@ -868,6 +886,7 @@ public class Balances {
             return this;
         }
 
+
         /**
          * The destination where the available amount will be automatically transferred to according to the configured transfer frequency.
          */
@@ -885,6 +904,7 @@ public class Balances {
             this.transferDestination = transferDestination;
             return this;
         }
+
 
         /**
          * The amount directly available on the balance, e.g. `{"currency":"EUR", "value":"100.00"}`.
@@ -904,6 +924,7 @@ public class Balances {
             return this;
         }
 
+
         /**
          * The total amount that is queued to be transferred to your balance. For example, a credit card payment can take a few days to clear.
          */
@@ -922,6 +943,7 @@ public class Balances {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -939,27 +961,20 @@ public class Balances {
             this.links = links;
             return this;
         }
-        
+
         public Balances build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new Balances(
-                resource,
-                id,
-                mode,
-                createdAt,
-                currency,
-                description,
-                status,
-                transferFrequency,
-                transferThreshold,
-                transferReference,
-                transferDestination,
-                availableAmount,
-                pendingAmount,
-                links);
+                resource, id, mode,
+                createdAt, currency, description,
+                status, transferFrequency, transferThreshold,
+                transferReference, transferDestination, availableAmount,
+                pendingAmount, links);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

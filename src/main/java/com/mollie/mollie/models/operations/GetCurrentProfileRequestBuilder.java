@@ -41,8 +41,8 @@ public class GetCurrentProfileRequestBuilder {
 
         RequestlessOperation<GetCurrentProfileResponse> operation
             = new GetCurrentProfileOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest());
     }

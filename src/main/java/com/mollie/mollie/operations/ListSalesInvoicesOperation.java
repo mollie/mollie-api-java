@@ -48,7 +48,8 @@ public class ListSalesInvoicesOperation implements RequestOperation<ListSalesInv
     
     @Override
     public HttpResponse<InputStream> doRequest(ListSalesInvoicesRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 baseUrl,

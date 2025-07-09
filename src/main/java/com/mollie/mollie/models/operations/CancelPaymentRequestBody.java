@@ -14,8 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CancelPaymentRequestBody {
 
+public class CancelPaymentRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
@@ -46,9 +46,10 @@ public class CancelPaymentRequestBody {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Whether to create the entity in test mode or live mode.
@@ -72,7 +73,6 @@ public class CancelPaymentRequestBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -97,14 +97,16 @@ public class CancelPaymentRequestBody {
         return Utils.toString(CancelPaymentRequestBody.class,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Whether to create the entity in test mode or live mode.
@@ -127,10 +129,12 @@ public class CancelPaymentRequestBody {
             this.testmode = testmode;
             return this;
         }
-        
+
         public CancelPaymentRequestBody build() {
+
             return new CancelPaymentRequestBody(
                 testmode);
         }
+
     }
 }

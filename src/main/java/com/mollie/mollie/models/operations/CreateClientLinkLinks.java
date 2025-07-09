@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
 public class CreateClientLinkLinks {
-
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -86,9 +85,10 @@ public class CreateClientLinkLinks {
         return (Optional<CreateClientLinkDocumentation>) documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -98,6 +98,7 @@ public class CreateClientLinkLinks {
         this.self = Optional.ofNullable(self);
         return this;
     }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -117,6 +118,7 @@ public class CreateClientLinkLinks {
         return this;
     }
 
+
     /**
      * The link you can send your customer to, where they can either log in and link their account, or sign up and proceed with onboarding.
      */
@@ -135,6 +137,7 @@ public class CreateClientLinkLinks {
         return this;
     }
 
+
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -144,7 +147,6 @@ public class CreateClientLinkLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -163,9 +165,7 @@ public class CreateClientLinkLinks {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self,
-            clientLink,
-            documentation);
+            self, clientLink, documentation);
     }
     
     @Override
@@ -175,18 +175,20 @@ public class CreateClientLinkLinks {
                 "clientLink", clientLink,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends CreateClientLinkSelf> self = Optional.empty();
- 
+
         private Optional<? extends ClientLink> clientLink = Optional.empty();
- 
+
         private Optional<? extends CreateClientLinkDocumentation> documentation = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -206,6 +208,7 @@ public class CreateClientLinkLinks {
             return this;
         }
 
+
         /**
          * The link you can send your customer to, where they can either log in and link their account, or sign up and proceed with onboarding.
          */
@@ -224,6 +227,7 @@ public class CreateClientLinkLinks {
             return this;
         }
 
+
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
@@ -241,12 +245,12 @@ public class CreateClientLinkLinks {
             this.documentation = documentation;
             return this;
         }
-        
+
         public CreateClientLinkLinks build() {
+
             return new CreateClientLinkLinks(
-                self,
-                clientLink,
-                documentation);
+                self, clientLink, documentation);
         }
+
     }
 }

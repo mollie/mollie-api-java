@@ -71,8 +71,8 @@ public class ReleaseAuthorizationRequestBuilder {
 
         RequestOperation<ReleaseAuthorizationRequest, ReleaseAuthorizationResponse> operation
               = new ReleaseAuthorizationOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         ReleaseAuthorizationRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

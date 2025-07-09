@@ -16,7 +16,6 @@ import java.lang.String;
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
 public class ListPaymentLinksPaymentLinksLinks {
-
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -55,9 +54,10 @@ public class ListPaymentLinksPaymentLinksLinks {
         return paymentLink;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -77,7 +77,6 @@ public class ListPaymentLinksPaymentLinksLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -95,8 +94,7 @@ public class ListPaymentLinksPaymentLinksLinks {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self,
-            paymentLink);
+            self, paymentLink);
     }
     
     @Override
@@ -105,16 +103,18 @@ public class ListPaymentLinksPaymentLinksLinks {
                 "self", self,
                 "paymentLink", paymentLink);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private ListPaymentLinksPaymentLinksSelf self;
- 
+
         private ListPaymentLinksPaymentLink paymentLink;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -125,6 +125,7 @@ public class ListPaymentLinksPaymentLinksLinks {
             return this;
         }
 
+
         /**
          * The URL your customer should visit to make the payment. This is where you should redirect the customer to.
          */
@@ -133,11 +134,12 @@ public class ListPaymentLinksPaymentLinksLinks {
             this.paymentLink = paymentLink;
             return this;
         }
-        
+
         public ListPaymentLinksPaymentLinksLinks build() {
+
             return new ListPaymentLinksPaymentLinksLinks(
-                self,
-                paymentLink);
+                self, paymentLink);
         }
+
     }
 }

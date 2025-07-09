@@ -14,8 +14,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class CreateRefundRoutingReversals {
 
+public class CreateRefundRoutingReversals {
     /**
      * The amount that will be pulled back.
      */
@@ -62,9 +62,10 @@ public class CreateRefundRoutingReversals {
         return (Optional<CreateRefundSource>) source;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The amount that will be pulled back.
@@ -74,6 +75,7 @@ public class CreateRefundRoutingReversals {
         this.amount = Optional.ofNullable(amount);
         return this;
     }
+
 
     /**
      * The amount that will be pulled back.
@@ -93,6 +95,7 @@ public class CreateRefundRoutingReversals {
         return this;
     }
 
+
     /**
      * Where the funds will be pulled back from.
      */
@@ -102,7 +105,6 @@ public class CreateRefundRoutingReversals {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -120,8 +122,7 @@ public class CreateRefundRoutingReversals {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            amount,
-            source);
+            amount, source);
     }
     
     @Override
@@ -130,16 +131,18 @@ public class CreateRefundRoutingReversals {
                 "amount", amount,
                 "source", source);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends CreateRefundRefundsResponse201Amount> amount = Optional.empty();
- 
+
         private Optional<? extends CreateRefundSource> source = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The amount that will be pulled back.
@@ -159,6 +162,7 @@ public class CreateRefundRoutingReversals {
             return this;
         }
 
+
         /**
          * Where the funds will be pulled back from.
          */
@@ -176,11 +180,12 @@ public class CreateRefundRoutingReversals {
             this.source = source;
             return this;
         }
-        
+
         public CreateRefundRoutingReversals build() {
+
             return new CreateRefundRoutingReversals(
-                amount,
-                source);
+                amount, source);
         }
+
     }
 }

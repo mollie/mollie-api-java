@@ -38,7 +38,6 @@ public class Mandates {
     Mandates(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Create mandate
      * 
@@ -110,11 +109,10 @@ public class Mandates {
                 .build();
         RequestOperation<CreateMandateRequest, CreateMandateResponse> operation
               = new CreateMandateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List mandates
@@ -179,11 +177,10 @@ public class Mandates {
             Optional<Options> options) throws Exception {
         RequestOperation<ListMandatesRequest, ListMandatesResponse> operation
               = new ListMandatesOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get mandate
@@ -221,7 +218,8 @@ public class Mandates {
     public GetMandateResponse get(
             String customerId,
             String mandateId) throws Exception {
-        return get(customerId, mandateId, JsonNullable.undefined(), Optional.empty());
+        return get(customerId, mandateId, JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -258,11 +256,10 @@ public class Mandates {
                 .build();
         RequestOperation<GetMandateRequest, GetMandateResponse> operation
               = new GetMandateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Revoke mandate
@@ -300,7 +297,8 @@ public class Mandates {
     public RevokeMandateResponse revoke(
             String customerId,
             String mandateId) throws Exception {
-        return revoke(customerId, mandateId, Optional.empty(), Optional.empty());
+        return revoke(customerId, mandateId, Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -335,8 +333,8 @@ public class Mandates {
                 .build();
         RequestOperation<RevokeMandateRequest, RevokeMandateResponse> operation
               = new RevokeMandateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

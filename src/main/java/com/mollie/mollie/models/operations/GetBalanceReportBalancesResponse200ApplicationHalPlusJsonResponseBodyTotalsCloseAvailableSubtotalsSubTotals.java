@@ -15,8 +15,8 @@ import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCloseAvailableSubtotalsSubTotals {
 
+public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCloseAvailableSubtotalsSubTotals {
     /**
      * Number of transactions of this type
      */
@@ -114,7 +114,9 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
     }
     
     public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCloseAvailableSubtotalsSubTotals() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -193,9 +195,10 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
         return transactionType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Number of transactions of this type
@@ -205,6 +208,7 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
         this.count = Optional.ofNullable(count);
         return this;
     }
+
 
     /**
      * Number of transactions of this type
@@ -365,7 +369,6 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -389,14 +392,9 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            count,
-            method,
-            cardIssuer,
-            cardAudience,
-            cardRegion,
-            feeType,
-            prepaymentPartType,
-            transactionType);
+            count, method, cardIssuer,
+            cardAudience, cardRegion, feeType,
+            prepaymentPartType, transactionType);
     }
     
     @Override
@@ -411,28 +409,30 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
                 "prepaymentPartType", prepaymentPartType,
                 "transactionType", transactionType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> count = Optional.empty();
- 
+
         private JsonNullable<String> method = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cardIssuer = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cardAudience = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cardRegion = JsonNullable.undefined();
- 
+
         private JsonNullable<String> feeType = JsonNullable.undefined();
- 
+
         private JsonNullable<String> prepaymentPartType = JsonNullable.undefined();
- 
+
         private JsonNullable<String> transactionType = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Number of transactions of this type
@@ -452,6 +452,7 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
             return this;
         }
 
+
         /**
          * Payment type of the transactions
          */
@@ -469,6 +470,7 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
             this.method = method;
             return this;
         }
+
 
         /**
          * In case of payments transactions with card, the card issuer will be available
@@ -492,6 +494,7 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
             return this;
         }
 
+
         /**
          * In case of payments trnsactions with card, the card audience will be available.
          * 
@@ -513,6 +516,7 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
             this.cardAudience = cardAudience;
             return this;
         }
+
 
         /**
          * In case of payments transactions with card, the card region will be available.
@@ -536,6 +540,7 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
             return this;
         }
 
+
         /**
          * Present when the transaction represents a fee.
          * 
@@ -557,6 +562,7 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
             this.feeType = feeType;
             return this;
         }
+
 
         /**
          * Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
@@ -580,6 +586,7 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
             return this;
         }
 
+
         /**
          * Represents the transaction type
          * 
@@ -601,17 +608,14 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
             this.transactionType = transactionType;
             return this;
         }
-        
+
         public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCloseAvailableSubtotalsSubTotals build() {
+
             return new GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCloseAvailableSubtotalsSubTotals(
-                count,
-                method,
-                cardIssuer,
-                cardAudience,
-                cardRegion,
-                feeType,
-                prepaymentPartType,
-                transactionType);
+                count, method, cardIssuer,
+                cardAudience, cardRegion, feeType,
+                prepaymentPartType, transactionType);
         }
+
     }
 }

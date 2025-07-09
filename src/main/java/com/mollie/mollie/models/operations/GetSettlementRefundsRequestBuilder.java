@@ -48,8 +48,8 @@ public class GetSettlementRefundsRequestBuilder {
 
         RequestOperation<GetSettlementRefundsRequest, GetSettlementRefundsResponse> operation
               = new GetSettlementRefundsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

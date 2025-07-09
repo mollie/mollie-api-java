@@ -22,7 +22,6 @@ import java.lang.String;
  * <p>The unit price can be zero in case of free items.
  */
 public class EntityUnitPrice {
-
     /**
      * A three-character ISO 4217 currency code.
      */
@@ -61,9 +60,10 @@ public class EntityUnitPrice {
         return value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A three-character ISO 4217 currency code.
@@ -83,7 +83,6 @@ public class EntityUnitPrice {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -101,8 +100,7 @@ public class EntityUnitPrice {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            currency,
-            value);
+            currency, value);
     }
     
     @Override
@@ -111,16 +109,18 @@ public class EntityUnitPrice {
                 "currency", currency,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String currency;
- 
+
         private String value;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A three-character ISO 4217 currency code.
@@ -131,6 +131,7 @@ public class EntityUnitPrice {
             return this;
         }
 
+
         /**
          * A string containing an exact monetary amount in the given currency.
          */
@@ -139,11 +140,12 @@ public class EntityUnitPrice {
             this.value = value;
             return this;
         }
-        
+
         public EntityUnitPrice build() {
+
             return new EntityUnitPrice(
-                currency,
-                value);
+                currency, value);
         }
+
     }
 }

@@ -12,13 +12,14 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class DeletePaymentLinkRequest {
 
+public class DeletePaymentLinkRequest {
     /**
      * Provide the ID of the related payment link.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=paymentLinkId")
     private String paymentLinkId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends DeletePaymentLinkRequestBody> requestBody;
@@ -52,9 +53,10 @@ public class DeletePaymentLinkRequest {
         return (Optional<DeletePaymentLinkRequestBody>) requestBody;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the related payment link.
@@ -71,13 +73,13 @@ public class DeletePaymentLinkRequest {
         return this;
     }
 
+
     public DeletePaymentLinkRequest withRequestBody(Optional<? extends DeletePaymentLinkRequestBody> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -95,8 +97,7 @@ public class DeletePaymentLinkRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentLinkId,
-            requestBody);
+            paymentLinkId, requestBody);
     }
     
     @Override
@@ -105,16 +106,18 @@ public class DeletePaymentLinkRequest {
                 "paymentLinkId", paymentLinkId,
                 "requestBody", requestBody);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String paymentLinkId;
- 
+
         private Optional<? extends DeletePaymentLinkRequestBody> requestBody = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the related payment link.
@@ -124,6 +127,7 @@ public class DeletePaymentLinkRequest {
             this.paymentLinkId = paymentLinkId;
             return this;
         }
+
 
         public Builder requestBody(DeletePaymentLinkRequestBody requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
@@ -136,11 +140,12 @@ public class DeletePaymentLinkRequest {
             this.requestBody = requestBody;
             return this;
         }
-        
+
         public DeletePaymentLinkRequest build() {
+
             return new DeletePaymentLinkRequest(
-                paymentLinkId,
-                requestBody);
+                paymentLinkId, requestBody);
         }
+
     }
 }

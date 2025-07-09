@@ -326,11 +326,13 @@ public final class Utils {
     }
 
     public static Map<String, List<String>> getHeadersFromMetadata(Object headers, Globals globals) throws Exception {
-        if (headers == null) {
-            return Collections.emptyMap();
-        }
-
         Map<String, List<String>> result = new HashMap<>();
+        if (headers == null) {
+            // include all global headers in result if not already present
+            mergeGlobalHeaders(result, globals);
+
+            return result;
+        }
 
         Field[] fields = headers.getClass().getDeclaredFields();
 
@@ -452,14 +454,19 @@ public final class Utils {
         }
         
         // include all global headers in result if not already present
-        if (globals != null) {
-            globals.headerParamsAsStream()
-                .filter(entry -> !result.containsKey(entry.getKey()))
-                .forEach(entry -> result.put(entry.getKey(), //
-                            Arrays.asList(entry.getValue())));
-        }
+        mergeGlobalHeaders(result, globals);
 
         return result;
+    }
+
+    private static void mergeGlobalHeaders(Map<String, List<String>> headers, Globals globals) {
+        if (globals == null) {
+            return;
+        }
+        globals.headerParamsAsStream()
+                .filter(entry -> !headers.containsKey(entry.getKey()))
+                .forEach(entry -> headers.put(entry.getKey(),
+                        Collections.singletonList(entry.getValue())));
     }
 
     public static String valToString(Object value) {
@@ -762,6 +769,10 @@ public final class Utils {
     }
     
     static <T> Object resolveStringShape(Class<T> type, String fieldName, Object value) throws IllegalAccessException {
+        if (value == null) {
+            return value;
+        }
+
         try {
             // the presence of this TypeReference field indicates that the parameter
             // has a JsonShape of String and that we should convert BigInteger to 

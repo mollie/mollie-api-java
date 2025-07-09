@@ -13,11 +13,13 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
+
 public class OutgoingTransfer {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("transferId")
     private Optional<String> transferId;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlementId")
@@ -47,15 +49,17 @@ public class OutgoingTransfer {
         return settlementId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public OutgoingTransfer withTransferId(String transferId) {
         Utils.checkNotNull(transferId, "transferId");
         this.transferId = Optional.ofNullable(transferId);
         return this;
     }
+
 
     public OutgoingTransfer withTransferId(Optional<String> transferId) {
         Utils.checkNotNull(transferId, "transferId");
@@ -69,13 +73,13 @@ public class OutgoingTransfer {
         return this;
     }
 
+
     public OutgoingTransfer withSettlementId(Optional<String> settlementId) {
         Utils.checkNotNull(settlementId, "settlementId");
         this.settlementId = settlementId;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -93,8 +97,7 @@ public class OutgoingTransfer {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            transferId,
-            settlementId);
+            transferId, settlementId);
     }
     
     @Override
@@ -103,16 +106,18 @@ public class OutgoingTransfer {
                 "transferId", transferId,
                 "settlementId", settlementId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> transferId = Optional.empty();
- 
+
         private Optional<String> settlementId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder transferId(String transferId) {
             Utils.checkNotNull(transferId, "transferId");
@@ -126,6 +131,7 @@ public class OutgoingTransfer {
             return this;
         }
 
+
         public Builder settlementId(String settlementId) {
             Utils.checkNotNull(settlementId, "settlementId");
             this.settlementId = Optional.ofNullable(settlementId);
@@ -137,11 +143,12 @@ public class OutgoingTransfer {
             this.settlementId = settlementId;
             return this;
         }
-        
+
         public OutgoingTransfer build() {
+
             return new OutgoingTransfer(
-                transferId,
-                settlementId);
+                transferId, settlementId);
         }
+
     }
 }

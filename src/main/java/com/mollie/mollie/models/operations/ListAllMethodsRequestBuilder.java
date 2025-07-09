@@ -48,8 +48,8 @@ public class ListAllMethodsRequestBuilder {
 
         RequestOperation<ListAllMethodsRequest, ListAllMethodsResponse> operation
               = new ListAllMethodsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

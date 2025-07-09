@@ -19,7 +19,6 @@ import java.util.Optional;
  * <p>URLs of images representing the issuer. required: - size1x - size2x - svg
  */
 public class ListAllMethodsMethodsImage {
-
     /**
      * The URL pointing to an icon of 32 by 24 pixels.
      */
@@ -82,9 +81,10 @@ public class ListAllMethodsMethodsImage {
         return svg;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The URL pointing to an icon of 32 by 24 pixels.
@@ -94,6 +94,7 @@ public class ListAllMethodsMethodsImage {
         this.size1x = Optional.ofNullable(size1x);
         return this;
     }
+
 
     /**
      * The URL pointing to an icon of 32 by 24 pixels.
@@ -113,6 +114,7 @@ public class ListAllMethodsMethodsImage {
         return this;
     }
 
+
     /**
      * The URL pointing to an icon of 64 by 48 pixels.
      */
@@ -131,6 +133,7 @@ public class ListAllMethodsMethodsImage {
         return this;
     }
 
+
     /**
      * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
      */
@@ -140,7 +143,6 @@ public class ListAllMethodsMethodsImage {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -159,9 +161,7 @@ public class ListAllMethodsMethodsImage {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            size1x,
-            size2x,
-            svg);
+            size1x, size2x, svg);
     }
     
     @Override
@@ -171,18 +171,20 @@ public class ListAllMethodsMethodsImage {
                 "size2x", size2x,
                 "svg", svg);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> size1x = Optional.empty();
- 
+
         private Optional<String> size2x = Optional.empty();
- 
+
         private Optional<String> svg = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The URL pointing to an icon of 32 by 24 pixels.
@@ -202,6 +204,7 @@ public class ListAllMethodsMethodsImage {
             return this;
         }
 
+
         /**
          * The URL pointing to an icon of 64 by 48 pixels.
          */
@@ -220,6 +223,7 @@ public class ListAllMethodsMethodsImage {
             return this;
         }
 
+
         /**
          * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
          */
@@ -237,12 +241,12 @@ public class ListAllMethodsMethodsImage {
             this.svg = svg;
             return this;
         }
-        
+
         public ListAllMethodsMethodsImage build() {
+
             return new ListAllMethodsMethodsImage(
-                size1x,
-                size2x,
-                svg);
+                size1x, size2x, svg);
         }
+
     }
 }

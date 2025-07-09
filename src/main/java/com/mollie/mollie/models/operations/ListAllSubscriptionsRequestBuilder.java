@@ -48,8 +48,8 @@ public class ListAllSubscriptionsRequestBuilder {
 
         RequestOperation<ListAllSubscriptionsRequest, ListAllSubscriptionsResponse> operation
               = new ListAllSubscriptionsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

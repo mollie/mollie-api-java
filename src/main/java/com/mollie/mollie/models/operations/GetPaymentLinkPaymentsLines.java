@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class GetPaymentLinkPaymentsLines {
 
+public class GetPaymentLinkPaymentsLines {
     /**
      * The type of product purchased. For example, a physical or a digital product.
      * 
@@ -181,7 +181,11 @@ public class GetPaymentLinkPaymentsLines {
             long quantity,
             GetPaymentLinkPaymentsUnitPrice unitPrice,
             GetPaymentLinkPaymentsTotalAmount totalAmount) {
-        this(Optional.empty(), description, quantity, Optional.empty(), unitPrice, Optional.empty(), totalAmount, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), description, quantity,
+            Optional.empty(), unitPrice, Optional.empty(),
+            totalAmount, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -318,9 +322,10 @@ public class GetPaymentLinkPaymentsLines {
         return (Optional<GetPaymentLinkPaymentsRecurring>) recurring;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The type of product purchased. For example, a physical or a digital product.
@@ -334,6 +339,7 @@ public class GetPaymentLinkPaymentsLines {
         this.type = Optional.ofNullable(type);
         return this;
     }
+
 
     /**
      * The type of product purchased. For example, a physical or a digital product.
@@ -375,6 +381,7 @@ public class GetPaymentLinkPaymentsLines {
         return this;
     }
 
+
     /**
      * The unit for the quantity. For example *pcs*, *kg*, or *cm*.
      */
@@ -408,6 +415,7 @@ public class GetPaymentLinkPaymentsLines {
         return this;
     }
 
+
     /**
      * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
      */
@@ -439,6 +447,7 @@ public class GetPaymentLinkPaymentsLines {
         return this;
     }
 
+
     /**
      * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
      */
@@ -460,6 +469,7 @@ public class GetPaymentLinkPaymentsLines {
         this.vatAmount = Optional.ofNullable(vatAmount);
         return this;
     }
+
 
     /**
      * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
@@ -483,6 +493,7 @@ public class GetPaymentLinkPaymentsLines {
         return this;
     }
 
+
     /**
      * The SKU, EAN, ISBN or UPC of the product sold.
      */
@@ -500,6 +511,7 @@ public class GetPaymentLinkPaymentsLines {
         this.categories = Optional.ofNullable(categories);
         return this;
     }
+
 
     /**
      * An array with the voucher categories, in case of a line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
@@ -519,6 +531,7 @@ public class GetPaymentLinkPaymentsLines {
         return this;
     }
 
+
     /**
      * A link pointing to an image of the product sold.
      */
@@ -536,6 +549,7 @@ public class GetPaymentLinkPaymentsLines {
         this.productUrl = Optional.ofNullable(productUrl);
         return this;
     }
+
 
     /**
      * A link pointing to the product page in your web shop of the product sold.
@@ -555,6 +569,7 @@ public class GetPaymentLinkPaymentsLines {
         return this;
     }
 
+
     /**
      * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
      */
@@ -564,7 +579,6 @@ public class GetPaymentLinkPaymentsLines {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -594,20 +608,11 @@ public class GetPaymentLinkPaymentsLines {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            description,
-            quantity,
-            quantityUnit,
-            unitPrice,
-            discountAmount,
-            totalAmount,
-            vatRate,
-            vatAmount,
-            sku,
-            categories,
-            imageUrl,
-            productUrl,
-            recurring);
+            type, description, quantity,
+            quantityUnit, unitPrice, discountAmount,
+            totalAmount, vatRate, vatAmount,
+            sku, categories, imageUrl,
+            productUrl, recurring);
     }
     
     @Override
@@ -628,40 +633,42 @@ public class GetPaymentLinkPaymentsLines {
                 "productUrl", productUrl,
                 "recurring", recurring);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> type = Optional.empty();
- 
+
         private String description;
- 
+
         private Long quantity;
- 
+
         private Optional<String> quantityUnit = Optional.empty();
- 
+
         private GetPaymentLinkPaymentsUnitPrice unitPrice;
- 
+
         private Optional<? extends GetPaymentLinkPaymentsDiscountAmount> discountAmount = Optional.empty();
- 
+
         private GetPaymentLinkPaymentsTotalAmount totalAmount;
- 
+
         private Optional<String> vatRate = Optional.empty();
- 
+
         private Optional<? extends GetPaymentLinkPaymentsVatAmount> vatAmount = Optional.empty();
- 
+
         private Optional<String> sku = Optional.empty();
- 
+
         private Optional<? extends List<GetPaymentLinkPaymentsCategories>> categories = Optional.empty();
- 
+
         private Optional<String> imageUrl = Optional.empty();
- 
+
         private Optional<String> productUrl = Optional.empty();
- 
+
         private Optional<? extends GetPaymentLinkPaymentsRecurring> recurring = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The type of product purchased. For example, a physical or a digital product.
@@ -689,6 +696,7 @@ public class GetPaymentLinkPaymentsLines {
             return this;
         }
 
+
         /**
          * A description of the line item. For example *LEGO 4440 Forest Police Station*.
          */
@@ -698,6 +706,7 @@ public class GetPaymentLinkPaymentsLines {
             return this;
         }
 
+
         /**
          * The number of items.
          */
@@ -706,6 +715,7 @@ public class GetPaymentLinkPaymentsLines {
             this.quantity = quantity;
             return this;
         }
+
 
         /**
          * The unit for the quantity. For example *pcs*, *kg*, or *cm*.
@@ -725,6 +735,7 @@ public class GetPaymentLinkPaymentsLines {
             return this;
         }
 
+
         /**
          * The price of a single item including VAT.
          * 
@@ -739,6 +750,7 @@ public class GetPaymentLinkPaymentsLines {
             this.unitPrice = unitPrice;
             return this;
         }
+
 
         /**
          * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
@@ -758,6 +770,7 @@ public class GetPaymentLinkPaymentsLines {
             return this;
         }
 
+
         /**
          * The total amount of the line, including VAT and discounts.
          * 
@@ -770,6 +783,7 @@ public class GetPaymentLinkPaymentsLines {
             this.totalAmount = totalAmount;
             return this;
         }
+
 
         /**
          * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
@@ -788,6 +802,7 @@ public class GetPaymentLinkPaymentsLines {
             this.vatRate = vatRate;
             return this;
         }
+
 
         /**
          * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
@@ -815,6 +830,7 @@ public class GetPaymentLinkPaymentsLines {
             return this;
         }
 
+
         /**
          * The SKU, EAN, ISBN or UPC of the product sold.
          */
@@ -832,6 +848,7 @@ public class GetPaymentLinkPaymentsLines {
             this.sku = sku;
             return this;
         }
+
 
         /**
          * An array with the voucher categories, in case of a line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
@@ -851,6 +868,7 @@ public class GetPaymentLinkPaymentsLines {
             return this;
         }
 
+
         /**
          * A link pointing to an image of the product sold.
          */
@@ -868,6 +886,7 @@ public class GetPaymentLinkPaymentsLines {
             this.imageUrl = imageUrl;
             return this;
         }
+
 
         /**
          * A link pointing to the product page in your web shop of the product sold.
@@ -887,6 +906,7 @@ public class GetPaymentLinkPaymentsLines {
             return this;
         }
 
+
         /**
          * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
          */
@@ -904,23 +924,16 @@ public class GetPaymentLinkPaymentsLines {
             this.recurring = recurring;
             return this;
         }
-        
+
         public GetPaymentLinkPaymentsLines build() {
+
             return new GetPaymentLinkPaymentsLines(
-                type,
-                description,
-                quantity,
-                quantityUnit,
-                unitPrice,
-                discountAmount,
-                totalAmount,
-                vatRate,
-                vatAmount,
-                sku,
-                categories,
-                imageUrl,
-                productUrl,
-                recurring);
+                type, description, quantity,
+                quantityUnit, unitPrice, discountAmount,
+                totalAmount, vatRate, vatAmount,
+                sku, categories, imageUrl,
+                productUrl, recurring);
         }
+
     }
 }

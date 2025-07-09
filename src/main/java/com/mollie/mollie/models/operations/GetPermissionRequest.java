@@ -12,8 +12,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetPermissionRequest {
 
+public class GetPermissionRequest {
     /**
      * Provide the ID of the related permission.
      */
@@ -61,9 +61,10 @@ public class GetPermissionRequest {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the related permission.
@@ -96,7 +97,6 @@ public class GetPermissionRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -114,8 +114,7 @@ public class GetPermissionRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            permissionId,
-            testmode);
+            permissionId, testmode);
     }
     
     @Override
@@ -124,16 +123,18 @@ public class GetPermissionRequest {
                 "permissionId", permissionId,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String permissionId;
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the related permission.
@@ -143,6 +144,7 @@ public class GetPermissionRequest {
             this.permissionId = permissionId;
             return this;
         }
+
 
         /**
          * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
@@ -165,11 +167,12 @@ public class GetPermissionRequest {
             this.testmode = testmode;
             return this;
         }
-        
+
         public GetPermissionRequest build() {
+
             return new GetPermissionRequest(
-                permissionId,
-                testmode);
+                permissionId, testmode);
         }
+
     }
 }

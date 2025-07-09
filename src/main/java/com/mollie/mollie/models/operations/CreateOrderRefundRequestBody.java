@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreateOrderRefundRequestBody {
 
+public class CreateOrderRefundRequestBody {
     /**
      * The description of the refund that may be shown to your customer, depending on the payment method used.
      */
@@ -39,6 +39,7 @@ public class CreateOrderRefundRequestBody {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends CreateOrderRefundMetadata> metadata;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("externalReference")
@@ -85,7 +86,8 @@ public class CreateOrderRefundRequestBody {
     
     public CreateOrderRefundRequestBody(
             List<CreateOrderRefundLines> lines) {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), lines);
+        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), lines);
     }
 
     /**
@@ -140,9 +142,10 @@ public class CreateOrderRefundRequestBody {
         return lines;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The description of the refund that may be shown to your customer, depending on the payment method used.
@@ -152,6 +155,7 @@ public class CreateOrderRefundRequestBody {
         this.description = Optional.ofNullable(description);
         return this;
     }
+
 
     /**
      * The description of the refund that may be shown to your customer, depending on the payment method used.
@@ -170,6 +174,7 @@ public class CreateOrderRefundRequestBody {
         this.amount = Optional.ofNullable(amount);
         return this;
     }
+
 
     /**
      * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment amount.
@@ -203,6 +208,7 @@ public class CreateOrderRefundRequestBody {
         this.externalReference = Optional.ofNullable(externalReference);
         return this;
     }
+
 
     public CreateOrderRefundRequestBody withExternalReference(Optional<? extends CreateOrderRefundExternalReference> externalReference) {
         Utils.checkNotNull(externalReference, "externalReference");
@@ -243,7 +249,6 @@ public class CreateOrderRefundRequestBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -265,12 +270,8 @@ public class CreateOrderRefundRequestBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            description,
-            amount,
-            metadata,
-            externalReference,
-            testmode,
-            lines);
+            description, amount, metadata,
+            externalReference, testmode, lines);
     }
     
     @Override
@@ -283,24 +284,26 @@ public class CreateOrderRefundRequestBody {
                 "testmode", testmode,
                 "lines", lines);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<? extends CreateOrderRefundAmount> amount = Optional.empty();
- 
+
         private JsonNullable<? extends CreateOrderRefundMetadata> metadata = JsonNullable.undefined();
- 
+
         private Optional<? extends CreateOrderRefundExternalReference> externalReference = Optional.empty();
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
- 
+
         private List<CreateOrderRefundLines> lines;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The description of the refund that may be shown to your customer, depending on the payment method used.
@@ -320,6 +323,7 @@ public class CreateOrderRefundRequestBody {
             return this;
         }
 
+
         /**
          * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment amount.
          */
@@ -337,6 +341,7 @@ public class CreateOrderRefundRequestBody {
             this.amount = amount;
             return this;
         }
+
 
         /**
          * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
@@ -356,6 +361,7 @@ public class CreateOrderRefundRequestBody {
             return this;
         }
 
+
         public Builder externalReference(CreateOrderRefundExternalReference externalReference) {
             Utils.checkNotNull(externalReference, "externalReference");
             this.externalReference = Optional.ofNullable(externalReference);
@@ -367,6 +373,7 @@ public class CreateOrderRefundRequestBody {
             this.externalReference = externalReference;
             return this;
         }
+
 
         /**
          * Whether to create the entity in test mode or live mode.
@@ -390,6 +397,7 @@ public class CreateOrderRefundRequestBody {
             return this;
         }
 
+
         /**
          * A refund can optionally be linked to specific order lines.
          * 
@@ -400,15 +408,13 @@ public class CreateOrderRefundRequestBody {
             this.lines = lines;
             return this;
         }
-        
+
         public CreateOrderRefundRequestBody build() {
+
             return new CreateOrderRefundRequestBody(
-                description,
-                amount,
-                metadata,
-                externalReference,
-                testmode,
-                lines);
+                description, amount, metadata,
+                externalReference, testmode, lines);
         }
+
     }
 }

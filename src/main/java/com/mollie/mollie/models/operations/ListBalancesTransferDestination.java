@@ -19,7 +19,6 @@ import java.util.Optional;
  * <p>The destination where the available amount will be automatically transferred to according to the configured transfer frequency.
  */
 public class ListBalancesTransferDestination {
-
     /**
      * The default destination of automatic scheduled transfers. Currently only `bank-account` is supported.
      * 
@@ -90,9 +89,10 @@ public class ListBalancesTransferDestination {
         return beneficiaryName;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The default destination of automatic scheduled transfers. Currently only `bank-account` is supported.
@@ -106,6 +106,7 @@ public class ListBalancesTransferDestination {
         this.type = Optional.ofNullable(type);
         return this;
     }
+
 
     /**
      * The default destination of automatic scheduled transfers. Currently only `bank-account` is supported.
@@ -129,6 +130,7 @@ public class ListBalancesTransferDestination {
         return this;
     }
 
+
     /**
      * The configured bank account number of the beneficiary the balance amount is to be transferred to.
      */
@@ -147,6 +149,7 @@ public class ListBalancesTransferDestination {
         return this;
     }
 
+
     /**
      * The full name of the beneficiary the balance amount is to be transferred to.
      */
@@ -156,7 +159,6 @@ public class ListBalancesTransferDestination {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -175,9 +177,7 @@ public class ListBalancesTransferDestination {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            bankAccount,
-            beneficiaryName);
+            type, bankAccount, beneficiaryName);
     }
     
     @Override
@@ -187,18 +187,20 @@ public class ListBalancesTransferDestination {
                 "bankAccount", bankAccount,
                 "beneficiaryName", beneficiaryName);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> type = Optional.empty();
- 
+
         private Optional<String> bankAccount = Optional.empty();
- 
+
         private Optional<String> beneficiaryName = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The default destination of automatic scheduled transfers. Currently only `bank-account` is supported.
@@ -226,6 +228,7 @@ public class ListBalancesTransferDestination {
             return this;
         }
 
+
         /**
          * The configured bank account number of the beneficiary the balance amount is to be transferred to.
          */
@@ -244,6 +247,7 @@ public class ListBalancesTransferDestination {
             return this;
         }
 
+
         /**
          * The full name of the beneficiary the balance amount is to be transferred to.
          */
@@ -261,12 +265,12 @@ public class ListBalancesTransferDestination {
             this.beneficiaryName = beneficiaryName;
             return this;
         }
-        
+
         public ListBalancesTransferDestination build() {
+
             return new ListBalancesTransferDestination(
-                type,
-                bankAccount,
-                beneficiaryName);
+                type, bankAccount, beneficiaryName);
         }
+
     }
 }

@@ -22,7 +22,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
  */
 public class ListPaymentsRecurring {
-
     /**
      * A description of the recurring item. If not present, the main description of the item will be used.
      */
@@ -80,7 +79,8 @@ public class ListPaymentsRecurring {
     
     public ListPaymentsRecurring(
             String interval) {
-        this(Optional.empty(), interval, Optional.empty(), Optional.empty(), JsonNullable.undefined());
+        this(Optional.empty(), interval, Optional.empty(),
+            Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -126,9 +126,10 @@ public class ListPaymentsRecurring {
         return startDate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A description of the recurring item. If not present, the main description of the item will be used.
@@ -138,6 +139,7 @@ public class ListPaymentsRecurring {
         this.description = Optional.ofNullable(description);
         return this;
     }
+
 
     /**
      * A description of the recurring item. If not present, the main description of the item will be used.
@@ -168,6 +170,7 @@ public class ListPaymentsRecurring {
         return this;
     }
 
+
     /**
      * Total amount and currency of the recurring item.
      */
@@ -185,6 +188,7 @@ public class ListPaymentsRecurring {
         this.times = Optional.ofNullable(times);
         return this;
     }
+
 
     /**
      * Total number of charges for the subscription to complete. Leave empty for ongoing subscription.
@@ -213,7 +217,6 @@ public class ListPaymentsRecurring {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -234,11 +237,8 @@ public class ListPaymentsRecurring {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            description,
-            interval,
-            amount,
-            times,
-            startDate);
+            description, interval, amount,
+            times, startDate);
     }
     
     @Override
@@ -250,22 +250,24 @@ public class ListPaymentsRecurring {
                 "times", times,
                 "startDate", startDate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private String interval;
- 
+
         private Optional<? extends ListPaymentsPaymentsResponse200Amount> amount = Optional.empty();
- 
+
         private Optional<Long> times = Optional.empty();
- 
+
         private JsonNullable<String> startDate = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A description of the recurring item. If not present, the main description of the item will be used.
@@ -285,6 +287,7 @@ public class ListPaymentsRecurring {
             return this;
         }
 
+
         /**
          * Cadence unit of the recurring item. For example: `12 months`, `52 weeks` or `365 days`.
          * 
@@ -295,6 +298,7 @@ public class ListPaymentsRecurring {
             this.interval = interval;
             return this;
         }
+
 
         /**
          * Total amount and currency of the recurring item.
@@ -314,6 +318,7 @@ public class ListPaymentsRecurring {
             return this;
         }
 
+
         /**
          * Total number of charges for the subscription to complete. Leave empty for ongoing subscription.
          */
@@ -332,6 +337,7 @@ public class ListPaymentsRecurring {
             return this;
         }
 
+
         /**
          * The start date of the subscription if it does not start right away (format `YYYY-MM-DD`)
          */
@@ -349,14 +355,13 @@ public class ListPaymentsRecurring {
             this.startDate = startDate;
             return this;
         }
-        
+
         public ListPaymentsRecurring build() {
+
             return new ListPaymentsRecurring(
-                description,
-                interval,
-                amount,
-                times,
-                startDate);
+                description, interval, amount,
+                times, startDate);
         }
+
     }
 }

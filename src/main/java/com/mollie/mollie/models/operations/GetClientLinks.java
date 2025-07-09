@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
 public class GetClientLinks {
-
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -66,7 +65,8 @@ public class GetClientLinks {
     }
     
     public GetClientLinks() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -105,9 +105,10 @@ public class GetClientLinks {
         return (Optional<GetClientDocumentation>) documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -117,6 +118,7 @@ public class GetClientLinks {
         this.self = Optional.ofNullable(self);
         return this;
     }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -136,6 +138,7 @@ public class GetClientLinks {
         return this;
     }
 
+
     /**
      * The API resource URL of the client's organization.
      */
@@ -153,6 +156,7 @@ public class GetClientLinks {
         this.onboarding = Optional.ofNullable(onboarding);
         return this;
     }
+
 
     /**
      * The API resource URL of the client's onboarding status.
@@ -172,6 +176,7 @@ public class GetClientLinks {
         return this;
     }
 
+
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -181,7 +186,6 @@ public class GetClientLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -201,9 +205,7 @@ public class GetClientLinks {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self,
-            organization,
-            onboarding,
+            self, organization, onboarding,
             documentation);
     }
     
@@ -215,20 +217,22 @@ public class GetClientLinks {
                 "onboarding", onboarding,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends GetClientSelf> self = Optional.empty();
- 
+
         private Optional<? extends GetClientOrganization> organization = Optional.empty();
- 
+
         private Optional<? extends Onboarding> onboarding = Optional.empty();
- 
+
         private Optional<? extends GetClientDocumentation> documentation = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -248,6 +252,7 @@ public class GetClientLinks {
             return this;
         }
 
+
         /**
          * The API resource URL of the client's organization.
          */
@@ -265,6 +270,7 @@ public class GetClientLinks {
             this.organization = organization;
             return this;
         }
+
 
         /**
          * The API resource URL of the client's onboarding status.
@@ -284,6 +290,7 @@ public class GetClientLinks {
             return this;
         }
 
+
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
@@ -301,13 +308,13 @@ public class GetClientLinks {
             this.documentation = documentation;
             return this;
         }
-        
+
         public GetClientLinks build() {
+
             return new GetClientLinks(
-                self,
-                organization,
-                onboarding,
+                self, organization, onboarding,
                 documentation);
         }
+
     }
 }

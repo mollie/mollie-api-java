@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreateRefundRequestBody {
 
+public class CreateRefundRequestBody {
     /**
      * The description of the refund that may be shown to your customer, depending on the payment method used.
      */
@@ -38,6 +38,7 @@ public class CreateRefundRequestBody {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends CreateRefundMetadata> metadata;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("externalReference")
@@ -107,7 +108,9 @@ public class CreateRefundRequestBody {
     
     public CreateRefundRequestBody(
             CreateRefundAmount amount) {
-        this(Optional.empty(), amount, JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), amount, JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -182,9 +185,10 @@ public class CreateRefundRequestBody {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The description of the refund that may be shown to your customer, depending on the payment method used.
@@ -194,6 +198,7 @@ public class CreateRefundRequestBody {
         this.description = Optional.ofNullable(description);
         return this;
     }
+
 
     /**
      * The description of the refund that may be shown to your customer, depending on the payment method used.
@@ -236,6 +241,7 @@ public class CreateRefundRequestBody {
         this.externalReference = Optional.ofNullable(externalReference);
         return this;
     }
+
 
     public CreateRefundRequestBody withExternalReference(Optional<? extends ExternalReference> externalReference) {
         Utils.checkNotNull(externalReference, "externalReference");
@@ -329,7 +335,6 @@ public class CreateRefundRequestBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -352,12 +357,8 @@ public class CreateRefundRequestBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            description,
-            amount,
-            metadata,
-            externalReference,
-            reverseRouting,
-            routingReversals,
+            description, amount, metadata,
+            externalReference, reverseRouting, routingReversals,
             testmode);
     }
     
@@ -372,26 +373,28 @@ public class CreateRefundRequestBody {
                 "routingReversals", routingReversals,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private CreateRefundAmount amount;
- 
+
         private JsonNullable<? extends CreateRefundMetadata> metadata = JsonNullable.undefined();
- 
+
         private Optional<? extends ExternalReference> externalReference = Optional.empty();
- 
+
         private JsonNullable<Boolean> reverseRouting = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<RoutingReversals>> routingReversals = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The description of the refund that may be shown to your customer, depending on the payment method used.
@@ -411,6 +414,7 @@ public class CreateRefundRequestBody {
             return this;
         }
 
+
         /**
          * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment amount.
          */
@@ -419,6 +423,7 @@ public class CreateRefundRequestBody {
             this.amount = amount;
             return this;
         }
+
 
         /**
          * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
@@ -438,6 +443,7 @@ public class CreateRefundRequestBody {
             return this;
         }
 
+
         public Builder externalReference(ExternalReference externalReference) {
             Utils.checkNotNull(externalReference, "externalReference");
             this.externalReference = Optional.ofNullable(externalReference);
@@ -449,6 +455,7 @@ public class CreateRefundRequestBody {
             this.externalReference = externalReference;
             return this;
         }
+
 
         /**
          * *This feature is only available to marketplace operators.*
@@ -484,6 +491,7 @@ public class CreateRefundRequestBody {
             return this;
         }
 
+
         /**
          * *This feature is only available to marketplace operators.*
          * 
@@ -514,6 +522,7 @@ public class CreateRefundRequestBody {
             return this;
         }
 
+
         /**
          * Whether to create the entity in test mode or live mode.
          * 
@@ -535,16 +544,14 @@ public class CreateRefundRequestBody {
             this.testmode = testmode;
             return this;
         }
-        
+
         public CreateRefundRequestBody build() {
+
             return new CreateRefundRequestBody(
-                description,
-                amount,
-                metadata,
-                externalReference,
-                reverseRouting,
-                routingReversals,
+                description, amount, metadata,
+                externalReference, reverseRouting, routingReversals,
                 testmode);
         }
+
     }
 }

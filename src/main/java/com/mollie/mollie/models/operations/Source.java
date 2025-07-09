@@ -19,7 +19,6 @@ import java.util.Optional;
  * <p>Where the funds will be pulled back from.
  */
 public class Source {
-
     /**
      * The type of source. Currently only the source type `organization` is supported.
      * 
@@ -68,9 +67,10 @@ public class Source {
         return organizationId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The type of source. Currently only the source type `organization` is supported.
@@ -82,6 +82,7 @@ public class Source {
         this.type = Optional.ofNullable(type);
         return this;
     }
+
 
     /**
      * The type of source. Currently only the source type `organization` is supported.
@@ -103,6 +104,7 @@ public class Source {
         return this;
     }
 
+
     /**
      * Required for source type `organization`. The ID of the connected organization the funds should be pulled back from.
      */
@@ -112,7 +114,6 @@ public class Source {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -130,8 +131,7 @@ public class Source {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            organizationId);
+            type, organizationId);
     }
     
     @Override
@@ -140,16 +140,18 @@ public class Source {
                 "type", type,
                 "organizationId", organizationId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> type = Optional.empty();
- 
+
         private Optional<String> organizationId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The type of source. Currently only the source type `organization` is supported.
@@ -173,6 +175,7 @@ public class Source {
             return this;
         }
 
+
         /**
          * Required for source type `organization`. The ID of the connected organization the funds should be pulled back from.
          */
@@ -190,11 +193,12 @@ public class Source {
             this.organizationId = organizationId;
             return this;
         }
-        
+
         public Source build() {
+
             return new Source(
-                type,
-                organizationId);
+                type, organizationId);
         }
+
     }
 }

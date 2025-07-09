@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Clients {
 
+public class Clients {
     /**
      * Indicates the response contains a client object. Will always contain the string `client` for this resource type.
      */
@@ -54,6 +54,7 @@ public class Clients {
     @JsonProperty("_links")
     private Optional<? extends ListClientsClientsLinks> links;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_embedded")
     private Optional<? extends ListClientsClientsEmbedded> embedded;
@@ -81,7 +82,8 @@ public class Clients {
     }
     
     public Clients() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -132,9 +134,10 @@ public class Clients {
         return (Optional<ListClientsClientsEmbedded>) embedded;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a client object. Will always contain the string `client` for this resource type.
@@ -144,6 +147,7 @@ public class Clients {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Indicates the response contains a client object. Will always contain the string `client` for this resource type.
@@ -162,6 +166,7 @@ public class Clients {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The identifier uniquely referring to this client. Example: `org_12345678`.
@@ -199,6 +204,7 @@ public class Clients {
         return this;
     }
 
+
     /**
      * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
@@ -217,6 +223,7 @@ public class Clients {
         return this;
     }
 
+
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
@@ -232,13 +239,13 @@ public class Clients {
         return this;
     }
 
+
     public Clients withEmbedded(Optional<? extends ListClientsClientsEmbedded> embedded) {
         Utils.checkNotNull(embedded, "embedded");
         this.embedded = embedded;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -260,12 +267,8 @@ public class Clients {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            commission,
-            organizationCreatedAt,
-            links,
-            embedded);
+            resource, id, commission,
+            organizationCreatedAt, links, embedded);
     }
     
     @Override
@@ -278,24 +281,26 @@ public class Clients {
                 "links", links,
                 "embedded", embedded);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<? extends ListClientsCommission> commission = JsonNullable.undefined();
- 
+
         private Optional<String> organizationCreatedAt = Optional.empty();
- 
+
         private Optional<? extends ListClientsClientsLinks> links = Optional.empty();
- 
+
         private Optional<? extends ListClientsClientsEmbedded> embedded = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a client object. Will always contain the string `client` for this resource type.
@@ -315,6 +320,7 @@ public class Clients {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this client. Example: `org_12345678`.
          */
@@ -332,6 +338,7 @@ public class Clients {
             this.id = id;
             return this;
         }
+
 
         /**
          * The commission object.
@@ -351,6 +358,7 @@ public class Clients {
             return this;
         }
 
+
         /**
          * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
          */
@@ -368,6 +376,7 @@ public class Clients {
             this.organizationCreatedAt = organizationCreatedAt;
             return this;
         }
+
 
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -387,6 +396,7 @@ public class Clients {
             return this;
         }
 
+
         public Builder embedded(ListClientsClientsEmbedded embedded) {
             Utils.checkNotNull(embedded, "embedded");
             this.embedded = Optional.ofNullable(embedded);
@@ -398,19 +408,17 @@ public class Clients {
             this.embedded = embedded;
             return this;
         }
-        
+
         public Clients build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new Clients(
-                resource,
-                id,
-                commission,
-                organizationCreatedAt,
-                links,
-                embedded);
+                resource, id, commission,
+                organizationCreatedAt, links, embedded);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

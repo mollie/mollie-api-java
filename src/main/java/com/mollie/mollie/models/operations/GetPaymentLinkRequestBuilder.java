@@ -73,8 +73,8 @@ public class GetPaymentLinkRequestBuilder {
 
         RequestOperation<GetPaymentLinkRequest, GetPaymentLinkResponse> operation
               = new GetPaymentLinkOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         GetPaymentLinkRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

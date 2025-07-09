@@ -24,7 +24,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>The invoice object.
  */
 public class GetInvoiceResponseBody {
-
     /**
      * Indicates that the response contains an invoice object. Will always contain the string `invoice` for this endpoint.
      */
@@ -166,7 +165,11 @@ public class GetInvoiceResponseBody {
     }
     
     public GetInvoiceResponseBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -284,9 +287,10 @@ public class GetInvoiceResponseBody {
         return (Optional<GetInvoiceLinks>) links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates that the response contains an invoice object. Will always contain the string `invoice` for this endpoint.
@@ -296,6 +300,7 @@ public class GetInvoiceResponseBody {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Indicates that the response contains an invoice object. Will always contain the string `invoice` for this endpoint.
@@ -315,6 +320,7 @@ public class GetInvoiceResponseBody {
         return this;
     }
 
+
     /**
      * The identifier uniquely referring to this invoice. Example: `inv_FrvewDA3Pr`.
      */
@@ -332,6 +338,7 @@ public class GetInvoiceResponseBody {
         this.reference = Optional.ofNullable(reference);
         return this;
     }
+
 
     /**
      * The reference number of the invoice. An example value would be: `2024.10000`.
@@ -375,6 +382,7 @@ public class GetInvoiceResponseBody {
         return this;
     }
 
+
     /**
      * Status of the invoice.
      * 
@@ -399,6 +407,7 @@ public class GetInvoiceResponseBody {
         return this;
     }
 
+
     /**
      * Total amount of the invoice, excluding VAT.
      */
@@ -416,6 +425,7 @@ public class GetInvoiceResponseBody {
         this.vatAmount = Optional.ofNullable(vatAmount);
         return this;
     }
+
 
     /**
      * VAT amount of the invoice. Only applicable to merchants registered in the Netherlands. For EU merchants, VAT will be shifted to the recipient (as per article 44 and 196 in the EU VAT Directive 2006/112). For merchants outside the EU, no VAT will be charged.
@@ -435,6 +445,7 @@ public class GetInvoiceResponseBody {
         return this;
     }
 
+
     /**
      * Total amount of the invoice, including VAT.
      */
@@ -453,6 +464,7 @@ public class GetInvoiceResponseBody {
         return this;
     }
 
+
     /**
      * The collection of products which make up the invoice.
      */
@@ -470,6 +482,7 @@ public class GetInvoiceResponseBody {
         this.issuedAt = Optional.ofNullable(issuedAt);
         return this;
     }
+
 
     /**
      * The invoice date in `YYYY-MM-DD` format.
@@ -525,6 +538,7 @@ public class GetInvoiceResponseBody {
         return this;
     }
 
+
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
@@ -534,7 +548,6 @@ public class GetInvoiceResponseBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -563,18 +576,10 @@ public class GetInvoiceResponseBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            reference,
-            vatNumber,
-            status,
-            netAmount,
-            vatAmount,
-            grossAmount,
-            lines,
-            issuedAt,
-            paidAt,
-            dueAt,
+            resource, id, reference,
+            vatNumber, status, netAmount,
+            vatAmount, grossAmount, lines,
+            issuedAt, paidAt, dueAt,
             links);
     }
     
@@ -595,38 +600,40 @@ public class GetInvoiceResponseBody {
                 "dueAt", dueAt,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> reference = Optional.empty();
- 
+
         private JsonNullable<String> vatNumber = JsonNullable.undefined();
- 
+
         private Optional<String> status = Optional.empty();
- 
+
         private Optional<? extends NetAmount> netAmount = Optional.empty();
- 
+
         private Optional<? extends GetInvoiceVatAmount> vatAmount = Optional.empty();
- 
+
         private Optional<? extends GrossAmount> grossAmount = Optional.empty();
- 
+
         private Optional<? extends List<GetInvoiceLines>> lines = Optional.empty();
- 
+
         private Optional<String> issuedAt = Optional.empty();
- 
+
         private JsonNullable<String> paidAt = JsonNullable.undefined();
- 
+
         private JsonNullable<String> dueAt = JsonNullable.undefined();
- 
+
         private Optional<? extends GetInvoiceLinks> links = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates that the response contains an invoice object. Will always contain the string `invoice` for this endpoint.
@@ -646,6 +653,7 @@ public class GetInvoiceResponseBody {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this invoice. Example: `inv_FrvewDA3Pr`.
          */
@@ -663,6 +671,7 @@ public class GetInvoiceResponseBody {
             this.id = id;
             return this;
         }
+
 
         /**
          * The reference number of the invoice. An example value would be: `2024.10000`.
@@ -682,6 +691,7 @@ public class GetInvoiceResponseBody {
             return this;
         }
 
+
         /**
          * The VAT number to which the invoice was issued to, if applicable.
          */
@@ -699,6 +709,7 @@ public class GetInvoiceResponseBody {
             this.vatNumber = vatNumber;
             return this;
         }
+
 
         /**
          * Status of the invoice.
@@ -730,6 +741,7 @@ public class GetInvoiceResponseBody {
             return this;
         }
 
+
         /**
          * Total amount of the invoice, excluding VAT.
          */
@@ -747,6 +759,7 @@ public class GetInvoiceResponseBody {
             this.netAmount = netAmount;
             return this;
         }
+
 
         /**
          * VAT amount of the invoice. Only applicable to merchants registered in the Netherlands. For EU merchants, VAT will be shifted to the recipient (as per article 44 and 196 in the EU VAT Directive 2006/112). For merchants outside the EU, no VAT will be charged.
@@ -766,6 +779,7 @@ public class GetInvoiceResponseBody {
             return this;
         }
 
+
         /**
          * Total amount of the invoice, including VAT.
          */
@@ -783,6 +797,7 @@ public class GetInvoiceResponseBody {
             this.grossAmount = grossAmount;
             return this;
         }
+
 
         /**
          * The collection of products which make up the invoice.
@@ -802,6 +817,7 @@ public class GetInvoiceResponseBody {
             return this;
         }
 
+
         /**
          * The invoice date in `YYYY-MM-DD` format.
          */
@@ -819,6 +835,7 @@ public class GetInvoiceResponseBody {
             this.issuedAt = issuedAt;
             return this;
         }
+
 
         /**
          * The date on which the invoice was paid, if applicable, in `YYYY-MM-DD` format.
@@ -838,6 +855,7 @@ public class GetInvoiceResponseBody {
             return this;
         }
 
+
         /**
          * The date on which the invoice is due, if applicable, in `YYYY-MM-DD` format.
          */
@@ -856,6 +874,7 @@ public class GetInvoiceResponseBody {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -873,26 +892,20 @@ public class GetInvoiceResponseBody {
             this.links = links;
             return this;
         }
-        
+
         public GetInvoiceResponseBody build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new GetInvoiceResponseBody(
-                resource,
-                id,
-                reference,
-                vatNumber,
-                status,
-                netAmount,
-                vatAmount,
-                grossAmount,
-                lines,
-                issuedAt,
-                paidAt,
-                dueAt,
+                resource, id, reference,
+                vatNumber, status, netAmount,
+                vatAmount, grossAmount, lines,
+                issuedAt, paidAt, dueAt,
                 links);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

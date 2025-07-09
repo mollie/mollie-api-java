@@ -16,7 +16,6 @@ import java.lang.String;
  * <p>The total amount that is already refunded. Only available when refunds are available for this payment. For some payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the costs for a return shipment to the customer.
  */
 public class ListSubscriptionPaymentsAmountRefunded {
-
     /**
      * A three-character ISO 4217 currency code.
      */
@@ -55,9 +54,10 @@ public class ListSubscriptionPaymentsAmountRefunded {
         return value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A three-character ISO 4217 currency code.
@@ -77,7 +77,6 @@ public class ListSubscriptionPaymentsAmountRefunded {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -95,8 +94,7 @@ public class ListSubscriptionPaymentsAmountRefunded {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            currency,
-            value);
+            currency, value);
     }
     
     @Override
@@ -105,16 +103,18 @@ public class ListSubscriptionPaymentsAmountRefunded {
                 "currency", currency,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String currency;
- 
+
         private String value;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A three-character ISO 4217 currency code.
@@ -125,6 +125,7 @@ public class ListSubscriptionPaymentsAmountRefunded {
             return this;
         }
 
+
         /**
          * A string containing an exact monetary amount in the given currency.
          */
@@ -133,11 +134,12 @@ public class ListSubscriptionPaymentsAmountRefunded {
             this.value = value;
             return this;
         }
-        
+
         public ListSubscriptionPaymentsAmountRefunded build() {
+
             return new ListSubscriptionPaymentsAmountRefunded(
-                currency,
-                value);
+                currency, value);
         }
+
     }
 }

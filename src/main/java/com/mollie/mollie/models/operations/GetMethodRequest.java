@@ -14,8 +14,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetMethodRequest {
 
+public class GetMethodRequest {
     /**
      * Provide the ID of the item you want to perform this operation on.
      */
@@ -93,7 +93,9 @@ public class GetMethodRequest {
     
     public GetMethodRequest(
             String id) {
-        this(id, Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
+        this(id, Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -161,9 +163,10 @@ public class GetMethodRequest {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the item you want to perform this operation on.
@@ -183,6 +186,7 @@ public class GetMethodRequest {
         return this;
     }
 
+
     /**
      * Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
      */
@@ -200,6 +204,7 @@ public class GetMethodRequest {
         this.currency = Optional.ofNullable(currency);
         return this;
     }
+
 
     /**
      * If provided, the `minimumAmount` and `maximumAmount` will be converted to the given currency. An error is returned if the currency is not supported by the payment method.
@@ -220,6 +225,7 @@ public class GetMethodRequest {
         this.profileId = Optional.ofNullable(profileId);
         return this;
     }
+
 
     /**
      * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
@@ -263,6 +269,7 @@ public class GetMethodRequest {
         return this;
     }
 
+
     /**
      * Set this parameter to `first` to only return the methods that can be used for the first payment of a recurring sequence.
      * 
@@ -298,7 +305,6 @@ public class GetMethodRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -321,12 +327,8 @@ public class GetMethodRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            locale,
-            currency,
-            profileId,
-            include,
-            sequenceType,
+            id, locale, currency,
+            profileId, include, sequenceType,
             testmode);
     }
     
@@ -341,26 +343,28 @@ public class GetMethodRequest {
                 "sequenceType", sequenceType,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private Optional<String> locale = Optional.empty();
- 
+
         private Optional<String> currency = Optional.empty();
- 
+
         private Optional<String> profileId = Optional.empty();
- 
+
         private JsonNullable<? extends GetMethodQueryParamInclude> include = JsonNullable.undefined();
- 
+
         private Optional<String> sequenceType = Optional.empty();
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the item you want to perform this operation on.
@@ -370,6 +374,7 @@ public class GetMethodRequest {
             this.id = id;
             return this;
         }
+
 
         /**
          * Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
@@ -389,6 +394,7 @@ public class GetMethodRequest {
             return this;
         }
 
+
         /**
          * If provided, the `minimumAmount` and `maximumAmount` will be converted to the given currency. An error is returned if the currency is not supported by the payment method.
          */
@@ -406,6 +412,7 @@ public class GetMethodRequest {
             this.currency = currency;
             return this;
         }
+
 
         /**
          * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
@@ -429,6 +436,7 @@ public class GetMethodRequest {
             return this;
         }
 
+
         /**
          * This endpoint allows you to include additional information via the `include` query string parameter.
          */
@@ -446,6 +454,7 @@ public class GetMethodRequest {
             this.include = include;
             return this;
         }
+
 
         /**
          * Set this parameter to `first` to only return the methods that can be used for the first payment of a recurring sequence.
@@ -473,6 +482,7 @@ public class GetMethodRequest {
             return this;
         }
 
+
         /**
          * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
          * 
@@ -494,16 +504,14 @@ public class GetMethodRequest {
             this.testmode = testmode;
             return this;
         }
-        
+
         public GetMethodRequest build() {
+
             return new GetMethodRequest(
-                id,
-                locale,
-                currency,
-                profileId,
-                include,
-                sequenceType,
+                id, locale, currency,
+                profileId, include, sequenceType,
                 testmode);
         }
+
     }
 }

@@ -53,7 +53,6 @@ public class Customers {
     Customers(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Create customer
      * 
@@ -116,11 +115,10 @@ public class Customers {
             Optional<Options> options) throws Exception {
         RequestOperation<Optional<? extends CreateCustomerRequestBody>, CreateCustomerResponse> operation
               = new CreateCustomerOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List customers
@@ -158,7 +156,8 @@ public class Customers {
      * @throws Exception if the API call fails
      */
     public ListCustomersResponse listDirect() throws Exception {
-        return list(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        return list(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -202,11 +201,10 @@ public class Customers {
                 .build();
         RequestOperation<ListCustomersRequest, ListCustomersResponse> operation
               = new ListCustomersOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get customer
@@ -237,7 +235,8 @@ public class Customers {
      * @throws Exception if the API call fails
      */
     public GetCustomerResponse get(String customerId) throws Exception {
-        return get(customerId, JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        return get(customerId, JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -272,11 +271,10 @@ public class Customers {
                 .build();
         RequestOperation<GetCustomerRequest, GetCustomerResponse> operation
               = new GetCustomerOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update customer
@@ -343,11 +341,10 @@ public class Customers {
                 .build();
         RequestOperation<UpdateCustomerRequest, UpdateCustomerResponse> operation
               = new UpdateCustomerOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete customer
@@ -408,11 +405,10 @@ public class Customers {
                 .build();
         RequestOperation<DeleteCustomerRequest, DeleteCustomerResponse> operation
               = new DeleteCustomerOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create customer payment
@@ -506,11 +502,10 @@ public class Customers {
                 .build();
         RequestOperation<CreateCustomerPaymentRequest, CreateCustomerPaymentResponse> operation
               = new CreateCustomerPaymentOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List customer payments
@@ -569,8 +564,8 @@ public class Customers {
             Optional<Options> options) throws Exception {
         RequestOperation<ListCustomerPaymentsRequest, ListCustomerPaymentsResponse> operation
               = new ListCustomerPaymentsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

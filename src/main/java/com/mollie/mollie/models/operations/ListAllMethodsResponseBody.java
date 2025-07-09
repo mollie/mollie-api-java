@@ -17,15 +17,16 @@ import java.lang.String;
  * <p>A list of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
  */
 public class ListAllMethodsResponseBody {
-
     /**
      * The number of payment method objects in this result set. Results are **not** paginated.
      */
     @JsonProperty("count")
     private long count;
 
+
     @JsonProperty("_embedded")
     private ListAllMethodsEmbedded embedded;
+
 
     @JsonProperty("_links")
     private ListAllMethodsLinks links;
@@ -61,9 +62,10 @@ public class ListAllMethodsResponseBody {
         return links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The number of payment method objects in this result set. Results are **not** paginated.
@@ -86,7 +88,6 @@ public class ListAllMethodsResponseBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -105,9 +106,7 @@ public class ListAllMethodsResponseBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            count,
-            embedded,
-            links);
+            count, embedded, links);
     }
     
     @Override
@@ -117,18 +116,20 @@ public class ListAllMethodsResponseBody {
                 "embedded", embedded,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long count;
- 
+
         private ListAllMethodsEmbedded embedded;
- 
+
         private ListAllMethodsLinks links;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The number of payment method objects in this result set. Results are **not** paginated.
@@ -139,23 +140,25 @@ public class ListAllMethodsResponseBody {
             return this;
         }
 
+
         public Builder embedded(ListAllMethodsEmbedded embedded) {
             Utils.checkNotNull(embedded, "embedded");
             this.embedded = embedded;
             return this;
         }
 
+
         public Builder links(ListAllMethodsLinks links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;
         }
-        
+
         public ListAllMethodsResponseBody build() {
+
             return new ListAllMethodsResponseBody(
-                count,
-                embedded,
-                links);
+                count, embedded, links);
         }
+
     }
 }

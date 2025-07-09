@@ -14,8 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreateWebhookRequestBody {
 
+public class CreateWebhookRequestBody {
     /**
      * A name that identifies the webhook.
      */
@@ -63,7 +63,8 @@ public class CreateWebhookRequestBody {
             String name,
             String url,
             EventTypes eventTypes) {
-        this(name, url, eventTypes, JsonNullable.undefined());
+        this(name, url, eventTypes,
+            JsonNullable.undefined());
     }
 
     /**
@@ -100,9 +101,10 @@ public class CreateWebhookRequestBody {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A name that identifies the webhook.
@@ -153,7 +155,6 @@ public class CreateWebhookRequestBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -173,9 +174,7 @@ public class CreateWebhookRequestBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            url,
-            eventTypes,
+            name, url, eventTypes,
             testmode);
     }
     
@@ -187,20 +186,22 @@ public class CreateWebhookRequestBody {
                 "eventTypes", eventTypes,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
- 
+
         private String url;
- 
+
         private EventTypes eventTypes;
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A name that identifies the webhook.
@@ -211,6 +212,7 @@ public class CreateWebhookRequestBody {
             return this;
         }
 
+
         /**
          * The URL Mollie will send the events to. This URL must be publicly accessible.
          */
@@ -220,6 +222,7 @@ public class CreateWebhookRequestBody {
             return this;
         }
 
+
         /**
          * The list of events to enable for this webhook. You may specify `'*'` to add all events, except those that require explicit selection. Separate multiple event types with a comma.
          */
@@ -228,6 +231,7 @@ public class CreateWebhookRequestBody {
             this.eventTypes = eventTypes;
             return this;
         }
+
 
         /**
          * Whether to create the entity in test mode or live mode.
@@ -250,13 +254,13 @@ public class CreateWebhookRequestBody {
             this.testmode = testmode;
             return this;
         }
-        
+
         public CreateWebhookRequestBody build() {
+
             return new CreateWebhookRequestBody(
-                name,
-                url,
-                eventTypes,
+                name, url, eventTypes,
                 testmode);
         }
+
     }
 }

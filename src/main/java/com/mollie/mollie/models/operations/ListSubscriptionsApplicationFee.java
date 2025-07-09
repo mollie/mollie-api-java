@@ -24,13 +24,13 @@ import java.util.Optional;
  * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more information.
  */
 public class ListSubscriptionsApplicationFee {
-
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
     private Optional<? extends ListSubscriptionsSubscriptionsAmount> amount;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
@@ -64,9 +64,10 @@ public class ListSubscriptionsApplicationFee {
         return description;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -76,6 +77,7 @@ public class ListSubscriptionsApplicationFee {
         this.amount = Optional.ofNullable(amount);
         return this;
     }
+
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -92,13 +94,13 @@ public class ListSubscriptionsApplicationFee {
         return this;
     }
 
+
     public ListSubscriptionsApplicationFee withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -116,8 +118,7 @@ public class ListSubscriptionsApplicationFee {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            amount,
-            description);
+            amount, description);
     }
     
     @Override
@@ -126,16 +127,18 @@ public class ListSubscriptionsApplicationFee {
                 "amount", amount,
                 "description", description);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ListSubscriptionsSubscriptionsAmount> amount = Optional.empty();
- 
+
         private Optional<String> description = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -155,6 +158,7 @@ public class ListSubscriptionsApplicationFee {
             return this;
         }
 
+
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
             this.description = Optional.ofNullable(description);
@@ -166,11 +170,12 @@ public class ListSubscriptionsApplicationFee {
             this.description = description;
             return this;
         }
-        
+
         public ListSubscriptionsApplicationFee build() {
+
             return new ListSubscriptionsApplicationFee(
-                amount,
-                description);
+                amount, description);
         }
+
     }
 }

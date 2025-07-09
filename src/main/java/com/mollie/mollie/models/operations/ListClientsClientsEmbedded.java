@@ -14,15 +14,18 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class ListClientsClientsEmbedded {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("organization")
     private Optional<? extends ListClientsClientsOrganization> organization;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("onboarding")
     private Optional<? extends ListClientsOnboarding> onboarding;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("capabilities")
@@ -63,15 +66,17 @@ public class ListClientsClientsEmbedded {
         return (Optional<ListClientsCapabilities>) capabilities;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ListClientsClientsEmbedded withOrganization(ListClientsClientsOrganization organization) {
         Utils.checkNotNull(organization, "organization");
         this.organization = Optional.ofNullable(organization);
         return this;
     }
+
 
     public ListClientsClientsEmbedded withOrganization(Optional<? extends ListClientsClientsOrganization> organization) {
         Utils.checkNotNull(organization, "organization");
@@ -85,6 +90,7 @@ public class ListClientsClientsEmbedded {
         return this;
     }
 
+
     public ListClientsClientsEmbedded withOnboarding(Optional<? extends ListClientsOnboarding> onboarding) {
         Utils.checkNotNull(onboarding, "onboarding");
         this.onboarding = onboarding;
@@ -97,13 +103,13 @@ public class ListClientsClientsEmbedded {
         return this;
     }
 
+
     public ListClientsClientsEmbedded withCapabilities(Optional<? extends ListClientsCapabilities> capabilities) {
         Utils.checkNotNull(capabilities, "capabilities");
         this.capabilities = capabilities;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -122,9 +128,7 @@ public class ListClientsClientsEmbedded {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            organization,
-            onboarding,
-            capabilities);
+            organization, onboarding, capabilities);
     }
     
     @Override
@@ -134,18 +138,20 @@ public class ListClientsClientsEmbedded {
                 "onboarding", onboarding,
                 "capabilities", capabilities);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ListClientsClientsOrganization> organization = Optional.empty();
- 
+
         private Optional<? extends ListClientsOnboarding> onboarding = Optional.empty();
- 
+
         private Optional<? extends ListClientsCapabilities> capabilities = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder organization(ListClientsClientsOrganization organization) {
             Utils.checkNotNull(organization, "organization");
@@ -159,6 +165,7 @@ public class ListClientsClientsEmbedded {
             return this;
         }
 
+
         public Builder onboarding(ListClientsOnboarding onboarding) {
             Utils.checkNotNull(onboarding, "onboarding");
             this.onboarding = Optional.ofNullable(onboarding);
@@ -171,6 +178,7 @@ public class ListClientsClientsEmbedded {
             return this;
         }
 
+
         public Builder capabilities(ListClientsCapabilities capabilities) {
             Utils.checkNotNull(capabilities, "capabilities");
             this.capabilities = Optional.ofNullable(capabilities);
@@ -182,12 +190,12 @@ public class ListClientsClientsEmbedded {
             this.capabilities = capabilities;
             return this;
         }
-        
+
         public ListClientsClientsEmbedded build() {
+
             return new ListClientsClientsEmbedded(
-                organization,
-                onboarding,
-                capabilities);
+                organization, onboarding, capabilities);
         }
+
     }
 }

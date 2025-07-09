@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetPaymentRouting {
 
+public class GetPaymentRouting {
     /**
      * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
      */
@@ -104,7 +104,9 @@ public class GetPaymentRouting {
             GetPaymentDestination destination,
             String createdAt,
             GetPaymentPaymentsLinks links) {
-        this(resource, id, mode, amount, destination, createdAt, JsonNullable.undefined(), links);
+        this(resource, id, mode,
+            amount, destination, createdAt,
+            JsonNullable.undefined(), links);
     }
 
     /**
@@ -175,9 +177,10 @@ public class GetPaymentRouting {
         return links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
@@ -266,7 +269,6 @@ public class GetPaymentRouting {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -290,14 +292,9 @@ public class GetPaymentRouting {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            mode,
-            amount,
-            destination,
-            createdAt,
-            releaseDate,
-            links);
+            resource, id, mode,
+            amount, destination, createdAt,
+            releaseDate, links);
     }
     
     @Override
@@ -312,28 +309,30 @@ public class GetPaymentRouting {
                 "releaseDate", releaseDate,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String resource;
- 
+
         private String id;
- 
+
         private String mode;
- 
+
         private GetPaymentPaymentsResponseAmount amount;
- 
+
         private GetPaymentDestination destination;
- 
+
         private String createdAt;
- 
+
         private JsonNullable<String> releaseDate = JsonNullable.undefined();
- 
+
         private GetPaymentPaymentsLinks links;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
@@ -344,6 +343,7 @@ public class GetPaymentRouting {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID. Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
          */
@@ -352,6 +352,7 @@ public class GetPaymentRouting {
             this.id = id;
             return this;
         }
+
 
         /**
          * Whether this entity was created in live mode or in test mode.
@@ -364,6 +365,7 @@ public class GetPaymentRouting {
             return this;
         }
 
+
         /**
          * The portion of the total payment amount being routed. Currently only `EUR` payments can be routed.
          */
@@ -372,6 +374,7 @@ public class GetPaymentRouting {
             this.amount = amount;
             return this;
         }
+
 
         /**
          * The destination of this portion of the payment.
@@ -382,6 +385,7 @@ public class GetPaymentRouting {
             return this;
         }
 
+
         /**
          * The date and time when the route was created. The date is given in ISO 8601 format.
          */
@@ -390,6 +394,7 @@ public class GetPaymentRouting {
             this.createdAt = createdAt;
             return this;
         }
+
 
         /**
          * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
@@ -413,6 +418,7 @@ public class GetPaymentRouting {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -421,17 +427,14 @@ public class GetPaymentRouting {
             this.links = links;
             return this;
         }
-        
+
         public GetPaymentRouting build() {
+
             return new GetPaymentRouting(
-                resource,
-                id,
-                mode,
-                amount,
-                destination,
-                createdAt,
-                releaseDate,
-                links);
+                resource, id, mode,
+                amount, destination, createdAt,
+                releaseDate, links);
         }
+
     }
 }

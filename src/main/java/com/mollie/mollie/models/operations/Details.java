@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Details {
 
+public class Details {
     /**
      * The customer's name. Available for SEPA Direct Debit and PayPal mandates.
      */
@@ -102,7 +102,9 @@ public class Details {
     }
     
     public Details() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -171,9 +173,10 @@ public class Details {
         return cardFingerprint;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The customer's name. Available for SEPA Direct Debit and PayPal mandates.
@@ -323,7 +326,6 @@ public class Details {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -347,14 +349,9 @@ public class Details {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            consumerName,
-            consumerAccount,
-            consumerBic,
-            cardHolder,
-            cardNumber,
-            cardExpiryDate,
-            cardLabel,
-            cardFingerprint);
+            consumerName, consumerAccount, consumerBic,
+            cardHolder, cardNumber, cardExpiryDate,
+            cardLabel, cardFingerprint);
     }
     
     @Override
@@ -369,28 +366,30 @@ public class Details {
                 "cardLabel", cardLabel,
                 "cardFingerprint", cardFingerprint);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> consumerName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> consumerAccount = JsonNullable.undefined();
- 
+
         private JsonNullable<String> consumerBic = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cardHolder = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cardNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cardExpiryDate = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cardLabel = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cardFingerprint = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The customer's name. Available for SEPA Direct Debit and PayPal mandates.
@@ -410,6 +409,7 @@ public class Details {
             return this;
         }
 
+
         /**
          * The customer's IBAN or email address. Available for SEPA Direct Debit and PayPal mandates.
          */
@@ -427,6 +427,7 @@ public class Details {
             this.consumerAccount = consumerAccount;
             return this;
         }
+
 
         /**
          * The BIC of the customer's bank. Available for SEPA Direct Debit mandates.
@@ -446,6 +447,7 @@ public class Details {
             return this;
         }
 
+
         /**
          * The card holder's name. Available for card mandates.
          */
@@ -463,6 +465,7 @@ public class Details {
             this.cardHolder = cardHolder;
             return this;
         }
+
 
         /**
          * The last four digits of the card number. Available for card mandates.
@@ -482,6 +485,7 @@ public class Details {
             return this;
         }
 
+
         /**
          * The card's expiry date in `YYYY-MM-DD` format. Available for card mandates.
          */
@@ -499,6 +503,7 @@ public class Details {
             this.cardExpiryDate = cardExpiryDate;
             return this;
         }
+
 
         /**
          * The card's label. Available for card mandates, if the card label could be detected.
@@ -522,6 +527,7 @@ public class Details {
             return this;
         }
 
+
         /**
          * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used to identify returning customers.
          */
@@ -539,17 +545,14 @@ public class Details {
             this.cardFingerprint = cardFingerprint;
             return this;
         }
-        
+
         public Details build() {
+
             return new Details(
-                consumerName,
-                consumerAccount,
-                consumerBic,
-                cardHolder,
-                cardNumber,
-                cardExpiryDate,
-                cardLabel,
-                cardFingerprint);
+                consumerName, consumerAccount, consumerBic,
+                cardHolder, cardNumber, cardExpiryDate,
+                cardLabel, cardFingerprint);
         }
+
     }
 }

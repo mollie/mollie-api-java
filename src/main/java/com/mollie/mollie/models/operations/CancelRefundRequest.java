@@ -12,8 +12,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CancelRefundRequest {
 
+public class CancelRefundRequest {
     /**
      * Provide the ID of the related payment.
      */
@@ -79,9 +79,10 @@ public class CancelRefundRequest {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the related payment.
@@ -123,7 +124,6 @@ public class CancelRefundRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -142,9 +142,7 @@ public class CancelRefundRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentId,
-            refundId,
-            testmode);
+            paymentId, refundId, testmode);
     }
     
     @Override
@@ -154,18 +152,20 @@ public class CancelRefundRequest {
                 "refundId", refundId,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String paymentId;
- 
+
         private String refundId;
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the related payment.
@@ -176,6 +176,7 @@ public class CancelRefundRequest {
             return this;
         }
 
+
         /**
          * Provide the ID of the related refund.
          */
@@ -184,6 +185,7 @@ public class CancelRefundRequest {
             this.refundId = refundId;
             return this;
         }
+
 
         /**
          * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
@@ -206,12 +208,12 @@ public class CancelRefundRequest {
             this.testmode = testmode;
             return this;
         }
-        
+
         public CancelRefundRequest build() {
+
             return new CancelRefundRequest(
-                paymentId,
-                refundId,
-                testmode);
+                paymentId, refundId, testmode);
         }
+
     }
 }

@@ -14,8 +14,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetSettlementChargebacksChargebacks {
 
+public class GetSettlementChargebacksChargebacks {
     /**
      * Indicates the response contains a chargeback object. Will always contain the string `chargeback` for this endpoint.
      */
@@ -125,7 +125,10 @@ public class GetSettlementChargebacksChargebacks {
             String paymentId,
             String createdAt,
             GetSettlementChargebacksSettlementsLinks links) {
-        this(resource, id, amount, JsonNullable.undefined(), JsonNullable.undefined(), paymentId, JsonNullable.undefined(), createdAt, JsonNullable.undefined(), links);
+        this(resource, id, amount,
+            JsonNullable.undefined(), JsonNullable.undefined(), paymentId,
+            JsonNullable.undefined(), createdAt, JsonNullable.undefined(),
+            links);
     }
 
     /**
@@ -214,9 +217,10 @@ public class GetSettlementChargebacksChargebacks {
         return links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a chargeback object. Will always contain the string `chargeback` for this endpoint.
@@ -352,7 +356,6 @@ public class GetSettlementChargebacksChargebacks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -378,15 +381,9 @@ public class GetSettlementChargebacksChargebacks {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            amount,
-            settlementAmount,
-            reason,
-            paymentId,
-            settlementId,
-            createdAt,
-            reversedAt,
+            resource, id, amount,
+            settlementAmount, reason, paymentId,
+            settlementId, createdAt, reversedAt,
             links);
     }
     
@@ -404,32 +401,34 @@ public class GetSettlementChargebacksChargebacks {
                 "reversedAt", reversedAt,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String resource;
- 
+
         private String id;
- 
+
         private GetSettlementChargebacksAmount amount;
- 
+
         private JsonNullable<? extends GetSettlementChargebacksSettlementAmount> settlementAmount = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends GetSettlementChargebacksReason> reason = JsonNullable.undefined();
- 
+
         private String paymentId;
- 
+
         private JsonNullable<String> settlementId = JsonNullable.undefined();
- 
+
         private String createdAt;
- 
+
         private JsonNullable<String> reversedAt = JsonNullable.undefined();
- 
+
         private GetSettlementChargebacksSettlementsLinks links;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a chargeback object. Will always contain the string `chargeback` for this endpoint.
@@ -440,6 +439,7 @@ public class GetSettlementChargebacksChargebacks {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this chargeback. Example: `chb_n9z0tp`.
          */
@@ -449,6 +449,7 @@ public class GetSettlementChargebacksChargebacks {
             return this;
         }
 
+
         /**
          * The amount charged back by the customer.
          */
@@ -457,6 +458,7 @@ public class GetSettlementChargebacksChargebacks {
             this.amount = amount;
             return this;
         }
+
 
         /**
          * This optional field will contain the approximate amount that will be deducted from your account balance, converted to the currency your account is settled in.
@@ -484,6 +486,7 @@ public class GetSettlementChargebacksChargebacks {
             return this;
         }
 
+
         /**
          * Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit payments.
          */
@@ -502,6 +505,7 @@ public class GetSettlementChargebacksChargebacks {
             return this;
         }
 
+
         /**
          * The unique identifier of the payment this chargeback was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
          */
@@ -510,6 +514,7 @@ public class GetSettlementChargebacksChargebacks {
             this.paymentId = paymentId;
             return this;
         }
+
 
         /**
          * The identifier referring to the settlement this payment was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the refund is not settled (yet).
@@ -529,6 +534,7 @@ public class GetSettlementChargebacksChargebacks {
             return this;
         }
 
+
         /**
          * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
          */
@@ -537,6 +543,7 @@ public class GetSettlementChargebacksChargebacks {
             this.createdAt = createdAt;
             return this;
         }
+
 
         /**
          * The date and time the chargeback was reversed if applicable, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -556,6 +563,7 @@ public class GetSettlementChargebacksChargebacks {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -564,19 +572,15 @@ public class GetSettlementChargebacksChargebacks {
             this.links = links;
             return this;
         }
-        
+
         public GetSettlementChargebacksChargebacks build() {
+
             return new GetSettlementChargebacksChargebacks(
-                resource,
-                id,
-                amount,
-                settlementAmount,
-                reason,
-                paymentId,
-                settlementId,
-                createdAt,
-                reversedAt,
+                resource, id, amount,
+                settlementAmount, reason, paymentId,
+                settlementId, createdAt, reversedAt,
                 links);
         }
+
     }
 }

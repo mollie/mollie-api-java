@@ -12,13 +12,14 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class CancelPaymentRequest {
 
+public class CancelPaymentRequest {
     /**
      * Provide the ID of the related payment.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=paymentId")
     private String paymentId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends CancelPaymentRequestBody> requestBody;
@@ -52,9 +53,10 @@ public class CancelPaymentRequest {
         return (Optional<CancelPaymentRequestBody>) requestBody;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the related payment.
@@ -71,13 +73,13 @@ public class CancelPaymentRequest {
         return this;
     }
 
+
     public CancelPaymentRequest withRequestBody(Optional<? extends CancelPaymentRequestBody> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -95,8 +97,7 @@ public class CancelPaymentRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentId,
-            requestBody);
+            paymentId, requestBody);
     }
     
     @Override
@@ -105,16 +106,18 @@ public class CancelPaymentRequest {
                 "paymentId", paymentId,
                 "requestBody", requestBody);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String paymentId;
- 
+
         private Optional<? extends CancelPaymentRequestBody> requestBody = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the related payment.
@@ -124,6 +127,7 @@ public class CancelPaymentRequest {
             this.paymentId = paymentId;
             return this;
         }
+
 
         public Builder requestBody(CancelPaymentRequestBody requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
@@ -136,11 +140,12 @@ public class CancelPaymentRequest {
             this.requestBody = requestBody;
             return this;
         }
-        
+
         public CancelPaymentRequest build() {
+
             return new CancelPaymentRequest(
-                paymentId,
-                requestBody);
+                paymentId, requestBody);
         }
+
     }
 }

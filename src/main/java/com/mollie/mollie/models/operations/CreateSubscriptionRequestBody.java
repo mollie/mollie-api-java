@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreateSubscriptionRequestBody {
 
+public class CreateSubscriptionRequestBody {
     /**
      * The amount for each individual payment that is charged with this subscription. For example, for a monthly subscription of €10, the subscription amount should be set to €10.
      */
@@ -154,7 +154,10 @@ public class CreateSubscriptionRequestBody {
             CreateSubscriptionAmount amount,
             String interval,
             String description) {
-        this(amount, JsonNullable.undefined(), interval, Optional.empty(), description, JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(amount, JsonNullable.undefined(), interval,
+            Optional.empty(), description, JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -267,9 +270,10 @@ public class CreateSubscriptionRequestBody {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The amount for each individual payment that is charged with this subscription. For example, for a monthly subscription of €10, the subscription amount should be set to €10.
@@ -323,6 +327,7 @@ public class CreateSubscriptionRequestBody {
         this.startDate = Optional.ofNullable(startDate);
         return this;
     }
+
 
     /**
      * The start date of the subscription in `YYYY-MM-DD` format.
@@ -379,6 +384,7 @@ public class CreateSubscriptionRequestBody {
         return this;
     }
 
+
     /**
      * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
      * 
@@ -424,6 +430,7 @@ public class CreateSubscriptionRequestBody {
         this.webhookUrl = Optional.ofNullable(webhookUrl);
         return this;
     }
+
 
     /**
      * We will call this URL for any payment status changes of payments resulting from this subscription.
@@ -476,7 +483,6 @@ public class CreateSubscriptionRequestBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -503,17 +509,10 @@ public class CreateSubscriptionRequestBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            amount,
-            times,
-            interval,
-            startDate,
-            description,
-            method,
-            applicationFee,
-            metadata,
-            webhookUrl,
-            mandateId,
-            testmode);
+            amount, times, interval,
+            startDate, description, method,
+            applicationFee, metadata, webhookUrl,
+            mandateId, testmode);
     }
     
     @Override
@@ -531,34 +530,36 @@ public class CreateSubscriptionRequestBody {
                 "mandateId", mandateId,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private CreateSubscriptionAmount amount;
- 
+
         private JsonNullable<Long> times = JsonNullable.undefined();
- 
+
         private String interval;
- 
+
         private Optional<String> startDate = Optional.empty();
- 
+
         private String description;
- 
+
         private JsonNullable<String> method = JsonNullable.undefined();
- 
+
         private Optional<? extends CreateSubscriptionApplicationFee> applicationFee = Optional.empty();
- 
+
         private JsonNullable<? extends CreateSubscriptionMetadata> metadata = JsonNullable.undefined();
- 
+
         private Optional<String> webhookUrl = Optional.empty();
- 
+
         private JsonNullable<String> mandateId = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The amount for each individual payment that is charged with this subscription. For example, for a monthly subscription of €10, the subscription amount should be set to €10.
@@ -568,6 +569,7 @@ public class CreateSubscriptionRequestBody {
             this.amount = amount;
             return this;
         }
+
 
         /**
          * Total number of payments for the subscription. Once this number of payments is reached, the subscription is considered completed.
@@ -591,6 +593,7 @@ public class CreateSubscriptionRequestBody {
             return this;
         }
 
+
         /**
          * Interval to wait between payments, for example `1 month` or `14 days`.
          * 
@@ -603,6 +606,7 @@ public class CreateSubscriptionRequestBody {
             this.interval = interval;
             return this;
         }
+
 
         /**
          * The start date of the subscription in `YYYY-MM-DD` format.
@@ -622,6 +626,7 @@ public class CreateSubscriptionRequestBody {
             return this;
         }
 
+
         /**
          * The subscription's description will be used as the description of the resulting individual payments and so showing up on the bank statement of the consumer.
          * 
@@ -632,6 +637,7 @@ public class CreateSubscriptionRequestBody {
             this.description = description;
             return this;
         }
+
 
         /**
          * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
@@ -654,6 +660,7 @@ public class CreateSubscriptionRequestBody {
             this.method = method;
             return this;
         }
+
 
         /**
          * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
@@ -681,6 +688,7 @@ public class CreateSubscriptionRequestBody {
             return this;
         }
 
+
         /**
          * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          * 
@@ -702,6 +710,7 @@ public class CreateSubscriptionRequestBody {
             this.metadata = metadata;
             return this;
         }
+
 
         /**
          * We will call this URL for any payment status changes of payments resulting from this subscription.
@@ -725,6 +734,7 @@ public class CreateSubscriptionRequestBody {
             return this;
         }
 
+
         /**
          * The mandate used for this subscription, if any.
          */
@@ -742,6 +752,7 @@ public class CreateSubscriptionRequestBody {
             this.mandateId = mandateId;
             return this;
         }
+
 
         /**
          * Whether to create the entity in test mode or live mode.
@@ -764,20 +775,15 @@ public class CreateSubscriptionRequestBody {
             this.testmode = testmode;
             return this;
         }
-        
+
         public CreateSubscriptionRequestBody build() {
+
             return new CreateSubscriptionRequestBody(
-                amount,
-                times,
-                interval,
-                startDate,
-                description,
-                method,
-                applicationFee,
-                metadata,
-                webhookUrl,
-                mandateId,
-                testmode);
+                amount, times, interval,
+                startDate, description, method,
+                applicationFee, metadata, webhookUrl,
+                mandateId, testmode);
         }
+
     }
 }

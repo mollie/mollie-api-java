@@ -16,7 +16,6 @@ import java.lang.String;
  * <p>Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit payments.
  */
 public class ListAllChargebacksReason {
-
     /**
      * Technical code provided by the bank.
      */
@@ -55,9 +54,10 @@ public class ListAllChargebacksReason {
         return description;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Technical code provided by the bank.
@@ -77,7 +77,6 @@ public class ListAllChargebacksReason {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -95,8 +94,7 @@ public class ListAllChargebacksReason {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            code,
-            description);
+            code, description);
     }
     
     @Override
@@ -105,16 +103,18 @@ public class ListAllChargebacksReason {
                 "code", code,
                 "description", description);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String code;
- 
+
         private String description;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Technical code provided by the bank.
@@ -125,6 +125,7 @@ public class ListAllChargebacksReason {
             return this;
         }
 
+
         /**
          * A more detailed human-friendly description.
          */
@@ -133,11 +134,12 @@ public class ListAllChargebacksReason {
             this.description = description;
             return this;
         }
-        
+
         public ListAllChargebacksReason build() {
+
             return new ListAllChargebacksReason(
-                code,
-                description);
+                code, description);
         }
+
     }
 }

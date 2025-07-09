@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListMethodsRequest {
 
+public class ListMethodsRequest {
     /**
      * Set this parameter to `first` to only return the enabled methods that can be used for the first payment of a recurring sequence.
      * 
@@ -139,7 +139,10 @@ public class ListMethodsRequest {
     }
     
     public ListMethodsRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -251,9 +254,10 @@ public class ListMethodsRequest {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Set this parameter to `first` to only return the enabled methods that can be used for the first payment of a recurring sequence.
@@ -267,6 +271,7 @@ public class ListMethodsRequest {
         this.sequenceType = Optional.ofNullable(sequenceType);
         return this;
     }
+
 
     /**
      * Set this parameter to `first` to only return the enabled methods that can be used for the first payment of a recurring sequence.
@@ -290,6 +295,7 @@ public class ListMethodsRequest {
         return this;
     }
 
+
     /**
      * Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
      */
@@ -309,6 +315,7 @@ public class ListMethodsRequest {
         this.amount = Optional.ofNullable(amount);
         return this;
     }
+
 
     /**
      * If supplied, only payment methods that support the amount and currency are returned.
@@ -339,6 +346,7 @@ public class ListMethodsRequest {
         return this;
     }
 
+
     /**
      * **⚠️ We no longer recommend using the Orders API. Please refer to the [Payments API](payments-api) instead.**
      * 
@@ -368,6 +376,7 @@ public class ListMethodsRequest {
         return this;
     }
 
+
     /**
      * The country taken from your customer's billing address in ISO 3166-1 alpha-2 format. This parameter can be used to check whether your customer is eligible for certain payment methods, for example for Klarna.
      * 
@@ -389,6 +398,7 @@ public class ListMethodsRequest {
         this.includeWallets = Optional.ofNullable(includeWallets);
         return this;
     }
+
 
     /**
      * A comma-separated list of the wallets you support in your checkout. Wallets often require wallet specific code to check if they are available on the shoppers device, hence the need to indicate your support.
@@ -414,6 +424,7 @@ public class ListMethodsRequest {
         return this;
     }
 
+
     /**
      * A comma-separated list of the line categories you support in your checkout.
      * 
@@ -437,6 +448,7 @@ public class ListMethodsRequest {
         this.profileId = Optional.ofNullable(profileId);
         return this;
     }
+
 
     /**
      * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
@@ -489,7 +501,6 @@ public class ListMethodsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -515,15 +526,9 @@ public class ListMethodsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            sequenceType,
-            locale,
-            amount,
-            resource,
-            billingCountry,
-            includeWallets,
-            orderLineCategories,
-            profileId,
-            include,
+            sequenceType, locale, amount,
+            resource, billingCountry, includeWallets,
+            orderLineCategories, profileId, include,
             testmode);
     }
     
@@ -541,33 +546,35 @@ public class ListMethodsRequest {
                 "include", include,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> sequenceType = Optional.empty();
- 
+
         private Optional<String> locale = Optional.empty();
- 
+
         private Optional<? extends QueryParamAmount> amount = Optional.empty();
- 
+
         @Deprecated
         private Optional<String> resource = Optional.empty();
- 
+
         private Optional<String> billingCountry = Optional.empty();
- 
+
         private Optional<String> includeWallets = Optional.empty();
- 
+
         private Optional<String> orderLineCategories = Optional.empty();
- 
+
         private Optional<String> profileId = Optional.empty();
- 
+
         private JsonNullable<? extends ListMethodsQueryParamInclude> include = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Set this parameter to `first` to only return the enabled methods that can be used for the first payment of a recurring sequence.
@@ -595,6 +602,7 @@ public class ListMethodsRequest {
             return this;
         }
 
+
         /**
          * Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
          */
@@ -612,6 +620,7 @@ public class ListMethodsRequest {
             this.locale = locale;
             return this;
         }
+
 
         /**
          * If supplied, only payment methods that support the amount and currency are returned.
@@ -634,6 +643,7 @@ public class ListMethodsRequest {
             this.amount = amount;
             return this;
         }
+
 
         /**
          * **⚠️ We no longer recommend using the Orders API. Please refer to the [Payments API](payments-api) instead.**
@@ -671,6 +681,7 @@ public class ListMethodsRequest {
             return this;
         }
 
+
         /**
          * The country taken from your customer's billing address in ISO 3166-1 alpha-2 format. This parameter can be used to check whether your customer is eligible for certain payment methods, for example for Klarna.
          * 
@@ -693,6 +704,7 @@ public class ListMethodsRequest {
             return this;
         }
 
+
         /**
          * A comma-separated list of the wallets you support in your checkout. Wallets often require wallet specific code to check if they are available on the shoppers device, hence the need to indicate your support.
          * 
@@ -714,6 +726,7 @@ public class ListMethodsRequest {
             this.includeWallets = includeWallets;
             return this;
         }
+
 
         /**
          * A comma-separated list of the line categories you support in your checkout.
@@ -741,6 +754,7 @@ public class ListMethodsRequest {
             return this;
         }
 
+
         /**
          * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
          * 
@@ -763,6 +777,7 @@ public class ListMethodsRequest {
             return this;
         }
 
+
         /**
          * This endpoint allows you to include additional information via the `include` query string parameter.
          */
@@ -780,6 +795,7 @@ public class ListMethodsRequest {
             this.include = include;
             return this;
         }
+
 
         /**
          * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
@@ -802,19 +818,15 @@ public class ListMethodsRequest {
             this.testmode = testmode;
             return this;
         }
-        
+
         public ListMethodsRequest build() {
+
             return new ListMethodsRequest(
-                sequenceType,
-                locale,
-                amount,
-                resource,
-                billingCountry,
-                includeWallets,
-                orderLineCategories,
-                profileId,
-                include,
+                sequenceType, locale, amount,
+                resource, billingCountry, includeWallets,
+                orderLineCategories, profileId, include,
                 testmode);
         }
+
     }
 }

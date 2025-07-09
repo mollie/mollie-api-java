@@ -20,7 +20,6 @@ import java.lang.String;
  * <p>Since the field contains an estimated amount during chargeback processing, it may change over time. To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
  */
 public class ListAllChargebacksSettlementAmount {
-
     /**
      * A three-character ISO 4217 currency code.
      */
@@ -59,9 +58,10 @@ public class ListAllChargebacksSettlementAmount {
         return value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A three-character ISO 4217 currency code.
@@ -81,7 +81,6 @@ public class ListAllChargebacksSettlementAmount {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -99,8 +98,7 @@ public class ListAllChargebacksSettlementAmount {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            currency,
-            value);
+            currency, value);
     }
     
     @Override
@@ -109,16 +107,18 @@ public class ListAllChargebacksSettlementAmount {
                 "currency", currency,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String currency;
- 
+
         private String value;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A three-character ISO 4217 currency code.
@@ -129,6 +129,7 @@ public class ListAllChargebacksSettlementAmount {
             return this;
         }
 
+
         /**
          * A string containing an exact monetary amount in the given currency.
          */
@@ -137,11 +138,12 @@ public class ListAllChargebacksSettlementAmount {
             this.value = value;
             return this;
         }
-        
+
         public ListAllChargebacksSettlementAmount build() {
+
             return new ListAllChargebacksSettlementAmount(
-                currency,
-                value);
+                currency, value);
         }
+
     }
 }

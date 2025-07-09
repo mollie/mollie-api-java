@@ -14,8 +14,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetCaptureRequest {
 
+public class GetCaptureRequest {
     /**
      * Provide the ID of the related payment.
      */
@@ -61,7 +61,8 @@ public class GetCaptureRequest {
     public GetCaptureRequest(
             String paymentId,
             String captureId) {
-        this(paymentId, captureId, Optional.empty(), JsonNullable.undefined());
+        this(paymentId, captureId, Optional.empty(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -99,9 +100,10 @@ public class GetCaptureRequest {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the related payment.
@@ -129,6 +131,7 @@ public class GetCaptureRequest {
         this.embed = Optional.ofNullable(embed);
         return this;
     }
+
 
     /**
      * This endpoint allows you to embed additional resources via the `embed` query string parameter.
@@ -161,7 +164,6 @@ public class GetCaptureRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -181,9 +183,7 @@ public class GetCaptureRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentId,
-            captureId,
-            embed,
+            paymentId, captureId, embed,
             testmode);
     }
     
@@ -195,20 +195,22 @@ public class GetCaptureRequest {
                 "embed", embed,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String paymentId;
- 
+
         private String captureId;
- 
+
         private Optional<? extends GetCaptureQueryParamEmbed> embed = Optional.empty();
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the related payment.
@@ -219,6 +221,7 @@ public class GetCaptureRequest {
             return this;
         }
 
+
         /**
          * Provide the ID of the related capture.
          */
@@ -227,6 +230,7 @@ public class GetCaptureRequest {
             this.captureId = captureId;
             return this;
         }
+
 
         /**
          * This endpoint allows you to embed additional resources via the `embed` query string parameter.
@@ -245,6 +249,7 @@ public class GetCaptureRequest {
             this.embed = embed;
             return this;
         }
+
 
         /**
          * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
@@ -267,13 +272,13 @@ public class GetCaptureRequest {
             this.testmode = testmode;
             return this;
         }
-        
+
         public GetCaptureRequest build() {
+
             return new GetCaptureRequest(
-                paymentId,
-                captureId,
-                embed,
+                paymentId, captureId, embed,
                 testmode);
         }
+
     }
 }

@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class ListAllMethodsMethods {
 
+public class ListAllMethodsMethods {
     /**
      * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
      */
@@ -128,7 +128,10 @@ public class ListAllMethodsMethods {
             ListAllMethodsMinimumAmount minimumAmount,
             ListAllMethodsImage image,
             ListAllMethodsMethodsLinks links) {
-        this(resource, id, description, minimumAmount, Optional.empty(), image, Optional.empty(), Optional.empty(), links, Optional.empty());
+        this(resource, id, description,
+            minimumAmount, Optional.empty(), image,
+            Optional.empty(), Optional.empty(), links,
+            Optional.empty());
     }
 
     /**
@@ -220,9 +223,10 @@ public class ListAllMethodsMethods {
         return (Optional<List<Pricing>>) pricing;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
@@ -273,6 +277,7 @@ public class ListAllMethodsMethods {
         return this;
     }
 
+
     /**
      * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
      */
@@ -302,6 +307,7 @@ public class ListAllMethodsMethods {
         return this;
     }
 
+
     /**
      * The payment method's activation status for this profile.
      * 
@@ -321,6 +327,7 @@ public class ListAllMethodsMethods {
         this.issuers = Optional.ofNullable(issuers);
         return this;
     }
+
 
     /**
      * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
@@ -349,6 +356,7 @@ public class ListAllMethodsMethods {
         return this;
     }
 
+
     /**
      * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
      */
@@ -358,7 +366,6 @@ public class ListAllMethodsMethods {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -384,15 +391,9 @@ public class ListAllMethodsMethods {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            description,
-            minimumAmount,
-            maximumAmount,
-            image,
-            status,
-            issuers,
-            links,
+            resource, id, description,
+            minimumAmount, maximumAmount, image,
+            status, issuers, links,
             pricing);
     }
     
@@ -410,32 +411,34 @@ public class ListAllMethodsMethods {
                 "links", links,
                 "pricing", pricing);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String resource;
- 
+
         private String id;
- 
+
         private String description;
- 
+
         private ListAllMethodsMinimumAmount minimumAmount;
- 
+
         private Optional<? extends ListAllMethodsMaximumAmount> maximumAmount = Optional.empty();
- 
+
         private ListAllMethodsImage image;
- 
+
         private Optional<String> status = Optional.empty();
- 
+
         private Optional<? extends List<ListAllMethodsIssuers>> issuers = Optional.empty();
- 
+
         private ListAllMethodsMethodsLinks links;
- 
+
         private Optional<? extends List<Pricing>> pricing = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
@@ -445,6 +448,7 @@ public class ListAllMethodsMethods {
             this.resource = resource;
             return this;
         }
+
 
         /**
          * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
@@ -457,6 +461,7 @@ public class ListAllMethodsMethods {
             return this;
         }
 
+
         /**
          * The full name of the payment method.
          * 
@@ -468,6 +473,7 @@ public class ListAllMethodsMethods {
             return this;
         }
 
+
         /**
          * The minimum payment amount required to use this payment method.
          */
@@ -476,6 +482,7 @@ public class ListAllMethodsMethods {
             this.minimumAmount = minimumAmount;
             return this;
         }
+
 
         /**
          * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
@@ -495,6 +502,7 @@ public class ListAllMethodsMethods {
             return this;
         }
 
+
         /**
          * URLs of images representing the payment method.
          */
@@ -503,6 +511,7 @@ public class ListAllMethodsMethods {
             this.image = image;
             return this;
         }
+
 
         /**
          * The payment method's activation status for this profile.
@@ -526,6 +535,7 @@ public class ListAllMethodsMethods {
             return this;
         }
 
+
         /**
          * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
          */
@@ -544,6 +554,7 @@ public class ListAllMethodsMethods {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -552,6 +563,7 @@ public class ListAllMethodsMethods {
             this.links = links;
             return this;
         }
+
 
         /**
          * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
@@ -570,19 +582,15 @@ public class ListAllMethodsMethods {
             this.pricing = pricing;
             return this;
         }
-        
+
         public ListAllMethodsMethods build() {
+
             return new ListAllMethodsMethods(
-                resource,
-                id,
-                description,
-                minimumAmount,
-                maximumAmount,
-                image,
-                status,
-                issuers,
-                links,
+                resource, id, description,
+                minimumAmount, maximumAmount, image,
+                status, issuers, links,
                 pricing);
         }
+
     }
 }

@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
 public class CreateWebhookLinks {
-
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -48,9 +47,10 @@ public class CreateWebhookLinks {
         return (Optional<CreateWebhookDocumentation>) documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -61,6 +61,7 @@ public class CreateWebhookLinks {
         return this;
     }
 
+
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -70,7 +71,6 @@ public class CreateWebhookLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -95,14 +95,16 @@ public class CreateWebhookLinks {
         return Utils.toString(CreateWebhookLinks.class,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends CreateWebhookDocumentation> documentation = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -121,10 +123,12 @@ public class CreateWebhookLinks {
             this.documentation = documentation;
             return this;
         }
-        
+
         public CreateWebhookLinks build() {
+
             return new CreateWebhookLinks(
                 documentation);
         }
+
     }
 }

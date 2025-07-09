@@ -25,7 +25,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>The partner status object.
  */
 public class GetPartnerStatusResponseBody {
-
     /**
      * Indicates the response contains a partner status object. Will always contain the string `partner` for this endpoint.
      */
@@ -113,7 +112,9 @@ public class GetPartnerStatusResponseBody {
     }
     
     public GetPartnerStatusResponseBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -184,9 +185,10 @@ public class GetPartnerStatusResponseBody {
         return (Optional<GetPartnerStatusLinks>) links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a partner status object. Will always contain the string `partner` for this endpoint.
@@ -196,6 +198,7 @@ public class GetPartnerStatusResponseBody {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Indicates the response contains a partner status object. Will always contain the string `partner` for this endpoint.
@@ -217,6 +220,7 @@ public class GetPartnerStatusResponseBody {
         return this;
     }
 
+
     /**
      * Indicates the type of partner. Will be `null` if the currently authenticated organization is not enrolled as a partner.
      * 
@@ -237,6 +241,7 @@ public class GetPartnerStatusResponseBody {
         return this;
     }
 
+
     /**
      * Whether the current organization is receiving commissions.
      */
@@ -254,6 +259,7 @@ public class GetPartnerStatusResponseBody {
         this.userAgentTokens = Optional.ofNullable(userAgentTokens);
         return this;
     }
+
 
     /**
      * Array of User-Agent token objects. Present if the organization is a partner of type `useragent`, or if they were in the past.
@@ -291,6 +297,7 @@ public class GetPartnerStatusResponseBody {
         return this;
     }
 
+
     /**
      * Whether an update to the partner contract is available and requiring the organization's agreement.
      */
@@ -308,6 +315,7 @@ public class GetPartnerStatusResponseBody {
         this.partnerContractExpiresAt = Optional.ofNullable(partnerContractExpiresAt);
         return this;
     }
+
 
     /**
      * The expiration date of the signed partner contract, in ISO 8601 format. Omitted if contract has no expiration date (yet).
@@ -327,6 +335,7 @@ public class GetPartnerStatusResponseBody {
         return this;
     }
 
+
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
@@ -336,7 +345,6 @@ public class GetPartnerStatusResponseBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -360,14 +368,9 @@ public class GetPartnerStatusResponseBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            partnerType,
-            isCommissionPartner,
-            userAgentTokens,
-            partnerContractSignedAt,
-            partnerContractUpdateAvailable,
-            partnerContractExpiresAt,
-            links);
+            resource, partnerType, isCommissionPartner,
+            userAgentTokens, partnerContractSignedAt, partnerContractUpdateAvailable,
+            partnerContractExpiresAt, links);
     }
     
     @Override
@@ -382,28 +385,30 @@ public class GetPartnerStatusResponseBody {
                 "partnerContractExpiresAt", partnerContractExpiresAt,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private Optional<String> partnerType = Optional.empty();
- 
+
         private Optional<Boolean> isCommissionPartner = Optional.empty();
- 
+
         private Optional<? extends List<UserAgentTokens>> userAgentTokens = Optional.empty();
- 
+
         private JsonNullable<String> partnerContractSignedAt = JsonNullable.undefined();
- 
+
         private Optional<Boolean> partnerContractUpdateAvailable = Optional.empty();
- 
+
         private Optional<String> partnerContractExpiresAt = Optional.empty();
- 
+
         private Optional<? extends GetPartnerStatusLinks> links = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a partner status object. Will always contain the string `partner` for this endpoint.
@@ -422,6 +427,7 @@ public class GetPartnerStatusResponseBody {
             this.resource = resource;
             return this;
         }
+
 
         /**
          * Indicates the type of partner. Will be `null` if the currently authenticated organization is not enrolled as a partner.
@@ -445,6 +451,7 @@ public class GetPartnerStatusResponseBody {
             return this;
         }
 
+
         /**
          * Whether the current organization is receiving commissions.
          */
@@ -462,6 +469,7 @@ public class GetPartnerStatusResponseBody {
             this.isCommissionPartner = isCommissionPartner;
             return this;
         }
+
 
         /**
          * Array of User-Agent token objects. Present if the organization is a partner of type `useragent`, or if they were in the past.
@@ -481,6 +489,7 @@ public class GetPartnerStatusResponseBody {
             return this;
         }
 
+
         /**
          * The date the partner contract was signed, in ISO 8601 format. Omitted if no contract has been signed (yet).
          */
@@ -498,6 +507,7 @@ public class GetPartnerStatusResponseBody {
             this.partnerContractSignedAt = partnerContractSignedAt;
             return this;
         }
+
 
         /**
          * Whether an update to the partner contract is available and requiring the organization's agreement.
@@ -517,6 +527,7 @@ public class GetPartnerStatusResponseBody {
             return this;
         }
 
+
         /**
          * The expiration date of the signed partner contract, in ISO 8601 format. Omitted if contract has no expiration date (yet).
          */
@@ -535,6 +546,7 @@ public class GetPartnerStatusResponseBody {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -552,21 +564,18 @@ public class GetPartnerStatusResponseBody {
             this.links = links;
             return this;
         }
-        
+
         public GetPartnerStatusResponseBody build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new GetPartnerStatusResponseBody(
-                resource,
-                partnerType,
-                isCommissionPartner,
-                userAgentTokens,
-                partnerContractSignedAt,
-                partnerContractUpdateAvailable,
-                partnerContractExpiresAt,
-                links);
+                resource, partnerType, isCommissionPartner,
+                userAgentTokens, partnerContractSignedAt, partnerContractUpdateAvailable,
+                partnerContractExpiresAt, links);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

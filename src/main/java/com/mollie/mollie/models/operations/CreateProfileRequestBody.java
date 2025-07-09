@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class CreateProfileRequestBody {
 
+public class CreateProfileRequestBody {
     /**
      * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
      */
@@ -92,7 +92,9 @@ public class CreateProfileRequestBody {
             String website,
             String email,
             String phone) {
-        this(name, website, email, phone, Optional.empty(), Optional.empty(), Optional.empty());
+        this(name, website, email,
+            phone, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -152,9 +154,10 @@ public class CreateProfileRequestBody {
         return businessCategory;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
@@ -201,6 +204,7 @@ public class CreateProfileRequestBody {
         return this;
     }
 
+
     /**
      * The products or services offered by the profile's website or application.
      */
@@ -218,6 +222,7 @@ public class CreateProfileRequestBody {
         this.countriesOfActivity = Optional.ofNullable(countriesOfActivity);
         return this;
     }
+
 
     /**
      * A list of countries where you expect that the majority of the profile's customers reside, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
@@ -237,6 +242,7 @@ public class CreateProfileRequestBody {
         return this;
     }
 
+
     /**
      * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types#business-category) for all possible options.
      */
@@ -246,7 +252,6 @@ public class CreateProfileRequestBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -269,12 +274,8 @@ public class CreateProfileRequestBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            website,
-            email,
-            phone,
-            description,
-            countriesOfActivity,
+            name, website, email,
+            phone, description, countriesOfActivity,
             businessCategory);
     }
     
@@ -289,26 +290,28 @@ public class CreateProfileRequestBody {
                 "countriesOfActivity", countriesOfActivity,
                 "businessCategory", businessCategory);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
- 
+
         private String website;
- 
+
         private String email;
- 
+
         private String phone;
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<? extends List<String>> countriesOfActivity = Optional.empty();
- 
+
         private Optional<String> businessCategory = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
@@ -319,6 +322,7 @@ public class CreateProfileRequestBody {
             return this;
         }
 
+
         /**
          * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
          */
@@ -327,6 +331,7 @@ public class CreateProfileRequestBody {
             this.website = website;
             return this;
         }
+
 
         /**
          * The email address associated with the profile's trade name or brand.
@@ -337,6 +342,7 @@ public class CreateProfileRequestBody {
             return this;
         }
 
+
         /**
          * The phone number associated with the profile's trade name or brand.
          */
@@ -345,6 +351,7 @@ public class CreateProfileRequestBody {
             this.phone = phone;
             return this;
         }
+
 
         /**
          * The products or services offered by the profile's website or application.
@@ -364,6 +371,7 @@ public class CreateProfileRequestBody {
             return this;
         }
 
+
         /**
          * A list of countries where you expect that the majority of the profile's customers reside, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
          */
@@ -382,6 +390,7 @@ public class CreateProfileRequestBody {
             return this;
         }
 
+
         /**
          * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types#business-category) for all possible options.
          */
@@ -399,16 +408,14 @@ public class CreateProfileRequestBody {
             this.businessCategory = businessCategory;
             return this;
         }
-        
+
         public CreateProfileRequestBody build() {
+
             return new CreateProfileRequestBody(
-                name,
-                website,
-                email,
-                phone,
-                description,
-                countriesOfActivity,
+                name, website, email,
+                phone, description, countriesOfActivity,
                 businessCategory);
         }
+
     }
 }

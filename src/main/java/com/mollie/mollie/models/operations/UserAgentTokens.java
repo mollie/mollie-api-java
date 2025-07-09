@@ -14,8 +14,8 @@ import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class UserAgentTokens {
 
+public class UserAgentTokens {
     /**
      * The unique User-Agent token.
      */
@@ -78,9 +78,10 @@ public class UserAgentTokens {
         return endsAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique User-Agent token.
@@ -90,6 +91,7 @@ public class UserAgentTokens {
         this.token = Optional.ofNullable(token);
         return this;
     }
+
 
     /**
      * The unique User-Agent token.
@@ -108,6 +110,7 @@ public class UserAgentTokens {
         this.startsAt = Optional.ofNullable(startsAt);
         return this;
     }
+
 
     /**
      * The date from which the token is active, in ISO 8601 format.
@@ -136,7 +139,6 @@ public class UserAgentTokens {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -155,9 +157,7 @@ public class UserAgentTokens {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            token,
-            startsAt,
-            endsAt);
+            token, startsAt, endsAt);
     }
     
     @Override
@@ -167,18 +167,20 @@ public class UserAgentTokens {
                 "startsAt", startsAt,
                 "endsAt", endsAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> token = Optional.empty();
- 
+
         private Optional<String> startsAt = Optional.empty();
- 
+
         private JsonNullable<String> endsAt = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique User-Agent token.
@@ -198,6 +200,7 @@ public class UserAgentTokens {
             return this;
         }
 
+
         /**
          * The date from which the token is active, in ISO 8601 format.
          */
@@ -216,6 +219,7 @@ public class UserAgentTokens {
             return this;
         }
 
+
         /**
          * The date until when the token will be active, in ISO 8601 format. Will be `null` if the token does not have an end date (yet).
          */
@@ -233,12 +237,12 @@ public class UserAgentTokens {
             this.endsAt = endsAt;
             return this;
         }
-        
+
         public UserAgentTokens build() {
+
             return new UserAgentTokens(
-                token,
-                startsAt,
-                endsAt);
+                token, startsAt, endsAt);
         }
+
     }
 }

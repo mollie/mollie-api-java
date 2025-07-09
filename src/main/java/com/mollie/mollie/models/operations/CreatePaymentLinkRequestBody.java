@@ -19,8 +19,8 @@ import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreatePaymentLinkRequestBody {
 
+public class CreatePaymentLinkRequestBody {
     /**
      * A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
      */
@@ -118,7 +118,7 @@ public class CreatePaymentLinkRequestBody {
     /**
      * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint'.
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint', 'in3', 'riverty', 'klarna', 'billie'.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("allowedMethods")
@@ -178,7 +178,11 @@ public class CreatePaymentLinkRequestBody {
     
     public CreatePaymentLinkRequestBody(
             String description) {
-        this(description, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(description, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -295,7 +299,7 @@ public class CreatePaymentLinkRequestBody {
     /**
      * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint'.
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint', 'in3', 'riverty', 'klarna', 'billie'.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -314,9 +318,10 @@ public class CreatePaymentLinkRequestBody {
         return (Optional<CreatePaymentLinkApplicationFee>) applicationFee;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
@@ -446,6 +451,7 @@ public class CreatePaymentLinkRequestBody {
         return this;
     }
 
+
     /**
      * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
      * 
@@ -469,6 +475,7 @@ public class CreatePaymentLinkRequestBody {
         this.shippingAddress = Optional.ofNullable(shippingAddress);
         return this;
     }
+
 
     /**
      * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
@@ -546,7 +553,7 @@ public class CreatePaymentLinkRequestBody {
     /**
      * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint'.
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint', 'in3', 'riverty', 'klarna', 'billie'.
      */
     public CreatePaymentLinkRequestBody withAllowedMethods(List<String> allowedMethods) {
         Utils.checkNotNull(allowedMethods, "allowedMethods");
@@ -557,7 +564,7 @@ public class CreatePaymentLinkRequestBody {
     /**
      * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint'.
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint', 'in3', 'riverty', 'klarna', 'billie'.
      */
     public CreatePaymentLinkRequestBody withAllowedMethods(JsonNullable<? extends List<String>> allowedMethods) {
         Utils.checkNotNull(allowedMethods, "allowedMethods");
@@ -576,6 +583,7 @@ public class CreatePaymentLinkRequestBody {
         return this;
     }
 
+
     /**
      * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie merchants.
      * 
@@ -587,7 +595,6 @@ public class CreatePaymentLinkRequestBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -616,18 +623,10 @@ public class CreatePaymentLinkRequestBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            description,
-            amount,
-            minimumAmount,
-            redirectUrl,
-            webhookUrl,
-            lines,
-            billingAddress,
-            shippingAddress,
-            profileId,
-            reusable,
-            expiresAt,
-            allowedMethods,
+            description, amount, minimumAmount,
+            redirectUrl, webhookUrl, lines,
+            billingAddress, shippingAddress, profileId,
+            reusable, expiresAt, allowedMethods,
             applicationFee);
     }
     
@@ -648,38 +647,40 @@ public class CreatePaymentLinkRequestBody {
                 "allowedMethods", allowedMethods,
                 "applicationFee", applicationFee);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String description;
- 
+
         private JsonNullable<? extends CreatePaymentLinkAmount> amount = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends MinimumAmount> minimumAmount = JsonNullable.undefined();
- 
+
         private JsonNullable<String> redirectUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<String> webhookUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<CreatePaymentLinkLines>> lines = JsonNullable.undefined();
- 
+
         private Optional<? extends CreatePaymentLinkBillingAddress> billingAddress = Optional.empty();
- 
+
         private Optional<? extends CreatePaymentLinkShippingAddress> shippingAddress = Optional.empty();
- 
+
         private JsonNullable<String> profileId = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> reusable;
- 
+
         private JsonNullable<String> expiresAt = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<String>> allowedMethods = JsonNullable.undefined();
- 
+
         private Optional<? extends CreatePaymentLinkApplicationFee> applicationFee = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
@@ -689,6 +690,7 @@ public class CreatePaymentLinkRequestBody {
             this.description = description;
             return this;
         }
+
 
         /**
          * The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an amount.
@@ -708,6 +710,7 @@ public class CreatePaymentLinkRequestBody {
             return this;
         }
 
+
         /**
          * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The customer will be prompted to enter a value greater than or equal to the minimum amount.
          */
@@ -726,6 +729,7 @@ public class CreatePaymentLinkRequestBody {
             return this;
         }
 
+
         /**
          * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided, the customer will be shown a generic message after completing the payment.
          */
@@ -743,6 +747,7 @@ public class CreatePaymentLinkRequestBody {
             this.redirectUrl = redirectUrl;
             return this;
         }
+
 
         /**
          * The webhook URL where we will send payment status updates to.
@@ -770,6 +775,7 @@ public class CreatePaymentLinkRequestBody {
             return this;
         }
 
+
         /**
          * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
          * 
@@ -795,6 +801,7 @@ public class CreatePaymentLinkRequestBody {
             this.lines = lines;
             return this;
         }
+
 
         /**
          * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
@@ -822,6 +829,7 @@ public class CreatePaymentLinkRequestBody {
             return this;
         }
 
+
         /**
          * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
          * 
@@ -843,6 +851,7 @@ public class CreatePaymentLinkRequestBody {
             this.shippingAddress = shippingAddress;
             return this;
         }
+
 
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
@@ -866,6 +875,7 @@ public class CreatePaymentLinkRequestBody {
             return this;
         }
 
+
         /**
          * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make multiple payments using the same link.
          * 
@@ -888,6 +898,7 @@ public class CreatePaymentLinkRequestBody {
             return this;
         }
 
+
         /**
          * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front, the payment link will not expire automatically.
          */
@@ -906,10 +917,11 @@ public class CreatePaymentLinkRequestBody {
             return this;
         }
 
+
         /**
          * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
          * 
-         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint'.
+         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint', 'in3', 'riverty', 'klarna', 'billie'.
          */
         public Builder allowedMethods(List<String> allowedMethods) {
             Utils.checkNotNull(allowedMethods, "allowedMethods");
@@ -920,13 +932,14 @@ public class CreatePaymentLinkRequestBody {
         /**
          * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
          * 
-         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint'.
+         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint', 'in3', 'riverty', 'klarna', 'billie'.
          */
         public Builder allowedMethods(JsonNullable<? extends List<String>> allowedMethods) {
             Utils.checkNotNull(allowedMethods, "allowedMethods");
             this.allowedMethods = allowedMethods;
             return this;
         }
+
 
         /**
          * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie merchants.
@@ -949,26 +962,20 @@ public class CreatePaymentLinkRequestBody {
             this.applicationFee = applicationFee;
             return this;
         }
-        
+
         public CreatePaymentLinkRequestBody build() {
             if (reusable == null) {
                 reusable = _SINGLETON_VALUE_Reusable.value();
             }
+
             return new CreatePaymentLinkRequestBody(
-                description,
-                amount,
-                minimumAmount,
-                redirectUrl,
-                webhookUrl,
-                lines,
-                billingAddress,
-                shippingAddress,
-                profileId,
-                reusable,
-                expiresAt,
-                allowedMethods,
+                description, amount, minimumAmount,
+                redirectUrl, webhookUrl, lines,
+                billingAddress, shippingAddress, profileId,
+                reusable, expiresAt, allowedMethods,
                 applicationFee);
         }
+
 
         private static final LazySingletonValue<JsonNullable<Boolean>> _SINGLETON_VALUE_Reusable =
                 new LazySingletonValue<>(

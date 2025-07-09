@@ -13,11 +13,13 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
+
 public class ListCapabilitiesDocumentation {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("href")
     private Optional<String> href;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
@@ -47,15 +49,17 @@ public class ListCapabilitiesDocumentation {
         return type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ListCapabilitiesDocumentation withHref(String href) {
         Utils.checkNotNull(href, "href");
         this.href = Optional.ofNullable(href);
         return this;
     }
+
 
     public ListCapabilitiesDocumentation withHref(Optional<String> href) {
         Utils.checkNotNull(href, "href");
@@ -69,13 +73,13 @@ public class ListCapabilitiesDocumentation {
         return this;
     }
 
+
     public ListCapabilitiesDocumentation withType(Optional<String> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -93,8 +97,7 @@ public class ListCapabilitiesDocumentation {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            href,
-            type);
+            href, type);
     }
     
     @Override
@@ -103,16 +106,18 @@ public class ListCapabilitiesDocumentation {
                 "href", href,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> href = Optional.empty();
- 
+
         private Optional<String> type = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder href(String href) {
             Utils.checkNotNull(href, "href");
@@ -126,6 +131,7 @@ public class ListCapabilitiesDocumentation {
             return this;
         }
 
+
         public Builder type(String type) {
             Utils.checkNotNull(type, "type");
             this.type = Optional.ofNullable(type);
@@ -137,11 +143,12 @@ public class ListCapabilitiesDocumentation {
             this.type = type;
             return this;
         }
-        
+
         public ListCapabilitiesDocumentation build() {
+
             return new ListCapabilitiesDocumentation(
-                href,
-                type);
+                href, type);
         }
+
     }
 }

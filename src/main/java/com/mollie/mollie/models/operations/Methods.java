@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class Methods {
 
+public class Methods {
     /**
      * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
      */
@@ -118,7 +118,9 @@ public class Methods {
             ListMethodsMinimumAmount minimumAmount,
             ListMethodsImage image,
             ListMethodsMethodsLinks links) {
-        this(resource, id, description, minimumAmount, Optional.empty(), image, Optional.empty(), Optional.empty(), links);
+        this(resource, id, description,
+            minimumAmount, Optional.empty(), image,
+            Optional.empty(), Optional.empty(), links);
     }
 
     /**
@@ -201,9 +203,10 @@ public class Methods {
         return links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
@@ -254,6 +257,7 @@ public class Methods {
         return this;
     }
 
+
     /**
      * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
      */
@@ -283,6 +287,7 @@ public class Methods {
         return this;
     }
 
+
     /**
      * The payment method's activation status for this profile.
      * 
@@ -303,6 +308,7 @@ public class Methods {
         return this;
     }
 
+
     /**
      * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
      */
@@ -321,7 +327,6 @@ public class Methods {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -346,15 +351,9 @@ public class Methods {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            description,
-            minimumAmount,
-            maximumAmount,
-            image,
-            status,
-            issuers,
-            links);
+            resource, id, description,
+            minimumAmount, maximumAmount, image,
+            status, issuers, links);
     }
     
     @Override
@@ -370,30 +369,32 @@ public class Methods {
                 "issuers", issuers,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String resource;
- 
+
         private String id;
- 
+
         private String description;
- 
+
         private ListMethodsMinimumAmount minimumAmount;
- 
+
         private Optional<? extends ListMethodsMaximumAmount> maximumAmount = Optional.empty();
- 
+
         private ListMethodsImage image;
- 
+
         private Optional<String> status = Optional.empty();
- 
+
         private Optional<? extends List<ListMethodsIssuers>> issuers = Optional.empty();
- 
+
         private ListMethodsMethodsLinks links;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
@@ -403,6 +404,7 @@ public class Methods {
             this.resource = resource;
             return this;
         }
+
 
         /**
          * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
@@ -415,6 +417,7 @@ public class Methods {
             return this;
         }
 
+
         /**
          * The full name of the payment method.
          * 
@@ -426,6 +429,7 @@ public class Methods {
             return this;
         }
 
+
         /**
          * The minimum payment amount required to use this payment method.
          */
@@ -434,6 +438,7 @@ public class Methods {
             this.minimumAmount = minimumAmount;
             return this;
         }
+
 
         /**
          * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
@@ -453,6 +458,7 @@ public class Methods {
             return this;
         }
 
+
         /**
          * URLs of images representing the payment method.
          */
@@ -461,6 +467,7 @@ public class Methods {
             this.image = image;
             return this;
         }
+
 
         /**
          * The payment method's activation status for this profile.
@@ -484,6 +491,7 @@ public class Methods {
             return this;
         }
 
+
         /**
          * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
          */
@@ -502,6 +510,7 @@ public class Methods {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -510,18 +519,14 @@ public class Methods {
             this.links = links;
             return this;
         }
-        
+
         public Methods build() {
+
             return new Methods(
-                resource,
-                id,
-                description,
-                minimumAmount,
-                maximumAmount,
-                image,
-                status,
-                issuers,
-                links);
+                resource, id, description,
+                minimumAmount, maximumAmount, image,
+                status, issuers, links);
         }
+
     }
 }

@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Settlements {
 
+public class Settlements {
     /**
      * Indicates the response contains a settlement object. Will always contain the string `settlement` for this endpoint.
      */
@@ -144,7 +144,10 @@ public class Settlements {
     }
     
     public Settlements() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -248,9 +251,10 @@ public class Settlements {
         return (Optional<ListSettlementsSettlementsLinks>) links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a settlement object. Will always contain the string `settlement` for this endpoint.
@@ -260,6 +264,7 @@ public class Settlements {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Indicates the response contains a settlement object. Will always contain the string `settlement` for this endpoint.
@@ -279,6 +284,7 @@ public class Settlements {
         return this;
     }
 
+
     /**
      * The identifier uniquely referring to this settlement.
      */
@@ -296,6 +302,7 @@ public class Settlements {
         this.createdAt = Optional.ofNullable(createdAt);
         return this;
     }
+
 
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -357,6 +364,7 @@ public class Settlements {
         return this;
     }
 
+
     /**
      * The status of the settlement.
      * 
@@ -377,6 +385,7 @@ public class Settlements {
         return this;
     }
 
+
     /**
      * The total amount of the settlement.
      */
@@ -394,6 +403,7 @@ public class Settlements {
         this.balanceId = Optional.ofNullable(balanceId);
         return this;
     }
+
 
     /**
      * The balance token that the settlement was settled to.
@@ -437,6 +447,7 @@ public class Settlements {
         return this;
     }
 
+
     /**
      * For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These transactions are grouped into 'period' objects — one for each calendar month.
      * 
@@ -461,6 +472,7 @@ public class Settlements {
         return this;
     }
 
+
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
@@ -470,7 +482,6 @@ public class Settlements {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -497,17 +508,10 @@ public class Settlements {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            createdAt,
-            reference,
-            settledAt,
-            status,
-            amount,
-            balanceId,
-            invoiceId,
-            periods,
-            links);
+            resource, id, createdAt,
+            reference, settledAt, status,
+            amount, balanceId, invoiceId,
+            periods, links);
     }
     
     @Override
@@ -525,34 +529,36 @@ public class Settlements {
                 "periods", periods,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> createdAt = Optional.empty();
- 
+
         private JsonNullable<String> reference = JsonNullable.undefined();
- 
+
         private JsonNullable<String> settledAt = JsonNullable.undefined();
- 
+
         private Optional<String> status = Optional.empty();
- 
+
         private Optional<? extends ListSettlementsAmount> amount = Optional.empty();
- 
+
         private Optional<String> balanceId = Optional.empty();
- 
+
         private JsonNullable<String> invoiceId = JsonNullable.undefined();
- 
+
         private Optional<? extends ListSettlementsPeriods> periods = Optional.empty();
- 
+
         private Optional<? extends ListSettlementsSettlementsLinks> links = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a settlement object. Will always contain the string `settlement` for this endpoint.
@@ -572,6 +578,7 @@ public class Settlements {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this settlement.
          */
@@ -589,6 +596,7 @@ public class Settlements {
             this.id = id;
             return this;
         }
+
 
         /**
          * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -608,6 +616,7 @@ public class Settlements {
             return this;
         }
 
+
         /**
          * The settlement's bank reference, as found in your Mollie account and on your bank statement.
          */
@@ -625,6 +634,7 @@ public class Settlements {
             this.reference = reference;
             return this;
         }
+
 
         /**
          * The date on which the settlement was settled, in ISO 8601 format.
@@ -648,6 +658,7 @@ public class Settlements {
             return this;
         }
 
+
         /**
          * The status of the settlement.
          * 
@@ -670,6 +681,7 @@ public class Settlements {
             return this;
         }
 
+
         /**
          * The total amount of the settlement.
          */
@@ -687,6 +699,7 @@ public class Settlements {
             this.amount = amount;
             return this;
         }
+
 
         /**
          * The balance token that the settlement was settled to.
@@ -706,6 +719,7 @@ public class Settlements {
             return this;
         }
 
+
         /**
          * The ID of the oldest invoice created for all the periods, if the invoice has been created yet.
          */
@@ -723,6 +737,7 @@ public class Settlements {
             this.invoiceId = invoiceId;
             return this;
         }
+
 
         /**
          * For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These transactions are grouped into 'period' objects — one for each calendar month.
@@ -754,6 +769,7 @@ public class Settlements {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -771,24 +787,19 @@ public class Settlements {
             this.links = links;
             return this;
         }
-        
+
         public Settlements build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new Settlements(
-                resource,
-                id,
-                createdAt,
-                reference,
-                settledAt,
-                status,
-                amount,
-                balanceId,
-                invoiceId,
-                periods,
-                links);
+                resource, id, createdAt,
+                reference, settledAt, status,
+                amount, balanceId, invoiceId,
+                periods, links);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

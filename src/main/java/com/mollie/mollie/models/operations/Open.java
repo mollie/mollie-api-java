@@ -25,6 +25,7 @@ public class Open {
     @JsonProperty("pending")
     private Optional<? extends GetBalanceReportPending> pending;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("available")
     private Optional<? extends Available> available;
@@ -55,15 +56,17 @@ public class Open {
         return (Optional<Available>) available;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Open withPending(GetBalanceReportPending pending) {
         Utils.checkNotNull(pending, "pending");
         this.pending = Optional.ofNullable(pending);
         return this;
     }
+
 
     public Open withPending(Optional<? extends GetBalanceReportPending> pending) {
         Utils.checkNotNull(pending, "pending");
@@ -77,13 +80,13 @@ public class Open {
         return this;
     }
 
+
     public Open withAvailable(Optional<? extends Available> available) {
         Utils.checkNotNull(available, "available");
         this.available = available;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -101,8 +104,7 @@ public class Open {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            pending,
-            available);
+            pending, available);
     }
     
     @Override
@@ -111,16 +113,18 @@ public class Open {
                 "pending", pending,
                 "available", available);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends GetBalanceReportPending> pending = Optional.empty();
- 
+
         private Optional<? extends Available> available = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder pending(GetBalanceReportPending pending) {
             Utils.checkNotNull(pending, "pending");
@@ -134,6 +138,7 @@ public class Open {
             return this;
         }
 
+
         public Builder available(Available available) {
             Utils.checkNotNull(available, "available");
             this.available = Optional.ofNullable(available);
@@ -145,11 +150,12 @@ public class Open {
             this.available = available;
             return this;
         }
-        
+
         public Open build() {
+
             return new Open(
-                pending,
-                available);
+                pending, available);
         }
+
     }
 }

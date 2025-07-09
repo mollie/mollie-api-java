@@ -21,7 +21,6 @@ public class Wallets {
     Wallets(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Request Apple Pay payment session
      * 
@@ -102,8 +101,8 @@ public class Wallets {
             Optional<Options> options) throws Exception {
         RequestOperation<Optional<? extends RequestApplePayPaymentSessionRequestBody>, RequestApplePayPaymentSessionResponse> operation
               = new RequestApplePayPaymentSessionOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

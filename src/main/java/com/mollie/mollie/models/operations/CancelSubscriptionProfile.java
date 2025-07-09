@@ -19,7 +19,6 @@ import java.util.Optional;
  * <p>The API resource URL of the [profile](get-profile) this subscription was created for.
  */
 public class CancelSubscriptionProfile {
-
     /**
      * The actual URL string.
      */
@@ -64,9 +63,10 @@ public class CancelSubscriptionProfile {
         return type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The actual URL string.
@@ -76,6 +76,7 @@ public class CancelSubscriptionProfile {
         this.href = Optional.ofNullable(href);
         return this;
     }
+
 
     /**
      * The actual URL string.
@@ -95,6 +96,7 @@ public class CancelSubscriptionProfile {
         return this;
     }
 
+
     /**
      * The content type of the page or endpoint the URL points to.
      */
@@ -104,7 +106,6 @@ public class CancelSubscriptionProfile {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -122,8 +123,7 @@ public class CancelSubscriptionProfile {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            href,
-            type);
+            href, type);
     }
     
     @Override
@@ -132,16 +132,18 @@ public class CancelSubscriptionProfile {
                 "href", href,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> href = Optional.empty();
- 
+
         private Optional<String> type = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The actual URL string.
@@ -161,6 +163,7 @@ public class CancelSubscriptionProfile {
             return this;
         }
 
+
         /**
          * The content type of the page or endpoint the URL points to.
          */
@@ -178,11 +181,12 @@ public class CancelSubscriptionProfile {
             this.type = type;
             return this;
         }
-        
+
         public CancelSubscriptionProfile build() {
+
             return new CancelSubscriptionProfile(
-                href,
-                type);
+                href, type);
         }
+
     }
 }

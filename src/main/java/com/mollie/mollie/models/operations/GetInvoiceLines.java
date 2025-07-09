@@ -15,8 +15,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class GetInvoiceLines {
 
+public class GetInvoiceLines {
     /**
      * The administrative period in `YYYY-MM` on which the line should be booked.
      */
@@ -72,7 +72,8 @@ public class GetInvoiceLines {
     }
     
     public GetInvoiceLines() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -116,9 +117,10 @@ public class GetInvoiceLines {
         return (Optional<GetInvoiceAmount>) amount;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The administrative period in `YYYY-MM` on which the line should be booked.
@@ -128,6 +130,7 @@ public class GetInvoiceLines {
         this.period = Optional.ofNullable(period);
         return this;
     }
+
 
     /**
      * The administrative period in `YYYY-MM` on which the line should be booked.
@@ -147,6 +150,7 @@ public class GetInvoiceLines {
         return this;
     }
 
+
     /**
      * Description of the product.
      */
@@ -164,6 +168,7 @@ public class GetInvoiceLines {
         this.count = Optional.ofNullable(count);
         return this;
     }
+
 
     /**
      * Number of products invoiced. For example, the number of payments.
@@ -183,6 +188,7 @@ public class GetInvoiceLines {
         return this;
     }
 
+
     /**
      * VAT percentage rate that applies to this product.
      */
@@ -201,6 +207,7 @@ public class GetInvoiceLines {
         return this;
     }
 
+
     /**
      * Line item amount excluding VAT.
      */
@@ -210,7 +217,6 @@ public class GetInvoiceLines {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -231,11 +237,8 @@ public class GetInvoiceLines {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            period,
-            description,
-            count,
-            vatPercentage,
-            amount);
+            period, description, count,
+            vatPercentage, amount);
     }
     
     @Override
@@ -247,22 +250,24 @@ public class GetInvoiceLines {
                 "vatPercentage", vatPercentage,
                 "amount", amount);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> period = Optional.empty();
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<Long> count = Optional.empty();
- 
+
         private Optional<Long> vatPercentage = Optional.empty();
- 
+
         private Optional<? extends GetInvoiceAmount> amount = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The administrative period in `YYYY-MM` on which the line should be booked.
@@ -282,6 +287,7 @@ public class GetInvoiceLines {
             return this;
         }
 
+
         /**
          * Description of the product.
          */
@@ -299,6 +305,7 @@ public class GetInvoiceLines {
             this.description = description;
             return this;
         }
+
 
         /**
          * Number of products invoiced. For example, the number of payments.
@@ -318,6 +325,7 @@ public class GetInvoiceLines {
             return this;
         }
 
+
         /**
          * VAT percentage rate that applies to this product.
          */
@@ -336,6 +344,7 @@ public class GetInvoiceLines {
             return this;
         }
 
+
         /**
          * Line item amount excluding VAT.
          */
@@ -353,14 +362,13 @@ public class GetInvoiceLines {
             this.amount = amount;
             return this;
         }
-        
+
         public GetInvoiceLines build() {
+
             return new GetInvoiceLines(
-                period,
-                description,
-                count,
-                vatPercentage,
-                amount);
+                period, description, count,
+                vatPercentage, amount);
         }
+
     }
 }

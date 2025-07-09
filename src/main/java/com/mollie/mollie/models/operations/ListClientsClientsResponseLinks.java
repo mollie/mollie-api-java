@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
 public class ListClientsClientsResponseLinks {
-
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -66,7 +65,8 @@ public class ListClientsClientsResponseLinks {
     }
     
     public ListClientsClientsResponseLinks() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -105,9 +105,10 @@ public class ListClientsClientsResponseLinks {
         return (Optional<ListClientsClientsResponseDocumentation>) documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -117,6 +118,7 @@ public class ListClientsClientsResponseLinks {
         this.self = Optional.ofNullable(self);
         return this;
     }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -136,6 +138,7 @@ public class ListClientsClientsResponseLinks {
         return this;
     }
 
+
     /**
      * Direct link to the onboarding process in the Mollie dashboard. The merchant can be redirected to this page to complete their onboarding.
      */
@@ -153,6 +156,7 @@ public class ListClientsClientsResponseLinks {
         this.organization = Optional.ofNullable(organization);
         return this;
     }
+
 
     /**
      * The API resource URL of the organization.
@@ -172,6 +176,7 @@ public class ListClientsClientsResponseLinks {
         return this;
     }
 
+
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -181,7 +186,6 @@ public class ListClientsClientsResponseLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -201,9 +205,7 @@ public class ListClientsClientsResponseLinks {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self,
-            dashboard,
-            organization,
+            self, dashboard, organization,
             documentation);
     }
     
@@ -215,20 +217,22 @@ public class ListClientsClientsResponseLinks {
                 "organization", organization,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ListClientsClientsResponseSelf> self = Optional.empty();
- 
+
         private Optional<? extends ListClientsClientsDashboard> dashboard = Optional.empty();
- 
+
         private Optional<? extends ListClientsClientsResponseOrganization> organization = Optional.empty();
- 
+
         private Optional<? extends ListClientsClientsResponseDocumentation> documentation = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -248,6 +252,7 @@ public class ListClientsClientsResponseLinks {
             return this;
         }
 
+
         /**
          * Direct link to the onboarding process in the Mollie dashboard. The merchant can be redirected to this page to complete their onboarding.
          */
@@ -265,6 +270,7 @@ public class ListClientsClientsResponseLinks {
             this.dashboard = dashboard;
             return this;
         }
+
 
         /**
          * The API resource URL of the organization.
@@ -284,6 +290,7 @@ public class ListClientsClientsResponseLinks {
             return this;
         }
 
+
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
@@ -301,13 +308,13 @@ public class ListClientsClientsResponseLinks {
             this.documentation = documentation;
             return this;
         }
-        
+
         public ListClientsClientsResponseLinks build() {
+
             return new ListClientsClientsResponseLinks(
-                self,
-                dashboard,
-                organization,
+                self, dashboard, organization,
                 documentation);
         }
+
     }
 }

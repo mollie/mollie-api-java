@@ -54,8 +54,8 @@ public class SubmitOnboardingDataRequestBuilder {
 
         RequestOperation<Optional<? extends SubmitOnboardingDataRequestBody>, SubmitOnboardingDataResponse> operation
               = new SubmitOnboardingDataOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

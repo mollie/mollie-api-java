@@ -18,7 +18,6 @@ import java.lang.String;
  * <p>You can find more information about the possible values of this object on [this page](status-reasons).**
  */
 public class GetPaymentStatusReason {
-
     /**
      * A machine-readable code that indicates the reason for the payment's status.
      */
@@ -57,9 +56,10 @@ public class GetPaymentStatusReason {
         return message;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A machine-readable code that indicates the reason for the payment's status.
@@ -79,7 +79,6 @@ public class GetPaymentStatusReason {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -97,8 +96,7 @@ public class GetPaymentStatusReason {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            code,
-            message);
+            code, message);
     }
     
     @Override
@@ -107,16 +105,18 @@ public class GetPaymentStatusReason {
                 "code", code,
                 "message", message);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String code;
- 
+
         private String message;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A machine-readable code that indicates the reason for the payment's status.
@@ -127,6 +127,7 @@ public class GetPaymentStatusReason {
             return this;
         }
 
+
         /**
          * A description of the status reason, localized according to the payment `locale`.
          */
@@ -135,11 +136,12 @@ public class GetPaymentStatusReason {
             this.message = message;
             return this;
         }
-        
+
         public GetPaymentStatusReason build() {
+
             return new GetPaymentStatusReason(
-                code,
-                message);
+                code, message);
         }
+
     }
 }

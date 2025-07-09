@@ -20,7 +20,6 @@ import java.lang.String;
  * <p>Secondly, for paid test mode payments. The payment state screen will then allow you to create a refund or chargeback for the test payment.
  */
 public class ChangePaymentState {
-
     /**
      * The actual URL string.
      */
@@ -59,9 +58,10 @@ public class ChangePaymentState {
         return type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The actual URL string.
@@ -81,7 +81,6 @@ public class ChangePaymentState {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -99,8 +98,7 @@ public class ChangePaymentState {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            href,
-            type);
+            href, type);
     }
     
     @Override
@@ -109,16 +107,18 @@ public class ChangePaymentState {
                 "href", href,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String href;
- 
+
         private String type;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The actual URL string.
@@ -129,6 +129,7 @@ public class ChangePaymentState {
             return this;
         }
 
+
         /**
          * The content type of the page or endpoint the URL points to.
          */
@@ -137,11 +138,12 @@ public class ChangePaymentState {
             this.type = type;
             return this;
         }
-        
+
         public ChangePaymentState build() {
+
             return new ChangePaymentState(
-                href,
-                type);
+                href, type);
         }
+
     }
 }

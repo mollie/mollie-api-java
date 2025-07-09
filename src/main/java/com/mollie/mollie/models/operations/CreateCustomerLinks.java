@@ -21,7 +21,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
 public class CreateCustomerLinks {
-
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -87,7 +86,8 @@ public class CreateCustomerLinks {
     }
     
     public CreateCustomerLinks() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -144,9 +144,10 @@ public class CreateCustomerLinks {
         return (Optional<CreateCustomerDocumentation>) documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -156,6 +157,7 @@ public class CreateCustomerLinks {
         this.self = Optional.ofNullable(self);
         return this;
     }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -174,6 +176,7 @@ public class CreateCustomerLinks {
         this.dashboard = Optional.ofNullable(dashboard);
         return this;
     }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -247,6 +250,7 @@ public class CreateCustomerLinks {
         return this;
     }
 
+
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -256,7 +260,6 @@ public class CreateCustomerLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -278,12 +281,8 @@ public class CreateCustomerLinks {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self,
-            dashboard,
-            payments,
-            mandates,
-            subscriptions,
-            documentation);
+            self, dashboard, payments,
+            mandates, subscriptions, documentation);
     }
     
     @Override
@@ -296,24 +295,26 @@ public class CreateCustomerLinks {
                 "subscriptions", subscriptions,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends CreateCustomerSelf> self = Optional.empty();
- 
+
         private Optional<? extends CreateCustomerDashboard> dashboard = Optional.empty();
- 
+
         private JsonNullable<? extends Payments> payments = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Mandates> mandates = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Subscriptions> subscriptions = JsonNullable.undefined();
- 
+
         private Optional<? extends CreateCustomerDocumentation> documentation = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -333,6 +334,7 @@ public class CreateCustomerLinks {
             return this;
         }
 
+
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
@@ -350,6 +352,7 @@ public class CreateCustomerLinks {
             this.dashboard = dashboard;
             return this;
         }
+
 
         /**
          * The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments exist (yet).
@@ -369,6 +372,7 @@ public class CreateCustomerLinks {
             return this;
         }
 
+
         /**
          * The API resource URL of the [mandates](list-mandates) linked to this customer. Omitted if no such mandates exist (yet).
          */
@@ -386,6 +390,7 @@ public class CreateCustomerLinks {
             this.mandates = mandates;
             return this;
         }
+
 
         /**
          * The API resource URL of the [subscriptions](list-subscriptions) linked to this customer. Omitted if no such subscriptions exist (yet).
@@ -405,6 +410,7 @@ public class CreateCustomerLinks {
             return this;
         }
 
+
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
@@ -422,15 +428,13 @@ public class CreateCustomerLinks {
             this.documentation = documentation;
             return this;
         }
-        
+
         public CreateCustomerLinks build() {
+
             return new CreateCustomerLinks(
-                self,
-                dashboard,
-                payments,
-                mandates,
-                subscriptions,
-                documentation);
+                self, dashboard, payments,
+                mandates, subscriptions, documentation);
         }
+
     }
 }

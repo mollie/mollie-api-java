@@ -48,8 +48,8 @@ public class ListPaymentsRequestBuilder {
 
         RequestOperation<ListPaymentsRequest, ListPaymentsResponse> operation
               = new ListPaymentsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

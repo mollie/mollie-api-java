@@ -14,6 +14,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class LessThanYearGreaterThan {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -37,9 +38,10 @@ public class LessThanYearGreaterThan {
         return (Optional<LessThanMonthGreaterThan>) lessThanMonthGreaterThan;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public LessThanYearGreaterThan withLessThanMonthGreaterThan(LessThanMonthGreaterThan lessThanMonthGreaterThan) {
         Utils.checkNotNull(lessThanMonthGreaterThan, "lessThanMonthGreaterThan");
@@ -47,13 +49,13 @@ public class LessThanYearGreaterThan {
         return this;
     }
 
+
     public LessThanYearGreaterThan withLessThanMonthGreaterThan(Optional<? extends LessThanMonthGreaterThan> lessThanMonthGreaterThan) {
         Utils.checkNotNull(lessThanMonthGreaterThan, "lessThanMonthGreaterThan");
         this.lessThanMonthGreaterThan = lessThanMonthGreaterThan;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -78,14 +80,16 @@ public class LessThanYearGreaterThan {
         return Utils.toString(LessThanYearGreaterThan.class,
                 "lessThanMonthGreaterThan", lessThanMonthGreaterThan);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends LessThanMonthGreaterThan> lessThanMonthGreaterThan = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder lessThanMonthGreaterThan(LessThanMonthGreaterThan lessThanMonthGreaterThan) {
             Utils.checkNotNull(lessThanMonthGreaterThan, "lessThanMonthGreaterThan");
@@ -98,10 +102,12 @@ public class LessThanYearGreaterThan {
             this.lessThanMonthGreaterThan = lessThanMonthGreaterThan;
             return this;
         }
-        
+
         public LessThanYearGreaterThan build() {
+
             return new LessThanYearGreaterThan(
                 lessThanMonthGreaterThan);
         }
+
     }
 }

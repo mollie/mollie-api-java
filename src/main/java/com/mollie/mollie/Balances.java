@@ -41,7 +41,6 @@ public class Balances {
     Balances(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List balances
      * 
@@ -74,7 +73,8 @@ public class Balances {
      * @throws Exception if the API call fails
      */
     public ListBalancesResponse listDirect() throws Exception {
-        return list(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        return list(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -114,11 +114,10 @@ public class Balances {
                 .build();
         RequestOperation<ListBalancesRequest, ListBalancesResponse> operation
               = new ListBalancesOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get balance
@@ -202,11 +201,10 @@ public class Balances {
                 .build();
         RequestOperation<GetBalanceRequest, GetBalanceResponse> operation
               = new GetBalanceOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get primary balance
@@ -258,15 +256,13 @@ public class Balances {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetPrimaryBalanceResponse getPrimary(
-            Optional<Options> options) throws Exception {
+    public GetPrimaryBalanceResponse getPrimary(Optional<Options> options) throws Exception {
         RequestlessOperation<GetPrimaryBalanceResponse> operation
             = new GetPrimaryBalanceOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest());
     }
-
 
     /**
      * Get balance report
@@ -331,11 +327,10 @@ public class Balances {
             Optional<Options> options) throws Exception {
         RequestOperation<GetBalanceReportRequest, GetBalanceReportResponse> operation
               = new GetBalanceReportOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List balance transactions
@@ -378,7 +373,8 @@ public class Balances {
      * @throws Exception if the API call fails
      */
     public ListBalanceTransactionsResponse listTransactions(String balanceId) throws Exception {
-        return listTransactions(balanceId, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        return listTransactions(balanceId, Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -422,8 +418,8 @@ public class Balances {
                 .build();
         RequestOperation<ListBalanceTransactionsRequest, ListBalanceTransactionsResponse> operation
               = new ListBalanceTransactionsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

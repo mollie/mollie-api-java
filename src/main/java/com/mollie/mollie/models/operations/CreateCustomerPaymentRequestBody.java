@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreateCustomerPaymentRequestBody {
 
+public class CreateCustomerPaymentRequestBody {
     /**
      * The description of the payment. This will be shown to your customer on their card or bank statement when possible. We truncate the description automatically according to the limits of the used payment method. The description is also visible in any exports you generate.
      * 
@@ -354,7 +354,14 @@ public class CreateCustomerPaymentRequestBody {
     public CreateCustomerPaymentRequestBody(
             String description,
             CreateCustomerPaymentAmount amount) {
-        this(description, amount, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
+        this(description, amount, Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -647,9 +654,10 @@ public class CreateCustomerPaymentRequestBody {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The description of the payment. This will be shown to your customer on their card or bank statement when possible. We truncate the description automatically according to the limits of the used payment method. The description is also visible in any exports you generate.
@@ -689,6 +697,7 @@ public class CreateCustomerPaymentRequestBody {
         this.redirectUrl = Optional.ofNullable(redirectUrl);
         return this;
     }
+
 
     /**
      * The URL your customer will be redirected to after the payment process.
@@ -790,6 +799,7 @@ public class CreateCustomerPaymentRequestBody {
         return this;
     }
 
+
     /**
      * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
      * 
@@ -813,6 +823,7 @@ public class CreateCustomerPaymentRequestBody {
         this.shippingAddress = Optional.ofNullable(shippingAddress);
         return this;
     }
+
 
     /**
      * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
@@ -1186,6 +1197,7 @@ public class CreateCustomerPaymentRequestBody {
         return this;
     }
 
+
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
@@ -1207,6 +1219,7 @@ public class CreateCustomerPaymentRequestBody {
         this.dueDate = Optional.ofNullable(dueDate);
         return this;
     }
+
 
     /**
      * The date by which the payment should be completed in `YYYY-MM-DD` format
@@ -1239,7 +1252,6 @@ public class CreateCustomerPaymentRequestBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1278,29 +1290,14 @@ public class CreateCustomerPaymentRequestBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            description,
-            amount,
-            redirectUrl,
-            cancelUrl,
-            webhookUrl,
-            lines,
-            billingAddress,
-            shippingAddress,
-            locale,
-            method,
-            issuer,
-            restrictPaymentMethodsToCountry,
-            metadata,
-            captureMode,
-            captureDelay,
-            applicationFee,
-            routing,
-            sequenceType,
-            mandateId,
-            customerId,
-            profileId,
-            dueDate,
-            testmode);
+            description, amount, redirectUrl,
+            cancelUrl, webhookUrl, lines,
+            billingAddress, shippingAddress, locale,
+            method, issuer, restrictPaymentMethodsToCountry,
+            metadata, captureMode, captureDelay,
+            applicationFee, routing, sequenceType,
+            mandateId, customerId, profileId,
+            dueDate, testmode);
     }
     
     @Override
@@ -1330,58 +1327,60 @@ public class CreateCustomerPaymentRequestBody {
                 "dueDate", dueDate,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String description;
- 
+
         private CreateCustomerPaymentAmount amount;
- 
+
         private Optional<String> redirectUrl = Optional.empty();
- 
+
         private JsonNullable<String> cancelUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<String> webhookUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<CreateCustomerPaymentLines>> lines = JsonNullable.undefined();
- 
+
         private Optional<? extends CreateCustomerPaymentBillingAddress> billingAddress = Optional.empty();
- 
+
         private Optional<? extends CreateCustomerPaymentShippingAddress> shippingAddress = Optional.empty();
- 
+
         private JsonNullable<String> locale = JsonNullable.undefined();
- 
+
         private JsonNullable<String> method = JsonNullable.undefined();
- 
+
         private JsonNullable<String> issuer = JsonNullable.undefined();
- 
+
         private JsonNullable<String> restrictPaymentMethodsToCountry = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends CreateCustomerPaymentMetadata> metadata = JsonNullable.undefined();
- 
+
         private JsonNullable<String> captureMode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> captureDelay = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends CreateCustomerPaymentApplicationFee> applicationFee = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<CreateCustomerPaymentRouting>> routing = JsonNullable.undefined();
- 
+
         private JsonNullable<String> sequenceType = JsonNullable.undefined();
- 
+
         private JsonNullable<String> mandateId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> customerId = JsonNullable.undefined();
- 
+
         private Optional<String> profileId = Optional.empty();
- 
+
         private Optional<String> dueDate = Optional.empty();
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The description of the payment. This will be shown to your customer on their card or bank statement when possible. We truncate the description automatically according to the limits of the used payment method. The description is also visible in any exports you generate.
@@ -1396,6 +1395,7 @@ public class CreateCustomerPaymentRequestBody {
             return this;
         }
 
+
         /**
          * The amount that you want to charge, e.g. `{currency:"EUR", value:"1000.00"}` if you would want to charge €1000.00.
          * 
@@ -1408,6 +1408,7 @@ public class CreateCustomerPaymentRequestBody {
             this.amount = amount;
             return this;
         }
+
 
         /**
          * The URL your customer will be redirected to after the payment process.
@@ -1435,6 +1436,7 @@ public class CreateCustomerPaymentRequestBody {
             return this;
         }
 
+
         /**
          * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not provided, the customer will be redirected to the `redirectUrl` instead — see above.
          * 
@@ -1456,6 +1458,7 @@ public class CreateCustomerPaymentRequestBody {
             this.cancelUrl = cancelUrl;
             return this;
         }
+
 
         /**
          * The webhook URL where we will send payment status updates to.
@@ -1483,6 +1486,7 @@ public class CreateCustomerPaymentRequestBody {
             return this;
         }
 
+
         /**
          * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
          * 
@@ -1508,6 +1512,7 @@ public class CreateCustomerPaymentRequestBody {
             this.lines = lines;
             return this;
         }
+
 
         /**
          * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
@@ -1535,6 +1540,7 @@ public class CreateCustomerPaymentRequestBody {
             return this;
         }
 
+
         /**
          * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
          * 
@@ -1557,6 +1563,7 @@ public class CreateCustomerPaymentRequestBody {
             return this;
         }
 
+
         /**
          * Allows you to preset the language to be used in the hosted payment pages shown to the customer. Setting a locale is highly recommended and will greatly improve your conversion rate. When this parameter is omitted the browser language will be used instead if supported by the payment method. You can provide any `xx_XX` format ISO 15897 locale, but our hosted payment pages currently only support the specified languages.
          * 
@@ -1578,6 +1585,7 @@ public class CreateCustomerPaymentRequestBody {
             this.locale = locale;
             return this;
         }
+
 
         /**
          * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment method and your customer will skip the selection screen and is sent directly to the chosen payment method. The parameter enables you to fully integrate the payment method selection into your website.
@@ -1604,6 +1612,7 @@ public class CreateCustomerPaymentRequestBody {
             this.method = method;
             return this;
         }
+
 
         /**
          * **Only relevant for iDEAL, KBC/CBC, gift card, and voucher payments.**
@@ -1643,6 +1652,7 @@ public class CreateCustomerPaymentRequestBody {
             return this;
         }
 
+
         /**
          * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT rates you have used for the order to ensure your customer's country matches the VAT country.
          * 
@@ -1673,6 +1683,7 @@ public class CreateCustomerPaymentRequestBody {
             return this;
         }
 
+
         /**
          * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
@@ -1690,6 +1701,7 @@ public class CreateCustomerPaymentRequestBody {
             this.metadata = metadata;
             return this;
         }
+
 
         /**
          * Indicate if the funds should be captured immediately or if you want to [place a hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/) and capture at a later time.
@@ -1716,6 +1728,7 @@ public class CreateCustomerPaymentRequestBody {
             this.captureMode = captureMode;
             return this;
         }
+
 
         /**
          * **Only relevant if you wish to manage authorization and capturing separately.**
@@ -1755,6 +1768,7 @@ public class CreateCustomerPaymentRequestBody {
             return this;
         }
 
+
         /**
          * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
          * 
@@ -1780,6 +1794,7 @@ public class CreateCustomerPaymentRequestBody {
             this.applicationFee = applicationFee;
             return this;
         }
+
 
         /**
          * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
@@ -1818,6 +1833,7 @@ public class CreateCustomerPaymentRequestBody {
             this.routing = routing;
             return this;
         }
+
 
         /**
          * **Only relevant for recurring payments.**
@@ -1861,6 +1877,7 @@ public class CreateCustomerPaymentRequestBody {
             return this;
         }
 
+
         /**
          * **Only relevant for recurring payments.**
          * 
@@ -1883,6 +1900,7 @@ public class CreateCustomerPaymentRequestBody {
             return this;
         }
 
+
         /**
          * The ID of the [customer](get-customer) the payment is being created for. This is used primarily for recurring payments, but can also be used on regular payments to enable single-click payments.
          * 
@@ -1904,6 +1922,7 @@ public class CreateCustomerPaymentRequestBody {
             this.customerId = customerId;
             return this;
         }
+
 
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
@@ -1931,6 +1950,7 @@ public class CreateCustomerPaymentRequestBody {
             return this;
         }
 
+
         /**
          * The date by which the payment should be completed in `YYYY-MM-DD` format
          */
@@ -1948,6 +1968,7 @@ public class CreateCustomerPaymentRequestBody {
             this.dueDate = dueDate;
             return this;
         }
+
 
         /**
          * Whether to create the entity in test mode or live mode.
@@ -1970,32 +1991,19 @@ public class CreateCustomerPaymentRequestBody {
             this.testmode = testmode;
             return this;
         }
-        
+
         public CreateCustomerPaymentRequestBody build() {
+
             return new CreateCustomerPaymentRequestBody(
-                description,
-                amount,
-                redirectUrl,
-                cancelUrl,
-                webhookUrl,
-                lines,
-                billingAddress,
-                shippingAddress,
-                locale,
-                method,
-                issuer,
-                restrictPaymentMethodsToCountry,
-                metadata,
-                captureMode,
-                captureDelay,
-                applicationFee,
-                routing,
-                sequenceType,
-                mandateId,
-                customerId,
-                profileId,
-                dueDate,
-                testmode);
+                description, amount, redirectUrl,
+                cancelUrl, webhookUrl, lines,
+                billingAddress, shippingAddress, locale,
+                method, issuer, restrictPaymentMethodsToCountry,
+                metadata, captureMode, captureDelay,
+                applicationFee, routing, sequenceType,
+                mandateId, customerId, profileId,
+                dueDate, testmode);
         }
+
     }
 }

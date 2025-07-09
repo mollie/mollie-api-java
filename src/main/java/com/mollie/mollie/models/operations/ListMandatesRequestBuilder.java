@@ -48,8 +48,8 @@ public class ListMandatesRequestBuilder {
 
         RequestOperation<ListMandatesRequest, ListMandatesResponse> operation
               = new ListMandatesOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

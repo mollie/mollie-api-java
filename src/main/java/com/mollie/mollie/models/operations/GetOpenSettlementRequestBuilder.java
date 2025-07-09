@@ -41,8 +41,8 @@ public class GetOpenSettlementRequestBuilder {
 
         RequestlessOperation<GetOpenSettlementResponse> operation
             = new GetOpenSettlementOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest());
     }

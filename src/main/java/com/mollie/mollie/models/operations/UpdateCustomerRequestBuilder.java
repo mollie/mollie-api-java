@@ -71,8 +71,8 @@ public class UpdateCustomerRequestBuilder {
 
         RequestOperation<UpdateCustomerRequest, UpdateCustomerResponse> operation
               = new UpdateCustomerOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         UpdateCustomerRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

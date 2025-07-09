@@ -54,8 +54,8 @@ public class CreatePaymentLinkRequestBuilder {
 
         RequestOperation<Optional<? extends CreatePaymentLinkRequestBody>, CreatePaymentLinkResponse> operation
               = new CreatePaymentLinkOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

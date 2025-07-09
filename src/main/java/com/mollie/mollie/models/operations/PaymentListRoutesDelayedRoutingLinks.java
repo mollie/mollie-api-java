@@ -16,7 +16,6 @@ import java.lang.String;
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
 public class PaymentListRoutesDelayedRoutingLinks {
-
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -55,9 +54,10 @@ public class PaymentListRoutesDelayedRoutingLinks {
         return documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -77,7 +77,6 @@ public class PaymentListRoutesDelayedRoutingLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -95,8 +94,7 @@ public class PaymentListRoutesDelayedRoutingLinks {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self,
-            documentation);
+            self, documentation);
     }
     
     @Override
@@ -105,16 +103,18 @@ public class PaymentListRoutesDelayedRoutingLinks {
                 "self", self,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private PaymentListRoutesDelayedRoutingSelf self;
- 
+
         private PaymentListRoutesDelayedRoutingDocumentation documentation;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -125,6 +125,7 @@ public class PaymentListRoutesDelayedRoutingLinks {
             return this;
         }
 
+
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
@@ -133,11 +134,12 @@ public class PaymentListRoutesDelayedRoutingLinks {
             this.documentation = documentation;
             return this;
         }
-        
+
         public PaymentListRoutesDelayedRoutingLinks build() {
+
             return new PaymentListRoutesDelayedRoutingLinks(
-                self,
-                documentation);
+                self, documentation);
         }
+
     }
 }

@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Capabilities {
 
+public class Capabilities {
     /**
      * Always the word `capability` for this resource type.
      */
@@ -32,13 +32,16 @@ public class Capabilities {
     @JsonProperty("name")
     private Optional<String> name;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
     private Optional<? extends ListCapabilitiesStatus> status;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("statusReason")
     private JsonNullable<? extends ListCapabilitiesStatusReason> statusReason;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("requirements")
@@ -64,7 +67,8 @@ public class Capabilities {
     }
     
     public Capabilities() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -101,9 +105,10 @@ public class Capabilities {
         return (Optional<List<Requirements>>) requirements;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Always the word `capability` for this resource type.
@@ -113,6 +118,7 @@ public class Capabilities {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Always the word `capability` for this resource type.
@@ -132,6 +138,7 @@ public class Capabilities {
         return this;
     }
 
+
     /**
      * A unique name for this capability like `payments` / `settlements`.
      */
@@ -146,6 +153,7 @@ public class Capabilities {
         this.status = Optional.ofNullable(status);
         return this;
     }
+
 
     public Capabilities withStatus(Optional<? extends ListCapabilitiesStatus> status) {
         Utils.checkNotNull(status, "status");
@@ -171,13 +179,13 @@ public class Capabilities {
         return this;
     }
 
+
     public Capabilities withRequirements(Optional<? extends List<Requirements>> requirements) {
         Utils.checkNotNull(requirements, "requirements");
         this.requirements = requirements;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -198,11 +206,8 @@ public class Capabilities {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            name,
-            status,
-            statusReason,
-            requirements);
+            resource, name, status,
+            statusReason, requirements);
     }
     
     @Override
@@ -214,22 +219,24 @@ public class Capabilities {
                 "statusReason", statusReason,
                 "requirements", requirements);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<? extends ListCapabilitiesStatus> status = Optional.empty();
- 
+
         private JsonNullable<? extends ListCapabilitiesStatusReason> statusReason = JsonNullable.undefined();
- 
+
         private Optional<? extends List<Requirements>> requirements = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Always the word `capability` for this resource type.
@@ -249,6 +256,7 @@ public class Capabilities {
             return this;
         }
 
+
         /**
          * A unique name for this capability like `payments` / `settlements`.
          */
@@ -267,6 +275,7 @@ public class Capabilities {
             return this;
         }
 
+
         public Builder status(ListCapabilitiesStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
@@ -278,6 +287,7 @@ public class Capabilities {
             this.status = status;
             return this;
         }
+
 
         public Builder statusReason(ListCapabilitiesStatusReason statusReason) {
             Utils.checkNotNull(statusReason, "statusReason");
@@ -291,6 +301,7 @@ public class Capabilities {
             return this;
         }
 
+
         public Builder requirements(List<Requirements> requirements) {
             Utils.checkNotNull(requirements, "requirements");
             this.requirements = Optional.ofNullable(requirements);
@@ -302,14 +313,13 @@ public class Capabilities {
             this.requirements = requirements;
             return this;
         }
-        
+
         public Capabilities build() {
+
             return new Capabilities(
-                resource,
-                name,
-                status,
-                statusReason,
-                requirements);
+                resource, name, status,
+                statusReason, requirements);
         }
+
     }
 }

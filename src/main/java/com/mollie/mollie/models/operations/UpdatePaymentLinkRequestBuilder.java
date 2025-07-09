@@ -71,8 +71,8 @@ public class UpdatePaymentLinkRequestBuilder {
 
         RequestOperation<UpdatePaymentLinkRequest, UpdatePaymentLinkResponse> operation
               = new UpdatePaymentLinkOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         UpdatePaymentLinkRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

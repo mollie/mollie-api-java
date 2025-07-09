@@ -14,8 +14,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class GetClientClientsResponse200Links {
 
+public class GetClientClientsResponse200Links {
     /**
      * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled. For example, where necessary documents are to be uploaded.
      */
@@ -43,9 +43,10 @@ public class GetClientClientsResponse200Links {
         return (Optional<GetClientClientsResponseDashboard>) dashboard;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled. For example, where necessary documents are to be uploaded.
@@ -56,6 +57,7 @@ public class GetClientClientsResponse200Links {
         return this;
     }
 
+
     /**
      * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled. For example, where necessary documents are to be uploaded.
      */
@@ -65,7 +67,6 @@ public class GetClientClientsResponse200Links {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,14 +91,16 @@ public class GetClientClientsResponse200Links {
         return Utils.toString(GetClientClientsResponse200Links.class,
                 "dashboard", dashboard);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends GetClientClientsResponseDashboard> dashboard = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled. For example, where necessary documents are to be uploaded.
@@ -116,10 +119,12 @@ public class GetClientClientsResponse200Links {
             this.dashboard = dashboard;
             return this;
         }
-        
+
         public GetClientClientsResponse200Links build() {
+
             return new GetClientClientsResponse200Links(
                 dashboard);
         }
+
     }
 }

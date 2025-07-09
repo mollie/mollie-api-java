@@ -95,8 +95,8 @@ public class GetCaptureRequestBuilder {
 
         RequestOperation<GetCaptureRequest, GetCaptureResponse> operation
               = new GetCaptureOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         GetCaptureRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

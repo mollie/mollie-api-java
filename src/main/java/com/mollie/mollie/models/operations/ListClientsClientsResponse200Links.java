@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
 public class ListClientsClientsResponse200Links {
-
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -86,9 +85,10 @@ public class ListClientsClientsResponse200Links {
         return (Optional<ListClientsClientsResponse200Documentation>) documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -98,6 +98,7 @@ public class ListClientsClientsResponse200Links {
         this.self = Optional.ofNullable(self);
         return this;
     }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -117,6 +118,7 @@ public class ListClientsClientsResponse200Links {
         return this;
     }
 
+
     /**
      * Direct link to the organization's Mollie dashboard.
      */
@@ -135,6 +137,7 @@ public class ListClientsClientsResponse200Links {
         return this;
     }
 
+
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -144,7 +147,6 @@ public class ListClientsClientsResponse200Links {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -163,9 +165,7 @@ public class ListClientsClientsResponse200Links {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self,
-            dashboard,
-            documentation);
+            self, dashboard, documentation);
     }
     
     @Override
@@ -175,18 +175,20 @@ public class ListClientsClientsResponse200Links {
                 "dashboard", dashboard,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ListClientsClientsResponse200Self> self = Optional.empty();
- 
+
         private Optional<? extends ListClientsDashboard> dashboard = Optional.empty();
- 
+
         private Optional<? extends ListClientsClientsResponse200Documentation> documentation = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -206,6 +208,7 @@ public class ListClientsClientsResponse200Links {
             return this;
         }
 
+
         /**
          * Direct link to the organization's Mollie dashboard.
          */
@@ -224,6 +227,7 @@ public class ListClientsClientsResponse200Links {
             return this;
         }
 
+
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
@@ -241,12 +245,12 @@ public class ListClientsClientsResponse200Links {
             this.documentation = documentation;
             return this;
         }
-        
+
         public ListClientsClientsResponse200Links build() {
+
             return new ListClientsClientsResponse200Links(
-                self,
-                dashboard,
-                documentation);
+                self, dashboard, documentation);
         }
+
     }
 }

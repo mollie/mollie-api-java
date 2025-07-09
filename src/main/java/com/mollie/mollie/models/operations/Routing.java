@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Routing {
 
+public class Routing {
     /**
      * The portion of the total payment amount being routed. Currently only `EUR` payments can be routed.
      */
@@ -62,7 +62,8 @@ public class Routing {
             CreatePaymentPaymentsRequestAmount amount,
             Destination destination,
             Links links) {
-        this(amount, destination, JsonNullable.undefined(), links);
+        this(amount, destination, JsonNullable.undefined(),
+            links);
     }
 
     /**
@@ -99,9 +100,10 @@ public class Routing {
         return links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The portion of the total payment amount being routed. Currently only `EUR` payments can be routed.
@@ -152,7 +154,6 @@ public class Routing {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -172,9 +173,7 @@ public class Routing {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            amount,
-            destination,
-            releaseDate,
+            amount, destination, releaseDate,
             links);
     }
     
@@ -186,20 +185,22 @@ public class Routing {
                 "releaseDate", releaseDate,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private CreatePaymentPaymentsRequestAmount amount;
- 
+
         private Destination destination;
- 
+
         private JsonNullable<String> releaseDate = JsonNullable.undefined();
- 
+
         private Links links;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The portion of the total payment amount being routed. Currently only `EUR` payments can be routed.
@@ -210,6 +211,7 @@ public class Routing {
             return this;
         }
 
+
         /**
          * The destination of this portion of the payment.
          */
@@ -218,6 +220,7 @@ public class Routing {
             this.destination = destination;
             return this;
         }
+
 
         /**
          * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
@@ -241,6 +244,7 @@ public class Routing {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -249,13 +253,13 @@ public class Routing {
             this.links = links;
             return this;
         }
-        
+
         public Routing build() {
+
             return new Routing(
-                amount,
-                destination,
-                releaseDate,
+                amount, destination, releaseDate,
                 links);
         }
+
     }
 }

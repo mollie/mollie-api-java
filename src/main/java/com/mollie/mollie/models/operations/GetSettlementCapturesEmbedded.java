@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class GetSettlementCapturesEmbedded {
 
+public class GetSettlementCapturesEmbedded {
     /**
      * An array of capture objects.
      */
@@ -44,9 +44,10 @@ public class GetSettlementCapturesEmbedded {
         return (Optional<List<GetSettlementCapturesCaptures>>) captures;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An array of capture objects.
@@ -57,6 +58,7 @@ public class GetSettlementCapturesEmbedded {
         return this;
     }
 
+
     /**
      * An array of capture objects.
      */
@@ -66,7 +68,6 @@ public class GetSettlementCapturesEmbedded {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,14 +92,16 @@ public class GetSettlementCapturesEmbedded {
         return Utils.toString(GetSettlementCapturesEmbedded.class,
                 "captures", captures);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<GetSettlementCapturesCaptures>> captures = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An array of capture objects.
@@ -117,10 +120,12 @@ public class GetSettlementCapturesEmbedded {
             this.captures = captures;
             return this;
         }
-        
+
         public GetSettlementCapturesEmbedded build() {
+
             return new GetSettlementCapturesEmbedded(
                 captures);
         }
+
     }
 }

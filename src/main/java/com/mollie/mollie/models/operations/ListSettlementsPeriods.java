@@ -48,9 +48,10 @@ public class ListSettlementsPeriods {
         return (Optional<ListSettlementsLessThanYearGreaterThan>) lessThanYearGreaterThan;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ListSettlementsPeriods withLessThanYearGreaterThan(ListSettlementsLessThanYearGreaterThan lessThanYearGreaterThan) {
         Utils.checkNotNull(lessThanYearGreaterThan, "lessThanYearGreaterThan");
@@ -58,13 +59,13 @@ public class ListSettlementsPeriods {
         return this;
     }
 
+
     public ListSettlementsPeriods withLessThanYearGreaterThan(Optional<? extends ListSettlementsLessThanYearGreaterThan> lessThanYearGreaterThan) {
         Utils.checkNotNull(lessThanYearGreaterThan, "lessThanYearGreaterThan");
         this.lessThanYearGreaterThan = lessThanYearGreaterThan;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -89,14 +90,16 @@ public class ListSettlementsPeriods {
         return Utils.toString(ListSettlementsPeriods.class,
                 "lessThanYearGreaterThan", lessThanYearGreaterThan);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ListSettlementsLessThanYearGreaterThan> lessThanYearGreaterThan = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder lessThanYearGreaterThan(ListSettlementsLessThanYearGreaterThan lessThanYearGreaterThan) {
             Utils.checkNotNull(lessThanYearGreaterThan, "lessThanYearGreaterThan");
@@ -109,10 +112,12 @@ public class ListSettlementsPeriods {
             this.lessThanYearGreaterThan = lessThanYearGreaterThan;
             return this;
         }
-        
+
         public ListSettlementsPeriods build() {
+
             return new ListSettlementsPeriods(
                 lessThanYearGreaterThan);
         }
+
     }
 }

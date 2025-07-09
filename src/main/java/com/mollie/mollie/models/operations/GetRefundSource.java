@@ -19,7 +19,6 @@ import java.util.Optional;
  * <p>Where the funds will be pulled back from.
  */
 public class GetRefundSource {
-
     /**
      * Required for source type `organization`. The ID of the connected organization the funds should be pulled back from.
      */
@@ -46,9 +45,10 @@ public class GetRefundSource {
         return organizationId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Required for source type `organization`. The ID of the connected organization the funds should be pulled back from.
@@ -59,6 +59,7 @@ public class GetRefundSource {
         return this;
     }
 
+
     /**
      * Required for source type `organization`. The ID of the connected organization the funds should be pulled back from.
      */
@@ -68,7 +69,6 @@ public class GetRefundSource {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -93,14 +93,16 @@ public class GetRefundSource {
         return Utils.toString(GetRefundSource.class,
                 "organizationId", organizationId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> organizationId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Required for source type `organization`. The ID of the connected organization the funds should be pulled back from.
@@ -119,10 +121,12 @@ public class GetRefundSource {
             this.organizationId = organizationId;
             return this;
         }
-        
+
         public GetRefundSource build() {
+
             return new GetRefundSource(
                 organizationId);
         }
+
     }
 }

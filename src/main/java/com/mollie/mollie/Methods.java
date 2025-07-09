@@ -29,7 +29,6 @@ public class Methods {
     Methods(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List payment methods
      * 
@@ -111,11 +110,10 @@ public class Methods {
             Optional<Options> options) throws Exception {
         RequestOperation<ListMethodsRequest, ListMethodsResponse> operation
               = new ListMethodsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List all payment methods
@@ -180,11 +178,10 @@ public class Methods {
             Optional<Options> options) throws Exception {
         RequestOperation<ListAllMethodsRequest, ListAllMethodsResponse> operation
               = new ListAllMethodsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get payment method
@@ -261,8 +258,8 @@ public class Methods {
             Optional<Options> options) throws Exception {
         RequestOperation<GetMethodRequest, GetMethodResponse> operation
               = new GetMethodOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreateClientLinkRequestBody {
 
+public class CreateClientLinkRequestBody {
     /**
      * Personal data of your customer.
      */
@@ -70,7 +70,8 @@ public class CreateClientLinkRequestBody {
             Owner owner,
             String name,
             CreateClientLinkAddress address) {
-        this(owner, name, address, JsonNullable.undefined(), JsonNullable.undefined());
+        this(owner, name, address,
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -113,9 +114,10 @@ public class CreateClientLinkRequestBody {
         return vatNumber;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Personal data of your customer.
@@ -180,7 +182,6 @@ public class CreateClientLinkRequestBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -201,11 +202,8 @@ public class CreateClientLinkRequestBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            owner,
-            name,
-            address,
-            registrationNumber,
-            vatNumber);
+            owner, name, address,
+            registrationNumber, vatNumber);
     }
     
     @Override
@@ -217,22 +215,24 @@ public class CreateClientLinkRequestBody {
                 "registrationNumber", registrationNumber,
                 "vatNumber", vatNumber);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Owner owner;
- 
+
         private String name;
- 
+
         private CreateClientLinkAddress address;
- 
+
         private JsonNullable<String> registrationNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<String> vatNumber = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Personal data of your customer.
@@ -243,6 +243,7 @@ public class CreateClientLinkRequestBody {
             return this;
         }
 
+
         /**
          * Name of the organization.
          */
@@ -252,6 +253,7 @@ public class CreateClientLinkRequestBody {
             return this;
         }
 
+
         /**
          * Address of the organization.
          */
@@ -260,6 +262,7 @@ public class CreateClientLinkRequestBody {
             this.address = address;
             return this;
         }
+
 
         /**
          * The registration number of the organization at their local chamber of commerce.
@@ -279,6 +282,7 @@ public class CreateClientLinkRequestBody {
             return this;
         }
 
+
         /**
          * The VAT number of the organization, if based in the European Union. VAT numbers are verified against the international registry *VIES*.
          */
@@ -296,14 +300,13 @@ public class CreateClientLinkRequestBody {
             this.vatNumber = vatNumber;
             return this;
         }
-        
+
         public CreateClientLinkRequestBody build() {
+
             return new CreateClientLinkRequestBody(
-                owner,
-                name,
-                address,
-                registrationNumber,
-                vatNumber);
+                owner, name, address,
+                registrationNumber, vatNumber);
         }
+
     }
 }

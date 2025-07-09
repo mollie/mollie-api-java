@@ -25,9 +25,11 @@ public class GetBalanceReportChargebacks {
     @JsonProperty("pending")
     private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonPending> pending;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("movedToAvailable")
     private Optional<? extends GetBalanceReportBalancesResponseMovedToAvailable> movedToAvailable;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("immediatelyAvailable")
@@ -68,15 +70,17 @@ public class GetBalanceReportChargebacks {
         return (Optional<GetBalanceReportBalancesResponseImmediatelyAvailable>) immediatelyAvailable;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetBalanceReportChargebacks withPending(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonPending pending) {
         Utils.checkNotNull(pending, "pending");
         this.pending = Optional.ofNullable(pending);
         return this;
     }
+
 
     public GetBalanceReportChargebacks withPending(Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonPending> pending) {
         Utils.checkNotNull(pending, "pending");
@@ -90,6 +94,7 @@ public class GetBalanceReportChargebacks {
         return this;
     }
 
+
     public GetBalanceReportChargebacks withMovedToAvailable(Optional<? extends GetBalanceReportBalancesResponseMovedToAvailable> movedToAvailable) {
         Utils.checkNotNull(movedToAvailable, "movedToAvailable");
         this.movedToAvailable = movedToAvailable;
@@ -102,13 +107,13 @@ public class GetBalanceReportChargebacks {
         return this;
     }
 
+
     public GetBalanceReportChargebacks withImmediatelyAvailable(Optional<? extends GetBalanceReportBalancesResponseImmediatelyAvailable> immediatelyAvailable) {
         Utils.checkNotNull(immediatelyAvailable, "immediatelyAvailable");
         this.immediatelyAvailable = immediatelyAvailable;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -127,9 +132,7 @@ public class GetBalanceReportChargebacks {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            pending,
-            movedToAvailable,
-            immediatelyAvailable);
+            pending, movedToAvailable, immediatelyAvailable);
     }
     
     @Override
@@ -139,18 +142,20 @@ public class GetBalanceReportChargebacks {
                 "movedToAvailable", movedToAvailable,
                 "immediatelyAvailable", immediatelyAvailable);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonPending> pending = Optional.empty();
- 
+
         private Optional<? extends GetBalanceReportBalancesResponseMovedToAvailable> movedToAvailable = Optional.empty();
- 
+
         private Optional<? extends GetBalanceReportBalancesResponseImmediatelyAvailable> immediatelyAvailable = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder pending(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonPending pending) {
             Utils.checkNotNull(pending, "pending");
@@ -164,6 +169,7 @@ public class GetBalanceReportChargebacks {
             return this;
         }
 
+
         public Builder movedToAvailable(GetBalanceReportBalancesResponseMovedToAvailable movedToAvailable) {
             Utils.checkNotNull(movedToAvailable, "movedToAvailable");
             this.movedToAvailable = Optional.ofNullable(movedToAvailable);
@@ -176,6 +182,7 @@ public class GetBalanceReportChargebacks {
             return this;
         }
 
+
         public Builder immediatelyAvailable(GetBalanceReportBalancesResponseImmediatelyAvailable immediatelyAvailable) {
             Utils.checkNotNull(immediatelyAvailable, "immediatelyAvailable");
             this.immediatelyAvailable = Optional.ofNullable(immediatelyAvailable);
@@ -187,12 +194,12 @@ public class GetBalanceReportChargebacks {
             this.immediatelyAvailable = immediatelyAvailable;
             return this;
         }
-        
+
         public GetBalanceReportChargebacks build() {
+
             return new GetBalanceReportChargebacks(
-                pending,
-                movedToAvailable,
-                immediatelyAvailable);
+                pending, movedToAvailable, immediatelyAvailable);
         }
+
     }
 }

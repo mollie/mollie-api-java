@@ -12,8 +12,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetBalanceReportRequest {
 
+public class GetBalanceReportRequest {
     /**
      * Provide the ID of the related balance.
      */
@@ -73,7 +73,8 @@ public class GetBalanceReportRequest {
             String balanceId,
             String from,
             String until) {
-        this(balanceId, from, until, JsonNullable.undefined(), JsonNullable.undefined());
+        this(balanceId, from, until,
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -122,9 +123,10 @@ public class GetBalanceReportRequest {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the related balance.
@@ -201,7 +203,6 @@ public class GetBalanceReportRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -222,11 +223,8 @@ public class GetBalanceReportRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            balanceId,
-            from,
-            until,
-            grouping,
-            testmode);
+            balanceId, from, until,
+            grouping, testmode);
     }
     
     @Override
@@ -238,22 +236,24 @@ public class GetBalanceReportRequest {
                 "grouping", grouping,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String balanceId;
- 
+
         private String from;
- 
+
         private String until;
- 
+
         private JsonNullable<String> grouping = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the related balance.
@@ -264,6 +264,7 @@ public class GetBalanceReportRequest {
             return this;
         }
 
+
         /**
          * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central European Time. This means a report with for example `from=2024-01-01` will include transactions from 2024-01-01 0:00:00 CET and onwards.
          */
@@ -273,6 +274,7 @@ public class GetBalanceReportRequest {
             return this;
         }
 
+
         /**
          * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time. This means a report with for example `until=2024-02-01` will include transactions up until 2024-01-31 23:59:59 CET.
          */
@@ -281,6 +283,7 @@ public class GetBalanceReportRequest {
             this.until = until;
             return this;
         }
+
 
         /**
          * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped by status (e.g. `pending`, `available`), then by transaction type, and then by other sub-groupings where available (e.g. payment method).
@@ -308,6 +311,7 @@ public class GetBalanceReportRequest {
             return this;
         }
 
+
         /**
          * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
          * 
@@ -329,14 +333,13 @@ public class GetBalanceReportRequest {
             this.testmode = testmode;
             return this;
         }
-        
+
         public GetBalanceReportRequest build() {
+
             return new GetBalanceReportRequest(
-                balanceId,
-                from,
-                until,
-                grouping,
-                testmode);
+                balanceId, from, until,
+                grouping, testmode);
         }
+
     }
 }

@@ -71,8 +71,8 @@ public class CancelPaymentRequestBuilder {
 
         RequestOperation<CancelPaymentRequest, CancelPaymentResponse> operation
               = new CancelPaymentOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         CancelPaymentRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

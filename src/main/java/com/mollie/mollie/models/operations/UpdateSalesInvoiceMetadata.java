@@ -14,18 +14,15 @@ import java.lang.String;
  * <p>Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
  */
 public class UpdateSalesInvoiceMetadata {
-
     @JsonCreator
     public UpdateSalesInvoiceMetadata() {
-        
-        
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
 
-    
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -47,16 +44,19 @@ public class UpdateSalesInvoiceMetadata {
     public String toString() {
         return Utils.toString(UpdateSalesInvoiceMetadata.class);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-        
+
         private Builder() {
           // force use of static builder() method
         }
-        
+
         public UpdateSalesInvoiceMetadata build() {
+
             return new UpdateSalesInvoiceMetadata(
                 );
         }
+
     }
 }

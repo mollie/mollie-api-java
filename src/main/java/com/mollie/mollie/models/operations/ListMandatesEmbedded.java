@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class ListMandatesEmbedded {
 
+public class ListMandatesEmbedded {
     /**
      * An array of mandate objects.
      */
@@ -44,9 +44,10 @@ public class ListMandatesEmbedded {
         return (Optional<List<ListMandatesMandates>>) mandates;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An array of mandate objects.
@@ -57,6 +58,7 @@ public class ListMandatesEmbedded {
         return this;
     }
 
+
     /**
      * An array of mandate objects.
      */
@@ -66,7 +68,6 @@ public class ListMandatesEmbedded {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,14 +92,16 @@ public class ListMandatesEmbedded {
         return Utils.toString(ListMandatesEmbedded.class,
                 "mandates", mandates);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<ListMandatesMandates>> mandates = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An array of mandate objects.
@@ -117,10 +120,12 @@ public class ListMandatesEmbedded {
             this.mandates = mandates;
             return this;
         }
-        
+
         public ListMandatesEmbedded build() {
+
             return new ListMandatesEmbedded(
                 mandates);
         }
+
     }
 }

@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
  */
 public class PaymentListRoutesLinks {
-
     /**
      * The URL to the current set of items.
      */
@@ -67,9 +66,10 @@ public class PaymentListRoutesLinks {
         return (Optional<PaymentListRoutesDocumentation>) documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The URL to the current set of items.
@@ -79,6 +79,7 @@ public class PaymentListRoutesLinks {
         this.self = Optional.ofNullable(self);
         return this;
     }
+
 
     /**
      * The URL to the current set of items.
@@ -98,6 +99,7 @@ public class PaymentListRoutesLinks {
         return this;
     }
 
+
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -107,7 +109,6 @@ public class PaymentListRoutesLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -125,8 +126,7 @@ public class PaymentListRoutesLinks {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self,
-            documentation);
+            self, documentation);
     }
     
     @Override
@@ -135,16 +135,18 @@ public class PaymentListRoutesLinks {
                 "self", self,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends PaymentListRoutesSelf> self = Optional.empty();
- 
+
         private Optional<? extends PaymentListRoutesDocumentation> documentation = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The URL to the current set of items.
@@ -164,6 +166,7 @@ public class PaymentListRoutesLinks {
             return this;
         }
 
+
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
@@ -181,11 +184,12 @@ public class PaymentListRoutesLinks {
             this.documentation = documentation;
             return this;
         }
-        
+
         public PaymentListRoutesLinks build() {
+
             return new PaymentListRoutesLinks(
-                self,
-                documentation);
+                self, documentation);
         }
+
     }
 }

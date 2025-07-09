@@ -29,7 +29,6 @@ public class Terminals {
     Terminals(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List terminals
      * 
@@ -66,7 +65,8 @@ public class Terminals {
      * @throws Exception if the API call fails
      */
     public ListTerminalsResponse listDirect() throws Exception {
-        return list(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        return list(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -110,11 +110,10 @@ public class Terminals {
                 .build();
         RequestOperation<ListTerminalsRequest, ListTerminalsResponse> operation
               = new ListTerminalsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get terminal
@@ -183,8 +182,8 @@ public class Terminals {
                 .build();
         RequestOperation<GetTerminalRequest, GetTerminalResponse> operation
               = new GetTerminalOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

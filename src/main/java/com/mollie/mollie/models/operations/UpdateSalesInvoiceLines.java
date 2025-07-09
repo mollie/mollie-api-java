@@ -15,8 +15,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class UpdateSalesInvoiceLines {
 
+public class UpdateSalesInvoiceLines {
     /**
      * A description of the line item. For example *LEGO 4440 Forest Police Station*.
      */
@@ -76,7 +76,8 @@ public class UpdateSalesInvoiceLines {
             long quantity,
             String vatRate,
             UpdateSalesInvoiceUnitPrice unitPrice) {
-        this(description, quantity, vatRate, unitPrice, JsonNullable.undefined());
+        this(description, quantity, vatRate,
+            unitPrice, JsonNullable.undefined());
     }
 
     /**
@@ -124,9 +125,10 @@ public class UpdateSalesInvoiceLines {
         return (JsonNullable<UpdateSalesInvoiceDiscount>) discount;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A description of the line item. For example *LEGO 4440 Forest Police Station*.
@@ -186,7 +188,6 @@ public class UpdateSalesInvoiceLines {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -207,11 +208,8 @@ public class UpdateSalesInvoiceLines {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            description,
-            quantity,
-            vatRate,
-            unitPrice,
-            discount);
+            description, quantity, vatRate,
+            unitPrice, discount);
     }
     
     @Override
@@ -223,22 +221,24 @@ public class UpdateSalesInvoiceLines {
                 "unitPrice", unitPrice,
                 "discount", discount);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String description;
- 
+
         private Long quantity;
- 
+
         private String vatRate;
- 
+
         private UpdateSalesInvoiceUnitPrice unitPrice;
- 
+
         private JsonNullable<? extends UpdateSalesInvoiceDiscount> discount = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A description of the line item. For example *LEGO 4440 Forest Police Station*.
@@ -249,6 +249,7 @@ public class UpdateSalesInvoiceLines {
             return this;
         }
 
+
         /**
          * The number of items.
          */
@@ -258,6 +259,7 @@ public class UpdateSalesInvoiceLines {
             return this;
         }
 
+
         /**
          * The vat rate to be applied to this line item.
          */
@@ -266,6 +268,7 @@ public class UpdateSalesInvoiceLines {
             this.vatRate = vatRate;
             return this;
         }
+
 
         /**
          * The price of a single item excluding VAT.
@@ -279,6 +282,7 @@ public class UpdateSalesInvoiceLines {
             this.unitPrice = unitPrice;
             return this;
         }
+
 
         /**
          * The discount to be applied to the line item.
@@ -297,14 +301,13 @@ public class UpdateSalesInvoiceLines {
             this.discount = discount;
             return this;
         }
-        
+
         public UpdateSalesInvoiceLines build() {
+
             return new UpdateSalesInvoiceLines(
-                description,
-                quantity,
-                vatRate,
-                unitPrice,
-                discount);
+                description, quantity, vatRate,
+                unitPrice, discount);
         }
+
     }
 }

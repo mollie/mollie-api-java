@@ -15,8 +15,8 @@ import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListProfilesRequest {
 
+public class ListProfilesRequest {
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      */
@@ -59,9 +59,10 @@ public class ListProfilesRequest {
         return limit;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
@@ -71,6 +72,7 @@ public class ListProfilesRequest {
         this.from = Optional.ofNullable(from);
         return this;
     }
+
 
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
@@ -99,7 +101,6 @@ public class ListProfilesRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -117,8 +118,7 @@ public class ListProfilesRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            from,
-            limit);
+            from, limit);
     }
     
     @Override
@@ -127,16 +127,18 @@ public class ListProfilesRequest {
                 "from", from,
                 "limit", limit);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> from = Optional.empty();
- 
+
         private JsonNullable<Long> limit;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
@@ -156,6 +158,7 @@ public class ListProfilesRequest {
             return this;
         }
 
+
         /**
          * The maximum number of items to return. Defaults to 50 items.
          */
@@ -173,15 +176,16 @@ public class ListProfilesRequest {
             this.limit = limit;
             return this;
         }
-        
+
         public ListProfilesRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+
             return new ListProfilesRequest(
-                from,
-                limit);
+                from, limit);
         }
+
 
         private static final LazySingletonValue<JsonNullable<Long>> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(

@@ -15,8 +15,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class Terminals {
 
+public class Terminals {
     /**
      * Indicates the response contains a terminal object. Will always contain the string `terminal` for this endpoint.
      */
@@ -162,7 +162,11 @@ public class Terminals {
             String createdAt,
             String updatedAt,
             ListTerminalsTerminalsLinks links) {
-        this(Optional.empty(), id, mode, description, status, Optional.empty(), Optional.empty(), Optional.empty(), currency, profileId, createdAt, updatedAt, links);
+        this(Optional.empty(), id, mode,
+            description, status, Optional.empty(),
+            Optional.empty(), Optional.empty(), currency,
+            profileId, createdAt, updatedAt,
+            links);
     }
 
     /**
@@ -279,9 +283,10 @@ public class Terminals {
         return links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a terminal object. Will always contain the string `terminal` for this endpoint.
@@ -291,6 +296,7 @@ public class Terminals {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Indicates the response contains a terminal object. Will always contain the string `terminal` for this endpoint.
@@ -352,6 +358,7 @@ public class Terminals {
         return this;
     }
 
+
     /**
      * The brand of the terminal.
      * 
@@ -374,6 +381,7 @@ public class Terminals {
         return this;
     }
 
+
     /**
      * The model of the terminal. For example for a PAX A920, this field's value will be `A920`.
      * 
@@ -393,6 +401,7 @@ public class Terminals {
         this.serialNumber = Optional.ofNullable(serialNumber);
         return this;
     }
+
 
     /**
      * The serial number of the terminal. The serial number is provided at terminal creation time.
@@ -450,7 +459,6 @@ public class Terminals {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -479,18 +487,10 @@ public class Terminals {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            mode,
-            description,
-            status,
-            brand,
-            model,
-            serialNumber,
-            currency,
-            profileId,
-            createdAt,
-            updatedAt,
+            resource, id, mode,
+            description, status, brand,
+            model, serialNumber, currency,
+            profileId, createdAt, updatedAt,
             links);
     }
     
@@ -511,38 +511,40 @@ public class Terminals {
                 "updatedAt", updatedAt,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private String id;
- 
+
         private String mode;
- 
+
         private String description;
- 
+
         private String status;
- 
+
         private Optional<String> brand = Optional.empty();
- 
+
         private Optional<String> model = Optional.empty();
- 
+
         private Optional<String> serialNumber = Optional.empty();
- 
+
         private String currency;
- 
+
         private String profileId;
- 
+
         private String createdAt;
- 
+
         private String updatedAt;
- 
+
         private ListTerminalsTerminalsLinks links;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a terminal object. Will always contain the string `terminal` for this endpoint.
@@ -562,6 +564,7 @@ public class Terminals {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this terminal. Example: `term_7MgL4wea46qkRcoTZjWEH`.
          */
@@ -570,6 +573,7 @@ public class Terminals {
             this.id = id;
             return this;
         }
+
 
         /**
          * Whether this entity was created in live mode or in test mode.
@@ -582,6 +586,7 @@ public class Terminals {
             return this;
         }
 
+
         /**
          * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it may be visible on the device itself depending on the device.
          */
@@ -590,6 +595,7 @@ public class Terminals {
             this.description = description;
             return this;
         }
+
 
         /**
          * The status of the terminal.
@@ -601,6 +607,7 @@ public class Terminals {
             this.status = status;
             return this;
         }
+
 
         /**
          * The brand of the terminal.
@@ -624,6 +631,7 @@ public class Terminals {
             return this;
         }
 
+
         /**
          * The model of the terminal. For example for a PAX A920, this field's value will be `A920`.
          * 
@@ -646,6 +654,7 @@ public class Terminals {
             return this;
         }
 
+
         /**
          * The serial number of the terminal. The serial number is provided at terminal creation time.
          */
@@ -664,6 +673,7 @@ public class Terminals {
             return this;
         }
 
+
         /**
          * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a specific currency, chosen during setup.
          */
@@ -672,6 +682,7 @@ public class Terminals {
             this.currency = currency;
             return this;
         }
+
 
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
@@ -684,6 +695,7 @@ public class Terminals {
             return this;
         }
 
+
         /**
          * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
          */
@@ -692,6 +704,7 @@ public class Terminals {
             this.createdAt = createdAt;
             return this;
         }
+
 
         /**
          * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -702,6 +715,7 @@ public class Terminals {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -710,26 +724,20 @@ public class Terminals {
             this.links = links;
             return this;
         }
-        
+
         public Terminals build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new Terminals(
-                resource,
-                id,
-                mode,
-                description,
-                status,
-                brand,
-                model,
-                serialNumber,
-                currency,
-                profileId,
-                createdAt,
-                updatedAt,
+                resource, id, mode,
+                description, status, brand,
+                model, serialNumber, currency,
+                profileId, createdAt, updatedAt,
                 links);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

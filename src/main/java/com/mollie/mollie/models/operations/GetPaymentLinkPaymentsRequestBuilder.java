@@ -48,8 +48,8 @@ public class GetPaymentLinkPaymentsRequestBuilder {
 
         RequestOperation<GetPaymentLinkPaymentsRequest, GetPaymentLinkPaymentsResponse> operation
               = new GetPaymentLinkPaymentsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

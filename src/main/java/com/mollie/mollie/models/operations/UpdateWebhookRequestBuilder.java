@@ -71,8 +71,8 @@ public class UpdateWebhookRequestBuilder {
 
         RequestOperation<UpdateWebhookRequest, UpdateWebhookResponse> operation
               = new UpdateWebhookOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         UpdateWebhookRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

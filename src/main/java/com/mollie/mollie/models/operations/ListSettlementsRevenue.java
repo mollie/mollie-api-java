@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListSettlementsRevenue {
 
+public class ListSettlementsRevenue {
     /**
      * A description of the revenue subtotal
      */
@@ -85,7 +85,8 @@ public class ListSettlementsRevenue {
     }
     
     public ListSettlementsRevenue() {
-        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -141,9 +142,10 @@ public class ListSettlementsRevenue {
         return (Optional<ListSettlementsAmountGross>) amountGross;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A description of the revenue subtotal
@@ -153,6 +155,7 @@ public class ListSettlementsRevenue {
         this.description = Optional.ofNullable(description);
         return this;
     }
+
 
     /**
      * A description of the revenue subtotal
@@ -194,6 +197,7 @@ public class ListSettlementsRevenue {
         return this;
     }
 
+
     /**
      * The number of payments
      */
@@ -211,6 +215,7 @@ public class ListSettlementsRevenue {
         this.amountNet = Optional.ofNullable(amountNet);
         return this;
     }
+
 
     /**
      * The net total of received funds, i.e. excluding VAT
@@ -230,6 +235,7 @@ public class ListSettlementsRevenue {
         return this;
     }
 
+
     /**
      * The applicable VAT
      */
@@ -248,6 +254,7 @@ public class ListSettlementsRevenue {
         return this;
     }
 
+
     /**
      * The gross total of received funds, i.e. including VAT
      */
@@ -257,7 +264,6 @@ public class ListSettlementsRevenue {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -279,12 +285,8 @@ public class ListSettlementsRevenue {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            description,
-            method,
-            count,
-            amountNet,
-            amountVat,
-            amountGross);
+            description, method, count,
+            amountNet, amountVat, amountGross);
     }
     
     @Override
@@ -297,24 +299,26 @@ public class ListSettlementsRevenue {
                 "amountVat", amountVat,
                 "amountGross", amountGross);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private JsonNullable<String> method = JsonNullable.undefined();
- 
+
         private Optional<Long> count = Optional.empty();
- 
+
         private Optional<? extends ListSettlementsAmountNet> amountNet = Optional.empty();
- 
+
         private Optional<? extends ListSettlementsAmountVat> amountVat = Optional.empty();
- 
+
         private Optional<? extends ListSettlementsAmountGross> amountGross = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A description of the revenue subtotal
@@ -333,6 +337,7 @@ public class ListSettlementsRevenue {
             this.description = description;
             return this;
         }
+
 
         /**
          * The payment method, if applicable
@@ -356,6 +361,7 @@ public class ListSettlementsRevenue {
             return this;
         }
 
+
         /**
          * The number of payments
          */
@@ -373,6 +379,7 @@ public class ListSettlementsRevenue {
             this.count = count;
             return this;
         }
+
 
         /**
          * The net total of received funds, i.e. excluding VAT
@@ -392,6 +399,7 @@ public class ListSettlementsRevenue {
             return this;
         }
 
+
         /**
          * The applicable VAT
          */
@@ -410,6 +418,7 @@ public class ListSettlementsRevenue {
             return this;
         }
 
+
         /**
          * The gross total of received funds, i.e. including VAT
          */
@@ -427,15 +436,13 @@ public class ListSettlementsRevenue {
             this.amountGross = amountGross;
             return this;
         }
-        
+
         public ListSettlementsRevenue build() {
+
             return new ListSettlementsRevenue(
-                description,
-                method,
-                count,
-                amountNet,
-                amountVat,
-                amountGross);
+                description, method, count,
+                amountNet, amountVat, amountGross);
         }
+
     }
 }

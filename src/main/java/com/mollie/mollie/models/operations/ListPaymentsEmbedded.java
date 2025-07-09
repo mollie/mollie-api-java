@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class ListPaymentsEmbedded {
 
+public class ListPaymentsEmbedded {
     /**
      * An array of payment objects.
      */
@@ -44,9 +44,10 @@ public class ListPaymentsEmbedded {
         return (Optional<List<ListPaymentsPayments>>) payments;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An array of payment objects.
@@ -57,6 +58,7 @@ public class ListPaymentsEmbedded {
         return this;
     }
 
+
     /**
      * An array of payment objects.
      */
@@ -66,7 +68,6 @@ public class ListPaymentsEmbedded {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,14 +92,16 @@ public class ListPaymentsEmbedded {
         return Utils.toString(ListPaymentsEmbedded.class,
                 "payments", payments);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<ListPaymentsPayments>> payments = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An array of payment objects.
@@ -117,10 +120,12 @@ public class ListPaymentsEmbedded {
             this.payments = payments;
             return this;
         }
-        
+
         public ListPaymentsEmbedded build() {
+
             return new ListPaymentsEmbedded(
                 payments);
         }
+
     }
 }

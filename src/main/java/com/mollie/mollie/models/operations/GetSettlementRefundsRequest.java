@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetSettlementRefundsRequest {
 
+public class GetSettlementRefundsRequest {
     /**
      * Provide the ID of the related settlement.
      */
@@ -72,7 +72,8 @@ public class GetSettlementRefundsRequest {
     
     public GetSettlementRefundsRequest(
             String settlementId) {
-        this(settlementId, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(settlementId, Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -118,9 +119,10 @@ public class GetSettlementRefundsRequest {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the related settlement.
@@ -139,6 +141,7 @@ public class GetSettlementRefundsRequest {
         this.from = Optional.ofNullable(from);
         return this;
     }
+
 
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
@@ -207,7 +210,6 @@ public class GetSettlementRefundsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -228,11 +230,8 @@ public class GetSettlementRefundsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            settlementId,
-            from,
-            limit,
-            include,
-            testmode);
+            settlementId, from, limit,
+            include, testmode);
     }
     
     @Override
@@ -244,22 +243,24 @@ public class GetSettlementRefundsRequest {
                 "include", include,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String settlementId;
- 
+
         private Optional<String> from = Optional.empty();
- 
+
         private JsonNullable<Long> limit;
- 
+
         private JsonNullable<? extends GetSettlementRefundsQueryParamInclude> include = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the related settlement.
@@ -269,6 +270,7 @@ public class GetSettlementRefundsRequest {
             this.settlementId = settlementId;
             return this;
         }
+
 
         /**
          * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
@@ -288,6 +290,7 @@ public class GetSettlementRefundsRequest {
             return this;
         }
 
+
         /**
          * The maximum number of items to return. Defaults to 50 items.
          */
@@ -306,6 +309,7 @@ public class GetSettlementRefundsRequest {
             return this;
         }
 
+
         /**
          * This endpoint allows you to include additional information via the `include` query string parameter.
          */
@@ -323,6 +327,7 @@ public class GetSettlementRefundsRequest {
             this.include = include;
             return this;
         }
+
 
         /**
          * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
@@ -345,18 +350,17 @@ public class GetSettlementRefundsRequest {
             this.testmode = testmode;
             return this;
         }
-        
+
         public GetSettlementRefundsRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+
             return new GetSettlementRefundsRequest(
-                settlementId,
-                from,
-                limit,
-                include,
-                testmode);
+                settlementId, from, limit,
+                include, testmode);
         }
+
 
         private static final LazySingletonValue<JsonNullable<Long>> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(

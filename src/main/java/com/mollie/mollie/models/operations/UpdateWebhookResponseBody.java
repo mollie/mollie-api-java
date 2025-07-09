@@ -23,7 +23,6 @@ import java.util.Optional;
  * <p>The webhook object.
  */
 public class UpdateWebhookResponseBody {
-
     /**
      * Indicates the response contains a webhook subscription object. Will always contain the string `webhook` for this endpoint.
      */
@@ -123,7 +122,9 @@ public class UpdateWebhookResponseBody {
     }
     
     public UpdateWebhookResponseBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -203,9 +204,10 @@ public class UpdateWebhookResponseBody {
         return mode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a webhook subscription object. Will always contain the string `webhook` for this endpoint.
@@ -215,6 +217,7 @@ public class UpdateWebhookResponseBody {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Indicates the response contains a webhook subscription object. Will always contain the string `webhook` for this endpoint.
@@ -234,6 +237,7 @@ public class UpdateWebhookResponseBody {
         return this;
     }
 
+
     /**
      * The identifier uniquely referring to this subscription.
      */
@@ -251,6 +255,7 @@ public class UpdateWebhookResponseBody {
         this.url = Optional.ofNullable(url);
         return this;
     }
+
 
     /**
      * The subscription's events destination.
@@ -270,6 +275,7 @@ public class UpdateWebhookResponseBody {
         return this;
     }
 
+
     /**
      * The identifier uniquely referring to the profile that created the subscription.
      */
@@ -287,6 +293,7 @@ public class UpdateWebhookResponseBody {
         this.createdAt = Optional.ofNullable(createdAt);
         return this;
     }
+
 
     /**
      * The subscription's date time of creation.
@@ -306,6 +313,7 @@ public class UpdateWebhookResponseBody {
         return this;
     }
 
+
     /**
      * The subscription's name.
      */
@@ -323,6 +331,7 @@ public class UpdateWebhookResponseBody {
         this.eventTypes = Optional.ofNullable(eventTypes);
         return this;
     }
+
 
     /**
      * The events types that are subscribed.
@@ -343,6 +352,7 @@ public class UpdateWebhookResponseBody {
         this.status = Optional.ofNullable(status);
         return this;
     }
+
 
     /**
      * The subscription's current status.
@@ -366,6 +376,7 @@ public class UpdateWebhookResponseBody {
         return this;
     }
 
+
     /**
      * The subscription's mode.
      * 
@@ -377,7 +388,6 @@ public class UpdateWebhookResponseBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -402,15 +412,9 @@ public class UpdateWebhookResponseBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            url,
-            profileId,
-            createdAt,
-            name,
-            eventTypes,
-            status,
-            mode);
+            resource, id, url,
+            profileId, createdAt, name,
+            eventTypes, status, mode);
     }
     
     @Override
@@ -426,30 +430,32 @@ public class UpdateWebhookResponseBody {
                 "status", status,
                 "mode", mode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> url = Optional.empty();
- 
+
         private Optional<String> profileId = Optional.empty();
- 
+
         private Optional<String> createdAt = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<? extends List<String>> eventTypes = Optional.empty();
- 
+
         private Optional<String> status = Optional.empty();
- 
+
         private Optional<String> mode = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a webhook subscription object. Will always contain the string `webhook` for this endpoint.
@@ -469,6 +475,7 @@ public class UpdateWebhookResponseBody {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this subscription.
          */
@@ -486,6 +493,7 @@ public class UpdateWebhookResponseBody {
             this.id = id;
             return this;
         }
+
 
         /**
          * The subscription's events destination.
@@ -505,6 +513,7 @@ public class UpdateWebhookResponseBody {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to the profile that created the subscription.
          */
@@ -522,6 +531,7 @@ public class UpdateWebhookResponseBody {
             this.profileId = profileId;
             return this;
         }
+
 
         /**
          * The subscription's date time of creation.
@@ -541,6 +551,7 @@ public class UpdateWebhookResponseBody {
             return this;
         }
 
+
         /**
          * The subscription's name.
          */
@@ -559,6 +570,7 @@ public class UpdateWebhookResponseBody {
             return this;
         }
 
+
         /**
          * The events types that are subscribed.
          */
@@ -576,6 +588,7 @@ public class UpdateWebhookResponseBody {
             this.eventTypes = eventTypes;
             return this;
         }
+
 
         /**
          * The subscription's current status.
@@ -599,6 +612,7 @@ public class UpdateWebhookResponseBody {
             return this;
         }
 
+
         /**
          * The subscription's mode.
          * 
@@ -620,22 +634,18 @@ public class UpdateWebhookResponseBody {
             this.mode = mode;
             return this;
         }
-        
+
         public UpdateWebhookResponseBody build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new UpdateWebhookResponseBody(
-                resource,
-                id,
-                url,
-                profileId,
-                createdAt,
-                name,
-                eventTypes,
-                status,
-                mode);
+                resource, id, url,
+                profileId, createdAt, name,
+                eventTypes, status, mode);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

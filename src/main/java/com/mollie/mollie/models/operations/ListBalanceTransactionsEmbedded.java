@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class ListBalanceTransactionsEmbedded {
 
+public class ListBalanceTransactionsEmbedded {
     /**
      * An array of balance transaction objects.
      */
@@ -44,9 +44,10 @@ public class ListBalanceTransactionsEmbedded {
         return (Optional<List<BalanceTransactions>>) balanceTransactions;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An array of balance transaction objects.
@@ -57,6 +58,7 @@ public class ListBalanceTransactionsEmbedded {
         return this;
     }
 
+
     /**
      * An array of balance transaction objects.
      */
@@ -66,7 +68,6 @@ public class ListBalanceTransactionsEmbedded {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,14 +92,16 @@ public class ListBalanceTransactionsEmbedded {
         return Utils.toString(ListBalanceTransactionsEmbedded.class,
                 "balanceTransactions", balanceTransactions);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<BalanceTransactions>> balanceTransactions = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An array of balance transaction objects.
@@ -117,10 +120,12 @@ public class ListBalanceTransactionsEmbedded {
             this.balanceTransactions = balanceTransactions;
             return this;
         }
-        
+
         public ListBalanceTransactionsEmbedded build() {
+
             return new ListBalanceTransactionsEmbedded(
                 balanceTransactions);
         }
+
     }
 }

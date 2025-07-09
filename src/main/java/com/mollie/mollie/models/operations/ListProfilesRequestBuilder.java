@@ -87,8 +87,8 @@ public class ListProfilesRequestBuilder {
 
         RequestOperation<ListProfilesRequest, ListProfilesResponse> operation
               = new ListProfilesOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         ListProfilesRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

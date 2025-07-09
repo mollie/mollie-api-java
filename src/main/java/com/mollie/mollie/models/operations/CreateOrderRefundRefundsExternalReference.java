@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class CreateOrderRefundRefundsExternalReference {
 
+public class CreateOrderRefundRefundsExternalReference {
     /**
      * Specifies the reference type
      * 
@@ -63,9 +63,10 @@ public class CreateOrderRefundRefundsExternalReference {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Specifies the reference type
@@ -77,6 +78,7 @@ public class CreateOrderRefundRefundsExternalReference {
         this.type = Optional.ofNullable(type);
         return this;
     }
+
 
     /**
      * Specifies the reference type
@@ -98,6 +100,7 @@ public class CreateOrderRefundRefundsExternalReference {
         return this;
     }
 
+
     /**
      * Unique reference from the payment provider
      */
@@ -107,7 +110,6 @@ public class CreateOrderRefundRefundsExternalReference {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -125,8 +127,7 @@ public class CreateOrderRefundRefundsExternalReference {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id);
+            type, id);
     }
     
     @Override
@@ -135,16 +136,18 @@ public class CreateOrderRefundRefundsExternalReference {
                 "type", type,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> type = Optional.empty();
- 
+
         private Optional<String> id = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Specifies the reference type
@@ -168,6 +171,7 @@ public class CreateOrderRefundRefundsExternalReference {
             return this;
         }
 
+
         /**
          * Unique reference from the payment provider
          */
@@ -185,11 +189,12 @@ public class CreateOrderRefundRefundsExternalReference {
             this.id = id;
             return this;
         }
-        
+
         public CreateOrderRefundRefundsExternalReference build() {
+
             return new CreateOrderRefundRefundsExternalReference(
-                type,
-                id);
+                type, id);
         }
+
     }
 }

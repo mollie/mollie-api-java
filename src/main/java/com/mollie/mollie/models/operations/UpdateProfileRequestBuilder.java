@@ -65,8 +65,8 @@ public class UpdateProfileRequestBuilder {
 
         RequestOperation<UpdateProfileRequest, UpdateProfileResponse> operation
               = new UpdateProfileOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         UpdateProfileRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

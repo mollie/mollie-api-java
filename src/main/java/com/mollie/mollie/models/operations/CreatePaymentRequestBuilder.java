@@ -77,8 +77,8 @@ public class CreatePaymentRequestBuilder {
 
         RequestOperation<CreatePaymentRequest, CreatePaymentResponse> operation
               = new CreatePaymentOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         CreatePaymentRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

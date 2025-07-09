@@ -73,8 +73,8 @@ public class GetWebhookRequestBuilder {
 
         RequestOperation<GetWebhookRequest, GetWebhookResponse> operation
               = new GetWebhookOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         GetWebhookRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

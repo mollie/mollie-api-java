@@ -10,8 +10,8 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class ListAllMethodsLinks {
 
+public class ListAllMethodsLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -50,9 +50,10 @@ public class ListAllMethodsLinks {
         return documentation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -72,7 +73,6 @@ public class ListAllMethodsLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,8 +90,7 @@ public class ListAllMethodsLinks {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self,
-            documentation);
+            self, documentation);
     }
     
     @Override
@@ -100,16 +99,18 @@ public class ListAllMethodsLinks {
                 "self", self,
                 "documentation", documentation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private ListAllMethodsSelf self;
- 
+
         private ListAllMethodsDocumentation documentation;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -120,6 +121,7 @@ public class ListAllMethodsLinks {
             return this;
         }
 
+
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
@@ -128,11 +130,12 @@ public class ListAllMethodsLinks {
             this.documentation = documentation;
             return this;
         }
-        
+
         public ListAllMethodsLinks build() {
+
             return new ListAllMethodsLinks(
-                self,
-                documentation);
+                self, documentation);
         }
+
     }
 }

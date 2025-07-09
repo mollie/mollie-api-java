@@ -34,7 +34,6 @@ public class Captures {
     Captures(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Create capture
      * 
@@ -112,11 +111,10 @@ public class Captures {
                 .build();
         RequestOperation<CreateCaptureRequest, CreateCaptureResponse> operation
               = new CreateCaptureOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List captures
@@ -181,11 +179,10 @@ public class Captures {
             Optional<Options> options) throws Exception {
         RequestOperation<ListCapturesRequest, ListCapturesResponse> operation
               = new ListCapturesOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get capture
@@ -223,7 +220,8 @@ public class Captures {
     public GetCaptureResponse get(
             String paymentId,
             String captureId) throws Exception {
-        return get(paymentId, captureId, Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        return get(paymentId, captureId, Optional.empty(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -263,8 +261,8 @@ public class Captures {
                 .build();
         RequestOperation<GetCaptureRequest, GetCaptureResponse> operation
               = new GetCaptureOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

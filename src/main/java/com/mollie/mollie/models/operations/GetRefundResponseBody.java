@@ -24,7 +24,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>The payment object.
  */
 public class GetRefundResponseBody {
-
     /**
      * Indicates the response contains a refund object. Will always contain the string `refund` for this endpoint.
      */
@@ -114,6 +113,7 @@ public class GetRefundResponseBody {
     @JsonProperty("createdAt")
     private Optional<String> createdAt;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("externalReference")
     private Optional<? extends GetRefundExternalReference> externalReference;
@@ -185,7 +185,11 @@ public class GetRefundResponseBody {
     }
     
     public GetRefundResponseBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -321,9 +325,10 @@ public class GetRefundResponseBody {
         return (Optional<GetRefundLinks>) links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a refund object. Will always contain the string `refund` for this endpoint.
@@ -333,6 +338,7 @@ public class GetRefundResponseBody {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Indicates the response contains a refund object. Will always contain the string `refund` for this endpoint.
@@ -351,6 +357,7 @@ public class GetRefundResponseBody {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
@@ -372,6 +379,7 @@ public class GetRefundResponseBody {
         return this;
     }
 
+
     /**
      * Whether this entity was created in live mode or in test mode.
      * 
@@ -392,6 +400,7 @@ public class GetRefundResponseBody {
         return this;
     }
 
+
     /**
      * The description of the refund that may be shown to your customer, depending on the payment method used.
      */
@@ -409,6 +418,7 @@ public class GetRefundResponseBody {
         this.amount = Optional.ofNullable(amount);
         return this;
     }
+
 
     /**
      * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment amount.
@@ -480,6 +490,7 @@ public class GetRefundResponseBody {
         return this;
     }
 
+
     /**
      * The unique identifier of the payment this refund was created for. The full payment object can be retrieved via the payment URL in the `_links` object.
      */
@@ -518,6 +529,7 @@ public class GetRefundResponseBody {
         return this;
     }
 
+
     /**
      * Refunds may take some time to get confirmed.
      * 
@@ -538,6 +550,7 @@ public class GetRefundResponseBody {
         return this;
     }
 
+
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
@@ -552,6 +565,7 @@ public class GetRefundResponseBody {
         this.externalReference = Optional.ofNullable(externalReference);
         return this;
     }
+
 
     public GetRefundResponseBody withExternalReference(Optional<? extends GetRefundExternalReference> externalReference) {
         Utils.checkNotNull(externalReference, "externalReference");
@@ -598,6 +612,7 @@ public class GetRefundResponseBody {
         return this;
     }
 
+
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
@@ -607,7 +622,6 @@ public class GetRefundResponseBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -637,20 +651,11 @@ public class GetRefundResponseBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            mode,
-            description,
-            amount,
-            settlementAmount,
-            metadata,
-            paymentId,
-            settlementId,
-            status,
-            createdAt,
-            externalReference,
-            routingReversals,
-            links);
+            resource, id, mode,
+            description, amount, settlementAmount,
+            metadata, paymentId, settlementId,
+            status, createdAt, externalReference,
+            routingReversals, links);
     }
     
     @Override
@@ -671,40 +676,42 @@ public class GetRefundResponseBody {
                 "routingReversals", routingReversals,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> mode = Optional.empty();
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<? extends GetRefundAmount> amount = Optional.empty();
- 
+
         private JsonNullable<? extends GetRefundSettlementAmount> settlementAmount = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends GetRefundMetadata> metadata = JsonNullable.undefined();
- 
+
         private Optional<String> paymentId = Optional.empty();
- 
+
         private JsonNullable<String> settlementId = JsonNullable.undefined();
- 
+
         private Optional<String> status = Optional.empty();
- 
+
         private Optional<String> createdAt = Optional.empty();
- 
+
         private Optional<? extends GetRefundExternalReference> externalReference = Optional.empty();
- 
+
         private JsonNullable<? extends List<GetRefundRoutingReversals>> routingReversals = JsonNullable.undefined();
- 
+
         private Optional<? extends GetRefundLinks> links = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a refund object. Will always contain the string `refund` for this endpoint.
@@ -724,6 +731,7 @@ public class GetRefundResponseBody {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
          */
@@ -741,6 +749,7 @@ public class GetRefundResponseBody {
             this.id = id;
             return this;
         }
+
 
         /**
          * Whether this entity was created in live mode or in test mode.
@@ -764,6 +773,7 @@ public class GetRefundResponseBody {
             return this;
         }
 
+
         /**
          * The description of the refund that may be shown to your customer, depending on the payment method used.
          */
@@ -782,6 +792,7 @@ public class GetRefundResponseBody {
             return this;
         }
 
+
         /**
          * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment amount.
          */
@@ -799,6 +810,7 @@ public class GetRefundResponseBody {
             this.amount = amount;
             return this;
         }
+
 
         /**
          * This optional field will contain the approximate amount that will be deducted from your account balance, converted to the currency your account is settled in.
@@ -834,6 +846,7 @@ public class GetRefundResponseBody {
             return this;
         }
 
+
         /**
          * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
@@ -851,6 +864,7 @@ public class GetRefundResponseBody {
             this.metadata = metadata;
             return this;
         }
+
 
         /**
          * The unique identifier of the payment this refund was created for. The full payment object can be retrieved via the payment URL in the `_links` object.
@@ -870,6 +884,7 @@ public class GetRefundResponseBody {
             return this;
         }
 
+
         /**
          * The identifier referring to the settlement this refund was settled with. This field is omitted if the refund is not settled (yet).
          */
@@ -887,6 +902,7 @@ public class GetRefundResponseBody {
             this.settlementId = settlementId;
             return this;
         }
+
 
         /**
          * Refunds may take some time to get confirmed.
@@ -910,6 +926,7 @@ public class GetRefundResponseBody {
             return this;
         }
 
+
         /**
          * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
          */
@@ -928,6 +945,7 @@ public class GetRefundResponseBody {
             return this;
         }
 
+
         public Builder externalReference(GetRefundExternalReference externalReference) {
             Utils.checkNotNull(externalReference, "externalReference");
             this.externalReference = Optional.ofNullable(externalReference);
@@ -939,6 +957,7 @@ public class GetRefundResponseBody {
             this.externalReference = externalReference;
             return this;
         }
+
 
         /**
          * *This feature is only available to marketplace operators.*
@@ -970,6 +989,7 @@ public class GetRefundResponseBody {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -987,27 +1007,20 @@ public class GetRefundResponseBody {
             this.links = links;
             return this;
         }
-        
+
         public GetRefundResponseBody build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new GetRefundResponseBody(
-                resource,
-                id,
-                mode,
-                description,
-                amount,
-                settlementAmount,
-                metadata,
-                paymentId,
-                settlementId,
-                status,
-                createdAt,
-                externalReference,
-                routingReversals,
-                links);
+                resource, id, mode,
+                description, amount, settlementAmount,
+                metadata, paymentId, settlementId,
+                status, createdAt, externalReference,
+                routingReversals, links);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

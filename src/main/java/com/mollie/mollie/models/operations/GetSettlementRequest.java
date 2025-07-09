@@ -10,8 +10,8 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class GetSettlementRequest {
 
+public class GetSettlementRequest {
     /**
      * Provide the ID of the item you want to perform this operation on.
      */
@@ -33,9 +33,10 @@ public class GetSettlementRequest {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the ID of the item you want to perform this operation on.
@@ -46,7 +47,6 @@ public class GetSettlementRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -71,14 +71,16 @@ public class GetSettlementRequest {
         return Utils.toString(GetSettlementRequest.class,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the ID of the item you want to perform this operation on.
@@ -88,10 +90,12 @@ public class GetSettlementRequest {
             this.id = id;
             return this;
         }
-        
+
         public GetSettlementRequest build() {
+
             return new GetSettlementRequest(
                 id);
         }
+
     }
 }

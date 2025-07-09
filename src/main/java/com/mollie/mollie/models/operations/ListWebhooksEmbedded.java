@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class ListWebhooksEmbedded {
 
+public class ListWebhooksEmbedded {
     /**
      * A list of webhooks.
      */
@@ -44,9 +44,10 @@ public class ListWebhooksEmbedded {
         return (Optional<List<Webhooks>>) webhooks;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A list of webhooks.
@@ -57,6 +58,7 @@ public class ListWebhooksEmbedded {
         return this;
     }
 
+
     /**
      * A list of webhooks.
      */
@@ -66,7 +68,6 @@ public class ListWebhooksEmbedded {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,14 +92,16 @@ public class ListWebhooksEmbedded {
         return Utils.toString(ListWebhooksEmbedded.class,
                 "webhooks", webhooks);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<Webhooks>> webhooks = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A list of webhooks.
@@ -117,10 +120,12 @@ public class ListWebhooksEmbedded {
             this.webhooks = webhooks;
             return this;
         }
-        
+
         public ListWebhooksEmbedded build() {
+
             return new ListWebhooksEmbedded(
                 webhooks);
         }
+
     }
 }

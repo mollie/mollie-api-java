@@ -71,8 +71,8 @@ public class CreateOrderRefundRequestBuilder {
 
         RequestOperation<CreateOrderRefundRequest, CreateOrderRefundResponse> operation
               = new CreateOrderRefundOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         CreateOrderRefundRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

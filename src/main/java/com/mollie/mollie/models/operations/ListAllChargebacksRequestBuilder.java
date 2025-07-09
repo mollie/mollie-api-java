@@ -48,8 +48,8 @@ public class ListAllChargebacksRequestBuilder {
 
         RequestOperation<ListAllChargebacksRequest, ListAllChargebacksResponse> operation
               = new ListAllChargebacksOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

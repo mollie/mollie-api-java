@@ -71,8 +71,8 @@ public class DeletePaymentLinkRequestBuilder {
 
         RequestOperation<DeletePaymentLinkRequest, DeletePaymentLinkResponse> operation
               = new DeletePaymentLinkOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         DeletePaymentLinkRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

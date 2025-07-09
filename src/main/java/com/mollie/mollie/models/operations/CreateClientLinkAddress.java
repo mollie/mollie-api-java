@@ -19,7 +19,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Address of the organization.
  */
 public class CreateClientLinkAddress {
-
     /**
      * The street name and house number of the organization.
      */
@@ -65,7 +64,8 @@ public class CreateClientLinkAddress {
     
     public CreateClientLinkAddress(
             String country) {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), country);
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            country);
     }
 
     /**
@@ -100,9 +100,10 @@ public class CreateClientLinkAddress {
         return country;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The street name and house number of the organization.
@@ -167,7 +168,6 @@ public class CreateClientLinkAddress {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -187,9 +187,7 @@ public class CreateClientLinkAddress {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            streetAndNumber,
-            postalCode,
-            city,
+            streetAndNumber, postalCode, city,
             country);
     }
     
@@ -201,20 +199,22 @@ public class CreateClientLinkAddress {
                 "city", city,
                 "country", country);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> streetAndNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<String> postalCode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> city = JsonNullable.undefined();
- 
+
         private String country;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The street name and house number of the organization.
@@ -234,6 +234,7 @@ public class CreateClientLinkAddress {
             return this;
         }
 
+
         /**
          * The postal code of the organization. Required if a street address is provided and if the country has a postal code system.
          */
@@ -251,6 +252,7 @@ public class CreateClientLinkAddress {
             this.postalCode = postalCode;
             return this;
         }
+
 
         /**
          * The city of the organization. Required if a street address is provided.
@@ -270,6 +272,7 @@ public class CreateClientLinkAddress {
             return this;
         }
 
+
         /**
          * The country of the address in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
          */
@@ -278,13 +281,13 @@ public class CreateClientLinkAddress {
             this.country = country;
             return this;
         }
-        
+
         public CreateClientLinkAddress build() {
+
             return new CreateClientLinkAddress(
-                streetAndNumber,
-                postalCode,
-                city,
+                streetAndNumber, postalCode, city,
                 country);
         }
+
     }
 }

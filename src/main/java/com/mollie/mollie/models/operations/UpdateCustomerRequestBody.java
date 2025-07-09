@@ -15,8 +15,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class UpdateCustomerRequestBody {
 
+public class UpdateCustomerRequestBody {
     /**
      * The full name of the customer.
      */
@@ -74,7 +74,8 @@ public class UpdateCustomerRequestBody {
     }
     
     public UpdateCustomerRequestBody() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -120,9 +121,10 @@ public class UpdateCustomerRequestBody {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The full name of the customer.
@@ -218,7 +220,6 @@ public class UpdateCustomerRequestBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -239,11 +240,8 @@ public class UpdateCustomerRequestBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            email,
-            locale,
-            metadata,
-            testmode);
+            name, email, locale,
+            metadata, testmode);
     }
     
     @Override
@@ -255,22 +253,24 @@ public class UpdateCustomerRequestBody {
                 "metadata", metadata,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<String> email = JsonNullable.undefined();
- 
+
         private JsonNullable<String> locale = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends UpdateCustomerMetadata> metadata = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The full name of the customer.
@@ -290,6 +290,7 @@ public class UpdateCustomerRequestBody {
             return this;
         }
 
+
         /**
          * The email address of the customer.
          */
@@ -307,6 +308,7 @@ public class UpdateCustomerRequestBody {
             this.email = email;
             return this;
         }
+
 
         /**
          * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
@@ -326,6 +328,7 @@ public class UpdateCustomerRequestBody {
             return this;
         }
 
+
         /**
          * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
@@ -343,6 +346,7 @@ public class UpdateCustomerRequestBody {
             this.metadata = metadata;
             return this;
         }
+
 
         /**
          * Whether to create the entity in test mode or live mode.
@@ -365,14 +369,13 @@ public class UpdateCustomerRequestBody {
             this.testmode = testmode;
             return this;
         }
-        
+
         public UpdateCustomerRequestBody build() {
+
             return new UpdateCustomerRequestBody(
-                name,
-                email,
-                locale,
-                metadata,
-                testmode);
+                name, email, locale,
+                metadata, testmode);
         }
+
     }
 }

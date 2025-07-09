@@ -87,8 +87,8 @@ public class GetCustomerRequestBuilder {
 
         RequestOperation<GetCustomerRequest, GetCustomerResponse> operation
               = new GetCustomerOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         GetCustomerRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -54,8 +54,8 @@ public class CreateClientLinkRequestBuilder {
 
         RequestOperation<Optional<? extends CreateClientLinkRequestBody>, CreateClientLinkResponse> operation
               = new CreateClientLinkOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

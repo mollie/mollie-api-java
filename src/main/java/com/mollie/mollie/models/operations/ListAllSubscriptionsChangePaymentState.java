@@ -20,7 +20,6 @@ import java.lang.String;
  * <p>Secondly, for paid test mode payments. The payment state screen will then allow you to create a refund or chargeback for the test payment.
  */
 public class ListAllSubscriptionsChangePaymentState {
-
     /**
      * The actual URL string.
      */
@@ -59,9 +58,10 @@ public class ListAllSubscriptionsChangePaymentState {
         return type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The actual URL string.
@@ -81,7 +81,6 @@ public class ListAllSubscriptionsChangePaymentState {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -99,8 +98,7 @@ public class ListAllSubscriptionsChangePaymentState {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            href,
-            type);
+            href, type);
     }
     
     @Override
@@ -109,16 +107,18 @@ public class ListAllSubscriptionsChangePaymentState {
                 "href", href,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String href;
- 
+
         private String type;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The actual URL string.
@@ -129,6 +129,7 @@ public class ListAllSubscriptionsChangePaymentState {
             return this;
         }
 
+
         /**
          * The content type of the page or endpoint the URL points to.
          */
@@ -137,11 +138,12 @@ public class ListAllSubscriptionsChangePaymentState {
             this.type = type;
             return this;
         }
-        
+
         public ListAllSubscriptionsChangePaymentState build() {
+
             return new ListAllSubscriptionsChangePaymentState(
-                href,
-                type);
+                href, type);
         }
+
     }
 }

@@ -48,8 +48,8 @@ public class CreateProfileRequestBuilder {
 
         RequestOperation<CreateProfileRequestBody, CreateProfileResponse> operation
               = new CreateProfileOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

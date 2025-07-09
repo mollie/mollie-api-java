@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListPaymentsRouting {
 
+public class ListPaymentsRouting {
     /**
      * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
      */
@@ -104,7 +104,9 @@ public class ListPaymentsRouting {
             ListPaymentsDestination destination,
             String createdAt,
             ListPaymentsPaymentsResponseLinks links) {
-        this(resource, id, mode, amount, destination, createdAt, JsonNullable.undefined(), links);
+        this(resource, id, mode,
+            amount, destination, createdAt,
+            JsonNullable.undefined(), links);
     }
 
     /**
@@ -175,9 +177,10 @@ public class ListPaymentsRouting {
         return links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
@@ -266,7 +269,6 @@ public class ListPaymentsRouting {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -290,14 +292,9 @@ public class ListPaymentsRouting {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            mode,
-            amount,
-            destination,
-            createdAt,
-            releaseDate,
-            links);
+            resource, id, mode,
+            amount, destination, createdAt,
+            releaseDate, links);
     }
     
     @Override
@@ -312,28 +309,30 @@ public class ListPaymentsRouting {
                 "releaseDate", releaseDate,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String resource;
- 
+
         private String id;
- 
+
         private String mode;
- 
+
         private ListPaymentsPaymentsResponseAmount amount;
- 
+
         private ListPaymentsDestination destination;
- 
+
         private String createdAt;
- 
+
         private JsonNullable<String> releaseDate = JsonNullable.undefined();
- 
+
         private ListPaymentsPaymentsResponseLinks links;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
@@ -344,6 +343,7 @@ public class ListPaymentsRouting {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID. Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
          */
@@ -352,6 +352,7 @@ public class ListPaymentsRouting {
             this.id = id;
             return this;
         }
+
 
         /**
          * Whether this entity was created in live mode or in test mode.
@@ -364,6 +365,7 @@ public class ListPaymentsRouting {
             return this;
         }
 
+
         /**
          * The portion of the total payment amount being routed. Currently only `EUR` payments can be routed.
          */
@@ -372,6 +374,7 @@ public class ListPaymentsRouting {
             this.amount = amount;
             return this;
         }
+
 
         /**
          * The destination of this portion of the payment.
@@ -382,6 +385,7 @@ public class ListPaymentsRouting {
             return this;
         }
 
+
         /**
          * The date and time when the route was created. The date is given in ISO 8601 format.
          */
@@ -390,6 +394,7 @@ public class ListPaymentsRouting {
             this.createdAt = createdAt;
             return this;
         }
+
 
         /**
          * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
@@ -413,6 +418,7 @@ public class ListPaymentsRouting {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -421,17 +427,14 @@ public class ListPaymentsRouting {
             this.links = links;
             return this;
         }
-        
+
         public ListPaymentsRouting build() {
+
             return new ListPaymentsRouting(
-                resource,
-                id,
-                mode,
-                amount,
-                destination,
-                createdAt,
-                releaseDate,
-                links);
+                resource, id, mode,
+                amount, destination, createdAt,
+                releaseDate, links);
         }
+
     }
 }

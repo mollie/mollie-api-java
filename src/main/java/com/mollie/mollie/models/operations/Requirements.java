@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Requirements {
 
+public class Requirements {
     /**
      * The name of this requirement, referring to the task to be fulfilled by the organization to enable or re-enable the capability. The name is unique among other requirements of the same capability.
      */
@@ -40,6 +40,7 @@ public class Requirements {
     @JsonProperty("dueDate")
     private JsonNullable<String> dueDate;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
     private Optional<? extends ListCapabilitiesCapabilitiesLinks> links;
@@ -61,7 +62,8 @@ public class Requirements {
     }
     
     public Requirements() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -96,9 +98,10 @@ public class Requirements {
         return (Optional<ListCapabilitiesCapabilitiesLinks>) links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of this requirement, referring to the task to be fulfilled by the organization to enable or re-enable the capability. The name is unique among other requirements of the same capability.
@@ -108,6 +111,7 @@ public class Requirements {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The name of this requirement, referring to the task to be fulfilled by the organization to enable or re-enable the capability. The name is unique among other requirements of the same capability.
@@ -128,6 +132,7 @@ public class Requirements {
         this.status = Optional.ofNullable(status);
         return this;
     }
+
 
     /**
      * The status of the requirement depends on its due date. If no due date is given, the status will be `requested`.
@@ -164,13 +169,13 @@ public class Requirements {
         return this;
     }
 
+
     public Requirements withLinks(Optional<? extends ListCapabilitiesCapabilitiesLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -190,9 +195,7 @@ public class Requirements {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            status,
-            dueDate,
+            id, status, dueDate,
             links);
     }
     
@@ -204,20 +207,22 @@ public class Requirements {
                 "dueDate", dueDate,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> status = Optional.empty();
- 
+
         private JsonNullable<String> dueDate = JsonNullable.undefined();
- 
+
         private Optional<? extends ListCapabilitiesCapabilitiesLinks> links = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of this requirement, referring to the task to be fulfilled by the organization to enable or re-enable the capability. The name is unique among other requirements of the same capability.
@@ -236,6 +241,7 @@ public class Requirements {
             this.id = id;
             return this;
         }
+
 
         /**
          * The status of the requirement depends on its due date. If no due date is given, the status will be `requested`.
@@ -259,6 +265,7 @@ public class Requirements {
             return this;
         }
 
+
         /**
          * Due date until the requirement must be fulfilled, if any. The date is shown in ISO-8601 format.
          */
@@ -277,6 +284,7 @@ public class Requirements {
             return this;
         }
 
+
         public Builder links(ListCapabilitiesCapabilitiesLinks links) {
             Utils.checkNotNull(links, "links");
             this.links = Optional.ofNullable(links);
@@ -288,13 +296,13 @@ public class Requirements {
             this.links = links;
             return this;
         }
-        
+
         public Requirements build() {
+
             return new Requirements(
-                id,
-                status,
-                dueDate,
+                id, status, dueDate,
                 links);
         }
+
     }
 }

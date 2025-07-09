@@ -23,7 +23,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>The webhook event object.
  */
 public class GetWebhookEventResponseBody {
-
     /**
      * Indicates the response contains a webhook event object. Will always contain the string `event` for this endpoint.
      */
@@ -99,7 +98,9 @@ public class GetWebhookEventResponseBody {
     }
     
     public GetWebhookEventResponseBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -160,9 +161,10 @@ public class GetWebhookEventResponseBody {
         return (Optional<GetWebhookEventLinks>) links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a webhook event object. Will always contain the string `event` for this endpoint.
@@ -172,6 +174,7 @@ public class GetWebhookEventResponseBody {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Indicates the response contains a webhook event object. Will always contain the string `event` for this endpoint.
@@ -191,6 +194,7 @@ public class GetWebhookEventResponseBody {
         return this;
     }
 
+
     /**
      * The identifier uniquely referring to this event.
      */
@@ -208,6 +212,7 @@ public class GetWebhookEventResponseBody {
         this.type = Optional.ofNullable(type);
         return this;
     }
+
 
     /**
      * The event's type.
@@ -227,6 +232,7 @@ public class GetWebhookEventResponseBody {
         return this;
     }
 
+
     /**
      * The entity token that triggered the event
      */
@@ -244,6 +250,7 @@ public class GetWebhookEventResponseBody {
         this.createdAt = Optional.ofNullable(createdAt);
         return this;
     }
+
 
     /**
      * The event's date time of creation.
@@ -281,6 +288,7 @@ public class GetWebhookEventResponseBody {
         return this;
     }
 
+
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
@@ -290,7 +298,6 @@ public class GetWebhookEventResponseBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -313,12 +320,8 @@ public class GetWebhookEventResponseBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            id,
-            type,
-            entityId,
-            createdAt,
-            embedded,
+            resource, id, type,
+            entityId, createdAt, embedded,
             links);
     }
     
@@ -333,26 +336,28 @@ public class GetWebhookEventResponseBody {
                 "embedded", embedded,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> type = Optional.empty();
- 
+
         private Optional<String> entityId = Optional.empty();
- 
+
         private Optional<String> createdAt = Optional.empty();
- 
+
         private JsonNullable<? extends GetWebhookEventEmbedded> embedded = JsonNullable.undefined();
- 
+
         private Optional<? extends GetWebhookEventLinks> links = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a webhook event object. Will always contain the string `event` for this endpoint.
@@ -372,6 +377,7 @@ public class GetWebhookEventResponseBody {
             return this;
         }
 
+
         /**
          * The identifier uniquely referring to this event.
          */
@@ -389,6 +395,7 @@ public class GetWebhookEventResponseBody {
             this.id = id;
             return this;
         }
+
 
         /**
          * The event's type.
@@ -408,6 +415,7 @@ public class GetWebhookEventResponseBody {
             return this;
         }
 
+
         /**
          * The entity token that triggered the event
          */
@@ -425,6 +433,7 @@ public class GetWebhookEventResponseBody {
             this.entityId = entityId;
             return this;
         }
+
 
         /**
          * The event's date time of creation.
@@ -444,6 +453,7 @@ public class GetWebhookEventResponseBody {
             return this;
         }
 
+
         /**
          * Full payload of the event.
          */
@@ -462,6 +472,7 @@ public class GetWebhookEventResponseBody {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -479,20 +490,18 @@ public class GetWebhookEventResponseBody {
             this.links = links;
             return this;
         }
-        
+
         public GetWebhookEventResponseBody build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new GetWebhookEventResponseBody(
-                resource,
-                id,
-                type,
-                entityId,
-                createdAt,
-                embedded,
+                resource, id, type,
+                entityId, createdAt, embedded,
                 links);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

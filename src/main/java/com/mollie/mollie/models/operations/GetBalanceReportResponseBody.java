@@ -22,7 +22,6 @@ import java.util.Optional;
  * <p>The balance report object.
  */
 public class GetBalanceReportResponseBody {
-
     /**
      * Indicates the response contains a balance report object. Will always contain the string `balance-report` for this endpoint.
      */
@@ -130,7 +129,9 @@ public class GetBalanceReportResponseBody {
     }
     
     public GetBalanceReportResponseBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -221,9 +222,10 @@ public class GetBalanceReportResponseBody {
         return (Optional<GetBalanceReportLinks>) links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the response contains a balance report object. Will always contain the string `balance-report` for this endpoint.
@@ -233,6 +235,7 @@ public class GetBalanceReportResponseBody {
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     /**
      * Indicates the response contains a balance report object. Will always contain the string `balance-report` for this endpoint.
@@ -252,6 +255,7 @@ public class GetBalanceReportResponseBody {
         return this;
     }
 
+
     /**
      * The ID of the balance this report is generated for.
      */
@@ -269,6 +273,7 @@ public class GetBalanceReportResponseBody {
         this.timeZone = Optional.ofNullable(timeZone);
         return this;
     }
+
 
     /**
      * The time zone used for the from and until parameters. Currently only time zone `Europe/Amsterdam` is supported.
@@ -288,6 +293,7 @@ public class GetBalanceReportResponseBody {
         return this;
     }
 
+
     /**
      * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central European Time. This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 00:00:00 CET and onwards.
      */
@@ -305,6 +311,7 @@ public class GetBalanceReportResponseBody {
         this.until = Optional.ofNullable(until);
         return this;
     }
+
 
     /**
      * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time. This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31 23:59:59 CET.
@@ -329,6 +336,7 @@ public class GetBalanceReportResponseBody {
         this.grouping = Optional.ofNullable(grouping);
         return this;
     }
+
 
     /**
      * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped by status (e.g. `pending`, `available`), then by direction of movement (e.g. moved from pending to available), then by transaction type, and then by other sub-groupings where available (e.g. payment method).
@@ -370,6 +378,7 @@ public class GetBalanceReportResponseBody {
         return this;
     }
 
+
     /**
      * Totals are grouped according to the chosen grouping rule. The example response should give a good idea of what a typical grouping looks like.
      * 
@@ -404,6 +413,7 @@ public class GetBalanceReportResponseBody {
         return this;
     }
 
+
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
@@ -413,7 +423,6 @@ public class GetBalanceReportResponseBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -437,14 +446,9 @@ public class GetBalanceReportResponseBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource,
-            balanceId,
-            timeZone,
-            from,
-            until,
-            grouping,
-            totals,
-            links);
+            resource, balanceId, timeZone,
+            from, until, grouping,
+            totals, links);
     }
     
     @Override
@@ -459,28 +463,30 @@ public class GetBalanceReportResponseBody {
                 "totals", totals,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource;
- 
+
         private Optional<String> balanceId = Optional.empty();
- 
+
         private Optional<String> timeZone = Optional.empty();
- 
+
         private Optional<String> from = Optional.empty();
- 
+
         private Optional<String> until = Optional.empty();
- 
+
         private Optional<String> grouping = Optional.empty();
- 
+
         private Optional<? extends Totals> totals = Optional.empty();
- 
+
         private Optional<? extends GetBalanceReportLinks> links = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the response contains a balance report object. Will always contain the string `balance-report` for this endpoint.
@@ -500,6 +506,7 @@ public class GetBalanceReportResponseBody {
             return this;
         }
 
+
         /**
          * The ID of the balance this report is generated for.
          */
@@ -517,6 +524,7 @@ public class GetBalanceReportResponseBody {
             this.balanceId = balanceId;
             return this;
         }
+
 
         /**
          * The time zone used for the from and until parameters. Currently only time zone `Europe/Amsterdam` is supported.
@@ -536,6 +544,7 @@ public class GetBalanceReportResponseBody {
             return this;
         }
 
+
         /**
          * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central European Time. This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 00:00:00 CET and onwards.
          */
@@ -554,6 +563,7 @@ public class GetBalanceReportResponseBody {
             return this;
         }
 
+
         /**
          * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time. This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31 23:59:59 CET.
          */
@@ -571,6 +581,7 @@ public class GetBalanceReportResponseBody {
             this.until = until;
             return this;
         }
+
 
         /**
          * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped by status (e.g. `pending`, `available`), then by direction of movement (e.g. moved from pending to available), then by transaction type, and then by other sub-groupings where available (e.g. payment method).
@@ -601,6 +612,7 @@ public class GetBalanceReportResponseBody {
             this.grouping = grouping;
             return this;
         }
+
 
         /**
          * Totals are grouped according to the chosen grouping rule. The example response should give a good idea of what a typical grouping looks like.
@@ -652,6 +664,7 @@ public class GetBalanceReportResponseBody {
             return this;
         }
 
+
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
@@ -669,21 +682,18 @@ public class GetBalanceReportResponseBody {
             this.links = links;
             return this;
         }
-        
+
         public GetBalanceReportResponseBody build() {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+
             return new GetBalanceReportResponseBody(
-                resource,
-                balanceId,
-                timeZone,
-                from,
-                until,
-                grouping,
-                totals,
-                links);
+                resource, balanceId, timeZone,
+                from, until, grouping,
+                totals, links);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(

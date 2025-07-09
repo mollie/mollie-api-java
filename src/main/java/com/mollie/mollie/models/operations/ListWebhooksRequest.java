@@ -16,8 +16,8 @@ import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListWebhooksRequest {
 
+public class ListWebhooksRequest {
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
      */
@@ -74,7 +74,8 @@ public class ListWebhooksRequest {
     }
     
     public ListWebhooksRequest() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -123,9 +124,10 @@ public class ListWebhooksRequest {
         return testmode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
@@ -135,6 +137,7 @@ public class ListWebhooksRequest {
         this.from = Optional.ofNullable(from);
         return this;
     }
+
 
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
@@ -196,6 +199,7 @@ public class ListWebhooksRequest {
         return this;
     }
 
+
     /**
      * Used to filter out only the webhooks that are subscribed to certain types of events.
      * 
@@ -229,7 +233,6 @@ public class ListWebhooksRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -250,11 +253,8 @@ public class ListWebhooksRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            from,
-            limit,
-            sort,
-            eventTypes,
-            testmode);
+            from, limit, sort,
+            eventTypes, testmode);
     }
     
     @Override
@@ -266,22 +266,24 @@ public class ListWebhooksRequest {
                 "eventTypes", eventTypes,
                 "testmode", testmode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> from = Optional.empty();
- 
+
         private JsonNullable<Long> limit;
- 
+
         private JsonNullable<String> sort = JsonNullable.undefined();
- 
+
         private Optional<String> eventTypes = Optional.empty();
- 
+
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
@@ -301,6 +303,7 @@ public class ListWebhooksRequest {
             return this;
         }
 
+
         /**
          * The maximum number of items to return. Defaults to 50 items.
          */
@@ -318,6 +321,7 @@ public class ListWebhooksRequest {
             this.limit = limit;
             return this;
         }
+
 
         /**
          * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
@@ -341,6 +345,7 @@ public class ListWebhooksRequest {
             return this;
         }
 
+
         /**
          * Used to filter out only the webhooks that are subscribed to certain types of events.
          * 
@@ -363,6 +368,7 @@ public class ListWebhooksRequest {
             return this;
         }
 
+
         /**
          * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
          * 
@@ -384,18 +390,17 @@ public class ListWebhooksRequest {
             this.testmode = testmode;
             return this;
         }
-        
+
         public ListWebhooksRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+
             return new ListWebhooksRequest(
-                from,
-                limit,
-                sort,
-                eventTypes,
-                testmode);
+                from, limit, sort,
+                eventTypes, testmode);
         }
+
 
         private static final LazySingletonValue<JsonNullable<Long>> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(
