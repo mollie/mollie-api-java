@@ -18,7 +18,6 @@ import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -29,6 +28,7 @@ public class Terminals {
     Terminals(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List terminals
      * 
@@ -95,10 +95,8 @@ public class Terminals {
      * @throws Exception if the API call fails
      */
     public ListTerminalsResponse list(
-            Optional<String> from,
-            JsonNullable<Long> limit,
-            JsonNullable<String> sort,
-            JsonNullable<Boolean> testmode,
+            Optional<String> from, JsonNullable<Long> limit,
+            JsonNullable<String> sort, JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
         ListTerminalsRequest request =
             ListTerminalsRequest
@@ -109,9 +107,7 @@ public class Terminals {
                 .testmode(testmode)
                 .build();
         RequestOperation<ListTerminalsRequest, ListTerminalsResponse> operation
-              = new ListTerminalsOperation(
-                sdkConfiguration,
-                options);
+              = new ListTerminalsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -171,8 +167,7 @@ public class Terminals {
      * @throws Exception if the API call fails
      */
     public GetTerminalResponse get(
-            String terminalId,
-            JsonNullable<Boolean> testmode,
+            String terminalId, JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
         GetTerminalRequest request =
             GetTerminalRequest
@@ -181,9 +176,7 @@ public class Terminals {
                 .testmode(testmode)
                 .build();
         RequestOperation<GetTerminalRequest, GetTerminalResponse> operation
-              = new GetTerminalOperation(
-                sdkConfiguration,
-                options);
+              = new GetTerminalOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

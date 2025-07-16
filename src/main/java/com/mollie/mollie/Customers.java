@@ -42,7 +42,6 @@ import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -53,6 +52,7 @@ public class Customers {
     Customers(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Create customer
      * 
@@ -110,13 +110,9 @@ public class Customers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateCustomerResponse create(
-            Optional<? extends CreateCustomerRequestBody> request,
-            Optional<Options> options) throws Exception {
+    public CreateCustomerResponse create(Optional<? extends CreateCustomerRequestBody> request, Optional<Options> options) throws Exception {
         RequestOperation<Optional<? extends CreateCustomerRequestBody>, CreateCustomerResponse> operation
-              = new CreateCustomerOperation(
-                sdkConfiguration,
-                options);
+              = new CreateCustomerOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -186,10 +182,8 @@ public class Customers {
      * @throws Exception if the API call fails
      */
     public ListCustomersResponse list(
-            Optional<String> from,
-            JsonNullable<Long> limit,
-            JsonNullable<String> sort,
-            JsonNullable<Boolean> testmode,
+            Optional<String> from, JsonNullable<Long> limit,
+            JsonNullable<String> sort, JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
         ListCustomersRequest request =
             ListCustomersRequest
@@ -200,9 +194,7 @@ public class Customers {
                 .testmode(testmode)
                 .build();
         RequestOperation<ListCustomersRequest, ListCustomersResponse> operation
-              = new ListCustomersOperation(
-                sdkConfiguration,
-                options);
+              = new ListCustomersOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -258,10 +250,8 @@ public class Customers {
      * @throws Exception if the API call fails
      */
     public GetCustomerResponse get(
-            String customerId,
-            JsonNullable<? extends GetCustomerQueryParamInclude> include,
-            JsonNullable<Boolean> testmode,
-            Optional<Options> options) throws Exception {
+            String customerId, JsonNullable<? extends GetCustomerQueryParamInclude> include,
+            JsonNullable<Boolean> testmode, Optional<Options> options) throws Exception {
         GetCustomerRequest request =
             GetCustomerRequest
                 .builder()
@@ -270,9 +260,7 @@ public class Customers {
                 .testmode(testmode)
                 .build();
         RequestOperation<GetCustomerRequest, GetCustomerResponse> operation
-              = new GetCustomerOperation(
-                sdkConfiguration,
-                options);
+              = new GetCustomerOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -330,8 +318,7 @@ public class Customers {
      * @throws Exception if the API call fails
      */
     public UpdateCustomerResponse update(
-            String customerId,
-            Optional<? extends UpdateCustomerRequestBody> requestBody,
+            String customerId, Optional<? extends UpdateCustomerRequestBody> requestBody,
             Optional<Options> options) throws Exception {
         UpdateCustomerRequest request =
             UpdateCustomerRequest
@@ -340,9 +327,7 @@ public class Customers {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<UpdateCustomerRequest, UpdateCustomerResponse> operation
-              = new UpdateCustomerOperation(
-                sdkConfiguration,
-                options);
+              = new UpdateCustomerOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -394,8 +379,7 @@ public class Customers {
      * @throws Exception if the API call fails
      */
     public DeleteCustomerResponse delete(
-            String customerId,
-            Optional<? extends DeleteCustomerRequestBody> requestBody,
+            String customerId, Optional<? extends DeleteCustomerRequestBody> requestBody,
             Optional<Options> options) throws Exception {
         DeleteCustomerRequest request =
             DeleteCustomerRequest
@@ -404,9 +388,7 @@ public class Customers {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<DeleteCustomerRequest, DeleteCustomerResponse> operation
-              = new DeleteCustomerOperation(
-                sdkConfiguration,
-                options);
+              = new DeleteCustomerOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -491,8 +473,7 @@ public class Customers {
      * @throws Exception if the API call fails
      */
     public CreateCustomerPaymentResponse createPayment(
-            String customerId,
-            Optional<? extends CreateCustomerPaymentRequestBody> requestBody,
+            String customerId, Optional<? extends CreateCustomerPaymentRequestBody> requestBody,
             Optional<Options> options) throws Exception {
         CreateCustomerPaymentRequest request =
             CreateCustomerPaymentRequest
@@ -501,9 +482,7 @@ public class Customers {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CreateCustomerPaymentRequest, CreateCustomerPaymentResponse> operation
-              = new CreateCustomerPaymentOperation(
-                sdkConfiguration,
-                options);
+              = new CreateCustomerPaymentOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -559,13 +538,9 @@ public class Customers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListCustomerPaymentsResponse listPayments(
-            ListCustomerPaymentsRequest request,
-            Optional<Options> options) throws Exception {
+    public ListCustomerPaymentsResponse listPayments(ListCustomerPaymentsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListCustomerPaymentsRequest, ListCustomerPaymentsResponse> operation
-              = new ListCustomerPaymentsOperation(
-                sdkConfiguration,
-                options);
+              = new ListCustomerPaymentsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

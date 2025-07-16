@@ -115,9 +115,7 @@ public class ListBalancesRequestBuilder {
             .build());
 
         RequestOperation<ListBalancesRequest, ListBalancesResponse> operation
-              = new ListBalancesOperation(
-                sdkConfiguration,
-                options);
+              = new ListBalancesOperation(sdkConfiguration, options);
         ListBalancesRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -19,7 +19,6 @@ import com.mollie.mollie.operations.ListAllMethodsOperation;
 import com.mollie.mollie.operations.ListMethodsOperation;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -29,6 +28,7 @@ public class Methods {
     Methods(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List payment methods
      * 
@@ -105,13 +105,9 @@ public class Methods {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListMethodsResponse list(
-            ListMethodsRequest request,
-            Optional<Options> options) throws Exception {
+    public ListMethodsResponse list(ListMethodsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListMethodsRequest, ListMethodsResponse> operation
-              = new ListMethodsOperation(
-                sdkConfiguration,
-                options);
+              = new ListMethodsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -173,13 +169,9 @@ public class Methods {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListAllMethodsResponse all(
-            ListAllMethodsRequest request,
-            Optional<Options> options) throws Exception {
+    public ListAllMethodsResponse all(ListAllMethodsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListAllMethodsRequest, ListAllMethodsResponse> operation
-              = new ListAllMethodsOperation(
-                sdkConfiguration,
-                options);
+              = new ListAllMethodsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -253,13 +245,9 @@ public class Methods {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetMethodResponse get(
-            GetMethodRequest request,
-            Optional<Options> options) throws Exception {
+    public GetMethodResponse get(GetMethodRequest request, Optional<Options> options) throws Exception {
         RequestOperation<GetMethodRequest, GetMethodResponse> operation
-              = new GetMethodOperation(
-                sdkConfiguration,
-                options);
+              = new GetMethodOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

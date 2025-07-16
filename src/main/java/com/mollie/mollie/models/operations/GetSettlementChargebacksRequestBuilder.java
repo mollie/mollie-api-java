@@ -47,9 +47,7 @@ public class GetSettlementChargebacksRequestBuilder {
             .build());
 
         RequestOperation<GetSettlementChargebacksRequest, GetSettlementChargebacksResponse> operation
-              = new GetSettlementChargebacksOperation(
-                sdkConfiguration,
-                options);
+              = new GetSettlementChargebacksOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

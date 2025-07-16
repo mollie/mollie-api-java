@@ -40,9 +40,7 @@ public class GetCurrentOrganizationRequestBuilder {
             .build());
 
         RequestlessOperation<GetCurrentOrganizationResponse> operation
-            = new GetCurrentOrganizationOperation(
-                sdkConfiguration,
-                options);
+            = new GetCurrentOrganizationOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest());
     }

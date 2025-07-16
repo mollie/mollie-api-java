@@ -40,7 +40,6 @@ import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -51,6 +50,7 @@ public class Payments {
     Payments(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Create payment
      * 
@@ -122,8 +122,7 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public CreatePaymentResponse create(
-            JsonNullable<? extends Include> include,
-            Optional<? extends CreatePaymentRequestBody> requestBody,
+            JsonNullable<? extends Include> include, Optional<? extends CreatePaymentRequestBody> requestBody,
             Optional<Options> options) throws Exception {
         CreatePaymentRequest request =
             CreatePaymentRequest
@@ -132,9 +131,7 @@ public class Payments {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CreatePaymentRequest, CreatePaymentResponse> operation
-              = new CreatePaymentOperation(
-                sdkConfiguration,
-                options);
+              = new CreatePaymentOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -196,13 +193,9 @@ public class Payments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListPaymentsResponse list(
-            ListPaymentsRequest request,
-            Optional<Options> options) throws Exception {
+    public ListPaymentsResponse list(ListPaymentsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListPaymentsRequest, ListPaymentsResponse> operation
-              = new ListPaymentsOperation(
-                sdkConfiguration,
-                options);
+              = new ListPaymentsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -265,10 +258,8 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public GetPaymentResponse get(
-            String paymentId,
-            JsonNullable<? extends QueryParamInclude> include,
-            JsonNullable<? extends Embed> embed,
-            JsonNullable<Boolean> testmode,
+            String paymentId, JsonNullable<? extends QueryParamInclude> include,
+            JsonNullable<? extends Embed> embed, JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
         GetPaymentRequest request =
             GetPaymentRequest
@@ -279,9 +270,7 @@ public class Payments {
                 .testmode(testmode)
                 .build();
         RequestOperation<GetPaymentRequest, GetPaymentResponse> operation
-              = new GetPaymentOperation(
-                sdkConfiguration,
-                options);
+              = new GetPaymentOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -345,8 +334,7 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public UpdatePaymentResponse update(
-            String paymentId,
-            Optional<? extends UpdatePaymentRequestBody> requestBody,
+            String paymentId, Optional<? extends UpdatePaymentRequestBody> requestBody,
             Optional<Options> options) throws Exception {
         UpdatePaymentRequest request =
             UpdatePaymentRequest
@@ -355,9 +343,7 @@ public class Payments {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<UpdatePaymentRequest, UpdatePaymentResponse> operation
-              = new UpdatePaymentOperation(
-                sdkConfiguration,
-                options);
+              = new UpdatePaymentOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -427,8 +413,7 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public CancelPaymentResponse cancel(
-            String paymentId,
-            Optional<? extends CancelPaymentRequestBody> requestBody,
+            String paymentId, Optional<? extends CancelPaymentRequestBody> requestBody,
             Optional<Options> options) throws Exception {
         CancelPaymentRequest request =
             CancelPaymentRequest
@@ -437,9 +422,7 @@ public class Payments {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CancelPaymentRequest, CancelPaymentResponse> operation
-              = new CancelPaymentOperation(
-                sdkConfiguration,
-                options);
+              = new CancelPaymentOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -509,8 +492,7 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public ReleaseAuthorizationResponse releaseAuthorization(
-            String paymentId,
-            Optional<? extends ReleaseAuthorizationRequestBody> requestBody,
+            String paymentId, Optional<? extends ReleaseAuthorizationRequestBody> requestBody,
             Optional<Options> options) throws Exception {
         ReleaseAuthorizationRequest request =
             ReleaseAuthorizationRequest
@@ -519,9 +501,7 @@ public class Payments {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<ReleaseAuthorizationRequest, ReleaseAuthorizationResponse> operation
-              = new ReleaseAuthorizationOperation(
-                sdkConfiguration,
-                options);
+              = new ReleaseAuthorizationOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

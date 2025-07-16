@@ -47,9 +47,7 @@ public class GetMethodRequestBuilder {
             .build());
 
         RequestOperation<GetMethodRequest, GetMethodResponse> operation
-              = new GetMethodOperation(
-                sdkConfiguration,
-                options);
+              = new GetMethodOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

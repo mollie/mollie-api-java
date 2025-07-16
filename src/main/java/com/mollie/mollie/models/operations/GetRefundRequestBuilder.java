@@ -94,9 +94,7 @@ public class GetRefundRequestBuilder {
             .build());
 
         RequestOperation<GetRefundRequest, GetRefundResponse> operation
-              = new GetRefundOperation(
-                sdkConfiguration,
-                options);
+              = new GetRefundOperation(sdkConfiguration, options);
         GetRefundRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

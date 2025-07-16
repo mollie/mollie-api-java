@@ -70,9 +70,7 @@ public class CreateSubscriptionRequestBuilder {
             .build());
 
         RequestOperation<CreateSubscriptionRequest, CreateSubscriptionResponse> operation
-              = new CreateSubscriptionOperation(
-                sdkConfiguration,
-                options);
+              = new CreateSubscriptionOperation(sdkConfiguration, options);
         CreateSubscriptionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

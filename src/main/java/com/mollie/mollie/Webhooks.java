@@ -35,7 +35,6 @@ import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -46,6 +45,7 @@ public class Webhooks {
     Webhooks(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Create a webhook
      * 
@@ -91,13 +91,9 @@ public class Webhooks {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateWebhookResponse create(
-            Optional<? extends CreateWebhookRequestBody> request,
-            Optional<Options> options) throws Exception {
+    public CreateWebhookResponse create(Optional<? extends CreateWebhookRequestBody> request, Optional<Options> options) throws Exception {
         RequestOperation<Optional<? extends CreateWebhookRequestBody>, CreateWebhookResponse> operation
-              = new CreateWebhookOperation(
-                sdkConfiguration,
-                options);
+              = new CreateWebhookOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -147,13 +143,9 @@ public class Webhooks {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListWebhooksResponse list(
-            ListWebhooksRequest request,
-            Optional<Options> options) throws Exception {
+    public ListWebhooksResponse list(ListWebhooksRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListWebhooksRequest, ListWebhooksResponse> operation
-              = new ListWebhooksOperation(
-                sdkConfiguration,
-                options);
+              = new ListWebhooksOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -205,8 +197,7 @@ public class Webhooks {
      * @throws Exception if the API call fails
      */
     public UpdateWebhookResponse update(
-            String id,
-            Optional<? extends UpdateWebhookRequestBody> requestBody,
+            String id, Optional<? extends UpdateWebhookRequestBody> requestBody,
             Optional<Options> options) throws Exception {
         UpdateWebhookRequest request =
             UpdateWebhookRequest
@@ -215,9 +206,7 @@ public class Webhooks {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<UpdateWebhookRequest, UpdateWebhookResponse> operation
-              = new UpdateWebhookOperation(
-                sdkConfiguration,
-                options);
+              = new UpdateWebhookOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -271,8 +260,7 @@ public class Webhooks {
      * @throws Exception if the API call fails
      */
     public GetWebhookResponse get(
-            String id,
-            JsonNullable<Boolean> testmode,
+            String id, JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
         GetWebhookRequest request =
             GetWebhookRequest
@@ -281,9 +269,7 @@ public class Webhooks {
                 .testmode(testmode)
                 .build();
         RequestOperation<GetWebhookRequest, GetWebhookResponse> operation
-              = new GetWebhookOperation(
-                sdkConfiguration,
-                options);
+              = new GetWebhookOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -337,8 +323,7 @@ public class Webhooks {
      * @throws Exception if the API call fails
      */
     public DeleteWebhookResponse delete(
-            String id,
-            JsonNullable<Boolean> testmode,
+            String id, JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
         DeleteWebhookRequest request =
             DeleteWebhookRequest
@@ -347,9 +332,7 @@ public class Webhooks {
                 .testmode(testmode)
                 .build();
         RequestOperation<DeleteWebhookRequest, DeleteWebhookResponse> operation
-              = new DeleteWebhookOperation(
-                sdkConfiguration,
-                options);
+              = new DeleteWebhookOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -401,8 +384,7 @@ public class Webhooks {
      * @throws Exception if the API call fails
      */
     public TestWebhookResponse test(
-            String id,
-            Optional<? extends TestWebhookRequestBody> requestBody,
+            String id, Optional<? extends TestWebhookRequestBody> requestBody,
             Optional<Options> options) throws Exception {
         TestWebhookRequest request =
             TestWebhookRequest
@@ -411,9 +393,7 @@ public class Webhooks {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<TestWebhookRequest, TestWebhookResponse> operation
-              = new TestWebhookOperation(
-                sdkConfiguration,
-                options);
+              = new TestWebhookOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

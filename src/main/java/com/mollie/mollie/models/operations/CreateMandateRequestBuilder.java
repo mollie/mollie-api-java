@@ -70,9 +70,7 @@ public class CreateMandateRequestBuilder {
             .build());
 
         RequestOperation<CreateMandateRequest, CreateMandateResponse> operation
-              = new CreateMandateOperation(
-                sdkConfiguration,
-                options);
+              = new CreateMandateOperation(sdkConfiguration, options);
         CreateMandateRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

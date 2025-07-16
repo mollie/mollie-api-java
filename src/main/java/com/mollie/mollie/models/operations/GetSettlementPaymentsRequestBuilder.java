@@ -47,9 +47,7 @@ public class GetSettlementPaymentsRequestBuilder {
             .build());
 
         RequestOperation<GetSettlementPaymentsRequest, GetSettlementPaymentsResponse> operation
-              = new GetSettlementPaymentsOperation(
-                sdkConfiguration,
-                options);
+              = new GetSettlementPaymentsOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -78,9 +78,7 @@ public class RevokeMandateRequestBuilder {
             .build());
 
         RequestOperation<RevokeMandateRequest, RevokeMandateResponse> operation
-              = new RevokeMandateOperation(
-                sdkConfiguration,
-                options);
+              = new RevokeMandateOperation(sdkConfiguration, options);
         RevokeMandateRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

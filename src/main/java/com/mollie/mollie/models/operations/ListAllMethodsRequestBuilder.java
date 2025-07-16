@@ -47,9 +47,7 @@ public class ListAllMethodsRequestBuilder {
             .build());
 
         RequestOperation<ListAllMethodsRequest, ListAllMethodsResponse> operation
-              = new ListAllMethodsOperation(
-                sdkConfiguration,
-                options);
+              = new ListAllMethodsOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

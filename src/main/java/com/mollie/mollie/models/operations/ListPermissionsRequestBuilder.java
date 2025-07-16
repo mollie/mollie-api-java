@@ -40,9 +40,7 @@ public class ListPermissionsRequestBuilder {
             .build());
 
         RequestlessOperation<ListPermissionsResponse> operation
-            = new ListPermissionsOperation(
-                sdkConfiguration,
-                options);
+            = new ListPermissionsOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest());
     }

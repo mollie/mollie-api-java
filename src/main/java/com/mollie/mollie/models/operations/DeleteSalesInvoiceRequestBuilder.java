@@ -70,9 +70,7 @@ public class DeleteSalesInvoiceRequestBuilder {
             .build());
 
         RequestOperation<DeleteSalesInvoiceRequest, DeleteSalesInvoiceResponse> operation
-              = new DeleteSalesInvoiceOperation(
-                sdkConfiguration,
-                options);
+              = new DeleteSalesInvoiceOperation(sdkConfiguration, options);
         DeleteSalesInvoiceRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

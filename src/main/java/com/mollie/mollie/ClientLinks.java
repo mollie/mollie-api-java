@@ -11,7 +11,6 @@ import com.mollie.mollie.models.operations.CreateClientLinkResponse;
 import com.mollie.mollie.operations.CreateClientLinkOperation;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -21,6 +20,7 @@ public class ClientLinks {
     ClientLinks(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Create client link
      * 
@@ -168,13 +168,9 @@ public class ClientLinks {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateClientLinkResponse create(
-            Optional<? extends CreateClientLinkRequestBody> request,
-            Optional<Options> options) throws Exception {
+    public CreateClientLinkResponse create(Optional<? extends CreateClientLinkRequestBody> request, Optional<Options> options) throws Exception {
         RequestOperation<Optional<? extends CreateClientLinkRequestBody>, CreateClientLinkResponse> operation
-              = new CreateClientLinkOperation(
-                sdkConfiguration,
-                options);
+              = new CreateClientLinkOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

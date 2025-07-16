@@ -115,9 +115,7 @@ public class ListTerminalsRequestBuilder {
             .build());
 
         RequestOperation<ListTerminalsRequest, ListTerminalsResponse> operation
-              = new ListTerminalsOperation(
-                sdkConfiguration,
-                options);
+              = new ListTerminalsOperation(sdkConfiguration, options);
         ListTerminalsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

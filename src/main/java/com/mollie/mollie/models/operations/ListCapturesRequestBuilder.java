@@ -47,9 +47,7 @@ public class ListCapturesRequestBuilder {
             .build());
 
         RequestOperation<ListCapturesRequest, ListCapturesResponse> operation
-              = new ListCapturesOperation(
-                sdkConfiguration,
-                options);
+              = new ListCapturesOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

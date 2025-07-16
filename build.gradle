@@ -105,7 +105,7 @@ publishing {
             // https://github.com/gradle/gradle/issues/18619
             groupId = "com.mollie"
             artifactId = "mollie"
-            version = "0.12.0"
+            version = "0.13.0"
 
             from components.java
 

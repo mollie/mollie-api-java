@@ -70,9 +70,7 @@ public class DeletePaymentLinkRequestBuilder {
             .build());
 
         RequestOperation<DeletePaymentLinkRequest, DeletePaymentLinkResponse> operation
-              = new DeletePaymentLinkOperation(
-                sdkConfiguration,
-                options);
+              = new DeletePaymentLinkOperation(sdkConfiguration, options);
         DeletePaymentLinkRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

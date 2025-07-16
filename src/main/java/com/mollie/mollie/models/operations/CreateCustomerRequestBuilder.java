@@ -53,9 +53,7 @@ public class CreateCustomerRequestBuilder {
             .build());
 
         RequestOperation<Optional<? extends CreateCustomerRequestBody>, CreateCustomerResponse> operation
-              = new CreateCustomerOperation(
-                sdkConfiguration,
-                options);
+              = new CreateCustomerOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

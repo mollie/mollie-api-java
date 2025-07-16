@@ -70,9 +70,7 @@ public class DeleteCustomerRequestBuilder {
             .build());
 
         RequestOperation<DeleteCustomerRequest, DeleteCustomerResponse> operation
-              = new DeleteCustomerOperation(
-                sdkConfiguration,
-                options);
+              = new DeleteCustomerOperation(sdkConfiguration, options);
         DeleteCustomerRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -20,7 +20,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class BalanceTransactions {
     /**
-     * Indicates the response contains a balance transaction object. Will always contain the string `balance_transaction` for this endpoint.
+     * Indicates the response contains a balance transaction object. Will always contain the string `balance-transaction` for this endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
@@ -140,7 +140,7 @@ public class BalanceTransactions {
     }
 
     /**
-     * Indicates the response contains a balance transaction object. Will always contain the string `balance_transaction` for this endpoint.
+     * Indicates the response contains a balance transaction object. Will always contain the string `balance-transaction` for this endpoint.
      */
     @JsonIgnore
     public Optional<String> resource() {
@@ -243,7 +243,7 @@ public class BalanceTransactions {
 
 
     /**
-     * Indicates the response contains a balance transaction object. Will always contain the string `balance_transaction` for this endpoint.
+     * Indicates the response contains a balance transaction object. Will always contain the string `balance-transaction` for this endpoint.
      */
     public BalanceTransactions withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -253,7 +253,7 @@ public class BalanceTransactions {
 
 
     /**
-     * Indicates the response contains a balance transaction object. Will always contain the string `balance_transaction` for this endpoint.
+     * Indicates the response contains a balance transaction object. Will always contain the string `balance-transaction` for this endpoint.
      */
     public BalanceTransactions withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
@@ -519,7 +519,7 @@ public class BalanceTransactions {
 
 
         /**
-         * Indicates the response contains a balance transaction object. Will always contain the string `balance_transaction` for this endpoint.
+         * Indicates the response contains a balance transaction object. Will always contain the string `balance-transaction` for this endpoint.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -528,7 +528,7 @@ public class BalanceTransactions {
         }
 
         /**
-         * Indicates the response contains a balance transaction object. Will always contain the string `balance_transaction` for this endpoint.
+         * Indicates the response contains a balance transaction object. Will always contain the string `balance-transaction` for this endpoint.
          */
         public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
@@ -744,7 +744,7 @@ public class BalanceTransactions {
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
                 new LazySingletonValue<>(
                         "resource",
-                        "\"balance_transaction\"",
+                        "\"balance-transaction\"",
                         new TypeReference<Optional<String>>() {});
     }
 }

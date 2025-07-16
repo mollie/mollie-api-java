@@ -40,9 +40,7 @@ public class ListCapabilitiesRequestBuilder {
             .build());
 
         RequestlessOperation<ListCapabilitiesResponse> operation
-            = new ListCapabilitiesOperation(
-                sdkConfiguration,
-                options);
+            = new ListCapabilitiesOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest());
     }

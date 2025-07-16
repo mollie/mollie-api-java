@@ -10,7 +10,6 @@ import com.mollie.mollie.models.operations.ListCapabilitiesResponse;
 import com.mollie.mollie.operations.ListCapabilitiesOperation;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -20,6 +19,7 @@ public class Capabilities {
     Capabilities(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List capabilities
      * 
@@ -96,9 +96,7 @@ public class Capabilities {
      */
     public ListCapabilitiesResponse list(Optional<Options> options) throws Exception {
         RequestlessOperation<ListCapabilitiesResponse> operation
-            = new ListCapabilitiesOperation(
-                sdkConfiguration,
-                options);
+            = new ListCapabilitiesOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest());
     }
 

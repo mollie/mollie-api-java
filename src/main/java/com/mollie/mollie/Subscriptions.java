@@ -40,7 +40,6 @@ import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -51,6 +50,7 @@ public class Subscriptions {
     Subscriptions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Create subscription
      * 
@@ -141,8 +141,7 @@ public class Subscriptions {
      * @throws Exception if the API call fails
      */
     public CreateSubscriptionResponse create(
-            String customerId,
-            Optional<? extends CreateSubscriptionRequestBody> requestBody,
+            String customerId, Optional<? extends CreateSubscriptionRequestBody> requestBody,
             Optional<Options> options) throws Exception {
         CreateSubscriptionRequest request =
             CreateSubscriptionRequest
@@ -151,9 +150,7 @@ public class Subscriptions {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CreateSubscriptionRequest, CreateSubscriptionResponse> operation
-              = new CreateSubscriptionOperation(
-                sdkConfiguration,
-                options);
+              = new CreateSubscriptionOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -215,13 +212,9 @@ public class Subscriptions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListSubscriptionsResponse list(
-            ListSubscriptionsRequest request,
-            Optional<Options> options) throws Exception {
+    public ListSubscriptionsResponse list(ListSubscriptionsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListSubscriptionsRequest, ListSubscriptionsResponse> operation
-              = new ListSubscriptionsOperation(
-                sdkConfiguration,
-                options);
+              = new ListSubscriptionsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -258,9 +251,7 @@ public class Subscriptions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetSubscriptionResponse get(
-            String customerId,
-            String subscriptionId) throws Exception {
+    public GetSubscriptionResponse get(String customerId, String subscriptionId) throws Exception {
         return get(customerId, subscriptionId, JsonNullable.undefined(),
             Optional.empty());
     }
@@ -286,10 +277,8 @@ public class Subscriptions {
      * @throws Exception if the API call fails
      */
     public GetSubscriptionResponse get(
-            String customerId,
-            String subscriptionId,
-            JsonNullable<Boolean> testmode,
-            Optional<Options> options) throws Exception {
+            String customerId, String subscriptionId,
+            JsonNullable<Boolean> testmode, Optional<Options> options) throws Exception {
         GetSubscriptionRequest request =
             GetSubscriptionRequest
                 .builder()
@@ -298,9 +287,7 @@ public class Subscriptions {
                 .testmode(testmode)
                 .build();
         RequestOperation<GetSubscriptionRequest, GetSubscriptionResponse> operation
-              = new GetSubscriptionOperation(
-                sdkConfiguration,
-                options);
+              = new GetSubscriptionOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -345,9 +332,7 @@ public class Subscriptions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdateSubscriptionResponse update(
-            String customerId,
-            String subscriptionId) throws Exception {
+    public UpdateSubscriptionResponse update(String customerId, String subscriptionId) throws Exception {
         return update(customerId, subscriptionId, Optional.empty(),
             Optional.empty());
     }
@@ -375,10 +360,8 @@ public class Subscriptions {
      * @throws Exception if the API call fails
      */
     public UpdateSubscriptionResponse update(
-            String customerId,
-            String subscriptionId,
-            Optional<? extends UpdateSubscriptionRequestBody> requestBody,
-            Optional<Options> options) throws Exception {
+            String customerId, String subscriptionId,
+            Optional<? extends UpdateSubscriptionRequestBody> requestBody, Optional<Options> options) throws Exception {
         UpdateSubscriptionRequest request =
             UpdateSubscriptionRequest
                 .builder()
@@ -387,9 +370,7 @@ public class Subscriptions {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<UpdateSubscriptionRequest, UpdateSubscriptionResponse> operation
-              = new UpdateSubscriptionOperation(
-                sdkConfiguration,
-                options);
+              = new UpdateSubscriptionOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -426,9 +407,7 @@ public class Subscriptions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CancelSubscriptionResponse cancel(
-            String customerId,
-            String subscriptionId) throws Exception {
+    public CancelSubscriptionResponse cancel(String customerId, String subscriptionId) throws Exception {
         return cancel(customerId, subscriptionId, Optional.empty(),
             Optional.empty());
     }
@@ -452,10 +431,8 @@ public class Subscriptions {
      * @throws Exception if the API call fails
      */
     public CancelSubscriptionResponse cancel(
-            String customerId,
-            String subscriptionId,
-            Optional<? extends CancelSubscriptionRequestBody> requestBody,
-            Optional<Options> options) throws Exception {
+            String customerId, String subscriptionId,
+            Optional<? extends CancelSubscriptionRequestBody> requestBody, Optional<Options> options) throws Exception {
         CancelSubscriptionRequest request =
             CancelSubscriptionRequest
                 .builder()
@@ -464,9 +441,7 @@ public class Subscriptions {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CancelSubscriptionRequest, CancelSubscriptionResponse> operation
-              = new CancelSubscriptionOperation(
-                sdkConfiguration,
-                options);
+              = new CancelSubscriptionOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -528,13 +503,9 @@ public class Subscriptions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListAllSubscriptionsResponse all(
-            ListAllSubscriptionsRequest request,
-            Optional<Options> options) throws Exception {
+    public ListAllSubscriptionsResponse all(ListAllSubscriptionsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListAllSubscriptionsRequest, ListAllSubscriptionsResponse> operation
-              = new ListAllSubscriptionsOperation(
-                sdkConfiguration,
-                options);
+              = new ListAllSubscriptionsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -596,13 +567,9 @@ public class Subscriptions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListSubscriptionPaymentsResponse listPayments(
-            ListSubscriptionPaymentsRequest request,
-            Optional<Options> options) throws Exception {
+    public ListSubscriptionPaymentsResponse listPayments(ListSubscriptionPaymentsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListSubscriptionPaymentsRequest, ListSubscriptionPaymentsResponse> operation
-              = new ListSubscriptionPaymentsOperation(
-                sdkConfiguration,
-                options);
+              = new ListSubscriptionPaymentsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

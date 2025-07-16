@@ -70,9 +70,7 @@ public class ReleaseAuthorizationRequestBuilder {
             .build());
 
         RequestOperation<ReleaseAuthorizationRequest, ReleaseAuthorizationResponse> operation
-              = new ReleaseAuthorizationOperation(
-                sdkConfiguration,
-                options);
+              = new ReleaseAuthorizationOperation(sdkConfiguration, options);
         ReleaseAuthorizationRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -27,7 +27,6 @@ import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -38,6 +37,7 @@ public class Mandates {
     Mandates(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Create mandate
      * 
@@ -98,8 +98,7 @@ public class Mandates {
      * @throws Exception if the API call fails
      */
     public CreateMandateResponse create(
-            String customerId,
-            Optional<? extends CreateMandateRequestBody> requestBody,
+            String customerId, Optional<? extends CreateMandateRequestBody> requestBody,
             Optional<Options> options) throws Exception {
         CreateMandateRequest request =
             CreateMandateRequest
@@ -108,9 +107,7 @@ public class Mandates {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CreateMandateRequest, CreateMandateResponse> operation
-              = new CreateMandateOperation(
-                sdkConfiguration,
-                options);
+              = new CreateMandateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -172,13 +169,9 @@ public class Mandates {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListMandatesResponse list(
-            ListMandatesRequest request,
-            Optional<Options> options) throws Exception {
+    public ListMandatesResponse list(ListMandatesRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListMandatesRequest, ListMandatesResponse> operation
-              = new ListMandatesOperation(
-                sdkConfiguration,
-                options);
+              = new ListMandatesOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -215,9 +208,7 @@ public class Mandates {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetMandateResponse get(
-            String customerId,
-            String mandateId) throws Exception {
+    public GetMandateResponse get(String customerId, String mandateId) throws Exception {
         return get(customerId, mandateId, JsonNullable.undefined(),
             Optional.empty());
     }
@@ -243,10 +234,8 @@ public class Mandates {
      * @throws Exception if the API call fails
      */
     public GetMandateResponse get(
-            String customerId,
-            String mandateId,
-            JsonNullable<Boolean> testmode,
-            Optional<Options> options) throws Exception {
+            String customerId, String mandateId,
+            JsonNullable<Boolean> testmode, Optional<Options> options) throws Exception {
         GetMandateRequest request =
             GetMandateRequest
                 .builder()
@@ -255,9 +244,7 @@ public class Mandates {
                 .testmode(testmode)
                 .build();
         RequestOperation<GetMandateRequest, GetMandateResponse> operation
-              = new GetMandateOperation(
-                sdkConfiguration,
-                options);
+              = new GetMandateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -294,9 +281,7 @@ public class Mandates {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public RevokeMandateResponse revoke(
-            String customerId,
-            String mandateId) throws Exception {
+    public RevokeMandateResponse revoke(String customerId, String mandateId) throws Exception {
         return revoke(customerId, mandateId, Optional.empty(),
             Optional.empty());
     }
@@ -320,10 +305,8 @@ public class Mandates {
      * @throws Exception if the API call fails
      */
     public RevokeMandateResponse revoke(
-            String customerId,
-            String mandateId,
-            Optional<? extends RevokeMandateRequestBody> requestBody,
-            Optional<Options> options) throws Exception {
+            String customerId, String mandateId,
+            Optional<? extends RevokeMandateRequestBody> requestBody, Optional<Options> options) throws Exception {
         RevokeMandateRequest request =
             RevokeMandateRequest
                 .builder()
@@ -332,9 +315,7 @@ public class Mandates {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<RevokeMandateRequest, RevokeMandateResponse> operation
-              = new RevokeMandateOperation(
-                sdkConfiguration,
-                options);
+              = new RevokeMandateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

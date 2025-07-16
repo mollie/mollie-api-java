@@ -17,7 +17,6 @@ import com.mollie.mollie.operations.PaymentListRoutesOperation;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -27,6 +26,7 @@ public class DelayedRouting {
     DelayedRouting(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Create a delayed route
      * 
@@ -75,8 +75,7 @@ public class DelayedRouting {
      * @throws Exception if the API call fails
      */
     public PaymentCreateRouteResponse create(
-            String paymentId,
-            Optional<? extends PaymentCreateRouteRequestBody> requestBody,
+            String paymentId, Optional<? extends PaymentCreateRouteRequestBody> requestBody,
             Optional<Options> options) throws Exception {
         PaymentCreateRouteRequest request =
             PaymentCreateRouteRequest
@@ -85,9 +84,7 @@ public class DelayedRouting {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<PaymentCreateRouteRequest, PaymentCreateRouteResponse> operation
-              = new PaymentCreateRouteOperation(
-                sdkConfiguration,
-                options);
+              = new PaymentCreateRouteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -137,18 +134,14 @@ public class DelayedRouting {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PaymentListRoutesResponse list(
-            String paymentId,
-            Optional<Options> options) throws Exception {
+    public PaymentListRoutesResponse list(String paymentId, Optional<Options> options) throws Exception {
         PaymentListRoutesRequest request =
             PaymentListRoutesRequest
                 .builder()
                 .paymentId(paymentId)
                 .build();
         RequestOperation<PaymentListRoutesRequest, PaymentListRoutesResponse> operation
-              = new PaymentListRoutesOperation(
-                sdkConfiguration,
-                options);
+              = new PaymentListRoutesOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

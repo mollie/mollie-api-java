@@ -20,7 +20,6 @@ import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -31,6 +30,7 @@ public class Organizations {
     Organizations(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Get organization
      * 
@@ -93,8 +93,7 @@ public class Organizations {
      * @throws Exception if the API call fails
      */
     public GetOrganizationResponse get(
-            String id,
-            JsonNullable<Boolean> testmode,
+            String id, JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
         GetOrganizationRequest request =
             GetOrganizationRequest
@@ -103,9 +102,7 @@ public class Organizations {
                 .testmode(testmode)
                 .build();
         RequestOperation<GetOrganizationRequest, GetOrganizationResponse> operation
-              = new GetOrganizationOperation(
-                sdkConfiguration,
-                options);
+              = new GetOrganizationOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -161,9 +158,7 @@ public class Organizations {
      */
     public GetCurrentOrganizationResponse getCurrent(Optional<Options> options) throws Exception {
         RequestlessOperation<GetCurrentOrganizationResponse> operation
-            = new GetCurrentOrganizationOperation(
-                sdkConfiguration,
-                options);
+            = new GetCurrentOrganizationOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -213,9 +208,7 @@ public class Organizations {
      */
     public GetPartnerStatusResponse getPartner(Optional<Options> options) throws Exception {
         RequestlessOperation<GetPartnerStatusResponse> operation
-            = new GetPartnerStatusOperation(
-                sdkConfiguration,
-                options);
+            = new GetPartnerStatusOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest());
     }
 

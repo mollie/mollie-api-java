@@ -72,9 +72,7 @@ public class GetPermissionRequestBuilder {
             .build());
 
         RequestOperation<GetPermissionRequest, GetPermissionResponse> operation
-              = new GetPermissionOperation(
-                sdkConfiguration,
-                options);
+              = new GetPermissionOperation(sdkConfiguration, options);
         GetPermissionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

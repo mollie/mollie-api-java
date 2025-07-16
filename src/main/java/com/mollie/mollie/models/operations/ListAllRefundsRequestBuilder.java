@@ -47,9 +47,7 @@ public class ListAllRefundsRequestBuilder {
             .build());
 
         RequestOperation<ListAllRefundsRequest, ListAllRefundsResponse> operation
-              = new ListAllRefundsOperation(
-                sdkConfiguration,
-                options);
+              = new ListAllRefundsOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -23,7 +23,6 @@ import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -34,6 +33,7 @@ public class Captures {
     Captures(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Create capture
      * 
@@ -100,8 +100,7 @@ public class Captures {
      * @throws Exception if the API call fails
      */
     public CreateCaptureResponse create(
-            String paymentId,
-            Optional<? extends CreateCaptureRequestBody> requestBody,
+            String paymentId, Optional<? extends CreateCaptureRequestBody> requestBody,
             Optional<Options> options) throws Exception {
         CreateCaptureRequest request =
             CreateCaptureRequest
@@ -110,9 +109,7 @@ public class Captures {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CreateCaptureRequest, CreateCaptureResponse> operation
-              = new CreateCaptureOperation(
-                sdkConfiguration,
-                options);
+              = new CreateCaptureOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -174,13 +171,9 @@ public class Captures {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListCapturesResponse list(
-            ListCapturesRequest request,
-            Optional<Options> options) throws Exception {
+    public ListCapturesResponse list(ListCapturesRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListCapturesRequest, ListCapturesResponse> operation
-              = new ListCapturesOperation(
-                sdkConfiguration,
-                options);
+              = new ListCapturesOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -217,9 +210,7 @@ public class Captures {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetCaptureResponse get(
-            String paymentId,
-            String captureId) throws Exception {
+    public GetCaptureResponse get(String paymentId, String captureId) throws Exception {
         return get(paymentId, captureId, Optional.empty(),
             JsonNullable.undefined(), Optional.empty());
     }
@@ -246,10 +237,8 @@ public class Captures {
      * @throws Exception if the API call fails
      */
     public GetCaptureResponse get(
-            String paymentId,
-            String captureId,
-            Optional<? extends GetCaptureQueryParamEmbed> embed,
-            JsonNullable<Boolean> testmode,
+            String paymentId, String captureId,
+            Optional<? extends GetCaptureQueryParamEmbed> embed, JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
         GetCaptureRequest request =
             GetCaptureRequest
@@ -260,9 +249,7 @@ public class Captures {
                 .testmode(testmode)
                 .build();
         RequestOperation<GetCaptureRequest, GetCaptureResponse> operation
-              = new GetCaptureOperation(
-                sdkConfiguration,
-                options);
+              = new GetCaptureOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

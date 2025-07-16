@@ -53,9 +53,7 @@ public class CreateClientLinkRequestBuilder {
             .build());
 
         RequestOperation<Optional<? extends CreateClientLinkRequestBody>, CreateClientLinkResponse> operation
-              = new CreateClientLinkOperation(
-                sdkConfiguration,
-                options);
+              = new CreateClientLinkOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

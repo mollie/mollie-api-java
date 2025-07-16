@@ -70,9 +70,7 @@ public class CancelPaymentRequestBuilder {
             .build());
 
         RequestOperation<CancelPaymentRequest, CancelPaymentResponse> operation
-              = new CancelPaymentOperation(
-                sdkConfiguration,
-                options);
+              = new CancelPaymentOperation(sdkConfiguration, options);
         CancelPaymentRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

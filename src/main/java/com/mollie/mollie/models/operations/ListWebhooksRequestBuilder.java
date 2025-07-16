@@ -47,9 +47,7 @@ public class ListWebhooksRequestBuilder {
             .build());
 
         RequestOperation<ListWebhooksRequest, ListWebhooksResponse> operation
-              = new ListWebhooksOperation(
-                sdkConfiguration,
-                options);
+              = new ListWebhooksOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

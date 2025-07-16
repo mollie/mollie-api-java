@@ -70,9 +70,7 @@ public class PaymentCreateRouteRequestBuilder {
             .build());
 
         RequestOperation<PaymentCreateRouteRequest, PaymentCreateRouteResponse> operation
-              = new PaymentCreateRouteOperation(
-                sdkConfiguration,
-                options);
+              = new PaymentCreateRouteOperation(sdkConfiguration, options);
         PaymentCreateRouteRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

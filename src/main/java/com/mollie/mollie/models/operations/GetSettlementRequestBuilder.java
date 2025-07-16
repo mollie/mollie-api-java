@@ -56,9 +56,7 @@ public class GetSettlementRequestBuilder {
             .build());
 
         RequestOperation<GetSettlementRequest, GetSettlementResponse> operation
-              = new GetSettlementOperation(
-                sdkConfiguration,
-                options);
+              = new GetSettlementOperation(sdkConfiguration, options);
         GetSettlementRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -21,7 +21,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 0.12.0
+  version: 0.13.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: mollie
@@ -31,6 +31,7 @@ java:
   companyName: Mollie
   companyURL: https://www.mollie.com/
   defaultErrorName: APIException
+  enableAsync: false
   enableCustomCodeRegions: false
   flattenGlobalSecurity: true
   githubURL: https://github.com/mollie/mollie-api-java

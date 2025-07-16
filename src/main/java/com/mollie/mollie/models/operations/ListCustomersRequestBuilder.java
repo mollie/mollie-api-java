@@ -115,9 +115,7 @@ public class ListCustomersRequestBuilder {
             .build());
 
         RequestOperation<ListCustomersRequest, ListCustomersResponse> operation
-              = new ListCustomersOperation(
-                sdkConfiguration,
-                options);
+              = new ListCustomersOperation(sdkConfiguration, options);
         ListCustomersRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -70,9 +70,7 @@ public class UpdateCustomerRequestBuilder {
             .build());
 
         RequestOperation<UpdateCustomerRequest, UpdateCustomerResponse> operation
-              = new UpdateCustomerOperation(
-                sdkConfiguration,
-                options);
+              = new UpdateCustomerOperation(sdkConfiguration, options);
         UpdateCustomerRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -56,9 +56,7 @@ public class PaymentListRoutesRequestBuilder {
             .build());
 
         RequestOperation<PaymentListRoutesRequest, PaymentListRoutesResponse> operation
-              = new PaymentListRoutesOperation(
-                sdkConfiguration,
-                options);
+              = new PaymentListRoutesOperation(sdkConfiguration, options);
         PaymentListRoutesRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

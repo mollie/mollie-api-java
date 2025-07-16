@@ -40,9 +40,7 @@ public class GetCurrentProfileRequestBuilder {
             .build());
 
         RequestlessOperation<GetCurrentProfileResponse> operation
-            = new GetCurrentProfileOperation(
-                sdkConfiguration,
-                options);
+            = new GetCurrentProfileOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest());
     }

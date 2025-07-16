@@ -80,9 +80,7 @@ public class GetMandateRequestBuilder {
             .build());
 
         RequestOperation<GetMandateRequest, GetMandateResponse> operation
-              = new GetMandateOperation(
-                sdkConfiguration,
-                options);
+              = new GetMandateOperation(sdkConfiguration, options);
         GetMandateRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -15,7 +15,6 @@ import com.mollie.mollie.operations.GetOnboardingStatusOperation;
 import com.mollie.mollie.operations.SubmitOnboardingDataOperation;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -25,6 +24,7 @@ public class Onboarding {
     Onboarding(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Get onboarding status
      * 
@@ -71,9 +71,7 @@ public class Onboarding {
      */
     public GetOnboardingStatusResponse get(Optional<Options> options) throws Exception {
         RequestlessOperation<GetOnboardingStatusResponse> operation
-            = new GetOnboardingStatusOperation(
-                sdkConfiguration,
-                options);
+            = new GetOnboardingStatusOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -128,13 +126,9 @@ public class Onboarding {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public SubmitOnboardingDataResponse submit(
-            Optional<? extends SubmitOnboardingDataRequestBody> request,
-            Optional<Options> options) throws Exception {
+    public SubmitOnboardingDataResponse submit(Optional<? extends SubmitOnboardingDataRequestBody> request, Optional<Options> options) throws Exception {
         RequestOperation<Optional<? extends SubmitOnboardingDataRequestBody>, SubmitOnboardingDataResponse> operation
-              = new SubmitOnboardingDataOperation(
-                sdkConfiguration,
-                options);
+              = new SubmitOnboardingDataOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

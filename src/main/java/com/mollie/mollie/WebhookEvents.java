@@ -12,7 +12,6 @@ import com.mollie.mollie.operations.GetWebhookEventOperation;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -22,6 +21,7 @@ public class WebhookEvents {
     WebhookEvents(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Get a Webhook Event
      * 
@@ -68,18 +68,14 @@ public class WebhookEvents {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetWebhookEventResponse get(
-            String id,
-            Optional<Options> options) throws Exception {
+    public GetWebhookEventResponse get(String id, Optional<Options> options) throws Exception {
         GetWebhookEventRequest request =
             GetWebhookEventRequest
                 .builder()
                 .id(id)
                 .build();
         RequestOperation<GetWebhookEventRequest, GetWebhookEventResponse> operation
-              = new GetWebhookEventOperation(
-                sdkConfiguration,
-                options);
+              = new GetWebhookEventOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

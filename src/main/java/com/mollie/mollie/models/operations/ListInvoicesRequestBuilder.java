@@ -47,9 +47,7 @@ public class ListInvoicesRequestBuilder {
             .build());
 
         RequestOperation<ListInvoicesRequest, ListInvoicesResponse> operation
-              = new ListInvoicesOperation(
-                sdkConfiguration,
-                options);
+              = new ListInvoicesOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

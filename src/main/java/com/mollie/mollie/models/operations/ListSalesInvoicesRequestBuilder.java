@@ -101,9 +101,7 @@ public class ListSalesInvoicesRequestBuilder {
             .build());
 
         RequestOperation<ListSalesInvoicesRequest, ListSalesInvoicesResponse> operation
-              = new ListSalesInvoicesOperation(
-                sdkConfiguration,
-                options);
+              = new ListSalesInvoicesOperation(sdkConfiguration, options);
         ListSalesInvoicesRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

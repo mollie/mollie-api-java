@@ -80,9 +80,7 @@ public class GetSubscriptionRequestBuilder {
             .build());
 
         RequestOperation<GetSubscriptionRequest, GetSubscriptionResponse> operation
-              = new GetSubscriptionOperation(
-                sdkConfiguration,
-                options);
+              = new GetSubscriptionOperation(sdkConfiguration, options);
         GetSubscriptionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

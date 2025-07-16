@@ -78,9 +78,7 @@ public class UpdateSubscriptionRequestBuilder {
             .build());
 
         RequestOperation<UpdateSubscriptionRequest, UpdateSubscriptionResponse> operation
-              = new UpdateSubscriptionOperation(
-                sdkConfiguration,
-                options);
+              = new UpdateSubscriptionOperation(sdkConfiguration, options);
         UpdateSubscriptionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

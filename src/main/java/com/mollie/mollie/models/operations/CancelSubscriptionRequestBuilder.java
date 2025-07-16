@@ -78,9 +78,7 @@ public class CancelSubscriptionRequestBuilder {
             .build());
 
         RequestOperation<CancelSubscriptionRequest, CancelSubscriptionResponse> operation
-              = new CancelSubscriptionOperation(
-                sdkConfiguration,
-                options);
+              = new CancelSubscriptionOperation(sdkConfiguration, options);
         CancelSubscriptionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -35,7 +35,6 @@ import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -46,6 +45,7 @@ public class Profiles {
     Profiles(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Create profile
      * 
@@ -98,13 +98,9 @@ public class Profiles {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateProfileResponse create(
-            CreateProfileRequestBody request,
-            Optional<Options> options) throws Exception {
+    public CreateProfileResponse create(CreateProfileRequestBody request, Optional<Options> options) throws Exception {
         RequestOperation<CreateProfileRequestBody, CreateProfileResponse> operation
-              = new CreateProfileOperation(
-                sdkConfiguration,
-                options);
+              = new CreateProfileOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -161,8 +157,7 @@ public class Profiles {
      * @throws Exception if the API call fails
      */
     public ListProfilesResponse list(
-            Optional<String> from,
-            JsonNullable<Long> limit,
+            Optional<String> from, JsonNullable<Long> limit,
             Optional<Options> options) throws Exception {
         ListProfilesRequest request =
             ListProfilesRequest
@@ -171,9 +166,7 @@ public class Profiles {
                 .limit(limit)
                 .build();
         RequestOperation<ListProfilesRequest, ListProfilesResponse> operation
-              = new ListProfilesOperation(
-                sdkConfiguration,
-                options);
+              = new ListProfilesOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -227,8 +220,7 @@ public class Profiles {
      * @throws Exception if the API call fails
      */
     public GetProfileResponse get(
-            String id,
-            JsonNullable<Boolean> testmode,
+            String id, JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
         GetProfileRequest request =
             GetProfileRequest
@@ -237,9 +229,7 @@ public class Profiles {
                 .testmode(testmode)
                 .build();
         RequestOperation<GetProfileRequest, GetProfileResponse> operation
-              = new GetProfileOperation(
-                sdkConfiguration,
-                options);
+              = new GetProfileOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -276,9 +266,7 @@ public class Profiles {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdateProfileResponse update(
-            String id,
-            UpdateProfileRequestBody requestBody) throws Exception {
+    public UpdateProfileResponse update(String id, UpdateProfileRequestBody requestBody) throws Exception {
         return update(id, requestBody, Optional.empty());
     }
 
@@ -300,8 +288,7 @@ public class Profiles {
      * @throws Exception if the API call fails
      */
     public UpdateProfileResponse update(
-            String id,
-            UpdateProfileRequestBody requestBody,
+            String id, UpdateProfileRequestBody requestBody,
             Optional<Options> options) throws Exception {
         UpdateProfileRequest request =
             UpdateProfileRequest
@@ -310,9 +297,7 @@ public class Profiles {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<UpdateProfileRequest, UpdateProfileResponse> operation
-              = new UpdateProfileOperation(
-                sdkConfiguration,
-                options);
+              = new UpdateProfileOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -362,18 +347,14 @@ public class Profiles {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DeleteProfileResponse delete(
-            String id,
-            Optional<Options> options) throws Exception {
+    public DeleteProfileResponse delete(String id, Optional<Options> options) throws Exception {
         DeleteProfileRequest request =
             DeleteProfileRequest
                 .builder()
                 .id(id)
                 .build();
         RequestOperation<DeleteProfileRequest, DeleteProfileResponse> operation
-              = new DeleteProfileOperation(
-                sdkConfiguration,
-                options);
+              = new DeleteProfileOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -429,9 +410,7 @@ public class Profiles {
      */
     public GetCurrentProfileResponse getCurrent(Optional<Options> options) throws Exception {
         RequestlessOperation<GetCurrentProfileResponse> operation
-            = new GetCurrentProfileOperation(
-                sdkConfiguration,
-                options);
+            = new GetCurrentProfileOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest());
     }
 

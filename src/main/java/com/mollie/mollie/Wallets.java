@@ -11,7 +11,6 @@ import com.mollie.mollie.models.operations.RequestApplePayPaymentSessionResponse
 import com.mollie.mollie.operations.RequestApplePayPaymentSessionOperation;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -21,6 +20,7 @@ public class Wallets {
     Wallets(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Request Apple Pay payment session
      * 
@@ -96,13 +96,9 @@ public class Wallets {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public RequestApplePayPaymentSessionResponse requestApplePaySession(
-            Optional<? extends RequestApplePayPaymentSessionRequestBody> request,
-            Optional<Options> options) throws Exception {
+    public RequestApplePayPaymentSessionResponse requestApplePaySession(Optional<? extends RequestApplePayPaymentSessionRequestBody> request, Optional<Options> options) throws Exception {
         RequestOperation<Optional<? extends RequestApplePayPaymentSessionRequestBody>, RequestApplePayPaymentSessionResponse> operation
-              = new RequestApplePayPaymentSessionOperation(
-                sdkConfiguration,
-                options);
+              = new RequestApplePayPaymentSessionOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

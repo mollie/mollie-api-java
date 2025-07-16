@@ -22,7 +22,6 @@ import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -33,6 +32,7 @@ public class Chargebacks {
     Chargebacks(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List payment chargebacks
      * 
@@ -91,13 +91,9 @@ public class Chargebacks {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListChargebacksResponse list(
-            ListChargebacksRequest request,
-            Optional<Options> options) throws Exception {
+    public ListChargebacksResponse list(ListChargebacksRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListChargebacksRequest, ListChargebacksResponse> operation
-              = new ListChargebacksOperation(
-                sdkConfiguration,
-                options);
+              = new ListChargebacksOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -134,9 +130,7 @@ public class Chargebacks {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetChargebackResponse get(
-            String paymentId,
-            String chargebackId) throws Exception {
+    public GetChargebackResponse get(String paymentId, String chargebackId) throws Exception {
         return get(paymentId, chargebackId, JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty());
     }
@@ -163,10 +157,8 @@ public class Chargebacks {
      * @throws Exception if the API call fails
      */
     public GetChargebackResponse get(
-            String paymentId,
-            String chargebackId,
-            JsonNullable<? extends GetChargebackQueryParamEmbed> embed,
-            JsonNullable<Boolean> testmode,
+            String paymentId, String chargebackId,
+            JsonNullable<? extends GetChargebackQueryParamEmbed> embed, JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
         GetChargebackRequest request =
             GetChargebackRequest
@@ -177,9 +169,7 @@ public class Chargebacks {
                 .testmode(testmode)
                 .build();
         RequestOperation<GetChargebackRequest, GetChargebackResponse> operation
-              = new GetChargebackOperation(
-                sdkConfiguration,
-                options);
+              = new GetChargebackOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -241,13 +231,9 @@ public class Chargebacks {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListAllChargebacksResponse all(
-            ListAllChargebacksRequest request,
-            Optional<Options> options) throws Exception {
+    public ListAllChargebacksResponse all(ListAllChargebacksRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListAllChargebacksRequest, ListAllChargebacksResponse> operation
-              = new ListAllChargebacksOperation(
-                sdkConfiguration,
-                options);
+              = new ListAllChargebacksOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

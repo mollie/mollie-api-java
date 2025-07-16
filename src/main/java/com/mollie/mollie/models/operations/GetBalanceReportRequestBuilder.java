@@ -47,9 +47,7 @@ public class GetBalanceReportRequestBuilder {
             .build());
 
         RequestOperation<GetBalanceReportRequest, GetBalanceReportResponse> operation
-              = new GetBalanceReportOperation(
-                sdkConfiguration,
-                options);
+              = new GetBalanceReportOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

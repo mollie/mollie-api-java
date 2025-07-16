@@ -40,9 +40,7 @@ public class GetOnboardingStatusRequestBuilder {
             .build());
 
         RequestlessOperation<GetOnboardingStatusResponse> operation
-            = new GetOnboardingStatusOperation(
-                sdkConfiguration,
-                options);
+            = new GetOnboardingStatusOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest());
     }

@@ -47,9 +47,7 @@ public class ListSettlementsRequestBuilder {
             .build());
 
         RequestOperation<ListSettlementsRequest, ListSettlementsResponse> operation
-              = new ListSettlementsOperation(
-                sdkConfiguration,
-                options);
+              = new ListSettlementsOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

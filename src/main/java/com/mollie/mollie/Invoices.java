@@ -16,7 +16,6 @@ import com.mollie.mollie.operations.ListInvoicesOperation;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -26,6 +25,7 @@ public class Invoices {
     Invoices(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List invoices
      * 
@@ -78,13 +78,9 @@ public class Invoices {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListInvoicesResponse list(
-            ListInvoicesRequest request,
-            Optional<Options> options) throws Exception {
+    public ListInvoicesResponse list(ListInvoicesRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListInvoicesRequest, ListInvoicesResponse> operation
-              = new ListInvoicesOperation(
-                sdkConfiguration,
-                options);
+              = new ListInvoicesOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -140,18 +136,14 @@ public class Invoices {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetInvoiceResponse get(
-            String id,
-            Optional<Options> options) throws Exception {
+    public GetInvoiceResponse get(String id, Optional<Options> options) throws Exception {
         GetInvoiceRequest request =
             GetInvoiceRequest
                 .builder()
                 .id(id)
                 .build();
         RequestOperation<GetInvoiceRequest, GetInvoiceResponse> operation
-              = new GetInvoiceOperation(
-                sdkConfiguration,
-                options);
+              = new GetInvoiceOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -47,9 +47,7 @@ public class ListMandatesRequestBuilder {
             .build());
 
         RequestOperation<ListMandatesRequest, ListMandatesResponse> operation
-              = new ListMandatesOperation(
-                sdkConfiguration,
-                options);
+              = new ListMandatesOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

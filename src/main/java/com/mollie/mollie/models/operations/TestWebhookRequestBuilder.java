@@ -70,9 +70,7 @@ public class TestWebhookRequestBuilder {
             .build());
 
         RequestOperation<TestWebhookRequest, TestWebhookResponse> operation
-              = new TestWebhookOperation(
-                sdkConfiguration,
-                options);
+              = new TestWebhookOperation(sdkConfiguration, options);
         TestWebhookRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

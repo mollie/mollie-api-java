@@ -100,9 +100,7 @@ public class ListClientsRequestBuilder {
             .build());
 
         RequestOperation<ListClientsRequest, ListClientsResponse> operation
-              = new ListClientsOperation(
-                sdkConfiguration,
-                options);
+              = new ListClientsOperation(sdkConfiguration, options);
         ListClientsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

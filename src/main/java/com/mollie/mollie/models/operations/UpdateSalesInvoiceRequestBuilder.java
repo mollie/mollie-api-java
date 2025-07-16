@@ -70,9 +70,7 @@ public class UpdateSalesInvoiceRequestBuilder {
             .build());
 
         RequestOperation<UpdateSalesInvoiceRequest, UpdateSalesInvoiceResponse> operation
-              = new UpdateSalesInvoiceOperation(
-                sdkConfiguration,
-                options);
+              = new UpdateSalesInvoiceOperation(sdkConfiguration, options);
         UpdateSalesInvoiceRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

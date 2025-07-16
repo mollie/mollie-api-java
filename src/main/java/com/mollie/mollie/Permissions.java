@@ -17,7 +17,6 @@ import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -28,6 +27,7 @@ public class Permissions {
     Permissions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List permissions
      * 
@@ -80,9 +80,7 @@ public class Permissions {
      */
     public ListPermissionsResponse list(Optional<Options> options) throws Exception {
         RequestlessOperation<ListPermissionsResponse> operation
-            = new ListPermissionsOperation(
-                sdkConfiguration,
-                options);
+            = new ListPermissionsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -136,8 +134,7 @@ public class Permissions {
      * @throws Exception if the API call fails
      */
     public GetPermissionResponse get(
-            String permissionId,
-            JsonNullable<Boolean> testmode,
+            String permissionId, JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
         GetPermissionRequest request =
             GetPermissionRequest
@@ -146,9 +143,7 @@ public class Permissions {
                 .testmode(testmode)
                 .build();
         RequestOperation<GetPermissionRequest, GetPermissionResponse> operation
-              = new GetPermissionOperation(
-                sdkConfiguration,
-                options);
+              = new GetPermissionOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

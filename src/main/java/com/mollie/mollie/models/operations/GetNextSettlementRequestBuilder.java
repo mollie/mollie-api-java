@@ -40,9 +40,7 @@ public class GetNextSettlementRequestBuilder {
             .build());
 
         RequestlessOperation<GetNextSettlementResponse> operation
-            = new GetNextSettlementOperation(
-                sdkConfiguration,
-                options);
+            = new GetNextSettlementOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest());
     }

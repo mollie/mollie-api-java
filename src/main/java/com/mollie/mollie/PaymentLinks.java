@@ -36,7 +36,6 @@ import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -47,6 +46,7 @@ public class PaymentLinks {
     PaymentLinks(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Create payment link
      * 
@@ -98,13 +98,9 @@ public class PaymentLinks {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreatePaymentLinkResponse create(
-            Optional<? extends CreatePaymentLinkRequestBody> request,
-            Optional<Options> options) throws Exception {
+    public CreatePaymentLinkResponse create(Optional<? extends CreatePaymentLinkRequestBody> request, Optional<Options> options) throws Exception {
         RequestOperation<Optional<? extends CreatePaymentLinkRequestBody>, CreatePaymentLinkResponse> operation
-              = new CreatePaymentLinkOperation(
-                sdkConfiguration,
-                options);
+              = new CreatePaymentLinkOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -171,10 +167,8 @@ public class PaymentLinks {
      * @throws Exception if the API call fails
      */
     public ListPaymentLinksResponse list(
-            Optional<String> from,
-            JsonNullable<Long> limit,
-            JsonNullable<Boolean> testmode,
-            Optional<Options> options) throws Exception {
+            Optional<String> from, JsonNullable<Long> limit,
+            JsonNullable<Boolean> testmode, Optional<Options> options) throws Exception {
         ListPaymentLinksRequest request =
             ListPaymentLinksRequest
                 .builder()
@@ -183,9 +177,7 @@ public class PaymentLinks {
                 .testmode(testmode)
                 .build();
         RequestOperation<ListPaymentLinksRequest, ListPaymentLinksResponse> operation
-              = new ListPaymentLinksOperation(
-                sdkConfiguration,
-                options);
+              = new ListPaymentLinksOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -245,8 +237,7 @@ public class PaymentLinks {
      * @throws Exception if the API call fails
      */
     public GetPaymentLinkResponse get(
-            String paymentLinkId,
-            JsonNullable<Boolean> testmode,
+            String paymentLinkId, JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
         GetPaymentLinkRequest request =
             GetPaymentLinkRequest
@@ -255,9 +246,7 @@ public class PaymentLinks {
                 .testmode(testmode)
                 .build();
         RequestOperation<GetPaymentLinkRequest, GetPaymentLinkResponse> operation
-              = new GetPaymentLinkOperation(
-                sdkConfiguration,
-                options);
+              = new GetPaymentLinkOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -315,8 +304,7 @@ public class PaymentLinks {
      * @throws Exception if the API call fails
      */
     public UpdatePaymentLinkResponse update(
-            String paymentLinkId,
-            Optional<? extends UpdatePaymentLinkRequestBody> requestBody,
+            String paymentLinkId, Optional<? extends UpdatePaymentLinkRequestBody> requestBody,
             Optional<Options> options) throws Exception {
         UpdatePaymentLinkRequest request =
             UpdatePaymentLinkRequest
@@ -325,9 +313,7 @@ public class PaymentLinks {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<UpdatePaymentLinkRequest, UpdatePaymentLinkResponse> operation
-              = new UpdatePaymentLinkOperation(
-                sdkConfiguration,
-                options);
+              = new UpdatePaymentLinkOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -397,8 +383,7 @@ public class PaymentLinks {
      * @throws Exception if the API call fails
      */
     public DeletePaymentLinkResponse delete(
-            String paymentLinkId,
-            Optional<? extends DeletePaymentLinkRequestBody> requestBody,
+            String paymentLinkId, Optional<? extends DeletePaymentLinkRequestBody> requestBody,
             Optional<Options> options) throws Exception {
         DeletePaymentLinkRequest request =
             DeletePaymentLinkRequest
@@ -407,9 +392,7 @@ public class PaymentLinks {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<DeletePaymentLinkRequest, DeletePaymentLinkResponse> operation
-              = new DeletePaymentLinkOperation(
-                sdkConfiguration,
-                options);
+              = new DeletePaymentLinkOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -471,13 +454,9 @@ public class PaymentLinks {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetPaymentLinkPaymentsResponse listPayments(
-            GetPaymentLinkPaymentsRequest request,
-            Optional<Options> options) throws Exception {
+    public GetPaymentLinkPaymentsResponse listPayments(GetPaymentLinkPaymentsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<GetPaymentLinkPaymentsRequest, GetPaymentLinkPaymentsResponse> operation
-              = new GetPaymentLinkPaymentsOperation(
-                sdkConfiguration,
-                options);
+              = new GetPaymentLinkPaymentsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

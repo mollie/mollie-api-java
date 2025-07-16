@@ -47,9 +47,7 @@ public class CreateProfileRequestBuilder {
             .build());
 
         RequestOperation<CreateProfileRequestBody, CreateProfileResponse> operation
-              = new CreateProfileOperation(
-                sdkConfiguration,
-                options);
+              = new CreateProfileOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

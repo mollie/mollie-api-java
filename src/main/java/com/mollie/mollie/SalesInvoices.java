@@ -32,7 +32,6 @@ import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -43,6 +42,7 @@ public class SalesInvoices {
     SalesInvoices(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Create sales invoice
      * 
@@ -106,13 +106,9 @@ public class SalesInvoices {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateSalesInvoiceResponse create(
-            Optional<? extends CreateSalesInvoiceRequestBody> request,
-            Optional<Options> options) throws Exception {
+    public CreateSalesInvoiceResponse create(Optional<? extends CreateSalesInvoiceRequestBody> request, Optional<Options> options) throws Exception {
         RequestOperation<Optional<? extends CreateSalesInvoiceRequestBody>, CreateSalesInvoiceResponse> operation
-              = new CreateSalesInvoiceOperation(
-                sdkConfiguration,
-                options);
+              = new CreateSalesInvoiceOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -191,10 +187,8 @@ public class SalesInvoices {
      * @throws Exception if the API call fails
      */
     public ListSalesInvoicesResponse list(
-            Optional<String> from,
-            JsonNullable<Long> limit,
-            JsonNullable<Boolean> testmode,
-            Optional<Options> options) throws Exception {
+            Optional<String> from, JsonNullable<Long> limit,
+            JsonNullable<Boolean> testmode, Optional<Options> options) throws Exception {
         ListSalesInvoicesRequest request =
             ListSalesInvoicesRequest
                 .builder()
@@ -203,9 +197,7 @@ public class SalesInvoices {
                 .testmode(testmode)
                 .build();
         RequestOperation<ListSalesInvoicesRequest, ListSalesInvoicesResponse> operation
-              = new ListSalesInvoicesOperation(
-                sdkConfiguration,
-                options);
+              = new ListSalesInvoicesOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -277,8 +269,7 @@ public class SalesInvoices {
      * @throws Exception if the API call fails
      */
     public GetSalesInvoiceResponse get(
-            String id,
-            JsonNullable<Boolean> testmode,
+            String id, JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
         GetSalesInvoiceRequest request =
             GetSalesInvoiceRequest
@@ -287,9 +278,7 @@ public class SalesInvoices {
                 .testmode(testmode)
                 .build();
         RequestOperation<GetSalesInvoiceRequest, GetSalesInvoiceResponse> operation
-              = new GetSalesInvoiceOperation(
-                sdkConfiguration,
-                options);
+              = new GetSalesInvoiceOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -359,8 +348,7 @@ public class SalesInvoices {
      * @throws Exception if the API call fails
      */
     public UpdateSalesInvoiceResponse update(
-            String id,
-            Optional<? extends UpdateSalesInvoiceRequestBody> requestBody,
+            String id, Optional<? extends UpdateSalesInvoiceRequestBody> requestBody,
             Optional<Options> options) throws Exception {
         UpdateSalesInvoiceRequest request =
             UpdateSalesInvoiceRequest
@@ -369,9 +357,7 @@ public class SalesInvoices {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<UpdateSalesInvoiceRequest, UpdateSalesInvoiceResponse> operation
-              = new UpdateSalesInvoiceOperation(
-                sdkConfiguration,
-                options);
+              = new UpdateSalesInvoiceOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -441,8 +427,7 @@ public class SalesInvoices {
      * @throws Exception if the API call fails
      */
     public DeleteSalesInvoiceResponse delete(
-            String id,
-            Optional<? extends DeleteSalesInvoiceRequestBody> requestBody,
+            String id, Optional<? extends DeleteSalesInvoiceRequestBody> requestBody,
             Optional<Options> options) throws Exception {
         DeleteSalesInvoiceRequest request =
             DeleteSalesInvoiceRequest
@@ -451,9 +436,7 @@ public class SalesInvoices {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<DeleteSalesInvoiceRequest, DeleteSalesInvoiceResponse> operation
-              = new DeleteSalesInvoiceOperation(
-                sdkConfiguration,
-                options);
+              = new DeleteSalesInvoiceOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

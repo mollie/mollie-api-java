@@ -39,7 +39,6 @@ import com.mollie.mollie.operations.ListSettlementsOperation;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -49,6 +48,7 @@ public class Settlements {
     Settlements(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List settlements
      * 
@@ -101,13 +101,9 @@ public class Settlements {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListSettlementsResponse list(
-            ListSettlementsRequest request,
-            Optional<Options> options) throws Exception {
+    public ListSettlementsResponse list(ListSettlementsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListSettlementsRequest, ListSettlementsResponse> operation
-              = new ListSettlementsOperation(
-                sdkConfiguration,
-                options);
+              = new ListSettlementsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -181,18 +177,14 @@ public class Settlements {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetSettlementResponse get(
-            String id,
-            Optional<Options> options) throws Exception {
+    public GetSettlementResponse get(String id, Optional<Options> options) throws Exception {
         GetSettlementRequest request =
             GetSettlementRequest
                 .builder()
                 .id(id)
                 .build();
         RequestOperation<GetSettlementRequest, GetSettlementResponse> operation
-              = new GetSettlementOperation(
-                sdkConfiguration,
-                options);
+              = new GetSettlementOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -254,9 +246,7 @@ public class Settlements {
      */
     public GetOpenSettlementResponse getOpen(Optional<Options> options) throws Exception {
         RequestlessOperation<GetOpenSettlementResponse> operation
-            = new GetOpenSettlementOperation(
-                sdkConfiguration,
-                options);
+            = new GetOpenSettlementOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -318,9 +308,7 @@ public class Settlements {
      */
     public GetNextSettlementResponse getNext(Optional<Options> options) throws Exception {
         RequestlessOperation<GetNextSettlementResponse> operation
-            = new GetNextSettlementOperation(
-                sdkConfiguration,
-                options);
+            = new GetNextSettlementOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -382,13 +370,9 @@ public class Settlements {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetSettlementPaymentsResponse listPayments(
-            GetSettlementPaymentsRequest request,
-            Optional<Options> options) throws Exception {
+    public GetSettlementPaymentsResponse listPayments(GetSettlementPaymentsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<GetSettlementPaymentsRequest, GetSettlementPaymentsResponse> operation
-              = new GetSettlementPaymentsOperation(
-                sdkConfiguration,
-                options);
+              = new GetSettlementPaymentsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -444,13 +428,9 @@ public class Settlements {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetSettlementCapturesResponse listCaptures(
-            GetSettlementCapturesRequest request,
-            Optional<Options> options) throws Exception {
+    public GetSettlementCapturesResponse listCaptures(GetSettlementCapturesRequest request, Optional<Options> options) throws Exception {
         RequestOperation<GetSettlementCapturesRequest, GetSettlementCapturesResponse> operation
-              = new GetSettlementCapturesOperation(
-                sdkConfiguration,
-                options);
+              = new GetSettlementCapturesOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -506,13 +486,9 @@ public class Settlements {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetSettlementRefundsResponse listRefunds(
-            GetSettlementRefundsRequest request,
-            Optional<Options> options) throws Exception {
+    public GetSettlementRefundsResponse listRefunds(GetSettlementRefundsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<GetSettlementRefundsRequest, GetSettlementRefundsResponse> operation
-              = new GetSettlementRefundsOperation(
-                sdkConfiguration,
-                options);
+              = new GetSettlementRefundsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -568,13 +544,9 @@ public class Settlements {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetSettlementChargebacksResponse listChargebacks(
-            GetSettlementChargebacksRequest request,
-            Optional<Options> options) throws Exception {
+    public GetSettlementChargebacksResponse listChargebacks(GetSettlementChargebacksRequest request, Optional<Options> options) throws Exception {
         RequestOperation<GetSettlementChargebacksRequest, GetSettlementChargebacksResponse> operation
-              = new GetSettlementChargebacksOperation(
-                sdkConfiguration,
-                options);
+              = new GetSettlementChargebacksOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

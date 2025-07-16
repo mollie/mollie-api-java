@@ -94,9 +94,7 @@ public class GetCaptureRequestBuilder {
             .build());
 
         RequestOperation<GetCaptureRequest, GetCaptureResponse> operation
-              = new GetCaptureOperation(
-                sdkConfiguration,
-                options);
+              = new GetCaptureOperation(sdkConfiguration, options);
         GetCaptureRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

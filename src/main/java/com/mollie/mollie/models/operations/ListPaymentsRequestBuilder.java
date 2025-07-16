@@ -47,9 +47,7 @@ public class ListPaymentsRequestBuilder {
             .build());
 
         RequestOperation<ListPaymentsRequest, ListPaymentsResponse> operation
-              = new ListPaymentsOperation(
-                sdkConfiguration,
-                options);
+              = new ListPaymentsOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

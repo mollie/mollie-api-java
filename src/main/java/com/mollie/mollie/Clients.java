@@ -17,7 +17,6 @@ import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -28,6 +27,7 @@ public class Clients {
     Clients(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List clients
      * 
@@ -87,10 +87,8 @@ public class Clients {
      * @throws Exception if the API call fails
      */
     public ListClientsResponse list(
-            JsonNullable<String> embed,
-            Optional<String> from,
-            JsonNullable<Long> limit,
-            Optional<Options> options) throws Exception {
+            JsonNullable<String> embed, Optional<String> from,
+            JsonNullable<Long> limit, Optional<Options> options) throws Exception {
         ListClientsRequest request =
             ListClientsRequest
                 .builder()
@@ -99,9 +97,7 @@ public class Clients {
                 .limit(limit)
                 .build();
         RequestOperation<ListClientsRequest, ListClientsResponse> operation
-              = new ListClientsOperation(
-                sdkConfiguration,
-                options);
+              = new ListClientsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -157,8 +153,7 @@ public class Clients {
      * @throws Exception if the API call fails
      */
     public GetClientResponse get(
-            String id,
-            JsonNullable<String> embed,
+            String id, JsonNullable<String> embed,
             Optional<Options> options) throws Exception {
         GetClientRequest request =
             GetClientRequest
@@ -167,9 +162,7 @@ public class Clients {
                 .embed(embed)
                 .build();
         RequestOperation<GetClientRequest, GetClientResponse> operation
-              = new GetClientOperation(
-                sdkConfiguration,
-                options);
+              = new GetClientOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -72,9 +72,7 @@ public class GetTerminalRequestBuilder {
             .build());
 
         RequestOperation<GetTerminalRequest, GetTerminalResponse> operation
-              = new GetTerminalOperation(
-                sdkConfiguration,
-                options);
+              = new GetTerminalOperation(sdkConfiguration, options);
         GetTerminalRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

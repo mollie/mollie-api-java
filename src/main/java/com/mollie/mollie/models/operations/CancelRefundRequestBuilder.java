@@ -80,9 +80,7 @@ public class CancelRefundRequestBuilder {
             .build());
 
         RequestOperation<CancelRefundRequest, CancelRefundResponse> operation
-              = new CancelRefundOperation(
-                sdkConfiguration,
-                options);
+              = new CancelRefundOperation(sdkConfiguration, options);
         CancelRefundRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

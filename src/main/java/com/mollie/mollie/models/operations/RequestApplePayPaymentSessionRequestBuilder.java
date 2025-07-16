@@ -53,9 +53,7 @@ public class RequestApplePayPaymentSessionRequestBuilder {
             .build());
 
         RequestOperation<Optional<? extends RequestApplePayPaymentSessionRequestBody>, RequestApplePayPaymentSessionResponse> operation
-              = new RequestApplePayPaymentSessionOperation(
-                sdkConfiguration,
-                options);
+              = new RequestApplePayPaymentSessionOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

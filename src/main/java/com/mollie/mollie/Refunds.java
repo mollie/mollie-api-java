@@ -40,7 +40,6 @@ import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -51,6 +50,7 @@ public class Refunds {
     Refunds(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Create payment refund
      * 
@@ -105,8 +105,7 @@ public class Refunds {
      * @throws Exception if the API call fails
      */
     public CreateRefundResponse create(
-            String paymentId,
-            Optional<? extends CreateRefundRequestBody> requestBody,
+            String paymentId, Optional<? extends CreateRefundRequestBody> requestBody,
             Optional<Options> options) throws Exception {
         CreateRefundRequest request =
             CreateRefundRequest
@@ -115,9 +114,7 @@ public class Refunds {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CreateRefundRequest, CreateRefundResponse> operation
-              = new CreateRefundOperation(
-                sdkConfiguration,
-                options);
+              = new CreateRefundOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -179,13 +176,9 @@ public class Refunds {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListRefundsResponse list(
-            ListRefundsRequest request,
-            Optional<Options> options) throws Exception {
+    public ListRefundsResponse list(ListRefundsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListRefundsRequest, ListRefundsResponse> operation
-              = new ListRefundsOperation(
-                sdkConfiguration,
-                options);
+              = new ListRefundsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -222,9 +215,7 @@ public class Refunds {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetRefundResponse get(
-            String paymentId,
-            String refundId) throws Exception {
+    public GetRefundResponse get(String paymentId, String refundId) throws Exception {
         return get(paymentId, refundId, JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty());
     }
@@ -251,10 +242,8 @@ public class Refunds {
      * @throws Exception if the API call fails
      */
     public GetRefundResponse get(
-            String paymentId,
-            String refundId,
-            JsonNullable<? extends GetRefundQueryParamInclude> include,
-            JsonNullable<Boolean> testmode,
+            String paymentId, String refundId,
+            JsonNullable<? extends GetRefundQueryParamInclude> include, JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
         GetRefundRequest request =
             GetRefundRequest
@@ -265,9 +254,7 @@ public class Refunds {
                 .testmode(testmode)
                 .build();
         RequestOperation<GetRefundRequest, GetRefundResponse> operation
-              = new GetRefundOperation(
-                sdkConfiguration,
-                options);
+              = new GetRefundOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -308,9 +295,7 @@ public class Refunds {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CancelRefundResponse cancel(
-            String paymentId,
-            String refundId) throws Exception {
+    public CancelRefundResponse cancel(String paymentId, String refundId) throws Exception {
         return cancel(paymentId, refundId, JsonNullable.undefined(),
             Optional.empty());
     }
@@ -338,10 +323,8 @@ public class Refunds {
      * @throws Exception if the API call fails
      */
     public CancelRefundResponse cancel(
-            String paymentId,
-            String refundId,
-            JsonNullable<Boolean> testmode,
-            Optional<Options> options) throws Exception {
+            String paymentId, String refundId,
+            JsonNullable<Boolean> testmode, Optional<Options> options) throws Exception {
         CancelRefundRequest request =
             CancelRefundRequest
                 .builder()
@@ -350,9 +333,7 @@ public class Refunds {
                 .testmode(testmode)
                 .build();
         RequestOperation<CancelRefundRequest, CancelRefundResponse> operation
-              = new CancelRefundOperation(
-                sdkConfiguration,
-                options);
+              = new CancelRefundOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -422,8 +403,7 @@ public class Refunds {
      * @throws Exception if the API call fails
      */
     public CreateOrderRefundResponse createOrder(
-            String orderId,
-            Optional<? extends CreateOrderRefundRequestBody> requestBody,
+            String orderId, Optional<? extends CreateOrderRefundRequestBody> requestBody,
             Optional<Options> options) throws Exception {
         CreateOrderRefundRequest request =
             CreateOrderRefundRequest
@@ -432,9 +412,7 @@ public class Refunds {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CreateOrderRefundRequest, CreateOrderRefundResponse> operation
-              = new CreateOrderRefundOperation(
-                sdkConfiguration,
-                options);
+              = new CreateOrderRefundOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -496,13 +474,9 @@ public class Refunds {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListOrderRefundsResponse listForOrder(
-            ListOrderRefundsRequest request,
-            Optional<Options> options) throws Exception {
+    public ListOrderRefundsResponse listForOrder(ListOrderRefundsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListOrderRefundsRequest, ListOrderRefundsResponse> operation
-              = new ListOrderRefundsOperation(
-                sdkConfiguration,
-                options);
+              = new ListOrderRefundsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -564,13 +538,9 @@ public class Refunds {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListAllRefundsResponse all(
-            ListAllRefundsRequest request,
-            Optional<Options> options) throws Exception {
+    public ListAllRefundsResponse all(ListAllRefundsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListAllRefundsRequest, ListAllRefundsResponse> operation
-              = new ListAllRefundsOperation(
-                sdkConfiguration,
-                options);
+              = new ListAllRefundsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

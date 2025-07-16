@@ -56,9 +56,7 @@ public class GetInvoiceRequestBuilder {
             .build());
 
         RequestOperation<GetInvoiceRequest, GetInvoiceResponse> operation
-              = new GetInvoiceOperation(
-                sdkConfiguration,
-                options);
+              = new GetInvoiceOperation(sdkConfiguration, options);
         GetInvoiceRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

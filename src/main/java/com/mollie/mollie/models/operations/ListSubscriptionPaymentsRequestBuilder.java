@@ -47,9 +47,7 @@ public class ListSubscriptionPaymentsRequestBuilder {
             .build());
 
         RequestOperation<ListSubscriptionPaymentsRequest, ListSubscriptionPaymentsResponse> operation
-              = new ListSubscriptionPaymentsOperation(
-                sdkConfiguration,
-                options);
+              = new ListSubscriptionPaymentsOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

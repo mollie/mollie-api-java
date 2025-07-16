@@ -30,7 +30,6 @@ import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -41,6 +40,7 @@ public class Balances {
     Balances(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List balances
      * 
@@ -99,10 +99,8 @@ public class Balances {
      * @throws Exception if the API call fails
      */
     public ListBalancesResponse list(
-            JsonNullable<String> currency,
-            Optional<String> from,
-            JsonNullable<Long> limit,
-            JsonNullable<Boolean> testmode,
+            JsonNullable<String> currency, Optional<String> from,
+            JsonNullable<Long> limit, JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
         ListBalancesRequest request =
             ListBalancesRequest
@@ -113,9 +111,7 @@ public class Balances {
                 .testmode(testmode)
                 .build();
         RequestOperation<ListBalancesRequest, ListBalancesResponse> operation
-              = new ListBalancesOperation(
-                sdkConfiguration,
-                options);
+              = new ListBalancesOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -190,8 +186,7 @@ public class Balances {
      * @throws Exception if the API call fails
      */
     public GetBalanceResponse get(
-            String id,
-            JsonNullable<Boolean> testmode,
+            String id, JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
         GetBalanceRequest request =
             GetBalanceRequest
@@ -200,9 +195,7 @@ public class Balances {
                 .testmode(testmode)
                 .build();
         RequestOperation<GetBalanceRequest, GetBalanceResponse> operation
-              = new GetBalanceOperation(
-                sdkConfiguration,
-                options);
+              = new GetBalanceOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -258,9 +251,7 @@ public class Balances {
      */
     public GetPrimaryBalanceResponse getPrimary(Optional<Options> options) throws Exception {
         RequestlessOperation<GetPrimaryBalanceResponse> operation
-            = new GetPrimaryBalanceOperation(
-                sdkConfiguration,
-                options);
+            = new GetPrimaryBalanceOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -322,13 +313,9 @@ public class Balances {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetBalanceReportResponse getReport(
-            GetBalanceReportRequest request,
-            Optional<Options> options) throws Exception {
+    public GetBalanceReportResponse getReport(GetBalanceReportRequest request, Optional<Options> options) throws Exception {
         RequestOperation<GetBalanceReportRequest, GetBalanceReportResponse> operation
-              = new GetBalanceReportOperation(
-                sdkConfiguration,
-                options);
+              = new GetBalanceReportOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -403,10 +390,8 @@ public class Balances {
      * @throws Exception if the API call fails
      */
     public ListBalanceTransactionsResponse listTransactions(
-            String balanceId,
-            Optional<String> from,
-            JsonNullable<Long> limit,
-            JsonNullable<Boolean> testmode,
+            String balanceId, Optional<String> from,
+            JsonNullable<Long> limit, JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
         ListBalanceTransactionsRequest request =
             ListBalanceTransactionsRequest
@@ -417,9 +402,7 @@ public class Balances {
                 .testmode(testmode)
                 .build();
         RequestOperation<ListBalanceTransactionsRequest, ListBalanceTransactionsResponse> operation
-              = new ListBalanceTransactionsOperation(
-                sdkConfiguration,
-                options);
+              = new ListBalanceTransactionsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
