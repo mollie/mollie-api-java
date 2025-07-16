@@ -207,6 +207,13 @@ public class UpdateSalesInvoiceResponseBody {
     private JsonNullable<String> issuedAt;
 
     /**
+     * If paid, the date when the sales invoice was paid, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("paidAt")
+    private JsonNullable<String> paidAt;
+
+    /**
      * If issued, the date when the sales invoice payment is due, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -246,6 +253,7 @@ public class UpdateSalesInvoiceResponseBody {
             @JsonProperty("discountedSubtotalAmount") Optional<? extends UpdateSalesInvoiceDiscountedSubtotalAmount> discountedSubtotalAmount,
             @JsonProperty("createdAt") Optional<String> createdAt,
             @JsonProperty("issuedAt") JsonNullable<String> issuedAt,
+            @JsonProperty("paidAt") JsonNullable<String> paidAt,
             @JsonProperty("dueAt") JsonNullable<String> dueAt,
             @JsonProperty("_links") Optional<? extends UpdateSalesInvoiceLinks> links) {
         Utils.checkNotNull(resource, "resource");
@@ -272,6 +280,7 @@ public class UpdateSalesInvoiceResponseBody {
         Utils.checkNotNull(discountedSubtotalAmount, "discountedSubtotalAmount");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(issuedAt, "issuedAt");
+        Utils.checkNotNull(paidAt, "paidAt");
         Utils.checkNotNull(dueAt, "dueAt");
         Utils.checkNotNull(links, "links");
         this.resource = resource;
@@ -298,6 +307,7 @@ public class UpdateSalesInvoiceResponseBody {
         this.discountedSubtotalAmount = discountedSubtotalAmount;
         this.createdAt = createdAt;
         this.issuedAt = issuedAt;
+        this.paidAt = paidAt;
         this.dueAt = dueAt;
         this.links = links;
     }
@@ -311,7 +321,7 @@ public class UpdateSalesInvoiceResponseBody {
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -528,6 +538,14 @@ public class UpdateSalesInvoiceResponseBody {
     @JsonIgnore
     public JsonNullable<String> issuedAt() {
         return issuedAt;
+    }
+
+    /**
+     * If paid, the date when the sales invoice was paid, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     */
+    @JsonIgnore
+    public JsonNullable<String> paidAt() {
+        return paidAt;
     }
 
     /**
@@ -1025,6 +1043,24 @@ public class UpdateSalesInvoiceResponseBody {
     }
 
     /**
+     * If paid, the date when the sales invoice was paid, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     */
+    public UpdateSalesInvoiceResponseBody withPaidAt(String paidAt) {
+        Utils.checkNotNull(paidAt, "paidAt");
+        this.paidAt = JsonNullable.of(paidAt);
+        return this;
+    }
+
+    /**
+     * If paid, the date when the sales invoice was paid, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     */
+    public UpdateSalesInvoiceResponseBody withPaidAt(JsonNullable<String> paidAt) {
+        Utils.checkNotNull(paidAt, "paidAt");
+        this.paidAt = paidAt;
+        return this;
+    }
+
+    /**
      * If issued, the date when the sales invoice payment is due, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
     public UpdateSalesInvoiceResponseBody withDueAt(String dueAt) {
@@ -1095,6 +1131,7 @@ public class UpdateSalesInvoiceResponseBody {
             Utils.enhancedDeepEquals(this.discountedSubtotalAmount, other.discountedSubtotalAmount) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.issuedAt, other.issuedAt) &&
+            Utils.enhancedDeepEquals(this.paidAt, other.paidAt) &&
             Utils.enhancedDeepEquals(this.dueAt, other.dueAt) &&
             Utils.enhancedDeepEquals(this.links, other.links);
     }
@@ -1110,7 +1147,7 @@ public class UpdateSalesInvoiceResponseBody {
             lines, discount, amountDue,
             subtotalAmount, totalAmount, totalVatAmount,
             discountedSubtotalAmount, createdAt, issuedAt,
-            dueAt, links);
+            paidAt, dueAt, links);
     }
     
     @Override
@@ -1140,6 +1177,7 @@ public class UpdateSalesInvoiceResponseBody {
                 "discountedSubtotalAmount", discountedSubtotalAmount,
                 "createdAt", createdAt,
                 "issuedAt", issuedAt,
+                "paidAt", paidAt,
                 "dueAt", dueAt,
                 "links", links);
     }
@@ -1194,6 +1232,8 @@ public class UpdateSalesInvoiceResponseBody {
         private Optional<String> createdAt = Optional.empty();
 
         private JsonNullable<String> issuedAt = JsonNullable.undefined();
+
+        private JsonNullable<String> paidAt = JsonNullable.undefined();
 
         private JsonNullable<String> dueAt = JsonNullable.undefined();
 
@@ -1687,6 +1727,25 @@ public class UpdateSalesInvoiceResponseBody {
 
 
         /**
+         * If paid, the date when the sales invoice was paid, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         */
+        public Builder paidAt(String paidAt) {
+            Utils.checkNotNull(paidAt, "paidAt");
+            this.paidAt = JsonNullable.of(paidAt);
+            return this;
+        }
+
+        /**
+         * If paid, the date when the sales invoice was paid, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         */
+        public Builder paidAt(JsonNullable<String> paidAt) {
+            Utils.checkNotNull(paidAt, "paidAt");
+            this.paidAt = paidAt;
+            return this;
+        }
+
+
+        /**
          * If issued, the date when the sales invoice payment is due, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
          */
         public Builder dueAt(String dueAt) {
@@ -1737,7 +1796,7 @@ public class UpdateSalesInvoiceResponseBody {
                 lines, discount, amountDue,
                 subtotalAmount, totalAmount, totalVatAmount,
                 discountedSubtotalAmount, createdAt, issuedAt,
-                dueAt, links);
+                paidAt, dueAt, links);
         }
 
 
