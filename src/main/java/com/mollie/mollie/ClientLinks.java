@@ -60,6 +60,10 @@ public class ClientLinks {
      * 
      * <p>Error handling is also dealt with similar to the [Authorize](https://docs.mollie.com/reference/authorize) endpoint: the customer is redirected back to your app's redirect URL with the `error` and `error_description` parameters added to the URL.
      * 
+     * <p>&gt; 🚧
+     * &gt;
+     * &gt; A client link must be used within 30 days of creation. After that period, it will expire and you will need to create a new client link.
+     * 
      * <p>&gt; 🔑 Access with
      * &gt;
      * &gt; [Access token with **clients.write**](/reference/authentication)
@@ -108,6 +112,10 @@ public class ClientLinks {
      * <p>## Error Handling
      * 
      * <p>Error handling is also dealt with similar to the [Authorize](https://docs.mollie.com/reference/authorize) endpoint: the customer is redirected back to your app's redirect URL with the `error` and `error_description` parameters added to the URL.
+     * 
+     * <p>&gt; 🚧
+     * &gt;
+     * &gt; A client link must be used within 30 days of creation. After that period, it will expire and you will need to create a new client link.
      * 
      * <p>&gt; 🔑 Access with
      * &gt;
@@ -158,6 +166,10 @@ public class ClientLinks {
      * <p>## Error Handling
      * 
      * <p>Error handling is also dealt with similar to the [Authorize](https://docs.mollie.com/reference/authorize) endpoint: the customer is redirected back to your app's redirect URL with the `error` and `error_description` parameters added to the URL.
+     * 
+     * <p>&gt; 🚧
+     * &gt;
+     * &gt; A client link must be used within 30 days of creation. After that period, it will expire and you will need to create a new client link.
      * 
      * <p>&gt; 🔑 Access with
      * &gt;

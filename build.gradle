@@ -105,7 +105,7 @@ publishing {
             // https://github.com/gradle/gradle/issues/18619
             groupId = "com.mollie"
             artifactId = "mollie"
-            version = "0.13.1"
+            version = "0.13.2"
 
             from components.java
 
@@ -116,7 +116,7 @@ publishing {
                 ]
                 name = 'Mollie Java SDK'
                 description = 'SDK enabling Java developers to easily integrate with the Mollie API.'
-                url = 'https://github.com/mollie/mollie-api-java'
+                url = 'https://https://github.com/mollie/mollie-api-java'
                 scm {
                     url = 'https://github.com/mollie/mollie-api-java'
                     connection = 'scm:git:ssh://git@https://github.com/mollie/mollie-api-java.git'
