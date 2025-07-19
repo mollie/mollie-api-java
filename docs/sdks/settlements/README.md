@@ -9,10 +9,10 @@
 * [get](#get) - Get settlement
 * [getOpen](#getopen) - Get open settlement
 * [getNext](#getnext) - Get next settlement
-* [listPayments](#listpayments) - Get settlement payments
-* [listCaptures](#listcaptures) - Get settlement captures
-* [listRefunds](#listrefunds) - Get settlement refunds
-* [listChargebacks](#listchargebacks) - Get settlement chargebacks
+* [listPayments](#listpayments) - List settlement payments
+* [listCaptures](#listcaptures) - List settlement captures
+* [listRefunds](#listrefunds) - List settlement refunds
+* [listChargebacks](#listchargebacks) - List settlement chargebacks
 
 ## list
 
@@ -272,14 +272,14 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.GetSettlementPaymentsResponseBody;
-import com.mollie.mollie.models.operations.GetSettlementPaymentsRequest;
-import com.mollie.mollie.models.operations.GetSettlementPaymentsResponse;
+import com.mollie.mollie.models.errors.ListSettlementPaymentsResponseBody;
+import com.mollie.mollie.models.operations.ListSettlementPaymentsRequest;
+import com.mollie.mollie.models.operations.ListSettlementPaymentsResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws GetSettlementPaymentsResponseBody, Exception {
+    public static void main(String[] args) throws ListSettlementPaymentsResponseBody, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -287,7 +287,7 @@ public class Application {
                     .build())
             .build();
 
-        GetSettlementPaymentsRequest req = GetSettlementPaymentsRequest.builder()
+        ListSettlementPaymentsRequest req = ListSettlementPaymentsRequest.builder()
                 .settlementId("stl_jDk30akdN")
                 .from("tr_5B8cwPMGnU")
                 .sort("desc")
@@ -295,7 +295,7 @@ public class Application {
                 .testmode(false)
                 .build();
 
-        GetSettlementPaymentsResponse res = sdk.settlements().listPayments()
+        ListSettlementPaymentsResponse res = sdk.settlements().listPayments()
                 .request(req)
                 .call();
 
@@ -308,20 +308,20 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             |
-| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| `request`                                                                               | [GetSettlementPaymentsRequest](../../models/operations/GetSettlementPaymentsRequest.md) | :heavy_check_mark:                                                                      | The request object to use for the request.                                              |
+| Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `request`                                                                                 | [ListSettlementPaymentsRequest](../../models/operations/ListSettlementPaymentsRequest.md) | :heavy_check_mark:                                                                        | The request object to use for the request.                                                |
 
 ### Response
 
-**[GetSettlementPaymentsResponse](../../models/operations/GetSettlementPaymentsResponse.md)**
+**[ListSettlementPaymentsResponse](../../models/operations/ListSettlementPaymentsResponse.md)**
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| models/errors/GetSettlementPaymentsResponseBody | 400                                             | application/hal+json                            |
-| models/errors/APIException                      | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                       | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| models/errors/ListSettlementPaymentsResponseBody | 400                                              | application/hal+json                             |
+| models/errors/APIException                       | 4XX, 5XX                                         | \*/\*                                            |
 
 ## listCaptures
 
@@ -340,14 +340,14 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.GetSettlementCapturesResponseBody;
-import com.mollie.mollie.models.errors.GetSettlementCapturesSettlementsResponseBody;
+import com.mollie.mollie.models.errors.ListSettlementCapturesResponseBody;
+import com.mollie.mollie.models.errors.ListSettlementCapturesSettlementsResponseBody;
 import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws GetSettlementCapturesResponseBody, GetSettlementCapturesSettlementsResponseBody, Exception {
+    public static void main(String[] args) throws ListSettlementCapturesResponseBody, ListSettlementCapturesSettlementsResponseBody, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -355,14 +355,14 @@ public class Application {
                     .build())
             .build();
 
-        GetSettlementCapturesRequest req = GetSettlementCapturesRequest.builder()
+        ListSettlementCapturesRequest req = ListSettlementCapturesRequest.builder()
                 .settlementId("stl_jDk30akdN")
                 .from("cpt_vytxeTZskVKR7C7WgdSP3d")
-                .embed(GetSettlementCapturesQueryParamEmbed.PAYMENT)
+                .embed(ListSettlementCapturesQueryParamEmbed.PAYMENT)
                 .testmode(false)
                 .build();
 
-        GetSettlementCapturesResponse res = sdk.settlements().listCaptures()
+        ListSettlementCapturesResponse res = sdk.settlements().listCaptures()
                 .request(req)
                 .call();
 
@@ -375,21 +375,21 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             |
-| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| `request`                                                                               | [GetSettlementCapturesRequest](../../models/operations/GetSettlementCapturesRequest.md) | :heavy_check_mark:                                                                      | The request object to use for the request.                                              |
+| Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `request`                                                                                 | [ListSettlementCapturesRequest](../../models/operations/ListSettlementCapturesRequest.md) | :heavy_check_mark:                                                                        | The request object to use for the request.                                                |
 
 ### Response
 
-**[GetSettlementCapturesResponse](../../models/operations/GetSettlementCapturesResponse.md)**
+**[ListSettlementCapturesResponse](../../models/operations/ListSettlementCapturesResponse.md)**
 
 ### Errors
 
-| Error Type                                                 | Status Code                                                | Content Type                                               |
-| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
-| models/errors/GetSettlementCapturesResponseBody            | 400                                                        | application/hal+json                                       |
-| models/errors/GetSettlementCapturesSettlementsResponseBody | 404                                                        | application/hal+json                                       |
-| models/errors/APIException                                 | 4XX, 5XX                                                   | \*/\*                                                      |
+| Error Type                                                  | Status Code                                                 | Content Type                                                |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| models/errors/ListSettlementCapturesResponseBody            | 400                                                         | application/hal+json                                        |
+| models/errors/ListSettlementCapturesSettlementsResponseBody | 404                                                         | application/hal+json                                        |
+| models/errors/APIException                                  | 4XX, 5XX                                                    | \*/\*                                                       |
 
 ## listRefunds
 
@@ -408,14 +408,14 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.GetSettlementRefundsResponseBody;
-import com.mollie.mollie.models.errors.GetSettlementRefundsSettlementsResponseBody;
+import com.mollie.mollie.models.errors.ListSettlementRefundsResponseBody;
+import com.mollie.mollie.models.errors.ListSettlementRefundsSettlementsResponseBody;
 import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws GetSettlementRefundsResponseBody, GetSettlementRefundsSettlementsResponseBody, Exception {
+    public static void main(String[] args) throws ListSettlementRefundsResponseBody, ListSettlementRefundsSettlementsResponseBody, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -423,14 +423,14 @@ public class Application {
                     .build())
             .build();
 
-        GetSettlementRefundsRequest req = GetSettlementRefundsRequest.builder()
+        ListSettlementRefundsRequest req = ListSettlementRefundsRequest.builder()
                 .settlementId("stl_jDk30akdN")
                 .from("re_5B8cwPMGnU")
-                .include(GetSettlementRefundsQueryParamInclude.PAYMENT)
+                .include(ListSettlementRefundsQueryParamInclude.PAYMENT)
                 .testmode(false)
                 .build();
 
-        GetSettlementRefundsResponse res = sdk.settlements().listRefunds()
+        ListSettlementRefundsResponse res = sdk.settlements().listRefunds()
                 .request(req)
                 .call();
 
@@ -443,21 +443,21 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
-| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `request`                                                                             | [GetSettlementRefundsRequest](../../models/operations/GetSettlementRefundsRequest.md) | :heavy_check_mark:                                                                    | The request object to use for the request.                                            |
+| Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `request`                                                                               | [ListSettlementRefundsRequest](../../models/operations/ListSettlementRefundsRequest.md) | :heavy_check_mark:                                                                      | The request object to use for the request.                                              |
 
 ### Response
 
-**[GetSettlementRefundsResponse](../../models/operations/GetSettlementRefundsResponse.md)**
+**[ListSettlementRefundsResponse](../../models/operations/ListSettlementRefundsResponse.md)**
 
 ### Errors
 
-| Error Type                                                | Status Code                                               | Content Type                                              |
-| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| models/errors/GetSettlementRefundsResponseBody            | 400                                                       | application/hal+json                                      |
-| models/errors/GetSettlementRefundsSettlementsResponseBody | 404                                                       | application/hal+json                                      |
-| models/errors/APIException                                | 4XX, 5XX                                                  | \*/\*                                                     |
+| Error Type                                                 | Status Code                                                | Content Type                                               |
+| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| models/errors/ListSettlementRefundsResponseBody            | 400                                                        | application/hal+json                                       |
+| models/errors/ListSettlementRefundsSettlementsResponseBody | 404                                                        | application/hal+json                                       |
+| models/errors/APIException                                 | 4XX, 5XX                                                   | \*/\*                                                      |
 
 ## listChargebacks
 
@@ -476,14 +476,14 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.GetSettlementChargebacksResponseBody;
-import com.mollie.mollie.models.errors.GetSettlementChargebacksSettlementsResponseBody;
+import com.mollie.mollie.models.errors.ListSettlementChargebacksResponseBody;
+import com.mollie.mollie.models.errors.ListSettlementChargebacksSettlementsResponseBody;
 import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws GetSettlementChargebacksResponseBody, GetSettlementChargebacksSettlementsResponseBody, Exception {
+    public static void main(String[] args) throws ListSettlementChargebacksResponseBody, ListSettlementChargebacksSettlementsResponseBody, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -491,14 +491,14 @@ public class Application {
                     .build())
             .build();
 
-        GetSettlementChargebacksRequest req = GetSettlementChargebacksRequest.builder()
+        ListSettlementChargebacksRequest req = ListSettlementChargebacksRequest.builder()
                 .settlementId("stl_jDk30akdN")
                 .from("chb_xFzwUN4ci8HAmSGUACS4J")
-                .embed(GetSettlementChargebacksQueryParamEmbed.PAYMENT)
+                .embed(ListSettlementChargebacksQueryParamEmbed.PAYMENT)
                 .testmode(false)
                 .build();
 
-        GetSettlementChargebacksResponse res = sdk.settlements().listChargebacks()
+        ListSettlementChargebacksResponse res = sdk.settlements().listChargebacks()
                 .request(req)
                 .call();
 
@@ -511,18 +511,18 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
-| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `request`                                                                                     | [GetSettlementChargebacksRequest](../../models/operations/GetSettlementChargebacksRequest.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
+| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `request`                                                                                       | [ListSettlementChargebacksRequest](../../models/operations/ListSettlementChargebacksRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
 
 ### Response
 
-**[GetSettlementChargebacksResponse](../../models/operations/GetSettlementChargebacksResponse.md)**
+**[ListSettlementChargebacksResponse](../../models/operations/ListSettlementChargebacksResponse.md)**
 
 ### Errors
 
-| Error Type                                                    | Status Code                                                   | Content Type                                                  |
-| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| models/errors/GetSettlementChargebacksResponseBody            | 400                                                           | application/hal+json                                          |
-| models/errors/GetSettlementChargebacksSettlementsResponseBody | 404                                                           | application/hal+json                                          |
-| models/errors/APIException                                    | 4XX, 5XX                                                      | \*/\*                                                         |
+| Error Type                                                     | Status Code                                                    | Content Type                                                   |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| models/errors/ListSettlementChargebacksResponseBody            | 400                                                            | application/hal+json                                           |
+| models/errors/ListSettlementChargebacksSettlementsResponseBody | 404                                                            | application/hal+json                                           |
+| models/errors/APIException                                     | 4XX, 5XX                                                       | \*/\*                                                          |

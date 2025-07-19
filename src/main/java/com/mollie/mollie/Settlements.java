@@ -10,31 +10,31 @@ import com.mollie.mollie.models.operations.GetNextSettlementRequestBuilder;
 import com.mollie.mollie.models.operations.GetNextSettlementResponse;
 import com.mollie.mollie.models.operations.GetOpenSettlementRequestBuilder;
 import com.mollie.mollie.models.operations.GetOpenSettlementResponse;
-import com.mollie.mollie.models.operations.GetSettlementCapturesRequest;
-import com.mollie.mollie.models.operations.GetSettlementCapturesRequestBuilder;
-import com.mollie.mollie.models.operations.GetSettlementCapturesResponse;
-import com.mollie.mollie.models.operations.GetSettlementChargebacksRequest;
-import com.mollie.mollie.models.operations.GetSettlementChargebacksRequestBuilder;
-import com.mollie.mollie.models.operations.GetSettlementChargebacksResponse;
-import com.mollie.mollie.models.operations.GetSettlementPaymentsRequest;
-import com.mollie.mollie.models.operations.GetSettlementPaymentsRequestBuilder;
-import com.mollie.mollie.models.operations.GetSettlementPaymentsResponse;
-import com.mollie.mollie.models.operations.GetSettlementRefundsRequest;
-import com.mollie.mollie.models.operations.GetSettlementRefundsRequestBuilder;
-import com.mollie.mollie.models.operations.GetSettlementRefundsResponse;
 import com.mollie.mollie.models.operations.GetSettlementRequest;
 import com.mollie.mollie.models.operations.GetSettlementRequestBuilder;
 import com.mollie.mollie.models.operations.GetSettlementResponse;
+import com.mollie.mollie.models.operations.ListSettlementCapturesRequest;
+import com.mollie.mollie.models.operations.ListSettlementCapturesRequestBuilder;
+import com.mollie.mollie.models.operations.ListSettlementCapturesResponse;
+import com.mollie.mollie.models.operations.ListSettlementChargebacksRequest;
+import com.mollie.mollie.models.operations.ListSettlementChargebacksRequestBuilder;
+import com.mollie.mollie.models.operations.ListSettlementChargebacksResponse;
+import com.mollie.mollie.models.operations.ListSettlementPaymentsRequest;
+import com.mollie.mollie.models.operations.ListSettlementPaymentsRequestBuilder;
+import com.mollie.mollie.models.operations.ListSettlementPaymentsResponse;
+import com.mollie.mollie.models.operations.ListSettlementRefundsRequest;
+import com.mollie.mollie.models.operations.ListSettlementRefundsRequestBuilder;
+import com.mollie.mollie.models.operations.ListSettlementRefundsResponse;
 import com.mollie.mollie.models.operations.ListSettlementsRequest;
 import com.mollie.mollie.models.operations.ListSettlementsRequestBuilder;
 import com.mollie.mollie.models.operations.ListSettlementsResponse;
 import com.mollie.mollie.operations.GetNextSettlementOperation;
 import com.mollie.mollie.operations.GetOpenSettlementOperation;
-import com.mollie.mollie.operations.GetSettlementCapturesOperation;
-import com.mollie.mollie.operations.GetSettlementChargebacksOperation;
 import com.mollie.mollie.operations.GetSettlementOperation;
-import com.mollie.mollie.operations.GetSettlementPaymentsOperation;
-import com.mollie.mollie.operations.GetSettlementRefundsOperation;
+import com.mollie.mollie.operations.ListSettlementCapturesOperation;
+import com.mollie.mollie.operations.ListSettlementChargebacksOperation;
+import com.mollie.mollie.operations.ListSettlementPaymentsOperation;
+import com.mollie.mollie.operations.ListSettlementRefundsOperation;
 import com.mollie.mollie.operations.ListSettlementsOperation;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
@@ -313,7 +313,7 @@ public class Settlements {
     }
 
     /**
-     * Get settlement payments
+     * List settlement payments
      * 
      * <p>Retrieve all payments included in the given settlement.
      * 
@@ -327,12 +327,12 @@ public class Settlements {
      * 
      * @return The call builder
      */
-    public GetSettlementPaymentsRequestBuilder listPayments() {
-        return new GetSettlementPaymentsRequestBuilder(sdkConfiguration);
+    public ListSettlementPaymentsRequestBuilder listPayments() {
+        return new ListSettlementPaymentsRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * Get settlement payments
+     * List settlement payments
      * 
      * <p>Retrieve all payments included in the given settlement.
      * 
@@ -348,12 +348,12 @@ public class Settlements {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetSettlementPaymentsResponse listPayments(GetSettlementPaymentsRequest request) throws Exception {
+    public ListSettlementPaymentsResponse listPayments(ListSettlementPaymentsRequest request) throws Exception {
         return listPayments(request, Optional.empty());
     }
 
     /**
-     * Get settlement payments
+     * List settlement payments
      * 
      * <p>Retrieve all payments included in the given settlement.
      * 
@@ -370,14 +370,14 @@ public class Settlements {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetSettlementPaymentsResponse listPayments(GetSettlementPaymentsRequest request, Optional<Options> options) throws Exception {
-        RequestOperation<GetSettlementPaymentsRequest, GetSettlementPaymentsResponse> operation
-              = new GetSettlementPaymentsOperation(sdkConfiguration, options);
+    public ListSettlementPaymentsResponse listPayments(ListSettlementPaymentsRequest request, Optional<Options> options) throws Exception {
+        RequestOperation<ListSettlementPaymentsRequest, ListSettlementPaymentsResponse> operation
+              = new ListSettlementPaymentsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
-     * Get settlement captures
+     * List settlement captures
      * 
      * <p>Retrieve all captures included in the given settlement.
      * 
@@ -389,12 +389,12 @@ public class Settlements {
      * 
      * @return The call builder
      */
-    public GetSettlementCapturesRequestBuilder listCaptures() {
-        return new GetSettlementCapturesRequestBuilder(sdkConfiguration);
+    public ListSettlementCapturesRequestBuilder listCaptures() {
+        return new ListSettlementCapturesRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * Get settlement captures
+     * List settlement captures
      * 
      * <p>Retrieve all captures included in the given settlement.
      * 
@@ -408,12 +408,12 @@ public class Settlements {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetSettlementCapturesResponse listCaptures(GetSettlementCapturesRequest request) throws Exception {
+    public ListSettlementCapturesResponse listCaptures(ListSettlementCapturesRequest request) throws Exception {
         return listCaptures(request, Optional.empty());
     }
 
     /**
-     * Get settlement captures
+     * List settlement captures
      * 
      * <p>Retrieve all captures included in the given settlement.
      * 
@@ -428,14 +428,14 @@ public class Settlements {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetSettlementCapturesResponse listCaptures(GetSettlementCapturesRequest request, Optional<Options> options) throws Exception {
-        RequestOperation<GetSettlementCapturesRequest, GetSettlementCapturesResponse> operation
-              = new GetSettlementCapturesOperation(sdkConfiguration, options);
+    public ListSettlementCapturesResponse listCaptures(ListSettlementCapturesRequest request, Optional<Options> options) throws Exception {
+        RequestOperation<ListSettlementCapturesRequest, ListSettlementCapturesResponse> operation
+              = new ListSettlementCapturesOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
-     * Get settlement refunds
+     * List settlement refunds
      * 
      * <p>Retrieve all refunds 'deducted' from the given settlement.
      * 
@@ -447,12 +447,12 @@ public class Settlements {
      * 
      * @return The call builder
      */
-    public GetSettlementRefundsRequestBuilder listRefunds() {
-        return new GetSettlementRefundsRequestBuilder(sdkConfiguration);
+    public ListSettlementRefundsRequestBuilder listRefunds() {
+        return new ListSettlementRefundsRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * Get settlement refunds
+     * List settlement refunds
      * 
      * <p>Retrieve all refunds 'deducted' from the given settlement.
      * 
@@ -466,12 +466,12 @@ public class Settlements {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetSettlementRefundsResponse listRefunds(GetSettlementRefundsRequest request) throws Exception {
+    public ListSettlementRefundsResponse listRefunds(ListSettlementRefundsRequest request) throws Exception {
         return listRefunds(request, Optional.empty());
     }
 
     /**
-     * Get settlement refunds
+     * List settlement refunds
      * 
      * <p>Retrieve all refunds 'deducted' from the given settlement.
      * 
@@ -486,14 +486,14 @@ public class Settlements {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetSettlementRefundsResponse listRefunds(GetSettlementRefundsRequest request, Optional<Options> options) throws Exception {
-        RequestOperation<GetSettlementRefundsRequest, GetSettlementRefundsResponse> operation
-              = new GetSettlementRefundsOperation(sdkConfiguration, options);
+    public ListSettlementRefundsResponse listRefunds(ListSettlementRefundsRequest request, Optional<Options> options) throws Exception {
+        RequestOperation<ListSettlementRefundsRequest, ListSettlementRefundsResponse> operation
+              = new ListSettlementRefundsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
-     * Get settlement chargebacks
+     * List settlement chargebacks
      * 
      * <p>Retrieve all chargebacks 'deducted' from the given settlement.
      * 
@@ -505,12 +505,12 @@ public class Settlements {
      * 
      * @return The call builder
      */
-    public GetSettlementChargebacksRequestBuilder listChargebacks() {
-        return new GetSettlementChargebacksRequestBuilder(sdkConfiguration);
+    public ListSettlementChargebacksRequestBuilder listChargebacks() {
+        return new ListSettlementChargebacksRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * Get settlement chargebacks
+     * List settlement chargebacks
      * 
      * <p>Retrieve all chargebacks 'deducted' from the given settlement.
      * 
@@ -524,12 +524,12 @@ public class Settlements {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetSettlementChargebacksResponse listChargebacks(GetSettlementChargebacksRequest request) throws Exception {
+    public ListSettlementChargebacksResponse listChargebacks(ListSettlementChargebacksRequest request) throws Exception {
         return listChargebacks(request, Optional.empty());
     }
 
     /**
-     * Get settlement chargebacks
+     * List settlement chargebacks
      * 
      * <p>Retrieve all chargebacks 'deducted' from the given settlement.
      * 
@@ -544,9 +544,9 @@ public class Settlements {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetSettlementChargebacksResponse listChargebacks(GetSettlementChargebacksRequest request, Optional<Options> options) throws Exception {
-        RequestOperation<GetSettlementChargebacksRequest, GetSettlementChargebacksResponse> operation
-              = new GetSettlementChargebacksOperation(sdkConfiguration, options);
+    public ListSettlementChargebacksResponse listChargebacks(ListSettlementChargebacksRequest request, Optional<Options> options) throws Exception {
+        RequestOperation<ListSettlementChargebacksRequest, ListSettlementChargebacksResponse> operation
+              = new ListSettlementChargebacksOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

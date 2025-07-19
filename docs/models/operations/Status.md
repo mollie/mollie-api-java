@@ -3,11 +3,9 @@
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `CREATED`    | created      |
-| `AUTHORIZED` | authorized   |
-| `PAID`       | paid         |
-| `CANCELED`   | canceled     |
-| `SHIPPING`   | shipping     |
-| `COMPLETED`  | completed    |
+| Name          | Value         |
+| ------------- | ------------- |
+| `UNREQUESTED` | unrequested   |
+| `ENABLED`     | enabled       |
+| `DISABLED`    | disabled      |
+| `PENDING`     | pending       |

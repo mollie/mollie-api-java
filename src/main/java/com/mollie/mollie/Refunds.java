@@ -8,10 +8,6 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 import com.mollie.mollie.models.operations.CancelRefundRequest;
 import com.mollie.mollie.models.operations.CancelRefundRequestBuilder;
 import com.mollie.mollie.models.operations.CancelRefundResponse;
-import com.mollie.mollie.models.operations.CreateOrderRefundRequest;
-import com.mollie.mollie.models.operations.CreateOrderRefundRequestBody;
-import com.mollie.mollie.models.operations.CreateOrderRefundRequestBuilder;
-import com.mollie.mollie.models.operations.CreateOrderRefundResponse;
 import com.mollie.mollie.models.operations.CreateRefundRequest;
 import com.mollie.mollie.models.operations.CreateRefundRequestBody;
 import com.mollie.mollie.models.operations.CreateRefundRequestBuilder;
@@ -23,18 +19,13 @@ import com.mollie.mollie.models.operations.GetRefundResponse;
 import com.mollie.mollie.models.operations.ListAllRefundsRequest;
 import com.mollie.mollie.models.operations.ListAllRefundsRequestBuilder;
 import com.mollie.mollie.models.operations.ListAllRefundsResponse;
-import com.mollie.mollie.models.operations.ListOrderRefundsRequest;
-import com.mollie.mollie.models.operations.ListOrderRefundsRequestBuilder;
-import com.mollie.mollie.models.operations.ListOrderRefundsResponse;
 import com.mollie.mollie.models.operations.ListRefundsRequest;
 import com.mollie.mollie.models.operations.ListRefundsRequestBuilder;
 import com.mollie.mollie.models.operations.ListRefundsResponse;
 import com.mollie.mollie.operations.CancelRefundOperation;
-import com.mollie.mollie.operations.CreateOrderRefundOperation;
 import com.mollie.mollie.operations.CreateRefundOperation;
 import com.mollie.mollie.operations.GetRefundOperation;
 import com.mollie.mollie.operations.ListAllRefundsOperation;
-import com.mollie.mollie.operations.ListOrderRefundsOperation;
 import com.mollie.mollie.operations.ListRefundsOperation;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
@@ -334,149 +325,6 @@ public class Refunds {
                 .build();
         RequestOperation<CancelRefundRequest, CancelRefundResponse> operation
               = new CancelRefundOperation(sdkConfiguration, options);
-        return operation.handleResponse(operation.doRequest(request));
-    }
-
-    /**
-     * Create order refund
-     * 
-     * <p>When using the Orders API, refunds should be made for a specific order.
-     * 
-     * <p>If you want to refund arbitrary amounts, however, you can also use the [Create payment refund endpoint](create-refund) by creating a refund on the payment itself.
-     * 
-     * <p>If an order line is still in the `authorized` state, it cannot be refunded. You should cancel it instead. Order lines that are `paid`, `shipping` or `completed` can be refunded.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **refunds.write**](/reference/authentication)
-     * 
-     * @return The call builder
-     */
-    public CreateOrderRefundRequestBuilder createOrder() {
-        return new CreateOrderRefundRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * Create order refund
-     * 
-     * <p>When using the Orders API, refunds should be made for a specific order.
-     * 
-     * <p>If you want to refund arbitrary amounts, however, you can also use the [Create payment refund endpoint](create-refund) by creating a refund on the payment itself.
-     * 
-     * <p>If an order line is still in the `authorized` state, it cannot be refunded. You should cancel it instead. Order lines that are `paid`, `shipping` or `completed` can be refunded.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **refunds.write**](/reference/authentication)
-     * 
-     * @param orderId Provide the ID of the related order.
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public CreateOrderRefundResponse createOrder(String orderId) throws Exception {
-        return createOrder(orderId, Optional.empty(), Optional.empty());
-    }
-
-    /**
-     * Create order refund
-     * 
-     * <p>When using the Orders API, refunds should be made for a specific order.
-     * 
-     * <p>If you want to refund arbitrary amounts, however, you can also use the [Create payment refund endpoint](create-refund) by creating a refund on the payment itself.
-     * 
-     * <p>If an order line is still in the `authorized` state, it cannot be refunded. You should cancel it instead. Order lines that are `paid`, `shipping` or `completed` can be refunded.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **refunds.write**](/reference/authentication)
-     * 
-     * @param orderId Provide the ID of the related order.
-     * @param requestBody 
-     * @param options additional options
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public CreateOrderRefundResponse createOrder(
-            String orderId, Optional<? extends CreateOrderRefundRequestBody> requestBody,
-            Optional<Options> options) throws Exception {
-        CreateOrderRefundRequest request =
-            CreateOrderRefundRequest
-                .builder()
-                .orderId(orderId)
-                .requestBody(requestBody)
-                .build();
-        RequestOperation<CreateOrderRefundRequest, CreateOrderRefundResponse> operation
-              = new CreateOrderRefundOperation(sdkConfiguration, options);
-        return operation.handleResponse(operation.doRequest(request));
-    }
-
-    /**
-     * List order refunds
-     * 
-     * <p>Retrieve a list of all refunds created for a specific order.
-     * 
-     * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **refunds.read**](/reference/authentication)
-     * 
-     * @return The call builder
-     */
-    public ListOrderRefundsRequestBuilder listForOrder() {
-        return new ListOrderRefundsRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * List order refunds
-     * 
-     * <p>Retrieve a list of all refunds created for a specific order.
-     * 
-     * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **refunds.read**](/reference/authentication)
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public ListOrderRefundsResponse listForOrder(ListOrderRefundsRequest request) throws Exception {
-        return listForOrder(request, Optional.empty());
-    }
-
-    /**
-     * List order refunds
-     * 
-     * <p>Retrieve a list of all refunds created for a specific order.
-     * 
-     * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **refunds.read**](/reference/authentication)
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @param options additional options
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public ListOrderRefundsResponse listForOrder(ListOrderRefundsRequest request, Optional<Options> options) throws Exception {
-        RequestOperation<ListOrderRefundsRequest, ListOrderRefundsResponse> operation
-              = new ListOrderRefundsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

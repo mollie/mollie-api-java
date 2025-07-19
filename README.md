@@ -48,7 +48,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:0.13.2'
+implementation 'com.mollie:mollie:0.13.3'
 ```
 
 Maven:
@@ -56,7 +56,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>0.13.2</version>
+    <version>0.13.3</version>
 </dependency>
 ```
 
@@ -711,8 +711,6 @@ public class Application {
 * [list](docs/sdks/refunds/README.md#list) - List payment refunds
 * [get](docs/sdks/refunds/README.md#get) - Get payment refund
 * [cancel](docs/sdks/refunds/README.md#cancel) - Cancel payment refund
-* [createOrder](docs/sdks/refunds/README.md#createorder) - Create order refund
-* [listForOrder](docs/sdks/refunds/README.md#listfororder) - List order refunds
 * [all](docs/sdks/refunds/README.md#all) - List all refunds
 
 ### [salesInvoices()](docs/sdks/salesinvoices/README.md)
@@ -729,10 +727,10 @@ public class Application {
 * [get](docs/sdks/settlements/README.md#get) - Get settlement
 * [getOpen](docs/sdks/settlements/README.md#getopen) - Get open settlement
 * [getNext](docs/sdks/settlements/README.md#getnext) - Get next settlement
-* [listPayments](docs/sdks/settlements/README.md#listpayments) - Get settlement payments
-* [listCaptures](docs/sdks/settlements/README.md#listcaptures) - Get settlement captures
-* [listRefunds](docs/sdks/settlements/README.md#listrefunds) - Get settlement refunds
-* [listChargebacks](docs/sdks/settlements/README.md#listchargebacks) - Get settlement chargebacks
+* [listPayments](docs/sdks/settlements/README.md#listpayments) - List settlement payments
+* [listCaptures](docs/sdks/settlements/README.md#listcaptures) - List settlement captures
+* [listRefunds](docs/sdks/settlements/README.md#listrefunds) - List settlement refunds
+* [listChargebacks](docs/sdks/settlements/README.md#listchargebacks) - List settlement chargebacks
 
 ### [subscriptions()](docs/sdks/subscriptions/README.md)
 

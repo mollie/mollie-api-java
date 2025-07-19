@@ -9,12 +9,10 @@ import java.util.Objects;
 import java.util.Optional;
 
 public enum Status {
-    CREATED("created"),
-    AUTHORIZED("authorized"),
-    PAID("paid"),
-    CANCELED("canceled"),
-    SHIPPING("shipping"),
-    COMPLETED("completed");
+    UNREQUESTED("unrequested"),
+    ENABLED("enabled"),
+    DISABLED("disabled"),
+    PENDING("pending");
 
     @JsonValue
     private final String value;

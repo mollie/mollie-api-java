@@ -70,7 +70,7 @@ public class CreatePaymentResponseBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amountRefunded")
-    private Optional<? extends CreatePaymentAmountRefunded> amountRefunded;
+    private Optional<? extends AmountRefunded> amountRefunded;
 
     /**
      * The remaining amount that can be refunded. Only available when refunds are available for this payment.
@@ -436,7 +436,7 @@ public class CreatePaymentResponseBody {
             @JsonProperty("mode") String mode,
             @JsonProperty("description") String description,
             @JsonProperty("amount") CreatePaymentPaymentsResponseAmount amount,
-            @JsonProperty("amountRefunded") Optional<? extends CreatePaymentAmountRefunded> amountRefunded,
+            @JsonProperty("amountRefunded") Optional<? extends AmountRefunded> amountRefunded,
             @JsonProperty("amountRemaining") Optional<? extends AmountRemaining> amountRemaining,
             @JsonProperty("amountCaptured") Optional<? extends AmountCaptured> amountCaptured,
             @JsonProperty("amountChargedBack") Optional<? extends AmountChargedBack> amountChargedBack,
@@ -650,8 +650,8 @@ public class CreatePaymentResponseBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreatePaymentAmountRefunded> amountRefunded() {
-        return (Optional<CreatePaymentAmountRefunded>) amountRefunded;
+    public Optional<AmountRefunded> amountRefunded() {
+        return (Optional<AmountRefunded>) amountRefunded;
     }
 
     /**
@@ -1129,7 +1129,7 @@ public class CreatePaymentResponseBody {
     /**
      * The total amount that is already refunded. Only available when refunds are available for this payment. For some payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the costs for a return shipment to the customer.
      */
-    public CreatePaymentResponseBody withAmountRefunded(CreatePaymentAmountRefunded amountRefunded) {
+    public CreatePaymentResponseBody withAmountRefunded(AmountRefunded amountRefunded) {
         Utils.checkNotNull(amountRefunded, "amountRefunded");
         this.amountRefunded = Optional.ofNullable(amountRefunded);
         return this;
@@ -1139,7 +1139,7 @@ public class CreatePaymentResponseBody {
     /**
      * The total amount that is already refunded. Only available when refunds are available for this payment. For some payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the costs for a return shipment to the customer.
      */
-    public CreatePaymentResponseBody withAmountRefunded(Optional<? extends CreatePaymentAmountRefunded> amountRefunded) {
+    public CreatePaymentResponseBody withAmountRefunded(Optional<? extends AmountRefunded> amountRefunded) {
         Utils.checkNotNull(amountRefunded, "amountRefunded");
         this.amountRefunded = amountRefunded;
         return this;
@@ -2128,7 +2128,7 @@ public class CreatePaymentResponseBody {
 
         private CreatePaymentPaymentsResponseAmount amount;
 
-        private Optional<? extends CreatePaymentAmountRefunded> amountRefunded = Optional.empty();
+        private Optional<? extends AmountRefunded> amountRefunded = Optional.empty();
 
         private Optional<? extends AmountRemaining> amountRemaining = Optional.empty();
 
@@ -2276,7 +2276,7 @@ public class CreatePaymentResponseBody {
         /**
          * The total amount that is already refunded. Only available when refunds are available for this payment. For some payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the costs for a return shipment to the customer.
          */
-        public Builder amountRefunded(CreatePaymentAmountRefunded amountRefunded) {
+        public Builder amountRefunded(AmountRefunded amountRefunded) {
             Utils.checkNotNull(amountRefunded, "amountRefunded");
             this.amountRefunded = Optional.ofNullable(amountRefunded);
             return this;
@@ -2285,7 +2285,7 @@ public class CreatePaymentResponseBody {
         /**
          * The total amount that is already refunded. Only available when refunds are available for this payment. For some payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the costs for a return shipment to the customer.
          */
-        public Builder amountRefunded(Optional<? extends CreatePaymentAmountRefunded> amountRefunded) {
+        public Builder amountRefunded(Optional<? extends AmountRefunded> amountRefunded) {
             Utils.checkNotNull(amountRefunded, "amountRefunded");
             this.amountRefunded = amountRefunded;
             return this;
