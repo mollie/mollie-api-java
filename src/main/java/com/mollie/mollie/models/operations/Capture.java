@@ -22,21 +22,38 @@ public class Capture {
 
 
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("paymentDescription")
+    private Optional<String> paymentDescription;
+
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("captureId")
     private Optional<String> captureId;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("captureDescription")
+    private Optional<String> captureDescription;
 
     @JsonCreator
     public Capture(
             @JsonProperty("paymentId") Optional<String> paymentId,
-            @JsonProperty("captureId") Optional<String> captureId) {
+            @JsonProperty("paymentDescription") Optional<String> paymentDescription,
+            @JsonProperty("captureId") Optional<String> captureId,
+            @JsonProperty("captureDescription") Optional<String> captureDescription) {
         Utils.checkNotNull(paymentId, "paymentId");
+        Utils.checkNotNull(paymentDescription, "paymentDescription");
         Utils.checkNotNull(captureId, "captureId");
+        Utils.checkNotNull(captureDescription, "captureDescription");
         this.paymentId = paymentId;
+        this.paymentDescription = paymentDescription;
         this.captureId = captureId;
+        this.captureDescription = captureDescription;
     }
     
     public Capture() {
-        this(Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -45,8 +62,18 @@ public class Capture {
     }
 
     @JsonIgnore
+    public Optional<String> paymentDescription() {
+        return paymentDescription;
+    }
+
+    @JsonIgnore
     public Optional<String> captureId() {
         return captureId;
+    }
+
+    @JsonIgnore
+    public Optional<String> captureDescription() {
+        return captureDescription;
     }
 
     public static Builder builder() {
@@ -67,6 +94,19 @@ public class Capture {
         return this;
     }
 
+    public Capture withPaymentDescription(String paymentDescription) {
+        Utils.checkNotNull(paymentDescription, "paymentDescription");
+        this.paymentDescription = Optional.ofNullable(paymentDescription);
+        return this;
+    }
+
+
+    public Capture withPaymentDescription(Optional<String> paymentDescription) {
+        Utils.checkNotNull(paymentDescription, "paymentDescription");
+        this.paymentDescription = paymentDescription;
+        return this;
+    }
+
     public Capture withCaptureId(String captureId) {
         Utils.checkNotNull(captureId, "captureId");
         this.captureId = Optional.ofNullable(captureId);
@@ -77,6 +117,19 @@ public class Capture {
     public Capture withCaptureId(Optional<String> captureId) {
         Utils.checkNotNull(captureId, "captureId");
         this.captureId = captureId;
+        return this;
+    }
+
+    public Capture withCaptureDescription(String captureDescription) {
+        Utils.checkNotNull(captureDescription, "captureDescription");
+        this.captureDescription = Optional.ofNullable(captureDescription);
+        return this;
+    }
+
+
+    public Capture withCaptureDescription(Optional<String> captureDescription) {
+        Utils.checkNotNull(captureDescription, "captureDescription");
+        this.captureDescription = captureDescription;
         return this;
     }
 
@@ -91,20 +144,25 @@ public class Capture {
         Capture other = (Capture) o;
         return 
             Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
-            Utils.enhancedDeepEquals(this.captureId, other.captureId);
+            Utils.enhancedDeepEquals(this.paymentDescription, other.paymentDescription) &&
+            Utils.enhancedDeepEquals(this.captureId, other.captureId) &&
+            Utils.enhancedDeepEquals(this.captureDescription, other.captureDescription);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentId, captureId);
+            paymentId, paymentDescription, captureId,
+            captureDescription);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Capture.class,
                 "paymentId", paymentId,
-                "captureId", captureId);
+                "paymentDescription", paymentDescription,
+                "captureId", captureId,
+                "captureDescription", captureDescription);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -112,7 +170,11 @@ public class Capture {
 
         private Optional<String> paymentId = Optional.empty();
 
+        private Optional<String> paymentDescription = Optional.empty();
+
         private Optional<String> captureId = Optional.empty();
+
+        private Optional<String> captureDescription = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -132,6 +194,19 @@ public class Capture {
         }
 
 
+        public Builder paymentDescription(String paymentDescription) {
+            Utils.checkNotNull(paymentDescription, "paymentDescription");
+            this.paymentDescription = Optional.ofNullable(paymentDescription);
+            return this;
+        }
+
+        public Builder paymentDescription(Optional<String> paymentDescription) {
+            Utils.checkNotNull(paymentDescription, "paymentDescription");
+            this.paymentDescription = paymentDescription;
+            return this;
+        }
+
+
         public Builder captureId(String captureId) {
             Utils.checkNotNull(captureId, "captureId");
             this.captureId = Optional.ofNullable(captureId);
@@ -144,10 +219,24 @@ public class Capture {
             return this;
         }
 
+
+        public Builder captureDescription(String captureDescription) {
+            Utils.checkNotNull(captureDescription, "captureDescription");
+            this.captureDescription = Optional.ofNullable(captureDescription);
+            return this;
+        }
+
+        public Builder captureDescription(Optional<String> captureDescription) {
+            Utils.checkNotNull(captureDescription, "captureDescription");
+            this.captureDescription = captureDescription;
+            return this;
+        }
+
         public Capture build() {
 
             return new Capture(
-                paymentId, captureId);
+                paymentId, paymentDescription, captureId,
+                captureDescription);
         }
 
     }

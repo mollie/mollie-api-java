@@ -22,21 +22,38 @@ public class ReturnedRefund {
 
 
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("paymentDescription")
+    private Optional<String> paymentDescription;
+
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("refundId")
     private Optional<String> refundId;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("refundDescription")
+    private Optional<String> refundDescription;
 
     @JsonCreator
     public ReturnedRefund(
             @JsonProperty("paymentId") Optional<String> paymentId,
-            @JsonProperty("refundId") Optional<String> refundId) {
+            @JsonProperty("paymentDescription") Optional<String> paymentDescription,
+            @JsonProperty("refundId") Optional<String> refundId,
+            @JsonProperty("refundDescription") Optional<String> refundDescription) {
         Utils.checkNotNull(paymentId, "paymentId");
+        Utils.checkNotNull(paymentDescription, "paymentDescription");
         Utils.checkNotNull(refundId, "refundId");
+        Utils.checkNotNull(refundDescription, "refundDescription");
         this.paymentId = paymentId;
+        this.paymentDescription = paymentDescription;
         this.refundId = refundId;
+        this.refundDescription = refundDescription;
     }
     
     public ReturnedRefund() {
-        this(Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -45,8 +62,18 @@ public class ReturnedRefund {
     }
 
     @JsonIgnore
+    public Optional<String> paymentDescription() {
+        return paymentDescription;
+    }
+
+    @JsonIgnore
     public Optional<String> refundId() {
         return refundId;
+    }
+
+    @JsonIgnore
+    public Optional<String> refundDescription() {
+        return refundDescription;
     }
 
     public static Builder builder() {
@@ -67,6 +94,19 @@ public class ReturnedRefund {
         return this;
     }
 
+    public ReturnedRefund withPaymentDescription(String paymentDescription) {
+        Utils.checkNotNull(paymentDescription, "paymentDescription");
+        this.paymentDescription = Optional.ofNullable(paymentDescription);
+        return this;
+    }
+
+
+    public ReturnedRefund withPaymentDescription(Optional<String> paymentDescription) {
+        Utils.checkNotNull(paymentDescription, "paymentDescription");
+        this.paymentDescription = paymentDescription;
+        return this;
+    }
+
     public ReturnedRefund withRefundId(String refundId) {
         Utils.checkNotNull(refundId, "refundId");
         this.refundId = Optional.ofNullable(refundId);
@@ -77,6 +117,19 @@ public class ReturnedRefund {
     public ReturnedRefund withRefundId(Optional<String> refundId) {
         Utils.checkNotNull(refundId, "refundId");
         this.refundId = refundId;
+        return this;
+    }
+
+    public ReturnedRefund withRefundDescription(String refundDescription) {
+        Utils.checkNotNull(refundDescription, "refundDescription");
+        this.refundDescription = Optional.ofNullable(refundDescription);
+        return this;
+    }
+
+
+    public ReturnedRefund withRefundDescription(Optional<String> refundDescription) {
+        Utils.checkNotNull(refundDescription, "refundDescription");
+        this.refundDescription = refundDescription;
         return this;
     }
 
@@ -91,20 +144,25 @@ public class ReturnedRefund {
         ReturnedRefund other = (ReturnedRefund) o;
         return 
             Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
-            Utils.enhancedDeepEquals(this.refundId, other.refundId);
+            Utils.enhancedDeepEquals(this.paymentDescription, other.paymentDescription) &&
+            Utils.enhancedDeepEquals(this.refundId, other.refundId) &&
+            Utils.enhancedDeepEquals(this.refundDescription, other.refundDescription);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentId, refundId);
+            paymentId, paymentDescription, refundId,
+            refundDescription);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ReturnedRefund.class,
                 "paymentId", paymentId,
-                "refundId", refundId);
+                "paymentDescription", paymentDescription,
+                "refundId", refundId,
+                "refundDescription", refundDescription);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -112,7 +170,11 @@ public class ReturnedRefund {
 
         private Optional<String> paymentId = Optional.empty();
 
+        private Optional<String> paymentDescription = Optional.empty();
+
         private Optional<String> refundId = Optional.empty();
+
+        private Optional<String> refundDescription = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -132,6 +194,19 @@ public class ReturnedRefund {
         }
 
 
+        public Builder paymentDescription(String paymentDescription) {
+            Utils.checkNotNull(paymentDescription, "paymentDescription");
+            this.paymentDescription = Optional.ofNullable(paymentDescription);
+            return this;
+        }
+
+        public Builder paymentDescription(Optional<String> paymentDescription) {
+            Utils.checkNotNull(paymentDescription, "paymentDescription");
+            this.paymentDescription = paymentDescription;
+            return this;
+        }
+
+
         public Builder refundId(String refundId) {
             Utils.checkNotNull(refundId, "refundId");
             this.refundId = Optional.ofNullable(refundId);
@@ -144,10 +219,24 @@ public class ReturnedRefund {
             return this;
         }
 
+
+        public Builder refundDescription(String refundDescription) {
+            Utils.checkNotNull(refundDescription, "refundDescription");
+            this.refundDescription = Optional.ofNullable(refundDescription);
+            return this;
+        }
+
+        public Builder refundDescription(Optional<String> refundDescription) {
+            Utils.checkNotNull(refundDescription, "refundDescription");
+            this.refundDescription = refundDescription;
+            return this;
+        }
+
         public ReturnedRefund build() {
 
             return new ReturnedRefund(
-                paymentId, refundId);
+                paymentId, paymentDescription, refundId,
+                refundDescription);
         }
 
     }
