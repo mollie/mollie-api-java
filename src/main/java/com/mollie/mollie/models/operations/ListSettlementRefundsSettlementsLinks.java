@@ -36,7 +36,8 @@ public class ListSettlementRefundsSettlementsLinks {
     private Optional<? extends ListSettlementRefundsPayment> payment;
 
     /**
-     * The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not yet settled.
+     * The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not
+     * yet settled.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlement")
@@ -89,7 +90,8 @@ public class ListSettlementRefundsSettlementsLinks {
     }
 
     /**
-     * The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not yet settled.
+     * The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not
+     * yet settled.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -150,7 +152,8 @@ public class ListSettlementRefundsSettlementsLinks {
     }
 
     /**
-     * The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not yet settled.
+     * The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not
+     * yet settled.
      */
     public ListSettlementRefundsSettlementsLinks withSettlement(ListSettlementRefundsSettlement settlement) {
         Utils.checkNotNull(settlement, "settlement");
@@ -159,7 +162,8 @@ public class ListSettlementRefundsSettlementsLinks {
     }
 
     /**
-     * The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not yet settled.
+     * The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not
+     * yet settled.
      */
     public ListSettlementRefundsSettlementsLinks withSettlement(JsonNullable<? extends ListSettlementRefundsSettlement> settlement) {
         Utils.checkNotNull(settlement, "settlement");
@@ -273,7 +277,8 @@ public class ListSettlementRefundsSettlementsLinks {
 
 
         /**
-         * The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not yet settled.
+         * The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not
+         * yet settled.
          */
         public Builder settlement(ListSettlementRefundsSettlement settlement) {
             Utils.checkNotNull(settlement, "settlement");
@@ -282,7 +287,8 @@ public class ListSettlementRefundsSettlementsLinks {
         }
 
         /**
-         * The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not yet settled.
+         * The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not
+         * yet settled.
          */
         public Builder settlement(JsonNullable<? extends ListSettlementRefundsSettlement> settlement) {
             Utils.checkNotNull(settlement, "settlement");

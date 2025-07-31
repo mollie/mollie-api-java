@@ -39,22 +39,22 @@ public class UpdateProfileResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<String> mode;
+    private Optional<? extends UpdateProfileMode> mode;
 
     /**
-     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
+     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+     * application.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private Optional<String> name;
 
     /**
-     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
+     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are
+     * allowed.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("website")
@@ -82,14 +82,16 @@ public class UpdateProfileResponseBody {
     private Optional<String> description;
 
     /**
-     * A list of countries where you expect that the majority of the profile's customers reside, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+     * A list of countries where you expect that the majority of the profile's customers reside,
+     * in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("countriesOfActivity")
     private Optional<? extends List<String>> countriesOfActivity;
 
     /**
-     * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types#business-category) for all possible options.
+     * The industry associated with the profile's trade name or brand. Please refer to the
+     * [business category list](common-data-types#business-category) for all possible options.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("businessCategory")
@@ -101,15 +103,15 @@ public class UpdateProfileResponseBody {
      * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
      * * `verified`: The profile has been verified and can be used to create live payments and test payments.
      * * `blocked`: The profile is blocked and can no longer be used or changed.
-     * 
-     * <p>Possible values: `unverified` `verified` `blocked`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<String> status;
+    private Optional<? extends UpdateProfileStatus> status;
 
     /**
-     * Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved automatically, unless a switch to a live profile has been requested. The review object will therefore usually be `null` in test mode.
+     * Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
+     * automatically, unless a switch to a live profile has been requested. The review object will therefore usually be
+     * `null` in test mode.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("review")
@@ -133,7 +135,7 @@ public class UpdateProfileResponseBody {
     public UpdateProfileResponseBody(
             @JsonProperty("resource") Optional<String> resource,
             @JsonProperty("id") Optional<String> id,
-            @JsonProperty("mode") Optional<String> mode,
+            @JsonProperty("mode") Optional<? extends UpdateProfileMode> mode,
             @JsonProperty("name") Optional<String> name,
             @JsonProperty("website") Optional<String> website,
             @JsonProperty("email") Optional<String> email,
@@ -141,7 +143,7 @@ public class UpdateProfileResponseBody {
             @JsonProperty("description") Optional<String> description,
             @JsonProperty("countriesOfActivity") Optional<? extends List<String>> countriesOfActivity,
             @JsonProperty("businessCategory") Optional<String> businessCategory,
-            @JsonProperty("status") Optional<String> status,
+            @JsonProperty("status") Optional<? extends UpdateProfileStatus> status,
             @JsonProperty("review") Optional<? extends UpdateProfileReview> review,
             @JsonProperty("createdAt") Optional<String> createdAt,
             @JsonProperty("_links") Optional<? extends UpdateProfileLinks> links) {
@@ -201,16 +203,16 @@ public class UpdateProfileResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> mode() {
-        return mode;
+    public Optional<UpdateProfileMode> mode() {
+        return (Optional<UpdateProfileMode>) mode;
     }
 
     /**
-     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
+     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+     * application.
      */
     @JsonIgnore
     public Optional<String> name() {
@@ -218,7 +220,8 @@ public class UpdateProfileResponseBody {
     }
 
     /**
-     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
+     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are
+     * allowed.
      */
     @JsonIgnore
     public Optional<String> website() {
@@ -250,7 +253,8 @@ public class UpdateProfileResponseBody {
     }
 
     /**
-     * A list of countries where you expect that the majority of the profile's customers reside, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+     * A list of countries where you expect that the majority of the profile's customers reside,
+     * in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -259,7 +263,8 @@ public class UpdateProfileResponseBody {
     }
 
     /**
-     * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types#business-category) for all possible options.
+     * The industry associated with the profile's trade name or brand. Please refer to the
+     * [business category list](common-data-types#business-category) for all possible options.
      */
     @JsonIgnore
     public Optional<String> businessCategory() {
@@ -272,16 +277,17 @@ public class UpdateProfileResponseBody {
      * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
      * * `verified`: The profile has been verified and can be used to create live payments and test payments.
      * * `blocked`: The profile is blocked and can no longer be used or changed.
-     * 
-     * <p>Possible values: `unverified` `verified` `blocked`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> status() {
-        return status;
+    public Optional<UpdateProfileStatus> status() {
+        return (Optional<UpdateProfileStatus>) status;
     }
 
     /**
-     * Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved automatically, unless a switch to a live profile has been requested. The review object will therefore usually be `null` in test mode.
+     * Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
+     * automatically, unless a switch to a live profile has been requested. The review object will therefore usually be
+     * `null` in test mode.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -351,10 +357,8 @@ public class UpdateProfileResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
-    public UpdateProfileResponseBody withMode(String mode) {
+    public UpdateProfileResponseBody withMode(UpdateProfileMode mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = Optional.ofNullable(mode);
         return this;
@@ -363,17 +367,16 @@ public class UpdateProfileResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
-    public UpdateProfileResponseBody withMode(Optional<String> mode) {
+    public UpdateProfileResponseBody withMode(Optional<? extends UpdateProfileMode> mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
     }
 
     /**
-     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
+     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+     * application.
      */
     public UpdateProfileResponseBody withName(String name) {
         Utils.checkNotNull(name, "name");
@@ -383,7 +386,8 @@ public class UpdateProfileResponseBody {
 
 
     /**
-     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
+     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+     * application.
      */
     public UpdateProfileResponseBody withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
@@ -392,7 +396,8 @@ public class UpdateProfileResponseBody {
     }
 
     /**
-     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
+     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are
+     * allowed.
      */
     public UpdateProfileResponseBody withWebsite(String website) {
         Utils.checkNotNull(website, "website");
@@ -402,7 +407,8 @@ public class UpdateProfileResponseBody {
 
 
     /**
-     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
+     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are
+     * allowed.
      */
     public UpdateProfileResponseBody withWebsite(Optional<String> website) {
         Utils.checkNotNull(website, "website");
@@ -468,7 +474,8 @@ public class UpdateProfileResponseBody {
     }
 
     /**
-     * A list of countries where you expect that the majority of the profile's customers reside, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+     * A list of countries where you expect that the majority of the profile's customers reside,
+     * in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
      */
     public UpdateProfileResponseBody withCountriesOfActivity(List<String> countriesOfActivity) {
         Utils.checkNotNull(countriesOfActivity, "countriesOfActivity");
@@ -478,7 +485,8 @@ public class UpdateProfileResponseBody {
 
 
     /**
-     * A list of countries where you expect that the majority of the profile's customers reside, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+     * A list of countries where you expect that the majority of the profile's customers reside,
+     * in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
      */
     public UpdateProfileResponseBody withCountriesOfActivity(Optional<? extends List<String>> countriesOfActivity) {
         Utils.checkNotNull(countriesOfActivity, "countriesOfActivity");
@@ -487,7 +495,8 @@ public class UpdateProfileResponseBody {
     }
 
     /**
-     * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types#business-category) for all possible options.
+     * The industry associated with the profile's trade name or brand. Please refer to the
+     * [business category list](common-data-types#business-category) for all possible options.
      */
     public UpdateProfileResponseBody withBusinessCategory(String businessCategory) {
         Utils.checkNotNull(businessCategory, "businessCategory");
@@ -497,7 +506,8 @@ public class UpdateProfileResponseBody {
 
 
     /**
-     * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types#business-category) for all possible options.
+     * The industry associated with the profile's trade name or brand. Please refer to the
+     * [business category list](common-data-types#business-category) for all possible options.
      */
     public UpdateProfileResponseBody withBusinessCategory(Optional<String> businessCategory) {
         Utils.checkNotNull(businessCategory, "businessCategory");
@@ -511,10 +521,8 @@ public class UpdateProfileResponseBody {
      * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
      * * `verified`: The profile has been verified and can be used to create live payments and test payments.
      * * `blocked`: The profile is blocked and can no longer be used or changed.
-     * 
-     * <p>Possible values: `unverified` `verified` `blocked`
      */
-    public UpdateProfileResponseBody withStatus(String status) {
+    public UpdateProfileResponseBody withStatus(UpdateProfileStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -527,17 +535,17 @@ public class UpdateProfileResponseBody {
      * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
      * * `verified`: The profile has been verified and can be used to create live payments and test payments.
      * * `blocked`: The profile is blocked and can no longer be used or changed.
-     * 
-     * <p>Possible values: `unverified` `verified` `blocked`
      */
-    public UpdateProfileResponseBody withStatus(Optional<String> status) {
+    public UpdateProfileResponseBody withStatus(Optional<? extends UpdateProfileStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
     /**
-     * Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved automatically, unless a switch to a live profile has been requested. The review object will therefore usually be `null` in test mode.
+     * Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
+     * automatically, unless a switch to a live profile has been requested. The review object will therefore usually be
+     * `null` in test mode.
      */
     public UpdateProfileResponseBody withReview(UpdateProfileReview review) {
         Utils.checkNotNull(review, "review");
@@ -547,7 +555,9 @@ public class UpdateProfileResponseBody {
 
 
     /**
-     * Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved automatically, unless a switch to a live profile has been requested. The review object will therefore usually be `null` in test mode.
+     * Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
+     * automatically, unless a switch to a live profile has been requested. The review object will therefore usually be
+     * `null` in test mode.
      */
     public UpdateProfileResponseBody withReview(Optional<? extends UpdateProfileReview> review) {
         Utils.checkNotNull(review, "review");
@@ -655,7 +665,7 @@ public class UpdateProfileResponseBody {
 
         private Optional<String> id = Optional.empty();
 
-        private Optional<String> mode = Optional.empty();
+        private Optional<? extends UpdateProfileMode> mode = Optional.empty();
 
         private Optional<String> name = Optional.empty();
 
@@ -671,7 +681,7 @@ public class UpdateProfileResponseBody {
 
         private Optional<String> businessCategory = Optional.empty();
 
-        private Optional<String> status = Optional.empty();
+        private Optional<? extends UpdateProfileStatus> status = Optional.empty();
 
         private Optional<? extends UpdateProfileReview> review = Optional.empty();
 
@@ -724,10 +734,8 @@ public class UpdateProfileResponseBody {
 
         /**
          * Whether this entity was created in live mode or in test mode.
-         * 
-         * <p>Possible values: `live` `test`
          */
-        public Builder mode(String mode) {
+        public Builder mode(UpdateProfileMode mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = Optional.ofNullable(mode);
             return this;
@@ -735,10 +743,8 @@ public class UpdateProfileResponseBody {
 
         /**
          * Whether this entity was created in live mode or in test mode.
-         * 
-         * <p>Possible values: `live` `test`
          */
-        public Builder mode(Optional<String> mode) {
+        public Builder mode(Optional<? extends UpdateProfileMode> mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
@@ -746,7 +752,8 @@ public class UpdateProfileResponseBody {
 
 
         /**
-         * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
+         * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+         * application.
          */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
@@ -755,7 +762,8 @@ public class UpdateProfileResponseBody {
         }
 
         /**
-         * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
+         * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+         * application.
          */
         public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
@@ -765,7 +773,8 @@ public class UpdateProfileResponseBody {
 
 
         /**
-         * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
+         * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are
+         * allowed.
          */
         public Builder website(String website) {
             Utils.checkNotNull(website, "website");
@@ -774,7 +783,8 @@ public class UpdateProfileResponseBody {
         }
 
         /**
-         * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
+         * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are
+         * allowed.
          */
         public Builder website(Optional<String> website) {
             Utils.checkNotNull(website, "website");
@@ -841,7 +851,8 @@ public class UpdateProfileResponseBody {
 
 
         /**
-         * A list of countries where you expect that the majority of the profile's customers reside, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+         * A list of countries where you expect that the majority of the profile's customers reside,
+         * in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
          */
         public Builder countriesOfActivity(List<String> countriesOfActivity) {
             Utils.checkNotNull(countriesOfActivity, "countriesOfActivity");
@@ -850,7 +861,8 @@ public class UpdateProfileResponseBody {
         }
 
         /**
-         * A list of countries where you expect that the majority of the profile's customers reside, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+         * A list of countries where you expect that the majority of the profile's customers reside,
+         * in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
          */
         public Builder countriesOfActivity(Optional<? extends List<String>> countriesOfActivity) {
             Utils.checkNotNull(countriesOfActivity, "countriesOfActivity");
@@ -860,7 +872,8 @@ public class UpdateProfileResponseBody {
 
 
         /**
-         * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types#business-category) for all possible options.
+         * The industry associated with the profile's trade name or brand. Please refer to the
+         * [business category list](common-data-types#business-category) for all possible options.
          */
         public Builder businessCategory(String businessCategory) {
             Utils.checkNotNull(businessCategory, "businessCategory");
@@ -869,7 +882,8 @@ public class UpdateProfileResponseBody {
         }
 
         /**
-         * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types#business-category) for all possible options.
+         * The industry associated with the profile's trade name or brand. Please refer to the
+         * [business category list](common-data-types#business-category) for all possible options.
          */
         public Builder businessCategory(Optional<String> businessCategory) {
             Utils.checkNotNull(businessCategory, "businessCategory");
@@ -884,10 +898,8 @@ public class UpdateProfileResponseBody {
          * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
          * * `verified`: The profile has been verified and can be used to create live payments and test payments.
          * * `blocked`: The profile is blocked and can no longer be used or changed.
-         * 
-         * <p>Possible values: `unverified` `verified` `blocked`
          */
-        public Builder status(String status) {
+        public Builder status(UpdateProfileStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -899,10 +911,8 @@ public class UpdateProfileResponseBody {
          * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
          * * `verified`: The profile has been verified and can be used to create live payments and test payments.
          * * `blocked`: The profile is blocked and can no longer be used or changed.
-         * 
-         * <p>Possible values: `unverified` `verified` `blocked`
          */
-        public Builder status(Optional<String> status) {
+        public Builder status(Optional<? extends UpdateProfileStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -910,7 +920,9 @@ public class UpdateProfileResponseBody {
 
 
         /**
-         * Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved automatically, unless a switch to a live profile has been requested. The review object will therefore usually be `null` in test mode.
+         * Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
+         * automatically, unless a switch to a live profile has been requested. The review object will therefore usually be
+         * `null` in test mode.
          */
         public Builder review(UpdateProfileReview review) {
             Utils.checkNotNull(review, "review");
@@ -919,7 +931,9 @@ public class UpdateProfileResponseBody {
         }
 
         /**
-         * Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved automatically, unless a switch to a live profile has been requested. The review object will therefore usually be `null` in test mode.
+         * Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
+         * automatically, unless a switch to a live profile has been requested. The review object will therefore usually be
+         * `null` in test mode.
          */
         public Builder review(Optional<? extends UpdateProfileReview> review) {
             Utils.checkNotNull(review, "review");

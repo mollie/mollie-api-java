@@ -1,0 +1,14 @@
+# QueryParamEventTypes
+
+Used to filter out only the webhooks that are subscribed to certain types of events.
+
+
+## Values
+
+| Name                     | Value                    |
+| ------------------------ | ------------------------ |
+| `PAYMENT_LINK_PAID`      | payment-link.paid        |
+| `SALES_INVOICE_CREATED`  | sales-invoice.created    |
+| `SALES_INVOICE_ISSUED`   | sales-invoice.issued     |
+| `SALES_INVOICE_CANCELED` | sales-invoice.canceled   |
+| `SALES_INVOICE_PAID`     | sales-invoice.paid       |

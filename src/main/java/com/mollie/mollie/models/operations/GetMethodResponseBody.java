@@ -22,18 +22,18 @@ import java.util.Optional;
  */
 public class GetMethodResponseBody {
     /**
-     * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
+     * Indicates the response contains a payment method object. Will always contain the string `method` for this
+     * endpoint.
      */
     @JsonProperty("resource")
     private String resource;
 
     /**
-     * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
-     * 
-     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
+     * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment
+     * method selection screen will be skipped.
      */
     @JsonProperty("id")
-    private String id;
+    private Id id;
 
     /**
      * The full name of the payment method.
@@ -50,7 +50,8 @@ public class GetMethodResponseBody {
     private GetMethodMinimumAmount minimumAmount;
 
     /**
-     * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
+     * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
+     * is returned instead.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("maximumAmount")
@@ -64,15 +65,14 @@ public class GetMethodResponseBody {
 
     /**
      * The payment method's activation status for this profile.
-     * 
-     * <p>Possible values: `activated` `pending-boarding` `pending-review` `pending-external` `rejected`
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("status")
-    private Optional<String> status;
+    private Optional<? extends GetMethodStatus> status;
 
     /**
-     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
+     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
+     * for iDEAL, KBC/CBC, gift cards, and vouchers.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("issuers")
@@ -87,12 +87,12 @@ public class GetMethodResponseBody {
     @JsonCreator
     public GetMethodResponseBody(
             @JsonProperty("resource") String resource,
-            @JsonProperty("id") String id,
+            @JsonProperty("id") Id id,
             @JsonProperty("description") String description,
             @JsonProperty("minimumAmount") GetMethodMinimumAmount minimumAmount,
             @JsonProperty("maximumAmount") Optional<? extends MaximumAmount> maximumAmount,
             @JsonProperty("image") Image image,
-            @JsonProperty("status") Optional<String> status,
+            @JsonProperty("status") Optional<? extends GetMethodStatus> status,
             @JsonProperty("issuers") Optional<? extends List<Issuers>> issuers,
             @JsonProperty("_links") GetMethodLinks links) {
         Utils.checkNotNull(resource, "resource");
@@ -117,7 +117,7 @@ public class GetMethodResponseBody {
     
     public GetMethodResponseBody(
             String resource,
-            String id,
+            Id id,
             String description,
             GetMethodMinimumAmount minimumAmount,
             Image image,
@@ -128,7 +128,8 @@ public class GetMethodResponseBody {
     }
 
     /**
-     * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
+     * Indicates the response contains a payment method object. Will always contain the string `method` for this
+     * endpoint.
      */
     @JsonIgnore
     public String resource() {
@@ -136,12 +137,11 @@ public class GetMethodResponseBody {
     }
 
     /**
-     * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
-     * 
-     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
+     * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment
+     * method selection screen will be skipped.
      */
     @JsonIgnore
-    public String id() {
+    public Id id() {
         return id;
     }
 
@@ -164,7 +164,8 @@ public class GetMethodResponseBody {
     }
 
     /**
-     * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
+     * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
+     * is returned instead.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -182,16 +183,16 @@ public class GetMethodResponseBody {
 
     /**
      * The payment method's activation status for this profile.
-     * 
-     * <p>Possible values: `activated` `pending-boarding` `pending-review` `pending-external` `rejected`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> status() {
-        return status;
+    public Optional<GetMethodStatus> status() {
+        return (Optional<GetMethodStatus>) status;
     }
 
     /**
-     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
+     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
+     * for iDEAL, KBC/CBC, gift cards, and vouchers.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -213,7 +214,8 @@ public class GetMethodResponseBody {
 
 
     /**
-     * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
+     * Indicates the response contains a payment method object. Will always contain the string `method` for this
+     * endpoint.
      */
     public GetMethodResponseBody withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -222,11 +224,10 @@ public class GetMethodResponseBody {
     }
 
     /**
-     * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
-     * 
-     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
+     * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment
+     * method selection screen will be skipped.
      */
-    public GetMethodResponseBody withId(String id) {
+    public GetMethodResponseBody withId(Id id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -253,7 +254,8 @@ public class GetMethodResponseBody {
     }
 
     /**
-     * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
+     * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
+     * is returned instead.
      */
     public GetMethodResponseBody withMaximumAmount(MaximumAmount maximumAmount) {
         Utils.checkNotNull(maximumAmount, "maximumAmount");
@@ -263,7 +265,8 @@ public class GetMethodResponseBody {
 
 
     /**
-     * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
+     * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
+     * is returned instead.
      */
     public GetMethodResponseBody withMaximumAmount(Optional<? extends MaximumAmount> maximumAmount) {
         Utils.checkNotNull(maximumAmount, "maximumAmount");
@@ -282,10 +285,8 @@ public class GetMethodResponseBody {
 
     /**
      * The payment method's activation status for this profile.
-     * 
-     * <p>Possible values: `activated` `pending-boarding` `pending-review` `pending-external` `rejected`
      */
-    public GetMethodResponseBody withStatus(String status) {
+    public GetMethodResponseBody withStatus(GetMethodStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -294,17 +295,16 @@ public class GetMethodResponseBody {
 
     /**
      * The payment method's activation status for this profile.
-     * 
-     * <p>Possible values: `activated` `pending-boarding` `pending-review` `pending-external` `rejected`
      */
-    public GetMethodResponseBody withStatus(Optional<String> status) {
+    public GetMethodResponseBody withStatus(Optional<? extends GetMethodStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
     /**
-     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
+     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
+     * for iDEAL, KBC/CBC, gift cards, and vouchers.
      */
     public GetMethodResponseBody withIssuers(List<Issuers> issuers) {
         Utils.checkNotNull(issuers, "issuers");
@@ -314,7 +314,8 @@ public class GetMethodResponseBody {
 
 
     /**
-     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
+     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
+     * for iDEAL, KBC/CBC, gift cards, and vouchers.
      */
     public GetMethodResponseBody withIssuers(Optional<? extends List<Issuers>> issuers) {
         Utils.checkNotNull(issuers, "issuers");
@@ -379,7 +380,7 @@ public class GetMethodResponseBody {
 
         private String resource;
 
-        private String id;
+        private Id id;
 
         private String description;
 
@@ -389,7 +390,7 @@ public class GetMethodResponseBody {
 
         private Image image;
 
-        private Optional<String> status = Optional.empty();
+        private Optional<? extends GetMethodStatus> status = Optional.empty();
 
         private Optional<? extends List<Issuers>> issuers = Optional.empty();
 
@@ -401,7 +402,8 @@ public class GetMethodResponseBody {
 
 
         /**
-         * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
+         * Indicates the response contains a payment method object. Will always contain the string `method` for this
+         * endpoint.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -411,11 +413,10 @@ public class GetMethodResponseBody {
 
 
         /**
-         * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
-         * 
-         * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
+         * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment
+         * method selection screen will be skipped.
          */
-        public Builder id(String id) {
+        public Builder id(Id id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -445,7 +446,8 @@ public class GetMethodResponseBody {
 
 
         /**
-         * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
+         * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
+         * is returned instead.
          */
         public Builder maximumAmount(MaximumAmount maximumAmount) {
             Utils.checkNotNull(maximumAmount, "maximumAmount");
@@ -454,7 +456,8 @@ public class GetMethodResponseBody {
         }
 
         /**
-         * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
+         * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
+         * is returned instead.
          */
         public Builder maximumAmount(Optional<? extends MaximumAmount> maximumAmount) {
             Utils.checkNotNull(maximumAmount, "maximumAmount");
@@ -475,10 +478,8 @@ public class GetMethodResponseBody {
 
         /**
          * The payment method's activation status for this profile.
-         * 
-         * <p>Possible values: `activated` `pending-boarding` `pending-review` `pending-external` `rejected`
          */
-        public Builder status(String status) {
+        public Builder status(GetMethodStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -486,10 +487,8 @@ public class GetMethodResponseBody {
 
         /**
          * The payment method's activation status for this profile.
-         * 
-         * <p>Possible values: `activated` `pending-boarding` `pending-review` `pending-external` `rejected`
          */
-        public Builder status(Optional<String> status) {
+        public Builder status(Optional<? extends GetMethodStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -497,7 +496,8 @@ public class GetMethodResponseBody {
 
 
         /**
-         * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
+         * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
+         * for iDEAL, KBC/CBC, gift cards, and vouchers.
          */
         public Builder issuers(List<Issuers> issuers) {
             Utils.checkNotNull(issuers, "issuers");
@@ -506,7 +506,8 @@ public class GetMethodResponseBody {
         }
 
         /**
-         * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
+         * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
+         * for iDEAL, KBC/CBC, gift cards, and vouchers.
          */
         public Builder issuers(Optional<? extends List<Issuers>> issuers) {
             Utils.checkNotNull(issuers, "issuers");

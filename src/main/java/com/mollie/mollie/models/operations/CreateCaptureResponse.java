@@ -33,7 +33,8 @@ public class CreateCaptureResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * The newly created capture object. For a complete reference of the capture object, refer to the [Get capture endpoint](get-capture) documentation.
+     * The newly created capture object. For a complete reference of the
+     * capture object, refer to the [Get capture endpoint](get-capture) documentation.
      */
     private Optional<? extends CreateCaptureResponseBody> object;
 
@@ -86,7 +87,8 @@ public class CreateCaptureResponse implements Response {
     }
 
     /**
-     * The newly created capture object. For a complete reference of the capture object, refer to the [Get capture endpoint](get-capture) documentation.
+     * The newly created capture object. For a complete reference of the
+     * capture object, refer to the [Get capture endpoint](get-capture) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -127,7 +129,8 @@ public class CreateCaptureResponse implements Response {
     }
 
     /**
-     * The newly created capture object. For a complete reference of the capture object, refer to the [Get capture endpoint](get-capture) documentation.
+     * The newly created capture object. For a complete reference of the
+     * capture object, refer to the [Get capture endpoint](get-capture) documentation.
      */
     public CreateCaptureResponse withObject(CreateCaptureResponseBody object) {
         Utils.checkNotNull(object, "object");
@@ -137,7 +140,8 @@ public class CreateCaptureResponse implements Response {
 
 
     /**
-     * The newly created capture object. For a complete reference of the capture object, refer to the [Get capture endpoint](get-capture) documentation.
+     * The newly created capture object. For a complete reference of the
+     * capture object, refer to the [Get capture endpoint](get-capture) documentation.
      */
     public CreateCaptureResponse withObject(Optional<? extends CreateCaptureResponseBody> object) {
         Utils.checkNotNull(object, "object");
@@ -224,7 +228,8 @@ public class CreateCaptureResponse implements Response {
 
 
         /**
-         * The newly created capture object. For a complete reference of the capture object, refer to the [Get capture endpoint](get-capture) documentation.
+         * The newly created capture object. For a complete reference of the
+         * capture object, refer to the [Get capture endpoint](get-capture) documentation.
          */
         public Builder object(CreateCaptureResponseBody object) {
             Utils.checkNotNull(object, "object");
@@ -233,7 +238,8 @@ public class CreateCaptureResponse implements Response {
         }
 
         /**
-         * The newly created capture object. For a complete reference of the capture object, refer to the [Get capture endpoint](get-capture) documentation.
+         * The newly created capture object. For a complete reference of the
+         * capture object, refer to the [Get capture endpoint](get-capture) documentation.
          */
         public Builder object(Optional<? extends CreateCaptureResponseBody> object) {
             Utils.checkNotNull(object, "object");

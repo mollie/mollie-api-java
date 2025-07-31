@@ -16,7 +16,8 @@ import java.util.Optional;
 /**
  * UpdateCustomerPayments
  * 
- * <p>The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments exist (yet).
+ * <p>The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments
+ * exist (yet).
  */
 public class UpdateCustomerPayments {
     /**

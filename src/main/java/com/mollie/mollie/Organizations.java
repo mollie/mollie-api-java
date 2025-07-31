@@ -36,13 +36,10 @@ public class Organizations {
      * 
      * <p>Retrieve a single organization by its ID.
      * 
-     * <p>You can normally only retrieve the currently authenticated organization with this endpoint. This is primarily useful for OAuth apps. See also [Get current organization](get-current-organization).
+     * <p>You can normally only retrieve the currently authenticated organization with this endpoint. This is primarily useful
+     * for OAuth apps. See also [Get current organization](get-current-organization).
      * 
      * <p>If you have a *partner account*', you can retrieve organization details of connected organizations.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **organizations.read**](/reference/authentication)
      * 
      * @return The call builder
      */
@@ -55,13 +52,10 @@ public class Organizations {
      * 
      * <p>Retrieve a single organization by its ID.
      * 
-     * <p>You can normally only retrieve the currently authenticated organization with this endpoint. This is primarily useful for OAuth apps. See also [Get current organization](get-current-organization).
+     * <p>You can normally only retrieve the currently authenticated organization with this endpoint. This is primarily useful
+     * for OAuth apps. See also [Get current organization](get-current-organization).
      * 
      * <p>If you have a *partner account*', you can retrieve organization details of connected organizations.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **organizations.read**](/reference/authentication)
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
@@ -76,16 +70,15 @@ public class Organizations {
      * 
      * <p>Retrieve a single organization by its ID.
      * 
-     * <p>You can normally only retrieve the currently authenticated organization with this endpoint. This is primarily useful for OAuth apps. See also [Get current organization](get-current-organization).
+     * <p>You can normally only retrieve the currently authenticated organization with this endpoint. This is primarily useful
+     * for OAuth apps. See also [Get current organization](get-current-organization).
      * 
      * <p>If you have a *partner account*', you can retrieve organization details of connected organizations.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **organizations.read**](/reference/authentication)
-     * 
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param options additional options
@@ -109,13 +102,11 @@ public class Organizations {
     /**
      * Get current organization
      * 
-     * <p>Retrieve the currently authenticated organization. A convenient alias of the [Get organization](get-organization) endpoint.
+     * <p>Retrieve the currently authenticated organization. A convenient alias of the [Get organization](get-organization)
+     * endpoint.
      * 
-     * <p>For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint documentation.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **organizations.read**](/reference/authentication)
+     * <p>For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint
+     * documentation.
      * 
      * @return The call builder
      */
@@ -126,13 +117,11 @@ public class Organizations {
     /**
      * Get current organization
      * 
-     * <p>Retrieve the currently authenticated organization. A convenient alias of the [Get organization](get-organization) endpoint.
+     * <p>Retrieve the currently authenticated organization. A convenient alias of the [Get organization](get-organization)
+     * endpoint.
      * 
-     * <p>For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint documentation.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **organizations.read**](/reference/authentication)
+     * <p>For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint
+     * documentation.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -144,13 +133,11 @@ public class Organizations {
     /**
      * Get current organization
      * 
-     * <p>Retrieve the currently authenticated organization. A convenient alias of the [Get organization](get-organization) endpoint.
+     * <p>Retrieve the currently authenticated organization. A convenient alias of the [Get organization](get-organization)
+     * endpoint.
      * 
-     * <p>For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint documentation.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **organizations.read**](/reference/authentication)
+     * <p>For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint
+     * documentation.
      * 
      * @param options additional options
      * @return The response from the API call
@@ -165,11 +152,8 @@ public class Organizations {
     /**
      * Get partner status
      * 
-     * <p>Retrieve partnership details about the currently authenticated organization. Only relevant for so-called *partner accounts*.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **organizations.read**](/reference/authentication)
+     * <p>Retrieve partnership details about the currently authenticated organization. Only relevant for so-called *partner
+     * accounts*.
      * 
      * @return The call builder
      */
@@ -180,11 +164,8 @@ public class Organizations {
     /**
      * Get partner status
      * 
-     * <p>Retrieve partnership details about the currently authenticated organization. Only relevant for so-called *partner accounts*.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **organizations.read**](/reference/authentication)
+     * <p>Retrieve partnership details about the currently authenticated organization. Only relevant for so-called *partner
+     * accounts*.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -196,11 +177,8 @@ public class Organizations {
     /**
      * Get partner status
      * 
-     * <p>Retrieve partnership details about the currently authenticated organization. Only relevant for so-called *partner accounts*.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **organizations.read**](/reference/authentication)
+     * <p>Retrieve partnership details about the currently authenticated organization. Only relevant for so-called *partner
+     * accounts*.
      * 
      * @param options additional options
      * @return The response from the API call

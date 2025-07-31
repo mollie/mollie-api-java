@@ -8,6 +8,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 import com.mollie.mollie.models.operations.GetTerminalRequest;
 import com.mollie.mollie.models.operations.GetTerminalRequestBuilder;
 import com.mollie.mollie.models.operations.GetTerminalResponse;
+import com.mollie.mollie.models.operations.ListTerminalsQueryParamSort;
 import com.mollie.mollie.models.operations.ListTerminalsRequest;
 import com.mollie.mollie.models.operations.ListTerminalsRequestBuilder;
 import com.mollie.mollie.models.operations.ListTerminalsResponse;
@@ -36,12 +37,6 @@ public class Terminals {
      * 
      * <p>The results are paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **terminals.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public ListTerminalsRequestBuilder list() {
@@ -54,12 +49,6 @@ public class Terminals {
      * <p>Retrieve a list of all physical point-of-sale devices.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **terminals.read**](/reference/authentication)
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -76,18 +65,14 @@ public class Terminals {
      * 
      * <p>The results are paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **terminals.read**](/reference/authentication)
-     * 
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     *         result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param sort Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
-     *         
-     *         Possible values: `asc` `desc` (default: `desc`)
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * @param sort Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     *         newest to oldest.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param options additional options
@@ -96,7 +81,7 @@ public class Terminals {
      */
     public ListTerminalsResponse list(
             Optional<String> from, JsonNullable<Long> limit,
-            JsonNullable<String> sort, JsonNullable<Boolean> testmode,
+            JsonNullable<? extends ListTerminalsQueryParamSort> sort, JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
         ListTerminalsRequest request =
             ListTerminalsRequest
@@ -116,12 +101,6 @@ public class Terminals {
      * 
      * <p>Retrieve a single terminal by its ID.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **terminals.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public GetTerminalRequestBuilder get() {
@@ -132,12 +111,6 @@ public class Terminals {
      * Get terminal
      * 
      * <p>Retrieve a single terminal by its ID.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **terminals.read**](/reference/authentication)
      * 
      * @param terminalId Provide the ID of the related terminal.
      * @return The response from the API call
@@ -152,14 +125,10 @@ public class Terminals {
      * 
      * <p>Retrieve a single terminal by its ID.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **terminals.read**](/reference/authentication)
-     * 
      * @param terminalId Provide the ID of the related terminal.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param options additional options

@@ -15,26 +15,21 @@
 
 ## create
 
-Creates a simple minimal representation of a customer. Payments, recurring mandates, and subscriptions can be linked to this customer object, which simplifies management of recurring payments.
+Creates a simple minimal representation of a customer. Payments, recurring mandates, and subscriptions can be linked
+to this customer object, which simplifies management of recurring payments.
 
 Once registered, customers will also appear in your Mollie dashboard.
 
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **customers.write**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="create-customer" method="post" path="/customers" -->
 ```java
 package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.CreateCustomerResponseBody;
-import com.mollie.mollie.models.operations.CreateCustomerRequestBody;
-import com.mollie.mollie.models.operations.CreateCustomerResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -50,7 +45,7 @@ public class Application {
         CreateCustomerRequestBody req = CreateCustomerRequestBody.builder()
                 .name("John Doe")
                 .email("example@email.com")
-                .locale("en_US")
+                .locale(CreateCustomerLocale.EN_US)
                 .testmode(false)
                 .build();
 
@@ -88,14 +83,9 @@ Retrieve a list of all customers.
 
 The results are paginated.
 
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **customers.read**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list-customers" method="get" path="/customers" -->
 ```java
 package hello.world;
 
@@ -103,6 +93,7 @@ import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ListCustomersCustomersResponseBody;
 import com.mollie.mollie.models.errors.ListCustomersResponseBody;
+import com.mollie.mollie.models.operations.ListCustomersQueryParamSort;
 import com.mollie.mollie.models.operations.ListCustomersResponse;
 import java.lang.Exception;
 
@@ -119,7 +110,7 @@ public class Application {
         ListCustomersResponse res = sdk.customers().list()
                 .from("cst_5B8cwPMGnU")
                 .limit(50L)
-                .sort("desc")
+                .sort(ListCustomersQueryParamSort.DESC)
                 .testmode(false)
                 .call();
 
@@ -134,10 +125,10 @@ public class Application {
 
 | Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `from`                                                                                                                                                                                                                                                                                                                                                                                 | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.                                                                                                                                                                                                                                                         | cst_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                         |
+| `from`                                                                                                                                                                                                                                                                                                                                                                                 | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the<br/>result set.                                                                                                                                                                                                                                                     | cst_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                         |
 | `limit`                                                                                                                                                                                                                                                                                                                                                                                | *JsonNullable\<Long>*                                                                                                                                                                                                                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | The maximum number of items to return. Defaults to 50 items.                                                                                                                                                                                                                                                                                                                           | 50                                                                                                                                                                                                                                                                                                                                                                                     |
-| `sort`                                                                                                                                                                                                                                                                                                                                                                                 | *JsonNullable\<String>*                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.<br/><br/>Possible values: `asc` `desc` (default: `desc`)                                                                                                                                                                                        | desc                                                                                                                                                                                                                                                                                                                                                                                   |
-| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
+| `sort`                                                                                                                                                                                                                                                                                                                                                                                 | [JsonNullable\<ListCustomersQueryParamSort>](../../models/operations/ListCustomersQueryParamSort.md)                                                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from<br/>newest to oldest.                                                                                                                                                                                                                                             | desc                                                                                                                                                                                                                                                                                                                                                                                   |
+| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Response
 
@@ -155,12 +146,9 @@ public class Application {
 
 Retrieve a single customer by its ID.
 
-> 🔑 Access with
->
-> [API key](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="get-customer" method="get" path="/customers/{customerId}" -->
 ```java
 package hello.world;
 
@@ -200,7 +188,7 @@ public class Application {
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `customerId`                                                                                                                                                                                                                                                                                                                                                                           | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related customer.                                                                                                                                                                                                                                                                                                                                                | cst_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                         |
 | `include`                                                                                                                                                                                                                                                                                                                                                                              | [JsonNullable\<GetCustomerQueryParamInclude>](../../models/operations/GetCustomerQueryParamInclude.md)                                                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows you to include additional information via the `include` query string parameter.                                                                                                                                                                                                                                                                                   | events                                                                                                                                                                                                                                                                                                                                                                                 |
-| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
+| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Response
 
@@ -219,20 +207,16 @@ Update an existing customer.
 
 For an in-depth explanation of each parameter, refer to the [Create customer](create-customer) endpoint.
 
-> 🔑 Access with
->
-> [API key](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="update-customer" method="patch" path="/customers/{customerId}" -->
 ```java
 package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.UpdateCustomerResponseBody;
-import com.mollie.mollie.models.operations.UpdateCustomerRequestBody;
-import com.mollie.mollie.models.operations.UpdateCustomerResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -250,7 +234,7 @@ public class Application {
                 .requestBody(UpdateCustomerRequestBody.builder()
                     .name("John Doe")
                     .email("example@email.com")
-                    .locale("en_US")
+                    .locale(UpdateCustomerLocale.EN_US)
                     .testmode(false)
                     .build())
                 .call();
@@ -284,12 +268,9 @@ public class Application {
 
 Delete a customer. All mandates and subscriptions created for this customer will be canceled as well.
 
-> 🔑 Access with
->
-> [API key](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="delete-customer" method="delete" path="/customers/{customerId}" -->
 ```java
 package hello.world;
 
@@ -353,16 +334,12 @@ Linking customers to payments enables you to:
 * Improve payment insights in the Mollie dashboard
 * Use recurring payments
 
-This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the `customerId` parameter predefined.
-
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **payments.write**](/reference/authentication)
+This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the `customerId`
+parameter predefined.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="create-customer-payment" method="post" path="/customers/{customerId}/payments" -->
 ```java
 package hello.world;
 
@@ -424,7 +401,7 @@ public class Application {
                             .imageUrl("https://...")
                             .productUrl("https://...")
                             .recurring(CreateCustomerPaymentRecurring.builder()
-                                .interval("12 months")
+                                .interval(CreateCustomerPaymentInterval.DOT_DOT_DOT_MONTHS)
                                 .description("Gym subscription")
                                 .amount(CreateCustomerPaymentCustomersAmount.builder()
                                     .currency("EUR")
@@ -462,12 +439,12 @@ public class Application {
                         .region("Noord-Holland")
                         .country("NL")
                         .build())
-                    .locale("en_US")
-                    .method("ideal")
+                    .locale(CreateCustomerPaymentLocale.EN_US)
+                    .method(CreateCustomerPaymentMethod.IDEAL)
                     .issuer("ideal_INGBNL2A")
                     .restrictPaymentMethodsToCountry("NL")
-                    .captureMode("manual")
-                    .captureDelay("8 hours")
+                    .captureMode(CreateCustomerPaymentCaptureMode.MANUAL)
+                    .captureDelay(CreateCustomerPaymentCaptureDelay.DOT_DOT_DOT_DAYS)
                     .applicationFee(CreateCustomerPaymentApplicationFee.builder()
                         .amount(CreateCustomerPaymentCustomersRequestAmount.builder()
                             .currency("EUR")
@@ -482,7 +459,7 @@ public class Application {
                                 .value("10.00")
                                 .build())
                             .destination(CreateCustomerPaymentDestination.builder()
-                                .type("organization")
+                                .type(CreateCustomerPaymentCustomersType.ORGANIZATION)
                                 .organizationId("org_1234567")
                                 .build())
                             .links(CreateCustomerPaymentLinks.builder()
@@ -503,7 +480,7 @@ public class Application {
                                 .value("10.00")
                                 .build())
                             .destination(CreateCustomerPaymentDestination.builder()
-                                .type("organization")
+                                .type(CreateCustomerPaymentCustomersType.ORGANIZATION)
                                 .organizationId("org_1234567")
                                 .build())
                             .links(CreateCustomerPaymentLinks.builder()
@@ -518,7 +495,6 @@ public class Application {
                                 .build())
                             .releaseDate("2024-12-12")
                             .build()))
-                    .sequenceType("oneoff")
                     .mandateId("mdt_5B8cwPMGnU")
                     .customerId("cst_5B8cwPMGnU")
                     .profileId("pfl_5B8cwPMGnU")
@@ -557,14 +533,9 @@ public class Application {
 
 Retrieve all payments linked to the customer.
 
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **payments.read**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list-customer-payments" method="get" path="/customers/{customerId}/payments" -->
 ```java
 package hello.world;
 
@@ -588,7 +559,6 @@ public class Application {
         ListCustomerPaymentsRequest req = ListCustomerPaymentsRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .from("tr_5B8cwPMGnU")
-                .sort("desc")
                 .profileId("pfl_5B8cwPMGnU")
                 .testmode(false)
                 .build();

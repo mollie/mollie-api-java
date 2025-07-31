@@ -33,7 +33,11 @@ public class ListAllMethodsIssuers {
     private String name;
 
     /**
-     * URLs of images representing the issuer. required: - size1x - size2x - svg
+     * URLs of images representing the issuer.
+     * required:
+     *   - size1x
+     *   - size2x
+     *   - svg
      */
     @JsonProperty("image")
     private ListAllMethodsMethodsImage image;
@@ -81,7 +85,11 @@ public class ListAllMethodsIssuers {
     }
 
     /**
-     * URLs of images representing the issuer. required: - size1x - size2x - svg
+     * URLs of images representing the issuer.
+     * required:
+     *   - size1x
+     *   - size2x
+     *   - svg
      */
     @JsonIgnore
     public ListAllMethodsMethodsImage image() {
@@ -122,7 +130,11 @@ public class ListAllMethodsIssuers {
     }
 
     /**
-     * URLs of images representing the issuer. required: - size1x - size2x - svg
+     * URLs of images representing the issuer.
+     * required:
+     *   - size1x
+     *   - size2x
+     *   - svg
      */
     public ListAllMethodsIssuers withImage(ListAllMethodsMethodsImage image) {
         Utils.checkNotNull(image, "image");
@@ -209,7 +221,11 @@ public class ListAllMethodsIssuers {
 
 
         /**
-         * URLs of images representing the issuer. required: - size1x - size2x - svg
+         * URLs of images representing the issuer.
+         * required:
+         *   - size1x
+         *   - size2x
+         *   - svg
          */
         public Builder image(ListAllMethodsMethodsImage image) {
             Utils.checkNotNull(image, "image");

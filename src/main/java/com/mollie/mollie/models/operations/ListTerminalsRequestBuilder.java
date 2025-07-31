@@ -26,7 +26,10 @@ public class ListTerminalsRequestBuilder {
                             "limit",
                             "50",
                             new TypeReference<JsonNullable<Long>>() {});
-    private JsonNullable<String> sort = JsonNullable.undefined();
+    private JsonNullable<? extends ListTerminalsQueryParamSort> sort = Utils.readDefaultOrConstValue(
+                            "sort",
+                            "\"desc\"",
+                            new TypeReference<JsonNullable<? extends ListTerminalsQueryParamSort>>() {});
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -59,13 +62,13 @@ public class ListTerminalsRequestBuilder {
         return this;
     }
 
-    public ListTerminalsRequestBuilder sort(String sort) {
+    public ListTerminalsRequestBuilder sort(ListTerminalsQueryParamSort sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = JsonNullable.of(sort);
         return this;
     }
 
-    public ListTerminalsRequestBuilder sort(JsonNullable<String> sort) {
+    public ListTerminalsRequestBuilder sort(JsonNullable<? extends ListTerminalsQueryParamSort> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;
@@ -100,6 +103,9 @@ public class ListTerminalsRequestBuilder {
         if (limit == null) {
             limit = _SINGLETON_VALUE_Limit.value();
         }
+        if (sort == null) {
+            sort = _SINGLETON_VALUE_Sort.value();
+        }
 
         ListTerminalsRequest request = new ListTerminalsRequest(from,
             limit,
@@ -126,4 +132,10 @@ public class ListTerminalsRequestBuilder {
                     "limit",
                     "50",
                     new TypeReference<JsonNullable<Long>>() {});
+
+    private static final LazySingletonValue<JsonNullable<? extends ListTerminalsQueryParamSort>> _SINGLETON_VALUE_Sort =
+            new LazySingletonValue<>(
+                    "sort",
+                    "\"desc\"",
+                    new TypeReference<JsonNullable<? extends ListTerminalsQueryParamSort>>() {});
 }

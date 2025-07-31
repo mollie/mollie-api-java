@@ -20,11 +20,13 @@ import org.openapitools.jackson.nullable.JsonNullable;
 /**
  * GetOpenSettlementResponseBody
  * 
- * <p>A settlement object describing your current balance. For a complete reference of the settlement object, refer to the [Get settlement](get-settlement) endpoint documentation.
+ * <p>A settlement object describing your current balance. For a complete reference of the settlement object, refer to
+ * the [Get settlement](get-settlement) endpoint documentation.
  */
 public class GetOpenSettlementResponseBody {
     /**
-     * Indicates the response contains a settlement object. Will always contain the string `settlement` for this endpoint.
+     * Indicates the response contains a settlement object. Will always contain the string `settlement` for this
+     * endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
@@ -54,7 +56,8 @@ public class GetOpenSettlementResponseBody {
     /**
      * The date on which the settlement was settled, in ISO 8601 format.
      * 
-     * <p>For an [open settlement](get-open-settlement) or for the [next settlement](get-next-settlement), no settlement date is available.
+     * <p>For an [open settlement](get-open-settlement) or for the [next settlement](get-next-settlement), no settlement
+     * date is available.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settledAt")
@@ -62,12 +65,10 @@ public class GetOpenSettlementResponseBody {
 
     /**
      * The status of the settlement.
-     * 
-     * <p>Possible values: `open` `pending` `paidout` `failed`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<String> status;
+    private Optional<? extends GetOpenSettlementStatus> status;
 
     /**
      * The total amount of the settlement.
@@ -91,11 +92,14 @@ public class GetOpenSettlementResponseBody {
     private JsonNullable<String> invoiceId;
 
     /**
-     * For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These transactions are grouped into 'period' objects — one for each calendar month.
+     * For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These
+     * transactions are grouped into 'period' objects — one for each calendar month.
      * 
-     * <p>For example, if a settlement includes funds from 15 April until 4 May, it will include two period objects. One for all transactions processed between 15 April and 30 April, and one for all transactions between 1 May and 4 May.
+     * <p>For example, if a settlement includes funds from 15 April until 4 May, it will include two period objects. One for
+     * all transactions processed between 15 April and 30 April, and one for all transactions between 1 May and 4 May.
      * 
-     * <p>Period objects are grouped by year, and then by month. So in the above example, the full `periods` collection will look as follows: `{"2024": {"04": {...}, "05": {...&rbrace;&rbrace;}`. The year and month in this documentation are referred as `&lt;year&gt;` and `&lt;month&gt;`.
+     * <p>Period objects are grouped by year, and then by month. So in the above example, the full `periods` collection will
+     * look as follows: `{"2024": {"04": {...}, "05": {...&rbrace;&rbrace;}`. The year and month in this documentation are referred as `&lt;year&gt;` and `&lt;month&gt;`.
      * 
      * <p>The example response should give a good idea of what this looks like in practise.
      */
@@ -117,7 +121,7 @@ public class GetOpenSettlementResponseBody {
             @JsonProperty("createdAt") Optional<String> createdAt,
             @JsonProperty("reference") JsonNullable<String> reference,
             @JsonProperty("settledAt") JsonNullable<String> settledAt,
-            @JsonProperty("status") Optional<String> status,
+            @JsonProperty("status") Optional<? extends GetOpenSettlementStatus> status,
             @JsonProperty("amount") Optional<? extends GetOpenSettlementAmount> amount,
             @JsonProperty("balanceId") Optional<String> balanceId,
             @JsonProperty("invoiceId") JsonNullable<String> invoiceId,
@@ -155,7 +159,8 @@ public class GetOpenSettlementResponseBody {
     }
 
     /**
-     * Indicates the response contains a settlement object. Will always contain the string `settlement` for this endpoint.
+     * Indicates the response contains a settlement object. Will always contain the string `settlement` for this
+     * endpoint.
      */
     @JsonIgnore
     public Optional<String> resource() {
@@ -189,7 +194,8 @@ public class GetOpenSettlementResponseBody {
     /**
      * The date on which the settlement was settled, in ISO 8601 format.
      * 
-     * <p>For an [open settlement](get-open-settlement) or for the [next settlement](get-next-settlement), no settlement date is available.
+     * <p>For an [open settlement](get-open-settlement) or for the [next settlement](get-next-settlement), no settlement
+     * date is available.
      */
     @JsonIgnore
     public JsonNullable<String> settledAt() {
@@ -198,12 +204,11 @@ public class GetOpenSettlementResponseBody {
 
     /**
      * The status of the settlement.
-     * 
-     * <p>Possible values: `open` `pending` `paidout` `failed`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> status() {
-        return status;
+    public Optional<GetOpenSettlementStatus> status() {
+        return (Optional<GetOpenSettlementStatus>) status;
     }
 
     /**
@@ -232,11 +237,14 @@ public class GetOpenSettlementResponseBody {
     }
 
     /**
-     * For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These transactions are grouped into 'period' objects — one for each calendar month.
+     * For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These
+     * transactions are grouped into 'period' objects — one for each calendar month.
      * 
-     * <p>For example, if a settlement includes funds from 15 April until 4 May, it will include two period objects. One for all transactions processed between 15 April and 30 April, and one for all transactions between 1 May and 4 May.
+     * <p>For example, if a settlement includes funds from 15 April until 4 May, it will include two period objects. One for
+     * all transactions processed between 15 April and 30 April, and one for all transactions between 1 May and 4 May.
      * 
-     * <p>Period objects are grouped by year, and then by month. So in the above example, the full `periods` collection will look as follows: `{"2024": {"04": {...}, "05": {...&rbrace;&rbrace;}`. The year and month in this documentation are referred as `&lt;year&gt;` and `&lt;month&gt;`.
+     * <p>Period objects are grouped by year, and then by month. So in the above example, the full `periods` collection will
+     * look as follows: `{"2024": {"04": {...}, "05": {...&rbrace;&rbrace;}`. The year and month in this documentation are referred as `&lt;year&gt;` and `&lt;month&gt;`.
      * 
      * <p>The example response should give a good idea of what this looks like in practise.
      */
@@ -261,7 +269,8 @@ public class GetOpenSettlementResponseBody {
 
 
     /**
-     * Indicates the response contains a settlement object. Will always contain the string `settlement` for this endpoint.
+     * Indicates the response contains a settlement object. Will always contain the string `settlement` for this
+     * endpoint.
      */
     public GetOpenSettlementResponseBody withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -271,7 +280,8 @@ public class GetOpenSettlementResponseBody {
 
 
     /**
-     * Indicates the response contains a settlement object. Will always contain the string `settlement` for this endpoint.
+     * Indicates the response contains a settlement object. Will always contain the string `settlement` for this
+     * endpoint.
      */
     public GetOpenSettlementResponseBody withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
@@ -338,7 +348,8 @@ public class GetOpenSettlementResponseBody {
     /**
      * The date on which the settlement was settled, in ISO 8601 format.
      * 
-     * <p>For an [open settlement](get-open-settlement) or for the [next settlement](get-next-settlement), no settlement date is available.
+     * <p>For an [open settlement](get-open-settlement) or for the [next settlement](get-next-settlement), no settlement
+     * date is available.
      */
     public GetOpenSettlementResponseBody withSettledAt(String settledAt) {
         Utils.checkNotNull(settledAt, "settledAt");
@@ -349,7 +360,8 @@ public class GetOpenSettlementResponseBody {
     /**
      * The date on which the settlement was settled, in ISO 8601 format.
      * 
-     * <p>For an [open settlement](get-open-settlement) or for the [next settlement](get-next-settlement), no settlement date is available.
+     * <p>For an [open settlement](get-open-settlement) or for the [next settlement](get-next-settlement), no settlement
+     * date is available.
      */
     public GetOpenSettlementResponseBody withSettledAt(JsonNullable<String> settledAt) {
         Utils.checkNotNull(settledAt, "settledAt");
@@ -359,10 +371,8 @@ public class GetOpenSettlementResponseBody {
 
     /**
      * The status of the settlement.
-     * 
-     * <p>Possible values: `open` `pending` `paidout` `failed`
      */
-    public GetOpenSettlementResponseBody withStatus(String status) {
+    public GetOpenSettlementResponseBody withStatus(GetOpenSettlementStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -371,10 +381,8 @@ public class GetOpenSettlementResponseBody {
 
     /**
      * The status of the settlement.
-     * 
-     * <p>Possible values: `open` `pending` `paidout` `failed`
      */
-    public GetOpenSettlementResponseBody withStatus(Optional<String> status) {
+    public GetOpenSettlementResponseBody withStatus(Optional<? extends GetOpenSettlementStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -437,11 +445,14 @@ public class GetOpenSettlementResponseBody {
     }
 
     /**
-     * For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These transactions are grouped into 'period' objects — one for each calendar month.
+     * For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These
+     * transactions are grouped into 'period' objects — one for each calendar month.
      * 
-     * <p>For example, if a settlement includes funds from 15 April until 4 May, it will include two period objects. One for all transactions processed between 15 April and 30 April, and one for all transactions between 1 May and 4 May.
+     * <p>For example, if a settlement includes funds from 15 April until 4 May, it will include two period objects. One for
+     * all transactions processed between 15 April and 30 April, and one for all transactions between 1 May and 4 May.
      * 
-     * <p>Period objects are grouped by year, and then by month. So in the above example, the full `periods` collection will look as follows: `{"2024": {"04": {...}, "05": {...&rbrace;&rbrace;}`. The year and month in this documentation are referred as `&lt;year&gt;` and `&lt;month&gt;`.
+     * <p>Period objects are grouped by year, and then by month. So in the above example, the full `periods` collection will
+     * look as follows: `{"2024": {"04": {...}, "05": {...&rbrace;&rbrace;}`. The year and month in this documentation are referred as `&lt;year&gt;` and `&lt;month&gt;`.
      * 
      * <p>The example response should give a good idea of what this looks like in practise.
      */
@@ -453,11 +464,14 @@ public class GetOpenSettlementResponseBody {
 
 
     /**
-     * For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These transactions are grouped into 'period' objects — one for each calendar month.
+     * For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These
+     * transactions are grouped into 'period' objects — one for each calendar month.
      * 
-     * <p>For example, if a settlement includes funds from 15 April until 4 May, it will include two period objects. One for all transactions processed between 15 April and 30 April, and one for all transactions between 1 May and 4 May.
+     * <p>For example, if a settlement includes funds from 15 April until 4 May, it will include two period objects. One for
+     * all transactions processed between 15 April and 30 April, and one for all transactions between 1 May and 4 May.
      * 
-     * <p>Period objects are grouped by year, and then by month. So in the above example, the full `periods` collection will look as follows: `{"2024": {"04": {...}, "05": {...&rbrace;&rbrace;}`. The year and month in this documentation are referred as `&lt;year&gt;` and `&lt;month&gt;`.
+     * <p>Period objects are grouped by year, and then by month. So in the above example, the full `periods` collection will
+     * look as follows: `{"2024": {"04": {...}, "05": {...&rbrace;&rbrace;}`. The year and month in this documentation are referred as `&lt;year&gt;` and `&lt;month&gt;`.
      * 
      * <p>The example response should give a good idea of what this looks like in practise.
      */
@@ -547,7 +561,7 @@ public class GetOpenSettlementResponseBody {
 
         private JsonNullable<String> settledAt = JsonNullable.undefined();
 
-        private Optional<String> status = Optional.empty();
+        private Optional<? extends GetOpenSettlementStatus> status = Optional.empty();
 
         private Optional<? extends GetOpenSettlementAmount> amount = Optional.empty();
 
@@ -565,7 +579,8 @@ public class GetOpenSettlementResponseBody {
 
 
         /**
-         * Indicates the response contains a settlement object. Will always contain the string `settlement` for this endpoint.
+         * Indicates the response contains a settlement object. Will always contain the string `settlement` for this
+         * endpoint.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -574,7 +589,8 @@ public class GetOpenSettlementResponseBody {
         }
 
         /**
-         * Indicates the response contains a settlement object. Will always contain the string `settlement` for this endpoint.
+         * Indicates the response contains a settlement object. Will always contain the string `settlement` for this
+         * endpoint.
          */
         public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
@@ -643,7 +659,8 @@ public class GetOpenSettlementResponseBody {
         /**
          * The date on which the settlement was settled, in ISO 8601 format.
          * 
-         * <p>For an [open settlement](get-open-settlement) or for the [next settlement](get-next-settlement), no settlement date is available.
+         * <p>For an [open settlement](get-open-settlement) or for the [next settlement](get-next-settlement), no settlement
+         * date is available.
          */
         public Builder settledAt(String settledAt) {
             Utils.checkNotNull(settledAt, "settledAt");
@@ -654,7 +671,8 @@ public class GetOpenSettlementResponseBody {
         /**
          * The date on which the settlement was settled, in ISO 8601 format.
          * 
-         * <p>For an [open settlement](get-open-settlement) or for the [next settlement](get-next-settlement), no settlement date is available.
+         * <p>For an [open settlement](get-open-settlement) or for the [next settlement](get-next-settlement), no settlement
+         * date is available.
          */
         public Builder settledAt(JsonNullable<String> settledAt) {
             Utils.checkNotNull(settledAt, "settledAt");
@@ -665,10 +683,8 @@ public class GetOpenSettlementResponseBody {
 
         /**
          * The status of the settlement.
-         * 
-         * <p>Possible values: `open` `pending` `paidout` `failed`
          */
-        public Builder status(String status) {
+        public Builder status(GetOpenSettlementStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -676,10 +692,8 @@ public class GetOpenSettlementResponseBody {
 
         /**
          * The status of the settlement.
-         * 
-         * <p>Possible values: `open` `pending` `paidout` `failed`
          */
-        public Builder status(Optional<String> status) {
+        public Builder status(Optional<? extends GetOpenSettlementStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -744,11 +758,14 @@ public class GetOpenSettlementResponseBody {
 
 
         /**
-         * For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These transactions are grouped into 'period' objects — one for each calendar month.
+         * For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These
+         * transactions are grouped into 'period' objects — one for each calendar month.
          * 
-         * <p>For example, if a settlement includes funds from 15 April until 4 May, it will include two period objects. One for all transactions processed between 15 April and 30 April, and one for all transactions between 1 May and 4 May.
+         * <p>For example, if a settlement includes funds from 15 April until 4 May, it will include two period objects. One for
+         * all transactions processed between 15 April and 30 April, and one for all transactions between 1 May and 4 May.
          * 
-         * <p>Period objects are grouped by year, and then by month. So in the above example, the full `periods` collection will look as follows: `{"2024": {"04": {...}, "05": {...&rbrace;&rbrace;}`. The year and month in this documentation are referred as `&lt;year&gt;` and `&lt;month&gt;`.
+         * <p>Period objects are grouped by year, and then by month. So in the above example, the full `periods` collection will
+         * look as follows: `{"2024": {"04": {...}, "05": {...&rbrace;&rbrace;}`. The year and month in this documentation are referred as `&lt;year&gt;` and `&lt;month&gt;`.
          * 
          * <p>The example response should give a good idea of what this looks like in practise.
          */
@@ -759,11 +776,14 @@ public class GetOpenSettlementResponseBody {
         }
 
         /**
-         * For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These transactions are grouped into 'period' objects — one for each calendar month.
+         * For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These
+         * transactions are grouped into 'period' objects — one for each calendar month.
          * 
-         * <p>For example, if a settlement includes funds from 15 April until 4 May, it will include two period objects. One for all transactions processed between 15 April and 30 April, and one for all transactions between 1 May and 4 May.
+         * <p>For example, if a settlement includes funds from 15 April until 4 May, it will include two period objects. One for
+         * all transactions processed between 15 April and 30 April, and one for all transactions between 1 May and 4 May.
          * 
-         * <p>Period objects are grouped by year, and then by month. So in the above example, the full `periods` collection will look as follows: `{"2024": {"04": {...}, "05": {...&rbrace;&rbrace;}`. The year and month in this documentation are referred as `&lt;year&gt;` and `&lt;month&gt;`.
+         * <p>Period objects are grouped by year, and then by month. So in the above example, the full `periods` collection will
+         * look as follows: `{"2024": {"04": {...}, "05": {...&rbrace;&rbrace;}`. The year and month in this documentation are referred as `&lt;year&gt;` and `&lt;month&gt;`.
          * 
          * <p>The example response should give a good idea of what this looks like in practise.
          */

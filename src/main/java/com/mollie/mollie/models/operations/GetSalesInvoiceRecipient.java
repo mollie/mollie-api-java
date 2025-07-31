@@ -16,12 +16,11 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetSalesInvoiceRecipient {
     /**
-     * The type of recipient, either `consumer` or `business`. This will determine what further fields are required on the `recipient` object.
-     * 
-     * <p>Possible values: `consumer` `business`
+     * The type of recipient, either `consumer` or `business`. This will determine what further fields are
+     * required on the `recipient` object.
      */
     @JsonProperty("type")
-    private String type;
+    private GetSalesInvoiceType type;
 
     /**
      * The title of the `consumer` type recipient, for example Mr. or Mrs..
@@ -31,14 +30,16 @@ public class GetSalesInvoiceRecipient {
     private JsonNullable<String> title;
 
     /**
-     * The given name (first name) of the `consumer` type recipient should be at least two characters and cannot contain only numbers.
+     * The given name (first name) of the `consumer` type recipient should be at least two characters and cannot contain
+     * only numbers.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("givenName")
     private JsonNullable<String> givenName;
 
     /**
-     * The given name (last name) of the `consumer` type recipient should be at least two characters and cannot contain only numbers.
+     * The given name (last name) of the `consumer` type recipient should be at least two characters and cannot contain
+     * only numbers.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("familyName")
@@ -52,14 +53,16 @@ public class GetSalesInvoiceRecipient {
     private JsonNullable<String> organizationName;
 
     /**
-     * The Chamber of Commerce number of the organization for a `business` type recipient. Either this or `vatNumber` has to be provided.
+     * The Chamber of Commerce number of the organization for a `business` type recipient. Either this or `vatNumber`
+     * has to be provided.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("organizationNumber")
     private JsonNullable<String> organizationNumber;
 
     /**
-     * The VAT number of the organization for a `business` type recipient. Either this or `organizationNumber` has to be provided.
+     * The VAT number of the organization for a `business` type recipient. Either this or `organizationNumber`
+     * has to be provided.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatNumber")
@@ -118,15 +121,13 @@ public class GetSalesInvoiceRecipient {
 
     /**
      * The locale for the recipient, to be used for translations in PDF generation and payment pages.
-     * 
-     * <p>Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE`
      */
     @JsonProperty("locale")
-    private String locale;
+    private GetSalesInvoiceLocale locale;
 
     @JsonCreator
     public GetSalesInvoiceRecipient(
-            @JsonProperty("type") String type,
+            @JsonProperty("type") GetSalesInvoiceType type,
             @JsonProperty("title") JsonNullable<String> title,
             @JsonProperty("givenName") JsonNullable<String> givenName,
             @JsonProperty("familyName") JsonNullable<String> familyName,
@@ -141,7 +142,7 @@ public class GetSalesInvoiceRecipient {
             @JsonProperty("city") String city,
             @JsonProperty("region") JsonNullable<String> region,
             @JsonProperty("country") String country,
-            @JsonProperty("locale") String locale) {
+            @JsonProperty("locale") GetSalesInvoiceLocale locale) {
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(title, "title");
         Utils.checkNotNull(givenName, "givenName");
@@ -177,13 +178,13 @@ public class GetSalesInvoiceRecipient {
     }
     
     public GetSalesInvoiceRecipient(
-            String type,
+            GetSalesInvoiceType type,
             String email,
             String streetAndNumber,
             String postalCode,
             String city,
             String country,
-            String locale) {
+            GetSalesInvoiceLocale locale) {
         this(type, JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), email, JsonNullable.undefined(),
@@ -193,12 +194,11 @@ public class GetSalesInvoiceRecipient {
     }
 
     /**
-     * The type of recipient, either `consumer` or `business`. This will determine what further fields are required on the `recipient` object.
-     * 
-     * <p>Possible values: `consumer` `business`
+     * The type of recipient, either `consumer` or `business`. This will determine what further fields are
+     * required on the `recipient` object.
      */
     @JsonIgnore
-    public String type() {
+    public GetSalesInvoiceType type() {
         return type;
     }
 
@@ -211,7 +211,8 @@ public class GetSalesInvoiceRecipient {
     }
 
     /**
-     * The given name (first name) of the `consumer` type recipient should be at least two characters and cannot contain only numbers.
+     * The given name (first name) of the `consumer` type recipient should be at least two characters and cannot contain
+     * only numbers.
      */
     @JsonIgnore
     public JsonNullable<String> givenName() {
@@ -219,7 +220,8 @@ public class GetSalesInvoiceRecipient {
     }
 
     /**
-     * The given name (last name) of the `consumer` type recipient should be at least two characters and cannot contain only numbers.
+     * The given name (last name) of the `consumer` type recipient should be at least two characters and cannot contain
+     * only numbers.
      */
     @JsonIgnore
     public JsonNullable<String> familyName() {
@@ -235,7 +237,8 @@ public class GetSalesInvoiceRecipient {
     }
 
     /**
-     * The Chamber of Commerce number of the organization for a `business` type recipient. Either this or `vatNumber` has to be provided.
+     * The Chamber of Commerce number of the organization for a `business` type recipient. Either this or `vatNumber`
+     * has to be provided.
      */
     @JsonIgnore
     public JsonNullable<String> organizationNumber() {
@@ -243,7 +246,8 @@ public class GetSalesInvoiceRecipient {
     }
 
     /**
-     * The VAT number of the organization for a `business` type recipient. Either this or `organizationNumber` has to be provided.
+     * The VAT number of the organization for a `business` type recipient. Either this or `organizationNumber`
+     * has to be provided.
      */
     @JsonIgnore
     public JsonNullable<String> vatNumber() {
@@ -316,11 +320,9 @@ public class GetSalesInvoiceRecipient {
 
     /**
      * The locale for the recipient, to be used for translations in PDF generation and payment pages.
-     * 
-     * <p>Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE`
      */
     @JsonIgnore
-    public String locale() {
+    public GetSalesInvoiceLocale locale() {
         return locale;
     }
 
@@ -330,11 +332,10 @@ public class GetSalesInvoiceRecipient {
 
 
     /**
-     * The type of recipient, either `consumer` or `business`. This will determine what further fields are required on the `recipient` object.
-     * 
-     * <p>Possible values: `consumer` `business`
+     * The type of recipient, either `consumer` or `business`. This will determine what further fields are
+     * required on the `recipient` object.
      */
-    public GetSalesInvoiceRecipient withType(String type) {
+    public GetSalesInvoiceRecipient withType(GetSalesInvoiceType type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -359,7 +360,8 @@ public class GetSalesInvoiceRecipient {
     }
 
     /**
-     * The given name (first name) of the `consumer` type recipient should be at least two characters and cannot contain only numbers.
+     * The given name (first name) of the `consumer` type recipient should be at least two characters and cannot contain
+     * only numbers.
      */
     public GetSalesInvoiceRecipient withGivenName(String givenName) {
         Utils.checkNotNull(givenName, "givenName");
@@ -368,7 +370,8 @@ public class GetSalesInvoiceRecipient {
     }
 
     /**
-     * The given name (first name) of the `consumer` type recipient should be at least two characters and cannot contain only numbers.
+     * The given name (first name) of the `consumer` type recipient should be at least two characters and cannot contain
+     * only numbers.
      */
     public GetSalesInvoiceRecipient withGivenName(JsonNullable<String> givenName) {
         Utils.checkNotNull(givenName, "givenName");
@@ -377,7 +380,8 @@ public class GetSalesInvoiceRecipient {
     }
 
     /**
-     * The given name (last name) of the `consumer` type recipient should be at least two characters and cannot contain only numbers.
+     * The given name (last name) of the `consumer` type recipient should be at least two characters and cannot contain
+     * only numbers.
      */
     public GetSalesInvoiceRecipient withFamilyName(String familyName) {
         Utils.checkNotNull(familyName, "familyName");
@@ -386,7 +390,8 @@ public class GetSalesInvoiceRecipient {
     }
 
     /**
-     * The given name (last name) of the `consumer` type recipient should be at least two characters and cannot contain only numbers.
+     * The given name (last name) of the `consumer` type recipient should be at least two characters and cannot contain
+     * only numbers.
      */
     public GetSalesInvoiceRecipient withFamilyName(JsonNullable<String> familyName) {
         Utils.checkNotNull(familyName, "familyName");
@@ -413,7 +418,8 @@ public class GetSalesInvoiceRecipient {
     }
 
     /**
-     * The Chamber of Commerce number of the organization for a `business` type recipient. Either this or `vatNumber` has to be provided.
+     * The Chamber of Commerce number of the organization for a `business` type recipient. Either this or `vatNumber`
+     * has to be provided.
      */
     public GetSalesInvoiceRecipient withOrganizationNumber(String organizationNumber) {
         Utils.checkNotNull(organizationNumber, "organizationNumber");
@@ -422,7 +428,8 @@ public class GetSalesInvoiceRecipient {
     }
 
     /**
-     * The Chamber of Commerce number of the organization for a `business` type recipient. Either this or `vatNumber` has to be provided.
+     * The Chamber of Commerce number of the organization for a `business` type recipient. Either this or `vatNumber`
+     * has to be provided.
      */
     public GetSalesInvoiceRecipient withOrganizationNumber(JsonNullable<String> organizationNumber) {
         Utils.checkNotNull(organizationNumber, "organizationNumber");
@@ -431,7 +438,8 @@ public class GetSalesInvoiceRecipient {
     }
 
     /**
-     * The VAT number of the organization for a `business` type recipient. Either this or `organizationNumber` has to be provided.
+     * The VAT number of the organization for a `business` type recipient. Either this or `organizationNumber`
+     * has to be provided.
      */
     public GetSalesInvoiceRecipient withVatNumber(String vatNumber) {
         Utils.checkNotNull(vatNumber, "vatNumber");
@@ -440,7 +448,8 @@ public class GetSalesInvoiceRecipient {
     }
 
     /**
-     * The VAT number of the organization for a `business` type recipient. Either this or `organizationNumber` has to be provided.
+     * The VAT number of the organization for a `business` type recipient. Either this or `organizationNumber`
+     * has to be provided.
      */
     public GetSalesInvoiceRecipient withVatNumber(JsonNullable<String> vatNumber) {
         Utils.checkNotNull(vatNumber, "vatNumber");
@@ -549,10 +558,8 @@ public class GetSalesInvoiceRecipient {
 
     /**
      * The locale for the recipient, to be used for translations in PDF generation and payment pages.
-     * 
-     * <p>Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE`
      */
-    public GetSalesInvoiceRecipient withLocale(String locale) {
+    public GetSalesInvoiceRecipient withLocale(GetSalesInvoiceLocale locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
@@ -621,7 +628,7 @@ public class GetSalesInvoiceRecipient {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String type;
+        private GetSalesInvoiceType type;
 
         private JsonNullable<String> title = JsonNullable.undefined();
 
@@ -651,7 +658,7 @@ public class GetSalesInvoiceRecipient {
 
         private String country;
 
-        private String locale;
+        private GetSalesInvoiceLocale locale;
 
         private Builder() {
           // force use of static builder() method
@@ -659,11 +666,10 @@ public class GetSalesInvoiceRecipient {
 
 
         /**
-         * The type of recipient, either `consumer` or `business`. This will determine what further fields are required on the `recipient` object.
-         * 
-         * <p>Possible values: `consumer` `business`
+         * The type of recipient, either `consumer` or `business`. This will determine what further fields are
+         * required on the `recipient` object.
          */
-        public Builder type(String type) {
+        public Builder type(GetSalesInvoiceType type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
@@ -690,7 +696,8 @@ public class GetSalesInvoiceRecipient {
 
 
         /**
-         * The given name (first name) of the `consumer` type recipient should be at least two characters and cannot contain only numbers.
+         * The given name (first name) of the `consumer` type recipient should be at least two characters and cannot contain
+         * only numbers.
          */
         public Builder givenName(String givenName) {
             Utils.checkNotNull(givenName, "givenName");
@@ -699,7 +706,8 @@ public class GetSalesInvoiceRecipient {
         }
 
         /**
-         * The given name (first name) of the `consumer` type recipient should be at least two characters and cannot contain only numbers.
+         * The given name (first name) of the `consumer` type recipient should be at least two characters and cannot contain
+         * only numbers.
          */
         public Builder givenName(JsonNullable<String> givenName) {
             Utils.checkNotNull(givenName, "givenName");
@@ -709,7 +717,8 @@ public class GetSalesInvoiceRecipient {
 
 
         /**
-         * The given name (last name) of the `consumer` type recipient should be at least two characters and cannot contain only numbers.
+         * The given name (last name) of the `consumer` type recipient should be at least two characters and cannot contain
+         * only numbers.
          */
         public Builder familyName(String familyName) {
             Utils.checkNotNull(familyName, "familyName");
@@ -718,7 +727,8 @@ public class GetSalesInvoiceRecipient {
         }
 
         /**
-         * The given name (last name) of the `consumer` type recipient should be at least two characters and cannot contain only numbers.
+         * The given name (last name) of the `consumer` type recipient should be at least two characters and cannot contain
+         * only numbers.
          */
         public Builder familyName(JsonNullable<String> familyName) {
             Utils.checkNotNull(familyName, "familyName");
@@ -747,7 +757,8 @@ public class GetSalesInvoiceRecipient {
 
 
         /**
-         * The Chamber of Commerce number of the organization for a `business` type recipient. Either this or `vatNumber` has to be provided.
+         * The Chamber of Commerce number of the organization for a `business` type recipient. Either this or `vatNumber`
+         * has to be provided.
          */
         public Builder organizationNumber(String organizationNumber) {
             Utils.checkNotNull(organizationNumber, "organizationNumber");
@@ -756,7 +767,8 @@ public class GetSalesInvoiceRecipient {
         }
 
         /**
-         * The Chamber of Commerce number of the organization for a `business` type recipient. Either this or `vatNumber` has to be provided.
+         * The Chamber of Commerce number of the organization for a `business` type recipient. Either this or `vatNumber`
+         * has to be provided.
          */
         public Builder organizationNumber(JsonNullable<String> organizationNumber) {
             Utils.checkNotNull(organizationNumber, "organizationNumber");
@@ -766,7 +778,8 @@ public class GetSalesInvoiceRecipient {
 
 
         /**
-         * The VAT number of the organization for a `business` type recipient. Either this or `organizationNumber` has to be provided.
+         * The VAT number of the organization for a `business` type recipient. Either this or `organizationNumber`
+         * has to be provided.
          */
         public Builder vatNumber(String vatNumber) {
             Utils.checkNotNull(vatNumber, "vatNumber");
@@ -775,7 +788,8 @@ public class GetSalesInvoiceRecipient {
         }
 
         /**
-         * The VAT number of the organization for a `business` type recipient. Either this or `organizationNumber` has to be provided.
+         * The VAT number of the organization for a `business` type recipient. Either this or `organizationNumber`
+         * has to be provided.
          */
         public Builder vatNumber(JsonNullable<String> vatNumber) {
             Utils.checkNotNull(vatNumber, "vatNumber");
@@ -893,10 +907,8 @@ public class GetSalesInvoiceRecipient {
 
         /**
          * The locale for the recipient, to be used for translations in PDF generation and payment pages.
-         * 
-         * <p>Possible values: `en_US` `en_GB` `nl_NL` `nl_BE` `de_DE` `de_AT` `de_CH` `fr_FR` `fr_BE`
          */
-        public Builder locale(String locale) {
+        public Builder locale(GetSalesInvoiceLocale locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;

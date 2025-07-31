@@ -35,10 +35,6 @@ public class Permissions {
      * 
      * <p>The results are **not** paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token](/reference/authentication)
-     * 
      * @return The call builder
      */
     public ListPermissionsRequestBuilder list() {
@@ -51,10 +47,6 @@ public class Permissions {
      * <p>Retrieve a list of all permissions available to the current access token.
      * 
      * <p>The results are **not** paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token](/reference/authentication)
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -69,10 +61,6 @@ public class Permissions {
      * <p>Retrieve a list of all permissions available to the current access token.
      * 
      * <p>The results are **not** paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token](/reference/authentication)
      * 
      * @param options additional options
      * @return The response from the API call
@@ -89,10 +77,6 @@ public class Permissions {
      * 
      * <p>Retrieve a single permission by its ID, and see if the permission is granted to the current access token.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token](/reference/authentication)
-     * 
      * @return The call builder
      */
     public GetPermissionRequestBuilder get() {
@@ -103,10 +87,6 @@ public class Permissions {
      * Get permission
      * 
      * <p>Retrieve a single permission by its ID, and see if the permission is granted to the current access token.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token](/reference/authentication)
      * 
      * @param permissionId Provide the ID of the related permission.
      * @return The response from the API call
@@ -121,12 +101,10 @@ public class Permissions {
      * 
      * <p>Retrieve a single permission by its ID, and see if the permission is granted to the current access token.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token](/reference/authentication)
-     * 
      * @param permissionId Provide the ID of the related permission.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param options additional options

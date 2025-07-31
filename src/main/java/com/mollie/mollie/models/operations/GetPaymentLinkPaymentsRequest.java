@@ -13,6 +13,7 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -25,7 +26,8 @@ public class GetPaymentLinkPaymentsRequest {
     private String paymentLinkId;
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
     private Optional<String> from;
@@ -37,15 +39,16 @@ public class GetPaymentLinkPaymentsRequest {
     private JsonNullable<Long> limit;
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
-     * 
-     * <p>Possible values: `asc` `desc` (default: `desc`)
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * newest to oldest.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
-    private JsonNullable<String> sort;
+    private JsonNullable<? extends GetPaymentLinkPaymentsQueryParamSort> sort;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -57,7 +60,7 @@ public class GetPaymentLinkPaymentsRequest {
             String paymentLinkId,
             Optional<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<String> sort,
+            JsonNullable<? extends GetPaymentLinkPaymentsQueryParamSort> sort,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(paymentLinkId, "paymentLinkId");
         Utils.checkNotNull(from, "from");
@@ -86,7 +89,8 @@ public class GetPaymentLinkPaymentsRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * result set.
      */
     @JsonIgnore
     public Optional<String> from() {
@@ -102,17 +106,19 @@ public class GetPaymentLinkPaymentsRequest {
     }
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
-     * 
-     * <p>Possible values: `asc` `desc` (default: `desc`)
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * newest to oldest.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> sort() {
-        return sort;
+    public JsonNullable<GetPaymentLinkPaymentsQueryParamSort> sort() {
+        return (JsonNullable<GetPaymentLinkPaymentsQueryParamSort>) sort;
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -136,7 +142,8 @@ public class GetPaymentLinkPaymentsRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * result set.
      */
     public GetPaymentLinkPaymentsRequest withFrom(String from) {
         Utils.checkNotNull(from, "from");
@@ -146,7 +153,8 @@ public class GetPaymentLinkPaymentsRequest {
 
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * result set.
      */
     public GetPaymentLinkPaymentsRequest withFrom(Optional<String> from) {
         Utils.checkNotNull(from, "from");
@@ -173,29 +181,29 @@ public class GetPaymentLinkPaymentsRequest {
     }
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
-     * 
-     * <p>Possible values: `asc` `desc` (default: `desc`)
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * newest to oldest.
      */
-    public GetPaymentLinkPaymentsRequest withSort(String sort) {
+    public GetPaymentLinkPaymentsRequest withSort(GetPaymentLinkPaymentsQueryParamSort sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = JsonNullable.of(sort);
         return this;
     }
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
-     * 
-     * <p>Possible values: `asc` `desc` (default: `desc`)
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * newest to oldest.
      */
-    public GetPaymentLinkPaymentsRequest withSort(JsonNullable<String> sort) {
+    public GetPaymentLinkPaymentsRequest withSort(JsonNullable<? extends GetPaymentLinkPaymentsQueryParamSort> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -206,7 +214,9 @@ public class GetPaymentLinkPaymentsRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -259,7 +269,7 @@ public class GetPaymentLinkPaymentsRequest {
 
         private JsonNullable<Long> limit;
 
-        private JsonNullable<String> sort = JsonNullable.undefined();
+        private JsonNullable<? extends GetPaymentLinkPaymentsQueryParamSort> sort;
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -279,7 +289,8 @@ public class GetPaymentLinkPaymentsRequest {
 
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * result set.
          */
         public Builder from(String from) {
             Utils.checkNotNull(from, "from");
@@ -288,7 +299,8 @@ public class GetPaymentLinkPaymentsRequest {
         }
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * result set.
          */
         public Builder from(Optional<String> from) {
             Utils.checkNotNull(from, "from");
@@ -317,22 +329,20 @@ public class GetPaymentLinkPaymentsRequest {
 
 
         /**
-         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
-         * 
-         * <p>Possible values: `asc` `desc` (default: `desc`)
+         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+         * newest to oldest.
          */
-        public Builder sort(String sort) {
+        public Builder sort(GetPaymentLinkPaymentsQueryParamSort sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = JsonNullable.of(sort);
             return this;
         }
 
         /**
-         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
-         * 
-         * <p>Possible values: `asc` `desc` (default: `desc`)
+         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+         * newest to oldest.
          */
-        public Builder sort(JsonNullable<String> sort) {
+        public Builder sort(JsonNullable<? extends GetPaymentLinkPaymentsQueryParamSort> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = sort;
             return this;
@@ -340,7 +350,9 @@ public class GetPaymentLinkPaymentsRequest {
 
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -351,7 +363,9 @@ public class GetPaymentLinkPaymentsRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -365,6 +379,9 @@ public class GetPaymentLinkPaymentsRequest {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+            if (sort == null) {
+                sort = _SINGLETON_VALUE_Sort.value();
+            }
 
             return new GetPaymentLinkPaymentsRequest(
                 paymentLinkId, from, limit,
@@ -377,5 +394,11 @@ public class GetPaymentLinkPaymentsRequest {
                         "limit",
                         "50",
                         new TypeReference<JsonNullable<Long>>() {});
+
+        private static final LazySingletonValue<JsonNullable<? extends GetPaymentLinkPaymentsQueryParamSort>> _SINGLETON_VALUE_Sort =
+                new LazySingletonValue<>(
+                        "sort",
+                        "\"desc\"",
+                        new TypeReference<JsonNullable<? extends GetPaymentLinkPaymentsQueryParamSort>>() {});
     }
 }

@@ -16,14 +16,12 @@
 
 Create a profile to process payments on.
 
-Profiles are required for payment processing. Normally they are created via the Mollie dashboard. Alternatively, you can use this endpoint to automate profile creation.
-
-> 🔑 Access with
->
-> [Access token with **profiles.write**](/reference/authentication)
+Profiles are required for payment processing. Normally they are created via the Mollie dashboard. Alternatively, you
+can use this endpoint to automate profile creation.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="create-profile" method="post" path="/profiles" -->
 ```java
 package hello.world;
 
@@ -91,12 +89,9 @@ Retrieve a list of all of your profiles.
 
 The results are paginated.
 
-> 🔑 Access with
->
-> [Access token with **profiles.read**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list-profiles" method="get" path="/profiles" -->
 ```java
 package hello.world;
 
@@ -132,7 +127,7 @@ public class Application {
 
 | Parameter                                                                                                                      | Type                                                                                                                           | Required                                                                                                                       | Description                                                                                                                    | Example                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
-| `from`                                                                                                                         | *Optional\<String>*                                                                                                            | :heavy_minus_sign:                                                                                                             | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set. | pfl_QkEhN94Ba                                                                                                                  |
+| `from`                                                                                                                         | *Optional\<String>*                                                                                                            | :heavy_minus_sign:                                                                                                             | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the<br/>result set. | pfl_QkEhN94Ba                                                                                                                  |
 | `limit`                                                                                                                        | *JsonNullable\<Long>*                                                                                                          | :heavy_minus_sign:                                                                                                             | The maximum number of items to return. Defaults to 50 items.                                                                   | 50                                                                                                                             |
 
 ### Response
@@ -150,12 +145,9 @@ public class Application {
 
 Retrieve a single profile by its ID.
 
-> 🔑 Access with
->
-> [Access token with **profiles.read**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="get-profile" method="get" path="/profiles/{id}" -->
 ```java
 package hello.world;
 
@@ -193,7 +185,7 @@ public class Application {
 | Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`                                                                                                                                                                                                                                                                                                                                                                                   | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the item you want to perform this operation on.                                                                                                                                                                                                                                                                                                                      | pfl_QkEhN94Ba                                                                                                                                                                                                                                                                                                                                                                          |
-| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
+| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Response
 
@@ -211,22 +203,19 @@ public class Application {
 
 Update an existing profile.
 
-Profiles are required for payment processing. Normally they are created and updated via the Mollie dashboard. Alternatively, you can use this endpoint to automate profile management.
-
-> 🔑 Access with
->
-> [Access token with **profiles.write**](/reference/authentication)
+Profiles are required for payment processing. Normally they are created and updated via the Mollie dashboard.
+Alternatively, you can use this endpoint to automate profile management.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="update-profile" method="patch" path="/profiles/{id}" -->
 ```java
 package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.*;
-import com.mollie.mollie.models.operations.UpdateProfileRequestBody;
-import com.mollie.mollie.models.operations.UpdateProfileResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 import java.util.List;
 
@@ -252,7 +241,7 @@ public class Application {
                         "NL",
                         "GB"))
                     .businessCategory("OTHER_MERCHANDISE")
-                    .mode("live")
+                    .mode(Mode.LIVE)
                     .build())
                 .call();
 
@@ -287,12 +276,9 @@ public class Application {
 
 Delete a profile. A deleted profile and its related credentials can no longer be used for accepting payments.
 
-> 🔑 Access with
->
-> [Access token with **profiles.write**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="delete-profile" method="delete" path="/profiles/{id}" -->
 ```java
 package hello.world;
 
@@ -344,16 +330,15 @@ public class Application {
 
 ## getCurrent
 
-Retrieve the currently authenticated profile. A convenient alias of the [Get profile](get-profile) endpoint.
+Retrieve the currently authenticated profile. A convenient alias of the [Get profile](get-profile)
+endpoint.
 
-For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint documentation.
-
-> 🔑 Access with
->
-> [API key](/reference/authentication)
+For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint
+documentation.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="get-current-profile" method="get" path="/profiles/me" -->
 ```java
 package hello.world;
 

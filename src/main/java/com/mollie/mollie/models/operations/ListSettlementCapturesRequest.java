@@ -26,7 +26,8 @@ public class ListSettlementCapturesRequest {
     private String settlementId;
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
     private Optional<String> from;
@@ -38,13 +39,16 @@ public class ListSettlementCapturesRequest {
     private JsonNullable<Long> limit;
 
     /**
-     * This endpoint allows you to embed additional resources via the `embed` query string parameter.
+     * This endpoint allows you to embed additional resources via the
+     * `embed` query string parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=embed")
     private Optional<? extends ListSettlementCapturesQueryParamEmbed> embed;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -85,7 +89,8 @@ public class ListSettlementCapturesRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * result set.
      */
     @JsonIgnore
     public Optional<String> from() {
@@ -101,7 +106,8 @@ public class ListSettlementCapturesRequest {
     }
 
     /**
-     * This endpoint allows you to embed additional resources via the `embed` query string parameter.
+     * This endpoint allows you to embed additional resources via the
+     * `embed` query string parameter.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -110,7 +116,9 @@ public class ListSettlementCapturesRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -134,7 +142,8 @@ public class ListSettlementCapturesRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * result set.
      */
     public ListSettlementCapturesRequest withFrom(String from) {
         Utils.checkNotNull(from, "from");
@@ -144,7 +153,8 @@ public class ListSettlementCapturesRequest {
 
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * result set.
      */
     public ListSettlementCapturesRequest withFrom(Optional<String> from) {
         Utils.checkNotNull(from, "from");
@@ -171,7 +181,8 @@ public class ListSettlementCapturesRequest {
     }
 
     /**
-     * This endpoint allows you to embed additional resources via the `embed` query string parameter.
+     * This endpoint allows you to embed additional resources via the
+     * `embed` query string parameter.
      */
     public ListSettlementCapturesRequest withEmbed(ListSettlementCapturesQueryParamEmbed embed) {
         Utils.checkNotNull(embed, "embed");
@@ -181,7 +192,8 @@ public class ListSettlementCapturesRequest {
 
 
     /**
-     * This endpoint allows you to embed additional resources via the `embed` query string parameter.
+     * This endpoint allows you to embed additional resources via the
+     * `embed` query string parameter.
      */
     public ListSettlementCapturesRequest withEmbed(Optional<? extends ListSettlementCapturesQueryParamEmbed> embed) {
         Utils.checkNotNull(embed, "embed");
@@ -190,7 +202,9 @@ public class ListSettlementCapturesRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -201,7 +215,9 @@ public class ListSettlementCapturesRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -274,7 +290,8 @@ public class ListSettlementCapturesRequest {
 
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * result set.
          */
         public Builder from(String from) {
             Utils.checkNotNull(from, "from");
@@ -283,7 +300,8 @@ public class ListSettlementCapturesRequest {
         }
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * result set.
          */
         public Builder from(Optional<String> from) {
             Utils.checkNotNull(from, "from");
@@ -312,7 +330,8 @@ public class ListSettlementCapturesRequest {
 
 
         /**
-         * This endpoint allows you to embed additional resources via the `embed` query string parameter.
+         * This endpoint allows you to embed additional resources via the
+         * `embed` query string parameter.
          */
         public Builder embed(ListSettlementCapturesQueryParamEmbed embed) {
             Utils.checkNotNull(embed, "embed");
@@ -321,7 +340,8 @@ public class ListSettlementCapturesRequest {
         }
 
         /**
-         * This endpoint allows you to embed additional resources via the `embed` query string parameter.
+         * This endpoint allows you to embed additional resources via the
+         * `embed` query string parameter.
          */
         public Builder embed(Optional<? extends ListSettlementCapturesQueryParamEmbed> embed) {
             Utils.checkNotNull(embed, "embed");
@@ -331,7 +351,9 @@ public class ListSettlementCapturesRequest {
 
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -342,7 +364,9 @@ public class ListSettlementCapturesRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */

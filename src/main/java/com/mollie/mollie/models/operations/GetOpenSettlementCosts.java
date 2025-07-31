@@ -27,12 +27,10 @@ public class GetOpenSettlementCosts {
 
     /**
      * The payment method, if applicable
-     * 
-     * <p>Possible values: `alma` `bacs` `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `bizum` `bitcoin` `blik` `creditcard` `directdebit` `eps` `giftcard` `giropay` `googlepay` `ideal` `in3` `inghomepay` `kbc` `klarnapaylater` `klarnapaynow` `klarnasliceit` `klarna` `mbway` `multibanco` `mybank` `paybybank` `payconiq` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `podiumcadeaukaart` `pointofsale` `sofort` `swish` `trustly` `twint` `voucher`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("method")
-    private JsonNullable<String> method;
+    private JsonNullable<? extends GetOpenSettlementMethod> method;
 
     /**
      * The number of fees
@@ -72,7 +70,7 @@ public class GetOpenSettlementCosts {
     @JsonCreator
     public GetOpenSettlementCosts(
             @JsonProperty("description") Optional<String> description,
-            @JsonProperty("method") JsonNullable<String> method,
+            @JsonProperty("method") JsonNullable<? extends GetOpenSettlementMethod> method,
             @JsonProperty("count") Optional<Long> count,
             @JsonProperty("rate") Optional<? extends GetOpenSettlementRate> rate,
             @JsonProperty("amountNet") Optional<? extends GetOpenSettlementAmountNet> amountNet,
@@ -110,12 +108,11 @@ public class GetOpenSettlementCosts {
 
     /**
      * The payment method, if applicable
-     * 
-     * <p>Possible values: `alma` `bacs` `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `bizum` `bitcoin` `blik` `creditcard` `directdebit` `eps` `giftcard` `giropay` `googlepay` `ideal` `in3` `inghomepay` `kbc` `klarnapaylater` `klarnapaynow` `klarnasliceit` `klarna` `mbway` `multibanco` `mybank` `paybybank` `payconiq` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `podiumcadeaukaart` `pointofsale` `sofort` `swish` `trustly` `twint` `voucher`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> method() {
-        return method;
+    public JsonNullable<GetOpenSettlementMethod> method() {
+        return (JsonNullable<GetOpenSettlementMethod>) method;
     }
 
     /**
@@ -188,10 +185,8 @@ public class GetOpenSettlementCosts {
 
     /**
      * The payment method, if applicable
-     * 
-     * <p>Possible values: `alma` `bacs` `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `bizum` `bitcoin` `blik` `creditcard` `directdebit` `eps` `giftcard` `giropay` `googlepay` `ideal` `in3` `inghomepay` `kbc` `klarnapaylater` `klarnapaynow` `klarnasliceit` `klarna` `mbway` `multibanco` `mybank` `paybybank` `payconiq` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `podiumcadeaukaart` `pointofsale` `sofort` `swish` `trustly` `twint` `voucher`
      */
-    public GetOpenSettlementCosts withMethod(String method) {
+    public GetOpenSettlementCosts withMethod(GetOpenSettlementMethod method) {
         Utils.checkNotNull(method, "method");
         this.method = JsonNullable.of(method);
         return this;
@@ -199,10 +194,8 @@ public class GetOpenSettlementCosts {
 
     /**
      * The payment method, if applicable
-     * 
-     * <p>Possible values: `alma` `bacs` `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `bizum` `bitcoin` `blik` `creditcard` `directdebit` `eps` `giftcard` `giropay` `googlepay` `ideal` `in3` `inghomepay` `kbc` `klarnapaylater` `klarnapaynow` `klarnasliceit` `klarna` `mbway` `multibanco` `mybank` `paybybank` `payconiq` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `podiumcadeaukaart` `pointofsale` `sofort` `swish` `trustly` `twint` `voucher`
      */
-    public GetOpenSettlementCosts withMethod(JsonNullable<String> method) {
+    public GetOpenSettlementCosts withMethod(JsonNullable<? extends GetOpenSettlementMethod> method) {
         Utils.checkNotNull(method, "method");
         this.method = method;
         return this;
@@ -347,7 +340,7 @@ public class GetOpenSettlementCosts {
 
         private Optional<String> description = Optional.empty();
 
-        private JsonNullable<String> method = JsonNullable.undefined();
+        private JsonNullable<? extends GetOpenSettlementMethod> method = JsonNullable.undefined();
 
         private Optional<Long> count = Optional.empty();
 
@@ -385,10 +378,8 @@ public class GetOpenSettlementCosts {
 
         /**
          * The payment method, if applicable
-         * 
-         * <p>Possible values: `alma` `bacs` `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `bizum` `bitcoin` `blik` `creditcard` `directdebit` `eps` `giftcard` `giropay` `googlepay` `ideal` `in3` `inghomepay` `kbc` `klarnapaylater` `klarnapaynow` `klarnasliceit` `klarna` `mbway` `multibanco` `mybank` `paybybank` `payconiq` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `podiumcadeaukaart` `pointofsale` `sofort` `swish` `trustly` `twint` `voucher`
          */
-        public Builder method(String method) {
+        public Builder method(GetOpenSettlementMethod method) {
             Utils.checkNotNull(method, "method");
             this.method = JsonNullable.of(method);
             return this;
@@ -396,10 +387,8 @@ public class GetOpenSettlementCosts {
 
         /**
          * The payment method, if applicable
-         * 
-         * <p>Possible values: `alma` `bacs` `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `bizum` `bitcoin` `blik` `creditcard` `directdebit` `eps` `giftcard` `giropay` `googlepay` `ideal` `in3` `inghomepay` `kbc` `klarnapaylater` `klarnapaynow` `klarnasliceit` `klarna` `mbway` `multibanco` `mybank` `paybybank` `payconiq` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `podiumcadeaukaart` `pointofsale` `sofort` `swish` `trustly` `twint` `voucher`
          */
-        public Builder method(JsonNullable<String> method) {
+        public Builder method(JsonNullable<? extends GetOpenSettlementMethod> method) {
             Utils.checkNotNull(method, "method");
             this.method = method;
             return this;

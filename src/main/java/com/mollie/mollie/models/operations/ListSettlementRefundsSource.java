@@ -20,7 +20,8 @@ import java.util.Optional;
  */
 public class ListSettlementRefundsSource {
     /**
-     * Required for source type `organization`. The ID of the connected organization the funds should be pulled back from.
+     * Required for source type `organization`. The ID of the connected organization the funds should be pulled
+     * back from.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("organizationId")
@@ -38,7 +39,8 @@ public class ListSettlementRefundsSource {
     }
 
     /**
-     * Required for source type `organization`. The ID of the connected organization the funds should be pulled back from.
+     * Required for source type `organization`. The ID of the connected organization the funds should be pulled
+     * back from.
      */
     @JsonIgnore
     public Optional<String> organizationId() {
@@ -51,7 +53,8 @@ public class ListSettlementRefundsSource {
 
 
     /**
-     * Required for source type `organization`. The ID of the connected organization the funds should be pulled back from.
+     * Required for source type `organization`. The ID of the connected organization the funds should be pulled
+     * back from.
      */
     public ListSettlementRefundsSource withOrganizationId(String organizationId) {
         Utils.checkNotNull(organizationId, "organizationId");
@@ -61,7 +64,8 @@ public class ListSettlementRefundsSource {
 
 
     /**
-     * Required for source type `organization`. The ID of the connected organization the funds should be pulled back from.
+     * Required for source type `organization`. The ID of the connected organization the funds should be pulled
+     * back from.
      */
     public ListSettlementRefundsSource withOrganizationId(Optional<String> organizationId) {
         Utils.checkNotNull(organizationId, "organizationId");
@@ -105,7 +109,8 @@ public class ListSettlementRefundsSource {
 
 
         /**
-         * Required for source type `organization`. The ID of the connected organization the funds should be pulled back from.
+         * Required for source type `organization`. The ID of the connected organization the funds should be pulled
+         * back from.
          */
         public Builder organizationId(String organizationId) {
             Utils.checkNotNull(organizationId, "organizationId");
@@ -114,7 +119,8 @@ public class ListSettlementRefundsSource {
         }
 
         /**
-         * Required for source type `organization`. The ID of the connected organization the funds should be pulled back from.
+         * Required for source type `organization`. The ID of the connected organization the funds should be pulled
+         * back from.
          */
         public Builder organizationId(Optional<String> organizationId) {
             Utils.checkNotNull(organizationId, "organizationId");

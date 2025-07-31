@@ -11,7 +11,8 @@ import java.util.Optional;
 /**
  * Embed
  * 
- * <p>This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
+ * <p>This endpoint allows embedding related API items by appending the
+ * following values via the `embed` query string parameter.
  */
 public enum Embed {
     CAPTURES("captures"),

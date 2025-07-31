@@ -13,16 +13,12 @@
 
 ## create
 
-Creates a refund for a specific payment. The refunded amount is credited to your customer usually either via a bank transfer or by refunding the amount to your customer's credit card.
-
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **refunds.write**](/reference/authentication)
+Creates a refund for a specific payment. The refunded amount is credited to your customer usually either via a bank
+transfer or by refunding the amount to your customer's credit card.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="create-refund" method="post" path="/payments/{paymentId}/refunds" -->
 ```java
 package hello.world;
 
@@ -52,7 +48,7 @@ public class Application {
                         .build())
                     .description("Refunding a Chess Board")
                     .externalReference(ExternalReference.builder()
-                        .type("acquirer-reference")
+                        .type(CreateRefundType.ACQUIRER_REFERENCE)
                         .id("123456789012345")
                         .build())
                     .reverseRouting(false)
@@ -63,7 +59,7 @@ public class Application {
                                 .value("10.00")
                                 .build())
                             .source(Source.builder()
-                                .type("organization")
+                                .type(CreateRefundRefundsType.ORGANIZATION)
                                 .organizationId("org_1234567")
                                 .build())
                             .build()))
@@ -104,14 +100,9 @@ Retrieve a list of all refunds created for a specific payment.
 
 The results are paginated.
 
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **refunds.read**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list-refunds" method="get" path="/payments/{paymentId}/refunds" -->
 ```java
 package hello.world;
 
@@ -172,14 +163,9 @@ public class Application {
 
 Retrieve a single payment refund by its ID and the ID of its parent payment.
 
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **refunds.read**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="get-refund" method="get" path="/payments/{paymentId}/refunds/{refundId}" -->
 ```java
 package hello.world;
 
@@ -221,7 +207,7 @@ public class Application {
 | `paymentId`                                                                                                                                                                                                                                                                                                                                                                            | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related payment.                                                                                                                                                                                                                                                                                                                                                 | tr_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                          |
 | `refundId`                                                                                                                                                                                                                                                                                                                                                                             | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related refund.                                                                                                                                                                                                                                                                                                                                                  | re_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                          |
 | `include`                                                                                                                                                                                                                                                                                                                                                                              | [JsonNullable\<GetRefundQueryParamInclude>](../../models/operations/GetRefundQueryParamInclude.md)                                                                                                                                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows you to include additional information via the `include` query string parameter.                                                                                                                                                                                                                                                                                   | payment                                                                                                                                                                                                                                                                                                                                                                                |
-| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
+| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Response
 
@@ -236,18 +222,15 @@ public class Application {
 
 ## cancel
 
-Refunds will be executed with a delay of two hours. Until that time, refunds may be canceled manually via the Mollie Dashboard, or by using this endpoint.
+Refunds will be executed with a delay of two hours. Until that time, refunds may be canceled manually via the
+Mollie Dashboard, or by using this endpoint.
 
-A refund can only be canceled while its `status` field is either `queued` or `pending`. See the [Get refund endpoint](get-refund) for more information.
-
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **refunds.write**](/reference/authentication)
+A refund can only be canceled while its `status` field is either `queued` or `pending`. See the
+[Get refund endpoint](get-refund) for more information.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="cancel-refund" method="delete" path="/payments/{paymentId}/refunds/{refundId}" -->
 ```java
 package hello.world;
 
@@ -286,7 +269,7 @@ public class Application {
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `paymentId`                                                                                                                                                                                                                                                                                                                                                                            | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related payment.                                                                                                                                                                                                                                                                                                                                                 | tr_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                          |
 | `refundId`                                                                                                                                                                                                                                                                                                                                                                             | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related refund.                                                                                                                                                                                                                                                                                                                                                  | re_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                          |
-| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
+| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Response
 
@@ -305,14 +288,9 @@ Retrieve a list of all of your refunds.
 
 The results are paginated.
 
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **refunds.read**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list-all-refunds" method="get" path="/refunds" -->
 ```java
 package hello.world;
 
@@ -334,7 +312,6 @@ public class Application {
 
         ListAllRefundsRequest req = ListAllRefundsRequest.builder()
                 .from("re_5B8cwPMGnU")
-                .sort("desc")
                 .embed(QueryParamEmbed.PAYMENT)
                 .profileId("pfl_5B8cwPMGnU")
                 .testmode(false)

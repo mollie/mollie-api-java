@@ -12,6 +12,7 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -29,72 +30,60 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("method")
-    private JsonNullable<String> method;
+    private JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsMethod> method;
 
     /**
      * In case of payments transactions with card, the card issuer will be available
-     * 
-     * <p>Possible values: `amex` `maestro` `carte-bancaire` `other`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cardIssuer")
-    private JsonNullable<String> cardIssuer;
+    private JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsCardIssuer> cardIssuer;
 
     /**
      * In case of payments trnsactions with card, the card audience will be available.
-     * 
-     * <p>Possible values: `corporate` `other`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cardAudience")
-    private JsonNullable<String> cardAudience;
+    private JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsCardAudience> cardAudience;
 
     /**
      * In case of payments transactions with card, the card region will be available.
-     * 
-     * <p>Possible values: `intra-eea` `intra-eu` `domestic` `other`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cardRegion")
-    private JsonNullable<String> cardRegion;
+    private JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsCardRegion> cardRegion;
 
     /**
      * Present when the transaction represents a fee.
-     * 
-     * <p>Possible values: `payment-fee` `direct-debit-failure-fee` `unauthorized-direct-debit-fee` `bank-charged-direct-debit-failure-fee` `partner-commission` `application-fee` `capture-fee` `refund-fee` `chargeback-fee` `payment-notification-fee` `transfer-notification-fee` `payout-fee` `fee-discount` `fee-reimbursement` `platform-volume-fee` `platform-connected-organizations-fee` `balance-charge-fee` `3ds-authentication-attempt-fee` `terminal-monthly-fee` `acceptance-risk-fee` `top-up-fee` `payment-gateway-fee` `mastercard-specialty-merchant-program-processing-fee` `mastercard-specialty-merchant-program-registration-fee` `visa-integrity-risk-program-processing-fee` `visa-integrity-risk-program-registration-fee` `minimum-invoice-amount-fee`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("feeType")
-    private JsonNullable<String> feeType;
+    private JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsFeeType> feeType;
 
     /**
      * Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
-     * 
-     * <p>Possible values: `fee` `fee-reimbursement` `fee-discount` `fee-vat` `fee-rounding-compensation`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("prepaymentPartType")
-    private JsonNullable<String> prepaymentPartType;
+    private JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsPrepaymentPartType> prepaymentPartType;
 
     /**
      * Represents the transaction type
-     * 
-     * <p>Possible values: `payment` `split-payment` `failed-payment` `failed-platform-split-payment` `failed-split-payment-compensation` `capture` `split-transaction` `refund` `platform-payment-refund` `returned-platform-payment-refund` `refund-compensation` `returned-refund-compensation` `returned-refund` `chargeback` `chargeback-reversal` `chargeback-compensation` `reversed-chargeback-compensation` `platform-payment-chargeback` `reversed-platform-payment-chargeback` `fee-prepayment` `outgoing-transfer` `incoming-transfer` `canceled-transfer` `returned-transfer` `balance-reserve` `balance-reserve-return` `invoice-rounding-compensation` `rolling-reserve-hold` `rolling-reserve-release` `balance-correction` `repayment` `loan` `balance-topup` `cash-collateral-issuance';` `cash-collateral-release` `pending-rolling-reserve` `to-be-released-rolling-reserve` `held-rolling-reserve` `released-rolling-reserve`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("transactionType")
-    private JsonNullable<String> transactionType;
+    private JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsTransactionType> transactionType;
 
     @JsonCreator
     public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsSubTotals(
             @JsonProperty("count") Optional<Long> count,
-            @JsonProperty("method") JsonNullable<String> method,
-            @JsonProperty("cardIssuer") JsonNullable<String> cardIssuer,
-            @JsonProperty("cardAudience") JsonNullable<String> cardAudience,
-            @JsonProperty("cardRegion") JsonNullable<String> cardRegion,
-            @JsonProperty("feeType") JsonNullable<String> feeType,
-            @JsonProperty("prepaymentPartType") JsonNullable<String> prepaymentPartType,
-            @JsonProperty("transactionType") JsonNullable<String> transactionType) {
+            @JsonProperty("method") JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsMethod> method,
+            @JsonProperty("cardIssuer") JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsCardIssuer> cardIssuer,
+            @JsonProperty("cardAudience") JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsCardAudience> cardAudience,
+            @JsonProperty("cardRegion") JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsCardRegion> cardRegion,
+            @JsonProperty("feeType") JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsFeeType> feeType,
+            @JsonProperty("prepaymentPartType") JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsPrepaymentPartType> prepaymentPartType,
+            @JsonProperty("transactionType") JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsTransactionType> transactionType) {
         Utils.checkNotNull(count, "count");
         Utils.checkNotNull(method, "method");
         Utils.checkNotNull(cardIssuer, "cardIssuer");
@@ -130,69 +119,64 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
     /**
      * Payment type of the transactions
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> method() {
-        return method;
+    public JsonNullable<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsMethod> method() {
+        return (JsonNullable<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsMethod>) method;
     }
 
     /**
      * In case of payments transactions with card, the card issuer will be available
-     * 
-     * <p>Possible values: `amex` `maestro` `carte-bancaire` `other`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> cardIssuer() {
-        return cardIssuer;
+    public JsonNullable<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsCardIssuer> cardIssuer() {
+        return (JsonNullable<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsCardIssuer>) cardIssuer;
     }
 
     /**
      * In case of payments trnsactions with card, the card audience will be available.
-     * 
-     * <p>Possible values: `corporate` `other`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> cardAudience() {
-        return cardAudience;
+    public JsonNullable<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsCardAudience> cardAudience() {
+        return (JsonNullable<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsCardAudience>) cardAudience;
     }
 
     /**
      * In case of payments transactions with card, the card region will be available.
-     * 
-     * <p>Possible values: `intra-eea` `intra-eu` `domestic` `other`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> cardRegion() {
-        return cardRegion;
+    public JsonNullable<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsCardRegion> cardRegion() {
+        return (JsonNullable<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsCardRegion>) cardRegion;
     }
 
     /**
      * Present when the transaction represents a fee.
-     * 
-     * <p>Possible values: `payment-fee` `direct-debit-failure-fee` `unauthorized-direct-debit-fee` `bank-charged-direct-debit-failure-fee` `partner-commission` `application-fee` `capture-fee` `refund-fee` `chargeback-fee` `payment-notification-fee` `transfer-notification-fee` `payout-fee` `fee-discount` `fee-reimbursement` `platform-volume-fee` `platform-connected-organizations-fee` `balance-charge-fee` `3ds-authentication-attempt-fee` `terminal-monthly-fee` `acceptance-risk-fee` `top-up-fee` `payment-gateway-fee` `mastercard-specialty-merchant-program-processing-fee` `mastercard-specialty-merchant-program-registration-fee` `visa-integrity-risk-program-processing-fee` `visa-integrity-risk-program-registration-fee` `minimum-invoice-amount-fee`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> feeType() {
-        return feeType;
+    public JsonNullable<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsFeeType> feeType() {
+        return (JsonNullable<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsFeeType>) feeType;
     }
 
     /**
      * Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
-     * 
-     * <p>Possible values: `fee` `fee-reimbursement` `fee-discount` `fee-vat` `fee-rounding-compensation`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> prepaymentPartType() {
-        return prepaymentPartType;
+    public JsonNullable<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsPrepaymentPartType> prepaymentPartType() {
+        return (JsonNullable<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsPrepaymentPartType>) prepaymentPartType;
     }
 
     /**
      * Represents the transaction type
-     * 
-     * <p>Possible values: `payment` `split-payment` `failed-payment` `failed-platform-split-payment` `failed-split-payment-compensation` `capture` `split-transaction` `refund` `platform-payment-refund` `returned-platform-payment-refund` `refund-compensation` `returned-refund-compensation` `returned-refund` `chargeback` `chargeback-reversal` `chargeback-compensation` `reversed-chargeback-compensation` `platform-payment-chargeback` `reversed-platform-payment-chargeback` `fee-prepayment` `outgoing-transfer` `incoming-transfer` `canceled-transfer` `returned-transfer` `balance-reserve` `balance-reserve-return` `invoice-rounding-compensation` `rolling-reserve-hold` `rolling-reserve-release` `balance-correction` `repayment` `loan` `balance-topup` `cash-collateral-issuance';` `cash-collateral-release` `pending-rolling-reserve` `to-be-released-rolling-reserve` `held-rolling-reserve` `released-rolling-reserve`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> transactionType() {
-        return transactionType;
+    public JsonNullable<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsTransactionType> transactionType() {
+        return (JsonNullable<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsTransactionType>) transactionType;
     }
 
     public static Builder builder() {
@@ -222,7 +206,7 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
     /**
      * Payment type of the transactions
      */
-    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsSubTotals withMethod(String method) {
+    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsSubTotals withMethod(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsMethod method) {
         Utils.checkNotNull(method, "method");
         this.method = JsonNullable.of(method);
         return this;
@@ -231,7 +215,7 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
     /**
      * Payment type of the transactions
      */
-    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsSubTotals withMethod(JsonNullable<String> method) {
+    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsSubTotals withMethod(JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsMethod> method) {
         Utils.checkNotNull(method, "method");
         this.method = method;
         return this;
@@ -239,10 +223,8 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
 
     /**
      * In case of payments transactions with card, the card issuer will be available
-     * 
-     * <p>Possible values: `amex` `maestro` `carte-bancaire` `other`
      */
-    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsSubTotals withCardIssuer(String cardIssuer) {
+    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsSubTotals withCardIssuer(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsCardIssuer cardIssuer) {
         Utils.checkNotNull(cardIssuer, "cardIssuer");
         this.cardIssuer = JsonNullable.of(cardIssuer);
         return this;
@@ -250,10 +232,8 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
 
     /**
      * In case of payments transactions with card, the card issuer will be available
-     * 
-     * <p>Possible values: `amex` `maestro` `carte-bancaire` `other`
      */
-    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsSubTotals withCardIssuer(JsonNullable<String> cardIssuer) {
+    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsSubTotals withCardIssuer(JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsCardIssuer> cardIssuer) {
         Utils.checkNotNull(cardIssuer, "cardIssuer");
         this.cardIssuer = cardIssuer;
         return this;
@@ -261,10 +241,8 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
 
     /**
      * In case of payments trnsactions with card, the card audience will be available.
-     * 
-     * <p>Possible values: `corporate` `other`
      */
-    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsSubTotals withCardAudience(String cardAudience) {
+    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsSubTotals withCardAudience(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsCardAudience cardAudience) {
         Utils.checkNotNull(cardAudience, "cardAudience");
         this.cardAudience = JsonNullable.of(cardAudience);
         return this;
@@ -272,10 +250,8 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
 
     /**
      * In case of payments trnsactions with card, the card audience will be available.
-     * 
-     * <p>Possible values: `corporate` `other`
      */
-    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsSubTotals withCardAudience(JsonNullable<String> cardAudience) {
+    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsSubTotals withCardAudience(JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsCardAudience> cardAudience) {
         Utils.checkNotNull(cardAudience, "cardAudience");
         this.cardAudience = cardAudience;
         return this;
@@ -283,10 +259,8 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
 
     /**
      * In case of payments transactions with card, the card region will be available.
-     * 
-     * <p>Possible values: `intra-eea` `intra-eu` `domestic` `other`
      */
-    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsSubTotals withCardRegion(String cardRegion) {
+    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsSubTotals withCardRegion(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsCardRegion cardRegion) {
         Utils.checkNotNull(cardRegion, "cardRegion");
         this.cardRegion = JsonNullable.of(cardRegion);
         return this;
@@ -294,10 +268,8 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
 
     /**
      * In case of payments transactions with card, the card region will be available.
-     * 
-     * <p>Possible values: `intra-eea` `intra-eu` `domestic` `other`
      */
-    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsSubTotals withCardRegion(JsonNullable<String> cardRegion) {
+    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsSubTotals withCardRegion(JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsCardRegion> cardRegion) {
         Utils.checkNotNull(cardRegion, "cardRegion");
         this.cardRegion = cardRegion;
         return this;
@@ -305,10 +277,8 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
 
     /**
      * Present when the transaction represents a fee.
-     * 
-     * <p>Possible values: `payment-fee` `direct-debit-failure-fee` `unauthorized-direct-debit-fee` `bank-charged-direct-debit-failure-fee` `partner-commission` `application-fee` `capture-fee` `refund-fee` `chargeback-fee` `payment-notification-fee` `transfer-notification-fee` `payout-fee` `fee-discount` `fee-reimbursement` `platform-volume-fee` `platform-connected-organizations-fee` `balance-charge-fee` `3ds-authentication-attempt-fee` `terminal-monthly-fee` `acceptance-risk-fee` `top-up-fee` `payment-gateway-fee` `mastercard-specialty-merchant-program-processing-fee` `mastercard-specialty-merchant-program-registration-fee` `visa-integrity-risk-program-processing-fee` `visa-integrity-risk-program-registration-fee` `minimum-invoice-amount-fee`
      */
-    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsSubTotals withFeeType(String feeType) {
+    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsSubTotals withFeeType(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsFeeType feeType) {
         Utils.checkNotNull(feeType, "feeType");
         this.feeType = JsonNullable.of(feeType);
         return this;
@@ -316,10 +286,8 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
 
     /**
      * Present when the transaction represents a fee.
-     * 
-     * <p>Possible values: `payment-fee` `direct-debit-failure-fee` `unauthorized-direct-debit-fee` `bank-charged-direct-debit-failure-fee` `partner-commission` `application-fee` `capture-fee` `refund-fee` `chargeback-fee` `payment-notification-fee` `transfer-notification-fee` `payout-fee` `fee-discount` `fee-reimbursement` `platform-volume-fee` `platform-connected-organizations-fee` `balance-charge-fee` `3ds-authentication-attempt-fee` `terminal-monthly-fee` `acceptance-risk-fee` `top-up-fee` `payment-gateway-fee` `mastercard-specialty-merchant-program-processing-fee` `mastercard-specialty-merchant-program-registration-fee` `visa-integrity-risk-program-processing-fee` `visa-integrity-risk-program-registration-fee` `minimum-invoice-amount-fee`
      */
-    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsSubTotals withFeeType(JsonNullable<String> feeType) {
+    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsSubTotals withFeeType(JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsFeeType> feeType) {
         Utils.checkNotNull(feeType, "feeType");
         this.feeType = feeType;
         return this;
@@ -327,10 +295,8 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
 
     /**
      * Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
-     * 
-     * <p>Possible values: `fee` `fee-reimbursement` `fee-discount` `fee-vat` `fee-rounding-compensation`
      */
-    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsSubTotals withPrepaymentPartType(String prepaymentPartType) {
+    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsSubTotals withPrepaymentPartType(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsPrepaymentPartType prepaymentPartType) {
         Utils.checkNotNull(prepaymentPartType, "prepaymentPartType");
         this.prepaymentPartType = JsonNullable.of(prepaymentPartType);
         return this;
@@ -338,10 +304,8 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
 
     /**
      * Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
-     * 
-     * <p>Possible values: `fee` `fee-reimbursement` `fee-discount` `fee-vat` `fee-rounding-compensation`
      */
-    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsSubTotals withPrepaymentPartType(JsonNullable<String> prepaymentPartType) {
+    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsSubTotals withPrepaymentPartType(JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsPrepaymentPartType> prepaymentPartType) {
         Utils.checkNotNull(prepaymentPartType, "prepaymentPartType");
         this.prepaymentPartType = prepaymentPartType;
         return this;
@@ -349,10 +313,8 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
 
     /**
      * Represents the transaction type
-     * 
-     * <p>Possible values: `payment` `split-payment` `failed-payment` `failed-platform-split-payment` `failed-split-payment-compensation` `capture` `split-transaction` `refund` `platform-payment-refund` `returned-platform-payment-refund` `refund-compensation` `returned-refund-compensation` `returned-refund` `chargeback` `chargeback-reversal` `chargeback-compensation` `reversed-chargeback-compensation` `platform-payment-chargeback` `reversed-platform-payment-chargeback` `fee-prepayment` `outgoing-transfer` `incoming-transfer` `canceled-transfer` `returned-transfer` `balance-reserve` `balance-reserve-return` `invoice-rounding-compensation` `rolling-reserve-hold` `rolling-reserve-release` `balance-correction` `repayment` `loan` `balance-topup` `cash-collateral-issuance';` `cash-collateral-release` `pending-rolling-reserve` `to-be-released-rolling-reserve` `held-rolling-reserve` `released-rolling-reserve`
      */
-    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsSubTotals withTransactionType(String transactionType) {
+    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsSubTotals withTransactionType(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsTransactionType transactionType) {
         Utils.checkNotNull(transactionType, "transactionType");
         this.transactionType = JsonNullable.of(transactionType);
         return this;
@@ -360,10 +322,8 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
 
     /**
      * Represents the transaction type
-     * 
-     * <p>Possible values: `payment` `split-payment` `failed-payment` `failed-platform-split-payment` `failed-split-payment-compensation` `capture` `split-transaction` `refund` `platform-payment-refund` `returned-platform-payment-refund` `refund-compensation` `returned-refund-compensation` `returned-refund` `chargeback` `chargeback-reversal` `chargeback-compensation` `reversed-chargeback-compensation` `platform-payment-chargeback` `reversed-platform-payment-chargeback` `fee-prepayment` `outgoing-transfer` `incoming-transfer` `canceled-transfer` `returned-transfer` `balance-reserve` `balance-reserve-return` `invoice-rounding-compensation` `rolling-reserve-hold` `rolling-reserve-release` `balance-correction` `repayment` `loan` `balance-topup` `cash-collateral-issuance';` `cash-collateral-release` `pending-rolling-reserve` `to-be-released-rolling-reserve` `held-rolling-reserve` `released-rolling-reserve`
      */
-    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsSubTotals withTransactionType(JsonNullable<String> transactionType) {
+    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsSubTotals withTransactionType(JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsTransactionType> transactionType) {
         Utils.checkNotNull(transactionType, "transactionType");
         this.transactionType = transactionType;
         return this;
@@ -415,19 +375,19 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
 
         private Optional<Long> count = Optional.empty();
 
-        private JsonNullable<String> method = JsonNullable.undefined();
+        private JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsMethod> method = JsonNullable.undefined();
 
-        private JsonNullable<String> cardIssuer = JsonNullable.undefined();
+        private JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsCardIssuer> cardIssuer = JsonNullable.undefined();
 
-        private JsonNullable<String> cardAudience = JsonNullable.undefined();
+        private JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsCardAudience> cardAudience = JsonNullable.undefined();
 
-        private JsonNullable<String> cardRegion = JsonNullable.undefined();
+        private JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsCardRegion> cardRegion = JsonNullable.undefined();
 
-        private JsonNullable<String> feeType = JsonNullable.undefined();
+        private JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsFeeType> feeType = JsonNullable.undefined();
 
-        private JsonNullable<String> prepaymentPartType = JsonNullable.undefined();
+        private JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsPrepaymentPartType> prepaymentPartType = JsonNullable.undefined();
 
-        private JsonNullable<String> transactionType = JsonNullable.undefined();
+        private JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsTransactionType> transactionType = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -456,7 +416,7 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
         /**
          * Payment type of the transactions
          */
-        public Builder method(String method) {
+        public Builder method(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsMethod method) {
             Utils.checkNotNull(method, "method");
             this.method = JsonNullable.of(method);
             return this;
@@ -465,7 +425,7 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
         /**
          * Payment type of the transactions
          */
-        public Builder method(JsonNullable<String> method) {
+        public Builder method(JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsMethod> method) {
             Utils.checkNotNull(method, "method");
             this.method = method;
             return this;
@@ -474,10 +434,8 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
 
         /**
          * In case of payments transactions with card, the card issuer will be available
-         * 
-         * <p>Possible values: `amex` `maestro` `carte-bancaire` `other`
          */
-        public Builder cardIssuer(String cardIssuer) {
+        public Builder cardIssuer(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsCardIssuer cardIssuer) {
             Utils.checkNotNull(cardIssuer, "cardIssuer");
             this.cardIssuer = JsonNullable.of(cardIssuer);
             return this;
@@ -485,10 +443,8 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
 
         /**
          * In case of payments transactions with card, the card issuer will be available
-         * 
-         * <p>Possible values: `amex` `maestro` `carte-bancaire` `other`
          */
-        public Builder cardIssuer(JsonNullable<String> cardIssuer) {
+        public Builder cardIssuer(JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsCardIssuer> cardIssuer) {
             Utils.checkNotNull(cardIssuer, "cardIssuer");
             this.cardIssuer = cardIssuer;
             return this;
@@ -497,10 +453,8 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
 
         /**
          * In case of payments trnsactions with card, the card audience will be available.
-         * 
-         * <p>Possible values: `corporate` `other`
          */
-        public Builder cardAudience(String cardAudience) {
+        public Builder cardAudience(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsCardAudience cardAudience) {
             Utils.checkNotNull(cardAudience, "cardAudience");
             this.cardAudience = JsonNullable.of(cardAudience);
             return this;
@@ -508,10 +462,8 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
 
         /**
          * In case of payments trnsactions with card, the card audience will be available.
-         * 
-         * <p>Possible values: `corporate` `other`
          */
-        public Builder cardAudience(JsonNullable<String> cardAudience) {
+        public Builder cardAudience(JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsCardAudience> cardAudience) {
             Utils.checkNotNull(cardAudience, "cardAudience");
             this.cardAudience = cardAudience;
             return this;
@@ -520,10 +472,8 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
 
         /**
          * In case of payments transactions with card, the card region will be available.
-         * 
-         * <p>Possible values: `intra-eea` `intra-eu` `domestic` `other`
          */
-        public Builder cardRegion(String cardRegion) {
+        public Builder cardRegion(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsCardRegion cardRegion) {
             Utils.checkNotNull(cardRegion, "cardRegion");
             this.cardRegion = JsonNullable.of(cardRegion);
             return this;
@@ -531,10 +481,8 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
 
         /**
          * In case of payments transactions with card, the card region will be available.
-         * 
-         * <p>Possible values: `intra-eea` `intra-eu` `domestic` `other`
          */
-        public Builder cardRegion(JsonNullable<String> cardRegion) {
+        public Builder cardRegion(JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsCardRegion> cardRegion) {
             Utils.checkNotNull(cardRegion, "cardRegion");
             this.cardRegion = cardRegion;
             return this;
@@ -543,10 +491,8 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
 
         /**
          * Present when the transaction represents a fee.
-         * 
-         * <p>Possible values: `payment-fee` `direct-debit-failure-fee` `unauthorized-direct-debit-fee` `bank-charged-direct-debit-failure-fee` `partner-commission` `application-fee` `capture-fee` `refund-fee` `chargeback-fee` `payment-notification-fee` `transfer-notification-fee` `payout-fee` `fee-discount` `fee-reimbursement` `platform-volume-fee` `platform-connected-organizations-fee` `balance-charge-fee` `3ds-authentication-attempt-fee` `terminal-monthly-fee` `acceptance-risk-fee` `top-up-fee` `payment-gateway-fee` `mastercard-specialty-merchant-program-processing-fee` `mastercard-specialty-merchant-program-registration-fee` `visa-integrity-risk-program-processing-fee` `visa-integrity-risk-program-registration-fee` `minimum-invoice-amount-fee`
          */
-        public Builder feeType(String feeType) {
+        public Builder feeType(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsFeeType feeType) {
             Utils.checkNotNull(feeType, "feeType");
             this.feeType = JsonNullable.of(feeType);
             return this;
@@ -554,10 +500,8 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
 
         /**
          * Present when the transaction represents a fee.
-         * 
-         * <p>Possible values: `payment-fee` `direct-debit-failure-fee` `unauthorized-direct-debit-fee` `bank-charged-direct-debit-failure-fee` `partner-commission` `application-fee` `capture-fee` `refund-fee` `chargeback-fee` `payment-notification-fee` `transfer-notification-fee` `payout-fee` `fee-discount` `fee-reimbursement` `platform-volume-fee` `platform-connected-organizations-fee` `balance-charge-fee` `3ds-authentication-attempt-fee` `terminal-monthly-fee` `acceptance-risk-fee` `top-up-fee` `payment-gateway-fee` `mastercard-specialty-merchant-program-processing-fee` `mastercard-specialty-merchant-program-registration-fee` `visa-integrity-risk-program-processing-fee` `visa-integrity-risk-program-registration-fee` `minimum-invoice-amount-fee`
          */
-        public Builder feeType(JsonNullable<String> feeType) {
+        public Builder feeType(JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsFeeType> feeType) {
             Utils.checkNotNull(feeType, "feeType");
             this.feeType = feeType;
             return this;
@@ -566,10 +510,8 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
 
         /**
          * Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
-         * 
-         * <p>Possible values: `fee` `fee-reimbursement` `fee-discount` `fee-vat` `fee-rounding-compensation`
          */
-        public Builder prepaymentPartType(String prepaymentPartType) {
+        public Builder prepaymentPartType(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsPrepaymentPartType prepaymentPartType) {
             Utils.checkNotNull(prepaymentPartType, "prepaymentPartType");
             this.prepaymentPartType = JsonNullable.of(prepaymentPartType);
             return this;
@@ -577,10 +519,8 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
 
         /**
          * Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
-         * 
-         * <p>Possible values: `fee` `fee-reimbursement` `fee-discount` `fee-vat` `fee-rounding-compensation`
          */
-        public Builder prepaymentPartType(JsonNullable<String> prepaymentPartType) {
+        public Builder prepaymentPartType(JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsPrepaymentPartType> prepaymentPartType) {
             Utils.checkNotNull(prepaymentPartType, "prepaymentPartType");
             this.prepaymentPartType = prepaymentPartType;
             return this;
@@ -589,10 +529,8 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
 
         /**
          * Represents the transaction type
-         * 
-         * <p>Possible values: `payment` `split-payment` `failed-payment` `failed-platform-split-payment` `failed-split-payment-compensation` `capture` `split-transaction` `refund` `platform-payment-refund` `returned-platform-payment-refund` `refund-compensation` `returned-refund-compensation` `returned-refund` `chargeback` `chargeback-reversal` `chargeback-compensation` `reversed-chargeback-compensation` `platform-payment-chargeback` `reversed-platform-payment-chargeback` `fee-prepayment` `outgoing-transfer` `incoming-transfer` `canceled-transfer` `returned-transfer` `balance-reserve` `balance-reserve-return` `invoice-rounding-compensation` `rolling-reserve-hold` `rolling-reserve-release` `balance-correction` `repayment` `loan` `balance-topup` `cash-collateral-issuance';` `cash-collateral-release` `pending-rolling-reserve` `to-be-released-rolling-reserve` `held-rolling-reserve` `released-rolling-reserve`
          */
-        public Builder transactionType(String transactionType) {
+        public Builder transactionType(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsTransactionType transactionType) {
             Utils.checkNotNull(transactionType, "transactionType");
             this.transactionType = JsonNullable.of(transactionType);
             return this;
@@ -600,10 +538,8 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBo
 
         /**
          * Represents the transaction type
-         * 
-         * <p>Possible values: `payment` `split-payment` `failed-payment` `failed-platform-split-payment` `failed-split-payment-compensation` `capture` `split-transaction` `refund` `platform-payment-refund` `returned-platform-payment-refund` `refund-compensation` `returned-refund-compensation` `returned-refund` `chargeback` `chargeback-reversal` `chargeback-compensation` `reversed-chargeback-compensation` `platform-payment-chargeback` `reversed-platform-payment-chargeback` `fee-prepayment` `outgoing-transfer` `incoming-transfer` `canceled-transfer` `returned-transfer` `balance-reserve` `balance-reserve-return` `invoice-rounding-compensation` `rolling-reserve-hold` `rolling-reserve-release` `balance-correction` `repayment` `loan` `balance-topup` `cash-collateral-issuance';` `cash-collateral-release` `pending-rolling-reserve` `to-be-released-rolling-reserve` `held-rolling-reserve` `released-rolling-reserve`
          */
-        public Builder transactionType(JsonNullable<String> transactionType) {
+        public Builder transactionType(JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsCapitalImmediatelyAvailableSubtotalsTransactionType> transactionType) {
             Utils.checkNotNull(transactionType, "transactionType");
             this.transactionType = transactionType;
             return this;

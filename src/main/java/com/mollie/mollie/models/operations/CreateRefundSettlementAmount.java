@@ -13,15 +13,19 @@ import java.lang.String;
 /**
  * CreateRefundSettlementAmount
  * 
- * <p>This optional field will contain the approximate amount that will be deducted from your account balance, converted to the currency your account is settled in.
+ * <p>This optional field will contain the approximate amount that will be deducted from your account balance, converted
+ * to the currency your account is settled in.
  * 
  * <p>The amount is a **negative** amount.
  * 
- * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be zero.
+ * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be
+ * zero.
  * 
- * <p>Since the field contains an estimated amount during refund processing, it may change over time. For example, while the refund is queued the settlement amount is likely not yet available.
+ * <p>Since the field contains an estimated amount during refund processing, it may change over time. For example, while
+ * the refund is queued the settlement amount is likely not yet available.
  * 
- * <p>To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
+ * <p>To retrieve accurate settlement amounts we recommend using the
+ * [List balance transactions endpoint](list-balance-transactions) instead.
  */
 public class CreateRefundSettlementAmount {
     /**

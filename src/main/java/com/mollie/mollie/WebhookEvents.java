@@ -27,10 +27,6 @@ public class WebhookEvents {
      * 
      * <p>Retrieve a single webhook event object by its event ID.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **events.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public GetWebhookEventRequestBuilder get() {
@@ -41,10 +37,6 @@ public class WebhookEvents {
      * Get a Webhook Event
      * 
      * <p>Retrieve a single webhook event object by its event ID.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **events.read**](/reference/authentication)
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
@@ -58,10 +50,6 @@ public class WebhookEvents {
      * Get a Webhook Event
      * 
      * <p>Retrieve a single webhook event object by its event ID.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **events.read**](/reference/authentication)
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @param options additional options

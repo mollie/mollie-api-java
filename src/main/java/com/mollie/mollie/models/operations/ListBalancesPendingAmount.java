@@ -13,7 +13,8 @@ import java.lang.String;
 /**
  * ListBalancesPendingAmount
  * 
- * <p>The total amount that is queued to be transferred to your balance. For example, a credit card payment can take a few days to clear.
+ * <p>The total amount that is queued to be transferred to your balance. For example, a credit card payment can take a
+ * few days to clear.
  */
 public class ListBalancesPendingAmount {
     /**

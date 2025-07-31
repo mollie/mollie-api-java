@@ -13,7 +13,8 @@ import java.lang.String;
 /**
  * GetPaymentLinkAmount
  * 
- * <p>The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an amount.
+ * <p>The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an
+ * amount.
  */
 public class GetPaymentLinkAmount {
     /**

@@ -13,7 +13,8 @@ import java.lang.String;
 /**
  * PaymentCreateRouteDelayedRoutingAmount
  * 
- * <p>The amount of the route. That amount that will be routed to the specified destination.
+ * <p>The amount of the route.
+ * That amount that will be routed to the specified destination.
  */
 public class PaymentCreateRouteDelayedRoutingAmount {
     /**

@@ -48,10 +48,6 @@ public class Balances {
      * 
      * <p>The results are paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **balances.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public ListBalancesRequestBuilder list() {
@@ -64,10 +60,6 @@ public class Balances {
      * <p>Retrieve a list of the organization's balances, including the primary balance.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **balances.read**](/reference/authentication)
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -84,14 +76,13 @@ public class Balances {
      * 
      * <p>The results are paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **balances.read**](/reference/authentication)
-     * 
      * @param currency Optionally only return balances with the given currency. For example: `EUR`.
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     *         result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param options additional options
@@ -118,18 +109,21 @@ public class Balances {
     /**
      * Get balance
      * 
-     * <p>When processing payments with Mollie, we put all pending funds — usually minus Mollie fees — on a balance. Once you have linked a bank account to your Mollie account, we can pay out your balance towards this bank account.
+     * <p>When processing payments with Mollie, we put all pending funds — usually
+     * minus Mollie fees — on a balance. Once you have linked a bank account to your Mollie account, we can pay out your
+     * balance towards this bank account.
      * 
-     * <p>With the Balances API you can retrieve your current balance. The response includes two amounts:
+     * <p>With the Balances API you can retrieve your current balance. The response
+     * includes two amounts:
      * 
-     * <p>* The *pending amount*. These are payments that have been marked as `paid`, but are not yet available on your balance.
-     * * The *available amount*. This is the amount that you can get paid out to your bank account, or use for refunds.
+     * <p>* The *pending amount*. These are payments that have been marked as `paid`,
+     * but are not yet available on your balance.
+     * * The *available amount*. This is the amount that you can get paid out to
+     * your bank account, or use for refunds.
      * 
-     * <p>With instant payment methods like iDEAL, payments are moved to the available balance instantly. With slower payment methods, like credit card for example, it can take a few days before the funds are available on your balance. These funds will be shown under the *pending amount* in the meanwhile.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **balances.read**](/reference/authentication)
+     * <p>With instant payment methods like iDEAL, payments are moved to the available
+     * balance instantly. With slower payment methods, like credit card for example, it can take a few days before the
+     * funds are available on your balance. These funds will be shown under the *pending amount* in the meanwhile.
      * 
      * @return The call builder
      */
@@ -140,18 +134,21 @@ public class Balances {
     /**
      * Get balance
      * 
-     * <p>When processing payments with Mollie, we put all pending funds — usually minus Mollie fees — on a balance. Once you have linked a bank account to your Mollie account, we can pay out your balance towards this bank account.
+     * <p>When processing payments with Mollie, we put all pending funds — usually
+     * minus Mollie fees — on a balance. Once you have linked a bank account to your Mollie account, we can pay out your
+     * balance towards this bank account.
      * 
-     * <p>With the Balances API you can retrieve your current balance. The response includes two amounts:
+     * <p>With the Balances API you can retrieve your current balance. The response
+     * includes two amounts:
      * 
-     * <p>* The *pending amount*. These are payments that have been marked as `paid`, but are not yet available on your balance.
-     * * The *available amount*. This is the amount that you can get paid out to your bank account, or use for refunds.
+     * <p>* The *pending amount*. These are payments that have been marked as `paid`,
+     * but are not yet available on your balance.
+     * * The *available amount*. This is the amount that you can get paid out to
+     * your bank account, or use for refunds.
      * 
-     * <p>With instant payment methods like iDEAL, payments are moved to the available balance instantly. With slower payment methods, like credit card for example, it can take a few days before the funds are available on your balance. These funds will be shown under the *pending amount* in the meanwhile.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **balances.read**](/reference/authentication)
+     * <p>With instant payment methods like iDEAL, payments are moved to the available
+     * balance instantly. With slower payment methods, like credit card for example, it can take a few days before the
+     * funds are available on your balance. These funds will be shown under the *pending amount* in the meanwhile.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
@@ -164,21 +161,26 @@ public class Balances {
     /**
      * Get balance
      * 
-     * <p>When processing payments with Mollie, we put all pending funds — usually minus Mollie fees — on a balance. Once you have linked a bank account to your Mollie account, we can pay out your balance towards this bank account.
+     * <p>When processing payments with Mollie, we put all pending funds — usually
+     * minus Mollie fees — on a balance. Once you have linked a bank account to your Mollie account, we can pay out your
+     * balance towards this bank account.
      * 
-     * <p>With the Balances API you can retrieve your current balance. The response includes two amounts:
+     * <p>With the Balances API you can retrieve your current balance. The response
+     * includes two amounts:
      * 
-     * <p>* The *pending amount*. These are payments that have been marked as `paid`, but are not yet available on your balance.
-     * * The *available amount*. This is the amount that you can get paid out to your bank account, or use for refunds.
+     * <p>* The *pending amount*. These are payments that have been marked as `paid`,
+     * but are not yet available on your balance.
+     * * The *available amount*. This is the amount that you can get paid out to
+     * your bank account, or use for refunds.
      * 
-     * <p>With instant payment methods like iDEAL, payments are moved to the available balance instantly. With slower payment methods, like credit card for example, it can take a few days before the funds are available on your balance. These funds will be shown under the *pending amount* in the meanwhile.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **balances.read**](/reference/authentication)
+     * <p>With instant payment methods like iDEAL, payments are moved to the available
+     * balance instantly. With slower payment methods, like credit card for example, it can take a few days before the
+     * funds are available on your balance. These funds will be shown under the *pending amount* in the meanwhile.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param options additional options
@@ -202,13 +204,11 @@ public class Balances {
     /**
      * Get primary balance
      * 
-     * <p>Retrieve the primary balance. This is the balance of your account's primary currency, where all payments are settled to by default.
+     * <p>Retrieve the primary balance. This is the balance of your account's primary
+     * currency, where all payments are settled to by default.
      * 
-     * <p>This endpoint is a convenient alias of the [Get balance](get-balance) endpoint.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **balances.read**](/reference/authentication)
+     * <p>This endpoint is a convenient alias of the [Get balance](get-balance)
+     * endpoint.
      * 
      * @return The call builder
      */
@@ -219,13 +219,11 @@ public class Balances {
     /**
      * Get primary balance
      * 
-     * <p>Retrieve the primary balance. This is the balance of your account's primary currency, where all payments are settled to by default.
+     * <p>Retrieve the primary balance. This is the balance of your account's primary
+     * currency, where all payments are settled to by default.
      * 
-     * <p>This endpoint is a convenient alias of the [Get balance](get-balance) endpoint.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **balances.read**](/reference/authentication)
+     * <p>This endpoint is a convenient alias of the [Get balance](get-balance)
+     * endpoint.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -237,13 +235,11 @@ public class Balances {
     /**
      * Get primary balance
      * 
-     * <p>Retrieve the primary balance. This is the balance of your account's primary currency, where all payments are settled to by default.
+     * <p>Retrieve the primary balance. This is the balance of your account's primary
+     * currency, where all payments are settled to by default.
      * 
-     * <p>This endpoint is a convenient alias of the [Get balance](get-balance) endpoint.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **balances.read**](/reference/authentication)
+     * <p>This endpoint is a convenient alias of the [Get balance](get-balance)
+     * endpoint.
      * 
      * @param options additional options
      * @return The response from the API call
@@ -260,13 +256,11 @@ public class Balances {
      * 
      * <p>Retrieve a summarized report for all transactions on a given balance within a given timeframe.
      * 
-     * <p>The API also provides a detailed report on all 'prepayments' for Mollie fees that were deducted from your balance during the reported period, ahead of your Mollie invoice.
+     * <p>The API also provides a detailed report on all 'prepayments' for Mollie fees that were deducted from your balance
+     * during the reported period, ahead of your Mollie invoice.
      * 
-     * <p>The alias `primary` can be used instead of the balance ID to refer to the organization's primary balance.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **balance-reports.read**](/reference/authentication)
+     * <p>The alias `primary` can be used instead of the balance ID to refer to the
+     * organization's primary balance.
      * 
      * @return The call builder
      */
@@ -279,13 +273,11 @@ public class Balances {
      * 
      * <p>Retrieve a summarized report for all transactions on a given balance within a given timeframe.
      * 
-     * <p>The API also provides a detailed report on all 'prepayments' for Mollie fees that were deducted from your balance during the reported period, ahead of your Mollie invoice.
+     * <p>The API also provides a detailed report on all 'prepayments' for Mollie fees that were deducted from your balance
+     * during the reported period, ahead of your Mollie invoice.
      * 
-     * <p>The alias `primary` can be used instead of the balance ID to refer to the organization's primary balance.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **balance-reports.read**](/reference/authentication)
+     * <p>The alias `primary` can be used instead of the balance ID to refer to the
+     * organization's primary balance.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -300,13 +292,11 @@ public class Balances {
      * 
      * <p>Retrieve a summarized report for all transactions on a given balance within a given timeframe.
      * 
-     * <p>The API also provides a detailed report on all 'prepayments' for Mollie fees that were deducted from your balance during the reported period, ahead of your Mollie invoice.
+     * <p>The API also provides a detailed report on all 'prepayments' for Mollie fees that were deducted from your balance
+     * during the reported period, ahead of your Mollie invoice.
      * 
-     * <p>The alias `primary` can be used instead of the balance ID to refer to the organization's primary balance.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **balance-reports.read**](/reference/authentication)
+     * <p>The alias `primary` can be used instead of the balance ID to refer to the
+     * organization's primary balance.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -322,17 +312,16 @@ public class Balances {
     /**
      * List balance transactions
      * 
-     * <p>Retrieve a list of all balance transactions. Transactions include for example payments, refunds, chargebacks, and settlements.
+     * <p>Retrieve a list of all balance transactions. Transactions include for
+     * example payments, refunds, chargebacks, and settlements.
      * 
-     * <p>For an aggregated report of these balance transactions, refer to the [Get balance report](get-balance-report) endpoint.
+     * <p>For an aggregated report of these balance transactions, refer to the [Get
+     * balance report](get-balance-report) endpoint.
      * 
-     * <p>The alias `primary` can be used instead of the balance ID to refer to the organization's primary balance.
+     * <p>The alias `primary` can be used instead of the balance ID to refer to the
+     * organization's primary balance.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **balances.read**](/reference/authentication)
      * 
      * @return The call builder
      */
@@ -343,17 +332,16 @@ public class Balances {
     /**
      * List balance transactions
      * 
-     * <p>Retrieve a list of all balance transactions. Transactions include for example payments, refunds, chargebacks, and settlements.
+     * <p>Retrieve a list of all balance transactions. Transactions include for
+     * example payments, refunds, chargebacks, and settlements.
      * 
-     * <p>For an aggregated report of these balance transactions, refer to the [Get balance report](get-balance-report) endpoint.
+     * <p>For an aggregated report of these balance transactions, refer to the [Get
+     * balance report](get-balance-report) endpoint.
      * 
-     * <p>The alias `primary` can be used instead of the balance ID to refer to the organization's primary balance.
+     * <p>The alias `primary` can be used instead of the balance ID to refer to the
+     * organization's primary balance.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **balances.read**](/reference/authentication)
      * 
      * @param balanceId Provide the ID of the related balance.
      * @return The response from the API call
@@ -367,22 +355,24 @@ public class Balances {
     /**
      * List balance transactions
      * 
-     * <p>Retrieve a list of all balance transactions. Transactions include for example payments, refunds, chargebacks, and settlements.
+     * <p>Retrieve a list of all balance transactions. Transactions include for
+     * example payments, refunds, chargebacks, and settlements.
      * 
-     * <p>For an aggregated report of these balance transactions, refer to the [Get balance report](get-balance-report) endpoint.
+     * <p>For an aggregated report of these balance transactions, refer to the [Get
+     * balance report](get-balance-report) endpoint.
      * 
-     * <p>The alias `primary` can be used instead of the balance ID to refer to the organization's primary balance.
+     * <p>The alias `primary` can be used instead of the balance ID to refer to the
+     * organization's primary balance.
      * 
      * <p>The results are paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **balances.read**](/reference/authentication)
-     * 
      * @param balanceId Provide the ID of the related balance.
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     *         result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param options additional options

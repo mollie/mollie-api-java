@@ -50,13 +50,9 @@ public class PaymentLinks {
     /**
      * Create payment link
      * 
-     * <p>With the Payment links API you can generate payment links that by default, unlike regular payments, do not expire. The payment link can be shared with your customers and will redirect them to them the payment page where they can complete the payment. A [payment](get-payment) will only be created once the customer initiates the payment.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payment-links.write**](/reference/authentication)
+     * <p>With the Payment links API you can generate payment links that by default, unlike regular payments, do not expire.
+     * The payment link can be shared with your customers and will redirect them to them the payment page where they can
+     * complete the payment. A [payment](get-payment) will only be created once the customer initiates the payment.
      * 
      * @return The call builder
      */
@@ -67,13 +63,9 @@ public class PaymentLinks {
     /**
      * Create payment link
      * 
-     * <p>With the Payment links API you can generate payment links that by default, unlike regular payments, do not expire. The payment link can be shared with your customers and will redirect them to them the payment page where they can complete the payment. A [payment](get-payment) will only be created once the customer initiates the payment.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payment-links.write**](/reference/authentication)
+     * <p>With the Payment links API you can generate payment links that by default, unlike regular payments, do not expire.
+     * The payment link can be shared with your customers and will redirect them to them the payment page where they can
+     * complete the payment. A [payment](get-payment) will only be created once the customer initiates the payment.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -85,13 +77,9 @@ public class PaymentLinks {
     /**
      * Create payment link
      * 
-     * <p>With the Payment links API you can generate payment links that by default, unlike regular payments, do not expire. The payment link can be shared with your customers and will redirect them to them the payment page where they can complete the payment. A [payment](get-payment) will only be created once the customer initiates the payment.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payment-links.write**](/reference/authentication)
+     * <p>With the Payment links API you can generate payment links that by default, unlike regular payments, do not expire.
+     * The payment link can be shared with your customers and will redirect them to them the payment page where they can
+     * complete the payment. A [payment](get-payment) will only be created once the customer initiates the payment.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -111,12 +99,6 @@ public class PaymentLinks {
      * 
      * <p>The results are paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payment-links.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public ListPaymentLinksRequestBuilder list() {
@@ -129,12 +111,6 @@ public class PaymentLinks {
      * <p>Retrieve a list of all payment links.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payment-links.read**](/reference/authentication)
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -151,15 +127,12 @@ public class PaymentLinks {
      * 
      * <p>The results are paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payment-links.read**](/reference/authentication)
-     * 
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     *         result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param options additional options
@@ -186,12 +159,6 @@ public class PaymentLinks {
      * 
      * <p>Retrieve a single payment link by its ID.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payment-links.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public GetPaymentLinkRequestBuilder get() {
@@ -202,12 +169,6 @@ public class PaymentLinks {
      * Get payment link
      * 
      * <p>Retrieve a single payment link by its ID.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payment-links.read**](/reference/authentication)
      * 
      * @param paymentLinkId Provide the ID of the related payment link.
      * @return The response from the API call
@@ -222,14 +183,10 @@ public class PaymentLinks {
      * 
      * <p>Retrieve a single payment link by its ID.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payment-links.read**](/reference/authentication)
-     * 
      * @param paymentLinkId Provide the ID of the related payment link.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param options additional options
@@ -255,12 +212,6 @@ public class PaymentLinks {
      * 
      * <p>Certain details of an existing payment link can be updated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payment-links.write**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public UpdatePaymentLinkRequestBuilder update() {
@@ -271,12 +222,6 @@ public class PaymentLinks {
      * Update payment link
      * 
      * <p>Certain details of an existing payment link can be updated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payment-links.write**](/reference/authentication)
      * 
      * @param paymentLinkId Provide the ID of the related payment link.
      * @return The response from the API call
@@ -290,12 +235,6 @@ public class PaymentLinks {
      * Update payment link
      * 
      * <p>Certain details of an existing payment link can be updated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payment-links.write**](/reference/authentication)
      * 
      * @param paymentLinkId Provide the ID of the related payment link.
      * @param requestBody 
@@ -320,17 +259,13 @@ public class PaymentLinks {
     /**
      * Delete payment link
      * 
-     * <p>Payment links which have not been opened and no payments have been made yet can be deleted entirely. This can be useful for removing payment links that have been incorrectly configured or that are no longer relevant.
+     * <p>Payment links which have not been opened and no payments have been made yet can be deleted entirely.
+     * This can be useful for removing payment links that have been incorrectly configured or that are no longer relevant.
      * 
      * <p>Once deleted, the payment link will no longer show up in the API or Mollie dashboard.
      * 
-     * <p>To simply disable a payment link without fully deleting it, you can use the `archived` parameter on the [Update payment link](update-payment-link) endpoint instead.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payment-links.write**](/reference/authentication)
+     * <p>To simply disable a payment link without fully deleting it, you can use the `archived` parameter on the
+     * [Update payment link](update-payment-link) endpoint instead.
      * 
      * @return The call builder
      */
@@ -341,17 +276,13 @@ public class PaymentLinks {
     /**
      * Delete payment link
      * 
-     * <p>Payment links which have not been opened and no payments have been made yet can be deleted entirely. This can be useful for removing payment links that have been incorrectly configured or that are no longer relevant.
+     * <p>Payment links which have not been opened and no payments have been made yet can be deleted entirely.
+     * This can be useful for removing payment links that have been incorrectly configured or that are no longer relevant.
      * 
      * <p>Once deleted, the payment link will no longer show up in the API or Mollie dashboard.
      * 
-     * <p>To simply disable a payment link without fully deleting it, you can use the `archived` parameter on the [Update payment link](update-payment-link) endpoint instead.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payment-links.write**](/reference/authentication)
+     * <p>To simply disable a payment link without fully deleting it, you can use the `archived` parameter on the
+     * [Update payment link](update-payment-link) endpoint instead.
      * 
      * @param paymentLinkId Provide the ID of the related payment link.
      * @return The response from the API call
@@ -364,17 +295,13 @@ public class PaymentLinks {
     /**
      * Delete payment link
      * 
-     * <p>Payment links which have not been opened and no payments have been made yet can be deleted entirely. This can be useful for removing payment links that have been incorrectly configured or that are no longer relevant.
+     * <p>Payment links which have not been opened and no payments have been made yet can be deleted entirely.
+     * This can be useful for removing payment links that have been incorrectly configured or that are no longer relevant.
      * 
      * <p>Once deleted, the payment link will no longer show up in the API or Mollie dashboard.
      * 
-     * <p>To simply disable a payment link without fully deleting it, you can use the `archived` parameter on the [Update payment link](update-payment-link) endpoint instead.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payment-links.write**](/reference/authentication)
+     * <p>To simply disable a payment link without fully deleting it, you can use the `archived` parameter on the
+     * [Update payment link](update-payment-link) endpoint instead.
      * 
      * @param paymentLinkId Provide the ID of the related payment link.
      * @param requestBody 
@@ -403,12 +330,6 @@ public class PaymentLinks {
      * 
      * <p>The results are paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payment-links.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public GetPaymentLinkPaymentsRequestBuilder listPayments() {
@@ -421,12 +342,6 @@ public class PaymentLinks {
      * <p>Retrieve the list of payments for a specific payment link.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payment-links.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -442,12 +357,6 @@ public class PaymentLinks {
      * <p>Retrieve the list of payments for a specific payment link.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payment-links.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

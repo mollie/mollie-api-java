@@ -16,7 +16,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Pricing {
     /**
-     * A description of what the pricing applies to. For example, a specific country (`The Netherlands`) or a category of cards (`American Express`). If a `locale` is provided, the description may be translated.
+     * A description of what the pricing applies to. For example, a specific country (`The Netherlands`) or a
+     * category of cards (`American Express`). If a `locale` is provided, the description may be translated.
      */
     @JsonProperty("description")
     private String description;
@@ -34,7 +35,8 @@ public class Pricing {
     private String variable;
 
     /**
-     * Only present for credit card pricing. It will correspond with the `feeRegion` of credit card payments as returned in the [Payments API](get-payment).
+     * Only present for credit card pricing. It will correspond with the `feeRegion` of credit card payments as
+     * returned in the [Payments API](get-payment).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("feeRegion")
@@ -65,7 +67,8 @@ public class Pricing {
     }
 
     /**
-     * A description of what the pricing applies to. For example, a specific country (`The Netherlands`) or a category of cards (`American Express`). If a `locale` is provided, the description may be translated.
+     * A description of what the pricing applies to. For example, a specific country (`The Netherlands`) or a
+     * category of cards (`American Express`). If a `locale` is provided, the description may be translated.
      */
     @JsonIgnore
     public String description() {
@@ -89,7 +92,8 @@ public class Pricing {
     }
 
     /**
-     * Only present for credit card pricing. It will correspond with the `feeRegion` of credit card payments as returned in the [Payments API](get-payment).
+     * Only present for credit card pricing. It will correspond with the `feeRegion` of credit card payments as
+     * returned in the [Payments API](get-payment).
      */
     @JsonIgnore
     public JsonNullable<String> feeRegion() {
@@ -102,7 +106,8 @@ public class Pricing {
 
 
     /**
-     * A description of what the pricing applies to. For example, a specific country (`The Netherlands`) or a category of cards (`American Express`). If a `locale` is provided, the description may be translated.
+     * A description of what the pricing applies to. For example, a specific country (`The Netherlands`) or a
+     * category of cards (`American Express`). If a `locale` is provided, the description may be translated.
      */
     public Pricing withDescription(String description) {
         Utils.checkNotNull(description, "description");
@@ -129,7 +134,8 @@ public class Pricing {
     }
 
     /**
-     * Only present for credit card pricing. It will correspond with the `feeRegion` of credit card payments as returned in the [Payments API](get-payment).
+     * Only present for credit card pricing. It will correspond with the `feeRegion` of credit card payments as
+     * returned in the [Payments API](get-payment).
      */
     public Pricing withFeeRegion(String feeRegion) {
         Utils.checkNotNull(feeRegion, "feeRegion");
@@ -138,7 +144,8 @@ public class Pricing {
     }
 
     /**
-     * Only present for credit card pricing. It will correspond with the `feeRegion` of credit card payments as returned in the [Payments API](get-payment).
+     * Only present for credit card pricing. It will correspond with the `feeRegion` of credit card payments as
+     * returned in the [Payments API](get-payment).
      */
     public Pricing withFeeRegion(JsonNullable<String> feeRegion) {
         Utils.checkNotNull(feeRegion, "feeRegion");
@@ -195,7 +202,8 @@ public class Pricing {
 
 
         /**
-         * A description of what the pricing applies to. For example, a specific country (`The Netherlands`) or a category of cards (`American Express`). If a `locale` is provided, the description may be translated.
+         * A description of what the pricing applies to. For example, a specific country (`The Netherlands`) or a
+         * category of cards (`American Express`). If a `locale` is provided, the description may be translated.
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
@@ -225,7 +233,8 @@ public class Pricing {
 
 
         /**
-         * Only present for credit card pricing. It will correspond with the `feeRegion` of credit card payments as returned in the [Payments API](get-payment).
+         * Only present for credit card pricing. It will correspond with the `feeRegion` of credit card payments as
+         * returned in the [Payments API](get-payment).
          */
         public Builder feeRegion(String feeRegion) {
             Utils.checkNotNull(feeRegion, "feeRegion");
@@ -234,7 +243,8 @@ public class Pricing {
         }
 
         /**
-         * Only present for credit card pricing. It will correspond with the `feeRegion` of credit card payments as returned in the [Payments API](get-payment).
+         * Only present for credit card pricing. It will correspond with the `feeRegion` of credit card payments as
+         * returned in the [Payments API](get-payment).
          */
         public Builder feeRegion(JsonNullable<String> feeRegion) {
             Utils.checkNotNull(feeRegion, "feeRegion");

@@ -14,7 +14,8 @@ import java.lang.String;
 /**
  * ListAllMethodsResponseBody
  * 
- * <p>A list of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
+ * <p>A list of payment method objects. For a complete reference of the
+ * payment method object, refer to the [Get payment method endpoint](get-method) documentation.
  */
 public class ListAllMethodsResponseBody {
     /**

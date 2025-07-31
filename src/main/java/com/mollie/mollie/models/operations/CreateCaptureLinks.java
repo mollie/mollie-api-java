@@ -33,14 +33,16 @@ public class CreateCaptureLinks {
     private CreateCapturePayment payment;
 
     /**
-     * The API resource URL of the [settlement](get-settlement) this capture has been settled with. Not present if not yet settled.
+     * The API resource URL of the [settlement](get-settlement) this capture has been settled with. Not present if
+     * not yet settled.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlement")
     private JsonNullable<? extends CreateCaptureSettlement> settlement;
 
     /**
-     * The API resource URL of the [shipment](get-shipment) this capture is associated with. Not present if it isn't associated with a shipment.
+     * The API resource URL of the [shipment](get-shipment) this capture is associated with. Not present if
+     * it isn't associated with a shipment.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shipment")
@@ -96,7 +98,8 @@ public class CreateCaptureLinks {
     }
 
     /**
-     * The API resource URL of the [settlement](get-settlement) this capture has been settled with. Not present if not yet settled.
+     * The API resource URL of the [settlement](get-settlement) this capture has been settled with. Not present if
+     * not yet settled.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -105,7 +108,8 @@ public class CreateCaptureLinks {
     }
 
     /**
-     * The API resource URL of the [shipment](get-shipment) this capture is associated with. Not present if it isn't associated with a shipment.
+     * The API resource URL of the [shipment](get-shipment) this capture is associated with. Not present if
+     * it isn't associated with a shipment.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -145,7 +149,8 @@ public class CreateCaptureLinks {
     }
 
     /**
-     * The API resource URL of the [settlement](get-settlement) this capture has been settled with. Not present if not yet settled.
+     * The API resource URL of the [settlement](get-settlement) this capture has been settled with. Not present if
+     * not yet settled.
      */
     public CreateCaptureLinks withSettlement(CreateCaptureSettlement settlement) {
         Utils.checkNotNull(settlement, "settlement");
@@ -154,7 +159,8 @@ public class CreateCaptureLinks {
     }
 
     /**
-     * The API resource URL of the [settlement](get-settlement) this capture has been settled with. Not present if not yet settled.
+     * The API resource URL of the [settlement](get-settlement) this capture has been settled with. Not present if
+     * not yet settled.
      */
     public CreateCaptureLinks withSettlement(JsonNullable<? extends CreateCaptureSettlement> settlement) {
         Utils.checkNotNull(settlement, "settlement");
@@ -163,7 +169,8 @@ public class CreateCaptureLinks {
     }
 
     /**
-     * The API resource URL of the [shipment](get-shipment) this capture is associated with. Not present if it isn't associated with a shipment.
+     * The API resource URL of the [shipment](get-shipment) this capture is associated with. Not present if
+     * it isn't associated with a shipment.
      */
     public CreateCaptureLinks withShipment(Shipment shipment) {
         Utils.checkNotNull(shipment, "shipment");
@@ -172,7 +179,8 @@ public class CreateCaptureLinks {
     }
 
     /**
-     * The API resource URL of the [shipment](get-shipment) this capture is associated with. Not present if it isn't associated with a shipment.
+     * The API resource URL of the [shipment](get-shipment) this capture is associated with. Not present if
+     * it isn't associated with a shipment.
      */
     public CreateCaptureLinks withShipment(JsonNullable<? extends Shipment> shipment) {
         Utils.checkNotNull(shipment, "shipment");
@@ -262,7 +270,8 @@ public class CreateCaptureLinks {
 
 
         /**
-         * The API resource URL of the [settlement](get-settlement) this capture has been settled with. Not present if not yet settled.
+         * The API resource URL of the [settlement](get-settlement) this capture has been settled with. Not present if
+         * not yet settled.
          */
         public Builder settlement(CreateCaptureSettlement settlement) {
             Utils.checkNotNull(settlement, "settlement");
@@ -271,7 +280,8 @@ public class CreateCaptureLinks {
         }
 
         /**
-         * The API resource URL of the [settlement](get-settlement) this capture has been settled with. Not present if not yet settled.
+         * The API resource URL of the [settlement](get-settlement) this capture has been settled with. Not present if
+         * not yet settled.
          */
         public Builder settlement(JsonNullable<? extends CreateCaptureSettlement> settlement) {
             Utils.checkNotNull(settlement, "settlement");
@@ -281,7 +291,8 @@ public class CreateCaptureLinks {
 
 
         /**
-         * The API resource URL of the [shipment](get-shipment) this capture is associated with. Not present if it isn't associated with a shipment.
+         * The API resource URL of the [shipment](get-shipment) this capture is associated with. Not present if
+         * it isn't associated with a shipment.
          */
         public Builder shipment(Shipment shipment) {
             Utils.checkNotNull(shipment, "shipment");
@@ -290,7 +301,8 @@ public class CreateCaptureLinks {
         }
 
         /**
-         * The API resource URL of the [shipment](get-shipment) this capture is associated with. Not present if it isn't associated with a shipment.
+         * The API resource URL of the [shipment](get-shipment) this capture is associated with. Not present if
+         * it isn't associated with a shipment.
          */
         public Builder shipment(JsonNullable<? extends Shipment> shipment) {
             Utils.checkNotNull(shipment, "shipment");

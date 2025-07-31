@@ -20,7 +20,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListAllChargebacksRequest {
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
     private Optional<String> from;
@@ -32,31 +33,36 @@ public class ListAllChargebacksRequest {
     private JsonNullable<Long> limit;
 
     /**
-     * This endpoint allows you to embed additional information via the `embed` query string parameter.
+     * This endpoint allows you to embed additional information via the
+     * `embed` query string parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=embed")
     private Optional<? extends ListAllChargebacksQueryParamEmbed> embed;
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
-     * 
-     * <p>Possible values: `asc` `desc` (default: `desc`)
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * newest to oldest.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
-    private JsonNullable<String> sort;
+    private JsonNullable<? extends ListAllChargebacksQueryParamSort> sort;
 
     /**
-     * The identifier referring to the [profile](get-profile) you wish to retrieve chargebacks for.
+     * The identifier referring to the [profile](get-profile) you wish to
+     * retrieve chargebacks for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
+     * <p>Most API credentials are linked to a single profile. In these cases the
+     * `profileId` is already implied.
      * 
-     * <p>To retrieve all chargebacks across the organization, use an organization-level API credential and omit the `profileId` parameter.
+     * <p>To retrieve all chargebacks across the organization, use an
+     * organization-level API credential and omit the `profileId` parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=profileId")
     private JsonNullable<String> profileId;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -68,7 +74,7 @@ public class ListAllChargebacksRequest {
             Optional<String> from,
             JsonNullable<Long> limit,
             Optional<? extends ListAllChargebacksQueryParamEmbed> embed,
-            JsonNullable<String> sort,
+            JsonNullable<? extends ListAllChargebacksQueryParamSort> sort,
             JsonNullable<String> profileId,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(from, "from");
@@ -91,7 +97,8 @@ public class ListAllChargebacksRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * result set.
      */
     @JsonIgnore
     public Optional<String> from() {
@@ -107,7 +114,8 @@ public class ListAllChargebacksRequest {
     }
 
     /**
-     * This endpoint allows you to embed additional information via the `embed` query string parameter.
+     * This endpoint allows you to embed additional information via the
+     * `embed` query string parameter.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -116,21 +124,24 @@ public class ListAllChargebacksRequest {
     }
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
-     * 
-     * <p>Possible values: `asc` `desc` (default: `desc`)
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * newest to oldest.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> sort() {
-        return sort;
+    public JsonNullable<ListAllChargebacksQueryParamSort> sort() {
+        return (JsonNullable<ListAllChargebacksQueryParamSort>) sort;
     }
 
     /**
-     * The identifier referring to the [profile](get-profile) you wish to retrieve chargebacks for.
+     * The identifier referring to the [profile](get-profile) you wish to
+     * retrieve chargebacks for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
+     * <p>Most API credentials are linked to a single profile. In these cases the
+     * `profileId` is already implied.
      * 
-     * <p>To retrieve all chargebacks across the organization, use an organization-level API credential and omit the `profileId` parameter.
+     * <p>To retrieve all chargebacks across the organization, use an
+     * organization-level API credential and omit the `profileId` parameter.
      */
     @JsonIgnore
     public JsonNullable<String> profileId() {
@@ -138,7 +149,9 @@ public class ListAllChargebacksRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -153,7 +166,8 @@ public class ListAllChargebacksRequest {
 
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * result set.
      */
     public ListAllChargebacksRequest withFrom(String from) {
         Utils.checkNotNull(from, "from");
@@ -163,7 +177,8 @@ public class ListAllChargebacksRequest {
 
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * result set.
      */
     public ListAllChargebacksRequest withFrom(Optional<String> from) {
         Utils.checkNotNull(from, "from");
@@ -190,7 +205,8 @@ public class ListAllChargebacksRequest {
     }
 
     /**
-     * This endpoint allows you to embed additional information via the `embed` query string parameter.
+     * This endpoint allows you to embed additional information via the
+     * `embed` query string parameter.
      */
     public ListAllChargebacksRequest withEmbed(ListAllChargebacksQueryParamEmbed embed) {
         Utils.checkNotNull(embed, "embed");
@@ -200,7 +216,8 @@ public class ListAllChargebacksRequest {
 
 
     /**
-     * This endpoint allows you to embed additional information via the `embed` query string parameter.
+     * This endpoint allows you to embed additional information via the
+     * `embed` query string parameter.
      */
     public ListAllChargebacksRequest withEmbed(Optional<? extends ListAllChargebacksQueryParamEmbed> embed) {
         Utils.checkNotNull(embed, "embed");
@@ -209,33 +226,34 @@ public class ListAllChargebacksRequest {
     }
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
-     * 
-     * <p>Possible values: `asc` `desc` (default: `desc`)
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * newest to oldest.
      */
-    public ListAllChargebacksRequest withSort(String sort) {
+    public ListAllChargebacksRequest withSort(ListAllChargebacksQueryParamSort sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = JsonNullable.of(sort);
         return this;
     }
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
-     * 
-     * <p>Possible values: `asc` `desc` (default: `desc`)
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * newest to oldest.
      */
-    public ListAllChargebacksRequest withSort(JsonNullable<String> sort) {
+    public ListAllChargebacksRequest withSort(JsonNullable<? extends ListAllChargebacksQueryParamSort> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;
     }
 
     /**
-     * The identifier referring to the [profile](get-profile) you wish to retrieve chargebacks for.
+     * The identifier referring to the [profile](get-profile) you wish to
+     * retrieve chargebacks for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
+     * <p>Most API credentials are linked to a single profile. In these cases the
+     * `profileId` is already implied.
      * 
-     * <p>To retrieve all chargebacks across the organization, use an organization-level API credential and omit the `profileId` parameter.
+     * <p>To retrieve all chargebacks across the organization, use an
+     * organization-level API credential and omit the `profileId` parameter.
      */
     public ListAllChargebacksRequest withProfileId(String profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -244,11 +262,14 @@ public class ListAllChargebacksRequest {
     }
 
     /**
-     * The identifier referring to the [profile](get-profile) you wish to retrieve chargebacks for.
+     * The identifier referring to the [profile](get-profile) you wish to
+     * retrieve chargebacks for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
+     * <p>Most API credentials are linked to a single profile. In these cases the
+     * `profileId` is already implied.
      * 
-     * <p>To retrieve all chargebacks across the organization, use an organization-level API credential and omit the `profileId` parameter.
+     * <p>To retrieve all chargebacks across the organization, use an
+     * organization-level API credential and omit the `profileId` parameter.
      */
     public ListAllChargebacksRequest withProfileId(JsonNullable<String> profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -257,7 +278,9 @@ public class ListAllChargebacksRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -268,7 +291,9 @@ public class ListAllChargebacksRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -323,7 +348,7 @@ public class ListAllChargebacksRequest {
 
         private Optional<? extends ListAllChargebacksQueryParamEmbed> embed = Optional.empty();
 
-        private JsonNullable<String> sort = JsonNullable.undefined();
+        private JsonNullable<? extends ListAllChargebacksQueryParamSort> sort;
 
         private JsonNullable<String> profileId = JsonNullable.undefined();
 
@@ -335,7 +360,8 @@ public class ListAllChargebacksRequest {
 
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * result set.
          */
         public Builder from(String from) {
             Utils.checkNotNull(from, "from");
@@ -344,7 +370,8 @@ public class ListAllChargebacksRequest {
         }
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * result set.
          */
         public Builder from(Optional<String> from) {
             Utils.checkNotNull(from, "from");
@@ -373,7 +400,8 @@ public class ListAllChargebacksRequest {
 
 
         /**
-         * This endpoint allows you to embed additional information via the `embed` query string parameter.
+         * This endpoint allows you to embed additional information via the
+         * `embed` query string parameter.
          */
         public Builder embed(ListAllChargebacksQueryParamEmbed embed) {
             Utils.checkNotNull(embed, "embed");
@@ -382,7 +410,8 @@ public class ListAllChargebacksRequest {
         }
 
         /**
-         * This endpoint allows you to embed additional information via the `embed` query string parameter.
+         * This endpoint allows you to embed additional information via the
+         * `embed` query string parameter.
          */
         public Builder embed(Optional<? extends ListAllChargebacksQueryParamEmbed> embed) {
             Utils.checkNotNull(embed, "embed");
@@ -392,22 +421,20 @@ public class ListAllChargebacksRequest {
 
 
         /**
-         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
-         * 
-         * <p>Possible values: `asc` `desc` (default: `desc`)
+         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+         * newest to oldest.
          */
-        public Builder sort(String sort) {
+        public Builder sort(ListAllChargebacksQueryParamSort sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = JsonNullable.of(sort);
             return this;
         }
 
         /**
-         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
-         * 
-         * <p>Possible values: `asc` `desc` (default: `desc`)
+         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+         * newest to oldest.
          */
-        public Builder sort(JsonNullable<String> sort) {
+        public Builder sort(JsonNullable<? extends ListAllChargebacksQueryParamSort> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = sort;
             return this;
@@ -415,11 +442,14 @@ public class ListAllChargebacksRequest {
 
 
         /**
-         * The identifier referring to the [profile](get-profile) you wish to retrieve chargebacks for.
+         * The identifier referring to the [profile](get-profile) you wish to
+         * retrieve chargebacks for.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
+         * <p>Most API credentials are linked to a single profile. In these cases the
+         * `profileId` is already implied.
          * 
-         * <p>To retrieve all chargebacks across the organization, use an organization-level API credential and omit the `profileId` parameter.
+         * <p>To retrieve all chargebacks across the organization, use an
+         * organization-level API credential and omit the `profileId` parameter.
          */
         public Builder profileId(String profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -428,11 +458,14 @@ public class ListAllChargebacksRequest {
         }
 
         /**
-         * The identifier referring to the [profile](get-profile) you wish to retrieve chargebacks for.
+         * The identifier referring to the [profile](get-profile) you wish to
+         * retrieve chargebacks for.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
+         * <p>Most API credentials are linked to a single profile. In these cases the
+         * `profileId` is already implied.
          * 
-         * <p>To retrieve all chargebacks across the organization, use an organization-level API credential and omit the `profileId` parameter.
+         * <p>To retrieve all chargebacks across the organization, use an
+         * organization-level API credential and omit the `profileId` parameter.
          */
         public Builder profileId(JsonNullable<String> profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -442,7 +475,9 @@ public class ListAllChargebacksRequest {
 
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -453,7 +488,9 @@ public class ListAllChargebacksRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -467,6 +504,9 @@ public class ListAllChargebacksRequest {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+            if (sort == null) {
+                sort = _SINGLETON_VALUE_Sort.value();
+            }
 
             return new ListAllChargebacksRequest(
                 from, limit, embed,
@@ -479,5 +519,11 @@ public class ListAllChargebacksRequest {
                         "limit",
                         "50",
                         new TypeReference<JsonNullable<Long>>() {});
+
+        private static final LazySingletonValue<JsonNullable<? extends ListAllChargebacksQueryParamSort>> _SINGLETON_VALUE_Sort =
+                new LazySingletonValue<>(
+                        "sort",
+                        "\"desc\"",
+                        new TypeReference<JsonNullable<? extends ListAllChargebacksQueryParamSort>>() {});
     }
 }

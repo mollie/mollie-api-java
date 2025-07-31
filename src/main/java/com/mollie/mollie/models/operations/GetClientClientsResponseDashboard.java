@@ -16,7 +16,8 @@ import java.util.Optional;
 /**
  * GetClientClientsResponseDashboard
  * 
- * <p>If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled. For example, where necessary documents are to be uploaded.
+ * <p>If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.
+ * For example, where necessary documents are to be uploaded.
  */
 public class GetClientClientsResponseDashboard {
     /**

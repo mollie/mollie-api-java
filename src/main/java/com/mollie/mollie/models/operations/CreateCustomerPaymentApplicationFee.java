@@ -17,24 +17,30 @@ import java.util.Optional;
 /**
  * CreateCustomerPaymentApplicationFee
  * 
- * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
+ * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+ * merchants.
  * 
- * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using this `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's balance and sent to your own account balance.
+ * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using this
+ * `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's balance and sent
+ * to your own account balance.
  * 
- * <p>If instead you want to split a payment on your own account between yourself and a connected merchant, refer to the `routing` parameter.
+ * <p>If instead you want to split a payment on your own account between yourself and a connected merchant, refer to the
+ * `routing` parameter.
  */
 public class CreateCustomerPaymentApplicationFee {
     /**
      * The fee that you wish to charge.
      * 
-     * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge a €0.99 fee on a €1.00 payment.
+     * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge
+     * a €0.99 fee on a €1.00 payment.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
     private Optional<? extends CreateCustomerPaymentCustomersRequestAmount> amount;
 
     /**
-     * The description of the application fee. This will appear on settlement reports towards both you and the connected merchant.
+     * The description of the application fee. This will appear on settlement reports towards both you and the
+     * connected merchant.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
@@ -57,7 +63,8 @@ public class CreateCustomerPaymentApplicationFee {
     /**
      * The fee that you wish to charge.
      * 
-     * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge a €0.99 fee on a €1.00 payment.
+     * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge
+     * a €0.99 fee on a €1.00 payment.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -66,7 +73,8 @@ public class CreateCustomerPaymentApplicationFee {
     }
 
     /**
-     * The description of the application fee. This will appear on settlement reports towards both you and the connected merchant.
+     * The description of the application fee. This will appear on settlement reports towards both you and the
+     * connected merchant.
      */
     @JsonIgnore
     public Optional<String> description() {
@@ -81,7 +89,8 @@ public class CreateCustomerPaymentApplicationFee {
     /**
      * The fee that you wish to charge.
      * 
-     * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge a €0.99 fee on a €1.00 payment.
+     * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge
+     * a €0.99 fee on a €1.00 payment.
      */
     public CreateCustomerPaymentApplicationFee withAmount(CreateCustomerPaymentCustomersRequestAmount amount) {
         Utils.checkNotNull(amount, "amount");
@@ -93,7 +102,8 @@ public class CreateCustomerPaymentApplicationFee {
     /**
      * The fee that you wish to charge.
      * 
-     * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge a €0.99 fee on a €1.00 payment.
+     * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge
+     * a €0.99 fee on a €1.00 payment.
      */
     public CreateCustomerPaymentApplicationFee withAmount(Optional<? extends CreateCustomerPaymentCustomersRequestAmount> amount) {
         Utils.checkNotNull(amount, "amount");
@@ -102,7 +112,8 @@ public class CreateCustomerPaymentApplicationFee {
     }
 
     /**
-     * The description of the application fee. This will appear on settlement reports towards both you and the connected merchant.
+     * The description of the application fee. This will appear on settlement reports towards both you and the
+     * connected merchant.
      */
     public CreateCustomerPaymentApplicationFee withDescription(String description) {
         Utils.checkNotNull(description, "description");
@@ -112,7 +123,8 @@ public class CreateCustomerPaymentApplicationFee {
 
 
     /**
-     * The description of the application fee. This will appear on settlement reports towards both you and the connected merchant.
+     * The description of the application fee. This will appear on settlement reports towards both you and the
+     * connected merchant.
      */
     public CreateCustomerPaymentApplicationFee withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
@@ -162,7 +174,8 @@ public class CreateCustomerPaymentApplicationFee {
         /**
          * The fee that you wish to charge.
          * 
-         * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge a €0.99 fee on a €1.00 payment.
+         * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge
+         * a €0.99 fee on a €1.00 payment.
          */
         public Builder amount(CreateCustomerPaymentCustomersRequestAmount amount) {
             Utils.checkNotNull(amount, "amount");
@@ -173,7 +186,8 @@ public class CreateCustomerPaymentApplicationFee {
         /**
          * The fee that you wish to charge.
          * 
-         * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge a €0.99 fee on a €1.00 payment.
+         * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge
+         * a €0.99 fee on a €1.00 payment.
          */
         public Builder amount(Optional<? extends CreateCustomerPaymentCustomersRequestAmount> amount) {
             Utils.checkNotNull(amount, "amount");
@@ -183,7 +197,8 @@ public class CreateCustomerPaymentApplicationFee {
 
 
         /**
-         * The description of the application fee. This will appear on settlement reports towards both you and the connected merchant.
+         * The description of the application fee. This will appear on settlement reports towards both you and the
+         * connected merchant.
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
@@ -192,7 +207,8 @@ public class CreateCustomerPaymentApplicationFee {
         }
 
         /**
-         * The description of the application fee. This will appear on settlement reports towards both you and the connected merchant.
+         * The description of the application fee. This will appear on settlement reports towards both you and the
+         * connected merchant.
          */
         public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");

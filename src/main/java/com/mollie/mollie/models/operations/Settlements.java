@@ -20,7 +20,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Settlements {
     /**
-     * Indicates the response contains a settlement object. Will always contain the string `settlement` for this endpoint.
+     * Indicates the response contains a settlement object. Will always contain the string `settlement` for this
+     * endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
@@ -50,7 +51,8 @@ public class Settlements {
     /**
      * The date on which the settlement was settled, in ISO 8601 format.
      * 
-     * <p>For an [open settlement](get-open-settlement) or for the [next settlement](get-next-settlement), no settlement date is available.
+     * <p>For an [open settlement](get-open-settlement) or for the [next settlement](get-next-settlement), no settlement
+     * date is available.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settledAt")
@@ -58,12 +60,10 @@ public class Settlements {
 
     /**
      * The status of the settlement.
-     * 
-     * <p>Possible values: `open` `pending` `paidout` `failed`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<String> status;
+    private Optional<? extends ListSettlementsStatus> status;
 
     /**
      * The total amount of the settlement.
@@ -87,11 +87,14 @@ public class Settlements {
     private JsonNullable<String> invoiceId;
 
     /**
-     * For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These transactions are grouped into 'period' objects — one for each calendar month.
+     * For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These
+     * transactions are grouped into 'period' objects — one for each calendar month.
      * 
-     * <p>For example, if a settlement includes funds from 15 April until 4 May, it will include two period objects. One for all transactions processed between 15 April and 30 April, and one for all transactions between 1 May and 4 May.
+     * <p>For example, if a settlement includes funds from 15 April until 4 May, it will include two period objects. One for
+     * all transactions processed between 15 April and 30 April, and one for all transactions between 1 May and 4 May.
      * 
-     * <p>Period objects are grouped by year, and then by month. So in the above example, the full `periods` collection will look as follows: `{"2024": {"04": {...}, "05": {...&rbrace;&rbrace;}`. The year and month in this documentation are referred as `&lt;year&gt;` and `&lt;month&gt;`.
+     * <p>Period objects are grouped by year, and then by month. So in the above example, the full `periods` collection will
+     * look as follows: `{"2024": {"04": {...}, "05": {...&rbrace;&rbrace;}`. The year and month in this documentation are referred as `&lt;year&gt;` and `&lt;month&gt;`.
      * 
      * <p>The example response should give a good idea of what this looks like in practise.
      */
@@ -113,7 +116,7 @@ public class Settlements {
             @JsonProperty("createdAt") Optional<String> createdAt,
             @JsonProperty("reference") JsonNullable<String> reference,
             @JsonProperty("settledAt") JsonNullable<String> settledAt,
-            @JsonProperty("status") Optional<String> status,
+            @JsonProperty("status") Optional<? extends ListSettlementsStatus> status,
             @JsonProperty("amount") Optional<? extends ListSettlementsAmount> amount,
             @JsonProperty("balanceId") Optional<String> balanceId,
             @JsonProperty("invoiceId") JsonNullable<String> invoiceId,
@@ -151,7 +154,8 @@ public class Settlements {
     }
 
     /**
-     * Indicates the response contains a settlement object. Will always contain the string `settlement` for this endpoint.
+     * Indicates the response contains a settlement object. Will always contain the string `settlement` for this
+     * endpoint.
      */
     @JsonIgnore
     public Optional<String> resource() {
@@ -185,7 +189,8 @@ public class Settlements {
     /**
      * The date on which the settlement was settled, in ISO 8601 format.
      * 
-     * <p>For an [open settlement](get-open-settlement) or for the [next settlement](get-next-settlement), no settlement date is available.
+     * <p>For an [open settlement](get-open-settlement) or for the [next settlement](get-next-settlement), no settlement
+     * date is available.
      */
     @JsonIgnore
     public JsonNullable<String> settledAt() {
@@ -194,12 +199,11 @@ public class Settlements {
 
     /**
      * The status of the settlement.
-     * 
-     * <p>Possible values: `open` `pending` `paidout` `failed`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> status() {
-        return status;
+    public Optional<ListSettlementsStatus> status() {
+        return (Optional<ListSettlementsStatus>) status;
     }
 
     /**
@@ -228,11 +232,14 @@ public class Settlements {
     }
 
     /**
-     * For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These transactions are grouped into 'period' objects — one for each calendar month.
+     * For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These
+     * transactions are grouped into 'period' objects — one for each calendar month.
      * 
-     * <p>For example, if a settlement includes funds from 15 April until 4 May, it will include two period objects. One for all transactions processed between 15 April and 30 April, and one for all transactions between 1 May and 4 May.
+     * <p>For example, if a settlement includes funds from 15 April until 4 May, it will include two period objects. One for
+     * all transactions processed between 15 April and 30 April, and one for all transactions between 1 May and 4 May.
      * 
-     * <p>Period objects are grouped by year, and then by month. So in the above example, the full `periods` collection will look as follows: `{"2024": {"04": {...}, "05": {...&rbrace;&rbrace;}`. The year and month in this documentation are referred as `&lt;year&gt;` and `&lt;month&gt;`.
+     * <p>Period objects are grouped by year, and then by month. So in the above example, the full `periods` collection will
+     * look as follows: `{"2024": {"04": {...}, "05": {...&rbrace;&rbrace;}`. The year and month in this documentation are referred as `&lt;year&gt;` and `&lt;month&gt;`.
      * 
      * <p>The example response should give a good idea of what this looks like in practise.
      */
@@ -257,7 +264,8 @@ public class Settlements {
 
 
     /**
-     * Indicates the response contains a settlement object. Will always contain the string `settlement` for this endpoint.
+     * Indicates the response contains a settlement object. Will always contain the string `settlement` for this
+     * endpoint.
      */
     public Settlements withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -267,7 +275,8 @@ public class Settlements {
 
 
     /**
-     * Indicates the response contains a settlement object. Will always contain the string `settlement` for this endpoint.
+     * Indicates the response contains a settlement object. Will always contain the string `settlement` for this
+     * endpoint.
      */
     public Settlements withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
@@ -334,7 +343,8 @@ public class Settlements {
     /**
      * The date on which the settlement was settled, in ISO 8601 format.
      * 
-     * <p>For an [open settlement](get-open-settlement) or for the [next settlement](get-next-settlement), no settlement date is available.
+     * <p>For an [open settlement](get-open-settlement) or for the [next settlement](get-next-settlement), no settlement
+     * date is available.
      */
     public Settlements withSettledAt(String settledAt) {
         Utils.checkNotNull(settledAt, "settledAt");
@@ -345,7 +355,8 @@ public class Settlements {
     /**
      * The date on which the settlement was settled, in ISO 8601 format.
      * 
-     * <p>For an [open settlement](get-open-settlement) or for the [next settlement](get-next-settlement), no settlement date is available.
+     * <p>For an [open settlement](get-open-settlement) or for the [next settlement](get-next-settlement), no settlement
+     * date is available.
      */
     public Settlements withSettledAt(JsonNullable<String> settledAt) {
         Utils.checkNotNull(settledAt, "settledAt");
@@ -355,10 +366,8 @@ public class Settlements {
 
     /**
      * The status of the settlement.
-     * 
-     * <p>Possible values: `open` `pending` `paidout` `failed`
      */
-    public Settlements withStatus(String status) {
+    public Settlements withStatus(ListSettlementsStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -367,10 +376,8 @@ public class Settlements {
 
     /**
      * The status of the settlement.
-     * 
-     * <p>Possible values: `open` `pending` `paidout` `failed`
      */
-    public Settlements withStatus(Optional<String> status) {
+    public Settlements withStatus(Optional<? extends ListSettlementsStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -433,11 +440,14 @@ public class Settlements {
     }
 
     /**
-     * For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These transactions are grouped into 'period' objects — one for each calendar month.
+     * For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These
+     * transactions are grouped into 'period' objects — one for each calendar month.
      * 
-     * <p>For example, if a settlement includes funds from 15 April until 4 May, it will include two period objects. One for all transactions processed between 15 April and 30 April, and one for all transactions between 1 May and 4 May.
+     * <p>For example, if a settlement includes funds from 15 April until 4 May, it will include two period objects. One for
+     * all transactions processed between 15 April and 30 April, and one for all transactions between 1 May and 4 May.
      * 
-     * <p>Period objects are grouped by year, and then by month. So in the above example, the full `periods` collection will look as follows: `{"2024": {"04": {...}, "05": {...&rbrace;&rbrace;}`. The year and month in this documentation are referred as `&lt;year&gt;` and `&lt;month&gt;`.
+     * <p>Period objects are grouped by year, and then by month. So in the above example, the full `periods` collection will
+     * look as follows: `{"2024": {"04": {...}, "05": {...&rbrace;&rbrace;}`. The year and month in this documentation are referred as `&lt;year&gt;` and `&lt;month&gt;`.
      * 
      * <p>The example response should give a good idea of what this looks like in practise.
      */
@@ -449,11 +459,14 @@ public class Settlements {
 
 
     /**
-     * For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These transactions are grouped into 'period' objects — one for each calendar month.
+     * For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These
+     * transactions are grouped into 'period' objects — one for each calendar month.
      * 
-     * <p>For example, if a settlement includes funds from 15 April until 4 May, it will include two period objects. One for all transactions processed between 15 April and 30 April, and one for all transactions between 1 May and 4 May.
+     * <p>For example, if a settlement includes funds from 15 April until 4 May, it will include two period objects. One for
+     * all transactions processed between 15 April and 30 April, and one for all transactions between 1 May and 4 May.
      * 
-     * <p>Period objects are grouped by year, and then by month. So in the above example, the full `periods` collection will look as follows: `{"2024": {"04": {...}, "05": {...&rbrace;&rbrace;}`. The year and month in this documentation are referred as `&lt;year&gt;` and `&lt;month&gt;`.
+     * <p>Period objects are grouped by year, and then by month. So in the above example, the full `periods` collection will
+     * look as follows: `{"2024": {"04": {...}, "05": {...&rbrace;&rbrace;}`. The year and month in this documentation are referred as `&lt;year&gt;` and `&lt;month&gt;`.
      * 
      * <p>The example response should give a good idea of what this looks like in practise.
      */
@@ -543,7 +556,7 @@ public class Settlements {
 
         private JsonNullable<String> settledAt = JsonNullable.undefined();
 
-        private Optional<String> status = Optional.empty();
+        private Optional<? extends ListSettlementsStatus> status = Optional.empty();
 
         private Optional<? extends ListSettlementsAmount> amount = Optional.empty();
 
@@ -561,7 +574,8 @@ public class Settlements {
 
 
         /**
-         * Indicates the response contains a settlement object. Will always contain the string `settlement` for this endpoint.
+         * Indicates the response contains a settlement object. Will always contain the string `settlement` for this
+         * endpoint.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -570,7 +584,8 @@ public class Settlements {
         }
 
         /**
-         * Indicates the response contains a settlement object. Will always contain the string `settlement` for this endpoint.
+         * Indicates the response contains a settlement object. Will always contain the string `settlement` for this
+         * endpoint.
          */
         public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
@@ -639,7 +654,8 @@ public class Settlements {
         /**
          * The date on which the settlement was settled, in ISO 8601 format.
          * 
-         * <p>For an [open settlement](get-open-settlement) or for the [next settlement](get-next-settlement), no settlement date is available.
+         * <p>For an [open settlement](get-open-settlement) or for the [next settlement](get-next-settlement), no settlement
+         * date is available.
          */
         public Builder settledAt(String settledAt) {
             Utils.checkNotNull(settledAt, "settledAt");
@@ -650,7 +666,8 @@ public class Settlements {
         /**
          * The date on which the settlement was settled, in ISO 8601 format.
          * 
-         * <p>For an [open settlement](get-open-settlement) or for the [next settlement](get-next-settlement), no settlement date is available.
+         * <p>For an [open settlement](get-open-settlement) or for the [next settlement](get-next-settlement), no settlement
+         * date is available.
          */
         public Builder settledAt(JsonNullable<String> settledAt) {
             Utils.checkNotNull(settledAt, "settledAt");
@@ -661,10 +678,8 @@ public class Settlements {
 
         /**
          * The status of the settlement.
-         * 
-         * <p>Possible values: `open` `pending` `paidout` `failed`
          */
-        public Builder status(String status) {
+        public Builder status(ListSettlementsStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -672,10 +687,8 @@ public class Settlements {
 
         /**
          * The status of the settlement.
-         * 
-         * <p>Possible values: `open` `pending` `paidout` `failed`
          */
-        public Builder status(Optional<String> status) {
+        public Builder status(Optional<? extends ListSettlementsStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -740,11 +753,14 @@ public class Settlements {
 
 
         /**
-         * For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These transactions are grouped into 'period' objects — one for each calendar month.
+         * For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These
+         * transactions are grouped into 'period' objects — one for each calendar month.
          * 
-         * <p>For example, if a settlement includes funds from 15 April until 4 May, it will include two period objects. One for all transactions processed between 15 April and 30 April, and one for all transactions between 1 May and 4 May.
+         * <p>For example, if a settlement includes funds from 15 April until 4 May, it will include two period objects. One for
+         * all transactions processed between 15 April and 30 April, and one for all transactions between 1 May and 4 May.
          * 
-         * <p>Period objects are grouped by year, and then by month. So in the above example, the full `periods` collection will look as follows: `{"2024": {"04": {...}, "05": {...&rbrace;&rbrace;}`. The year and month in this documentation are referred as `&lt;year&gt;` and `&lt;month&gt;`.
+         * <p>Period objects are grouped by year, and then by month. So in the above example, the full `periods` collection will
+         * look as follows: `{"2024": {"04": {...}, "05": {...&rbrace;&rbrace;}`. The year and month in this documentation are referred as `&lt;year&gt;` and `&lt;month&gt;`.
          * 
          * <p>The example response should give a good idea of what this looks like in practise.
          */
@@ -755,11 +771,14 @@ public class Settlements {
         }
 
         /**
-         * For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These transactions are grouped into 'period' objects — one for each calendar month.
+         * For bookkeeping purposes, the settlement includes an overview of transactions included in the settlement. These
+         * transactions are grouped into 'period' objects — one for each calendar month.
          * 
-         * <p>For example, if a settlement includes funds from 15 April until 4 May, it will include two period objects. One for all transactions processed between 15 April and 30 April, and one for all transactions between 1 May and 4 May.
+         * <p>For example, if a settlement includes funds from 15 April until 4 May, it will include two period objects. One for
+         * all transactions processed between 15 April and 30 April, and one for all transactions between 1 May and 4 May.
          * 
-         * <p>Period objects are grouped by year, and then by month. So in the above example, the full `periods` collection will look as follows: `{"2024": {"04": {...}, "05": {...&rbrace;&rbrace;}`. The year and month in this documentation are referred as `&lt;year&gt;` and `&lt;month&gt;`.
+         * <p>Period objects are grouped by year, and then by month. So in the above example, the full `periods` collection will
+         * look as follows: `{"2024": {"04": {...}, "05": {...&rbrace;&rbrace;}`. The year and month in this documentation are referred as `&lt;year&gt;` and `&lt;month&gt;`.
          * 
          * <p>The example response should give a good idea of what this looks like in practise.
          */

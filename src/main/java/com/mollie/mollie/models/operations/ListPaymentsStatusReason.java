@@ -13,9 +13,11 @@ import java.lang.String;
 /**
  * ListPaymentsStatusReason
  * 
- * <p>This object offers details about the status of a payment. Currently it is only available for point-of-sale payments.
+ * <p>This object offers details about the status of a payment. Currently it is only available for point-of-sale
+ * payments.
  * 
- * <p>You can find more information about the possible values of this object on [this page](status-reasons).**
+ * <p>You can find more information about the possible values of this object on
+ * [this page](status-reasons).**
  */
 public class ListPaymentsStatusReason {
     /**

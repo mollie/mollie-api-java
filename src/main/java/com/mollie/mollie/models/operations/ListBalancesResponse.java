@@ -33,7 +33,8 @@ public class ListBalancesResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * A list of balance objects. For a complete reference of the balance object, refer to the [Get balance endpoint](get-balance) documentation.
+     * A list of balance objects. For a complete reference of the balance
+     * object, refer to the [Get balance endpoint](get-balance) documentation.
      */
     private Optional<? extends ListBalancesResponseBody> object;
 
@@ -86,7 +87,8 @@ public class ListBalancesResponse implements Response {
     }
 
     /**
-     * A list of balance objects. For a complete reference of the balance object, refer to the [Get balance endpoint](get-balance) documentation.
+     * A list of balance objects. For a complete reference of the balance
+     * object, refer to the [Get balance endpoint](get-balance) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -127,7 +129,8 @@ public class ListBalancesResponse implements Response {
     }
 
     /**
-     * A list of balance objects. For a complete reference of the balance object, refer to the [Get balance endpoint](get-balance) documentation.
+     * A list of balance objects. For a complete reference of the balance
+     * object, refer to the [Get balance endpoint](get-balance) documentation.
      */
     public ListBalancesResponse withObject(ListBalancesResponseBody object) {
         Utils.checkNotNull(object, "object");
@@ -137,7 +140,8 @@ public class ListBalancesResponse implements Response {
 
 
     /**
-     * A list of balance objects. For a complete reference of the balance object, refer to the [Get balance endpoint](get-balance) documentation.
+     * A list of balance objects. For a complete reference of the balance
+     * object, refer to the [Get balance endpoint](get-balance) documentation.
      */
     public ListBalancesResponse withObject(Optional<? extends ListBalancesResponseBody> object) {
         Utils.checkNotNull(object, "object");
@@ -224,7 +228,8 @@ public class ListBalancesResponse implements Response {
 
 
         /**
-         * A list of balance objects. For a complete reference of the balance object, refer to the [Get balance endpoint](get-balance) documentation.
+         * A list of balance objects. For a complete reference of the balance
+         * object, refer to the [Get balance endpoint](get-balance) documentation.
          */
         public Builder object(ListBalancesResponseBody object) {
             Utils.checkNotNull(object, "object");
@@ -233,7 +238,8 @@ public class ListBalancesResponse implements Response {
         }
 
         /**
-         * A list of balance objects. For a complete reference of the balance object, refer to the [Get balance endpoint](get-balance) documentation.
+         * A list of balance objects. For a complete reference of the balance
+         * object, refer to the [Get balance endpoint](get-balance) documentation.
          */
         public Builder object(Optional<? extends ListBalancesResponseBody> object) {
             Utils.checkNotNull(object, "object");

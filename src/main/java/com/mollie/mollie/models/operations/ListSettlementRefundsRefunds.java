@@ -28,7 +28,8 @@ public class ListSettlementRefundsRefunds {
     private Optional<String> resource;
 
     /**
-     * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
+     * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie
+     * will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
@@ -36,12 +37,10 @@ public class ListSettlementRefundsRefunds {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<String> mode;
+    private Optional<? extends ListSettlementRefundsMode> mode;
 
     /**
      * The description of the refund that may be shown to your customer, depending on the payment method used.
@@ -51,36 +50,43 @@ public class ListSettlementRefundsRefunds {
     private Optional<String> description;
 
     /**
-     * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment amount.
+     * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment
+     * amount.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
     private Optional<? extends ListSettlementRefundsAmount> amount;
 
     /**
-     * This optional field will contain the approximate amount that will be deducted from your account balance, converted to the currency your account is settled in.
+     * This optional field will contain the approximate amount that will be deducted from your account balance, converted
+     * to the currency your account is settled in.
      * 
      * <p>The amount is a **negative** amount.
      * 
-     * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be zero.
+     * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be
+     * zero.
      * 
-     * <p>Since the field contains an estimated amount during refund processing, it may change over time. For example, while the refund is queued the settlement amount is likely not yet available.
+     * <p>Since the field contains an estimated amount during refund processing, it may change over time. For example, while
+     * the refund is queued the settlement amount is likely not yet available.
      * 
-     * <p>To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
+     * <p>To retrieve accurate settlement amounts we recommend using the
+     * [List balance transactions endpoint](list-balance-transactions) instead.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlementAmount")
     private JsonNullable<? extends ListSettlementRefundsSettlementAmount> settlementAmount;
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends ListSettlementRefundsMetadata> metadata;
 
     /**
-     * The unique identifier of the payment this refund was created for. The full payment object can be retrieved via the payment URL in the `_links` object.
+     * The unique identifier of the payment this refund was created for.
+     * The full payment object can be retrieved via the payment URL in the `_links` object.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("paymentId")
@@ -95,12 +101,10 @@ public class ListSettlementRefundsRefunds {
 
     /**
      * Refunds may take some time to get confirmed.
-     * 
-     * <p>Possible values: `queued` `pending` `processing` `refunded` `failed` `canceled`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<String> status;
+    private Optional<? extends ListSettlementRefundsStatus> status;
 
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -119,7 +123,8 @@ public class ListSettlementRefundsRefunds {
      * 
      * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
      * 
-     * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount needs to be reversed from which merchant(s).
+     * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount
+     * needs to be reversed from which merchant(s).
      * 
      * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
      */
@@ -138,14 +143,14 @@ public class ListSettlementRefundsRefunds {
     public ListSettlementRefundsRefunds(
             @JsonProperty("resource") Optional<String> resource,
             @JsonProperty("id") Optional<String> id,
-            @JsonProperty("mode") Optional<String> mode,
+            @JsonProperty("mode") Optional<? extends ListSettlementRefundsMode> mode,
             @JsonProperty("description") Optional<String> description,
             @JsonProperty("amount") Optional<? extends ListSettlementRefundsAmount> amount,
             @JsonProperty("settlementAmount") JsonNullable<? extends ListSettlementRefundsSettlementAmount> settlementAmount,
             @JsonProperty("metadata") JsonNullable<? extends ListSettlementRefundsMetadata> metadata,
             @JsonProperty("paymentId") Optional<String> paymentId,
             @JsonProperty("settlementId") JsonNullable<String> settlementId,
-            @JsonProperty("status") Optional<String> status,
+            @JsonProperty("status") Optional<? extends ListSettlementRefundsStatus> status,
             @JsonProperty("createdAt") Optional<String> createdAt,
             @JsonProperty("externalReference") Optional<? extends ListSettlementRefundsExternalReference> externalReference,
             @JsonProperty("routingReversals") JsonNullable<? extends List<ListSettlementRefundsRoutingReversals>> routingReversals,
@@ -197,7 +202,8 @@ public class ListSettlementRefundsRefunds {
     }
 
     /**
-     * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
+     * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie
+     * will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
      */
     @JsonIgnore
     public Optional<String> id() {
@@ -206,12 +212,11 @@ public class ListSettlementRefundsRefunds {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> mode() {
-        return mode;
+    public Optional<ListSettlementRefundsMode> mode() {
+        return (Optional<ListSettlementRefundsMode>) mode;
     }
 
     /**
@@ -223,7 +228,8 @@ public class ListSettlementRefundsRefunds {
     }
 
     /**
-     * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment amount.
+     * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment
+     * amount.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -232,15 +238,19 @@ public class ListSettlementRefundsRefunds {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be deducted from your account balance, converted to the currency your account is settled in.
+     * This optional field will contain the approximate amount that will be deducted from your account balance, converted
+     * to the currency your account is settled in.
      * 
      * <p>The amount is a **negative** amount.
      * 
-     * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be zero.
+     * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be
+     * zero.
      * 
-     * <p>Since the field contains an estimated amount during refund processing, it may change over time. For example, while the refund is queued the settlement amount is likely not yet available.
+     * <p>Since the field contains an estimated amount during refund processing, it may change over time. For example, while
+     * the refund is queued the settlement amount is likely not yet available.
      * 
-     * <p>To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
+     * <p>To retrieve accurate settlement amounts we recommend using the
+     * [List balance transactions endpoint](list-balance-transactions) instead.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -249,7 +259,8 @@ public class ListSettlementRefundsRefunds {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -258,7 +269,8 @@ public class ListSettlementRefundsRefunds {
     }
 
     /**
-     * The unique identifier of the payment this refund was created for. The full payment object can be retrieved via the payment URL in the `_links` object.
+     * The unique identifier of the payment this refund was created for.
+     * The full payment object can be retrieved via the payment URL in the `_links` object.
      */
     @JsonIgnore
     public Optional<String> paymentId() {
@@ -275,12 +287,11 @@ public class ListSettlementRefundsRefunds {
 
     /**
      * Refunds may take some time to get confirmed.
-     * 
-     * <p>Possible values: `queued` `pending` `processing` `refunded` `failed` `canceled`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> status() {
-        return status;
+    public Optional<ListSettlementRefundsStatus> status() {
+        return (Optional<ListSettlementRefundsStatus>) status;
     }
 
     /**
@@ -302,7 +313,8 @@ public class ListSettlementRefundsRefunds {
      * 
      * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
      * 
-     * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount needs to be reversed from which merchant(s).
+     * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount
+     * needs to be reversed from which merchant(s).
      * 
      * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
      */
@@ -346,7 +358,8 @@ public class ListSettlementRefundsRefunds {
     }
 
     /**
-     * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
+     * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie
+     * will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
      */
     public ListSettlementRefundsRefunds withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -356,7 +369,8 @@ public class ListSettlementRefundsRefunds {
 
 
     /**
-     * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
+     * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie
+     * will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
      */
     public ListSettlementRefundsRefunds withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
@@ -366,10 +380,8 @@ public class ListSettlementRefundsRefunds {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
-    public ListSettlementRefundsRefunds withMode(String mode) {
+    public ListSettlementRefundsRefunds withMode(ListSettlementRefundsMode mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = Optional.ofNullable(mode);
         return this;
@@ -378,10 +390,8 @@ public class ListSettlementRefundsRefunds {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
-    public ListSettlementRefundsRefunds withMode(Optional<String> mode) {
+    public ListSettlementRefundsRefunds withMode(Optional<? extends ListSettlementRefundsMode> mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
@@ -407,7 +417,8 @@ public class ListSettlementRefundsRefunds {
     }
 
     /**
-     * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment amount.
+     * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment
+     * amount.
      */
     public ListSettlementRefundsRefunds withAmount(ListSettlementRefundsAmount amount) {
         Utils.checkNotNull(amount, "amount");
@@ -417,7 +428,8 @@ public class ListSettlementRefundsRefunds {
 
 
     /**
-     * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment amount.
+     * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment
+     * amount.
      */
     public ListSettlementRefundsRefunds withAmount(Optional<? extends ListSettlementRefundsAmount> amount) {
         Utils.checkNotNull(amount, "amount");
@@ -426,15 +438,19 @@ public class ListSettlementRefundsRefunds {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be deducted from your account balance, converted to the currency your account is settled in.
+     * This optional field will contain the approximate amount that will be deducted from your account balance, converted
+     * to the currency your account is settled in.
      * 
      * <p>The amount is a **negative** amount.
      * 
-     * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be zero.
+     * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be
+     * zero.
      * 
-     * <p>Since the field contains an estimated amount during refund processing, it may change over time. For example, while the refund is queued the settlement amount is likely not yet available.
+     * <p>Since the field contains an estimated amount during refund processing, it may change over time. For example, while
+     * the refund is queued the settlement amount is likely not yet available.
      * 
-     * <p>To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
+     * <p>To retrieve accurate settlement amounts we recommend using the
+     * [List balance transactions endpoint](list-balance-transactions) instead.
      */
     public ListSettlementRefundsRefunds withSettlementAmount(ListSettlementRefundsSettlementAmount settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
@@ -443,15 +459,19 @@ public class ListSettlementRefundsRefunds {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be deducted from your account balance, converted to the currency your account is settled in.
+     * This optional field will contain the approximate amount that will be deducted from your account balance, converted
+     * to the currency your account is settled in.
      * 
      * <p>The amount is a **negative** amount.
      * 
-     * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be zero.
+     * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be
+     * zero.
      * 
-     * <p>Since the field contains an estimated amount during refund processing, it may change over time. For example, while the refund is queued the settlement amount is likely not yet available.
+     * <p>Since the field contains an estimated amount during refund processing, it may change over time. For example, while
+     * the refund is queued the settlement amount is likely not yet available.
      * 
-     * <p>To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
+     * <p>To retrieve accurate settlement amounts we recommend using the
+     * [List balance transactions endpoint](list-balance-transactions) instead.
      */
     public ListSettlementRefundsRefunds withSettlementAmount(JsonNullable<? extends ListSettlementRefundsSettlementAmount> settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
@@ -460,7 +480,8 @@ public class ListSettlementRefundsRefunds {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     public ListSettlementRefundsRefunds withMetadata(ListSettlementRefundsMetadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -469,7 +490,8 @@ public class ListSettlementRefundsRefunds {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     public ListSettlementRefundsRefunds withMetadata(JsonNullable<? extends ListSettlementRefundsMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -478,7 +500,8 @@ public class ListSettlementRefundsRefunds {
     }
 
     /**
-     * The unique identifier of the payment this refund was created for. The full payment object can be retrieved via the payment URL in the `_links` object.
+     * The unique identifier of the payment this refund was created for.
+     * The full payment object can be retrieved via the payment URL in the `_links` object.
      */
     public ListSettlementRefundsRefunds withPaymentId(String paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
@@ -488,7 +511,8 @@ public class ListSettlementRefundsRefunds {
 
 
     /**
-     * The unique identifier of the payment this refund was created for. The full payment object can be retrieved via the payment URL in the `_links` object.
+     * The unique identifier of the payment this refund was created for.
+     * The full payment object can be retrieved via the payment URL in the `_links` object.
      */
     public ListSettlementRefundsRefunds withPaymentId(Optional<String> paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
@@ -516,10 +540,8 @@ public class ListSettlementRefundsRefunds {
 
     /**
      * Refunds may take some time to get confirmed.
-     * 
-     * <p>Possible values: `queued` `pending` `processing` `refunded` `failed` `canceled`
      */
-    public ListSettlementRefundsRefunds withStatus(String status) {
+    public ListSettlementRefundsRefunds withStatus(ListSettlementRefundsStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -528,10 +550,8 @@ public class ListSettlementRefundsRefunds {
 
     /**
      * Refunds may take some time to get confirmed.
-     * 
-     * <p>Possible values: `queued` `pending` `processing` `refunded` `failed` `canceled`
      */
-    public ListSettlementRefundsRefunds withStatus(Optional<String> status) {
+    public ListSettlementRefundsRefunds withStatus(Optional<? extends ListSettlementRefundsStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -574,7 +594,8 @@ public class ListSettlementRefundsRefunds {
      * 
      * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
      * 
-     * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount needs to be reversed from which merchant(s).
+     * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount
+     * needs to be reversed from which merchant(s).
      * 
      * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
      */
@@ -589,7 +610,8 @@ public class ListSettlementRefundsRefunds {
      * 
      * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
      * 
-     * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount needs to be reversed from which merchant(s).
+     * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount
+     * needs to be reversed from which merchant(s).
      * 
      * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
      */
@@ -680,7 +702,7 @@ public class ListSettlementRefundsRefunds {
 
         private Optional<String> id = Optional.empty();
 
-        private Optional<String> mode = Optional.empty();
+        private Optional<? extends ListSettlementRefundsMode> mode = Optional.empty();
 
         private Optional<String> description = Optional.empty();
 
@@ -694,7 +716,7 @@ public class ListSettlementRefundsRefunds {
 
         private JsonNullable<String> settlementId = JsonNullable.undefined();
 
-        private Optional<String> status = Optional.empty();
+        private Optional<? extends ListSettlementRefundsStatus> status = Optional.empty();
 
         private Optional<String> createdAt = Optional.empty();
 
@@ -729,7 +751,8 @@ public class ListSettlementRefundsRefunds {
 
 
         /**
-         * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
+         * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie
+         * will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -738,7 +761,8 @@ public class ListSettlementRefundsRefunds {
         }
 
         /**
-         * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
+         * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation time. Mollie
+         * will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
          */
         public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
@@ -749,10 +773,8 @@ public class ListSettlementRefundsRefunds {
 
         /**
          * Whether this entity was created in live mode or in test mode.
-         * 
-         * <p>Possible values: `live` `test`
          */
-        public Builder mode(String mode) {
+        public Builder mode(ListSettlementRefundsMode mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = Optional.ofNullable(mode);
             return this;
@@ -760,10 +782,8 @@ public class ListSettlementRefundsRefunds {
 
         /**
          * Whether this entity was created in live mode or in test mode.
-         * 
-         * <p>Possible values: `live` `test`
          */
-        public Builder mode(Optional<String> mode) {
+        public Builder mode(Optional<? extends ListSettlementRefundsMode> mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
@@ -790,7 +810,8 @@ public class ListSettlementRefundsRefunds {
 
 
         /**
-         * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment amount.
+         * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment
+         * amount.
          */
         public Builder amount(ListSettlementRefundsAmount amount) {
             Utils.checkNotNull(amount, "amount");
@@ -799,7 +820,8 @@ public class ListSettlementRefundsRefunds {
         }
 
         /**
-         * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment amount.
+         * The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment
+         * amount.
          */
         public Builder amount(Optional<? extends ListSettlementRefundsAmount> amount) {
             Utils.checkNotNull(amount, "amount");
@@ -809,15 +831,19 @@ public class ListSettlementRefundsRefunds {
 
 
         /**
-         * This optional field will contain the approximate amount that will be deducted from your account balance, converted to the currency your account is settled in.
+         * This optional field will contain the approximate amount that will be deducted from your account balance, converted
+         * to the currency your account is settled in.
          * 
          * <p>The amount is a **negative** amount.
          * 
-         * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be zero.
+         * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be
+         * zero.
          * 
-         * <p>Since the field contains an estimated amount during refund processing, it may change over time. For example, while the refund is queued the settlement amount is likely not yet available.
+         * <p>Since the field contains an estimated amount during refund processing, it may change over time. For example, while
+         * the refund is queued the settlement amount is likely not yet available.
          * 
-         * <p>To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
+         * <p>To retrieve accurate settlement amounts we recommend using the
+         * [List balance transactions endpoint](list-balance-transactions) instead.
          */
         public Builder settlementAmount(ListSettlementRefundsSettlementAmount settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
@@ -826,15 +852,19 @@ public class ListSettlementRefundsRefunds {
         }
 
         /**
-         * This optional field will contain the approximate amount that will be deducted from your account balance, converted to the currency your account is settled in.
+         * This optional field will contain the approximate amount that will be deducted from your account balance, converted
+         * to the currency your account is settled in.
          * 
          * <p>The amount is a **negative** amount.
          * 
-         * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be zero.
+         * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement amount will be
+         * zero.
          * 
-         * <p>Since the field contains an estimated amount during refund processing, it may change over time. For example, while the refund is queued the settlement amount is likely not yet available.
+         * <p>Since the field contains an estimated amount during refund processing, it may change over time. For example, while
+         * the refund is queued the settlement amount is likely not yet available.
          * 
-         * <p>To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
+         * <p>To retrieve accurate settlement amounts we recommend using the
+         * [List balance transactions endpoint](list-balance-transactions) instead.
          */
         public Builder settlementAmount(JsonNullable<? extends ListSettlementRefundsSettlementAmount> settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
@@ -844,7 +874,8 @@ public class ListSettlementRefundsRefunds {
 
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
         public Builder metadata(ListSettlementRefundsMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -853,7 +884,8 @@ public class ListSettlementRefundsRefunds {
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
         public Builder metadata(JsonNullable<? extends ListSettlementRefundsMetadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -863,7 +895,8 @@ public class ListSettlementRefundsRefunds {
 
 
         /**
-         * The unique identifier of the payment this refund was created for. The full payment object can be retrieved via the payment URL in the `_links` object.
+         * The unique identifier of the payment this refund was created for.
+         * The full payment object can be retrieved via the payment URL in the `_links` object.
          */
         public Builder paymentId(String paymentId) {
             Utils.checkNotNull(paymentId, "paymentId");
@@ -872,7 +905,8 @@ public class ListSettlementRefundsRefunds {
         }
 
         /**
-         * The unique identifier of the payment this refund was created for. The full payment object can be retrieved via the payment URL in the `_links` object.
+         * The unique identifier of the payment this refund was created for.
+         * The full payment object can be retrieved via the payment URL in the `_links` object.
          */
         public Builder paymentId(Optional<String> paymentId) {
             Utils.checkNotNull(paymentId, "paymentId");
@@ -902,10 +936,8 @@ public class ListSettlementRefundsRefunds {
 
         /**
          * Refunds may take some time to get confirmed.
-         * 
-         * <p>Possible values: `queued` `pending` `processing` `refunded` `failed` `canceled`
          */
-        public Builder status(String status) {
+        public Builder status(ListSettlementRefundsStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -913,10 +945,8 @@ public class ListSettlementRefundsRefunds {
 
         /**
          * Refunds may take some time to get confirmed.
-         * 
-         * <p>Possible values: `queued` `pending` `processing` `refunded` `failed` `canceled`
          */
-        public Builder status(Optional<String> status) {
+        public Builder status(Optional<? extends ListSettlementRefundsStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -960,7 +990,8 @@ public class ListSettlementRefundsRefunds {
          * 
          * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
          * 
-         * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount needs to be reversed from which merchant(s).
+         * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount
+         * needs to be reversed from which merchant(s).
          * 
          * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
          */
@@ -975,7 +1006,8 @@ public class ListSettlementRefundsRefunds {
          * 
          * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
          * 
-         * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount needs to be reversed from which merchant(s).
+         * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount
+         * needs to be reversed from which merchant(s).
          * 
          * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
          */

@@ -30,11 +30,8 @@ public class DelayedRouting {
     /**
      * Create a delayed route
      * 
-     * <p>Create a route for a specific payment. The routed amount is credited to the account of your customer.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
+     * <p>Create a route for a specific payment.
+     * The routed amount is credited to the account of your customer.
      * 
      * @return The call builder
      */
@@ -45,11 +42,8 @@ public class DelayedRouting {
     /**
      * Create a delayed route
      * 
-     * <p>Create a route for a specific payment. The routed amount is credited to the account of your customer.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
+     * <p>Create a route for a specific payment.
+     * The routed amount is credited to the account of your customer.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @return The response from the API call
@@ -62,11 +56,8 @@ public class DelayedRouting {
     /**
      * Create a delayed route
      * 
-     * <p>Create a route for a specific payment. The routed amount is credited to the account of your customer.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
+     * <p>Create a route for a specific payment.
+     * The routed amount is credited to the account of your customer.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param requestBody 
@@ -93,10 +84,6 @@ public class DelayedRouting {
      * 
      * <p>Retrieve a list of all routes created for a specific payment.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * 
      * @return The call builder
      */
     public PaymentListRoutesRequestBuilder list() {
@@ -107,10 +94,6 @@ public class DelayedRouting {
      * List payment routes
      * 
      * <p>Retrieve a list of all routes created for a specific payment.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
      * 
      * @param paymentId Provide the ID of the related payment.
      * @return The response from the API call
@@ -124,10 +107,6 @@ public class DelayedRouting {
      * List payment routes
      * 
      * <p>Retrieve a list of all routes created for a specific payment.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param options additional options

@@ -12,13 +12,15 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class ListSettlementsRequest {
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
     private Optional<String> from;
@@ -30,7 +32,8 @@ public class ListSettlementsRequest {
     private JsonNullable<Long> limit;
 
     /**
-     * Provide the token of the balance to filter the settlements by. This is the balance token that the settlement was settled to.
+     * Provide the token of the balance to filter the settlements by. This is
+     * the balance token that the settlement was settled to.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=balanceId")
     private JsonNullable<String> balanceId;
@@ -49,11 +52,9 @@ public class ListSettlementsRequest {
 
     /**
      * Provides the currencies to retrieve the settlements. It accepts multiple currencies in a comma-separated format.
-     * 
-     * <p>Possible values: `EUR` `GBP` `CHF` `DKK` `NOK` `PLN` `SEK` `USD` `CZK` `HUF` `AUD` `CAD`
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=currencies")
-    private JsonNullable<String> currencies;
+    private JsonNullable<? extends Currencies> currencies;
 
     @JsonCreator
     public ListSettlementsRequest(
@@ -62,7 +63,7 @@ public class ListSettlementsRequest {
             JsonNullable<String> balanceId,
             JsonNullable<String> year,
             JsonNullable<String> month,
-            JsonNullable<String> currencies) {
+            JsonNullable<? extends Currencies> currencies) {
         Utils.checkNotNull(from, "from");
         Utils.checkNotNull(limit, "limit");
         Utils.checkNotNull(balanceId, "balanceId");
@@ -83,7 +84,8 @@ public class ListSettlementsRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * result set.
      */
     @JsonIgnore
     public Optional<String> from() {
@@ -99,7 +101,8 @@ public class ListSettlementsRequest {
     }
 
     /**
-     * Provide the token of the balance to filter the settlements by. This is the balance token that the settlement was settled to.
+     * Provide the token of the balance to filter the settlements by. This is
+     * the balance token that the settlement was settled to.
      */
     @JsonIgnore
     public JsonNullable<String> balanceId() {
@@ -124,12 +127,11 @@ public class ListSettlementsRequest {
 
     /**
      * Provides the currencies to retrieve the settlements. It accepts multiple currencies in a comma-separated format.
-     * 
-     * <p>Possible values: `EUR` `GBP` `CHF` `DKK` `NOK` `PLN` `SEK` `USD` `CZK` `HUF` `AUD` `CAD`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> currencies() {
-        return currencies;
+    public JsonNullable<Currencies> currencies() {
+        return (JsonNullable<Currencies>) currencies;
     }
 
     public static Builder builder() {
@@ -138,7 +140,8 @@ public class ListSettlementsRequest {
 
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * result set.
      */
     public ListSettlementsRequest withFrom(String from) {
         Utils.checkNotNull(from, "from");
@@ -148,7 +151,8 @@ public class ListSettlementsRequest {
 
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * result set.
      */
     public ListSettlementsRequest withFrom(Optional<String> from) {
         Utils.checkNotNull(from, "from");
@@ -175,7 +179,8 @@ public class ListSettlementsRequest {
     }
 
     /**
-     * Provide the token of the balance to filter the settlements by. This is the balance token that the settlement was settled to.
+     * Provide the token of the balance to filter the settlements by. This is
+     * the balance token that the settlement was settled to.
      */
     public ListSettlementsRequest withBalanceId(String balanceId) {
         Utils.checkNotNull(balanceId, "balanceId");
@@ -184,7 +189,8 @@ public class ListSettlementsRequest {
     }
 
     /**
-     * Provide the token of the balance to filter the settlements by. This is the balance token that the settlement was settled to.
+     * Provide the token of the balance to filter the settlements by. This is
+     * the balance token that the settlement was settled to.
      */
     public ListSettlementsRequest withBalanceId(JsonNullable<String> balanceId) {
         Utils.checkNotNull(balanceId, "balanceId");
@@ -230,10 +236,8 @@ public class ListSettlementsRequest {
 
     /**
      * Provides the currencies to retrieve the settlements. It accepts multiple currencies in a comma-separated format.
-     * 
-     * <p>Possible values: `EUR` `GBP` `CHF` `DKK` `NOK` `PLN` `SEK` `USD` `CZK` `HUF` `AUD` `CAD`
      */
-    public ListSettlementsRequest withCurrencies(String currencies) {
+    public ListSettlementsRequest withCurrencies(Currencies currencies) {
         Utils.checkNotNull(currencies, "currencies");
         this.currencies = JsonNullable.of(currencies);
         return this;
@@ -241,10 +245,8 @@ public class ListSettlementsRequest {
 
     /**
      * Provides the currencies to retrieve the settlements. It accepts multiple currencies in a comma-separated format.
-     * 
-     * <p>Possible values: `EUR` `GBP` `CHF` `DKK` `NOK` `PLN` `SEK` `USD` `CZK` `HUF` `AUD` `CAD`
      */
-    public ListSettlementsRequest withCurrencies(JsonNullable<String> currencies) {
+    public ListSettlementsRequest withCurrencies(JsonNullable<? extends Currencies> currencies) {
         Utils.checkNotNull(currencies, "currencies");
         this.currencies = currencies;
         return this;
@@ -299,7 +301,7 @@ public class ListSettlementsRequest {
 
         private JsonNullable<String> month = JsonNullable.undefined();
 
-        private JsonNullable<String> currencies = JsonNullable.undefined();
+        private JsonNullable<? extends Currencies> currencies = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -307,7 +309,8 @@ public class ListSettlementsRequest {
 
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * result set.
          */
         public Builder from(String from) {
             Utils.checkNotNull(from, "from");
@@ -316,7 +319,8 @@ public class ListSettlementsRequest {
         }
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * result set.
          */
         public Builder from(Optional<String> from) {
             Utils.checkNotNull(from, "from");
@@ -345,7 +349,8 @@ public class ListSettlementsRequest {
 
 
         /**
-         * Provide the token of the balance to filter the settlements by. This is the balance token that the settlement was settled to.
+         * Provide the token of the balance to filter the settlements by. This is
+         * the balance token that the settlement was settled to.
          */
         public Builder balanceId(String balanceId) {
             Utils.checkNotNull(balanceId, "balanceId");
@@ -354,7 +359,8 @@ public class ListSettlementsRequest {
         }
 
         /**
-         * Provide the token of the balance to filter the settlements by. This is the balance token that the settlement was settled to.
+         * Provide the token of the balance to filter the settlements by. This is
+         * the balance token that the settlement was settled to.
          */
         public Builder balanceId(JsonNullable<String> balanceId) {
             Utils.checkNotNull(balanceId, "balanceId");
@@ -403,10 +409,8 @@ public class ListSettlementsRequest {
 
         /**
          * Provides the currencies to retrieve the settlements. It accepts multiple currencies in a comma-separated format.
-         * 
-         * <p>Possible values: `EUR` `GBP` `CHF` `DKK` `NOK` `PLN` `SEK` `USD` `CZK` `HUF` `AUD` `CAD`
          */
-        public Builder currencies(String currencies) {
+        public Builder currencies(Currencies currencies) {
             Utils.checkNotNull(currencies, "currencies");
             this.currencies = JsonNullable.of(currencies);
             return this;
@@ -414,10 +418,8 @@ public class ListSettlementsRequest {
 
         /**
          * Provides the currencies to retrieve the settlements. It accepts multiple currencies in a comma-separated format.
-         * 
-         * <p>Possible values: `EUR` `GBP` `CHF` `DKK` `NOK` `PLN` `SEK` `USD` `CZK` `HUF` `AUD` `CAD`
          */
-        public Builder currencies(JsonNullable<String> currencies) {
+        public Builder currencies(JsonNullable<? extends Currencies> currencies) {
             Utils.checkNotNull(currencies, "currencies");
             this.currencies = currencies;
             return this;

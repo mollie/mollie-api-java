@@ -33,7 +33,8 @@ public class ListSalesInvoicesResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * A list of sales invoice objects. For a complete reference of the sales invoice object, refer to the [Get sales invoice endpoint](get-sales-invoice) documentation.
+     * A list of sales invoice objects. For a complete reference of the sales invoice object, refer to the
+     * [Get sales invoice endpoint](get-sales-invoice) documentation.
      */
     private Optional<? extends ListSalesInvoicesResponseBody> object;
 
@@ -86,7 +87,8 @@ public class ListSalesInvoicesResponse implements Response {
     }
 
     /**
-     * A list of sales invoice objects. For a complete reference of the sales invoice object, refer to the [Get sales invoice endpoint](get-sales-invoice) documentation.
+     * A list of sales invoice objects. For a complete reference of the sales invoice object, refer to the
+     * [Get sales invoice endpoint](get-sales-invoice) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -127,7 +129,8 @@ public class ListSalesInvoicesResponse implements Response {
     }
 
     /**
-     * A list of sales invoice objects. For a complete reference of the sales invoice object, refer to the [Get sales invoice endpoint](get-sales-invoice) documentation.
+     * A list of sales invoice objects. For a complete reference of the sales invoice object, refer to the
+     * [Get sales invoice endpoint](get-sales-invoice) documentation.
      */
     public ListSalesInvoicesResponse withObject(ListSalesInvoicesResponseBody object) {
         Utils.checkNotNull(object, "object");
@@ -137,7 +140,8 @@ public class ListSalesInvoicesResponse implements Response {
 
 
     /**
-     * A list of sales invoice objects. For a complete reference of the sales invoice object, refer to the [Get sales invoice endpoint](get-sales-invoice) documentation.
+     * A list of sales invoice objects. For a complete reference of the sales invoice object, refer to the
+     * [Get sales invoice endpoint](get-sales-invoice) documentation.
      */
     public ListSalesInvoicesResponse withObject(Optional<? extends ListSalesInvoicesResponseBody> object) {
         Utils.checkNotNull(object, "object");
@@ -224,7 +228,8 @@ public class ListSalesInvoicesResponse implements Response {
 
 
         /**
-         * A list of sales invoice objects. For a complete reference of the sales invoice object, refer to the [Get sales invoice endpoint](get-sales-invoice) documentation.
+         * A list of sales invoice objects. For a complete reference of the sales invoice object, refer to the
+         * [Get sales invoice endpoint](get-sales-invoice) documentation.
          */
         public Builder object(ListSalesInvoicesResponseBody object) {
             Utils.checkNotNull(object, "object");
@@ -233,7 +238,8 @@ public class ListSalesInvoicesResponse implements Response {
         }
 
         /**
-         * A list of sales invoice objects. For a complete reference of the sales invoice object, refer to the [Get sales invoice endpoint](get-sales-invoice) documentation.
+         * A list of sales invoice objects. For a complete reference of the sales invoice object, refer to the
+         * [Get sales invoice endpoint](get-sales-invoice) documentation.
          */
         public Builder object(Optional<? extends ListSalesInvoicesResponseBody> object) {
             Utils.checkNotNull(object, "object");

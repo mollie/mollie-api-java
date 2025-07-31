@@ -16,19 +16,19 @@ import org.openapitools.jackson.nullable.JsonNullable;
 /**
  * GetSalesInvoicePaymentDetails
  * 
- * <p>Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the provided details. Required for `paid` status.
+ * <p>Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the
+ * provided details. Required for `paid` status.
  */
 public class GetSalesInvoicePaymentDetails {
     /**
      * The way through which the invoice is to be set to paid.
-     * 
-     * <p>Possible values: `manual` `payment-link` `payment`
      */
     @JsonProperty("source")
-    private String source;
+    private GetSalesInvoiceSource source;
 
     /**
-     * A reference to the payment the sales invoice is paid by. Required for `source` values `payment-link` and `payment`.
+     * A reference to the payment the sales invoice is paid by. Required for `source` values `payment-link` and
+     * `payment`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sourceReference")
@@ -36,7 +36,7 @@ public class GetSalesInvoicePaymentDetails {
 
     @JsonCreator
     public GetSalesInvoicePaymentDetails(
-            @JsonProperty("source") String source,
+            @JsonProperty("source") GetSalesInvoiceSource source,
             @JsonProperty("sourceReference") JsonNullable<String> sourceReference) {
         Utils.checkNotNull(source, "source");
         Utils.checkNotNull(sourceReference, "sourceReference");
@@ -45,22 +45,21 @@ public class GetSalesInvoicePaymentDetails {
     }
     
     public GetSalesInvoicePaymentDetails(
-            String source) {
+            GetSalesInvoiceSource source) {
         this(source, JsonNullable.undefined());
     }
 
     /**
      * The way through which the invoice is to be set to paid.
-     * 
-     * <p>Possible values: `manual` `payment-link` `payment`
      */
     @JsonIgnore
-    public String source() {
+    public GetSalesInvoiceSource source() {
         return source;
     }
 
     /**
-     * A reference to the payment the sales invoice is paid by. Required for `source` values `payment-link` and `payment`.
+     * A reference to the payment the sales invoice is paid by. Required for `source` values `payment-link` and
+     * `payment`.
      */
     @JsonIgnore
     public JsonNullable<String> sourceReference() {
@@ -74,17 +73,16 @@ public class GetSalesInvoicePaymentDetails {
 
     /**
      * The way through which the invoice is to be set to paid.
-     * 
-     * <p>Possible values: `manual` `payment-link` `payment`
      */
-    public GetSalesInvoicePaymentDetails withSource(String source) {
+    public GetSalesInvoicePaymentDetails withSource(GetSalesInvoiceSource source) {
         Utils.checkNotNull(source, "source");
         this.source = source;
         return this;
     }
 
     /**
-     * A reference to the payment the sales invoice is paid by. Required for `source` values `payment-link` and `payment`.
+     * A reference to the payment the sales invoice is paid by. Required for `source` values `payment-link` and
+     * `payment`.
      */
     public GetSalesInvoicePaymentDetails withSourceReference(String sourceReference) {
         Utils.checkNotNull(sourceReference, "sourceReference");
@@ -93,7 +91,8 @@ public class GetSalesInvoicePaymentDetails {
     }
 
     /**
-     * A reference to the payment the sales invoice is paid by. Required for `source` values `payment-link` and `payment`.
+     * A reference to the payment the sales invoice is paid by. Required for `source` values `payment-link` and
+     * `payment`.
      */
     public GetSalesInvoicePaymentDetails withSourceReference(JsonNullable<String> sourceReference) {
         Utils.checkNotNull(sourceReference, "sourceReference");
@@ -131,7 +130,7 @@ public class GetSalesInvoicePaymentDetails {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String source;
+        private GetSalesInvoiceSource source;
 
         private JsonNullable<String> sourceReference = JsonNullable.undefined();
 
@@ -142,10 +141,8 @@ public class GetSalesInvoicePaymentDetails {
 
         /**
          * The way through which the invoice is to be set to paid.
-         * 
-         * <p>Possible values: `manual` `payment-link` `payment`
          */
-        public Builder source(String source) {
+        public Builder source(GetSalesInvoiceSource source) {
             Utils.checkNotNull(source, "source");
             this.source = source;
             return this;
@@ -153,7 +150,8 @@ public class GetSalesInvoicePaymentDetails {
 
 
         /**
-         * A reference to the payment the sales invoice is paid by. Required for `source` values `payment-link` and `payment`.
+         * A reference to the payment the sales invoice is paid by. Required for `source` values `payment-link` and
+         * `payment`.
          */
         public Builder sourceReference(String sourceReference) {
             Utils.checkNotNull(sourceReference, "sourceReference");
@@ -162,7 +160,8 @@ public class GetSalesInvoicePaymentDetails {
         }
 
         /**
-         * A reference to the payment the sales invoice is paid by. Required for `source` values `payment-link` and `payment`.
+         * A reference to the payment the sales invoice is paid by. Required for `source` values `payment-link` and
+         * `payment`.
          */
         public Builder sourceReference(JsonNullable<String> sourceReference) {
             Utils.checkNotNull(sourceReference, "sourceReference");

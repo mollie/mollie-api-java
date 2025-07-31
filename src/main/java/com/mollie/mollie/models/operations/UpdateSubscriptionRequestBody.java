@@ -27,7 +27,8 @@ public class UpdateSubscriptionRequestBody {
     private Optional<? extends UpdateSubscriptionAmount> amount;
 
     /**
-     * The subscription's description will be used as the description of the resulting individual payments and so showing up on the bank statement of the consumer.
+     * The subscription's description will be used as the description of the resulting individual payments and so showing
+     * up on the bank statement of the consumer.
      * 
      * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
      */
@@ -39,12 +40,10 @@ public class UpdateSubscriptionRequestBody {
      * Interval to wait between payments, for example `1 month` or `14 days`.
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
-     * 
-     * <p>Possible values: `... days` `... weeks` `... months`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("interval")
-    private Optional<String> interval;
+    private Optional<? extends UpdateSubscriptionInterval> interval;
 
     /**
      * The start date of the subscription in `YYYY-MM-DD` format.
@@ -54,7 +53,8 @@ public class UpdateSubscriptionRequestBody {
     private Optional<String> startDate;
 
     /**
-     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is considered completed.
+     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+     * considered completed.
      * 
      * <p>Test mode subscriptions will get canceled automatically after 10 payments.
      */
@@ -63,7 +63,9 @@ public class UpdateSubscriptionRequestBody {
     private Optional<Long> times;
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the
+     * entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      * 
      * <p>Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
      */
@@ -74,7 +76,8 @@ public class UpdateSubscriptionRequestBody {
     /**
      * We will call this URL for any payment status changes of payments resulting from this subscription.
      * 
-     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as well. Be sure to verify the payment's subscription ID and its status.
+     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment
+     * failures as well. Be sure to verify the payment's subscription ID and its status.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("webhookUrl")
@@ -88,7 +91,8 @@ public class UpdateSubscriptionRequestBody {
     private Optional<String> mandateId;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+     * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -100,7 +104,7 @@ public class UpdateSubscriptionRequestBody {
     public UpdateSubscriptionRequestBody(
             @JsonProperty("amount") Optional<? extends UpdateSubscriptionAmount> amount,
             @JsonProperty("description") Optional<String> description,
-            @JsonProperty("interval") Optional<String> interval,
+            @JsonProperty("interval") Optional<? extends UpdateSubscriptionInterval> interval,
             @JsonProperty("startDate") Optional<String> startDate,
             @JsonProperty("times") Optional<Long> times,
             @JsonProperty("metadata") JsonNullable<? extends UpdateSubscriptionMetadata> metadata,
@@ -143,7 +147,8 @@ public class UpdateSubscriptionRequestBody {
     }
 
     /**
-     * The subscription's description will be used as the description of the resulting individual payments and so showing up on the bank statement of the consumer.
+     * The subscription's description will be used as the description of the resulting individual payments and so showing
+     * up on the bank statement of the consumer.
      * 
      * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
      */
@@ -156,12 +161,11 @@ public class UpdateSubscriptionRequestBody {
      * Interval to wait between payments, for example `1 month` or `14 days`.
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
-     * 
-     * <p>Possible values: `... days` `... weeks` `... months`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> interval() {
-        return interval;
+    public Optional<UpdateSubscriptionInterval> interval() {
+        return (Optional<UpdateSubscriptionInterval>) interval;
     }
 
     /**
@@ -173,7 +177,8 @@ public class UpdateSubscriptionRequestBody {
     }
 
     /**
-     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is considered completed.
+     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+     * considered completed.
      * 
      * <p>Test mode subscriptions will get canceled automatically after 10 payments.
      */
@@ -183,7 +188,9 @@ public class UpdateSubscriptionRequestBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the
+     * entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      * 
      * <p>Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
      */
@@ -196,7 +203,8 @@ public class UpdateSubscriptionRequestBody {
     /**
      * We will call this URL for any payment status changes of payments resulting from this subscription.
      * 
-     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as well. Be sure to verify the payment's subscription ID and its status.
+     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment
+     * failures as well. Be sure to verify the payment's subscription ID and its status.
      */
     @JsonIgnore
     public Optional<String> webhookUrl() {
@@ -212,7 +220,8 @@ public class UpdateSubscriptionRequestBody {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+     * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -246,7 +255,8 @@ public class UpdateSubscriptionRequestBody {
     }
 
     /**
-     * The subscription's description will be used as the description of the resulting individual payments and so showing up on the bank statement of the consumer.
+     * The subscription's description will be used as the description of the resulting individual payments and so showing
+     * up on the bank statement of the consumer.
      * 
      * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
      */
@@ -258,7 +268,8 @@ public class UpdateSubscriptionRequestBody {
 
 
     /**
-     * The subscription's description will be used as the description of the resulting individual payments and so showing up on the bank statement of the consumer.
+     * The subscription's description will be used as the description of the resulting individual payments and so showing
+     * up on the bank statement of the consumer.
      * 
      * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
      */
@@ -272,10 +283,8 @@ public class UpdateSubscriptionRequestBody {
      * Interval to wait between payments, for example `1 month` or `14 days`.
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
-     * 
-     * <p>Possible values: `... days` `... weeks` `... months`
      */
-    public UpdateSubscriptionRequestBody withInterval(String interval) {
+    public UpdateSubscriptionRequestBody withInterval(UpdateSubscriptionInterval interval) {
         Utils.checkNotNull(interval, "interval");
         this.interval = Optional.ofNullable(interval);
         return this;
@@ -286,10 +295,8 @@ public class UpdateSubscriptionRequestBody {
      * Interval to wait between payments, for example `1 month` or `14 days`.
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
-     * 
-     * <p>Possible values: `... days` `... weeks` `... months`
      */
-    public UpdateSubscriptionRequestBody withInterval(Optional<String> interval) {
+    public UpdateSubscriptionRequestBody withInterval(Optional<? extends UpdateSubscriptionInterval> interval) {
         Utils.checkNotNull(interval, "interval");
         this.interval = interval;
         return this;
@@ -315,7 +322,8 @@ public class UpdateSubscriptionRequestBody {
     }
 
     /**
-     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is considered completed.
+     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+     * considered completed.
      * 
      * <p>Test mode subscriptions will get canceled automatically after 10 payments.
      */
@@ -327,7 +335,8 @@ public class UpdateSubscriptionRequestBody {
 
 
     /**
-     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is considered completed.
+     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+     * considered completed.
      * 
      * <p>Test mode subscriptions will get canceled automatically after 10 payments.
      */
@@ -338,7 +347,9 @@ public class UpdateSubscriptionRequestBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the
+     * entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      * 
      * <p>Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
      */
@@ -349,7 +360,9 @@ public class UpdateSubscriptionRequestBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the
+     * entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      * 
      * <p>Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
      */
@@ -362,7 +375,8 @@ public class UpdateSubscriptionRequestBody {
     /**
      * We will call this URL for any payment status changes of payments resulting from this subscription.
      * 
-     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as well. Be sure to verify the payment's subscription ID and its status.
+     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment
+     * failures as well. Be sure to verify the payment's subscription ID and its status.
      */
     public UpdateSubscriptionRequestBody withWebhookUrl(String webhookUrl) {
         Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -374,7 +388,8 @@ public class UpdateSubscriptionRequestBody {
     /**
      * We will call this URL for any payment status changes of payments resulting from this subscription.
      * 
-     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as well. Be sure to verify the payment's subscription ID and its status.
+     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment
+     * failures as well. Be sure to verify the payment's subscription ID and its status.
      */
     public UpdateSubscriptionRequestBody withWebhookUrl(Optional<String> webhookUrl) {
         Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -402,7 +417,8 @@ public class UpdateSubscriptionRequestBody {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+     * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -413,7 +429,8 @@ public class UpdateSubscriptionRequestBody {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+     * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -473,7 +490,7 @@ public class UpdateSubscriptionRequestBody {
 
         private Optional<String> description = Optional.empty();
 
-        private Optional<String> interval = Optional.empty();
+        private Optional<? extends UpdateSubscriptionInterval> interval = Optional.empty();
 
         private Optional<String> startDate = Optional.empty();
 
@@ -512,7 +529,8 @@ public class UpdateSubscriptionRequestBody {
 
 
         /**
-         * The subscription's description will be used as the description of the resulting individual payments and so showing up on the bank statement of the consumer.
+         * The subscription's description will be used as the description of the resulting individual payments and so showing
+         * up on the bank statement of the consumer.
          * 
          * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
          */
@@ -523,7 +541,8 @@ public class UpdateSubscriptionRequestBody {
         }
 
         /**
-         * The subscription's description will be used as the description of the resulting individual payments and so showing up on the bank statement of the consumer.
+         * The subscription's description will be used as the description of the resulting individual payments and so showing
+         * up on the bank statement of the consumer.
          * 
          * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
          */
@@ -538,10 +557,8 @@ public class UpdateSubscriptionRequestBody {
          * Interval to wait between payments, for example `1 month` or `14 days`.
          * 
          * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
-         * 
-         * <p>Possible values: `... days` `... weeks` `... months`
          */
-        public Builder interval(String interval) {
+        public Builder interval(UpdateSubscriptionInterval interval) {
             Utils.checkNotNull(interval, "interval");
             this.interval = Optional.ofNullable(interval);
             return this;
@@ -551,10 +568,8 @@ public class UpdateSubscriptionRequestBody {
          * Interval to wait between payments, for example `1 month` or `14 days`.
          * 
          * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
-         * 
-         * <p>Possible values: `... days` `... weeks` `... months`
          */
-        public Builder interval(Optional<String> interval) {
+        public Builder interval(Optional<? extends UpdateSubscriptionInterval> interval) {
             Utils.checkNotNull(interval, "interval");
             this.interval = interval;
             return this;
@@ -581,7 +596,8 @@ public class UpdateSubscriptionRequestBody {
 
 
         /**
-         * Total number of payments for the subscription. Once this number of payments is reached, the subscription is considered completed.
+         * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+         * considered completed.
          * 
          * <p>Test mode subscriptions will get canceled automatically after 10 payments.
          */
@@ -592,7 +608,8 @@ public class UpdateSubscriptionRequestBody {
         }
 
         /**
-         * Total number of payments for the subscription. Once this number of payments is reached, the subscription is considered completed.
+         * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+         * considered completed.
          * 
          * <p>Test mode subscriptions will get canceled automatically after 10 payments.
          */
@@ -604,7 +621,9 @@ public class UpdateSubscriptionRequestBody {
 
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the
+         * entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to
+         * approximately 1kB.
          * 
          * <p>Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
          */
@@ -615,7 +634,9 @@ public class UpdateSubscriptionRequestBody {
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the
+         * entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to
+         * approximately 1kB.
          * 
          * <p>Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
          */
@@ -629,7 +650,8 @@ public class UpdateSubscriptionRequestBody {
         /**
          * We will call this URL for any payment status changes of payments resulting from this subscription.
          * 
-         * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as well. Be sure to verify the payment's subscription ID and its status.
+         * <p>This webhook will receive **all** events for the subscription's payments. This may include payment
+         * failures as well. Be sure to verify the payment's subscription ID and its status.
          */
         public Builder webhookUrl(String webhookUrl) {
             Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -640,7 +662,8 @@ public class UpdateSubscriptionRequestBody {
         /**
          * We will call this URL for any payment status changes of payments resulting from this subscription.
          * 
-         * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as well. Be sure to verify the payment's subscription ID and its status.
+         * <p>This webhook will receive **all** events for the subscription's payments. This may include payment
+         * failures as well. Be sure to verify the payment's subscription ID and its status.
          */
         public Builder webhookUrl(Optional<String> webhookUrl) {
             Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -669,7 +692,8 @@ public class UpdateSubscriptionRequestBody {
 
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+         * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -680,7 +704,8 @@ public class UpdateSubscriptionRequestBody {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+         * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */

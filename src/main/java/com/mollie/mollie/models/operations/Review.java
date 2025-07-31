@@ -11,26 +11,27 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 /**
  * Review
  * 
- * <p>Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved automatically, unless a switch to a live profile has been requested. The review object will therefore usually be `null` in test mode.
+ * <p>Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
+ * automatically, unless a switch to a live profile has been requested. The review object will therefore usually be
+ * `null` in test mode.
  */
 public class Review {
     /**
      * The status of the requested changes.
-     * 
-     * <p>Possible values: `pending` `rejected`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<String> status;
+    private Optional<? extends CreateProfileProfilesStatus> status;
 
     @JsonCreator
     public Review(
-            @JsonProperty("status") Optional<String> status) {
+            @JsonProperty("status") Optional<? extends CreateProfileProfilesStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
     }
@@ -41,12 +42,11 @@ public class Review {
 
     /**
      * The status of the requested changes.
-     * 
-     * <p>Possible values: `pending` `rejected`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> status() {
-        return status;
+    public Optional<CreateProfileProfilesStatus> status() {
+        return (Optional<CreateProfileProfilesStatus>) status;
     }
 
     public static Builder builder() {
@@ -56,10 +56,8 @@ public class Review {
 
     /**
      * The status of the requested changes.
-     * 
-     * <p>Possible values: `pending` `rejected`
      */
-    public Review withStatus(String status) {
+    public Review withStatus(CreateProfileProfilesStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -68,10 +66,8 @@ public class Review {
 
     /**
      * The status of the requested changes.
-     * 
-     * <p>Possible values: `pending` `rejected`
      */
-    public Review withStatus(Optional<String> status) {
+    public Review withStatus(Optional<? extends CreateProfileProfilesStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -105,7 +101,7 @@ public class Review {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> status = Optional.empty();
+        private Optional<? extends CreateProfileProfilesStatus> status = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -114,10 +110,8 @@ public class Review {
 
         /**
          * The status of the requested changes.
-         * 
-         * <p>Possible values: `pending` `rejected`
          */
-        public Builder status(String status) {
+        public Builder status(CreateProfileProfilesStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -125,10 +119,8 @@ public class Review {
 
         /**
          * The status of the requested changes.
-         * 
-         * <p>Possible values: `pending` `rejected`
          */
-        public Builder status(Optional<String> status) {
+        public Builder status(Optional<? extends CreateProfileProfilesStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

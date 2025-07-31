@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -59,15 +60,14 @@ public class Details {
 
     /**
      * The card's label. Available for card mandates, if the card label could be detected.
-     * 
-     * <p>Possible values: `American Express` `Carta Si` `Carte Bleue` `Dankort` `Diners Club` `Discover` `JCB` `Laser` `Maestro` `Mastercard` `Unionpay` `Visa`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cardLabel")
-    private JsonNullable<String> cardLabel;
+    private JsonNullable<? extends CardLabel> cardLabel;
 
     /**
-     * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used to identify returning customers.
+     * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used to identify
+     * returning customers.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cardFingerprint")
@@ -81,7 +81,7 @@ public class Details {
             @JsonProperty("cardHolder") JsonNullable<String> cardHolder,
             @JsonProperty("cardNumber") JsonNullable<String> cardNumber,
             @JsonProperty("cardExpiryDate") JsonNullable<String> cardExpiryDate,
-            @JsonProperty("cardLabel") JsonNullable<String> cardLabel,
+            @JsonProperty("cardLabel") JsonNullable<? extends CardLabel> cardLabel,
             @JsonProperty("cardFingerprint") JsonNullable<String> cardFingerprint) {
         Utils.checkNotNull(consumerName, "consumerName");
         Utils.checkNotNull(consumerAccount, "consumerAccount");
@@ -157,16 +157,16 @@ public class Details {
 
     /**
      * The card's label. Available for card mandates, if the card label could be detected.
-     * 
-     * <p>Possible values: `American Express` `Carta Si` `Carte Bleue` `Dankort` `Diners Club` `Discover` `JCB` `Laser` `Maestro` `Mastercard` `Unionpay` `Visa`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> cardLabel() {
-        return cardLabel;
+    public JsonNullable<CardLabel> cardLabel() {
+        return (JsonNullable<CardLabel>) cardLabel;
     }
 
     /**
-     * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used to identify returning customers.
+     * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used to identify
+     * returning customers.
      */
     @JsonIgnore
     public JsonNullable<String> cardFingerprint() {
@@ -288,10 +288,8 @@ public class Details {
 
     /**
      * The card's label. Available for card mandates, if the card label could be detected.
-     * 
-     * <p>Possible values: `American Express` `Carta Si` `Carte Bleue` `Dankort` `Diners Club` `Discover` `JCB` `Laser` `Maestro` `Mastercard` `Unionpay` `Visa`
      */
-    public Details withCardLabel(String cardLabel) {
+    public Details withCardLabel(CardLabel cardLabel) {
         Utils.checkNotNull(cardLabel, "cardLabel");
         this.cardLabel = JsonNullable.of(cardLabel);
         return this;
@@ -299,17 +297,16 @@ public class Details {
 
     /**
      * The card's label. Available for card mandates, if the card label could be detected.
-     * 
-     * <p>Possible values: `American Express` `Carta Si` `Carte Bleue` `Dankort` `Diners Club` `Discover` `JCB` `Laser` `Maestro` `Mastercard` `Unionpay` `Visa`
      */
-    public Details withCardLabel(JsonNullable<String> cardLabel) {
+    public Details withCardLabel(JsonNullable<? extends CardLabel> cardLabel) {
         Utils.checkNotNull(cardLabel, "cardLabel");
         this.cardLabel = cardLabel;
         return this;
     }
 
     /**
-     * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used to identify returning customers.
+     * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used to identify
+     * returning customers.
      */
     public Details withCardFingerprint(String cardFingerprint) {
         Utils.checkNotNull(cardFingerprint, "cardFingerprint");
@@ -318,7 +315,8 @@ public class Details {
     }
 
     /**
-     * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used to identify returning customers.
+     * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used to identify
+     * returning customers.
      */
     public Details withCardFingerprint(JsonNullable<String> cardFingerprint) {
         Utils.checkNotNull(cardFingerprint, "cardFingerprint");
@@ -382,7 +380,7 @@ public class Details {
 
         private JsonNullable<String> cardExpiryDate = JsonNullable.undefined();
 
-        private JsonNullable<String> cardLabel = JsonNullable.undefined();
+        private JsonNullable<? extends CardLabel> cardLabel = JsonNullable.undefined();
 
         private JsonNullable<String> cardFingerprint = JsonNullable.undefined();
 
@@ -507,10 +505,8 @@ public class Details {
 
         /**
          * The card's label. Available for card mandates, if the card label could be detected.
-         * 
-         * <p>Possible values: `American Express` `Carta Si` `Carte Bleue` `Dankort` `Diners Club` `Discover` `JCB` `Laser` `Maestro` `Mastercard` `Unionpay` `Visa`
          */
-        public Builder cardLabel(String cardLabel) {
+        public Builder cardLabel(CardLabel cardLabel) {
             Utils.checkNotNull(cardLabel, "cardLabel");
             this.cardLabel = JsonNullable.of(cardLabel);
             return this;
@@ -518,10 +514,8 @@ public class Details {
 
         /**
          * The card's label. Available for card mandates, if the card label could be detected.
-         * 
-         * <p>Possible values: `American Express` `Carta Si` `Carte Bleue` `Dankort` `Diners Club` `Discover` `JCB` `Laser` `Maestro` `Mastercard` `Unionpay` `Visa`
          */
-        public Builder cardLabel(JsonNullable<String> cardLabel) {
+        public Builder cardLabel(JsonNullable<? extends CardLabel> cardLabel) {
             Utils.checkNotNull(cardLabel, "cardLabel");
             this.cardLabel = cardLabel;
             return this;
@@ -529,7 +523,8 @@ public class Details {
 
 
         /**
-         * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used to identify returning customers.
+         * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used to identify
+         * returning customers.
          */
         public Builder cardFingerprint(String cardFingerprint) {
             Utils.checkNotNull(cardFingerprint, "cardFingerprint");
@@ -538,7 +533,8 @@ public class Details {
         }
 
         /**
-         * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used to identify returning customers.
+         * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used to identify
+         * returning customers.
          */
         public Builder cardFingerprint(JsonNullable<String> cardFingerprint) {
             Utils.checkNotNull(cardFingerprint, "cardFingerprint");

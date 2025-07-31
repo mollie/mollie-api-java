@@ -13,7 +13,8 @@ import java.lang.String;
 /**
  * UpdatePaymentOrder
  * 
- * <p>The API resource URL of the [order](get-order) this payment was created for. Not present if not created for an order.
+ * <p>The API resource URL of the [order](get-order) this payment was created for. Not present if not created for an
+ * order.
  */
 public class UpdatePaymentOrder {
     /**

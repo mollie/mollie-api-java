@@ -8,11 +8,19 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * GetClientStatus
+ * 
+ * <p>The current status of the organization's onboarding process.
+ * 
+ * <p>* `needs-data` — The merchant needs to provide additional information
+ * * `in-review` — The merchant provided all information, awaiting review from Mollie
+ * * `completed` — The onboarding is completed
+ */
 public enum GetClientStatus {
-    UNREQUESTED("unrequested"),
-    ENABLED("enabled"),
-    DISABLED("disabled"),
-    PENDING("pending");
+    NEEDS_DATA("needs-data"),
+    IN_REVIEW("in-review"),
+    COMPLETED("completed");
 
     @JsonValue
     private final String value;

@@ -18,7 +18,8 @@ import java.util.Optional;
 
 public class ListInvoicesEmbedded {
     /**
-     * An array of invoice objects. For a complete reference of the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
+     * An array of invoice objects. For a complete reference of
+     * the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("invoices")
@@ -36,7 +37,8 @@ public class ListInvoicesEmbedded {
     }
 
     /**
-     * An array of invoice objects. For a complete reference of the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
+     * An array of invoice objects. For a complete reference of
+     * the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -50,7 +52,8 @@ public class ListInvoicesEmbedded {
 
 
     /**
-     * An array of invoice objects. For a complete reference of the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
+     * An array of invoice objects. For a complete reference of
+     * the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
      */
     public ListInvoicesEmbedded withInvoices(List<Invoices> invoices) {
         Utils.checkNotNull(invoices, "invoices");
@@ -60,7 +63,8 @@ public class ListInvoicesEmbedded {
 
 
     /**
-     * An array of invoice objects. For a complete reference of the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
+     * An array of invoice objects. For a complete reference of
+     * the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
      */
     public ListInvoicesEmbedded withInvoices(Optional<? extends List<Invoices>> invoices) {
         Utils.checkNotNull(invoices, "invoices");
@@ -104,7 +108,8 @@ public class ListInvoicesEmbedded {
 
 
         /**
-         * An array of invoice objects. For a complete reference of the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
+         * An array of invoice objects. For a complete reference of
+         * the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
          */
         public Builder invoices(List<Invoices> invoices) {
             Utils.checkNotNull(invoices, "invoices");
@@ -113,7 +118,8 @@ public class ListInvoicesEmbedded {
         }
 
         /**
-         * An array of invoice objects. For a complete reference of the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
+         * An array of invoice objects. For a complete reference of
+         * the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
          */
         public Builder invoices(Optional<? extends List<Invoices>> invoices) {
             Utils.checkNotNull(invoices, "invoices");

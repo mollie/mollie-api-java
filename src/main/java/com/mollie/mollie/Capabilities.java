@@ -33,11 +33,9 @@ public class Capabilities {
      * 
      * <p>Capabilities are at the organization level, indicating if the organization can perform a given capability.
      * 
-     * <p>For payments, regardless them being at the profile level, the capability is listed at the organization level. This means that if at least one of the clients's profiles can receive payments, the payments capability is enabled, communicating that the organization can indeed receive payments.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **onboarding.read**](/reference/authentication)
+     * <p>For payments, regardless them being at the profile level, the capability is listed at the organization level.
+     * This means that if at least one of the clients's profiles can receive payments,
+     * the payments capability is enabled, communicating that the organization can indeed receive payments.
      * 
      * @return The call builder
      */
@@ -58,11 +56,9 @@ public class Capabilities {
      * 
      * <p>Capabilities are at the organization level, indicating if the organization can perform a given capability.
      * 
-     * <p>For payments, regardless them being at the profile level, the capability is listed at the organization level. This means that if at least one of the clients's profiles can receive payments, the payments capability is enabled, communicating that the organization can indeed receive payments.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **onboarding.read**](/reference/authentication)
+     * <p>For payments, regardless them being at the profile level, the capability is listed at the organization level.
+     * This means that if at least one of the clients's profiles can receive payments,
+     * the payments capability is enabled, communicating that the organization can indeed receive payments.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -84,11 +80,9 @@ public class Capabilities {
      * 
      * <p>Capabilities are at the organization level, indicating if the organization can perform a given capability.
      * 
-     * <p>For payments, regardless them being at the profile level, the capability is listed at the organization level. This means that if at least one of the clients's profiles can receive payments, the payments capability is enabled, communicating that the organization can indeed receive payments.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **onboarding.read**](/reference/authentication)
+     * <p>For payments, regardless them being at the profile level, the capability is listed at the organization level.
+     * This means that if at least one of the clients's profiles can receive payments,
+     * the payments capability is enabled, communicating that the organization can indeed receive payments.
      * 
      * @param options additional options
      * @return The response from the API call

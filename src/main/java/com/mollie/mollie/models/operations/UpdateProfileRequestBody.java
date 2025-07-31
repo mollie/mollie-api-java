@@ -18,14 +18,16 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class UpdateProfileRequestBody {
     /**
-     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
+     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+     * application.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private JsonNullable<String> name;
 
     /**
-     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
+     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs
+     * are allowed.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("website")
@@ -53,27 +55,28 @@ public class UpdateProfileRequestBody {
     private JsonNullable<String> description;
 
     /**
-     * A list of countries where you expect that the majority of the profile's customers reside, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+     * A list of countries where you expect that the majority of the profile's customers reside,
+     * in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("countriesOfActivity")
     private JsonNullable<? extends List<String>> countriesOfActivity;
 
     /**
-     * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types) for all possible options.
+     * The industry associated with the profile's trade name or brand. Please refer to the
+     * [business category list](common-data-types) for all possible options.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("businessCategory")
     private JsonNullable<String> businessCategory;
 
     /**
-     * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we review the profile before it can start accepting payments.
-     * 
-     * <p>Possible values: `live` `test`
+     * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we review
+     * the profile before it can start accepting payments.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private JsonNullable<String> mode;
+    private JsonNullable<? extends Mode> mode;
 
     @JsonCreator
     public UpdateProfileRequestBody(
@@ -84,7 +87,7 @@ public class UpdateProfileRequestBody {
             @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("countriesOfActivity") JsonNullable<? extends List<String>> countriesOfActivity,
             @JsonProperty("businessCategory") JsonNullable<String> businessCategory,
-            @JsonProperty("mode") JsonNullable<String> mode) {
+            @JsonProperty("mode") JsonNullable<? extends Mode> mode) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(website, "website");
         Utils.checkNotNull(email, "email");
@@ -110,7 +113,8 @@ public class UpdateProfileRequestBody {
     }
 
     /**
-     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
+     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+     * application.
      */
     @JsonIgnore
     public JsonNullable<String> name() {
@@ -118,7 +122,8 @@ public class UpdateProfileRequestBody {
     }
 
     /**
-     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
+     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs
+     * are allowed.
      */
     @JsonIgnore
     public JsonNullable<String> website() {
@@ -150,7 +155,8 @@ public class UpdateProfileRequestBody {
     }
 
     /**
-     * A list of countries where you expect that the majority of the profile's customers reside, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+     * A list of countries where you expect that the majority of the profile's customers reside,
+     * in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -159,7 +165,8 @@ public class UpdateProfileRequestBody {
     }
 
     /**
-     * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types) for all possible options.
+     * The industry associated with the profile's trade name or brand. Please refer to the
+     * [business category list](common-data-types) for all possible options.
      */
     @JsonIgnore
     public JsonNullable<String> businessCategory() {
@@ -167,13 +174,13 @@ public class UpdateProfileRequestBody {
     }
 
     /**
-     * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we review the profile before it can start accepting payments.
-     * 
-     * <p>Possible values: `live` `test`
+     * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we review
+     * the profile before it can start accepting payments.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> mode() {
-        return mode;
+    public JsonNullable<Mode> mode() {
+        return (JsonNullable<Mode>) mode;
     }
 
     public static Builder builder() {
@@ -182,7 +189,8 @@ public class UpdateProfileRequestBody {
 
 
     /**
-     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
+     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+     * application.
      */
     public UpdateProfileRequestBody withName(String name) {
         Utils.checkNotNull(name, "name");
@@ -191,7 +199,8 @@ public class UpdateProfileRequestBody {
     }
 
     /**
-     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
+     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+     * application.
      */
     public UpdateProfileRequestBody withName(JsonNullable<String> name) {
         Utils.checkNotNull(name, "name");
@@ -200,7 +209,8 @@ public class UpdateProfileRequestBody {
     }
 
     /**
-     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
+     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs
+     * are allowed.
      */
     public UpdateProfileRequestBody withWebsite(String website) {
         Utils.checkNotNull(website, "website");
@@ -209,7 +219,8 @@ public class UpdateProfileRequestBody {
     }
 
     /**
-     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
+     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs
+     * are allowed.
      */
     public UpdateProfileRequestBody withWebsite(JsonNullable<String> website) {
         Utils.checkNotNull(website, "website");
@@ -272,7 +283,8 @@ public class UpdateProfileRequestBody {
     }
 
     /**
-     * A list of countries where you expect that the majority of the profile's customers reside, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+     * A list of countries where you expect that the majority of the profile's customers reside,
+     * in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
      */
     public UpdateProfileRequestBody withCountriesOfActivity(List<String> countriesOfActivity) {
         Utils.checkNotNull(countriesOfActivity, "countriesOfActivity");
@@ -281,7 +293,8 @@ public class UpdateProfileRequestBody {
     }
 
     /**
-     * A list of countries where you expect that the majority of the profile's customers reside, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+     * A list of countries where you expect that the majority of the profile's customers reside,
+     * in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
      */
     public UpdateProfileRequestBody withCountriesOfActivity(JsonNullable<? extends List<String>> countriesOfActivity) {
         Utils.checkNotNull(countriesOfActivity, "countriesOfActivity");
@@ -290,7 +303,8 @@ public class UpdateProfileRequestBody {
     }
 
     /**
-     * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types) for all possible options.
+     * The industry associated with the profile's trade name or brand. Please refer to the
+     * [business category list](common-data-types) for all possible options.
      */
     public UpdateProfileRequestBody withBusinessCategory(String businessCategory) {
         Utils.checkNotNull(businessCategory, "businessCategory");
@@ -299,7 +313,8 @@ public class UpdateProfileRequestBody {
     }
 
     /**
-     * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types) for all possible options.
+     * The industry associated with the profile's trade name or brand. Please refer to the
+     * [business category list](common-data-types) for all possible options.
      */
     public UpdateProfileRequestBody withBusinessCategory(JsonNullable<String> businessCategory) {
         Utils.checkNotNull(businessCategory, "businessCategory");
@@ -308,22 +323,20 @@ public class UpdateProfileRequestBody {
     }
 
     /**
-     * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we review the profile before it can start accepting payments.
-     * 
-     * <p>Possible values: `live` `test`
+     * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we review
+     * the profile before it can start accepting payments.
      */
-    public UpdateProfileRequestBody withMode(String mode) {
+    public UpdateProfileRequestBody withMode(Mode mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = JsonNullable.of(mode);
         return this;
     }
 
     /**
-     * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we review the profile before it can start accepting payments.
-     * 
-     * <p>Possible values: `live` `test`
+     * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we review
+     * the profile before it can start accepting payments.
      */
-    public UpdateProfileRequestBody withMode(JsonNullable<String> mode) {
+    public UpdateProfileRequestBody withMode(JsonNullable<? extends Mode> mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
@@ -387,7 +400,7 @@ public class UpdateProfileRequestBody {
 
         private JsonNullable<String> businessCategory = JsonNullable.undefined();
 
-        private JsonNullable<String> mode = JsonNullable.undefined();
+        private JsonNullable<? extends Mode> mode = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -395,7 +408,8 @@ public class UpdateProfileRequestBody {
 
 
         /**
-         * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
+         * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+         * application.
          */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
@@ -404,7 +418,8 @@ public class UpdateProfileRequestBody {
         }
 
         /**
-         * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
+         * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+         * application.
          */
         public Builder name(JsonNullable<String> name) {
             Utils.checkNotNull(name, "name");
@@ -414,7 +429,8 @@ public class UpdateProfileRequestBody {
 
 
         /**
-         * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
+         * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs
+         * are allowed.
          */
         public Builder website(String website) {
             Utils.checkNotNull(website, "website");
@@ -423,7 +439,8 @@ public class UpdateProfileRequestBody {
         }
 
         /**
-         * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
+         * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs
+         * are allowed.
          */
         public Builder website(JsonNullable<String> website) {
             Utils.checkNotNull(website, "website");
@@ -490,7 +507,8 @@ public class UpdateProfileRequestBody {
 
 
         /**
-         * A list of countries where you expect that the majority of the profile's customers reside, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+         * A list of countries where you expect that the majority of the profile's customers reside,
+         * in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
          */
         public Builder countriesOfActivity(List<String> countriesOfActivity) {
             Utils.checkNotNull(countriesOfActivity, "countriesOfActivity");
@@ -499,7 +517,8 @@ public class UpdateProfileRequestBody {
         }
 
         /**
-         * A list of countries where you expect that the majority of the profile's customers reside, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+         * A list of countries where you expect that the majority of the profile's customers reside,
+         * in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
          */
         public Builder countriesOfActivity(JsonNullable<? extends List<String>> countriesOfActivity) {
             Utils.checkNotNull(countriesOfActivity, "countriesOfActivity");
@@ -509,7 +528,8 @@ public class UpdateProfileRequestBody {
 
 
         /**
-         * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types) for all possible options.
+         * The industry associated with the profile's trade name or brand. Please refer to the
+         * [business category list](common-data-types) for all possible options.
          */
         public Builder businessCategory(String businessCategory) {
             Utils.checkNotNull(businessCategory, "businessCategory");
@@ -518,7 +538,8 @@ public class UpdateProfileRequestBody {
         }
 
         /**
-         * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types) for all possible options.
+         * The industry associated with the profile's trade name or brand. Please refer to the
+         * [business category list](common-data-types) for all possible options.
          */
         public Builder businessCategory(JsonNullable<String> businessCategory) {
             Utils.checkNotNull(businessCategory, "businessCategory");
@@ -528,22 +549,20 @@ public class UpdateProfileRequestBody {
 
 
         /**
-         * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we review the profile before it can start accepting payments.
-         * 
-         * <p>Possible values: `live` `test`
+         * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we review
+         * the profile before it can start accepting payments.
          */
-        public Builder mode(String mode) {
+        public Builder mode(Mode mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = JsonNullable.of(mode);
             return this;
         }
 
         /**
-         * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we review the profile before it can start accepting payments.
-         * 
-         * <p>Possible values: `live` `test`
+         * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we review
+         * the profile before it can start accepting payments.
          */
-        public Builder mode(JsonNullable<String> mode) {
+        public Builder mode(JsonNullable<? extends Mode> mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;

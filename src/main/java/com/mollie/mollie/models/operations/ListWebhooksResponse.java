@@ -33,7 +33,8 @@ public class ListWebhooksResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * A list of webhooks. For a complete reference of the webhook object, refer to the [Get hook endpoint](get-webhook) documentation.
+     * A list of webhooks. For a complete reference of the webhook
+     * object, refer to the [Get hook endpoint](get-webhook) documentation.
      */
     private Optional<? extends ListWebhooksResponseBody> object;
 
@@ -86,7 +87,8 @@ public class ListWebhooksResponse implements Response {
     }
 
     /**
-     * A list of webhooks. For a complete reference of the webhook object, refer to the [Get hook endpoint](get-webhook) documentation.
+     * A list of webhooks. For a complete reference of the webhook
+     * object, refer to the [Get hook endpoint](get-webhook) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -127,7 +129,8 @@ public class ListWebhooksResponse implements Response {
     }
 
     /**
-     * A list of webhooks. For a complete reference of the webhook object, refer to the [Get hook endpoint](get-webhook) documentation.
+     * A list of webhooks. For a complete reference of the webhook
+     * object, refer to the [Get hook endpoint](get-webhook) documentation.
      */
     public ListWebhooksResponse withObject(ListWebhooksResponseBody object) {
         Utils.checkNotNull(object, "object");
@@ -137,7 +140,8 @@ public class ListWebhooksResponse implements Response {
 
 
     /**
-     * A list of webhooks. For a complete reference of the webhook object, refer to the [Get hook endpoint](get-webhook) documentation.
+     * A list of webhooks. For a complete reference of the webhook
+     * object, refer to the [Get hook endpoint](get-webhook) documentation.
      */
     public ListWebhooksResponse withObject(Optional<? extends ListWebhooksResponseBody> object) {
         Utils.checkNotNull(object, "object");
@@ -224,7 +228,8 @@ public class ListWebhooksResponse implements Response {
 
 
         /**
-         * A list of webhooks. For a complete reference of the webhook object, refer to the [Get hook endpoint](get-webhook) documentation.
+         * A list of webhooks. For a complete reference of the webhook
+         * object, refer to the [Get hook endpoint](get-webhook) documentation.
          */
         public Builder object(ListWebhooksResponseBody object) {
             Utils.checkNotNull(object, "object");
@@ -233,7 +238,8 @@ public class ListWebhooksResponse implements Response {
         }
 
         /**
-         * A list of webhooks. For a complete reference of the webhook object, refer to the [Get hook endpoint](get-webhook) documentation.
+         * A list of webhooks. For a complete reference of the webhook
+         * object, refer to the [Get hook endpoint](get-webhook) documentation.
          */
         public Builder object(Optional<? extends ListWebhooksResponseBody> object) {
             Utils.checkNotNull(object, "object");

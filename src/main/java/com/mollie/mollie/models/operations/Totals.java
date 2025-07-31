@@ -18,7 +18,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 /**
  * Totals
  * 
- * <p>Totals are grouped according to the chosen grouping rule. The example response should give a good idea of what a typical grouping looks like.
+ * <p>Totals are grouped according to the chosen grouping rule. The example response should give a good idea of what a
+ * typical grouping looks like.
  * 
  * <p>If grouping `status-balances` is chosen, the main grouping is as follows:
  * 
@@ -28,7 +29,9 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>If grouping `transaction-categories` is chosen, the main grouping is as follows:
  * 
  * <p>* `open` and `close` groups, each containing a `pending` and `available` sub-group
- * * Transaction type groups such as `payments`, `refunds`, `chargebacks`, `capital`, `transfers`, `fee-prepayments`, `corrections`, `topups` each containing a `pending`, `movedToAvailable`, and `immediatelyAvailable` sub-group
+ * * Transaction type groups such as `payments`, `refunds`, `chargebacks`, `capital`, `transfers`, `fee-prepayments`, `corrections`, `topups`
+ * each containing a `pending`, `movedToAvailable`, and
+ * `immediatelyAvailable` sub-group
  * 
  * <p>Each sub-group typically has:
  * 

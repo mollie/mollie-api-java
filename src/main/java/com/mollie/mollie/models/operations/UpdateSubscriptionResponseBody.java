@@ -25,7 +25,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
  */
 public class UpdateSubscriptionResponseBody {
     /**
-     * Indicates the response contains a subscription object. Will always contain the string `subscription` for this endpoint.
+     * Indicates the response contains a subscription object. Will always contain the string `subscription` for this
+     * endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
@@ -40,31 +41,30 @@ public class UpdateSubscriptionResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<String> mode;
+    private Optional<? extends UpdateSubscriptionMode> mode;
 
     /**
-     * The subscription's current status is directly related to the status of the underlying customer or mandate that is enabling the subscription.
-     * 
-     * <p>Possible values: `pending` `active` `canceled` `suspended` `completed`
+     * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+     * enabling the subscription.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<String> status;
+    private Optional<? extends UpdateSubscriptionStatus> status;
 
     /**
-     * The amount for each individual payment that is charged with this subscription. For example, for a monthly subscription of €10, the subscription amount should be set to €10.
+     * The amount for each individual payment that is charged with this subscription. For example, for a monthly
+     * subscription of €10, the subscription amount should be set to €10.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
     private Optional<? extends UpdateSubscriptionSubscriptionsAmount> amount;
 
     /**
-     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is considered completed.
+     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+     * considered completed.
      * 
      * <p>Test mode subscriptions will get canceled automatically after 10 payments.
      */
@@ -83,12 +83,10 @@ public class UpdateSubscriptionResponseBody {
      * Interval to wait between payments, for example `1 month` or `14 days`.
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
-     * 
-     * <p>Possible values: `... days` `... weeks` `... months`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("interval")
-    private Optional<String> interval;
+    private Optional<? extends UpdateSubscriptionSubscriptionsInterval> interval;
 
     /**
      * The start date of the subscription in `YYYY-MM-DD` format.
@@ -98,14 +96,16 @@ public class UpdateSubscriptionResponseBody {
     private Optional<String> startDate;
 
     /**
-     * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled, this parameter will not be returned.
+     * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled,
+     * this parameter will not be returned.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("nextPaymentDate")
     private JsonNullable<String> nextPaymentDate;
 
     /**
-     * The subscription's description will be used as the description of the resulting individual payments and so showing up on the bank statement of the consumer.
+     * The subscription's description will be used as the description of the resulting individual payments and so showing
+     * up on the bank statement of the consumer.
      * 
      * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
      */
@@ -115,26 +115,28 @@ public class UpdateSubscriptionResponseBody {
 
     /**
      * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
-     * 
-     * <p>Possible values: `creditcard` `directdebit` `paypal`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("method")
-    private JsonNullable<String> method;
+    private JsonNullable<? extends UpdateSubscriptionMethod> method;
 
     /**
-     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
+     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * merchants.
      * 
      * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual payment.
      * 
-     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more information.
+     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more
+     * information.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("applicationFee")
     private Optional<? extends UpdateSubscriptionApplicationFee> applicationFee;
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity.
+     * Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately
+     * 1kB.
      * 
      * <p>Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
      */
@@ -145,7 +147,8 @@ public class UpdateSubscriptionResponseBody {
     /**
      * We will call this URL for any payment status changes of payments resulting from this subscription.
      * 
-     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as well. Be sure to verify the payment's subscription ID and its status.
+     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as
+     * well. Be sure to verify the payment's subscription ID and its status.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("webhookUrl")
@@ -173,7 +176,8 @@ public class UpdateSubscriptionResponseBody {
     private Optional<String> createdAt;
 
     /**
-     * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the subscription is not canceled (yet).
+     * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the
+     * subscription is not canceled (yet).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("canceledAt")
@@ -190,16 +194,16 @@ public class UpdateSubscriptionResponseBody {
     public UpdateSubscriptionResponseBody(
             @JsonProperty("resource") Optional<String> resource,
             @JsonProperty("id") Optional<String> id,
-            @JsonProperty("mode") Optional<String> mode,
-            @JsonProperty("status") Optional<String> status,
+            @JsonProperty("mode") Optional<? extends UpdateSubscriptionMode> mode,
+            @JsonProperty("status") Optional<? extends UpdateSubscriptionStatus> status,
             @JsonProperty("amount") Optional<? extends UpdateSubscriptionSubscriptionsAmount> amount,
             @JsonProperty("times") JsonNullable<Long> times,
             @JsonProperty("timesRemaining") Optional<Long> timesRemaining,
-            @JsonProperty("interval") Optional<String> interval,
+            @JsonProperty("interval") Optional<? extends UpdateSubscriptionSubscriptionsInterval> interval,
             @JsonProperty("startDate") Optional<String> startDate,
             @JsonProperty("nextPaymentDate") JsonNullable<String> nextPaymentDate,
             @JsonProperty("description") Optional<String> description,
-            @JsonProperty("method") JsonNullable<String> method,
+            @JsonProperty("method") JsonNullable<? extends UpdateSubscriptionMethod> method,
             @JsonProperty("applicationFee") Optional<? extends UpdateSubscriptionApplicationFee> applicationFee,
             @JsonProperty("metadata") JsonNullable<? extends UpdateSubscriptionSubscriptionsMetadata> metadata,
             @JsonProperty("webhookUrl") Optional<String> webhookUrl,
@@ -261,7 +265,8 @@ public class UpdateSubscriptionResponseBody {
     }
 
     /**
-     * Indicates the response contains a subscription object. Will always contain the string `subscription` for this endpoint.
+     * Indicates the response contains a subscription object. Will always contain the string `subscription` for this
+     * endpoint.
      */
     @JsonIgnore
     public Optional<String> resource() {
@@ -278,26 +283,26 @@ public class UpdateSubscriptionResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> mode() {
-        return mode;
+    public Optional<UpdateSubscriptionMode> mode() {
+        return (Optional<UpdateSubscriptionMode>) mode;
     }
 
     /**
-     * The subscription's current status is directly related to the status of the underlying customer or mandate that is enabling the subscription.
-     * 
-     * <p>Possible values: `pending` `active` `canceled` `suspended` `completed`
+     * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+     * enabling the subscription.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> status() {
-        return status;
+    public Optional<UpdateSubscriptionStatus> status() {
+        return (Optional<UpdateSubscriptionStatus>) status;
     }
 
     /**
-     * The amount for each individual payment that is charged with this subscription. For example, for a monthly subscription of €10, the subscription amount should be set to €10.
+     * The amount for each individual payment that is charged with this subscription. For example, for a monthly
+     * subscription of €10, the subscription amount should be set to €10.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -306,7 +311,8 @@ public class UpdateSubscriptionResponseBody {
     }
 
     /**
-     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is considered completed.
+     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+     * considered completed.
      * 
      * <p>Test mode subscriptions will get canceled automatically after 10 payments.
      */
@@ -327,12 +333,11 @@ public class UpdateSubscriptionResponseBody {
      * Interval to wait between payments, for example `1 month` or `14 days`.
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
-     * 
-     * <p>Possible values: `... days` `... weeks` `... months`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> interval() {
-        return interval;
+    public Optional<UpdateSubscriptionSubscriptionsInterval> interval() {
+        return (Optional<UpdateSubscriptionSubscriptionsInterval>) interval;
     }
 
     /**
@@ -344,7 +349,8 @@ public class UpdateSubscriptionResponseBody {
     }
 
     /**
-     * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled, this parameter will not be returned.
+     * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled,
+     * this parameter will not be returned.
      */
     @JsonIgnore
     public JsonNullable<String> nextPaymentDate() {
@@ -352,7 +358,8 @@ public class UpdateSubscriptionResponseBody {
     }
 
     /**
-     * The subscription's description will be used as the description of the resulting individual payments and so showing up on the bank statement of the consumer.
+     * The subscription's description will be used as the description of the resulting individual payments and so showing
+     * up on the bank statement of the consumer.
      * 
      * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
      */
@@ -363,20 +370,21 @@ public class UpdateSubscriptionResponseBody {
 
     /**
      * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
-     * 
-     * <p>Possible values: `creditcard` `directdebit` `paypal`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> method() {
-        return method;
+    public JsonNullable<UpdateSubscriptionMethod> method() {
+        return (JsonNullable<UpdateSubscriptionMethod>) method;
     }
 
     /**
-     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
+     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * merchants.
      * 
      * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual payment.
      * 
-     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more information.
+     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more
+     * information.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -385,7 +393,9 @@ public class UpdateSubscriptionResponseBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity.
+     * Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately
+     * 1kB.
      * 
      * <p>Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
      */
@@ -398,7 +408,8 @@ public class UpdateSubscriptionResponseBody {
     /**
      * We will call this URL for any payment status changes of payments resulting from this subscription.
      * 
-     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as well. Be sure to verify the payment's subscription ID and its status.
+     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as
+     * well. Be sure to verify the payment's subscription ID and its status.
      */
     @JsonIgnore
     public Optional<String> webhookUrl() {
@@ -430,7 +441,8 @@ public class UpdateSubscriptionResponseBody {
     }
 
     /**
-     * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the subscription is not canceled (yet).
+     * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the
+     * subscription is not canceled (yet).
      */
     @JsonIgnore
     public JsonNullable<String> canceledAt() {
@@ -452,7 +464,8 @@ public class UpdateSubscriptionResponseBody {
 
 
     /**
-     * Indicates the response contains a subscription object. Will always contain the string `subscription` for this endpoint.
+     * Indicates the response contains a subscription object. Will always contain the string `subscription` for this
+     * endpoint.
      */
     public UpdateSubscriptionResponseBody withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -462,7 +475,8 @@ public class UpdateSubscriptionResponseBody {
 
 
     /**
-     * Indicates the response contains a subscription object. Will always contain the string `subscription` for this endpoint.
+     * Indicates the response contains a subscription object. Will always contain the string `subscription` for this
+     * endpoint.
      */
     public UpdateSubscriptionResponseBody withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
@@ -491,10 +505,8 @@ public class UpdateSubscriptionResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
-    public UpdateSubscriptionResponseBody withMode(String mode) {
+    public UpdateSubscriptionResponseBody withMode(UpdateSubscriptionMode mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = Optional.ofNullable(mode);
         return this;
@@ -503,21 +515,18 @@ public class UpdateSubscriptionResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
-    public UpdateSubscriptionResponseBody withMode(Optional<String> mode) {
+    public UpdateSubscriptionResponseBody withMode(Optional<? extends UpdateSubscriptionMode> mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
     }
 
     /**
-     * The subscription's current status is directly related to the status of the underlying customer or mandate that is enabling the subscription.
-     * 
-     * <p>Possible values: `pending` `active` `canceled` `suspended` `completed`
+     * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+     * enabling the subscription.
      */
-    public UpdateSubscriptionResponseBody withStatus(String status) {
+    public UpdateSubscriptionResponseBody withStatus(UpdateSubscriptionStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -525,18 +534,18 @@ public class UpdateSubscriptionResponseBody {
 
 
     /**
-     * The subscription's current status is directly related to the status of the underlying customer or mandate that is enabling the subscription.
-     * 
-     * <p>Possible values: `pending` `active` `canceled` `suspended` `completed`
+     * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+     * enabling the subscription.
      */
-    public UpdateSubscriptionResponseBody withStatus(Optional<String> status) {
+    public UpdateSubscriptionResponseBody withStatus(Optional<? extends UpdateSubscriptionStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
     /**
-     * The amount for each individual payment that is charged with this subscription. For example, for a monthly subscription of €10, the subscription amount should be set to €10.
+     * The amount for each individual payment that is charged with this subscription. For example, for a monthly
+     * subscription of €10, the subscription amount should be set to €10.
      */
     public UpdateSubscriptionResponseBody withAmount(UpdateSubscriptionSubscriptionsAmount amount) {
         Utils.checkNotNull(amount, "amount");
@@ -546,7 +555,8 @@ public class UpdateSubscriptionResponseBody {
 
 
     /**
-     * The amount for each individual payment that is charged with this subscription. For example, for a monthly subscription of €10, the subscription amount should be set to €10.
+     * The amount for each individual payment that is charged with this subscription. For example, for a monthly
+     * subscription of €10, the subscription amount should be set to €10.
      */
     public UpdateSubscriptionResponseBody withAmount(Optional<? extends UpdateSubscriptionSubscriptionsAmount> amount) {
         Utils.checkNotNull(amount, "amount");
@@ -555,7 +565,8 @@ public class UpdateSubscriptionResponseBody {
     }
 
     /**
-     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is considered completed.
+     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+     * considered completed.
      * 
      * <p>Test mode subscriptions will get canceled automatically after 10 payments.
      */
@@ -566,7 +577,8 @@ public class UpdateSubscriptionResponseBody {
     }
 
     /**
-     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is considered completed.
+     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+     * considered completed.
      * 
      * <p>Test mode subscriptions will get canceled automatically after 10 payments.
      */
@@ -599,10 +611,8 @@ public class UpdateSubscriptionResponseBody {
      * Interval to wait between payments, for example `1 month` or `14 days`.
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
-     * 
-     * <p>Possible values: `... days` `... weeks` `... months`
      */
-    public UpdateSubscriptionResponseBody withInterval(String interval) {
+    public UpdateSubscriptionResponseBody withInterval(UpdateSubscriptionSubscriptionsInterval interval) {
         Utils.checkNotNull(interval, "interval");
         this.interval = Optional.ofNullable(interval);
         return this;
@@ -613,10 +623,8 @@ public class UpdateSubscriptionResponseBody {
      * Interval to wait between payments, for example `1 month` or `14 days`.
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
-     * 
-     * <p>Possible values: `... days` `... weeks` `... months`
      */
-    public UpdateSubscriptionResponseBody withInterval(Optional<String> interval) {
+    public UpdateSubscriptionResponseBody withInterval(Optional<? extends UpdateSubscriptionSubscriptionsInterval> interval) {
         Utils.checkNotNull(interval, "interval");
         this.interval = interval;
         return this;
@@ -642,7 +650,8 @@ public class UpdateSubscriptionResponseBody {
     }
 
     /**
-     * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled, this parameter will not be returned.
+     * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled,
+     * this parameter will not be returned.
      */
     public UpdateSubscriptionResponseBody withNextPaymentDate(String nextPaymentDate) {
         Utils.checkNotNull(nextPaymentDate, "nextPaymentDate");
@@ -651,7 +660,8 @@ public class UpdateSubscriptionResponseBody {
     }
 
     /**
-     * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled, this parameter will not be returned.
+     * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled,
+     * this parameter will not be returned.
      */
     public UpdateSubscriptionResponseBody withNextPaymentDate(JsonNullable<String> nextPaymentDate) {
         Utils.checkNotNull(nextPaymentDate, "nextPaymentDate");
@@ -660,7 +670,8 @@ public class UpdateSubscriptionResponseBody {
     }
 
     /**
-     * The subscription's description will be used as the description of the resulting individual payments and so showing up on the bank statement of the consumer.
+     * The subscription's description will be used as the description of the resulting individual payments and so showing
+     * up on the bank statement of the consumer.
      * 
      * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
      */
@@ -672,7 +683,8 @@ public class UpdateSubscriptionResponseBody {
 
 
     /**
-     * The subscription's description will be used as the description of the resulting individual payments and so showing up on the bank statement of the consumer.
+     * The subscription's description will be used as the description of the resulting individual payments and so showing
+     * up on the bank statement of the consumer.
      * 
      * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
      */
@@ -684,10 +696,8 @@ public class UpdateSubscriptionResponseBody {
 
     /**
      * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
-     * 
-     * <p>Possible values: `creditcard` `directdebit` `paypal`
      */
-    public UpdateSubscriptionResponseBody withMethod(String method) {
+    public UpdateSubscriptionResponseBody withMethod(UpdateSubscriptionMethod method) {
         Utils.checkNotNull(method, "method");
         this.method = JsonNullable.of(method);
         return this;
@@ -695,21 +705,21 @@ public class UpdateSubscriptionResponseBody {
 
     /**
      * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
-     * 
-     * <p>Possible values: `creditcard` `directdebit` `paypal`
      */
-    public UpdateSubscriptionResponseBody withMethod(JsonNullable<String> method) {
+    public UpdateSubscriptionResponseBody withMethod(JsonNullable<? extends UpdateSubscriptionMethod> method) {
         Utils.checkNotNull(method, "method");
         this.method = method;
         return this;
     }
 
     /**
-     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
+     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * merchants.
      * 
      * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual payment.
      * 
-     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more information.
+     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more
+     * information.
      */
     public UpdateSubscriptionResponseBody withApplicationFee(UpdateSubscriptionApplicationFee applicationFee) {
         Utils.checkNotNull(applicationFee, "applicationFee");
@@ -719,11 +729,13 @@ public class UpdateSubscriptionResponseBody {
 
 
     /**
-     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
+     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * merchants.
      * 
      * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual payment.
      * 
-     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more information.
+     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more
+     * information.
      */
     public UpdateSubscriptionResponseBody withApplicationFee(Optional<? extends UpdateSubscriptionApplicationFee> applicationFee) {
         Utils.checkNotNull(applicationFee, "applicationFee");
@@ -732,7 +744,9 @@ public class UpdateSubscriptionResponseBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity.
+     * Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately
+     * 1kB.
      * 
      * <p>Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
      */
@@ -743,7 +757,9 @@ public class UpdateSubscriptionResponseBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity.
+     * Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately
+     * 1kB.
      * 
      * <p>Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
      */
@@ -756,7 +772,8 @@ public class UpdateSubscriptionResponseBody {
     /**
      * We will call this URL for any payment status changes of payments resulting from this subscription.
      * 
-     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as well. Be sure to verify the payment's subscription ID and its status.
+     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as
+     * well. Be sure to verify the payment's subscription ID and its status.
      */
     public UpdateSubscriptionResponseBody withWebhookUrl(String webhookUrl) {
         Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -768,7 +785,8 @@ public class UpdateSubscriptionResponseBody {
     /**
      * We will call this URL for any payment status changes of payments resulting from this subscription.
      * 
-     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as well. Be sure to verify the payment's subscription ID and its status.
+     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as
+     * well. Be sure to verify the payment's subscription ID and its status.
      */
     public UpdateSubscriptionResponseBody withWebhookUrl(Optional<String> webhookUrl) {
         Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -833,7 +851,8 @@ public class UpdateSubscriptionResponseBody {
     }
 
     /**
-     * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the subscription is not canceled (yet).
+     * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the
+     * subscription is not canceled (yet).
      */
     public UpdateSubscriptionResponseBody withCanceledAt(String canceledAt) {
         Utils.checkNotNull(canceledAt, "canceledAt");
@@ -842,7 +861,8 @@ public class UpdateSubscriptionResponseBody {
     }
 
     /**
-     * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the subscription is not canceled (yet).
+     * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the
+     * subscription is not canceled (yet).
      */
     public UpdateSubscriptionResponseBody withCanceledAt(JsonNullable<String> canceledAt) {
         Utils.checkNotNull(canceledAt, "canceledAt");
@@ -945,9 +965,9 @@ public class UpdateSubscriptionResponseBody {
 
         private Optional<String> id = Optional.empty();
 
-        private Optional<String> mode = Optional.empty();
+        private Optional<? extends UpdateSubscriptionMode> mode = Optional.empty();
 
-        private Optional<String> status = Optional.empty();
+        private Optional<? extends UpdateSubscriptionStatus> status = Optional.empty();
 
         private Optional<? extends UpdateSubscriptionSubscriptionsAmount> amount = Optional.empty();
 
@@ -955,7 +975,7 @@ public class UpdateSubscriptionResponseBody {
 
         private Optional<Long> timesRemaining = Optional.empty();
 
-        private Optional<String> interval = Optional.empty();
+        private Optional<? extends UpdateSubscriptionSubscriptionsInterval> interval = Optional.empty();
 
         private Optional<String> startDate = Optional.empty();
 
@@ -963,7 +983,7 @@ public class UpdateSubscriptionResponseBody {
 
         private Optional<String> description = Optional.empty();
 
-        private JsonNullable<String> method = JsonNullable.undefined();
+        private JsonNullable<? extends UpdateSubscriptionMethod> method = JsonNullable.undefined();
 
         private Optional<? extends UpdateSubscriptionApplicationFee> applicationFee = Optional.empty();
 
@@ -987,7 +1007,8 @@ public class UpdateSubscriptionResponseBody {
 
 
         /**
-         * Indicates the response contains a subscription object. Will always contain the string `subscription` for this endpoint.
+         * Indicates the response contains a subscription object. Will always contain the string `subscription` for this
+         * endpoint.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -996,7 +1017,8 @@ public class UpdateSubscriptionResponseBody {
         }
 
         /**
-         * Indicates the response contains a subscription object. Will always contain the string `subscription` for this endpoint.
+         * Indicates the response contains a subscription object. Will always contain the string `subscription` for this
+         * endpoint.
          */
         public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
@@ -1026,10 +1048,8 @@ public class UpdateSubscriptionResponseBody {
 
         /**
          * Whether this entity was created in live mode or in test mode.
-         * 
-         * <p>Possible values: `live` `test`
          */
-        public Builder mode(String mode) {
+        public Builder mode(UpdateSubscriptionMode mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = Optional.ofNullable(mode);
             return this;
@@ -1037,10 +1057,8 @@ public class UpdateSubscriptionResponseBody {
 
         /**
          * Whether this entity was created in live mode or in test mode.
-         * 
-         * <p>Possible values: `live` `test`
          */
-        public Builder mode(Optional<String> mode) {
+        public Builder mode(Optional<? extends UpdateSubscriptionMode> mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
@@ -1048,22 +1066,20 @@ public class UpdateSubscriptionResponseBody {
 
 
         /**
-         * The subscription's current status is directly related to the status of the underlying customer or mandate that is enabling the subscription.
-         * 
-         * <p>Possible values: `pending` `active` `canceled` `suspended` `completed`
+         * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+         * enabling the subscription.
          */
-        public Builder status(String status) {
+        public Builder status(UpdateSubscriptionStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
         }
 
         /**
-         * The subscription's current status is directly related to the status of the underlying customer or mandate that is enabling the subscription.
-         * 
-         * <p>Possible values: `pending` `active` `canceled` `suspended` `completed`
+         * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+         * enabling the subscription.
          */
-        public Builder status(Optional<String> status) {
+        public Builder status(Optional<? extends UpdateSubscriptionStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -1071,7 +1087,8 @@ public class UpdateSubscriptionResponseBody {
 
 
         /**
-         * The amount for each individual payment that is charged with this subscription. For example, for a monthly subscription of €10, the subscription amount should be set to €10.
+         * The amount for each individual payment that is charged with this subscription. For example, for a monthly
+         * subscription of €10, the subscription amount should be set to €10.
          */
         public Builder amount(UpdateSubscriptionSubscriptionsAmount amount) {
             Utils.checkNotNull(amount, "amount");
@@ -1080,7 +1097,8 @@ public class UpdateSubscriptionResponseBody {
         }
 
         /**
-         * The amount for each individual payment that is charged with this subscription. For example, for a monthly subscription of €10, the subscription amount should be set to €10.
+         * The amount for each individual payment that is charged with this subscription. For example, for a monthly
+         * subscription of €10, the subscription amount should be set to €10.
          */
         public Builder amount(Optional<? extends UpdateSubscriptionSubscriptionsAmount> amount) {
             Utils.checkNotNull(amount, "amount");
@@ -1090,7 +1108,8 @@ public class UpdateSubscriptionResponseBody {
 
 
         /**
-         * Total number of payments for the subscription. Once this number of payments is reached, the subscription is considered completed.
+         * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+         * considered completed.
          * 
          * <p>Test mode subscriptions will get canceled automatically after 10 payments.
          */
@@ -1101,7 +1120,8 @@ public class UpdateSubscriptionResponseBody {
         }
 
         /**
-         * Total number of payments for the subscription. Once this number of payments is reached, the subscription is considered completed.
+         * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+         * considered completed.
          * 
          * <p>Test mode subscriptions will get canceled automatically after 10 payments.
          */
@@ -1135,10 +1155,8 @@ public class UpdateSubscriptionResponseBody {
          * Interval to wait between payments, for example `1 month` or `14 days`.
          * 
          * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
-         * 
-         * <p>Possible values: `... days` `... weeks` `... months`
          */
-        public Builder interval(String interval) {
+        public Builder interval(UpdateSubscriptionSubscriptionsInterval interval) {
             Utils.checkNotNull(interval, "interval");
             this.interval = Optional.ofNullable(interval);
             return this;
@@ -1148,10 +1166,8 @@ public class UpdateSubscriptionResponseBody {
          * Interval to wait between payments, for example `1 month` or `14 days`.
          * 
          * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
-         * 
-         * <p>Possible values: `... days` `... weeks` `... months`
          */
-        public Builder interval(Optional<String> interval) {
+        public Builder interval(Optional<? extends UpdateSubscriptionSubscriptionsInterval> interval) {
             Utils.checkNotNull(interval, "interval");
             this.interval = interval;
             return this;
@@ -1178,7 +1194,8 @@ public class UpdateSubscriptionResponseBody {
 
 
         /**
-         * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled, this parameter will not be returned.
+         * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled,
+         * this parameter will not be returned.
          */
         public Builder nextPaymentDate(String nextPaymentDate) {
             Utils.checkNotNull(nextPaymentDate, "nextPaymentDate");
@@ -1187,7 +1204,8 @@ public class UpdateSubscriptionResponseBody {
         }
 
         /**
-         * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled, this parameter will not be returned.
+         * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled,
+         * this parameter will not be returned.
          */
         public Builder nextPaymentDate(JsonNullable<String> nextPaymentDate) {
             Utils.checkNotNull(nextPaymentDate, "nextPaymentDate");
@@ -1197,7 +1215,8 @@ public class UpdateSubscriptionResponseBody {
 
 
         /**
-         * The subscription's description will be used as the description of the resulting individual payments and so showing up on the bank statement of the consumer.
+         * The subscription's description will be used as the description of the resulting individual payments and so showing
+         * up on the bank statement of the consumer.
          * 
          * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
          */
@@ -1208,7 +1227,8 @@ public class UpdateSubscriptionResponseBody {
         }
 
         /**
-         * The subscription's description will be used as the description of the resulting individual payments and so showing up on the bank statement of the consumer.
+         * The subscription's description will be used as the description of the resulting individual payments and so showing
+         * up on the bank statement of the consumer.
          * 
          * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
          */
@@ -1221,10 +1241,8 @@ public class UpdateSubscriptionResponseBody {
 
         /**
          * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
-         * 
-         * <p>Possible values: `creditcard` `directdebit` `paypal`
          */
-        public Builder method(String method) {
+        public Builder method(UpdateSubscriptionMethod method) {
             Utils.checkNotNull(method, "method");
             this.method = JsonNullable.of(method);
             return this;
@@ -1232,10 +1250,8 @@ public class UpdateSubscriptionResponseBody {
 
         /**
          * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
-         * 
-         * <p>Possible values: `creditcard` `directdebit` `paypal`
          */
-        public Builder method(JsonNullable<String> method) {
+        public Builder method(JsonNullable<? extends UpdateSubscriptionMethod> method) {
             Utils.checkNotNull(method, "method");
             this.method = method;
             return this;
@@ -1243,11 +1259,13 @@ public class UpdateSubscriptionResponseBody {
 
 
         /**
-         * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
+         * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+         * merchants.
          * 
          * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual payment.
          * 
-         * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more information.
+         * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more
+         * information.
          */
         public Builder applicationFee(UpdateSubscriptionApplicationFee applicationFee) {
             Utils.checkNotNull(applicationFee, "applicationFee");
@@ -1256,11 +1274,13 @@ public class UpdateSubscriptionResponseBody {
         }
 
         /**
-         * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
+         * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+         * merchants.
          * 
          * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual payment.
          * 
-         * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more information.
+         * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more
+         * information.
          */
         public Builder applicationFee(Optional<? extends UpdateSubscriptionApplicationFee> applicationFee) {
             Utils.checkNotNull(applicationFee, "applicationFee");
@@ -1270,7 +1290,9 @@ public class UpdateSubscriptionResponseBody {
 
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity.
+         * Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately
+         * 1kB.
          * 
          * <p>Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
          */
@@ -1281,7 +1303,9 @@ public class UpdateSubscriptionResponseBody {
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity.
+         * Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately
+         * 1kB.
          * 
          * <p>Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
          */
@@ -1295,7 +1319,8 @@ public class UpdateSubscriptionResponseBody {
         /**
          * We will call this URL for any payment status changes of payments resulting from this subscription.
          * 
-         * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as well. Be sure to verify the payment's subscription ID and its status.
+         * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as
+         * well. Be sure to verify the payment's subscription ID and its status.
          */
         public Builder webhookUrl(String webhookUrl) {
             Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -1306,7 +1331,8 @@ public class UpdateSubscriptionResponseBody {
         /**
          * We will call this URL for any payment status changes of payments resulting from this subscription.
          * 
-         * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as well. Be sure to verify the payment's subscription ID and its status.
+         * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as
+         * well. Be sure to verify the payment's subscription ID and its status.
          */
         public Builder webhookUrl(Optional<String> webhookUrl) {
             Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -1373,7 +1399,8 @@ public class UpdateSubscriptionResponseBody {
 
 
         /**
-         * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the subscription is not canceled (yet).
+         * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the
+         * subscription is not canceled (yet).
          */
         public Builder canceledAt(String canceledAt) {
             Utils.checkNotNull(canceledAt, "canceledAt");
@@ -1382,7 +1409,8 @@ public class UpdateSubscriptionResponseBody {
         }
 
         /**
-         * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the subscription is not canceled (yet).
+         * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the
+         * subscription is not canceled (yet).
          */
         public Builder canceledAt(JsonNullable<String> canceledAt) {
             Utils.checkNotNull(canceledAt, "canceledAt");

@@ -18,7 +18,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListProfilesRequest {
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
     private Optional<String> from;
@@ -44,7 +45,8 @@ public class ListProfilesRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * result set.
      */
     @JsonIgnore
     public Optional<String> from() {
@@ -65,7 +67,8 @@ public class ListProfilesRequest {
 
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * result set.
      */
     public ListProfilesRequest withFrom(String from) {
         Utils.checkNotNull(from, "from");
@@ -75,7 +78,8 @@ public class ListProfilesRequest {
 
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * result set.
      */
     public ListProfilesRequest withFrom(Optional<String> from) {
         Utils.checkNotNull(from, "from");
@@ -141,7 +145,8 @@ public class ListProfilesRequest {
 
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * result set.
          */
         public Builder from(String from) {
             Utils.checkNotNull(from, "from");
@@ -150,7 +155,8 @@ public class ListProfilesRequest {
         }
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * result set.
          */
         public Builder from(Optional<String> from) {
             Utils.checkNotNull(from, "from");

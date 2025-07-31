@@ -33,7 +33,8 @@ public class GetOpenSettlementResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * A settlement object describing your current balance. For a complete reference of the settlement object, refer to the [Get settlement](get-settlement) endpoint documentation.
+     * A settlement object describing your current balance. For a complete reference of the settlement object, refer to
+     * the [Get settlement](get-settlement) endpoint documentation.
      */
     private Optional<? extends GetOpenSettlementResponseBody> object;
 
@@ -86,7 +87,8 @@ public class GetOpenSettlementResponse implements Response {
     }
 
     /**
-     * A settlement object describing your current balance. For a complete reference of the settlement object, refer to the [Get settlement](get-settlement) endpoint documentation.
+     * A settlement object describing your current balance. For a complete reference of the settlement object, refer to
+     * the [Get settlement](get-settlement) endpoint documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -127,7 +129,8 @@ public class GetOpenSettlementResponse implements Response {
     }
 
     /**
-     * A settlement object describing your current balance. For a complete reference of the settlement object, refer to the [Get settlement](get-settlement) endpoint documentation.
+     * A settlement object describing your current balance. For a complete reference of the settlement object, refer to
+     * the [Get settlement](get-settlement) endpoint documentation.
      */
     public GetOpenSettlementResponse withObject(GetOpenSettlementResponseBody object) {
         Utils.checkNotNull(object, "object");
@@ -137,7 +140,8 @@ public class GetOpenSettlementResponse implements Response {
 
 
     /**
-     * A settlement object describing your current balance. For a complete reference of the settlement object, refer to the [Get settlement](get-settlement) endpoint documentation.
+     * A settlement object describing your current balance. For a complete reference of the settlement object, refer to
+     * the [Get settlement](get-settlement) endpoint documentation.
      */
     public GetOpenSettlementResponse withObject(Optional<? extends GetOpenSettlementResponseBody> object) {
         Utils.checkNotNull(object, "object");
@@ -224,7 +228,8 @@ public class GetOpenSettlementResponse implements Response {
 
 
         /**
-         * A settlement object describing your current balance. For a complete reference of the settlement object, refer to the [Get settlement](get-settlement) endpoint documentation.
+         * A settlement object describing your current balance. For a complete reference of the settlement object, refer to
+         * the [Get settlement](get-settlement) endpoint documentation.
          */
         public Builder object(GetOpenSettlementResponseBody object) {
             Utils.checkNotNull(object, "object");
@@ -233,7 +238,8 @@ public class GetOpenSettlementResponse implements Response {
         }
 
         /**
-         * A settlement object describing your current balance. For a complete reference of the settlement object, refer to the [Get settlement](get-settlement) endpoint documentation.
+         * A settlement object describing your current balance. For a complete reference of the settlement object, refer to
+         * the [Get settlement](get-settlement) endpoint documentation.
          */
         public Builder object(Optional<? extends GetOpenSettlementResponseBody> object) {
             Utils.checkNotNull(object, "object");

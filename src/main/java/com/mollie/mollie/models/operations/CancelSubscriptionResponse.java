@@ -33,7 +33,8 @@ public class CancelSubscriptionResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * The updated subscription object with status `canceled`. For a complete reference of the subscription object, refer to the [Get subscription endpoint](get-subscription) documentation.
+     * The updated subscription object with status `canceled`. For a complete reference of the subscription object,
+     * refer to the [Get subscription endpoint](get-subscription) documentation.
      */
     private Optional<? extends CancelSubscriptionResponseBody> object;
 
@@ -86,7 +87,8 @@ public class CancelSubscriptionResponse implements Response {
     }
 
     /**
-     * The updated subscription object with status `canceled`. For a complete reference of the subscription object, refer to the [Get subscription endpoint](get-subscription) documentation.
+     * The updated subscription object with status `canceled`. For a complete reference of the subscription object,
+     * refer to the [Get subscription endpoint](get-subscription) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -127,7 +129,8 @@ public class CancelSubscriptionResponse implements Response {
     }
 
     /**
-     * The updated subscription object with status `canceled`. For a complete reference of the subscription object, refer to the [Get subscription endpoint](get-subscription) documentation.
+     * The updated subscription object with status `canceled`. For a complete reference of the subscription object,
+     * refer to the [Get subscription endpoint](get-subscription) documentation.
      */
     public CancelSubscriptionResponse withObject(CancelSubscriptionResponseBody object) {
         Utils.checkNotNull(object, "object");
@@ -137,7 +140,8 @@ public class CancelSubscriptionResponse implements Response {
 
 
     /**
-     * The updated subscription object with status `canceled`. For a complete reference of the subscription object, refer to the [Get subscription endpoint](get-subscription) documentation.
+     * The updated subscription object with status `canceled`. For a complete reference of the subscription object,
+     * refer to the [Get subscription endpoint](get-subscription) documentation.
      */
     public CancelSubscriptionResponse withObject(Optional<? extends CancelSubscriptionResponseBody> object) {
         Utils.checkNotNull(object, "object");
@@ -224,7 +228,8 @@ public class CancelSubscriptionResponse implements Response {
 
 
         /**
-         * The updated subscription object with status `canceled`. For a complete reference of the subscription object, refer to the [Get subscription endpoint](get-subscription) documentation.
+         * The updated subscription object with status `canceled`. For a complete reference of the subscription object,
+         * refer to the [Get subscription endpoint](get-subscription) documentation.
          */
         public Builder object(CancelSubscriptionResponseBody object) {
             Utils.checkNotNull(object, "object");
@@ -233,7 +238,8 @@ public class CancelSubscriptionResponse implements Response {
         }
 
         /**
-         * The updated subscription object with status `canceled`. For a complete reference of the subscription object, refer to the [Get subscription endpoint](get-subscription) documentation.
+         * The updated subscription object with status `canceled`. For a complete reference of the subscription object,
+         * refer to the [Get subscription endpoint](get-subscription) documentation.
          */
         public Builder object(Optional<? extends CancelSubscriptionResponseBody> object) {
             Utils.checkNotNull(object, "object");

@@ -14,11 +14,13 @@ import java.lang.String;
 /**
  * ListMethodsResponseBody
  * 
- * <p>A list of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
+ * <p>A list of payment method objects. For a complete reference of the
+ * payment method object, refer to the [Get payment method endpoint](get-method) documentation.
  */
 public class ListMethodsResponseBody {
     /**
-     * The number of payment method objects in this result set. Results are **not** paginated.
+     * The number of payment method objects in this result set.
+     * Results are **not** paginated.
      */
     @JsonProperty("count")
     private long count;
@@ -45,7 +47,8 @@ public class ListMethodsResponseBody {
     }
 
     /**
-     * The number of payment method objects in this result set. Results are **not** paginated.
+     * The number of payment method objects in this result set.
+     * Results are **not** paginated.
      */
     @JsonIgnore
     public long count() {
@@ -68,7 +71,8 @@ public class ListMethodsResponseBody {
 
 
     /**
-     * The number of payment method objects in this result set. Results are **not** paginated.
+     * The number of payment method objects in this result set.
+     * Results are **not** paginated.
      */
     public ListMethodsResponseBody withCount(long count) {
         Utils.checkNotNull(count, "count");
@@ -132,7 +136,8 @@ public class ListMethodsResponseBody {
 
 
         /**
-         * The number of payment method objects in this result set. Results are **not** paginated.
+         * The number of payment method objects in this result set.
+         * Results are **not** paginated.
          */
         public Builder count(long count) {
             Utils.checkNotNull(count, "count");

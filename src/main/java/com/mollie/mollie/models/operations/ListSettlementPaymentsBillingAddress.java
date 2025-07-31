@@ -16,9 +16,11 @@ import java.util.Optional;
 /**
  * ListSettlementPaymentsBillingAddress
  * 
- * <p>The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+ * <p>The customer's billing address details. We advise to provide these details to improve fraud protection and
+ * conversion.
  * 
- * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+ * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+ * `country`.
  * 
  * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
  */
@@ -31,7 +33,8 @@ public class ListSettlementPaymentsBillingAddress {
     private Optional<String> title;
 
     /**
-     * The given name (first name) of the person should be at least two characters and cannot contain only numbers.
+     * The given name (first name) of the person should be at least two characters and cannot contain only
+     * numbers.
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
      */
@@ -40,7 +43,8 @@ public class ListSettlementPaymentsBillingAddress {
     private Optional<String> givenName;
 
     /**
-     * The given family name (surname) of the person should be at least two characters and cannot contain only numbers.
+     * The given family name (surname) of the person should be at least two characters and cannot contain only
+     * numbers.
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
      */
@@ -83,7 +87,8 @@ public class ListSettlementPaymentsBillingAddress {
     /**
      * A valid e-mail address.
      * 
-     * <p>If you provide the email address for a `banktransfer` payment, we will automatically send the instructions email upon payment creation. The language of the email will follow the locale parameter of the payment.
+     * <p>If you provide the email address for a `banktransfer` payment, we will automatically send the instructions
+     * email upon payment creation. The language of the email will follow the locale parameter of the payment.
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
      */
@@ -179,7 +184,8 @@ public class ListSettlementPaymentsBillingAddress {
     }
 
     /**
-     * The given name (first name) of the person should be at least two characters and cannot contain only numbers.
+     * The given name (first name) of the person should be at least two characters and cannot contain only
+     * numbers.
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
      */
@@ -189,7 +195,8 @@ public class ListSettlementPaymentsBillingAddress {
     }
 
     /**
-     * The given family name (surname) of the person should be at least two characters and cannot contain only numbers.
+     * The given family name (surname) of the person should be at least two characters and cannot contain only
+     * numbers.
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
      */
@@ -237,7 +244,8 @@ public class ListSettlementPaymentsBillingAddress {
     /**
      * A valid e-mail address.
      * 
-     * <p>If you provide the email address for a `banktransfer` payment, we will automatically send the instructions email upon payment creation. The language of the email will follow the locale parameter of the payment.
+     * <p>If you provide the email address for a `banktransfer` payment, we will automatically send the instructions
+     * email upon payment creation. The language of the email will follow the locale parameter of the payment.
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
      */
@@ -307,7 +315,8 @@ public class ListSettlementPaymentsBillingAddress {
     }
 
     /**
-     * The given name (first name) of the person should be at least two characters and cannot contain only numbers.
+     * The given name (first name) of the person should be at least two characters and cannot contain only
+     * numbers.
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
      */
@@ -319,7 +328,8 @@ public class ListSettlementPaymentsBillingAddress {
 
 
     /**
-     * The given name (first name) of the person should be at least two characters and cannot contain only numbers.
+     * The given name (first name) of the person should be at least two characters and cannot contain only
+     * numbers.
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
      */
@@ -330,7 +340,8 @@ public class ListSettlementPaymentsBillingAddress {
     }
 
     /**
-     * The given family name (surname) of the person should be at least two characters and cannot contain only numbers.
+     * The given family name (surname) of the person should be at least two characters and cannot contain only
+     * numbers.
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
      */
@@ -342,7 +353,8 @@ public class ListSettlementPaymentsBillingAddress {
 
 
     /**
-     * The given family name (surname) of the person should be at least two characters and cannot contain only numbers.
+     * The given family name (surname) of the person should be at least two characters and cannot contain only
+     * numbers.
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
      */
@@ -439,7 +451,8 @@ public class ListSettlementPaymentsBillingAddress {
     /**
      * A valid e-mail address.
      * 
-     * <p>If you provide the email address for a `banktransfer` payment, we will automatically send the instructions email upon payment creation. The language of the email will follow the locale parameter of the payment.
+     * <p>If you provide the email address for a `banktransfer` payment, we will automatically send the instructions
+     * email upon payment creation. The language of the email will follow the locale parameter of the payment.
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
      */
@@ -453,7 +466,8 @@ public class ListSettlementPaymentsBillingAddress {
     /**
      * A valid e-mail address.
      * 
-     * <p>If you provide the email address for a `banktransfer` payment, we will automatically send the instructions email upon payment creation. The language of the email will follow the locale parameter of the payment.
+     * <p>If you provide the email address for a `banktransfer` payment, we will automatically send the instructions
+     * email upon payment creation. The language of the email will follow the locale parameter of the payment.
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
      */
@@ -649,7 +663,8 @@ public class ListSettlementPaymentsBillingAddress {
 
 
         /**
-         * The given name (first name) of the person should be at least two characters and cannot contain only numbers.
+         * The given name (first name) of the person should be at least two characters and cannot contain only
+         * numbers.
          * 
          * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
          */
@@ -660,7 +675,8 @@ public class ListSettlementPaymentsBillingAddress {
         }
 
         /**
-         * The given name (first name) of the person should be at least two characters and cannot contain only numbers.
+         * The given name (first name) of the person should be at least two characters and cannot contain only
+         * numbers.
          * 
          * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
          */
@@ -672,7 +688,8 @@ public class ListSettlementPaymentsBillingAddress {
 
 
         /**
-         * The given family name (surname) of the person should be at least two characters and cannot contain only numbers.
+         * The given family name (surname) of the person should be at least two characters and cannot contain only
+         * numbers.
          * 
          * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
          */
@@ -683,7 +700,8 @@ public class ListSettlementPaymentsBillingAddress {
         }
 
         /**
-         * The given family name (surname) of the person should be at least two characters and cannot contain only numbers.
+         * The given family name (surname) of the person should be at least two characters and cannot contain only
+         * numbers.
          * 
          * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
          */
@@ -781,7 +799,8 @@ public class ListSettlementPaymentsBillingAddress {
         /**
          * A valid e-mail address.
          * 
-         * <p>If you provide the email address for a `banktransfer` payment, we will automatically send the instructions email upon payment creation. The language of the email will follow the locale parameter of the payment.
+         * <p>If you provide the email address for a `banktransfer` payment, we will automatically send the instructions
+         * email upon payment creation. The language of the email will follow the locale parameter of the payment.
          * 
          * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
          */
@@ -794,7 +813,8 @@ public class ListSettlementPaymentsBillingAddress {
         /**
          * A valid e-mail address.
          * 
-         * <p>If you provide the email address for a `banktransfer` payment, we will automatically send the instructions email upon payment creation. The language of the email will follow the locale parameter of the payment.
+         * <p>If you provide the email address for a `banktransfer` payment, we will automatically send the instructions
+         * email upon payment creation. The language of the email will follow the locale parameter of the payment.
          * 
          * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
          */

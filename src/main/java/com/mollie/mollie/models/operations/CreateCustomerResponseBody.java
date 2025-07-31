@@ -39,12 +39,10 @@ public class CreateCustomerResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<String> mode;
+    private Optional<? extends CreateCustomerMode> mode;
 
     /**
      * The full name of the customer.
@@ -61,14 +59,16 @@ public class CreateCustomerResponseBody {
     private JsonNullable<String> email;
 
     /**
-     * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
+     * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if
+     * absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("locale")
-    private JsonNullable<String> locale;
+    private JsonNullable<? extends CreateCustomerCustomersLocale> locale;
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
@@ -92,10 +92,10 @@ public class CreateCustomerResponseBody {
     public CreateCustomerResponseBody(
             @JsonProperty("resource") Optional<String> resource,
             @JsonProperty("id") Optional<String> id,
-            @JsonProperty("mode") Optional<String> mode,
+            @JsonProperty("mode") Optional<? extends CreateCustomerMode> mode,
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("email") JsonNullable<String> email,
-            @JsonProperty("locale") JsonNullable<String> locale,
+            @JsonProperty("locale") JsonNullable<? extends CreateCustomerCustomersLocale> locale,
             @JsonProperty("metadata") JsonNullable<? extends CreateCustomerCustomersMetadata> metadata,
             @JsonProperty("createdAt") Optional<String> createdAt,
             @JsonProperty("_links") Optional<? extends CreateCustomerLinks> links) {
@@ -143,12 +143,11 @@ public class CreateCustomerResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> mode() {
-        return mode;
+    public Optional<CreateCustomerMode> mode() {
+        return (Optional<CreateCustomerMode>) mode;
     }
 
     /**
@@ -168,15 +167,18 @@ public class CreateCustomerResponseBody {
     }
 
     /**
-     * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
+     * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if
+     * absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> locale() {
-        return locale;
+    public JsonNullable<CreateCustomerCustomersLocale> locale() {
+        return (JsonNullable<CreateCustomerCustomersLocale>) locale;
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -246,10 +248,8 @@ public class CreateCustomerResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
-    public CreateCustomerResponseBody withMode(String mode) {
+    public CreateCustomerResponseBody withMode(CreateCustomerMode mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = Optional.ofNullable(mode);
         return this;
@@ -258,10 +258,8 @@ public class CreateCustomerResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
-    public CreateCustomerResponseBody withMode(Optional<String> mode) {
+    public CreateCustomerResponseBody withMode(Optional<? extends CreateCustomerMode> mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
@@ -304,25 +302,28 @@ public class CreateCustomerResponseBody {
     }
 
     /**
-     * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
+     * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if
+     * absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
      */
-    public CreateCustomerResponseBody withLocale(String locale) {
+    public CreateCustomerResponseBody withLocale(CreateCustomerCustomersLocale locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = JsonNullable.of(locale);
         return this;
     }
 
     /**
-     * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
+     * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if
+     * absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
      */
-    public CreateCustomerResponseBody withLocale(JsonNullable<String> locale) {
+    public CreateCustomerResponseBody withLocale(JsonNullable<? extends CreateCustomerCustomersLocale> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     public CreateCustomerResponseBody withMetadata(CreateCustomerCustomersMetadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -331,7 +332,8 @@ public class CreateCustomerResponseBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     public CreateCustomerResponseBody withMetadata(JsonNullable<? extends CreateCustomerCustomersMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -427,13 +429,13 @@ public class CreateCustomerResponseBody {
 
         private Optional<String> id = Optional.empty();
 
-        private Optional<String> mode = Optional.empty();
+        private Optional<? extends CreateCustomerMode> mode = Optional.empty();
 
         private JsonNullable<String> name = JsonNullable.undefined();
 
         private JsonNullable<String> email = JsonNullable.undefined();
 
-        private JsonNullable<String> locale = JsonNullable.undefined();
+        private JsonNullable<? extends CreateCustomerCustomersLocale> locale = JsonNullable.undefined();
 
         private JsonNullable<? extends CreateCustomerCustomersMetadata> metadata = JsonNullable.undefined();
 
@@ -486,10 +488,8 @@ public class CreateCustomerResponseBody {
 
         /**
          * Whether this entity was created in live mode or in test mode.
-         * 
-         * <p>Possible values: `live` `test`
          */
-        public Builder mode(String mode) {
+        public Builder mode(CreateCustomerMode mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = Optional.ofNullable(mode);
             return this;
@@ -497,10 +497,8 @@ public class CreateCustomerResponseBody {
 
         /**
          * Whether this entity was created in live mode or in test mode.
-         * 
-         * <p>Possible values: `live` `test`
          */
-        public Builder mode(Optional<String> mode) {
+        public Builder mode(Optional<? extends CreateCustomerMode> mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
@@ -546,18 +544,20 @@ public class CreateCustomerResponseBody {
 
 
         /**
-         * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
+         * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if
+         * absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
          */
-        public Builder locale(String locale) {
+        public Builder locale(CreateCustomerCustomersLocale locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = JsonNullable.of(locale);
             return this;
         }
 
         /**
-         * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
+         * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if
+         * absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
          */
-        public Builder locale(JsonNullable<String> locale) {
+        public Builder locale(JsonNullable<? extends CreateCustomerCustomersLocale> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;
@@ -565,7 +565,8 @@ public class CreateCustomerResponseBody {
 
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
         public Builder metadata(CreateCustomerCustomersMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -574,7 +575,8 @@ public class CreateCustomerResponseBody {
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
         public Builder metadata(JsonNullable<? extends CreateCustomerCustomersMetadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");

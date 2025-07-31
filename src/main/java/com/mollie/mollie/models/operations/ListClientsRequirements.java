@@ -18,20 +18,21 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListClientsRequirements {
     /**
-     * The name of this requirement, referring to the task to be fulfilled by the organization to enable or re-enable the capability. The name is unique among other requirements of the same capability.
+     * The name of this requirement, referring to the task to be fulfilled by the organization
+     * to enable or re-enable the capability. The name is unique among other requirements
+     * of the same capability.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
     private Optional<String> id;
 
     /**
-     * The status of the requirement depends on its due date. If no due date is given, the status will be `requested`.
-     * 
-     * <p>Possible values: `currently-due` `past-due` `requested`
+     * The status of the requirement depends on its due date.
+     * If no due date is given, the status will be `requested`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<String> status;
+    private Optional<? extends ListClientsClientsResponseStatus> status;
 
     /**
      * Due date until the requirement must be fulfilled, if any. The date is shown in ISO-8601 format.
@@ -48,7 +49,7 @@ public class ListClientsRequirements {
     @JsonCreator
     public ListClientsRequirements(
             @JsonProperty("id") Optional<String> id,
-            @JsonProperty("status") Optional<String> status,
+            @JsonProperty("status") Optional<? extends ListClientsClientsResponseStatus> status,
             @JsonProperty("dueDate") JsonNullable<String> dueDate,
             @JsonProperty("_links") Optional<? extends ListClientsClientsResponse200ApplicationHalPlusJsonLinks> links) {
         Utils.checkNotNull(id, "id");
@@ -67,7 +68,9 @@ public class ListClientsRequirements {
     }
 
     /**
-     * The name of this requirement, referring to the task to be fulfilled by the organization to enable or re-enable the capability. The name is unique among other requirements of the same capability.
+     * The name of this requirement, referring to the task to be fulfilled by the organization
+     * to enable or re-enable the capability. The name is unique among other requirements
+     * of the same capability.
      */
     @JsonIgnore
     public Optional<String> id() {
@@ -75,13 +78,13 @@ public class ListClientsRequirements {
     }
 
     /**
-     * The status of the requirement depends on its due date. If no due date is given, the status will be `requested`.
-     * 
-     * <p>Possible values: `currently-due` `past-due` `requested`
+     * The status of the requirement depends on its due date.
+     * If no due date is given, the status will be `requested`.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> status() {
-        return status;
+    public Optional<ListClientsClientsResponseStatus> status() {
+        return (Optional<ListClientsClientsResponseStatus>) status;
     }
 
     /**
@@ -104,7 +107,9 @@ public class ListClientsRequirements {
 
 
     /**
-     * The name of this requirement, referring to the task to be fulfilled by the organization to enable or re-enable the capability. The name is unique among other requirements of the same capability.
+     * The name of this requirement, referring to the task to be fulfilled by the organization
+     * to enable or re-enable the capability. The name is unique among other requirements
+     * of the same capability.
      */
     public ListClientsRequirements withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -114,7 +119,9 @@ public class ListClientsRequirements {
 
 
     /**
-     * The name of this requirement, referring to the task to be fulfilled by the organization to enable or re-enable the capability. The name is unique among other requirements of the same capability.
+     * The name of this requirement, referring to the task to be fulfilled by the organization
+     * to enable or re-enable the capability. The name is unique among other requirements
+     * of the same capability.
      */
     public ListClientsRequirements withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
@@ -123,11 +130,10 @@ public class ListClientsRequirements {
     }
 
     /**
-     * The status of the requirement depends on its due date. If no due date is given, the status will be `requested`.
-     * 
-     * <p>Possible values: `currently-due` `past-due` `requested`
+     * The status of the requirement depends on its due date.
+     * If no due date is given, the status will be `requested`.
      */
-    public ListClientsRequirements withStatus(String status) {
+    public ListClientsRequirements withStatus(ListClientsClientsResponseStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -135,11 +141,10 @@ public class ListClientsRequirements {
 
 
     /**
-     * The status of the requirement depends on its due date. If no due date is given, the status will be `requested`.
-     * 
-     * <p>Possible values: `currently-due` `past-due` `requested`
+     * The status of the requirement depends on its due date.
+     * If no due date is given, the status will be `requested`.
      */
-    public ListClientsRequirements withStatus(Optional<String> status) {
+    public ListClientsRequirements withStatus(Optional<? extends ListClientsClientsResponseStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -213,7 +218,7 @@ public class ListClientsRequirements {
 
         private Optional<String> id = Optional.empty();
 
-        private Optional<String> status = Optional.empty();
+        private Optional<? extends ListClientsClientsResponseStatus> status = Optional.empty();
 
         private JsonNullable<String> dueDate = JsonNullable.undefined();
 
@@ -225,7 +230,9 @@ public class ListClientsRequirements {
 
 
         /**
-         * The name of this requirement, referring to the task to be fulfilled by the organization to enable or re-enable the capability. The name is unique among other requirements of the same capability.
+         * The name of this requirement, referring to the task to be fulfilled by the organization
+         * to enable or re-enable the capability. The name is unique among other requirements
+         * of the same capability.
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -234,7 +241,9 @@ public class ListClientsRequirements {
         }
 
         /**
-         * The name of this requirement, referring to the task to be fulfilled by the organization to enable or re-enable the capability. The name is unique among other requirements of the same capability.
+         * The name of this requirement, referring to the task to be fulfilled by the organization
+         * to enable or re-enable the capability. The name is unique among other requirements
+         * of the same capability.
          */
         public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
@@ -244,22 +253,20 @@ public class ListClientsRequirements {
 
 
         /**
-         * The status of the requirement depends on its due date. If no due date is given, the status will be `requested`.
-         * 
-         * <p>Possible values: `currently-due` `past-due` `requested`
+         * The status of the requirement depends on its due date.
+         * If no due date is given, the status will be `requested`.
          */
-        public Builder status(String status) {
+        public Builder status(ListClientsClientsResponseStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
         }
 
         /**
-         * The status of the requirement depends on its due date. If no due date is given, the status will be `requested`.
-         * 
-         * <p>Possible values: `currently-due` `past-due` `requested`
+         * The status of the requirement depends on its due date.
+         * If no due date is given, the status will be `requested`.
          */
-        public Builder status(Optional<String> status) {
+        public Builder status(Optional<? extends ListClientsClientsResponseStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

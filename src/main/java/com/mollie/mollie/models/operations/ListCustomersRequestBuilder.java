@@ -26,7 +26,10 @@ public class ListCustomersRequestBuilder {
                             "limit",
                             "50",
                             new TypeReference<JsonNullable<Long>>() {});
-    private JsonNullable<String> sort = JsonNullable.undefined();
+    private JsonNullable<? extends ListCustomersQueryParamSort> sort = Utils.readDefaultOrConstValue(
+                            "sort",
+                            "\"desc\"",
+                            new TypeReference<JsonNullable<? extends ListCustomersQueryParamSort>>() {});
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -59,13 +62,13 @@ public class ListCustomersRequestBuilder {
         return this;
     }
 
-    public ListCustomersRequestBuilder sort(String sort) {
+    public ListCustomersRequestBuilder sort(ListCustomersQueryParamSort sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = JsonNullable.of(sort);
         return this;
     }
 
-    public ListCustomersRequestBuilder sort(JsonNullable<String> sort) {
+    public ListCustomersRequestBuilder sort(JsonNullable<? extends ListCustomersQueryParamSort> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;
@@ -100,6 +103,9 @@ public class ListCustomersRequestBuilder {
         if (limit == null) {
             limit = _SINGLETON_VALUE_Limit.value();
         }
+        if (sort == null) {
+            sort = _SINGLETON_VALUE_Sort.value();
+        }
 
         ListCustomersRequest request = new ListCustomersRequest(from,
             limit,
@@ -126,4 +132,10 @@ public class ListCustomersRequestBuilder {
                     "limit",
                     "50",
                     new TypeReference<JsonNullable<Long>>() {});
+
+    private static final LazySingletonValue<JsonNullable<? extends ListCustomersQueryParamSort>> _SINGLETON_VALUE_Sort =
+            new LazySingletonValue<>(
+                    "sort",
+                    "\"desc\"",
+                    new TypeReference<JsonNullable<? extends ListCustomersQueryParamSort>>() {});
 }

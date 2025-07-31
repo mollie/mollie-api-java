@@ -21,11 +21,13 @@ import org.openapitools.jackson.nullable.JsonNullable;
 /**
  * CancelSubscriptionResponseBody
  * 
- * <p>The updated subscription object with status `canceled`. For a complete reference of the subscription object, refer to the [Get subscription endpoint](get-subscription) documentation.
+ * <p>The updated subscription object with status `canceled`. For a complete reference of the subscription object,
+ * refer to the [Get subscription endpoint](get-subscription) documentation.
  */
 public class CancelSubscriptionResponseBody {
     /**
-     * Indicates the response contains a subscription object. Will always contain the string `subscription` for this endpoint.
+     * Indicates the response contains a subscription object. Will always contain the string `subscription` for this
+     * endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
@@ -40,31 +42,30 @@ public class CancelSubscriptionResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<String> mode;
+    private Optional<? extends CancelSubscriptionMode> mode;
 
     /**
-     * The subscription's current status is directly related to the status of the underlying customer or mandate that is enabling the subscription.
-     * 
-     * <p>Possible values: `pending` `active` `canceled` `suspended` `completed`
+     * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+     * enabling the subscription.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<String> status;
+    private Optional<? extends CancelSubscriptionStatus> status;
 
     /**
-     * The amount for each individual payment that is charged with this subscription. For example, for a monthly subscription of €10, the subscription amount should be set to €10.
+     * The amount for each individual payment that is charged with this subscription. For example, for a monthly
+     * subscription of €10, the subscription amount should be set to €10.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
     private Optional<? extends CancelSubscriptionAmount> amount;
 
     /**
-     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is considered completed.
+     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+     * considered completed.
      * 
      * <p>Test mode subscriptions will get canceled automatically after 10 payments.
      */
@@ -83,12 +84,10 @@ public class CancelSubscriptionResponseBody {
      * Interval to wait between payments, for example `1 month` or `14 days`.
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
-     * 
-     * <p>Possible values: `... days` `... weeks` `... months`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("interval")
-    private Optional<String> interval;
+    private Optional<? extends CancelSubscriptionInterval> interval;
 
     /**
      * The start date of the subscription in `YYYY-MM-DD` format.
@@ -98,14 +97,16 @@ public class CancelSubscriptionResponseBody {
     private Optional<String> startDate;
 
     /**
-     * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled, this parameter will not be returned.
+     * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled,
+     * this parameter will not be returned.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("nextPaymentDate")
     private JsonNullable<String> nextPaymentDate;
 
     /**
-     * The subscription's description will be used as the description of the resulting individual payments and so showing up on the bank statement of the consumer.
+     * The subscription's description will be used as the description of the resulting individual payments and so showing
+     * up on the bank statement of the consumer.
      * 
      * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
      */
@@ -115,26 +116,28 @@ public class CancelSubscriptionResponseBody {
 
     /**
      * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
-     * 
-     * <p>Possible values: `creditcard` `directdebit` `paypal`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("method")
-    private JsonNullable<String> method;
+    private JsonNullable<? extends CancelSubscriptionMethod> method;
 
     /**
-     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
+     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * merchants.
      * 
      * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual payment.
      * 
-     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more information.
+     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more
+     * information.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("applicationFee")
     private Optional<? extends CancelSubscriptionApplicationFee> applicationFee;
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity.
+     * Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately
+     * 1kB.
      * 
      * <p>Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
      */
@@ -145,7 +148,8 @@ public class CancelSubscriptionResponseBody {
     /**
      * We will call this URL for any payment status changes of payments resulting from this subscription.
      * 
-     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as well. Be sure to verify the payment's subscription ID and its status.
+     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as
+     * well. Be sure to verify the payment's subscription ID and its status.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("webhookUrl")
@@ -173,7 +177,8 @@ public class CancelSubscriptionResponseBody {
     private Optional<String> createdAt;
 
     /**
-     * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the subscription is not canceled (yet).
+     * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the
+     * subscription is not canceled (yet).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("canceledAt")
@@ -190,16 +195,16 @@ public class CancelSubscriptionResponseBody {
     public CancelSubscriptionResponseBody(
             @JsonProperty("resource") Optional<String> resource,
             @JsonProperty("id") Optional<String> id,
-            @JsonProperty("mode") Optional<String> mode,
-            @JsonProperty("status") Optional<String> status,
+            @JsonProperty("mode") Optional<? extends CancelSubscriptionMode> mode,
+            @JsonProperty("status") Optional<? extends CancelSubscriptionStatus> status,
             @JsonProperty("amount") Optional<? extends CancelSubscriptionAmount> amount,
             @JsonProperty("times") JsonNullable<Long> times,
             @JsonProperty("timesRemaining") Optional<Long> timesRemaining,
-            @JsonProperty("interval") Optional<String> interval,
+            @JsonProperty("interval") Optional<? extends CancelSubscriptionInterval> interval,
             @JsonProperty("startDate") Optional<String> startDate,
             @JsonProperty("nextPaymentDate") JsonNullable<String> nextPaymentDate,
             @JsonProperty("description") Optional<String> description,
-            @JsonProperty("method") JsonNullable<String> method,
+            @JsonProperty("method") JsonNullable<? extends CancelSubscriptionMethod> method,
             @JsonProperty("applicationFee") Optional<? extends CancelSubscriptionApplicationFee> applicationFee,
             @JsonProperty("metadata") JsonNullable<? extends CancelSubscriptionMetadata> metadata,
             @JsonProperty("webhookUrl") Optional<String> webhookUrl,
@@ -261,7 +266,8 @@ public class CancelSubscriptionResponseBody {
     }
 
     /**
-     * Indicates the response contains a subscription object. Will always contain the string `subscription` for this endpoint.
+     * Indicates the response contains a subscription object. Will always contain the string `subscription` for this
+     * endpoint.
      */
     @JsonIgnore
     public Optional<String> resource() {
@@ -278,26 +284,26 @@ public class CancelSubscriptionResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> mode() {
-        return mode;
+    public Optional<CancelSubscriptionMode> mode() {
+        return (Optional<CancelSubscriptionMode>) mode;
     }
 
     /**
-     * The subscription's current status is directly related to the status of the underlying customer or mandate that is enabling the subscription.
-     * 
-     * <p>Possible values: `pending` `active` `canceled` `suspended` `completed`
+     * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+     * enabling the subscription.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> status() {
-        return status;
+    public Optional<CancelSubscriptionStatus> status() {
+        return (Optional<CancelSubscriptionStatus>) status;
     }
 
     /**
-     * The amount for each individual payment that is charged with this subscription. For example, for a monthly subscription of €10, the subscription amount should be set to €10.
+     * The amount for each individual payment that is charged with this subscription. For example, for a monthly
+     * subscription of €10, the subscription amount should be set to €10.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -306,7 +312,8 @@ public class CancelSubscriptionResponseBody {
     }
 
     /**
-     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is considered completed.
+     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+     * considered completed.
      * 
      * <p>Test mode subscriptions will get canceled automatically after 10 payments.
      */
@@ -327,12 +334,11 @@ public class CancelSubscriptionResponseBody {
      * Interval to wait between payments, for example `1 month` or `14 days`.
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
-     * 
-     * <p>Possible values: `... days` `... weeks` `... months`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> interval() {
-        return interval;
+    public Optional<CancelSubscriptionInterval> interval() {
+        return (Optional<CancelSubscriptionInterval>) interval;
     }
 
     /**
@@ -344,7 +350,8 @@ public class CancelSubscriptionResponseBody {
     }
 
     /**
-     * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled, this parameter will not be returned.
+     * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled,
+     * this parameter will not be returned.
      */
     @JsonIgnore
     public JsonNullable<String> nextPaymentDate() {
@@ -352,7 +359,8 @@ public class CancelSubscriptionResponseBody {
     }
 
     /**
-     * The subscription's description will be used as the description of the resulting individual payments and so showing up on the bank statement of the consumer.
+     * The subscription's description will be used as the description of the resulting individual payments and so showing
+     * up on the bank statement of the consumer.
      * 
      * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
      */
@@ -363,20 +371,21 @@ public class CancelSubscriptionResponseBody {
 
     /**
      * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
-     * 
-     * <p>Possible values: `creditcard` `directdebit` `paypal`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> method() {
-        return method;
+    public JsonNullable<CancelSubscriptionMethod> method() {
+        return (JsonNullable<CancelSubscriptionMethod>) method;
     }
 
     /**
-     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
+     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * merchants.
      * 
      * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual payment.
      * 
-     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more information.
+     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more
+     * information.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -385,7 +394,9 @@ public class CancelSubscriptionResponseBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity.
+     * Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately
+     * 1kB.
      * 
      * <p>Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
      */
@@ -398,7 +409,8 @@ public class CancelSubscriptionResponseBody {
     /**
      * We will call this URL for any payment status changes of payments resulting from this subscription.
      * 
-     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as well. Be sure to verify the payment's subscription ID and its status.
+     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as
+     * well. Be sure to verify the payment's subscription ID and its status.
      */
     @JsonIgnore
     public Optional<String> webhookUrl() {
@@ -430,7 +442,8 @@ public class CancelSubscriptionResponseBody {
     }
 
     /**
-     * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the subscription is not canceled (yet).
+     * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the
+     * subscription is not canceled (yet).
      */
     @JsonIgnore
     public JsonNullable<String> canceledAt() {
@@ -452,7 +465,8 @@ public class CancelSubscriptionResponseBody {
 
 
     /**
-     * Indicates the response contains a subscription object. Will always contain the string `subscription` for this endpoint.
+     * Indicates the response contains a subscription object. Will always contain the string `subscription` for this
+     * endpoint.
      */
     public CancelSubscriptionResponseBody withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -462,7 +476,8 @@ public class CancelSubscriptionResponseBody {
 
 
     /**
-     * Indicates the response contains a subscription object. Will always contain the string `subscription` for this endpoint.
+     * Indicates the response contains a subscription object. Will always contain the string `subscription` for this
+     * endpoint.
      */
     public CancelSubscriptionResponseBody withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
@@ -491,10 +506,8 @@ public class CancelSubscriptionResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
-    public CancelSubscriptionResponseBody withMode(String mode) {
+    public CancelSubscriptionResponseBody withMode(CancelSubscriptionMode mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = Optional.ofNullable(mode);
         return this;
@@ -503,21 +516,18 @@ public class CancelSubscriptionResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
-    public CancelSubscriptionResponseBody withMode(Optional<String> mode) {
+    public CancelSubscriptionResponseBody withMode(Optional<? extends CancelSubscriptionMode> mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
     }
 
     /**
-     * The subscription's current status is directly related to the status of the underlying customer or mandate that is enabling the subscription.
-     * 
-     * <p>Possible values: `pending` `active` `canceled` `suspended` `completed`
+     * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+     * enabling the subscription.
      */
-    public CancelSubscriptionResponseBody withStatus(String status) {
+    public CancelSubscriptionResponseBody withStatus(CancelSubscriptionStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -525,18 +535,18 @@ public class CancelSubscriptionResponseBody {
 
 
     /**
-     * The subscription's current status is directly related to the status of the underlying customer or mandate that is enabling the subscription.
-     * 
-     * <p>Possible values: `pending` `active` `canceled` `suspended` `completed`
+     * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+     * enabling the subscription.
      */
-    public CancelSubscriptionResponseBody withStatus(Optional<String> status) {
+    public CancelSubscriptionResponseBody withStatus(Optional<? extends CancelSubscriptionStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
     /**
-     * The amount for each individual payment that is charged with this subscription. For example, for a monthly subscription of €10, the subscription amount should be set to €10.
+     * The amount for each individual payment that is charged with this subscription. For example, for a monthly
+     * subscription of €10, the subscription amount should be set to €10.
      */
     public CancelSubscriptionResponseBody withAmount(CancelSubscriptionAmount amount) {
         Utils.checkNotNull(amount, "amount");
@@ -546,7 +556,8 @@ public class CancelSubscriptionResponseBody {
 
 
     /**
-     * The amount for each individual payment that is charged with this subscription. For example, for a monthly subscription of €10, the subscription amount should be set to €10.
+     * The amount for each individual payment that is charged with this subscription. For example, for a monthly
+     * subscription of €10, the subscription amount should be set to €10.
      */
     public CancelSubscriptionResponseBody withAmount(Optional<? extends CancelSubscriptionAmount> amount) {
         Utils.checkNotNull(amount, "amount");
@@ -555,7 +566,8 @@ public class CancelSubscriptionResponseBody {
     }
 
     /**
-     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is considered completed.
+     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+     * considered completed.
      * 
      * <p>Test mode subscriptions will get canceled automatically after 10 payments.
      */
@@ -566,7 +578,8 @@ public class CancelSubscriptionResponseBody {
     }
 
     /**
-     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is considered completed.
+     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+     * considered completed.
      * 
      * <p>Test mode subscriptions will get canceled automatically after 10 payments.
      */
@@ -599,10 +612,8 @@ public class CancelSubscriptionResponseBody {
      * Interval to wait between payments, for example `1 month` or `14 days`.
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
-     * 
-     * <p>Possible values: `... days` `... weeks` `... months`
      */
-    public CancelSubscriptionResponseBody withInterval(String interval) {
+    public CancelSubscriptionResponseBody withInterval(CancelSubscriptionInterval interval) {
         Utils.checkNotNull(interval, "interval");
         this.interval = Optional.ofNullable(interval);
         return this;
@@ -613,10 +624,8 @@ public class CancelSubscriptionResponseBody {
      * Interval to wait between payments, for example `1 month` or `14 days`.
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
-     * 
-     * <p>Possible values: `... days` `... weeks` `... months`
      */
-    public CancelSubscriptionResponseBody withInterval(Optional<String> interval) {
+    public CancelSubscriptionResponseBody withInterval(Optional<? extends CancelSubscriptionInterval> interval) {
         Utils.checkNotNull(interval, "interval");
         this.interval = interval;
         return this;
@@ -642,7 +651,8 @@ public class CancelSubscriptionResponseBody {
     }
 
     /**
-     * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled, this parameter will not be returned.
+     * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled,
+     * this parameter will not be returned.
      */
     public CancelSubscriptionResponseBody withNextPaymentDate(String nextPaymentDate) {
         Utils.checkNotNull(nextPaymentDate, "nextPaymentDate");
@@ -651,7 +661,8 @@ public class CancelSubscriptionResponseBody {
     }
 
     /**
-     * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled, this parameter will not be returned.
+     * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled,
+     * this parameter will not be returned.
      */
     public CancelSubscriptionResponseBody withNextPaymentDate(JsonNullable<String> nextPaymentDate) {
         Utils.checkNotNull(nextPaymentDate, "nextPaymentDate");
@@ -660,7 +671,8 @@ public class CancelSubscriptionResponseBody {
     }
 
     /**
-     * The subscription's description will be used as the description of the resulting individual payments and so showing up on the bank statement of the consumer.
+     * The subscription's description will be used as the description of the resulting individual payments and so showing
+     * up on the bank statement of the consumer.
      * 
      * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
      */
@@ -672,7 +684,8 @@ public class CancelSubscriptionResponseBody {
 
 
     /**
-     * The subscription's description will be used as the description of the resulting individual payments and so showing up on the bank statement of the consumer.
+     * The subscription's description will be used as the description of the resulting individual payments and so showing
+     * up on the bank statement of the consumer.
      * 
      * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
      */
@@ -684,10 +697,8 @@ public class CancelSubscriptionResponseBody {
 
     /**
      * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
-     * 
-     * <p>Possible values: `creditcard` `directdebit` `paypal`
      */
-    public CancelSubscriptionResponseBody withMethod(String method) {
+    public CancelSubscriptionResponseBody withMethod(CancelSubscriptionMethod method) {
         Utils.checkNotNull(method, "method");
         this.method = JsonNullable.of(method);
         return this;
@@ -695,21 +706,21 @@ public class CancelSubscriptionResponseBody {
 
     /**
      * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
-     * 
-     * <p>Possible values: `creditcard` `directdebit` `paypal`
      */
-    public CancelSubscriptionResponseBody withMethod(JsonNullable<String> method) {
+    public CancelSubscriptionResponseBody withMethod(JsonNullable<? extends CancelSubscriptionMethod> method) {
         Utils.checkNotNull(method, "method");
         this.method = method;
         return this;
     }
 
     /**
-     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
+     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * merchants.
      * 
      * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual payment.
      * 
-     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more information.
+     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more
+     * information.
      */
     public CancelSubscriptionResponseBody withApplicationFee(CancelSubscriptionApplicationFee applicationFee) {
         Utils.checkNotNull(applicationFee, "applicationFee");
@@ -719,11 +730,13 @@ public class CancelSubscriptionResponseBody {
 
 
     /**
-     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
+     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * merchants.
      * 
      * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual payment.
      * 
-     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more information.
+     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more
+     * information.
      */
     public CancelSubscriptionResponseBody withApplicationFee(Optional<? extends CancelSubscriptionApplicationFee> applicationFee) {
         Utils.checkNotNull(applicationFee, "applicationFee");
@@ -732,7 +745,9 @@ public class CancelSubscriptionResponseBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity.
+     * Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately
+     * 1kB.
      * 
      * <p>Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
      */
@@ -743,7 +758,9 @@ public class CancelSubscriptionResponseBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity.
+     * Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately
+     * 1kB.
      * 
      * <p>Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
      */
@@ -756,7 +773,8 @@ public class CancelSubscriptionResponseBody {
     /**
      * We will call this URL for any payment status changes of payments resulting from this subscription.
      * 
-     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as well. Be sure to verify the payment's subscription ID and its status.
+     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as
+     * well. Be sure to verify the payment's subscription ID and its status.
      */
     public CancelSubscriptionResponseBody withWebhookUrl(String webhookUrl) {
         Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -768,7 +786,8 @@ public class CancelSubscriptionResponseBody {
     /**
      * We will call this URL for any payment status changes of payments resulting from this subscription.
      * 
-     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as well. Be sure to verify the payment's subscription ID and its status.
+     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as
+     * well. Be sure to verify the payment's subscription ID and its status.
      */
     public CancelSubscriptionResponseBody withWebhookUrl(Optional<String> webhookUrl) {
         Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -833,7 +852,8 @@ public class CancelSubscriptionResponseBody {
     }
 
     /**
-     * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the subscription is not canceled (yet).
+     * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the
+     * subscription is not canceled (yet).
      */
     public CancelSubscriptionResponseBody withCanceledAt(String canceledAt) {
         Utils.checkNotNull(canceledAt, "canceledAt");
@@ -842,7 +862,8 @@ public class CancelSubscriptionResponseBody {
     }
 
     /**
-     * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the subscription is not canceled (yet).
+     * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the
+     * subscription is not canceled (yet).
      */
     public CancelSubscriptionResponseBody withCanceledAt(JsonNullable<String> canceledAt) {
         Utils.checkNotNull(canceledAt, "canceledAt");
@@ -945,9 +966,9 @@ public class CancelSubscriptionResponseBody {
 
         private Optional<String> id = Optional.empty();
 
-        private Optional<String> mode = Optional.empty();
+        private Optional<? extends CancelSubscriptionMode> mode = Optional.empty();
 
-        private Optional<String> status = Optional.empty();
+        private Optional<? extends CancelSubscriptionStatus> status = Optional.empty();
 
         private Optional<? extends CancelSubscriptionAmount> amount = Optional.empty();
 
@@ -955,7 +976,7 @@ public class CancelSubscriptionResponseBody {
 
         private Optional<Long> timesRemaining = Optional.empty();
 
-        private Optional<String> interval = Optional.empty();
+        private Optional<? extends CancelSubscriptionInterval> interval = Optional.empty();
 
         private Optional<String> startDate = Optional.empty();
 
@@ -963,7 +984,7 @@ public class CancelSubscriptionResponseBody {
 
         private Optional<String> description = Optional.empty();
 
-        private JsonNullable<String> method = JsonNullable.undefined();
+        private JsonNullable<? extends CancelSubscriptionMethod> method = JsonNullable.undefined();
 
         private Optional<? extends CancelSubscriptionApplicationFee> applicationFee = Optional.empty();
 
@@ -987,7 +1008,8 @@ public class CancelSubscriptionResponseBody {
 
 
         /**
-         * Indicates the response contains a subscription object. Will always contain the string `subscription` for this endpoint.
+         * Indicates the response contains a subscription object. Will always contain the string `subscription` for this
+         * endpoint.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -996,7 +1018,8 @@ public class CancelSubscriptionResponseBody {
         }
 
         /**
-         * Indicates the response contains a subscription object. Will always contain the string `subscription` for this endpoint.
+         * Indicates the response contains a subscription object. Will always contain the string `subscription` for this
+         * endpoint.
          */
         public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
@@ -1026,10 +1049,8 @@ public class CancelSubscriptionResponseBody {
 
         /**
          * Whether this entity was created in live mode or in test mode.
-         * 
-         * <p>Possible values: `live` `test`
          */
-        public Builder mode(String mode) {
+        public Builder mode(CancelSubscriptionMode mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = Optional.ofNullable(mode);
             return this;
@@ -1037,10 +1058,8 @@ public class CancelSubscriptionResponseBody {
 
         /**
          * Whether this entity was created in live mode or in test mode.
-         * 
-         * <p>Possible values: `live` `test`
          */
-        public Builder mode(Optional<String> mode) {
+        public Builder mode(Optional<? extends CancelSubscriptionMode> mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
@@ -1048,22 +1067,20 @@ public class CancelSubscriptionResponseBody {
 
 
         /**
-         * The subscription's current status is directly related to the status of the underlying customer or mandate that is enabling the subscription.
-         * 
-         * <p>Possible values: `pending` `active` `canceled` `suspended` `completed`
+         * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+         * enabling the subscription.
          */
-        public Builder status(String status) {
+        public Builder status(CancelSubscriptionStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
         }
 
         /**
-         * The subscription's current status is directly related to the status of the underlying customer or mandate that is enabling the subscription.
-         * 
-         * <p>Possible values: `pending` `active` `canceled` `suspended` `completed`
+         * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+         * enabling the subscription.
          */
-        public Builder status(Optional<String> status) {
+        public Builder status(Optional<? extends CancelSubscriptionStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -1071,7 +1088,8 @@ public class CancelSubscriptionResponseBody {
 
 
         /**
-         * The amount for each individual payment that is charged with this subscription. For example, for a monthly subscription of €10, the subscription amount should be set to €10.
+         * The amount for each individual payment that is charged with this subscription. For example, for a monthly
+         * subscription of €10, the subscription amount should be set to €10.
          */
         public Builder amount(CancelSubscriptionAmount amount) {
             Utils.checkNotNull(amount, "amount");
@@ -1080,7 +1098,8 @@ public class CancelSubscriptionResponseBody {
         }
 
         /**
-         * The amount for each individual payment that is charged with this subscription. For example, for a monthly subscription of €10, the subscription amount should be set to €10.
+         * The amount for each individual payment that is charged with this subscription. For example, for a monthly
+         * subscription of €10, the subscription amount should be set to €10.
          */
         public Builder amount(Optional<? extends CancelSubscriptionAmount> amount) {
             Utils.checkNotNull(amount, "amount");
@@ -1090,7 +1109,8 @@ public class CancelSubscriptionResponseBody {
 
 
         /**
-         * Total number of payments for the subscription. Once this number of payments is reached, the subscription is considered completed.
+         * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+         * considered completed.
          * 
          * <p>Test mode subscriptions will get canceled automatically after 10 payments.
          */
@@ -1101,7 +1121,8 @@ public class CancelSubscriptionResponseBody {
         }
 
         /**
-         * Total number of payments for the subscription. Once this number of payments is reached, the subscription is considered completed.
+         * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+         * considered completed.
          * 
          * <p>Test mode subscriptions will get canceled automatically after 10 payments.
          */
@@ -1135,10 +1156,8 @@ public class CancelSubscriptionResponseBody {
          * Interval to wait between payments, for example `1 month` or `14 days`.
          * 
          * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
-         * 
-         * <p>Possible values: `... days` `... weeks` `... months`
          */
-        public Builder interval(String interval) {
+        public Builder interval(CancelSubscriptionInterval interval) {
             Utils.checkNotNull(interval, "interval");
             this.interval = Optional.ofNullable(interval);
             return this;
@@ -1148,10 +1167,8 @@ public class CancelSubscriptionResponseBody {
          * Interval to wait between payments, for example `1 month` or `14 days`.
          * 
          * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
-         * 
-         * <p>Possible values: `... days` `... weeks` `... months`
          */
-        public Builder interval(Optional<String> interval) {
+        public Builder interval(Optional<? extends CancelSubscriptionInterval> interval) {
             Utils.checkNotNull(interval, "interval");
             this.interval = interval;
             return this;
@@ -1178,7 +1195,8 @@ public class CancelSubscriptionResponseBody {
 
 
         /**
-         * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled, this parameter will not be returned.
+         * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled,
+         * this parameter will not be returned.
          */
         public Builder nextPaymentDate(String nextPaymentDate) {
             Utils.checkNotNull(nextPaymentDate, "nextPaymentDate");
@@ -1187,7 +1205,8 @@ public class CancelSubscriptionResponseBody {
         }
 
         /**
-         * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled, this parameter will not be returned.
+         * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled,
+         * this parameter will not be returned.
          */
         public Builder nextPaymentDate(JsonNullable<String> nextPaymentDate) {
             Utils.checkNotNull(nextPaymentDate, "nextPaymentDate");
@@ -1197,7 +1216,8 @@ public class CancelSubscriptionResponseBody {
 
 
         /**
-         * The subscription's description will be used as the description of the resulting individual payments and so showing up on the bank statement of the consumer.
+         * The subscription's description will be used as the description of the resulting individual payments and so showing
+         * up on the bank statement of the consumer.
          * 
          * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
          */
@@ -1208,7 +1228,8 @@ public class CancelSubscriptionResponseBody {
         }
 
         /**
-         * The subscription's description will be used as the description of the resulting individual payments and so showing up on the bank statement of the consumer.
+         * The subscription's description will be used as the description of the resulting individual payments and so showing
+         * up on the bank statement of the consumer.
          * 
          * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
          */
@@ -1221,10 +1242,8 @@ public class CancelSubscriptionResponseBody {
 
         /**
          * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
-         * 
-         * <p>Possible values: `creditcard` `directdebit` `paypal`
          */
-        public Builder method(String method) {
+        public Builder method(CancelSubscriptionMethod method) {
             Utils.checkNotNull(method, "method");
             this.method = JsonNullable.of(method);
             return this;
@@ -1232,10 +1251,8 @@ public class CancelSubscriptionResponseBody {
 
         /**
          * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
-         * 
-         * <p>Possible values: `creditcard` `directdebit` `paypal`
          */
-        public Builder method(JsonNullable<String> method) {
+        public Builder method(JsonNullable<? extends CancelSubscriptionMethod> method) {
             Utils.checkNotNull(method, "method");
             this.method = method;
             return this;
@@ -1243,11 +1260,13 @@ public class CancelSubscriptionResponseBody {
 
 
         /**
-         * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
+         * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+         * merchants.
          * 
          * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual payment.
          * 
-         * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more information.
+         * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more
+         * information.
          */
         public Builder applicationFee(CancelSubscriptionApplicationFee applicationFee) {
             Utils.checkNotNull(applicationFee, "applicationFee");
@@ -1256,11 +1275,13 @@ public class CancelSubscriptionResponseBody {
         }
 
         /**
-         * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
+         * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+         * merchants.
          * 
          * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual payment.
          * 
-         * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more information.
+         * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more
+         * information.
          */
         public Builder applicationFee(Optional<? extends CancelSubscriptionApplicationFee> applicationFee) {
             Utils.checkNotNull(applicationFee, "applicationFee");
@@ -1270,7 +1291,9 @@ public class CancelSubscriptionResponseBody {
 
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity.
+         * Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately
+         * 1kB.
          * 
          * <p>Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
          */
@@ -1281,7 +1304,9 @@ public class CancelSubscriptionResponseBody {
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity.
+         * Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately
+         * 1kB.
          * 
          * <p>Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
          */
@@ -1295,7 +1320,8 @@ public class CancelSubscriptionResponseBody {
         /**
          * We will call this URL for any payment status changes of payments resulting from this subscription.
          * 
-         * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as well. Be sure to verify the payment's subscription ID and its status.
+         * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as
+         * well. Be sure to verify the payment's subscription ID and its status.
          */
         public Builder webhookUrl(String webhookUrl) {
             Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -1306,7 +1332,8 @@ public class CancelSubscriptionResponseBody {
         /**
          * We will call this URL for any payment status changes of payments resulting from this subscription.
          * 
-         * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as well. Be sure to verify the payment's subscription ID and its status.
+         * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as
+         * well. Be sure to verify the payment's subscription ID and its status.
          */
         public Builder webhookUrl(Optional<String> webhookUrl) {
             Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -1373,7 +1400,8 @@ public class CancelSubscriptionResponseBody {
 
 
         /**
-         * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the subscription is not canceled (yet).
+         * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the
+         * subscription is not canceled (yet).
          */
         public Builder canceledAt(String canceledAt) {
             Utils.checkNotNull(canceledAt, "canceledAt");
@@ -1382,7 +1410,8 @@ public class CancelSubscriptionResponseBody {
         }
 
         /**
-         * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the subscription is not canceled (yet).
+         * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the
+         * subscription is not canceled (yet).
          */
         public Builder canceledAt(JsonNullable<String> canceledAt) {
             Utils.checkNotNull(canceledAt, "canceledAt");

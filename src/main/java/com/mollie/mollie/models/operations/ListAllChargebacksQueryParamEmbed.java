@@ -11,7 +11,8 @@ import java.util.Optional;
 /**
  * ListAllChargebacksQueryParamEmbed
  * 
- * <p>This endpoint allows you to embed additional information via the `embed` query string parameter.
+ * <p>This endpoint allows you to embed additional information via the
+ * `embed` query string parameter.
  */
 public enum ListAllChargebacksQueryParamEmbed {
     PAYMENT("payment");

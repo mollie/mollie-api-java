@@ -18,18 +18,18 @@ import java.util.Optional;
 
 public class ListAllMethodsMethods {
     /**
-     * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
+     * Indicates the response contains a payment method object. Will always contain the string `method` for this
+     * endpoint.
      */
     @JsonProperty("resource")
     private String resource;
 
     /**
-     * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
-     * 
-     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
+     * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment
+     * method selection screen will be skipped.
      */
     @JsonProperty("id")
-    private String id;
+    private ListAllMethodsId id;
 
     /**
      * The full name of the payment method.
@@ -46,7 +46,8 @@ public class ListAllMethodsMethods {
     private ListAllMethodsMinimumAmount minimumAmount;
 
     /**
-     * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
+     * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
+     * is returned instead.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("maximumAmount")
@@ -60,15 +61,14 @@ public class ListAllMethodsMethods {
 
     /**
      * The payment method's activation status for this profile.
-     * 
-     * <p>Possible values: `activated` `pending-boarding` `pending-review` `pending-external` `rejected`
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("status")
-    private Optional<String> status;
+    private Optional<? extends ListAllMethodsStatus> status;
 
     /**
-     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
+     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
+     * for iDEAL, KBC/CBC, gift cards, and vouchers.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("issuers")
@@ -81,7 +81,8 @@ public class ListAllMethodsMethods {
     private ListAllMethodsMethodsLinks links;
 
     /**
-     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
+     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on
+     * your account.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pricing")
@@ -90,12 +91,12 @@ public class ListAllMethodsMethods {
     @JsonCreator
     public ListAllMethodsMethods(
             @JsonProperty("resource") String resource,
-            @JsonProperty("id") String id,
+            @JsonProperty("id") ListAllMethodsId id,
             @JsonProperty("description") String description,
             @JsonProperty("minimumAmount") ListAllMethodsMinimumAmount minimumAmount,
             @JsonProperty("maximumAmount") Optional<? extends ListAllMethodsMaximumAmount> maximumAmount,
             @JsonProperty("image") ListAllMethodsImage image,
-            @JsonProperty("status") Optional<String> status,
+            @JsonProperty("status") Optional<? extends ListAllMethodsStatus> status,
             @JsonProperty("issuers") Optional<? extends List<ListAllMethodsIssuers>> issuers,
             @JsonProperty("_links") ListAllMethodsMethodsLinks links,
             @JsonProperty("pricing") Optional<? extends List<Pricing>> pricing) {
@@ -123,7 +124,7 @@ public class ListAllMethodsMethods {
     
     public ListAllMethodsMethods(
             String resource,
-            String id,
+            ListAllMethodsId id,
             String description,
             ListAllMethodsMinimumAmount minimumAmount,
             ListAllMethodsImage image,
@@ -135,7 +136,8 @@ public class ListAllMethodsMethods {
     }
 
     /**
-     * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
+     * Indicates the response contains a payment method object. Will always contain the string `method` for this
+     * endpoint.
      */
     @JsonIgnore
     public String resource() {
@@ -143,12 +145,11 @@ public class ListAllMethodsMethods {
     }
 
     /**
-     * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
-     * 
-     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
+     * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment
+     * method selection screen will be skipped.
      */
     @JsonIgnore
-    public String id() {
+    public ListAllMethodsId id() {
         return id;
     }
 
@@ -171,7 +172,8 @@ public class ListAllMethodsMethods {
     }
 
     /**
-     * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
+     * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
+     * is returned instead.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -189,16 +191,16 @@ public class ListAllMethodsMethods {
 
     /**
      * The payment method's activation status for this profile.
-     * 
-     * <p>Possible values: `activated` `pending-boarding` `pending-review` `pending-external` `rejected`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> status() {
-        return status;
+    public Optional<ListAllMethodsStatus> status() {
+        return (Optional<ListAllMethodsStatus>) status;
     }
 
     /**
-     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
+     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
+     * for iDEAL, KBC/CBC, gift cards, and vouchers.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -215,7 +217,8 @@ public class ListAllMethodsMethods {
     }
 
     /**
-     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
+     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on
+     * your account.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -229,7 +232,8 @@ public class ListAllMethodsMethods {
 
 
     /**
-     * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
+     * Indicates the response contains a payment method object. Will always contain the string `method` for this
+     * endpoint.
      */
     public ListAllMethodsMethods withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -238,11 +242,10 @@ public class ListAllMethodsMethods {
     }
 
     /**
-     * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
-     * 
-     * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
+     * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment
+     * method selection screen will be skipped.
      */
-    public ListAllMethodsMethods withId(String id) {
+    public ListAllMethodsMethods withId(ListAllMethodsId id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -269,7 +272,8 @@ public class ListAllMethodsMethods {
     }
 
     /**
-     * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
+     * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
+     * is returned instead.
      */
     public ListAllMethodsMethods withMaximumAmount(ListAllMethodsMaximumAmount maximumAmount) {
         Utils.checkNotNull(maximumAmount, "maximumAmount");
@@ -279,7 +283,8 @@ public class ListAllMethodsMethods {
 
 
     /**
-     * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
+     * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
+     * is returned instead.
      */
     public ListAllMethodsMethods withMaximumAmount(Optional<? extends ListAllMethodsMaximumAmount> maximumAmount) {
         Utils.checkNotNull(maximumAmount, "maximumAmount");
@@ -298,10 +303,8 @@ public class ListAllMethodsMethods {
 
     /**
      * The payment method's activation status for this profile.
-     * 
-     * <p>Possible values: `activated` `pending-boarding` `pending-review` `pending-external` `rejected`
      */
-    public ListAllMethodsMethods withStatus(String status) {
+    public ListAllMethodsMethods withStatus(ListAllMethodsStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -310,17 +313,16 @@ public class ListAllMethodsMethods {
 
     /**
      * The payment method's activation status for this profile.
-     * 
-     * <p>Possible values: `activated` `pending-boarding` `pending-review` `pending-external` `rejected`
      */
-    public ListAllMethodsMethods withStatus(Optional<String> status) {
+    public ListAllMethodsMethods withStatus(Optional<? extends ListAllMethodsStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
     /**
-     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
+     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
+     * for iDEAL, KBC/CBC, gift cards, and vouchers.
      */
     public ListAllMethodsMethods withIssuers(List<ListAllMethodsIssuers> issuers) {
         Utils.checkNotNull(issuers, "issuers");
@@ -330,7 +332,8 @@ public class ListAllMethodsMethods {
 
 
     /**
-     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
+     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
+     * for iDEAL, KBC/CBC, gift cards, and vouchers.
      */
     public ListAllMethodsMethods withIssuers(Optional<? extends List<ListAllMethodsIssuers>> issuers) {
         Utils.checkNotNull(issuers, "issuers");
@@ -348,7 +351,8 @@ public class ListAllMethodsMethods {
     }
 
     /**
-     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
+     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on
+     * your account.
      */
     public ListAllMethodsMethods withPricing(List<Pricing> pricing) {
         Utils.checkNotNull(pricing, "pricing");
@@ -358,7 +362,8 @@ public class ListAllMethodsMethods {
 
 
     /**
-     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
+     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on
+     * your account.
      */
     public ListAllMethodsMethods withPricing(Optional<? extends List<Pricing>> pricing) {
         Utils.checkNotNull(pricing, "pricing");
@@ -417,7 +422,7 @@ public class ListAllMethodsMethods {
 
         private String resource;
 
-        private String id;
+        private ListAllMethodsId id;
 
         private String description;
 
@@ -427,7 +432,7 @@ public class ListAllMethodsMethods {
 
         private ListAllMethodsImage image;
 
-        private Optional<String> status = Optional.empty();
+        private Optional<? extends ListAllMethodsStatus> status = Optional.empty();
 
         private Optional<? extends List<ListAllMethodsIssuers>> issuers = Optional.empty();
 
@@ -441,7 +446,8 @@ public class ListAllMethodsMethods {
 
 
         /**
-         * Indicates the response contains a payment method object. Will always contain the string `method` for this endpoint.
+         * Indicates the response contains a payment method object. Will always contain the string `method` for this
+         * endpoint.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -451,11 +457,10 @@ public class ListAllMethodsMethods {
 
 
         /**
-         * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment method selection screen will be skipped.
-         * 
-         * <p>Possible values: `alma` `applepay` `bacs` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `blik` `creditcard` `directdebit` `eps` `giftcard` `ideal` `in3` `kbc` `klarna` `klarnapaylater` `klarnapaynow` `klarnasliceit` `mybank` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `swish` `trustly` `twint` `voucher`
+         * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment
+         * method selection screen will be skipped.
          */
-        public Builder id(String id) {
+        public Builder id(ListAllMethodsId id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -485,7 +490,8 @@ public class ListAllMethodsMethods {
 
 
         /**
-         * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
+         * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
+         * is returned instead.
          */
         public Builder maximumAmount(ListAllMethodsMaximumAmount maximumAmount) {
             Utils.checkNotNull(maximumAmount, "maximumAmount");
@@ -494,7 +500,8 @@ public class ListAllMethodsMethods {
         }
 
         /**
-         * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
+         * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
+         * is returned instead.
          */
         public Builder maximumAmount(Optional<? extends ListAllMethodsMaximumAmount> maximumAmount) {
             Utils.checkNotNull(maximumAmount, "maximumAmount");
@@ -515,10 +522,8 @@ public class ListAllMethodsMethods {
 
         /**
          * The payment method's activation status for this profile.
-         * 
-         * <p>Possible values: `activated` `pending-boarding` `pending-review` `pending-external` `rejected`
          */
-        public Builder status(String status) {
+        public Builder status(ListAllMethodsStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -526,10 +531,8 @@ public class ListAllMethodsMethods {
 
         /**
          * The payment method's activation status for this profile.
-         * 
-         * <p>Possible values: `activated` `pending-boarding` `pending-review` `pending-external` `rejected`
          */
-        public Builder status(Optional<String> status) {
+        public Builder status(Optional<? extends ListAllMethodsStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -537,7 +540,8 @@ public class ListAllMethodsMethods {
 
 
         /**
-         * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
+         * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
+         * for iDEAL, KBC/CBC, gift cards, and vouchers.
          */
         public Builder issuers(List<ListAllMethodsIssuers> issuers) {
             Utils.checkNotNull(issuers, "issuers");
@@ -546,7 +550,8 @@ public class ListAllMethodsMethods {
         }
 
         /**
-         * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant for iDEAL, KBC/CBC, gift cards, and vouchers.
+         * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
+         * for iDEAL, KBC/CBC, gift cards, and vouchers.
          */
         public Builder issuers(Optional<? extends List<ListAllMethodsIssuers>> issuers) {
             Utils.checkNotNull(issuers, "issuers");
@@ -566,7 +571,8 @@ public class ListAllMethodsMethods {
 
 
         /**
-         * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
+         * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on
+         * your account.
          */
         public Builder pricing(List<Pricing> pricing) {
             Utils.checkNotNull(pricing, "pricing");
@@ -575,7 +581,8 @@ public class ListAllMethodsMethods {
         }
 
         /**
-         * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on your account.
+         * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on
+         * your account.
          */
         public Builder pricing(Optional<? extends List<Pricing>> pricing) {
             Utils.checkNotNull(pricing, "pricing");

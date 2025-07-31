@@ -17,7 +17,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListChargebacksChargebacks {
     /**
-     * Indicates the response contains a chargeback object. Will always contain the string `chargeback` for this endpoint.
+     * Indicates the response contains a chargeback object. Will always contain the string `chargeback` for this
+     * endpoint.
      */
     @JsonProperty("resource")
     private String resource;
@@ -35,11 +36,14 @@ public class ListChargebacksChargebacks {
     private ListChargebacksAmount amount;
 
     /**
-     * This optional field will contain the approximate amount that will be deducted from your account balance, converted to the currency your account is settled in.
+     * This optional field will contain the approximate amount that will be deducted from your account balance, converted
+     * to the currency your account is settled in.
      * 
      * <p>The amount is a **negative** amount.
      * 
-     * <p>Since the field contains an estimated amount during chargeback processing, it may change over time. To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
+     * <p>Since the field contains an estimated amount during chargeback processing, it may change over time. To retrieve
+     * accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions)
+     * instead.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlementAmount")
@@ -53,13 +57,15 @@ public class ListChargebacksChargebacks {
     private JsonNullable<? extends ListChargebacksReason> reason;
 
     /**
-     * The unique identifier of the payment this chargeback was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
+     * The unique identifier of the payment this chargeback was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The full payment object can be retrieved via the payment URL in the `_links` object.
      */
     @JsonProperty("paymentId")
     private String paymentId;
 
     /**
-     * The identifier referring to the settlement this payment was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the refund is not settled (yet).
+     * The identifier referring to the settlement this payment was settled with. For example, `stl_BkEjN2eBb`. This field
+     * is omitted if the refund is not settled (yet).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlementId")
@@ -72,7 +78,8 @@ public class ListChargebacksChargebacks {
     private String createdAt;
 
     /**
-     * The date and time the chargeback was reversed if applicable, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The date and time the chargeback was reversed if applicable, in
+     * [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reversedAt")
@@ -132,7 +139,8 @@ public class ListChargebacksChargebacks {
     }
 
     /**
-     * Indicates the response contains a chargeback object. Will always contain the string `chargeback` for this endpoint.
+     * Indicates the response contains a chargeback object. Will always contain the string `chargeback` for this
+     * endpoint.
      */
     @JsonIgnore
     public String resource() {
@@ -156,11 +164,14 @@ public class ListChargebacksChargebacks {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be deducted from your account balance, converted to the currency your account is settled in.
+     * This optional field will contain the approximate amount that will be deducted from your account balance, converted
+     * to the currency your account is settled in.
      * 
      * <p>The amount is a **negative** amount.
      * 
-     * <p>Since the field contains an estimated amount during chargeback processing, it may change over time. To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
+     * <p>Since the field contains an estimated amount during chargeback processing, it may change over time. To retrieve
+     * accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions)
+     * instead.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -178,7 +189,8 @@ public class ListChargebacksChargebacks {
     }
 
     /**
-     * The unique identifier of the payment this chargeback was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
+     * The unique identifier of the payment this chargeback was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The full payment object can be retrieved via the payment URL in the `_links` object.
      */
     @JsonIgnore
     public String paymentId() {
@@ -186,7 +198,8 @@ public class ListChargebacksChargebacks {
     }
 
     /**
-     * The identifier referring to the settlement this payment was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the refund is not settled (yet).
+     * The identifier referring to the settlement this payment was settled with. For example, `stl_BkEjN2eBb`. This field
+     * is omitted if the refund is not settled (yet).
      */
     @JsonIgnore
     public JsonNullable<String> settlementId() {
@@ -202,7 +215,8 @@ public class ListChargebacksChargebacks {
     }
 
     /**
-     * The date and time the chargeback was reversed if applicable, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The date and time the chargeback was reversed if applicable, in
+     * [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
     @JsonIgnore
     public JsonNullable<String> reversedAt() {
@@ -223,7 +237,8 @@ public class ListChargebacksChargebacks {
 
 
     /**
-     * Indicates the response contains a chargeback object. Will always contain the string `chargeback` for this endpoint.
+     * Indicates the response contains a chargeback object. Will always contain the string `chargeback` for this
+     * endpoint.
      */
     public ListChargebacksChargebacks withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -250,11 +265,14 @@ public class ListChargebacksChargebacks {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be deducted from your account balance, converted to the currency your account is settled in.
+     * This optional field will contain the approximate amount that will be deducted from your account balance, converted
+     * to the currency your account is settled in.
      * 
      * <p>The amount is a **negative** amount.
      * 
-     * <p>Since the field contains an estimated amount during chargeback processing, it may change over time. To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
+     * <p>Since the field contains an estimated amount during chargeback processing, it may change over time. To retrieve
+     * accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions)
+     * instead.
      */
     public ListChargebacksChargebacks withSettlementAmount(ListChargebacksSettlementAmount settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
@@ -263,11 +281,14 @@ public class ListChargebacksChargebacks {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be deducted from your account balance, converted to the currency your account is settled in.
+     * This optional field will contain the approximate amount that will be deducted from your account balance, converted
+     * to the currency your account is settled in.
      * 
      * <p>The amount is a **negative** amount.
      * 
-     * <p>Since the field contains an estimated amount during chargeback processing, it may change over time. To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
+     * <p>Since the field contains an estimated amount during chargeback processing, it may change over time. To retrieve
+     * accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions)
+     * instead.
      */
     public ListChargebacksChargebacks withSettlementAmount(JsonNullable<? extends ListChargebacksSettlementAmount> settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
@@ -294,7 +315,8 @@ public class ListChargebacksChargebacks {
     }
 
     /**
-     * The unique identifier of the payment this chargeback was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
+     * The unique identifier of the payment this chargeback was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The full payment object can be retrieved via the payment URL in the `_links` object.
      */
     public ListChargebacksChargebacks withPaymentId(String paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
@@ -303,7 +325,8 @@ public class ListChargebacksChargebacks {
     }
 
     /**
-     * The identifier referring to the settlement this payment was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the refund is not settled (yet).
+     * The identifier referring to the settlement this payment was settled with. For example, `stl_BkEjN2eBb`. This field
+     * is omitted if the refund is not settled (yet).
      */
     public ListChargebacksChargebacks withSettlementId(String settlementId) {
         Utils.checkNotNull(settlementId, "settlementId");
@@ -312,7 +335,8 @@ public class ListChargebacksChargebacks {
     }
 
     /**
-     * The identifier referring to the settlement this payment was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the refund is not settled (yet).
+     * The identifier referring to the settlement this payment was settled with. For example, `stl_BkEjN2eBb`. This field
+     * is omitted if the refund is not settled (yet).
      */
     public ListChargebacksChargebacks withSettlementId(JsonNullable<String> settlementId) {
         Utils.checkNotNull(settlementId, "settlementId");
@@ -330,7 +354,8 @@ public class ListChargebacksChargebacks {
     }
 
     /**
-     * The date and time the chargeback was reversed if applicable, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The date and time the chargeback was reversed if applicable, in
+     * [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
     public ListChargebacksChargebacks withReversedAt(String reversedAt) {
         Utils.checkNotNull(reversedAt, "reversedAt");
@@ -339,7 +364,8 @@ public class ListChargebacksChargebacks {
     }
 
     /**
-     * The date and time the chargeback was reversed if applicable, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The date and time the chargeback was reversed if applicable, in
+     * [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
     public ListChargebacksChargebacks withReversedAt(JsonNullable<String> reversedAt) {
         Utils.checkNotNull(reversedAt, "reversedAt");
@@ -431,7 +457,8 @@ public class ListChargebacksChargebacks {
 
 
         /**
-         * Indicates the response contains a chargeback object. Will always contain the string `chargeback` for this endpoint.
+         * Indicates the response contains a chargeback object. Will always contain the string `chargeback` for this
+         * endpoint.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -461,11 +488,14 @@ public class ListChargebacksChargebacks {
 
 
         /**
-         * This optional field will contain the approximate amount that will be deducted from your account balance, converted to the currency your account is settled in.
+         * This optional field will contain the approximate amount that will be deducted from your account balance, converted
+         * to the currency your account is settled in.
          * 
          * <p>The amount is a **negative** amount.
          * 
-         * <p>Since the field contains an estimated amount during chargeback processing, it may change over time. To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
+         * <p>Since the field contains an estimated amount during chargeback processing, it may change over time. To retrieve
+         * accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions)
+         * instead.
          */
         public Builder settlementAmount(ListChargebacksSettlementAmount settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
@@ -474,11 +504,14 @@ public class ListChargebacksChargebacks {
         }
 
         /**
-         * This optional field will contain the approximate amount that will be deducted from your account balance, converted to the currency your account is settled in.
+         * This optional field will contain the approximate amount that will be deducted from your account balance, converted
+         * to the currency your account is settled in.
          * 
          * <p>The amount is a **negative** amount.
          * 
-         * <p>Since the field contains an estimated amount during chargeback processing, it may change over time. To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
+         * <p>Since the field contains an estimated amount during chargeback processing, it may change over time. To retrieve
+         * accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions)
+         * instead.
          */
         public Builder settlementAmount(JsonNullable<? extends ListChargebacksSettlementAmount> settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
@@ -507,7 +540,8 @@ public class ListChargebacksChargebacks {
 
 
         /**
-         * The unique identifier of the payment this chargeback was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
+         * The unique identifier of the payment this chargeback was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+         * The full payment object can be retrieved via the payment URL in the `_links` object.
          */
         public Builder paymentId(String paymentId) {
             Utils.checkNotNull(paymentId, "paymentId");
@@ -517,7 +551,8 @@ public class ListChargebacksChargebacks {
 
 
         /**
-         * The identifier referring to the settlement this payment was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the refund is not settled (yet).
+         * The identifier referring to the settlement this payment was settled with. For example, `stl_BkEjN2eBb`. This field
+         * is omitted if the refund is not settled (yet).
          */
         public Builder settlementId(String settlementId) {
             Utils.checkNotNull(settlementId, "settlementId");
@@ -526,7 +561,8 @@ public class ListChargebacksChargebacks {
         }
 
         /**
-         * The identifier referring to the settlement this payment was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the refund is not settled (yet).
+         * The identifier referring to the settlement this payment was settled with. For example, `stl_BkEjN2eBb`. This field
+         * is omitted if the refund is not settled (yet).
          */
         public Builder settlementId(JsonNullable<String> settlementId) {
             Utils.checkNotNull(settlementId, "settlementId");
@@ -546,7 +582,8 @@ public class ListChargebacksChargebacks {
 
 
         /**
-         * The date and time the chargeback was reversed if applicable, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * The date and time the chargeback was reversed if applicable, in
+         * [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
          */
         public Builder reversedAt(String reversedAt) {
             Utils.checkNotNull(reversedAt, "reversedAt");
@@ -555,7 +592,8 @@ public class ListChargebacksChargebacks {
         }
 
         /**
-         * The date and time the chargeback was reversed if applicable, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * The date and time the chargeback was reversed if applicable, in
+         * [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
          */
         public Builder reversedAt(JsonNullable<String> reversedAt) {
             Utils.checkNotNull(reversedAt, "reversedAt");

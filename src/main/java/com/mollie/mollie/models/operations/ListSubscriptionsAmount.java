@@ -13,7 +13,8 @@ import java.lang.String;
 /**
  * ListSubscriptionsAmount
  * 
- * <p>The amount for each individual payment that is charged with this subscription. For example, for a monthly subscription of €10, the subscription amount should be set to €10.
+ * <p>The amount for each individual payment that is charged with this subscription. For example, for a monthly
+ * subscription of €10, the subscription amount should be set to €10.
  */
 public class ListSubscriptionsAmount {
     /**

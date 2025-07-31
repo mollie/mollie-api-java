@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
@@ -22,12 +24,10 @@ public class CreatePaymentLinkLines {
      * The type of product purchased. For example, a physical or a digital product.
      * 
      * <p>The `tip` payment line type is not available when creating a payment.
-     * 
-     * <p>Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` `tip` (default: `physical`)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<String> type;
+    private Optional<? extends CreatePaymentLinkType> type;
 
     /**
      * A description of the line item. For example *LEGO 4440 Forest Police Station*.
@@ -61,7 +61,8 @@ public class CreatePaymentLinkLines {
     private CreatePaymentLinkUnitPrice unitPrice;
 
     /**
-     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
+     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
+     * type.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("discountAmount")
@@ -78,18 +79,21 @@ public class CreatePaymentLinkLines {
     private CreatePaymentLinkTotalAmount totalAmount;
 
     /**
-     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
+     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
+     * not as a float, to ensure the correct number of decimals are passed.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatRate")
     private Optional<String> vatRate;
 
     /**
-     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
+     * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
      * 
      * <p>Any deviations from this will result in an error.
      * 
-     * <p>For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
+     * <p>For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
+     * `SEK 100.00 × (25 / 125) = SEK 20.00`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatAmount")
@@ -103,7 +107,8 @@ public class CreatePaymentLinkLines {
     private Optional<String> sku;
 
     /**
-     * An array with the voucher categories, in case of a line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * An array with the voucher categories, in case of a line eligible for a voucher. See the
+     * [Integrating Vouchers](integrating-vouchers) guide for more information.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("categories")
@@ -125,7 +130,7 @@ public class CreatePaymentLinkLines {
 
     @JsonCreator
     public CreatePaymentLinkLines(
-            @JsonProperty("type") Optional<String> type,
+            @JsonProperty("type") Optional<? extends CreatePaymentLinkType> type,
             @JsonProperty("description") String description,
             @JsonProperty("quantity") long quantity,
             @JsonProperty("quantityUnit") Optional<String> quantityUnit,
@@ -182,12 +187,11 @@ public class CreatePaymentLinkLines {
      * The type of product purchased. For example, a physical or a digital product.
      * 
      * <p>The `tip` payment line type is not available when creating a payment.
-     * 
-     * <p>Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` `tip` (default: `physical`)
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> type() {
-        return type;
+    public Optional<CreatePaymentLinkType> type() {
+        return (Optional<CreatePaymentLinkType>) type;
     }
 
     /**
@@ -229,7 +233,8 @@ public class CreatePaymentLinkLines {
     }
 
     /**
-     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
+     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
+     * type.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -250,7 +255,8 @@ public class CreatePaymentLinkLines {
     }
 
     /**
-     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
+     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
+     * not as a float, to ensure the correct number of decimals are passed.
      */
     @JsonIgnore
     public Optional<String> vatRate() {
@@ -258,11 +264,13 @@ public class CreatePaymentLinkLines {
     }
 
     /**
-     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
+     * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
      * 
      * <p>Any deviations from this will result in an error.
      * 
-     * <p>For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
+     * <p>For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
+     * `SEK 100.00 × (25 / 125) = SEK 20.00`.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -279,7 +287,8 @@ public class CreatePaymentLinkLines {
     }
 
     /**
-     * An array with the voucher categories, in case of a line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * An array with the voucher categories, in case of a line eligible for a voucher. See the
+     * [Integrating Vouchers](integrating-vouchers) guide for more information.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -312,10 +321,8 @@ public class CreatePaymentLinkLines {
      * The type of product purchased. For example, a physical or a digital product.
      * 
      * <p>The `tip` payment line type is not available when creating a payment.
-     * 
-     * <p>Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` `tip` (default: `physical`)
      */
-    public CreatePaymentLinkLines withType(String type) {
+    public CreatePaymentLinkLines withType(CreatePaymentLinkType type) {
         Utils.checkNotNull(type, "type");
         this.type = Optional.ofNullable(type);
         return this;
@@ -326,10 +333,8 @@ public class CreatePaymentLinkLines {
      * The type of product purchased. For example, a physical or a digital product.
      * 
      * <p>The `tip` payment line type is not available when creating a payment.
-     * 
-     * <p>Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` `tip` (default: `physical`)
      */
-    public CreatePaymentLinkLines withType(Optional<String> type) {
+    public CreatePaymentLinkLines withType(Optional<? extends CreatePaymentLinkType> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -388,7 +393,8 @@ public class CreatePaymentLinkLines {
     }
 
     /**
-     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
+     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
+     * type.
      */
     public CreatePaymentLinkLines withDiscountAmount(CreatePaymentLinkDiscountAmount discountAmount) {
         Utils.checkNotNull(discountAmount, "discountAmount");
@@ -398,7 +404,8 @@ public class CreatePaymentLinkLines {
 
 
     /**
-     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
+     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
+     * type.
      */
     public CreatePaymentLinkLines withDiscountAmount(Optional<? extends CreatePaymentLinkDiscountAmount> discountAmount) {
         Utils.checkNotNull(discountAmount, "discountAmount");
@@ -420,7 +427,8 @@ public class CreatePaymentLinkLines {
     }
 
     /**
-     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
+     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
+     * not as a float, to ensure the correct number of decimals are passed.
      */
     public CreatePaymentLinkLines withVatRate(String vatRate) {
         Utils.checkNotNull(vatRate, "vatRate");
@@ -430,7 +438,8 @@ public class CreatePaymentLinkLines {
 
 
     /**
-     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
+     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
+     * not as a float, to ensure the correct number of decimals are passed.
      */
     public CreatePaymentLinkLines withVatRate(Optional<String> vatRate) {
         Utils.checkNotNull(vatRate, "vatRate");
@@ -439,11 +448,13 @@ public class CreatePaymentLinkLines {
     }
 
     /**
-     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
+     * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
      * 
      * <p>Any deviations from this will result in an error.
      * 
-     * <p>For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
+     * <p>For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
+     * `SEK 100.00 × (25 / 125) = SEK 20.00`.
      */
     public CreatePaymentLinkLines withVatAmount(CreatePaymentLinkVatAmount vatAmount) {
         Utils.checkNotNull(vatAmount, "vatAmount");
@@ -453,11 +464,13 @@ public class CreatePaymentLinkLines {
 
 
     /**
-     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
+     * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
      * 
      * <p>Any deviations from this will result in an error.
      * 
-     * <p>For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
+     * <p>For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
+     * `SEK 100.00 × (25 / 125) = SEK 20.00`.
      */
     public CreatePaymentLinkLines withVatAmount(Optional<? extends CreatePaymentLinkVatAmount> vatAmount) {
         Utils.checkNotNull(vatAmount, "vatAmount");
@@ -485,7 +498,8 @@ public class CreatePaymentLinkLines {
     }
 
     /**
-     * An array with the voucher categories, in case of a line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * An array with the voucher categories, in case of a line eligible for a voucher. See the
+     * [Integrating Vouchers](integrating-vouchers) guide for more information.
      */
     public CreatePaymentLinkLines withCategories(List<CreatePaymentLinkCategories> categories) {
         Utils.checkNotNull(categories, "categories");
@@ -495,7 +509,8 @@ public class CreatePaymentLinkLines {
 
 
     /**
-     * An array with the voucher categories, in case of a line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * An array with the voucher categories, in case of a line eligible for a voucher. See the
+     * [Integrating Vouchers](integrating-vouchers) guide for more information.
      */
     public CreatePaymentLinkLines withCategories(Optional<? extends List<CreatePaymentLinkCategories>> categories) {
         Utils.checkNotNull(categories, "categories");
@@ -597,7 +612,7 @@ public class CreatePaymentLinkLines {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> type = Optional.empty();
+        private Optional<? extends CreatePaymentLinkType> type;
 
         private String description;
 
@@ -632,10 +647,8 @@ public class CreatePaymentLinkLines {
          * The type of product purchased. For example, a physical or a digital product.
          * 
          * <p>The `tip` payment line type is not available when creating a payment.
-         * 
-         * <p>Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` `tip` (default: `physical`)
          */
-        public Builder type(String type) {
+        public Builder type(CreatePaymentLinkType type) {
             Utils.checkNotNull(type, "type");
             this.type = Optional.ofNullable(type);
             return this;
@@ -645,10 +658,8 @@ public class CreatePaymentLinkLines {
          * The type of product purchased. For example, a physical or a digital product.
          * 
          * <p>The `tip` payment line type is not available when creating a payment.
-         * 
-         * <p>Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` `tip` (default: `physical`)
          */
-        public Builder type(Optional<String> type) {
+        public Builder type(Optional<? extends CreatePaymentLinkType> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
@@ -711,7 +722,8 @@ public class CreatePaymentLinkLines {
 
 
         /**
-         * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
+         * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
+         * type.
          */
         public Builder discountAmount(CreatePaymentLinkDiscountAmount discountAmount) {
             Utils.checkNotNull(discountAmount, "discountAmount");
@@ -720,7 +732,8 @@ public class CreatePaymentLinkLines {
         }
 
         /**
-         * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
+         * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
+         * type.
          */
         public Builder discountAmount(Optional<? extends CreatePaymentLinkDiscountAmount> discountAmount) {
             Utils.checkNotNull(discountAmount, "discountAmount");
@@ -744,7 +757,8 @@ public class CreatePaymentLinkLines {
 
 
         /**
-         * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
+         * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
+         * not as a float, to ensure the correct number of decimals are passed.
          */
         public Builder vatRate(String vatRate) {
             Utils.checkNotNull(vatRate, "vatRate");
@@ -753,7 +767,8 @@ public class CreatePaymentLinkLines {
         }
 
         /**
-         * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
+         * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
+         * not as a float, to ensure the correct number of decimals are passed.
          */
         public Builder vatRate(Optional<String> vatRate) {
             Utils.checkNotNull(vatRate, "vatRate");
@@ -763,11 +778,13 @@ public class CreatePaymentLinkLines {
 
 
         /**
-         * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+         * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
+         * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
          * 
          * <p>Any deviations from this will result in an error.
          * 
-         * <p>For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
+         * <p>For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
+         * `SEK 100.00 × (25 / 125) = SEK 20.00`.
          */
         public Builder vatAmount(CreatePaymentLinkVatAmount vatAmount) {
             Utils.checkNotNull(vatAmount, "vatAmount");
@@ -776,11 +793,13 @@ public class CreatePaymentLinkLines {
         }
 
         /**
-         * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+         * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
+         * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
          * 
          * <p>Any deviations from this will result in an error.
          * 
-         * <p>For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
+         * <p>For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
+         * `SEK 100.00 × (25 / 125) = SEK 20.00`.
          */
         public Builder vatAmount(Optional<? extends CreatePaymentLinkVatAmount> vatAmount) {
             Utils.checkNotNull(vatAmount, "vatAmount");
@@ -809,7 +828,8 @@ public class CreatePaymentLinkLines {
 
 
         /**
-         * An array with the voucher categories, in case of a line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+         * An array with the voucher categories, in case of a line eligible for a voucher. See the
+         * [Integrating Vouchers](integrating-vouchers) guide for more information.
          */
         public Builder categories(List<CreatePaymentLinkCategories> categories) {
             Utils.checkNotNull(categories, "categories");
@@ -818,7 +838,8 @@ public class CreatePaymentLinkLines {
         }
 
         /**
-         * An array with the voucher categories, in case of a line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+         * An array with the voucher categories, in case of a line eligible for a voucher. See the
+         * [Integrating Vouchers](integrating-vouchers) guide for more information.
          */
         public Builder categories(Optional<? extends List<CreatePaymentLinkCategories>> categories) {
             Utils.checkNotNull(categories, "categories");
@@ -865,6 +886,9 @@ public class CreatePaymentLinkLines {
         }
 
         public CreatePaymentLinkLines build() {
+            if (type == null) {
+                type = _SINGLETON_VALUE_Type.value();
+            }
 
             return new CreatePaymentLinkLines(
                 type, description, quantity,
@@ -874,5 +898,11 @@ public class CreatePaymentLinkLines {
                 productUrl);
         }
 
+
+        private static final LazySingletonValue<Optional<? extends CreatePaymentLinkType>> _SINGLETON_VALUE_Type =
+                new LazySingletonValue<>(
+                        "type",
+                        "\"physical\"",
+                        new TypeReference<Optional<? extends CreatePaymentLinkType>>() {});
     }
 }

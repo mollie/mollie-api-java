@@ -13,7 +13,8 @@ import java.lang.String;
 /**
  * ListPaymentsTerminal
  * 
- * <p>The API resource URL of the [terminal](get-terminal) this payment was created for. Only present for point-of-sale payments.
+ * <p>The API resource URL of the [terminal](get-terminal) this payment was created for. Only present for
+ * point-of-sale payments.
  */
 public class ListPaymentsTerminal {
     /**

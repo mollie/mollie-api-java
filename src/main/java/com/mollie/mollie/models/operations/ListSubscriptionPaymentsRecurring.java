@@ -19,7 +19,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 /**
  * ListSubscriptionPaymentsRecurring
  * 
- * <p>The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
+ * <p>The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout
+ * to inform the shopper of the details for recurring products in the payments.
  */
 public class ListSubscriptionPaymentsRecurring {
     /**
@@ -31,11 +32,9 @@ public class ListSubscriptionPaymentsRecurring {
 
     /**
      * Cadence unit of the recurring item. For example: `12 months`, `52 weeks` or `365 days`.
-     * 
-     * <p>Possible values: `... months` `... weeks` `... days`
      */
     @JsonProperty("interval")
-    private String interval;
+    private ListSubscriptionPaymentsInterval interval;
 
     /**
      * Total amount and currency of the recurring item.
@@ -61,7 +60,7 @@ public class ListSubscriptionPaymentsRecurring {
     @JsonCreator
     public ListSubscriptionPaymentsRecurring(
             @JsonProperty("description") Optional<String> description,
-            @JsonProperty("interval") String interval,
+            @JsonProperty("interval") ListSubscriptionPaymentsInterval interval,
             @JsonProperty("amount") Optional<? extends ListSubscriptionPaymentsSubscriptionsResponse200Amount> amount,
             @JsonProperty("times") Optional<Long> times,
             @JsonProperty("startDate") JsonNullable<String> startDate) {
@@ -78,7 +77,7 @@ public class ListSubscriptionPaymentsRecurring {
     }
     
     public ListSubscriptionPaymentsRecurring(
-            String interval) {
+            ListSubscriptionPaymentsInterval interval) {
         this(Optional.empty(), interval, Optional.empty(),
             Optional.empty(), JsonNullable.undefined());
     }
@@ -93,11 +92,9 @@ public class ListSubscriptionPaymentsRecurring {
 
     /**
      * Cadence unit of the recurring item. For example: `12 months`, `52 weeks` or `365 days`.
-     * 
-     * <p>Possible values: `... months` `... weeks` `... days`
      */
     @JsonIgnore
-    public String interval() {
+    public ListSubscriptionPaymentsInterval interval() {
         return interval;
     }
 
@@ -152,10 +149,8 @@ public class ListSubscriptionPaymentsRecurring {
 
     /**
      * Cadence unit of the recurring item. For example: `12 months`, `52 weeks` or `365 days`.
-     * 
-     * <p>Possible values: `... months` `... weeks` `... days`
      */
-    public ListSubscriptionPaymentsRecurring withInterval(String interval) {
+    public ListSubscriptionPaymentsRecurring withInterval(ListSubscriptionPaymentsInterval interval) {
         Utils.checkNotNull(interval, "interval");
         this.interval = interval;
         return this;
@@ -256,7 +251,7 @@ public class ListSubscriptionPaymentsRecurring {
 
         private Optional<String> description = Optional.empty();
 
-        private String interval;
+        private ListSubscriptionPaymentsInterval interval;
 
         private Optional<? extends ListSubscriptionPaymentsSubscriptionsResponse200Amount> amount = Optional.empty();
 
@@ -290,10 +285,8 @@ public class ListSubscriptionPaymentsRecurring {
 
         /**
          * Cadence unit of the recurring item. For example: `12 months`, `52 weeks` or `365 days`.
-         * 
-         * <p>Possible values: `... months` `... weeks` `... days`
          */
-        public Builder interval(String interval) {
+        public Builder interval(ListSubscriptionPaymentsInterval interval) {
             Utils.checkNotNull(interval, "interval");
             this.interval = interval;
             return this;

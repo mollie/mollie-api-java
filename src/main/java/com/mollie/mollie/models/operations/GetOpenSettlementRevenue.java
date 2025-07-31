@@ -27,12 +27,10 @@ public class GetOpenSettlementRevenue {
 
     /**
      * The payment method, if applicable
-     * 
-     * <p>Possible values: `alma` `bacs` `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `bizum` `bitcoin` `blik` `creditcard` `directdebit` `eps` `giftcard` `giropay` `googlepay` `ideal` `in3` `inghomepay` `kbc` `klarnapaylater` `klarnapaynow` `klarnasliceit` `klarna` `mbway` `multibanco` `mybank` `paybybank` `payconiq` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `podiumcadeaukaart` `pointofsale` `sofort` `swish` `trustly` `twint` `voucher`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("method")
-    private JsonNullable<String> method;
+    private JsonNullable<? extends GetOpenSettlementSettlementsMethod> method;
 
     /**
      * The number of payments
@@ -65,7 +63,7 @@ public class GetOpenSettlementRevenue {
     @JsonCreator
     public GetOpenSettlementRevenue(
             @JsonProperty("description") Optional<String> description,
-            @JsonProperty("method") JsonNullable<String> method,
+            @JsonProperty("method") JsonNullable<? extends GetOpenSettlementSettlementsMethod> method,
             @JsonProperty("count") Optional<Long> count,
             @JsonProperty("amountNet") Optional<? extends GetOpenSettlementSettlementsAmountNet> amountNet,
             @JsonProperty("amountVat") Optional<? extends GetOpenSettlementSettlementsAmountVat> amountVat,
@@ -99,12 +97,11 @@ public class GetOpenSettlementRevenue {
 
     /**
      * The payment method, if applicable
-     * 
-     * <p>Possible values: `alma` `bacs` `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `bizum` `bitcoin` `blik` `creditcard` `directdebit` `eps` `giftcard` `giropay` `googlepay` `ideal` `in3` `inghomepay` `kbc` `klarnapaylater` `klarnapaynow` `klarnasliceit` `klarna` `mbway` `multibanco` `mybank` `paybybank` `payconiq` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `podiumcadeaukaart` `pointofsale` `sofort` `swish` `trustly` `twint` `voucher`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> method() {
-        return method;
+    public JsonNullable<GetOpenSettlementSettlementsMethod> method() {
+        return (JsonNullable<GetOpenSettlementSettlementsMethod>) method;
     }
 
     /**
@@ -168,10 +165,8 @@ public class GetOpenSettlementRevenue {
 
     /**
      * The payment method, if applicable
-     * 
-     * <p>Possible values: `alma` `bacs` `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `bizum` `bitcoin` `blik` `creditcard` `directdebit` `eps` `giftcard` `giropay` `googlepay` `ideal` `in3` `inghomepay` `kbc` `klarnapaylater` `klarnapaynow` `klarnasliceit` `klarna` `mbway` `multibanco` `mybank` `paybybank` `payconiq` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `podiumcadeaukaart` `pointofsale` `sofort` `swish` `trustly` `twint` `voucher`
      */
-    public GetOpenSettlementRevenue withMethod(String method) {
+    public GetOpenSettlementRevenue withMethod(GetOpenSettlementSettlementsMethod method) {
         Utils.checkNotNull(method, "method");
         this.method = JsonNullable.of(method);
         return this;
@@ -179,10 +174,8 @@ public class GetOpenSettlementRevenue {
 
     /**
      * The payment method, if applicable
-     * 
-     * <p>Possible values: `alma` `bacs` `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `bizum` `bitcoin` `blik` `creditcard` `directdebit` `eps` `giftcard` `giropay` `googlepay` `ideal` `in3` `inghomepay` `kbc` `klarnapaylater` `klarnapaynow` `klarnasliceit` `klarna` `mbway` `multibanco` `mybank` `paybybank` `payconiq` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `podiumcadeaukaart` `pointofsale` `sofort` `swish` `trustly` `twint` `voucher`
      */
-    public GetOpenSettlementRevenue withMethod(JsonNullable<String> method) {
+    public GetOpenSettlementRevenue withMethod(JsonNullable<? extends GetOpenSettlementSettlementsMethod> method) {
         Utils.checkNotNull(method, "method");
         this.method = method;
         return this;
@@ -305,7 +298,7 @@ public class GetOpenSettlementRevenue {
 
         private Optional<String> description = Optional.empty();
 
-        private JsonNullable<String> method = JsonNullable.undefined();
+        private JsonNullable<? extends GetOpenSettlementSettlementsMethod> method = JsonNullable.undefined();
 
         private Optional<Long> count = Optional.empty();
 
@@ -341,10 +334,8 @@ public class GetOpenSettlementRevenue {
 
         /**
          * The payment method, if applicable
-         * 
-         * <p>Possible values: `alma` `bacs` `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `bizum` `bitcoin` `blik` `creditcard` `directdebit` `eps` `giftcard` `giropay` `googlepay` `ideal` `in3` `inghomepay` `kbc` `klarnapaylater` `klarnapaynow` `klarnasliceit` `klarna` `mbway` `multibanco` `mybank` `paybybank` `payconiq` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `podiumcadeaukaart` `pointofsale` `sofort` `swish` `trustly` `twint` `voucher`
          */
-        public Builder method(String method) {
+        public Builder method(GetOpenSettlementSettlementsMethod method) {
             Utils.checkNotNull(method, "method");
             this.method = JsonNullable.of(method);
             return this;
@@ -352,10 +343,8 @@ public class GetOpenSettlementRevenue {
 
         /**
          * The payment method, if applicable
-         * 
-         * <p>Possible values: `alma` `bacs` `applepay` `bancomatpay` `bancontact` `banktransfer` `belfius` `billie` `bizum` `bitcoin` `blik` `creditcard` `directdebit` `eps` `giftcard` `giropay` `googlepay` `ideal` `in3` `inghomepay` `kbc` `klarnapaylater` `klarnapaynow` `klarnasliceit` `klarna` `mbway` `multibanco` `mybank` `paybybank` `payconiq` `paypal` `paysafecard` `przelewy24` `riverty` `satispay` `podiumcadeaukaart` `pointofsale` `sofort` `swish` `trustly` `twint` `voucher`
          */
-        public Builder method(JsonNullable<String> method) {
+        public Builder method(JsonNullable<? extends GetOpenSettlementSettlementsMethod> method) {
             Utils.checkNotNull(method, "method");
             this.method = method;
             return this;

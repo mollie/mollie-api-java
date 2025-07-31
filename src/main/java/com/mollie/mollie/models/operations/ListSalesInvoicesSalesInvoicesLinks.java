@@ -29,7 +29,8 @@ public class ListSalesInvoicesSalesInvoicesLinks {
     private Optional<? extends ListSalesInvoicesSalesInvoicesSelf> self;
 
     /**
-     * The URL your customer should visit to make payment for the invoice. This is where you should redirect the customer to unless the `status` is set to `paid`.
+     * The URL your customer should visit to make payment for the invoice. This is where you should redirect the
+     * customer to unless the `status` is set to `paid`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("invoicePayment")
@@ -80,7 +81,8 @@ public class ListSalesInvoicesSalesInvoicesLinks {
     }
 
     /**
-     * The URL your customer should visit to make payment for the invoice. This is where you should redirect the customer to unless the `status` is set to `paid`.
+     * The URL your customer should visit to make payment for the invoice. This is where you should redirect the
+     * customer to unless the `status` is set to `paid`.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -131,7 +133,8 @@ public class ListSalesInvoicesSalesInvoicesLinks {
     }
 
     /**
-     * The URL your customer should visit to make payment for the invoice. This is where you should redirect the customer to unless the `status` is set to `paid`.
+     * The URL your customer should visit to make payment for the invoice. This is where you should redirect the
+     * customer to unless the `status` is set to `paid`.
      */
     public ListSalesInvoicesSalesInvoicesLinks withInvoicePayment(ListSalesInvoicesInvoicePayment invoicePayment) {
         Utils.checkNotNull(invoicePayment, "invoicePayment");
@@ -141,7 +144,8 @@ public class ListSalesInvoicesSalesInvoicesLinks {
 
 
     /**
-     * The URL your customer should visit to make payment for the invoice. This is where you should redirect the customer to unless the `status` is set to `paid`.
+     * The URL your customer should visit to make payment for the invoice. This is where you should redirect the
+     * customer to unless the `status` is set to `paid`.
      */
     public ListSalesInvoicesSalesInvoicesLinks withInvoicePayment(Optional<? extends ListSalesInvoicesInvoicePayment> invoicePayment) {
         Utils.checkNotNull(invoicePayment, "invoicePayment");
@@ -254,7 +258,8 @@ public class ListSalesInvoicesSalesInvoicesLinks {
 
 
         /**
-         * The URL your customer should visit to make payment for the invoice. This is where you should redirect the customer to unless the `status` is set to `paid`.
+         * The URL your customer should visit to make payment for the invoice. This is where you should redirect the
+         * customer to unless the `status` is set to `paid`.
          */
         public Builder invoicePayment(ListSalesInvoicesInvoicePayment invoicePayment) {
             Utils.checkNotNull(invoicePayment, "invoicePayment");
@@ -263,7 +268,8 @@ public class ListSalesInvoicesSalesInvoicesLinks {
         }
 
         /**
-         * The URL your customer should visit to make payment for the invoice. This is where you should redirect the customer to unless the `status` is set to `paid`.
+         * The URL your customer should visit to make payment for the invoice. This is where you should redirect the
+         * customer to unless the `status` is set to `paid`.
          */
         public Builder invoicePayment(Optional<? extends ListSalesInvoicesInvoicePayment> invoicePayment) {
             Utils.checkNotNull(invoicePayment, "invoicePayment");

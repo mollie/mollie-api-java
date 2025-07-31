@@ -18,11 +18,9 @@ import java.lang.String;
 public class ListSalesInvoicesSalesInvoicesDiscount {
     /**
      * The type of discount.
-     * 
-     * <p>Possible values: `amount` `percentage`
      */
     @JsonProperty("type")
-    private String type;
+    private ListSalesInvoicesSalesInvoicesResponseType type;
 
     /**
      * A string containing an exact monetary amount in the given currency, or the percentage.
@@ -32,7 +30,7 @@ public class ListSalesInvoicesSalesInvoicesDiscount {
 
     @JsonCreator
     public ListSalesInvoicesSalesInvoicesDiscount(
-            @JsonProperty("type") String type,
+            @JsonProperty("type") ListSalesInvoicesSalesInvoicesResponseType type,
             @JsonProperty("value") String value) {
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(value, "value");
@@ -42,11 +40,9 @@ public class ListSalesInvoicesSalesInvoicesDiscount {
 
     /**
      * The type of discount.
-     * 
-     * <p>Possible values: `amount` `percentage`
      */
     @JsonIgnore
-    public String type() {
+    public ListSalesInvoicesSalesInvoicesResponseType type() {
         return type;
     }
 
@@ -65,10 +61,8 @@ public class ListSalesInvoicesSalesInvoicesDiscount {
 
     /**
      * The type of discount.
-     * 
-     * <p>Possible values: `amount` `percentage`
      */
-    public ListSalesInvoicesSalesInvoicesDiscount withType(String type) {
+    public ListSalesInvoicesSalesInvoicesDiscount withType(ListSalesInvoicesSalesInvoicesResponseType type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -113,7 +107,7 @@ public class ListSalesInvoicesSalesInvoicesDiscount {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String type;
+        private ListSalesInvoicesSalesInvoicesResponseType type;
 
         private String value;
 
@@ -124,10 +118,8 @@ public class ListSalesInvoicesSalesInvoicesDiscount {
 
         /**
          * The type of discount.
-         * 
-         * <p>Possible values: `amount` `percentage`
          */
-        public Builder type(String type) {
+        public Builder type(ListSalesInvoicesSalesInvoicesResponseType type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;

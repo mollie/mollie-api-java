@@ -56,23 +56,23 @@ public class Subscriptions {
      * 
      * <p>With subscriptions, you can schedule recurring payments to take place at regular intervals.
      * 
-     * <p>For example, by simply specifying an `amount` and an `interval`, you can create an endless subscription to charge a monthly fee, until you cancel the subscription.
+     * <p>For example, by simply specifying an `amount` and an `interval`, you can create an endless subscription to charge a
+     * monthly fee, until you cancel the subscription.
      * 
-     * <p>Or, you could use the times parameter to only charge a limited number of times, for example to split a big transaction in multiple parts.
+     * <p>Or, you could use the times parameter to only charge a limited number of times, for example to split a big
+     * transaction in multiple parts.
      * 
      * <p>A few example usages:
      * 
-     * <p>`amount[currency]="EUR"` `amount[value]="5.00"` `interval="2 weeks"` Your customer will be charged €5 once every two weeks.
+     * <p>`amount[currency]="EUR"` `amount[value]="5.00"` `interval="2 weeks"`
+     * Your customer will be charged €5 once every two weeks.
      * 
-     * <p>`amount[currency]="EUR"` `amount[value]="20.00"` `interval="1 day" times=5` Your customer will be charged €20 every day, for five consecutive days.
+     * <p>`amount[currency]="EUR"` `amount[value]="20.00"` `interval="1 day" times=5`
+     * Your customer will be charged €20 every day, for five consecutive days.
      * 
-     * <p>`amount[currency]="EUR"` `amount[value]="10.00"` `interval="1 month"` `startDate="2018-04-30"` Your customer will be charged €10 on the last day of each month, starting in April 2018.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **subscriptions.write**](/reference/authentication)
+     * <p>`amount[currency]="EUR"` `amount[value]="10.00"` `interval="1 month"`
+     * `startDate="2018-04-30"`
+     * Your customer will be charged €10 on the last day of each month, starting in April 2018.
      * 
      * @return The call builder
      */
@@ -85,23 +85,23 @@ public class Subscriptions {
      * 
      * <p>With subscriptions, you can schedule recurring payments to take place at regular intervals.
      * 
-     * <p>For example, by simply specifying an `amount` and an `interval`, you can create an endless subscription to charge a monthly fee, until you cancel the subscription.
+     * <p>For example, by simply specifying an `amount` and an `interval`, you can create an endless subscription to charge a
+     * monthly fee, until you cancel the subscription.
      * 
-     * <p>Or, you could use the times parameter to only charge a limited number of times, for example to split a big transaction in multiple parts.
+     * <p>Or, you could use the times parameter to only charge a limited number of times, for example to split a big
+     * transaction in multiple parts.
      * 
      * <p>A few example usages:
      * 
-     * <p>`amount[currency]="EUR"` `amount[value]="5.00"` `interval="2 weeks"` Your customer will be charged €5 once every two weeks.
+     * <p>`amount[currency]="EUR"` `amount[value]="5.00"` `interval="2 weeks"`
+     * Your customer will be charged €5 once every two weeks.
      * 
-     * <p>`amount[currency]="EUR"` `amount[value]="20.00"` `interval="1 day" times=5` Your customer will be charged €20 every day, for five consecutive days.
+     * <p>`amount[currency]="EUR"` `amount[value]="20.00"` `interval="1 day" times=5`
+     * Your customer will be charged €20 every day, for five consecutive days.
      * 
-     * <p>`amount[currency]="EUR"` `amount[value]="10.00"` `interval="1 month"` `startDate="2018-04-30"` Your customer will be charged €10 on the last day of each month, starting in April 2018.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **subscriptions.write**](/reference/authentication)
+     * <p>`amount[currency]="EUR"` `amount[value]="10.00"` `interval="1 month"`
+     * `startDate="2018-04-30"`
+     * Your customer will be charged €10 on the last day of each month, starting in April 2018.
      * 
      * @param customerId Provide the ID of the related customer.
      * @return The response from the API call
@@ -116,23 +116,23 @@ public class Subscriptions {
      * 
      * <p>With subscriptions, you can schedule recurring payments to take place at regular intervals.
      * 
-     * <p>For example, by simply specifying an `amount` and an `interval`, you can create an endless subscription to charge a monthly fee, until you cancel the subscription.
+     * <p>For example, by simply specifying an `amount` and an `interval`, you can create an endless subscription to charge a
+     * monthly fee, until you cancel the subscription.
      * 
-     * <p>Or, you could use the times parameter to only charge a limited number of times, for example to split a big transaction in multiple parts.
+     * <p>Or, you could use the times parameter to only charge a limited number of times, for example to split a big
+     * transaction in multiple parts.
      * 
      * <p>A few example usages:
      * 
-     * <p>`amount[currency]="EUR"` `amount[value]="5.00"` `interval="2 weeks"` Your customer will be charged €5 once every two weeks.
+     * <p>`amount[currency]="EUR"` `amount[value]="5.00"` `interval="2 weeks"`
+     * Your customer will be charged €5 once every two weeks.
      * 
-     * <p>`amount[currency]="EUR"` `amount[value]="20.00"` `interval="1 day" times=5` Your customer will be charged €20 every day, for five consecutive days.
+     * <p>`amount[currency]="EUR"` `amount[value]="20.00"` `interval="1 day" times=5`
+     * Your customer will be charged €20 every day, for five consecutive days.
      * 
-     * <p>`amount[currency]="EUR"` `amount[value]="10.00"` `interval="1 month"` `startDate="2018-04-30"` Your customer will be charged €10 on the last day of each month, starting in April 2018.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **subscriptions.write**](/reference/authentication)
+     * <p>`amount[currency]="EUR"` `amount[value]="10.00"` `interval="1 month"`
+     * `startDate="2018-04-30"`
+     * Your customer will be charged €10 on the last day of each month, starting in April 2018.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param requestBody 
@@ -161,12 +161,6 @@ public class Subscriptions {
      * 
      * <p>The results are paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **subscriptions.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public ListSubscriptionsRequestBuilder list() {
@@ -179,12 +173,6 @@ public class Subscriptions {
      * <p>Retrieve all subscriptions of a customer.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **subscriptions.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -200,12 +188,6 @@ public class Subscriptions {
      * <p>Retrieve all subscriptions of a customer.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **subscriptions.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -223,12 +205,6 @@ public class Subscriptions {
      * 
      * <p>Retrieve a single subscription by its ID and the ID of its parent customer.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **subscriptions.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public GetSubscriptionRequestBuilder get() {
@@ -239,12 +215,6 @@ public class Subscriptions {
      * Get subscription
      * 
      * <p>Retrieve a single subscription by its ID and the ID of its parent customer.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **subscriptions.read**](/reference/authentication)
      * 
      * @param customerId Provide the ID of the related customer.
      * @param subscriptionId Provide the ID of the related subscription.
@@ -261,15 +231,11 @@ public class Subscriptions {
      * 
      * <p>Retrieve a single subscription by its ID and the ID of its parent customer.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **subscriptions.read**](/reference/authentication)
-     * 
      * @param customerId Provide the ID of the related customer.
      * @param subscriptionId Provide the ID of the related subscription.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param options additional options
@@ -300,12 +266,6 @@ public class Subscriptions {
      * 
      * <p>For an in-depth explanation of each parameter, refer to the [Create subscription](create-subscription) endpoint.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **subscriptions.write**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public UpdateSubscriptionRequestBuilder update() {
@@ -320,12 +280,6 @@ public class Subscriptions {
      * <p>Canceled subscriptions cannot be updated.
      * 
      * <p>For an in-depth explanation of each parameter, refer to the [Create subscription](create-subscription) endpoint.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **subscriptions.write**](/reference/authentication)
      * 
      * @param customerId Provide the ID of the related customer.
      * @param subscriptionId Provide the ID of the related subscription.
@@ -345,12 +299,6 @@ public class Subscriptions {
      * <p>Canceled subscriptions cannot be updated.
      * 
      * <p>For an in-depth explanation of each parameter, refer to the [Create subscription](create-subscription) endpoint.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **subscriptions.write**](/reference/authentication)
      * 
      * @param customerId Provide the ID of the related customer.
      * @param subscriptionId Provide the ID of the related subscription.
@@ -379,12 +327,6 @@ public class Subscriptions {
      * 
      * <p>Cancel an existing subscription. Canceling a subscription has no effect on the mandates of the customer.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **subscriptions.write**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public CancelSubscriptionRequestBuilder cancel() {
@@ -395,12 +337,6 @@ public class Subscriptions {
      * Cancel subscription
      * 
      * <p>Cancel an existing subscription. Canceling a subscription has no effect on the mandates of the customer.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **subscriptions.write**](/reference/authentication)
      * 
      * @param customerId Provide the ID of the related customer.
      * @param subscriptionId Provide the ID of the related subscription.
@@ -416,12 +352,6 @@ public class Subscriptions {
      * Cancel subscription
      * 
      * <p>Cancel an existing subscription. Canceling a subscription has no effect on the mandates of the customer.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **subscriptions.write**](/reference/authentication)
      * 
      * @param customerId Provide the ID of the related customer.
      * @param subscriptionId Provide the ID of the related subscription.
@@ -452,12 +382,6 @@ public class Subscriptions {
      * 
      * <p>The results are paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **subscriptions.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public ListAllSubscriptionsRequestBuilder all() {
@@ -470,12 +394,6 @@ public class Subscriptions {
      * <p>Retrieve all subscriptions initiated across all your customers.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **subscriptions.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -491,12 +409,6 @@ public class Subscriptions {
      * <p>Retrieve all subscriptions initiated across all your customers.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **subscriptions.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -516,12 +428,6 @@ public class Subscriptions {
      * 
      * <p>The results are paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **subscriptions.read** **payments.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public ListSubscriptionPaymentsRequestBuilder listPayments() {
@@ -534,12 +440,6 @@ public class Subscriptions {
      * <p>Retrieve all payments of a specific subscription.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **subscriptions.read** **payments.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -555,12 +455,6 @@ public class Subscriptions {
      * <p>Retrieve all payments of a specific subscription.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **subscriptions.read** **payments.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

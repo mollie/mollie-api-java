@@ -18,11 +18,9 @@ import java.lang.String;
 public class UpdateSalesInvoiceSalesInvoicesResponseDiscount {
     /**
      * The type of discount.
-     * 
-     * <p>Possible values: `amount` `percentage`
      */
     @JsonProperty("type")
-    private String type;
+    private UpdateSalesInvoiceSalesInvoicesResponse200Type type;
 
     /**
      * A string containing an exact monetary amount in the given currency, or the percentage.
@@ -32,7 +30,7 @@ public class UpdateSalesInvoiceSalesInvoicesResponseDiscount {
 
     @JsonCreator
     public UpdateSalesInvoiceSalesInvoicesResponseDiscount(
-            @JsonProperty("type") String type,
+            @JsonProperty("type") UpdateSalesInvoiceSalesInvoicesResponse200Type type,
             @JsonProperty("value") String value) {
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(value, "value");
@@ -42,11 +40,9 @@ public class UpdateSalesInvoiceSalesInvoicesResponseDiscount {
 
     /**
      * The type of discount.
-     * 
-     * <p>Possible values: `amount` `percentage`
      */
     @JsonIgnore
-    public String type() {
+    public UpdateSalesInvoiceSalesInvoicesResponse200Type type() {
         return type;
     }
 
@@ -65,10 +61,8 @@ public class UpdateSalesInvoiceSalesInvoicesResponseDiscount {
 
     /**
      * The type of discount.
-     * 
-     * <p>Possible values: `amount` `percentage`
      */
-    public UpdateSalesInvoiceSalesInvoicesResponseDiscount withType(String type) {
+    public UpdateSalesInvoiceSalesInvoicesResponseDiscount withType(UpdateSalesInvoiceSalesInvoicesResponse200Type type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -113,7 +107,7 @@ public class UpdateSalesInvoiceSalesInvoicesResponseDiscount {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String type;
+        private UpdateSalesInvoiceSalesInvoicesResponse200Type type;
 
         private String value;
 
@@ -124,10 +118,8 @@ public class UpdateSalesInvoiceSalesInvoicesResponseDiscount {
 
         /**
          * The type of discount.
-         * 
-         * <p>Possible values: `amount` `percentage`
          */
-        public Builder type(String type) {
+        public Builder type(UpdateSalesInvoiceSalesInvoicesResponse200Type type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;

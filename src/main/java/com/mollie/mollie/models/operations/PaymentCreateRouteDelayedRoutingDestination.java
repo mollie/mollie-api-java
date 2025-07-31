@@ -18,21 +18,20 @@ import java.lang.String;
 public class PaymentCreateRouteDelayedRoutingDestination {
     /**
      * The type of destination. Currently only the destination type `organization` is supported.
-     * 
-     * <p>Possible values: `organization`
      */
     @JsonProperty("type")
-    private String type;
+    private PaymentCreateRouteDelayedRoutingType type;
 
     /**
-     * Required for destination type `organization`. The ID of the connected organization the funds should be routed to.
+     * Required for destination type `organization`. The ID of the connected organization the funds should be
+     * routed to.
      */
     @JsonProperty("organizationId")
     private String organizationId;
 
     @JsonCreator
     public PaymentCreateRouteDelayedRoutingDestination(
-            @JsonProperty("type") String type,
+            @JsonProperty("type") PaymentCreateRouteDelayedRoutingType type,
             @JsonProperty("organizationId") String organizationId) {
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(organizationId, "organizationId");
@@ -42,16 +41,15 @@ public class PaymentCreateRouteDelayedRoutingDestination {
 
     /**
      * The type of destination. Currently only the destination type `organization` is supported.
-     * 
-     * <p>Possible values: `organization`
      */
     @JsonIgnore
-    public String type() {
+    public PaymentCreateRouteDelayedRoutingType type() {
         return type;
     }
 
     /**
-     * Required for destination type `organization`. The ID of the connected organization the funds should be routed to.
+     * Required for destination type `organization`. The ID of the connected organization the funds should be
+     * routed to.
      */
     @JsonIgnore
     public String organizationId() {
@@ -65,17 +63,16 @@ public class PaymentCreateRouteDelayedRoutingDestination {
 
     /**
      * The type of destination. Currently only the destination type `organization` is supported.
-     * 
-     * <p>Possible values: `organization`
      */
-    public PaymentCreateRouteDelayedRoutingDestination withType(String type) {
+    public PaymentCreateRouteDelayedRoutingDestination withType(PaymentCreateRouteDelayedRoutingType type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
     }
 
     /**
-     * Required for destination type `organization`. The ID of the connected organization the funds should be routed to.
+     * Required for destination type `organization`. The ID of the connected organization the funds should be
+     * routed to.
      */
     public PaymentCreateRouteDelayedRoutingDestination withOrganizationId(String organizationId) {
         Utils.checkNotNull(organizationId, "organizationId");
@@ -113,7 +110,7 @@ public class PaymentCreateRouteDelayedRoutingDestination {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String type;
+        private PaymentCreateRouteDelayedRoutingType type;
 
         private String organizationId;
 
@@ -124,10 +121,8 @@ public class PaymentCreateRouteDelayedRoutingDestination {
 
         /**
          * The type of destination. Currently only the destination type `organization` is supported.
-         * 
-         * <p>Possible values: `organization`
          */
-        public Builder type(String type) {
+        public Builder type(PaymentCreateRouteDelayedRoutingType type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
@@ -135,7 +130,8 @@ public class PaymentCreateRouteDelayedRoutingDestination {
 
 
         /**
-         * Required for destination type `organization`. The ID of the connected organization the funds should be routed to.
+         * Required for destination type `organization`. The ID of the connected organization the funds should be
+         * routed to.
          */
         public Builder organizationId(String organizationId) {
             Utils.checkNotNull(organizationId, "organizationId");

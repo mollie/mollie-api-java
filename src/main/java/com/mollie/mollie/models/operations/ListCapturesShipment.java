@@ -16,7 +16,8 @@ import java.util.Optional;
 /**
  * ListCapturesShipment
  * 
- * <p>The API resource URL of the [shipment](get-shipment) this capture is associated with. Not present if it isn't associated with a shipment.
+ * <p>The API resource URL of the [shipment](get-shipment) this capture is associated with. Not present if
+ * it isn't associated with a shipment.
  */
 public class ListCapturesShipment {
     /**

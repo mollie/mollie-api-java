@@ -35,7 +35,7 @@ public class GetClientCapabilities {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends GetClientStatus> status;
+    private Optional<? extends GetClientClientsStatus> status;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -51,7 +51,7 @@ public class GetClientCapabilities {
     public GetClientCapabilities(
             @JsonProperty("resource") Optional<String> resource,
             @JsonProperty("name") Optional<String> name,
-            @JsonProperty("status") Optional<? extends GetClientStatus> status,
+            @JsonProperty("status") Optional<? extends GetClientClientsStatus> status,
             @JsonProperty("statusReason") JsonNullable<? extends GetClientStatusReason> statusReason,
             @JsonProperty("requirements") Optional<? extends List<GetClientRequirements>> requirements) {
         Utils.checkNotNull(resource, "resource");
@@ -89,8 +89,8 @@ public class GetClientCapabilities {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetClientStatus> status() {
-        return (Optional<GetClientStatus>) status;
+    public Optional<GetClientClientsStatus> status() {
+        return (Optional<GetClientClientsStatus>) status;
     }
 
     @SuppressWarnings("unchecked")
@@ -148,14 +148,14 @@ public class GetClientCapabilities {
         return this;
     }
 
-    public GetClientCapabilities withStatus(GetClientStatus status) {
+    public GetClientCapabilities withStatus(GetClientClientsStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
     }
 
 
-    public GetClientCapabilities withStatus(Optional<? extends GetClientStatus> status) {
+    public GetClientCapabilities withStatus(Optional<? extends GetClientClientsStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -227,7 +227,7 @@ public class GetClientCapabilities {
 
         private Optional<String> name = Optional.empty();
 
-        private Optional<? extends GetClientStatus> status = Optional.empty();
+        private Optional<? extends GetClientClientsStatus> status = Optional.empty();
 
         private JsonNullable<? extends GetClientStatusReason> statusReason = JsonNullable.undefined();
 
@@ -276,13 +276,13 @@ public class GetClientCapabilities {
         }
 
 
-        public Builder status(GetClientStatus status) {
+        public Builder status(GetClientClientsStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
         }
 
-        public Builder status(Optional<? extends GetClientStatus> status) {
+        public Builder status(Optional<? extends GetClientClientsStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

@@ -23,6 +23,7 @@ import com.mollie.mollie.models.operations.GetCustomerResponse;
 import com.mollie.mollie.models.operations.ListCustomerPaymentsRequest;
 import com.mollie.mollie.models.operations.ListCustomerPaymentsRequestBuilder;
 import com.mollie.mollie.models.operations.ListCustomerPaymentsResponse;
+import com.mollie.mollie.models.operations.ListCustomersQueryParamSort;
 import com.mollie.mollie.models.operations.ListCustomersRequest;
 import com.mollie.mollie.models.operations.ListCustomersRequestBuilder;
 import com.mollie.mollie.models.operations.ListCustomersResponse;
@@ -56,15 +57,10 @@ public class Customers {
     /**
      * Create customer
      * 
-     * <p>Creates a simple minimal representation of a customer. Payments, recurring mandates, and subscriptions can be linked to this customer object, which simplifies management of recurring payments.
+     * <p>Creates a simple minimal representation of a customer. Payments, recurring mandates, and subscriptions can be linked
+     * to this customer object, which simplifies management of recurring payments.
      * 
      * <p>Once registered, customers will also appear in your Mollie dashboard.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **customers.write**](/reference/authentication)
      * 
      * @return The call builder
      */
@@ -75,15 +71,10 @@ public class Customers {
     /**
      * Create customer
      * 
-     * <p>Creates a simple minimal representation of a customer. Payments, recurring mandates, and subscriptions can be linked to this customer object, which simplifies management of recurring payments.
+     * <p>Creates a simple minimal representation of a customer. Payments, recurring mandates, and subscriptions can be linked
+     * to this customer object, which simplifies management of recurring payments.
      * 
      * <p>Once registered, customers will also appear in your Mollie dashboard.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **customers.write**](/reference/authentication)
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -95,15 +86,10 @@ public class Customers {
     /**
      * Create customer
      * 
-     * <p>Creates a simple minimal representation of a customer. Payments, recurring mandates, and subscriptions can be linked to this customer object, which simplifies management of recurring payments.
+     * <p>Creates a simple minimal representation of a customer. Payments, recurring mandates, and subscriptions can be linked
+     * to this customer object, which simplifies management of recurring payments.
      * 
      * <p>Once registered, customers will also appear in your Mollie dashboard.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **customers.write**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -123,12 +109,6 @@ public class Customers {
      * 
      * <p>The results are paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **customers.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public ListCustomersRequestBuilder list() {
@@ -141,12 +121,6 @@ public class Customers {
      * <p>Retrieve a list of all customers.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **customers.read**](/reference/authentication)
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -163,18 +137,14 @@ public class Customers {
      * 
      * <p>The results are paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **customers.read**](/reference/authentication)
-     * 
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     *         result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param sort Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
-     *         
-     *         Possible values: `asc` `desc` (default: `desc`)
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * @param sort Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     *         newest to oldest.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param options additional options
@@ -183,7 +153,7 @@ public class Customers {
      */
     public ListCustomersResponse list(
             Optional<String> from, JsonNullable<Long> limit,
-            JsonNullable<String> sort, JsonNullable<Boolean> testmode,
+            JsonNullable<? extends ListCustomersQueryParamSort> sort, JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
         ListCustomersRequest request =
             ListCustomersRequest
@@ -203,10 +173,6 @@ public class Customers {
      * 
      * <p>Retrieve a single customer by its ID.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * 
      * @return The call builder
      */
     public GetCustomerRequestBuilder get() {
@@ -217,10 +183,6 @@ public class Customers {
      * Get customer
      * 
      * <p>Retrieve a single customer by its ID.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
      * 
      * @param customerId Provide the ID of the related customer.
      * @return The response from the API call
@@ -236,13 +198,11 @@ public class Customers {
      * 
      * <p>Retrieve a single customer by its ID.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * 
      * @param customerId Provide the ID of the related customer.
      * @param include This endpoint allows you to include additional information via the `include` query string parameter.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param options additional options
@@ -271,10 +231,6 @@ public class Customers {
      * 
      * <p>For an in-depth explanation of each parameter, refer to the [Create customer](create-customer) endpoint.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * 
      * @return The call builder
      */
     public UpdateCustomerRequestBuilder update() {
@@ -287,10 +243,6 @@ public class Customers {
      * <p>Update an existing customer.
      * 
      * <p>For an in-depth explanation of each parameter, refer to the [Create customer](create-customer) endpoint.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
      * 
      * @param customerId Provide the ID of the related customer.
      * @return The response from the API call
@@ -306,10 +258,6 @@ public class Customers {
      * <p>Update an existing customer.
      * 
      * <p>For an in-depth explanation of each parameter, refer to the [Create customer](create-customer) endpoint.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
      * 
      * @param customerId Provide the ID of the related customer.
      * @param requestBody 
@@ -336,10 +284,6 @@ public class Customers {
      * 
      * <p>Delete a customer. All mandates and subscriptions created for this customer will be canceled as well.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * 
      * @return The call builder
      */
     public DeleteCustomerRequestBuilder delete() {
@@ -350,10 +294,6 @@ public class Customers {
      * Delete customer
      * 
      * <p>Delete a customer. All mandates and subscriptions created for this customer will be canceled as well.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
      * 
      * @param customerId Provide the ID of the related customer.
      * @return The response from the API call
@@ -367,10 +307,6 @@ public class Customers {
      * Delete customer
      * 
      * <p>Delete a customer. All mandates and subscriptions created for this customer will be canceled as well.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
      * 
      * @param customerId Provide the ID of the related customer.
      * @param requestBody 
@@ -404,13 +340,8 @@ public class Customers {
      * * Improve payment insights in the Mollie dashboard
      * * Use recurring payments
      * 
-     * <p>This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the `customerId` parameter predefined.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.write**](/reference/authentication)
+     * <p>This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the `customerId`
+     * parameter predefined.
      * 
      * @return The call builder
      */
@@ -430,13 +361,8 @@ public class Customers {
      * * Improve payment insights in the Mollie dashboard
      * * Use recurring payments
      * 
-     * <p>This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the `customerId` parameter predefined.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.write**](/reference/authentication)
+     * <p>This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the `customerId`
+     * parameter predefined.
      * 
      * @param customerId Provide the ID of the related customer.
      * @return The response from the API call
@@ -458,13 +384,8 @@ public class Customers {
      * * Improve payment insights in the Mollie dashboard
      * * Use recurring payments
      * 
-     * <p>This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the `customerId` parameter predefined.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.write**](/reference/authentication)
+     * <p>This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the `customerId`
+     * parameter predefined.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param requestBody 
@@ -491,12 +412,6 @@ public class Customers {
      * 
      * <p>Retrieve all payments linked to the customer.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public ListCustomerPaymentsRequestBuilder listPayments() {
@@ -507,12 +422,6 @@ public class Customers {
      * List customer payments
      * 
      * <p>Retrieve all payments linked to the customer.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -526,12 +435,6 @@ public class Customers {
      * List customer payments
      * 
      * <p>Retrieve all payments linked to the customer.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

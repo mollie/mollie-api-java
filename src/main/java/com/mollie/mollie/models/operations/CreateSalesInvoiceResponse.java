@@ -33,7 +33,8 @@ public class CreateSalesInvoiceResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * The newly created invoice object. For a complete reference of the invoice object, refer to the [Get sales invoice endpoint](get-sales-invoice) documentation.
+     * The newly created invoice object. For a complete reference of the invoice object, refer to the
+     * [Get sales invoice endpoint](get-sales-invoice) documentation.
      */
     private Optional<? extends CreateSalesInvoiceResponseBody> object;
 
@@ -86,7 +87,8 @@ public class CreateSalesInvoiceResponse implements Response {
     }
 
     /**
-     * The newly created invoice object. For a complete reference of the invoice object, refer to the [Get sales invoice endpoint](get-sales-invoice) documentation.
+     * The newly created invoice object. For a complete reference of the invoice object, refer to the
+     * [Get sales invoice endpoint](get-sales-invoice) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -127,7 +129,8 @@ public class CreateSalesInvoiceResponse implements Response {
     }
 
     /**
-     * The newly created invoice object. For a complete reference of the invoice object, refer to the [Get sales invoice endpoint](get-sales-invoice) documentation.
+     * The newly created invoice object. For a complete reference of the invoice object, refer to the
+     * [Get sales invoice endpoint](get-sales-invoice) documentation.
      */
     public CreateSalesInvoiceResponse withObject(CreateSalesInvoiceResponseBody object) {
         Utils.checkNotNull(object, "object");
@@ -137,7 +140,8 @@ public class CreateSalesInvoiceResponse implements Response {
 
 
     /**
-     * The newly created invoice object. For a complete reference of the invoice object, refer to the [Get sales invoice endpoint](get-sales-invoice) documentation.
+     * The newly created invoice object. For a complete reference of the invoice object, refer to the
+     * [Get sales invoice endpoint](get-sales-invoice) documentation.
      */
     public CreateSalesInvoiceResponse withObject(Optional<? extends CreateSalesInvoiceResponseBody> object) {
         Utils.checkNotNull(object, "object");
@@ -224,7 +228,8 @@ public class CreateSalesInvoiceResponse implements Response {
 
 
         /**
-         * The newly created invoice object. For a complete reference of the invoice object, refer to the [Get sales invoice endpoint](get-sales-invoice) documentation.
+         * The newly created invoice object. For a complete reference of the invoice object, refer to the
+         * [Get sales invoice endpoint](get-sales-invoice) documentation.
          */
         public Builder object(CreateSalesInvoiceResponseBody object) {
             Utils.checkNotNull(object, "object");
@@ -233,7 +238,8 @@ public class CreateSalesInvoiceResponse implements Response {
         }
 
         /**
-         * The newly created invoice object. For a complete reference of the invoice object, refer to the [Get sales invoice endpoint](get-sales-invoice) documentation.
+         * The newly created invoice object. For a complete reference of the invoice object, refer to the
+         * [Get sales invoice endpoint](get-sales-invoice) documentation.
          */
         public Builder object(Optional<? extends CreateSalesInvoiceResponseBody> object) {
             Utils.checkNotNull(object, "object");

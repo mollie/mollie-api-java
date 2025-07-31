@@ -13,6 +13,7 @@ import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -32,43 +33,37 @@ public class Terminals {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
     @JsonProperty("mode")
-    private String mode;
+    private ListTerminalsMode mode;
 
     /**
-     * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it may be visible on the device itself depending on the device.
+     * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the
+     * description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it
+     * may be visible on the device itself depending on the device.
      */
     @JsonProperty("description")
     private String description;
 
     /**
      * The status of the terminal.
-     * 
-     * <p>Possible values: `pending` `active` `inactive`
      */
     @JsonProperty("status")
-    private String status;
+    private ListTerminalsStatus status;
 
     /**
      * The brand of the terminal.
-     * 
-     * <p>Possible values: `PAX`
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("brand")
-    private Optional<String> brand;
+    private Optional<? extends ListTerminalsBrand> brand;
 
     /**
      * The model of the terminal. For example for a PAX A920, this field's value will be `A920`.
-     * 
-     * <p>Possible values: `A35` `A77` `A920` `A920 Pro` `IM30`
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("model")
-    private Optional<String> model;
+    private Optional<? extends ListTerminalsModel> model;
 
     /**
      * The serial number of the terminal. The serial number is provided at terminal creation time.
@@ -78,7 +73,8 @@ public class Terminals {
     private Optional<String> serialNumber;
 
     /**
-     * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a specific currency, chosen during setup.
+     * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a
+     * specific currency, chosen during setup.
      */
     @JsonProperty("currency")
     private String currency;
@@ -86,7 +82,9 @@ public class Terminals {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     @JsonProperty("profileId")
     private String profileId;
@@ -113,11 +111,11 @@ public class Terminals {
     public Terminals(
             @JsonProperty("resource") Optional<String> resource,
             @JsonProperty("id") String id,
-            @JsonProperty("mode") String mode,
+            @JsonProperty("mode") ListTerminalsMode mode,
             @JsonProperty("description") String description,
-            @JsonProperty("status") String status,
-            @JsonProperty("brand") Optional<String> brand,
-            @JsonProperty("model") Optional<String> model,
+            @JsonProperty("status") ListTerminalsStatus status,
+            @JsonProperty("brand") Optional<? extends ListTerminalsBrand> brand,
+            @JsonProperty("model") Optional<? extends ListTerminalsModel> model,
             @JsonProperty("serialNumber") Optional<String> serialNumber,
             @JsonProperty("currency") String currency,
             @JsonProperty("profileId") String profileId,
@@ -154,9 +152,9 @@ public class Terminals {
     
     public Terminals(
             String id,
-            String mode,
+            ListTerminalsMode mode,
             String description,
-            String status,
+            ListTerminalsStatus status,
             String currency,
             String profileId,
             String createdAt,
@@ -187,16 +185,16 @@ public class Terminals {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
     @JsonIgnore
-    public String mode() {
+    public ListTerminalsMode mode() {
         return mode;
     }
 
     /**
-     * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it may be visible on the device itself depending on the device.
+     * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the
+     * description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it
+     * may be visible on the device itself depending on the device.
      */
     @JsonIgnore
     public String description() {
@@ -205,32 +203,28 @@ public class Terminals {
 
     /**
      * The status of the terminal.
-     * 
-     * <p>Possible values: `pending` `active` `inactive`
      */
     @JsonIgnore
-    public String status() {
+    public ListTerminalsStatus status() {
         return status;
     }
 
     /**
      * The brand of the terminal.
-     * 
-     * <p>Possible values: `PAX`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> brand() {
-        return brand;
+    public Optional<ListTerminalsBrand> brand() {
+        return (Optional<ListTerminalsBrand>) brand;
     }
 
     /**
      * The model of the terminal. For example for a PAX A920, this field's value will be `A920`.
-     * 
-     * <p>Possible values: `A35` `A77` `A920` `A920 Pro` `IM30`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> model() {
-        return model;
+    public Optional<ListTerminalsModel> model() {
+        return (Optional<ListTerminalsModel>) model;
     }
 
     /**
@@ -242,7 +236,8 @@ public class Terminals {
     }
 
     /**
-     * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a specific currency, chosen during setup.
+     * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a
+     * specific currency, chosen during setup.
      */
     @JsonIgnore
     public String currency() {
@@ -252,7 +247,9 @@ public class Terminals {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     @JsonIgnore
     public String profileId() {
@@ -318,17 +315,17 @@ public class Terminals {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
-    public Terminals withMode(String mode) {
+    public Terminals withMode(ListTerminalsMode mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
     }
 
     /**
-     * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it may be visible on the device itself depending on the device.
+     * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the
+     * description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it
+     * may be visible on the device itself depending on the device.
      */
     public Terminals withDescription(String description) {
         Utils.checkNotNull(description, "description");
@@ -338,10 +335,8 @@ public class Terminals {
 
     /**
      * The status of the terminal.
-     * 
-     * <p>Possible values: `pending` `active` `inactive`
      */
-    public Terminals withStatus(String status) {
+    public Terminals withStatus(ListTerminalsStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -349,10 +344,8 @@ public class Terminals {
 
     /**
      * The brand of the terminal.
-     * 
-     * <p>Possible values: `PAX`
      */
-    public Terminals withBrand(String brand) {
+    public Terminals withBrand(ListTerminalsBrand brand) {
         Utils.checkNotNull(brand, "brand");
         this.brand = Optional.ofNullable(brand);
         return this;
@@ -361,10 +354,8 @@ public class Terminals {
 
     /**
      * The brand of the terminal.
-     * 
-     * <p>Possible values: `PAX`
      */
-    public Terminals withBrand(Optional<String> brand) {
+    public Terminals withBrand(Optional<? extends ListTerminalsBrand> brand) {
         Utils.checkNotNull(brand, "brand");
         this.brand = brand;
         return this;
@@ -372,10 +363,8 @@ public class Terminals {
 
     /**
      * The model of the terminal. For example for a PAX A920, this field's value will be `A920`.
-     * 
-     * <p>Possible values: `A35` `A77` `A920` `A920 Pro` `IM30`
      */
-    public Terminals withModel(String model) {
+    public Terminals withModel(ListTerminalsModel model) {
         Utils.checkNotNull(model, "model");
         this.model = Optional.ofNullable(model);
         return this;
@@ -384,10 +373,8 @@ public class Terminals {
 
     /**
      * The model of the terminal. For example for a PAX A920, this field's value will be `A920`.
-     * 
-     * <p>Possible values: `A35` `A77` `A920` `A920 Pro` `IM30`
      */
-    public Terminals withModel(Optional<String> model) {
+    public Terminals withModel(Optional<? extends ListTerminalsModel> model) {
         Utils.checkNotNull(model, "model");
         this.model = model;
         return this;
@@ -413,7 +400,8 @@ public class Terminals {
     }
 
     /**
-     * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a specific currency, chosen during setup.
+     * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a
+     * specific currency, chosen during setup.
      */
     public Terminals withCurrency(String currency) {
         Utils.checkNotNull(currency, "currency");
@@ -424,7 +412,9 @@ public class Terminals {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     public Terminals withProfileId(String profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -519,15 +509,15 @@ public class Terminals {
 
         private String id;
 
-        private String mode;
+        private ListTerminalsMode mode;
 
         private String description;
 
-        private String status;
+        private ListTerminalsStatus status;
 
-        private Optional<String> brand = Optional.empty();
+        private Optional<? extends ListTerminalsBrand> brand = Optional.empty();
 
-        private Optional<String> model = Optional.empty();
+        private Optional<? extends ListTerminalsModel> model = Optional.empty();
 
         private Optional<String> serialNumber = Optional.empty();
 
@@ -577,10 +567,8 @@ public class Terminals {
 
         /**
          * Whether this entity was created in live mode or in test mode.
-         * 
-         * <p>Possible values: `live` `test`
          */
-        public Builder mode(String mode) {
+        public Builder mode(ListTerminalsMode mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
@@ -588,7 +576,9 @@ public class Terminals {
 
 
         /**
-         * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it may be visible on the device itself depending on the device.
+         * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the
+         * description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it
+         * may be visible on the device itself depending on the device.
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
@@ -599,10 +589,8 @@ public class Terminals {
 
         /**
          * The status of the terminal.
-         * 
-         * <p>Possible values: `pending` `active` `inactive`
          */
-        public Builder status(String status) {
+        public Builder status(ListTerminalsStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -611,10 +599,8 @@ public class Terminals {
 
         /**
          * The brand of the terminal.
-         * 
-         * <p>Possible values: `PAX`
          */
-        public Builder brand(String brand) {
+        public Builder brand(ListTerminalsBrand brand) {
             Utils.checkNotNull(brand, "brand");
             this.brand = Optional.ofNullable(brand);
             return this;
@@ -622,10 +608,8 @@ public class Terminals {
 
         /**
          * The brand of the terminal.
-         * 
-         * <p>Possible values: `PAX`
          */
-        public Builder brand(Optional<String> brand) {
+        public Builder brand(Optional<? extends ListTerminalsBrand> brand) {
             Utils.checkNotNull(brand, "brand");
             this.brand = brand;
             return this;
@@ -634,10 +618,8 @@ public class Terminals {
 
         /**
          * The model of the terminal. For example for a PAX A920, this field's value will be `A920`.
-         * 
-         * <p>Possible values: `A35` `A77` `A920` `A920 Pro` `IM30`
          */
-        public Builder model(String model) {
+        public Builder model(ListTerminalsModel model) {
             Utils.checkNotNull(model, "model");
             this.model = Optional.ofNullable(model);
             return this;
@@ -645,10 +627,8 @@ public class Terminals {
 
         /**
          * The model of the terminal. For example for a PAX A920, this field's value will be `A920`.
-         * 
-         * <p>Possible values: `A35` `A77` `A920` `A920 Pro` `IM30`
          */
-        public Builder model(Optional<String> model) {
+        public Builder model(Optional<? extends ListTerminalsModel> model) {
             Utils.checkNotNull(model, "model");
             this.model = model;
             return this;
@@ -675,7 +655,8 @@ public class Terminals {
 
 
         /**
-         * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a specific currency, chosen during setup.
+         * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a
+         * specific currency, chosen during setup.
          */
         public Builder currency(String currency) {
             Utils.checkNotNull(currency, "currency");
@@ -687,7 +668,9 @@ public class Terminals {
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+         * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+         * required.
          */
         public Builder profileId(String profileId) {
             Utils.checkNotNull(profileId, "profileId");

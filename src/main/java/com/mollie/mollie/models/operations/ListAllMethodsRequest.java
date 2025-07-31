@@ -5,6 +5,8 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
@@ -17,13 +19,15 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListAllMethodsRequest {
     /**
-     * Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
+     * Passing a locale will sort the payment methods in the preferred order
+     * for the country, and translate the payment method names in the corresponding language.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=locale")
-    private Optional<String> locale;
+    private Optional<? extends ListAllMethodsQueryParamLocale> locale;
 
     /**
-     * If supplied, only payment methods that support the amount and currency are returned.
+     * If supplied, only payment methods that support the amount and currency
+     * are returned.
      * 
      * <p>Example: `/v2/methods/all?amount[value]=100.00&amp;amount[currency]=USD`
      */
@@ -31,31 +35,35 @@ public class ListAllMethodsRequest {
     private Optional<? extends ListAllMethodsQueryParamAmount> amount;
 
     /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
+     * This endpoint allows you to include additional information via the
+     * `include` query string parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=include")
     private JsonNullable<? extends ListAllMethodsQueryParamInclude> include;
 
     /**
-     * Set this parameter to `first` to only return the methods that can be used for the first payment of a recurring sequence.
+     * Set this parameter to `first` to only return the methods that
+     * can be used for the first payment of a recurring sequence.
      * 
      * <p>Set it to `recurring` to only return methods that can be used for recurring payments or subscriptions.
-     * 
-     * <p>Possible values: `oneoff` `first` `recurring` (default: `oneoff`)
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sequenceType")
-    private Optional<String> sequenceType;
+    private Optional<? extends ListAllMethodsQueryParamSequenceType> sequenceType;
 
     /**
-     * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+     * The identifier referring to the [profile](get-profile) you wish to
+     * retrieve the resources for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
+     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=profileId")
     private Optional<String> profileId;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -64,10 +72,10 @@ public class ListAllMethodsRequest {
 
     @JsonCreator
     public ListAllMethodsRequest(
-            Optional<String> locale,
+            Optional<? extends ListAllMethodsQueryParamLocale> locale,
             Optional<? extends ListAllMethodsQueryParamAmount> amount,
             JsonNullable<? extends ListAllMethodsQueryParamInclude> include,
-            Optional<String> sequenceType,
+            Optional<? extends ListAllMethodsQueryParamSequenceType> sequenceType,
             Optional<String> profileId,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(locale, "locale");
@@ -90,15 +98,18 @@ public class ListAllMethodsRequest {
     }
 
     /**
-     * Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
+     * Passing a locale will sort the payment methods in the preferred order
+     * for the country, and translate the payment method names in the corresponding language.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> locale() {
-        return locale;
+    public Optional<ListAllMethodsQueryParamLocale> locale() {
+        return (Optional<ListAllMethodsQueryParamLocale>) locale;
     }
 
     /**
-     * If supplied, only payment methods that support the amount and currency are returned.
+     * If supplied, only payment methods that support the amount and currency
+     * are returned.
      * 
      * <p>Example: `/v2/methods/all?amount[value]=100.00&amp;amount[currency]=USD`
      */
@@ -109,7 +120,8 @@ public class ListAllMethodsRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
+     * This endpoint allows you to include additional information via the
+     * `include` query string parameter.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -118,21 +130,23 @@ public class ListAllMethodsRequest {
     }
 
     /**
-     * Set this parameter to `first` to only return the methods that can be used for the first payment of a recurring sequence.
+     * Set this parameter to `first` to only return the methods that
+     * can be used for the first payment of a recurring sequence.
      * 
      * <p>Set it to `recurring` to only return methods that can be used for recurring payments or subscriptions.
-     * 
-     * <p>Possible values: `oneoff` `first` `recurring` (default: `oneoff`)
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> sequenceType() {
-        return sequenceType;
+    public Optional<ListAllMethodsQueryParamSequenceType> sequenceType() {
+        return (Optional<ListAllMethodsQueryParamSequenceType>) sequenceType;
     }
 
     /**
-     * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+     * The identifier referring to the [profile](get-profile) you wish to
+     * retrieve the resources for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
+     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     @JsonIgnore
     public Optional<String> profileId() {
@@ -140,7 +154,9 @@ public class ListAllMethodsRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -155,9 +171,10 @@ public class ListAllMethodsRequest {
 
 
     /**
-     * Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
+     * Passing a locale will sort the payment methods in the preferred order
+     * for the country, and translate the payment method names in the corresponding language.
      */
-    public ListAllMethodsRequest withLocale(String locale) {
+    public ListAllMethodsRequest withLocale(ListAllMethodsQueryParamLocale locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = Optional.ofNullable(locale);
         return this;
@@ -165,16 +182,18 @@ public class ListAllMethodsRequest {
 
 
     /**
-     * Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
+     * Passing a locale will sort the payment methods in the preferred order
+     * for the country, and translate the payment method names in the corresponding language.
      */
-    public ListAllMethodsRequest withLocale(Optional<String> locale) {
+    public ListAllMethodsRequest withLocale(Optional<? extends ListAllMethodsQueryParamLocale> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
     }
 
     /**
-     * If supplied, only payment methods that support the amount and currency are returned.
+     * If supplied, only payment methods that support the amount and currency
+     * are returned.
      * 
      * <p>Example: `/v2/methods/all?amount[value]=100.00&amp;amount[currency]=USD`
      */
@@ -186,7 +205,8 @@ public class ListAllMethodsRequest {
 
 
     /**
-     * If supplied, only payment methods that support the amount and currency are returned.
+     * If supplied, only payment methods that support the amount and currency
+     * are returned.
      * 
      * <p>Example: `/v2/methods/all?amount[value]=100.00&amp;amount[currency]=USD`
      */
@@ -197,7 +217,8 @@ public class ListAllMethodsRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
+     * This endpoint allows you to include additional information via the
+     * `include` query string parameter.
      */
     public ListAllMethodsRequest withInclude(ListAllMethodsQueryParamInclude include) {
         Utils.checkNotNull(include, "include");
@@ -206,7 +227,8 @@ public class ListAllMethodsRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
+     * This endpoint allows you to include additional information via the
+     * `include` query string parameter.
      */
     public ListAllMethodsRequest withInclude(JsonNullable<? extends ListAllMethodsQueryParamInclude> include) {
         Utils.checkNotNull(include, "include");
@@ -215,13 +237,12 @@ public class ListAllMethodsRequest {
     }
 
     /**
-     * Set this parameter to `first` to only return the methods that can be used for the first payment of a recurring sequence.
+     * Set this parameter to `first` to only return the methods that
+     * can be used for the first payment of a recurring sequence.
      * 
      * <p>Set it to `recurring` to only return methods that can be used for recurring payments or subscriptions.
-     * 
-     * <p>Possible values: `oneoff` `first` `recurring` (default: `oneoff`)
      */
-    public ListAllMethodsRequest withSequenceType(String sequenceType) {
+    public ListAllMethodsRequest withSequenceType(ListAllMethodsQueryParamSequenceType sequenceType) {
         Utils.checkNotNull(sequenceType, "sequenceType");
         this.sequenceType = Optional.ofNullable(sequenceType);
         return this;
@@ -229,22 +250,23 @@ public class ListAllMethodsRequest {
 
 
     /**
-     * Set this parameter to `first` to only return the methods that can be used for the first payment of a recurring sequence.
+     * Set this parameter to `first` to only return the methods that
+     * can be used for the first payment of a recurring sequence.
      * 
      * <p>Set it to `recurring` to only return methods that can be used for recurring payments or subscriptions.
-     * 
-     * <p>Possible values: `oneoff` `first` `recurring` (default: `oneoff`)
      */
-    public ListAllMethodsRequest withSequenceType(Optional<String> sequenceType) {
+    public ListAllMethodsRequest withSequenceType(Optional<? extends ListAllMethodsQueryParamSequenceType> sequenceType) {
         Utils.checkNotNull(sequenceType, "sequenceType");
         this.sequenceType = sequenceType;
         return this;
     }
 
     /**
-     * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+     * The identifier referring to the [profile](get-profile) you wish to
+     * retrieve the resources for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
+     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     public ListAllMethodsRequest withProfileId(String profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -254,9 +276,11 @@ public class ListAllMethodsRequest {
 
 
     /**
-     * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+     * The identifier referring to the [profile](get-profile) you wish to
+     * retrieve the resources for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
+     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     public ListAllMethodsRequest withProfileId(Optional<String> profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -265,7 +289,9 @@ public class ListAllMethodsRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -276,7 +302,9 @@ public class ListAllMethodsRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -325,13 +353,13 @@ public class ListAllMethodsRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> locale = Optional.empty();
+        private Optional<? extends ListAllMethodsQueryParamLocale> locale = Optional.empty();
 
         private Optional<? extends ListAllMethodsQueryParamAmount> amount = Optional.empty();
 
         private JsonNullable<? extends ListAllMethodsQueryParamInclude> include = JsonNullable.undefined();
 
-        private Optional<String> sequenceType = Optional.empty();
+        private Optional<? extends ListAllMethodsQueryParamSequenceType> sequenceType;
 
         private Optional<String> profileId = Optional.empty();
 
@@ -343,18 +371,20 @@ public class ListAllMethodsRequest {
 
 
         /**
-         * Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
+         * Passing a locale will sort the payment methods in the preferred order
+         * for the country, and translate the payment method names in the corresponding language.
          */
-        public Builder locale(String locale) {
+        public Builder locale(ListAllMethodsQueryParamLocale locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = Optional.ofNullable(locale);
             return this;
         }
 
         /**
-         * Passing a locale will sort the payment methods in the preferred order for the country, and translate the payment method names in the corresponding language.
+         * Passing a locale will sort the payment methods in the preferred order
+         * for the country, and translate the payment method names in the corresponding language.
          */
-        public Builder locale(Optional<String> locale) {
+        public Builder locale(Optional<? extends ListAllMethodsQueryParamLocale> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;
@@ -362,7 +392,8 @@ public class ListAllMethodsRequest {
 
 
         /**
-         * If supplied, only payment methods that support the amount and currency are returned.
+         * If supplied, only payment methods that support the amount and currency
+         * are returned.
          * 
          * <p>Example: `/v2/methods/all?amount[value]=100.00&amp;amount[currency]=USD`
          */
@@ -373,7 +404,8 @@ public class ListAllMethodsRequest {
         }
 
         /**
-         * If supplied, only payment methods that support the amount and currency are returned.
+         * If supplied, only payment methods that support the amount and currency
+         * are returned.
          * 
          * <p>Example: `/v2/methods/all?amount[value]=100.00&amp;amount[currency]=USD`
          */
@@ -385,7 +417,8 @@ public class ListAllMethodsRequest {
 
 
         /**
-         * This endpoint allows you to include additional information via the `include` query string parameter.
+         * This endpoint allows you to include additional information via the
+         * `include` query string parameter.
          */
         public Builder include(ListAllMethodsQueryParamInclude include) {
             Utils.checkNotNull(include, "include");
@@ -394,7 +427,8 @@ public class ListAllMethodsRequest {
         }
 
         /**
-         * This endpoint allows you to include additional information via the `include` query string parameter.
+         * This endpoint allows you to include additional information via the
+         * `include` query string parameter.
          */
         public Builder include(JsonNullable<? extends ListAllMethodsQueryParamInclude> include) {
             Utils.checkNotNull(include, "include");
@@ -404,26 +438,24 @@ public class ListAllMethodsRequest {
 
 
         /**
-         * Set this parameter to `first` to only return the methods that can be used for the first payment of a recurring sequence.
+         * Set this parameter to `first` to only return the methods that
+         * can be used for the first payment of a recurring sequence.
          * 
          * <p>Set it to `recurring` to only return methods that can be used for recurring payments or subscriptions.
-         * 
-         * <p>Possible values: `oneoff` `first` `recurring` (default: `oneoff`)
          */
-        public Builder sequenceType(String sequenceType) {
+        public Builder sequenceType(ListAllMethodsQueryParamSequenceType sequenceType) {
             Utils.checkNotNull(sequenceType, "sequenceType");
             this.sequenceType = Optional.ofNullable(sequenceType);
             return this;
         }
 
         /**
-         * Set this parameter to `first` to only return the methods that can be used for the first payment of a recurring sequence.
+         * Set this parameter to `first` to only return the methods that
+         * can be used for the first payment of a recurring sequence.
          * 
          * <p>Set it to `recurring` to only return methods that can be used for recurring payments or subscriptions.
-         * 
-         * <p>Possible values: `oneoff` `first` `recurring` (default: `oneoff`)
          */
-        public Builder sequenceType(Optional<String> sequenceType) {
+        public Builder sequenceType(Optional<? extends ListAllMethodsQueryParamSequenceType> sequenceType) {
             Utils.checkNotNull(sequenceType, "sequenceType");
             this.sequenceType = sequenceType;
             return this;
@@ -431,9 +463,11 @@ public class ListAllMethodsRequest {
 
 
         /**
-         * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+         * The identifier referring to the [profile](get-profile) you wish to
+         * retrieve the resources for.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
+         * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
          */
         public Builder profileId(String profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -442,9 +476,11 @@ public class ListAllMethodsRequest {
         }
 
         /**
-         * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+         * The identifier referring to the [profile](get-profile) you wish to
+         * retrieve the resources for.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
+         * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
          */
         public Builder profileId(Optional<String> profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -454,7 +490,9 @@ public class ListAllMethodsRequest {
 
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -465,7 +503,9 @@ public class ListAllMethodsRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -476,11 +516,20 @@ public class ListAllMethodsRequest {
         }
 
         public ListAllMethodsRequest build() {
+            if (sequenceType == null) {
+                sequenceType = _SINGLETON_VALUE_SequenceType.value();
+            }
 
             return new ListAllMethodsRequest(
                 locale, amount, include,
                 sequenceType, profileId, testmode);
         }
 
+
+        private static final LazySingletonValue<Optional<? extends ListAllMethodsQueryParamSequenceType>> _SINGLETON_VALUE_SequenceType =
+                new LazySingletonValue<>(
+                        "sequenceType",
+                        "\"oneoff\"",
+                        new TypeReference<Optional<? extends ListAllMethodsQueryParamSequenceType>>() {});
     }
 }

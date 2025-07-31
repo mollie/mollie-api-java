@@ -16,7 +16,8 @@ import java.util.Optional;
 /**
  * ListCapturesSettlement
  * 
- * <p>The API resource URL of the [settlement](get-settlement) this capture has been settled with. Not present if not yet settled.
+ * <p>The API resource URL of the [settlement](get-settlement) this capture has been settled with. Not present if
+ * not yet settled.
  */
 public class ListCapturesSettlement {
     /**

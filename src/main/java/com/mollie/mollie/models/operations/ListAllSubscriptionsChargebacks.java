@@ -13,7 +13,8 @@ import java.lang.String;
 /**
  * ListAllSubscriptionsChargebacks
  * 
- * <p>The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this payment.
+ * <p>The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this
+ * payment.
  */
 public class ListAllSubscriptionsChargebacks {
     /**

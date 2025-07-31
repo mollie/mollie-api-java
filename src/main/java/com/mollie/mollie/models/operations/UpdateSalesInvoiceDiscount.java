@@ -18,11 +18,9 @@ import java.lang.String;
 public class UpdateSalesInvoiceDiscount {
     /**
      * The type of discount.
-     * 
-     * <p>Possible values: `amount` `percentage`
      */
     @JsonProperty("type")
-    private String type;
+    private UpdateSalesInvoiceSalesInvoicesType type;
 
     /**
      * A string containing an exact monetary amount in the given currency, or the percentage.
@@ -32,7 +30,7 @@ public class UpdateSalesInvoiceDiscount {
 
     @JsonCreator
     public UpdateSalesInvoiceDiscount(
-            @JsonProperty("type") String type,
+            @JsonProperty("type") UpdateSalesInvoiceSalesInvoicesType type,
             @JsonProperty("value") String value) {
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(value, "value");
@@ -42,11 +40,9 @@ public class UpdateSalesInvoiceDiscount {
 
     /**
      * The type of discount.
-     * 
-     * <p>Possible values: `amount` `percentage`
      */
     @JsonIgnore
-    public String type() {
+    public UpdateSalesInvoiceSalesInvoicesType type() {
         return type;
     }
 
@@ -65,10 +61,8 @@ public class UpdateSalesInvoiceDiscount {
 
     /**
      * The type of discount.
-     * 
-     * <p>Possible values: `amount` `percentage`
      */
-    public UpdateSalesInvoiceDiscount withType(String type) {
+    public UpdateSalesInvoiceDiscount withType(UpdateSalesInvoiceSalesInvoicesType type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -113,7 +107,7 @@ public class UpdateSalesInvoiceDiscount {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String type;
+        private UpdateSalesInvoiceSalesInvoicesType type;
 
         private String value;
 
@@ -124,10 +118,8 @@ public class UpdateSalesInvoiceDiscount {
 
         /**
          * The type of discount.
-         * 
-         * <p>Possible values: `amount` `percentage`
          */
-        public Builder type(String type) {
+        public Builder type(UpdateSalesInvoiceSalesInvoicesType type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;

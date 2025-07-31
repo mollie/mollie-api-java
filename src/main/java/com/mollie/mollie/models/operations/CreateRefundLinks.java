@@ -36,7 +36,8 @@ public class CreateRefundLinks {
     private Optional<? extends CreateRefundPayment> payment;
 
     /**
-     * The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not yet settled.
+     * The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not
+     * yet settled.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlement")
@@ -89,7 +90,8 @@ public class CreateRefundLinks {
     }
 
     /**
-     * The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not yet settled.
+     * The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not
+     * yet settled.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -150,7 +152,8 @@ public class CreateRefundLinks {
     }
 
     /**
-     * The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not yet settled.
+     * The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not
+     * yet settled.
      */
     public CreateRefundLinks withSettlement(CreateRefundSettlement settlement) {
         Utils.checkNotNull(settlement, "settlement");
@@ -159,7 +162,8 @@ public class CreateRefundLinks {
     }
 
     /**
-     * The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not yet settled.
+     * The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not
+     * yet settled.
      */
     public CreateRefundLinks withSettlement(JsonNullable<? extends CreateRefundSettlement> settlement) {
         Utils.checkNotNull(settlement, "settlement");
@@ -273,7 +277,8 @@ public class CreateRefundLinks {
 
 
         /**
-         * The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not yet settled.
+         * The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not
+         * yet settled.
          */
         public Builder settlement(CreateRefundSettlement settlement) {
             Utils.checkNotNull(settlement, "settlement");
@@ -282,7 +287,8 @@ public class CreateRefundLinks {
         }
 
         /**
-         * The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not yet settled.
+         * The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not
+         * yet settled.
          */
         public Builder settlement(JsonNullable<? extends CreateRefundSettlement> settlement) {
             Utils.checkNotNull(settlement, "settlement");

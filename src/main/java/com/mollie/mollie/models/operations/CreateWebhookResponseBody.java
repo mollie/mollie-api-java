@@ -74,21 +74,17 @@ public class CreateWebhookResponseBody {
 
     /**
      * The subscription's current status.
-     * 
-     * <p>Possible values: `enabled` `blocked` `disabled`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<String> status;
+    private Optional<? extends CreateWebhookStatus> status;
 
     /**
      * The subscription's mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<String> mode;
+    private Optional<? extends CreateWebhookMode> mode;
 
     /**
      * The subscription's secret.
@@ -113,8 +109,8 @@ public class CreateWebhookResponseBody {
             @JsonProperty("createdAt") Optional<String> createdAt,
             @JsonProperty("name") Optional<String> name,
             @JsonProperty("eventTypes") Optional<? extends List<String>> eventTypes,
-            @JsonProperty("status") Optional<String> status,
-            @JsonProperty("mode") Optional<String> mode,
+            @JsonProperty("status") Optional<? extends CreateWebhookStatus> status,
+            @JsonProperty("mode") Optional<? extends CreateWebhookMode> mode,
             @JsonProperty("webhookSecret") Optional<String> webhookSecret,
             @JsonProperty("_links") Optional<? extends CreateWebhookLinks> links) {
         Utils.checkNotNull(resource, "resource");
@@ -207,22 +203,20 @@ public class CreateWebhookResponseBody {
 
     /**
      * The subscription's current status.
-     * 
-     * <p>Possible values: `enabled` `blocked` `disabled`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> status() {
-        return status;
+    public Optional<CreateWebhookStatus> status() {
+        return (Optional<CreateWebhookStatus>) status;
     }
 
     /**
      * The subscription's mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> mode() {
-        return mode;
+    public Optional<CreateWebhookMode> mode() {
+        return (Optional<CreateWebhookMode>) mode;
     }
 
     /**
@@ -382,10 +376,8 @@ public class CreateWebhookResponseBody {
 
     /**
      * The subscription's current status.
-     * 
-     * <p>Possible values: `enabled` `blocked` `disabled`
      */
-    public CreateWebhookResponseBody withStatus(String status) {
+    public CreateWebhookResponseBody withStatus(CreateWebhookStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -394,10 +386,8 @@ public class CreateWebhookResponseBody {
 
     /**
      * The subscription's current status.
-     * 
-     * <p>Possible values: `enabled` `blocked` `disabled`
      */
-    public CreateWebhookResponseBody withStatus(Optional<String> status) {
+    public CreateWebhookResponseBody withStatus(Optional<? extends CreateWebhookStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -405,10 +395,8 @@ public class CreateWebhookResponseBody {
 
     /**
      * The subscription's mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
-    public CreateWebhookResponseBody withMode(String mode) {
+    public CreateWebhookResponseBody withMode(CreateWebhookMode mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = Optional.ofNullable(mode);
         return this;
@@ -417,10 +405,8 @@ public class CreateWebhookResponseBody {
 
     /**
      * The subscription's mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
-    public CreateWebhookResponseBody withMode(Optional<String> mode) {
+    public CreateWebhookResponseBody withMode(Optional<? extends CreateWebhookMode> mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
@@ -529,9 +515,9 @@ public class CreateWebhookResponseBody {
 
         private Optional<? extends List<String>> eventTypes = Optional.empty();
 
-        private Optional<String> status = Optional.empty();
+        private Optional<? extends CreateWebhookStatus> status = Optional.empty();
 
-        private Optional<String> mode = Optional.empty();
+        private Optional<? extends CreateWebhookMode> mode = Optional.empty();
 
         private Optional<String> webhookSecret = Optional.empty();
 
@@ -677,10 +663,8 @@ public class CreateWebhookResponseBody {
 
         /**
          * The subscription's current status.
-         * 
-         * <p>Possible values: `enabled` `blocked` `disabled`
          */
-        public Builder status(String status) {
+        public Builder status(CreateWebhookStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -688,10 +672,8 @@ public class CreateWebhookResponseBody {
 
         /**
          * The subscription's current status.
-         * 
-         * <p>Possible values: `enabled` `blocked` `disabled`
          */
-        public Builder status(Optional<String> status) {
+        public Builder status(Optional<? extends CreateWebhookStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -700,10 +682,8 @@ public class CreateWebhookResponseBody {
 
         /**
          * The subscription's mode.
-         * 
-         * <p>Possible values: `live` `test`
          */
-        public Builder mode(String mode) {
+        public Builder mode(CreateWebhookMode mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = Optional.ofNullable(mode);
             return this;
@@ -711,10 +691,8 @@ public class CreateWebhookResponseBody {
 
         /**
          * The subscription's mode.
-         * 
-         * <p>Possible values: `live` `test`
          */
-        public Builder mode(Optional<String> mode) {
+        public Builder mode(Optional<? extends CreateWebhookMode> mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;

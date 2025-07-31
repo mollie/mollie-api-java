@@ -24,7 +24,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
  */
 public class GetOrganizationResponseBody {
     /**
-     * Indicates the response contains an organization object. Will always contain the string `organization` for this resource type.
+     * Indicates the response contains an organization object. Will always contain the string `organization` for this
+     * resource type.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
@@ -56,7 +57,7 @@ public class GetOrganizationResponseBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("locale")
-    private Optional<String> locale;
+    private Optional<? extends GetOrganizationLocale> locale;
 
     /**
      * The address of the organization.
@@ -73,7 +74,8 @@ public class GetOrganizationResponseBody {
     private Optional<String> registrationNumber;
 
     /**
-     * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are verified against the international registry *VIES*.
+     * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are
+     * verified against the international registry *VIES*.
      * 
      * <p>The field is not present for merchants residing in other countries.
      */
@@ -82,15 +84,14 @@ public class GetOrganizationResponseBody {
     private JsonNullable<String> vatNumber;
 
     /**
-     * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in The United Kingdom, and shifted VAT for merchants in the European Union.
+     * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in The United
+     * Kingdom, and shifted VAT for merchants in the European Union.
      * 
      * <p>The field is not present for merchants residing in other countries.
-     * 
-     * <p>Possible values: `dutch` `british` `shifted`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatRegulation")
-    private JsonNullable<String> vatRegulation;
+    private JsonNullable<? extends GetOrganizationVatRegulation> vatRegulation;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -105,11 +106,11 @@ public class GetOrganizationResponseBody {
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("name") Optional<String> name,
             @JsonProperty("email") Optional<String> email,
-            @JsonProperty("locale") Optional<String> locale,
+            @JsonProperty("locale") Optional<? extends GetOrganizationLocale> locale,
             @JsonProperty("address") Optional<? extends GetOrganizationAddress> address,
             @JsonProperty("registrationNumber") Optional<String> registrationNumber,
             @JsonProperty("vatNumber") JsonNullable<String> vatNumber,
-            @JsonProperty("vatRegulation") JsonNullable<String> vatRegulation,
+            @JsonProperty("vatRegulation") JsonNullable<? extends GetOrganizationVatRegulation> vatRegulation,
             @JsonProperty("_links") Optional<? extends GetOrganizationLinks> links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
@@ -141,7 +142,8 @@ public class GetOrganizationResponseBody {
     }
 
     /**
-     * Indicates the response contains an organization object. Will always contain the string `organization` for this resource type.
+     * Indicates the response contains an organization object. Will always contain the string `organization` for this
+     * resource type.
      */
     @JsonIgnore
     public Optional<String> resource() {
@@ -175,9 +177,10 @@ public class GetOrganizationResponseBody {
     /**
      * The preferred locale of the merchant, as set in their Mollie dashboard.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> locale() {
-        return locale;
+    public Optional<GetOrganizationLocale> locale() {
+        return (Optional<GetOrganizationLocale>) locale;
     }
 
     /**
@@ -198,7 +201,8 @@ public class GetOrganizationResponseBody {
     }
 
     /**
-     * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are verified against the international registry *VIES*.
+     * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are
+     * verified against the international registry *VIES*.
      * 
      * <p>The field is not present for merchants residing in other countries.
      */
@@ -208,15 +212,15 @@ public class GetOrganizationResponseBody {
     }
 
     /**
-     * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in The United Kingdom, and shifted VAT for merchants in the European Union.
+     * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in The United
+     * Kingdom, and shifted VAT for merchants in the European Union.
      * 
      * <p>The field is not present for merchants residing in other countries.
-     * 
-     * <p>Possible values: `dutch` `british` `shifted`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> vatRegulation() {
-        return vatRegulation;
+    public JsonNullable<GetOrganizationVatRegulation> vatRegulation() {
+        return (JsonNullable<GetOrganizationVatRegulation>) vatRegulation;
     }
 
     /**
@@ -234,7 +238,8 @@ public class GetOrganizationResponseBody {
 
 
     /**
-     * Indicates the response contains an organization object. Will always contain the string `organization` for this resource type.
+     * Indicates the response contains an organization object. Will always contain the string `organization` for this
+     * resource type.
      */
     public GetOrganizationResponseBody withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -244,7 +249,8 @@ public class GetOrganizationResponseBody {
 
 
     /**
-     * Indicates the response contains an organization object. Will always contain the string `organization` for this resource type.
+     * Indicates the response contains an organization object. Will always contain the string `organization` for this
+     * resource type.
      */
     public GetOrganizationResponseBody withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
@@ -312,7 +318,7 @@ public class GetOrganizationResponseBody {
     /**
      * The preferred locale of the merchant, as set in their Mollie dashboard.
      */
-    public GetOrganizationResponseBody withLocale(String locale) {
+    public GetOrganizationResponseBody withLocale(GetOrganizationLocale locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = Optional.ofNullable(locale);
         return this;
@@ -322,7 +328,7 @@ public class GetOrganizationResponseBody {
     /**
      * The preferred locale of the merchant, as set in their Mollie dashboard.
      */
-    public GetOrganizationResponseBody withLocale(Optional<String> locale) {
+    public GetOrganizationResponseBody withLocale(Optional<? extends GetOrganizationLocale> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
@@ -367,7 +373,8 @@ public class GetOrganizationResponseBody {
     }
 
     /**
-     * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are verified against the international registry *VIES*.
+     * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are
+     * verified against the international registry *VIES*.
      * 
      * <p>The field is not present for merchants residing in other countries.
      */
@@ -378,7 +385,8 @@ public class GetOrganizationResponseBody {
     }
 
     /**
-     * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are verified against the international registry *VIES*.
+     * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are
+     * verified against the international registry *VIES*.
      * 
      * <p>The field is not present for merchants residing in other countries.
      */
@@ -389,26 +397,24 @@ public class GetOrganizationResponseBody {
     }
 
     /**
-     * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in The United Kingdom, and shifted VAT for merchants in the European Union.
+     * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in The United
+     * Kingdom, and shifted VAT for merchants in the European Union.
      * 
      * <p>The field is not present for merchants residing in other countries.
-     * 
-     * <p>Possible values: `dutch` `british` `shifted`
      */
-    public GetOrganizationResponseBody withVatRegulation(String vatRegulation) {
+    public GetOrganizationResponseBody withVatRegulation(GetOrganizationVatRegulation vatRegulation) {
         Utils.checkNotNull(vatRegulation, "vatRegulation");
         this.vatRegulation = JsonNullable.of(vatRegulation);
         return this;
     }
 
     /**
-     * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in The United Kingdom, and shifted VAT for merchants in the European Union.
+     * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in The United
+     * Kingdom, and shifted VAT for merchants in the European Union.
      * 
      * <p>The field is not present for merchants residing in other countries.
-     * 
-     * <p>Possible values: `dutch` `british` `shifted`
      */
-    public GetOrganizationResponseBody withVatRegulation(JsonNullable<String> vatRegulation) {
+    public GetOrganizationResponseBody withVatRegulation(JsonNullable<? extends GetOrganizationVatRegulation> vatRegulation) {
         Utils.checkNotNull(vatRegulation, "vatRegulation");
         this.vatRegulation = vatRegulation;
         return this;
@@ -490,7 +496,7 @@ public class GetOrganizationResponseBody {
 
         private Optional<String> email = Optional.empty();
 
-        private Optional<String> locale = Optional.empty();
+        private Optional<? extends GetOrganizationLocale> locale = Optional.empty();
 
         private Optional<? extends GetOrganizationAddress> address = Optional.empty();
 
@@ -498,7 +504,7 @@ public class GetOrganizationResponseBody {
 
         private JsonNullable<String> vatNumber = JsonNullable.undefined();
 
-        private JsonNullable<String> vatRegulation = JsonNullable.undefined();
+        private JsonNullable<? extends GetOrganizationVatRegulation> vatRegulation = JsonNullable.undefined();
 
         private Optional<? extends GetOrganizationLinks> links = Optional.empty();
 
@@ -508,7 +514,8 @@ public class GetOrganizationResponseBody {
 
 
         /**
-         * Indicates the response contains an organization object. Will always contain the string `organization` for this resource type.
+         * Indicates the response contains an organization object. Will always contain the string `organization` for this
+         * resource type.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -517,7 +524,8 @@ public class GetOrganizationResponseBody {
         }
 
         /**
-         * Indicates the response contains an organization object. Will always contain the string `organization` for this resource type.
+         * Indicates the response contains an organization object. Will always contain the string `organization` for this
+         * resource type.
          */
         public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
@@ -586,7 +594,7 @@ public class GetOrganizationResponseBody {
         /**
          * The preferred locale of the merchant, as set in their Mollie dashboard.
          */
-        public Builder locale(String locale) {
+        public Builder locale(GetOrganizationLocale locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = Optional.ofNullable(locale);
             return this;
@@ -595,7 +603,7 @@ public class GetOrganizationResponseBody {
         /**
          * The preferred locale of the merchant, as set in their Mollie dashboard.
          */
-        public Builder locale(Optional<String> locale) {
+        public Builder locale(Optional<? extends GetOrganizationLocale> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;
@@ -641,7 +649,8 @@ public class GetOrganizationResponseBody {
 
 
         /**
-         * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are verified against the international registry *VIES*.
+         * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are
+         * verified against the international registry *VIES*.
          * 
          * <p>The field is not present for merchants residing in other countries.
          */
@@ -652,7 +661,8 @@ public class GetOrganizationResponseBody {
         }
 
         /**
-         * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are verified against the international registry *VIES*.
+         * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are
+         * verified against the international registry *VIES*.
          * 
          * <p>The field is not present for merchants residing in other countries.
          */
@@ -664,26 +674,24 @@ public class GetOrganizationResponseBody {
 
 
         /**
-         * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in The United Kingdom, and shifted VAT for merchants in the European Union.
+         * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in The United
+         * Kingdom, and shifted VAT for merchants in the European Union.
          * 
          * <p>The field is not present for merchants residing in other countries.
-         * 
-         * <p>Possible values: `dutch` `british` `shifted`
          */
-        public Builder vatRegulation(String vatRegulation) {
+        public Builder vatRegulation(GetOrganizationVatRegulation vatRegulation) {
             Utils.checkNotNull(vatRegulation, "vatRegulation");
             this.vatRegulation = JsonNullable.of(vatRegulation);
             return this;
         }
 
         /**
-         * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in The United Kingdom, and shifted VAT for merchants in the European Union.
+         * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in The United
+         * Kingdom, and shifted VAT for merchants in the European Union.
          * 
          * <p>The field is not present for merchants residing in other countries.
-         * 
-         * <p>Possible values: `dutch` `british` `shifted`
          */
-        public Builder vatRegulation(JsonNullable<String> vatRegulation) {
+        public Builder vatRegulation(JsonNullable<? extends GetOrganizationVatRegulation> vatRegulation) {
             Utils.checkNotNull(vatRegulation, "vatRegulation");
             this.vatRegulation = vatRegulation;
             return this;

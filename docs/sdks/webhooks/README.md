@@ -16,12 +16,9 @@
 
 A webhook must have a name, an url and a list of event types. You can also create webhooks in the webhooks settings section of the Dashboard.
 
-> 🔑 Access with
->
-> [Access token with **webhooks.write**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="create-webhook" method="post" path="/webhooks" -->
 ```java
 package hello.world;
 
@@ -80,20 +77,16 @@ public class Application {
 
 Returns a paginated list of your webhooks. If no webhook endpoints are available, the resulting array will be empty. This request should never throw an error.
 
-> 🔑 Access with
->
-> [Access token with **webhooks.read**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list-webhooks" method="get" path="/webhooks" -->
 ```java
 package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ListWebhooksResponseBody;
-import com.mollie.mollie.models.operations.ListWebhooksRequest;
-import com.mollie.mollie.models.operations.ListWebhooksResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -108,8 +101,7 @@ public class Application {
 
         ListWebhooksRequest req = ListWebhooksRequest.builder()
                 .from("hook_B2EyhTH5N4KWUnoYPcgiH")
-                .sort("desc")
-                .eventTypes("payment-link.paid")
+                .eventTypes(QueryParamEventTypes.PAYMENT_LINK_PAID)
                 .testmode(false)
                 .build();
 
@@ -145,12 +137,9 @@ public class Application {
 
 Updates the webhook. You may edit the name, url and the list of subscribed event types.
 
-> 🔑 Access with
->
-> [Access token with **webhooks.write**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="update-webhook" method="patch" path="/webhooks/{id}" -->
 ```java
 package hello.world;
 
@@ -211,12 +200,9 @@ public class Application {
 
 Retrieve a single webhook object by its ID.
 
-> 🔑 Access with
->
-> [Access token with **webhooks.read**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="get-webhook" method="get" path="/webhooks/{id}" -->
 ```java
 package hello.world;
 
@@ -254,7 +240,7 @@ public class Application {
 | Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`                                                                                                                                                                                                                                                                                                                                                                                   | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the item you want to perform this operation on.                                                                                                                                                                                                                                                                                                                      | hook_B2EyhTH5N4KWUnoYPcgiH                                                                                                                                                                                                                                                                                                                                                             |
-| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
+| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Response
 
@@ -272,12 +258,9 @@ public class Application {
 
 Delete a single webhook object by its webhook ID.
 
-> 🔑 Access with
->
-> [Access token with **webhooks.write**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="delete-webhook" method="delete" path="/webhooks/{id}" -->
 ```java
 package hello.world;
 
@@ -315,7 +298,7 @@ public class Application {
 | Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`                                                                                                                                                                                                                                                                                                                                                                                   | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the item you want to perform this operation on.                                                                                                                                                                                                                                                                                                                      | hook_B2EyhTH5N4KWUnoYPcgiH                                                                                                                                                                                                                                                                                                                                                             |
-| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
+| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Response
 
@@ -333,12 +316,9 @@ public class Application {
 
 Sends a test event to the webhook to verify the endpoint is working as expected.
 
-> 🔑 Access with
->
-> [Access token with **webhooks.write**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="test-webhook" method="post" path="/webhooks/{id}/ping" -->
 ```java
 package hello.world;
 

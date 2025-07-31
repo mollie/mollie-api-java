@@ -18,11 +18,9 @@ import java.lang.String;
 public class UpdateSalesInvoiceSalesInvoicesResponse200Discount {
     /**
      * The type of discount.
-     * 
-     * <p>Possible values: `amount` `percentage`
      */
     @JsonProperty("type")
-    private String type;
+    private UpdateSalesInvoiceSalesInvoicesResponse200ApplicationHalPlusJsonType type;
 
     /**
      * A string containing an exact monetary amount in the given currency, or the percentage.
@@ -32,7 +30,7 @@ public class UpdateSalesInvoiceSalesInvoicesResponse200Discount {
 
     @JsonCreator
     public UpdateSalesInvoiceSalesInvoicesResponse200Discount(
-            @JsonProperty("type") String type,
+            @JsonProperty("type") UpdateSalesInvoiceSalesInvoicesResponse200ApplicationHalPlusJsonType type,
             @JsonProperty("value") String value) {
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(value, "value");
@@ -42,11 +40,9 @@ public class UpdateSalesInvoiceSalesInvoicesResponse200Discount {
 
     /**
      * The type of discount.
-     * 
-     * <p>Possible values: `amount` `percentage`
      */
     @JsonIgnore
-    public String type() {
+    public UpdateSalesInvoiceSalesInvoicesResponse200ApplicationHalPlusJsonType type() {
         return type;
     }
 
@@ -65,10 +61,8 @@ public class UpdateSalesInvoiceSalesInvoicesResponse200Discount {
 
     /**
      * The type of discount.
-     * 
-     * <p>Possible values: `amount` `percentage`
      */
-    public UpdateSalesInvoiceSalesInvoicesResponse200Discount withType(String type) {
+    public UpdateSalesInvoiceSalesInvoicesResponse200Discount withType(UpdateSalesInvoiceSalesInvoicesResponse200ApplicationHalPlusJsonType type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -113,7 +107,7 @@ public class UpdateSalesInvoiceSalesInvoicesResponse200Discount {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String type;
+        private UpdateSalesInvoiceSalesInvoicesResponse200ApplicationHalPlusJsonType type;
 
         private String value;
 
@@ -124,10 +118,8 @@ public class UpdateSalesInvoiceSalesInvoicesResponse200Discount {
 
         /**
          * The type of discount.
-         * 
-         * <p>Possible values: `amount` `percentage`
          */
-        public Builder type(String type) {
+        public Builder type(UpdateSalesInvoiceSalesInvoicesResponse200ApplicationHalPlusJsonType type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;

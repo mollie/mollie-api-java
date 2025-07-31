@@ -56,10 +56,6 @@ public class Settlements {
      * 
      * <p>The results are paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **settlements.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public ListSettlementsRequestBuilder list() {
@@ -72,10 +68,6 @@ public class Settlements {
      * <p>Retrieve a list of all your settlements.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **settlements.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -91,10 +83,6 @@ public class Settlements {
      * <p>Retrieve a list of all your settlements.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **settlements.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -112,17 +100,16 @@ public class Settlements {
      * 
      * <p>Retrieve a single settlement by its ID.
      * 
-     * <p>To lookup settlements by their bank reference, replace the ID in the URL by a reference. For example: `1234567.2404.03`.
+     * <p>To lookup settlements by their bank reference, replace the ID in the URL by
+     * a reference. For example: `1234567.2404.03`.
      * 
      * <p>A settlement represents a transfer of your balance funds to your external bank account.
      * 
-     * <p>Settlements will typically include a report that details what balance transactions have taken place between this settlement and the previous one.
+     * <p>Settlements will typically include a report that details what balance transactions have taken place between this
+     * settlement and the previous one.
      * 
-     * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the [balance transactions](list-balance-transactions) endpoint.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **settlements.read**](/reference/authentication)
+     * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
+     * [balance transactions](list-balance-transactions) endpoint.
      * 
      * @return The call builder
      */
@@ -135,17 +122,16 @@ public class Settlements {
      * 
      * <p>Retrieve a single settlement by its ID.
      * 
-     * <p>To lookup settlements by their bank reference, replace the ID in the URL by a reference. For example: `1234567.2404.03`.
+     * <p>To lookup settlements by their bank reference, replace the ID in the URL by
+     * a reference. For example: `1234567.2404.03`.
      * 
      * <p>A settlement represents a transfer of your balance funds to your external bank account.
      * 
-     * <p>Settlements will typically include a report that details what balance transactions have taken place between this settlement and the previous one.
+     * <p>Settlements will typically include a report that details what balance transactions have taken place between this
+     * settlement and the previous one.
      * 
-     * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the [balance transactions](list-balance-transactions) endpoint.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **settlements.read**](/reference/authentication)
+     * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
+     * [balance transactions](list-balance-transactions) endpoint.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
@@ -160,17 +146,16 @@ public class Settlements {
      * 
      * <p>Retrieve a single settlement by its ID.
      * 
-     * <p>To lookup settlements by their bank reference, replace the ID in the URL by a reference. For example: `1234567.2404.03`.
+     * <p>To lookup settlements by their bank reference, replace the ID in the URL by
+     * a reference. For example: `1234567.2404.03`.
      * 
      * <p>A settlement represents a transfer of your balance funds to your external bank account.
      * 
-     * <p>Settlements will typically include a report that details what balance transactions have taken place between this settlement and the previous one.
+     * <p>Settlements will typically include a report that details what balance transactions have taken place between this
+     * settlement and the previous one.
      * 
-     * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the [balance transactions](list-balance-transactions) endpoint.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **settlements.read**](/reference/authentication)
+     * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
+     * [balance transactions](list-balance-transactions) endpoint.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @param options additional options
@@ -191,15 +176,14 @@ public class Settlements {
     /**
      * Get open settlement
      * 
-     * <p>Retrieve the details of the open balance of the organization. This will return a settlement object representing your organization's balance.
+     * <p>Retrieve the details of the open balance of the organization. This will return a settlement object representing your
+     * organization's balance.
      * 
-     * <p>For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
+     * <p>For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement)
+     * documentation.
      * 
-     * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the [balance transactions](list-balance-transactions) endpoint.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **settlements.read**](/reference/authentication)
+     * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
+     * [balance transactions](list-balance-transactions) endpoint.
      * 
      * @return The call builder
      */
@@ -210,15 +194,14 @@ public class Settlements {
     /**
      * Get open settlement
      * 
-     * <p>Retrieve the details of the open balance of the organization. This will return a settlement object representing your organization's balance.
+     * <p>Retrieve the details of the open balance of the organization. This will return a settlement object representing your
+     * organization's balance.
      * 
-     * <p>For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
+     * <p>For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement)
+     * documentation.
      * 
-     * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the [balance transactions](list-balance-transactions) endpoint.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **settlements.read**](/reference/authentication)
+     * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
+     * [balance transactions](list-balance-transactions) endpoint.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -230,15 +213,14 @@ public class Settlements {
     /**
      * Get open settlement
      * 
-     * <p>Retrieve the details of the open balance of the organization. This will return a settlement object representing your organization's balance.
+     * <p>Retrieve the details of the open balance of the organization. This will return a settlement object representing your
+     * organization's balance.
      * 
-     * <p>For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
+     * <p>For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement)
+     * documentation.
      * 
-     * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the [balance transactions](list-balance-transactions) endpoint.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **settlements.read**](/reference/authentication)
+     * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
+     * [balance transactions](list-balance-transactions) endpoint.
      * 
      * @param options additional options
      * @return The response from the API call
@@ -255,13 +237,11 @@ public class Settlements {
      * 
      * <p>Retrieve the details of the current settlement, that has not yet been paid out.
      * 
-     * <p>For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
+     * <p>For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement)
+     * documentation.
      * 
-     * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the [balance transactions](list-balance-transactions) endpoint.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **settlements.read**](/reference/authentication)
+     * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
+     * [balance transactions](list-balance-transactions) endpoint.
      * 
      * @return The call builder
      */
@@ -274,13 +254,11 @@ public class Settlements {
      * 
      * <p>Retrieve the details of the current settlement, that has not yet been paid out.
      * 
-     * <p>For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
+     * <p>For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement)
+     * documentation.
      * 
-     * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the [balance transactions](list-balance-transactions) endpoint.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **settlements.read**](/reference/authentication)
+     * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
+     * [balance transactions](list-balance-transactions) endpoint.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -294,13 +272,11 @@ public class Settlements {
      * 
      * <p>Retrieve the details of the current settlement, that has not yet been paid out.
      * 
-     * <p>For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
+     * <p>For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement)
+     * documentation.
      * 
-     * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the [balance transactions](list-balance-transactions) endpoint.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **settlements.read**](/reference/authentication)
+     * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
+     * [balance transactions](list-balance-transactions) endpoint.
      * 
      * @param options additional options
      * @return The response from the API call
@@ -319,11 +295,8 @@ public class Settlements {
      * 
      * <p>The response is in the same format as the response of the [List payments endpoint](list-payments).
      * 
-     * <p>For capture-based payment methods such as Klarna, the payments are not listed here. Refer to the [List captures endpoint](list-captures) endpoint instead.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **settlements.read** **payments.read**](/reference/authentication)
+     * <p>For capture-based payment methods such as Klarna, the payments are not listed here. Refer to the
+     * [List captures endpoint](list-captures) endpoint instead.
      * 
      * @return The call builder
      */
@@ -338,11 +311,8 @@ public class Settlements {
      * 
      * <p>The response is in the same format as the response of the [List payments endpoint](list-payments).
      * 
-     * <p>For capture-based payment methods such as Klarna, the payments are not listed here. Refer to the [List captures endpoint](list-captures) endpoint instead.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **settlements.read** **payments.read**](/reference/authentication)
+     * <p>For capture-based payment methods such as Klarna, the payments are not listed here. Refer to the
+     * [List captures endpoint](list-captures) endpoint instead.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -359,11 +329,8 @@ public class Settlements {
      * 
      * <p>The response is in the same format as the response of the [List payments endpoint](list-payments).
      * 
-     * <p>For capture-based payment methods such as Klarna, the payments are not listed here. Refer to the [List captures endpoint](list-captures) endpoint instead.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **settlements.read** **payments.read**](/reference/authentication)
+     * <p>For capture-based payment methods such as Klarna, the payments are not listed here. Refer to the
+     * [List captures endpoint](list-captures) endpoint instead.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -383,10 +350,6 @@ public class Settlements {
      * 
      * <p>The response is in the same format as the response of the [List captures endpoint](list-captures).
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **settlements.read** **payments.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public ListSettlementCapturesRequestBuilder listCaptures() {
@@ -399,10 +362,6 @@ public class Settlements {
      * <p>Retrieve all captures included in the given settlement.
      * 
      * <p>The response is in the same format as the response of the [List captures endpoint](list-captures).
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **settlements.read** **payments.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -418,10 +377,6 @@ public class Settlements {
      * <p>Retrieve all captures included in the given settlement.
      * 
      * <p>The response is in the same format as the response of the [List captures endpoint](list-captures).
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **settlements.read** **payments.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -441,10 +396,6 @@ public class Settlements {
      * 
      * <p>The response is in the same format as the response of the [List refunds endpoint](list-refunds).
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **settlements.read** **refunds.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public ListSettlementRefundsRequestBuilder listRefunds() {
@@ -457,10 +408,6 @@ public class Settlements {
      * <p>Retrieve all refunds 'deducted' from the given settlement.
      * 
      * <p>The response is in the same format as the response of the [List refunds endpoint](list-refunds).
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **settlements.read** **refunds.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -476,10 +423,6 @@ public class Settlements {
      * <p>Retrieve all refunds 'deducted' from the given settlement.
      * 
      * <p>The response is in the same format as the response of the [List refunds endpoint](list-refunds).
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **settlements.read** **refunds.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -499,10 +442,6 @@ public class Settlements {
      * 
      * <p>The response is in the same format as the response of the [List chargebacks endpoint](list-chargebacks).
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **settlements.read** **payments.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public ListSettlementChargebacksRequestBuilder listChargebacks() {
@@ -515,10 +454,6 @@ public class Settlements {
      * <p>Retrieve all chargebacks 'deducted' from the given settlement.
      * 
      * <p>The response is in the same format as the response of the [List chargebacks endpoint](list-chargebacks).
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **settlements.read** **payments.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -534,10 +469,6 @@ public class Settlements {
      * <p>Retrieve all chargebacks 'deducted' from the given settlement.
      * 
      * <p>The response is in the same format as the response of the [List chargebacks endpoint](list-chargebacks).
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **settlements.read** **payments.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

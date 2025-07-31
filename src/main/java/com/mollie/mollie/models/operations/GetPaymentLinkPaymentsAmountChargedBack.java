@@ -13,7 +13,8 @@ import java.lang.String;
 /**
  * GetPaymentLinkPaymentsAmountChargedBack
  * 
- * <p>The total amount that was charged back for this payment. Only available when the total charged back amount is not zero.
+ * <p>The total amount that was charged back for this payment. Only available when the total charged back amount is not
+ * zero.
  */
 public class GetPaymentLinkPaymentsAmountChargedBack {
     /**

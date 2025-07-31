@@ -18,7 +18,8 @@ import java.util.Optional;
 
 public class ListClientsEmbedded {
     /**
-     * An array of client objects. For a complete reference of the client object, refer to the [Get client endpoint](get-client) documentation.
+     * An array of client objects. For a complete reference of the client object, refer to the
+     * [Get client endpoint](get-client) documentation.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("clients")
@@ -36,7 +37,8 @@ public class ListClientsEmbedded {
     }
 
     /**
-     * An array of client objects. For a complete reference of the client object, refer to the [Get client endpoint](get-client) documentation.
+     * An array of client objects. For a complete reference of the client object, refer to the
+     * [Get client endpoint](get-client) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -50,7 +52,8 @@ public class ListClientsEmbedded {
 
 
     /**
-     * An array of client objects. For a complete reference of the client object, refer to the [Get client endpoint](get-client) documentation.
+     * An array of client objects. For a complete reference of the client object, refer to the
+     * [Get client endpoint](get-client) documentation.
      */
     public ListClientsEmbedded withClients(List<Clients> clients) {
         Utils.checkNotNull(clients, "clients");
@@ -60,7 +63,8 @@ public class ListClientsEmbedded {
 
 
     /**
-     * An array of client objects. For a complete reference of the client object, refer to the [Get client endpoint](get-client) documentation.
+     * An array of client objects. For a complete reference of the client object, refer to the
+     * [Get client endpoint](get-client) documentation.
      */
     public ListClientsEmbedded withClients(Optional<? extends List<Clients>> clients) {
         Utils.checkNotNull(clients, "clients");
@@ -104,7 +108,8 @@ public class ListClientsEmbedded {
 
 
         /**
-         * An array of client objects. For a complete reference of the client object, refer to the [Get client endpoint](get-client) documentation.
+         * An array of client objects. For a complete reference of the client object, refer to the
+         * [Get client endpoint](get-client) documentation.
          */
         public Builder clients(List<Clients> clients) {
             Utils.checkNotNull(clients, "clients");
@@ -113,7 +118,8 @@ public class ListClientsEmbedded {
         }
 
         /**
-         * An array of client objects. For a complete reference of the client object, refer to the [Get client endpoint](get-client) documentation.
+         * An array of client objects. For a complete reference of the client object, refer to the
+         * [Get client endpoint](get-client) documentation.
          */
         public Builder clients(Optional<? extends List<Clients>> clients) {
             Utils.checkNotNull(clients, "clients");

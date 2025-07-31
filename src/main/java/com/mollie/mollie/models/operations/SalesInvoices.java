@@ -21,7 +21,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class SalesInvoices {
     /**
-     * Indicates the response contains a sales invoice object. Will always contain the string `sales-invoice` for this endpoint.
+     * Indicates the response contains a sales invoice object. Will always contain the string `sales-invoice` for this
+     * endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
@@ -44,35 +45,36 @@ public class SalesInvoices {
     /**
      * The status for the invoice to end up in.
      * 
-     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to mark it as paid. It can then subsequently be sent as well, same as with `issued`.
+     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
+     * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+     * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
      * 
-     * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
+     * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
+     * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
      * 
-     * <p>Dependent parameters: - `paymentDetails` is required if invoice should be set directly to `paid` - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid` - `emailDetails` optional for `issued` and `paid` to send the invoice by email
-     * 
-     * <p>Possible values: `draft` `issued` `paid`
+     * <p>Dependent parameters:
+     *   - `paymentDetails` is required if invoice should be set directly to `paid`
+     *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
+     *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<String> status;
+    private Optional<? extends ListSalesInvoicesStatus> status;
 
     /**
      * The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
-     * 
-     * <p>Possible values: `standard` `one-stop-shop` (default: `standard`)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatScheme")
-    private Optional<String> vatScheme;
+    private Optional<? extends ListSalesInvoicesVatScheme> vatScheme;
 
     /**
-     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
-     * 
-     * <p>Possible values: `exclusive` `inclusive` (default: `exclusive`)
+     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
+     * price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatMode")
-    private Optional<String> vatMode;
+    private Optional<? extends ListSalesInvoicesVatMode> vatMode;
 
     /**
      * A free-form memo you can set on the invoice, and will be shown on the invoice PDF.
@@ -82,7 +84,8 @@ public class SalesInvoices {
     private JsonNullable<String> memo;
 
     /**
-     * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
@@ -90,43 +93,47 @@ public class SalesInvoices {
 
     /**
      * The payment term to be set on the invoice.
-     * 
-     * <p>Possible values: `7 days` `14 days` `30 days` `45 days` `60 days` `90 days` `120 days` (default: `30 days`)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("paymentTerm")
-    private JsonNullable<String> paymentTerm;
+    private JsonNullable<? extends ListSalesInvoicesPaymentTerm> paymentTerm;
 
     /**
-     * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the provided details. Required for `paid` status.
+     * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the
+     * provided details. Required for `paid` status.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("paymentDetails")
     private JsonNullable<? extends ListSalesInvoicesPaymentDetails> paymentDetails;
 
     /**
-     * Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the recipient with the provided `subject` and `body`. Required for `issued` status.
+     * Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the
+     * recipient with the provided `subject` and `body`. Required for `issued` status.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("emailDetails")
     private JsonNullable<? extends ListSalesInvoicesEmailDetails> emailDetails;
 
     /**
-     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
+     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If
+     * provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("customerId")
     private Optional<String> customerId;
 
     /**
-     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided, `customerId` becomes required as well. Only allowed for invoices with status `paid`.
+     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided,
+     * `customerId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mandateId")
     private Optional<String> mandateId;
 
     /**
-     * An identifier tied to the recipient data. This should be a unique value based on data your system contains, so that both you and us know who we're referring to. It is a value you provide to us so that recipient management is not required to send a first invoice to a recipient.
+     * An identifier tied to the recipient data. This should be a unique value based on data your system contains,
+     * so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
+     * is not required to send a first invoice to a recipient.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("recipientIdentifier")
@@ -138,7 +145,8 @@ public class SalesInvoices {
     private JsonNullable<? extends ListSalesInvoicesRecipient> recipient;
 
     /**
-     * Provide the line items for the invoice. Each line contains details such as a description of the item ordered and its price.
+     * Provide the line items for the invoice. Each line contains details such as a description of the item
+     * ordered and its price.
      * 
      * <p>All lines must have the same currency as the invoice.
      */
@@ -196,21 +204,24 @@ public class SalesInvoices {
     private Optional<String> createdAt;
 
     /**
-     * If issued, the date when the sales invoice was issued, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * If issued, the date when the sales invoice was issued, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("issuedAt")
     private JsonNullable<String> issuedAt;
 
     /**
-     * If paid, the date when the sales invoice was paid, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * If paid, the date when the sales invoice was paid, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("paidAt")
     private JsonNullable<String> paidAt;
 
     /**
-     * If issued, the date when the sales invoice payment is due, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * If issued, the date when the sales invoice payment is due, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("dueAt")
@@ -228,12 +239,12 @@ public class SalesInvoices {
             @JsonProperty("resource") Optional<String> resource,
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("invoiceNumber") JsonNullable<String> invoiceNumber,
-            @JsonProperty("status") Optional<String> status,
-            @JsonProperty("vatScheme") Optional<String> vatScheme,
-            @JsonProperty("vatMode") Optional<String> vatMode,
+            @JsonProperty("status") Optional<? extends ListSalesInvoicesStatus> status,
+            @JsonProperty("vatScheme") Optional<? extends ListSalesInvoicesVatScheme> vatScheme,
+            @JsonProperty("vatMode") Optional<? extends ListSalesInvoicesVatMode> vatMode,
             @JsonProperty("memo") JsonNullable<String> memo,
             @JsonProperty("metadata") JsonNullable<? extends ListSalesInvoicesMetadata> metadata,
-            @JsonProperty("paymentTerm") JsonNullable<String> paymentTerm,
+            @JsonProperty("paymentTerm") JsonNullable<? extends ListSalesInvoicesPaymentTerm> paymentTerm,
             @JsonProperty("paymentDetails") JsonNullable<? extends ListSalesInvoicesPaymentDetails> paymentDetails,
             @JsonProperty("emailDetails") JsonNullable<? extends ListSalesInvoicesEmailDetails> emailDetails,
             @JsonProperty("customerId") Optional<String> customerId,
@@ -321,7 +332,8 @@ public class SalesInvoices {
     }
 
     /**
-     * Indicates the response contains a sales invoice object. Will always contain the string `sales-invoice` for this endpoint.
+     * Indicates the response contains a sales invoice object. Will always contain the string `sales-invoice` for this
+     * endpoint.
      */
     @JsonIgnore
     public Optional<String> resource() {
@@ -347,37 +359,41 @@ public class SalesInvoices {
     /**
      * The status for the invoice to end up in.
      * 
-     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to mark it as paid. It can then subsequently be sent as well, same as with `issued`.
+     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
+     * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+     * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
      * 
-     * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
+     * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
+     * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
      * 
-     * <p>Dependent parameters: - `paymentDetails` is required if invoice should be set directly to `paid` - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid` - `emailDetails` optional for `issued` and `paid` to send the invoice by email
-     * 
-     * <p>Possible values: `draft` `issued` `paid`
+     * <p>Dependent parameters:
+     *   - `paymentDetails` is required if invoice should be set directly to `paid`
+     *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
+     *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> status() {
-        return status;
+    public Optional<ListSalesInvoicesStatus> status() {
+        return (Optional<ListSalesInvoicesStatus>) status;
     }
 
     /**
      * The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
-     * 
-     * <p>Possible values: `standard` `one-stop-shop` (default: `standard`)
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> vatScheme() {
-        return vatScheme;
+    public Optional<ListSalesInvoicesVatScheme> vatScheme() {
+        return (Optional<ListSalesInvoicesVatScheme>) vatScheme;
     }
 
     /**
-     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
-     * 
-     * <p>Possible values: `exclusive` `inclusive` (default: `exclusive`)
+     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
+     * price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> vatMode() {
-        return vatMode;
+    public Optional<ListSalesInvoicesVatMode> vatMode() {
+        return (Optional<ListSalesInvoicesVatMode>) vatMode;
     }
 
     /**
@@ -389,7 +405,8 @@ public class SalesInvoices {
     }
 
     /**
-     * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -399,16 +416,16 @@ public class SalesInvoices {
 
     /**
      * The payment term to be set on the invoice.
-     * 
-     * <p>Possible values: `7 days` `14 days` `30 days` `45 days` `60 days` `90 days` `120 days` (default: `30 days`)
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> paymentTerm() {
-        return paymentTerm;
+    public JsonNullable<ListSalesInvoicesPaymentTerm> paymentTerm() {
+        return (JsonNullable<ListSalesInvoicesPaymentTerm>) paymentTerm;
     }
 
     /**
-     * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the provided details. Required for `paid` status.
+     * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the
+     * provided details. Required for `paid` status.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -417,7 +434,8 @@ public class SalesInvoices {
     }
 
     /**
-     * Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the recipient with the provided `subject` and `body`. Required for `issued` status.
+     * Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the
+     * recipient with the provided `subject` and `body`. Required for `issued` status.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -426,7 +444,8 @@ public class SalesInvoices {
     }
 
     /**
-     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
+     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If
+     * provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     @JsonIgnore
     public Optional<String> customerId() {
@@ -434,7 +453,8 @@ public class SalesInvoices {
     }
 
     /**
-     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided, `customerId` becomes required as well. Only allowed for invoices with status `paid`.
+     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided,
+     * `customerId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     @JsonIgnore
     public Optional<String> mandateId() {
@@ -442,7 +462,9 @@ public class SalesInvoices {
     }
 
     /**
-     * An identifier tied to the recipient data. This should be a unique value based on data your system contains, so that both you and us know who we're referring to. It is a value you provide to us so that recipient management is not required to send a first invoice to a recipient.
+     * An identifier tied to the recipient data. This should be a unique value based on data your system contains,
+     * so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
+     * is not required to send a first invoice to a recipient.
      */
     @JsonIgnore
     public Optional<String> recipientIdentifier() {
@@ -456,7 +478,8 @@ public class SalesInvoices {
     }
 
     /**
-     * Provide the line items for the invoice. Each line contains details such as a description of the item ordered and its price.
+     * Provide the line items for the invoice. Each line contains details such as a description of the item
+     * ordered and its price.
      * 
      * <p>All lines must have the same currency as the invoice.
      */
@@ -529,7 +552,8 @@ public class SalesInvoices {
     }
 
     /**
-     * If issued, the date when the sales invoice was issued, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * If issued, the date when the sales invoice was issued, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonIgnore
     public JsonNullable<String> issuedAt() {
@@ -537,7 +561,8 @@ public class SalesInvoices {
     }
 
     /**
-     * If paid, the date when the sales invoice was paid, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * If paid, the date when the sales invoice was paid, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonIgnore
     public JsonNullable<String> paidAt() {
@@ -545,7 +570,8 @@ public class SalesInvoices {
     }
 
     /**
-     * If issued, the date when the sales invoice payment is due, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * If issued, the date when the sales invoice payment is due, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonIgnore
     public JsonNullable<String> dueAt() {
@@ -567,7 +593,8 @@ public class SalesInvoices {
 
 
     /**
-     * Indicates the response contains a sales invoice object. Will always contain the string `sales-invoice` for this endpoint.
+     * Indicates the response contains a sales invoice object. Will always contain the string `sales-invoice` for this
+     * endpoint.
      */
     public SalesInvoices withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -577,7 +604,8 @@ public class SalesInvoices {
 
 
     /**
-     * Indicates the response contains a sales invoice object. Will always contain the string `sales-invoice` for this endpoint.
+     * Indicates the response contains a sales invoice object. Will always contain the string `sales-invoice` for this
+     * endpoint.
      */
     public SalesInvoices withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
@@ -625,15 +653,19 @@ public class SalesInvoices {
     /**
      * The status for the invoice to end up in.
      * 
-     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to mark it as paid. It can then subsequently be sent as well, same as with `issued`.
+     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
+     * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+     * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
      * 
-     * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
+     * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
+     * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
      * 
-     * <p>Dependent parameters: - `paymentDetails` is required if invoice should be set directly to `paid` - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid` - `emailDetails` optional for `issued` and `paid` to send the invoice by email
-     * 
-     * <p>Possible values: `draft` `issued` `paid`
+     * <p>Dependent parameters:
+     *   - `paymentDetails` is required if invoice should be set directly to `paid`
+     *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
+     *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
-    public SalesInvoices withStatus(String status) {
+    public SalesInvoices withStatus(ListSalesInvoicesStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -643,15 +675,19 @@ public class SalesInvoices {
     /**
      * The status for the invoice to end up in.
      * 
-     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to mark it as paid. It can then subsequently be sent as well, same as with `issued`.
+     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
+     * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+     * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
      * 
-     * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
+     * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
+     * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
      * 
-     * <p>Dependent parameters: - `paymentDetails` is required if invoice should be set directly to `paid` - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid` - `emailDetails` optional for `issued` and `paid` to send the invoice by email
-     * 
-     * <p>Possible values: `draft` `issued` `paid`
+     * <p>Dependent parameters:
+     *   - `paymentDetails` is required if invoice should be set directly to `paid`
+     *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
+     *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
-    public SalesInvoices withStatus(Optional<String> status) {
+    public SalesInvoices withStatus(Optional<? extends ListSalesInvoicesStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -659,10 +695,8 @@ public class SalesInvoices {
 
     /**
      * The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
-     * 
-     * <p>Possible values: `standard` `one-stop-shop` (default: `standard`)
      */
-    public SalesInvoices withVatScheme(String vatScheme) {
+    public SalesInvoices withVatScheme(ListSalesInvoicesVatScheme vatScheme) {
         Utils.checkNotNull(vatScheme, "vatScheme");
         this.vatScheme = Optional.ofNullable(vatScheme);
         return this;
@@ -671,21 +705,18 @@ public class SalesInvoices {
 
     /**
      * The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
-     * 
-     * <p>Possible values: `standard` `one-stop-shop` (default: `standard`)
      */
-    public SalesInvoices withVatScheme(Optional<String> vatScheme) {
+    public SalesInvoices withVatScheme(Optional<? extends ListSalesInvoicesVatScheme> vatScheme) {
         Utils.checkNotNull(vatScheme, "vatScheme");
         this.vatScheme = vatScheme;
         return this;
     }
 
     /**
-     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
-     * 
-     * <p>Possible values: `exclusive` `inclusive` (default: `exclusive`)
+     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
+     * price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
      */
-    public SalesInvoices withVatMode(String vatMode) {
+    public SalesInvoices withVatMode(ListSalesInvoicesVatMode vatMode) {
         Utils.checkNotNull(vatMode, "vatMode");
         this.vatMode = Optional.ofNullable(vatMode);
         return this;
@@ -693,11 +724,10 @@ public class SalesInvoices {
 
 
     /**
-     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
-     * 
-     * <p>Possible values: `exclusive` `inclusive` (default: `exclusive`)
+     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
+     * price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
      */
-    public SalesInvoices withVatMode(Optional<String> vatMode) {
+    public SalesInvoices withVatMode(Optional<? extends ListSalesInvoicesVatMode> vatMode) {
         Utils.checkNotNull(vatMode, "vatMode");
         this.vatMode = vatMode;
         return this;
@@ -722,7 +752,8 @@ public class SalesInvoices {
     }
 
     /**
-     * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     public SalesInvoices withMetadata(ListSalesInvoicesMetadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -731,7 +762,8 @@ public class SalesInvoices {
     }
 
     /**
-     * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     public SalesInvoices withMetadata(JsonNullable<? extends ListSalesInvoicesMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -741,10 +773,8 @@ public class SalesInvoices {
 
     /**
      * The payment term to be set on the invoice.
-     * 
-     * <p>Possible values: `7 days` `14 days` `30 days` `45 days` `60 days` `90 days` `120 days` (default: `30 days`)
      */
-    public SalesInvoices withPaymentTerm(String paymentTerm) {
+    public SalesInvoices withPaymentTerm(ListSalesInvoicesPaymentTerm paymentTerm) {
         Utils.checkNotNull(paymentTerm, "paymentTerm");
         this.paymentTerm = JsonNullable.of(paymentTerm);
         return this;
@@ -752,17 +782,16 @@ public class SalesInvoices {
 
     /**
      * The payment term to be set on the invoice.
-     * 
-     * <p>Possible values: `7 days` `14 days` `30 days` `45 days` `60 days` `90 days` `120 days` (default: `30 days`)
      */
-    public SalesInvoices withPaymentTerm(JsonNullable<String> paymentTerm) {
+    public SalesInvoices withPaymentTerm(JsonNullable<? extends ListSalesInvoicesPaymentTerm> paymentTerm) {
         Utils.checkNotNull(paymentTerm, "paymentTerm");
         this.paymentTerm = paymentTerm;
         return this;
     }
 
     /**
-     * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the provided details. Required for `paid` status.
+     * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the
+     * provided details. Required for `paid` status.
      */
     public SalesInvoices withPaymentDetails(ListSalesInvoicesPaymentDetails paymentDetails) {
         Utils.checkNotNull(paymentDetails, "paymentDetails");
@@ -771,7 +800,8 @@ public class SalesInvoices {
     }
 
     /**
-     * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the provided details. Required for `paid` status.
+     * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the
+     * provided details. Required for `paid` status.
      */
     public SalesInvoices withPaymentDetails(JsonNullable<? extends ListSalesInvoicesPaymentDetails> paymentDetails) {
         Utils.checkNotNull(paymentDetails, "paymentDetails");
@@ -780,7 +810,8 @@ public class SalesInvoices {
     }
 
     /**
-     * Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the recipient with the provided `subject` and `body`. Required for `issued` status.
+     * Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the
+     * recipient with the provided `subject` and `body`. Required for `issued` status.
      */
     public SalesInvoices withEmailDetails(ListSalesInvoicesEmailDetails emailDetails) {
         Utils.checkNotNull(emailDetails, "emailDetails");
@@ -789,7 +820,8 @@ public class SalesInvoices {
     }
 
     /**
-     * Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the recipient with the provided `subject` and `body`. Required for `issued` status.
+     * Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the
+     * recipient with the provided `subject` and `body`. Required for `issued` status.
      */
     public SalesInvoices withEmailDetails(JsonNullable<? extends ListSalesInvoicesEmailDetails> emailDetails) {
         Utils.checkNotNull(emailDetails, "emailDetails");
@@ -798,7 +830,8 @@ public class SalesInvoices {
     }
 
     /**
-     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
+     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If
+     * provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     public SalesInvoices withCustomerId(String customerId) {
         Utils.checkNotNull(customerId, "customerId");
@@ -808,7 +841,8 @@ public class SalesInvoices {
 
 
     /**
-     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
+     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If
+     * provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     public SalesInvoices withCustomerId(Optional<String> customerId) {
         Utils.checkNotNull(customerId, "customerId");
@@ -817,7 +851,8 @@ public class SalesInvoices {
     }
 
     /**
-     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided, `customerId` becomes required as well. Only allowed for invoices with status `paid`.
+     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided,
+     * `customerId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     public SalesInvoices withMandateId(String mandateId) {
         Utils.checkNotNull(mandateId, "mandateId");
@@ -827,7 +862,8 @@ public class SalesInvoices {
 
 
     /**
-     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided, `customerId` becomes required as well. Only allowed for invoices with status `paid`.
+     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided,
+     * `customerId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     public SalesInvoices withMandateId(Optional<String> mandateId) {
         Utils.checkNotNull(mandateId, "mandateId");
@@ -836,7 +872,9 @@ public class SalesInvoices {
     }
 
     /**
-     * An identifier tied to the recipient data. This should be a unique value based on data your system contains, so that both you and us know who we're referring to. It is a value you provide to us so that recipient management is not required to send a first invoice to a recipient.
+     * An identifier tied to the recipient data. This should be a unique value based on data your system contains,
+     * so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
+     * is not required to send a first invoice to a recipient.
      */
     public SalesInvoices withRecipientIdentifier(String recipientIdentifier) {
         Utils.checkNotNull(recipientIdentifier, "recipientIdentifier");
@@ -846,7 +884,9 @@ public class SalesInvoices {
 
 
     /**
-     * An identifier tied to the recipient data. This should be a unique value based on data your system contains, so that both you and us know who we're referring to. It is a value you provide to us so that recipient management is not required to send a first invoice to a recipient.
+     * An identifier tied to the recipient data. This should be a unique value based on data your system contains,
+     * so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
+     * is not required to send a first invoice to a recipient.
      */
     public SalesInvoices withRecipientIdentifier(Optional<String> recipientIdentifier) {
         Utils.checkNotNull(recipientIdentifier, "recipientIdentifier");
@@ -867,7 +907,8 @@ public class SalesInvoices {
     }
 
     /**
-     * Provide the line items for the invoice. Each line contains details such as a description of the item ordered and its price.
+     * Provide the line items for the invoice. Each line contains details such as a description of the item
+     * ordered and its price.
      * 
      * <p>All lines must have the same currency as the invoice.
      */
@@ -878,7 +919,8 @@ public class SalesInvoices {
     }
 
     /**
-     * Provide the line items for the invoice. Each line contains details such as a description of the item ordered and its price.
+     * Provide the line items for the invoice. Each line contains details such as a description of the item
+     * ordered and its price.
      * 
      * <p>All lines must have the same currency as the invoice.
      */
@@ -1021,7 +1063,8 @@ public class SalesInvoices {
     }
 
     /**
-     * If issued, the date when the sales invoice was issued, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * If issued, the date when the sales invoice was issued, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public SalesInvoices withIssuedAt(String issuedAt) {
         Utils.checkNotNull(issuedAt, "issuedAt");
@@ -1030,7 +1073,8 @@ public class SalesInvoices {
     }
 
     /**
-     * If issued, the date when the sales invoice was issued, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * If issued, the date when the sales invoice was issued, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public SalesInvoices withIssuedAt(JsonNullable<String> issuedAt) {
         Utils.checkNotNull(issuedAt, "issuedAt");
@@ -1039,7 +1083,8 @@ public class SalesInvoices {
     }
 
     /**
-     * If paid, the date when the sales invoice was paid, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * If paid, the date when the sales invoice was paid, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public SalesInvoices withPaidAt(String paidAt) {
         Utils.checkNotNull(paidAt, "paidAt");
@@ -1048,7 +1093,8 @@ public class SalesInvoices {
     }
 
     /**
-     * If paid, the date when the sales invoice was paid, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * If paid, the date when the sales invoice was paid, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public SalesInvoices withPaidAt(JsonNullable<String> paidAt) {
         Utils.checkNotNull(paidAt, "paidAt");
@@ -1057,7 +1103,8 @@ public class SalesInvoices {
     }
 
     /**
-     * If issued, the date when the sales invoice payment is due, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * If issued, the date when the sales invoice payment is due, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public SalesInvoices withDueAt(String dueAt) {
         Utils.checkNotNull(dueAt, "dueAt");
@@ -1066,7 +1113,8 @@ public class SalesInvoices {
     }
 
     /**
-     * If issued, the date when the sales invoice payment is due, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * If issued, the date when the sales invoice payment is due, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public SalesInvoices withDueAt(JsonNullable<String> dueAt) {
         Utils.checkNotNull(dueAt, "dueAt");
@@ -1187,17 +1235,17 @@ public class SalesInvoices {
 
         private JsonNullable<String> invoiceNumber = JsonNullable.undefined();
 
-        private Optional<String> status = Optional.empty();
+        private Optional<? extends ListSalesInvoicesStatus> status = Optional.empty();
 
-        private Optional<String> vatScheme = Optional.empty();
+        private Optional<? extends ListSalesInvoicesVatScheme> vatScheme;
 
-        private Optional<String> vatMode = Optional.empty();
+        private Optional<? extends ListSalesInvoicesVatMode> vatMode;
 
         private JsonNullable<String> memo = JsonNullable.undefined();
 
         private JsonNullable<? extends ListSalesInvoicesMetadata> metadata = JsonNullable.undefined();
 
-        private JsonNullable<String> paymentTerm = JsonNullable.undefined();
+        private JsonNullable<? extends ListSalesInvoicesPaymentTerm> paymentTerm;
 
         private JsonNullable<? extends ListSalesInvoicesPaymentDetails> paymentDetails = JsonNullable.undefined();
 
@@ -1241,7 +1289,8 @@ public class SalesInvoices {
 
 
         /**
-         * Indicates the response contains a sales invoice object. Will always contain the string `sales-invoice` for this endpoint.
+         * Indicates the response contains a sales invoice object. Will always contain the string `sales-invoice` for this
+         * endpoint.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -1250,7 +1299,8 @@ public class SalesInvoices {
         }
 
         /**
-         * Indicates the response contains a sales invoice object. Will always contain the string `sales-invoice` for this endpoint.
+         * Indicates the response contains a sales invoice object. Will always contain the string `sales-invoice` for this
+         * endpoint.
          */
         public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
@@ -1300,15 +1350,19 @@ public class SalesInvoices {
         /**
          * The status for the invoice to end up in.
          * 
-         * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to mark it as paid. It can then subsequently be sent as well, same as with `issued`.
+         * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
+         * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+         * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
          * 
-         * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
+         * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
+         * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
          * 
-         * <p>Dependent parameters: - `paymentDetails` is required if invoice should be set directly to `paid` - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid` - `emailDetails` optional for `issued` and `paid` to send the invoice by email
-         * 
-         * <p>Possible values: `draft` `issued` `paid`
+         * <p>Dependent parameters:
+         *   - `paymentDetails` is required if invoice should be set directly to `paid`
+         *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
+         *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
          */
-        public Builder status(String status) {
+        public Builder status(ListSalesInvoicesStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -1317,15 +1371,19 @@ public class SalesInvoices {
         /**
          * The status for the invoice to end up in.
          * 
-         * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to mark it as paid. It can then subsequently be sent as well, same as with `issued`.
+         * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
+         * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+         * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
          * 
-         * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
+         * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
+         * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
          * 
-         * <p>Dependent parameters: - `paymentDetails` is required if invoice should be set directly to `paid` - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid` - `emailDetails` optional for `issued` and `paid` to send the invoice by email
-         * 
-         * <p>Possible values: `draft` `issued` `paid`
+         * <p>Dependent parameters:
+         *   - `paymentDetails` is required if invoice should be set directly to `paid`
+         *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
+         *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
          */
-        public Builder status(Optional<String> status) {
+        public Builder status(Optional<? extends ListSalesInvoicesStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -1334,10 +1392,8 @@ public class SalesInvoices {
 
         /**
          * The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
-         * 
-         * <p>Possible values: `standard` `one-stop-shop` (default: `standard`)
          */
-        public Builder vatScheme(String vatScheme) {
+        public Builder vatScheme(ListSalesInvoicesVatScheme vatScheme) {
             Utils.checkNotNull(vatScheme, "vatScheme");
             this.vatScheme = Optional.ofNullable(vatScheme);
             return this;
@@ -1345,10 +1401,8 @@ public class SalesInvoices {
 
         /**
          * The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
-         * 
-         * <p>Possible values: `standard` `one-stop-shop` (default: `standard`)
          */
-        public Builder vatScheme(Optional<String> vatScheme) {
+        public Builder vatScheme(Optional<? extends ListSalesInvoicesVatScheme> vatScheme) {
             Utils.checkNotNull(vatScheme, "vatScheme");
             this.vatScheme = vatScheme;
             return this;
@@ -1356,22 +1410,20 @@ public class SalesInvoices {
 
 
         /**
-         * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
-         * 
-         * <p>Possible values: `exclusive` `inclusive` (default: `exclusive`)
+         * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
+         * price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
          */
-        public Builder vatMode(String vatMode) {
+        public Builder vatMode(ListSalesInvoicesVatMode vatMode) {
             Utils.checkNotNull(vatMode, "vatMode");
             this.vatMode = Optional.ofNullable(vatMode);
             return this;
         }
 
         /**
-         * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
-         * 
-         * <p>Possible values: `exclusive` `inclusive` (default: `exclusive`)
+         * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
+         * price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
          */
-        public Builder vatMode(Optional<String> vatMode) {
+        public Builder vatMode(Optional<? extends ListSalesInvoicesVatMode> vatMode) {
             Utils.checkNotNull(vatMode, "vatMode");
             this.vatMode = vatMode;
             return this;
@@ -1398,7 +1450,8 @@ public class SalesInvoices {
 
 
         /**
-         * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
         public Builder metadata(ListSalesInvoicesMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -1407,7 +1460,8 @@ public class SalesInvoices {
         }
 
         /**
-         * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
         public Builder metadata(JsonNullable<? extends ListSalesInvoicesMetadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -1418,10 +1472,8 @@ public class SalesInvoices {
 
         /**
          * The payment term to be set on the invoice.
-         * 
-         * <p>Possible values: `7 days` `14 days` `30 days` `45 days` `60 days` `90 days` `120 days` (default: `30 days`)
          */
-        public Builder paymentTerm(String paymentTerm) {
+        public Builder paymentTerm(ListSalesInvoicesPaymentTerm paymentTerm) {
             Utils.checkNotNull(paymentTerm, "paymentTerm");
             this.paymentTerm = JsonNullable.of(paymentTerm);
             return this;
@@ -1429,10 +1481,8 @@ public class SalesInvoices {
 
         /**
          * The payment term to be set on the invoice.
-         * 
-         * <p>Possible values: `7 days` `14 days` `30 days` `45 days` `60 days` `90 days` `120 days` (default: `30 days`)
          */
-        public Builder paymentTerm(JsonNullable<String> paymentTerm) {
+        public Builder paymentTerm(JsonNullable<? extends ListSalesInvoicesPaymentTerm> paymentTerm) {
             Utils.checkNotNull(paymentTerm, "paymentTerm");
             this.paymentTerm = paymentTerm;
             return this;
@@ -1440,7 +1490,8 @@ public class SalesInvoices {
 
 
         /**
-         * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the provided details. Required for `paid` status.
+         * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the
+         * provided details. Required for `paid` status.
          */
         public Builder paymentDetails(ListSalesInvoicesPaymentDetails paymentDetails) {
             Utils.checkNotNull(paymentDetails, "paymentDetails");
@@ -1449,7 +1500,8 @@ public class SalesInvoices {
         }
 
         /**
-         * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the provided details. Required for `paid` status.
+         * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the
+         * provided details. Required for `paid` status.
          */
         public Builder paymentDetails(JsonNullable<? extends ListSalesInvoicesPaymentDetails> paymentDetails) {
             Utils.checkNotNull(paymentDetails, "paymentDetails");
@@ -1459,7 +1511,8 @@ public class SalesInvoices {
 
 
         /**
-         * Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the recipient with the provided `subject` and `body`. Required for `issued` status.
+         * Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the
+         * recipient with the provided `subject` and `body`. Required for `issued` status.
          */
         public Builder emailDetails(ListSalesInvoicesEmailDetails emailDetails) {
             Utils.checkNotNull(emailDetails, "emailDetails");
@@ -1468,7 +1521,8 @@ public class SalesInvoices {
         }
 
         /**
-         * Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the recipient with the provided `subject` and `body`. Required for `issued` status.
+         * Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the
+         * recipient with the provided `subject` and `body`. Required for `issued` status.
          */
         public Builder emailDetails(JsonNullable<? extends ListSalesInvoicesEmailDetails> emailDetails) {
             Utils.checkNotNull(emailDetails, "emailDetails");
@@ -1478,7 +1532,8 @@ public class SalesInvoices {
 
 
         /**
-         * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
+         * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If
+         * provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
          */
         public Builder customerId(String customerId) {
             Utils.checkNotNull(customerId, "customerId");
@@ -1487,7 +1542,8 @@ public class SalesInvoices {
         }
 
         /**
-         * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
+         * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If
+         * provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
          */
         public Builder customerId(Optional<String> customerId) {
             Utils.checkNotNull(customerId, "customerId");
@@ -1497,7 +1553,8 @@ public class SalesInvoices {
 
 
         /**
-         * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided, `customerId` becomes required as well. Only allowed for invoices with status `paid`.
+         * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided,
+         * `customerId` becomes required as well. Only allowed for invoices with status `paid`.
          */
         public Builder mandateId(String mandateId) {
             Utils.checkNotNull(mandateId, "mandateId");
@@ -1506,7 +1563,8 @@ public class SalesInvoices {
         }
 
         /**
-         * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided, `customerId` becomes required as well. Only allowed for invoices with status `paid`.
+         * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided,
+         * `customerId` becomes required as well. Only allowed for invoices with status `paid`.
          */
         public Builder mandateId(Optional<String> mandateId) {
             Utils.checkNotNull(mandateId, "mandateId");
@@ -1516,7 +1574,9 @@ public class SalesInvoices {
 
 
         /**
-         * An identifier tied to the recipient data. This should be a unique value based on data your system contains, so that both you and us know who we're referring to. It is a value you provide to us so that recipient management is not required to send a first invoice to a recipient.
+         * An identifier tied to the recipient data. This should be a unique value based on data your system contains,
+         * so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
+         * is not required to send a first invoice to a recipient.
          */
         public Builder recipientIdentifier(String recipientIdentifier) {
             Utils.checkNotNull(recipientIdentifier, "recipientIdentifier");
@@ -1525,7 +1585,9 @@ public class SalesInvoices {
         }
 
         /**
-         * An identifier tied to the recipient data. This should be a unique value based on data your system contains, so that both you and us know who we're referring to. It is a value you provide to us so that recipient management is not required to send a first invoice to a recipient.
+         * An identifier tied to the recipient data. This should be a unique value based on data your system contains,
+         * so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
+         * is not required to send a first invoice to a recipient.
          */
         public Builder recipientIdentifier(Optional<String> recipientIdentifier) {
             Utils.checkNotNull(recipientIdentifier, "recipientIdentifier");
@@ -1548,7 +1610,8 @@ public class SalesInvoices {
 
 
         /**
-         * Provide the line items for the invoice. Each line contains details such as a description of the item ordered and its price.
+         * Provide the line items for the invoice. Each line contains details such as a description of the item
+         * ordered and its price.
          * 
          * <p>All lines must have the same currency as the invoice.
          */
@@ -1559,7 +1622,8 @@ public class SalesInvoices {
         }
 
         /**
-         * Provide the line items for the invoice. Each line contains details such as a description of the item ordered and its price.
+         * Provide the line items for the invoice. Each line contains details such as a description of the item
+         * ordered and its price.
          * 
          * <p>All lines must have the same currency as the invoice.
          */
@@ -1704,7 +1768,8 @@ public class SalesInvoices {
 
 
         /**
-         * If issued, the date when the sales invoice was issued, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * If issued, the date when the sales invoice was issued, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder issuedAt(String issuedAt) {
             Utils.checkNotNull(issuedAt, "issuedAt");
@@ -1713,7 +1778,8 @@ public class SalesInvoices {
         }
 
         /**
-         * If issued, the date when the sales invoice was issued, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * If issued, the date when the sales invoice was issued, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder issuedAt(JsonNullable<String> issuedAt) {
             Utils.checkNotNull(issuedAt, "issuedAt");
@@ -1723,7 +1789,8 @@ public class SalesInvoices {
 
 
         /**
-         * If paid, the date when the sales invoice was paid, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * If paid, the date when the sales invoice was paid, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder paidAt(String paidAt) {
             Utils.checkNotNull(paidAt, "paidAt");
@@ -1732,7 +1799,8 @@ public class SalesInvoices {
         }
 
         /**
-         * If paid, the date when the sales invoice was paid, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * If paid, the date when the sales invoice was paid, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder paidAt(JsonNullable<String> paidAt) {
             Utils.checkNotNull(paidAt, "paidAt");
@@ -1742,7 +1810,8 @@ public class SalesInvoices {
 
 
         /**
-         * If issued, the date when the sales invoice payment is due, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * If issued, the date when the sales invoice payment is due, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder dueAt(String dueAt) {
             Utils.checkNotNull(dueAt, "dueAt");
@@ -1751,7 +1820,8 @@ public class SalesInvoices {
         }
 
         /**
-         * If issued, the date when the sales invoice payment is due, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * If issued, the date when the sales invoice payment is due, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder dueAt(JsonNullable<String> dueAt) {
             Utils.checkNotNull(dueAt, "dueAt");
@@ -1782,6 +1852,15 @@ public class SalesInvoices {
             if (resource == null) {
                 resource = _SINGLETON_VALUE_Resource.value();
             }
+            if (vatScheme == null) {
+                vatScheme = _SINGLETON_VALUE_VatScheme.value();
+            }
+            if (vatMode == null) {
+                vatMode = _SINGLETON_VALUE_VatMode.value();
+            }
+            if (paymentTerm == null) {
+                paymentTerm = _SINGLETON_VALUE_PaymentTerm.value();
+            }
 
             return new SalesInvoices(
                 resource, id, invoiceNumber,
@@ -1801,5 +1880,23 @@ public class SalesInvoices {
                         "resource",
                         "\"sales-invoice\"",
                         new TypeReference<Optional<String>>() {});
+
+        private static final LazySingletonValue<Optional<? extends ListSalesInvoicesVatScheme>> _SINGLETON_VALUE_VatScheme =
+                new LazySingletonValue<>(
+                        "vatScheme",
+                        "\"standard\"",
+                        new TypeReference<Optional<? extends ListSalesInvoicesVatScheme>>() {});
+
+        private static final LazySingletonValue<Optional<? extends ListSalesInvoicesVatMode>> _SINGLETON_VALUE_VatMode =
+                new LazySingletonValue<>(
+                        "vatMode",
+                        "\"exclusive\"",
+                        new TypeReference<Optional<? extends ListSalesInvoicesVatMode>>() {});
+
+        private static final LazySingletonValue<JsonNullable<? extends ListSalesInvoicesPaymentTerm>> _SINGLETON_VALUE_PaymentTerm =
+                new LazySingletonValue<>(
+                        "paymentTerm",
+                        "\"30 days\"",
+                        new TypeReference<JsonNullable<? extends ListSalesInvoicesPaymentTerm>>() {});
     }
 }

@@ -52,12 +52,6 @@ public class SalesInvoices {
      * 
      * <p>With the Sales Invoice API you can generate sales invoices to send to your customers.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **sales-invoices.write**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public CreateSalesInvoiceRequestBuilder create() {
@@ -72,12 +66,6 @@ public class SalesInvoices {
      * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
      * <p>With the Sales Invoice API you can generate sales invoices to send to your customers.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **sales-invoices.write**](/reference/authentication)
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -94,12 +82,6 @@ public class SalesInvoices {
      * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
      * <p>With the Sales Invoice API you can generate sales invoices to send to your customers.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **sales-invoices.write**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -123,12 +105,6 @@ public class SalesInvoices {
      * 
      * <p>The results are paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **sales-invoices.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public ListSalesInvoicesRequestBuilder list() {
@@ -145,12 +121,6 @@ public class SalesInvoices {
      * <p>Retrieve a list of all sales invoices created through the API.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **sales-invoices.read**](/reference/authentication)
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -171,15 +141,12 @@ public class SalesInvoices {
      * 
      * <p>The results are paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **sales-invoices.read**](/reference/authentication)
-     * 
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     *         result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param options additional options
@@ -210,12 +177,6 @@ public class SalesInvoices {
      * 
      * <p>Retrieve a single sales invoice by its ID.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **sales-invoice.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public GetSalesInvoiceRequestBuilder get() {
@@ -230,12 +191,6 @@ public class SalesInvoices {
      * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
      * <p>Retrieve a single sales invoice by its ID.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **sales-invoice.read**](/reference/authentication)
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
@@ -254,14 +209,10 @@ public class SalesInvoices {
      * 
      * <p>Retrieve a single sales invoice by its ID.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **sales-invoice.read**](/reference/authentication)
-     * 
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param options additional options
@@ -289,13 +240,9 @@ public class SalesInvoices {
      * &gt;
      * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
-     * <p>Certain details of an existing sales invoice can be updated. For `draft` it is all values listed below, but for statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and `emailDetails`, respectively).
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **sales-invoices.write**](/reference/authentication)
+     * <p>Certain details of an existing sales invoice can be updated. For `draft` it is all values listed below, but for
+     * statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and `emailDetails`,
+     * respectively).
      * 
      * @return The call builder
      */
@@ -310,13 +257,9 @@ public class SalesInvoices {
      * &gt;
      * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
-     * <p>Certain details of an existing sales invoice can be updated. For `draft` it is all values listed below, but for statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and `emailDetails`, respectively).
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **sales-invoices.write**](/reference/authentication)
+     * <p>Certain details of an existing sales invoice can be updated. For `draft` it is all values listed below, but for
+     * statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and `emailDetails`,
+     * respectively).
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
@@ -333,13 +276,9 @@ public class SalesInvoices {
      * &gt;
      * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
-     * <p>Certain details of an existing sales invoice can be updated. For `draft` it is all values listed below, but for statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and `emailDetails`, respectively).
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **sales-invoices.write**](/reference/authentication)
+     * <p>Certain details of an existing sales invoice can be updated. For `draft` it is all values listed below, but for
+     * statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and `emailDetails`,
+     * respectively).
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @param requestBody 
@@ -368,13 +307,8 @@ public class SalesInvoices {
      * &gt;
      * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
-     * <p>Sales invoices which are in status `draft` can be deleted. For all other statuses, please use the [Update sales invoice](update-sales-invoice) endpoint instead.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **sales-invoices.write**](/reference/authentication)
+     * <p>Sales invoices which are in status `draft` can be deleted. For all other statuses, please use the
+     * [Update sales invoice](update-sales-invoice) endpoint instead.
      * 
      * @return The call builder
      */
@@ -389,13 +323,8 @@ public class SalesInvoices {
      * &gt;
      * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
-     * <p>Sales invoices which are in status `draft` can be deleted. For all other statuses, please use the [Update sales invoice](update-sales-invoice) endpoint instead.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **sales-invoices.write**](/reference/authentication)
+     * <p>Sales invoices which are in status `draft` can be deleted. For all other statuses, please use the
+     * [Update sales invoice](update-sales-invoice) endpoint instead.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
@@ -412,13 +341,8 @@ public class SalesInvoices {
      * &gt;
      * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
-     * <p>Sales invoices which are in status `draft` can be deleted. For all other statuses, please use the [Update sales invoice](update-sales-invoice) endpoint instead.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **sales-invoices.write**](/reference/authentication)
+     * <p>Sales invoices which are in status `draft` can be deleted. For all other statuses, please use the
+     * [Update sales invoice](update-sales-invoice) endpoint instead.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @param requestBody 

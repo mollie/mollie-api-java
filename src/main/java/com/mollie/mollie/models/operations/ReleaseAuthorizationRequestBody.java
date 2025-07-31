@@ -20,7 +20,9 @@ public class ReleaseAuthorizationRequestBody {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("profileId")
@@ -29,7 +31,9 @@ public class ReleaseAuthorizationRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * `testmode` to `true`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("testmode")
@@ -52,7 +56,9 @@ public class ReleaseAuthorizationRequestBody {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     @JsonIgnore
     public Optional<String> profileId() {
@@ -62,7 +68,9 @@ public class ReleaseAuthorizationRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * `testmode` to `true`.
      */
     @JsonIgnore
     public JsonNullable<Boolean> testmode() {
@@ -77,7 +85,9 @@ public class ReleaseAuthorizationRequestBody {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     public ReleaseAuthorizationRequestBody withProfileId(String profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -89,7 +99,9 @@ public class ReleaseAuthorizationRequestBody {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     public ReleaseAuthorizationRequestBody withProfileId(Optional<String> profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -100,7 +112,9 @@ public class ReleaseAuthorizationRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * `testmode` to `true`.
      */
     public ReleaseAuthorizationRequestBody withTestmode(boolean testmode) {
         Utils.checkNotNull(testmode, "testmode");
@@ -111,7 +125,9 @@ public class ReleaseAuthorizationRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * `testmode` to `true`.
      */
     public ReleaseAuthorizationRequestBody withTestmode(JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(testmode, "testmode");
@@ -161,7 +177,9 @@ public class ReleaseAuthorizationRequestBody {
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+         * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+         * required.
          */
         public Builder profileId(String profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -172,7 +190,9 @@ public class ReleaseAuthorizationRequestBody {
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+         * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+         * required.
          */
         public Builder profileId(Optional<String> profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -184,7 +204,9 @@ public class ReleaseAuthorizationRequestBody {
         /**
          * Whether to create the entity in test mode or live mode.
          * 
-         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+         * `testmode` to `true`.
          */
         public Builder testmode(boolean testmode) {
             Utils.checkNotNull(testmode, "testmode");
@@ -195,7 +217,9 @@ public class ReleaseAuthorizationRequestBody {
         /**
          * Whether to create the entity in test mode or live mode.
          * 
-         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+         * `testmode` to `true`.
          */
         public Builder testmode(JsonNullable<Boolean> testmode) {
             Utils.checkNotNull(testmode, "testmode");

@@ -29,7 +29,8 @@ public class ListAllMethodsImage {
     private String size2x;
 
     /**
-     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
+     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can
+     * scale to any desired size without compromising visual quality.
      */
     @JsonProperty("svg")
     private String svg;
@@ -64,7 +65,8 @@ public class ListAllMethodsImage {
     }
 
     /**
-     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
+     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can
+     * scale to any desired size without compromising visual quality.
      */
     @JsonIgnore
     public String svg() {
@@ -95,7 +97,8 @@ public class ListAllMethodsImage {
     }
 
     /**
-     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
+     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can
+     * scale to any desired size without compromising visual quality.
      */
     public ListAllMethodsImage withSvg(String svg) {
         Utils.checkNotNull(svg, "svg");
@@ -167,7 +170,8 @@ public class ListAllMethodsImage {
 
 
         /**
-         * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
+         * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can
+         * scale to any desired size without compromising visual quality.
          */
         public Builder svg(String svg) {
             Utils.checkNotNull(svg, "svg");

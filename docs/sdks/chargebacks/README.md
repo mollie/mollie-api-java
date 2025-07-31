@@ -15,14 +15,9 @@ Retrieve the chargebacks initiated for a specific payment.
 
 The results are paginated.
 
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **payments.read**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list-chargebacks" method="get" path="/payments/{paymentId}/chargebacks" -->
 ```java
 package hello.world;
 
@@ -83,14 +78,9 @@ public class Application {
 
 Retrieve a single payment chargeback by its ID and the ID of its parent payment.
 
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **payments.read**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="get-chargeback" method="get" path="/payments/{paymentId}/chargebacks/{chargebackId}" -->
 ```java
 package hello.world;
 
@@ -132,7 +122,7 @@ public class Application {
 | `paymentId`                                                                                                                                                                                                                                                                                                                                                                            | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related payment.                                                                                                                                                                                                                                                                                                                                                 | tr_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                          |
 | `chargebackId`                                                                                                                                                                                                                                                                                                                                                                         | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related chargeback.                                                                                                                                                                                                                                                                                                                                              | chb_xFzwUN4ci8HAmSGUACS4J                                                                                                                                                                                                                                                                                                                                                              |
 | `embed`                                                                                                                                                                                                                                                                                                                                                                                | [JsonNullable\<GetChargebackQueryParamEmbed>](../../models/operations/GetChargebackQueryParamEmbed.md)                                                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows you to embed additional information via the `embed` query string parameter.                                                                                                                                                                                                                                                                                       | payment                                                                                                                                                                                                                                                                                                                                                                                |
-| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
+| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Response
 
@@ -151,14 +141,9 @@ Retrieve all chargebacks initiated for all your payments.
 
 The results are paginated.
 
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **payments.read**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list-all-chargebacks" method="get" path="/chargebacks" -->
 ```java
 package hello.world;
 
@@ -182,7 +167,6 @@ public class Application {
         ListAllChargebacksRequest req = ListAllChargebacksRequest.builder()
                 .from("chb_xFzwUN4ci8HAmSGUACS4J")
                 .embed(ListAllChargebacksQueryParamEmbed.PAYMENT)
-                .sort("desc")
                 .profileId("pfl_5B8cwPMGnU")
                 .testmode(false)
                 .build();

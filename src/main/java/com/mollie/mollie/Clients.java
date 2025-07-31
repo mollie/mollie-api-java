@@ -35,10 +35,6 @@ public class Clients {
      * 
      * <p>The results are paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **clients.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public ListClientsRequestBuilder list() {
@@ -51,10 +47,6 @@ public class Clients {
      * <p>Retrieve a list of all clients linked to your account.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **clients.read**](/reference/authentication)
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -71,16 +63,17 @@ public class Clients {
      * 
      * <p>The results are paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **clients.read**](/reference/authentication)
-     * 
-     * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
+     * @param embed This endpoint allows embedding related API items by appending the
+     *         following values via the `embed` query string parameter.
      *         
-     *         * `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth` partners with the `organizations.read` scope.
-     *         * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth` partners with the `onboarding.read` scope.
-     *         * `capabilities`: Include the [capabilities](list-capabilities) of the client organization. Available for *oauth* partners with the `onboarding.read` scope.
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     *         * `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth`
+     *           partners with the `organizations.read` scope.
+     *         * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth`
+     *           partners with the `onboarding.read` scope.
+     *         * `capabilities`: Include the [capabilities](list-capabilities) of the client organization.
+     *           Available for *oauth* partners with the `onboarding.read` scope.
+     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     *         result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
      * @param options additional options
      * @return The response from the API call
@@ -106,10 +99,6 @@ public class Clients {
      * 
      * <p>Retrieve a single client by its ID.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **clients.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public GetClientRequestBuilder get() {
@@ -120,10 +109,6 @@ public class Clients {
      * Get client
      * 
      * <p>Retrieve a single client by its ID.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **clients.read**](/reference/authentication)
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
@@ -138,16 +123,16 @@ public class Clients {
      * 
      * <p>Retrieve a single client by its ID.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **clients.read**](/reference/authentication)
-     * 
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
+     * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     *         parameter.
      *         
-     *         * `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth` partners with the `organizations.read` scope.
-     *         * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth` partners with the `onboarding.read` scope.
-     *         * `capabilities`: Include the [capabilities](list-capabilities) of the client organization. Available for *oauth* partners with the `onboarding.read` scope.
+     *         * `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth`
+     *           partners with the `organizations.read` scope.
+     *         * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth`
+     *           partners with the `onboarding.read` scope.
+     *         * `capabilities`: Include the [capabilities](list-capabilities) of the client organization.
+     *           Available for *oauth* partners with the `onboarding.read` scope.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails

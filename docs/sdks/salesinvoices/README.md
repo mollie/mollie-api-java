@@ -19,14 +19,9 @@
 
 With the Sales Invoice API you can generate sales invoices to send to your customers.
 
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **sales-invoices.write**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="create-sales-invoice" method="post" path="/sales-invoices" -->
 ```java
 package hello.world;
 
@@ -49,16 +44,16 @@ public class Application {
             .build();
 
         CreateSalesInvoiceRequestBody req = CreateSalesInvoiceRequestBody.builder()
-                .status("draft")
+                .status(Status.DRAFT)
                 .recipientIdentifier("customer-xyz-0123")
                 .recipient(Recipient.builder()
-                    .type("consumer")
+                    .type(CreateSalesInvoiceType.CONSUMER)
                     .email("example@email.com")
                     .streetAndNumber("Keizersgracht 126")
                     .postalCode("5678AB")
                     .city("Amsterdam")
                     .country("NL")
-                    .locale("nl_NL")
+                    .locale(CreateSalesInvoiceLocale.NLNL)
                     .title("Mrs.")
                     .givenName("Jane")
                     .familyName("Doe")
@@ -74,7 +69,7 @@ public class Application {
                 .profileId("pfl_QkEhN94Ba")
                 .memo("This is a memo!")
                 .paymentDetails(PaymentDetails.builder()
-                    .source("payment-link")
+                    .source(CreateSalesInvoiceSource.PAYMENT_LINK)
                     .sourceReference("pl_d9fQur83kFdhH8hIhaZfq")
                     .build())
                 .emailDetails(EmailDetails.builder()
@@ -84,7 +79,7 @@ public class Application {
                 .customerId("cst_8wmqcHMN4U")
                 .mandateId("mdt_pWUnw6pkBN")
                 .discount(CreateSalesInvoiceDiscount.builder()
-                    .type("amount")
+                    .type(CreateSalesInvoiceSalesInvoicesRequestType.AMOUNT)
                     .value("10.00")
                     .build())
                 .build();
@@ -128,14 +123,9 @@ Retrieve a list of all sales invoices created through the API.
 
 The results are paginated.
 
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **sales-invoices.read**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list-sales-invoices" method="get" path="/sales-invoices" -->
 ```java
 package hello.world;
 
@@ -172,9 +162,9 @@ public class Application {
 
 | Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `from`                                                                                                                                                                                                                                                                                                                                                                                 | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.                                                                                                                                                                                                                                                         | invoice_4Y0eZitmBnQ6IDoMqZQKh                                                                                                                                                                                                                                                                                                                                                          |
+| `from`                                                                                                                                                                                                                                                                                                                                                                                 | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the<br/>result set.                                                                                                                                                                                                                                                     | invoice_4Y0eZitmBnQ6IDoMqZQKh                                                                                                                                                                                                                                                                                                                                                          |
 | `limit`                                                                                                                                                                                                                                                                                                                                                                                | *JsonNullable\<Long>*                                                                                                                                                                                                                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | The maximum number of items to return. Defaults to 50 items.                                                                                                                                                                                                                                                                                                                           | 50                                                                                                                                                                                                                                                                                                                                                                                     |
-| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
+| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Response
 
@@ -195,14 +185,9 @@ public class Application {
 
 Retrieve a single sales invoice by its ID.
 
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **sales-invoice.read**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="get-sales-invoice" method="get" path="/sales-invoices/{id}" -->
 ```java
 package hello.world;
 
@@ -239,7 +224,7 @@ public class Application {
 | Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`                                                                                                                                                                                                                                                                                                                                                                                   | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the item you want to perform this operation on.                                                                                                                                                                                                                                                                                                                      | invoice_4Y0eZitmBnQ6IDoMqZQKh                                                                                                                                                                                                                                                                                                                                                          |
-| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
+| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Response
 
@@ -258,16 +243,13 @@ public class Application {
 >
 > This feature is currently in beta testing, and the final specification may still change.
 
-Certain details of an existing sales invoice can be updated. For `draft` it is all values listed below, but for statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and `emailDetails`, respectively).
-
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **sales-invoices.write**](/reference/authentication)
+Certain details of an existing sales invoice can be updated. For `draft` it is all values listed below, but for
+statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and `emailDetails`,
+respectively).
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="update-sales-invoice" method="patch" path="/sales-invoices/{id}" -->
 ```java
 package hello.world;
 
@@ -293,10 +275,10 @@ public class Application {
                 .id("invoice_4Y0eZitmBnQ6IDoMqZQKh")
                 .requestBody(UpdateSalesInvoiceRequestBody.builder()
                     .testmode(false)
-                    .status("paid")
+                    .status(UpdateSalesInvoiceStatus.PAID)
                     .memo("An updated memo!")
                     .paymentDetails(UpdateSalesInvoicePaymentDetails.builder()
-                        .source("payment-link")
+                        .source(UpdateSalesInvoiceSource.PAYMENT_LINK)
                         .sourceReference("pl_d9fQur83kFdhH8hIhaZfq")
                         .build())
                     .emailDetails(UpdateSalesInvoiceEmailDetails.builder()
@@ -305,13 +287,13 @@ public class Application {
                         .build())
                     .recipientIdentifier("customer-xyz-0123")
                     .recipient(UpdateSalesInvoiceRecipient.builder()
-                        .type("consumer")
+                        .type(UpdateSalesInvoiceType.CONSUMER)
                         .email("example@email.com")
                         .streetAndNumber("Keizersgracht 126")
                         .postalCode("5678AB")
                         .city("Amsterdam")
                         .country("NL")
-                        .locale("nl_NL")
+                        .locale(UpdateSalesInvoiceLocale.NLNL)
                         .title("Mrs.")
                         .givenName("Jane")
                         .familyName("Doe")
@@ -332,12 +314,12 @@ public class Application {
                                 .value("10.00")
                                 .build())
                             .discount(UpdateSalesInvoiceDiscount.builder()
-                                .type("amount")
+                                .type(UpdateSalesInvoiceSalesInvoicesType.AMOUNT)
                                 .value("10.00")
                                 .build())
                             .build()))
                     .discount(UpdateSalesInvoiceSalesInvoicesDiscount.builder()
-                        .type("amount")
+                        .type(UpdateSalesInvoiceSalesInvoicesRequestType.AMOUNT)
                         .value("10.00")
                         .build())
                     .build())
@@ -375,16 +357,12 @@ public class Application {
 >
 > This feature is currently in beta testing, and the final specification may still change.
 
-Sales invoices which are in status `draft` can be deleted. For all other statuses, please use the [Update sales invoice](update-sales-invoice) endpoint instead.
-
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **sales-invoices.write**](/reference/authentication)
+Sales invoices which are in status `draft` can be deleted. For all other statuses, please use the
+[Update sales invoice](update-sales-invoice) endpoint instead.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="delete-sales-invoice" method="delete" path="/sales-invoices/{id}" -->
 ```java
 package hello.world;
 

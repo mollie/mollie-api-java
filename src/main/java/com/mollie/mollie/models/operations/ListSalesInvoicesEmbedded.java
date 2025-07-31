@@ -18,7 +18,8 @@ import java.util.Optional;
 
 public class ListSalesInvoicesEmbedded {
     /**
-     * An array of sales invoice objects. For a complete reference of the sales invoice object, refer to the [Get sales invoice endpoint](get-sales-invoice) documentation.
+     * An array of sales invoice objects. For a complete reference of the sales invoice object, refer to
+     * the [Get sales invoice endpoint](get-sales-invoice) documentation.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sales_invoices")
@@ -36,7 +37,8 @@ public class ListSalesInvoicesEmbedded {
     }
 
     /**
-     * An array of sales invoice objects. For a complete reference of the sales invoice object, refer to the [Get sales invoice endpoint](get-sales-invoice) documentation.
+     * An array of sales invoice objects. For a complete reference of the sales invoice object, refer to
+     * the [Get sales invoice endpoint](get-sales-invoice) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -50,7 +52,8 @@ public class ListSalesInvoicesEmbedded {
 
 
     /**
-     * An array of sales invoice objects. For a complete reference of the sales invoice object, refer to the [Get sales invoice endpoint](get-sales-invoice) documentation.
+     * An array of sales invoice objects. For a complete reference of the sales invoice object, refer to
+     * the [Get sales invoice endpoint](get-sales-invoice) documentation.
      */
     public ListSalesInvoicesEmbedded withSalesInvoices(List<SalesInvoices> salesInvoices) {
         Utils.checkNotNull(salesInvoices, "salesInvoices");
@@ -60,7 +63,8 @@ public class ListSalesInvoicesEmbedded {
 
 
     /**
-     * An array of sales invoice objects. For a complete reference of the sales invoice object, refer to the [Get sales invoice endpoint](get-sales-invoice) documentation.
+     * An array of sales invoice objects. For a complete reference of the sales invoice object, refer to
+     * the [Get sales invoice endpoint](get-sales-invoice) documentation.
      */
     public ListSalesInvoicesEmbedded withSalesInvoices(Optional<? extends List<SalesInvoices>> salesInvoices) {
         Utils.checkNotNull(salesInvoices, "salesInvoices");
@@ -104,7 +108,8 @@ public class ListSalesInvoicesEmbedded {
 
 
         /**
-         * An array of sales invoice objects. For a complete reference of the sales invoice object, refer to the [Get sales invoice endpoint](get-sales-invoice) documentation.
+         * An array of sales invoice objects. For a complete reference of the sales invoice object, refer to
+         * the [Get sales invoice endpoint](get-sales-invoice) documentation.
          */
         public Builder salesInvoices(List<SalesInvoices> salesInvoices) {
             Utils.checkNotNull(salesInvoices, "salesInvoices");
@@ -113,7 +118,8 @@ public class ListSalesInvoicesEmbedded {
         }
 
         /**
-         * An array of sales invoice objects. For a complete reference of the sales invoice object, refer to the [Get sales invoice endpoint](get-sales-invoice) documentation.
+         * An array of sales invoice objects. For a complete reference of the sales invoice object, refer to
+         * the [Get sales invoice endpoint](get-sales-invoice) documentation.
          */
         public Builder salesInvoices(Optional<? extends List<SalesInvoices>> salesInvoices) {
             Utils.checkNotNull(salesInvoices, "salesInvoices");

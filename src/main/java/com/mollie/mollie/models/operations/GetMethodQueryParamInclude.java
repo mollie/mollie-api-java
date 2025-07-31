@@ -11,7 +11,8 @@ import java.util.Optional;
 /**
  * GetMethodQueryParamInclude
  * 
- * <p>This endpoint allows you to include additional information via the `include` query string parameter.
+ * <p>This endpoint allows you to include additional information via the
+ * `include` query string parameter.
  */
 public enum GetMethodQueryParamInclude {
     ISSUERS("issuers");

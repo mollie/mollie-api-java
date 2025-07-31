@@ -45,13 +45,8 @@ public class Refunds {
     /**
      * Create payment refund
      * 
-     * <p>Creates a refund for a specific payment. The refunded amount is credited to your customer usually either via a bank transfer or by refunding the amount to your customer's credit card.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **refunds.write**](/reference/authentication)
+     * <p>Creates a refund for a specific payment. The refunded amount is credited to your customer usually either via a bank
+     * transfer or by refunding the amount to your customer's credit card.
      * 
      * @return The call builder
      */
@@ -62,13 +57,8 @@ public class Refunds {
     /**
      * Create payment refund
      * 
-     * <p>Creates a refund for a specific payment. The refunded amount is credited to your customer usually either via a bank transfer or by refunding the amount to your customer's credit card.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **refunds.write**](/reference/authentication)
+     * <p>Creates a refund for a specific payment. The refunded amount is credited to your customer usually either via a bank
+     * transfer or by refunding the amount to your customer's credit card.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @return The response from the API call
@@ -81,13 +71,8 @@ public class Refunds {
     /**
      * Create payment refund
      * 
-     * <p>Creates a refund for a specific payment. The refunded amount is credited to your customer usually either via a bank transfer or by refunding the amount to your customer's credit card.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **refunds.write**](/reference/authentication)
+     * <p>Creates a refund for a specific payment. The refunded amount is credited to your customer usually either via a bank
+     * transfer or by refunding the amount to your customer's credit card.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param requestBody 
@@ -116,12 +101,6 @@ public class Refunds {
      * 
      * <p>The results are paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **refunds.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public ListRefundsRequestBuilder list() {
@@ -134,12 +113,6 @@ public class Refunds {
      * <p>Retrieve a list of all refunds created for a specific payment.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **refunds.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -155,12 +128,6 @@ public class Refunds {
      * <p>Retrieve a list of all refunds created for a specific payment.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **refunds.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -178,12 +145,6 @@ public class Refunds {
      * 
      * <p>Retrieve a single payment refund by its ID and the ID of its parent payment.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **refunds.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public GetRefundRequestBuilder get() {
@@ -194,12 +155,6 @@ public class Refunds {
      * Get payment refund
      * 
      * <p>Retrieve a single payment refund by its ID and the ID of its parent payment.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **refunds.read**](/reference/authentication)
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param refundId Provide the ID of the related refund.
@@ -216,16 +171,12 @@ public class Refunds {
      * 
      * <p>Retrieve a single payment refund by its ID and the ID of its parent payment.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **refunds.read**](/reference/authentication)
-     * 
      * @param paymentId Provide the ID of the related payment.
      * @param refundId Provide the ID of the related refund.
      * @param include This endpoint allows you to include additional information via the `include` query string parameter.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param options additional options
@@ -252,15 +203,11 @@ public class Refunds {
     /**
      * Cancel payment refund
      * 
-     * <p>Refunds will be executed with a delay of two hours. Until that time, refunds may be canceled manually via the Mollie Dashboard, or by using this endpoint.
+     * <p>Refunds will be executed with a delay of two hours. Until that time, refunds may be canceled manually via the
+     * Mollie Dashboard, or by using this endpoint.
      * 
-     * <p>A refund can only be canceled while its `status` field is either `queued` or `pending`. See the [Get refund endpoint](get-refund) for more information.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **refunds.write**](/reference/authentication)
+     * <p>A refund can only be canceled while its `status` field is either `queued` or `pending`. See the
+     * [Get refund endpoint](get-refund) for more information.
      * 
      * @return The call builder
      */
@@ -271,15 +218,11 @@ public class Refunds {
     /**
      * Cancel payment refund
      * 
-     * <p>Refunds will be executed with a delay of two hours. Until that time, refunds may be canceled manually via the Mollie Dashboard, or by using this endpoint.
+     * <p>Refunds will be executed with a delay of two hours. Until that time, refunds may be canceled manually via the
+     * Mollie Dashboard, or by using this endpoint.
      * 
-     * <p>A refund can only be canceled while its `status` field is either `queued` or `pending`. See the [Get refund endpoint](get-refund) for more information.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **refunds.write**](/reference/authentication)
+     * <p>A refund can only be canceled while its `status` field is either `queued` or `pending`. See the
+     * [Get refund endpoint](get-refund) for more information.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param refundId Provide the ID of the related refund.
@@ -294,19 +237,17 @@ public class Refunds {
     /**
      * Cancel payment refund
      * 
-     * <p>Refunds will be executed with a delay of two hours. Until that time, refunds may be canceled manually via the Mollie Dashboard, or by using this endpoint.
+     * <p>Refunds will be executed with a delay of two hours. Until that time, refunds may be canceled manually via the
+     * Mollie Dashboard, or by using this endpoint.
      * 
-     * <p>A refund can only be canceled while its `status` field is either `queued` or `pending`. See the [Get refund endpoint](get-refund) for more information.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **refunds.write**](/reference/authentication)
+     * <p>A refund can only be canceled while its `status` field is either `queued` or `pending`. See the
+     * [Get refund endpoint](get-refund) for more information.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param refundId Provide the ID of the related refund.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param options additional options
@@ -335,12 +276,6 @@ public class Refunds {
      * 
      * <p>The results are paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **refunds.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public ListAllRefundsRequestBuilder all() {
@@ -353,12 +288,6 @@ public class Refunds {
      * <p>Retrieve a list of all of your refunds.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **refunds.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -374,12 +303,6 @@ public class Refunds {
      * <p>Retrieve a list of all of your refunds.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **refunds.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

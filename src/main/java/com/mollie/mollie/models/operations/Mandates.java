@@ -16,7 +16,8 @@ import java.util.Optional;
 /**
  * Mandates
  * 
- * <p>The API resource URL of the [mandates](list-mandates) linked to this customer. Omitted if no such mandates exist (yet).
+ * <p>The API resource URL of the [mandates](list-mandates) linked to this customer. Omitted if no such mandates
+ * exist (yet).
  */
 public class Mandates {
     /**

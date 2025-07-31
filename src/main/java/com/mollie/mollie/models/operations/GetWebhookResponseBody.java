@@ -24,7 +24,8 @@ import java.util.Optional;
  */
 public class GetWebhookResponseBody {
     /**
-     * Indicates the response contains a webhook subscription object. Will always contain the string `webhook` for this endpoint.
+     * Indicates the response contains a webhook subscription object.
+     * Will always contain the string `webhook` for this endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
@@ -74,21 +75,17 @@ public class GetWebhookResponseBody {
 
     /**
      * The subscription's current status.
-     * 
-     * <p>Possible values: `enabled` `blocked` `disabled`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<String> status;
+    private Optional<? extends GetWebhookStatus> status;
 
     /**
      * The subscription's mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<String> mode;
+    private Optional<? extends GetWebhookMode> mode;
 
     @JsonCreator
     public GetWebhookResponseBody(
@@ -99,8 +96,8 @@ public class GetWebhookResponseBody {
             @JsonProperty("createdAt") Optional<String> createdAt,
             @JsonProperty("name") Optional<String> name,
             @JsonProperty("eventTypes") Optional<? extends List<String>> eventTypes,
-            @JsonProperty("status") Optional<String> status,
-            @JsonProperty("mode") Optional<String> mode) {
+            @JsonProperty("status") Optional<? extends GetWebhookStatus> status,
+            @JsonProperty("mode") Optional<? extends GetWebhookMode> mode) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(url, "url");
@@ -128,7 +125,8 @@ public class GetWebhookResponseBody {
     }
 
     /**
-     * Indicates the response contains a webhook subscription object. Will always contain the string `webhook` for this endpoint.
+     * Indicates the response contains a webhook subscription object.
+     * Will always contain the string `webhook` for this endpoint.
      */
     @JsonIgnore
     public Optional<String> resource() {
@@ -186,22 +184,20 @@ public class GetWebhookResponseBody {
 
     /**
      * The subscription's current status.
-     * 
-     * <p>Possible values: `enabled` `blocked` `disabled`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> status() {
-        return status;
+    public Optional<GetWebhookStatus> status() {
+        return (Optional<GetWebhookStatus>) status;
     }
 
     /**
      * The subscription's mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> mode() {
-        return mode;
+    public Optional<GetWebhookMode> mode() {
+        return (Optional<GetWebhookMode>) mode;
     }
 
     public static Builder builder() {
@@ -210,7 +206,8 @@ public class GetWebhookResponseBody {
 
 
     /**
-     * Indicates the response contains a webhook subscription object. Will always contain the string `webhook` for this endpoint.
+     * Indicates the response contains a webhook subscription object.
+     * Will always contain the string `webhook` for this endpoint.
      */
     public GetWebhookResponseBody withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -220,7 +217,8 @@ public class GetWebhookResponseBody {
 
 
     /**
-     * Indicates the response contains a webhook subscription object. Will always contain the string `webhook` for this endpoint.
+     * Indicates the response contains a webhook subscription object.
+     * Will always contain the string `webhook` for this endpoint.
      */
     public GetWebhookResponseBody withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
@@ -344,10 +342,8 @@ public class GetWebhookResponseBody {
 
     /**
      * The subscription's current status.
-     * 
-     * <p>Possible values: `enabled` `blocked` `disabled`
      */
-    public GetWebhookResponseBody withStatus(String status) {
+    public GetWebhookResponseBody withStatus(GetWebhookStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -356,10 +352,8 @@ public class GetWebhookResponseBody {
 
     /**
      * The subscription's current status.
-     * 
-     * <p>Possible values: `enabled` `blocked` `disabled`
      */
-    public GetWebhookResponseBody withStatus(Optional<String> status) {
+    public GetWebhookResponseBody withStatus(Optional<? extends GetWebhookStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -367,10 +361,8 @@ public class GetWebhookResponseBody {
 
     /**
      * The subscription's mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
-    public GetWebhookResponseBody withMode(String mode) {
+    public GetWebhookResponseBody withMode(GetWebhookMode mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = Optional.ofNullable(mode);
         return this;
@@ -379,10 +371,8 @@ public class GetWebhookResponseBody {
 
     /**
      * The subscription's mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
-    public GetWebhookResponseBody withMode(Optional<String> mode) {
+    public GetWebhookResponseBody withMode(Optional<? extends GetWebhookMode> mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
@@ -448,9 +438,9 @@ public class GetWebhookResponseBody {
 
         private Optional<? extends List<String>> eventTypes = Optional.empty();
 
-        private Optional<String> status = Optional.empty();
+        private Optional<? extends GetWebhookStatus> status = Optional.empty();
 
-        private Optional<String> mode = Optional.empty();
+        private Optional<? extends GetWebhookMode> mode = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -458,7 +448,8 @@ public class GetWebhookResponseBody {
 
 
         /**
-         * Indicates the response contains a webhook subscription object. Will always contain the string `webhook` for this endpoint.
+         * Indicates the response contains a webhook subscription object.
+         * Will always contain the string `webhook` for this endpoint.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -467,7 +458,8 @@ public class GetWebhookResponseBody {
         }
 
         /**
-         * Indicates the response contains a webhook subscription object. Will always contain the string `webhook` for this endpoint.
+         * Indicates the response contains a webhook subscription object.
+         * Will always contain the string `webhook` for this endpoint.
          */
         public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
@@ -592,10 +584,8 @@ public class GetWebhookResponseBody {
 
         /**
          * The subscription's current status.
-         * 
-         * <p>Possible values: `enabled` `blocked` `disabled`
          */
-        public Builder status(String status) {
+        public Builder status(GetWebhookStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -603,10 +593,8 @@ public class GetWebhookResponseBody {
 
         /**
          * The subscription's current status.
-         * 
-         * <p>Possible values: `enabled` `blocked` `disabled`
          */
-        public Builder status(Optional<String> status) {
+        public Builder status(Optional<? extends GetWebhookStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -615,10 +603,8 @@ public class GetWebhookResponseBody {
 
         /**
          * The subscription's mode.
-         * 
-         * <p>Possible values: `live` `test`
          */
-        public Builder mode(String mode) {
+        public Builder mode(GetWebhookMode mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = Optional.ofNullable(mode);
             return this;
@@ -626,10 +612,8 @@ public class GetWebhookResponseBody {
 
         /**
          * The subscription's mode.
-         * 
-         * <p>Possible values: `live` `test`
          */
-        public Builder mode(Optional<String> mode) {
+        public Builder mode(Optional<? extends GetWebhookMode> mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;

@@ -14,7 +14,10 @@ import java.util.List;
 
 public class Embedded {
     /**
-     * An array of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
+     * An array of payment method objects. For a complete
+     * reference of the payment method object, refer
+     * to the [Get payment method endpoint](get-method)
+     * documentation.
      */
     @JsonProperty("methods")
     private List<Methods> methods;
@@ -27,7 +30,10 @@ public class Embedded {
     }
 
     /**
-     * An array of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
+     * An array of payment method objects. For a complete
+     * reference of the payment method object, refer
+     * to the [Get payment method endpoint](get-method)
+     * documentation.
      */
     @JsonIgnore
     public List<Methods> methods() {
@@ -40,7 +46,10 @@ public class Embedded {
 
 
     /**
-     * An array of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
+     * An array of payment method objects. For a complete
+     * reference of the payment method object, refer
+     * to the [Get payment method endpoint](get-method)
+     * documentation.
      */
     public Embedded withMethods(List<Methods> methods) {
         Utils.checkNotNull(methods, "methods");
@@ -84,7 +93,10 @@ public class Embedded {
 
 
         /**
-         * An array of payment method objects. For a complete reference of the payment method object, refer to the [Get payment method endpoint](get-method) documentation.
+         * An array of payment method objects. For a complete
+         * reference of the payment method object, refer
+         * to the [Get payment method endpoint](get-method)
+         * documentation.
          */
         public Builder methods(List<Methods> methods) {
             Utils.checkNotNull(methods, "methods");

@@ -33,7 +33,11 @@ public class Issuers {
     private String name;
 
     /**
-     * URLs of images representing the issuer. required: - size1x - size2x - svg
+     * URLs of images representing the issuer.
+     * required:
+     *   - size1x
+     *   - size2x
+     *   - svg
      */
     @JsonProperty("image")
     private GetMethodImage image;
@@ -81,7 +85,11 @@ public class Issuers {
     }
 
     /**
-     * URLs of images representing the issuer. required: - size1x - size2x - svg
+     * URLs of images representing the issuer.
+     * required:
+     *   - size1x
+     *   - size2x
+     *   - svg
      */
     @JsonIgnore
     public GetMethodImage image() {
@@ -122,7 +130,11 @@ public class Issuers {
     }
 
     /**
-     * URLs of images representing the issuer. required: - size1x - size2x - svg
+     * URLs of images representing the issuer.
+     * required:
+     *   - size1x
+     *   - size2x
+     *   - svg
      */
     public Issuers withImage(GetMethodImage image) {
         Utils.checkNotNull(image, "image");
@@ -209,7 +221,11 @@ public class Issuers {
 
 
         /**
-         * URLs of images representing the issuer. required: - size1x - size2x - svg
+         * URLs of images representing the issuer.
+         * required:
+         *   - size1x
+         *   - size2x
+         *   - svg
          */
         public Builder image(GetMethodImage image) {
             Utils.checkNotNull(image, "image");

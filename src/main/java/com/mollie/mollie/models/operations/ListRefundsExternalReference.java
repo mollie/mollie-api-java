@@ -11,18 +11,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
 public class ListRefundsExternalReference {
     /**
      * Specifies the reference type
-     * 
-     * <p>Possible values: `acquirer-reference`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<String> type;
+    private Optional<? extends ListRefundsType> type;
 
     /**
      * Unique reference from the payment provider
@@ -33,7 +32,7 @@ public class ListRefundsExternalReference {
 
     @JsonCreator
     public ListRefundsExternalReference(
-            @JsonProperty("type") Optional<String> type,
+            @JsonProperty("type") Optional<? extends ListRefundsType> type,
             @JsonProperty("id") Optional<String> id) {
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(id, "id");
@@ -47,12 +46,11 @@ public class ListRefundsExternalReference {
 
     /**
      * Specifies the reference type
-     * 
-     * <p>Possible values: `acquirer-reference`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> type() {
-        return type;
+    public Optional<ListRefundsType> type() {
+        return (Optional<ListRefundsType>) type;
     }
 
     /**
@@ -70,10 +68,8 @@ public class ListRefundsExternalReference {
 
     /**
      * Specifies the reference type
-     * 
-     * <p>Possible values: `acquirer-reference`
      */
-    public ListRefundsExternalReference withType(String type) {
+    public ListRefundsExternalReference withType(ListRefundsType type) {
         Utils.checkNotNull(type, "type");
         this.type = Optional.ofNullable(type);
         return this;
@@ -82,10 +78,8 @@ public class ListRefundsExternalReference {
 
     /**
      * Specifies the reference type
-     * 
-     * <p>Possible values: `acquirer-reference`
      */
-    public ListRefundsExternalReference withType(Optional<String> type) {
+    public ListRefundsExternalReference withType(Optional<? extends ListRefundsType> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -140,7 +134,7 @@ public class ListRefundsExternalReference {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> type = Optional.empty();
+        private Optional<? extends ListRefundsType> type = Optional.empty();
 
         private Optional<String> id = Optional.empty();
 
@@ -151,10 +145,8 @@ public class ListRefundsExternalReference {
 
         /**
          * Specifies the reference type
-         * 
-         * <p>Possible values: `acquirer-reference`
          */
-        public Builder type(String type) {
+        public Builder type(ListRefundsType type) {
             Utils.checkNotNull(type, "type");
             this.type = Optional.ofNullable(type);
             return this;
@@ -162,10 +154,8 @@ public class ListRefundsExternalReference {
 
         /**
          * Specifies the reference type
-         * 
-         * <p>Possible values: `acquirer-reference`
          */
-        public Builder type(Optional<String> type) {
+        public Builder type(Optional<? extends ListRefundsType> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;

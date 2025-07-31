@@ -13,6 +13,7 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -31,7 +32,8 @@ public class ListSubscriptionPaymentsRequest {
     private String subscriptionId;
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate
+     * the result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
     private Optional<String> from;
@@ -43,23 +45,26 @@ public class ListSubscriptionPaymentsRequest {
     private JsonNullable<Long> limit;
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
-     * 
-     * <p>Possible values: `asc` `desc` (default: `desc`)
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * newest to oldest.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
-    private JsonNullable<String> sort;
+    private JsonNullable<? extends ListSubscriptionPaymentsQueryParamSort> sort;
 
     /**
-     * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+     * The identifier referring to the [profile](get-profile) you wish to
+     * retrieve the resources for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
+     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=profileId")
     private Optional<String> profileId;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -72,7 +77,7 @@ public class ListSubscriptionPaymentsRequest {
             String subscriptionId,
             Optional<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<String> sort,
+            JsonNullable<? extends ListSubscriptionPaymentsQueryParamSort> sort,
             Optional<String> profileId,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(customerId, "customerId");
@@ -116,7 +121,8 @@ public class ListSubscriptionPaymentsRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate
+     * the result set.
      */
     @JsonIgnore
     public Optional<String> from() {
@@ -132,19 +138,21 @@ public class ListSubscriptionPaymentsRequest {
     }
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
-     * 
-     * <p>Possible values: `asc` `desc` (default: `desc`)
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * newest to oldest.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> sort() {
-        return sort;
+    public JsonNullable<ListSubscriptionPaymentsQueryParamSort> sort() {
+        return (JsonNullable<ListSubscriptionPaymentsQueryParamSort>) sort;
     }
 
     /**
-     * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+     * The identifier referring to the [profile](get-profile) you wish to
+     * retrieve the resources for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
+     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     @JsonIgnore
     public Optional<String> profileId() {
@@ -152,7 +160,9 @@ public class ListSubscriptionPaymentsRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -185,7 +195,8 @@ public class ListSubscriptionPaymentsRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate
+     * the result set.
      */
     public ListSubscriptionPaymentsRequest withFrom(String from) {
         Utils.checkNotNull(from, "from");
@@ -195,7 +206,8 @@ public class ListSubscriptionPaymentsRequest {
 
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate
+     * the result set.
      */
     public ListSubscriptionPaymentsRequest withFrom(Optional<String> from) {
         Utils.checkNotNull(from, "from");
@@ -222,31 +234,31 @@ public class ListSubscriptionPaymentsRequest {
     }
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
-     * 
-     * <p>Possible values: `asc` `desc` (default: `desc`)
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * newest to oldest.
      */
-    public ListSubscriptionPaymentsRequest withSort(String sort) {
+    public ListSubscriptionPaymentsRequest withSort(ListSubscriptionPaymentsQueryParamSort sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = JsonNullable.of(sort);
         return this;
     }
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
-     * 
-     * <p>Possible values: `asc` `desc` (default: `desc`)
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * newest to oldest.
      */
-    public ListSubscriptionPaymentsRequest withSort(JsonNullable<String> sort) {
+    public ListSubscriptionPaymentsRequest withSort(JsonNullable<? extends ListSubscriptionPaymentsQueryParamSort> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;
     }
 
     /**
-     * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+     * The identifier referring to the [profile](get-profile) you wish to
+     * retrieve the resources for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
+     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     public ListSubscriptionPaymentsRequest withProfileId(String profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -256,9 +268,11 @@ public class ListSubscriptionPaymentsRequest {
 
 
     /**
-     * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+     * The identifier referring to the [profile](get-profile) you wish to
+     * retrieve the resources for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
+     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
      */
     public ListSubscriptionPaymentsRequest withProfileId(Optional<String> profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -267,7 +281,9 @@ public class ListSubscriptionPaymentsRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -278,7 +294,9 @@ public class ListSubscriptionPaymentsRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -338,7 +356,7 @@ public class ListSubscriptionPaymentsRequest {
 
         private JsonNullable<Long> limit;
 
-        private JsonNullable<String> sort = JsonNullable.undefined();
+        private JsonNullable<? extends ListSubscriptionPaymentsQueryParamSort> sort;
 
         private Optional<String> profileId = Optional.empty();
 
@@ -370,7 +388,8 @@ public class ListSubscriptionPaymentsRequest {
 
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate
+         * the result set.
          */
         public Builder from(String from) {
             Utils.checkNotNull(from, "from");
@@ -379,7 +398,8 @@ public class ListSubscriptionPaymentsRequest {
         }
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate
+         * the result set.
          */
         public Builder from(Optional<String> from) {
             Utils.checkNotNull(from, "from");
@@ -408,22 +428,20 @@ public class ListSubscriptionPaymentsRequest {
 
 
         /**
-         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
-         * 
-         * <p>Possible values: `asc` `desc` (default: `desc`)
+         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+         * newest to oldest.
          */
-        public Builder sort(String sort) {
+        public Builder sort(ListSubscriptionPaymentsQueryParamSort sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = JsonNullable.of(sort);
             return this;
         }
 
         /**
-         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
-         * 
-         * <p>Possible values: `asc` `desc` (default: `desc`)
+         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+         * newest to oldest.
          */
-        public Builder sort(JsonNullable<String> sort) {
+        public Builder sort(JsonNullable<? extends ListSubscriptionPaymentsQueryParamSort> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = sort;
             return this;
@@ -431,9 +449,11 @@ public class ListSubscriptionPaymentsRequest {
 
 
         /**
-         * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+         * The identifier referring to the [profile](get-profile) you wish to
+         * retrieve the resources for.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
+         * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
          */
         public Builder profileId(String profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -442,9 +462,11 @@ public class ListSubscriptionPaymentsRequest {
         }
 
         /**
-         * The identifier referring to the [profile](get-profile) you wish to retrieve the resources for.
+         * The identifier referring to the [profile](get-profile) you wish to
+         * retrieve the resources for.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
+         * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
          */
         public Builder profileId(Optional<String> profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -454,7 +476,9 @@ public class ListSubscriptionPaymentsRequest {
 
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -465,7 +489,9 @@ public class ListSubscriptionPaymentsRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -478,6 +504,9 @@ public class ListSubscriptionPaymentsRequest {
         public ListSubscriptionPaymentsRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
+            }
+            if (sort == null) {
+                sort = _SINGLETON_VALUE_Sort.value();
             }
 
             return new ListSubscriptionPaymentsRequest(
@@ -492,5 +521,11 @@ public class ListSubscriptionPaymentsRequest {
                         "limit",
                         "50",
                         new TypeReference<JsonNullable<Long>>() {});
+
+        private static final LazySingletonValue<JsonNullable<? extends ListSubscriptionPaymentsQueryParamSort>> _SINGLETON_VALUE_Sort =
+                new LazySingletonValue<>(
+                        "sort",
+                        "\"desc\"",
+                        new TypeReference<JsonNullable<? extends ListSubscriptionPaymentsQueryParamSort>>() {});
     }
 }

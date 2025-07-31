@@ -1,6 +1,7 @@
 # GetMethodQueryParamInclude
 
-This endpoint allows you to include additional information via the `include` query string parameter.
+This endpoint allows you to include additional information via the
+`include` query string parameter.
 
 
 ## Values

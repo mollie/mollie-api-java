@@ -28,7 +28,8 @@ public class CreateClientLinkLinks {
     private Optional<? extends CreateClientLinkSelf> self;
 
     /**
-     * The link you can send your customer to, where they can either log in and link their account, or sign up and proceed with onboarding.
+     * The link you can send your customer to, where they can either log in and link their account, or sign up and
+     * proceed with onboarding.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("clientLink")
@@ -68,7 +69,8 @@ public class CreateClientLinkLinks {
     }
 
     /**
-     * The link you can send your customer to, where they can either log in and link their account, or sign up and proceed with onboarding.
+     * The link you can send your customer to, where they can either log in and link their account, or sign up and
+     * proceed with onboarding.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -110,7 +112,8 @@ public class CreateClientLinkLinks {
     }
 
     /**
-     * The link you can send your customer to, where they can either log in and link their account, or sign up and proceed with onboarding.
+     * The link you can send your customer to, where they can either log in and link their account, or sign up and
+     * proceed with onboarding.
      */
     public CreateClientLinkLinks withClientLink(ClientLink clientLink) {
         Utils.checkNotNull(clientLink, "clientLink");
@@ -120,7 +123,8 @@ public class CreateClientLinkLinks {
 
 
     /**
-     * The link you can send your customer to, where they can either log in and link their account, or sign up and proceed with onboarding.
+     * The link you can send your customer to, where they can either log in and link their account, or sign up and
+     * proceed with onboarding.
      */
     public CreateClientLinkLinks withClientLink(Optional<? extends ClientLink> clientLink) {
         Utils.checkNotNull(clientLink, "clientLink");
@@ -210,7 +214,8 @@ public class CreateClientLinkLinks {
 
 
         /**
-         * The link you can send your customer to, where they can either log in and link their account, or sign up and proceed with onboarding.
+         * The link you can send your customer to, where they can either log in and link their account, or sign up and
+         * proceed with onboarding.
          */
         public Builder clientLink(ClientLink clientLink) {
             Utils.checkNotNull(clientLink, "clientLink");
@@ -219,7 +224,8 @@ public class CreateClientLinkLinks {
         }
 
         /**
-         * The link you can send your customer to, where they can either log in and link their account, or sign up and proceed with onboarding.
+         * The link you can send your customer to, where they can either log in and link their account, or sign up and
+         * proceed with onboarding.
          */
         public Builder clientLink(Optional<? extends ClientLink> clientLink) {
             Utils.checkNotNull(clientLink, "clientLink");

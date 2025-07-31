@@ -22,18 +22,17 @@ public class ListSubscriptionPaymentsRouting {
     private String resource;
 
     /**
-     * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID. Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID.
+     * Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
      */
     @JsonProperty("id")
     private String id;
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
     @JsonProperty("mode")
-    private String mode;
+    private ListSubscriptionPaymentsSubscriptionsMode mode;
 
     /**
      * The portion of the total payment amount being routed. Currently only `EUR` payments can be routed.
@@ -54,7 +53,8 @@ public class ListSubscriptionPaymentsRouting {
     private String createdAt;
 
     /**
-     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
+     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+     * date must be given in `YYYY-MM-DD` format.
      * 
      * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
      */
@@ -72,7 +72,7 @@ public class ListSubscriptionPaymentsRouting {
     public ListSubscriptionPaymentsRouting(
             @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
-            @JsonProperty("mode") String mode,
+            @JsonProperty("mode") ListSubscriptionPaymentsSubscriptionsMode mode,
             @JsonProperty("amount") ListSubscriptionPaymentsSubscriptionsResponseAmount amount,
             @JsonProperty("destination") ListSubscriptionPaymentsDestination destination,
             @JsonProperty("createdAt") String createdAt,
@@ -99,7 +99,7 @@ public class ListSubscriptionPaymentsRouting {
     public ListSubscriptionPaymentsRouting(
             String resource,
             String id,
-            String mode,
+            ListSubscriptionPaymentsSubscriptionsMode mode,
             ListSubscriptionPaymentsSubscriptionsResponseAmount amount,
             ListSubscriptionPaymentsDestination destination,
             String createdAt,
@@ -118,7 +118,8 @@ public class ListSubscriptionPaymentsRouting {
     }
 
     /**
-     * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID. Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID.
+     * Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
      */
     @JsonIgnore
     public String id() {
@@ -127,11 +128,9 @@ public class ListSubscriptionPaymentsRouting {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
     @JsonIgnore
-    public String mode() {
+    public ListSubscriptionPaymentsSubscriptionsMode mode() {
         return mode;
     }
 
@@ -160,7 +159,8 @@ public class ListSubscriptionPaymentsRouting {
     }
 
     /**
-     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
+     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+     * date must be given in `YYYY-MM-DD` format.
      * 
      * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
      */
@@ -192,7 +192,8 @@ public class ListSubscriptionPaymentsRouting {
     }
 
     /**
-     * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID. Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID.
+     * Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
      */
     public ListSubscriptionPaymentsRouting withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -202,10 +203,8 @@ public class ListSubscriptionPaymentsRouting {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
-    public ListSubscriptionPaymentsRouting withMode(String mode) {
+    public ListSubscriptionPaymentsRouting withMode(ListSubscriptionPaymentsSubscriptionsMode mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
@@ -239,7 +238,8 @@ public class ListSubscriptionPaymentsRouting {
     }
 
     /**
-     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
+     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+     * date must be given in `YYYY-MM-DD` format.
      * 
      * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
      */
@@ -250,7 +250,8 @@ public class ListSubscriptionPaymentsRouting {
     }
 
     /**
-     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
+     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+     * date must be given in `YYYY-MM-DD` format.
      * 
      * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
      */
@@ -317,7 +318,7 @@ public class ListSubscriptionPaymentsRouting {
 
         private String id;
 
-        private String mode;
+        private ListSubscriptionPaymentsSubscriptionsMode mode;
 
         private ListSubscriptionPaymentsSubscriptionsResponseAmount amount;
 
@@ -345,7 +346,8 @@ public class ListSubscriptionPaymentsRouting {
 
 
         /**
-         * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID. Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
+         * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID.
+         * Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -356,10 +358,8 @@ public class ListSubscriptionPaymentsRouting {
 
         /**
          * Whether this entity was created in live mode or in test mode.
-         * 
-         * <p>Possible values: `live` `test`
          */
-        public Builder mode(String mode) {
+        public Builder mode(ListSubscriptionPaymentsSubscriptionsMode mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
@@ -397,7 +397,8 @@ public class ListSubscriptionPaymentsRouting {
 
 
         /**
-         * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
+         * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+         * date must be given in `YYYY-MM-DD` format.
          * 
          * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
          */
@@ -408,7 +409,8 @@ public class ListSubscriptionPaymentsRouting {
         }
 
         /**
-         * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
+         * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+         * date must be given in `YYYY-MM-DD` format.
          * 
          * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
          */

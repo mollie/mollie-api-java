@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
@@ -22,7 +24,9 @@ public class CreateSalesInvoiceRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * `testmode` to `true`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("testmode")
@@ -31,7 +35,9 @@ public class CreateSalesInvoiceRequestBody {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("profileId")
@@ -40,34 +46,35 @@ public class CreateSalesInvoiceRequestBody {
     /**
      * The status for the invoice to end up in.
      * 
-     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to mark it as paid. It can then subsequently be sent as well, same as with `issued`.
+     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
+     * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+     * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
      * 
-     * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
+     * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
+     * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
      * 
-     * <p>Dependent parameters: - `paymentDetails` is required if invoice should be set directly to `paid` - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid` - `emailDetails` optional for `issued` and `paid` to send the invoice by email
-     * 
-     * <p>Possible values: `draft` `issued` `paid`
+     * <p>Dependent parameters:
+     *   - `paymentDetails` is required if invoice should be set directly to `paid`
+     *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
+     *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
     @JsonProperty("status")
-    private String status;
+    private Status status;
 
     /**
      * The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
-     * 
-     * <p>Possible values: `standard` `one-stop-shop` (default: `standard`)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatScheme")
-    private Optional<String> vatScheme;
+    private Optional<? extends VatScheme> vatScheme;
 
     /**
-     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
-     * 
-     * <p>Possible values: `exclusive` `inclusive` (default: `exclusive`)
+     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
+     * price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatMode")
-    private Optional<String> vatMode;
+    private Optional<? extends VatMode> vatMode;
 
     /**
      * A free-form memo you can set on the invoice, and will be shown on the invoice PDF.
@@ -77,7 +84,8 @@ public class CreateSalesInvoiceRequestBody {
     private JsonNullable<String> memo;
 
     /**
-     * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
@@ -85,43 +93,47 @@ public class CreateSalesInvoiceRequestBody {
 
     /**
      * The payment term to be set on the invoice.
-     * 
-     * <p>Possible values: `7 days` `14 days` `30 days` `45 days` `60 days` `90 days` `120 days` (default: `30 days`)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("paymentTerm")
-    private JsonNullable<String> paymentTerm;
+    private JsonNullable<? extends PaymentTerm> paymentTerm;
 
     /**
-     * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the provided details. Required for `paid` status.
+     * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the
+     * provided details. Required for `paid` status.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("paymentDetails")
     private JsonNullable<? extends PaymentDetails> paymentDetails;
 
     /**
-     * Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the recipient with the provided `subject` and `body`. Required for `issued` status.
+     * Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the
+     * recipient with the provided `subject` and `body`. Required for `issued` status.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("emailDetails")
     private JsonNullable<? extends EmailDetails> emailDetails;
 
     /**
-     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
+     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If
+     * provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("customerId")
     private Optional<String> customerId;
 
     /**
-     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided, `customerId` becomes required as well. Only allowed for invoices with status `paid`.
+     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided,
+     * `customerId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mandateId")
     private Optional<String> mandateId;
 
     /**
-     * An identifier tied to the recipient data. This should be a unique value based on data your system contains, so that both you and us know who we're referring to. It is a value you provide to us so that recipient management is not required to send a first invoice to a recipient.
+     * An identifier tied to the recipient data. This should be a unique value based on data your system contains,
+     * so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
+     * is not required to send a first invoice to a recipient.
      */
     @JsonProperty("recipientIdentifier")
     private String recipientIdentifier;
@@ -132,7 +144,8 @@ public class CreateSalesInvoiceRequestBody {
     private Optional<? extends Recipient> recipient;
 
     /**
-     * Provide the line items for the invoice. Each line contains details such as a description of the item ordered and its price.
+     * Provide the line items for the invoice. Each line contains details such as a description of the item
+     * ordered and its price.
      * 
      * <p>All lines must have the same currency as the invoice.
      */
@@ -151,12 +164,12 @@ public class CreateSalesInvoiceRequestBody {
     public CreateSalesInvoiceRequestBody(
             @JsonProperty("testmode") JsonNullable<Boolean> testmode,
             @JsonProperty("profileId") JsonNullable<String> profileId,
-            @JsonProperty("status") String status,
-            @JsonProperty("vatScheme") Optional<String> vatScheme,
-            @JsonProperty("vatMode") Optional<String> vatMode,
+            @JsonProperty("status") Status status,
+            @JsonProperty("vatScheme") Optional<? extends VatScheme> vatScheme,
+            @JsonProperty("vatMode") Optional<? extends VatMode> vatMode,
             @JsonProperty("memo") JsonNullable<String> memo,
             @JsonProperty("metadata") JsonNullable<? extends CreateSalesInvoiceMetadata> metadata,
-            @JsonProperty("paymentTerm") JsonNullable<String> paymentTerm,
+            @JsonProperty("paymentTerm") JsonNullable<? extends PaymentTerm> paymentTerm,
             @JsonProperty("paymentDetails") JsonNullable<? extends PaymentDetails> paymentDetails,
             @JsonProperty("emailDetails") JsonNullable<? extends EmailDetails> emailDetails,
             @JsonProperty("customerId") Optional<String> customerId,
@@ -200,7 +213,7 @@ public class CreateSalesInvoiceRequestBody {
     }
     
     public CreateSalesInvoiceRequestBody(
-            String status,
+            Status status,
             String recipientIdentifier) {
         this(JsonNullable.undefined(), JsonNullable.undefined(), status,
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
@@ -213,7 +226,9 @@ public class CreateSalesInvoiceRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * `testmode` to `true`.
      */
     @JsonIgnore
     public JsonNullable<Boolean> testmode() {
@@ -223,7 +238,9 @@ public class CreateSalesInvoiceRequestBody {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     @JsonIgnore
     public JsonNullable<String> profileId() {
@@ -233,37 +250,40 @@ public class CreateSalesInvoiceRequestBody {
     /**
      * The status for the invoice to end up in.
      * 
-     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to mark it as paid. It can then subsequently be sent as well, same as with `issued`.
+     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
+     * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+     * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
      * 
-     * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
+     * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
+     * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
      * 
-     * <p>Dependent parameters: - `paymentDetails` is required if invoice should be set directly to `paid` - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid` - `emailDetails` optional for `issued` and `paid` to send the invoice by email
-     * 
-     * <p>Possible values: `draft` `issued` `paid`
+     * <p>Dependent parameters:
+     *   - `paymentDetails` is required if invoice should be set directly to `paid`
+     *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
+     *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
     @JsonIgnore
-    public String status() {
+    public Status status() {
         return status;
     }
 
     /**
      * The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
-     * 
-     * <p>Possible values: `standard` `one-stop-shop` (default: `standard`)
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> vatScheme() {
-        return vatScheme;
+    public Optional<VatScheme> vatScheme() {
+        return (Optional<VatScheme>) vatScheme;
     }
 
     /**
-     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
-     * 
-     * <p>Possible values: `exclusive` `inclusive` (default: `exclusive`)
+     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
+     * price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> vatMode() {
-        return vatMode;
+    public Optional<VatMode> vatMode() {
+        return (Optional<VatMode>) vatMode;
     }
 
     /**
@@ -275,7 +295,8 @@ public class CreateSalesInvoiceRequestBody {
     }
 
     /**
-     * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -285,16 +306,16 @@ public class CreateSalesInvoiceRequestBody {
 
     /**
      * The payment term to be set on the invoice.
-     * 
-     * <p>Possible values: `7 days` `14 days` `30 days` `45 days` `60 days` `90 days` `120 days` (default: `30 days`)
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> paymentTerm() {
-        return paymentTerm;
+    public JsonNullable<PaymentTerm> paymentTerm() {
+        return (JsonNullable<PaymentTerm>) paymentTerm;
     }
 
     /**
-     * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the provided details. Required for `paid` status.
+     * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the
+     * provided details. Required for `paid` status.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -303,7 +324,8 @@ public class CreateSalesInvoiceRequestBody {
     }
 
     /**
-     * Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the recipient with the provided `subject` and `body`. Required for `issued` status.
+     * Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the
+     * recipient with the provided `subject` and `body`. Required for `issued` status.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -312,7 +334,8 @@ public class CreateSalesInvoiceRequestBody {
     }
 
     /**
-     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
+     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If
+     * provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     @JsonIgnore
     public Optional<String> customerId() {
@@ -320,7 +343,8 @@ public class CreateSalesInvoiceRequestBody {
     }
 
     /**
-     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided, `customerId` becomes required as well. Only allowed for invoices with status `paid`.
+     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided,
+     * `customerId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     @JsonIgnore
     public Optional<String> mandateId() {
@@ -328,7 +352,9 @@ public class CreateSalesInvoiceRequestBody {
     }
 
     /**
-     * An identifier tied to the recipient data. This should be a unique value based on data your system contains, so that both you and us know who we're referring to. It is a value you provide to us so that recipient management is not required to send a first invoice to a recipient.
+     * An identifier tied to the recipient data. This should be a unique value based on data your system contains,
+     * so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
+     * is not required to send a first invoice to a recipient.
      */
     @JsonIgnore
     public String recipientIdentifier() {
@@ -342,7 +368,8 @@ public class CreateSalesInvoiceRequestBody {
     }
 
     /**
-     * Provide the line items for the invoice. Each line contains details such as a description of the item ordered and its price.
+     * Provide the line items for the invoice. Each line contains details such as a description of the item
+     * ordered and its price.
      * 
      * <p>All lines must have the same currency as the invoice.
      */
@@ -369,7 +396,9 @@ public class CreateSalesInvoiceRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * `testmode` to `true`.
      */
     public CreateSalesInvoiceRequestBody withTestmode(boolean testmode) {
         Utils.checkNotNull(testmode, "testmode");
@@ -380,7 +409,9 @@ public class CreateSalesInvoiceRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * `testmode` to `true`.
      */
     public CreateSalesInvoiceRequestBody withTestmode(JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(testmode, "testmode");
@@ -391,7 +422,9 @@ public class CreateSalesInvoiceRequestBody {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     public CreateSalesInvoiceRequestBody withProfileId(String profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -402,7 +435,9 @@ public class CreateSalesInvoiceRequestBody {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     public CreateSalesInvoiceRequestBody withProfileId(JsonNullable<String> profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -413,15 +448,19 @@ public class CreateSalesInvoiceRequestBody {
     /**
      * The status for the invoice to end up in.
      * 
-     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to mark it as paid. It can then subsequently be sent as well, same as with `issued`.
+     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
+     * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+     * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
      * 
-     * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
+     * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
+     * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
      * 
-     * <p>Dependent parameters: - `paymentDetails` is required if invoice should be set directly to `paid` - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid` - `emailDetails` optional for `issued` and `paid` to send the invoice by email
-     * 
-     * <p>Possible values: `draft` `issued` `paid`
+     * <p>Dependent parameters:
+     *   - `paymentDetails` is required if invoice should be set directly to `paid`
+     *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
+     *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
-    public CreateSalesInvoiceRequestBody withStatus(String status) {
+    public CreateSalesInvoiceRequestBody withStatus(Status status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -429,10 +468,8 @@ public class CreateSalesInvoiceRequestBody {
 
     /**
      * The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
-     * 
-     * <p>Possible values: `standard` `one-stop-shop` (default: `standard`)
      */
-    public CreateSalesInvoiceRequestBody withVatScheme(String vatScheme) {
+    public CreateSalesInvoiceRequestBody withVatScheme(VatScheme vatScheme) {
         Utils.checkNotNull(vatScheme, "vatScheme");
         this.vatScheme = Optional.ofNullable(vatScheme);
         return this;
@@ -441,21 +478,18 @@ public class CreateSalesInvoiceRequestBody {
 
     /**
      * The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
-     * 
-     * <p>Possible values: `standard` `one-stop-shop` (default: `standard`)
      */
-    public CreateSalesInvoiceRequestBody withVatScheme(Optional<String> vatScheme) {
+    public CreateSalesInvoiceRequestBody withVatScheme(Optional<? extends VatScheme> vatScheme) {
         Utils.checkNotNull(vatScheme, "vatScheme");
         this.vatScheme = vatScheme;
         return this;
     }
 
     /**
-     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
-     * 
-     * <p>Possible values: `exclusive` `inclusive` (default: `exclusive`)
+     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
+     * price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
      */
-    public CreateSalesInvoiceRequestBody withVatMode(String vatMode) {
+    public CreateSalesInvoiceRequestBody withVatMode(VatMode vatMode) {
         Utils.checkNotNull(vatMode, "vatMode");
         this.vatMode = Optional.ofNullable(vatMode);
         return this;
@@ -463,11 +497,10 @@ public class CreateSalesInvoiceRequestBody {
 
 
     /**
-     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
-     * 
-     * <p>Possible values: `exclusive` `inclusive` (default: `exclusive`)
+     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
+     * price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
      */
-    public CreateSalesInvoiceRequestBody withVatMode(Optional<String> vatMode) {
+    public CreateSalesInvoiceRequestBody withVatMode(Optional<? extends VatMode> vatMode) {
         Utils.checkNotNull(vatMode, "vatMode");
         this.vatMode = vatMode;
         return this;
@@ -492,7 +525,8 @@ public class CreateSalesInvoiceRequestBody {
     }
 
     /**
-     * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     public CreateSalesInvoiceRequestBody withMetadata(CreateSalesInvoiceMetadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -501,7 +535,8 @@ public class CreateSalesInvoiceRequestBody {
     }
 
     /**
-     * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     public CreateSalesInvoiceRequestBody withMetadata(JsonNullable<? extends CreateSalesInvoiceMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -511,10 +546,8 @@ public class CreateSalesInvoiceRequestBody {
 
     /**
      * The payment term to be set on the invoice.
-     * 
-     * <p>Possible values: `7 days` `14 days` `30 days` `45 days` `60 days` `90 days` `120 days` (default: `30 days`)
      */
-    public CreateSalesInvoiceRequestBody withPaymentTerm(String paymentTerm) {
+    public CreateSalesInvoiceRequestBody withPaymentTerm(PaymentTerm paymentTerm) {
         Utils.checkNotNull(paymentTerm, "paymentTerm");
         this.paymentTerm = JsonNullable.of(paymentTerm);
         return this;
@@ -522,17 +555,16 @@ public class CreateSalesInvoiceRequestBody {
 
     /**
      * The payment term to be set on the invoice.
-     * 
-     * <p>Possible values: `7 days` `14 days` `30 days` `45 days` `60 days` `90 days` `120 days` (default: `30 days`)
      */
-    public CreateSalesInvoiceRequestBody withPaymentTerm(JsonNullable<String> paymentTerm) {
+    public CreateSalesInvoiceRequestBody withPaymentTerm(JsonNullable<? extends PaymentTerm> paymentTerm) {
         Utils.checkNotNull(paymentTerm, "paymentTerm");
         this.paymentTerm = paymentTerm;
         return this;
     }
 
     /**
-     * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the provided details. Required for `paid` status.
+     * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the
+     * provided details. Required for `paid` status.
      */
     public CreateSalesInvoiceRequestBody withPaymentDetails(PaymentDetails paymentDetails) {
         Utils.checkNotNull(paymentDetails, "paymentDetails");
@@ -541,7 +573,8 @@ public class CreateSalesInvoiceRequestBody {
     }
 
     /**
-     * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the provided details. Required for `paid` status.
+     * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the
+     * provided details. Required for `paid` status.
      */
     public CreateSalesInvoiceRequestBody withPaymentDetails(JsonNullable<? extends PaymentDetails> paymentDetails) {
         Utils.checkNotNull(paymentDetails, "paymentDetails");
@@ -550,7 +583,8 @@ public class CreateSalesInvoiceRequestBody {
     }
 
     /**
-     * Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the recipient with the provided `subject` and `body`. Required for `issued` status.
+     * Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the
+     * recipient with the provided `subject` and `body`. Required for `issued` status.
      */
     public CreateSalesInvoiceRequestBody withEmailDetails(EmailDetails emailDetails) {
         Utils.checkNotNull(emailDetails, "emailDetails");
@@ -559,7 +593,8 @@ public class CreateSalesInvoiceRequestBody {
     }
 
     /**
-     * Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the recipient with the provided `subject` and `body`. Required for `issued` status.
+     * Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the
+     * recipient with the provided `subject` and `body`. Required for `issued` status.
      */
     public CreateSalesInvoiceRequestBody withEmailDetails(JsonNullable<? extends EmailDetails> emailDetails) {
         Utils.checkNotNull(emailDetails, "emailDetails");
@@ -568,7 +603,8 @@ public class CreateSalesInvoiceRequestBody {
     }
 
     /**
-     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
+     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If
+     * provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     public CreateSalesInvoiceRequestBody withCustomerId(String customerId) {
         Utils.checkNotNull(customerId, "customerId");
@@ -578,7 +614,8 @@ public class CreateSalesInvoiceRequestBody {
 
 
     /**
-     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
+     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If
+     * provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     public CreateSalesInvoiceRequestBody withCustomerId(Optional<String> customerId) {
         Utils.checkNotNull(customerId, "customerId");
@@ -587,7 +624,8 @@ public class CreateSalesInvoiceRequestBody {
     }
 
     /**
-     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided, `customerId` becomes required as well. Only allowed for invoices with status `paid`.
+     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided,
+     * `customerId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     public CreateSalesInvoiceRequestBody withMandateId(String mandateId) {
         Utils.checkNotNull(mandateId, "mandateId");
@@ -597,7 +635,8 @@ public class CreateSalesInvoiceRequestBody {
 
 
     /**
-     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided, `customerId` becomes required as well. Only allowed for invoices with status `paid`.
+     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided,
+     * `customerId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     public CreateSalesInvoiceRequestBody withMandateId(Optional<String> mandateId) {
         Utils.checkNotNull(mandateId, "mandateId");
@@ -606,7 +645,9 @@ public class CreateSalesInvoiceRequestBody {
     }
 
     /**
-     * An identifier tied to the recipient data. This should be a unique value based on data your system contains, so that both you and us know who we're referring to. It is a value you provide to us so that recipient management is not required to send a first invoice to a recipient.
+     * An identifier tied to the recipient data. This should be a unique value based on data your system contains,
+     * so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
+     * is not required to send a first invoice to a recipient.
      */
     public CreateSalesInvoiceRequestBody withRecipientIdentifier(String recipientIdentifier) {
         Utils.checkNotNull(recipientIdentifier, "recipientIdentifier");
@@ -628,7 +669,8 @@ public class CreateSalesInvoiceRequestBody {
     }
 
     /**
-     * Provide the line items for the invoice. Each line contains details such as a description of the item ordered and its price.
+     * Provide the line items for the invoice. Each line contains details such as a description of the item
+     * ordered and its price.
      * 
      * <p>All lines must have the same currency as the invoice.
      */
@@ -640,7 +682,8 @@ public class CreateSalesInvoiceRequestBody {
 
 
     /**
-     * Provide the line items for the invoice. Each line contains details such as a description of the item ordered and its price.
+     * Provide the line items for the invoice. Each line contains details such as a description of the item
+     * ordered and its price.
      * 
      * <p>All lines must have the same currency as the invoice.
      */
@@ -735,17 +778,17 @@ public class CreateSalesInvoiceRequestBody {
 
         private JsonNullable<String> profileId = JsonNullable.undefined();
 
-        private String status;
+        private Status status;
 
-        private Optional<String> vatScheme = Optional.empty();
+        private Optional<? extends VatScheme> vatScheme;
 
-        private Optional<String> vatMode = Optional.empty();
+        private Optional<? extends VatMode> vatMode;
 
         private JsonNullable<String> memo = JsonNullable.undefined();
 
         private JsonNullable<? extends CreateSalesInvoiceMetadata> metadata = JsonNullable.undefined();
 
-        private JsonNullable<String> paymentTerm = JsonNullable.undefined();
+        private JsonNullable<? extends PaymentTerm> paymentTerm;
 
         private JsonNullable<? extends PaymentDetails> paymentDetails = JsonNullable.undefined();
 
@@ -771,7 +814,9 @@ public class CreateSalesInvoiceRequestBody {
         /**
          * Whether to create the entity in test mode or live mode.
          * 
-         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+         * `testmode` to `true`.
          */
         public Builder testmode(boolean testmode) {
             Utils.checkNotNull(testmode, "testmode");
@@ -782,7 +827,9 @@ public class CreateSalesInvoiceRequestBody {
         /**
          * Whether to create the entity in test mode or live mode.
          * 
-         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+         * `testmode` to `true`.
          */
         public Builder testmode(JsonNullable<Boolean> testmode) {
             Utils.checkNotNull(testmode, "testmode");
@@ -794,7 +841,9 @@ public class CreateSalesInvoiceRequestBody {
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+         * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+         * required.
          */
         public Builder profileId(String profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -805,7 +854,9 @@ public class CreateSalesInvoiceRequestBody {
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+         * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+         * required.
          */
         public Builder profileId(JsonNullable<String> profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -817,15 +868,19 @@ public class CreateSalesInvoiceRequestBody {
         /**
          * The status for the invoice to end up in.
          * 
-         * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to mark it as paid. It can then subsequently be sent as well, same as with `issued`.
+         * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
+         * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+         * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
          * 
-         * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
+         * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
+         * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
          * 
-         * <p>Dependent parameters: - `paymentDetails` is required if invoice should be set directly to `paid` - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid` - `emailDetails` optional for `issued` and `paid` to send the invoice by email
-         * 
-         * <p>Possible values: `draft` `issued` `paid`
+         * <p>Dependent parameters:
+         *   - `paymentDetails` is required if invoice should be set directly to `paid`
+         *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
+         *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
          */
-        public Builder status(String status) {
+        public Builder status(Status status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -834,10 +889,8 @@ public class CreateSalesInvoiceRequestBody {
 
         /**
          * The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
-         * 
-         * <p>Possible values: `standard` `one-stop-shop` (default: `standard`)
          */
-        public Builder vatScheme(String vatScheme) {
+        public Builder vatScheme(VatScheme vatScheme) {
             Utils.checkNotNull(vatScheme, "vatScheme");
             this.vatScheme = Optional.ofNullable(vatScheme);
             return this;
@@ -845,10 +898,8 @@ public class CreateSalesInvoiceRequestBody {
 
         /**
          * The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
-         * 
-         * <p>Possible values: `standard` `one-stop-shop` (default: `standard`)
          */
-        public Builder vatScheme(Optional<String> vatScheme) {
+        public Builder vatScheme(Optional<? extends VatScheme> vatScheme) {
             Utils.checkNotNull(vatScheme, "vatScheme");
             this.vatScheme = vatScheme;
             return this;
@@ -856,22 +907,20 @@ public class CreateSalesInvoiceRequestBody {
 
 
         /**
-         * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
-         * 
-         * <p>Possible values: `exclusive` `inclusive` (default: `exclusive`)
+         * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
+         * price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
          */
-        public Builder vatMode(String vatMode) {
+        public Builder vatMode(VatMode vatMode) {
             Utils.checkNotNull(vatMode, "vatMode");
             this.vatMode = Optional.ofNullable(vatMode);
             return this;
         }
 
         /**
-         * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
-         * 
-         * <p>Possible values: `exclusive` `inclusive` (default: `exclusive`)
+         * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
+         * price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
          */
-        public Builder vatMode(Optional<String> vatMode) {
+        public Builder vatMode(Optional<? extends VatMode> vatMode) {
             Utils.checkNotNull(vatMode, "vatMode");
             this.vatMode = vatMode;
             return this;
@@ -898,7 +947,8 @@ public class CreateSalesInvoiceRequestBody {
 
 
         /**
-         * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
         public Builder metadata(CreateSalesInvoiceMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -907,7 +957,8 @@ public class CreateSalesInvoiceRequestBody {
         }
 
         /**
-         * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
         public Builder metadata(JsonNullable<? extends CreateSalesInvoiceMetadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -918,10 +969,8 @@ public class CreateSalesInvoiceRequestBody {
 
         /**
          * The payment term to be set on the invoice.
-         * 
-         * <p>Possible values: `7 days` `14 days` `30 days` `45 days` `60 days` `90 days` `120 days` (default: `30 days`)
          */
-        public Builder paymentTerm(String paymentTerm) {
+        public Builder paymentTerm(PaymentTerm paymentTerm) {
             Utils.checkNotNull(paymentTerm, "paymentTerm");
             this.paymentTerm = JsonNullable.of(paymentTerm);
             return this;
@@ -929,10 +978,8 @@ public class CreateSalesInvoiceRequestBody {
 
         /**
          * The payment term to be set on the invoice.
-         * 
-         * <p>Possible values: `7 days` `14 days` `30 days` `45 days` `60 days` `90 days` `120 days` (default: `30 days`)
          */
-        public Builder paymentTerm(JsonNullable<String> paymentTerm) {
+        public Builder paymentTerm(JsonNullable<? extends PaymentTerm> paymentTerm) {
             Utils.checkNotNull(paymentTerm, "paymentTerm");
             this.paymentTerm = paymentTerm;
             return this;
@@ -940,7 +987,8 @@ public class CreateSalesInvoiceRequestBody {
 
 
         /**
-         * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the provided details. Required for `paid` status.
+         * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the
+         * provided details. Required for `paid` status.
          */
         public Builder paymentDetails(PaymentDetails paymentDetails) {
             Utils.checkNotNull(paymentDetails, "paymentDetails");
@@ -949,7 +997,8 @@ public class CreateSalesInvoiceRequestBody {
         }
 
         /**
-         * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the provided details. Required for `paid` status.
+         * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the invoice with the
+         * provided details. Required for `paid` status.
          */
         public Builder paymentDetails(JsonNullable<? extends PaymentDetails> paymentDetails) {
             Utils.checkNotNull(paymentDetails, "paymentDetails");
@@ -959,7 +1008,8 @@ public class CreateSalesInvoiceRequestBody {
 
 
         /**
-         * Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the recipient with the provided `subject` and `body`. Required for `issued` status.
+         * Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the
+         * recipient with the provided `subject` and `body`. Required for `issued` status.
          */
         public Builder emailDetails(EmailDetails emailDetails) {
             Utils.checkNotNull(emailDetails, "emailDetails");
@@ -968,7 +1018,8 @@ public class CreateSalesInvoiceRequestBody {
         }
 
         /**
-         * Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the recipient with the provided `subject` and `body`. Required for `issued` status.
+         * Used when setting an invoice to status of either `issued` or `paid`. Will be used to issue the invoice to the
+         * recipient with the provided `subject` and `body`. Required for `issued` status.
          */
         public Builder emailDetails(JsonNullable<? extends EmailDetails> emailDetails) {
             Utils.checkNotNull(emailDetails, "emailDetails");
@@ -978,7 +1029,8 @@ public class CreateSalesInvoiceRequestBody {
 
 
         /**
-         * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
+         * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If
+         * provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
          */
         public Builder customerId(String customerId) {
             Utils.checkNotNull(customerId, "customerId");
@@ -987,7 +1039,8 @@ public class CreateSalesInvoiceRequestBody {
         }
 
         /**
-         * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
+         * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If
+         * provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
          */
         public Builder customerId(Optional<String> customerId) {
             Utils.checkNotNull(customerId, "customerId");
@@ -997,7 +1050,8 @@ public class CreateSalesInvoiceRequestBody {
 
 
         /**
-         * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided, `customerId` becomes required as well. Only allowed for invoices with status `paid`.
+         * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided,
+         * `customerId` becomes required as well. Only allowed for invoices with status `paid`.
          */
         public Builder mandateId(String mandateId) {
             Utils.checkNotNull(mandateId, "mandateId");
@@ -1006,7 +1060,8 @@ public class CreateSalesInvoiceRequestBody {
         }
 
         /**
-         * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided, `customerId` becomes required as well. Only allowed for invoices with status `paid`.
+         * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided,
+         * `customerId` becomes required as well. Only allowed for invoices with status `paid`.
          */
         public Builder mandateId(Optional<String> mandateId) {
             Utils.checkNotNull(mandateId, "mandateId");
@@ -1016,7 +1071,9 @@ public class CreateSalesInvoiceRequestBody {
 
 
         /**
-         * An identifier tied to the recipient data. This should be a unique value based on data your system contains, so that both you and us know who we're referring to. It is a value you provide to us so that recipient management is not required to send a first invoice to a recipient.
+         * An identifier tied to the recipient data. This should be a unique value based on data your system contains,
+         * so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
+         * is not required to send a first invoice to a recipient.
          */
         public Builder recipientIdentifier(String recipientIdentifier) {
             Utils.checkNotNull(recipientIdentifier, "recipientIdentifier");
@@ -1039,7 +1096,8 @@ public class CreateSalesInvoiceRequestBody {
 
 
         /**
-         * Provide the line items for the invoice. Each line contains details such as a description of the item ordered and its price.
+         * Provide the line items for the invoice. Each line contains details such as a description of the item
+         * ordered and its price.
          * 
          * <p>All lines must have the same currency as the invoice.
          */
@@ -1050,7 +1108,8 @@ public class CreateSalesInvoiceRequestBody {
         }
 
         /**
-         * Provide the line items for the invoice. Each line contains details such as a description of the item ordered and its price.
+         * Provide the line items for the invoice. Each line contains details such as a description of the item
+         * ordered and its price.
          * 
          * <p>All lines must have the same currency as the invoice.
          */
@@ -1080,6 +1139,15 @@ public class CreateSalesInvoiceRequestBody {
         }
 
         public CreateSalesInvoiceRequestBody build() {
+            if (vatScheme == null) {
+                vatScheme = _SINGLETON_VALUE_VatScheme.value();
+            }
+            if (vatMode == null) {
+                vatMode = _SINGLETON_VALUE_VatMode.value();
+            }
+            if (paymentTerm == null) {
+                paymentTerm = _SINGLETON_VALUE_PaymentTerm.value();
+            }
 
             return new CreateSalesInvoiceRequestBody(
                 testmode, profileId, status,
@@ -1090,5 +1158,23 @@ public class CreateSalesInvoiceRequestBody {
                 discount);
         }
 
+
+        private static final LazySingletonValue<Optional<? extends VatScheme>> _SINGLETON_VALUE_VatScheme =
+                new LazySingletonValue<>(
+                        "vatScheme",
+                        "\"standard\"",
+                        new TypeReference<Optional<? extends VatScheme>>() {});
+
+        private static final LazySingletonValue<Optional<? extends VatMode>> _SINGLETON_VALUE_VatMode =
+                new LazySingletonValue<>(
+                        "vatMode",
+                        "\"exclusive\"",
+                        new TypeReference<Optional<? extends VatMode>>() {});
+
+        private static final LazySingletonValue<JsonNullable<? extends PaymentTerm>> _SINGLETON_VALUE_PaymentTerm =
+                new LazySingletonValue<>(
+                        "paymentTerm",
+                        "\"30 days\"",
+                        new TypeReference<JsonNullable<? extends PaymentTerm>>() {});
     }
 }

@@ -13,7 +13,9 @@ import java.lang.String;
 /**
  * GetPrimaryBalanceTransferThreshold
  * 
- * <p>The minimum amount configured for scheduled automatic settlements. As soon as the amount on the balance exceeds this threshold, the complete balance will be paid out to the transfer destination according to the configured frequency.
+ * <p>The minimum amount configured for scheduled automatic settlements. As soon as the amount on the balance exceeds
+ * this threshold, the complete balance will be paid out to the transfer destination according to the configured
+ * frequency.
  */
 public class GetPrimaryBalanceTransferThreshold {
     /**

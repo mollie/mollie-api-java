@@ -33,7 +33,8 @@ public class ListInvoicesResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * A list of invoice objects. For a complete reference of the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
+     * A list of invoice objects. For a complete reference of the invoice
+     * object, refer to the [Get invoice endpoint](get-invoice) documentation.
      */
     private Optional<? extends ListInvoicesResponseBody> object;
 
@@ -86,7 +87,8 @@ public class ListInvoicesResponse implements Response {
     }
 
     /**
-     * A list of invoice objects. For a complete reference of the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
+     * A list of invoice objects. For a complete reference of the invoice
+     * object, refer to the [Get invoice endpoint](get-invoice) documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -127,7 +129,8 @@ public class ListInvoicesResponse implements Response {
     }
 
     /**
-     * A list of invoice objects. For a complete reference of the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
+     * A list of invoice objects. For a complete reference of the invoice
+     * object, refer to the [Get invoice endpoint](get-invoice) documentation.
      */
     public ListInvoicesResponse withObject(ListInvoicesResponseBody object) {
         Utils.checkNotNull(object, "object");
@@ -137,7 +140,8 @@ public class ListInvoicesResponse implements Response {
 
 
     /**
-     * A list of invoice objects. For a complete reference of the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
+     * A list of invoice objects. For a complete reference of the invoice
+     * object, refer to the [Get invoice endpoint](get-invoice) documentation.
      */
     public ListInvoicesResponse withObject(Optional<? extends ListInvoicesResponseBody> object) {
         Utils.checkNotNull(object, "object");
@@ -224,7 +228,8 @@ public class ListInvoicesResponse implements Response {
 
 
         /**
-         * A list of invoice objects. For a complete reference of the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
+         * A list of invoice objects. For a complete reference of the invoice
+         * object, refer to the [Get invoice endpoint](get-invoice) documentation.
          */
         public Builder object(ListInvoicesResponseBody object) {
             Utils.checkNotNull(object, "object");
@@ -233,7 +238,8 @@ public class ListInvoicesResponse implements Response {
         }
 
         /**
-         * A list of invoice objects. For a complete reference of the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
+         * A list of invoice objects. For a complete reference of the invoice
+         * object, refer to the [Get invoice endpoint](get-invoice) documentation.
          */
         public Builder object(Optional<? extends ListInvoicesResponseBody> object) {
             Utils.checkNotNull(object, "object");

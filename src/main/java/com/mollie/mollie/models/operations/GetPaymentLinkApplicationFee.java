@@ -13,21 +13,26 @@ import java.lang.String;
 /**
  * GetPaymentLinkApplicationFee
  * 
- * <p>With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie merchants.
+ * <p>With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie
+ * merchants.
  * 
- * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent to your own account balance.
+ * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this
+ * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent
+ * to your own account balance.
  */
 public class GetPaymentLinkApplicationFee {
     /**
      * The fee that you wish to charge.
      * 
-     * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge a €0.99 fee on a €1.00 payment.
+     * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge
+     * a €0.99 fee on a €1.00 payment.
      */
     @JsonProperty("amount")
     private GetPaymentLinkPaymentLinksAmount amount;
 
     /**
-     * The description of the application fee. This will appear on settlement reports towards both you and the connected merchant.
+     * The description of the application fee. This will appear on settlement reports towards both you and the
+     * connected merchant.
      */
     @JsonProperty("description")
     private String description;
@@ -45,7 +50,8 @@ public class GetPaymentLinkApplicationFee {
     /**
      * The fee that you wish to charge.
      * 
-     * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge a €0.99 fee on a €1.00 payment.
+     * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge
+     * a €0.99 fee on a €1.00 payment.
      */
     @JsonIgnore
     public GetPaymentLinkPaymentLinksAmount amount() {
@@ -53,7 +59,8 @@ public class GetPaymentLinkApplicationFee {
     }
 
     /**
-     * The description of the application fee. This will appear on settlement reports towards both you and the connected merchant.
+     * The description of the application fee. This will appear on settlement reports towards both you and the
+     * connected merchant.
      */
     @JsonIgnore
     public String description() {
@@ -68,7 +75,8 @@ public class GetPaymentLinkApplicationFee {
     /**
      * The fee that you wish to charge.
      * 
-     * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge a €0.99 fee on a €1.00 payment.
+     * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge
+     * a €0.99 fee on a €1.00 payment.
      */
     public GetPaymentLinkApplicationFee withAmount(GetPaymentLinkPaymentLinksAmount amount) {
         Utils.checkNotNull(amount, "amount");
@@ -77,7 +85,8 @@ public class GetPaymentLinkApplicationFee {
     }
 
     /**
-     * The description of the application fee. This will appear on settlement reports towards both you and the connected merchant.
+     * The description of the application fee. This will appear on settlement reports towards both you and the
+     * connected merchant.
      */
     public GetPaymentLinkApplicationFee withDescription(String description) {
         Utils.checkNotNull(description, "description");
@@ -127,7 +136,8 @@ public class GetPaymentLinkApplicationFee {
         /**
          * The fee that you wish to charge.
          * 
-         * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge a €0.99 fee on a €1.00 payment.
+         * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge
+         * a €0.99 fee on a €1.00 payment.
          */
         public Builder amount(GetPaymentLinkPaymentLinksAmount amount) {
             Utils.checkNotNull(amount, "amount");
@@ -137,7 +147,8 @@ public class GetPaymentLinkApplicationFee {
 
 
         /**
-         * The description of the application fee. This will appear on settlement reports towards both you and the connected merchant.
+         * The description of the application fee. This will appear on settlement reports towards both you and the
+         * connected merchant.
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");

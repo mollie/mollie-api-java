@@ -18,21 +18,20 @@ import java.lang.String;
 public class CreatePaymentDestination {
     /**
      * The type of destination. Currently only the destination type `organization` is supported.
-     * 
-     * <p>Possible values: `organization`
      */
     @JsonProperty("type")
-    private String type;
+    private CreatePaymentPaymentsResponseType type;
 
     /**
-     * Required for destination type `organization`. The ID of the connected organization the funds should be routed to.
+     * Required for destination type `organization`. The ID of the connected organization the funds should be
+     * routed to.
      */
     @JsonProperty("organizationId")
     private String organizationId;
 
     @JsonCreator
     public CreatePaymentDestination(
-            @JsonProperty("type") String type,
+            @JsonProperty("type") CreatePaymentPaymentsResponseType type,
             @JsonProperty("organizationId") String organizationId) {
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(organizationId, "organizationId");
@@ -42,16 +41,15 @@ public class CreatePaymentDestination {
 
     /**
      * The type of destination. Currently only the destination type `organization` is supported.
-     * 
-     * <p>Possible values: `organization`
      */
     @JsonIgnore
-    public String type() {
+    public CreatePaymentPaymentsResponseType type() {
         return type;
     }
 
     /**
-     * Required for destination type `organization`. The ID of the connected organization the funds should be routed to.
+     * Required for destination type `organization`. The ID of the connected organization the funds should be
+     * routed to.
      */
     @JsonIgnore
     public String organizationId() {
@@ -65,17 +63,16 @@ public class CreatePaymentDestination {
 
     /**
      * The type of destination. Currently only the destination type `organization` is supported.
-     * 
-     * <p>Possible values: `organization`
      */
-    public CreatePaymentDestination withType(String type) {
+    public CreatePaymentDestination withType(CreatePaymentPaymentsResponseType type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
     }
 
     /**
-     * Required for destination type `organization`. The ID of the connected organization the funds should be routed to.
+     * Required for destination type `organization`. The ID of the connected organization the funds should be
+     * routed to.
      */
     public CreatePaymentDestination withOrganizationId(String organizationId) {
         Utils.checkNotNull(organizationId, "organizationId");
@@ -113,7 +110,7 @@ public class CreatePaymentDestination {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String type;
+        private CreatePaymentPaymentsResponseType type;
 
         private String organizationId;
 
@@ -124,10 +121,8 @@ public class CreatePaymentDestination {
 
         /**
          * The type of destination. Currently only the destination type `organization` is supported.
-         * 
-         * <p>Possible values: `organization`
          */
-        public Builder type(String type) {
+        public Builder type(CreatePaymentPaymentsResponseType type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
@@ -135,7 +130,8 @@ public class CreatePaymentDestination {
 
 
         /**
-         * Required for destination type `organization`. The ID of the connected organization the funds should be routed to.
+         * Required for destination type `organization`. The ID of the connected organization the funds should be
+         * routed to.
          */
         public Builder organizationId(String organizationId) {
             Utils.checkNotNull(organizationId, "organizationId");

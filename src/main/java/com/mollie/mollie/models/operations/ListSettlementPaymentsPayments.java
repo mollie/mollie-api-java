@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Object;
@@ -28,25 +30,28 @@ public class ListSettlementPaymentsPayments {
     private String resource;
 
     /**
-     * The identifier uniquely referring to this payment. Mollie assigns this identifier at payment creation time. Mollie will always refer to the payment by this ID. Example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The identifier uniquely referring to this payment. Mollie assigns this identifier at payment creation time. Mollie
+     * will always refer to the payment by this ID. Example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
      */
     @JsonProperty("id")
     private String id;
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
     @JsonProperty("mode")
-    private String mode;
+    private ListSettlementPaymentsMode mode;
 
     /**
-     * The description of the payment. This will be shown to your customer on their card or bank statement when possible. We truncate the description automatically according to the limits of the used payment method. The description is also visible in any exports you generate.
+     * The description of the payment. This will be shown to your customer on their card or bank statement when possible.
+     * We truncate the description automatically according to the limits of the used payment method. The description is
+     * also visible in any exports you generate.
      * 
-     * <p>We recommend you use a unique identifier so that you can always link the payment to the order in your back office. This is particularly useful for bookkeeping.
+     * <p>We recommend you use a unique identifier so that you can always link the payment to the order in your back office.
+     * This is particularly useful for bookkeeping.
      * 
-     * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255 characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
+     * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255
+     * characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
      */
     @JsonProperty("description")
     private String description;
@@ -54,15 +59,19 @@ public class ListSettlementPaymentsPayments {
     /**
      * The amount that you want to charge, e.g. `{currency:"EUR", value:"1000.00"}` if you would want to charge €1000.00.
      * 
-     * <p>You can find the minimum and maximum amounts per payment method in our help center. Additionally, they can be retrieved using the Get method endpoint.
+     * <p>You can find the minimum and maximum amounts per payment method in our help center. Additionally, they can be
+     * retrieved using the Get method endpoint.
      * 
-     * <p>If a tip was added for a Point-of-Sale payment, the amount will be updated to reflect the initial amount plus the tip amount.
+     * <p>If a tip was added for a Point-of-Sale payment, the amount will be updated to reflect the initial amount plus the
+     * tip amount.
      */
     @JsonProperty("amount")
     private ListSettlementPaymentsAmount amount;
 
     /**
-     * The total amount that is already refunded. Only available when refunds are available for this payment. For some payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the costs for a return shipment to the customer.
+     * The total amount that is already refunded. Only available when refunds are available for this payment. For some
+     * payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the
+     * costs for a return shipment to the customer.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amountRefunded")
@@ -83,18 +92,22 @@ public class ListSettlementPaymentsPayments {
     private Optional<? extends ListSettlementPaymentsAmountCaptured> amountCaptured;
 
     /**
-     * The total amount that was charged back for this payment. Only available when the total charged back amount is not zero.
+     * The total amount that was charged back for this payment. Only available when the total charged back amount is not
+     * zero.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amountChargedBack")
     private Optional<? extends ListSettlementPaymentsAmountChargedBack> amountChargedBack;
 
     /**
-     * This optional field will contain the approximate amount that will be settled to your account, converted to the currency your account is settled in.
+     * This optional field will contain the approximate amount that will be settled to your account, converted to the
+     * currency your account is settled in.
      * 
-     * <p>Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards. If no amount is settled by Mollie the `settlementAmount` is omitted from the response.
+     * <p>Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards. If no amount is
+     * settled by Mollie the `settlementAmount` is omitted from the response.
      * 
-     * <p>Please note that this amount might be recalculated and changed when the status of the payment changes. We suggest using the List balance transactions endpoint instead to get more accurate settlement amounts for your payments.
+     * <p>Please note that this amount might be recalculated and changed when the status of the payment changes. We suggest
+     * using the List balance transactions endpoint instead to get more accurate settlement amounts for your payments.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlementAmount")
@@ -103,18 +116,23 @@ public class ListSettlementPaymentsPayments {
     /**
      * The URL your customer will be redirected to after the payment process.
      * 
-     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the right page referencing the order when your customer returns.
+     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
+     * right page referencing the order when your customer returns.
      * 
-     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
+     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for
+     * Apple Pay payments with an `applePayPaymentToken`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("redirectUrl")
     private JsonNullable<String> redirectUrl;
 
     /**
-     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not provided, the customer will be redirected to the `redirectUrl` instead — see above.
+     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not
+     * provided, the customer will be redirected to the `redirectUrl` instead — see above.
      * 
-     * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle payment cancellations.
+     * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is
+     * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle
+     * payment cancellations.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cancelUrl")
@@ -125,14 +143,17 @@ public class ListSettlementPaymentsPayments {
      * 
      * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to your payment.
      * 
-     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your local machine.
+     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
+     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+     * local machine.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("webhookUrl")
     private JsonNullable<String> webhookUrl;
 
     /**
-     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+     * ordered and its price.
      * 
      * <p>All lines must have the same currency as the payment.
      * 
@@ -143,9 +164,11 @@ public class ListSettlementPaymentsPayments {
     private JsonNullable<? extends List<ListSettlementPaymentsLines>> lines;
 
     /**
-     * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+     * The customer's billing address details. We advise to provide these details to improve fraud protection and
+     * conversion.
      * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
      * 
      * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
      */
@@ -154,39 +177,49 @@ public class ListSettlementPaymentsPayments {
     private Optional<? extends ListSettlementPaymentsBillingAddress> billingAddress;
 
     /**
-     * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+     * The customer's shipping address details. We advise to provide these details to improve fraud protection and
+     * conversion.
      * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shippingAddress")
     private Optional<? extends ListSettlementPaymentsShippingAddress> shippingAddress;
 
     /**
-     * Allows you to preset the language to be used in the hosted payment pages shown to the customer. Setting a locale is highly recommended and will greatly improve your conversion rate. When this parameter is omitted the browser language will be used instead if supported by the payment method. You can provide any `xx_XX` format ISO 15897 locale, but our hosted payment pages currently only support the specified languages.
+     * Allows you to preset the language to be used in the hosted payment pages shown to the customer. Setting a locale
+     * is highly recommended and will greatly improve your conversion rate. When this parameter is omitted the browser
+     * language will be used instead if supported by the payment method. You can provide any `xx_XX` format ISO 15897
+     * locale, but our hosted payment pages currently only support the specified languages.
      * 
-     * <p>For bank transfer payments specifically, the locale will determine the target bank account the customer has to transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the customer use a local bank account greatly increases the conversion and speed of payment.
+     * <p>For bank transfer payments specifically, the locale will determine the target bank account the customer has to
+     * transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the
+     * customer use a local bank account greatly increases the conversion and speed of payment.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("locale")
-    private JsonNullable<String> locale;
+    private JsonNullable<? extends ListSettlementPaymentsLocale> locale;
 
     /**
-     * This optional field contains your customer's ISO 3166-1 alpha-2 country code, detected by us during checkout. This field is omitted if the country code was not detected.
+     * This optional field contains your customer's ISO 3166-1 alpha-2 country code, detected by us during checkout. This
+     * field is omitted if the country code was not detected.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("countryCode")
     private JsonNullable<String> countryCode;
 
     /**
-     * The payment method used for this transaction. If a specific method was selected during payment initialization, this field reflects that choice.
+     * The payment method used for this transaction. If a specific method was selected during payment initialization,
+     * this field reflects that choice.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("method")
-    private JsonNullable<String> method;
+    private JsonNullable<? extends ListSettlementPaymentsMethod> method;
 
     /**
-     * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT rates you have used for the order to ensure your customer's country matches the VAT country.
+     * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT
+     * rates you have used for the order to ensure your customer's country matches the VAT country.
      * 
      * <p>Use this parameter to restrict the payment methods available to your customer to those from a single country.
      * 
@@ -199,53 +232,59 @@ public class ListSettlementPaymentsPayments {
     private JsonNullable<String> restrictPaymentMethodsToCountry;
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends ListSettlementPaymentsMetadata> metadata;
 
     /**
-     * Indicate if the funds should be captured immediately or if you want to [place a hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/) and capture at a later time.
+     * Indicate if the funds should be captured immediately or if you want to [place a hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/) 
+     * and capture at a later time.
      * 
      * <p>This field needs to be set to `manual` for method `riverty`.
-     * 
-     * <p>Possible values: `automatic` `manual` (default: `automatic`)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("captureMode")
-    private JsonNullable<String> captureMode;
+    private JsonNullable<? extends ListSettlementPaymentsCaptureMode> captureMode;
 
     /**
      * **Only relevant if you wish to manage authorization and capturing separately.**
      * 
-     * <p>Some payment methods allow placing a hold on the card or bank account. This hold or 'authorization' can then at a later point either be 'captured' or canceled.
+     * <p>Some payment methods allow placing a hold on the card or bank account. This hold or 'authorization' can then at a
+     * later point either be 'captured' or canceled.
      * 
-     * <p>By default, we charge the customer's card or bank account immediately when they complete the payment. If you set a capture delay however, we will delay the automatic capturing of the payment for the specified amount of time. For example `8 hours` or `2 days`.
+     * <p>By default, we charge the customer's card or bank account immediately when they complete the payment. If you set a
+     * capture delay however, we will delay the automatic capturing of the payment for the specified amount of time. For
+     * example `8 hours` or `2 days`.
      * 
      * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
      * 
      * <p>The maximum delay is 7 days (168 hours).
-     * 
-     * <p>Possible values: `... hours` `... days`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("captureDelay")
-    private JsonNullable<String> captureDelay;
+    private JsonNullable<? extends ListSettlementPaymentsCaptureDelay> captureDelay;
 
     /**
-     * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
+     * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we
+     * can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("captureBefore")
     private JsonNullable<String> captureBefore;
 
     /**
-     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
+     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * merchants.
      * 
-     * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using this `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's balance and sent to your own account balance.
+     * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using this
+     * `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's balance and sent
+     * to your own account balance.
      * 
-     * <p>If instead you want to split a payment on your own account between yourself and a connected merchant, refer to the `routing` parameter.
+     * <p>If instead you want to split a payment on your own account between yourself and a connected merchant, refer to the
+     * `routing` parameter.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("applicationFee")
@@ -254,15 +293,20 @@ public class ListSettlementPaymentsPayments {
     /**
      * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
      * 
-     * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
+     * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * merchants.
      * 
-     * <p>If you create payments on your own account that you want to split between yourself and one or more connected merchants, you can use this `routing` parameter to route the payment accordingly.
+     * <p>If you create payments on your own account that you want to split between yourself and one or more connected
+     * merchants, you can use this `routing` parameter to route the payment accordingly.
      * 
-     * <p>The `routing` parameter should contain an array of objects, with each object describing the destination for a specific portion of the payment.
+     * <p>The `routing` parameter should contain an array of objects, with each object describing the destination for a
+     * specific portion of the payment.
      * 
-     * <p>It is not necessary to indicate in the array which portion goes to yourself. After all portions of the total payment amount have been routed, the amount left will be routed to the current organization automatically.
+     * <p>It is not necessary to indicate in the array which portion goes to yourself. After all portions of the total
+     * payment amount have been routed, the amount left will be routed to the current organization automatically.
      * 
-     * <p>If instead you use OAuth to create payments on a connected merchant's account, refer to the `applicationFee` parameter.
+     * <p>If instead you use OAuth to create payments on a connected merchant's account, refer to the `applicationFee`
+     * parameter.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("routing")
@@ -273,22 +317,25 @@ public class ListSettlementPaymentsPayments {
      * 
      * <p>Indicate which part of a recurring sequence this payment is for.
      * 
-     * <p>Recurring payments can only take place if a mandate is available. A common way to establish such a mandate is through a `first` payment. With a `first` payment, the customer agrees to automatic recurring charges taking place on their account in the future.
+     * <p>Recurring payments can only take place if a mandate is available. A common way to establish such a mandate is
+     * through a `first` payment. With a `first` payment, the customer agrees to automatic recurring charges taking place
+     * on their account in the future.
      * 
      * <p>If set to `recurring`, the customer's card is charged automatically.
      * 
      * <p>Defaults to `oneoff`, which is a regular non-recurring payment.
      * 
-     * <p>For PayPal payments, recurring is only possible if your connected PayPal account allows it. You can call our [Methods API](list-methods) with parameter `sequenceType: first` to discover which payment methods on your account are set up correctly for recurring payments.
-     * 
-     * <p>Possible values: `oneoff` `first` `recurring` (default: `oneoff`)
+     * <p>For PayPal payments, recurring is only possible if your connected PayPal account allows it. You can call our
+     * [Methods API](list-methods) with parameter `sequenceType: first` to discover which payment methods on your account
+     * are set up correctly for recurring payments.
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sequenceType")
-    private Optional<String> sequenceType;
+    private JsonNullable<? extends ListSettlementPaymentsSequenceType> sequenceType;
 
     /**
-     * If the payment was automatically created via a subscription, the ID of the [subscription](get-subscription) will be added to the response.
+     * If the payment was automatically created via a subscription, the ID of the [subscription](get-subscription) will
+     * be added to the response.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subscriptionId")
@@ -297,14 +344,16 @@ public class ListSettlementPaymentsPayments {
     /**
      * **Only relevant for recurring payments.**
      * 
-     * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to indicate which of the customer's accounts should be credited.
+     * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to indicate which of
+     * the customer's accounts should be credited.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mandateId")
     private JsonNullable<String> mandateId;
 
     /**
-     * The ID of the [customer](get-customer) the payment is being created for. This is used primarily for recurring payments, but can also be used on regular payments to enable single-click payments.
+     * The ID of the [customer](get-customer) the payment is being created for. This is used primarily for recurring
+     * payments, but can also be used on regular payments to enable single-click payments.
      * 
      * <p>If `sequenceType` is set to `recurring`, this field is required.
      */
@@ -315,7 +364,8 @@ public class ListSettlementPaymentsPayments {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>When using an API Key, the `profileId` can be omitted since it is linked to the key. However, for OAuth and Organization tokens, the `profileId` is required.
+     * <p>When using an API Key, the `profileId` can be omitted since it is linked to the key. However, for OAuth and
+     * Organization tokens, the `profileId` is required.
      * 
      * <p>For more information, see [Authentication](authentication).
      */
@@ -337,17 +387,18 @@ public class ListSettlementPaymentsPayments {
     private JsonNullable<String> orderId;
 
     /**
-     * The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which statuses occur at what point.
-     * 
-     * <p>Possible values: `open` `pending` `authorized` `paid` `canceled` `expired` `failed`
+     * The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
+     * statuses occur at what point.
      */
     @JsonProperty("status")
-    private String status;
+    private ListSettlementPaymentsStatus status;
 
     /**
-     * This object offers details about the status of a payment. Currently it is only available for point-of-sale payments.
+     * This object offers details about the status of a payment. Currently it is only available for point-of-sale
+     * payments.
      * 
-     * <p>You can find more information about the possible values of this object on [this page](status-reasons).**
+     * <p>You can find more information about the possible values of this object on
+     * [this page](status-reasons).**
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("statusReason")
@@ -361,7 +412,9 @@ public class ListSettlementPaymentsPayments {
     private JsonNullable<Boolean> isCancelable;
 
     /**
-     * An object containing payment details collected during the payment process. For example, details may include the customer's card or bank details and a payment reference. For the full list of details, please refer to the [method-specific parameters](extra-payment-parameters) guide.
+     * An object containing payment details collected during the payment process. For example, details may include the
+     * customer's card or bank details and a payment reference. For the full list of details, please refer to the
+     * [method-specific parameters](extra-payment-parameters) guide.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("details")
@@ -374,42 +427,48 @@ public class ListSettlementPaymentsPayments {
     private String createdAt;
 
     /**
-     * The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if the payment is not authorized (yet).
+     * The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if the payment is
+     * not authorized (yet).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("authorizedAt")
     private JsonNullable<String> authorizedAt;
 
     /**
-     * The date and time the payment became paid, in ISO 8601 format. This parameter is omitted if the payment is not completed (yet).
+     * The date and time the payment became paid, in ISO 8601 format. This parameter is omitted if the payment is not
+     * completed (yet).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("paidAt")
     private JsonNullable<String> paidAt;
 
     /**
-     * The date and time the payment was canceled, in ISO 8601 format. This parameter is omitted if the payment is not canceled (yet).
+     * The date and time the payment was canceled, in ISO 8601 format. This parameter is omitted if the payment is not
+     * canceled (yet).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("canceledAt")
     private JsonNullable<String> canceledAt;
 
     /**
-     * The date and time the payment will expire, in ISO 8601 format. This parameter is omitted if the payment can no longer expire.
+     * The date and time the payment will expire, in ISO 8601 format. This parameter is omitted if the payment can no
+     * longer expire.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("expiresAt")
     private JsonNullable<String> expiresAt;
 
     /**
-     * The date and time the payment was expired, in ISO 8601 format. This parameter is omitted if the payment did not expire (yet).
+     * The date and time the payment was expired, in ISO 8601 format. This parameter is omitted if the payment did not
+     * expire (yet).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("expiredAt")
     private JsonNullable<String> expiredAt;
 
     /**
-     * The date and time the payment failed, in ISO 8601 format. This parameter is omitted if the payment did not fail (yet).
+     * The date and time the payment failed, in ISO 8601 format. This parameter is omitted if the payment did not fail
+     * (yet).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("failedAt")
@@ -425,7 +484,7 @@ public class ListSettlementPaymentsPayments {
     public ListSettlementPaymentsPayments(
             @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
-            @JsonProperty("mode") String mode,
+            @JsonProperty("mode") ListSettlementPaymentsMode mode,
             @JsonProperty("description") String description,
             @JsonProperty("amount") ListSettlementPaymentsAmount amount,
             @JsonProperty("amountRefunded") Optional<? extends ListSettlementPaymentsAmountRefunded> amountRefunded,
@@ -439,24 +498,24 @@ public class ListSettlementPaymentsPayments {
             @JsonProperty("lines") JsonNullable<? extends List<ListSettlementPaymentsLines>> lines,
             @JsonProperty("billingAddress") Optional<? extends ListSettlementPaymentsBillingAddress> billingAddress,
             @JsonProperty("shippingAddress") Optional<? extends ListSettlementPaymentsShippingAddress> shippingAddress,
-            @JsonProperty("locale") JsonNullable<String> locale,
+            @JsonProperty("locale") JsonNullable<? extends ListSettlementPaymentsLocale> locale,
             @JsonProperty("countryCode") JsonNullable<String> countryCode,
-            @JsonProperty("method") JsonNullable<String> method,
+            @JsonProperty("method") JsonNullable<? extends ListSettlementPaymentsMethod> method,
             @JsonProperty("restrictPaymentMethodsToCountry") JsonNullable<String> restrictPaymentMethodsToCountry,
             @JsonProperty("metadata") JsonNullable<? extends ListSettlementPaymentsMetadata> metadata,
-            @JsonProperty("captureMode") JsonNullable<String> captureMode,
-            @JsonProperty("captureDelay") JsonNullable<String> captureDelay,
+            @JsonProperty("captureMode") JsonNullable<? extends ListSettlementPaymentsCaptureMode> captureMode,
+            @JsonProperty("captureDelay") JsonNullable<? extends ListSettlementPaymentsCaptureDelay> captureDelay,
             @JsonProperty("captureBefore") JsonNullable<String> captureBefore,
             @JsonProperty("applicationFee") JsonNullable<? extends ListSettlementPaymentsApplicationFee> applicationFee,
             @JsonProperty("routing") JsonNullable<? extends List<ListSettlementPaymentsRouting>> routing,
-            @JsonProperty("sequenceType") Optional<String> sequenceType,
+            @JsonProperty("sequenceType") JsonNullable<? extends ListSettlementPaymentsSequenceType> sequenceType,
             @JsonProperty("subscriptionId") JsonNullable<String> subscriptionId,
             @JsonProperty("mandateId") JsonNullable<String> mandateId,
             @JsonProperty("customerId") JsonNullable<String> customerId,
             @JsonProperty("profileId") String profileId,
             @JsonProperty("settlementId") JsonNullable<String> settlementId,
             @JsonProperty("orderId") JsonNullable<String> orderId,
-            @JsonProperty("status") String status,
+            @JsonProperty("status") ListSettlementPaymentsStatus status,
             @JsonProperty("statusReason") JsonNullable<? extends ListSettlementPaymentsStatusReason> statusReason,
             @JsonProperty("isCancelable") JsonNullable<Boolean> isCancelable,
             @JsonProperty("details") JsonNullable<? extends Map<String, Object>> details,
@@ -563,11 +622,11 @@ public class ListSettlementPaymentsPayments {
     public ListSettlementPaymentsPayments(
             String resource,
             String id,
-            String mode,
+            ListSettlementPaymentsMode mode,
             String description,
             ListSettlementPaymentsAmount amount,
             String profileId,
-            String status,
+            ListSettlementPaymentsStatus status,
             String createdAt,
             ListSettlementPaymentsSettlementsLinks links) {
         this(resource, id, mode,
@@ -578,7 +637,7 @@ public class ListSettlementPaymentsPayments {
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             profileId, JsonNullable.undefined(), JsonNullable.undefined(),
             status, JsonNullable.undefined(), JsonNullable.undefined(),
@@ -596,7 +655,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The identifier uniquely referring to this payment. Mollie assigns this identifier at payment creation time. Mollie will always refer to the payment by this ID. Example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The identifier uniquely referring to this payment. Mollie assigns this identifier at payment creation time. Mollie
+     * will always refer to the payment by this ID. Example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
      */
     @JsonIgnore
     public String id() {
@@ -605,20 +665,22 @@ public class ListSettlementPaymentsPayments {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
     @JsonIgnore
-    public String mode() {
+    public ListSettlementPaymentsMode mode() {
         return mode;
     }
 
     /**
-     * The description of the payment. This will be shown to your customer on their card or bank statement when possible. We truncate the description automatically according to the limits of the used payment method. The description is also visible in any exports you generate.
+     * The description of the payment. This will be shown to your customer on their card or bank statement when possible.
+     * We truncate the description automatically according to the limits of the used payment method. The description is
+     * also visible in any exports you generate.
      * 
-     * <p>We recommend you use a unique identifier so that you can always link the payment to the order in your back office. This is particularly useful for bookkeeping.
+     * <p>We recommend you use a unique identifier so that you can always link the payment to the order in your back office.
+     * This is particularly useful for bookkeeping.
      * 
-     * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255 characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
+     * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255
+     * characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
      */
     @JsonIgnore
     public String description() {
@@ -628,9 +690,11 @@ public class ListSettlementPaymentsPayments {
     /**
      * The amount that you want to charge, e.g. `{currency:"EUR", value:"1000.00"}` if you would want to charge €1000.00.
      * 
-     * <p>You can find the minimum and maximum amounts per payment method in our help center. Additionally, they can be retrieved using the Get method endpoint.
+     * <p>You can find the minimum and maximum amounts per payment method in our help center. Additionally, they can be
+     * retrieved using the Get method endpoint.
      * 
-     * <p>If a tip was added for a Point-of-Sale payment, the amount will be updated to reflect the initial amount plus the tip amount.
+     * <p>If a tip was added for a Point-of-Sale payment, the amount will be updated to reflect the initial amount plus the
+     * tip amount.
      */
     @JsonIgnore
     public ListSettlementPaymentsAmount amount() {
@@ -638,7 +702,9 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The total amount that is already refunded. Only available when refunds are available for this payment. For some payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the costs for a return shipment to the customer.
+     * The total amount that is already refunded. Only available when refunds are available for this payment. For some
+     * payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the
+     * costs for a return shipment to the customer.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -665,7 +731,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The total amount that was charged back for this payment. Only available when the total charged back amount is not zero.
+     * The total amount that was charged back for this payment. Only available when the total charged back amount is not
+     * zero.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -674,11 +741,14 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be settled to your account, converted to the currency your account is settled in.
+     * This optional field will contain the approximate amount that will be settled to your account, converted to the
+     * currency your account is settled in.
      * 
-     * <p>Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards. If no amount is settled by Mollie the `settlementAmount` is omitted from the response.
+     * <p>Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards. If no amount is
+     * settled by Mollie the `settlementAmount` is omitted from the response.
      * 
-     * <p>Please note that this amount might be recalculated and changed when the status of the payment changes. We suggest using the List balance transactions endpoint instead to get more accurate settlement amounts for your payments.
+     * <p>Please note that this amount might be recalculated and changed when the status of the payment changes. We suggest
+     * using the List balance transactions endpoint instead to get more accurate settlement amounts for your payments.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -689,9 +759,11 @@ public class ListSettlementPaymentsPayments {
     /**
      * The URL your customer will be redirected to after the payment process.
      * 
-     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the right page referencing the order when your customer returns.
+     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
+     * right page referencing the order when your customer returns.
      * 
-     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
+     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for
+     * Apple Pay payments with an `applePayPaymentToken`.
      */
     @JsonIgnore
     public JsonNullable<String> redirectUrl() {
@@ -699,9 +771,12 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not provided, the customer will be redirected to the `redirectUrl` instead — see above.
+     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not
+     * provided, the customer will be redirected to the `redirectUrl` instead — see above.
      * 
-     * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle payment cancellations.
+     * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is
+     * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle
+     * payment cancellations.
      */
     @JsonIgnore
     public JsonNullable<String> cancelUrl() {
@@ -713,7 +788,9 @@ public class ListSettlementPaymentsPayments {
      * 
      * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to your payment.
      * 
-     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your local machine.
+     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
+     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+     * local machine.
      */
     @JsonIgnore
     public JsonNullable<String> webhookUrl() {
@@ -721,7 +798,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+     * ordered and its price.
      * 
      * <p>All lines must have the same currency as the payment.
      * 
@@ -734,9 +812,11 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+     * The customer's billing address details. We advise to provide these details to improve fraud protection and
+     * conversion.
      * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
      * 
      * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
      */
@@ -747,9 +827,11 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+     * The customer's shipping address details. We advise to provide these details to improve fraud protection and
+     * conversion.
      * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -758,17 +840,24 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * Allows you to preset the language to be used in the hosted payment pages shown to the customer. Setting a locale is highly recommended and will greatly improve your conversion rate. When this parameter is omitted the browser language will be used instead if supported by the payment method. You can provide any `xx_XX` format ISO 15897 locale, but our hosted payment pages currently only support the specified languages.
+     * Allows you to preset the language to be used in the hosted payment pages shown to the customer. Setting a locale
+     * is highly recommended and will greatly improve your conversion rate. When this parameter is omitted the browser
+     * language will be used instead if supported by the payment method. You can provide any `xx_XX` format ISO 15897
+     * locale, but our hosted payment pages currently only support the specified languages.
      * 
-     * <p>For bank transfer payments specifically, the locale will determine the target bank account the customer has to transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the customer use a local bank account greatly increases the conversion and speed of payment.
+     * <p>For bank transfer payments specifically, the locale will determine the target bank account the customer has to
+     * transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the
+     * customer use a local bank account greatly increases the conversion and speed of payment.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> locale() {
-        return locale;
+    public JsonNullable<ListSettlementPaymentsLocale> locale() {
+        return (JsonNullable<ListSettlementPaymentsLocale>) locale;
     }
 
     /**
-     * This optional field contains your customer's ISO 3166-1 alpha-2 country code, detected by us during checkout. This field is omitted if the country code was not detected.
+     * This optional field contains your customer's ISO 3166-1 alpha-2 country code, detected by us during checkout. This
+     * field is omitted if the country code was not detected.
      */
     @JsonIgnore
     public JsonNullable<String> countryCode() {
@@ -776,15 +865,18 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The payment method used for this transaction. If a specific method was selected during payment initialization, this field reflects that choice.
+     * The payment method used for this transaction. If a specific method was selected during payment initialization,
+     * this field reflects that choice.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> method() {
-        return method;
+    public JsonNullable<ListSettlementPaymentsMethod> method() {
+        return (JsonNullable<ListSettlementPaymentsMethod>) method;
     }
 
     /**
-     * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT rates you have used for the order to ensure your customer's country matches the VAT country.
+     * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT
+     * rates you have used for the order to ensure your customer's country matches the VAT country.
      * 
      * <p>Use this parameter to restrict the payment methods available to your customer to those from a single country.
      * 
@@ -798,7 +890,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -807,37 +900,40 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * Indicate if the funds should be captured immediately or if you want to [place a hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/) and capture at a later time.
+     * Indicate if the funds should be captured immediately or if you want to [place a hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/) 
+     * and capture at a later time.
      * 
      * <p>This field needs to be set to `manual` for method `riverty`.
-     * 
-     * <p>Possible values: `automatic` `manual` (default: `automatic`)
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> captureMode() {
-        return captureMode;
+    public JsonNullable<ListSettlementPaymentsCaptureMode> captureMode() {
+        return (JsonNullable<ListSettlementPaymentsCaptureMode>) captureMode;
     }
 
     /**
      * **Only relevant if you wish to manage authorization and capturing separately.**
      * 
-     * <p>Some payment methods allow placing a hold on the card or bank account. This hold or 'authorization' can then at a later point either be 'captured' or canceled.
+     * <p>Some payment methods allow placing a hold on the card or bank account. This hold or 'authorization' can then at a
+     * later point either be 'captured' or canceled.
      * 
-     * <p>By default, we charge the customer's card or bank account immediately when they complete the payment. If you set a capture delay however, we will delay the automatic capturing of the payment for the specified amount of time. For example `8 hours` or `2 days`.
+     * <p>By default, we charge the customer's card or bank account immediately when they complete the payment. If you set a
+     * capture delay however, we will delay the automatic capturing of the payment for the specified amount of time. For
+     * example `8 hours` or `2 days`.
      * 
      * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
      * 
      * <p>The maximum delay is 7 days (168 hours).
-     * 
-     * <p>Possible values: `... hours` `... days`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> captureDelay() {
-        return captureDelay;
+    public JsonNullable<ListSettlementPaymentsCaptureDelay> captureDelay() {
+        return (JsonNullable<ListSettlementPaymentsCaptureDelay>) captureDelay;
     }
 
     /**
-     * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
+     * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we
+     * can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
      */
     @JsonIgnore
     public JsonNullable<String> captureBefore() {
@@ -845,11 +941,15 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
+     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * merchants.
      * 
-     * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using this `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's balance and sent to your own account balance.
+     * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using this
+     * `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's balance and sent
+     * to your own account balance.
      * 
-     * <p>If instead you want to split a payment on your own account between yourself and a connected merchant, refer to the `routing` parameter.
+     * <p>If instead you want to split a payment on your own account between yourself and a connected merchant, refer to the
+     * `routing` parameter.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -860,15 +960,20 @@ public class ListSettlementPaymentsPayments {
     /**
      * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
      * 
-     * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
+     * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * merchants.
      * 
-     * <p>If you create payments on your own account that you want to split between yourself and one or more connected merchants, you can use this `routing` parameter to route the payment accordingly.
+     * <p>If you create payments on your own account that you want to split between yourself and one or more connected
+     * merchants, you can use this `routing` parameter to route the payment accordingly.
      * 
-     * <p>The `routing` parameter should contain an array of objects, with each object describing the destination for a specific portion of the payment.
+     * <p>The `routing` parameter should contain an array of objects, with each object describing the destination for a
+     * specific portion of the payment.
      * 
-     * <p>It is not necessary to indicate in the array which portion goes to yourself. After all portions of the total payment amount have been routed, the amount left will be routed to the current organization automatically.
+     * <p>It is not necessary to indicate in the array which portion goes to yourself. After all portions of the total
+     * payment amount have been routed, the amount left will be routed to the current organization automatically.
      * 
-     * <p>If instead you use OAuth to create payments on a connected merchant's account, refer to the `applicationFee` parameter.
+     * <p>If instead you use OAuth to create payments on a connected merchant's account, refer to the `applicationFee`
+     * parameter.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -881,23 +986,27 @@ public class ListSettlementPaymentsPayments {
      * 
      * <p>Indicate which part of a recurring sequence this payment is for.
      * 
-     * <p>Recurring payments can only take place if a mandate is available. A common way to establish such a mandate is through a `first` payment. With a `first` payment, the customer agrees to automatic recurring charges taking place on their account in the future.
+     * <p>Recurring payments can only take place if a mandate is available. A common way to establish such a mandate is
+     * through a `first` payment. With a `first` payment, the customer agrees to automatic recurring charges taking place
+     * on their account in the future.
      * 
      * <p>If set to `recurring`, the customer's card is charged automatically.
      * 
      * <p>Defaults to `oneoff`, which is a regular non-recurring payment.
      * 
-     * <p>For PayPal payments, recurring is only possible if your connected PayPal account allows it. You can call our [Methods API](list-methods) with parameter `sequenceType: first` to discover which payment methods on your account are set up correctly for recurring payments.
-     * 
-     * <p>Possible values: `oneoff` `first` `recurring` (default: `oneoff`)
+     * <p>For PayPal payments, recurring is only possible if your connected PayPal account allows it. You can call our
+     * [Methods API](list-methods) with parameter `sequenceType: first` to discover which payment methods on your account
+     * are set up correctly for recurring payments.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> sequenceType() {
-        return sequenceType;
+    public JsonNullable<ListSettlementPaymentsSequenceType> sequenceType() {
+        return (JsonNullable<ListSettlementPaymentsSequenceType>) sequenceType;
     }
 
     /**
-     * If the payment was automatically created via a subscription, the ID of the [subscription](get-subscription) will be added to the response.
+     * If the payment was automatically created via a subscription, the ID of the [subscription](get-subscription) will
+     * be added to the response.
      */
     @JsonIgnore
     public JsonNullable<String> subscriptionId() {
@@ -907,7 +1016,8 @@ public class ListSettlementPaymentsPayments {
     /**
      * **Only relevant for recurring payments.**
      * 
-     * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to indicate which of the customer's accounts should be credited.
+     * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to indicate which of
+     * the customer's accounts should be credited.
      */
     @JsonIgnore
     public JsonNullable<String> mandateId() {
@@ -915,7 +1025,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The ID of the [customer](get-customer) the payment is being created for. This is used primarily for recurring payments, but can also be used on regular payments to enable single-click payments.
+     * The ID of the [customer](get-customer) the payment is being created for. This is used primarily for recurring
+     * payments, but can also be used on regular payments to enable single-click payments.
      * 
      * <p>If `sequenceType` is set to `recurring`, this field is required.
      */
@@ -927,7 +1038,8 @@ public class ListSettlementPaymentsPayments {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>When using an API Key, the `profileId` can be omitted since it is linked to the key. However, for OAuth and Organization tokens, the `profileId` is required.
+     * <p>When using an API Key, the `profileId` can be omitted since it is linked to the key. However, for OAuth and
+     * Organization tokens, the `profileId` is required.
      * 
      * <p>For more information, see [Authentication](authentication).
      */
@@ -953,19 +1065,20 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which statuses occur at what point.
-     * 
-     * <p>Possible values: `open` `pending` `authorized` `paid` `canceled` `expired` `failed`
+     * The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
+     * statuses occur at what point.
      */
     @JsonIgnore
-    public String status() {
+    public ListSettlementPaymentsStatus status() {
         return status;
     }
 
     /**
-     * This object offers details about the status of a payment. Currently it is only available for point-of-sale payments.
+     * This object offers details about the status of a payment. Currently it is only available for point-of-sale
+     * payments.
      * 
-     * <p>You can find more information about the possible values of this object on [this page](status-reasons).**
+     * <p>You can find more information about the possible values of this object on
+     * [this page](status-reasons).**
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -982,7 +1095,9 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * An object containing payment details collected during the payment process. For example, details may include the customer's card or bank details and a payment reference. For the full list of details, please refer to the [method-specific parameters](extra-payment-parameters) guide.
+     * An object containing payment details collected during the payment process. For example, details may include the
+     * customer's card or bank details and a payment reference. For the full list of details, please refer to the
+     * [method-specific parameters](extra-payment-parameters) guide.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -999,7 +1114,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if the payment is not authorized (yet).
+     * The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if the payment is
+     * not authorized (yet).
      */
     @JsonIgnore
     public JsonNullable<String> authorizedAt() {
@@ -1007,7 +1123,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The date and time the payment became paid, in ISO 8601 format. This parameter is omitted if the payment is not completed (yet).
+     * The date and time the payment became paid, in ISO 8601 format. This parameter is omitted if the payment is not
+     * completed (yet).
      */
     @JsonIgnore
     public JsonNullable<String> paidAt() {
@@ -1015,7 +1132,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The date and time the payment was canceled, in ISO 8601 format. This parameter is omitted if the payment is not canceled (yet).
+     * The date and time the payment was canceled, in ISO 8601 format. This parameter is omitted if the payment is not
+     * canceled (yet).
      */
     @JsonIgnore
     public JsonNullable<String> canceledAt() {
@@ -1023,7 +1141,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The date and time the payment will expire, in ISO 8601 format. This parameter is omitted if the payment can no longer expire.
+     * The date and time the payment will expire, in ISO 8601 format. This parameter is omitted if the payment can no
+     * longer expire.
      */
     @JsonIgnore
     public JsonNullable<String> expiresAt() {
@@ -1031,7 +1150,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The date and time the payment was expired, in ISO 8601 format. This parameter is omitted if the payment did not expire (yet).
+     * The date and time the payment was expired, in ISO 8601 format. This parameter is omitted if the payment did not
+     * expire (yet).
      */
     @JsonIgnore
     public JsonNullable<String> expiredAt() {
@@ -1039,7 +1159,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The date and time the payment failed, in ISO 8601 format. This parameter is omitted if the payment did not fail (yet).
+     * The date and time the payment failed, in ISO 8601 format. This parameter is omitted if the payment did not fail
+     * (yet).
      */
     @JsonIgnore
     public JsonNullable<String> failedAt() {
@@ -1069,7 +1190,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The identifier uniquely referring to this payment. Mollie assigns this identifier at payment creation time. Mollie will always refer to the payment by this ID. Example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The identifier uniquely referring to this payment. Mollie assigns this identifier at payment creation time. Mollie
+     * will always refer to the payment by this ID. Example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
      */
     public ListSettlementPaymentsPayments withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -1079,21 +1201,23 @@ public class ListSettlementPaymentsPayments {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
-    public ListSettlementPaymentsPayments withMode(String mode) {
+    public ListSettlementPaymentsPayments withMode(ListSettlementPaymentsMode mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
     }
 
     /**
-     * The description of the payment. This will be shown to your customer on their card or bank statement when possible. We truncate the description automatically according to the limits of the used payment method. The description is also visible in any exports you generate.
+     * The description of the payment. This will be shown to your customer on their card or bank statement when possible.
+     * We truncate the description automatically according to the limits of the used payment method. The description is
+     * also visible in any exports you generate.
      * 
-     * <p>We recommend you use a unique identifier so that you can always link the payment to the order in your back office. This is particularly useful for bookkeeping.
+     * <p>We recommend you use a unique identifier so that you can always link the payment to the order in your back office.
+     * This is particularly useful for bookkeeping.
      * 
-     * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255 characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
+     * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255
+     * characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
      */
     public ListSettlementPaymentsPayments withDescription(String description) {
         Utils.checkNotNull(description, "description");
@@ -1104,9 +1228,11 @@ public class ListSettlementPaymentsPayments {
     /**
      * The amount that you want to charge, e.g. `{currency:"EUR", value:"1000.00"}` if you would want to charge €1000.00.
      * 
-     * <p>You can find the minimum and maximum amounts per payment method in our help center. Additionally, they can be retrieved using the Get method endpoint.
+     * <p>You can find the minimum and maximum amounts per payment method in our help center. Additionally, they can be
+     * retrieved using the Get method endpoint.
      * 
-     * <p>If a tip was added for a Point-of-Sale payment, the amount will be updated to reflect the initial amount plus the tip amount.
+     * <p>If a tip was added for a Point-of-Sale payment, the amount will be updated to reflect the initial amount plus the
+     * tip amount.
      */
     public ListSettlementPaymentsPayments withAmount(ListSettlementPaymentsAmount amount) {
         Utils.checkNotNull(amount, "amount");
@@ -1115,7 +1241,9 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The total amount that is already refunded. Only available when refunds are available for this payment. For some payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the costs for a return shipment to the customer.
+     * The total amount that is already refunded. Only available when refunds are available for this payment. For some
+     * payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the
+     * costs for a return shipment to the customer.
      */
     public ListSettlementPaymentsPayments withAmountRefunded(ListSettlementPaymentsAmountRefunded amountRefunded) {
         Utils.checkNotNull(amountRefunded, "amountRefunded");
@@ -1125,7 +1253,9 @@ public class ListSettlementPaymentsPayments {
 
 
     /**
-     * The total amount that is already refunded. Only available when refunds are available for this payment. For some payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the costs for a return shipment to the customer.
+     * The total amount that is already refunded. Only available when refunds are available for this payment. For some
+     * payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the
+     * costs for a return shipment to the customer.
      */
     public ListSettlementPaymentsPayments withAmountRefunded(Optional<? extends ListSettlementPaymentsAmountRefunded> amountRefunded) {
         Utils.checkNotNull(amountRefunded, "amountRefunded");
@@ -1172,7 +1302,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The total amount that was charged back for this payment. Only available when the total charged back amount is not zero.
+     * The total amount that was charged back for this payment. Only available when the total charged back amount is not
+     * zero.
      */
     public ListSettlementPaymentsPayments withAmountChargedBack(ListSettlementPaymentsAmountChargedBack amountChargedBack) {
         Utils.checkNotNull(amountChargedBack, "amountChargedBack");
@@ -1182,7 +1313,8 @@ public class ListSettlementPaymentsPayments {
 
 
     /**
-     * The total amount that was charged back for this payment. Only available when the total charged back amount is not zero.
+     * The total amount that was charged back for this payment. Only available when the total charged back amount is not
+     * zero.
      */
     public ListSettlementPaymentsPayments withAmountChargedBack(Optional<? extends ListSettlementPaymentsAmountChargedBack> amountChargedBack) {
         Utils.checkNotNull(amountChargedBack, "amountChargedBack");
@@ -1191,11 +1323,14 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be settled to your account, converted to the currency your account is settled in.
+     * This optional field will contain the approximate amount that will be settled to your account, converted to the
+     * currency your account is settled in.
      * 
-     * <p>Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards. If no amount is settled by Mollie the `settlementAmount` is omitted from the response.
+     * <p>Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards. If no amount is
+     * settled by Mollie the `settlementAmount` is omitted from the response.
      * 
-     * <p>Please note that this amount might be recalculated and changed when the status of the payment changes. We suggest using the List balance transactions endpoint instead to get more accurate settlement amounts for your payments.
+     * <p>Please note that this amount might be recalculated and changed when the status of the payment changes. We suggest
+     * using the List balance transactions endpoint instead to get more accurate settlement amounts for your payments.
      */
     public ListSettlementPaymentsPayments withSettlementAmount(ListSettlementPaymentsSettlementAmount settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
@@ -1205,11 +1340,14 @@ public class ListSettlementPaymentsPayments {
 
 
     /**
-     * This optional field will contain the approximate amount that will be settled to your account, converted to the currency your account is settled in.
+     * This optional field will contain the approximate amount that will be settled to your account, converted to the
+     * currency your account is settled in.
      * 
-     * <p>Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards. If no amount is settled by Mollie the `settlementAmount` is omitted from the response.
+     * <p>Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards. If no amount is
+     * settled by Mollie the `settlementAmount` is omitted from the response.
      * 
-     * <p>Please note that this amount might be recalculated and changed when the status of the payment changes. We suggest using the List balance transactions endpoint instead to get more accurate settlement amounts for your payments.
+     * <p>Please note that this amount might be recalculated and changed when the status of the payment changes. We suggest
+     * using the List balance transactions endpoint instead to get more accurate settlement amounts for your payments.
      */
     public ListSettlementPaymentsPayments withSettlementAmount(Optional<? extends ListSettlementPaymentsSettlementAmount> settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
@@ -1220,9 +1358,11 @@ public class ListSettlementPaymentsPayments {
     /**
      * The URL your customer will be redirected to after the payment process.
      * 
-     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the right page referencing the order when your customer returns.
+     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
+     * right page referencing the order when your customer returns.
      * 
-     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
+     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for
+     * Apple Pay payments with an `applePayPaymentToken`.
      */
     public ListSettlementPaymentsPayments withRedirectUrl(String redirectUrl) {
         Utils.checkNotNull(redirectUrl, "redirectUrl");
@@ -1233,9 +1373,11 @@ public class ListSettlementPaymentsPayments {
     /**
      * The URL your customer will be redirected to after the payment process.
      * 
-     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the right page referencing the order when your customer returns.
+     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
+     * right page referencing the order when your customer returns.
      * 
-     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
+     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for
+     * Apple Pay payments with an `applePayPaymentToken`.
      */
     public ListSettlementPaymentsPayments withRedirectUrl(JsonNullable<String> redirectUrl) {
         Utils.checkNotNull(redirectUrl, "redirectUrl");
@@ -1244,9 +1386,12 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not provided, the customer will be redirected to the `redirectUrl` instead — see above.
+     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not
+     * provided, the customer will be redirected to the `redirectUrl` instead — see above.
      * 
-     * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle payment cancellations.
+     * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is
+     * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle
+     * payment cancellations.
      */
     public ListSettlementPaymentsPayments withCancelUrl(String cancelUrl) {
         Utils.checkNotNull(cancelUrl, "cancelUrl");
@@ -1255,9 +1400,12 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not provided, the customer will be redirected to the `redirectUrl` instead — see above.
+     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not
+     * provided, the customer will be redirected to the `redirectUrl` instead — see above.
      * 
-     * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle payment cancellations.
+     * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is
+     * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle
+     * payment cancellations.
      */
     public ListSettlementPaymentsPayments withCancelUrl(JsonNullable<String> cancelUrl) {
         Utils.checkNotNull(cancelUrl, "cancelUrl");
@@ -1270,7 +1418,9 @@ public class ListSettlementPaymentsPayments {
      * 
      * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to your payment.
      * 
-     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your local machine.
+     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
+     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+     * local machine.
      */
     public ListSettlementPaymentsPayments withWebhookUrl(String webhookUrl) {
         Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -1283,7 +1433,9 @@ public class ListSettlementPaymentsPayments {
      * 
      * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to your payment.
      * 
-     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your local machine.
+     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
+     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+     * local machine.
      */
     public ListSettlementPaymentsPayments withWebhookUrl(JsonNullable<String> webhookUrl) {
         Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -1292,7 +1444,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+     * ordered and its price.
      * 
      * <p>All lines must have the same currency as the payment.
      * 
@@ -1305,7 +1458,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+     * ordered and its price.
      * 
      * <p>All lines must have the same currency as the payment.
      * 
@@ -1318,9 +1472,11 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+     * The customer's billing address details. We advise to provide these details to improve fraud protection and
+     * conversion.
      * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
      * 
      * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
      */
@@ -1332,9 +1488,11 @@ public class ListSettlementPaymentsPayments {
 
 
     /**
-     * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+     * The customer's billing address details. We advise to provide these details to improve fraud protection and
+     * conversion.
      * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
      * 
      * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
      */
@@ -1345,9 +1503,11 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+     * The customer's shipping address details. We advise to provide these details to improve fraud protection and
+     * conversion.
      * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
      */
     public ListSettlementPaymentsPayments withShippingAddress(ListSettlementPaymentsShippingAddress shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
@@ -1357,9 +1517,11 @@ public class ListSettlementPaymentsPayments {
 
 
     /**
-     * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+     * The customer's shipping address details. We advise to provide these details to improve fraud protection and
+     * conversion.
      * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
      */
     public ListSettlementPaymentsPayments withShippingAddress(Optional<? extends ListSettlementPaymentsShippingAddress> shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
@@ -1368,29 +1530,40 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * Allows you to preset the language to be used in the hosted payment pages shown to the customer. Setting a locale is highly recommended and will greatly improve your conversion rate. When this parameter is omitted the browser language will be used instead if supported by the payment method. You can provide any `xx_XX` format ISO 15897 locale, but our hosted payment pages currently only support the specified languages.
+     * Allows you to preset the language to be used in the hosted payment pages shown to the customer. Setting a locale
+     * is highly recommended and will greatly improve your conversion rate. When this parameter is omitted the browser
+     * language will be used instead if supported by the payment method. You can provide any `xx_XX` format ISO 15897
+     * locale, but our hosted payment pages currently only support the specified languages.
      * 
-     * <p>For bank transfer payments specifically, the locale will determine the target bank account the customer has to transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the customer use a local bank account greatly increases the conversion and speed of payment.
+     * <p>For bank transfer payments specifically, the locale will determine the target bank account the customer has to
+     * transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the
+     * customer use a local bank account greatly increases the conversion and speed of payment.
      */
-    public ListSettlementPaymentsPayments withLocale(String locale) {
+    public ListSettlementPaymentsPayments withLocale(ListSettlementPaymentsLocale locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = JsonNullable.of(locale);
         return this;
     }
 
     /**
-     * Allows you to preset the language to be used in the hosted payment pages shown to the customer. Setting a locale is highly recommended and will greatly improve your conversion rate. When this parameter is omitted the browser language will be used instead if supported by the payment method. You can provide any `xx_XX` format ISO 15897 locale, but our hosted payment pages currently only support the specified languages.
+     * Allows you to preset the language to be used in the hosted payment pages shown to the customer. Setting a locale
+     * is highly recommended and will greatly improve your conversion rate. When this parameter is omitted the browser
+     * language will be used instead if supported by the payment method. You can provide any `xx_XX` format ISO 15897
+     * locale, but our hosted payment pages currently only support the specified languages.
      * 
-     * <p>For bank transfer payments specifically, the locale will determine the target bank account the customer has to transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the customer use a local bank account greatly increases the conversion and speed of payment.
+     * <p>For bank transfer payments specifically, the locale will determine the target bank account the customer has to
+     * transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the
+     * customer use a local bank account greatly increases the conversion and speed of payment.
      */
-    public ListSettlementPaymentsPayments withLocale(JsonNullable<String> locale) {
+    public ListSettlementPaymentsPayments withLocale(JsonNullable<? extends ListSettlementPaymentsLocale> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
     }
 
     /**
-     * This optional field contains your customer's ISO 3166-1 alpha-2 country code, detected by us during checkout. This field is omitted if the country code was not detected.
+     * This optional field contains your customer's ISO 3166-1 alpha-2 country code, detected by us during checkout. This
+     * field is omitted if the country code was not detected.
      */
     public ListSettlementPaymentsPayments withCountryCode(String countryCode) {
         Utils.checkNotNull(countryCode, "countryCode");
@@ -1399,7 +1572,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * This optional field contains your customer's ISO 3166-1 alpha-2 country code, detected by us during checkout. This field is omitted if the country code was not detected.
+     * This optional field contains your customer's ISO 3166-1 alpha-2 country code, detected by us during checkout. This
+     * field is omitted if the country code was not detected.
      */
     public ListSettlementPaymentsPayments withCountryCode(JsonNullable<String> countryCode) {
         Utils.checkNotNull(countryCode, "countryCode");
@@ -1408,25 +1582,28 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The payment method used for this transaction. If a specific method was selected during payment initialization, this field reflects that choice.
+     * The payment method used for this transaction. If a specific method was selected during payment initialization,
+     * this field reflects that choice.
      */
-    public ListSettlementPaymentsPayments withMethod(String method) {
+    public ListSettlementPaymentsPayments withMethod(ListSettlementPaymentsMethod method) {
         Utils.checkNotNull(method, "method");
         this.method = JsonNullable.of(method);
         return this;
     }
 
     /**
-     * The payment method used for this transaction. If a specific method was selected during payment initialization, this field reflects that choice.
+     * The payment method used for this transaction. If a specific method was selected during payment initialization,
+     * this field reflects that choice.
      */
-    public ListSettlementPaymentsPayments withMethod(JsonNullable<String> method) {
+    public ListSettlementPaymentsPayments withMethod(JsonNullable<? extends ListSettlementPaymentsMethod> method) {
         Utils.checkNotNull(method, "method");
         this.method = method;
         return this;
     }
 
     /**
-     * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT rates you have used for the order to ensure your customer's country matches the VAT country.
+     * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT
+     * rates you have used for the order to ensure your customer's country matches the VAT country.
      * 
      * <p>Use this parameter to restrict the payment methods available to your customer to those from a single country.
      * 
@@ -1441,7 +1618,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT rates you have used for the order to ensure your customer's country matches the VAT country.
+     * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT
+     * rates you have used for the order to ensure your customer's country matches the VAT country.
      * 
      * <p>Use this parameter to restrict the payment methods available to your customer to those from a single country.
      * 
@@ -1456,7 +1634,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     public ListSettlementPaymentsPayments withMetadata(ListSettlementPaymentsMetadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -1465,7 +1644,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     public ListSettlementPaymentsPayments withMetadata(JsonNullable<? extends ListSettlementPaymentsMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -1474,26 +1654,24 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * Indicate if the funds should be captured immediately or if you want to [place a hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/) and capture at a later time.
+     * Indicate if the funds should be captured immediately or if you want to [place a hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/) 
+     * and capture at a later time.
      * 
      * <p>This field needs to be set to `manual` for method `riverty`.
-     * 
-     * <p>Possible values: `automatic` `manual` (default: `automatic`)
      */
-    public ListSettlementPaymentsPayments withCaptureMode(String captureMode) {
+    public ListSettlementPaymentsPayments withCaptureMode(ListSettlementPaymentsCaptureMode captureMode) {
         Utils.checkNotNull(captureMode, "captureMode");
         this.captureMode = JsonNullable.of(captureMode);
         return this;
     }
 
     /**
-     * Indicate if the funds should be captured immediately or if you want to [place a hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/) and capture at a later time.
+     * Indicate if the funds should be captured immediately or if you want to [place a hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/) 
+     * and capture at a later time.
      * 
      * <p>This field needs to be set to `manual` for method `riverty`.
-     * 
-     * <p>Possible values: `automatic` `manual` (default: `automatic`)
      */
-    public ListSettlementPaymentsPayments withCaptureMode(JsonNullable<String> captureMode) {
+    public ListSettlementPaymentsPayments withCaptureMode(JsonNullable<? extends ListSettlementPaymentsCaptureMode> captureMode) {
         Utils.checkNotNull(captureMode, "captureMode");
         this.captureMode = captureMode;
         return this;
@@ -1502,17 +1680,18 @@ public class ListSettlementPaymentsPayments {
     /**
      * **Only relevant if you wish to manage authorization and capturing separately.**
      * 
-     * <p>Some payment methods allow placing a hold on the card or bank account. This hold or 'authorization' can then at a later point either be 'captured' or canceled.
+     * <p>Some payment methods allow placing a hold on the card or bank account. This hold or 'authorization' can then at a
+     * later point either be 'captured' or canceled.
      * 
-     * <p>By default, we charge the customer's card or bank account immediately when they complete the payment. If you set a capture delay however, we will delay the automatic capturing of the payment for the specified amount of time. For example `8 hours` or `2 days`.
+     * <p>By default, we charge the customer's card or bank account immediately when they complete the payment. If you set a
+     * capture delay however, we will delay the automatic capturing of the payment for the specified amount of time. For
+     * example `8 hours` or `2 days`.
      * 
      * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
      * 
      * <p>The maximum delay is 7 days (168 hours).
-     * 
-     * <p>Possible values: `... hours` `... days`
      */
-    public ListSettlementPaymentsPayments withCaptureDelay(String captureDelay) {
+    public ListSettlementPaymentsPayments withCaptureDelay(ListSettlementPaymentsCaptureDelay captureDelay) {
         Utils.checkNotNull(captureDelay, "captureDelay");
         this.captureDelay = JsonNullable.of(captureDelay);
         return this;
@@ -1521,24 +1700,26 @@ public class ListSettlementPaymentsPayments {
     /**
      * **Only relevant if you wish to manage authorization and capturing separately.**
      * 
-     * <p>Some payment methods allow placing a hold on the card or bank account. This hold or 'authorization' can then at a later point either be 'captured' or canceled.
+     * <p>Some payment methods allow placing a hold on the card or bank account. This hold or 'authorization' can then at a
+     * later point either be 'captured' or canceled.
      * 
-     * <p>By default, we charge the customer's card or bank account immediately when they complete the payment. If you set a capture delay however, we will delay the automatic capturing of the payment for the specified amount of time. For example `8 hours` or `2 days`.
+     * <p>By default, we charge the customer's card or bank account immediately when they complete the payment. If you set a
+     * capture delay however, we will delay the automatic capturing of the payment for the specified amount of time. For
+     * example `8 hours` or `2 days`.
      * 
      * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
      * 
      * <p>The maximum delay is 7 days (168 hours).
-     * 
-     * <p>Possible values: `... hours` `... days`
      */
-    public ListSettlementPaymentsPayments withCaptureDelay(JsonNullable<String> captureDelay) {
+    public ListSettlementPaymentsPayments withCaptureDelay(JsonNullable<? extends ListSettlementPaymentsCaptureDelay> captureDelay) {
         Utils.checkNotNull(captureDelay, "captureDelay");
         this.captureDelay = captureDelay;
         return this;
     }
 
     /**
-     * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
+     * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we
+     * can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
      */
     public ListSettlementPaymentsPayments withCaptureBefore(String captureBefore) {
         Utils.checkNotNull(captureBefore, "captureBefore");
@@ -1547,7 +1728,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
+     * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we
+     * can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
      */
     public ListSettlementPaymentsPayments withCaptureBefore(JsonNullable<String> captureBefore) {
         Utils.checkNotNull(captureBefore, "captureBefore");
@@ -1556,11 +1738,15 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
+     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * merchants.
      * 
-     * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using this `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's balance and sent to your own account balance.
+     * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using this
+     * `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's balance and sent
+     * to your own account balance.
      * 
-     * <p>If instead you want to split a payment on your own account between yourself and a connected merchant, refer to the `routing` parameter.
+     * <p>If instead you want to split a payment on your own account between yourself and a connected merchant, refer to the
+     * `routing` parameter.
      */
     public ListSettlementPaymentsPayments withApplicationFee(ListSettlementPaymentsApplicationFee applicationFee) {
         Utils.checkNotNull(applicationFee, "applicationFee");
@@ -1569,11 +1755,15 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
+     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * merchants.
      * 
-     * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using this `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's balance and sent to your own account balance.
+     * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using this
+     * `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's balance and sent
+     * to your own account balance.
      * 
-     * <p>If instead you want to split a payment on your own account between yourself and a connected merchant, refer to the `routing` parameter.
+     * <p>If instead you want to split a payment on your own account between yourself and a connected merchant, refer to the
+     * `routing` parameter.
      */
     public ListSettlementPaymentsPayments withApplicationFee(JsonNullable<? extends ListSettlementPaymentsApplicationFee> applicationFee) {
         Utils.checkNotNull(applicationFee, "applicationFee");
@@ -1584,15 +1774,20 @@ public class ListSettlementPaymentsPayments {
     /**
      * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
      * 
-     * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
+     * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * merchants.
      * 
-     * <p>If you create payments on your own account that you want to split between yourself and one or more connected merchants, you can use this `routing` parameter to route the payment accordingly.
+     * <p>If you create payments on your own account that you want to split between yourself and one or more connected
+     * merchants, you can use this `routing` parameter to route the payment accordingly.
      * 
-     * <p>The `routing` parameter should contain an array of objects, with each object describing the destination for a specific portion of the payment.
+     * <p>The `routing` parameter should contain an array of objects, with each object describing the destination for a
+     * specific portion of the payment.
      * 
-     * <p>It is not necessary to indicate in the array which portion goes to yourself. After all portions of the total payment amount have been routed, the amount left will be routed to the current organization automatically.
+     * <p>It is not necessary to indicate in the array which portion goes to yourself. After all portions of the total
+     * payment amount have been routed, the amount left will be routed to the current organization automatically.
      * 
-     * <p>If instead you use OAuth to create payments on a connected merchant's account, refer to the `applicationFee` parameter.
+     * <p>If instead you use OAuth to create payments on a connected merchant's account, refer to the `applicationFee`
+     * parameter.
      */
     public ListSettlementPaymentsPayments withRouting(List<ListSettlementPaymentsRouting> routing) {
         Utils.checkNotNull(routing, "routing");
@@ -1603,15 +1798,20 @@ public class ListSettlementPaymentsPayments {
     /**
      * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
      * 
-     * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
+     * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * merchants.
      * 
-     * <p>If you create payments on your own account that you want to split between yourself and one or more connected merchants, you can use this `routing` parameter to route the payment accordingly.
+     * <p>If you create payments on your own account that you want to split between yourself and one or more connected
+     * merchants, you can use this `routing` parameter to route the payment accordingly.
      * 
-     * <p>The `routing` parameter should contain an array of objects, with each object describing the destination for a specific portion of the payment.
+     * <p>The `routing` parameter should contain an array of objects, with each object describing the destination for a
+     * specific portion of the payment.
      * 
-     * <p>It is not necessary to indicate in the array which portion goes to yourself. After all portions of the total payment amount have been routed, the amount left will be routed to the current organization automatically.
+     * <p>It is not necessary to indicate in the array which portion goes to yourself. After all portions of the total
+     * payment amount have been routed, the amount left will be routed to the current organization automatically.
      * 
-     * <p>If instead you use OAuth to create payments on a connected merchant's account, refer to the `applicationFee` parameter.
+     * <p>If instead you use OAuth to create payments on a connected merchant's account, refer to the `applicationFee`
+     * parameter.
      */
     public ListSettlementPaymentsPayments withRouting(JsonNullable<? extends List<ListSettlementPaymentsRouting>> routing) {
         Utils.checkNotNull(routing, "routing");
@@ -1624,46 +1824,50 @@ public class ListSettlementPaymentsPayments {
      * 
      * <p>Indicate which part of a recurring sequence this payment is for.
      * 
-     * <p>Recurring payments can only take place if a mandate is available. A common way to establish such a mandate is through a `first` payment. With a `first` payment, the customer agrees to automatic recurring charges taking place on their account in the future.
+     * <p>Recurring payments can only take place if a mandate is available. A common way to establish such a mandate is
+     * through a `first` payment. With a `first` payment, the customer agrees to automatic recurring charges taking place
+     * on their account in the future.
      * 
      * <p>If set to `recurring`, the customer's card is charged automatically.
      * 
      * <p>Defaults to `oneoff`, which is a regular non-recurring payment.
      * 
-     * <p>For PayPal payments, recurring is only possible if your connected PayPal account allows it. You can call our [Methods API](list-methods) with parameter `sequenceType: first` to discover which payment methods on your account are set up correctly for recurring payments.
-     * 
-     * <p>Possible values: `oneoff` `first` `recurring` (default: `oneoff`)
+     * <p>For PayPal payments, recurring is only possible if your connected PayPal account allows it. You can call our
+     * [Methods API](list-methods) with parameter `sequenceType: first` to discover which payment methods on your account
+     * are set up correctly for recurring payments.
      */
-    public ListSettlementPaymentsPayments withSequenceType(String sequenceType) {
+    public ListSettlementPaymentsPayments withSequenceType(ListSettlementPaymentsSequenceType sequenceType) {
         Utils.checkNotNull(sequenceType, "sequenceType");
-        this.sequenceType = Optional.ofNullable(sequenceType);
+        this.sequenceType = JsonNullable.of(sequenceType);
         return this;
     }
-
 
     /**
      * **Only relevant for recurring payments.**
      * 
      * <p>Indicate which part of a recurring sequence this payment is for.
      * 
-     * <p>Recurring payments can only take place if a mandate is available. A common way to establish such a mandate is through a `first` payment. With a `first` payment, the customer agrees to automatic recurring charges taking place on their account in the future.
+     * <p>Recurring payments can only take place if a mandate is available. A common way to establish such a mandate is
+     * through a `first` payment. With a `first` payment, the customer agrees to automatic recurring charges taking place
+     * on their account in the future.
      * 
      * <p>If set to `recurring`, the customer's card is charged automatically.
      * 
      * <p>Defaults to `oneoff`, which is a regular non-recurring payment.
      * 
-     * <p>For PayPal payments, recurring is only possible if your connected PayPal account allows it. You can call our [Methods API](list-methods) with parameter `sequenceType: first` to discover which payment methods on your account are set up correctly for recurring payments.
-     * 
-     * <p>Possible values: `oneoff` `first` `recurring` (default: `oneoff`)
+     * <p>For PayPal payments, recurring is only possible if your connected PayPal account allows it. You can call our
+     * [Methods API](list-methods) with parameter `sequenceType: first` to discover which payment methods on your account
+     * are set up correctly for recurring payments.
      */
-    public ListSettlementPaymentsPayments withSequenceType(Optional<String> sequenceType) {
+    public ListSettlementPaymentsPayments withSequenceType(JsonNullable<? extends ListSettlementPaymentsSequenceType> sequenceType) {
         Utils.checkNotNull(sequenceType, "sequenceType");
         this.sequenceType = sequenceType;
         return this;
     }
 
     /**
-     * If the payment was automatically created via a subscription, the ID of the [subscription](get-subscription) will be added to the response.
+     * If the payment was automatically created via a subscription, the ID of the [subscription](get-subscription) will
+     * be added to the response.
      */
     public ListSettlementPaymentsPayments withSubscriptionId(String subscriptionId) {
         Utils.checkNotNull(subscriptionId, "subscriptionId");
@@ -1672,7 +1876,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * If the payment was automatically created via a subscription, the ID of the [subscription](get-subscription) will be added to the response.
+     * If the payment was automatically created via a subscription, the ID of the [subscription](get-subscription) will
+     * be added to the response.
      */
     public ListSettlementPaymentsPayments withSubscriptionId(JsonNullable<String> subscriptionId) {
         Utils.checkNotNull(subscriptionId, "subscriptionId");
@@ -1683,7 +1888,8 @@ public class ListSettlementPaymentsPayments {
     /**
      * **Only relevant for recurring payments.**
      * 
-     * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to indicate which of the customer's accounts should be credited.
+     * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to indicate which of
+     * the customer's accounts should be credited.
      */
     public ListSettlementPaymentsPayments withMandateId(String mandateId) {
         Utils.checkNotNull(mandateId, "mandateId");
@@ -1694,7 +1900,8 @@ public class ListSettlementPaymentsPayments {
     /**
      * **Only relevant for recurring payments.**
      * 
-     * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to indicate which of the customer's accounts should be credited.
+     * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to indicate which of
+     * the customer's accounts should be credited.
      */
     public ListSettlementPaymentsPayments withMandateId(JsonNullable<String> mandateId) {
         Utils.checkNotNull(mandateId, "mandateId");
@@ -1703,7 +1910,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The ID of the [customer](get-customer) the payment is being created for. This is used primarily for recurring payments, but can also be used on regular payments to enable single-click payments.
+     * The ID of the [customer](get-customer) the payment is being created for. This is used primarily for recurring
+     * payments, but can also be used on regular payments to enable single-click payments.
      * 
      * <p>If `sequenceType` is set to `recurring`, this field is required.
      */
@@ -1714,7 +1922,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The ID of the [customer](get-customer) the payment is being created for. This is used primarily for recurring payments, but can also be used on regular payments to enable single-click payments.
+     * The ID of the [customer](get-customer) the payment is being created for. This is used primarily for recurring
+     * payments, but can also be used on regular payments to enable single-click payments.
      * 
      * <p>If `sequenceType` is set to `recurring`, this field is required.
      */
@@ -1727,7 +1936,8 @@ public class ListSettlementPaymentsPayments {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>When using an API Key, the `profileId` can be omitted since it is linked to the key. However, for OAuth and Organization tokens, the `profileId` is required.
+     * <p>When using an API Key, the `profileId` can be omitted since it is linked to the key. However, for OAuth and
+     * Organization tokens, the `profileId` is required.
      * 
      * <p>For more information, see [Authentication](authentication).
      */
@@ -1774,20 +1984,21 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which statuses occur at what point.
-     * 
-     * <p>Possible values: `open` `pending` `authorized` `paid` `canceled` `expired` `failed`
+     * The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
+     * statuses occur at what point.
      */
-    public ListSettlementPaymentsPayments withStatus(String status) {
+    public ListSettlementPaymentsPayments withStatus(ListSettlementPaymentsStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
     /**
-     * This object offers details about the status of a payment. Currently it is only available for point-of-sale payments.
+     * This object offers details about the status of a payment. Currently it is only available for point-of-sale
+     * payments.
      * 
-     * <p>You can find more information about the possible values of this object on [this page](status-reasons).**
+     * <p>You can find more information about the possible values of this object on
+     * [this page](status-reasons).**
      */
     public ListSettlementPaymentsPayments withStatusReason(ListSettlementPaymentsStatusReason statusReason) {
         Utils.checkNotNull(statusReason, "statusReason");
@@ -1796,9 +2007,11 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * This object offers details about the status of a payment. Currently it is only available for point-of-sale payments.
+     * This object offers details about the status of a payment. Currently it is only available for point-of-sale
+     * payments.
      * 
-     * <p>You can find more information about the possible values of this object on [this page](status-reasons).**
+     * <p>You can find more information about the possible values of this object on
+     * [this page](status-reasons).**
      */
     public ListSettlementPaymentsPayments withStatusReason(JsonNullable<? extends ListSettlementPaymentsStatusReason> statusReason) {
         Utils.checkNotNull(statusReason, "statusReason");
@@ -1825,7 +2038,9 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * An object containing payment details collected during the payment process. For example, details may include the customer's card or bank details and a payment reference. For the full list of details, please refer to the [method-specific parameters](extra-payment-parameters) guide.
+     * An object containing payment details collected during the payment process. For example, details may include the
+     * customer's card or bank details and a payment reference. For the full list of details, please refer to the
+     * [method-specific parameters](extra-payment-parameters) guide.
      */
     public ListSettlementPaymentsPayments withDetails(Map<String, Object> details) {
         Utils.checkNotNull(details, "details");
@@ -1834,7 +2049,9 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * An object containing payment details collected during the payment process. For example, details may include the customer's card or bank details and a payment reference. For the full list of details, please refer to the [method-specific parameters](extra-payment-parameters) guide.
+     * An object containing payment details collected during the payment process. For example, details may include the
+     * customer's card or bank details and a payment reference. For the full list of details, please refer to the
+     * [method-specific parameters](extra-payment-parameters) guide.
      */
     public ListSettlementPaymentsPayments withDetails(JsonNullable<? extends Map<String, Object>> details) {
         Utils.checkNotNull(details, "details");
@@ -1852,7 +2069,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if the payment is not authorized (yet).
+     * The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if the payment is
+     * not authorized (yet).
      */
     public ListSettlementPaymentsPayments withAuthorizedAt(String authorizedAt) {
         Utils.checkNotNull(authorizedAt, "authorizedAt");
@@ -1861,7 +2079,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if the payment is not authorized (yet).
+     * The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if the payment is
+     * not authorized (yet).
      */
     public ListSettlementPaymentsPayments withAuthorizedAt(JsonNullable<String> authorizedAt) {
         Utils.checkNotNull(authorizedAt, "authorizedAt");
@@ -1870,7 +2089,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The date and time the payment became paid, in ISO 8601 format. This parameter is omitted if the payment is not completed (yet).
+     * The date and time the payment became paid, in ISO 8601 format. This parameter is omitted if the payment is not
+     * completed (yet).
      */
     public ListSettlementPaymentsPayments withPaidAt(String paidAt) {
         Utils.checkNotNull(paidAt, "paidAt");
@@ -1879,7 +2099,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The date and time the payment became paid, in ISO 8601 format. This parameter is omitted if the payment is not completed (yet).
+     * The date and time the payment became paid, in ISO 8601 format. This parameter is omitted if the payment is not
+     * completed (yet).
      */
     public ListSettlementPaymentsPayments withPaidAt(JsonNullable<String> paidAt) {
         Utils.checkNotNull(paidAt, "paidAt");
@@ -1888,7 +2109,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The date and time the payment was canceled, in ISO 8601 format. This parameter is omitted if the payment is not canceled (yet).
+     * The date and time the payment was canceled, in ISO 8601 format. This parameter is omitted if the payment is not
+     * canceled (yet).
      */
     public ListSettlementPaymentsPayments withCanceledAt(String canceledAt) {
         Utils.checkNotNull(canceledAt, "canceledAt");
@@ -1897,7 +2119,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The date and time the payment was canceled, in ISO 8601 format. This parameter is omitted if the payment is not canceled (yet).
+     * The date and time the payment was canceled, in ISO 8601 format. This parameter is omitted if the payment is not
+     * canceled (yet).
      */
     public ListSettlementPaymentsPayments withCanceledAt(JsonNullable<String> canceledAt) {
         Utils.checkNotNull(canceledAt, "canceledAt");
@@ -1906,7 +2129,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The date and time the payment will expire, in ISO 8601 format. This parameter is omitted if the payment can no longer expire.
+     * The date and time the payment will expire, in ISO 8601 format. This parameter is omitted if the payment can no
+     * longer expire.
      */
     public ListSettlementPaymentsPayments withExpiresAt(String expiresAt) {
         Utils.checkNotNull(expiresAt, "expiresAt");
@@ -1915,7 +2139,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The date and time the payment will expire, in ISO 8601 format. This parameter is omitted if the payment can no longer expire.
+     * The date and time the payment will expire, in ISO 8601 format. This parameter is omitted if the payment can no
+     * longer expire.
      */
     public ListSettlementPaymentsPayments withExpiresAt(JsonNullable<String> expiresAt) {
         Utils.checkNotNull(expiresAt, "expiresAt");
@@ -1924,7 +2149,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The date and time the payment was expired, in ISO 8601 format. This parameter is omitted if the payment did not expire (yet).
+     * The date and time the payment was expired, in ISO 8601 format. This parameter is omitted if the payment did not
+     * expire (yet).
      */
     public ListSettlementPaymentsPayments withExpiredAt(String expiredAt) {
         Utils.checkNotNull(expiredAt, "expiredAt");
@@ -1933,7 +2159,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The date and time the payment was expired, in ISO 8601 format. This parameter is omitted if the payment did not expire (yet).
+     * The date and time the payment was expired, in ISO 8601 format. This parameter is omitted if the payment did not
+     * expire (yet).
      */
     public ListSettlementPaymentsPayments withExpiredAt(JsonNullable<String> expiredAt) {
         Utils.checkNotNull(expiredAt, "expiredAt");
@@ -1942,7 +2169,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The date and time the payment failed, in ISO 8601 format. This parameter is omitted if the payment did not fail (yet).
+     * The date and time the payment failed, in ISO 8601 format. This parameter is omitted if the payment did not fail
+     * (yet).
      */
     public ListSettlementPaymentsPayments withFailedAt(String failedAt) {
         Utils.checkNotNull(failedAt, "failedAt");
@@ -1951,7 +2179,8 @@ public class ListSettlementPaymentsPayments {
     }
 
     /**
-     * The date and time the payment failed, in ISO 8601 format. This parameter is omitted if the payment did not fail (yet).
+     * The date and time the payment failed, in ISO 8601 format. This parameter is omitted if the payment did not fail
+     * (yet).
      */
     public ListSettlementPaymentsPayments withFailedAt(JsonNullable<String> failedAt) {
         Utils.checkNotNull(failedAt, "failedAt");
@@ -2102,7 +2331,7 @@ public class ListSettlementPaymentsPayments {
 
         private String id;
 
-        private String mode;
+        private ListSettlementPaymentsMode mode;
 
         private String description;
 
@@ -2130,19 +2359,19 @@ public class ListSettlementPaymentsPayments {
 
         private Optional<? extends ListSettlementPaymentsShippingAddress> shippingAddress = Optional.empty();
 
-        private JsonNullable<String> locale = JsonNullable.undefined();
+        private JsonNullable<? extends ListSettlementPaymentsLocale> locale = JsonNullable.undefined();
 
         private JsonNullable<String> countryCode = JsonNullable.undefined();
 
-        private JsonNullable<String> method = JsonNullable.undefined();
+        private JsonNullable<? extends ListSettlementPaymentsMethod> method = JsonNullable.undefined();
 
         private JsonNullable<String> restrictPaymentMethodsToCountry = JsonNullable.undefined();
 
         private JsonNullable<? extends ListSettlementPaymentsMetadata> metadata = JsonNullable.undefined();
 
-        private JsonNullable<String> captureMode = JsonNullable.undefined();
+        private JsonNullable<? extends ListSettlementPaymentsCaptureMode> captureMode;
 
-        private JsonNullable<String> captureDelay = JsonNullable.undefined();
+        private JsonNullable<? extends ListSettlementPaymentsCaptureDelay> captureDelay = JsonNullable.undefined();
 
         private JsonNullable<String> captureBefore = JsonNullable.undefined();
 
@@ -2150,7 +2379,7 @@ public class ListSettlementPaymentsPayments {
 
         private JsonNullable<? extends List<ListSettlementPaymentsRouting>> routing = JsonNullable.undefined();
 
-        private Optional<String> sequenceType = Optional.empty();
+        private JsonNullable<? extends ListSettlementPaymentsSequenceType> sequenceType;
 
         private JsonNullable<String> subscriptionId = JsonNullable.undefined();
 
@@ -2164,7 +2393,7 @@ public class ListSettlementPaymentsPayments {
 
         private JsonNullable<String> orderId = JsonNullable.undefined();
 
-        private String status;
+        private ListSettlementPaymentsStatus status;
 
         private JsonNullable<? extends ListSettlementPaymentsStatusReason> statusReason = JsonNullable.undefined();
 
@@ -2204,7 +2433,8 @@ public class ListSettlementPaymentsPayments {
 
 
         /**
-         * The identifier uniquely referring to this payment. Mollie assigns this identifier at payment creation time. Mollie will always refer to the payment by this ID. Example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+         * The identifier uniquely referring to this payment. Mollie assigns this identifier at payment creation time. Mollie
+         * will always refer to the payment by this ID. Example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -2215,10 +2445,8 @@ public class ListSettlementPaymentsPayments {
 
         /**
          * Whether this entity was created in live mode or in test mode.
-         * 
-         * <p>Possible values: `live` `test`
          */
-        public Builder mode(String mode) {
+        public Builder mode(ListSettlementPaymentsMode mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
@@ -2226,11 +2454,15 @@ public class ListSettlementPaymentsPayments {
 
 
         /**
-         * The description of the payment. This will be shown to your customer on their card or bank statement when possible. We truncate the description automatically according to the limits of the used payment method. The description is also visible in any exports you generate.
+         * The description of the payment. This will be shown to your customer on their card or bank statement when possible.
+         * We truncate the description automatically according to the limits of the used payment method. The description is
+         * also visible in any exports you generate.
          * 
-         * <p>We recommend you use a unique identifier so that you can always link the payment to the order in your back office. This is particularly useful for bookkeeping.
+         * <p>We recommend you use a unique identifier so that you can always link the payment to the order in your back office.
+         * This is particularly useful for bookkeeping.
          * 
-         * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255 characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
+         * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255
+         * characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
@@ -2242,9 +2474,11 @@ public class ListSettlementPaymentsPayments {
         /**
          * The amount that you want to charge, e.g. `{currency:"EUR", value:"1000.00"}` if you would want to charge €1000.00.
          * 
-         * <p>You can find the minimum and maximum amounts per payment method in our help center. Additionally, they can be retrieved using the Get method endpoint.
+         * <p>You can find the minimum and maximum amounts per payment method in our help center. Additionally, they can be
+         * retrieved using the Get method endpoint.
          * 
-         * <p>If a tip was added for a Point-of-Sale payment, the amount will be updated to reflect the initial amount plus the tip amount.
+         * <p>If a tip was added for a Point-of-Sale payment, the amount will be updated to reflect the initial amount plus the
+         * tip amount.
          */
         public Builder amount(ListSettlementPaymentsAmount amount) {
             Utils.checkNotNull(amount, "amount");
@@ -2254,7 +2488,9 @@ public class ListSettlementPaymentsPayments {
 
 
         /**
-         * The total amount that is already refunded. Only available when refunds are available for this payment. For some payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the costs for a return shipment to the customer.
+         * The total amount that is already refunded. Only available when refunds are available for this payment. For some
+         * payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the
+         * costs for a return shipment to the customer.
          */
         public Builder amountRefunded(ListSettlementPaymentsAmountRefunded amountRefunded) {
             Utils.checkNotNull(amountRefunded, "amountRefunded");
@@ -2263,7 +2499,9 @@ public class ListSettlementPaymentsPayments {
         }
 
         /**
-         * The total amount that is already refunded. Only available when refunds are available for this payment. For some payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the costs for a return shipment to the customer.
+         * The total amount that is already refunded. Only available when refunds are available for this payment. For some
+         * payment methods, this amount may be higher than the payment amount, for example to allow reimbursement of the
+         * costs for a return shipment to the customer.
          */
         public Builder amountRefunded(Optional<? extends ListSettlementPaymentsAmountRefunded> amountRefunded) {
             Utils.checkNotNull(amountRefunded, "amountRefunded");
@@ -2311,7 +2549,8 @@ public class ListSettlementPaymentsPayments {
 
 
         /**
-         * The total amount that was charged back for this payment. Only available when the total charged back amount is not zero.
+         * The total amount that was charged back for this payment. Only available when the total charged back amount is not
+         * zero.
          */
         public Builder amountChargedBack(ListSettlementPaymentsAmountChargedBack amountChargedBack) {
             Utils.checkNotNull(amountChargedBack, "amountChargedBack");
@@ -2320,7 +2559,8 @@ public class ListSettlementPaymentsPayments {
         }
 
         /**
-         * The total amount that was charged back for this payment. Only available when the total charged back amount is not zero.
+         * The total amount that was charged back for this payment. Only available when the total charged back amount is not
+         * zero.
          */
         public Builder amountChargedBack(Optional<? extends ListSettlementPaymentsAmountChargedBack> amountChargedBack) {
             Utils.checkNotNull(amountChargedBack, "amountChargedBack");
@@ -2330,11 +2570,14 @@ public class ListSettlementPaymentsPayments {
 
 
         /**
-         * This optional field will contain the approximate amount that will be settled to your account, converted to the currency your account is settled in.
+         * This optional field will contain the approximate amount that will be settled to your account, converted to the
+         * currency your account is settled in.
          * 
-         * <p>Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards. If no amount is settled by Mollie the `settlementAmount` is omitted from the response.
+         * <p>Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards. If no amount is
+         * settled by Mollie the `settlementAmount` is omitted from the response.
          * 
-         * <p>Please note that this amount might be recalculated and changed when the status of the payment changes. We suggest using the List balance transactions endpoint instead to get more accurate settlement amounts for your payments.
+         * <p>Please note that this amount might be recalculated and changed when the status of the payment changes. We suggest
+         * using the List balance transactions endpoint instead to get more accurate settlement amounts for your payments.
          */
         public Builder settlementAmount(ListSettlementPaymentsSettlementAmount settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
@@ -2343,11 +2586,14 @@ public class ListSettlementPaymentsPayments {
         }
 
         /**
-         * This optional field will contain the approximate amount that will be settled to your account, converted to the currency your account is settled in.
+         * This optional field will contain the approximate amount that will be settled to your account, converted to the
+         * currency your account is settled in.
          * 
-         * <p>Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards. If no amount is settled by Mollie the `settlementAmount` is omitted from the response.
+         * <p>Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards. If no amount is
+         * settled by Mollie the `settlementAmount` is omitted from the response.
          * 
-         * <p>Please note that this amount might be recalculated and changed when the status of the payment changes. We suggest using the List balance transactions endpoint instead to get more accurate settlement amounts for your payments.
+         * <p>Please note that this amount might be recalculated and changed when the status of the payment changes. We suggest
+         * using the List balance transactions endpoint instead to get more accurate settlement amounts for your payments.
          */
         public Builder settlementAmount(Optional<? extends ListSettlementPaymentsSettlementAmount> settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
@@ -2359,9 +2605,11 @@ public class ListSettlementPaymentsPayments {
         /**
          * The URL your customer will be redirected to after the payment process.
          * 
-         * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the right page referencing the order when your customer returns.
+         * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
+         * right page referencing the order when your customer returns.
          * 
-         * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
+         * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for
+         * Apple Pay payments with an `applePayPaymentToken`.
          */
         public Builder redirectUrl(String redirectUrl) {
             Utils.checkNotNull(redirectUrl, "redirectUrl");
@@ -2372,9 +2620,11 @@ public class ListSettlementPaymentsPayments {
         /**
          * The URL your customer will be redirected to after the payment process.
          * 
-         * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the right page referencing the order when your customer returns.
+         * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
+         * right page referencing the order when your customer returns.
          * 
-         * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for Apple Pay payments with an `applePayPaymentToken`.
+         * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for
+         * Apple Pay payments with an `applePayPaymentToken`.
          */
         public Builder redirectUrl(JsonNullable<String> redirectUrl) {
             Utils.checkNotNull(redirectUrl, "redirectUrl");
@@ -2384,9 +2634,12 @@ public class ListSettlementPaymentsPayments {
 
 
         /**
-         * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not provided, the customer will be redirected to the `redirectUrl` instead — see above.
+         * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not
+         * provided, the customer will be redirected to the `redirectUrl` instead — see above.
          * 
-         * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle payment cancellations.
+         * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is
+         * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle
+         * payment cancellations.
          */
         public Builder cancelUrl(String cancelUrl) {
             Utils.checkNotNull(cancelUrl, "cancelUrl");
@@ -2395,9 +2648,12 @@ public class ListSettlementPaymentsPayments {
         }
 
         /**
-         * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not provided, the customer will be redirected to the `redirectUrl` instead — see above.
+         * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not
+         * provided, the customer will be redirected to the `redirectUrl` instead — see above.
          * 
-         * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle payment cancellations.
+         * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is
+         * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle
+         * payment cancellations.
          */
         public Builder cancelUrl(JsonNullable<String> cancelUrl) {
             Utils.checkNotNull(cancelUrl, "cancelUrl");
@@ -2411,7 +2667,9 @@ public class ListSettlementPaymentsPayments {
          * 
          * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to your payment.
          * 
-         * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your local machine.
+         * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
+         * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+         * local machine.
          */
         public Builder webhookUrl(String webhookUrl) {
             Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -2424,7 +2682,9 @@ public class ListSettlementPaymentsPayments {
          * 
          * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to your payment.
          * 
-         * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your local machine.
+         * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
+         * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+         * local machine.
          */
         public Builder webhookUrl(JsonNullable<String> webhookUrl) {
             Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -2434,7 +2694,8 @@ public class ListSettlementPaymentsPayments {
 
 
         /**
-         * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+         * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+         * ordered and its price.
          * 
          * <p>All lines must have the same currency as the payment.
          * 
@@ -2447,7 +2708,8 @@ public class ListSettlementPaymentsPayments {
         }
 
         /**
-         * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+         * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+         * ordered and its price.
          * 
          * <p>All lines must have the same currency as the payment.
          * 
@@ -2461,9 +2723,11 @@ public class ListSettlementPaymentsPayments {
 
 
         /**
-         * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+         * The customer's billing address details. We advise to provide these details to improve fraud protection and
+         * conversion.
          * 
-         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+         * `country`.
          * 
          * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
          */
@@ -2474,9 +2738,11 @@ public class ListSettlementPaymentsPayments {
         }
 
         /**
-         * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+         * The customer's billing address details. We advise to provide these details to improve fraud protection and
+         * conversion.
          * 
-         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+         * `country`.
          * 
          * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
          */
@@ -2488,9 +2754,11 @@ public class ListSettlementPaymentsPayments {
 
 
         /**
-         * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+         * The customer's shipping address details. We advise to provide these details to improve fraud protection and
+         * conversion.
          * 
-         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+         * `country`.
          */
         public Builder shippingAddress(ListSettlementPaymentsShippingAddress shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
@@ -2499,9 +2767,11 @@ public class ListSettlementPaymentsPayments {
         }
 
         /**
-         * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+         * The customer's shipping address details. We advise to provide these details to improve fraud protection and
+         * conversion.
          * 
-         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+         * `country`.
          */
         public Builder shippingAddress(Optional<? extends ListSettlementPaymentsShippingAddress> shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
@@ -2511,22 +2781,32 @@ public class ListSettlementPaymentsPayments {
 
 
         /**
-         * Allows you to preset the language to be used in the hosted payment pages shown to the customer. Setting a locale is highly recommended and will greatly improve your conversion rate. When this parameter is omitted the browser language will be used instead if supported by the payment method. You can provide any `xx_XX` format ISO 15897 locale, but our hosted payment pages currently only support the specified languages.
+         * Allows you to preset the language to be used in the hosted payment pages shown to the customer. Setting a locale
+         * is highly recommended and will greatly improve your conversion rate. When this parameter is omitted the browser
+         * language will be used instead if supported by the payment method. You can provide any `xx_XX` format ISO 15897
+         * locale, but our hosted payment pages currently only support the specified languages.
          * 
-         * <p>For bank transfer payments specifically, the locale will determine the target bank account the customer has to transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the customer use a local bank account greatly increases the conversion and speed of payment.
+         * <p>For bank transfer payments specifically, the locale will determine the target bank account the customer has to
+         * transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the
+         * customer use a local bank account greatly increases the conversion and speed of payment.
          */
-        public Builder locale(String locale) {
+        public Builder locale(ListSettlementPaymentsLocale locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = JsonNullable.of(locale);
             return this;
         }
 
         /**
-         * Allows you to preset the language to be used in the hosted payment pages shown to the customer. Setting a locale is highly recommended and will greatly improve your conversion rate. When this parameter is omitted the browser language will be used instead if supported by the payment method. You can provide any `xx_XX` format ISO 15897 locale, but our hosted payment pages currently only support the specified languages.
+         * Allows you to preset the language to be used in the hosted payment pages shown to the customer. Setting a locale
+         * is highly recommended and will greatly improve your conversion rate. When this parameter is omitted the browser
+         * language will be used instead if supported by the payment method. You can provide any `xx_XX` format ISO 15897
+         * locale, but our hosted payment pages currently only support the specified languages.
          * 
-         * <p>For bank transfer payments specifically, the locale will determine the target bank account the customer has to transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the customer use a local bank account greatly increases the conversion and speed of payment.
+         * <p>For bank transfer payments specifically, the locale will determine the target bank account the customer has to
+         * transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the
+         * customer use a local bank account greatly increases the conversion and speed of payment.
          */
-        public Builder locale(JsonNullable<String> locale) {
+        public Builder locale(JsonNullable<? extends ListSettlementPaymentsLocale> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;
@@ -2534,7 +2814,8 @@ public class ListSettlementPaymentsPayments {
 
 
         /**
-         * This optional field contains your customer's ISO 3166-1 alpha-2 country code, detected by us during checkout. This field is omitted if the country code was not detected.
+         * This optional field contains your customer's ISO 3166-1 alpha-2 country code, detected by us during checkout. This
+         * field is omitted if the country code was not detected.
          */
         public Builder countryCode(String countryCode) {
             Utils.checkNotNull(countryCode, "countryCode");
@@ -2543,7 +2824,8 @@ public class ListSettlementPaymentsPayments {
         }
 
         /**
-         * This optional field contains your customer's ISO 3166-1 alpha-2 country code, detected by us during checkout. This field is omitted if the country code was not detected.
+         * This optional field contains your customer's ISO 3166-1 alpha-2 country code, detected by us during checkout. This
+         * field is omitted if the country code was not detected.
          */
         public Builder countryCode(JsonNullable<String> countryCode) {
             Utils.checkNotNull(countryCode, "countryCode");
@@ -2553,18 +2835,20 @@ public class ListSettlementPaymentsPayments {
 
 
         /**
-         * The payment method used for this transaction. If a specific method was selected during payment initialization, this field reflects that choice.
+         * The payment method used for this transaction. If a specific method was selected during payment initialization,
+         * this field reflects that choice.
          */
-        public Builder method(String method) {
+        public Builder method(ListSettlementPaymentsMethod method) {
             Utils.checkNotNull(method, "method");
             this.method = JsonNullable.of(method);
             return this;
         }
 
         /**
-         * The payment method used for this transaction. If a specific method was selected during payment initialization, this field reflects that choice.
+         * The payment method used for this transaction. If a specific method was selected during payment initialization,
+         * this field reflects that choice.
          */
-        public Builder method(JsonNullable<String> method) {
+        public Builder method(JsonNullable<? extends ListSettlementPaymentsMethod> method) {
             Utils.checkNotNull(method, "method");
             this.method = method;
             return this;
@@ -2572,7 +2856,8 @@ public class ListSettlementPaymentsPayments {
 
 
         /**
-         * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT rates you have used for the order to ensure your customer's country matches the VAT country.
+         * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT
+         * rates you have used for the order to ensure your customer's country matches the VAT country.
          * 
          * <p>Use this parameter to restrict the payment methods available to your customer to those from a single country.
          * 
@@ -2587,7 +2872,8 @@ public class ListSettlementPaymentsPayments {
         }
 
         /**
-         * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT rates you have used for the order to ensure your customer's country matches the VAT country.
+         * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT
+         * rates you have used for the order to ensure your customer's country matches the VAT country.
          * 
          * <p>Use this parameter to restrict the payment methods available to your customer to those from a single country.
          * 
@@ -2603,7 +2889,8 @@ public class ListSettlementPaymentsPayments {
 
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
         public Builder metadata(ListSettlementPaymentsMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -2612,7 +2899,8 @@ public class ListSettlementPaymentsPayments {
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
         public Builder metadata(JsonNullable<? extends ListSettlementPaymentsMetadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -2622,26 +2910,24 @@ public class ListSettlementPaymentsPayments {
 
 
         /**
-         * Indicate if the funds should be captured immediately or if you want to [place a hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/) and capture at a later time.
+         * Indicate if the funds should be captured immediately or if you want to [place a hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/) 
+         * and capture at a later time.
          * 
          * <p>This field needs to be set to `manual` for method `riverty`.
-         * 
-         * <p>Possible values: `automatic` `manual` (default: `automatic`)
          */
-        public Builder captureMode(String captureMode) {
+        public Builder captureMode(ListSettlementPaymentsCaptureMode captureMode) {
             Utils.checkNotNull(captureMode, "captureMode");
             this.captureMode = JsonNullable.of(captureMode);
             return this;
         }
 
         /**
-         * Indicate if the funds should be captured immediately or if you want to [place a hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/) and capture at a later time.
+         * Indicate if the funds should be captured immediately or if you want to [place a hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/) 
+         * and capture at a later time.
          * 
          * <p>This field needs to be set to `manual` for method `riverty`.
-         * 
-         * <p>Possible values: `automatic` `manual` (default: `automatic`)
          */
-        public Builder captureMode(JsonNullable<String> captureMode) {
+        public Builder captureMode(JsonNullable<? extends ListSettlementPaymentsCaptureMode> captureMode) {
             Utils.checkNotNull(captureMode, "captureMode");
             this.captureMode = captureMode;
             return this;
@@ -2651,17 +2937,18 @@ public class ListSettlementPaymentsPayments {
         /**
          * **Only relevant if you wish to manage authorization and capturing separately.**
          * 
-         * <p>Some payment methods allow placing a hold on the card or bank account. This hold or 'authorization' can then at a later point either be 'captured' or canceled.
+         * <p>Some payment methods allow placing a hold on the card or bank account. This hold or 'authorization' can then at a
+         * later point either be 'captured' or canceled.
          * 
-         * <p>By default, we charge the customer's card or bank account immediately when they complete the payment. If you set a capture delay however, we will delay the automatic capturing of the payment for the specified amount of time. For example `8 hours` or `2 days`.
+         * <p>By default, we charge the customer's card or bank account immediately when they complete the payment. If you set a
+         * capture delay however, we will delay the automatic capturing of the payment for the specified amount of time. For
+         * example `8 hours` or `2 days`.
          * 
          * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
          * 
          * <p>The maximum delay is 7 days (168 hours).
-         * 
-         * <p>Possible values: `... hours` `... days`
          */
-        public Builder captureDelay(String captureDelay) {
+        public Builder captureDelay(ListSettlementPaymentsCaptureDelay captureDelay) {
             Utils.checkNotNull(captureDelay, "captureDelay");
             this.captureDelay = JsonNullable.of(captureDelay);
             return this;
@@ -2670,17 +2957,18 @@ public class ListSettlementPaymentsPayments {
         /**
          * **Only relevant if you wish to manage authorization and capturing separately.**
          * 
-         * <p>Some payment methods allow placing a hold on the card or bank account. This hold or 'authorization' can then at a later point either be 'captured' or canceled.
+         * <p>Some payment methods allow placing a hold on the card or bank account. This hold or 'authorization' can then at a
+         * later point either be 'captured' or canceled.
          * 
-         * <p>By default, we charge the customer's card or bank account immediately when they complete the payment. If you set a capture delay however, we will delay the automatic capturing of the payment for the specified amount of time. For example `8 hours` or `2 days`.
+         * <p>By default, we charge the customer's card or bank account immediately when they complete the payment. If you set a
+         * capture delay however, we will delay the automatic capturing of the payment for the specified amount of time. For
+         * example `8 hours` or `2 days`.
          * 
          * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
          * 
          * <p>The maximum delay is 7 days (168 hours).
-         * 
-         * <p>Possible values: `... hours` `... days`
          */
-        public Builder captureDelay(JsonNullable<String> captureDelay) {
+        public Builder captureDelay(JsonNullable<? extends ListSettlementPaymentsCaptureDelay> captureDelay) {
             Utils.checkNotNull(captureDelay, "captureDelay");
             this.captureDelay = captureDelay;
             return this;
@@ -2688,7 +2976,8 @@ public class ListSettlementPaymentsPayments {
 
 
         /**
-         * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
+         * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we
+         * can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
          */
         public Builder captureBefore(String captureBefore) {
             Utils.checkNotNull(captureBefore, "captureBefore");
@@ -2697,7 +2986,8 @@ public class ListSettlementPaymentsPayments {
         }
 
         /**
-         * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
+         * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we
+         * can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
          */
         public Builder captureBefore(JsonNullable<String> captureBefore) {
             Utils.checkNotNull(captureBefore, "captureBefore");
@@ -2707,11 +2997,15 @@ public class ListSettlementPaymentsPayments {
 
 
         /**
-         * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
+         * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+         * merchants.
          * 
-         * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using this `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's balance and sent to your own account balance.
+         * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using this
+         * `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's balance and sent
+         * to your own account balance.
          * 
-         * <p>If instead you want to split a payment on your own account between yourself and a connected merchant, refer to the `routing` parameter.
+         * <p>If instead you want to split a payment on your own account between yourself and a connected merchant, refer to the
+         * `routing` parameter.
          */
         public Builder applicationFee(ListSettlementPaymentsApplicationFee applicationFee) {
             Utils.checkNotNull(applicationFee, "applicationFee");
@@ -2720,11 +3014,15 @@ public class ListSettlementPaymentsPayments {
         }
 
         /**
-         * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
+         * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+         * merchants.
          * 
-         * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using this `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's balance and sent to your own account balance.
+         * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using this
+         * `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's balance and sent
+         * to your own account balance.
          * 
-         * <p>If instead you want to split a payment on your own account between yourself and a connected merchant, refer to the `routing` parameter.
+         * <p>If instead you want to split a payment on your own account between yourself and a connected merchant, refer to the
+         * `routing` parameter.
          */
         public Builder applicationFee(JsonNullable<? extends ListSettlementPaymentsApplicationFee> applicationFee) {
             Utils.checkNotNull(applicationFee, "applicationFee");
@@ -2736,15 +3034,20 @@ public class ListSettlementPaymentsPayments {
         /**
          * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
          * 
-         * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
+         * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+         * merchants.
          * 
-         * <p>If you create payments on your own account that you want to split between yourself and one or more connected merchants, you can use this `routing` parameter to route the payment accordingly.
+         * <p>If you create payments on your own account that you want to split between yourself and one or more connected
+         * merchants, you can use this `routing` parameter to route the payment accordingly.
          * 
-         * <p>The `routing` parameter should contain an array of objects, with each object describing the destination for a specific portion of the payment.
+         * <p>The `routing` parameter should contain an array of objects, with each object describing the destination for a
+         * specific portion of the payment.
          * 
-         * <p>It is not necessary to indicate in the array which portion goes to yourself. After all portions of the total payment amount have been routed, the amount left will be routed to the current organization automatically.
+         * <p>It is not necessary to indicate in the array which portion goes to yourself. After all portions of the total
+         * payment amount have been routed, the amount left will be routed to the current organization automatically.
          * 
-         * <p>If instead you use OAuth to create payments on a connected merchant's account, refer to the `applicationFee` parameter.
+         * <p>If instead you use OAuth to create payments on a connected merchant's account, refer to the `applicationFee`
+         * parameter.
          */
         public Builder routing(List<ListSettlementPaymentsRouting> routing) {
             Utils.checkNotNull(routing, "routing");
@@ -2755,15 +3058,20 @@ public class ListSettlementPaymentsPayments {
         /**
          * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
          * 
-         * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie merchants.
+         * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+         * merchants.
          * 
-         * <p>If you create payments on your own account that you want to split between yourself and one or more connected merchants, you can use this `routing` parameter to route the payment accordingly.
+         * <p>If you create payments on your own account that you want to split between yourself and one or more connected
+         * merchants, you can use this `routing` parameter to route the payment accordingly.
          * 
-         * <p>The `routing` parameter should contain an array of objects, with each object describing the destination for a specific portion of the payment.
+         * <p>The `routing` parameter should contain an array of objects, with each object describing the destination for a
+         * specific portion of the payment.
          * 
-         * <p>It is not necessary to indicate in the array which portion goes to yourself. After all portions of the total payment amount have been routed, the amount left will be routed to the current organization automatically.
+         * <p>It is not necessary to indicate in the array which portion goes to yourself. After all portions of the total
+         * payment amount have been routed, the amount left will be routed to the current organization automatically.
          * 
-         * <p>If instead you use OAuth to create payments on a connected merchant's account, refer to the `applicationFee` parameter.
+         * <p>If instead you use OAuth to create payments on a connected merchant's account, refer to the `applicationFee`
+         * parameter.
          */
         public Builder routing(JsonNullable<? extends List<ListSettlementPaymentsRouting>> routing) {
             Utils.checkNotNull(routing, "routing");
@@ -2777,19 +3085,21 @@ public class ListSettlementPaymentsPayments {
          * 
          * <p>Indicate which part of a recurring sequence this payment is for.
          * 
-         * <p>Recurring payments can only take place if a mandate is available. A common way to establish such a mandate is through a `first` payment. With a `first` payment, the customer agrees to automatic recurring charges taking place on their account in the future.
+         * <p>Recurring payments can only take place if a mandate is available. A common way to establish such a mandate is
+         * through a `first` payment. With a `first` payment, the customer agrees to automatic recurring charges taking place
+         * on their account in the future.
          * 
          * <p>If set to `recurring`, the customer's card is charged automatically.
          * 
          * <p>Defaults to `oneoff`, which is a regular non-recurring payment.
          * 
-         * <p>For PayPal payments, recurring is only possible if your connected PayPal account allows it. You can call our [Methods API](list-methods) with parameter `sequenceType: first` to discover which payment methods on your account are set up correctly for recurring payments.
-         * 
-         * <p>Possible values: `oneoff` `first` `recurring` (default: `oneoff`)
+         * <p>For PayPal payments, recurring is only possible if your connected PayPal account allows it. You can call our
+         * [Methods API](list-methods) with parameter `sequenceType: first` to discover which payment methods on your account
+         * are set up correctly for recurring payments.
          */
-        public Builder sequenceType(String sequenceType) {
+        public Builder sequenceType(ListSettlementPaymentsSequenceType sequenceType) {
             Utils.checkNotNull(sequenceType, "sequenceType");
-            this.sequenceType = Optional.ofNullable(sequenceType);
+            this.sequenceType = JsonNullable.of(sequenceType);
             return this;
         }
 
@@ -2798,17 +3108,19 @@ public class ListSettlementPaymentsPayments {
          * 
          * <p>Indicate which part of a recurring sequence this payment is for.
          * 
-         * <p>Recurring payments can only take place if a mandate is available. A common way to establish such a mandate is through a `first` payment. With a `first` payment, the customer agrees to automatic recurring charges taking place on their account in the future.
+         * <p>Recurring payments can only take place if a mandate is available. A common way to establish such a mandate is
+         * through a `first` payment. With a `first` payment, the customer agrees to automatic recurring charges taking place
+         * on their account in the future.
          * 
          * <p>If set to `recurring`, the customer's card is charged automatically.
          * 
          * <p>Defaults to `oneoff`, which is a regular non-recurring payment.
          * 
-         * <p>For PayPal payments, recurring is only possible if your connected PayPal account allows it. You can call our [Methods API](list-methods) with parameter `sequenceType: first` to discover which payment methods on your account are set up correctly for recurring payments.
-         * 
-         * <p>Possible values: `oneoff` `first` `recurring` (default: `oneoff`)
+         * <p>For PayPal payments, recurring is only possible if your connected PayPal account allows it. You can call our
+         * [Methods API](list-methods) with parameter `sequenceType: first` to discover which payment methods on your account
+         * are set up correctly for recurring payments.
          */
-        public Builder sequenceType(Optional<String> sequenceType) {
+        public Builder sequenceType(JsonNullable<? extends ListSettlementPaymentsSequenceType> sequenceType) {
             Utils.checkNotNull(sequenceType, "sequenceType");
             this.sequenceType = sequenceType;
             return this;
@@ -2816,7 +3128,8 @@ public class ListSettlementPaymentsPayments {
 
 
         /**
-         * If the payment was automatically created via a subscription, the ID of the [subscription](get-subscription) will be added to the response.
+         * If the payment was automatically created via a subscription, the ID of the [subscription](get-subscription) will
+         * be added to the response.
          */
         public Builder subscriptionId(String subscriptionId) {
             Utils.checkNotNull(subscriptionId, "subscriptionId");
@@ -2825,7 +3138,8 @@ public class ListSettlementPaymentsPayments {
         }
 
         /**
-         * If the payment was automatically created via a subscription, the ID of the [subscription](get-subscription) will be added to the response.
+         * If the payment was automatically created via a subscription, the ID of the [subscription](get-subscription) will
+         * be added to the response.
          */
         public Builder subscriptionId(JsonNullable<String> subscriptionId) {
             Utils.checkNotNull(subscriptionId, "subscriptionId");
@@ -2837,7 +3151,8 @@ public class ListSettlementPaymentsPayments {
         /**
          * **Only relevant for recurring payments.**
          * 
-         * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to indicate which of the customer's accounts should be credited.
+         * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to indicate which of
+         * the customer's accounts should be credited.
          */
         public Builder mandateId(String mandateId) {
             Utils.checkNotNull(mandateId, "mandateId");
@@ -2848,7 +3163,8 @@ public class ListSettlementPaymentsPayments {
         /**
          * **Only relevant for recurring payments.**
          * 
-         * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to indicate which of the customer's accounts should be credited.
+         * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to indicate which of
+         * the customer's accounts should be credited.
          */
         public Builder mandateId(JsonNullable<String> mandateId) {
             Utils.checkNotNull(mandateId, "mandateId");
@@ -2858,7 +3174,8 @@ public class ListSettlementPaymentsPayments {
 
 
         /**
-         * The ID of the [customer](get-customer) the payment is being created for. This is used primarily for recurring payments, but can also be used on regular payments to enable single-click payments.
+         * The ID of the [customer](get-customer) the payment is being created for. This is used primarily for recurring
+         * payments, but can also be used on regular payments to enable single-click payments.
          * 
          * <p>If `sequenceType` is set to `recurring`, this field is required.
          */
@@ -2869,7 +3186,8 @@ public class ListSettlementPaymentsPayments {
         }
 
         /**
-         * The ID of the [customer](get-customer) the payment is being created for. This is used primarily for recurring payments, but can also be used on regular payments to enable single-click payments.
+         * The ID of the [customer](get-customer) the payment is being created for. This is used primarily for recurring
+         * payments, but can also be used on regular payments to enable single-click payments.
          * 
          * <p>If `sequenceType` is set to `recurring`, this field is required.
          */
@@ -2883,7 +3201,8 @@ public class ListSettlementPaymentsPayments {
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
-         * <p>When using an API Key, the `profileId` can be omitted since it is linked to the key. However, for OAuth and Organization tokens, the `profileId` is required.
+         * <p>When using an API Key, the `profileId` can be omitted since it is linked to the key. However, for OAuth and
+         * Organization tokens, the `profileId` is required.
          * 
          * <p>For more information, see [Authentication](authentication).
          */
@@ -2933,11 +3252,10 @@ public class ListSettlementPaymentsPayments {
 
 
         /**
-         * The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which statuses occur at what point.
-         * 
-         * <p>Possible values: `open` `pending` `authorized` `paid` `canceled` `expired` `failed`
+         * The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
+         * statuses occur at what point.
          */
-        public Builder status(String status) {
+        public Builder status(ListSettlementPaymentsStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -2945,9 +3263,11 @@ public class ListSettlementPaymentsPayments {
 
 
         /**
-         * This object offers details about the status of a payment. Currently it is only available for point-of-sale payments.
+         * This object offers details about the status of a payment. Currently it is only available for point-of-sale
+         * payments.
          * 
-         * <p>You can find more information about the possible values of this object on [this page](status-reasons).**
+         * <p>You can find more information about the possible values of this object on
+         * [this page](status-reasons).**
          */
         public Builder statusReason(ListSettlementPaymentsStatusReason statusReason) {
             Utils.checkNotNull(statusReason, "statusReason");
@@ -2956,9 +3276,11 @@ public class ListSettlementPaymentsPayments {
         }
 
         /**
-         * This object offers details about the status of a payment. Currently it is only available for point-of-sale payments.
+         * This object offers details about the status of a payment. Currently it is only available for point-of-sale
+         * payments.
          * 
-         * <p>You can find more information about the possible values of this object on [this page](status-reasons).**
+         * <p>You can find more information about the possible values of this object on
+         * [this page](status-reasons).**
          */
         public Builder statusReason(JsonNullable<? extends ListSettlementPaymentsStatusReason> statusReason) {
             Utils.checkNotNull(statusReason, "statusReason");
@@ -2987,7 +3309,9 @@ public class ListSettlementPaymentsPayments {
 
 
         /**
-         * An object containing payment details collected during the payment process. For example, details may include the customer's card or bank details and a payment reference. For the full list of details, please refer to the [method-specific parameters](extra-payment-parameters) guide.
+         * An object containing payment details collected during the payment process. For example, details may include the
+         * customer's card or bank details and a payment reference. For the full list of details, please refer to the
+         * [method-specific parameters](extra-payment-parameters) guide.
          */
         public Builder details(Map<String, Object> details) {
             Utils.checkNotNull(details, "details");
@@ -2996,7 +3320,9 @@ public class ListSettlementPaymentsPayments {
         }
 
         /**
-         * An object containing payment details collected during the payment process. For example, details may include the customer's card or bank details and a payment reference. For the full list of details, please refer to the [method-specific parameters](extra-payment-parameters) guide.
+         * An object containing payment details collected during the payment process. For example, details may include the
+         * customer's card or bank details and a payment reference. For the full list of details, please refer to the
+         * [method-specific parameters](extra-payment-parameters) guide.
          */
         public Builder details(JsonNullable<? extends Map<String, Object>> details) {
             Utils.checkNotNull(details, "details");
@@ -3016,7 +3342,8 @@ public class ListSettlementPaymentsPayments {
 
 
         /**
-         * The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if the payment is not authorized (yet).
+         * The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if the payment is
+         * not authorized (yet).
          */
         public Builder authorizedAt(String authorizedAt) {
             Utils.checkNotNull(authorizedAt, "authorizedAt");
@@ -3025,7 +3352,8 @@ public class ListSettlementPaymentsPayments {
         }
 
         /**
-         * The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if the payment is not authorized (yet).
+         * The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if the payment is
+         * not authorized (yet).
          */
         public Builder authorizedAt(JsonNullable<String> authorizedAt) {
             Utils.checkNotNull(authorizedAt, "authorizedAt");
@@ -3035,7 +3363,8 @@ public class ListSettlementPaymentsPayments {
 
 
         /**
-         * The date and time the payment became paid, in ISO 8601 format. This parameter is omitted if the payment is not completed (yet).
+         * The date and time the payment became paid, in ISO 8601 format. This parameter is omitted if the payment is not
+         * completed (yet).
          */
         public Builder paidAt(String paidAt) {
             Utils.checkNotNull(paidAt, "paidAt");
@@ -3044,7 +3373,8 @@ public class ListSettlementPaymentsPayments {
         }
 
         /**
-         * The date and time the payment became paid, in ISO 8601 format. This parameter is omitted if the payment is not completed (yet).
+         * The date and time the payment became paid, in ISO 8601 format. This parameter is omitted if the payment is not
+         * completed (yet).
          */
         public Builder paidAt(JsonNullable<String> paidAt) {
             Utils.checkNotNull(paidAt, "paidAt");
@@ -3054,7 +3384,8 @@ public class ListSettlementPaymentsPayments {
 
 
         /**
-         * The date and time the payment was canceled, in ISO 8601 format. This parameter is omitted if the payment is not canceled (yet).
+         * The date and time the payment was canceled, in ISO 8601 format. This parameter is omitted if the payment is not
+         * canceled (yet).
          */
         public Builder canceledAt(String canceledAt) {
             Utils.checkNotNull(canceledAt, "canceledAt");
@@ -3063,7 +3394,8 @@ public class ListSettlementPaymentsPayments {
         }
 
         /**
-         * The date and time the payment was canceled, in ISO 8601 format. This parameter is omitted if the payment is not canceled (yet).
+         * The date and time the payment was canceled, in ISO 8601 format. This parameter is omitted if the payment is not
+         * canceled (yet).
          */
         public Builder canceledAt(JsonNullable<String> canceledAt) {
             Utils.checkNotNull(canceledAt, "canceledAt");
@@ -3073,7 +3405,8 @@ public class ListSettlementPaymentsPayments {
 
 
         /**
-         * The date and time the payment will expire, in ISO 8601 format. This parameter is omitted if the payment can no longer expire.
+         * The date and time the payment will expire, in ISO 8601 format. This parameter is omitted if the payment can no
+         * longer expire.
          */
         public Builder expiresAt(String expiresAt) {
             Utils.checkNotNull(expiresAt, "expiresAt");
@@ -3082,7 +3415,8 @@ public class ListSettlementPaymentsPayments {
         }
 
         /**
-         * The date and time the payment will expire, in ISO 8601 format. This parameter is omitted if the payment can no longer expire.
+         * The date and time the payment will expire, in ISO 8601 format. This parameter is omitted if the payment can no
+         * longer expire.
          */
         public Builder expiresAt(JsonNullable<String> expiresAt) {
             Utils.checkNotNull(expiresAt, "expiresAt");
@@ -3092,7 +3426,8 @@ public class ListSettlementPaymentsPayments {
 
 
         /**
-         * The date and time the payment was expired, in ISO 8601 format. This parameter is omitted if the payment did not expire (yet).
+         * The date and time the payment was expired, in ISO 8601 format. This parameter is omitted if the payment did not
+         * expire (yet).
          */
         public Builder expiredAt(String expiredAt) {
             Utils.checkNotNull(expiredAt, "expiredAt");
@@ -3101,7 +3436,8 @@ public class ListSettlementPaymentsPayments {
         }
 
         /**
-         * The date and time the payment was expired, in ISO 8601 format. This parameter is omitted if the payment did not expire (yet).
+         * The date and time the payment was expired, in ISO 8601 format. This parameter is omitted if the payment did not
+         * expire (yet).
          */
         public Builder expiredAt(JsonNullable<String> expiredAt) {
             Utils.checkNotNull(expiredAt, "expiredAt");
@@ -3111,7 +3447,8 @@ public class ListSettlementPaymentsPayments {
 
 
         /**
-         * The date and time the payment failed, in ISO 8601 format. This parameter is omitted if the payment did not fail (yet).
+         * The date and time the payment failed, in ISO 8601 format. This parameter is omitted if the payment did not fail
+         * (yet).
          */
         public Builder failedAt(String failedAt) {
             Utils.checkNotNull(failedAt, "failedAt");
@@ -3120,7 +3457,8 @@ public class ListSettlementPaymentsPayments {
         }
 
         /**
-         * The date and time the payment failed, in ISO 8601 format. This parameter is omitted if the payment did not fail (yet).
+         * The date and time the payment failed, in ISO 8601 format. This parameter is omitted if the payment did not fail
+         * (yet).
          */
         public Builder failedAt(JsonNullable<String> failedAt) {
             Utils.checkNotNull(failedAt, "failedAt");
@@ -3139,6 +3477,12 @@ public class ListSettlementPaymentsPayments {
         }
 
         public ListSettlementPaymentsPayments build() {
+            if (captureMode == null) {
+                captureMode = _SINGLETON_VALUE_CaptureMode.value();
+            }
+            if (sequenceType == null) {
+                sequenceType = _SINGLETON_VALUE_SequenceType.value();
+            }
 
             return new ListSettlementPaymentsPayments(
                 resource, id, mode,
@@ -3158,5 +3502,17 @@ public class ListSettlementPaymentsPayments {
                 expiredAt, failedAt, links);
         }
 
+
+        private static final LazySingletonValue<JsonNullable<? extends ListSettlementPaymentsCaptureMode>> _SINGLETON_VALUE_CaptureMode =
+                new LazySingletonValue<>(
+                        "captureMode",
+                        "\"automatic\"",
+                        new TypeReference<JsonNullable<? extends ListSettlementPaymentsCaptureMode>>() {});
+
+        private static final LazySingletonValue<JsonNullable<? extends ListSettlementPaymentsSequenceType>> _SINGLETON_VALUE_SequenceType =
+                new LazySingletonValue<>(
+                        "sequenceType",
+                        "\"oneoff\"",
+                        new TypeReference<JsonNullable<? extends ListSettlementPaymentsSequenceType>>() {});
     }
 }

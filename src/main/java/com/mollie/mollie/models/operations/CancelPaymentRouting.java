@@ -22,18 +22,17 @@ public class CancelPaymentRouting {
     private String resource;
 
     /**
-     * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID. Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID.
+     * Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
      */
     @JsonProperty("id")
     private String id;
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
     @JsonProperty("mode")
-    private String mode;
+    private CancelPaymentPaymentsMode mode;
 
     /**
      * The portion of the total payment amount being routed. Currently only `EUR` payments can be routed.
@@ -54,7 +53,8 @@ public class CancelPaymentRouting {
     private String createdAt;
 
     /**
-     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
+     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+     * date must be given in `YYYY-MM-DD` format.
      * 
      * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
      */
@@ -72,7 +72,7 @@ public class CancelPaymentRouting {
     public CancelPaymentRouting(
             @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
-            @JsonProperty("mode") String mode,
+            @JsonProperty("mode") CancelPaymentPaymentsMode mode,
             @JsonProperty("amount") CancelPaymentPaymentsResponseAmount amount,
             @JsonProperty("destination") CancelPaymentDestination destination,
             @JsonProperty("createdAt") String createdAt,
@@ -99,7 +99,7 @@ public class CancelPaymentRouting {
     public CancelPaymentRouting(
             String resource,
             String id,
-            String mode,
+            CancelPaymentPaymentsMode mode,
             CancelPaymentPaymentsResponseAmount amount,
             CancelPaymentDestination destination,
             String createdAt,
@@ -118,7 +118,8 @@ public class CancelPaymentRouting {
     }
 
     /**
-     * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID. Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID.
+     * Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
      */
     @JsonIgnore
     public String id() {
@@ -127,11 +128,9 @@ public class CancelPaymentRouting {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
     @JsonIgnore
-    public String mode() {
+    public CancelPaymentPaymentsMode mode() {
         return mode;
     }
 
@@ -160,7 +159,8 @@ public class CancelPaymentRouting {
     }
 
     /**
-     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
+     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+     * date must be given in `YYYY-MM-DD` format.
      * 
      * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
      */
@@ -192,7 +192,8 @@ public class CancelPaymentRouting {
     }
 
     /**
-     * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID. Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID.
+     * Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
      */
     public CancelPaymentRouting withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -202,10 +203,8 @@ public class CancelPaymentRouting {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
-    public CancelPaymentRouting withMode(String mode) {
+    public CancelPaymentRouting withMode(CancelPaymentPaymentsMode mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
@@ -239,7 +238,8 @@ public class CancelPaymentRouting {
     }
 
     /**
-     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
+     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+     * date must be given in `YYYY-MM-DD` format.
      * 
      * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
      */
@@ -250,7 +250,8 @@ public class CancelPaymentRouting {
     }
 
     /**
-     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
+     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+     * date must be given in `YYYY-MM-DD` format.
      * 
      * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
      */
@@ -317,7 +318,7 @@ public class CancelPaymentRouting {
 
         private String id;
 
-        private String mode;
+        private CancelPaymentPaymentsMode mode;
 
         private CancelPaymentPaymentsResponseAmount amount;
 
@@ -345,7 +346,8 @@ public class CancelPaymentRouting {
 
 
         /**
-         * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID. Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
+         * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID.
+         * Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -356,10 +358,8 @@ public class CancelPaymentRouting {
 
         /**
          * Whether this entity was created in live mode or in test mode.
-         * 
-         * <p>Possible values: `live` `test`
          */
-        public Builder mode(String mode) {
+        public Builder mode(CancelPaymentPaymentsMode mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
@@ -397,7 +397,8 @@ public class CancelPaymentRouting {
 
 
         /**
-         * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
+         * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+         * date must be given in `YYYY-MM-DD` format.
          * 
          * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
          */
@@ -408,7 +409,8 @@ public class CancelPaymentRouting {
         }
 
         /**
-         * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
+         * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+         * date must be given in `YYYY-MM-DD` format.
          * 
          * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
          */

@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
@@ -22,12 +24,10 @@ public class ListAllSubscriptionsLines {
      * The type of product purchased. For example, a physical or a digital product.
      * 
      * <p>The `tip` payment line type is not available when creating a payment.
-     * 
-     * <p>Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` `tip` (default: `physical`)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<String> type;
+    private Optional<? extends ListAllSubscriptionsType> type;
 
     /**
      * A description of the line item. For example *LEGO 4440 Forest Police Station*.
@@ -61,7 +61,8 @@ public class ListAllSubscriptionsLines {
     private ListAllSubscriptionsUnitPrice unitPrice;
 
     /**
-     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
+     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
+     * type.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("discountAmount")
@@ -78,18 +79,21 @@ public class ListAllSubscriptionsLines {
     private ListAllSubscriptionsTotalAmount totalAmount;
 
     /**
-     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
+     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
+     * not as a float, to ensure the correct number of decimals are passed.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatRate")
     private Optional<String> vatRate;
 
     /**
-     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
+     * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
      * 
      * <p>Any deviations from this will result in an error.
      * 
-     * <p>For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
+     * <p>For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
+     * `SEK 100.00 × (25 / 125) = SEK 20.00`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatAmount")
@@ -103,7 +107,8 @@ public class ListAllSubscriptionsLines {
     private Optional<String> sku;
 
     /**
-     * An array with the voucher categories, in case of a line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * An array with the voucher categories, in case of a line eligible for a voucher. See the
+     * [Integrating Vouchers](integrating-vouchers) guide for more information.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("categories")
@@ -124,7 +129,8 @@ public class ListAllSubscriptionsLines {
     private Optional<String> productUrl;
 
     /**
-     * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
+     * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout
+     * to inform the shopper of the details for recurring products in the payments.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("recurring")
@@ -132,7 +138,7 @@ public class ListAllSubscriptionsLines {
 
     @JsonCreator
     public ListAllSubscriptionsLines(
-            @JsonProperty("type") Optional<String> type,
+            @JsonProperty("type") Optional<? extends ListAllSubscriptionsType> type,
             @JsonProperty("description") String description,
             @JsonProperty("quantity") long quantity,
             @JsonProperty("quantityUnit") Optional<String> quantityUnit,
@@ -192,12 +198,11 @@ public class ListAllSubscriptionsLines {
      * The type of product purchased. For example, a physical or a digital product.
      * 
      * <p>The `tip` payment line type is not available when creating a payment.
-     * 
-     * <p>Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` `tip` (default: `physical`)
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> type() {
-        return type;
+    public Optional<ListAllSubscriptionsType> type() {
+        return (Optional<ListAllSubscriptionsType>) type;
     }
 
     /**
@@ -239,7 +244,8 @@ public class ListAllSubscriptionsLines {
     }
 
     /**
-     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
+     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
+     * type.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -260,7 +266,8 @@ public class ListAllSubscriptionsLines {
     }
 
     /**
-     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
+     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
+     * not as a float, to ensure the correct number of decimals are passed.
      */
     @JsonIgnore
     public Optional<String> vatRate() {
@@ -268,11 +275,13 @@ public class ListAllSubscriptionsLines {
     }
 
     /**
-     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
+     * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
      * 
      * <p>Any deviations from this will result in an error.
      * 
-     * <p>For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
+     * <p>For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
+     * `SEK 100.00 × (25 / 125) = SEK 20.00`.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -289,7 +298,8 @@ public class ListAllSubscriptionsLines {
     }
 
     /**
-     * An array with the voucher categories, in case of a line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * An array with the voucher categories, in case of a line eligible for a voucher. See the
+     * [Integrating Vouchers](integrating-vouchers) guide for more information.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -314,7 +324,8 @@ public class ListAllSubscriptionsLines {
     }
 
     /**
-     * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
+     * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout
+     * to inform the shopper of the details for recurring products in the payments.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -331,10 +342,8 @@ public class ListAllSubscriptionsLines {
      * The type of product purchased. For example, a physical or a digital product.
      * 
      * <p>The `tip` payment line type is not available when creating a payment.
-     * 
-     * <p>Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` `tip` (default: `physical`)
      */
-    public ListAllSubscriptionsLines withType(String type) {
+    public ListAllSubscriptionsLines withType(ListAllSubscriptionsType type) {
         Utils.checkNotNull(type, "type");
         this.type = Optional.ofNullable(type);
         return this;
@@ -345,10 +354,8 @@ public class ListAllSubscriptionsLines {
      * The type of product purchased. For example, a physical or a digital product.
      * 
      * <p>The `tip` payment line type is not available when creating a payment.
-     * 
-     * <p>Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` `tip` (default: `physical`)
      */
-    public ListAllSubscriptionsLines withType(Optional<String> type) {
+    public ListAllSubscriptionsLines withType(Optional<? extends ListAllSubscriptionsType> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -407,7 +414,8 @@ public class ListAllSubscriptionsLines {
     }
 
     /**
-     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
+     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
+     * type.
      */
     public ListAllSubscriptionsLines withDiscountAmount(ListAllSubscriptionsDiscountAmount discountAmount) {
         Utils.checkNotNull(discountAmount, "discountAmount");
@@ -417,7 +425,8 @@ public class ListAllSubscriptionsLines {
 
 
     /**
-     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
+     * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
+     * type.
      */
     public ListAllSubscriptionsLines withDiscountAmount(Optional<? extends ListAllSubscriptionsDiscountAmount> discountAmount) {
         Utils.checkNotNull(discountAmount, "discountAmount");
@@ -439,7 +448,8 @@ public class ListAllSubscriptionsLines {
     }
 
     /**
-     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
+     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
+     * not as a float, to ensure the correct number of decimals are passed.
      */
     public ListAllSubscriptionsLines withVatRate(String vatRate) {
         Utils.checkNotNull(vatRate, "vatRate");
@@ -449,7 +459,8 @@ public class ListAllSubscriptionsLines {
 
 
     /**
-     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
+     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
+     * not as a float, to ensure the correct number of decimals are passed.
      */
     public ListAllSubscriptionsLines withVatRate(Optional<String> vatRate) {
         Utils.checkNotNull(vatRate, "vatRate");
@@ -458,11 +469,13 @@ public class ListAllSubscriptionsLines {
     }
 
     /**
-     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
+     * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
      * 
      * <p>Any deviations from this will result in an error.
      * 
-     * <p>For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
+     * <p>For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
+     * `SEK 100.00 × (25 / 125) = SEK 20.00`.
      */
     public ListAllSubscriptionsLines withVatAmount(ListAllSubscriptionsVatAmount vatAmount) {
         Utils.checkNotNull(vatAmount, "vatAmount");
@@ -472,11 +485,13 @@ public class ListAllSubscriptionsLines {
 
 
     /**
-     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+     * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
+     * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
      * 
      * <p>Any deviations from this will result in an error.
      * 
-     * <p>For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
+     * <p>For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
+     * `SEK 100.00 × (25 / 125) = SEK 20.00`.
      */
     public ListAllSubscriptionsLines withVatAmount(Optional<? extends ListAllSubscriptionsVatAmount> vatAmount) {
         Utils.checkNotNull(vatAmount, "vatAmount");
@@ -504,7 +519,8 @@ public class ListAllSubscriptionsLines {
     }
 
     /**
-     * An array with the voucher categories, in case of a line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * An array with the voucher categories, in case of a line eligible for a voucher. See the
+     * [Integrating Vouchers](integrating-vouchers) guide for more information.
      */
     public ListAllSubscriptionsLines withCategories(List<ListAllSubscriptionsCategories> categories) {
         Utils.checkNotNull(categories, "categories");
@@ -514,7 +530,8 @@ public class ListAllSubscriptionsLines {
 
 
     /**
-     * An array with the voucher categories, in case of a line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * An array with the voucher categories, in case of a line eligible for a voucher. See the
+     * [Integrating Vouchers](integrating-vouchers) guide for more information.
      */
     public ListAllSubscriptionsLines withCategories(Optional<? extends List<ListAllSubscriptionsCategories>> categories) {
         Utils.checkNotNull(categories, "categories");
@@ -561,7 +578,8 @@ public class ListAllSubscriptionsLines {
     }
 
     /**
-     * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
+     * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout
+     * to inform the shopper of the details for recurring products in the payments.
      */
     public ListAllSubscriptionsLines withRecurring(ListAllSubscriptionsRecurring recurring) {
         Utils.checkNotNull(recurring, "recurring");
@@ -571,7 +589,8 @@ public class ListAllSubscriptionsLines {
 
 
     /**
-     * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
+     * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout
+     * to inform the shopper of the details for recurring products in the payments.
      */
     public ListAllSubscriptionsLines withRecurring(Optional<? extends ListAllSubscriptionsRecurring> recurring) {
         Utils.checkNotNull(recurring, "recurring");
@@ -637,7 +656,7 @@ public class ListAllSubscriptionsLines {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> type = Optional.empty();
+        private Optional<? extends ListAllSubscriptionsType> type;
 
         private String description;
 
@@ -674,10 +693,8 @@ public class ListAllSubscriptionsLines {
          * The type of product purchased. For example, a physical or a digital product.
          * 
          * <p>The `tip` payment line type is not available when creating a payment.
-         * 
-         * <p>Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` `tip` (default: `physical`)
          */
-        public Builder type(String type) {
+        public Builder type(ListAllSubscriptionsType type) {
             Utils.checkNotNull(type, "type");
             this.type = Optional.ofNullable(type);
             return this;
@@ -687,10 +704,8 @@ public class ListAllSubscriptionsLines {
          * The type of product purchased. For example, a physical or a digital product.
          * 
          * <p>The `tip` payment line type is not available when creating a payment.
-         * 
-         * <p>Possible values: `physical` `digital` `shipping_fee` `discount` `store_credit` `gift_card` `surcharge` `tip` (default: `physical`)
          */
-        public Builder type(Optional<String> type) {
+        public Builder type(Optional<? extends ListAllSubscriptionsType> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
@@ -753,7 +768,8 @@ public class ListAllSubscriptionsLines {
 
 
         /**
-         * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
+         * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
+         * type.
          */
         public Builder discountAmount(ListAllSubscriptionsDiscountAmount discountAmount) {
             Utils.checkNotNull(discountAmount, "discountAmount");
@@ -762,7 +778,8 @@ public class ListAllSubscriptionsLines {
         }
 
         /**
-         * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount type.
+         * Any line-specific discounts, as a positive amount. Not relevant if the line itself is already a discount
+         * type.
          */
         public Builder discountAmount(Optional<? extends ListAllSubscriptionsDiscountAmount> discountAmount) {
             Utils.checkNotNull(discountAmount, "discountAmount");
@@ -786,7 +803,8 @@ public class ListAllSubscriptionsLines {
 
 
         /**
-         * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
+         * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
+         * not as a float, to ensure the correct number of decimals are passed.
          */
         public Builder vatRate(String vatRate) {
             Utils.checkNotNull(vatRate, "vatRate");
@@ -795,7 +813,8 @@ public class ListAllSubscriptionsLines {
         }
 
         /**
-         * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and not as a float, to ensure the correct number of decimals are passed.
+         * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
+         * not as a float, to ensure the correct number of decimals are passed.
          */
         public Builder vatRate(Optional<String> vatRate) {
             Utils.checkNotNull(vatRate, "vatRate");
@@ -805,11 +824,13 @@ public class ListAllSubscriptionsLines {
 
 
         /**
-         * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+         * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
+         * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
          * 
          * <p>Any deviations from this will result in an error.
          * 
-         * <p>For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
+         * <p>For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
+         * `SEK 100.00 × (25 / 125) = SEK 20.00`.
          */
         public Builder vatAmount(ListAllSubscriptionsVatAmount vatAmount) {
             Utils.checkNotNull(vatAmount, "vatAmount");
@@ -818,11 +839,13 @@ public class ListAllSubscriptionsLines {
         }
 
         /**
-         * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+         * The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
+         * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
          * 
          * <p>Any deviations from this will result in an error.
          * 
-         * <p>For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
+         * <p>For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
+         * `SEK 100.00 × (25 / 125) = SEK 20.00`.
          */
         public Builder vatAmount(Optional<? extends ListAllSubscriptionsVatAmount> vatAmount) {
             Utils.checkNotNull(vatAmount, "vatAmount");
@@ -851,7 +874,8 @@ public class ListAllSubscriptionsLines {
 
 
         /**
-         * An array with the voucher categories, in case of a line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+         * An array with the voucher categories, in case of a line eligible for a voucher. See the
+         * [Integrating Vouchers](integrating-vouchers) guide for more information.
          */
         public Builder categories(List<ListAllSubscriptionsCategories> categories) {
             Utils.checkNotNull(categories, "categories");
@@ -860,7 +884,8 @@ public class ListAllSubscriptionsLines {
         }
 
         /**
-         * An array with the voucher categories, in case of a line eligible for a voucher. See the [Integrating Vouchers](integrating-vouchers) guide for more information.
+         * An array with the voucher categories, in case of a line eligible for a voucher. See the
+         * [Integrating Vouchers](integrating-vouchers) guide for more information.
          */
         public Builder categories(Optional<? extends List<ListAllSubscriptionsCategories>> categories) {
             Utils.checkNotNull(categories, "categories");
@@ -908,7 +933,8 @@ public class ListAllSubscriptionsLines {
 
 
         /**
-         * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
+         * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout
+         * to inform the shopper of the details for recurring products in the payments.
          */
         public Builder recurring(ListAllSubscriptionsRecurring recurring) {
             Utils.checkNotNull(recurring, "recurring");
@@ -917,7 +943,8 @@ public class ListAllSubscriptionsLines {
         }
 
         /**
-         * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout to inform the shopper of the details for recurring products in the payments.
+         * The details of subsequent recurring billing cycles. These parameters are used in the Mollie Checkout
+         * to inform the shopper of the details for recurring products in the payments.
          */
         public Builder recurring(Optional<? extends ListAllSubscriptionsRecurring> recurring) {
             Utils.checkNotNull(recurring, "recurring");
@@ -926,6 +953,9 @@ public class ListAllSubscriptionsLines {
         }
 
         public ListAllSubscriptionsLines build() {
+            if (type == null) {
+                type = _SINGLETON_VALUE_Type.value();
+            }
 
             return new ListAllSubscriptionsLines(
                 type, description, quantity,
@@ -935,5 +965,11 @@ public class ListAllSubscriptionsLines {
                 productUrl, recurring);
         }
 
+
+        private static final LazySingletonValue<Optional<? extends ListAllSubscriptionsType>> _SINGLETON_VALUE_Type =
+                new LazySingletonValue<>(
+                        "type",
+                        "\"physical\"",
+                        new TypeReference<Optional<? extends ListAllSubscriptionsType>>() {});
     }
 }

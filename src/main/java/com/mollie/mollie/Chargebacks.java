@@ -40,12 +40,6 @@ public class Chargebacks {
      * 
      * <p>The results are paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public ListChargebacksRequestBuilder list() {
@@ -58,12 +52,6 @@ public class Chargebacks {
      * <p>Retrieve the chargebacks initiated for a specific payment.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -79,12 +67,6 @@ public class Chargebacks {
      * <p>Retrieve the chargebacks initiated for a specific payment.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -102,12 +84,6 @@ public class Chargebacks {
      * 
      * <p>Retrieve a single payment chargeback by its ID and the ID of its parent payment.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public GetChargebackRequestBuilder get() {
@@ -118,12 +94,6 @@ public class Chargebacks {
      * Get payment chargeback
      * 
      * <p>Retrieve a single payment chargeback by its ID and the ID of its parent payment.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.read**](/reference/authentication)
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param chargebackId Provide the ID of the related chargeback.
@@ -140,16 +110,12 @@ public class Chargebacks {
      * 
      * <p>Retrieve a single payment chargeback by its ID and the ID of its parent payment.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.read**](/reference/authentication)
-     * 
      * @param paymentId Provide the ID of the related payment.
      * @param chargebackId Provide the ID of the related chargeback.
      * @param embed This endpoint allows you to embed additional information via the `embed` query string parameter.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param options additional options
@@ -180,12 +146,6 @@ public class Chargebacks {
      * 
      * <p>The results are paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public ListAllChargebacksRequestBuilder all() {
@@ -198,12 +158,6 @@ public class Chargebacks {
      * <p>Retrieve all chargebacks initiated for all your payments.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -219,12 +173,6 @@ public class Chargebacks {
      * <p>Retrieve all chargebacks initiated for all your payments.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

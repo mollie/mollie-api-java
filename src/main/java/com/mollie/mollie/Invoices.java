@@ -29,13 +29,10 @@ public class Invoices {
     /**
      * List invoices
      * 
-     * <p>Retrieve a list of all your invoices, optionally filtered by year or by invoice reference.
+     * <p>Retrieve a list of all your invoices, optionally filtered by year or by
+     * invoice reference.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **invoices.read**](/reference/authentication)
      * 
      * @return The call builder
      */
@@ -46,13 +43,10 @@ public class Invoices {
     /**
      * List invoices
      * 
-     * <p>Retrieve a list of all your invoices, optionally filtered by year or by invoice reference.
+     * <p>Retrieve a list of all your invoices, optionally filtered by year or by
+     * invoice reference.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **invoices.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -65,13 +59,10 @@ public class Invoices {
     /**
      * List invoices
      * 
-     * <p>Retrieve a list of all your invoices, optionally filtered by year or by invoice reference.
+     * <p>Retrieve a list of all your invoices, optionally filtered by year or by
+     * invoice reference.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **invoices.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -89,11 +80,8 @@ public class Invoices {
      * 
      * <p>Retrieve a single invoice by its ID.
      * 
-     * <p>If you want to retrieve the details of an invoice by its invoice number, call the [List invoices](list-invoices) endpoint with the `reference` parameter.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **invoices.read**](/reference/authentication)
+     * <p>If you want to retrieve the details of an invoice by its invoice number,
+     * call the [List invoices](list-invoices) endpoint with the `reference` parameter.
      * 
      * @return The call builder
      */
@@ -106,11 +94,8 @@ public class Invoices {
      * 
      * <p>Retrieve a single invoice by its ID.
      * 
-     * <p>If you want to retrieve the details of an invoice by its invoice number, call the [List invoices](list-invoices) endpoint with the `reference` parameter.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **invoices.read**](/reference/authentication)
+     * <p>If you want to retrieve the details of an invoice by its invoice number,
+     * call the [List invoices](list-invoices) endpoint with the `reference` parameter.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
@@ -125,11 +110,8 @@ public class Invoices {
      * 
      * <p>Retrieve a single invoice by its ID.
      * 
-     * <p>If you want to retrieve the details of an invoice by its invoice number, call the [List invoices](list-invoices) endpoint with the `reference` parameter.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **invoices.read**](/reference/authentication)
+     * <p>If you want to retrieve the details of an invoice by its invoice number,
+     * call the [List invoices](list-invoices) endpoint with the `reference` parameter.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @param options additional options

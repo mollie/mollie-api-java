@@ -10,14 +10,12 @@
 
 ## create
 
-Create a route for a specific payment. The routed amount is credited to the account of your customer.
-
-> 🔑 Access with
->
-> [API key](/reference/authentication)
+Create a route for a specific payment.
+The routed amount is credited to the account of your customer.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="payment-create-route" method="post" path="/payments/{paymentId}/routes" -->
 ```java
 package hello.world;
 
@@ -46,7 +44,7 @@ public class Application {
                         .build())
                     .description("Payment for Order #12345")
                     .destination(PaymentCreateRouteDestination.builder()
-                        .type("organization")
+                        .type(PaymentCreateRouteType.ORGANIZATION)
                         .organizationId("org_1234567")
                         .build())
                     .build())
@@ -81,12 +79,9 @@ public class Application {
 
 Retrieve a list of all routes created for a specific payment.
 
-> 🔑 Access with
->
-> [API key](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="payment-list-routes" method="get" path="/payments/{paymentId}/routes" -->
 ```java
 package hello.world;
 

@@ -16,7 +16,8 @@ import java.util.Optional;
 /**
  * GetRefundSettlement
  * 
- * <p>The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not yet settled.
+ * <p>The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not
+ * yet settled.
  */
 public class GetRefundSettlement {
     /**

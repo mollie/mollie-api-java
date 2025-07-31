@@ -20,7 +20,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class UpdatePaymentLinkRequestBody {
     /**
-     * A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
+     * A short description of the payment link. The description is visible in the Dashboard and will be shown
+     * on the customer's bank or card statement when possible.
      * 
      * <p>Updating the description does not affect any previously existing payments created for this payment link.
      */
@@ -29,30 +30,36 @@ public class UpdatePaymentLinkRequestBody {
     private Optional<String> description;
 
     /**
-     * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The customer will be prompted to enter a value greater than or equal to the minimum amount.
+     * The minimum amount of the payment link. This property is only allowed when there is no amount provided.
+     * The customer will be prompted to enter a value greater than or equal to the minimum amount.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("minimumAmount")
     private Optional<? extends UpdatePaymentLinkMinimumAmount> minimumAmount;
 
     /**
-     * Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
+     * Whether the payment link is archived. Customers will not be able to complete payments on archived
+     * payment links.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("archived")
     private Optional<Boolean> archived;
 
     /**
-     * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
+     * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+     * not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint', 'in3', 'riverty', 'klarna', 'billie'.
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
+     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+     * 'in3', 'riverty', 'klarna', 'billie'.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("allowedMethods")
     private JsonNullable<? extends List<String>> allowedMethods;
 
     /**
-     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+     * ordered and its price.
      * 
      * <p>All lines must have the same currency as the payment.
      * 
@@ -63,9 +70,11 @@ public class UpdatePaymentLinkRequestBody {
     private JsonNullable<? extends List<UpdatePaymentLinkLines>> lines;
 
     /**
-     * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+     * The customer's billing address details. We advise to provide these details to improve fraud protection and
+     * conversion.
      * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
      * 
      * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
      */
@@ -74,16 +83,19 @@ public class UpdatePaymentLinkRequestBody {
     private Optional<? extends UpdatePaymentLinkBillingAddress> billingAddress;
 
     /**
-     * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+     * The customer's shipping address details. We advise to provide these details to improve fraud protection and
+     * conversion.
      * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shippingAddress")
     private Optional<? extends UpdatePaymentLinkShippingAddress> shippingAddress;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+     * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -126,7 +138,8 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
+     * A short description of the payment link. The description is visible in the Dashboard and will be shown
+     * on the customer's bank or card statement when possible.
      * 
      * <p>Updating the description does not affect any previously existing payments created for this payment link.
      */
@@ -136,7 +149,8 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The customer will be prompted to enter a value greater than or equal to the minimum amount.
+     * The minimum amount of the payment link. This property is only allowed when there is no amount provided.
+     * The customer will be prompted to enter a value greater than or equal to the minimum amount.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -145,7 +159,8 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
+     * Whether the payment link is archived. Customers will not be able to complete payments on archived
+     * payment links.
      */
     @JsonIgnore
     public Optional<Boolean> archived() {
@@ -153,9 +168,12 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
+     * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+     * not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint', 'in3', 'riverty', 'klarna', 'billie'.
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
+     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+     * 'in3', 'riverty', 'klarna', 'billie'.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -164,7 +182,8 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+     * ordered and its price.
      * 
      * <p>All lines must have the same currency as the payment.
      * 
@@ -177,9 +196,11 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+     * The customer's billing address details. We advise to provide these details to improve fraud protection and
+     * conversion.
      * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
      * 
      * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
      */
@@ -190,9 +211,11 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+     * The customer's shipping address details. We advise to provide these details to improve fraud protection and
+     * conversion.
      * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -201,7 +224,8 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+     * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -216,7 +240,8 @@ public class UpdatePaymentLinkRequestBody {
 
 
     /**
-     * A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
+     * A short description of the payment link. The description is visible in the Dashboard and will be shown
+     * on the customer's bank or card statement when possible.
      * 
      * <p>Updating the description does not affect any previously existing payments created for this payment link.
      */
@@ -228,7 +253,8 @@ public class UpdatePaymentLinkRequestBody {
 
 
     /**
-     * A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
+     * A short description of the payment link. The description is visible in the Dashboard and will be shown
+     * on the customer's bank or card statement when possible.
      * 
      * <p>Updating the description does not affect any previously existing payments created for this payment link.
      */
@@ -239,7 +265,8 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The customer will be prompted to enter a value greater than or equal to the minimum amount.
+     * The minimum amount of the payment link. This property is only allowed when there is no amount provided.
+     * The customer will be prompted to enter a value greater than or equal to the minimum amount.
      */
     public UpdatePaymentLinkRequestBody withMinimumAmount(UpdatePaymentLinkMinimumAmount minimumAmount) {
         Utils.checkNotNull(minimumAmount, "minimumAmount");
@@ -249,7 +276,8 @@ public class UpdatePaymentLinkRequestBody {
 
 
     /**
-     * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The customer will be prompted to enter a value greater than or equal to the minimum amount.
+     * The minimum amount of the payment link. This property is only allowed when there is no amount provided.
+     * The customer will be prompted to enter a value greater than or equal to the minimum amount.
      */
     public UpdatePaymentLinkRequestBody withMinimumAmount(Optional<? extends UpdatePaymentLinkMinimumAmount> minimumAmount) {
         Utils.checkNotNull(minimumAmount, "minimumAmount");
@@ -258,7 +286,8 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
+     * Whether the payment link is archived. Customers will not be able to complete payments on archived
+     * payment links.
      */
     public UpdatePaymentLinkRequestBody withArchived(boolean archived) {
         Utils.checkNotNull(archived, "archived");
@@ -268,7 +297,8 @@ public class UpdatePaymentLinkRequestBody {
 
 
     /**
-     * Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
+     * Whether the payment link is archived. Customers will not be able to complete payments on archived
+     * payment links.
      */
     public UpdatePaymentLinkRequestBody withArchived(Optional<Boolean> archived) {
         Utils.checkNotNull(archived, "archived");
@@ -277,9 +307,12 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
+     * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+     * not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint', 'in3', 'riverty', 'klarna', 'billie'.
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
+     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+     * 'in3', 'riverty', 'klarna', 'billie'.
      */
     public UpdatePaymentLinkRequestBody withAllowedMethods(List<String> allowedMethods) {
         Utils.checkNotNull(allowedMethods, "allowedMethods");
@@ -288,9 +321,12 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
+     * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+     * not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint', 'in3', 'riverty', 'klarna', 'billie'.
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
+     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+     * 'in3', 'riverty', 'klarna', 'billie'.
      */
     public UpdatePaymentLinkRequestBody withAllowedMethods(JsonNullable<? extends List<String>> allowedMethods) {
         Utils.checkNotNull(allowedMethods, "allowedMethods");
@@ -299,7 +335,8 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+     * ordered and its price.
      * 
      * <p>All lines must have the same currency as the payment.
      * 
@@ -312,7 +349,8 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+     * ordered and its price.
      * 
      * <p>All lines must have the same currency as the payment.
      * 
@@ -325,9 +363,11 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+     * The customer's billing address details. We advise to provide these details to improve fraud protection and
+     * conversion.
      * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
      * 
      * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
      */
@@ -339,9 +379,11 @@ public class UpdatePaymentLinkRequestBody {
 
 
     /**
-     * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+     * The customer's billing address details. We advise to provide these details to improve fraud protection and
+     * conversion.
      * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
      * 
      * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
      */
@@ -352,9 +394,11 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+     * The customer's shipping address details. We advise to provide these details to improve fraud protection and
+     * conversion.
      * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
      */
     public UpdatePaymentLinkRequestBody withShippingAddress(UpdatePaymentLinkShippingAddress shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
@@ -364,9 +408,11 @@ public class UpdatePaymentLinkRequestBody {
 
 
     /**
-     * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+     * The customer's shipping address details. We advise to provide these details to improve fraud protection and
+     * conversion.
      * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
      */
     public UpdatePaymentLinkRequestBody withShippingAddress(Optional<? extends UpdatePaymentLinkShippingAddress> shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
@@ -375,7 +421,8 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+     * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -386,7 +433,8 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+     * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -462,7 +510,8 @@ public class UpdatePaymentLinkRequestBody {
 
 
         /**
-         * A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
+         * A short description of the payment link. The description is visible in the Dashboard and will be shown
+         * on the customer's bank or card statement when possible.
          * 
          * <p>Updating the description does not affect any previously existing payments created for this payment link.
          */
@@ -473,7 +522,8 @@ public class UpdatePaymentLinkRequestBody {
         }
 
         /**
-         * A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
+         * A short description of the payment link. The description is visible in the Dashboard and will be shown
+         * on the customer's bank or card statement when possible.
          * 
          * <p>Updating the description does not affect any previously existing payments created for this payment link.
          */
@@ -485,7 +535,8 @@ public class UpdatePaymentLinkRequestBody {
 
 
         /**
-         * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The customer will be prompted to enter a value greater than or equal to the minimum amount.
+         * The minimum amount of the payment link. This property is only allowed when there is no amount provided.
+         * The customer will be prompted to enter a value greater than or equal to the minimum amount.
          */
         public Builder minimumAmount(UpdatePaymentLinkMinimumAmount minimumAmount) {
             Utils.checkNotNull(minimumAmount, "minimumAmount");
@@ -494,7 +545,8 @@ public class UpdatePaymentLinkRequestBody {
         }
 
         /**
-         * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The customer will be prompted to enter a value greater than or equal to the minimum amount.
+         * The minimum amount of the payment link. This property is only allowed when there is no amount provided.
+         * The customer will be prompted to enter a value greater than or equal to the minimum amount.
          */
         public Builder minimumAmount(Optional<? extends UpdatePaymentLinkMinimumAmount> minimumAmount) {
             Utils.checkNotNull(minimumAmount, "minimumAmount");
@@ -504,7 +556,8 @@ public class UpdatePaymentLinkRequestBody {
 
 
         /**
-         * Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
+         * Whether the payment link is archived. Customers will not be able to complete payments on archived
+         * payment links.
          */
         public Builder archived(boolean archived) {
             Utils.checkNotNull(archived, "archived");
@@ -513,7 +566,8 @@ public class UpdatePaymentLinkRequestBody {
         }
 
         /**
-         * Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
+         * Whether the payment link is archived. Customers will not be able to complete payments on archived
+         * payment links.
          */
         public Builder archived(Optional<Boolean> archived) {
             Utils.checkNotNull(archived, "archived");
@@ -523,9 +577,12 @@ public class UpdatePaymentLinkRequestBody {
 
 
         /**
-         * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
+         * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+         * not provided or is an empty array, all enabled payment methods will be available.
          * 
-         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint', 'in3', 'riverty', 'klarna', 'billie'.
+         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
+         * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+         * 'in3', 'riverty', 'klarna', 'billie'.
          */
         public Builder allowedMethods(List<String> allowedMethods) {
             Utils.checkNotNull(allowedMethods, "allowedMethods");
@@ -534,9 +591,12 @@ public class UpdatePaymentLinkRequestBody {
         }
 
         /**
-         * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
+         * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+         * not provided or is an empty array, all enabled payment methods will be available.
          * 
-         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint', 'in3', 'riverty', 'klarna', 'billie'.
+         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
+         * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+         * 'in3', 'riverty', 'klarna', 'billie'.
          */
         public Builder allowedMethods(JsonNullable<? extends List<String>> allowedMethods) {
             Utils.checkNotNull(allowedMethods, "allowedMethods");
@@ -546,7 +606,8 @@ public class UpdatePaymentLinkRequestBody {
 
 
         /**
-         * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+         * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+         * ordered and its price.
          * 
          * <p>All lines must have the same currency as the payment.
          * 
@@ -559,7 +620,8 @@ public class UpdatePaymentLinkRequestBody {
         }
 
         /**
-         * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+         * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+         * ordered and its price.
          * 
          * <p>All lines must have the same currency as the payment.
          * 
@@ -573,9 +635,11 @@ public class UpdatePaymentLinkRequestBody {
 
 
         /**
-         * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+         * The customer's billing address details. We advise to provide these details to improve fraud protection and
+         * conversion.
          * 
-         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+         * `country`.
          * 
          * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
          */
@@ -586,9 +650,11 @@ public class UpdatePaymentLinkRequestBody {
         }
 
         /**
-         * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+         * The customer's billing address details. We advise to provide these details to improve fraud protection and
+         * conversion.
          * 
-         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+         * `country`.
          * 
          * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
          */
@@ -600,9 +666,11 @@ public class UpdatePaymentLinkRequestBody {
 
 
         /**
-         * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+         * The customer's shipping address details. We advise to provide these details to improve fraud protection and
+         * conversion.
          * 
-         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+         * `country`.
          */
         public Builder shippingAddress(UpdatePaymentLinkShippingAddress shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
@@ -611,9 +679,11 @@ public class UpdatePaymentLinkRequestBody {
         }
 
         /**
-         * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+         * The customer's shipping address details. We advise to provide these details to improve fraud protection and
+         * conversion.
          * 
-         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+         * `country`.
          */
         public Builder shippingAddress(Optional<? extends UpdatePaymentLinkShippingAddress> shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
@@ -623,7 +693,8 @@ public class UpdatePaymentLinkRequestBody {
 
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+         * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -634,7 +705,8 @@ public class UpdatePaymentLinkRequestBody {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+         * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */

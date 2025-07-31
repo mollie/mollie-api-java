@@ -33,7 +33,8 @@ public class ListAllChargebacksChargebacksLinks {
     private ListAllChargebacksPayment payment;
 
     /**
-     * The API resource URL of the [settlement](get-settlement) this chargeback has been settled with. Not present if not yet settled.
+     * The API resource URL of the [settlement](get-settlement) this chargeback has been settled with. Not present if
+     * not yet settled.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlement")
@@ -86,7 +87,8 @@ public class ListAllChargebacksChargebacksLinks {
     }
 
     /**
-     * The API resource URL of the [settlement](get-settlement) this chargeback has been settled with. Not present if not yet settled.
+     * The API resource URL of the [settlement](get-settlement) this chargeback has been settled with. Not present if
+     * not yet settled.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -126,7 +128,8 @@ public class ListAllChargebacksChargebacksLinks {
     }
 
     /**
-     * The API resource URL of the [settlement](get-settlement) this chargeback has been settled with. Not present if not yet settled.
+     * The API resource URL of the [settlement](get-settlement) this chargeback has been settled with. Not present if
+     * not yet settled.
      */
     public ListAllChargebacksChargebacksLinks withSettlement(ListAllChargebacksSettlement settlement) {
         Utils.checkNotNull(settlement, "settlement");
@@ -135,7 +138,8 @@ public class ListAllChargebacksChargebacksLinks {
     }
 
     /**
-     * The API resource URL of the [settlement](get-settlement) this chargeback has been settled with. Not present if not yet settled.
+     * The API resource URL of the [settlement](get-settlement) this chargeback has been settled with. Not present if
+     * not yet settled.
      */
     public ListAllChargebacksChargebacksLinks withSettlement(JsonNullable<? extends ListAllChargebacksSettlement> settlement) {
         Utils.checkNotNull(settlement, "settlement");
@@ -221,7 +225,8 @@ public class ListAllChargebacksChargebacksLinks {
 
 
         /**
-         * The API resource URL of the [settlement](get-settlement) this chargeback has been settled with. Not present if not yet settled.
+         * The API resource URL of the [settlement](get-settlement) this chargeback has been settled with. Not present if
+         * not yet settled.
          */
         public Builder settlement(ListAllChargebacksSettlement settlement) {
             Utils.checkNotNull(settlement, "settlement");
@@ -230,7 +235,8 @@ public class ListAllChargebacksChargebacksLinks {
         }
 
         /**
-         * The API resource URL of the [settlement](get-settlement) this chargeback has been settled with. Not present if not yet settled.
+         * The API resource URL of the [settlement](get-settlement) this chargeback has been settled with. Not present if
+         * not yet settled.
          */
         public Builder settlement(JsonNullable<? extends ListAllChargebacksSettlement> settlement) {
             Utils.checkNotNull(settlement, "settlement");

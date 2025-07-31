@@ -35,11 +35,9 @@ public class GetCaptureResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
     @JsonProperty("mode")
-    private String mode;
+    private GetCaptureMode mode;
 
     /**
      * The description of the capture.
@@ -56,9 +54,12 @@ public class GetCaptureResponseBody {
     private Optional<? extends GetCaptureAmount> amount;
 
     /**
-     * This optional field will contain the approximate amount that will be settled to your account, converted to the currency your account is settled in.
+     * This optional field will contain the approximate amount that will be settled to your account, converted to the
+     * currency your account is settled in.
      * 
-     * <p>Since the field contains an estimated amount during capture processing, it may change over time. To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
+     * <p>Since the field contains an estimated amount during capture processing, it may change over time. To retrieve
+     * accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions)
+     * instead.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlementAmount")
@@ -66,34 +67,36 @@ public class GetCaptureResponseBody {
 
     /**
      * The capture's status.
-     * 
-     * <p>Possible values: `pending` `succeeded` `failed`
      */
     @JsonProperty("status")
-    private String status;
+    private GetCaptureStatus status;
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends GetCaptureMetadata> metadata;
 
     /**
-     * The unique identifier of the payment this capture was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
+     * The unique identifier of the payment this capture was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The full payment object can be retrieved via the payment URL in the `_links` object.
      */
     @JsonProperty("paymentId")
     private String paymentId;
 
     /**
-     * The unique identifier of the shipment that triggered the creation of this capture, if applicable. For example: `shp_gNapNy9qQTUFZYnCrCF7J`.
+     * The unique identifier of the shipment that triggered the creation of this capture, if applicable. For example:
+     * `shp_gNapNy9qQTUFZYnCrCF7J`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shipmentId")
     private JsonNullable<String> shipmentId;
 
     /**
-     * The identifier referring to the settlement this capture was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the capture is not settled (yet).
+     * The identifier referring to the settlement this capture was settled with. For example, `stl_BkEjN2eBb`. This field
+     * is omitted if the capture is not settled (yet).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlementId")
@@ -115,11 +118,11 @@ public class GetCaptureResponseBody {
     public GetCaptureResponseBody(
             @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
-            @JsonProperty("mode") String mode,
+            @JsonProperty("mode") GetCaptureMode mode,
             @JsonProperty("description") Optional<String> description,
             @JsonProperty("amount") Optional<? extends GetCaptureAmount> amount,
             @JsonProperty("settlementAmount") JsonNullable<? extends GetCaptureSettlementAmount> settlementAmount,
-            @JsonProperty("status") String status,
+            @JsonProperty("status") GetCaptureStatus status,
             @JsonProperty("metadata") JsonNullable<? extends GetCaptureMetadata> metadata,
             @JsonProperty("paymentId") String paymentId,
             @JsonProperty("shipmentId") JsonNullable<String> shipmentId,
@@ -157,8 +160,8 @@ public class GetCaptureResponseBody {
     public GetCaptureResponseBody(
             String resource,
             String id,
-            String mode,
-            String status,
+            GetCaptureMode mode,
+            GetCaptureStatus status,
             String paymentId,
             String createdAt,
             GetCaptureLinks links) {
@@ -187,11 +190,9 @@ public class GetCaptureResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
     @JsonIgnore
-    public String mode() {
+    public GetCaptureMode mode() {
         return mode;
     }
 
@@ -213,9 +214,12 @@ public class GetCaptureResponseBody {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be settled to your account, converted to the currency your account is settled in.
+     * This optional field will contain the approximate amount that will be settled to your account, converted to the
+     * currency your account is settled in.
      * 
-     * <p>Since the field contains an estimated amount during capture processing, it may change over time. To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
+     * <p>Since the field contains an estimated amount during capture processing, it may change over time. To retrieve
+     * accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions)
+     * instead.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -225,16 +229,15 @@ public class GetCaptureResponseBody {
 
     /**
      * The capture's status.
-     * 
-     * <p>Possible values: `pending` `succeeded` `failed`
      */
     @JsonIgnore
-    public String status() {
+    public GetCaptureStatus status() {
         return status;
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -243,7 +246,8 @@ public class GetCaptureResponseBody {
     }
 
     /**
-     * The unique identifier of the payment this capture was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
+     * The unique identifier of the payment this capture was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The full payment object can be retrieved via the payment URL in the `_links` object.
      */
     @JsonIgnore
     public String paymentId() {
@@ -251,7 +255,8 @@ public class GetCaptureResponseBody {
     }
 
     /**
-     * The unique identifier of the shipment that triggered the creation of this capture, if applicable. For example: `shp_gNapNy9qQTUFZYnCrCF7J`.
+     * The unique identifier of the shipment that triggered the creation of this capture, if applicable. For example:
+     * `shp_gNapNy9qQTUFZYnCrCF7J`.
      */
     @JsonIgnore
     public JsonNullable<String> shipmentId() {
@@ -259,7 +264,8 @@ public class GetCaptureResponseBody {
     }
 
     /**
-     * The identifier referring to the settlement this capture was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the capture is not settled (yet).
+     * The identifier referring to the settlement this capture was settled with. For example, `stl_BkEjN2eBb`. This field
+     * is omitted if the capture is not settled (yet).
      */
     @JsonIgnore
     public JsonNullable<String> settlementId() {
@@ -307,10 +313,8 @@ public class GetCaptureResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
-    public GetCaptureResponseBody withMode(String mode) {
+    public GetCaptureResponseBody withMode(GetCaptureMode mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
@@ -355,9 +359,12 @@ public class GetCaptureResponseBody {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be settled to your account, converted to the currency your account is settled in.
+     * This optional field will contain the approximate amount that will be settled to your account, converted to the
+     * currency your account is settled in.
      * 
-     * <p>Since the field contains an estimated amount during capture processing, it may change over time. To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
+     * <p>Since the field contains an estimated amount during capture processing, it may change over time. To retrieve
+     * accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions)
+     * instead.
      */
     public GetCaptureResponseBody withSettlementAmount(GetCaptureSettlementAmount settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
@@ -366,9 +373,12 @@ public class GetCaptureResponseBody {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be settled to your account, converted to the currency your account is settled in.
+     * This optional field will contain the approximate amount that will be settled to your account, converted to the
+     * currency your account is settled in.
      * 
-     * <p>Since the field contains an estimated amount during capture processing, it may change over time. To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
+     * <p>Since the field contains an estimated amount during capture processing, it may change over time. To retrieve
+     * accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions)
+     * instead.
      */
     public GetCaptureResponseBody withSettlementAmount(JsonNullable<? extends GetCaptureSettlementAmount> settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
@@ -378,17 +388,16 @@ public class GetCaptureResponseBody {
 
     /**
      * The capture's status.
-     * 
-     * <p>Possible values: `pending` `succeeded` `failed`
      */
-    public GetCaptureResponseBody withStatus(String status) {
+    public GetCaptureResponseBody withStatus(GetCaptureStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     public GetCaptureResponseBody withMetadata(GetCaptureMetadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -397,7 +406,8 @@ public class GetCaptureResponseBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     public GetCaptureResponseBody withMetadata(JsonNullable<? extends GetCaptureMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -406,7 +416,8 @@ public class GetCaptureResponseBody {
     }
 
     /**
-     * The unique identifier of the payment this capture was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
+     * The unique identifier of the payment this capture was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The full payment object can be retrieved via the payment URL in the `_links` object.
      */
     public GetCaptureResponseBody withPaymentId(String paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
@@ -415,7 +426,8 @@ public class GetCaptureResponseBody {
     }
 
     /**
-     * The unique identifier of the shipment that triggered the creation of this capture, if applicable. For example: `shp_gNapNy9qQTUFZYnCrCF7J`.
+     * The unique identifier of the shipment that triggered the creation of this capture, if applicable. For example:
+     * `shp_gNapNy9qQTUFZYnCrCF7J`.
      */
     public GetCaptureResponseBody withShipmentId(String shipmentId) {
         Utils.checkNotNull(shipmentId, "shipmentId");
@@ -424,7 +436,8 @@ public class GetCaptureResponseBody {
     }
 
     /**
-     * The unique identifier of the shipment that triggered the creation of this capture, if applicable. For example: `shp_gNapNy9qQTUFZYnCrCF7J`.
+     * The unique identifier of the shipment that triggered the creation of this capture, if applicable. For example:
+     * `shp_gNapNy9qQTUFZYnCrCF7J`.
      */
     public GetCaptureResponseBody withShipmentId(JsonNullable<String> shipmentId) {
         Utils.checkNotNull(shipmentId, "shipmentId");
@@ -433,7 +446,8 @@ public class GetCaptureResponseBody {
     }
 
     /**
-     * The identifier referring to the settlement this capture was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the capture is not settled (yet).
+     * The identifier referring to the settlement this capture was settled with. For example, `stl_BkEjN2eBb`. This field
+     * is omitted if the capture is not settled (yet).
      */
     public GetCaptureResponseBody withSettlementId(String settlementId) {
         Utils.checkNotNull(settlementId, "settlementId");
@@ -442,7 +456,8 @@ public class GetCaptureResponseBody {
     }
 
     /**
-     * The identifier referring to the settlement this capture was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the capture is not settled (yet).
+     * The identifier referring to the settlement this capture was settled with. For example, `stl_BkEjN2eBb`. This field
+     * is omitted if the capture is not settled (yet).
      */
     public GetCaptureResponseBody withSettlementId(JsonNullable<String> settlementId) {
         Utils.checkNotNull(settlementId, "settlementId");
@@ -528,7 +543,7 @@ public class GetCaptureResponseBody {
 
         private String id;
 
-        private String mode;
+        private GetCaptureMode mode;
 
         private Optional<String> description = Optional.empty();
 
@@ -536,7 +551,7 @@ public class GetCaptureResponseBody {
 
         private JsonNullable<? extends GetCaptureSettlementAmount> settlementAmount = JsonNullable.undefined();
 
-        private String status;
+        private GetCaptureStatus status;
 
         private JsonNullable<? extends GetCaptureMetadata> metadata = JsonNullable.undefined();
 
@@ -577,10 +592,8 @@ public class GetCaptureResponseBody {
 
         /**
          * Whether this entity was created in live mode or in test mode.
-         * 
-         * <p>Possible values: `live` `test`
          */
-        public Builder mode(String mode) {
+        public Builder mode(GetCaptureMode mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
@@ -626,9 +639,12 @@ public class GetCaptureResponseBody {
 
 
         /**
-         * This optional field will contain the approximate amount that will be settled to your account, converted to the currency your account is settled in.
+         * This optional field will contain the approximate amount that will be settled to your account, converted to the
+         * currency your account is settled in.
          * 
-         * <p>Since the field contains an estimated amount during capture processing, it may change over time. To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
+         * <p>Since the field contains an estimated amount during capture processing, it may change over time. To retrieve
+         * accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions)
+         * instead.
          */
         public Builder settlementAmount(GetCaptureSettlementAmount settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
@@ -637,9 +653,12 @@ public class GetCaptureResponseBody {
         }
 
         /**
-         * This optional field will contain the approximate amount that will be settled to your account, converted to the currency your account is settled in.
+         * This optional field will contain the approximate amount that will be settled to your account, converted to the
+         * currency your account is settled in.
          * 
-         * <p>Since the field contains an estimated amount during capture processing, it may change over time. To retrieve accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions) instead.
+         * <p>Since the field contains an estimated amount during capture processing, it may change over time. To retrieve
+         * accurate settlement amounts we recommend using the [List balance transactions endpoint](list-balance-transactions)
+         * instead.
          */
         public Builder settlementAmount(JsonNullable<? extends GetCaptureSettlementAmount> settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
@@ -650,10 +669,8 @@ public class GetCaptureResponseBody {
 
         /**
          * The capture's status.
-         * 
-         * <p>Possible values: `pending` `succeeded` `failed`
          */
-        public Builder status(String status) {
+        public Builder status(GetCaptureStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -661,7 +678,8 @@ public class GetCaptureResponseBody {
 
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
         public Builder metadata(GetCaptureMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -670,7 +688,8 @@ public class GetCaptureResponseBody {
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
         public Builder metadata(JsonNullable<? extends GetCaptureMetadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -680,7 +699,8 @@ public class GetCaptureResponseBody {
 
 
         /**
-         * The unique identifier of the payment this capture was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
+         * The unique identifier of the payment this capture was created for. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+         * The full payment object can be retrieved via the payment URL in the `_links` object.
          */
         public Builder paymentId(String paymentId) {
             Utils.checkNotNull(paymentId, "paymentId");
@@ -690,7 +710,8 @@ public class GetCaptureResponseBody {
 
 
         /**
-         * The unique identifier of the shipment that triggered the creation of this capture, if applicable. For example: `shp_gNapNy9qQTUFZYnCrCF7J`.
+         * The unique identifier of the shipment that triggered the creation of this capture, if applicable. For example:
+         * `shp_gNapNy9qQTUFZYnCrCF7J`.
          */
         public Builder shipmentId(String shipmentId) {
             Utils.checkNotNull(shipmentId, "shipmentId");
@@ -699,7 +720,8 @@ public class GetCaptureResponseBody {
         }
 
         /**
-         * The unique identifier of the shipment that triggered the creation of this capture, if applicable. For example: `shp_gNapNy9qQTUFZYnCrCF7J`.
+         * The unique identifier of the shipment that triggered the creation of this capture, if applicable. For example:
+         * `shp_gNapNy9qQTUFZYnCrCF7J`.
          */
         public Builder shipmentId(JsonNullable<String> shipmentId) {
             Utils.checkNotNull(shipmentId, "shipmentId");
@@ -709,7 +731,8 @@ public class GetCaptureResponseBody {
 
 
         /**
-         * The identifier referring to the settlement this capture was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the capture is not settled (yet).
+         * The identifier referring to the settlement this capture was settled with. For example, `stl_BkEjN2eBb`. This field
+         * is omitted if the capture is not settled (yet).
          */
         public Builder settlementId(String settlementId) {
             Utils.checkNotNull(settlementId, "settlementId");
@@ -718,7 +741,8 @@ public class GetCaptureResponseBody {
         }
 
         /**
-         * The identifier referring to the settlement this capture was settled with. For example, `stl_BkEjN2eBb`. This field is omitted if the capture is not settled (yet).
+         * The identifier referring to the settlement this capture was settled with. For example, `stl_BkEjN2eBb`. This field
+         * is omitted if the capture is not settled (yet).
          */
         public Builder settlementId(JsonNullable<String> settlementId) {
             Utils.checkNotNull(settlementId, "settlementId");

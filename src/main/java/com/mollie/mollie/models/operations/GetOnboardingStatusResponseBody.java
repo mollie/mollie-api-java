@@ -24,7 +24,8 @@ import java.util.Optional;
  */
 public class GetOnboardingStatusResponseBody {
     /**
-     * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this resource type.
+     * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this
+     * resource type.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
@@ -43,12 +44,10 @@ public class GetOnboardingStatusResponseBody {
      * <p>* `needs-data` — The merchant needs to provide additional information
      * * `in-review` — The merchant provided all information, awaiting review from Mollie
      * * `completed` — The onboarding is completed
-     * 
-     * <p>Possible values: `needs-data` `in-review` `completed`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<String> status;
+    private Optional<? extends GetOnboardingStatusStatus> status;
 
     /**
      * Whether the organization can receive payments.
@@ -82,7 +81,7 @@ public class GetOnboardingStatusResponseBody {
     public GetOnboardingStatusResponseBody(
             @JsonProperty("resource") Optional<String> resource,
             @JsonProperty("name") Optional<String> name,
-            @JsonProperty("status") Optional<String> status,
+            @JsonProperty("status") Optional<? extends GetOnboardingStatusStatus> status,
             @JsonProperty("canReceivePayments") Optional<Boolean> canReceivePayments,
             @JsonProperty("canReceiveSettlements") Optional<Boolean> canReceiveSettlements,
             @JsonProperty("signedUpAt") Optional<String> signedUpAt,
@@ -110,7 +109,8 @@ public class GetOnboardingStatusResponseBody {
     }
 
     /**
-     * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this resource type.
+     * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this
+     * resource type.
      */
     @JsonIgnore
     public Optional<String> resource() {
@@ -131,12 +131,11 @@ public class GetOnboardingStatusResponseBody {
      * <p>* `needs-data` — The merchant needs to provide additional information
      * * `in-review` — The merchant provided all information, awaiting review from Mollie
      * * `completed` — The onboarding is completed
-     * 
-     * <p>Possible values: `needs-data` `in-review` `completed`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> status() {
-        return status;
+    public Optional<GetOnboardingStatusStatus> status() {
+        return (Optional<GetOnboardingStatusStatus>) status;
     }
 
     /**
@@ -178,7 +177,8 @@ public class GetOnboardingStatusResponseBody {
 
 
     /**
-     * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this resource type.
+     * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this
+     * resource type.
      */
     public GetOnboardingStatusResponseBody withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -188,7 +188,8 @@ public class GetOnboardingStatusResponseBody {
 
 
     /**
-     * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this resource type.
+     * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this
+     * resource type.
      */
     public GetOnboardingStatusResponseBody withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
@@ -221,10 +222,8 @@ public class GetOnboardingStatusResponseBody {
      * <p>* `needs-data` — The merchant needs to provide additional information
      * * `in-review` — The merchant provided all information, awaiting review from Mollie
      * * `completed` — The onboarding is completed
-     * 
-     * <p>Possible values: `needs-data` `in-review` `completed`
      */
-    public GetOnboardingStatusResponseBody withStatus(String status) {
+    public GetOnboardingStatusResponseBody withStatus(GetOnboardingStatusStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -237,10 +236,8 @@ public class GetOnboardingStatusResponseBody {
      * <p>* `needs-data` — The merchant needs to provide additional information
      * * `in-review` — The merchant provided all information, awaiting review from Mollie
      * * `completed` — The onboarding is completed
-     * 
-     * <p>Possible values: `needs-data` `in-review` `completed`
      */
-    public GetOnboardingStatusResponseBody withStatus(Optional<String> status) {
+    public GetOnboardingStatusResponseBody withStatus(Optional<? extends GetOnboardingStatusStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -368,7 +365,7 @@ public class GetOnboardingStatusResponseBody {
 
         private Optional<String> name = Optional.empty();
 
-        private Optional<String> status = Optional.empty();
+        private Optional<? extends GetOnboardingStatusStatus> status = Optional.empty();
 
         private Optional<Boolean> canReceivePayments = Optional.empty();
 
@@ -384,7 +381,8 @@ public class GetOnboardingStatusResponseBody {
 
 
         /**
-         * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this resource type.
+         * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this
+         * resource type.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -393,7 +391,8 @@ public class GetOnboardingStatusResponseBody {
         }
 
         /**
-         * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this resource type.
+         * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this
+         * resource type.
          */
         public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
@@ -427,10 +426,8 @@ public class GetOnboardingStatusResponseBody {
          * <p>* `needs-data` — The merchant needs to provide additional information
          * * `in-review` — The merchant provided all information, awaiting review from Mollie
          * * `completed` — The onboarding is completed
-         * 
-         * <p>Possible values: `needs-data` `in-review` `completed`
          */
-        public Builder status(String status) {
+        public Builder status(GetOnboardingStatusStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -442,10 +439,8 @@ public class GetOnboardingStatusResponseBody {
          * <p>* `needs-data` — The merchant needs to provide additional information
          * * `in-review` — The merchant provided all information, awaiting review from Mollie
          * * `completed` — The onboarding is completed
-         * 
-         * <p>Possible values: `needs-data` `in-review` `completed`
          */
-        public Builder status(Optional<String> status) {
+        public Builder status(Optional<? extends GetOnboardingStatusStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

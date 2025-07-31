@@ -14,16 +14,13 @@
 
 ## create
 
-With the Payment links API you can generate payment links that by default, unlike regular payments, do not expire. The payment link can be shared with your customers and will redirect them to them the payment page where they can complete the payment. A [payment](get-payment) will only be created once the customer initiates the payment.
-
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **payment-links.write**](/reference/authentication)
+With the Payment links API you can generate payment links that by default, unlike regular payments, do not expire.
+The payment link can be shared with your customers and will redirect them to them the payment page where they can
+complete the payment. A [payment](get-payment) will only be created once the customer initiates the payment.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="create-payment-link" method="post" path="/payment-links" -->
 ```java
 package hello.world;
 
@@ -162,14 +159,9 @@ Retrieve a list of all payment links.
 
 The results are paginated.
 
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **payment-links.read**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list-payment-links" method="get" path="/payment-links" -->
 ```java
 package hello.world;
 
@@ -206,9 +198,9 @@ public class Application {
 
 | Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `from`                                                                                                                                                                                                                                                                                                                                                                                 | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.                                                                                                                                                                                                                                                         | pl_d9fQur83kFdhH8hIhaZfq                                                                                                                                                                                                                                                                                                                                                               |
+| `from`                                                                                                                                                                                                                                                                                                                                                                                 | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the<br/>result set.                                                                                                                                                                                                                                                     | pl_d9fQur83kFdhH8hIhaZfq                                                                                                                                                                                                                                                                                                                                                               |
 | `limit`                                                                                                                                                                                                                                                                                                                                                                                | *JsonNullable\<Long>*                                                                                                                                                                                                                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | The maximum number of items to return. Defaults to 50 items.                                                                                                                                                                                                                                                                                                                           | 50                                                                                                                                                                                                                                                                                                                                                                                     |
-| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
+| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Response
 
@@ -225,14 +217,9 @@ public class Application {
 
 Retrieve a single payment link by its ID.
 
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **payment-links.read**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="get-payment-link" method="get" path="/payment-links/{paymentLinkId}" -->
 ```java
 package hello.world;
 
@@ -269,7 +256,7 @@ public class Application {
 | Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `paymentLinkId`                                                                                                                                                                                                                                                                                                                                                                        | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related payment link.                                                                                                                                                                                                                                                                                                                                            | pl_d9fQur83kFdhH8hIhaZfq                                                                                                                                                                                                                                                                                                                                                               |
-| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
+| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Response
 
@@ -286,14 +273,9 @@ public class Application {
 
 Certain details of an existing payment link can be updated.
 
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **payment-links.write**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="update-payment-link" method="patch" path="/payment-links/{paymentLinkId}" -->
 ```java
 package hello.world;
 
@@ -415,20 +397,17 @@ public class Application {
 
 ## delete
 
-Payment links which have not been opened and no payments have been made yet can be deleted entirely. This can be useful for removing payment links that have been incorrectly configured or that are no longer relevant.
+Payment links which have not been opened and no payments have been made yet can be deleted entirely.
+This can be useful for removing payment links that have been incorrectly configured or that are no longer relevant.
 
 Once deleted, the payment link will no longer show up in the API or Mollie dashboard.
 
-To simply disable a payment link without fully deleting it, you can use the `archived` parameter on the [Update payment link](update-payment-link) endpoint instead.
-
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **payment-links.write**](/reference/authentication)
+To simply disable a payment link without fully deleting it, you can use the `archived` parameter on the
+[Update payment link](update-payment-link) endpoint instead.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="delete-payment-link" method="delete" path="/payment-links/{paymentLinkId}" -->
 ```java
 package hello.world;
 
@@ -489,14 +468,9 @@ Retrieve the list of payments for a specific payment link.
 
 The results are paginated.
 
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **payment-links.read**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="get-payment-link-payments" method="get" path="/payment-links/{paymentLinkId}/payments" -->
 ```java
 package hello.world;
 
@@ -520,7 +494,6 @@ public class Application {
         GetPaymentLinkPaymentsRequest req = GetPaymentLinkPaymentsRequest.builder()
                 .paymentLinkId("pl_d9fQur83kFdhH8hIhaZfq")
                 .from("tr_5B8cwPMGnU")
-                .sort("desc")
                 .testmode(false)
                 .build();
 

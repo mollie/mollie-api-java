@@ -41,15 +41,11 @@ public class Mandates {
     /**
      * Create mandate
      * 
-     * <p>Create a mandate for a specific customer. Mandates allow you to charge a customer's card, PayPal account or bank account recurrently.
+     * <p>Create a mandate for a specific customer. Mandates allow you to charge a customer's card, PayPal account or bank
+     * account recurrently.
      * 
-     * <p>It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint. To create mandates for cards, your customers need to perform a 'first payment' with their card.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **mandates.write**](/reference/authentication)
+     * <p>It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint. To create
+     * mandates for cards, your customers need to perform a 'first payment' with their card.
      * 
      * @return The call builder
      */
@@ -60,15 +56,11 @@ public class Mandates {
     /**
      * Create mandate
      * 
-     * <p>Create a mandate for a specific customer. Mandates allow you to charge a customer's card, PayPal account or bank account recurrently.
+     * <p>Create a mandate for a specific customer. Mandates allow you to charge a customer's card, PayPal account or bank
+     * account recurrently.
      * 
-     * <p>It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint. To create mandates for cards, your customers need to perform a 'first payment' with their card.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **mandates.write**](/reference/authentication)
+     * <p>It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint. To create
+     * mandates for cards, your customers need to perform a 'first payment' with their card.
      * 
      * @param customerId Provide the ID of the related customer.
      * @return The response from the API call
@@ -81,15 +73,11 @@ public class Mandates {
     /**
      * Create mandate
      * 
-     * <p>Create a mandate for a specific customer. Mandates allow you to charge a customer's card, PayPal account or bank account recurrently.
+     * <p>Create a mandate for a specific customer. Mandates allow you to charge a customer's card, PayPal account or bank
+     * account recurrently.
      * 
-     * <p>It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint. To create mandates for cards, your customers need to perform a 'first payment' with their card.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **mandates.write**](/reference/authentication)
+     * <p>It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint. To create
+     * mandates for cards, your customers need to perform a 'first payment' with their card.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param requestBody 
@@ -118,12 +106,6 @@ public class Mandates {
      * 
      * <p>The results are paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **mandates.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public ListMandatesRequestBuilder list() {
@@ -136,12 +118,6 @@ public class Mandates {
      * <p>Retrieve a list of all mandates.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **mandates.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -158,12 +134,6 @@ public class Mandates {
      * 
      * <p>The results are paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **mandates.read**](/reference/authentication)
-     * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
@@ -178,13 +148,8 @@ public class Mandates {
     /**
      * Get mandate
      * 
-     * <p>Retrieve a single mandate by its ID. Depending on the type of mandate, the object will contain the customer's bank account details, card details, or PayPal account details.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **mandates.read**](/reference/authentication)
+     * <p>Retrieve a single mandate by its ID. Depending on the type of mandate, the object will contain the customer's bank
+     * account details, card details, or PayPal account details.
      * 
      * @return The call builder
      */
@@ -195,13 +160,8 @@ public class Mandates {
     /**
      * Get mandate
      * 
-     * <p>Retrieve a single mandate by its ID. Depending on the type of mandate, the object will contain the customer's bank account details, card details, or PayPal account details.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **mandates.read**](/reference/authentication)
+     * <p>Retrieve a single mandate by its ID. Depending on the type of mandate, the object will contain the customer's bank
+     * account details, card details, or PayPal account details.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param mandateId Provide the ID of the related mandate.
@@ -216,17 +176,14 @@ public class Mandates {
     /**
      * Get mandate
      * 
-     * <p>Retrieve a single mandate by its ID. Depending on the type of mandate, the object will contain the customer's bank account details, card details, or PayPal account details.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **mandates.read**](/reference/authentication)
+     * <p>Retrieve a single mandate by its ID. Depending on the type of mandate, the object will contain the customer's bank
+     * account details, card details, or PayPal account details.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param mandateId Provide the ID of the related mandate.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param options additional options
@@ -251,13 +208,8 @@ public class Mandates {
     /**
      * Revoke mandate
      * 
-     * <p>Revoke a customer's mandate. You will no longer be able to charge the customer's bank account or card with this mandate, and all connected subscriptions will be canceled.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **mandates.write**](/reference/authentication)
+     * <p>Revoke a customer's mandate. You will no longer be able to charge the customer's bank account or card with this
+     * mandate, and all connected subscriptions will be canceled.
      * 
      * @return The call builder
      */
@@ -268,13 +220,8 @@ public class Mandates {
     /**
      * Revoke mandate
      * 
-     * <p>Revoke a customer's mandate. You will no longer be able to charge the customer's bank account or card with this mandate, and all connected subscriptions will be canceled.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **mandates.write**](/reference/authentication)
+     * <p>Revoke a customer's mandate. You will no longer be able to charge the customer's bank account or card with this
+     * mandate, and all connected subscriptions will be canceled.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param mandateId Provide the ID of the related mandate.
@@ -289,13 +236,8 @@ public class Mandates {
     /**
      * Revoke mandate
      * 
-     * <p>Revoke a customer's mandate. You will no longer be able to charge the customer's bank account or card with this mandate, and all connected subscriptions will be canceled.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **mandates.write**](/reference/authentication)
+     * <p>Revoke a customer's mandate. You will no longer be able to charge the customer's bank account or card with this
+     * mandate, and all connected subscriptions will be canceled.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param mandateId Provide the ID of the related mandate.

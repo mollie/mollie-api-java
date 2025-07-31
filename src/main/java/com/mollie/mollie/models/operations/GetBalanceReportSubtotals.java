@@ -36,73 +36,61 @@ public class GetBalanceReportSubtotals {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("method")
-    private JsonNullable<String> method;
+    private JsonNullable<? extends GetBalanceReportBalancesMethod> method;
 
     /**
      * In case of payments transactions with card, the card issuer will be available
-     * 
-     * <p>Possible values: `amex` `maestro` `carte-bancaire` `other`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cardIssuer")
-    private JsonNullable<String> cardIssuer;
+    private JsonNullable<? extends GetBalanceReportCardIssuer> cardIssuer;
 
     /**
      * In case of payments trnsactions with card, the card audience will be available.
-     * 
-     * <p>Possible values: `corporate` `other`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cardAudience")
-    private JsonNullable<String> cardAudience;
+    private JsonNullable<? extends GetBalanceReportCardAudience> cardAudience;
 
     /**
      * In case of payments transactions with card, the card region will be available.
-     * 
-     * <p>Possible values: `intra-eea` `intra-eu` `domestic` `other`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cardRegion")
-    private JsonNullable<String> cardRegion;
+    private JsonNullable<? extends GetBalanceReportCardRegion> cardRegion;
 
     /**
      * Present when the transaction represents a fee.
-     * 
-     * <p>Possible values: `payment-fee` `direct-debit-failure-fee` `unauthorized-direct-debit-fee` `bank-charged-direct-debit-failure-fee` `partner-commission` `application-fee` `capture-fee` `refund-fee` `chargeback-fee` `payment-notification-fee` `transfer-notification-fee` `payout-fee` `fee-discount` `fee-reimbursement` `platform-volume-fee` `platform-connected-organizations-fee` `balance-charge-fee` `3ds-authentication-attempt-fee` `terminal-monthly-fee` `acceptance-risk-fee` `top-up-fee` `payment-gateway-fee` `mastercard-specialty-merchant-program-processing-fee` `mastercard-specialty-merchant-program-registration-fee` `visa-integrity-risk-program-processing-fee` `visa-integrity-risk-program-registration-fee` `minimum-invoice-amount-fee`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("feeType")
-    private JsonNullable<String> feeType;
+    private JsonNullable<? extends GetBalanceReportFeeType> feeType;
 
     /**
      * Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
-     * 
-     * <p>Possible values: `fee` `fee-reimbursement` `fee-discount` `fee-vat` `fee-rounding-compensation`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("prepaymentPartType")
-    private JsonNullable<String> prepaymentPartType;
+    private JsonNullable<? extends GetBalanceReportPrepaymentPartType> prepaymentPartType;
 
     /**
      * Represents the transaction type
-     * 
-     * <p>Possible values: `payment` `split-payment` `failed-payment` `failed-platform-split-payment` `failed-split-payment-compensation` `capture` `split-transaction` `refund` `platform-payment-refund` `returned-platform-payment-refund` `refund-compensation` `returned-refund-compensation` `returned-refund` `chargeback` `chargeback-reversal` `chargeback-compensation` `reversed-chargeback-compensation` `platform-payment-chargeback` `reversed-platform-payment-chargeback` `fee-prepayment` `outgoing-transfer` `incoming-transfer` `canceled-transfer` `returned-transfer` `balance-reserve` `balance-reserve-return` `invoice-rounding-compensation` `rolling-reserve-hold` `rolling-reserve-release` `balance-correction` `repayment` `loan` `balance-topup` `cash-collateral-issuance';` `cash-collateral-release` `pending-rolling-reserve` `to-be-released-rolling-reserve` `held-rolling-reserve` `released-rolling-reserve`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("transactionType")
-    private JsonNullable<String> transactionType;
+    private JsonNullable<? extends GetBalanceReportTransactionType> transactionType;
 
     @JsonCreator
     public GetBalanceReportSubtotals(
             @JsonProperty("sub-totals") JsonNullable<? extends List<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceCloseSubTotals>> subTotals,
             @JsonProperty("count") Optional<Long> count,
-            @JsonProperty("method") JsonNullable<String> method,
-            @JsonProperty("cardIssuer") JsonNullable<String> cardIssuer,
-            @JsonProperty("cardAudience") JsonNullable<String> cardAudience,
-            @JsonProperty("cardRegion") JsonNullable<String> cardRegion,
-            @JsonProperty("feeType") JsonNullable<String> feeType,
-            @JsonProperty("prepaymentPartType") JsonNullable<String> prepaymentPartType,
-            @JsonProperty("transactionType") JsonNullable<String> transactionType) {
+            @JsonProperty("method") JsonNullable<? extends GetBalanceReportBalancesMethod> method,
+            @JsonProperty("cardIssuer") JsonNullable<? extends GetBalanceReportCardIssuer> cardIssuer,
+            @JsonProperty("cardAudience") JsonNullable<? extends GetBalanceReportCardAudience> cardAudience,
+            @JsonProperty("cardRegion") JsonNullable<? extends GetBalanceReportCardRegion> cardRegion,
+            @JsonProperty("feeType") JsonNullable<? extends GetBalanceReportFeeType> feeType,
+            @JsonProperty("prepaymentPartType") JsonNullable<? extends GetBalanceReportPrepaymentPartType> prepaymentPartType,
+            @JsonProperty("transactionType") JsonNullable<? extends GetBalanceReportTransactionType> transactionType) {
         Utils.checkNotNull(subTotals, "subTotals");
         Utils.checkNotNull(count, "count");
         Utils.checkNotNull(method, "method");
@@ -146,69 +134,64 @@ public class GetBalanceReportSubtotals {
     /**
      * Payment type of the transactions
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> method() {
-        return method;
+    public JsonNullable<GetBalanceReportBalancesMethod> method() {
+        return (JsonNullable<GetBalanceReportBalancesMethod>) method;
     }
 
     /**
      * In case of payments transactions with card, the card issuer will be available
-     * 
-     * <p>Possible values: `amex` `maestro` `carte-bancaire` `other`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> cardIssuer() {
-        return cardIssuer;
+    public JsonNullable<GetBalanceReportCardIssuer> cardIssuer() {
+        return (JsonNullable<GetBalanceReportCardIssuer>) cardIssuer;
     }
 
     /**
      * In case of payments trnsactions with card, the card audience will be available.
-     * 
-     * <p>Possible values: `corporate` `other`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> cardAudience() {
-        return cardAudience;
+    public JsonNullable<GetBalanceReportCardAudience> cardAudience() {
+        return (JsonNullable<GetBalanceReportCardAudience>) cardAudience;
     }
 
     /**
      * In case of payments transactions with card, the card region will be available.
-     * 
-     * <p>Possible values: `intra-eea` `intra-eu` `domestic` `other`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> cardRegion() {
-        return cardRegion;
+    public JsonNullable<GetBalanceReportCardRegion> cardRegion() {
+        return (JsonNullable<GetBalanceReportCardRegion>) cardRegion;
     }
 
     /**
      * Present when the transaction represents a fee.
-     * 
-     * <p>Possible values: `payment-fee` `direct-debit-failure-fee` `unauthorized-direct-debit-fee` `bank-charged-direct-debit-failure-fee` `partner-commission` `application-fee` `capture-fee` `refund-fee` `chargeback-fee` `payment-notification-fee` `transfer-notification-fee` `payout-fee` `fee-discount` `fee-reimbursement` `platform-volume-fee` `platform-connected-organizations-fee` `balance-charge-fee` `3ds-authentication-attempt-fee` `terminal-monthly-fee` `acceptance-risk-fee` `top-up-fee` `payment-gateway-fee` `mastercard-specialty-merchant-program-processing-fee` `mastercard-specialty-merchant-program-registration-fee` `visa-integrity-risk-program-processing-fee` `visa-integrity-risk-program-registration-fee` `minimum-invoice-amount-fee`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> feeType() {
-        return feeType;
+    public JsonNullable<GetBalanceReportFeeType> feeType() {
+        return (JsonNullable<GetBalanceReportFeeType>) feeType;
     }
 
     /**
      * Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
-     * 
-     * <p>Possible values: `fee` `fee-reimbursement` `fee-discount` `fee-vat` `fee-rounding-compensation`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> prepaymentPartType() {
-        return prepaymentPartType;
+    public JsonNullable<GetBalanceReportPrepaymentPartType> prepaymentPartType() {
+        return (JsonNullable<GetBalanceReportPrepaymentPartType>) prepaymentPartType;
     }
 
     /**
      * Represents the transaction type
-     * 
-     * <p>Possible values: `payment` `split-payment` `failed-payment` `failed-platform-split-payment` `failed-split-payment-compensation` `capture` `split-transaction` `refund` `platform-payment-refund` `returned-platform-payment-refund` `refund-compensation` `returned-refund-compensation` `returned-refund` `chargeback` `chargeback-reversal` `chargeback-compensation` `reversed-chargeback-compensation` `platform-payment-chargeback` `reversed-platform-payment-chargeback` `fee-prepayment` `outgoing-transfer` `incoming-transfer` `canceled-transfer` `returned-transfer` `balance-reserve` `balance-reserve-return` `invoice-rounding-compensation` `rolling-reserve-hold` `rolling-reserve-release` `balance-correction` `repayment` `loan` `balance-topup` `cash-collateral-issuance';` `cash-collateral-release` `pending-rolling-reserve` `to-be-released-rolling-reserve` `held-rolling-reserve` `released-rolling-reserve`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> transactionType() {
-        return transactionType;
+    public JsonNullable<GetBalanceReportTransactionType> transactionType() {
+        return (JsonNullable<GetBalanceReportTransactionType>) transactionType;
     }
 
     public static Builder builder() {
@@ -250,7 +233,7 @@ public class GetBalanceReportSubtotals {
     /**
      * Payment type of the transactions
      */
-    public GetBalanceReportSubtotals withMethod(String method) {
+    public GetBalanceReportSubtotals withMethod(GetBalanceReportBalancesMethod method) {
         Utils.checkNotNull(method, "method");
         this.method = JsonNullable.of(method);
         return this;
@@ -259,7 +242,7 @@ public class GetBalanceReportSubtotals {
     /**
      * Payment type of the transactions
      */
-    public GetBalanceReportSubtotals withMethod(JsonNullable<String> method) {
+    public GetBalanceReportSubtotals withMethod(JsonNullable<? extends GetBalanceReportBalancesMethod> method) {
         Utils.checkNotNull(method, "method");
         this.method = method;
         return this;
@@ -267,10 +250,8 @@ public class GetBalanceReportSubtotals {
 
     /**
      * In case of payments transactions with card, the card issuer will be available
-     * 
-     * <p>Possible values: `amex` `maestro` `carte-bancaire` `other`
      */
-    public GetBalanceReportSubtotals withCardIssuer(String cardIssuer) {
+    public GetBalanceReportSubtotals withCardIssuer(GetBalanceReportCardIssuer cardIssuer) {
         Utils.checkNotNull(cardIssuer, "cardIssuer");
         this.cardIssuer = JsonNullable.of(cardIssuer);
         return this;
@@ -278,10 +259,8 @@ public class GetBalanceReportSubtotals {
 
     /**
      * In case of payments transactions with card, the card issuer will be available
-     * 
-     * <p>Possible values: `amex` `maestro` `carte-bancaire` `other`
      */
-    public GetBalanceReportSubtotals withCardIssuer(JsonNullable<String> cardIssuer) {
+    public GetBalanceReportSubtotals withCardIssuer(JsonNullable<? extends GetBalanceReportCardIssuer> cardIssuer) {
         Utils.checkNotNull(cardIssuer, "cardIssuer");
         this.cardIssuer = cardIssuer;
         return this;
@@ -289,10 +268,8 @@ public class GetBalanceReportSubtotals {
 
     /**
      * In case of payments trnsactions with card, the card audience will be available.
-     * 
-     * <p>Possible values: `corporate` `other`
      */
-    public GetBalanceReportSubtotals withCardAudience(String cardAudience) {
+    public GetBalanceReportSubtotals withCardAudience(GetBalanceReportCardAudience cardAudience) {
         Utils.checkNotNull(cardAudience, "cardAudience");
         this.cardAudience = JsonNullable.of(cardAudience);
         return this;
@@ -300,10 +277,8 @@ public class GetBalanceReportSubtotals {
 
     /**
      * In case of payments trnsactions with card, the card audience will be available.
-     * 
-     * <p>Possible values: `corporate` `other`
      */
-    public GetBalanceReportSubtotals withCardAudience(JsonNullable<String> cardAudience) {
+    public GetBalanceReportSubtotals withCardAudience(JsonNullable<? extends GetBalanceReportCardAudience> cardAudience) {
         Utils.checkNotNull(cardAudience, "cardAudience");
         this.cardAudience = cardAudience;
         return this;
@@ -311,10 +286,8 @@ public class GetBalanceReportSubtotals {
 
     /**
      * In case of payments transactions with card, the card region will be available.
-     * 
-     * <p>Possible values: `intra-eea` `intra-eu` `domestic` `other`
      */
-    public GetBalanceReportSubtotals withCardRegion(String cardRegion) {
+    public GetBalanceReportSubtotals withCardRegion(GetBalanceReportCardRegion cardRegion) {
         Utils.checkNotNull(cardRegion, "cardRegion");
         this.cardRegion = JsonNullable.of(cardRegion);
         return this;
@@ -322,10 +295,8 @@ public class GetBalanceReportSubtotals {
 
     /**
      * In case of payments transactions with card, the card region will be available.
-     * 
-     * <p>Possible values: `intra-eea` `intra-eu` `domestic` `other`
      */
-    public GetBalanceReportSubtotals withCardRegion(JsonNullable<String> cardRegion) {
+    public GetBalanceReportSubtotals withCardRegion(JsonNullable<? extends GetBalanceReportCardRegion> cardRegion) {
         Utils.checkNotNull(cardRegion, "cardRegion");
         this.cardRegion = cardRegion;
         return this;
@@ -333,10 +304,8 @@ public class GetBalanceReportSubtotals {
 
     /**
      * Present when the transaction represents a fee.
-     * 
-     * <p>Possible values: `payment-fee` `direct-debit-failure-fee` `unauthorized-direct-debit-fee` `bank-charged-direct-debit-failure-fee` `partner-commission` `application-fee` `capture-fee` `refund-fee` `chargeback-fee` `payment-notification-fee` `transfer-notification-fee` `payout-fee` `fee-discount` `fee-reimbursement` `platform-volume-fee` `platform-connected-organizations-fee` `balance-charge-fee` `3ds-authentication-attempt-fee` `terminal-monthly-fee` `acceptance-risk-fee` `top-up-fee` `payment-gateway-fee` `mastercard-specialty-merchant-program-processing-fee` `mastercard-specialty-merchant-program-registration-fee` `visa-integrity-risk-program-processing-fee` `visa-integrity-risk-program-registration-fee` `minimum-invoice-amount-fee`
      */
-    public GetBalanceReportSubtotals withFeeType(String feeType) {
+    public GetBalanceReportSubtotals withFeeType(GetBalanceReportFeeType feeType) {
         Utils.checkNotNull(feeType, "feeType");
         this.feeType = JsonNullable.of(feeType);
         return this;
@@ -344,10 +313,8 @@ public class GetBalanceReportSubtotals {
 
     /**
      * Present when the transaction represents a fee.
-     * 
-     * <p>Possible values: `payment-fee` `direct-debit-failure-fee` `unauthorized-direct-debit-fee` `bank-charged-direct-debit-failure-fee` `partner-commission` `application-fee` `capture-fee` `refund-fee` `chargeback-fee` `payment-notification-fee` `transfer-notification-fee` `payout-fee` `fee-discount` `fee-reimbursement` `platform-volume-fee` `platform-connected-organizations-fee` `balance-charge-fee` `3ds-authentication-attempt-fee` `terminal-monthly-fee` `acceptance-risk-fee` `top-up-fee` `payment-gateway-fee` `mastercard-specialty-merchant-program-processing-fee` `mastercard-specialty-merchant-program-registration-fee` `visa-integrity-risk-program-processing-fee` `visa-integrity-risk-program-registration-fee` `minimum-invoice-amount-fee`
      */
-    public GetBalanceReportSubtotals withFeeType(JsonNullable<String> feeType) {
+    public GetBalanceReportSubtotals withFeeType(JsonNullable<? extends GetBalanceReportFeeType> feeType) {
         Utils.checkNotNull(feeType, "feeType");
         this.feeType = feeType;
         return this;
@@ -355,10 +322,8 @@ public class GetBalanceReportSubtotals {
 
     /**
      * Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
-     * 
-     * <p>Possible values: `fee` `fee-reimbursement` `fee-discount` `fee-vat` `fee-rounding-compensation`
      */
-    public GetBalanceReportSubtotals withPrepaymentPartType(String prepaymentPartType) {
+    public GetBalanceReportSubtotals withPrepaymentPartType(GetBalanceReportPrepaymentPartType prepaymentPartType) {
         Utils.checkNotNull(prepaymentPartType, "prepaymentPartType");
         this.prepaymentPartType = JsonNullable.of(prepaymentPartType);
         return this;
@@ -366,10 +331,8 @@ public class GetBalanceReportSubtotals {
 
     /**
      * Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
-     * 
-     * <p>Possible values: `fee` `fee-reimbursement` `fee-discount` `fee-vat` `fee-rounding-compensation`
      */
-    public GetBalanceReportSubtotals withPrepaymentPartType(JsonNullable<String> prepaymentPartType) {
+    public GetBalanceReportSubtotals withPrepaymentPartType(JsonNullable<? extends GetBalanceReportPrepaymentPartType> prepaymentPartType) {
         Utils.checkNotNull(prepaymentPartType, "prepaymentPartType");
         this.prepaymentPartType = prepaymentPartType;
         return this;
@@ -377,10 +340,8 @@ public class GetBalanceReportSubtotals {
 
     /**
      * Represents the transaction type
-     * 
-     * <p>Possible values: `payment` `split-payment` `failed-payment` `failed-platform-split-payment` `failed-split-payment-compensation` `capture` `split-transaction` `refund` `platform-payment-refund` `returned-platform-payment-refund` `refund-compensation` `returned-refund-compensation` `returned-refund` `chargeback` `chargeback-reversal` `chargeback-compensation` `reversed-chargeback-compensation` `platform-payment-chargeback` `reversed-platform-payment-chargeback` `fee-prepayment` `outgoing-transfer` `incoming-transfer` `canceled-transfer` `returned-transfer` `balance-reserve` `balance-reserve-return` `invoice-rounding-compensation` `rolling-reserve-hold` `rolling-reserve-release` `balance-correction` `repayment` `loan` `balance-topup` `cash-collateral-issuance';` `cash-collateral-release` `pending-rolling-reserve` `to-be-released-rolling-reserve` `held-rolling-reserve` `released-rolling-reserve`
      */
-    public GetBalanceReportSubtotals withTransactionType(String transactionType) {
+    public GetBalanceReportSubtotals withTransactionType(GetBalanceReportTransactionType transactionType) {
         Utils.checkNotNull(transactionType, "transactionType");
         this.transactionType = JsonNullable.of(transactionType);
         return this;
@@ -388,10 +349,8 @@ public class GetBalanceReportSubtotals {
 
     /**
      * Represents the transaction type
-     * 
-     * <p>Possible values: `payment` `split-payment` `failed-payment` `failed-platform-split-payment` `failed-split-payment-compensation` `capture` `split-transaction` `refund` `platform-payment-refund` `returned-platform-payment-refund` `refund-compensation` `returned-refund-compensation` `returned-refund` `chargeback` `chargeback-reversal` `chargeback-compensation` `reversed-chargeback-compensation` `platform-payment-chargeback` `reversed-platform-payment-chargeback` `fee-prepayment` `outgoing-transfer` `incoming-transfer` `canceled-transfer` `returned-transfer` `balance-reserve` `balance-reserve-return` `invoice-rounding-compensation` `rolling-reserve-hold` `rolling-reserve-release` `balance-correction` `repayment` `loan` `balance-topup` `cash-collateral-issuance';` `cash-collateral-release` `pending-rolling-reserve` `to-be-released-rolling-reserve` `held-rolling-reserve` `released-rolling-reserve`
      */
-    public GetBalanceReportSubtotals withTransactionType(JsonNullable<String> transactionType) {
+    public GetBalanceReportSubtotals withTransactionType(JsonNullable<? extends GetBalanceReportTransactionType> transactionType) {
         Utils.checkNotNull(transactionType, "transactionType");
         this.transactionType = transactionType;
         return this;
@@ -447,19 +406,19 @@ public class GetBalanceReportSubtotals {
 
         private Optional<Long> count = Optional.empty();
 
-        private JsonNullable<String> method = JsonNullable.undefined();
+        private JsonNullable<? extends GetBalanceReportBalancesMethod> method = JsonNullable.undefined();
 
-        private JsonNullable<String> cardIssuer = JsonNullable.undefined();
+        private JsonNullable<? extends GetBalanceReportCardIssuer> cardIssuer = JsonNullable.undefined();
 
-        private JsonNullable<String> cardAudience = JsonNullable.undefined();
+        private JsonNullable<? extends GetBalanceReportCardAudience> cardAudience = JsonNullable.undefined();
 
-        private JsonNullable<String> cardRegion = JsonNullable.undefined();
+        private JsonNullable<? extends GetBalanceReportCardRegion> cardRegion = JsonNullable.undefined();
 
-        private JsonNullable<String> feeType = JsonNullable.undefined();
+        private JsonNullable<? extends GetBalanceReportFeeType> feeType = JsonNullable.undefined();
 
-        private JsonNullable<String> prepaymentPartType = JsonNullable.undefined();
+        private JsonNullable<? extends GetBalanceReportPrepaymentPartType> prepaymentPartType = JsonNullable.undefined();
 
-        private JsonNullable<String> transactionType = JsonNullable.undefined();
+        private JsonNullable<? extends GetBalanceReportTransactionType> transactionType = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -501,7 +460,7 @@ public class GetBalanceReportSubtotals {
         /**
          * Payment type of the transactions
          */
-        public Builder method(String method) {
+        public Builder method(GetBalanceReportBalancesMethod method) {
             Utils.checkNotNull(method, "method");
             this.method = JsonNullable.of(method);
             return this;
@@ -510,7 +469,7 @@ public class GetBalanceReportSubtotals {
         /**
          * Payment type of the transactions
          */
-        public Builder method(JsonNullable<String> method) {
+        public Builder method(JsonNullable<? extends GetBalanceReportBalancesMethod> method) {
             Utils.checkNotNull(method, "method");
             this.method = method;
             return this;
@@ -519,10 +478,8 @@ public class GetBalanceReportSubtotals {
 
         /**
          * In case of payments transactions with card, the card issuer will be available
-         * 
-         * <p>Possible values: `amex` `maestro` `carte-bancaire` `other`
          */
-        public Builder cardIssuer(String cardIssuer) {
+        public Builder cardIssuer(GetBalanceReportCardIssuer cardIssuer) {
             Utils.checkNotNull(cardIssuer, "cardIssuer");
             this.cardIssuer = JsonNullable.of(cardIssuer);
             return this;
@@ -530,10 +487,8 @@ public class GetBalanceReportSubtotals {
 
         /**
          * In case of payments transactions with card, the card issuer will be available
-         * 
-         * <p>Possible values: `amex` `maestro` `carte-bancaire` `other`
          */
-        public Builder cardIssuer(JsonNullable<String> cardIssuer) {
+        public Builder cardIssuer(JsonNullable<? extends GetBalanceReportCardIssuer> cardIssuer) {
             Utils.checkNotNull(cardIssuer, "cardIssuer");
             this.cardIssuer = cardIssuer;
             return this;
@@ -542,10 +497,8 @@ public class GetBalanceReportSubtotals {
 
         /**
          * In case of payments trnsactions with card, the card audience will be available.
-         * 
-         * <p>Possible values: `corporate` `other`
          */
-        public Builder cardAudience(String cardAudience) {
+        public Builder cardAudience(GetBalanceReportCardAudience cardAudience) {
             Utils.checkNotNull(cardAudience, "cardAudience");
             this.cardAudience = JsonNullable.of(cardAudience);
             return this;
@@ -553,10 +506,8 @@ public class GetBalanceReportSubtotals {
 
         /**
          * In case of payments trnsactions with card, the card audience will be available.
-         * 
-         * <p>Possible values: `corporate` `other`
          */
-        public Builder cardAudience(JsonNullable<String> cardAudience) {
+        public Builder cardAudience(JsonNullable<? extends GetBalanceReportCardAudience> cardAudience) {
             Utils.checkNotNull(cardAudience, "cardAudience");
             this.cardAudience = cardAudience;
             return this;
@@ -565,10 +516,8 @@ public class GetBalanceReportSubtotals {
 
         /**
          * In case of payments transactions with card, the card region will be available.
-         * 
-         * <p>Possible values: `intra-eea` `intra-eu` `domestic` `other`
          */
-        public Builder cardRegion(String cardRegion) {
+        public Builder cardRegion(GetBalanceReportCardRegion cardRegion) {
             Utils.checkNotNull(cardRegion, "cardRegion");
             this.cardRegion = JsonNullable.of(cardRegion);
             return this;
@@ -576,10 +525,8 @@ public class GetBalanceReportSubtotals {
 
         /**
          * In case of payments transactions with card, the card region will be available.
-         * 
-         * <p>Possible values: `intra-eea` `intra-eu` `domestic` `other`
          */
-        public Builder cardRegion(JsonNullable<String> cardRegion) {
+        public Builder cardRegion(JsonNullable<? extends GetBalanceReportCardRegion> cardRegion) {
             Utils.checkNotNull(cardRegion, "cardRegion");
             this.cardRegion = cardRegion;
             return this;
@@ -588,10 +535,8 @@ public class GetBalanceReportSubtotals {
 
         /**
          * Present when the transaction represents a fee.
-         * 
-         * <p>Possible values: `payment-fee` `direct-debit-failure-fee` `unauthorized-direct-debit-fee` `bank-charged-direct-debit-failure-fee` `partner-commission` `application-fee` `capture-fee` `refund-fee` `chargeback-fee` `payment-notification-fee` `transfer-notification-fee` `payout-fee` `fee-discount` `fee-reimbursement` `platform-volume-fee` `platform-connected-organizations-fee` `balance-charge-fee` `3ds-authentication-attempt-fee` `terminal-monthly-fee` `acceptance-risk-fee` `top-up-fee` `payment-gateway-fee` `mastercard-specialty-merchant-program-processing-fee` `mastercard-specialty-merchant-program-registration-fee` `visa-integrity-risk-program-processing-fee` `visa-integrity-risk-program-registration-fee` `minimum-invoice-amount-fee`
          */
-        public Builder feeType(String feeType) {
+        public Builder feeType(GetBalanceReportFeeType feeType) {
             Utils.checkNotNull(feeType, "feeType");
             this.feeType = JsonNullable.of(feeType);
             return this;
@@ -599,10 +544,8 @@ public class GetBalanceReportSubtotals {
 
         /**
          * Present when the transaction represents a fee.
-         * 
-         * <p>Possible values: `payment-fee` `direct-debit-failure-fee` `unauthorized-direct-debit-fee` `bank-charged-direct-debit-failure-fee` `partner-commission` `application-fee` `capture-fee` `refund-fee` `chargeback-fee` `payment-notification-fee` `transfer-notification-fee` `payout-fee` `fee-discount` `fee-reimbursement` `platform-volume-fee` `platform-connected-organizations-fee` `balance-charge-fee` `3ds-authentication-attempt-fee` `terminal-monthly-fee` `acceptance-risk-fee` `top-up-fee` `payment-gateway-fee` `mastercard-specialty-merchant-program-processing-fee` `mastercard-specialty-merchant-program-registration-fee` `visa-integrity-risk-program-processing-fee` `visa-integrity-risk-program-registration-fee` `minimum-invoice-amount-fee`
          */
-        public Builder feeType(JsonNullable<String> feeType) {
+        public Builder feeType(JsonNullable<? extends GetBalanceReportFeeType> feeType) {
             Utils.checkNotNull(feeType, "feeType");
             this.feeType = feeType;
             return this;
@@ -611,10 +554,8 @@ public class GetBalanceReportSubtotals {
 
         /**
          * Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
-         * 
-         * <p>Possible values: `fee` `fee-reimbursement` `fee-discount` `fee-vat` `fee-rounding-compensation`
          */
-        public Builder prepaymentPartType(String prepaymentPartType) {
+        public Builder prepaymentPartType(GetBalanceReportPrepaymentPartType prepaymentPartType) {
             Utils.checkNotNull(prepaymentPartType, "prepaymentPartType");
             this.prepaymentPartType = JsonNullable.of(prepaymentPartType);
             return this;
@@ -622,10 +563,8 @@ public class GetBalanceReportSubtotals {
 
         /**
          * Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
-         * 
-         * <p>Possible values: `fee` `fee-reimbursement` `fee-discount` `fee-vat` `fee-rounding-compensation`
          */
-        public Builder prepaymentPartType(JsonNullable<String> prepaymentPartType) {
+        public Builder prepaymentPartType(JsonNullable<? extends GetBalanceReportPrepaymentPartType> prepaymentPartType) {
             Utils.checkNotNull(prepaymentPartType, "prepaymentPartType");
             this.prepaymentPartType = prepaymentPartType;
             return this;
@@ -634,10 +573,8 @@ public class GetBalanceReportSubtotals {
 
         /**
          * Represents the transaction type
-         * 
-         * <p>Possible values: `payment` `split-payment` `failed-payment` `failed-platform-split-payment` `failed-split-payment-compensation` `capture` `split-transaction` `refund` `platform-payment-refund` `returned-platform-payment-refund` `refund-compensation` `returned-refund-compensation` `returned-refund` `chargeback` `chargeback-reversal` `chargeback-compensation` `reversed-chargeback-compensation` `platform-payment-chargeback` `reversed-platform-payment-chargeback` `fee-prepayment` `outgoing-transfer` `incoming-transfer` `canceled-transfer` `returned-transfer` `balance-reserve` `balance-reserve-return` `invoice-rounding-compensation` `rolling-reserve-hold` `rolling-reserve-release` `balance-correction` `repayment` `loan` `balance-topup` `cash-collateral-issuance';` `cash-collateral-release` `pending-rolling-reserve` `to-be-released-rolling-reserve` `held-rolling-reserve` `released-rolling-reserve`
          */
-        public Builder transactionType(String transactionType) {
+        public Builder transactionType(GetBalanceReportTransactionType transactionType) {
             Utils.checkNotNull(transactionType, "transactionType");
             this.transactionType = JsonNullable.of(transactionType);
             return this;
@@ -645,10 +582,8 @@ public class GetBalanceReportSubtotals {
 
         /**
          * Represents the transaction type
-         * 
-         * <p>Possible values: `payment` `split-payment` `failed-payment` `failed-platform-split-payment` `failed-split-payment-compensation` `capture` `split-transaction` `refund` `platform-payment-refund` `returned-platform-payment-refund` `refund-compensation` `returned-refund-compensation` `returned-refund` `chargeback` `chargeback-reversal` `chargeback-compensation` `reversed-chargeback-compensation` `platform-payment-chargeback` `reversed-platform-payment-chargeback` `fee-prepayment` `outgoing-transfer` `incoming-transfer` `canceled-transfer` `returned-transfer` `balance-reserve` `balance-reserve-return` `invoice-rounding-compensation` `rolling-reserve-hold` `rolling-reserve-release` `balance-correction` `repayment` `loan` `balance-topup` `cash-collateral-issuance';` `cash-collateral-release` `pending-rolling-reserve` `to-be-released-rolling-reserve` `held-rolling-reserve` `released-rolling-reserve`
          */
-        public Builder transactionType(JsonNullable<String> transactionType) {
+        public Builder transactionType(JsonNullable<? extends GetBalanceReportTransactionType> transactionType) {
             Utils.checkNotNull(transactionType, "transactionType");
             this.transactionType = transactionType;
             return this;

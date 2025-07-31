@@ -13,7 +13,8 @@ import java.lang.String;
 /**
  * MaximumAmount
  * 
- * <p>The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null` is returned instead.
+ * <p>The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
+ * is returned instead.
  */
 public class MaximumAmount {
     /**

@@ -51,11 +51,8 @@ public class Profiles {
      * 
      * <p>Create a profile to process payments on.
      * 
-     * <p>Profiles are required for payment processing. Normally they are created via the Mollie dashboard. Alternatively, you can use this endpoint to automate profile creation.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **profiles.write**](/reference/authentication)
+     * <p>Profiles are required for payment processing. Normally they are created via the Mollie dashboard. Alternatively, you
+     * can use this endpoint to automate profile creation.
      * 
      * @return The call builder
      */
@@ -68,11 +65,8 @@ public class Profiles {
      * 
      * <p>Create a profile to process payments on.
      * 
-     * <p>Profiles are required for payment processing. Normally they are created via the Mollie dashboard. Alternatively, you can use this endpoint to automate profile creation.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **profiles.write**](/reference/authentication)
+     * <p>Profiles are required for payment processing. Normally they are created via the Mollie dashboard. Alternatively, you
+     * can use this endpoint to automate profile creation.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -87,11 +81,8 @@ public class Profiles {
      * 
      * <p>Create a profile to process payments on.
      * 
-     * <p>Profiles are required for payment processing. Normally they are created via the Mollie dashboard. Alternatively, you can use this endpoint to automate profile creation.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **profiles.write**](/reference/authentication)
+     * <p>Profiles are required for payment processing. Normally they are created via the Mollie dashboard. Alternatively, you
+     * can use this endpoint to automate profile creation.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -111,10 +102,6 @@ public class Profiles {
      * 
      * <p>The results are paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **profiles.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public ListProfilesRequestBuilder list() {
@@ -127,10 +114,6 @@ public class Profiles {
      * <p>Retrieve a list of all of your profiles.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **profiles.read**](/reference/authentication)
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -146,11 +129,8 @@ public class Profiles {
      * 
      * <p>The results are paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **profiles.read**](/reference/authentication)
-     * 
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     *         result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
      * @param options additional options
      * @return The response from the API call
@@ -175,10 +155,6 @@ public class Profiles {
      * 
      * <p>Retrieve a single profile by its ID.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **profiles.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public GetProfileRequestBuilder get() {
@@ -189,10 +165,6 @@ public class Profiles {
      * Get profile
      * 
      * <p>Retrieve a single profile by its ID.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **profiles.read**](/reference/authentication)
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
@@ -207,12 +179,10 @@ public class Profiles {
      * 
      * <p>Retrieve a single profile by its ID.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **profiles.read**](/reference/authentication)
-     * 
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param options additional options
@@ -238,11 +208,8 @@ public class Profiles {
      * 
      * <p>Update an existing profile.
      * 
-     * <p>Profiles are required for payment processing. Normally they are created and updated via the Mollie dashboard. Alternatively, you can use this endpoint to automate profile management.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **profiles.write**](/reference/authentication)
+     * <p>Profiles are required for payment processing. Normally they are created and updated via the Mollie dashboard.
+     * Alternatively, you can use this endpoint to automate profile management.
      * 
      * @return The call builder
      */
@@ -255,11 +222,8 @@ public class Profiles {
      * 
      * <p>Update an existing profile.
      * 
-     * <p>Profiles are required for payment processing. Normally they are created and updated via the Mollie dashboard. Alternatively, you can use this endpoint to automate profile management.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **profiles.write**](/reference/authentication)
+     * <p>Profiles are required for payment processing. Normally they are created and updated via the Mollie dashboard.
+     * Alternatively, you can use this endpoint to automate profile management.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @param requestBody 
@@ -275,11 +239,8 @@ public class Profiles {
      * 
      * <p>Update an existing profile.
      * 
-     * <p>Profiles are required for payment processing. Normally they are created and updated via the Mollie dashboard. Alternatively, you can use this endpoint to automate profile management.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **profiles.write**](/reference/authentication)
+     * <p>Profiles are required for payment processing. Normally they are created and updated via the Mollie dashboard.
+     * Alternatively, you can use this endpoint to automate profile management.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @param requestBody 
@@ -306,10 +267,6 @@ public class Profiles {
      * 
      * <p>Delete a profile. A deleted profile and its related credentials can no longer be used for accepting payments.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **profiles.write**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public DeleteProfileRequestBuilder delete() {
@@ -320,10 +277,6 @@ public class Profiles {
      * Delete profile
      * 
      * <p>Delete a profile. A deleted profile and its related credentials can no longer be used for accepting payments.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **profiles.write**](/reference/authentication)
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
@@ -337,10 +290,6 @@ public class Profiles {
      * Delete profile
      * 
      * <p>Delete a profile. A deleted profile and its related credentials can no longer be used for accepting payments.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **profiles.write**](/reference/authentication)
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @param options additional options
@@ -361,13 +310,11 @@ public class Profiles {
     /**
      * Get current profile
      * 
-     * <p>Retrieve the currently authenticated profile. A convenient alias of the [Get profile](get-profile) endpoint.
+     * <p>Retrieve the currently authenticated profile. A convenient alias of the [Get profile](get-profile)
+     * endpoint.
      * 
-     * <p>For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint documentation.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
+     * <p>For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint
+     * documentation.
      * 
      * @return The call builder
      */
@@ -378,13 +325,11 @@ public class Profiles {
     /**
      * Get current profile
      * 
-     * <p>Retrieve the currently authenticated profile. A convenient alias of the [Get profile](get-profile) endpoint.
+     * <p>Retrieve the currently authenticated profile. A convenient alias of the [Get profile](get-profile)
+     * endpoint.
      * 
-     * <p>For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint documentation.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
+     * <p>For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint
+     * documentation.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -396,13 +341,11 @@ public class Profiles {
     /**
      * Get current profile
      * 
-     * <p>Retrieve the currently authenticated profile. A convenient alias of the [Get profile](get-profile) endpoint.
+     * <p>Retrieve the currently authenticated profile. A convenient alias of the [Get profile](get-profile)
+     * endpoint.
      * 
-     * <p>For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint documentation.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
+     * <p>For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint
+     * documentation.
      * 
      * @param options additional options
      * @return The response from the API call

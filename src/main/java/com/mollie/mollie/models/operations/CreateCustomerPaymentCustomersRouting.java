@@ -22,18 +22,17 @@ public class CreateCustomerPaymentCustomersRouting {
     private String resource;
 
     /**
-     * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID. Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID.
+     * Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
      */
     @JsonProperty("id")
     private String id;
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
     @JsonProperty("mode")
-    private String mode;
+    private CreateCustomerPaymentCustomersMode mode;
 
     /**
      * The portion of the total payment amount being routed. Currently only `EUR` payments can be routed.
@@ -54,7 +53,8 @@ public class CreateCustomerPaymentCustomersRouting {
     private String createdAt;
 
     /**
-     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
+     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+     * date must be given in `YYYY-MM-DD` format.
      * 
      * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
      */
@@ -72,7 +72,7 @@ public class CreateCustomerPaymentCustomersRouting {
     public CreateCustomerPaymentCustomersRouting(
             @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
-            @JsonProperty("mode") String mode,
+            @JsonProperty("mode") CreateCustomerPaymentCustomersMode mode,
             @JsonProperty("amount") CreateCustomerPaymentCustomersResponse201ApplicationHalPlusJsonAmount amount,
             @JsonProperty("destination") CreateCustomerPaymentCustomersDestination destination,
             @JsonProperty("createdAt") String createdAt,
@@ -99,7 +99,7 @@ public class CreateCustomerPaymentCustomersRouting {
     public CreateCustomerPaymentCustomersRouting(
             String resource,
             String id,
-            String mode,
+            CreateCustomerPaymentCustomersMode mode,
             CreateCustomerPaymentCustomersResponse201ApplicationHalPlusJsonAmount amount,
             CreateCustomerPaymentCustomersDestination destination,
             String createdAt,
@@ -118,7 +118,8 @@ public class CreateCustomerPaymentCustomersRouting {
     }
 
     /**
-     * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID. Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID.
+     * Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
      */
     @JsonIgnore
     public String id() {
@@ -127,11 +128,9 @@ public class CreateCustomerPaymentCustomersRouting {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
     @JsonIgnore
-    public String mode() {
+    public CreateCustomerPaymentCustomersMode mode() {
         return mode;
     }
 
@@ -160,7 +159,8 @@ public class CreateCustomerPaymentCustomersRouting {
     }
 
     /**
-     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
+     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+     * date must be given in `YYYY-MM-DD` format.
      * 
      * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
      */
@@ -192,7 +192,8 @@ public class CreateCustomerPaymentCustomersRouting {
     }
 
     /**
-     * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID. Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID.
+     * Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
      */
     public CreateCustomerPaymentCustomersRouting withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -202,10 +203,8 @@ public class CreateCustomerPaymentCustomersRouting {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
-    public CreateCustomerPaymentCustomersRouting withMode(String mode) {
+    public CreateCustomerPaymentCustomersRouting withMode(CreateCustomerPaymentCustomersMode mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
@@ -239,7 +238,8 @@ public class CreateCustomerPaymentCustomersRouting {
     }
 
     /**
-     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
+     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+     * date must be given in `YYYY-MM-DD` format.
      * 
      * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
      */
@@ -250,7 +250,8 @@ public class CreateCustomerPaymentCustomersRouting {
     }
 
     /**
-     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
+     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+     * date must be given in `YYYY-MM-DD` format.
      * 
      * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
      */
@@ -317,7 +318,7 @@ public class CreateCustomerPaymentCustomersRouting {
 
         private String id;
 
-        private String mode;
+        private CreateCustomerPaymentCustomersMode mode;
 
         private CreateCustomerPaymentCustomersResponse201ApplicationHalPlusJsonAmount amount;
 
@@ -345,7 +346,8 @@ public class CreateCustomerPaymentCustomersRouting {
 
 
         /**
-         * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID. Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
+         * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID.
+         * Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -356,10 +358,8 @@ public class CreateCustomerPaymentCustomersRouting {
 
         /**
          * Whether this entity was created in live mode or in test mode.
-         * 
-         * <p>Possible values: `live` `test`
          */
-        public Builder mode(String mode) {
+        public Builder mode(CreateCustomerPaymentCustomersMode mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
@@ -397,7 +397,8 @@ public class CreateCustomerPaymentCustomersRouting {
 
 
         /**
-         * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
+         * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+         * date must be given in `YYYY-MM-DD` format.
          * 
          * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
          */
@@ -408,7 +409,8 @@ public class CreateCustomerPaymentCustomersRouting {
         }
 
         /**
-         * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The date must be given in `YYYY-MM-DD` format.
+         * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+         * date must be given in `YYYY-MM-DD` format.
          * 
          * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
          */

@@ -32,14 +32,16 @@ public class UpdateCustomerRequestBody {
     private JsonNullable<String> email;
 
     /**
-     * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
+     * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if
+     * absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("locale")
-    private JsonNullable<String> locale;
+    private JsonNullable<? extends UpdateCustomerLocale> locale;
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
@@ -48,7 +50,9 @@ public class UpdateCustomerRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * `testmode` to `true`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("testmode")
@@ -58,7 +62,7 @@ public class UpdateCustomerRequestBody {
     public UpdateCustomerRequestBody(
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("email") JsonNullable<String> email,
-            @JsonProperty("locale") JsonNullable<String> locale,
+            @JsonProperty("locale") JsonNullable<? extends UpdateCustomerLocale> locale,
             @JsonProperty("metadata") JsonNullable<? extends UpdateCustomerMetadata> metadata,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(name, "name");
@@ -95,15 +99,18 @@ public class UpdateCustomerRequestBody {
     }
 
     /**
-     * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
+     * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if
+     * absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> locale() {
-        return locale;
+    public JsonNullable<UpdateCustomerLocale> locale() {
+        return (JsonNullable<UpdateCustomerLocale>) locale;
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -114,7 +121,9 @@ public class UpdateCustomerRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * `testmode` to `true`.
      */
     @JsonIgnore
     public JsonNullable<Boolean> testmode() {
@@ -163,25 +172,28 @@ public class UpdateCustomerRequestBody {
     }
 
     /**
-     * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
+     * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if
+     * absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
      */
-    public UpdateCustomerRequestBody withLocale(String locale) {
+    public UpdateCustomerRequestBody withLocale(UpdateCustomerLocale locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = JsonNullable.of(locale);
         return this;
     }
 
     /**
-     * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
+     * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if
+     * absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
      */
-    public UpdateCustomerRequestBody withLocale(JsonNullable<String> locale) {
+    public UpdateCustomerRequestBody withLocale(JsonNullable<? extends UpdateCustomerLocale> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     public UpdateCustomerRequestBody withMetadata(UpdateCustomerMetadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -190,7 +202,8 @@ public class UpdateCustomerRequestBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     public UpdateCustomerRequestBody withMetadata(JsonNullable<? extends UpdateCustomerMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -201,7 +214,9 @@ public class UpdateCustomerRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * `testmode` to `true`.
      */
     public UpdateCustomerRequestBody withTestmode(boolean testmode) {
         Utils.checkNotNull(testmode, "testmode");
@@ -212,7 +227,9 @@ public class UpdateCustomerRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * `testmode` to `true`.
      */
     public UpdateCustomerRequestBody withTestmode(JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(testmode, "testmode");
@@ -261,7 +278,7 @@ public class UpdateCustomerRequestBody {
 
         private JsonNullable<String> email = JsonNullable.undefined();
 
-        private JsonNullable<String> locale = JsonNullable.undefined();
+        private JsonNullable<? extends UpdateCustomerLocale> locale = JsonNullable.undefined();
 
         private JsonNullable<? extends UpdateCustomerMetadata> metadata = JsonNullable.undefined();
 
@@ -311,18 +328,20 @@ public class UpdateCustomerRequestBody {
 
 
         /**
-         * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
+         * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if
+         * absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
          */
-        public Builder locale(String locale) {
+        public Builder locale(UpdateCustomerLocale locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = JsonNullable.of(locale);
             return this;
         }
 
         /**
-         * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
+         * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if
+         * absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
          */
-        public Builder locale(JsonNullable<String> locale) {
+        public Builder locale(JsonNullable<? extends UpdateCustomerLocale> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;
@@ -330,7 +349,8 @@ public class UpdateCustomerRequestBody {
 
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
         public Builder metadata(UpdateCustomerMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -339,7 +359,8 @@ public class UpdateCustomerRequestBody {
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
         public Builder metadata(JsonNullable<? extends UpdateCustomerMetadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -351,7 +372,9 @@ public class UpdateCustomerRequestBody {
         /**
          * Whether to create the entity in test mode or live mode.
          * 
-         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+         * `testmode` to `true`.
          */
         public Builder testmode(boolean testmode) {
             Utils.checkNotNull(testmode, "testmode");
@@ -362,7 +385,9 @@ public class UpdateCustomerRequestBody {
         /**
          * Whether to create the entity in test mode or live mode.
          * 
-         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+         * `testmode` to `true`.
          */
         public Builder testmode(JsonNullable<Boolean> testmode) {
             Utils.checkNotNull(testmode, "testmode");

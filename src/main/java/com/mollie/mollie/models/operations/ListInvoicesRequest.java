@@ -12,12 +12,14 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class ListInvoicesRequest {
     /**
-     * Filter for an invoice with a specific invoice reference, for example `2024.10000`.
+     * Filter for an invoice with a specific invoice reference, for example
+     * `2024.10000`.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=reference")
     private JsonNullable<String> reference;
@@ -35,7 +37,8 @@ public class ListInvoicesRequest {
     private JsonNullable<String> month;
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
     private JsonNullable<String> from;
@@ -47,12 +50,11 @@ public class ListInvoicesRequest {
     private JsonNullable<Long> limit;
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
-     * 
-     * <p>Possible values: `asc` `desc` (default: `desc`)
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * newest to oldest.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
-    private JsonNullable<String> sort;
+    private JsonNullable<? extends ListInvoicesQueryParamSort> sort;
 
     @JsonCreator
     public ListInvoicesRequest(
@@ -61,7 +63,7 @@ public class ListInvoicesRequest {
             JsonNullable<String> month,
             JsonNullable<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<String> sort) {
+            JsonNullable<? extends ListInvoicesQueryParamSort> sort) {
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(year, "year");
         Utils.checkNotNull(month, "month");
@@ -82,7 +84,8 @@ public class ListInvoicesRequest {
     }
 
     /**
-     * Filter for an invoice with a specific invoice reference, for example `2024.10000`.
+     * Filter for an invoice with a specific invoice reference, for example
+     * `2024.10000`.
      */
     @JsonIgnore
     public JsonNullable<String> reference() {
@@ -106,7 +109,8 @@ public class ListInvoicesRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * result set.
      */
     @JsonIgnore
     public JsonNullable<String> from() {
@@ -122,13 +126,13 @@ public class ListInvoicesRequest {
     }
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
-     * 
-     * <p>Possible values: `asc` `desc` (default: `desc`)
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * newest to oldest.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> sort() {
-        return sort;
+    public JsonNullable<ListInvoicesQueryParamSort> sort() {
+        return (JsonNullable<ListInvoicesQueryParamSort>) sort;
     }
 
     public static Builder builder() {
@@ -137,7 +141,8 @@ public class ListInvoicesRequest {
 
 
     /**
-     * Filter for an invoice with a specific invoice reference, for example `2024.10000`.
+     * Filter for an invoice with a specific invoice reference, for example
+     * `2024.10000`.
      */
     public ListInvoicesRequest withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
@@ -146,7 +151,8 @@ public class ListInvoicesRequest {
     }
 
     /**
-     * Filter for an invoice with a specific invoice reference, for example `2024.10000`.
+     * Filter for an invoice with a specific invoice reference, for example
+     * `2024.10000`.
      */
     public ListInvoicesRequest withReference(JsonNullable<String> reference) {
         Utils.checkNotNull(reference, "reference");
@@ -191,7 +197,8 @@ public class ListInvoicesRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * result set.
      */
     public ListInvoicesRequest withFrom(String from) {
         Utils.checkNotNull(from, "from");
@@ -200,7 +207,8 @@ public class ListInvoicesRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * result set.
      */
     public ListInvoicesRequest withFrom(JsonNullable<String> from) {
         Utils.checkNotNull(from, "from");
@@ -227,22 +235,20 @@ public class ListInvoicesRequest {
     }
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
-     * 
-     * <p>Possible values: `asc` `desc` (default: `desc`)
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * newest to oldest.
      */
-    public ListInvoicesRequest withSort(String sort) {
+    public ListInvoicesRequest withSort(ListInvoicesQueryParamSort sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = JsonNullable.of(sort);
         return this;
     }
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
-     * 
-     * <p>Possible values: `asc` `desc` (default: `desc`)
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * newest to oldest.
      */
-    public ListInvoicesRequest withSort(JsonNullable<String> sort) {
+    public ListInvoicesRequest withSort(JsonNullable<? extends ListInvoicesQueryParamSort> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;
@@ -297,7 +303,7 @@ public class ListInvoicesRequest {
 
         private JsonNullable<Long> limit;
 
-        private JsonNullable<String> sort = JsonNullable.undefined();
+        private JsonNullable<? extends ListInvoicesQueryParamSort> sort;
 
         private Builder() {
           // force use of static builder() method
@@ -305,7 +311,8 @@ public class ListInvoicesRequest {
 
 
         /**
-         * Filter for an invoice with a specific invoice reference, for example `2024.10000`.
+         * Filter for an invoice with a specific invoice reference, for example
+         * `2024.10000`.
          */
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
@@ -314,7 +321,8 @@ public class ListInvoicesRequest {
         }
 
         /**
-         * Filter for an invoice with a specific invoice reference, for example `2024.10000`.
+         * Filter for an invoice with a specific invoice reference, for example
+         * `2024.10000`.
          */
         public Builder reference(JsonNullable<String> reference) {
             Utils.checkNotNull(reference, "reference");
@@ -362,7 +370,8 @@ public class ListInvoicesRequest {
 
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * result set.
          */
         public Builder from(String from) {
             Utils.checkNotNull(from, "from");
@@ -371,7 +380,8 @@ public class ListInvoicesRequest {
         }
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the result set.
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * result set.
          */
         public Builder from(JsonNullable<String> from) {
             Utils.checkNotNull(from, "from");
@@ -400,22 +410,20 @@ public class ListInvoicesRequest {
 
 
         /**
-         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
-         * 
-         * <p>Possible values: `asc` `desc` (default: `desc`)
+         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+         * newest to oldest.
          */
-        public Builder sort(String sort) {
+        public Builder sort(ListInvoicesQueryParamSort sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = JsonNullable.of(sort);
             return this;
         }
 
         /**
-         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from newest to oldest.
-         * 
-         * <p>Possible values: `asc` `desc` (default: `desc`)
+         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+         * newest to oldest.
          */
-        public Builder sort(JsonNullable<String> sort) {
+        public Builder sort(JsonNullable<? extends ListInvoicesQueryParamSort> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = sort;
             return this;
@@ -424,6 +432,9 @@ public class ListInvoicesRequest {
         public ListInvoicesRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
+            }
+            if (sort == null) {
+                sort = _SINGLETON_VALUE_Sort.value();
             }
 
             return new ListInvoicesRequest(
@@ -437,5 +448,11 @@ public class ListInvoicesRequest {
                         "limit",
                         "50",
                         new TypeReference<JsonNullable<Long>>() {});
+
+        private static final LazySingletonValue<JsonNullable<? extends ListInvoicesQueryParamSort>> _SINGLETON_VALUE_Sort =
+                new LazySingletonValue<>(
+                        "sort",
+                        "\"desc\"",
+                        new TypeReference<JsonNullable<? extends ListInvoicesQueryParamSort>>() {});
     }
 }

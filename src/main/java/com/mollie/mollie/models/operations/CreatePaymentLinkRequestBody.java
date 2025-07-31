@@ -22,27 +22,31 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreatePaymentLinkRequestBody {
     /**
-     * A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
+     * A short description of the payment link. The description is visible in the Dashboard and will be shown on the
+     * customer's bank or card statement when possible.
      */
     @JsonProperty("description")
     private String description;
 
     /**
-     * The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an amount.
+     * The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an
+     * amount.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
     private JsonNullable<? extends CreatePaymentLinkAmount> amount;
 
     /**
-     * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The customer will be prompted to enter a value greater than or equal to the minimum amount.
+     * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The
+     * customer will be prompted to enter a value greater than or equal to the minimum amount.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("minimumAmount")
     private JsonNullable<? extends MinimumAmount> minimumAmount;
 
     /**
-     * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided, the customer will be shown a generic message after completing the payment.
+     * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided,
+     * the customer will be shown a generic message after completing the payment.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("redirectUrl")
@@ -51,16 +55,20 @@ public class CreatePaymentLinkRequestBody {
     /**
      * The webhook URL where we will send payment status updates to.
      * 
-     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to any payments resulting from the payment link.
+     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to any payments
+     * resulting from the payment link.
      * 
-     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your local machine.
+     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
+     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+     * local machine.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("webhookUrl")
     private JsonNullable<String> webhookUrl;
 
     /**
-     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+     * ordered and its price.
      * 
      * <p>All lines must have the same currency as the payment.
      * 
@@ -71,9 +79,11 @@ public class CreatePaymentLinkRequestBody {
     private JsonNullable<? extends List<CreatePaymentLinkLines>> lines;
 
     /**
-     * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+     * The customer's billing address details. We advise to provide these details to improve fraud protection and
+     * conversion.
      * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
      * 
      * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
      */
@@ -82,9 +92,11 @@ public class CreatePaymentLinkRequestBody {
     private Optional<? extends CreatePaymentLinkBillingAddress> billingAddress;
 
     /**
-     * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+     * The customer's shipping address details. We advise to provide these details to improve fraud protection and
+     * conversion.
      * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shippingAddress")
@@ -93,14 +105,17 @@ public class CreatePaymentLinkRequestBody {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("profileId")
     private JsonNullable<String> profileId;
 
     /**
-     * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make multiple payments using the same link.
+     * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make multiple
+     * payments using the same link.
      * 
      * <p>If no value is specified, the field defaults to `false`, allowing only a single payment per link.
      */
@@ -109,25 +124,32 @@ public class CreatePaymentLinkRequestBody {
     private JsonNullable<Boolean> reusable;
 
     /**
-     * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front, the payment link will not expire automatically.
+     * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front,
+     * the payment link will not expire automatically.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("expiresAt")
     private JsonNullable<String> expiresAt;
 
     /**
-     * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
+     * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+     * not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint', 'in3', 'riverty', 'klarna', 'billie'.
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
+     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+     * 'in3', 'riverty', 'klarna', 'billie'.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("allowedMethods")
     private JsonNullable<? extends List<String>> allowedMethods;
 
     /**
-     * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie merchants.
+     * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie
+     * merchants.
      * 
-     * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent to your own account balance.
+     * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this
+     * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent
+     * to your own account balance.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("applicationFee")
@@ -186,7 +208,8 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
+     * A short description of the payment link. The description is visible in the Dashboard and will be shown on the
+     * customer's bank or card statement when possible.
      */
     @JsonIgnore
     public String description() {
@@ -194,7 +217,8 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an amount.
+     * The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an
+     * amount.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -203,7 +227,8 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The customer will be prompted to enter a value greater than or equal to the minimum amount.
+     * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The
+     * customer will be prompted to enter a value greater than or equal to the minimum amount.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -212,7 +237,8 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided, the customer will be shown a generic message after completing the payment.
+     * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided,
+     * the customer will be shown a generic message after completing the payment.
      */
     @JsonIgnore
     public JsonNullable<String> redirectUrl() {
@@ -222,9 +248,12 @@ public class CreatePaymentLinkRequestBody {
     /**
      * The webhook URL where we will send payment status updates to.
      * 
-     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to any payments resulting from the payment link.
+     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to any payments
+     * resulting from the payment link.
      * 
-     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your local machine.
+     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
+     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+     * local machine.
      */
     @JsonIgnore
     public JsonNullable<String> webhookUrl() {
@@ -232,7 +261,8 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+     * ordered and its price.
      * 
      * <p>All lines must have the same currency as the payment.
      * 
@@ -245,9 +275,11 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+     * The customer's billing address details. We advise to provide these details to improve fraud protection and
+     * conversion.
      * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
      * 
      * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
      */
@@ -258,9 +290,11 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+     * The customer's shipping address details. We advise to provide these details to improve fraud protection and
+     * conversion.
      * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -271,7 +305,9 @@ public class CreatePaymentLinkRequestBody {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     @JsonIgnore
     public JsonNullable<String> profileId() {
@@ -279,7 +315,8 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make multiple payments using the same link.
+     * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make multiple
+     * payments using the same link.
      * 
      * <p>If no value is specified, the field defaults to `false`, allowing only a single payment per link.
      */
@@ -289,7 +326,8 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front, the payment link will not expire automatically.
+     * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front,
+     * the payment link will not expire automatically.
      */
     @JsonIgnore
     public JsonNullable<String> expiresAt() {
@@ -297,9 +335,12 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
+     * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+     * not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint', 'in3', 'riverty', 'klarna', 'billie'.
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
+     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+     * 'in3', 'riverty', 'klarna', 'billie'.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -308,9 +349,12 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie merchants.
+     * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie
+     * merchants.
      * 
-     * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent to your own account balance.
+     * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this
+     * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent
+     * to your own account balance.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -324,7 +368,8 @@ public class CreatePaymentLinkRequestBody {
 
 
     /**
-     * A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
+     * A short description of the payment link. The description is visible in the Dashboard and will be shown on the
+     * customer's bank or card statement when possible.
      */
     public CreatePaymentLinkRequestBody withDescription(String description) {
         Utils.checkNotNull(description, "description");
@@ -333,7 +378,8 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an amount.
+     * The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an
+     * amount.
      */
     public CreatePaymentLinkRequestBody withAmount(CreatePaymentLinkAmount amount) {
         Utils.checkNotNull(amount, "amount");
@@ -342,7 +388,8 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an amount.
+     * The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an
+     * amount.
      */
     public CreatePaymentLinkRequestBody withAmount(JsonNullable<? extends CreatePaymentLinkAmount> amount) {
         Utils.checkNotNull(amount, "amount");
@@ -351,7 +398,8 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The customer will be prompted to enter a value greater than or equal to the minimum amount.
+     * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The
+     * customer will be prompted to enter a value greater than or equal to the minimum amount.
      */
     public CreatePaymentLinkRequestBody withMinimumAmount(MinimumAmount minimumAmount) {
         Utils.checkNotNull(minimumAmount, "minimumAmount");
@@ -360,7 +408,8 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The customer will be prompted to enter a value greater than or equal to the minimum amount.
+     * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The
+     * customer will be prompted to enter a value greater than or equal to the minimum amount.
      */
     public CreatePaymentLinkRequestBody withMinimumAmount(JsonNullable<? extends MinimumAmount> minimumAmount) {
         Utils.checkNotNull(minimumAmount, "minimumAmount");
@@ -369,7 +418,8 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided, the customer will be shown a generic message after completing the payment.
+     * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided,
+     * the customer will be shown a generic message after completing the payment.
      */
     public CreatePaymentLinkRequestBody withRedirectUrl(String redirectUrl) {
         Utils.checkNotNull(redirectUrl, "redirectUrl");
@@ -378,7 +428,8 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided, the customer will be shown a generic message after completing the payment.
+     * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided,
+     * the customer will be shown a generic message after completing the payment.
      */
     public CreatePaymentLinkRequestBody withRedirectUrl(JsonNullable<String> redirectUrl) {
         Utils.checkNotNull(redirectUrl, "redirectUrl");
@@ -389,9 +440,12 @@ public class CreatePaymentLinkRequestBody {
     /**
      * The webhook URL where we will send payment status updates to.
      * 
-     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to any payments resulting from the payment link.
+     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to any payments
+     * resulting from the payment link.
      * 
-     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your local machine.
+     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
+     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+     * local machine.
      */
     public CreatePaymentLinkRequestBody withWebhookUrl(String webhookUrl) {
         Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -402,9 +456,12 @@ public class CreatePaymentLinkRequestBody {
     /**
      * The webhook URL where we will send payment status updates to.
      * 
-     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to any payments resulting from the payment link.
+     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to any payments
+     * resulting from the payment link.
      * 
-     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your local machine.
+     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
+     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+     * local machine.
      */
     public CreatePaymentLinkRequestBody withWebhookUrl(JsonNullable<String> webhookUrl) {
         Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -413,7 +470,8 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+     * ordered and its price.
      * 
      * <p>All lines must have the same currency as the payment.
      * 
@@ -426,7 +484,8 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+     * ordered and its price.
      * 
      * <p>All lines must have the same currency as the payment.
      * 
@@ -439,9 +498,11 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+     * The customer's billing address details. We advise to provide these details to improve fraud protection and
+     * conversion.
      * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
      * 
      * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
      */
@@ -453,9 +514,11 @@ public class CreatePaymentLinkRequestBody {
 
 
     /**
-     * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+     * The customer's billing address details. We advise to provide these details to improve fraud protection and
+     * conversion.
      * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
      * 
      * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
      */
@@ -466,9 +529,11 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+     * The customer's shipping address details. We advise to provide these details to improve fraud protection and
+     * conversion.
      * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
      */
     public CreatePaymentLinkRequestBody withShippingAddress(CreatePaymentLinkShippingAddress shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
@@ -478,9 +543,11 @@ public class CreatePaymentLinkRequestBody {
 
 
     /**
-     * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+     * The customer's shipping address details. We advise to provide these details to improve fraud protection and
+     * conversion.
      * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
      */
     public CreatePaymentLinkRequestBody withShippingAddress(Optional<? extends CreatePaymentLinkShippingAddress> shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
@@ -491,7 +558,9 @@ public class CreatePaymentLinkRequestBody {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     public CreatePaymentLinkRequestBody withProfileId(String profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -502,7 +571,9 @@ public class CreatePaymentLinkRequestBody {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     public CreatePaymentLinkRequestBody withProfileId(JsonNullable<String> profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -511,7 +582,8 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make multiple payments using the same link.
+     * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make multiple
+     * payments using the same link.
      * 
      * <p>If no value is specified, the field defaults to `false`, allowing only a single payment per link.
      */
@@ -522,7 +594,8 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make multiple payments using the same link.
+     * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make multiple
+     * payments using the same link.
      * 
      * <p>If no value is specified, the field defaults to `false`, allowing only a single payment per link.
      */
@@ -533,7 +606,8 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front, the payment link will not expire automatically.
+     * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front,
+     * the payment link will not expire automatically.
      */
     public CreatePaymentLinkRequestBody withExpiresAt(String expiresAt) {
         Utils.checkNotNull(expiresAt, "expiresAt");
@@ -542,7 +616,8 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front, the payment link will not expire automatically.
+     * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front,
+     * the payment link will not expire automatically.
      */
     public CreatePaymentLinkRequestBody withExpiresAt(JsonNullable<String> expiresAt) {
         Utils.checkNotNull(expiresAt, "expiresAt");
@@ -551,9 +626,12 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
+     * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+     * not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint', 'in3', 'riverty', 'klarna', 'billie'.
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
+     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+     * 'in3', 'riverty', 'klarna', 'billie'.
      */
     public CreatePaymentLinkRequestBody withAllowedMethods(List<String> allowedMethods) {
         Utils.checkNotNull(allowedMethods, "allowedMethods");
@@ -562,9 +640,12 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
+     * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+     * not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint', 'in3', 'riverty', 'klarna', 'billie'.
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
+     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+     * 'in3', 'riverty', 'klarna', 'billie'.
      */
     public CreatePaymentLinkRequestBody withAllowedMethods(JsonNullable<? extends List<String>> allowedMethods) {
         Utils.checkNotNull(allowedMethods, "allowedMethods");
@@ -573,9 +654,12 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie merchants.
+     * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie
+     * merchants.
      * 
-     * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent to your own account balance.
+     * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this
+     * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent
+     * to your own account balance.
      */
     public CreatePaymentLinkRequestBody withApplicationFee(CreatePaymentLinkApplicationFee applicationFee) {
         Utils.checkNotNull(applicationFee, "applicationFee");
@@ -585,9 +669,12 @@ public class CreatePaymentLinkRequestBody {
 
 
     /**
-     * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie merchants.
+     * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie
+     * merchants.
      * 
-     * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent to your own account balance.
+     * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this
+     * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent
+     * to your own account balance.
      */
     public CreatePaymentLinkRequestBody withApplicationFee(Optional<? extends CreatePaymentLinkApplicationFee> applicationFee) {
         Utils.checkNotNull(applicationFee, "applicationFee");
@@ -683,7 +770,8 @@ public class CreatePaymentLinkRequestBody {
 
 
         /**
-         * A short description of the payment link. The description is visible in the Dashboard and will be shown on the customer's bank or card statement when possible.
+         * A short description of the payment link. The description is visible in the Dashboard and will be shown on the
+         * customer's bank or card statement when possible.
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
@@ -693,7 +781,8 @@ public class CreatePaymentLinkRequestBody {
 
 
         /**
-         * The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an amount.
+         * The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an
+         * amount.
          */
         public Builder amount(CreatePaymentLinkAmount amount) {
             Utils.checkNotNull(amount, "amount");
@@ -702,7 +791,8 @@ public class CreatePaymentLinkRequestBody {
         }
 
         /**
-         * The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an amount.
+         * The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an
+         * amount.
          */
         public Builder amount(JsonNullable<? extends CreatePaymentLinkAmount> amount) {
             Utils.checkNotNull(amount, "amount");
@@ -712,7 +802,8 @@ public class CreatePaymentLinkRequestBody {
 
 
         /**
-         * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The customer will be prompted to enter a value greater than or equal to the minimum amount.
+         * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The
+         * customer will be prompted to enter a value greater than or equal to the minimum amount.
          */
         public Builder minimumAmount(MinimumAmount minimumAmount) {
             Utils.checkNotNull(minimumAmount, "minimumAmount");
@@ -721,7 +812,8 @@ public class CreatePaymentLinkRequestBody {
         }
 
         /**
-         * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The customer will be prompted to enter a value greater than or equal to the minimum amount.
+         * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The
+         * customer will be prompted to enter a value greater than or equal to the minimum amount.
          */
         public Builder minimumAmount(JsonNullable<? extends MinimumAmount> minimumAmount) {
             Utils.checkNotNull(minimumAmount, "minimumAmount");
@@ -731,7 +823,8 @@ public class CreatePaymentLinkRequestBody {
 
 
         /**
-         * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided, the customer will be shown a generic message after completing the payment.
+         * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided,
+         * the customer will be shown a generic message after completing the payment.
          */
         public Builder redirectUrl(String redirectUrl) {
             Utils.checkNotNull(redirectUrl, "redirectUrl");
@@ -740,7 +833,8 @@ public class CreatePaymentLinkRequestBody {
         }
 
         /**
-         * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided, the customer will be shown a generic message after completing the payment.
+         * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided,
+         * the customer will be shown a generic message after completing the payment.
          */
         public Builder redirectUrl(JsonNullable<String> redirectUrl) {
             Utils.checkNotNull(redirectUrl, "redirectUrl");
@@ -752,9 +846,12 @@ public class CreatePaymentLinkRequestBody {
         /**
          * The webhook URL where we will send payment status updates to.
          * 
-         * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to any payments resulting from the payment link.
+         * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to any payments
+         * resulting from the payment link.
          * 
-         * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your local machine.
+         * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
+         * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+         * local machine.
          */
         public Builder webhookUrl(String webhookUrl) {
             Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -765,9 +862,12 @@ public class CreatePaymentLinkRequestBody {
         /**
          * The webhook URL where we will send payment status updates to.
          * 
-         * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to any payments resulting from the payment link.
+         * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to any payments
+         * resulting from the payment link.
          * 
-         * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your local machine.
+         * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
+         * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+         * local machine.
          */
         public Builder webhookUrl(JsonNullable<String> webhookUrl) {
             Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -777,7 +877,8 @@ public class CreatePaymentLinkRequestBody {
 
 
         /**
-         * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+         * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+         * ordered and its price.
          * 
          * <p>All lines must have the same currency as the payment.
          * 
@@ -790,7 +891,8 @@ public class CreatePaymentLinkRequestBody {
         }
 
         /**
-         * Optionally provide the order lines for the payment. Each line contains details such as a description of the item ordered and its price.
+         * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+         * ordered and its price.
          * 
          * <p>All lines must have the same currency as the payment.
          * 
@@ -804,9 +906,11 @@ public class CreatePaymentLinkRequestBody {
 
 
         /**
-         * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+         * The customer's billing address details. We advise to provide these details to improve fraud protection and
+         * conversion.
          * 
-         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+         * `country`.
          * 
          * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
          */
@@ -817,9 +921,11 @@ public class CreatePaymentLinkRequestBody {
         }
 
         /**
-         * The customer's billing address details. We advise to provide these details to improve fraud protection and conversion.
+         * The customer's billing address details. We advise to provide these details to improve fraud protection and
+         * conversion.
          * 
-         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+         * `country`.
          * 
          * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
          */
@@ -831,9 +937,11 @@ public class CreatePaymentLinkRequestBody {
 
 
         /**
-         * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+         * The customer's shipping address details. We advise to provide these details to improve fraud protection and
+         * conversion.
          * 
-         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+         * `country`.
          */
         public Builder shippingAddress(CreatePaymentLinkShippingAddress shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
@@ -842,9 +950,11 @@ public class CreatePaymentLinkRequestBody {
         }
 
         /**
-         * The customer's shipping address details. We advise to provide these details to improve fraud protection and conversion.
+         * The customer's shipping address details. We advise to provide these details to improve fraud protection and
+         * conversion.
          * 
-         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and `country`.
+         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+         * `country`.
          */
         public Builder shippingAddress(Optional<? extends CreatePaymentLinkShippingAddress> shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
@@ -856,7 +966,9 @@ public class CreatePaymentLinkRequestBody {
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+         * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+         * required.
          */
         public Builder profileId(String profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -867,7 +979,9 @@ public class CreatePaymentLinkRequestBody {
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+         * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+         * required.
          */
         public Builder profileId(JsonNullable<String> profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -877,7 +991,8 @@ public class CreatePaymentLinkRequestBody {
 
 
         /**
-         * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make multiple payments using the same link.
+         * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make multiple
+         * payments using the same link.
          * 
          * <p>If no value is specified, the field defaults to `false`, allowing only a single payment per link.
          */
@@ -888,7 +1003,8 @@ public class CreatePaymentLinkRequestBody {
         }
 
         /**
-         * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make multiple payments using the same link.
+         * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make multiple
+         * payments using the same link.
          * 
          * <p>If no value is specified, the field defaults to `false`, allowing only a single payment per link.
          */
@@ -900,7 +1016,8 @@ public class CreatePaymentLinkRequestBody {
 
 
         /**
-         * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front, the payment link will not expire automatically.
+         * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front,
+         * the payment link will not expire automatically.
          */
         public Builder expiresAt(String expiresAt) {
             Utils.checkNotNull(expiresAt, "expiresAt");
@@ -909,7 +1026,8 @@ public class CreatePaymentLinkRequestBody {
         }
 
         /**
-         * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front, the payment link will not expire automatically.
+         * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front,
+         * the payment link will not expire automatically.
          */
         public Builder expiresAt(JsonNullable<String> expiresAt) {
             Utils.checkNotNull(expiresAt, "expiresAt");
@@ -919,9 +1037,12 @@ public class CreatePaymentLinkRequestBody {
 
 
         /**
-         * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
+         * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+         * not provided or is an empty array, all enabled payment methods will be available.
          * 
-         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint', 'in3', 'riverty', 'klarna', 'billie'.
+         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
+         * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+         * 'in3', 'riverty', 'klarna', 'billie'.
          */
         public Builder allowedMethods(List<String> allowedMethods) {
             Utils.checkNotNull(allowedMethods, "allowedMethods");
@@ -930,9 +1051,12 @@ public class CreatePaymentLinkRequestBody {
         }
 
         /**
-         * An array of payment methods that are allowed to be used for this payment link. When this parameter is not provided or is an empty array, all enabled payment methods will be available.
+         * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+         * not provided or is an empty array, all enabled payment methods will be available.
          * 
-         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard', 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint', 'in3', 'riverty', 'klarna', 'billie'.
+         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
+         * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+         * 'in3', 'riverty', 'klarna', 'billie'.
          */
         public Builder allowedMethods(JsonNullable<? extends List<String>> allowedMethods) {
             Utils.checkNotNull(allowedMethods, "allowedMethods");
@@ -942,9 +1066,12 @@ public class CreatePaymentLinkRequestBody {
 
 
         /**
-         * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie merchants.
+         * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie
+         * merchants.
          * 
-         * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent to your own account balance.
+         * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this
+         * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent
+         * to your own account balance.
          */
         public Builder applicationFee(CreatePaymentLinkApplicationFee applicationFee) {
             Utils.checkNotNull(applicationFee, "applicationFee");
@@ -953,9 +1080,12 @@ public class CreatePaymentLinkRequestBody {
         }
 
         /**
-         * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie merchants.
+         * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie
+         * merchants.
          * 
-         * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent to your own account balance.
+         * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this
+         * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent
+         * to your own account balance.
          */
         public Builder applicationFee(Optional<? extends CreatePaymentLinkApplicationFee> applicationFee) {
             Utils.checkNotNull(applicationFee, "applicationFee");

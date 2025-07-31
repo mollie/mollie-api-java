@@ -11,7 +11,8 @@ import java.util.Optional;
 /**
  * GetCaptureQueryParamEmbed
  * 
- * <p>This endpoint allows you to embed additional resources via the `embed` query string parameter.
+ * <p>This endpoint allows you to embed additional resources via the
+ * `embed` query string parameter.
  */
 public enum GetCaptureQueryParamEmbed {
     PAYMENT("payment");

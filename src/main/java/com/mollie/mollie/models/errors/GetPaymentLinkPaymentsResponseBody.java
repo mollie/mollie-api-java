@@ -44,7 +44,8 @@ public class GetPaymentLinkPaymentsResponseBody extends RuntimeException {
     private String detail;
 
     /**
-     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
+     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name
+     * of the field that caused the issue.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("field")
@@ -118,7 +119,8 @@ public class GetPaymentLinkPaymentsResponseBody extends RuntimeException {
     }
 
     /**
-     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
+     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name
+     * of the field that caused the issue.
      */
     @JsonIgnore
     public Optional<String> field() {
@@ -172,7 +174,8 @@ public class GetPaymentLinkPaymentsResponseBody extends RuntimeException {
     }
 
     /**
-     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
+     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name
+     * of the field that caused the issue.
      */
     public GetPaymentLinkPaymentsResponseBody withField(String field) {
         Utils.checkNotNull(field, "field");
@@ -182,7 +185,8 @@ public class GetPaymentLinkPaymentsResponseBody extends RuntimeException {
 
 
     /**
-     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
+     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name
+     * of the field that caused the issue.
      */
     public GetPaymentLinkPaymentsResponseBody withField(Optional<String> field) {
         Utils.checkNotNull(field, "field");
@@ -302,7 +306,8 @@ public class GetPaymentLinkPaymentsResponseBody extends RuntimeException {
 
 
         /**
-         * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
+         * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name
+         * of the field that caused the issue.
          */
         public Builder field(String field) {
             Utils.checkNotNull(field, "field");
@@ -311,7 +316,8 @@ public class GetPaymentLinkPaymentsResponseBody extends RuntimeException {
         }
 
         /**
-         * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name of the field that caused the issue.
+         * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name
+         * of the field that caused the issue.
          */
         public Builder field(Optional<String> field) {
             Utils.checkNotNull(field, "field");

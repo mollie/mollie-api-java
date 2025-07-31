@@ -14,22 +14,22 @@
 
 ## create
 
-Payment creation is elemental to the Mollie API: this is where most payment implementations start off.
+Payment creation is elemental to the Mollie API: this is where most payment
+implementations start off.
 
-Once you have created a payment, you should redirect your customer to the URL in the `_links.checkout` property from the response.
+Once you have created a payment, you should redirect your customer to the
+URL in the `_links.checkout` property from the response.
 
-To wrap your head around the payment process, an explanation and flow charts can be found in the 'Accepting payments' guide.
+To wrap your head around the payment process, an explanation and flow charts
+can be found in the 'Accepting payments' guide.
 
-If you specify the `method` parameter when creating a payment, optional additional parameters may be available for the payment method that are not listed below. Please refer to the guide on [method-specific parameters](extra-payment-parameters).
-
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **payments.write**](/reference/authentication)
+If you specify the `method` parameter when creating a payment, optional
+additional parameters may be available for the payment method that are not listed below. Please refer to the
+guide on [method-specific parameters](extra-payment-parameters).
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="create-payment" method="post" path="/payments" -->
 ```java
 package hello.world;
 
@@ -91,7 +91,7 @@ public class Application {
                             .imageUrl("https://...")
                             .productUrl("https://...")
                             .recurring(Recurring.builder()
-                                .interval("12 months")
+                                .interval(Interval.DOT_DOT_DOT_DAYS)
                                 .description("Gym subscription")
                                 .amount(CreatePaymentAmount.builder()
                                     .currency("EUR")
@@ -129,7 +129,7 @@ public class Application {
                             .imageUrl("https://...")
                             .productUrl("https://...")
                             .recurring(Recurring.builder()
-                                .interval("12 months")
+                                .interval(Interval.DOT_DOT_DOT_WEEKS)
                                 .description("Gym subscription")
                                 .amount(CreatePaymentAmount.builder()
                                     .currency("EUR")
@@ -167,7 +167,7 @@ public class Application {
                             .imageUrl("https://...")
                             .productUrl("https://...")
                             .recurring(Recurring.builder()
-                                .interval("12 months")
+                                .interval(Interval.DOT_DOT_DOT_DAYS)
                                 .description("Gym subscription")
                                 .amount(CreatePaymentAmount.builder()
                                     .currency("EUR")
@@ -205,12 +205,12 @@ public class Application {
                         .region("Noord-Holland")
                         .country("NL")
                         .build())
-                    .locale("en_US")
-                    .method("ideal")
+                    .locale(Locale.EN_US)
+                    .method(Method.IDEAL)
                     .issuer("ideal_INGBNL2A")
                     .restrictPaymentMethodsToCountry("NL")
-                    .captureMode("manual")
-                    .captureDelay("8 hours")
+                    .captureMode(CaptureMode.MANUAL)
+                    .captureDelay(CaptureDelay.DOT_DOT_DOT_DAYS)
                     .applicationFee(ApplicationFee.builder()
                         .amount(CreatePaymentPaymentsAmount.builder()
                             .currency("EUR")
@@ -225,7 +225,7 @@ public class Application {
                                 .value("10.00")
                                 .build())
                             .destination(Destination.builder()
-                                .type("organization")
+                                .type(CreatePaymentType.ORGANIZATION)
                                 .organizationId("org_1234567")
                                 .build())
                             .links(Links.builder()
@@ -246,7 +246,7 @@ public class Application {
                                 .value("10.00")
                                 .build())
                             .destination(Destination.builder()
-                                .type("organization")
+                                .type(CreatePaymentType.ORGANIZATION)
                                 .organizationId("org_1234567")
                                 .build())
                             .links(Links.builder()
@@ -261,7 +261,6 @@ public class Application {
                                 .build())
                             .releaseDate("2024-12-12")
                             .build()))
-                    .sequenceType("oneoff")
                     .mandateId("mdt_5B8cwPMGnU")
                     .customerId("cst_5B8cwPMGnU")
                     .profileId("pfl_5B8cwPMGnU")
@@ -302,14 +301,9 @@ Retrieve all payments created with the current website profile.
 
 The results are paginated.
 
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **payments.read**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list-payments" method="get" path="/payments" -->
 ```java
 package hello.world;
 
@@ -332,7 +326,6 @@ public class Application {
 
         ListPaymentsRequest req = ListPaymentsRequest.builder()
                 .from("tr_5B8cwPMGnU")
-                .sort("desc")
                 .profileId("pfl_5B8cwPMGnU")
                 .testmode(false)
                 .build();
@@ -369,14 +362,9 @@ public class Application {
 
 Retrieve a single payment object by its payment ID.
 
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **payments.read**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="get-payment" method="get" path="/payments/{paymentId}" -->
 ```java
 package hello.world;
 
@@ -416,8 +404,8 @@ public class Application {
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `paymentId`                                                                                                                                                                                                                                                                                                                                                                            | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related payment.                                                                                                                                                                                                                                                                                                                                                 | tr_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                          |
 | `include`                                                                                                                                                                                                                                                                                                                                                                              | [JsonNullable\<QueryParamInclude>](../../models/operations/QueryParamInclude.md)                                                                                                                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows you to include additional information via the `include` query string parameter.                                                                                                                                                                                                                                                                                   | details.qrCode                                                                                                                                                                                                                                                                                                                                                                         |
-| `embed`                                                                                                                                                                                                                                                                                                                                                                                | [JsonNullable\<Embed>](../../models/operations/Embed.md)                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.                                                                                                                                                                                                                                                             | captures                                                                                                                                                                                                                                                                                                                                                                               |
-| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
+| `embed`                                                                                                                                                                                                                                                                                                                                                                                | [JsonNullable\<Embed>](../../models/operations/Embed.md)                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows embedding related API items by appending the<br/>following values via the `embed` query string parameter.                                                                                                                                                                                                                                                         | captures                                                                                                                                                                                                                                                                                                                                                                               |
+| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Response
 
@@ -436,14 +424,9 @@ Certain details of an existing payment can be updated.
 
 Updating the payment details will not result in a webhook call.
 
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **payments.write**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="update-payment" method="patch" path="/payments/{paymentId}" -->
 ```java
 package hello.world;
 
@@ -471,8 +454,8 @@ public class Application {
                     .redirectUrl("https://example.org/redirect")
                     .cancelUrl("https://example.org/cancel")
                     .webhookUrl("https://example.org/webhooks")
-                    .method("ideal")
-                    .locale("en_US")
+                    .method(UpdatePaymentMethod.IDEAL)
+                    .locale(UpdatePaymentLocale.EN_US)
                     .dueDate("2025-01-01")
                     .restrictPaymentMethodsToCountry("NL")
                     .testmode(false)
@@ -537,20 +520,16 @@ public class Application {
 
 ## cancel
 
-Depending on the payment method, you may be able to cancel a payment for a certain amount of time — usually until the next business day or as long as the payment status is open.
+Depending on the payment method, you may be able to cancel a payment for a certain amount of time — usually until
+the next business day or as long as the payment status is open.
 
 Payments may also be canceled manually from the Mollie Dashboard.
 
 The `isCancelable` property on the [Payment object](get-payment) will indicate if the payment can be canceled.
 
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **payments.write**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="cancel-payment" method="delete" path="/payments/{paymentId}" -->
 ```java
 package hello.world;
 
@@ -607,20 +586,18 @@ public class Application {
 
 ## releaseAuthorization
 
-Releases the full remaining authorized amount. Call this endpoint when you will not be making any additional captures. Payment authorizations may also be released manually from the Mollie Dashboard.
+Releases the full remaining authorized amount. Call this endpoint when you will not be making any additional
+captures. Payment authorizations may also be released manually from the Mollie Dashboard.
 
-Mollie will do its best to process release requests, but it is not guaranteed that it will succeed. It is up to the issuing bank if and when the hold will be released.
+Mollie will do its best to process release requests, but it is not guaranteed that it will succeed. It is up to
+the issuing bank if and when the hold will be released.
 
-If the request does succeed, the payment status will change to `canceled` for payments without captures. If there is a successful capture, the payment will transition to `paid`.
-
-> 🔑 Access with
->
-> [API key](/reference/authentication)
->
-> [Access token with **payments.write**](/reference/authentication)
+If the request does succeed, the payment status will change to `canceled` for payments without captures.
+If there is a successful capture, the payment will transition to `paid`.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="release-authorization" method="post" path="/payments/{paymentId}/release-authorization" -->
 ```java
 package hello.world;
 

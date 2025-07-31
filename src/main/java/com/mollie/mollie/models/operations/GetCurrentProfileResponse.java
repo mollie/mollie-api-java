@@ -33,7 +33,8 @@ public class GetCurrentProfileResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * The current profile object. For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint documentation.
+     * The current profile object. For a complete reference of the profile object, refer to the
+     * [Get profile](get-profile) endpoint documentation.
      */
     private Optional<? extends GetCurrentProfileResponseBody> object;
 
@@ -86,7 +87,8 @@ public class GetCurrentProfileResponse implements Response {
     }
 
     /**
-     * The current profile object. For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint documentation.
+     * The current profile object. For a complete reference of the profile object, refer to the
+     * [Get profile](get-profile) endpoint documentation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -127,7 +129,8 @@ public class GetCurrentProfileResponse implements Response {
     }
 
     /**
-     * The current profile object. For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint documentation.
+     * The current profile object. For a complete reference of the profile object, refer to the
+     * [Get profile](get-profile) endpoint documentation.
      */
     public GetCurrentProfileResponse withObject(GetCurrentProfileResponseBody object) {
         Utils.checkNotNull(object, "object");
@@ -137,7 +140,8 @@ public class GetCurrentProfileResponse implements Response {
 
 
     /**
-     * The current profile object. For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint documentation.
+     * The current profile object. For a complete reference of the profile object, refer to the
+     * [Get profile](get-profile) endpoint documentation.
      */
     public GetCurrentProfileResponse withObject(Optional<? extends GetCurrentProfileResponseBody> object) {
         Utils.checkNotNull(object, "object");
@@ -224,7 +228,8 @@ public class GetCurrentProfileResponse implements Response {
 
 
         /**
-         * The current profile object. For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint documentation.
+         * The current profile object. For a complete reference of the profile object, refer to the
+         * [Get profile](get-profile) endpoint documentation.
          */
         public Builder object(GetCurrentProfileResponseBody object) {
             Utils.checkNotNull(object, "object");
@@ -233,7 +238,8 @@ public class GetCurrentProfileResponse implements Response {
         }
 
         /**
-         * The current profile object. For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint documentation.
+         * The current profile object. For a complete reference of the profile object, refer to the
+         * [Get profile](get-profile) endpoint documentation.
          */
         public Builder object(Optional<? extends GetCurrentProfileResponseBody> object) {
             Utils.checkNotNull(object, "object");

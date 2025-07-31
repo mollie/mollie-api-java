@@ -12,12 +12,9 @@
 
 Retrieve the onboarding status of the currently authenticated organization.
 
-> 🔑 Access with
->
-> [Access token with **onboarding.read**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="get-onboarding-status" method="get" path="/onboarding/me" -->
 ```java
 package hello.world;
 
@@ -58,16 +55,16 @@ public class Application {
 
 ## submit
 
-**⚠️ We no longer recommend implementing this endpoint. Please refer to the Client Links API instead to kick off the onboarding process for your merchants.**
+**⚠️ We no longer recommend implementing this endpoint. Please refer to the Client Links API instead to kick off the
+onboarding process for your merchants.**
 
-Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the onboarding status is `needs-data`. Information that the merchant has entered in their dashboard will not be overwritten.
-
-> 🔑 Access with
->
-> [Access token with **onboarding.write**](/reference/authentication)
+Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the
+onboarding status is `needs-data`.  
+Information that the merchant has entered in their dashboard will not be overwritten.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="submit-onboarding-data" method="post" path="/onboarding/me" -->
 ```java
 package hello.world;
 
@@ -91,7 +88,7 @@ public class Application {
                     .name("Mollie B.V.")
                     .registrationNumber("30204462")
                     .vatNumber("NL815839091B01")
-                    .vatRegulation("dutch")
+                    .vatRegulation(VatRegulation.DUTCH)
                     .build())
                 .profile(Profile.builder()
                     .name("Mollie")

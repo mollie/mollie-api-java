@@ -35,7 +35,7 @@ public class Capabilities {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends Status> status;
+    private Optional<? extends ListCapabilitiesStatus> status;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -51,7 +51,7 @@ public class Capabilities {
     public Capabilities(
             @JsonProperty("resource") Optional<String> resource,
             @JsonProperty("name") Optional<String> name,
-            @JsonProperty("status") Optional<? extends Status> status,
+            @JsonProperty("status") Optional<? extends ListCapabilitiesStatus> status,
             @JsonProperty("statusReason") JsonNullable<? extends ListCapabilitiesStatusReason> statusReason,
             @JsonProperty("requirements") Optional<? extends List<Requirements>> requirements) {
         Utils.checkNotNull(resource, "resource");
@@ -89,8 +89,8 @@ public class Capabilities {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Status> status() {
-        return (Optional<Status>) status;
+    public Optional<ListCapabilitiesStatus> status() {
+        return (Optional<ListCapabilitiesStatus>) status;
     }
 
     @SuppressWarnings("unchecked")
@@ -148,14 +148,14 @@ public class Capabilities {
         return this;
     }
 
-    public Capabilities withStatus(Status status) {
+    public Capabilities withStatus(ListCapabilitiesStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
     }
 
 
-    public Capabilities withStatus(Optional<? extends Status> status) {
+    public Capabilities withStatus(Optional<? extends ListCapabilitiesStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -227,7 +227,7 @@ public class Capabilities {
 
         private Optional<String> name = Optional.empty();
 
-        private Optional<? extends Status> status = Optional.empty();
+        private Optional<? extends ListCapabilitiesStatus> status = Optional.empty();
 
         private JsonNullable<? extends ListCapabilitiesStatusReason> statusReason = JsonNullable.undefined();
 
@@ -276,13 +276,13 @@ public class Capabilities {
         }
 
 
-        public Builder status(Status status) {
+        public Builder status(ListCapabilitiesStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
         }
 
-        public Builder status(Optional<? extends Status> status) {
+        public Builder status(Optional<? extends ListCapabilitiesStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

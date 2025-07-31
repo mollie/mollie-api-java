@@ -13,7 +13,8 @@ import java.lang.String;
 /**
  * ListSettlementRefundsAmount
  * 
- * <p>The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment amount.
+ * <p>The amount refunded to your customer with this refund. The amount is allowed to be lower than the original payment
+ * amount.
  */
 public class ListSettlementRefundsAmount {
     /**

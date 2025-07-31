@@ -25,19 +25,22 @@ public class Routes {
     private Optional<String> resource;
 
     /**
-     * The identifier uniquely referring to this route. Mollie assigns this identifier at route creation time. Mollie will always refer to the route by this ID. Example: `crt_dyARQ3JzCgtPDhU2Pbq3J`.
+     * The identifier uniquely referring to this route. Mollie assigns this identifier at route creation time. Mollie
+     * will always refer to the route by this ID. Example: `crt_dyARQ3JzCgtPDhU2Pbq3J`.
      */
     @JsonProperty("id")
     private String id;
 
     /**
-     * The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
+     * The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The full payment object can be retrieved via the payment URL in the `_links` object.
      */
     @JsonProperty("paymentId")
     private String paymentId;
 
     /**
-     * The amount of the route. That amount that will be routed to the specified destination.
+     * The amount of the route.
+     * That amount that will be routed to the specified destination.
      */
     @JsonProperty("amount")
     private PaymentListRoutesAmount amount;
@@ -116,7 +119,8 @@ public class Routes {
     }
 
     /**
-     * The identifier uniquely referring to this route. Mollie assigns this identifier at route creation time. Mollie will always refer to the route by this ID. Example: `crt_dyARQ3JzCgtPDhU2Pbq3J`.
+     * The identifier uniquely referring to this route. Mollie assigns this identifier at route creation time. Mollie
+     * will always refer to the route by this ID. Example: `crt_dyARQ3JzCgtPDhU2Pbq3J`.
      */
     @JsonIgnore
     public String id() {
@@ -124,7 +128,8 @@ public class Routes {
     }
 
     /**
-     * The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
+     * The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The full payment object can be retrieved via the payment URL in the `_links` object.
      */
     @JsonIgnore
     public String paymentId() {
@@ -132,7 +137,8 @@ public class Routes {
     }
 
     /**
-     * The amount of the route. That amount that will be routed to the specified destination.
+     * The amount of the route.
+     * That amount that will be routed to the specified destination.
      */
     @JsonIgnore
     public PaymentListRoutesAmount amount() {
@@ -196,7 +202,8 @@ public class Routes {
     }
 
     /**
-     * The identifier uniquely referring to this route. Mollie assigns this identifier at route creation time. Mollie will always refer to the route by this ID. Example: `crt_dyARQ3JzCgtPDhU2Pbq3J`.
+     * The identifier uniquely referring to this route. Mollie assigns this identifier at route creation time. Mollie
+     * will always refer to the route by this ID. Example: `crt_dyARQ3JzCgtPDhU2Pbq3J`.
      */
     public Routes withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -205,7 +212,8 @@ public class Routes {
     }
 
     /**
-     * The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
+     * The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The full payment object can be retrieved via the payment URL in the `_links` object.
      */
     public Routes withPaymentId(String paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
@@ -214,7 +222,8 @@ public class Routes {
     }
 
     /**
-     * The amount of the route. That amount that will be routed to the specified destination.
+     * The amount of the route.
+     * That amount that will be routed to the specified destination.
      */
     public Routes withAmount(PaymentListRoutesAmount amount) {
         Utils.checkNotNull(amount, "amount");
@@ -343,7 +352,8 @@ public class Routes {
 
 
         /**
-         * The identifier uniquely referring to this route. Mollie assigns this identifier at route creation time. Mollie will always refer to the route by this ID. Example: `crt_dyARQ3JzCgtPDhU2Pbq3J`.
+         * The identifier uniquely referring to this route. Mollie assigns this identifier at route creation time. Mollie
+         * will always refer to the route by this ID. Example: `crt_dyARQ3JzCgtPDhU2Pbq3J`.
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -353,7 +363,8 @@ public class Routes {
 
 
         /**
-         * The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`. The full payment object can be retrieved via the payment URL in the `_links` object.
+         * The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+         * The full payment object can be retrieved via the payment URL in the `_links` object.
          */
         public Builder paymentId(String paymentId) {
             Utils.checkNotNull(paymentId, "paymentId");
@@ -363,7 +374,8 @@ public class Routes {
 
 
         /**
-         * The amount of the route. That amount that will be routed to the specified destination.
+         * The amount of the route.
+         * That amount that will be routed to the specified destination.
          */
         public Builder amount(PaymentListRoutesAmount amount) {
             Utils.checkNotNull(amount, "amount");

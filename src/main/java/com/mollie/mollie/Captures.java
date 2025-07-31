@@ -39,15 +39,12 @@ public class Captures {
      * 
      * <p>Capture an *authorized* payment.
      * 
-     * <p>Some payment methods allow you to first collect a customer's authorization, and capture the amount at a later point.
+     * <p>Some payment methods allow you to first collect a customer's authorization,
+     * and capture the amount at a later point.
      * 
-     * <p>By default, Mollie captures payments automatically. If however you configured your payment with `captureMode: manual`, you can capture the payment using this endpoint after having collected the customer's authorization.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.write**](/reference/authentication)
+     * <p>By default, Mollie captures payments automatically. If however you
+     * configured your payment with `captureMode: manual`, you can capture the payment using this endpoint after
+     * having collected the customer's authorization.
      * 
      * @return The call builder
      */
@@ -60,15 +57,12 @@ public class Captures {
      * 
      * <p>Capture an *authorized* payment.
      * 
-     * <p>Some payment methods allow you to first collect a customer's authorization, and capture the amount at a later point.
+     * <p>Some payment methods allow you to first collect a customer's authorization,
+     * and capture the amount at a later point.
      * 
-     * <p>By default, Mollie captures payments automatically. If however you configured your payment with `captureMode: manual`, you can capture the payment using this endpoint after having collected the customer's authorization.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.write**](/reference/authentication)
+     * <p>By default, Mollie captures payments automatically. If however you
+     * configured your payment with `captureMode: manual`, you can capture the payment using this endpoint after
+     * having collected the customer's authorization.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @return The response from the API call
@@ -83,15 +77,12 @@ public class Captures {
      * 
      * <p>Capture an *authorized* payment.
      * 
-     * <p>Some payment methods allow you to first collect a customer's authorization, and capture the amount at a later point.
+     * <p>Some payment methods allow you to first collect a customer's authorization,
+     * and capture the amount at a later point.
      * 
-     * <p>By default, Mollie captures payments automatically. If however you configured your payment with `captureMode: manual`, you can capture the payment using this endpoint after having collected the customer's authorization.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.write**](/reference/authentication)
+     * <p>By default, Mollie captures payments automatically. If however you
+     * configured your payment with `captureMode: manual`, you can capture the payment using this endpoint after
+     * having collected the customer's authorization.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param requestBody 
@@ -120,12 +111,6 @@ public class Captures {
      * 
      * <p>The results are paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public ListCapturesRequestBuilder list() {
@@ -138,12 +123,6 @@ public class Captures {
      * <p>Retrieve a list of all captures created for a specific payment.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -160,12 +139,6 @@ public class Captures {
      * 
      * <p>The results are paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.read**](/reference/authentication)
-     * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
@@ -180,13 +153,8 @@ public class Captures {
     /**
      * Get capture
      * 
-     * <p>Retrieve a single payment capture by its ID and the ID of its parent payment.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.read**](/reference/authentication)
+     * <p>Retrieve a single payment capture by its ID and the ID of its parent
+     * payment.
      * 
      * @return The call builder
      */
@@ -197,13 +165,8 @@ public class Captures {
     /**
      * Get capture
      * 
-     * <p>Retrieve a single payment capture by its ID and the ID of its parent payment.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.read**](/reference/authentication)
+     * <p>Retrieve a single payment capture by its ID and the ID of its parent
+     * payment.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param captureId Provide the ID of the related capture.
@@ -218,18 +181,16 @@ public class Captures {
     /**
      * Get capture
      * 
-     * <p>Retrieve a single payment capture by its ID and the ID of its parent payment.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.read**](/reference/authentication)
+     * <p>Retrieve a single payment capture by its ID and the ID of its parent
+     * payment.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param captureId Provide the ID of the related capture.
-     * @param embed This endpoint allows you to embed additional resources via the `embed` query string parameter.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * @param embed This endpoint allows you to embed additional resources via the
+     *         `embed` query string parameter.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param options additional options

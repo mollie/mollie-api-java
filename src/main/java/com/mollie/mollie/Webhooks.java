@@ -51,10 +51,6 @@ public class Webhooks {
      * 
      * <p>A webhook must have a name, an url and a list of event types. You can also create webhooks in the webhooks settings section of the Dashboard.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **webhooks.write**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public CreateWebhookRequestBuilder create() {
@@ -65,10 +61,6 @@ public class Webhooks {
      * Create a webhook
      * 
      * <p>A webhook must have a name, an url and a list of event types. You can also create webhooks in the webhooks settings section of the Dashboard.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **webhooks.write**](/reference/authentication)
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -81,10 +73,6 @@ public class Webhooks {
      * Create a webhook
      * 
      * <p>A webhook must have a name, an url and a list of event types. You can also create webhooks in the webhooks settings section of the Dashboard.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **webhooks.write**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -102,10 +90,6 @@ public class Webhooks {
      * 
      * <p>Returns a paginated list of your webhooks. If no webhook endpoints are available, the resulting array will be empty. This request should never throw an error.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **webhooks.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public ListWebhooksRequestBuilder list() {
@@ -116,10 +100,6 @@ public class Webhooks {
      * List all webhooks
      * 
      * <p>Returns a paginated list of your webhooks. If no webhook endpoints are available, the resulting array will be empty. This request should never throw an error.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **webhooks.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -133,10 +113,6 @@ public class Webhooks {
      * List all webhooks
      * 
      * <p>Returns a paginated list of your webhooks. If no webhook endpoints are available, the resulting array will be empty. This request should never throw an error.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **webhooks.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -154,10 +130,6 @@ public class Webhooks {
      * 
      * <p>Updates the webhook. You may edit the name, url and the list of subscribed event types.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **webhooks.write**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public UpdateWebhookRequestBuilder update() {
@@ -168,10 +140,6 @@ public class Webhooks {
      * Update a webhook
      * 
      * <p>Updates the webhook. You may edit the name, url and the list of subscribed event types.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **webhooks.write**](/reference/authentication)
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
@@ -185,10 +153,6 @@ public class Webhooks {
      * Update a webhook
      * 
      * <p>Updates the webhook. You may edit the name, url and the list of subscribed event types.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **webhooks.write**](/reference/authentication)
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @param requestBody 
@@ -215,10 +179,6 @@ public class Webhooks {
      * 
      * <p>Retrieve a single webhook object by its ID.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **webhooks.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public GetWebhookRequestBuilder get() {
@@ -229,10 +189,6 @@ public class Webhooks {
      * Get a webhook
      * 
      * <p>Retrieve a single webhook object by its ID.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **webhooks.read**](/reference/authentication)
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
@@ -247,12 +203,10 @@ public class Webhooks {
      * 
      * <p>Retrieve a single webhook object by its ID.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **webhooks.read**](/reference/authentication)
-     * 
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param options additional options
@@ -278,10 +232,6 @@ public class Webhooks {
      * 
      * <p>Delete a single webhook object by its webhook ID.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **webhooks.write**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public DeleteWebhookRequestBuilder delete() {
@@ -292,10 +242,6 @@ public class Webhooks {
      * Delete a webhook
      * 
      * <p>Delete a single webhook object by its webhook ID.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **webhooks.write**](/reference/authentication)
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
@@ -310,12 +256,10 @@ public class Webhooks {
      * 
      * <p>Delete a single webhook object by its webhook ID.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **webhooks.write**](/reference/authentication)
-     * 
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param options additional options
@@ -341,10 +285,6 @@ public class Webhooks {
      * 
      * <p>Sends a test event to the webhook to verify the endpoint is working as expected.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **webhooks.write**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public TestWebhookRequestBuilder test() {
@@ -355,10 +295,6 @@ public class Webhooks {
      * Test a webhook
      * 
      * <p>Sends a test event to the webhook to verify the endpoint is working as expected.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **webhooks.write**](/reference/authentication)
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
@@ -372,10 +308,6 @@ public class Webhooks {
      * Test a webhook
      * 
      * <p>Sends a test event to the webhook to verify the endpoint is working as expected.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [Access token with **webhooks.write**](/reference/authentication)
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @param requestBody 

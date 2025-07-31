@@ -13,7 +13,8 @@ import java.lang.String;
 /**
  * PaymentListRoutesAmount
  * 
- * <p>The amount of the route. That amount that will be routed to the specified destination.
+ * <p>The amount of the route.
+ * That amount that will be routed to the specified destination.
  */
 public class PaymentListRoutesAmount {
     /**

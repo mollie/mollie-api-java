@@ -17,7 +17,8 @@ import java.util.Optional;
 
 public class ListClientsClientsResponse200ApplicationHalPlusJsonLinks {
     /**
-     * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled. For example, where necessary documents are to be uploaded.
+     * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.
+     * For example, where necessary documents are to be uploaded.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("dashboard")
@@ -35,7 +36,8 @@ public class ListClientsClientsResponse200ApplicationHalPlusJsonLinks {
     }
 
     /**
-     * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled. For example, where necessary documents are to be uploaded.
+     * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.
+     * For example, where necessary documents are to be uploaded.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -49,7 +51,8 @@ public class ListClientsClientsResponse200ApplicationHalPlusJsonLinks {
 
 
     /**
-     * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled. For example, where necessary documents are to be uploaded.
+     * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.
+     * For example, where necessary documents are to be uploaded.
      */
     public ListClientsClientsResponse200ApplicationHalPlusJsonLinks withDashboard(ListClientsClientsResponseDashboard dashboard) {
         Utils.checkNotNull(dashboard, "dashboard");
@@ -59,7 +62,8 @@ public class ListClientsClientsResponse200ApplicationHalPlusJsonLinks {
 
 
     /**
-     * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled. For example, where necessary documents are to be uploaded.
+     * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.
+     * For example, where necessary documents are to be uploaded.
      */
     public ListClientsClientsResponse200ApplicationHalPlusJsonLinks withDashboard(Optional<? extends ListClientsClientsResponseDashboard> dashboard) {
         Utils.checkNotNull(dashboard, "dashboard");
@@ -103,7 +107,8 @@ public class ListClientsClientsResponse200ApplicationHalPlusJsonLinks {
 
 
         /**
-         * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled. For example, where necessary documents are to be uploaded.
+         * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.
+         * For example, where necessary documents are to be uploaded.
          */
         public Builder dashboard(ListClientsClientsResponseDashboard dashboard) {
             Utils.checkNotNull(dashboard, "dashboard");
@@ -112,7 +117,8 @@ public class ListClientsClientsResponse200ApplicationHalPlusJsonLinks {
         }
 
         /**
-         * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled. For example, where necessary documents are to be uploaded.
+         * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.
+         * For example, where necessary documents are to be uploaded.
          */
         public Builder dashboard(Optional<? extends ListClientsClientsResponseDashboard> dashboard) {
             Utils.checkNotNull(dashboard, "dashboard");

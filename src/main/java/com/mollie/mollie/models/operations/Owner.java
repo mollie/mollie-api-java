@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -38,20 +39,21 @@ public class Owner {
     private String familyName;
 
     /**
-     * Preset the language to be used for the login screen, if applicable. For the consent screen, the preferred language of the logged in merchant will be used and this parameter is ignored.
+     * Preset the language to be used for the login screen, if applicable. For the consent screen, the preferred
+     * language of the logged in merchant will be used and this parameter is ignored.
      * 
      * <p>When this parameter is omitted, the browser language will be used instead.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("locale")
-    private JsonNullable<String> locale;
+    private JsonNullable<? extends CreateClientLinkLocale> locale;
 
     @JsonCreator
     public Owner(
             @JsonProperty("email") String email,
             @JsonProperty("givenName") String givenName,
             @JsonProperty("familyName") String familyName,
-            @JsonProperty("locale") JsonNullable<String> locale) {
+            @JsonProperty("locale") JsonNullable<? extends CreateClientLinkLocale> locale) {
         Utils.checkNotNull(email, "email");
         Utils.checkNotNull(givenName, "givenName");
         Utils.checkNotNull(familyName, "familyName");
@@ -95,13 +97,15 @@ public class Owner {
     }
 
     /**
-     * Preset the language to be used for the login screen, if applicable. For the consent screen, the preferred language of the logged in merchant will be used and this parameter is ignored.
+     * Preset the language to be used for the login screen, if applicable. For the consent screen, the preferred
+     * language of the logged in merchant will be used and this parameter is ignored.
      * 
      * <p>When this parameter is omitted, the browser language will be used instead.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> locale() {
-        return locale;
+    public JsonNullable<CreateClientLinkLocale> locale() {
+        return (JsonNullable<CreateClientLinkLocale>) locale;
     }
 
     public static Builder builder() {
@@ -137,22 +141,24 @@ public class Owner {
     }
 
     /**
-     * Preset the language to be used for the login screen, if applicable. For the consent screen, the preferred language of the logged in merchant will be used and this parameter is ignored.
+     * Preset the language to be used for the login screen, if applicable. For the consent screen, the preferred
+     * language of the logged in merchant will be used and this parameter is ignored.
      * 
      * <p>When this parameter is omitted, the browser language will be used instead.
      */
-    public Owner withLocale(String locale) {
+    public Owner withLocale(CreateClientLinkLocale locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = JsonNullable.of(locale);
         return this;
     }
 
     /**
-     * Preset the language to be used for the login screen, if applicable. For the consent screen, the preferred language of the logged in merchant will be used and this parameter is ignored.
+     * Preset the language to be used for the login screen, if applicable. For the consent screen, the preferred
+     * language of the logged in merchant will be used and this parameter is ignored.
      * 
      * <p>When this parameter is omitted, the browser language will be used instead.
      */
-    public Owner withLocale(JsonNullable<String> locale) {
+    public Owner withLocale(JsonNullable<? extends CreateClientLinkLocale> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
@@ -199,7 +205,7 @@ public class Owner {
 
         private String familyName;
 
-        private JsonNullable<String> locale = JsonNullable.undefined();
+        private JsonNullable<? extends CreateClientLinkLocale> locale = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -237,22 +243,24 @@ public class Owner {
 
 
         /**
-         * Preset the language to be used for the login screen, if applicable. For the consent screen, the preferred language of the logged in merchant will be used and this parameter is ignored.
+         * Preset the language to be used for the login screen, if applicable. For the consent screen, the preferred
+         * language of the logged in merchant will be used and this parameter is ignored.
          * 
          * <p>When this parameter is omitted, the browser language will be used instead.
          */
-        public Builder locale(String locale) {
+        public Builder locale(CreateClientLinkLocale locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = JsonNullable.of(locale);
             return this;
         }
 
         /**
-         * Preset the language to be used for the login screen, if applicable. For the consent screen, the preferred language of the logged in merchant will be used and this parameter is ignored.
+         * Preset the language to be used for the login screen, if applicable. For the consent screen, the preferred
+         * language of the logged in merchant will be used and this parameter is ignored.
          * 
          * <p>When this parameter is omitted, the browser language will be used instead.
          */
-        public Builder locale(JsonNullable<String> locale) {
+        public Builder locale(JsonNullable<? extends CreateClientLinkLocale> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;

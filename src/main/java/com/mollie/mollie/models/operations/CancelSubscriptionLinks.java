@@ -50,7 +50,8 @@ public class CancelSubscriptionLinks {
     private JsonNullable<? extends CancelSubscriptionProfile> profile;
 
     /**
-     * The API resource URL of the [payments](list-payments) created for this subscription. Omitted if no such payments exist (yet).
+     * The API resource URL of the [payments](list-payments) created for this subscription. Omitted if no such
+     * payments exist (yet).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payments")
@@ -127,7 +128,8 @@ public class CancelSubscriptionLinks {
     }
 
     /**
-     * The API resource URL of the [payments](list-payments) created for this subscription. Omitted if no such payments exist (yet).
+     * The API resource URL of the [payments](list-payments) created for this subscription. Omitted if no such
+     * payments exist (yet).
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -223,7 +225,8 @@ public class CancelSubscriptionLinks {
     }
 
     /**
-     * The API resource URL of the [payments](list-payments) created for this subscription. Omitted if no such payments exist (yet).
+     * The API resource URL of the [payments](list-payments) created for this subscription. Omitted if no such
+     * payments exist (yet).
      */
     public CancelSubscriptionLinks withPayments(CancelSubscriptionPayments payments) {
         Utils.checkNotNull(payments, "payments");
@@ -232,7 +235,8 @@ public class CancelSubscriptionLinks {
     }
 
     /**
-     * The API resource URL of the [payments](list-payments) created for this subscription. Omitted if no such payments exist (yet).
+     * The API resource URL of the [payments](list-payments) created for this subscription. Omitted if no such
+     * payments exist (yet).
      */
     public CancelSubscriptionLinks withPayments(JsonNullable<? extends CancelSubscriptionPayments> payments) {
         Utils.checkNotNull(payments, "payments");
@@ -392,7 +396,8 @@ public class CancelSubscriptionLinks {
 
 
         /**
-         * The API resource URL of the [payments](list-payments) created for this subscription. Omitted if no such payments exist (yet).
+         * The API resource URL of the [payments](list-payments) created for this subscription. Omitted if no such
+         * payments exist (yet).
          */
         public Builder payments(CancelSubscriptionPayments payments) {
             Utils.checkNotNull(payments, "payments");
@@ -401,7 +406,8 @@ public class CancelSubscriptionLinks {
         }
 
         /**
-         * The API resource URL of the [payments](list-payments) created for this subscription. Omitted if no such payments exist (yet).
+         * The API resource URL of the [payments](list-payments) created for this subscription. Omitted if no such
+         * payments exist (yet).
          */
         public Builder payments(JsonNullable<? extends CancelSubscriptionPayments> payments) {
             Utils.checkNotNull(payments, "payments");

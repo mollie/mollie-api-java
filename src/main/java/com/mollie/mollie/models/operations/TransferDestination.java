@@ -11,24 +11,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 /**
  * TransferDestination
  * 
- * <p>The destination where the available amount will be automatically transferred to according to the configured transfer frequency.
+ * <p>The destination where the available amount will be automatically transferred to according to the configured
+ * transfer frequency.
  */
 public class TransferDestination {
     /**
      * The default destination of automatic scheduled transfers. Currently only `bank-account` is supported.
      * 
      * <p>* `bank-account` — Transfer the balance amount to an external bank account
-     * 
-     * <p>Possible values: `bank-account`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<String> type;
+    private Optional<? extends GetBalanceType> type;
 
     /**
      * The configured bank account number of the beneficiary the balance amount is to be transferred to.
@@ -46,7 +46,7 @@ public class TransferDestination {
 
     @JsonCreator
     public TransferDestination(
-            @JsonProperty("type") Optional<String> type,
+            @JsonProperty("type") Optional<? extends GetBalanceType> type,
             @JsonProperty("bankAccount") Optional<String> bankAccount,
             @JsonProperty("beneficiaryName") Optional<String> beneficiaryName) {
         Utils.checkNotNull(type, "type");
@@ -65,12 +65,11 @@ public class TransferDestination {
      * The default destination of automatic scheduled transfers. Currently only `bank-account` is supported.
      * 
      * <p>* `bank-account` — Transfer the balance amount to an external bank account
-     * 
-     * <p>Possible values: `bank-account`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> type() {
-        return type;
+    public Optional<GetBalanceType> type() {
+        return (Optional<GetBalanceType>) type;
     }
 
     /**
@@ -98,10 +97,8 @@ public class TransferDestination {
      * The default destination of automatic scheduled transfers. Currently only `bank-account` is supported.
      * 
      * <p>* `bank-account` — Transfer the balance amount to an external bank account
-     * 
-     * <p>Possible values: `bank-account`
      */
-    public TransferDestination withType(String type) {
+    public TransferDestination withType(GetBalanceType type) {
         Utils.checkNotNull(type, "type");
         this.type = Optional.ofNullable(type);
         return this;
@@ -112,10 +109,8 @@ public class TransferDestination {
      * The default destination of automatic scheduled transfers. Currently only `bank-account` is supported.
      * 
      * <p>* `bank-account` — Transfer the balance amount to an external bank account
-     * 
-     * <p>Possible values: `bank-account`
      */
-    public TransferDestination withType(Optional<String> type) {
+    public TransferDestination withType(Optional<? extends GetBalanceType> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -191,7 +186,7 @@ public class TransferDestination {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> type = Optional.empty();
+        private Optional<? extends GetBalanceType> type = Optional.empty();
 
         private Optional<String> bankAccount = Optional.empty();
 
@@ -206,10 +201,8 @@ public class TransferDestination {
          * The default destination of automatic scheduled transfers. Currently only `bank-account` is supported.
          * 
          * <p>* `bank-account` — Transfer the balance amount to an external bank account
-         * 
-         * <p>Possible values: `bank-account`
          */
-        public Builder type(String type) {
+        public Builder type(GetBalanceType type) {
             Utils.checkNotNull(type, "type");
             this.type = Optional.ofNullable(type);
             return this;
@@ -219,10 +212,8 @@ public class TransferDestination {
          * The default destination of automatic scheduled transfers. Currently only `bank-account` is supported.
          * 
          * <p>* `bank-account` — Transfer the balance amount to an external bank account
-         * 
-         * <p>Possible values: `bank-account`
          */
-        public Builder type(Optional<String> type) {
+        public Builder type(Optional<? extends GetBalanceType> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;

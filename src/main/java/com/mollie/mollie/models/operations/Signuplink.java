@@ -13,7 +13,8 @@ import java.lang.String;
 /**
  * Signuplink
  * 
- * <p>The URL that can be used to have new organizations sign up and be automatically linked to this partner. Will be omitted if the partner is not of type `signuplink`.
+ * <p>The URL that can be used to have new organizations sign up and be automatically linked to this
+ * partner. Will be omitted if the partner is not of type `signuplink`.
  */
 public class Signuplink {
     /**

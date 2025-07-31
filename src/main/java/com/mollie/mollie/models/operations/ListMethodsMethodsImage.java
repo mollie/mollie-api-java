@@ -16,7 +16,11 @@ import java.util.Optional;
 /**
  * ListMethodsMethodsImage
  * 
- * <p>URLs of images representing the issuer. required: - size1x - size2x - svg
+ * <p>URLs of images representing the issuer.
+ * required:
+ *   - size1x
+ *   - size2x
+ *   - svg
  */
 public class ListMethodsMethodsImage {
     /**
@@ -34,7 +38,8 @@ public class ListMethodsMethodsImage {
     private Optional<String> size2x;
 
     /**
-     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
+     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can
+     * scale to any desired size without compromising visual quality.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("svg")
@@ -74,7 +79,8 @@ public class ListMethodsMethodsImage {
     }
 
     /**
-     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
+     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can
+     * scale to any desired size without compromising visual quality.
      */
     @JsonIgnore
     public Optional<String> svg() {
@@ -125,7 +131,8 @@ public class ListMethodsMethodsImage {
     }
 
     /**
-     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
+     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can
+     * scale to any desired size without compromising visual quality.
      */
     public ListMethodsMethodsImage withSvg(String svg) {
         Utils.checkNotNull(svg, "svg");
@@ -135,7 +142,8 @@ public class ListMethodsMethodsImage {
 
 
     /**
-     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
+     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can
+     * scale to any desired size without compromising visual quality.
      */
     public ListMethodsMethodsImage withSvg(Optional<String> svg) {
         Utils.checkNotNull(svg, "svg");
@@ -225,7 +233,8 @@ public class ListMethodsMethodsImage {
 
 
         /**
-         * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
+         * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can
+         * scale to any desired size without compromising visual quality.
          */
         public Builder svg(String svg) {
             Utils.checkNotNull(svg, "svg");
@@ -234,7 +243,8 @@ public class ListMethodsMethodsImage {
         }
 
         /**
-         * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can scale to any desired size without compromising visual quality.
+         * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can
+         * scale to any desired size without compromising visual quality.
          */
         public Builder svg(Optional<String> svg) {
             Utils.checkNotNull(svg, "svg");

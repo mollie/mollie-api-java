@@ -23,7 +23,8 @@ import java.util.Optional;
  */
 public class CreateClientLinkResponseBody {
     /**
-     * Indicates the response contains a client link object. Will always contain the string `client-link` for this endpoint.
+     * Indicates the response contains a client link object. Will always contain the string `client-link` for this
+     * endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
@@ -61,7 +62,8 @@ public class CreateClientLinkResponseBody {
     }
 
     /**
-     * Indicates the response contains a client link object. Will always contain the string `client-link` for this endpoint.
+     * Indicates the response contains a client link object. Will always contain the string `client-link` for this
+     * endpoint.
      */
     @JsonIgnore
     public Optional<String> resource() {
@@ -91,7 +93,8 @@ public class CreateClientLinkResponseBody {
 
 
     /**
-     * Indicates the response contains a client link object. Will always contain the string `client-link` for this endpoint.
+     * Indicates the response contains a client link object. Will always contain the string `client-link` for this
+     * endpoint.
      */
     public CreateClientLinkResponseBody withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -101,7 +104,8 @@ public class CreateClientLinkResponseBody {
 
 
     /**
-     * Indicates the response contains a client link object. Will always contain the string `client-link` for this endpoint.
+     * Indicates the response contains a client link object. Will always contain the string `client-link` for this
+     * endpoint.
      */
     public CreateClientLinkResponseBody withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
@@ -191,7 +195,8 @@ public class CreateClientLinkResponseBody {
 
 
         /**
-         * Indicates the response contains a client link object. Will always contain the string `client-link` for this endpoint.
+         * Indicates the response contains a client link object. Will always contain the string `client-link` for this
+         * endpoint.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -200,7 +205,8 @@ public class CreateClientLinkResponseBody {
         }
 
         /**
-         * Indicates the response contains a client link object. Will always contain the string `client-link` for this endpoint.
+         * Indicates the response contains a client link object. Will always contain the string `client-link` for this
+         * endpoint.
          */
         public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");

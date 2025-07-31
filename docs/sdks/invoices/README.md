@@ -10,16 +10,14 @@
 
 ## list
 
-Retrieve a list of all your invoices, optionally filtered by year or by invoice reference.
+Retrieve a list of all your invoices, optionally filtered by year or by
+invoice reference.
 
 The results are paginated.
 
-> 🔑 Access with
->
-> [Access token with **invoices.read**](/reference/authentication)
-
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list-invoices" method="get" path="/invoices" -->
 ```java
 package hello.world;
 
@@ -46,7 +44,6 @@ public class Application {
                 .year("2024")
                 .month("01")
                 .from("inv_xBEbP9rvAq")
-                .sort("desc")
                 .build();
 
         ListInvoicesResponse res = sdk.invoices().list()
@@ -82,14 +79,12 @@ public class Application {
 
 Retrieve a single invoice by its ID.
 
-If you want to retrieve the details of an invoice by its invoice number, call the [List invoices](list-invoices) endpoint with the `reference` parameter.
-
-> 🔑 Access with
->
-> [Access token with **invoices.read**](/reference/authentication)
+If you want to retrieve the details of an invoice by its invoice number,
+call the [List invoices](list-invoices) endpoint with the `reference` parameter.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="get-invoice" method="get" path="/invoices/{id}" -->
 ```java
 package hello.world;
 

@@ -17,14 +17,16 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Profile {
     /**
-     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
+     * The profile's name, this will usually reflect the trade name or brand name of the profile's website
+     * or application.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private Optional<String> name;
 
     /**
-     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
+     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
+     * signs are allowed.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("url")
@@ -52,7 +54,8 @@ public class Profile {
     private JsonNullable<String> description;
 
     /**
-     * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types) for all possible options.
+     * The industry associated with the profile's trade name or brand. Please refer to the
+     * [business category list](common-data-types) for all possible options.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("businessCategory")
@@ -86,7 +89,8 @@ public class Profile {
     }
 
     /**
-     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
+     * The profile's name, this will usually reflect the trade name or brand name of the profile's website
+     * or application.
      */
     @JsonIgnore
     public Optional<String> name() {
@@ -94,7 +98,8 @@ public class Profile {
     }
 
     /**
-     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
+     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
+     * signs are allowed.
      */
     @JsonIgnore
     public Optional<String> url() {
@@ -126,7 +131,8 @@ public class Profile {
     }
 
     /**
-     * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types) for all possible options.
+     * The industry associated with the profile's trade name or brand. Please refer to the
+     * [business category list](common-data-types) for all possible options.
      */
     @JsonIgnore
     public Optional<String> businessCategory() {
@@ -139,7 +145,8 @@ public class Profile {
 
 
     /**
-     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
+     * The profile's name, this will usually reflect the trade name or brand name of the profile's website
+     * or application.
      */
     public Profile withName(String name) {
         Utils.checkNotNull(name, "name");
@@ -149,7 +156,8 @@ public class Profile {
 
 
     /**
-     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
+     * The profile's name, this will usually reflect the trade name or brand name of the profile's website
+     * or application.
      */
     public Profile withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
@@ -158,7 +166,8 @@ public class Profile {
     }
 
     /**
-     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
+     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
+     * signs are allowed.
      */
     public Profile withUrl(String url) {
         Utils.checkNotNull(url, "url");
@@ -168,7 +177,8 @@ public class Profile {
 
 
     /**
-     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
+     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
+     * signs are allowed.
      */
     public Profile withUrl(Optional<String> url) {
         Utils.checkNotNull(url, "url");
@@ -233,7 +243,8 @@ public class Profile {
     }
 
     /**
-     * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types) for all possible options.
+     * The industry associated with the profile's trade name or brand. Please refer to the
+     * [business category list](common-data-types) for all possible options.
      */
     public Profile withBusinessCategory(String businessCategory) {
         Utils.checkNotNull(businessCategory, "businessCategory");
@@ -243,7 +254,8 @@ public class Profile {
 
 
     /**
-     * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types) for all possible options.
+     * The industry associated with the profile's trade name or brand. Please refer to the
+     * [business category list](common-data-types) for all possible options.
      */
     public Profile withBusinessCategory(Optional<String> businessCategory) {
         Utils.checkNotNull(businessCategory, "businessCategory");
@@ -308,7 +320,8 @@ public class Profile {
 
 
         /**
-         * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
+         * The profile's name, this will usually reflect the trade name or brand name of the profile's website
+         * or application.
          */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
@@ -317,7 +330,8 @@ public class Profile {
         }
 
         /**
-         * The profile's name, this will usually reflect the trade name or brand name of the profile's website or application.
+         * The profile's name, this will usually reflect the trade name or brand name of the profile's website
+         * or application.
          */
         public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
@@ -327,7 +341,8 @@ public class Profile {
 
 
         /**
-         * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
+         * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
+         * signs are allowed.
          */
         public Builder url(String url) {
             Utils.checkNotNull(url, "url");
@@ -336,7 +351,8 @@ public class Profile {
         }
 
         /**
-         * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are allowed.
+         * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
+         * signs are allowed.
          */
         public Builder url(Optional<String> url) {
             Utils.checkNotNull(url, "url");
@@ -403,7 +419,8 @@ public class Profile {
 
 
         /**
-         * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types) for all possible options.
+         * The industry associated with the profile's trade name or brand. Please refer to the
+         * [business category list](common-data-types) for all possible options.
          */
         public Builder businessCategory(String businessCategory) {
             Utils.checkNotNull(businessCategory, "businessCategory");
@@ -412,7 +429,8 @@ public class Profile {
         }
 
         /**
-         * The industry associated with the profile's trade name or brand. Please refer to the [business category list](common-data-types) for all possible options.
+         * The industry associated with the profile's trade name or brand. Please refer to the
+         * [business category list](common-data-types) for all possible options.
          */
         public Builder businessCategory(Optional<String> businessCategory) {
             Utils.checkNotNull(businessCategory, "businessCategory");

@@ -17,7 +17,8 @@ import java.util.Optional;
 
 public class PaymentCreateRouteRequestBody {
     /**
-     * The amount of the route. That amount that will be routed to the specified destination.
+     * The amount of the route.
+     * That amount that will be routed to the specified destination.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
@@ -55,7 +56,8 @@ public class PaymentCreateRouteRequestBody {
     }
 
     /**
-     * The amount of the route. That amount that will be routed to the specified destination.
+     * The amount of the route.
+     * That amount that will be routed to the specified destination.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -86,7 +88,8 @@ public class PaymentCreateRouteRequestBody {
 
 
     /**
-     * The amount of the route. That amount that will be routed to the specified destination.
+     * The amount of the route.
+     * That amount that will be routed to the specified destination.
      */
     public PaymentCreateRouteRequestBody withAmount(PaymentCreateRouteAmount amount) {
         Utils.checkNotNull(amount, "amount");
@@ -96,7 +99,8 @@ public class PaymentCreateRouteRequestBody {
 
 
     /**
-     * The amount of the route. That amount that will be routed to the specified destination.
+     * The amount of the route.
+     * That amount that will be routed to the specified destination.
      */
     public PaymentCreateRouteRequestBody withAmount(Optional<? extends PaymentCreateRouteAmount> amount) {
         Utils.checkNotNull(amount, "amount");
@@ -186,7 +190,8 @@ public class PaymentCreateRouteRequestBody {
 
 
         /**
-         * The amount of the route. That amount that will be routed to the specified destination.
+         * The amount of the route.
+         * That amount that will be routed to the specified destination.
          */
         public Builder amount(PaymentCreateRouteAmount amount) {
             Utils.checkNotNull(amount, "amount");
@@ -195,7 +200,8 @@ public class PaymentCreateRouteRequestBody {
         }
 
         /**
-         * The amount of the route. That amount that will be routed to the specified destination.
+         * The amount of the route.
+         * That amount that will be routed to the specified destination.
          */
         public Builder amount(Optional<? extends PaymentCreateRouteAmount> amount) {
             Utils.checkNotNull(amount, "amount");

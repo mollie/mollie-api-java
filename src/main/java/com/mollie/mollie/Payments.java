@@ -54,19 +54,18 @@ public class Payments {
     /**
      * Create payment
      * 
-     * <p>Payment creation is elemental to the Mollie API: this is where most payment implementations start off.
+     * <p>Payment creation is elemental to the Mollie API: this is where most payment
+     * implementations start off.
      * 
-     * <p>Once you have created a payment, you should redirect your customer to the URL in the `_links.checkout` property from the response.
+     * <p>Once you have created a payment, you should redirect your customer to the
+     * URL in the `_links.checkout` property from the response.
      * 
-     * <p>To wrap your head around the payment process, an explanation and flow charts can be found in the 'Accepting payments' guide.
+     * <p>To wrap your head around the payment process, an explanation and flow charts
+     * can be found in the 'Accepting payments' guide.
      * 
-     * <p>If you specify the `method` parameter when creating a payment, optional additional parameters may be available for the payment method that are not listed below. Please refer to the guide on [method-specific parameters](extra-payment-parameters).
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.write**](/reference/authentication)
+     * <p>If you specify the `method` parameter when creating a payment, optional
+     * additional parameters may be available for the payment method that are not listed below. Please refer to the
+     * guide on [method-specific parameters](extra-payment-parameters).
      * 
      * @return The call builder
      */
@@ -77,19 +76,18 @@ public class Payments {
     /**
      * Create payment
      * 
-     * <p>Payment creation is elemental to the Mollie API: this is where most payment implementations start off.
+     * <p>Payment creation is elemental to the Mollie API: this is where most payment
+     * implementations start off.
      * 
-     * <p>Once you have created a payment, you should redirect your customer to the URL in the `_links.checkout` property from the response.
+     * <p>Once you have created a payment, you should redirect your customer to the
+     * URL in the `_links.checkout` property from the response.
      * 
-     * <p>To wrap your head around the payment process, an explanation and flow charts can be found in the 'Accepting payments' guide.
+     * <p>To wrap your head around the payment process, an explanation and flow charts
+     * can be found in the 'Accepting payments' guide.
      * 
-     * <p>If you specify the `method` parameter when creating a payment, optional additional parameters may be available for the payment method that are not listed below. Please refer to the guide on [method-specific parameters](extra-payment-parameters).
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.write**](/reference/authentication)
+     * <p>If you specify the `method` parameter when creating a payment, optional
+     * additional parameters may be available for the payment method that are not listed below. Please refer to the
+     * guide on [method-specific parameters](extra-payment-parameters).
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -101,19 +99,18 @@ public class Payments {
     /**
      * Create payment
      * 
-     * <p>Payment creation is elemental to the Mollie API: this is where most payment implementations start off.
+     * <p>Payment creation is elemental to the Mollie API: this is where most payment
+     * implementations start off.
      * 
-     * <p>Once you have created a payment, you should redirect your customer to the URL in the `_links.checkout` property from the response.
+     * <p>Once you have created a payment, you should redirect your customer to the
+     * URL in the `_links.checkout` property from the response.
      * 
-     * <p>To wrap your head around the payment process, an explanation and flow charts can be found in the 'Accepting payments' guide.
+     * <p>To wrap your head around the payment process, an explanation and flow charts
+     * can be found in the 'Accepting payments' guide.
      * 
-     * <p>If you specify the `method` parameter when creating a payment, optional additional parameters may be available for the payment method that are not listed below. Please refer to the guide on [method-specific parameters](extra-payment-parameters).
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.write**](/reference/authentication)
+     * <p>If you specify the `method` parameter when creating a payment, optional
+     * additional parameters may be available for the payment method that are not listed below. Please refer to the
+     * guide on [method-specific parameters](extra-payment-parameters).
      * 
      * @param include This endpoint allows you to include additional information via the `include` query string parameter.
      * @param requestBody 
@@ -142,12 +139,6 @@ public class Payments {
      * 
      * <p>The results are paginated.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public ListPaymentsRequestBuilder list() {
@@ -160,12 +151,6 @@ public class Payments {
      * <p>Retrieve all payments created with the current website profile.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -181,12 +166,6 @@ public class Payments {
      * <p>Retrieve all payments created with the current website profile.
      * 
      * <p>The results are paginated.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.read**](/reference/authentication)
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -204,12 +183,6 @@ public class Payments {
      * 
      * <p>Retrieve a single payment object by its payment ID.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.read**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public GetPaymentRequestBuilder get() {
@@ -220,12 +193,6 @@ public class Payments {
      * Get payment
      * 
      * <p>Retrieve a single payment object by its payment ID.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.read**](/reference/authentication)
      * 
      * @param paymentId Provide the ID of the related payment.
      * @return The response from the API call
@@ -241,16 +208,13 @@ public class Payments {
      * 
      * <p>Retrieve a single payment object by its payment ID.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.read**](/reference/authentication)
-     * 
      * @param paymentId Provide the ID of the related payment.
      * @param include This endpoint allows you to include additional information via the `include` query string parameter.
-     * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string parameter.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * @param embed This endpoint allows embedding related API items by appending the
+     *         following values via the `embed` query string parameter.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param options additional options
@@ -281,12 +245,6 @@ public class Payments {
      * 
      * <p>Updating the payment details will not result in a webhook call.
      * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.write**](/reference/authentication)
-     * 
      * @return The call builder
      */
     public UpdatePaymentRequestBuilder update() {
@@ -299,12 +257,6 @@ public class Payments {
      * <p>Certain details of an existing payment can be updated.
      * 
      * <p>Updating the payment details will not result in a webhook call.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.write**](/reference/authentication)
      * 
      * @param paymentId Provide the ID of the related payment.
      * @return The response from the API call
@@ -320,12 +272,6 @@ public class Payments {
      * <p>Certain details of an existing payment can be updated.
      * 
      * <p>Updating the payment details will not result in a webhook call.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.write**](/reference/authentication)
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param requestBody 
@@ -350,17 +296,12 @@ public class Payments {
     /**
      * Cancel payment
      * 
-     * <p>Depending on the payment method, you may be able to cancel a payment for a certain amount of time — usually until the next business day or as long as the payment status is open.
+     * <p>Depending on the payment method, you may be able to cancel a payment for a certain amount of time — usually until
+     * the next business day or as long as the payment status is open.
      * 
      * <p>Payments may also be canceled manually from the Mollie Dashboard.
      * 
      * <p>The `isCancelable` property on the [Payment object](get-payment) will indicate if the payment can be canceled.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.write**](/reference/authentication)
      * 
      * @return The call builder
      */
@@ -371,17 +312,12 @@ public class Payments {
     /**
      * Cancel payment
      * 
-     * <p>Depending on the payment method, you may be able to cancel a payment for a certain amount of time — usually until the next business day or as long as the payment status is open.
+     * <p>Depending on the payment method, you may be able to cancel a payment for a certain amount of time — usually until
+     * the next business day or as long as the payment status is open.
      * 
      * <p>Payments may also be canceled manually from the Mollie Dashboard.
      * 
      * <p>The `isCancelable` property on the [Payment object](get-payment) will indicate if the payment can be canceled.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.write**](/reference/authentication)
      * 
      * @param paymentId Provide the ID of the related payment.
      * @return The response from the API call
@@ -394,17 +330,12 @@ public class Payments {
     /**
      * Cancel payment
      * 
-     * <p>Depending on the payment method, you may be able to cancel a payment for a certain amount of time — usually until the next business day or as long as the payment status is open.
+     * <p>Depending on the payment method, you may be able to cancel a payment for a certain amount of time — usually until
+     * the next business day or as long as the payment status is open.
      * 
      * <p>Payments may also be canceled manually from the Mollie Dashboard.
      * 
      * <p>The `isCancelable` property on the [Payment object](get-payment) will indicate if the payment can be canceled.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.write**](/reference/authentication)
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param requestBody 
@@ -429,17 +360,14 @@ public class Payments {
     /**
      * Release payment authorization
      * 
-     * <p>Releases the full remaining authorized amount. Call this endpoint when you will not be making any additional captures. Payment authorizations may also be released manually from the Mollie Dashboard.
+     * <p>Releases the full remaining authorized amount. Call this endpoint when you will not be making any additional
+     * captures. Payment authorizations may also be released manually from the Mollie Dashboard.
      * 
-     * <p>Mollie will do its best to process release requests, but it is not guaranteed that it will succeed. It is up to the issuing bank if and when the hold will be released.
+     * <p>Mollie will do its best to process release requests, but it is not guaranteed that it will succeed. It is up to
+     * the issuing bank if and when the hold will be released.
      * 
-     * <p>If the request does succeed, the payment status will change to `canceled` for payments without captures. If there is a successful capture, the payment will transition to `paid`.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.write**](/reference/authentication)
+     * <p>If the request does succeed, the payment status will change to `canceled` for payments without captures.
+     * If there is a successful capture, the payment will transition to `paid`.
      * 
      * @return The call builder
      */
@@ -450,17 +378,14 @@ public class Payments {
     /**
      * Release payment authorization
      * 
-     * <p>Releases the full remaining authorized amount. Call this endpoint when you will not be making any additional captures. Payment authorizations may also be released manually from the Mollie Dashboard.
+     * <p>Releases the full remaining authorized amount. Call this endpoint when you will not be making any additional
+     * captures. Payment authorizations may also be released manually from the Mollie Dashboard.
      * 
-     * <p>Mollie will do its best to process release requests, but it is not guaranteed that it will succeed. It is up to the issuing bank if and when the hold will be released.
+     * <p>Mollie will do its best to process release requests, but it is not guaranteed that it will succeed. It is up to
+     * the issuing bank if and when the hold will be released.
      * 
-     * <p>If the request does succeed, the payment status will change to `canceled` for payments without captures. If there is a successful capture, the payment will transition to `paid`.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.write**](/reference/authentication)
+     * <p>If the request does succeed, the payment status will change to `canceled` for payments without captures.
+     * If there is a successful capture, the payment will transition to `paid`.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @return The response from the API call
@@ -473,17 +398,14 @@ public class Payments {
     /**
      * Release payment authorization
      * 
-     * <p>Releases the full remaining authorized amount. Call this endpoint when you will not be making any additional captures. Payment authorizations may also be released manually from the Mollie Dashboard.
+     * <p>Releases the full remaining authorized amount. Call this endpoint when you will not be making any additional
+     * captures. Payment authorizations may also be released manually from the Mollie Dashboard.
      * 
-     * <p>Mollie will do its best to process release requests, but it is not guaranteed that it will succeed. It is up to the issuing bank if and when the hold will be released.
+     * <p>Mollie will do its best to process release requests, but it is not guaranteed that it will succeed. It is up to
+     * the issuing bank if and when the hold will be released.
      * 
-     * <p>If the request does succeed, the payment status will change to `canceled` for payments without captures. If there is a successful capture, the payment will transition to `paid`.
-     * 
-     * <p>&gt; 🔑 Access with
-     * &gt;
-     * &gt; [API key](/reference/authentication)
-     * &gt;
-     * &gt; [Access token with **payments.write**](/reference/authentication)
+     * <p>If the request does succeed, the payment status will change to `canceled` for payments without captures.
+     * If there is a successful capture, the payment will transition to `paid`.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param requestBody 

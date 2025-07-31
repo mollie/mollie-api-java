@@ -20,7 +20,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class BalanceTransactions {
     /**
-     * Indicates the response contains a balance transaction object. Will always contain the string `balance-transaction` for this endpoint.
+     * Indicates the response contains a balance transaction object. Will always contain the string `balance-transaction`
+     * for this endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
@@ -34,45 +35,50 @@ public class BalanceTransactions {
     private Optional<String> id;
 
     /**
-     * The type of transaction, for example `payment` or `refund`. Values include the below examples, although this list is not definitive.
+     * The type of transaction, for example `payment` or `refund`. Values include the below examples, although this list
+     * is not definitive.
      * 
      * <p>* Regular payment processing: `payment` `capture` `unauthorized-direct-debit` `failed-payment`
      * * Refunds and chargebacks: `refund` `returned-refund` `chargeback` `chargeback-reversal`
      * * Settlements: `outgoing-transfer` `canceled-outgoing-transfer` `returned-transfer`
      * * Invoicing: `invoice-compensation` `balance-correction`
      * * Mollie Connect: `application-fee` `split-payment` `platform-payment-refund` `platform-payment-chargeback`
-     * 
-     * <p>Possible values: `application-fee` `capture` `chargeback` `chargeback-reversal` `failed-payment-fee` `failed-payment` `invoice-compensation` `payment` `payment-fee` `payment-commission` `refund` `returned-refund` `returned-transfer` `split-payment` `outgoing-transfer` `capture-commission` `canceled-outgoing-transfer` `incoming-transfer` `api-payment-rolling-reserve-release` `capture-rolling-reserve-release` `reimbursement-fee` `balance-correction` `unauthorized-direct-debit` `bank-charged-failure-fee` `platform-payment-refund` `refund-compensation` `returned-refund-compensation` `returned-platform-payment-refund` `platform-payment-chargeback` `chargeback-compensation` `reversed-platform-payment-chargeback` `reversed-chargeback-compensation` `failed-split-payment-platform` `failed-split-payment-compensation` `cash-advance-loan` `platform-connected-organizations-fee` `split-transaction` `managed-fee` `returned-managed-fee` `topup` `balance-reserve` `balance-reserve-return` `movement` `post-payment-split-payment` `cash-collateral-issuance` `cash-collateral-release`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<String> type;
+    private Optional<? extends ListBalanceTransactionsType> type;
 
     /**
-     * The final amount that was moved to or from the balance. If the transaction moves funds away from the balance, for example when it concerns a refund, the amount will be negative.
+     * The final amount that was moved to or from the balance. If the transaction moves funds away from the balance, for
+     * example when it concerns a refund, the amount will be negative.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resultAmount")
     private Optional<? extends ResultAmount> resultAmount;
 
     /**
-     * The amount that was to be moved to or from the balance, excluding deductions. If the transaction moves funds away from the balance, for example when it concerns a refund, the amount will be negative.
+     * The amount that was to be moved to or from the balance, excluding deductions. If the transaction moves funds away
+     * from the balance, for example when it concerns a refund, the amount will be negative.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("initialAmount")
     private Optional<? extends InitialAmount> initialAmount;
 
     /**
-     * The total amount of deductions withheld from the movement. For example, if we charge a €0.29 fee on a €10 payment, the deductions amount will be `{"currency":"EUR", "value":"-0.29"}`.
+     * The total amount of deductions withheld from the movement. For example, if we charge a €0.29 fee on a €10 payment,
+     * the deductions amount will be `{"currency":"EUR", "value":"-0.29"}`.
      * 
-     * <p>When moving funds to a balance, we always round the deduction to a 'real' amount. Any differences between these real-time rounded amounts and the final invoice will be compensated when the invoice is generated.
+     * <p>When moving funds to a balance, we always round the deduction to a 'real' amount. Any differences between these
+     * real-time rounded amounts and the final invoice will be compensated when the invoice is generated.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("deductions")
     private JsonNullable<? extends Deductions> deductions;
 
     /**
-     * Depending on the type of the balance transaction, we will try to give more context about the specific event that triggered it. For example, the context object for a payment transaction will look like `{"paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "paymentDescription": "Description"}`.
+     * Depending on the type of the balance transaction, we will try to give more context about the specific event that
+     * triggered it. For example, the context object for a payment transaction will look like
+     * `{"paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "paymentDescription": "Description"}`.
      * 
      * <p>Below is a complete list of the context values that each type of transaction will have.
      * 
@@ -132,7 +138,7 @@ public class BalanceTransactions {
     public BalanceTransactions(
             @JsonProperty("resource") Optional<String> resource,
             @JsonProperty("id") Optional<String> id,
-            @JsonProperty("type") Optional<String> type,
+            @JsonProperty("type") Optional<? extends ListBalanceTransactionsType> type,
             @JsonProperty("resultAmount") Optional<? extends ResultAmount> resultAmount,
             @JsonProperty("initialAmount") Optional<? extends InitialAmount> initialAmount,
             @JsonProperty("deductions") JsonNullable<? extends Deductions> deductions,
@@ -163,7 +169,8 @@ public class BalanceTransactions {
     }
 
     /**
-     * Indicates the response contains a balance transaction object. Will always contain the string `balance-transaction` for this endpoint.
+     * Indicates the response contains a balance transaction object. Will always contain the string `balance-transaction`
+     * for this endpoint.
      */
     @JsonIgnore
     public Optional<String> resource() {
@@ -179,23 +186,24 @@ public class BalanceTransactions {
     }
 
     /**
-     * The type of transaction, for example `payment` or `refund`. Values include the below examples, although this list is not definitive.
+     * The type of transaction, for example `payment` or `refund`. Values include the below examples, although this list
+     * is not definitive.
      * 
      * <p>* Regular payment processing: `payment` `capture` `unauthorized-direct-debit` `failed-payment`
      * * Refunds and chargebacks: `refund` `returned-refund` `chargeback` `chargeback-reversal`
      * * Settlements: `outgoing-transfer` `canceled-outgoing-transfer` `returned-transfer`
      * * Invoicing: `invoice-compensation` `balance-correction`
      * * Mollie Connect: `application-fee` `split-payment` `platform-payment-refund` `platform-payment-chargeback`
-     * 
-     * <p>Possible values: `application-fee` `capture` `chargeback` `chargeback-reversal` `failed-payment-fee` `failed-payment` `invoice-compensation` `payment` `payment-fee` `payment-commission` `refund` `returned-refund` `returned-transfer` `split-payment` `outgoing-transfer` `capture-commission` `canceled-outgoing-transfer` `incoming-transfer` `api-payment-rolling-reserve-release` `capture-rolling-reserve-release` `reimbursement-fee` `balance-correction` `unauthorized-direct-debit` `bank-charged-failure-fee` `platform-payment-refund` `refund-compensation` `returned-refund-compensation` `returned-platform-payment-refund` `platform-payment-chargeback` `chargeback-compensation` `reversed-platform-payment-chargeback` `reversed-chargeback-compensation` `failed-split-payment-platform` `failed-split-payment-compensation` `cash-advance-loan` `platform-connected-organizations-fee` `split-transaction` `managed-fee` `returned-managed-fee` `topup` `balance-reserve` `balance-reserve-return` `movement` `post-payment-split-payment` `cash-collateral-issuance` `cash-collateral-release`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> type() {
-        return type;
+    public Optional<ListBalanceTransactionsType> type() {
+        return (Optional<ListBalanceTransactionsType>) type;
     }
 
     /**
-     * The final amount that was moved to or from the balance. If the transaction moves funds away from the balance, for example when it concerns a refund, the amount will be negative.
+     * The final amount that was moved to or from the balance. If the transaction moves funds away from the balance, for
+     * example when it concerns a refund, the amount will be negative.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -204,7 +212,8 @@ public class BalanceTransactions {
     }
 
     /**
-     * The amount that was to be moved to or from the balance, excluding deductions. If the transaction moves funds away from the balance, for example when it concerns a refund, the amount will be negative.
+     * The amount that was to be moved to or from the balance, excluding deductions. If the transaction moves funds away
+     * from the balance, for example when it concerns a refund, the amount will be negative.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -213,9 +222,11 @@ public class BalanceTransactions {
     }
 
     /**
-     * The total amount of deductions withheld from the movement. For example, if we charge a €0.29 fee on a €10 payment, the deductions amount will be `{"currency":"EUR", "value":"-0.29"}`.
+     * The total amount of deductions withheld from the movement. For example, if we charge a €0.29 fee on a €10 payment,
+     * the deductions amount will be `{"currency":"EUR", "value":"-0.29"}`.
      * 
-     * <p>When moving funds to a balance, we always round the deduction to a 'real' amount. Any differences between these real-time rounded amounts and the final invoice will be compensated when the invoice is generated.
+     * <p>When moving funds to a balance, we always round the deduction to a 'real' amount. Any differences between these
+     * real-time rounded amounts and the final invoice will be compensated when the invoice is generated.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -224,7 +235,9 @@ public class BalanceTransactions {
     }
 
     /**
-     * Depending on the type of the balance transaction, we will try to give more context about the specific event that triggered it. For example, the context object for a payment transaction will look like `{"paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "paymentDescription": "Description"}`.
+     * Depending on the type of the balance transaction, we will try to give more context about the specific event that
+     * triggered it. For example, the context object for a payment transaction will look like
+     * `{"paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "paymentDescription": "Description"}`.
      * 
      * <p>Below is a complete list of the context values that each type of transaction will have.
      * 
@@ -289,7 +302,8 @@ public class BalanceTransactions {
 
 
     /**
-     * Indicates the response contains a balance transaction object. Will always contain the string `balance-transaction` for this endpoint.
+     * Indicates the response contains a balance transaction object. Will always contain the string `balance-transaction`
+     * for this endpoint.
      */
     public BalanceTransactions withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -299,7 +313,8 @@ public class BalanceTransactions {
 
 
     /**
-     * Indicates the response contains a balance transaction object. Will always contain the string `balance-transaction` for this endpoint.
+     * Indicates the response contains a balance transaction object. Will always contain the string `balance-transaction`
+     * for this endpoint.
      */
     public BalanceTransactions withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
@@ -327,17 +342,16 @@ public class BalanceTransactions {
     }
 
     /**
-     * The type of transaction, for example `payment` or `refund`. Values include the below examples, although this list is not definitive.
+     * The type of transaction, for example `payment` or `refund`. Values include the below examples, although this list
+     * is not definitive.
      * 
      * <p>* Regular payment processing: `payment` `capture` `unauthorized-direct-debit` `failed-payment`
      * * Refunds and chargebacks: `refund` `returned-refund` `chargeback` `chargeback-reversal`
      * * Settlements: `outgoing-transfer` `canceled-outgoing-transfer` `returned-transfer`
      * * Invoicing: `invoice-compensation` `balance-correction`
      * * Mollie Connect: `application-fee` `split-payment` `platform-payment-refund` `platform-payment-chargeback`
-     * 
-     * <p>Possible values: `application-fee` `capture` `chargeback` `chargeback-reversal` `failed-payment-fee` `failed-payment` `invoice-compensation` `payment` `payment-fee` `payment-commission` `refund` `returned-refund` `returned-transfer` `split-payment` `outgoing-transfer` `capture-commission` `canceled-outgoing-transfer` `incoming-transfer` `api-payment-rolling-reserve-release` `capture-rolling-reserve-release` `reimbursement-fee` `balance-correction` `unauthorized-direct-debit` `bank-charged-failure-fee` `platform-payment-refund` `refund-compensation` `returned-refund-compensation` `returned-platform-payment-refund` `platform-payment-chargeback` `chargeback-compensation` `reversed-platform-payment-chargeback` `reversed-chargeback-compensation` `failed-split-payment-platform` `failed-split-payment-compensation` `cash-advance-loan` `platform-connected-organizations-fee` `split-transaction` `managed-fee` `returned-managed-fee` `topup` `balance-reserve` `balance-reserve-return` `movement` `post-payment-split-payment` `cash-collateral-issuance` `cash-collateral-release`
      */
-    public BalanceTransactions withType(String type) {
+    public BalanceTransactions withType(ListBalanceTransactionsType type) {
         Utils.checkNotNull(type, "type");
         this.type = Optional.ofNullable(type);
         return this;
@@ -345,24 +359,24 @@ public class BalanceTransactions {
 
 
     /**
-     * The type of transaction, for example `payment` or `refund`. Values include the below examples, although this list is not definitive.
+     * The type of transaction, for example `payment` or `refund`. Values include the below examples, although this list
+     * is not definitive.
      * 
      * <p>* Regular payment processing: `payment` `capture` `unauthorized-direct-debit` `failed-payment`
      * * Refunds and chargebacks: `refund` `returned-refund` `chargeback` `chargeback-reversal`
      * * Settlements: `outgoing-transfer` `canceled-outgoing-transfer` `returned-transfer`
      * * Invoicing: `invoice-compensation` `balance-correction`
      * * Mollie Connect: `application-fee` `split-payment` `platform-payment-refund` `platform-payment-chargeback`
-     * 
-     * <p>Possible values: `application-fee` `capture` `chargeback` `chargeback-reversal` `failed-payment-fee` `failed-payment` `invoice-compensation` `payment` `payment-fee` `payment-commission` `refund` `returned-refund` `returned-transfer` `split-payment` `outgoing-transfer` `capture-commission` `canceled-outgoing-transfer` `incoming-transfer` `api-payment-rolling-reserve-release` `capture-rolling-reserve-release` `reimbursement-fee` `balance-correction` `unauthorized-direct-debit` `bank-charged-failure-fee` `platform-payment-refund` `refund-compensation` `returned-refund-compensation` `returned-platform-payment-refund` `platform-payment-chargeback` `chargeback-compensation` `reversed-platform-payment-chargeback` `reversed-chargeback-compensation` `failed-split-payment-platform` `failed-split-payment-compensation` `cash-advance-loan` `platform-connected-organizations-fee` `split-transaction` `managed-fee` `returned-managed-fee` `topup` `balance-reserve` `balance-reserve-return` `movement` `post-payment-split-payment` `cash-collateral-issuance` `cash-collateral-release`
      */
-    public BalanceTransactions withType(Optional<String> type) {
+    public BalanceTransactions withType(Optional<? extends ListBalanceTransactionsType> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
     }
 
     /**
-     * The final amount that was moved to or from the balance. If the transaction moves funds away from the balance, for example when it concerns a refund, the amount will be negative.
+     * The final amount that was moved to or from the balance. If the transaction moves funds away from the balance, for
+     * example when it concerns a refund, the amount will be negative.
      */
     public BalanceTransactions withResultAmount(ResultAmount resultAmount) {
         Utils.checkNotNull(resultAmount, "resultAmount");
@@ -372,7 +386,8 @@ public class BalanceTransactions {
 
 
     /**
-     * The final amount that was moved to or from the balance. If the transaction moves funds away from the balance, for example when it concerns a refund, the amount will be negative.
+     * The final amount that was moved to or from the balance. If the transaction moves funds away from the balance, for
+     * example when it concerns a refund, the amount will be negative.
      */
     public BalanceTransactions withResultAmount(Optional<? extends ResultAmount> resultAmount) {
         Utils.checkNotNull(resultAmount, "resultAmount");
@@ -381,7 +396,8 @@ public class BalanceTransactions {
     }
 
     /**
-     * The amount that was to be moved to or from the balance, excluding deductions. If the transaction moves funds away from the balance, for example when it concerns a refund, the amount will be negative.
+     * The amount that was to be moved to or from the balance, excluding deductions. If the transaction moves funds away
+     * from the balance, for example when it concerns a refund, the amount will be negative.
      */
     public BalanceTransactions withInitialAmount(InitialAmount initialAmount) {
         Utils.checkNotNull(initialAmount, "initialAmount");
@@ -391,7 +407,8 @@ public class BalanceTransactions {
 
 
     /**
-     * The amount that was to be moved to or from the balance, excluding deductions. If the transaction moves funds away from the balance, for example when it concerns a refund, the amount will be negative.
+     * The amount that was to be moved to or from the balance, excluding deductions. If the transaction moves funds away
+     * from the balance, for example when it concerns a refund, the amount will be negative.
      */
     public BalanceTransactions withInitialAmount(Optional<? extends InitialAmount> initialAmount) {
         Utils.checkNotNull(initialAmount, "initialAmount");
@@ -400,9 +417,11 @@ public class BalanceTransactions {
     }
 
     /**
-     * The total amount of deductions withheld from the movement. For example, if we charge a €0.29 fee on a €10 payment, the deductions amount will be `{"currency":"EUR", "value":"-0.29"}`.
+     * The total amount of deductions withheld from the movement. For example, if we charge a €0.29 fee on a €10 payment,
+     * the deductions amount will be `{"currency":"EUR", "value":"-0.29"}`.
      * 
-     * <p>When moving funds to a balance, we always round the deduction to a 'real' amount. Any differences between these real-time rounded amounts and the final invoice will be compensated when the invoice is generated.
+     * <p>When moving funds to a balance, we always round the deduction to a 'real' amount. Any differences between these
+     * real-time rounded amounts and the final invoice will be compensated when the invoice is generated.
      */
     public BalanceTransactions withDeductions(Deductions deductions) {
         Utils.checkNotNull(deductions, "deductions");
@@ -411,9 +430,11 @@ public class BalanceTransactions {
     }
 
     /**
-     * The total amount of deductions withheld from the movement. For example, if we charge a €0.29 fee on a €10 payment, the deductions amount will be `{"currency":"EUR", "value":"-0.29"}`.
+     * The total amount of deductions withheld from the movement. For example, if we charge a €0.29 fee on a €10 payment,
+     * the deductions amount will be `{"currency":"EUR", "value":"-0.29"}`.
      * 
-     * <p>When moving funds to a balance, we always round the deduction to a 'real' amount. Any differences between these real-time rounded amounts and the final invoice will be compensated when the invoice is generated.
+     * <p>When moving funds to a balance, we always round the deduction to a 'real' amount. Any differences between these
+     * real-time rounded amounts and the final invoice will be compensated when the invoice is generated.
      */
     public BalanceTransactions withDeductions(JsonNullable<? extends Deductions> deductions) {
         Utils.checkNotNull(deductions, "deductions");
@@ -422,7 +443,9 @@ public class BalanceTransactions {
     }
 
     /**
-     * Depending on the type of the balance transaction, we will try to give more context about the specific event that triggered it. For example, the context object for a payment transaction will look like `{"paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "paymentDescription": "Description"}`.
+     * Depending on the type of the balance transaction, we will try to give more context about the specific event that
+     * triggered it. For example, the context object for a payment transaction will look like
+     * `{"paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "paymentDescription": "Description"}`.
      * 
      * <p>Below is a complete list of the context values that each type of transaction will have.
      * 
@@ -475,7 +498,9 @@ public class BalanceTransactions {
 
 
     /**
-     * Depending on the type of the balance transaction, we will try to give more context about the specific event that triggered it. For example, the context object for a payment transaction will look like `{"paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "paymentDescription": "Description"}`.
+     * Depending on the type of the balance transaction, we will try to give more context about the specific event that
+     * triggered it. For example, the context object for a payment transaction will look like
+     * `{"paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "paymentDescription": "Description"}`.
      * 
      * <p>Below is a complete list of the context values that each type of transaction will have.
      * 
@@ -593,7 +618,7 @@ public class BalanceTransactions {
 
         private Optional<String> id = Optional.empty();
 
-        private Optional<String> type = Optional.empty();
+        private Optional<? extends ListBalanceTransactionsType> type = Optional.empty();
 
         private Optional<? extends ResultAmount> resultAmount = Optional.empty();
 
@@ -611,7 +636,8 @@ public class BalanceTransactions {
 
 
         /**
-         * Indicates the response contains a balance transaction object. Will always contain the string `balance-transaction` for this endpoint.
+         * Indicates the response contains a balance transaction object. Will always contain the string `balance-transaction`
+         * for this endpoint.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -620,7 +646,8 @@ public class BalanceTransactions {
         }
 
         /**
-         * Indicates the response contains a balance transaction object. Will always contain the string `balance-transaction` for this endpoint.
+         * Indicates the response contains a balance transaction object. Will always contain the string `balance-transaction`
+         * for this endpoint.
          */
         public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
@@ -649,34 +676,32 @@ public class BalanceTransactions {
 
 
         /**
-         * The type of transaction, for example `payment` or `refund`. Values include the below examples, although this list is not definitive.
+         * The type of transaction, for example `payment` or `refund`. Values include the below examples, although this list
+         * is not definitive.
          * 
          * <p>* Regular payment processing: `payment` `capture` `unauthorized-direct-debit` `failed-payment`
          * * Refunds and chargebacks: `refund` `returned-refund` `chargeback` `chargeback-reversal`
          * * Settlements: `outgoing-transfer` `canceled-outgoing-transfer` `returned-transfer`
          * * Invoicing: `invoice-compensation` `balance-correction`
          * * Mollie Connect: `application-fee` `split-payment` `platform-payment-refund` `platform-payment-chargeback`
-         * 
-         * <p>Possible values: `application-fee` `capture` `chargeback` `chargeback-reversal` `failed-payment-fee` `failed-payment` `invoice-compensation` `payment` `payment-fee` `payment-commission` `refund` `returned-refund` `returned-transfer` `split-payment` `outgoing-transfer` `capture-commission` `canceled-outgoing-transfer` `incoming-transfer` `api-payment-rolling-reserve-release` `capture-rolling-reserve-release` `reimbursement-fee` `balance-correction` `unauthorized-direct-debit` `bank-charged-failure-fee` `platform-payment-refund` `refund-compensation` `returned-refund-compensation` `returned-platform-payment-refund` `platform-payment-chargeback` `chargeback-compensation` `reversed-platform-payment-chargeback` `reversed-chargeback-compensation` `failed-split-payment-platform` `failed-split-payment-compensation` `cash-advance-loan` `platform-connected-organizations-fee` `split-transaction` `managed-fee` `returned-managed-fee` `topup` `balance-reserve` `balance-reserve-return` `movement` `post-payment-split-payment` `cash-collateral-issuance` `cash-collateral-release`
          */
-        public Builder type(String type) {
+        public Builder type(ListBalanceTransactionsType type) {
             Utils.checkNotNull(type, "type");
             this.type = Optional.ofNullable(type);
             return this;
         }
 
         /**
-         * The type of transaction, for example `payment` or `refund`. Values include the below examples, although this list is not definitive.
+         * The type of transaction, for example `payment` or `refund`. Values include the below examples, although this list
+         * is not definitive.
          * 
          * <p>* Regular payment processing: `payment` `capture` `unauthorized-direct-debit` `failed-payment`
          * * Refunds and chargebacks: `refund` `returned-refund` `chargeback` `chargeback-reversal`
          * * Settlements: `outgoing-transfer` `canceled-outgoing-transfer` `returned-transfer`
          * * Invoicing: `invoice-compensation` `balance-correction`
          * * Mollie Connect: `application-fee` `split-payment` `platform-payment-refund` `platform-payment-chargeback`
-         * 
-         * <p>Possible values: `application-fee` `capture` `chargeback` `chargeback-reversal` `failed-payment-fee` `failed-payment` `invoice-compensation` `payment` `payment-fee` `payment-commission` `refund` `returned-refund` `returned-transfer` `split-payment` `outgoing-transfer` `capture-commission` `canceled-outgoing-transfer` `incoming-transfer` `api-payment-rolling-reserve-release` `capture-rolling-reserve-release` `reimbursement-fee` `balance-correction` `unauthorized-direct-debit` `bank-charged-failure-fee` `platform-payment-refund` `refund-compensation` `returned-refund-compensation` `returned-platform-payment-refund` `platform-payment-chargeback` `chargeback-compensation` `reversed-platform-payment-chargeback` `reversed-chargeback-compensation` `failed-split-payment-platform` `failed-split-payment-compensation` `cash-advance-loan` `platform-connected-organizations-fee` `split-transaction` `managed-fee` `returned-managed-fee` `topup` `balance-reserve` `balance-reserve-return` `movement` `post-payment-split-payment` `cash-collateral-issuance` `cash-collateral-release`
          */
-        public Builder type(Optional<String> type) {
+        public Builder type(Optional<? extends ListBalanceTransactionsType> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
@@ -684,7 +709,8 @@ public class BalanceTransactions {
 
 
         /**
-         * The final amount that was moved to or from the balance. If the transaction moves funds away from the balance, for example when it concerns a refund, the amount will be negative.
+         * The final amount that was moved to or from the balance. If the transaction moves funds away from the balance, for
+         * example when it concerns a refund, the amount will be negative.
          */
         public Builder resultAmount(ResultAmount resultAmount) {
             Utils.checkNotNull(resultAmount, "resultAmount");
@@ -693,7 +719,8 @@ public class BalanceTransactions {
         }
 
         /**
-         * The final amount that was moved to or from the balance. If the transaction moves funds away from the balance, for example when it concerns a refund, the amount will be negative.
+         * The final amount that was moved to or from the balance. If the transaction moves funds away from the balance, for
+         * example when it concerns a refund, the amount will be negative.
          */
         public Builder resultAmount(Optional<? extends ResultAmount> resultAmount) {
             Utils.checkNotNull(resultAmount, "resultAmount");
@@ -703,7 +730,8 @@ public class BalanceTransactions {
 
 
         /**
-         * The amount that was to be moved to or from the balance, excluding deductions. If the transaction moves funds away from the balance, for example when it concerns a refund, the amount will be negative.
+         * The amount that was to be moved to or from the balance, excluding deductions. If the transaction moves funds away
+         * from the balance, for example when it concerns a refund, the amount will be negative.
          */
         public Builder initialAmount(InitialAmount initialAmount) {
             Utils.checkNotNull(initialAmount, "initialAmount");
@@ -712,7 +740,8 @@ public class BalanceTransactions {
         }
 
         /**
-         * The amount that was to be moved to or from the balance, excluding deductions. If the transaction moves funds away from the balance, for example when it concerns a refund, the amount will be negative.
+         * The amount that was to be moved to or from the balance, excluding deductions. If the transaction moves funds away
+         * from the balance, for example when it concerns a refund, the amount will be negative.
          */
         public Builder initialAmount(Optional<? extends InitialAmount> initialAmount) {
             Utils.checkNotNull(initialAmount, "initialAmount");
@@ -722,9 +751,11 @@ public class BalanceTransactions {
 
 
         /**
-         * The total amount of deductions withheld from the movement. For example, if we charge a €0.29 fee on a €10 payment, the deductions amount will be `{"currency":"EUR", "value":"-0.29"}`.
+         * The total amount of deductions withheld from the movement. For example, if we charge a €0.29 fee on a €10 payment,
+         * the deductions amount will be `{"currency":"EUR", "value":"-0.29"}`.
          * 
-         * <p>When moving funds to a balance, we always round the deduction to a 'real' amount. Any differences between these real-time rounded amounts and the final invoice will be compensated when the invoice is generated.
+         * <p>When moving funds to a balance, we always round the deduction to a 'real' amount. Any differences between these
+         * real-time rounded amounts and the final invoice will be compensated when the invoice is generated.
          */
         public Builder deductions(Deductions deductions) {
             Utils.checkNotNull(deductions, "deductions");
@@ -733,9 +764,11 @@ public class BalanceTransactions {
         }
 
         /**
-         * The total amount of deductions withheld from the movement. For example, if we charge a €0.29 fee on a €10 payment, the deductions amount will be `{"currency":"EUR", "value":"-0.29"}`.
+         * The total amount of deductions withheld from the movement. For example, if we charge a €0.29 fee on a €10 payment,
+         * the deductions amount will be `{"currency":"EUR", "value":"-0.29"}`.
          * 
-         * <p>When moving funds to a balance, we always round the deduction to a 'real' amount. Any differences between these real-time rounded amounts and the final invoice will be compensated when the invoice is generated.
+         * <p>When moving funds to a balance, we always round the deduction to a 'real' amount. Any differences between these
+         * real-time rounded amounts and the final invoice will be compensated when the invoice is generated.
          */
         public Builder deductions(JsonNullable<? extends Deductions> deductions) {
             Utils.checkNotNull(deductions, "deductions");
@@ -745,7 +778,9 @@ public class BalanceTransactions {
 
 
         /**
-         * Depending on the type of the balance transaction, we will try to give more context about the specific event that triggered it. For example, the context object for a payment transaction will look like `{"paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "paymentDescription": "Description"}`.
+         * Depending on the type of the balance transaction, we will try to give more context about the specific event that
+         * triggered it. For example, the context object for a payment transaction will look like
+         * `{"paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "paymentDescription": "Description"}`.
          * 
          * <p>Below is a complete list of the context values that each type of transaction will have.
          * 
@@ -797,7 +832,9 @@ public class BalanceTransactions {
         }
 
         /**
-         * Depending on the type of the balance transaction, we will try to give more context about the specific event that triggered it. For example, the context object for a payment transaction will look like `{"paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "paymentDescription": "Description"}`.
+         * Depending on the type of the balance transaction, we will try to give more context about the specific event that
+         * triggered it. For example, the context object for a payment transaction will look like
+         * `{"paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "paymentDescription": "Description"}`.
          * 
          * <p>Below is a complete list of the context values that each type of transaction will have.
          * 

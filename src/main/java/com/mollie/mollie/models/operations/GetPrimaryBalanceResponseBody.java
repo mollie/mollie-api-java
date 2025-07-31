@@ -39,12 +39,10 @@ public class GetPrimaryBalanceResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<String> mode;
+    private Optional<? extends GetPrimaryBalanceMode> mode;
 
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -69,26 +67,25 @@ public class GetPrimaryBalanceResponseBody {
 
     /**
      * The status of the balance.
-     * 
-     * <p>Possible values: `active` `inactive`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<String> status;
+    private Optional<? extends GetPrimaryBalanceStatus> status;
 
     /**
-     * The frequency with which the available amount on the balance will be settled to the configured transfer destination.
+     * The frequency with which the available amount on the balance will be settled to the configured transfer
+     * destination.
      * 
      * <p>Settlements created during weekends or on bank holidays will take place on the next business day.
-     * 
-     * <p>Possible values: `daily` `every-monday` `every-tuesday` `every-wednesday` `every-thursday` `every-friday` `monthly` `never`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("transferFrequency")
-    private Optional<String> transferFrequency;
+    private Optional<? extends GetPrimaryBalanceTransferFrequency> transferFrequency;
 
     /**
-     * The minimum amount configured for scheduled automatic settlements. As soon as the amount on the balance exceeds this threshold, the complete balance will be paid out to the transfer destination according to the configured frequency.
+     * The minimum amount configured for scheduled automatic settlements. As soon as the amount on the balance exceeds
+     * this threshold, the complete balance will be paid out to the transfer destination according to the configured
+     * frequency.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("transferThreshold")
@@ -102,7 +99,8 @@ public class GetPrimaryBalanceResponseBody {
     private JsonNullable<String> transferReference;
 
     /**
-     * The destination where the available amount will be automatically transferred to according to the configured transfer frequency.
+     * The destination where the available amount will be automatically transferred to according to the configured
+     * transfer frequency.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("transferDestination")
@@ -116,7 +114,8 @@ public class GetPrimaryBalanceResponseBody {
     private Optional<? extends GetPrimaryBalanceAvailableAmount> availableAmount;
 
     /**
-     * The total amount that is queued to be transferred to your balance. For example, a credit card payment can take a few days to clear.
+     * The total amount that is queued to be transferred to your balance. For example, a credit card payment can take a
+     * few days to clear.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pendingAmount")
@@ -133,12 +132,12 @@ public class GetPrimaryBalanceResponseBody {
     public GetPrimaryBalanceResponseBody(
             @JsonProperty("resource") Optional<String> resource,
             @JsonProperty("id") Optional<String> id,
-            @JsonProperty("mode") Optional<String> mode,
+            @JsonProperty("mode") Optional<? extends GetPrimaryBalanceMode> mode,
             @JsonProperty("createdAt") Optional<String> createdAt,
             @JsonProperty("currency") Optional<? extends GetPrimaryBalanceCurrency> currency,
             @JsonProperty("description") Optional<String> description,
-            @JsonProperty("status") Optional<String> status,
-            @JsonProperty("transferFrequency") Optional<String> transferFrequency,
+            @JsonProperty("status") Optional<? extends GetPrimaryBalanceStatus> status,
+            @JsonProperty("transferFrequency") Optional<? extends GetPrimaryBalanceTransferFrequency> transferFrequency,
             @JsonProperty("transferThreshold") Optional<? extends GetPrimaryBalanceTransferThreshold> transferThreshold,
             @JsonProperty("transferReference") JsonNullable<String> transferReference,
             @JsonProperty("transferDestination") JsonNullable<? extends GetPrimaryBalanceTransferDestination> transferDestination,
@@ -201,12 +200,11 @@ public class GetPrimaryBalanceResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> mode() {
-        return mode;
+    public Optional<GetPrimaryBalanceMode> mode() {
+        return (Optional<GetPrimaryBalanceMode>) mode;
     }
 
     /**
@@ -236,28 +234,29 @@ public class GetPrimaryBalanceResponseBody {
 
     /**
      * The status of the balance.
-     * 
-     * <p>Possible values: `active` `inactive`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> status() {
-        return status;
+    public Optional<GetPrimaryBalanceStatus> status() {
+        return (Optional<GetPrimaryBalanceStatus>) status;
     }
 
     /**
-     * The frequency with which the available amount on the balance will be settled to the configured transfer destination.
+     * The frequency with which the available amount on the balance will be settled to the configured transfer
+     * destination.
      * 
      * <p>Settlements created during weekends or on bank holidays will take place on the next business day.
-     * 
-     * <p>Possible values: `daily` `every-monday` `every-tuesday` `every-wednesday` `every-thursday` `every-friday` `monthly` `never`
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> transferFrequency() {
-        return transferFrequency;
+    public Optional<GetPrimaryBalanceTransferFrequency> transferFrequency() {
+        return (Optional<GetPrimaryBalanceTransferFrequency>) transferFrequency;
     }
 
     /**
-     * The minimum amount configured for scheduled automatic settlements. As soon as the amount on the balance exceeds this threshold, the complete balance will be paid out to the transfer destination according to the configured frequency.
+     * The minimum amount configured for scheduled automatic settlements. As soon as the amount on the balance exceeds
+     * this threshold, the complete balance will be paid out to the transfer destination according to the configured
+     * frequency.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -274,7 +273,8 @@ public class GetPrimaryBalanceResponseBody {
     }
 
     /**
-     * The destination where the available amount will be automatically transferred to according to the configured transfer frequency.
+     * The destination where the available amount will be automatically transferred to according to the configured
+     * transfer frequency.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -292,7 +292,8 @@ public class GetPrimaryBalanceResponseBody {
     }
 
     /**
-     * The total amount that is queued to be transferred to your balance. For example, a credit card payment can take a few days to clear.
+     * The total amount that is queued to be transferred to your balance. For example, a credit card payment can take a
+     * few days to clear.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -354,10 +355,8 @@ public class GetPrimaryBalanceResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
-    public GetPrimaryBalanceResponseBody withMode(String mode) {
+    public GetPrimaryBalanceResponseBody withMode(GetPrimaryBalanceMode mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = Optional.ofNullable(mode);
         return this;
@@ -366,10 +365,8 @@ public class GetPrimaryBalanceResponseBody {
 
     /**
      * Whether this entity was created in live mode or in test mode.
-     * 
-     * <p>Possible values: `live` `test`
      */
-    public GetPrimaryBalanceResponseBody withMode(Optional<String> mode) {
+    public GetPrimaryBalanceResponseBody withMode(Optional<? extends GetPrimaryBalanceMode> mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
@@ -434,10 +431,8 @@ public class GetPrimaryBalanceResponseBody {
 
     /**
      * The status of the balance.
-     * 
-     * <p>Possible values: `active` `inactive`
      */
-    public GetPrimaryBalanceResponseBody withStatus(String status) {
+    public GetPrimaryBalanceResponseBody withStatus(GetPrimaryBalanceStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -446,23 +441,20 @@ public class GetPrimaryBalanceResponseBody {
 
     /**
      * The status of the balance.
-     * 
-     * <p>Possible values: `active` `inactive`
      */
-    public GetPrimaryBalanceResponseBody withStatus(Optional<String> status) {
+    public GetPrimaryBalanceResponseBody withStatus(Optional<? extends GetPrimaryBalanceStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
     /**
-     * The frequency with which the available amount on the balance will be settled to the configured transfer destination.
+     * The frequency with which the available amount on the balance will be settled to the configured transfer
+     * destination.
      * 
      * <p>Settlements created during weekends or on bank holidays will take place on the next business day.
-     * 
-     * <p>Possible values: `daily` `every-monday` `every-tuesday` `every-wednesday` `every-thursday` `every-friday` `monthly` `never`
      */
-    public GetPrimaryBalanceResponseBody withTransferFrequency(String transferFrequency) {
+    public GetPrimaryBalanceResponseBody withTransferFrequency(GetPrimaryBalanceTransferFrequency transferFrequency) {
         Utils.checkNotNull(transferFrequency, "transferFrequency");
         this.transferFrequency = Optional.ofNullable(transferFrequency);
         return this;
@@ -470,20 +462,21 @@ public class GetPrimaryBalanceResponseBody {
 
 
     /**
-     * The frequency with which the available amount on the balance will be settled to the configured transfer destination.
+     * The frequency with which the available amount on the balance will be settled to the configured transfer
+     * destination.
      * 
      * <p>Settlements created during weekends or on bank holidays will take place on the next business day.
-     * 
-     * <p>Possible values: `daily` `every-monday` `every-tuesday` `every-wednesday` `every-thursday` `every-friday` `monthly` `never`
      */
-    public GetPrimaryBalanceResponseBody withTransferFrequency(Optional<String> transferFrequency) {
+    public GetPrimaryBalanceResponseBody withTransferFrequency(Optional<? extends GetPrimaryBalanceTransferFrequency> transferFrequency) {
         Utils.checkNotNull(transferFrequency, "transferFrequency");
         this.transferFrequency = transferFrequency;
         return this;
     }
 
     /**
-     * The minimum amount configured for scheduled automatic settlements. As soon as the amount on the balance exceeds this threshold, the complete balance will be paid out to the transfer destination according to the configured frequency.
+     * The minimum amount configured for scheduled automatic settlements. As soon as the amount on the balance exceeds
+     * this threshold, the complete balance will be paid out to the transfer destination according to the configured
+     * frequency.
      */
     public GetPrimaryBalanceResponseBody withTransferThreshold(GetPrimaryBalanceTransferThreshold transferThreshold) {
         Utils.checkNotNull(transferThreshold, "transferThreshold");
@@ -493,7 +486,9 @@ public class GetPrimaryBalanceResponseBody {
 
 
     /**
-     * The minimum amount configured for scheduled automatic settlements. As soon as the amount on the balance exceeds this threshold, the complete balance will be paid out to the transfer destination according to the configured frequency.
+     * The minimum amount configured for scheduled automatic settlements. As soon as the amount on the balance exceeds
+     * this threshold, the complete balance will be paid out to the transfer destination according to the configured
+     * frequency.
      */
     public GetPrimaryBalanceResponseBody withTransferThreshold(Optional<? extends GetPrimaryBalanceTransferThreshold> transferThreshold) {
         Utils.checkNotNull(transferThreshold, "transferThreshold");
@@ -520,7 +515,8 @@ public class GetPrimaryBalanceResponseBody {
     }
 
     /**
-     * The destination where the available amount will be automatically transferred to according to the configured transfer frequency.
+     * The destination where the available amount will be automatically transferred to according to the configured
+     * transfer frequency.
      */
     public GetPrimaryBalanceResponseBody withTransferDestination(GetPrimaryBalanceTransferDestination transferDestination) {
         Utils.checkNotNull(transferDestination, "transferDestination");
@@ -529,7 +525,8 @@ public class GetPrimaryBalanceResponseBody {
     }
 
     /**
-     * The destination where the available amount will be automatically transferred to according to the configured transfer frequency.
+     * The destination where the available amount will be automatically transferred to according to the configured
+     * transfer frequency.
      */
     public GetPrimaryBalanceResponseBody withTransferDestination(JsonNullable<? extends GetPrimaryBalanceTransferDestination> transferDestination) {
         Utils.checkNotNull(transferDestination, "transferDestination");
@@ -557,7 +554,8 @@ public class GetPrimaryBalanceResponseBody {
     }
 
     /**
-     * The total amount that is queued to be transferred to your balance. For example, a credit card payment can take a few days to clear.
+     * The total amount that is queued to be transferred to your balance. For example, a credit card payment can take a
+     * few days to clear.
      */
     public GetPrimaryBalanceResponseBody withPendingAmount(GetPrimaryBalancePendingAmount pendingAmount) {
         Utils.checkNotNull(pendingAmount, "pendingAmount");
@@ -567,7 +565,8 @@ public class GetPrimaryBalanceResponseBody {
 
 
     /**
-     * The total amount that is queued to be transferred to your balance. For example, a credit card payment can take a few days to clear.
+     * The total amount that is queued to be transferred to your balance. For example, a credit card payment can take a
+     * few days to clear.
      */
     public GetPrimaryBalanceResponseBody withPendingAmount(Optional<? extends GetPrimaryBalancePendingAmount> pendingAmount) {
         Utils.checkNotNull(pendingAmount, "pendingAmount");
@@ -656,7 +655,7 @@ public class GetPrimaryBalanceResponseBody {
 
         private Optional<String> id = Optional.empty();
 
-        private Optional<String> mode = Optional.empty();
+        private Optional<? extends GetPrimaryBalanceMode> mode = Optional.empty();
 
         private Optional<String> createdAt = Optional.empty();
 
@@ -664,9 +663,9 @@ public class GetPrimaryBalanceResponseBody {
 
         private Optional<String> description = Optional.empty();
 
-        private Optional<String> status = Optional.empty();
+        private Optional<? extends GetPrimaryBalanceStatus> status = Optional.empty();
 
-        private Optional<String> transferFrequency = Optional.empty();
+        private Optional<? extends GetPrimaryBalanceTransferFrequency> transferFrequency = Optional.empty();
 
         private Optional<? extends GetPrimaryBalanceTransferThreshold> transferThreshold = Optional.empty();
 
@@ -725,10 +724,8 @@ public class GetPrimaryBalanceResponseBody {
 
         /**
          * Whether this entity was created in live mode or in test mode.
-         * 
-         * <p>Possible values: `live` `test`
          */
-        public Builder mode(String mode) {
+        public Builder mode(GetPrimaryBalanceMode mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = Optional.ofNullable(mode);
             return this;
@@ -736,10 +733,8 @@ public class GetPrimaryBalanceResponseBody {
 
         /**
          * Whether this entity was created in live mode or in test mode.
-         * 
-         * <p>Possible values: `live` `test`
          */
-        public Builder mode(Optional<String> mode) {
+        public Builder mode(Optional<? extends GetPrimaryBalanceMode> mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
@@ -805,10 +800,8 @@ public class GetPrimaryBalanceResponseBody {
 
         /**
          * The status of the balance.
-         * 
-         * <p>Possible values: `active` `inactive`
          */
-        public Builder status(String status) {
+        public Builder status(GetPrimaryBalanceStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -816,10 +809,8 @@ public class GetPrimaryBalanceResponseBody {
 
         /**
          * The status of the balance.
-         * 
-         * <p>Possible values: `active` `inactive`
          */
-        public Builder status(Optional<String> status) {
+        public Builder status(Optional<? extends GetPrimaryBalanceStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -827,26 +818,24 @@ public class GetPrimaryBalanceResponseBody {
 
 
         /**
-         * The frequency with which the available amount on the balance will be settled to the configured transfer destination.
+         * The frequency with which the available amount on the balance will be settled to the configured transfer
+         * destination.
          * 
          * <p>Settlements created during weekends or on bank holidays will take place on the next business day.
-         * 
-         * <p>Possible values: `daily` `every-monday` `every-tuesday` `every-wednesday` `every-thursday` `every-friday` `monthly` `never`
          */
-        public Builder transferFrequency(String transferFrequency) {
+        public Builder transferFrequency(GetPrimaryBalanceTransferFrequency transferFrequency) {
             Utils.checkNotNull(transferFrequency, "transferFrequency");
             this.transferFrequency = Optional.ofNullable(transferFrequency);
             return this;
         }
 
         /**
-         * The frequency with which the available amount on the balance will be settled to the configured transfer destination.
+         * The frequency with which the available amount on the balance will be settled to the configured transfer
+         * destination.
          * 
          * <p>Settlements created during weekends or on bank holidays will take place on the next business day.
-         * 
-         * <p>Possible values: `daily` `every-monday` `every-tuesday` `every-wednesday` `every-thursday` `every-friday` `monthly` `never`
          */
-        public Builder transferFrequency(Optional<String> transferFrequency) {
+        public Builder transferFrequency(Optional<? extends GetPrimaryBalanceTransferFrequency> transferFrequency) {
             Utils.checkNotNull(transferFrequency, "transferFrequency");
             this.transferFrequency = transferFrequency;
             return this;
@@ -854,7 +843,9 @@ public class GetPrimaryBalanceResponseBody {
 
 
         /**
-         * The minimum amount configured for scheduled automatic settlements. As soon as the amount on the balance exceeds this threshold, the complete balance will be paid out to the transfer destination according to the configured frequency.
+         * The minimum amount configured for scheduled automatic settlements. As soon as the amount on the balance exceeds
+         * this threshold, the complete balance will be paid out to the transfer destination according to the configured
+         * frequency.
          */
         public Builder transferThreshold(GetPrimaryBalanceTransferThreshold transferThreshold) {
             Utils.checkNotNull(transferThreshold, "transferThreshold");
@@ -863,7 +854,9 @@ public class GetPrimaryBalanceResponseBody {
         }
 
         /**
-         * The minimum amount configured for scheduled automatic settlements. As soon as the amount on the balance exceeds this threshold, the complete balance will be paid out to the transfer destination according to the configured frequency.
+         * The minimum amount configured for scheduled automatic settlements. As soon as the amount on the balance exceeds
+         * this threshold, the complete balance will be paid out to the transfer destination according to the configured
+         * frequency.
          */
         public Builder transferThreshold(Optional<? extends GetPrimaryBalanceTransferThreshold> transferThreshold) {
             Utils.checkNotNull(transferThreshold, "transferThreshold");
@@ -892,7 +885,8 @@ public class GetPrimaryBalanceResponseBody {
 
 
         /**
-         * The destination where the available amount will be automatically transferred to according to the configured transfer frequency.
+         * The destination where the available amount will be automatically transferred to according to the configured
+         * transfer frequency.
          */
         public Builder transferDestination(GetPrimaryBalanceTransferDestination transferDestination) {
             Utils.checkNotNull(transferDestination, "transferDestination");
@@ -901,7 +895,8 @@ public class GetPrimaryBalanceResponseBody {
         }
 
         /**
-         * The destination where the available amount will be automatically transferred to according to the configured transfer frequency.
+         * The destination where the available amount will be automatically transferred to according to the configured
+         * transfer frequency.
          */
         public Builder transferDestination(JsonNullable<? extends GetPrimaryBalanceTransferDestination> transferDestination) {
             Utils.checkNotNull(transferDestination, "transferDestination");
@@ -930,7 +925,8 @@ public class GetPrimaryBalanceResponseBody {
 
 
         /**
-         * The total amount that is queued to be transferred to your balance. For example, a credit card payment can take a few days to clear.
+         * The total amount that is queued to be transferred to your balance. For example, a credit card payment can take a
+         * few days to clear.
          */
         public Builder pendingAmount(GetPrimaryBalancePendingAmount pendingAmount) {
             Utils.checkNotNull(pendingAmount, "pendingAmount");
@@ -939,7 +935,8 @@ public class GetPrimaryBalanceResponseBody {
         }
 
         /**
-         * The total amount that is queued to be transferred to your balance. For example, a credit card payment can take a few days to clear.
+         * The total amount that is queued to be transferred to your balance. For example, a credit card payment can take a
+         * few days to clear.
          */
         public Builder pendingAmount(Optional<? extends GetPrimaryBalancePendingAmount> pendingAmount) {
             Utils.checkNotNull(pendingAmount, "pendingAmount");

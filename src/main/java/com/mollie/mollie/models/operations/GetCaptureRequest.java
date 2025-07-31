@@ -29,13 +29,16 @@ public class GetCaptureRequest {
     private String captureId;
 
     /**
-     * This endpoint allows you to embed additional resources via the `embed` query string parameter.
+     * This endpoint allows you to embed additional resources via the
+     * `embed` query string parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=embed")
     private Optional<? extends GetCaptureQueryParamEmbed> embed;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -82,7 +85,8 @@ public class GetCaptureRequest {
     }
 
     /**
-     * This endpoint allows you to embed additional resources via the `embed` query string parameter.
+     * This endpoint allows you to embed additional resources via the
+     * `embed` query string parameter.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -91,7 +95,9 @@ public class GetCaptureRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -124,7 +130,8 @@ public class GetCaptureRequest {
     }
 
     /**
-     * This endpoint allows you to embed additional resources via the `embed` query string parameter.
+     * This endpoint allows you to embed additional resources via the
+     * `embed` query string parameter.
      */
     public GetCaptureRequest withEmbed(GetCaptureQueryParamEmbed embed) {
         Utils.checkNotNull(embed, "embed");
@@ -134,7 +141,8 @@ public class GetCaptureRequest {
 
 
     /**
-     * This endpoint allows you to embed additional resources via the `embed` query string parameter.
+     * This endpoint allows you to embed additional resources via the
+     * `embed` query string parameter.
      */
     public GetCaptureRequest withEmbed(Optional<? extends GetCaptureQueryParamEmbed> embed) {
         Utils.checkNotNull(embed, "embed");
@@ -143,7 +151,9 @@ public class GetCaptureRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -154,7 +164,9 @@ public class GetCaptureRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -233,7 +245,8 @@ public class GetCaptureRequest {
 
 
         /**
-         * This endpoint allows you to embed additional resources via the `embed` query string parameter.
+         * This endpoint allows you to embed additional resources via the
+         * `embed` query string parameter.
          */
         public Builder embed(GetCaptureQueryParamEmbed embed) {
             Utils.checkNotNull(embed, "embed");
@@ -242,7 +255,8 @@ public class GetCaptureRequest {
         }
 
         /**
-         * This endpoint allows you to embed additional resources via the `embed` query string parameter.
+         * This endpoint allows you to embed additional resources via the
+         * `embed` query string parameter.
          */
         public Builder embed(Optional<? extends GetCaptureQueryParamEmbed> embed) {
             Utils.checkNotNull(embed, "embed");
@@ -252,7 +266,9 @@ public class GetCaptureRequest {
 
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -263,7 +279,9 @@ public class GetCaptureRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting the `testmode` query parameter to `true`.
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */

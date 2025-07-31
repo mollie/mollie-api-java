@@ -13,11 +13,13 @@ import java.lang.String;
 /**
  * GetPaymentLinkVatAmount
  * 
- * <p>The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
+ * <p>The amount of value-added tax on the line. The `totalAmount` field includes VAT, so the `vatAmount` can be
+ * calculated with the formula `totalAmount × (vatRate / (100 + vatRate))`.
  * 
  * <p>Any deviations from this will result in an error.
  * 
- * <p>For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of `SEK 100.00 × (25 / 125) = SEK 20.00`.
+ * <p>For example, for a `totalAmount` of SEK 100.00 with a 25.00% VAT rate, we expect a VAT amount of
+ * `SEK 100.00 × (25 / 125) = SEK 20.00`.
  */
 public class GetPaymentLinkVatAmount {
     /**

@@ -13,7 +13,8 @@ import java.lang.String;
 /**
  * CreateCustomerPaymentSettlement
  * 
- * <p>The API resource URL of the [settlement](get-settlement) this payment has been settled with. Not present if not yet settled.
+ * <p>The API resource URL of the [settlement](get-settlement) this payment has been settled with.
+ * Not present if not yet settled.
  */
 public class CreateCustomerPaymentSettlement {
     /**

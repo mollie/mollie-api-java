@@ -17,7 +17,9 @@ import org.openapitools.jackson.nullable.JsonNullable;
 /**
  * Context
  * 
- * <p>Depending on the type of the balance transaction, we will try to give more context about the specific event that triggered it. For example, the context object for a payment transaction will look like `{"paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "paymentDescription": "Description"}`.
+ * <p>Depending on the type of the balance transaction, we will try to give more context about the specific event that
+ * triggered it. For example, the context object for a payment transaction will look like
+ * `{"paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "paymentDescription": "Description"}`.
  * 
  * <p>Below is a complete list of the context values that each type of transaction will have.
  * 
