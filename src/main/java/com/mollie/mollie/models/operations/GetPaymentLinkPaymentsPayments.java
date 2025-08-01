@@ -262,10 +262,12 @@ public class GetPaymentLinkPaymentsPayments {
      * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
      * 
      * <p>The maximum delay is 7 days (168 hours).
+     * 
+     * <p>Possible values: `... hours` `... days`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("captureDelay")
-    private JsonNullable<? extends GetPaymentLinkPaymentsCaptureDelay> captureDelay;
+    private JsonNullable<String> captureDelay;
 
     /**
      * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we
@@ -504,7 +506,7 @@ public class GetPaymentLinkPaymentsPayments {
             @JsonProperty("restrictPaymentMethodsToCountry") JsonNullable<String> restrictPaymentMethodsToCountry,
             @JsonProperty("metadata") JsonNullable<? extends GetPaymentLinkPaymentsMetadata> metadata,
             @JsonProperty("captureMode") JsonNullable<? extends GetPaymentLinkPaymentsCaptureMode> captureMode,
-            @JsonProperty("captureDelay") JsonNullable<? extends GetPaymentLinkPaymentsCaptureDelay> captureDelay,
+            @JsonProperty("captureDelay") JsonNullable<String> captureDelay,
             @JsonProperty("captureBefore") JsonNullable<String> captureBefore,
             @JsonProperty("applicationFee") JsonNullable<? extends GetPaymentLinkPaymentsApplicationFee> applicationFee,
             @JsonProperty("routing") JsonNullable<? extends List<GetPaymentLinkPaymentsRouting>> routing,
@@ -924,11 +926,12 @@ public class GetPaymentLinkPaymentsPayments {
      * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
      * 
      * <p>The maximum delay is 7 days (168 hours).
+     * 
+     * <p>Possible values: `... hours` `... days`
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<GetPaymentLinkPaymentsCaptureDelay> captureDelay() {
-        return (JsonNullable<GetPaymentLinkPaymentsCaptureDelay>) captureDelay;
+    public JsonNullable<String> captureDelay() {
+        return captureDelay;
     }
 
     /**
@@ -1690,8 +1693,10 @@ public class GetPaymentLinkPaymentsPayments {
      * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
      * 
      * <p>The maximum delay is 7 days (168 hours).
+     * 
+     * <p>Possible values: `... hours` `... days`
      */
-    public GetPaymentLinkPaymentsPayments withCaptureDelay(GetPaymentLinkPaymentsCaptureDelay captureDelay) {
+    public GetPaymentLinkPaymentsPayments withCaptureDelay(String captureDelay) {
         Utils.checkNotNull(captureDelay, "captureDelay");
         this.captureDelay = JsonNullable.of(captureDelay);
         return this;
@@ -1710,8 +1715,10 @@ public class GetPaymentLinkPaymentsPayments {
      * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
      * 
      * <p>The maximum delay is 7 days (168 hours).
+     * 
+     * <p>Possible values: `... hours` `... days`
      */
-    public GetPaymentLinkPaymentsPayments withCaptureDelay(JsonNullable<? extends GetPaymentLinkPaymentsCaptureDelay> captureDelay) {
+    public GetPaymentLinkPaymentsPayments withCaptureDelay(JsonNullable<String> captureDelay) {
         Utils.checkNotNull(captureDelay, "captureDelay");
         this.captureDelay = captureDelay;
         return this;
@@ -2369,9 +2376,9 @@ public class GetPaymentLinkPaymentsPayments {
 
         private JsonNullable<? extends GetPaymentLinkPaymentsMetadata> metadata = JsonNullable.undefined();
 
-        private JsonNullable<? extends GetPaymentLinkPaymentsCaptureMode> captureMode;
+        private JsonNullable<? extends GetPaymentLinkPaymentsCaptureMode> captureMode = JsonNullable.undefined();
 
-        private JsonNullable<? extends GetPaymentLinkPaymentsCaptureDelay> captureDelay = JsonNullable.undefined();
+        private JsonNullable<String> captureDelay = JsonNullable.undefined();
 
         private JsonNullable<String> captureBefore = JsonNullable.undefined();
 
@@ -2947,8 +2954,10 @@ public class GetPaymentLinkPaymentsPayments {
          * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
          * 
          * <p>The maximum delay is 7 days (168 hours).
+         * 
+         * <p>Possible values: `... hours` `... days`
          */
-        public Builder captureDelay(GetPaymentLinkPaymentsCaptureDelay captureDelay) {
+        public Builder captureDelay(String captureDelay) {
             Utils.checkNotNull(captureDelay, "captureDelay");
             this.captureDelay = JsonNullable.of(captureDelay);
             return this;
@@ -2967,8 +2976,10 @@ public class GetPaymentLinkPaymentsPayments {
          * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
          * 
          * <p>The maximum delay is 7 days (168 hours).
+         * 
+         * <p>Possible values: `... hours` `... days`
          */
-        public Builder captureDelay(JsonNullable<? extends GetPaymentLinkPaymentsCaptureDelay> captureDelay) {
+        public Builder captureDelay(JsonNullable<String> captureDelay) {
             Utils.checkNotNull(captureDelay, "captureDelay");
             this.captureDelay = captureDelay;
             return this;
@@ -3477,9 +3488,6 @@ public class GetPaymentLinkPaymentsPayments {
         }
 
         public GetPaymentLinkPaymentsPayments build() {
-            if (captureMode == null) {
-                captureMode = _SINGLETON_VALUE_CaptureMode.value();
-            }
             if (sequenceType == null) {
                 sequenceType = _SINGLETON_VALUE_SequenceType.value();
             }
@@ -3502,12 +3510,6 @@ public class GetPaymentLinkPaymentsPayments {
                 expiredAt, failedAt, links);
         }
 
-
-        private static final LazySingletonValue<JsonNullable<? extends GetPaymentLinkPaymentsCaptureMode>> _SINGLETON_VALUE_CaptureMode =
-                new LazySingletonValue<>(
-                        "captureMode",
-                        "\"automatic\"",
-                        new TypeReference<JsonNullable<? extends GetPaymentLinkPaymentsCaptureMode>>() {});
 
         private static final LazySingletonValue<JsonNullable<? extends GetPaymentLinkPaymentsSequenceType>> _SINGLETON_VALUE_SequenceType =
                 new LazySingletonValue<>(

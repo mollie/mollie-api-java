@@ -444,7 +444,7 @@ public class Application {
                     .issuer("ideal_INGBNL2A")
                     .restrictPaymentMethodsToCountry("NL")
                     .captureMode(CreateCustomerPaymentCaptureMode.MANUAL)
-                    .captureDelay(CreateCustomerPaymentCaptureDelay.DOT_DOT_DOT_DAYS)
+                    .captureDelay("8 hours")
                     .applicationFee(CreateCustomerPaymentApplicationFee.builder()
                         .amount(CreateCustomerPaymentCustomersRequestAmount.builder()
                             .currency("EUR")

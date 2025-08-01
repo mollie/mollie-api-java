@@ -48,7 +48,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:0.14.0'
+implementation 'com.mollie:mollie:0.14.1'
 ```
 
 Maven:
@@ -56,7 +56,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>0.14.0</version>
+    <version>0.14.1</version>
 </dependency>
 ```
 
@@ -260,7 +260,7 @@ public class Application {
                     .issuer("ideal_INGBNL2A")
                     .restrictPaymentMethodsToCountry("NL")
                     .captureMode(CaptureMode.MANUAL)
-                    .captureDelay(CaptureDelay.DOT_DOT_DOT_DAYS)
+                    .captureDelay("8 hours")
                     .applicationFee(ApplicationFee.builder()
                         .amount(CreatePaymentPaymentsAmount.builder()
                             .currency("EUR")
@@ -520,7 +520,7 @@ public class Application {
                     .issuer("ideal_INGBNL2A")
                     .restrictPaymentMethodsToCountry("NL")
                     .captureMode(CaptureMode.MANUAL)
-                    .captureDelay(CaptureDelay.DOT_DOT_DOT_DAYS)
+                    .captureDelay("8 hours")
                     .applicationFee(ApplicationFee.builder()
                         .amount(CreatePaymentPaymentsAmount.builder()
                             .currency("EUR")
@@ -964,7 +964,7 @@ public class Application {
                     .issuer("ideal_INGBNL2A")
                     .restrictPaymentMethodsToCountry("NL")
                     .captureMode(CaptureMode.MANUAL)
-                    .captureDelay(CaptureDelay.DOT_DOT_DOT_DAYS)
+                    .captureDelay("8 hours")
                     .applicationFee(ApplicationFee.builder()
                         .amount(CreatePaymentPaymentsAmount.builder()
                             .currency("EUR")
@@ -1224,7 +1224,7 @@ public class Application {
                     .issuer("ideal_INGBNL2A")
                     .restrictPaymentMethodsToCountry("NL")
                     .captureMode(CaptureMode.MANUAL)
-                    .captureDelay(CaptureDelay.DOT_DOT_DOT_DAYS)
+                    .captureDelay("8 hours")
                     .applicationFee(ApplicationFee.builder()
                         .amount(CreatePaymentPaymentsAmount.builder()
                             .currency("EUR")
@@ -1486,7 +1486,7 @@ public class Application {
                     .issuer("ideal_INGBNL2A")
                     .restrictPaymentMethodsToCountry("NL")
                     .captureMode(CaptureMode.MANUAL)
-                    .captureDelay(CaptureDelay.DOT_DOT_DOT_DAYS)
+                    .captureDelay("8 hours")
                     .applicationFee(ApplicationFee.builder()
                         .amount(CreatePaymentPaymentsAmount.builder()
                             .currency("EUR")
@@ -1740,7 +1740,7 @@ public class Application {
                     .issuer("ideal_INGBNL2A")
                     .restrictPaymentMethodsToCountry("NL")
                     .captureMode(CaptureMode.MANUAL)
-                    .captureDelay(CaptureDelay.DOT_DOT_DOT_DAYS)
+                    .captureDelay("8 hours")
                     .applicationFee(ApplicationFee.builder()
                         .amount(CreatePaymentPaymentsAmount.builder()
                             .currency("EUR")

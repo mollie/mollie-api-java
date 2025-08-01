@@ -266,10 +266,12 @@ public class CancelPaymentResponseBody {
      * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
      * 
      * <p>The maximum delay is 7 days (168 hours).
+     * 
+     * <p>Possible values: `... hours` `... days`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("captureDelay")
-    private JsonNullable<? extends CancelPaymentCaptureDelay> captureDelay;
+    private JsonNullable<String> captureDelay;
 
     /**
      * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we
@@ -508,7 +510,7 @@ public class CancelPaymentResponseBody {
             @JsonProperty("restrictPaymentMethodsToCountry") JsonNullable<String> restrictPaymentMethodsToCountry,
             @JsonProperty("metadata") JsonNullable<? extends CancelPaymentMetadata> metadata,
             @JsonProperty("captureMode") JsonNullable<? extends CancelPaymentCaptureMode> captureMode,
-            @JsonProperty("captureDelay") JsonNullable<? extends CancelPaymentCaptureDelay> captureDelay,
+            @JsonProperty("captureDelay") JsonNullable<String> captureDelay,
             @JsonProperty("captureBefore") JsonNullable<String> captureBefore,
             @JsonProperty("applicationFee") JsonNullable<? extends CancelPaymentApplicationFee> applicationFee,
             @JsonProperty("routing") JsonNullable<? extends List<CancelPaymentRouting>> routing,
@@ -928,11 +930,12 @@ public class CancelPaymentResponseBody {
      * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
      * 
      * <p>The maximum delay is 7 days (168 hours).
+     * 
+     * <p>Possible values: `... hours` `... days`
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CancelPaymentCaptureDelay> captureDelay() {
-        return (JsonNullable<CancelPaymentCaptureDelay>) captureDelay;
+    public JsonNullable<String> captureDelay() {
+        return captureDelay;
     }
 
     /**
@@ -1694,8 +1697,10 @@ public class CancelPaymentResponseBody {
      * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
      * 
      * <p>The maximum delay is 7 days (168 hours).
+     * 
+     * <p>Possible values: `... hours` `... days`
      */
-    public CancelPaymentResponseBody withCaptureDelay(CancelPaymentCaptureDelay captureDelay) {
+    public CancelPaymentResponseBody withCaptureDelay(String captureDelay) {
         Utils.checkNotNull(captureDelay, "captureDelay");
         this.captureDelay = JsonNullable.of(captureDelay);
         return this;
@@ -1714,8 +1719,10 @@ public class CancelPaymentResponseBody {
      * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
      * 
      * <p>The maximum delay is 7 days (168 hours).
+     * 
+     * <p>Possible values: `... hours` `... days`
      */
-    public CancelPaymentResponseBody withCaptureDelay(JsonNullable<? extends CancelPaymentCaptureDelay> captureDelay) {
+    public CancelPaymentResponseBody withCaptureDelay(JsonNullable<String> captureDelay) {
         Utils.checkNotNull(captureDelay, "captureDelay");
         this.captureDelay = captureDelay;
         return this;
@@ -2373,9 +2380,9 @@ public class CancelPaymentResponseBody {
 
         private JsonNullable<? extends CancelPaymentMetadata> metadata = JsonNullable.undefined();
 
-        private JsonNullable<? extends CancelPaymentCaptureMode> captureMode;
+        private JsonNullable<? extends CancelPaymentCaptureMode> captureMode = JsonNullable.undefined();
 
-        private JsonNullable<? extends CancelPaymentCaptureDelay> captureDelay = JsonNullable.undefined();
+        private JsonNullable<String> captureDelay = JsonNullable.undefined();
 
         private JsonNullable<String> captureBefore = JsonNullable.undefined();
 
@@ -2951,8 +2958,10 @@ public class CancelPaymentResponseBody {
          * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
          * 
          * <p>The maximum delay is 7 days (168 hours).
+         * 
+         * <p>Possible values: `... hours` `... days`
          */
-        public Builder captureDelay(CancelPaymentCaptureDelay captureDelay) {
+        public Builder captureDelay(String captureDelay) {
             Utils.checkNotNull(captureDelay, "captureDelay");
             this.captureDelay = JsonNullable.of(captureDelay);
             return this;
@@ -2971,8 +2980,10 @@ public class CancelPaymentResponseBody {
          * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
          * 
          * <p>The maximum delay is 7 days (168 hours).
+         * 
+         * <p>Possible values: `... hours` `... days`
          */
-        public Builder captureDelay(JsonNullable<? extends CancelPaymentCaptureDelay> captureDelay) {
+        public Builder captureDelay(JsonNullable<String> captureDelay) {
             Utils.checkNotNull(captureDelay, "captureDelay");
             this.captureDelay = captureDelay;
             return this;
@@ -3481,9 +3492,6 @@ public class CancelPaymentResponseBody {
         }
 
         public CancelPaymentResponseBody build() {
-            if (captureMode == null) {
-                captureMode = _SINGLETON_VALUE_CaptureMode.value();
-            }
             if (sequenceType == null) {
                 sequenceType = _SINGLETON_VALUE_SequenceType.value();
             }
@@ -3506,12 +3514,6 @@ public class CancelPaymentResponseBody {
                 expiredAt, failedAt, links);
         }
 
-
-        private static final LazySingletonValue<JsonNullable<? extends CancelPaymentCaptureMode>> _SINGLETON_VALUE_CaptureMode =
-                new LazySingletonValue<>(
-                        "captureMode",
-                        "\"automatic\"",
-                        new TypeReference<JsonNullable<? extends CancelPaymentCaptureMode>>() {});
 
         private static final LazySingletonValue<JsonNullable<? extends CancelPaymentSequenceType>> _SINGLETON_VALUE_SequenceType =
                 new LazySingletonValue<>(

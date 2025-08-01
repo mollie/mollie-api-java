@@ -214,10 +214,12 @@ public class CreateCustomerPaymentRequestBody {
      * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
      * 
      * <p>The maximum delay is 7 days (168 hours).
+     * 
+     * <p>Possible values: `... hours` `... days`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("captureDelay")
-    private JsonNullable<? extends CreateCustomerPaymentCaptureDelay> captureDelay;
+    private JsonNullable<String> captureDelay;
 
     /**
      * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
@@ -343,7 +345,7 @@ public class CreateCustomerPaymentRequestBody {
             @JsonProperty("restrictPaymentMethodsToCountry") JsonNullable<String> restrictPaymentMethodsToCountry,
             @JsonProperty("metadata") JsonNullable<? extends CreateCustomerPaymentMetadata> metadata,
             @JsonProperty("captureMode") JsonNullable<? extends CreateCustomerPaymentCaptureMode> captureMode,
-            @JsonProperty("captureDelay") JsonNullable<? extends CreateCustomerPaymentCaptureDelay> captureDelay,
+            @JsonProperty("captureDelay") JsonNullable<String> captureDelay,
             @JsonProperty("applicationFee") JsonNullable<? extends CreateCustomerPaymentApplicationFee> applicationFee,
             @JsonProperty("routing") JsonNullable<? extends List<CreateCustomerPaymentRouting>> routing,
             @JsonProperty("sequenceType") JsonNullable<? extends CreateCustomerPaymentSequenceType> sequenceType,
@@ -629,11 +631,12 @@ public class CreateCustomerPaymentRequestBody {
      * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
      * 
      * <p>The maximum delay is 7 days (168 hours).
+     * 
+     * <p>Possible values: `... hours` `... days`
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CreateCustomerPaymentCaptureDelay> captureDelay() {
-        return (JsonNullable<CreateCustomerPaymentCaptureDelay>) captureDelay;
+    public JsonNullable<String> captureDelay() {
+        return captureDelay;
     }
 
     /**
@@ -1164,8 +1167,10 @@ public class CreateCustomerPaymentRequestBody {
      * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
      * 
      * <p>The maximum delay is 7 days (168 hours).
+     * 
+     * <p>Possible values: `... hours` `... days`
      */
-    public CreateCustomerPaymentRequestBody withCaptureDelay(CreateCustomerPaymentCaptureDelay captureDelay) {
+    public CreateCustomerPaymentRequestBody withCaptureDelay(String captureDelay) {
         Utils.checkNotNull(captureDelay, "captureDelay");
         this.captureDelay = JsonNullable.of(captureDelay);
         return this;
@@ -1184,8 +1189,10 @@ public class CreateCustomerPaymentRequestBody {
      * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
      * 
      * <p>The maximum delay is 7 days (168 hours).
+     * 
+     * <p>Possible values: `... hours` `... days`
      */
-    public CreateCustomerPaymentRequestBody withCaptureDelay(JsonNullable<? extends CreateCustomerPaymentCaptureDelay> captureDelay) {
+    public CreateCustomerPaymentRequestBody withCaptureDelay(JsonNullable<String> captureDelay) {
         Utils.checkNotNull(captureDelay, "captureDelay");
         this.captureDelay = captureDelay;
         return this;
@@ -1546,9 +1553,9 @@ public class CreateCustomerPaymentRequestBody {
 
         private JsonNullable<? extends CreateCustomerPaymentMetadata> metadata = JsonNullable.undefined();
 
-        private JsonNullable<? extends CreateCustomerPaymentCaptureMode> captureMode;
+        private JsonNullable<? extends CreateCustomerPaymentCaptureMode> captureMode = JsonNullable.undefined();
 
-        private JsonNullable<? extends CreateCustomerPaymentCaptureDelay> captureDelay = JsonNullable.undefined();
+        private JsonNullable<String> captureDelay = JsonNullable.undefined();
 
         private JsonNullable<? extends CreateCustomerPaymentApplicationFee> applicationFee = JsonNullable.undefined();
 
@@ -1986,8 +1993,10 @@ public class CreateCustomerPaymentRequestBody {
          * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
          * 
          * <p>The maximum delay is 7 days (168 hours).
+         * 
+         * <p>Possible values: `... hours` `... days`
          */
-        public Builder captureDelay(CreateCustomerPaymentCaptureDelay captureDelay) {
+        public Builder captureDelay(String captureDelay) {
             Utils.checkNotNull(captureDelay, "captureDelay");
             this.captureDelay = JsonNullable.of(captureDelay);
             return this;
@@ -2006,8 +2015,10 @@ public class CreateCustomerPaymentRequestBody {
          * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
          * 
          * <p>The maximum delay is 7 days (168 hours).
+         * 
+         * <p>Possible values: `... hours` `... days`
          */
-        public Builder captureDelay(JsonNullable<? extends CreateCustomerPaymentCaptureDelay> captureDelay) {
+        public Builder captureDelay(JsonNullable<String> captureDelay) {
             Utils.checkNotNull(captureDelay, "captureDelay");
             this.captureDelay = captureDelay;
             return this;
@@ -2270,9 +2281,6 @@ public class CreateCustomerPaymentRequestBody {
         }
 
         public CreateCustomerPaymentRequestBody build() {
-            if (captureMode == null) {
-                captureMode = _SINGLETON_VALUE_CaptureMode.value();
-            }
             if (sequenceType == null) {
                 sequenceType = _SINGLETON_VALUE_SequenceType.value();
             }
@@ -2288,12 +2296,6 @@ public class CreateCustomerPaymentRequestBody {
                 dueDate, testmode);
         }
 
-
-        private static final LazySingletonValue<JsonNullable<? extends CreateCustomerPaymentCaptureMode>> _SINGLETON_VALUE_CaptureMode =
-                new LazySingletonValue<>(
-                        "captureMode",
-                        "\"automatic\"",
-                        new TypeReference<JsonNullable<? extends CreateCustomerPaymentCaptureMode>>() {});
 
         private static final LazySingletonValue<JsonNullable<? extends CreateCustomerPaymentSequenceType>> _SINGLETON_VALUE_SequenceType =
                 new LazySingletonValue<>(

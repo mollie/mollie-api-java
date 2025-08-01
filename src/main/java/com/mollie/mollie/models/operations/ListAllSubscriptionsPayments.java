@@ -262,10 +262,12 @@ public class ListAllSubscriptionsPayments {
      * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
      * 
      * <p>The maximum delay is 7 days (168 hours).
+     * 
+     * <p>Possible values: `... hours` `... days`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("captureDelay")
-    private JsonNullable<? extends ListAllSubscriptionsCaptureDelay> captureDelay;
+    private JsonNullable<String> captureDelay;
 
     /**
      * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we
@@ -504,7 +506,7 @@ public class ListAllSubscriptionsPayments {
             @JsonProperty("restrictPaymentMethodsToCountry") JsonNullable<String> restrictPaymentMethodsToCountry,
             @JsonProperty("metadata") JsonNullable<? extends ListAllSubscriptionsMetadata> metadata,
             @JsonProperty("captureMode") JsonNullable<? extends ListAllSubscriptionsCaptureMode> captureMode,
-            @JsonProperty("captureDelay") JsonNullable<? extends ListAllSubscriptionsCaptureDelay> captureDelay,
+            @JsonProperty("captureDelay") JsonNullable<String> captureDelay,
             @JsonProperty("captureBefore") JsonNullable<String> captureBefore,
             @JsonProperty("applicationFee") JsonNullable<? extends ListAllSubscriptionsApplicationFee> applicationFee,
             @JsonProperty("routing") JsonNullable<? extends List<ListAllSubscriptionsRouting>> routing,
@@ -924,11 +926,12 @@ public class ListAllSubscriptionsPayments {
      * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
      * 
      * <p>The maximum delay is 7 days (168 hours).
+     * 
+     * <p>Possible values: `... hours` `... days`
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListAllSubscriptionsCaptureDelay> captureDelay() {
-        return (JsonNullable<ListAllSubscriptionsCaptureDelay>) captureDelay;
+    public JsonNullable<String> captureDelay() {
+        return captureDelay;
     }
 
     /**
@@ -1690,8 +1693,10 @@ public class ListAllSubscriptionsPayments {
      * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
      * 
      * <p>The maximum delay is 7 days (168 hours).
+     * 
+     * <p>Possible values: `... hours` `... days`
      */
-    public ListAllSubscriptionsPayments withCaptureDelay(ListAllSubscriptionsCaptureDelay captureDelay) {
+    public ListAllSubscriptionsPayments withCaptureDelay(String captureDelay) {
         Utils.checkNotNull(captureDelay, "captureDelay");
         this.captureDelay = JsonNullable.of(captureDelay);
         return this;
@@ -1710,8 +1715,10 @@ public class ListAllSubscriptionsPayments {
      * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
      * 
      * <p>The maximum delay is 7 days (168 hours).
+     * 
+     * <p>Possible values: `... hours` `... days`
      */
-    public ListAllSubscriptionsPayments withCaptureDelay(JsonNullable<? extends ListAllSubscriptionsCaptureDelay> captureDelay) {
+    public ListAllSubscriptionsPayments withCaptureDelay(JsonNullable<String> captureDelay) {
         Utils.checkNotNull(captureDelay, "captureDelay");
         this.captureDelay = captureDelay;
         return this;
@@ -2369,9 +2376,9 @@ public class ListAllSubscriptionsPayments {
 
         private JsonNullable<? extends ListAllSubscriptionsMetadata> metadata = JsonNullable.undefined();
 
-        private JsonNullable<? extends ListAllSubscriptionsCaptureMode> captureMode;
+        private JsonNullable<? extends ListAllSubscriptionsCaptureMode> captureMode = JsonNullable.undefined();
 
-        private JsonNullable<? extends ListAllSubscriptionsCaptureDelay> captureDelay = JsonNullable.undefined();
+        private JsonNullable<String> captureDelay = JsonNullable.undefined();
 
         private JsonNullable<String> captureBefore = JsonNullable.undefined();
 
@@ -2947,8 +2954,10 @@ public class ListAllSubscriptionsPayments {
          * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
          * 
          * <p>The maximum delay is 7 days (168 hours).
+         * 
+         * <p>Possible values: `... hours` `... days`
          */
-        public Builder captureDelay(ListAllSubscriptionsCaptureDelay captureDelay) {
+        public Builder captureDelay(String captureDelay) {
             Utils.checkNotNull(captureDelay, "captureDelay");
             this.captureDelay = JsonNullable.of(captureDelay);
             return this;
@@ -2967,8 +2976,10 @@ public class ListAllSubscriptionsPayments {
          * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
          * 
          * <p>The maximum delay is 7 days (168 hours).
+         * 
+         * <p>Possible values: `... hours` `... days`
          */
-        public Builder captureDelay(JsonNullable<? extends ListAllSubscriptionsCaptureDelay> captureDelay) {
+        public Builder captureDelay(JsonNullable<String> captureDelay) {
             Utils.checkNotNull(captureDelay, "captureDelay");
             this.captureDelay = captureDelay;
             return this;
@@ -3477,9 +3488,6 @@ public class ListAllSubscriptionsPayments {
         }
 
         public ListAllSubscriptionsPayments build() {
-            if (captureMode == null) {
-                captureMode = _SINGLETON_VALUE_CaptureMode.value();
-            }
             if (sequenceType == null) {
                 sequenceType = _SINGLETON_VALUE_SequenceType.value();
             }
@@ -3502,12 +3510,6 @@ public class ListAllSubscriptionsPayments {
                 expiredAt, failedAt, links);
         }
 
-
-        private static final LazySingletonValue<JsonNullable<? extends ListAllSubscriptionsCaptureMode>> _SINGLETON_VALUE_CaptureMode =
-                new LazySingletonValue<>(
-                        "captureMode",
-                        "\"automatic\"",
-                        new TypeReference<JsonNullable<? extends ListAllSubscriptionsCaptureMode>>() {});
 
         private static final LazySingletonValue<JsonNullable<? extends ListAllSubscriptionsSequenceType>> _SINGLETON_VALUE_SequenceType =
                 new LazySingletonValue<>(
