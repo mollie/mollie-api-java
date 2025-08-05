@@ -4,8 +4,6 @@ sources:
     Mollie API:
         inputs:
             - location: https://raw.githubusercontent.com/mollie/openapi-specs/main/specs.yaml
-              authHeader: Authorization
-              authSecret: $openapi_doc_auth_token
         registry:
             location: registry.speakeasyapi.dev/mollie-oom/mollie/mollie-api
 targets:
