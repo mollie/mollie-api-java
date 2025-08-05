@@ -5,14 +5,10 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Optional;
 
 /**
  * ListAllSubscriptionsApplicationFee
@@ -20,64 +16,42 @@ import java.util.Optional;
  * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
  * merchants.
  * 
- * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using this
- * `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's balance and sent
- * to your own account balance.
+ * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual payment.
  * 
- * <p>If instead you want to split a payment on your own account between yourself and a connected merchant, refer to the
- * `routing` parameter.
+ * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more
+ * information.
  */
 public class ListAllSubscriptionsApplicationFee {
     /**
-     * The fee that you wish to charge.
-     * 
-     * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge
-     * a €0.99 fee on a €1.00 payment.
+     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private Optional<? extends ListAllSubscriptionsSubscriptionsAmount> amount;
+    private ListAllSubscriptionsSubscriptionsAmount amount;
 
-    /**
-     * The description of the application fee. This will appear on settlement reports towards both you and the
-     * connected merchant.
-     */
-    @JsonInclude(Include.NON_ABSENT)
+
     @JsonProperty("description")
-    private Optional<String> description;
+    private String description;
 
     @JsonCreator
     public ListAllSubscriptionsApplicationFee(
-            @JsonProperty("amount") Optional<? extends ListAllSubscriptionsSubscriptionsAmount> amount,
-            @JsonProperty("description") Optional<String> description) {
+            @JsonProperty("amount") ListAllSubscriptionsSubscriptionsAmount amount,
+            @JsonProperty("description") String description) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(description, "description");
         this.amount = amount;
         this.description = description;
     }
-    
-    public ListAllSubscriptionsApplicationFee() {
-        this(Optional.empty(), Optional.empty());
-    }
 
     /**
-     * The fee that you wish to charge.
-     * 
-     * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge
-     * a €0.99 fee on a €1.00 payment.
+     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListAllSubscriptionsSubscriptionsAmount> amount() {
-        return (Optional<ListAllSubscriptionsSubscriptionsAmount>) amount;
+    public ListAllSubscriptionsSubscriptionsAmount amount() {
+        return amount;
     }
 
-    /**
-     * The description of the application fee. This will appear on settlement reports towards both you and the
-     * connected merchant.
-     */
     @JsonIgnore
-    public Optional<String> description() {
+    public String description() {
         return description;
     }
 
@@ -87,46 +61,15 @@ public class ListAllSubscriptionsApplicationFee {
 
 
     /**
-     * The fee that you wish to charge.
-     * 
-     * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge
-     * a €0.99 fee on a €1.00 payment.
+     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
     public ListAllSubscriptionsApplicationFee withAmount(ListAllSubscriptionsSubscriptionsAmount amount) {
-        Utils.checkNotNull(amount, "amount");
-        this.amount = Optional.ofNullable(amount);
-        return this;
-    }
-
-
-    /**
-     * The fee that you wish to charge.
-     * 
-     * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge
-     * a €0.99 fee on a €1.00 payment.
-     */
-    public ListAllSubscriptionsApplicationFee withAmount(Optional<? extends ListAllSubscriptionsSubscriptionsAmount> amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
 
-    /**
-     * The description of the application fee. This will appear on settlement reports towards both you and the
-     * connected merchant.
-     */
     public ListAllSubscriptionsApplicationFee withDescription(String description) {
-        Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
-        return this;
-    }
-
-
-    /**
-     * The description of the application fee. This will appear on settlement reports towards both you and the
-     * connected merchant.
-     */
-    public ListAllSubscriptionsApplicationFee withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
@@ -162,9 +105,9 @@ public class ListAllSubscriptionsApplicationFee {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends ListAllSubscriptionsSubscriptionsAmount> amount = Optional.empty();
+        private ListAllSubscriptionsSubscriptionsAmount amount;
 
-        private Optional<String> description = Optional.empty();
+        private String description;
 
         private Builder() {
           // force use of static builder() method
@@ -172,45 +115,16 @@ public class ListAllSubscriptionsApplicationFee {
 
 
         /**
-         * The fee that you wish to charge.
-         * 
-         * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge
-         * a €0.99 fee on a €1.00 payment.
+         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
         public Builder amount(ListAllSubscriptionsSubscriptionsAmount amount) {
-            Utils.checkNotNull(amount, "amount");
-            this.amount = Optional.ofNullable(amount);
-            return this;
-        }
-
-        /**
-         * The fee that you wish to charge.
-         * 
-         * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge
-         * a €0.99 fee on a €1.00 payment.
-         */
-        public Builder amount(Optional<? extends ListAllSubscriptionsSubscriptionsAmount> amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;
         }
 
 
-        /**
-         * The description of the application fee. This will appear on settlement reports towards both you and the
-         * connected merchant.
-         */
         public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
-            return this;
-        }
-
-        /**
-         * The description of the application fee. This will appear on settlement reports towards both you and the
-         * connected merchant.
-         */
-        public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
             return this;

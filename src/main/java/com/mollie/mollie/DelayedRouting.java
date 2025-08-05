@@ -15,9 +15,11 @@ import com.mollie.mollie.models.operations.PaymentListRoutesResponse;
 import com.mollie.mollie.operations.PaymentCreateRouteOperation;
 import com.mollie.mollie.operations.PaymentListRoutesOperation;
 import com.mollie.mollie.utils.Options;
+import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class DelayedRouting {
@@ -100,7 +102,7 @@ public class DelayedRouting {
      * @throws Exception if the API call fails
      */
     public PaymentListRoutesResponse list(String paymentId) throws Exception {
-        return list(paymentId, Optional.empty());
+        return list(paymentId, JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -109,15 +111,23 @@ public class DelayedRouting {
      * <p>Retrieve a list of all routes created for a specific payment.
      * 
      * @param paymentId Provide the ID of the related payment.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     *         setting the `testmode` query parameter to `true`.
+     *         
+     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PaymentListRoutesResponse list(String paymentId, Optional<Options> options) throws Exception {
+    public PaymentListRoutesResponse list(
+            String paymentId, JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception {
         PaymentListRoutesRequest request =
             PaymentListRoutesRequest
                 .builder()
                 .paymentId(paymentId)
+                .testmode(testmode)
                 .build();
         RequestOperation<PaymentListRoutesRequest, PaymentListRoutesResponse> operation
               = new PaymentListRoutesOperation(sdkConfiguration, options);

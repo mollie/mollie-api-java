@@ -9,6 +9,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
 import com.mollie.mollie.models.errors.APIException;
+import com.mollie.mollie.models.errors.ListAllSubscriptionsSubscriptionsResponseBody;
 import com.mollie.mollie.models.operations.ListAllSubscriptionsRequest;
 import com.mollie.mollie.models.operations.ListAllSubscriptionsResponse;
 import com.mollie.mollie.models.operations.ListAllSubscriptionsResponseBody;
@@ -177,6 +178,23 @@ public class ListAllSubscriptionsOperation implements RequestOperation<ListAllSu
         if (Utils.statusCodeMatches(response.statusCode(), "400")) {
             if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                 com.mollie.mollie.models.errors.ListAllSubscriptionsResponseBody out = Utils.mapper().readValue(
+                    response.body(),
+                    new TypeReference<>() {
+                    });
+                    out.withRawResponse(response);
+                
+                throw out;
+            } else {
+                throw new APIException(
+                    response, 
+                    response.statusCode(), 
+                    "Unexpected content-type received: " + contentType, 
+                    Utils.extractByteArrayFromBody(response));
+            }
+        }
+        if (Utils.statusCodeMatches(response.statusCode(), "404")) {
+            if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
+                ListAllSubscriptionsSubscriptionsResponseBody out = Utils.mapper().readValue(
                     response.body(),
                     new TypeReference<>() {
                     });

@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Customers {
@@ -29,72 +28,68 @@ public class Customers {
     /**
      * The identifier uniquely referring to this customer. Example: `cst_vsKJpSsabw`.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * Whether this entity was created in live mode or in test mode.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<? extends ListCustomersMode> mode;
+    private ListCustomersMode mode;
 
     /**
      * The full name of the customer.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("name")
-    private JsonNullable<String> name;
+    private Optional<String> name;
 
     /**
      * The email address of the customer.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("email")
-    private JsonNullable<String> email;
+    private Optional<String> email;
 
     /**
      * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if
      * absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("locale")
-    private JsonNullable<? extends ListCustomersLocale> locale;
+    private Optional<? extends ListCustomersLocale> locale;
 
     /**
      * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
      * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("metadata")
-    private JsonNullable<? extends ListCustomersMetadata> metadata;
+    private Optional<? extends ListCustomersMetadata> metadata;
 
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
-    private Optional<String> createdAt;
+    private String createdAt;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends ListCustomersCustomersLinks> links;
+    private ListCustomersCustomersLinks links;
 
     @JsonCreator
     public Customers(
             @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("mode") Optional<? extends ListCustomersMode> mode,
-            @JsonProperty("name") JsonNullable<String> name,
-            @JsonProperty("email") JsonNullable<String> email,
-            @JsonProperty("locale") JsonNullable<? extends ListCustomersLocale> locale,
-            @JsonProperty("metadata") JsonNullable<? extends ListCustomersMetadata> metadata,
-            @JsonProperty("createdAt") Optional<String> createdAt,
-            @JsonProperty("_links") Optional<? extends ListCustomersCustomersLinks> links) {
+            @JsonProperty("id") String id,
+            @JsonProperty("mode") ListCustomersMode mode,
+            @JsonProperty("name") Optional<String> name,
+            @JsonProperty("email") Optional<String> email,
+            @JsonProperty("locale") Optional<? extends ListCustomersLocale> locale,
+            @JsonProperty("metadata") Optional<? extends ListCustomersMetadata> metadata,
+            @JsonProperty("createdAt") String createdAt,
+            @JsonProperty("_links") ListCustomersCustomersLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(mode, "mode");
@@ -115,10 +110,14 @@ public class Customers {
         this.links = links;
     }
     
-    public Customers() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty());
+    public Customers(
+            String id,
+            ListCustomersMode mode,
+            String createdAt,
+            ListCustomersCustomersLinks links) {
+        this(Optional.empty(), id, mode,
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), createdAt, links);
     }
 
     /**
@@ -133,24 +132,23 @@ public class Customers {
      * The identifier uniquely referring to this customer. Example: `cst_vsKJpSsabw`.
      */
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
     /**
      * Whether this entity was created in live mode or in test mode.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListCustomersMode> mode() {
-        return (Optional<ListCustomersMode>) mode;
+    public ListCustomersMode mode() {
+        return mode;
     }
 
     /**
      * The full name of the customer.
      */
     @JsonIgnore
-    public JsonNullable<String> name() {
+    public Optional<String> name() {
         return name;
     }
 
@@ -158,7 +156,7 @@ public class Customers {
      * The email address of the customer.
      */
     @JsonIgnore
-    public JsonNullable<String> email() {
+    public Optional<String> email() {
         return email;
     }
 
@@ -168,8 +166,8 @@ public class Customers {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListCustomersLocale> locale() {
-        return (JsonNullable<ListCustomersLocale>) locale;
+    public Optional<ListCustomersLocale> locale() {
+        return (Optional<ListCustomersLocale>) locale;
     }
 
     /**
@@ -178,25 +176,24 @@ public class Customers {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListCustomersMetadata> metadata() {
-        return (JsonNullable<ListCustomersMetadata>) metadata;
+    public Optional<ListCustomersMetadata> metadata() {
+        return (Optional<ListCustomersMetadata>) metadata;
     }
 
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
     @JsonIgnore
-    public Optional<String> createdAt() {
+    public String createdAt() {
         return createdAt;
     }
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListCustomersCustomersLinks> links() {
-        return (Optional<ListCustomersCustomersLinks>) links;
+    public ListCustomersCustomersLinks links() {
+        return links;
     }
 
     public static Builder builder() {
@@ -228,16 +225,6 @@ public class Customers {
      */
     public Customers withId(String id) {
         Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * The identifier uniquely referring to this customer. Example: `cst_vsKJpSsabw`.
-     */
-    public Customers withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
@@ -246,16 +233,6 @@ public class Customers {
      * Whether this entity was created in live mode or in test mode.
      */
     public Customers withMode(ListCustomersMode mode) {
-        Utils.checkNotNull(mode, "mode");
-        this.mode = Optional.ofNullable(mode);
-        return this;
-    }
-
-
-    /**
-     * Whether this entity was created in live mode or in test mode.
-     */
-    public Customers withMode(Optional<? extends ListCustomersMode> mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
@@ -266,14 +243,15 @@ public class Customers {
      */
     public Customers withName(String name) {
         Utils.checkNotNull(name, "name");
-        this.name = JsonNullable.of(name);
+        this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * The full name of the customer.
      */
-    public Customers withName(JsonNullable<String> name) {
+    public Customers withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -284,14 +262,15 @@ public class Customers {
      */
     public Customers withEmail(String email) {
         Utils.checkNotNull(email, "email");
-        this.email = JsonNullable.of(email);
+        this.email = Optional.ofNullable(email);
         return this;
     }
+
 
     /**
      * The email address of the customer.
      */
-    public Customers withEmail(JsonNullable<String> email) {
+    public Customers withEmail(Optional<String> email) {
         Utils.checkNotNull(email, "email");
         this.email = email;
         return this;
@@ -303,15 +282,16 @@ public class Customers {
      */
     public Customers withLocale(ListCustomersLocale locale) {
         Utils.checkNotNull(locale, "locale");
-        this.locale = JsonNullable.of(locale);
+        this.locale = Optional.ofNullable(locale);
         return this;
     }
+
 
     /**
      * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if
      * absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
      */
-    public Customers withLocale(JsonNullable<? extends ListCustomersLocale> locale) {
+    public Customers withLocale(Optional<? extends ListCustomersLocale> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
@@ -323,15 +303,16 @@ public class Customers {
      */
     public Customers withMetadata(ListCustomersMetadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
-        this.metadata = JsonNullable.of(metadata);
+        this.metadata = Optional.ofNullable(metadata);
         return this;
     }
+
 
     /**
      * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
      * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
-    public Customers withMetadata(JsonNullable<? extends ListCustomersMetadata> metadata) {
+    public Customers withMetadata(Optional<? extends ListCustomersMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -342,16 +323,6 @@ public class Customers {
      */
     public Customers withCreatedAt(String createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = Optional.ofNullable(createdAt);
-        return this;
-    }
-
-
-    /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-     */
-    public Customers withCreatedAt(Optional<String> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
@@ -360,16 +331,6 @@ public class Customers {
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
     public Customers withLinks(ListCustomersCustomersLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public Customers withLinks(Optional<? extends ListCustomersCustomersLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -423,21 +384,21 @@ public class Customers {
 
         private Optional<String> resource;
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<? extends ListCustomersMode> mode = Optional.empty();
+        private ListCustomersMode mode;
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private Optional<String> name = Optional.empty();
 
-        private JsonNullable<String> email = JsonNullable.undefined();
+        private Optional<String> email = Optional.empty();
 
-        private JsonNullable<? extends ListCustomersLocale> locale = JsonNullable.undefined();
+        private Optional<? extends ListCustomersLocale> locale = Optional.empty();
 
-        private JsonNullable<? extends ListCustomersMetadata> metadata = JsonNullable.undefined();
+        private Optional<? extends ListCustomersMetadata> metadata = Optional.empty();
 
-        private Optional<String> createdAt = Optional.empty();
+        private String createdAt;
 
-        private Optional<? extends ListCustomersCustomersLinks> links = Optional.empty();
+        private ListCustomersCustomersLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -468,15 +429,6 @@ public class Customers {
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The identifier uniquely referring to this customer. Example: `cst_vsKJpSsabw`.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
@@ -486,15 +438,6 @@ public class Customers {
          * Whether this entity was created in live mode or in test mode.
          */
         public Builder mode(ListCustomersMode mode) {
-            Utils.checkNotNull(mode, "mode");
-            this.mode = Optional.ofNullable(mode);
-            return this;
-        }
-
-        /**
-         * Whether this entity was created in live mode or in test mode.
-         */
-        public Builder mode(Optional<? extends ListCustomersMode> mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
@@ -506,14 +449,14 @@ public class Customers {
          */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
-            this.name = JsonNullable.of(name);
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
         /**
          * The full name of the customer.
          */
-        public Builder name(JsonNullable<String> name) {
+        public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
@@ -525,14 +468,14 @@ public class Customers {
          */
         public Builder email(String email) {
             Utils.checkNotNull(email, "email");
-            this.email = JsonNullable.of(email);
+            this.email = Optional.ofNullable(email);
             return this;
         }
 
         /**
          * The email address of the customer.
          */
-        public Builder email(JsonNullable<String> email) {
+        public Builder email(Optional<String> email) {
             Utils.checkNotNull(email, "email");
             this.email = email;
             return this;
@@ -545,7 +488,7 @@ public class Customers {
          */
         public Builder locale(ListCustomersLocale locale) {
             Utils.checkNotNull(locale, "locale");
-            this.locale = JsonNullable.of(locale);
+            this.locale = Optional.ofNullable(locale);
             return this;
         }
 
@@ -553,7 +496,7 @@ public class Customers {
          * Preconfigure the language to be used in the hosted payment pages shown to the customer. Should only be provided if
          * absolutely necessary. If not provided, the browser language will be used which is typically highly accurate.
          */
-        public Builder locale(JsonNullable<? extends ListCustomersLocale> locale) {
+        public Builder locale(Optional<? extends ListCustomersLocale> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;
@@ -566,7 +509,7 @@ public class Customers {
          */
         public Builder metadata(ListCustomersMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
-            this.metadata = JsonNullable.of(metadata);
+            this.metadata = Optional.ofNullable(metadata);
             return this;
         }
 
@@ -574,7 +517,7 @@ public class Customers {
          * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
          * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
-        public Builder metadata(JsonNullable<? extends ListCustomersMetadata> metadata) {
+        public Builder metadata(Optional<? extends ListCustomersMetadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
@@ -586,15 +529,6 @@ public class Customers {
          */
         public Builder createdAt(String createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = Optional.ofNullable(createdAt);
-            return this;
-        }
-
-        /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-         */
-        public Builder createdAt(Optional<String> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
@@ -604,15 +538,6 @@ public class Customers {
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
         public Builder links(ListCustomersCustomersLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends ListCustomersCustomersLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

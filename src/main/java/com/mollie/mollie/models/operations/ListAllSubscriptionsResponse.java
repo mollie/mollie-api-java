@@ -33,7 +33,7 @@ public class ListAllSubscriptionsResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * A list of payment objects.
+     * A list of subscription objects.
      */
     private Optional<? extends ListAllSubscriptionsResponseBody> object;
 
@@ -86,7 +86,7 @@ public class ListAllSubscriptionsResponse implements Response {
     }
 
     /**
-     * A list of payment objects.
+     * A list of subscription objects.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -127,7 +127,7 @@ public class ListAllSubscriptionsResponse implements Response {
     }
 
     /**
-     * A list of payment objects.
+     * A list of subscription objects.
      */
     public ListAllSubscriptionsResponse withObject(ListAllSubscriptionsResponseBody object) {
         Utils.checkNotNull(object, "object");
@@ -137,7 +137,7 @@ public class ListAllSubscriptionsResponse implements Response {
 
 
     /**
-     * A list of payment objects.
+     * A list of subscription objects.
      */
     public ListAllSubscriptionsResponse withObject(Optional<? extends ListAllSubscriptionsResponseBody> object) {
         Utils.checkNotNull(object, "object");
@@ -224,7 +224,7 @@ public class ListAllSubscriptionsResponse implements Response {
 
 
         /**
-         * A list of payment objects.
+         * A list of subscription objects.
          */
         public Builder object(ListAllSubscriptionsResponseBody object) {
             Utils.checkNotNull(object, "object");
@@ -233,7 +233,7 @@ public class ListAllSubscriptionsResponse implements Response {
         }
 
         /**
-         * A list of payment objects.
+         * A list of subscription objects.
          */
         public Builder object(Optional<? extends ListAllSubscriptionsResponseBody> object) {
             Utils.checkNotNull(object, "object");

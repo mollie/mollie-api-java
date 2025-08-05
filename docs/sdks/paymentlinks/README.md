@@ -122,6 +122,8 @@ public class Application {
                         .build())
                     .description("Platform fee")
                     .build())
+                .sequenceType(CreatePaymentLinkSequenceType.ONEOFF)
+                .customerId("cst_XimFHuaEzd")
                 .build();
 
         CreatePaymentLinkResponse res = sdk.paymentLinks().create()

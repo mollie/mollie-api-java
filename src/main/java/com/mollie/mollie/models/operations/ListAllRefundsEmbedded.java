@@ -18,8 +18,7 @@ import java.util.Optional;
 
 public class ListAllRefundsEmbedded {
     /**
-     * An array of refund objects. For a complete reference of the refund object, refer to the
-     * [Get refund endpoint](get-refund) documentation.
+     * An array of refund objects.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("refunds")
@@ -37,8 +36,7 @@ public class ListAllRefundsEmbedded {
     }
 
     /**
-     * An array of refund objects. For a complete reference of the refund object, refer to the
-     * [Get refund endpoint](get-refund) documentation.
+     * An array of refund objects.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -52,8 +50,7 @@ public class ListAllRefundsEmbedded {
 
 
     /**
-     * An array of refund objects. For a complete reference of the refund object, refer to the
-     * [Get refund endpoint](get-refund) documentation.
+     * An array of refund objects.
      */
     public ListAllRefundsEmbedded withRefunds(List<ListAllRefundsRefunds> refunds) {
         Utils.checkNotNull(refunds, "refunds");
@@ -63,8 +60,7 @@ public class ListAllRefundsEmbedded {
 
 
     /**
-     * An array of refund objects. For a complete reference of the refund object, refer to the
-     * [Get refund endpoint](get-refund) documentation.
+     * An array of refund objects.
      */
     public ListAllRefundsEmbedded withRefunds(Optional<? extends List<ListAllRefundsRefunds>> refunds) {
         Utils.checkNotNull(refunds, "refunds");
@@ -108,8 +104,7 @@ public class ListAllRefundsEmbedded {
 
 
         /**
-         * An array of refund objects. For a complete reference of the refund object, refer to the
-         * [Get refund endpoint](get-refund) documentation.
+         * An array of refund objects.
          */
         public Builder refunds(List<ListAllRefundsRefunds> refunds) {
             Utils.checkNotNull(refunds, "refunds");
@@ -118,8 +113,7 @@ public class ListAllRefundsEmbedded {
         }
 
         /**
-         * An array of refund objects. For a complete reference of the refund object, refer to the
-         * [Get refund endpoint](get-refund) documentation.
+         * An array of refund objects.
          */
         public Builder refunds(Optional<? extends List<ListAllRefundsRefunds>> refunds) {
             Utils.checkNotNull(refunds, "refunds");

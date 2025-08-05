@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -24,16 +23,14 @@ public class ListSettlementRefundsSettlementsLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends ListSettlementRefundsSettlementsSelf> self;
+    private ListSettlementRefundsSettlementsSelf self;
 
     /**
      * The API resource URL of the [payment](get-payment) that this refund belongs to.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment")
-    private Optional<? extends ListSettlementRefundsPayment> payment;
+    private ListSettlementRefundsPayment payment;
 
     /**
      * The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not
@@ -46,16 +43,15 @@ public class ListSettlementRefundsSettlementsLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends ListSettlementRefundsSettlementsDocumentation> documentation;
+    private ListSettlementRefundsSettlementsDocumentation documentation;
 
     @JsonCreator
     public ListSettlementRefundsSettlementsLinks(
-            @JsonProperty("self") Optional<? extends ListSettlementRefundsSettlementsSelf> self,
-            @JsonProperty("payment") Optional<? extends ListSettlementRefundsPayment> payment,
+            @JsonProperty("self") ListSettlementRefundsSettlementsSelf self,
+            @JsonProperty("payment") ListSettlementRefundsPayment payment,
             @JsonProperty("settlement") JsonNullable<? extends ListSettlementRefundsSettlement> settlement,
-            @JsonProperty("documentation") Optional<? extends ListSettlementRefundsSettlementsDocumentation> documentation) {
+            @JsonProperty("documentation") ListSettlementRefundsSettlementsDocumentation documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(payment, "payment");
         Utils.checkNotNull(settlement, "settlement");
@@ -66,27 +62,28 @@ public class ListSettlementRefundsSettlementsLinks {
         this.documentation = documentation;
     }
     
-    public ListSettlementRefundsSettlementsLinks() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty());
+    public ListSettlementRefundsSettlementsLinks(
+            ListSettlementRefundsSettlementsSelf self,
+            ListSettlementRefundsPayment payment,
+            ListSettlementRefundsSettlementsDocumentation documentation) {
+        this(self, payment, JsonNullable.undefined(),
+            documentation);
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListSettlementRefundsSettlementsSelf> self() {
-        return (Optional<ListSettlementRefundsSettlementsSelf>) self;
+    public ListSettlementRefundsSettlementsSelf self() {
+        return self;
     }
 
     /**
      * The API resource URL of the [payment](get-payment) that this refund belongs to.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListSettlementRefundsPayment> payment() {
-        return (Optional<ListSettlementRefundsPayment>) payment;
+    public ListSettlementRefundsPayment payment() {
+        return payment;
     }
 
     /**
@@ -102,10 +99,9 @@ public class ListSettlementRefundsSettlementsLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListSettlementRefundsSettlementsDocumentation> documentation() {
-        return (Optional<ListSettlementRefundsSettlementsDocumentation>) documentation;
+    public ListSettlementRefundsSettlementsDocumentation documentation() {
+        return documentation;
     }
 
     public static Builder builder() {
@@ -118,16 +114,6 @@ public class ListSettlementRefundsSettlementsLinks {
      */
     public ListSettlementRefundsSettlementsLinks withSelf(ListSettlementRefundsSettlementsSelf self) {
         Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListSettlementRefundsSettlementsLinks withSelf(Optional<? extends ListSettlementRefundsSettlementsSelf> self) {
-        Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
@@ -136,16 +122,6 @@ public class ListSettlementRefundsSettlementsLinks {
      * The API resource URL of the [payment](get-payment) that this refund belongs to.
      */
     public ListSettlementRefundsSettlementsLinks withPayment(ListSettlementRefundsPayment payment) {
-        Utils.checkNotNull(payment, "payment");
-        this.payment = Optional.ofNullable(payment);
-        return this;
-    }
-
-
-    /**
-     * The API resource URL of the [payment](get-payment) that this refund belongs to.
-     */
-    public ListSettlementRefundsSettlementsLinks withPayment(Optional<? extends ListSettlementRefundsPayment> payment) {
         Utils.checkNotNull(payment, "payment");
         this.payment = payment;
         return this;
@@ -175,16 +151,6 @@ public class ListSettlementRefundsSettlementsLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public ListSettlementRefundsSettlementsLinks withDocumentation(ListSettlementRefundsSettlementsDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListSettlementRefundsSettlementsLinks withDocumentation(Optional<? extends ListSettlementRefundsSettlementsDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -225,13 +191,13 @@ public class ListSettlementRefundsSettlementsLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends ListSettlementRefundsSettlementsSelf> self = Optional.empty();
+        private ListSettlementRefundsSettlementsSelf self;
 
-        private Optional<? extends ListSettlementRefundsPayment> payment = Optional.empty();
+        private ListSettlementRefundsPayment payment;
 
         private JsonNullable<? extends ListSettlementRefundsSettlement> settlement = JsonNullable.undefined();
 
-        private Optional<? extends ListSettlementRefundsSettlementsDocumentation> documentation = Optional.empty();
+        private ListSettlementRefundsSettlementsDocumentation documentation;
 
         private Builder() {
           // force use of static builder() method
@@ -243,15 +209,6 @@ public class ListSettlementRefundsSettlementsLinks {
          */
         public Builder self(ListSettlementRefundsSettlementsSelf self) {
             Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder self(Optional<? extends ListSettlementRefundsSettlementsSelf> self) {
-            Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
         }
@@ -261,15 +218,6 @@ public class ListSettlementRefundsSettlementsLinks {
          * The API resource URL of the [payment](get-payment) that this refund belongs to.
          */
         public Builder payment(ListSettlementRefundsPayment payment) {
-            Utils.checkNotNull(payment, "payment");
-            this.payment = Optional.ofNullable(payment);
-            return this;
-        }
-
-        /**
-         * The API resource URL of the [payment](get-payment) that this refund belongs to.
-         */
-        public Builder payment(Optional<? extends ListSettlementRefundsPayment> payment) {
             Utils.checkNotNull(payment, "payment");
             this.payment = payment;
             return this;
@@ -301,15 +249,6 @@ public class ListSettlementRefundsSettlementsLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(ListSettlementRefundsSettlementsDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends ListSettlementRefundsSettlementsDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

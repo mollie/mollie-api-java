@@ -13,9 +13,7 @@ import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class ListMandatesMandates {
@@ -29,88 +27,80 @@ public class ListMandatesMandates {
     /**
      * The identifier uniquely referring to this mandate. Example: `mdt_pWUnw6pkBN`.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * Whether this entity was created in live mode or in test mode.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<? extends ListMandatesMode> mode;
+    private ListMandatesMode mode;
 
     /**
      * Payment method of the mandate.
      * 
      * <p>SEPA Direct Debit and PayPal mandates can be created directly.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("method")
-    private Optional<? extends ListMandatesMethod> method;
+    private ListMandatesMethod method;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("details")
-    private Optional<? extends ListMandatesDetails> details;
+    private ListMandatesDetails details;
 
     /**
      * The date when the mandate was signed in `YYYY-MM-DD` format.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("signatureDate")
-    private JsonNullable<String> signatureDate;
+    private Optional<String> signatureDate;
 
     /**
      * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
      * decline Direct Debit payments if the mandate reference is not unique.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("mandateReference")
-    private JsonNullable<String> mandateReference;
+    private Optional<String> mandateReference;
 
     /**
      * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
      * when we did not received the IBAN yet from the first payment.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends ListMandatesStatus> status;
+    private ListMandatesStatus status;
 
     /**
      * The identifier referring to the [customer](get-customer) this mandate was linked to.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("customerId")
-    private Optional<String> customerId;
+    private String customerId;
 
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
-    private Optional<String> createdAt;
+    private String createdAt;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends ListMandatesMandatesLinks> links;
+    private ListMandatesMandatesLinks links;
 
     @JsonCreator
     public ListMandatesMandates(
             @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("mode") Optional<? extends ListMandatesMode> mode,
-            @JsonProperty("method") Optional<? extends ListMandatesMethod> method,
-            @JsonProperty("details") Optional<? extends ListMandatesDetails> details,
-            @JsonProperty("signatureDate") JsonNullable<String> signatureDate,
-            @JsonProperty("mandateReference") JsonNullable<String> mandateReference,
-            @JsonProperty("status") Optional<? extends ListMandatesStatus> status,
-            @JsonProperty("customerId") Optional<String> customerId,
-            @JsonProperty("createdAt") Optional<String> createdAt,
-            @JsonProperty("_links") Optional<? extends ListMandatesMandatesLinks> links) {
+            @JsonProperty("id") String id,
+            @JsonProperty("mode") ListMandatesMode mode,
+            @JsonProperty("method") ListMandatesMethod method,
+            @JsonProperty("details") ListMandatesDetails details,
+            @JsonProperty("signatureDate") Optional<String> signatureDate,
+            @JsonProperty("mandateReference") Optional<String> mandateReference,
+            @JsonProperty("status") ListMandatesStatus status,
+            @JsonProperty("customerId") String customerId,
+            @JsonProperty("createdAt") String createdAt,
+            @JsonProperty("_links") ListMandatesMandatesLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(mode, "mode");
@@ -135,11 +125,19 @@ public class ListMandatesMandates {
         this.links = links;
     }
     
-    public ListMandatesMandates() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+    public ListMandatesMandates(
+            String id,
+            ListMandatesMode mode,
+            ListMandatesMethod method,
+            ListMandatesDetails details,
+            ListMandatesStatus status,
+            String customerId,
+            String createdAt,
+            ListMandatesMandatesLinks links) {
+        this(Optional.empty(), id, mode,
+            method, details, Optional.empty(),
+            Optional.empty(), status, customerId,
+            createdAt, links);
     }
 
     /**
@@ -154,17 +152,16 @@ public class ListMandatesMandates {
      * The identifier uniquely referring to this mandate. Example: `mdt_pWUnw6pkBN`.
      */
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
     /**
      * Whether this entity was created in live mode or in test mode.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListMandatesMode> mode() {
-        return (Optional<ListMandatesMode>) mode;
+    public ListMandatesMode mode() {
+        return mode;
     }
 
     /**
@@ -172,23 +169,21 @@ public class ListMandatesMandates {
      * 
      * <p>SEPA Direct Debit and PayPal mandates can be created directly.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListMandatesMethod> method() {
-        return (Optional<ListMandatesMethod>) method;
+    public ListMandatesMethod method() {
+        return method;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListMandatesDetails> details() {
-        return (Optional<ListMandatesDetails>) details;
+    public ListMandatesDetails details() {
+        return details;
     }
 
     /**
      * The date when the mandate was signed in `YYYY-MM-DD` format.
      */
     @JsonIgnore
-    public JsonNullable<String> signatureDate() {
+    public Optional<String> signatureDate() {
         return signatureDate;
     }
 
@@ -197,7 +192,7 @@ public class ListMandatesMandates {
      * decline Direct Debit payments if the mandate reference is not unique.
      */
     @JsonIgnore
-    public JsonNullable<String> mandateReference() {
+    public Optional<String> mandateReference() {
         return mandateReference;
     }
 
@@ -205,17 +200,16 @@ public class ListMandatesMandates {
      * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
      * when we did not received the IBAN yet from the first payment.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListMandatesStatus> status() {
-        return (Optional<ListMandatesStatus>) status;
+    public ListMandatesStatus status() {
+        return status;
     }
 
     /**
      * The identifier referring to the [customer](get-customer) this mandate was linked to.
      */
     @JsonIgnore
-    public Optional<String> customerId() {
+    public String customerId() {
         return customerId;
     }
 
@@ -223,17 +217,16 @@ public class ListMandatesMandates {
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
     @JsonIgnore
-    public Optional<String> createdAt() {
+    public String createdAt() {
         return createdAt;
     }
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListMandatesMandatesLinks> links() {
-        return (Optional<ListMandatesMandatesLinks>) links;
+    public ListMandatesMandatesLinks links() {
+        return links;
     }
 
     public static Builder builder() {
@@ -265,16 +258,6 @@ public class ListMandatesMandates {
      */
     public ListMandatesMandates withId(String id) {
         Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * The identifier uniquely referring to this mandate. Example: `mdt_pWUnw6pkBN`.
-     */
-    public ListMandatesMandates withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
@@ -283,16 +266,6 @@ public class ListMandatesMandates {
      * Whether this entity was created in live mode or in test mode.
      */
     public ListMandatesMandates withMode(ListMandatesMode mode) {
-        Utils.checkNotNull(mode, "mode");
-        this.mode = Optional.ofNullable(mode);
-        return this;
-    }
-
-
-    /**
-     * Whether this entity was created in live mode or in test mode.
-     */
-    public ListMandatesMandates withMode(Optional<? extends ListMandatesMode> mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
@@ -305,30 +278,11 @@ public class ListMandatesMandates {
      */
     public ListMandatesMandates withMethod(ListMandatesMethod method) {
         Utils.checkNotNull(method, "method");
-        this.method = Optional.ofNullable(method);
-        return this;
-    }
-
-
-    /**
-     * Payment method of the mandate.
-     * 
-     * <p>SEPA Direct Debit and PayPal mandates can be created directly.
-     */
-    public ListMandatesMandates withMethod(Optional<? extends ListMandatesMethod> method) {
-        Utils.checkNotNull(method, "method");
         this.method = method;
         return this;
     }
 
     public ListMandatesMandates withDetails(ListMandatesDetails details) {
-        Utils.checkNotNull(details, "details");
-        this.details = Optional.ofNullable(details);
-        return this;
-    }
-
-
-    public ListMandatesMandates withDetails(Optional<? extends ListMandatesDetails> details) {
         Utils.checkNotNull(details, "details");
         this.details = details;
         return this;
@@ -339,14 +293,15 @@ public class ListMandatesMandates {
      */
     public ListMandatesMandates withSignatureDate(String signatureDate) {
         Utils.checkNotNull(signatureDate, "signatureDate");
-        this.signatureDate = JsonNullable.of(signatureDate);
+        this.signatureDate = Optional.ofNullable(signatureDate);
         return this;
     }
+
 
     /**
      * The date when the mandate was signed in `YYYY-MM-DD` format.
      */
-    public ListMandatesMandates withSignatureDate(JsonNullable<String> signatureDate) {
+    public ListMandatesMandates withSignatureDate(Optional<String> signatureDate) {
         Utils.checkNotNull(signatureDate, "signatureDate");
         this.signatureDate = signatureDate;
         return this;
@@ -358,15 +313,16 @@ public class ListMandatesMandates {
      */
     public ListMandatesMandates withMandateReference(String mandateReference) {
         Utils.checkNotNull(mandateReference, "mandateReference");
-        this.mandateReference = JsonNullable.of(mandateReference);
+        this.mandateReference = Optional.ofNullable(mandateReference);
         return this;
     }
+
 
     /**
      * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
      * decline Direct Debit payments if the mandate reference is not unique.
      */
-    public ListMandatesMandates withMandateReference(JsonNullable<String> mandateReference) {
+    public ListMandatesMandates withMandateReference(Optional<String> mandateReference) {
         Utils.checkNotNull(mandateReference, "mandateReference");
         this.mandateReference = mandateReference;
         return this;
@@ -378,17 +334,6 @@ public class ListMandatesMandates {
      */
     public ListMandatesMandates withStatus(ListMandatesStatus status) {
         Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-
-    /**
-     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
-     * when we did not received the IBAN yet from the first payment.
-     */
-    public ListMandatesMandates withStatus(Optional<? extends ListMandatesStatus> status) {
-        Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
@@ -397,16 +342,6 @@ public class ListMandatesMandates {
      * The identifier referring to the [customer](get-customer) this mandate was linked to.
      */
     public ListMandatesMandates withCustomerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = Optional.ofNullable(customerId);
-        return this;
-    }
-
-
-    /**
-     * The identifier referring to the [customer](get-customer) this mandate was linked to.
-     */
-    public ListMandatesMandates withCustomerId(Optional<String> customerId) {
         Utils.checkNotNull(customerId, "customerId");
         this.customerId = customerId;
         return this;
@@ -417,16 +352,6 @@ public class ListMandatesMandates {
      */
     public ListMandatesMandates withCreatedAt(String createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = Optional.ofNullable(createdAt);
-        return this;
-    }
-
-
-    /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-     */
-    public ListMandatesMandates withCreatedAt(Optional<String> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
@@ -435,16 +360,6 @@ public class ListMandatesMandates {
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
     public ListMandatesMandates withLinks(ListMandatesMandatesLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public ListMandatesMandates withLinks(Optional<? extends ListMandatesMandatesLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -503,25 +418,25 @@ public class ListMandatesMandates {
 
         private Optional<String> resource;
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<? extends ListMandatesMode> mode = Optional.empty();
+        private ListMandatesMode mode;
 
-        private Optional<? extends ListMandatesMethod> method = Optional.empty();
+        private ListMandatesMethod method;
 
-        private Optional<? extends ListMandatesDetails> details = Optional.empty();
+        private ListMandatesDetails details;
 
-        private JsonNullable<String> signatureDate = JsonNullable.undefined();
+        private Optional<String> signatureDate = Optional.empty();
 
-        private JsonNullable<String> mandateReference = JsonNullable.undefined();
+        private Optional<String> mandateReference = Optional.empty();
 
-        private Optional<? extends ListMandatesStatus> status = Optional.empty();
+        private ListMandatesStatus status;
 
-        private Optional<String> customerId = Optional.empty();
+        private String customerId;
 
-        private Optional<String> createdAt = Optional.empty();
+        private String createdAt;
 
-        private Optional<? extends ListMandatesMandatesLinks> links = Optional.empty();
+        private ListMandatesMandatesLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -552,15 +467,6 @@ public class ListMandatesMandates {
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The identifier uniquely referring to this mandate. Example: `mdt_pWUnw6pkBN`.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
@@ -570,15 +476,6 @@ public class ListMandatesMandates {
          * Whether this entity was created in live mode or in test mode.
          */
         public Builder mode(ListMandatesMode mode) {
-            Utils.checkNotNull(mode, "mode");
-            this.mode = Optional.ofNullable(mode);
-            return this;
-        }
-
-        /**
-         * Whether this entity was created in live mode or in test mode.
-         */
-        public Builder mode(Optional<? extends ListMandatesMode> mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
@@ -592,29 +489,12 @@ public class ListMandatesMandates {
          */
         public Builder method(ListMandatesMethod method) {
             Utils.checkNotNull(method, "method");
-            this.method = Optional.ofNullable(method);
-            return this;
-        }
-
-        /**
-         * Payment method of the mandate.
-         * 
-         * <p>SEPA Direct Debit and PayPal mandates can be created directly.
-         */
-        public Builder method(Optional<? extends ListMandatesMethod> method) {
-            Utils.checkNotNull(method, "method");
             this.method = method;
             return this;
         }
 
 
         public Builder details(ListMandatesDetails details) {
-            Utils.checkNotNull(details, "details");
-            this.details = Optional.ofNullable(details);
-            return this;
-        }
-
-        public Builder details(Optional<? extends ListMandatesDetails> details) {
             Utils.checkNotNull(details, "details");
             this.details = details;
             return this;
@@ -626,14 +506,14 @@ public class ListMandatesMandates {
          */
         public Builder signatureDate(String signatureDate) {
             Utils.checkNotNull(signatureDate, "signatureDate");
-            this.signatureDate = JsonNullable.of(signatureDate);
+            this.signatureDate = Optional.ofNullable(signatureDate);
             return this;
         }
 
         /**
          * The date when the mandate was signed in `YYYY-MM-DD` format.
          */
-        public Builder signatureDate(JsonNullable<String> signatureDate) {
+        public Builder signatureDate(Optional<String> signatureDate) {
             Utils.checkNotNull(signatureDate, "signatureDate");
             this.signatureDate = signatureDate;
             return this;
@@ -646,7 +526,7 @@ public class ListMandatesMandates {
          */
         public Builder mandateReference(String mandateReference) {
             Utils.checkNotNull(mandateReference, "mandateReference");
-            this.mandateReference = JsonNullable.of(mandateReference);
+            this.mandateReference = Optional.ofNullable(mandateReference);
             return this;
         }
 
@@ -654,7 +534,7 @@ public class ListMandatesMandates {
          * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
          * decline Direct Debit payments if the mandate reference is not unique.
          */
-        public Builder mandateReference(JsonNullable<String> mandateReference) {
+        public Builder mandateReference(Optional<String> mandateReference) {
             Utils.checkNotNull(mandateReference, "mandateReference");
             this.mandateReference = mandateReference;
             return this;
@@ -667,16 +547,6 @@ public class ListMandatesMandates {
          */
         public Builder status(ListMandatesStatus status) {
             Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
-         * when we did not received the IBAN yet from the first payment.
-         */
-        public Builder status(Optional<? extends ListMandatesStatus> status) {
-            Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
@@ -686,15 +556,6 @@ public class ListMandatesMandates {
          * The identifier referring to the [customer](get-customer) this mandate was linked to.
          */
         public Builder customerId(String customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = Optional.ofNullable(customerId);
-            return this;
-        }
-
-        /**
-         * The identifier referring to the [customer](get-customer) this mandate was linked to.
-         */
-        public Builder customerId(Optional<String> customerId) {
             Utils.checkNotNull(customerId, "customerId");
             this.customerId = customerId;
             return this;
@@ -706,15 +567,6 @@ public class ListMandatesMandates {
          */
         public Builder createdAt(String createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = Optional.ofNullable(createdAt);
-            return this;
-        }
-
-        /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-         */
-        public Builder createdAt(Optional<String> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
@@ -724,15 +576,6 @@ public class ListMandatesMandates {
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
         public Builder links(ListMandatesMandatesLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends ListMandatesMandatesLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

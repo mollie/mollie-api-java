@@ -79,6 +79,11 @@ public class PaymentListRoutesOperation implements RequestOperation<PaymentListR
         HTTPRequest req = new HTTPRequest(url, "GET");
         req.addHeader("Accept", "application/hal+json")
                 .addHeader("user-agent", SDKConfiguration.USER_AGENT);
+
+        req.addQueryParams(Utils.getQueryParams(
+                PaymentListRoutesRequest.class,
+                request, 
+                null));
         Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
         return sdkConfiguration.hooks().beforeRequest(

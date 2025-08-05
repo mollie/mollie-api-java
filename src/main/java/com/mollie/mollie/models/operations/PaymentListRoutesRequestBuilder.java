@@ -10,13 +10,16 @@ import com.mollie.mollie.operations.PaymentListRoutesOperation;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 public class PaymentListRoutesRequestBuilder {
 
     private String paymentId;
+    private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -27,6 +30,18 @@ public class PaymentListRoutesRequestBuilder {
     public PaymentListRoutesRequestBuilder paymentId(String paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
         this.paymentId = paymentId;
+        return this;
+    }
+
+    public PaymentListRoutesRequestBuilder testmode(boolean testmode) {
+        Utils.checkNotNull(testmode, "testmode");
+        this.testmode = JsonNullable.of(testmode);
+        return this;
+    }
+
+    public PaymentListRoutesRequestBuilder testmode(JsonNullable<Boolean> testmode) {
+        Utils.checkNotNull(testmode, "testmode");
+        this.testmode = testmode;
         return this;
     }
                 
@@ -45,7 +60,8 @@ public class PaymentListRoutesRequestBuilder {
 
     private PaymentListRoutesRequest buildRequest() {
 
-        PaymentListRoutesRequest request = new PaymentListRoutesRequest(paymentId);
+        PaymentListRoutesRequest request = new PaymentListRoutesRequest(paymentId,
+            testmode);
 
         return request;
     }

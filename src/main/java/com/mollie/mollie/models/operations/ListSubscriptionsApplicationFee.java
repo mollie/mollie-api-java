@@ -5,14 +5,10 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Optional;
 
 /**
  * ListSubscriptionsApplicationFee
@@ -29,40 +25,33 @@ public class ListSubscriptionsApplicationFee {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private Optional<? extends ListSubscriptionsSubscriptionsAmount> amount;
+    private ListSubscriptionsSubscriptionsAmount amount;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private Optional<String> description;
+    private String description;
 
     @JsonCreator
     public ListSubscriptionsApplicationFee(
-            @JsonProperty("amount") Optional<? extends ListSubscriptionsSubscriptionsAmount> amount,
-            @JsonProperty("description") Optional<String> description) {
+            @JsonProperty("amount") ListSubscriptionsSubscriptionsAmount amount,
+            @JsonProperty("description") String description) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(description, "description");
         this.amount = amount;
         this.description = description;
     }
-    
-    public ListSubscriptionsApplicationFee() {
-        this(Optional.empty(), Optional.empty());
-    }
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListSubscriptionsSubscriptionsAmount> amount() {
-        return (Optional<ListSubscriptionsSubscriptionsAmount>) amount;
+    public ListSubscriptionsSubscriptionsAmount amount() {
+        return amount;
     }
 
     @JsonIgnore
-    public Optional<String> description() {
+    public String description() {
         return description;
     }
 
@@ -76,28 +65,11 @@ public class ListSubscriptionsApplicationFee {
      */
     public ListSubscriptionsApplicationFee withAmount(ListSubscriptionsSubscriptionsAmount amount) {
         Utils.checkNotNull(amount, "amount");
-        this.amount = Optional.ofNullable(amount);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public ListSubscriptionsApplicationFee withAmount(Optional<? extends ListSubscriptionsSubscriptionsAmount> amount) {
-        Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
 
     public ListSubscriptionsApplicationFee withDescription(String description) {
-        Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
-        return this;
-    }
-
-
-    public ListSubscriptionsApplicationFee withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
@@ -133,9 +105,9 @@ public class ListSubscriptionsApplicationFee {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends ListSubscriptionsSubscriptionsAmount> amount = Optional.empty();
+        private ListSubscriptionsSubscriptionsAmount amount;
 
-        private Optional<String> description = Optional.empty();
+        private String description;
 
         private Builder() {
           // force use of static builder() method
@@ -147,27 +119,12 @@ public class ListSubscriptionsApplicationFee {
          */
         public Builder amount(ListSubscriptionsSubscriptionsAmount amount) {
             Utils.checkNotNull(amount, "amount");
-            this.amount = Optional.ofNullable(amount);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder amount(Optional<? extends ListSubscriptionsSubscriptionsAmount> amount) {
-            Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;
         }
 
 
         public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
-            return this;
-        }
-
-        public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
             return this;

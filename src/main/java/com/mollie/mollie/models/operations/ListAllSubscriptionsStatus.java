@@ -11,17 +11,15 @@ import java.util.Optional;
 /**
  * ListAllSubscriptionsStatus
  * 
- * <p>The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
- * statuses occur at what point.
+ * <p>The subscription's current status is directly related to the status of the underlying customer or mandate that is
+ * enabling the subscription.
  */
 public enum ListAllSubscriptionsStatus {
-    OPEN("open"),
     PENDING("pending"),
-    AUTHORIZED("authorized"),
-    PAID("paid"),
+    ACTIVE("active"),
     CANCELED("canceled"),
-    EXPIRED("expired"),
-    FAILED("failed");
+    SUSPENDED("suspended"),
+    COMPLETED("completed");
 
     @JsonValue
     private final String value;

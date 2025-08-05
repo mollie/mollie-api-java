@@ -13,15 +13,14 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class ListAllSubscriptionsRequest {
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate
-     * the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
     private Optional<String> from;
@@ -33,21 +32,15 @@ public class ListAllSubscriptionsRequest {
     private JsonNullable<Long> limit;
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
-     * newest to oldest.
-     */
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
-    private JsonNullable<? extends ListAllSubscriptionsQueryParamSort> sort;
-
-    /**
-     * The identifier referring to the [profile](get-profile) you wish to
-     * retrieve the resources for.
+     * The identifier referring to the [profile](get-profile) you wish to retrieve subscriptions for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
+     * 
+     * <p>To retrieve all subscriptions across the organization, use an organization-level API credential and omit the
+     * `profileId` parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=profileId")
-    private Optional<String> profileId;
+    private JsonNullable<String> profileId;
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -63,29 +56,26 @@ public class ListAllSubscriptionsRequest {
     public ListAllSubscriptionsRequest(
             Optional<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<? extends ListAllSubscriptionsQueryParamSort> sort,
-            Optional<String> profileId,
+            JsonNullable<String> profileId,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(from, "from");
         Utils.checkNotNull(limit, "limit");
-        Utils.checkNotNull(sort, "sort");
         Utils.checkNotNull(profileId, "profileId");
         Utils.checkNotNull(testmode, "testmode");
         this.from = from;
         this.limit = limit;
-        this.sort = sort;
         this.profileId = profileId;
         this.testmode = testmode;
     }
     
     public ListAllSubscriptionsRequest() {
         this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined());
+            JsonNullable.undefined());
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate
-     * the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * result set.
      */
     @JsonIgnore
     public Optional<String> from() {
@@ -101,24 +91,15 @@ public class ListAllSubscriptionsRequest {
     }
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
-     * newest to oldest.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<ListAllSubscriptionsQueryParamSort> sort() {
-        return (JsonNullable<ListAllSubscriptionsQueryParamSort>) sort;
-    }
-
-    /**
-     * The identifier referring to the [profile](get-profile) you wish to
-     * retrieve the resources for.
+     * The identifier referring to the [profile](get-profile) you wish to retrieve subscriptions for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
+     * 
+     * <p>To retrieve all subscriptions across the organization, use an organization-level API credential and omit the
+     * `profileId` parameter.
      */
     @JsonIgnore
-    public Optional<String> profileId() {
+    public JsonNullable<String> profileId() {
         return profileId;
     }
 
@@ -140,8 +121,8 @@ public class ListAllSubscriptionsRequest {
 
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate
-     * the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * result set.
      */
     public ListAllSubscriptionsRequest withFrom(String from) {
         Utils.checkNotNull(from, "from");
@@ -151,8 +132,8 @@ public class ListAllSubscriptionsRequest {
 
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate
-     * the result set.
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * result set.
      */
     public ListAllSubscriptionsRequest withFrom(Optional<String> from) {
         Utils.checkNotNull(from, "from");
@@ -179,47 +160,28 @@ public class ListAllSubscriptionsRequest {
     }
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
-     * newest to oldest.
-     */
-    public ListAllSubscriptionsRequest withSort(ListAllSubscriptionsQueryParamSort sort) {
-        Utils.checkNotNull(sort, "sort");
-        this.sort = JsonNullable.of(sort);
-        return this;
-    }
-
-    /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
-     * newest to oldest.
-     */
-    public ListAllSubscriptionsRequest withSort(JsonNullable<? extends ListAllSubscriptionsQueryParamSort> sort) {
-        Utils.checkNotNull(sort, "sort");
-        this.sort = sort;
-        return this;
-    }
-
-    /**
-     * The identifier referring to the [profile](get-profile) you wish to
-     * retrieve the resources for.
+     * The identifier referring to the [profile](get-profile) you wish to retrieve subscriptions for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
+     * 
+     * <p>To retrieve all subscriptions across the organization, use an organization-level API credential and omit the
+     * `profileId` parameter.
      */
     public ListAllSubscriptionsRequest withProfileId(String profileId) {
         Utils.checkNotNull(profileId, "profileId");
-        this.profileId = Optional.ofNullable(profileId);
+        this.profileId = JsonNullable.of(profileId);
         return this;
     }
 
-
     /**
-     * The identifier referring to the [profile](get-profile) you wish to
-     * retrieve the resources for.
+     * The identifier referring to the [profile](get-profile) you wish to retrieve subscriptions for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
+     * 
+     * <p>To retrieve all subscriptions across the organization, use an organization-level API credential and omit the
+     * `profileId` parameter.
      */
-    public ListAllSubscriptionsRequest withProfileId(Optional<String> profileId) {
+    public ListAllSubscriptionsRequest withProfileId(JsonNullable<String> profileId) {
         Utils.checkNotNull(profileId, "profileId");
         this.profileId = profileId;
         return this;
@@ -263,7 +225,6 @@ public class ListAllSubscriptionsRequest {
         return 
             Utils.enhancedDeepEquals(this.from, other.from) &&
             Utils.enhancedDeepEquals(this.limit, other.limit) &&
-            Utils.enhancedDeepEquals(this.sort, other.sort) &&
             Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
             Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
@@ -271,8 +232,8 @@ public class ListAllSubscriptionsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            from, limit, sort,
-            profileId, testmode);
+            from, limit, profileId,
+            testmode);
     }
     
     @Override
@@ -280,7 +241,6 @@ public class ListAllSubscriptionsRequest {
         return Utils.toString(ListAllSubscriptionsRequest.class,
                 "from", from,
                 "limit", limit,
-                "sort", sort,
                 "profileId", profileId,
                 "testmode", testmode);
     }
@@ -292,9 +252,7 @@ public class ListAllSubscriptionsRequest {
 
         private JsonNullable<Long> limit;
 
-        private JsonNullable<? extends ListAllSubscriptionsQueryParamSort> sort;
-
-        private Optional<String> profileId = Optional.empty();
+        private JsonNullable<String> profileId = JsonNullable.undefined();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -304,8 +262,8 @@ public class ListAllSubscriptionsRequest {
 
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate
-         * the result set.
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * result set.
          */
         public Builder from(String from) {
             Utils.checkNotNull(from, "from");
@@ -314,8 +272,8 @@ public class ListAllSubscriptionsRequest {
         }
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate
-         * the result set.
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * result set.
          */
         public Builder from(Optional<String> from) {
             Utils.checkNotNull(from, "from");
@@ -344,47 +302,28 @@ public class ListAllSubscriptionsRequest {
 
 
         /**
-         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
-         * newest to oldest.
-         */
-        public Builder sort(ListAllSubscriptionsQueryParamSort sort) {
-            Utils.checkNotNull(sort, "sort");
-            this.sort = JsonNullable.of(sort);
-            return this;
-        }
-
-        /**
-         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
-         * newest to oldest.
-         */
-        public Builder sort(JsonNullable<? extends ListAllSubscriptionsQueryParamSort> sort) {
-            Utils.checkNotNull(sort, "sort");
-            this.sort = sort;
-            return this;
-        }
-
-
-        /**
-         * The identifier referring to the [profile](get-profile) you wish to
-         * retrieve the resources for.
+         * The identifier referring to the [profile](get-profile) you wish to retrieve subscriptions for.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-         * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
+         * 
+         * <p>To retrieve all subscriptions across the organization, use an organization-level API credential and omit the
+         * `profileId` parameter.
          */
         public Builder profileId(String profileId) {
             Utils.checkNotNull(profileId, "profileId");
-            this.profileId = Optional.ofNullable(profileId);
+            this.profileId = JsonNullable.of(profileId);
             return this;
         }
 
         /**
-         * The identifier referring to the [profile](get-profile) you wish to
-         * retrieve the resources for.
+         * The identifier referring to the [profile](get-profile) you wish to retrieve subscriptions for.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-         * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
+         * 
+         * <p>To retrieve all subscriptions across the organization, use an organization-level API credential and omit the
+         * `profileId` parameter.
          */
-        public Builder profileId(Optional<String> profileId) {
+        public Builder profileId(JsonNullable<String> profileId) {
             Utils.checkNotNull(profileId, "profileId");
             this.profileId = profileId;
             return this;
@@ -421,13 +360,10 @@ public class ListAllSubscriptionsRequest {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
-            if (sort == null) {
-                sort = _SINGLETON_VALUE_Sort.value();
-            }
 
             return new ListAllSubscriptionsRequest(
-                from, limit, sort,
-                profileId, testmode);
+                from, limit, profileId,
+                testmode);
         }
 
 
@@ -436,11 +372,5 @@ public class ListAllSubscriptionsRequest {
                         "limit",
                         "50",
                         new TypeReference<JsonNullable<Long>>() {});
-
-        private static final LazySingletonValue<JsonNullable<? extends ListAllSubscriptionsQueryParamSort>> _SINGLETON_VALUE_Sort =
-                new LazySingletonValue<>(
-                        "sort",
-                        "\"desc\"",
-                        new TypeReference<JsonNullable<? extends ListAllSubscriptionsQueryParamSort>>() {});
     }
 }

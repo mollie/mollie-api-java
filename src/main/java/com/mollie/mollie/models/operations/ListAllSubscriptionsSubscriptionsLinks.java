@@ -13,6 +13,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * ListAllSubscriptionsSubscriptionsLinks
@@ -27,170 +28,67 @@ public class ListAllSubscriptionsSubscriptionsLinks {
     private ListAllSubscriptionsSubscriptionsSelf self;
 
     /**
-     * The URL your customer should visit to make the payment. This is where you should redirect the customer to.
+     * The API resource URL of the [customer](get-customer) this subscription was created for.
      */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("checkout")
-    private Optional<? extends ListAllSubscriptionsCheckout> checkout;
-
-    /**
-     * The deeplink URL to the app of the payment method. Currently only available for `bancontact`.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("mobileAppCheckout")
-    private Optional<? extends ListAllSubscriptionsMobileAppCheckout> mobileAppCheckout;
-
-    /**
-     * For test mode payments in certain scenarios, a hosted interface is available to help you test different
-     * payment states.
-     * 
-     * <p>Firstly, for recurring test mode payments. Recurring payments do not have a checkout URL, because these
-     * payments are executed without any user interaction.
-     * 
-     * <p>Secondly, for paid test mode payments. The payment state screen will then allow you to create a refund or
-     * chargeback for the test payment.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("changePaymentState")
-    private Optional<? extends ListAllSubscriptionsChangePaymentState> changePaymentState;
-
-    /**
-     * Direct link to the payment in the Mollie Dashboard.
-     */
-    @JsonProperty("dashboard")
-    private ListAllSubscriptionsDashboard dashboard;
-
-    /**
-     * The API resource URL of the [refunds](list-payment-refunds) that belong to this payment.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("refunds")
-    private Optional<? extends ListAllSubscriptionsRefunds> refunds;
-
-    /**
-     * The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this
-     * payment.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("chargebacks")
-    private Optional<? extends ListAllSubscriptionsChargebacks> chargebacks;
-
-    /**
-     * The API resource URL of the [captures](list-payment-captures) that belong to this payment.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("captures")
-    private Optional<? extends ListAllSubscriptionsCaptures> captures;
-
-    /**
-     * The API resource URL of the [settlement](get-settlement) this payment has been settled with.
-     * Not present if not yet settled.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("settlement")
-    private Optional<? extends ListAllSubscriptionsSettlement> settlement;
-
-    /**
-     * The API resource URL of the [customer](get-customer).
-     */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("customer")
     private Optional<? extends ListAllSubscriptionsCustomer> customer;
 
     /**
-     * The API resource URL of the [mandate](get-mandate).
+     * The API resource URL of the [mandate](get-mandate) this subscription was created for.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mandate")
-    private Optional<? extends ListAllSubscriptionsMandate> mandate;
+    private JsonNullable<? extends ListAllSubscriptionsMandate> mandate;
 
     /**
-     * The API resource URL of the [subscription](get-subscription).
+     * The API resource URL of the [profile](get-profile) this subscription was created for.
      */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("subscription")
-    private Optional<? extends ListAllSubscriptionsSubscription> subscription;
+    @JsonInclude(Include.ALWAYS)
+    @JsonProperty("profile")
+    private Optional<? extends ListAllSubscriptionsProfile> profile;
 
     /**
-     * The API resource URL of the [order](get-order) this payment was created for. Not present if not created for an
-     * order.
+     * The API resource URL of the [payments](list-payments) created for this subscription. Omitted if no such
+     * payments exist (yet).
      */
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("order")
-    private Optional<? extends ListAllSubscriptionsOrder> order;
-
-    /**
-     * The API resource URL of the [terminal](get-terminal) this payment was created for. Only present for
-     * point-of-sale payments.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("terminal")
-    private Optional<? extends ListAllSubscriptionsTerminal> terminal;
+    @JsonProperty("payments")
+    private JsonNullable<? extends ListAllSubscriptionsPayments> payments;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends ListAllSubscriptionsSubscriptionsDocumentation> documentation;
+    private ListAllSubscriptionsSubscriptionsDocumentation documentation;
 
     @JsonCreator
     public ListAllSubscriptionsSubscriptionsLinks(
             @JsonProperty("self") ListAllSubscriptionsSubscriptionsSelf self,
-            @JsonProperty("checkout") Optional<? extends ListAllSubscriptionsCheckout> checkout,
-            @JsonProperty("mobileAppCheckout") Optional<? extends ListAllSubscriptionsMobileAppCheckout> mobileAppCheckout,
-            @JsonProperty("changePaymentState") Optional<? extends ListAllSubscriptionsChangePaymentState> changePaymentState,
-            @JsonProperty("dashboard") ListAllSubscriptionsDashboard dashboard,
-            @JsonProperty("refunds") Optional<? extends ListAllSubscriptionsRefunds> refunds,
-            @JsonProperty("chargebacks") Optional<? extends ListAllSubscriptionsChargebacks> chargebacks,
-            @JsonProperty("captures") Optional<? extends ListAllSubscriptionsCaptures> captures,
-            @JsonProperty("settlement") Optional<? extends ListAllSubscriptionsSettlement> settlement,
             @JsonProperty("customer") Optional<? extends ListAllSubscriptionsCustomer> customer,
-            @JsonProperty("mandate") Optional<? extends ListAllSubscriptionsMandate> mandate,
-            @JsonProperty("subscription") Optional<? extends ListAllSubscriptionsSubscription> subscription,
-            @JsonProperty("order") Optional<? extends ListAllSubscriptionsOrder> order,
-            @JsonProperty("terminal") Optional<? extends ListAllSubscriptionsTerminal> terminal,
-            @JsonProperty("documentation") Optional<? extends ListAllSubscriptionsSubscriptionsDocumentation> documentation) {
+            @JsonProperty("mandate") JsonNullable<? extends ListAllSubscriptionsMandate> mandate,
+            @JsonProperty("profile") Optional<? extends ListAllSubscriptionsProfile> profile,
+            @JsonProperty("payments") JsonNullable<? extends ListAllSubscriptionsPayments> payments,
+            @JsonProperty("documentation") ListAllSubscriptionsSubscriptionsDocumentation documentation) {
         Utils.checkNotNull(self, "self");
-        Utils.checkNotNull(checkout, "checkout");
-        Utils.checkNotNull(mobileAppCheckout, "mobileAppCheckout");
-        Utils.checkNotNull(changePaymentState, "changePaymentState");
-        Utils.checkNotNull(dashboard, "dashboard");
-        Utils.checkNotNull(refunds, "refunds");
-        Utils.checkNotNull(chargebacks, "chargebacks");
-        Utils.checkNotNull(captures, "captures");
-        Utils.checkNotNull(settlement, "settlement");
         Utils.checkNotNull(customer, "customer");
         Utils.checkNotNull(mandate, "mandate");
-        Utils.checkNotNull(subscription, "subscription");
-        Utils.checkNotNull(order, "order");
-        Utils.checkNotNull(terminal, "terminal");
+        Utils.checkNotNull(profile, "profile");
+        Utils.checkNotNull(payments, "payments");
         Utils.checkNotNull(documentation, "documentation");
         this.self = self;
-        this.checkout = checkout;
-        this.mobileAppCheckout = mobileAppCheckout;
-        this.changePaymentState = changePaymentState;
-        this.dashboard = dashboard;
-        this.refunds = refunds;
-        this.chargebacks = chargebacks;
-        this.captures = captures;
-        this.settlement = settlement;
         this.customer = customer;
         this.mandate = mandate;
-        this.subscription = subscription;
-        this.order = order;
-        this.terminal = terminal;
+        this.profile = profile;
+        this.payments = payments;
         this.documentation = documentation;
     }
     
     public ListAllSubscriptionsSubscriptionsLinks(
             ListAllSubscriptionsSubscriptionsSelf self,
-            ListAllSubscriptionsDashboard dashboard) {
-        this(self, Optional.empty(), Optional.empty(),
-            Optional.empty(), dashboard, Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            ListAllSubscriptionsSubscriptionsDocumentation documentation) {
+        this(self, Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), documentation);
     }
 
     /**
@@ -202,87 +100,7 @@ public class ListAllSubscriptionsSubscriptionsLinks {
     }
 
     /**
-     * The URL your customer should visit to make the payment. This is where you should redirect the customer to.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<ListAllSubscriptionsCheckout> checkout() {
-        return (Optional<ListAllSubscriptionsCheckout>) checkout;
-    }
-
-    /**
-     * The deeplink URL to the app of the payment method. Currently only available for `bancontact`.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<ListAllSubscriptionsMobileAppCheckout> mobileAppCheckout() {
-        return (Optional<ListAllSubscriptionsMobileAppCheckout>) mobileAppCheckout;
-    }
-
-    /**
-     * For test mode payments in certain scenarios, a hosted interface is available to help you test different
-     * payment states.
-     * 
-     * <p>Firstly, for recurring test mode payments. Recurring payments do not have a checkout URL, because these
-     * payments are executed without any user interaction.
-     * 
-     * <p>Secondly, for paid test mode payments. The payment state screen will then allow you to create a refund or
-     * chargeback for the test payment.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<ListAllSubscriptionsChangePaymentState> changePaymentState() {
-        return (Optional<ListAllSubscriptionsChangePaymentState>) changePaymentState;
-    }
-
-    /**
-     * Direct link to the payment in the Mollie Dashboard.
-     */
-    @JsonIgnore
-    public ListAllSubscriptionsDashboard dashboard() {
-        return dashboard;
-    }
-
-    /**
-     * The API resource URL of the [refunds](list-payment-refunds) that belong to this payment.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<ListAllSubscriptionsRefunds> refunds() {
-        return (Optional<ListAllSubscriptionsRefunds>) refunds;
-    }
-
-    /**
-     * The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this
-     * payment.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<ListAllSubscriptionsChargebacks> chargebacks() {
-        return (Optional<ListAllSubscriptionsChargebacks>) chargebacks;
-    }
-
-    /**
-     * The API resource URL of the [captures](list-payment-captures) that belong to this payment.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<ListAllSubscriptionsCaptures> captures() {
-        return (Optional<ListAllSubscriptionsCaptures>) captures;
-    }
-
-    /**
-     * The API resource URL of the [settlement](get-settlement) this payment has been settled with.
-     * Not present if not yet settled.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<ListAllSubscriptionsSettlement> settlement() {
-        return (Optional<ListAllSubscriptionsSettlement>) settlement;
-    }
-
-    /**
-     * The API resource URL of the [customer](get-customer).
+     * The API resource URL of the [customer](get-customer) this subscription was created for.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -291,50 +109,39 @@ public class ListAllSubscriptionsSubscriptionsLinks {
     }
 
     /**
-     * The API resource URL of the [mandate](get-mandate).
+     * The API resource URL of the [mandate](get-mandate) this subscription was created for.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListAllSubscriptionsMandate> mandate() {
-        return (Optional<ListAllSubscriptionsMandate>) mandate;
+    public JsonNullable<ListAllSubscriptionsMandate> mandate() {
+        return (JsonNullable<ListAllSubscriptionsMandate>) mandate;
     }
 
     /**
-     * The API resource URL of the [subscription](get-subscription).
+     * The API resource URL of the [profile](get-profile) this subscription was created for.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListAllSubscriptionsSubscription> subscription() {
-        return (Optional<ListAllSubscriptionsSubscription>) subscription;
+    public Optional<ListAllSubscriptionsProfile> profile() {
+        return (Optional<ListAllSubscriptionsProfile>) profile;
     }
 
     /**
-     * The API resource URL of the [order](get-order) this payment was created for. Not present if not created for an
-     * order.
+     * The API resource URL of the [payments](list-payments) created for this subscription. Omitted if no such
+     * payments exist (yet).
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListAllSubscriptionsOrder> order() {
-        return (Optional<ListAllSubscriptionsOrder>) order;
-    }
-
-    /**
-     * The API resource URL of the [terminal](get-terminal) this payment was created for. Only present for
-     * point-of-sale payments.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<ListAllSubscriptionsTerminal> terminal() {
-        return (Optional<ListAllSubscriptionsTerminal>) terminal;
+    public JsonNullable<ListAllSubscriptionsPayments> payments() {
+        return (JsonNullable<ListAllSubscriptionsPayments>) payments;
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListAllSubscriptionsSubscriptionsDocumentation> documentation() {
-        return (Optional<ListAllSubscriptionsSubscriptionsDocumentation>) documentation;
+    public ListAllSubscriptionsSubscriptionsDocumentation documentation() {
+        return documentation;
     }
 
     public static Builder builder() {
@@ -352,167 +159,7 @@ public class ListAllSubscriptionsSubscriptionsLinks {
     }
 
     /**
-     * The URL your customer should visit to make the payment. This is where you should redirect the customer to.
-     */
-    public ListAllSubscriptionsSubscriptionsLinks withCheckout(ListAllSubscriptionsCheckout checkout) {
-        Utils.checkNotNull(checkout, "checkout");
-        this.checkout = Optional.ofNullable(checkout);
-        return this;
-    }
-
-
-    /**
-     * The URL your customer should visit to make the payment. This is where you should redirect the customer to.
-     */
-    public ListAllSubscriptionsSubscriptionsLinks withCheckout(Optional<? extends ListAllSubscriptionsCheckout> checkout) {
-        Utils.checkNotNull(checkout, "checkout");
-        this.checkout = checkout;
-        return this;
-    }
-
-    /**
-     * The deeplink URL to the app of the payment method. Currently only available for `bancontact`.
-     */
-    public ListAllSubscriptionsSubscriptionsLinks withMobileAppCheckout(ListAllSubscriptionsMobileAppCheckout mobileAppCheckout) {
-        Utils.checkNotNull(mobileAppCheckout, "mobileAppCheckout");
-        this.mobileAppCheckout = Optional.ofNullable(mobileAppCheckout);
-        return this;
-    }
-
-
-    /**
-     * The deeplink URL to the app of the payment method. Currently only available for `bancontact`.
-     */
-    public ListAllSubscriptionsSubscriptionsLinks withMobileAppCheckout(Optional<? extends ListAllSubscriptionsMobileAppCheckout> mobileAppCheckout) {
-        Utils.checkNotNull(mobileAppCheckout, "mobileAppCheckout");
-        this.mobileAppCheckout = mobileAppCheckout;
-        return this;
-    }
-
-    /**
-     * For test mode payments in certain scenarios, a hosted interface is available to help you test different
-     * payment states.
-     * 
-     * <p>Firstly, for recurring test mode payments. Recurring payments do not have a checkout URL, because these
-     * payments are executed without any user interaction.
-     * 
-     * <p>Secondly, for paid test mode payments. The payment state screen will then allow you to create a refund or
-     * chargeback for the test payment.
-     */
-    public ListAllSubscriptionsSubscriptionsLinks withChangePaymentState(ListAllSubscriptionsChangePaymentState changePaymentState) {
-        Utils.checkNotNull(changePaymentState, "changePaymentState");
-        this.changePaymentState = Optional.ofNullable(changePaymentState);
-        return this;
-    }
-
-
-    /**
-     * For test mode payments in certain scenarios, a hosted interface is available to help you test different
-     * payment states.
-     * 
-     * <p>Firstly, for recurring test mode payments. Recurring payments do not have a checkout URL, because these
-     * payments are executed without any user interaction.
-     * 
-     * <p>Secondly, for paid test mode payments. The payment state screen will then allow you to create a refund or
-     * chargeback for the test payment.
-     */
-    public ListAllSubscriptionsSubscriptionsLinks withChangePaymentState(Optional<? extends ListAllSubscriptionsChangePaymentState> changePaymentState) {
-        Utils.checkNotNull(changePaymentState, "changePaymentState");
-        this.changePaymentState = changePaymentState;
-        return this;
-    }
-
-    /**
-     * Direct link to the payment in the Mollie Dashboard.
-     */
-    public ListAllSubscriptionsSubscriptionsLinks withDashboard(ListAllSubscriptionsDashboard dashboard) {
-        Utils.checkNotNull(dashboard, "dashboard");
-        this.dashboard = dashboard;
-        return this;
-    }
-
-    /**
-     * The API resource URL of the [refunds](list-payment-refunds) that belong to this payment.
-     */
-    public ListAllSubscriptionsSubscriptionsLinks withRefunds(ListAllSubscriptionsRefunds refunds) {
-        Utils.checkNotNull(refunds, "refunds");
-        this.refunds = Optional.ofNullable(refunds);
-        return this;
-    }
-
-
-    /**
-     * The API resource URL of the [refunds](list-payment-refunds) that belong to this payment.
-     */
-    public ListAllSubscriptionsSubscriptionsLinks withRefunds(Optional<? extends ListAllSubscriptionsRefunds> refunds) {
-        Utils.checkNotNull(refunds, "refunds");
-        this.refunds = refunds;
-        return this;
-    }
-
-    /**
-     * The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this
-     * payment.
-     */
-    public ListAllSubscriptionsSubscriptionsLinks withChargebacks(ListAllSubscriptionsChargebacks chargebacks) {
-        Utils.checkNotNull(chargebacks, "chargebacks");
-        this.chargebacks = Optional.ofNullable(chargebacks);
-        return this;
-    }
-
-
-    /**
-     * The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this
-     * payment.
-     */
-    public ListAllSubscriptionsSubscriptionsLinks withChargebacks(Optional<? extends ListAllSubscriptionsChargebacks> chargebacks) {
-        Utils.checkNotNull(chargebacks, "chargebacks");
-        this.chargebacks = chargebacks;
-        return this;
-    }
-
-    /**
-     * The API resource URL of the [captures](list-payment-captures) that belong to this payment.
-     */
-    public ListAllSubscriptionsSubscriptionsLinks withCaptures(ListAllSubscriptionsCaptures captures) {
-        Utils.checkNotNull(captures, "captures");
-        this.captures = Optional.ofNullable(captures);
-        return this;
-    }
-
-
-    /**
-     * The API resource URL of the [captures](list-payment-captures) that belong to this payment.
-     */
-    public ListAllSubscriptionsSubscriptionsLinks withCaptures(Optional<? extends ListAllSubscriptionsCaptures> captures) {
-        Utils.checkNotNull(captures, "captures");
-        this.captures = captures;
-        return this;
-    }
-
-    /**
-     * The API resource URL of the [settlement](get-settlement) this payment has been settled with.
-     * Not present if not yet settled.
-     */
-    public ListAllSubscriptionsSubscriptionsLinks withSettlement(ListAllSubscriptionsSettlement settlement) {
-        Utils.checkNotNull(settlement, "settlement");
-        this.settlement = Optional.ofNullable(settlement);
-        return this;
-    }
-
-
-    /**
-     * The API resource URL of the [settlement](get-settlement) this payment has been settled with.
-     * Not present if not yet settled.
-     */
-    public ListAllSubscriptionsSubscriptionsLinks withSettlement(Optional<? extends ListAllSubscriptionsSettlement> settlement) {
-        Utils.checkNotNull(settlement, "settlement");
-        this.settlement = settlement;
-        return this;
-    }
-
-    /**
-     * The API resource URL of the [customer](get-customer).
+     * The API resource URL of the [customer](get-customer) this subscription was created for.
      */
     public ListAllSubscriptionsSubscriptionsLinks withCustomer(ListAllSubscriptionsCustomer customer) {
         Utils.checkNotNull(customer, "customer");
@@ -522,7 +169,7 @@ public class ListAllSubscriptionsSubscriptionsLinks {
 
 
     /**
-     * The API resource URL of the [customer](get-customer).
+     * The API resource URL of the [customer](get-customer) this subscription was created for.
      */
     public ListAllSubscriptionsSubscriptionsLinks withCustomer(Optional<? extends ListAllSubscriptionsCustomer> customer) {
         Utils.checkNotNull(customer, "customer");
@@ -531,82 +178,59 @@ public class ListAllSubscriptionsSubscriptionsLinks {
     }
 
     /**
-     * The API resource URL of the [mandate](get-mandate).
+     * The API resource URL of the [mandate](get-mandate) this subscription was created for.
      */
     public ListAllSubscriptionsSubscriptionsLinks withMandate(ListAllSubscriptionsMandate mandate) {
         Utils.checkNotNull(mandate, "mandate");
-        this.mandate = Optional.ofNullable(mandate);
+        this.mandate = JsonNullable.of(mandate);
         return this;
     }
 
-
     /**
-     * The API resource URL of the [mandate](get-mandate).
+     * The API resource URL of the [mandate](get-mandate) this subscription was created for.
      */
-    public ListAllSubscriptionsSubscriptionsLinks withMandate(Optional<? extends ListAllSubscriptionsMandate> mandate) {
+    public ListAllSubscriptionsSubscriptionsLinks withMandate(JsonNullable<? extends ListAllSubscriptionsMandate> mandate) {
         Utils.checkNotNull(mandate, "mandate");
         this.mandate = mandate;
         return this;
     }
 
     /**
-     * The API resource URL of the [subscription](get-subscription).
+     * The API resource URL of the [profile](get-profile) this subscription was created for.
      */
-    public ListAllSubscriptionsSubscriptionsLinks withSubscription(ListAllSubscriptionsSubscription subscription) {
-        Utils.checkNotNull(subscription, "subscription");
-        this.subscription = Optional.ofNullable(subscription);
+    public ListAllSubscriptionsSubscriptionsLinks withProfile(ListAllSubscriptionsProfile profile) {
+        Utils.checkNotNull(profile, "profile");
+        this.profile = Optional.ofNullable(profile);
         return this;
     }
 
 
     /**
-     * The API resource URL of the [subscription](get-subscription).
+     * The API resource URL of the [profile](get-profile) this subscription was created for.
      */
-    public ListAllSubscriptionsSubscriptionsLinks withSubscription(Optional<? extends ListAllSubscriptionsSubscription> subscription) {
-        Utils.checkNotNull(subscription, "subscription");
-        this.subscription = subscription;
+    public ListAllSubscriptionsSubscriptionsLinks withProfile(Optional<? extends ListAllSubscriptionsProfile> profile) {
+        Utils.checkNotNull(profile, "profile");
+        this.profile = profile;
         return this;
     }
 
     /**
-     * The API resource URL of the [order](get-order) this payment was created for. Not present if not created for an
-     * order.
+     * The API resource URL of the [payments](list-payments) created for this subscription. Omitted if no such
+     * payments exist (yet).
      */
-    public ListAllSubscriptionsSubscriptionsLinks withOrder(ListAllSubscriptionsOrder order) {
-        Utils.checkNotNull(order, "order");
-        this.order = Optional.ofNullable(order);
-        return this;
-    }
-
-
-    /**
-     * The API resource URL of the [order](get-order) this payment was created for. Not present if not created for an
-     * order.
-     */
-    public ListAllSubscriptionsSubscriptionsLinks withOrder(Optional<? extends ListAllSubscriptionsOrder> order) {
-        Utils.checkNotNull(order, "order");
-        this.order = order;
+    public ListAllSubscriptionsSubscriptionsLinks withPayments(ListAllSubscriptionsPayments payments) {
+        Utils.checkNotNull(payments, "payments");
+        this.payments = JsonNullable.of(payments);
         return this;
     }
 
     /**
-     * The API resource URL of the [terminal](get-terminal) this payment was created for. Only present for
-     * point-of-sale payments.
+     * The API resource URL of the [payments](list-payments) created for this subscription. Omitted if no such
+     * payments exist (yet).
      */
-    public ListAllSubscriptionsSubscriptionsLinks withTerminal(ListAllSubscriptionsTerminal terminal) {
-        Utils.checkNotNull(terminal, "terminal");
-        this.terminal = Optional.ofNullable(terminal);
-        return this;
-    }
-
-
-    /**
-     * The API resource URL of the [terminal](get-terminal) this payment was created for. Only present for
-     * point-of-sale payments.
-     */
-    public ListAllSubscriptionsSubscriptionsLinks withTerminal(Optional<? extends ListAllSubscriptionsTerminal> terminal) {
-        Utils.checkNotNull(terminal, "terminal");
-        this.terminal = terminal;
+    public ListAllSubscriptionsSubscriptionsLinks withPayments(JsonNullable<? extends ListAllSubscriptionsPayments> payments) {
+        Utils.checkNotNull(payments, "payments");
+        this.payments = payments;
         return this;
     }
 
@@ -614,16 +238,6 @@ public class ListAllSubscriptionsSubscriptionsLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public ListAllSubscriptionsSubscriptionsLinks withDocumentation(ListAllSubscriptionsSubscriptionsDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListAllSubscriptionsSubscriptionsLinks withDocumentation(Optional<? extends ListAllSubscriptionsSubscriptionsDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -640,49 +254,28 @@ public class ListAllSubscriptionsSubscriptionsLinks {
         ListAllSubscriptionsSubscriptionsLinks other = (ListAllSubscriptionsSubscriptionsLinks) o;
         return 
             Utils.enhancedDeepEquals(this.self, other.self) &&
-            Utils.enhancedDeepEquals(this.checkout, other.checkout) &&
-            Utils.enhancedDeepEquals(this.mobileAppCheckout, other.mobileAppCheckout) &&
-            Utils.enhancedDeepEquals(this.changePaymentState, other.changePaymentState) &&
-            Utils.enhancedDeepEquals(this.dashboard, other.dashboard) &&
-            Utils.enhancedDeepEquals(this.refunds, other.refunds) &&
-            Utils.enhancedDeepEquals(this.chargebacks, other.chargebacks) &&
-            Utils.enhancedDeepEquals(this.captures, other.captures) &&
-            Utils.enhancedDeepEquals(this.settlement, other.settlement) &&
             Utils.enhancedDeepEquals(this.customer, other.customer) &&
             Utils.enhancedDeepEquals(this.mandate, other.mandate) &&
-            Utils.enhancedDeepEquals(this.subscription, other.subscription) &&
-            Utils.enhancedDeepEquals(this.order, other.order) &&
-            Utils.enhancedDeepEquals(this.terminal, other.terminal) &&
+            Utils.enhancedDeepEquals(this.profile, other.profile) &&
+            Utils.enhancedDeepEquals(this.payments, other.payments) &&
             Utils.enhancedDeepEquals(this.documentation, other.documentation);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self, checkout, mobileAppCheckout,
-            changePaymentState, dashboard, refunds,
-            chargebacks, captures, settlement,
-            customer, mandate, subscription,
-            order, terminal, documentation);
+            self, customer, mandate,
+            profile, payments, documentation);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ListAllSubscriptionsSubscriptionsLinks.class,
                 "self", self,
-                "checkout", checkout,
-                "mobileAppCheckout", mobileAppCheckout,
-                "changePaymentState", changePaymentState,
-                "dashboard", dashboard,
-                "refunds", refunds,
-                "chargebacks", chargebacks,
-                "captures", captures,
-                "settlement", settlement,
                 "customer", customer,
                 "mandate", mandate,
-                "subscription", subscription,
-                "order", order,
-                "terminal", terminal,
+                "profile", profile,
+                "payments", payments,
                 "documentation", documentation);
     }
 
@@ -691,33 +284,15 @@ public class ListAllSubscriptionsSubscriptionsLinks {
 
         private ListAllSubscriptionsSubscriptionsSelf self;
 
-        private Optional<? extends ListAllSubscriptionsCheckout> checkout = Optional.empty();
-
-        private Optional<? extends ListAllSubscriptionsMobileAppCheckout> mobileAppCheckout = Optional.empty();
-
-        private Optional<? extends ListAllSubscriptionsChangePaymentState> changePaymentState = Optional.empty();
-
-        private ListAllSubscriptionsDashboard dashboard;
-
-        private Optional<? extends ListAllSubscriptionsRefunds> refunds = Optional.empty();
-
-        private Optional<? extends ListAllSubscriptionsChargebacks> chargebacks = Optional.empty();
-
-        private Optional<? extends ListAllSubscriptionsCaptures> captures = Optional.empty();
-
-        private Optional<? extends ListAllSubscriptionsSettlement> settlement = Optional.empty();
-
         private Optional<? extends ListAllSubscriptionsCustomer> customer = Optional.empty();
 
-        private Optional<? extends ListAllSubscriptionsMandate> mandate = Optional.empty();
+        private JsonNullable<? extends ListAllSubscriptionsMandate> mandate = JsonNullable.undefined();
 
-        private Optional<? extends ListAllSubscriptionsSubscription> subscription = Optional.empty();
+        private Optional<? extends ListAllSubscriptionsProfile> profile = Optional.empty();
 
-        private Optional<? extends ListAllSubscriptionsOrder> order = Optional.empty();
+        private JsonNullable<? extends ListAllSubscriptionsPayments> payments = JsonNullable.undefined();
 
-        private Optional<? extends ListAllSubscriptionsTerminal> terminal = Optional.empty();
-
-        private Optional<? extends ListAllSubscriptionsSubscriptionsDocumentation> documentation = Optional.empty();
+        private ListAllSubscriptionsSubscriptionsDocumentation documentation;
 
         private Builder() {
           // force use of static builder() method
@@ -735,168 +310,7 @@ public class ListAllSubscriptionsSubscriptionsLinks {
 
 
         /**
-         * The URL your customer should visit to make the payment. This is where you should redirect the customer to.
-         */
-        public Builder checkout(ListAllSubscriptionsCheckout checkout) {
-            Utils.checkNotNull(checkout, "checkout");
-            this.checkout = Optional.ofNullable(checkout);
-            return this;
-        }
-
-        /**
-         * The URL your customer should visit to make the payment. This is where you should redirect the customer to.
-         */
-        public Builder checkout(Optional<? extends ListAllSubscriptionsCheckout> checkout) {
-            Utils.checkNotNull(checkout, "checkout");
-            this.checkout = checkout;
-            return this;
-        }
-
-
-        /**
-         * The deeplink URL to the app of the payment method. Currently only available for `bancontact`.
-         */
-        public Builder mobileAppCheckout(ListAllSubscriptionsMobileAppCheckout mobileAppCheckout) {
-            Utils.checkNotNull(mobileAppCheckout, "mobileAppCheckout");
-            this.mobileAppCheckout = Optional.ofNullable(mobileAppCheckout);
-            return this;
-        }
-
-        /**
-         * The deeplink URL to the app of the payment method. Currently only available for `bancontact`.
-         */
-        public Builder mobileAppCheckout(Optional<? extends ListAllSubscriptionsMobileAppCheckout> mobileAppCheckout) {
-            Utils.checkNotNull(mobileAppCheckout, "mobileAppCheckout");
-            this.mobileAppCheckout = mobileAppCheckout;
-            return this;
-        }
-
-
-        /**
-         * For test mode payments in certain scenarios, a hosted interface is available to help you test different
-         * payment states.
-         * 
-         * <p>Firstly, for recurring test mode payments. Recurring payments do not have a checkout URL, because these
-         * payments are executed without any user interaction.
-         * 
-         * <p>Secondly, for paid test mode payments. The payment state screen will then allow you to create a refund or
-         * chargeback for the test payment.
-         */
-        public Builder changePaymentState(ListAllSubscriptionsChangePaymentState changePaymentState) {
-            Utils.checkNotNull(changePaymentState, "changePaymentState");
-            this.changePaymentState = Optional.ofNullable(changePaymentState);
-            return this;
-        }
-
-        /**
-         * For test mode payments in certain scenarios, a hosted interface is available to help you test different
-         * payment states.
-         * 
-         * <p>Firstly, for recurring test mode payments. Recurring payments do not have a checkout URL, because these
-         * payments are executed without any user interaction.
-         * 
-         * <p>Secondly, for paid test mode payments. The payment state screen will then allow you to create a refund or
-         * chargeback for the test payment.
-         */
-        public Builder changePaymentState(Optional<? extends ListAllSubscriptionsChangePaymentState> changePaymentState) {
-            Utils.checkNotNull(changePaymentState, "changePaymentState");
-            this.changePaymentState = changePaymentState;
-            return this;
-        }
-
-
-        /**
-         * Direct link to the payment in the Mollie Dashboard.
-         */
-        public Builder dashboard(ListAllSubscriptionsDashboard dashboard) {
-            Utils.checkNotNull(dashboard, "dashboard");
-            this.dashboard = dashboard;
-            return this;
-        }
-
-
-        /**
-         * The API resource URL of the [refunds](list-payment-refunds) that belong to this payment.
-         */
-        public Builder refunds(ListAllSubscriptionsRefunds refunds) {
-            Utils.checkNotNull(refunds, "refunds");
-            this.refunds = Optional.ofNullable(refunds);
-            return this;
-        }
-
-        /**
-         * The API resource URL of the [refunds](list-payment-refunds) that belong to this payment.
-         */
-        public Builder refunds(Optional<? extends ListAllSubscriptionsRefunds> refunds) {
-            Utils.checkNotNull(refunds, "refunds");
-            this.refunds = refunds;
-            return this;
-        }
-
-
-        /**
-         * The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this
-         * payment.
-         */
-        public Builder chargebacks(ListAllSubscriptionsChargebacks chargebacks) {
-            Utils.checkNotNull(chargebacks, "chargebacks");
-            this.chargebacks = Optional.ofNullable(chargebacks);
-            return this;
-        }
-
-        /**
-         * The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this
-         * payment.
-         */
-        public Builder chargebacks(Optional<? extends ListAllSubscriptionsChargebacks> chargebacks) {
-            Utils.checkNotNull(chargebacks, "chargebacks");
-            this.chargebacks = chargebacks;
-            return this;
-        }
-
-
-        /**
-         * The API resource URL of the [captures](list-payment-captures) that belong to this payment.
-         */
-        public Builder captures(ListAllSubscriptionsCaptures captures) {
-            Utils.checkNotNull(captures, "captures");
-            this.captures = Optional.ofNullable(captures);
-            return this;
-        }
-
-        /**
-         * The API resource URL of the [captures](list-payment-captures) that belong to this payment.
-         */
-        public Builder captures(Optional<? extends ListAllSubscriptionsCaptures> captures) {
-            Utils.checkNotNull(captures, "captures");
-            this.captures = captures;
-            return this;
-        }
-
-
-        /**
-         * The API resource URL of the [settlement](get-settlement) this payment has been settled with.
-         * Not present if not yet settled.
-         */
-        public Builder settlement(ListAllSubscriptionsSettlement settlement) {
-            Utils.checkNotNull(settlement, "settlement");
-            this.settlement = Optional.ofNullable(settlement);
-            return this;
-        }
-
-        /**
-         * The API resource URL of the [settlement](get-settlement) this payment has been settled with.
-         * Not present if not yet settled.
-         */
-        public Builder settlement(Optional<? extends ListAllSubscriptionsSettlement> settlement) {
-            Utils.checkNotNull(settlement, "settlement");
-            this.settlement = settlement;
-            return this;
-        }
-
-
-        /**
-         * The API resource URL of the [customer](get-customer).
+         * The API resource URL of the [customer](get-customer) this subscription was created for.
          */
         public Builder customer(ListAllSubscriptionsCustomer customer) {
             Utils.checkNotNull(customer, "customer");
@@ -905,7 +319,7 @@ public class ListAllSubscriptionsSubscriptionsLinks {
         }
 
         /**
-         * The API resource URL of the [customer](get-customer).
+         * The API resource URL of the [customer](get-customer) this subscription was created for.
          */
         public Builder customer(Optional<? extends ListAllSubscriptionsCustomer> customer) {
             Utils.checkNotNull(customer, "customer");
@@ -915,18 +329,18 @@ public class ListAllSubscriptionsSubscriptionsLinks {
 
 
         /**
-         * The API resource URL of the [mandate](get-mandate).
+         * The API resource URL of the [mandate](get-mandate) this subscription was created for.
          */
         public Builder mandate(ListAllSubscriptionsMandate mandate) {
             Utils.checkNotNull(mandate, "mandate");
-            this.mandate = Optional.ofNullable(mandate);
+            this.mandate = JsonNullable.of(mandate);
             return this;
         }
 
         /**
-         * The API resource URL of the [mandate](get-mandate).
+         * The API resource URL of the [mandate](get-mandate) this subscription was created for.
          */
-        public Builder mandate(Optional<? extends ListAllSubscriptionsMandate> mandate) {
+        public Builder mandate(JsonNullable<? extends ListAllSubscriptionsMandate> mandate) {
             Utils.checkNotNull(mandate, "mandate");
             this.mandate = mandate;
             return this;
@@ -934,62 +348,41 @@ public class ListAllSubscriptionsSubscriptionsLinks {
 
 
         /**
-         * The API resource URL of the [subscription](get-subscription).
+         * The API resource URL of the [profile](get-profile) this subscription was created for.
          */
-        public Builder subscription(ListAllSubscriptionsSubscription subscription) {
-            Utils.checkNotNull(subscription, "subscription");
-            this.subscription = Optional.ofNullable(subscription);
+        public Builder profile(ListAllSubscriptionsProfile profile) {
+            Utils.checkNotNull(profile, "profile");
+            this.profile = Optional.ofNullable(profile);
             return this;
         }
 
         /**
-         * The API resource URL of the [subscription](get-subscription).
+         * The API resource URL of the [profile](get-profile) this subscription was created for.
          */
-        public Builder subscription(Optional<? extends ListAllSubscriptionsSubscription> subscription) {
-            Utils.checkNotNull(subscription, "subscription");
-            this.subscription = subscription;
-            return this;
-        }
-
-
-        /**
-         * The API resource URL of the [order](get-order) this payment was created for. Not present if not created for an
-         * order.
-         */
-        public Builder order(ListAllSubscriptionsOrder order) {
-            Utils.checkNotNull(order, "order");
-            this.order = Optional.ofNullable(order);
-            return this;
-        }
-
-        /**
-         * The API resource URL of the [order](get-order) this payment was created for. Not present if not created for an
-         * order.
-         */
-        public Builder order(Optional<? extends ListAllSubscriptionsOrder> order) {
-            Utils.checkNotNull(order, "order");
-            this.order = order;
+        public Builder profile(Optional<? extends ListAllSubscriptionsProfile> profile) {
+            Utils.checkNotNull(profile, "profile");
+            this.profile = profile;
             return this;
         }
 
 
         /**
-         * The API resource URL of the [terminal](get-terminal) this payment was created for. Only present for
-         * point-of-sale payments.
+         * The API resource URL of the [payments](list-payments) created for this subscription. Omitted if no such
+         * payments exist (yet).
          */
-        public Builder terminal(ListAllSubscriptionsTerminal terminal) {
-            Utils.checkNotNull(terminal, "terminal");
-            this.terminal = Optional.ofNullable(terminal);
+        public Builder payments(ListAllSubscriptionsPayments payments) {
+            Utils.checkNotNull(payments, "payments");
+            this.payments = JsonNullable.of(payments);
             return this;
         }
 
         /**
-         * The API resource URL of the [terminal](get-terminal) this payment was created for. Only present for
-         * point-of-sale payments.
+         * The API resource URL of the [payments](list-payments) created for this subscription. Omitted if no such
+         * payments exist (yet).
          */
-        public Builder terminal(Optional<? extends ListAllSubscriptionsTerminal> terminal) {
-            Utils.checkNotNull(terminal, "terminal");
-            this.terminal = terminal;
+        public Builder payments(JsonNullable<? extends ListAllSubscriptionsPayments> payments) {
+            Utils.checkNotNull(payments, "payments");
+            this.payments = payments;
             return this;
         }
 
@@ -999,15 +392,6 @@ public class ListAllSubscriptionsSubscriptionsLinks {
          */
         public Builder documentation(ListAllSubscriptionsSubscriptionsDocumentation documentation) {
             Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends ListAllSubscriptionsSubscriptionsDocumentation> documentation) {
-            Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;
         }
@@ -1015,11 +399,8 @@ public class ListAllSubscriptionsSubscriptionsLinks {
         public ListAllSubscriptionsSubscriptionsLinks build() {
 
             return new ListAllSubscriptionsSubscriptionsLinks(
-                self, checkout, mobileAppCheckout,
-                changePaymentState, dashboard, refunds,
-                chargebacks, captures, settlement,
-                customer, mandate, subscription,
-                order, terminal, documentation);
+                self, customer, mandate,
+                profile, payments, documentation);
         }
 
     }

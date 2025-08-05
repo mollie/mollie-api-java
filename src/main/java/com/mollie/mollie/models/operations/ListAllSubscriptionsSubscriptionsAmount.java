@@ -13,10 +13,7 @@ import java.lang.String;
 /**
  * ListAllSubscriptionsSubscriptionsAmount
  * 
- * <p>The fee that you wish to charge.
- * 
- * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge
- * a €0.99 fee on a €1.00 payment.
+ * <p>In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
  */
 public class ListAllSubscriptionsSubscriptionsAmount {
     /**

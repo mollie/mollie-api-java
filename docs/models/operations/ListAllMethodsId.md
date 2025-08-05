@@ -16,6 +16,7 @@ method selection screen will be skipped.
 | `BANKTRANSFER`   | banktransfer     |
 | `BELFIUS`        | belfius          |
 | `BILLIE`         | billie           |
+| `BIZUM`          | bizum            |
 | `BLIK`           | blik             |
 | `CREDITCARD`     | creditcard       |
 | `DIRECTDEBIT`    | directdebit      |
@@ -28,9 +29,14 @@ method selection screen will be skipped.
 | `KLARNAPAYLATER` | klarnapaylater   |
 | `KLARNAPAYNOW`   | klarnapaynow     |
 | `KLARNASLICEIT`  | klarnasliceit    |
+| `MBWAY`          | mbway            |
+| `MULTIBANCO`     | multibanco       |
 | `MYBANK`         | mybank           |
+| `PAYBYBANK`      | paybybank        |
+| `PAYCONIQ`       | payconiq         |
 | `PAYPAL`         | paypal           |
 | `PAYSAFECARD`    | paysafecard      |
+| `POINTOFSALE`    | pointofsale      |
 | `PRZELEWY24`     | przelewy24       |
 | `RIVERTY`        | riverty          |
 | `SATISPAY`       | satispay         |

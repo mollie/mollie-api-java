@@ -18,7 +18,7 @@ import java.util.Optional;
 /**
  * ListAllSubscriptionsResponseBody
  * 
- * <p>A list of payment objects.
+ * <p>A list of subscription objects.
  */
 public class ListAllSubscriptionsResponseBody {
     /**

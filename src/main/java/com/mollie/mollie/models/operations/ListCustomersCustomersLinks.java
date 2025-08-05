@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -24,16 +23,14 @@ public class ListCustomersCustomersLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends ListCustomersCustomersSelf> self;
+    private ListCustomersCustomersSelf self;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("dashboard")
-    private Optional<? extends ListCustomersDashboard> dashboard;
+    private ListCustomersDashboard dashboard;
 
     /**
      * The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments
@@ -62,18 +59,17 @@ public class ListCustomersCustomersLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends ListCustomersCustomersDocumentation> documentation;
+    private ListCustomersCustomersDocumentation documentation;
 
     @JsonCreator
     public ListCustomersCustomersLinks(
-            @JsonProperty("self") Optional<? extends ListCustomersCustomersSelf> self,
-            @JsonProperty("dashboard") Optional<? extends ListCustomersDashboard> dashboard,
+            @JsonProperty("self") ListCustomersCustomersSelf self,
+            @JsonProperty("dashboard") ListCustomersDashboard dashboard,
             @JsonProperty("payments") JsonNullable<? extends ListCustomersPayments> payments,
             @JsonProperty("mandates") JsonNullable<? extends ListCustomersMandates> mandates,
             @JsonProperty("subscriptions") JsonNullable<? extends ListCustomersSubscriptions> subscriptions,
-            @JsonProperty("documentation") Optional<? extends ListCustomersCustomersDocumentation> documentation) {
+            @JsonProperty("documentation") ListCustomersCustomersDocumentation documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(dashboard, "dashboard");
         Utils.checkNotNull(payments, "payments");
@@ -88,27 +84,28 @@ public class ListCustomersCustomersLinks {
         this.documentation = documentation;
     }
     
-    public ListCustomersCustomersLinks() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+    public ListCustomersCustomersLinks(
+            ListCustomersCustomersSelf self,
+            ListCustomersDashboard dashboard,
+            ListCustomersCustomersDocumentation documentation) {
+        this(self, dashboard, JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), documentation);
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListCustomersCustomersSelf> self() {
-        return (Optional<ListCustomersCustomersSelf>) self;
+    public ListCustomersCustomersSelf self() {
+        return self;
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListCustomersDashboard> dashboard() {
-        return (Optional<ListCustomersDashboard>) dashboard;
+    public ListCustomersDashboard dashboard() {
+        return dashboard;
     }
 
     /**
@@ -144,10 +141,9 @@ public class ListCustomersCustomersLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListCustomersCustomersDocumentation> documentation() {
-        return (Optional<ListCustomersCustomersDocumentation>) documentation;
+    public ListCustomersCustomersDocumentation documentation() {
+        return documentation;
     }
 
     public static Builder builder() {
@@ -160,16 +156,6 @@ public class ListCustomersCustomersLinks {
      */
     public ListCustomersCustomersLinks withSelf(ListCustomersCustomersSelf self) {
         Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListCustomersCustomersLinks withSelf(Optional<? extends ListCustomersCustomersSelf> self) {
-        Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
@@ -178,16 +164,6 @@ public class ListCustomersCustomersLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public ListCustomersCustomersLinks withDashboard(ListCustomersDashboard dashboard) {
-        Utils.checkNotNull(dashboard, "dashboard");
-        this.dashboard = Optional.ofNullable(dashboard);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListCustomersCustomersLinks withDashboard(Optional<? extends ListCustomersDashboard> dashboard) {
         Utils.checkNotNull(dashboard, "dashboard");
         this.dashboard = dashboard;
         return this;
@@ -258,16 +234,6 @@ public class ListCustomersCustomersLinks {
      */
     public ListCustomersCustomersLinks withDocumentation(ListCustomersCustomersDocumentation documentation) {
         Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListCustomersCustomersLinks withDocumentation(Optional<? extends ListCustomersCustomersDocumentation> documentation) {
-        Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
     }
@@ -311,9 +277,9 @@ public class ListCustomersCustomersLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends ListCustomersCustomersSelf> self = Optional.empty();
+        private ListCustomersCustomersSelf self;
 
-        private Optional<? extends ListCustomersDashboard> dashboard = Optional.empty();
+        private ListCustomersDashboard dashboard;
 
         private JsonNullable<? extends ListCustomersPayments> payments = JsonNullable.undefined();
 
@@ -321,7 +287,7 @@ public class ListCustomersCustomersLinks {
 
         private JsonNullable<? extends ListCustomersSubscriptions> subscriptions = JsonNullable.undefined();
 
-        private Optional<? extends ListCustomersCustomersDocumentation> documentation = Optional.empty();
+        private ListCustomersCustomersDocumentation documentation;
 
         private Builder() {
           // force use of static builder() method
@@ -333,15 +299,6 @@ public class ListCustomersCustomersLinks {
          */
         public Builder self(ListCustomersCustomersSelf self) {
             Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder self(Optional<? extends ListCustomersCustomersSelf> self) {
-            Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
         }
@@ -351,15 +308,6 @@ public class ListCustomersCustomersLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder dashboard(ListCustomersDashboard dashboard) {
-            Utils.checkNotNull(dashboard, "dashboard");
-            this.dashboard = Optional.ofNullable(dashboard);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder dashboard(Optional<? extends ListCustomersDashboard> dashboard) {
             Utils.checkNotNull(dashboard, "dashboard");
             this.dashboard = dashboard;
             return this;
@@ -433,15 +381,6 @@ public class ListCustomersCustomersLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(ListCustomersCustomersDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends ListCustomersCustomersDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

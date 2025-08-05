@@ -11,12 +11,14 @@ import java.util.Optional;
 /**
  * ListAllSubscriptionsInterval
  * 
- * <p>Cadence unit of the recurring item. For example: `12 months`, `52 weeks` or `365 days`.
+ * <p>Interval to wait between payments, for example `1 month` or `14 days`.
+ * 
+ * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
  */
 public enum ListAllSubscriptionsInterval {
-    DOT_DOT_DOT_MONTHS("... months"),
+    DOT_DOT_DOT_DAYS("... days"),
     DOT_DOT_DOT_WEEKS("... weeks"),
-    DOT_DOT_DOT_DAYS("... days");
+    DOT_DOT_DOT_MONTHS("... months");
 
     @JsonValue
     private final String value;

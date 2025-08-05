@@ -155,6 +155,29 @@ public class CreatePaymentLinkRequestBody {
     @JsonProperty("applicationFee")
     private Optional<? extends CreatePaymentLinkApplicationFee> applicationFee;
 
+    /**
+     * If set to `first`, a payment mandate is established right after a payment is made by the customer.
+     * 
+     * <p>Defaults to `oneoff`, which is a regular payment link and will not establish a mandate after payment.
+     * 
+     * <p>The mandate ID can be retrieved by making a call to the
+     * [Payment Link Payments Endpoint](get-payment-link-payments).
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("sequenceType")
+    private JsonNullable<? extends CreatePaymentLinkSequenceType> sequenceType;
+
+    /**
+     * **Only relevant when `sequenceType` is set to `first`**
+     * 
+     * <p>The ID of the [customer](get-customer) the payment link is being created for. If a value is not provided,
+     * the customer will be required to input relevant information which will be used to establish a mandate after
+     * the payment is made.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("customerId")
+    private JsonNullable<String> customerId;
+
     @JsonCreator
     public CreatePaymentLinkRequestBody(
             @JsonProperty("description") String description,
@@ -169,7 +192,9 @@ public class CreatePaymentLinkRequestBody {
             @JsonProperty("reusable") JsonNullable<Boolean> reusable,
             @JsonProperty("expiresAt") JsonNullable<String> expiresAt,
             @JsonProperty("allowedMethods") JsonNullable<? extends List<String>> allowedMethods,
-            @JsonProperty("applicationFee") Optional<? extends CreatePaymentLinkApplicationFee> applicationFee) {
+            @JsonProperty("applicationFee") Optional<? extends CreatePaymentLinkApplicationFee> applicationFee,
+            @JsonProperty("sequenceType") JsonNullable<? extends CreatePaymentLinkSequenceType> sequenceType,
+            @JsonProperty("customerId") JsonNullable<String> customerId) {
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(minimumAmount, "minimumAmount");
@@ -183,6 +208,8 @@ public class CreatePaymentLinkRequestBody {
         Utils.checkNotNull(expiresAt, "expiresAt");
         Utils.checkNotNull(allowedMethods, "allowedMethods");
         Utils.checkNotNull(applicationFee, "applicationFee");
+        Utils.checkNotNull(sequenceType, "sequenceType");
+        Utils.checkNotNull(customerId, "customerId");
         this.description = description;
         this.amount = amount;
         this.minimumAmount = minimumAmount;
@@ -196,6 +223,8 @@ public class CreatePaymentLinkRequestBody {
         this.expiresAt = expiresAt;
         this.allowedMethods = allowedMethods;
         this.applicationFee = applicationFee;
+        this.sequenceType = sequenceType;
+        this.customerId = customerId;
     }
     
     public CreatePaymentLinkRequestBody(
@@ -204,7 +233,7 @@ public class CreatePaymentLinkRequestBody {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -360,6 +389,32 @@ public class CreatePaymentLinkRequestBody {
     @JsonIgnore
     public Optional<CreatePaymentLinkApplicationFee> applicationFee() {
         return (Optional<CreatePaymentLinkApplicationFee>) applicationFee;
+    }
+
+    /**
+     * If set to `first`, a payment mandate is established right after a payment is made by the customer.
+     * 
+     * <p>Defaults to `oneoff`, which is a regular payment link and will not establish a mandate after payment.
+     * 
+     * <p>The mandate ID can be retrieved by making a call to the
+     * [Payment Link Payments Endpoint](get-payment-link-payments).
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<CreatePaymentLinkSequenceType> sequenceType() {
+        return (JsonNullable<CreatePaymentLinkSequenceType>) sequenceType;
+    }
+
+    /**
+     * **Only relevant when `sequenceType` is set to `first`**
+     * 
+     * <p>The ID of the [customer](get-customer) the payment link is being created for. If a value is not provided,
+     * the customer will be required to input relevant information which will be used to establish a mandate after
+     * the payment is made.
+     */
+    @JsonIgnore
+    public JsonNullable<String> customerId() {
+        return customerId;
     }
 
     public static Builder builder() {
@@ -682,6 +737,60 @@ public class CreatePaymentLinkRequestBody {
         return this;
     }
 
+    /**
+     * If set to `first`, a payment mandate is established right after a payment is made by the customer.
+     * 
+     * <p>Defaults to `oneoff`, which is a regular payment link and will not establish a mandate after payment.
+     * 
+     * <p>The mandate ID can be retrieved by making a call to the
+     * [Payment Link Payments Endpoint](get-payment-link-payments).
+     */
+    public CreatePaymentLinkRequestBody withSequenceType(CreatePaymentLinkSequenceType sequenceType) {
+        Utils.checkNotNull(sequenceType, "sequenceType");
+        this.sequenceType = JsonNullable.of(sequenceType);
+        return this;
+    }
+
+    /**
+     * If set to `first`, a payment mandate is established right after a payment is made by the customer.
+     * 
+     * <p>Defaults to `oneoff`, which is a regular payment link and will not establish a mandate after payment.
+     * 
+     * <p>The mandate ID can be retrieved by making a call to the
+     * [Payment Link Payments Endpoint](get-payment-link-payments).
+     */
+    public CreatePaymentLinkRequestBody withSequenceType(JsonNullable<? extends CreatePaymentLinkSequenceType> sequenceType) {
+        Utils.checkNotNull(sequenceType, "sequenceType");
+        this.sequenceType = sequenceType;
+        return this;
+    }
+
+    /**
+     * **Only relevant when `sequenceType` is set to `first`**
+     * 
+     * <p>The ID of the [customer](get-customer) the payment link is being created for. If a value is not provided,
+     * the customer will be required to input relevant information which will be used to establish a mandate after
+     * the payment is made.
+     */
+    public CreatePaymentLinkRequestBody withCustomerId(String customerId) {
+        Utils.checkNotNull(customerId, "customerId");
+        this.customerId = JsonNullable.of(customerId);
+        return this;
+    }
+
+    /**
+     * **Only relevant when `sequenceType` is set to `first`**
+     * 
+     * <p>The ID of the [customer](get-customer) the payment link is being created for. If a value is not provided,
+     * the customer will be required to input relevant information which will be used to establish a mandate after
+     * the payment is made.
+     */
+    public CreatePaymentLinkRequestBody withCustomerId(JsonNullable<String> customerId) {
+        Utils.checkNotNull(customerId, "customerId");
+        this.customerId = customerId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -704,7 +813,9 @@ public class CreatePaymentLinkRequestBody {
             Utils.enhancedDeepEquals(this.reusable, other.reusable) &&
             Utils.enhancedDeepEquals(this.expiresAt, other.expiresAt) &&
             Utils.enhancedDeepEquals(this.allowedMethods, other.allowedMethods) &&
-            Utils.enhancedDeepEquals(this.applicationFee, other.applicationFee);
+            Utils.enhancedDeepEquals(this.applicationFee, other.applicationFee) &&
+            Utils.enhancedDeepEquals(this.sequenceType, other.sequenceType) &&
+            Utils.enhancedDeepEquals(this.customerId, other.customerId);
     }
     
     @Override
@@ -714,7 +825,7 @@ public class CreatePaymentLinkRequestBody {
             redirectUrl, webhookUrl, lines,
             billingAddress, shippingAddress, profileId,
             reusable, expiresAt, allowedMethods,
-            applicationFee);
+            applicationFee, sequenceType, customerId);
     }
     
     @Override
@@ -732,7 +843,9 @@ public class CreatePaymentLinkRequestBody {
                 "reusable", reusable,
                 "expiresAt", expiresAt,
                 "allowedMethods", allowedMethods,
-                "applicationFee", applicationFee);
+                "applicationFee", applicationFee,
+                "sequenceType", sequenceType,
+                "customerId", customerId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -763,6 +876,10 @@ public class CreatePaymentLinkRequestBody {
         private JsonNullable<? extends List<String>> allowedMethods = JsonNullable.undefined();
 
         private Optional<? extends CreatePaymentLinkApplicationFee> applicationFee = Optional.empty();
+
+        private JsonNullable<? extends CreatePaymentLinkSequenceType> sequenceType = JsonNullable.undefined();
+
+        private JsonNullable<String> customerId = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -1093,6 +1210,62 @@ public class CreatePaymentLinkRequestBody {
             return this;
         }
 
+
+        /**
+         * If set to `first`, a payment mandate is established right after a payment is made by the customer.
+         * 
+         * <p>Defaults to `oneoff`, which is a regular payment link and will not establish a mandate after payment.
+         * 
+         * <p>The mandate ID can be retrieved by making a call to the
+         * [Payment Link Payments Endpoint](get-payment-link-payments).
+         */
+        public Builder sequenceType(CreatePaymentLinkSequenceType sequenceType) {
+            Utils.checkNotNull(sequenceType, "sequenceType");
+            this.sequenceType = JsonNullable.of(sequenceType);
+            return this;
+        }
+
+        /**
+         * If set to `first`, a payment mandate is established right after a payment is made by the customer.
+         * 
+         * <p>Defaults to `oneoff`, which is a regular payment link and will not establish a mandate after payment.
+         * 
+         * <p>The mandate ID can be retrieved by making a call to the
+         * [Payment Link Payments Endpoint](get-payment-link-payments).
+         */
+        public Builder sequenceType(JsonNullable<? extends CreatePaymentLinkSequenceType> sequenceType) {
+            Utils.checkNotNull(sequenceType, "sequenceType");
+            this.sequenceType = sequenceType;
+            return this;
+        }
+
+
+        /**
+         * **Only relevant when `sequenceType` is set to `first`**
+         * 
+         * <p>The ID of the [customer](get-customer) the payment link is being created for. If a value is not provided,
+         * the customer will be required to input relevant information which will be used to establish a mandate after
+         * the payment is made.
+         */
+        public Builder customerId(String customerId) {
+            Utils.checkNotNull(customerId, "customerId");
+            this.customerId = JsonNullable.of(customerId);
+            return this;
+        }
+
+        /**
+         * **Only relevant when `sequenceType` is set to `first`**
+         * 
+         * <p>The ID of the [customer](get-customer) the payment link is being created for. If a value is not provided,
+         * the customer will be required to input relevant information which will be used to establish a mandate after
+         * the payment is made.
+         */
+        public Builder customerId(JsonNullable<String> customerId) {
+            Utils.checkNotNull(customerId, "customerId");
+            this.customerId = customerId;
+            return this;
+        }
+
         public CreatePaymentLinkRequestBody build() {
             if (reusable == null) {
                 reusable = _SINGLETON_VALUE_Reusable.value();
@@ -1103,7 +1276,7 @@ public class CreatePaymentLinkRequestBody {
                 redirectUrl, webhookUrl, lines,
                 billingAddress, shippingAddress, profileId,
                 reusable, expiresAt, allowedMethods,
-                applicationFee);
+                applicationFee, sequenceType, customerId);
         }
 
 

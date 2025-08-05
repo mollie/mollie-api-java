@@ -24,16 +24,15 @@ public class CancelSubscriptionLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends CancelSubscriptionSelf> self;
+    private CancelSubscriptionSelf self;
 
     /**
      * The API resource URL of the [customer](get-customer) this subscription was created for.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("customer")
-    private JsonNullable<? extends CancelSubscriptionCustomer> customer;
+    private Optional<? extends CancelSubscriptionCustomer> customer;
 
     /**
      * The API resource URL of the [mandate](get-mandate) this subscription was created for.
@@ -45,9 +44,9 @@ public class CancelSubscriptionLinks {
     /**
      * The API resource URL of the [profile](get-profile) this subscription was created for.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("profile")
-    private JsonNullable<? extends CancelSubscriptionProfile> profile;
+    private Optional<? extends CancelSubscriptionProfile> profile;
 
     /**
      * The API resource URL of the [payments](list-payments) created for this subscription. Omitted if no such
@@ -60,18 +59,17 @@ public class CancelSubscriptionLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends CancelSubscriptionDocumentation> documentation;
+    private CancelSubscriptionDocumentation documentation;
 
     @JsonCreator
     public CancelSubscriptionLinks(
-            @JsonProperty("self") Optional<? extends CancelSubscriptionSelf> self,
-            @JsonProperty("customer") JsonNullable<? extends CancelSubscriptionCustomer> customer,
+            @JsonProperty("self") CancelSubscriptionSelf self,
+            @JsonProperty("customer") Optional<? extends CancelSubscriptionCustomer> customer,
             @JsonProperty("mandate") JsonNullable<? extends CancelSubscriptionMandate> mandate,
-            @JsonProperty("profile") JsonNullable<? extends CancelSubscriptionProfile> profile,
+            @JsonProperty("profile") Optional<? extends CancelSubscriptionProfile> profile,
             @JsonProperty("payments") JsonNullable<? extends CancelSubscriptionPayments> payments,
-            @JsonProperty("documentation") Optional<? extends CancelSubscriptionDocumentation> documentation) {
+            @JsonProperty("documentation") CancelSubscriptionDocumentation documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(customer, "customer");
         Utils.checkNotNull(mandate, "mandate");
@@ -86,18 +84,19 @@ public class CancelSubscriptionLinks {
         this.documentation = documentation;
     }
     
-    public CancelSubscriptionLinks() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+    public CancelSubscriptionLinks(
+            CancelSubscriptionSelf self,
+            CancelSubscriptionDocumentation documentation) {
+        this(self, Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), documentation);
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CancelSubscriptionSelf> self() {
-        return (Optional<CancelSubscriptionSelf>) self;
+    public CancelSubscriptionSelf self() {
+        return self;
     }
 
     /**
@@ -105,8 +104,8 @@ public class CancelSubscriptionLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CancelSubscriptionCustomer> customer() {
-        return (JsonNullable<CancelSubscriptionCustomer>) customer;
+    public Optional<CancelSubscriptionCustomer> customer() {
+        return (Optional<CancelSubscriptionCustomer>) customer;
     }
 
     /**
@@ -123,8 +122,8 @@ public class CancelSubscriptionLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CancelSubscriptionProfile> profile() {
-        return (JsonNullable<CancelSubscriptionProfile>) profile;
+    public Optional<CancelSubscriptionProfile> profile() {
+        return (Optional<CancelSubscriptionProfile>) profile;
     }
 
     /**
@@ -140,10 +139,9 @@ public class CancelSubscriptionLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CancelSubscriptionDocumentation> documentation() {
-        return (Optional<CancelSubscriptionDocumentation>) documentation;
+    public CancelSubscriptionDocumentation documentation() {
+        return documentation;
     }
 
     public static Builder builder() {
@@ -156,16 +154,6 @@ public class CancelSubscriptionLinks {
      */
     public CancelSubscriptionLinks withSelf(CancelSubscriptionSelf self) {
         Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public CancelSubscriptionLinks withSelf(Optional<? extends CancelSubscriptionSelf> self) {
-        Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
@@ -175,14 +163,15 @@ public class CancelSubscriptionLinks {
      */
     public CancelSubscriptionLinks withCustomer(CancelSubscriptionCustomer customer) {
         Utils.checkNotNull(customer, "customer");
-        this.customer = JsonNullable.of(customer);
+        this.customer = Optional.ofNullable(customer);
         return this;
     }
+
 
     /**
      * The API resource URL of the [customer](get-customer) this subscription was created for.
      */
-    public CancelSubscriptionLinks withCustomer(JsonNullable<? extends CancelSubscriptionCustomer> customer) {
+    public CancelSubscriptionLinks withCustomer(Optional<? extends CancelSubscriptionCustomer> customer) {
         Utils.checkNotNull(customer, "customer");
         this.customer = customer;
         return this;
@@ -211,14 +200,15 @@ public class CancelSubscriptionLinks {
      */
     public CancelSubscriptionLinks withProfile(CancelSubscriptionProfile profile) {
         Utils.checkNotNull(profile, "profile");
-        this.profile = JsonNullable.of(profile);
+        this.profile = Optional.ofNullable(profile);
         return this;
     }
+
 
     /**
      * The API resource URL of the [profile](get-profile) this subscription was created for.
      */
-    public CancelSubscriptionLinks withProfile(JsonNullable<? extends CancelSubscriptionProfile> profile) {
+    public CancelSubscriptionLinks withProfile(Optional<? extends CancelSubscriptionProfile> profile) {
         Utils.checkNotNull(profile, "profile");
         this.profile = profile;
         return this;
@@ -248,16 +238,6 @@ public class CancelSubscriptionLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public CancelSubscriptionLinks withDocumentation(CancelSubscriptionDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public CancelSubscriptionLinks withDocumentation(Optional<? extends CancelSubscriptionDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -302,17 +282,17 @@ public class CancelSubscriptionLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends CancelSubscriptionSelf> self = Optional.empty();
+        private CancelSubscriptionSelf self;
 
-        private JsonNullable<? extends CancelSubscriptionCustomer> customer = JsonNullable.undefined();
+        private Optional<? extends CancelSubscriptionCustomer> customer = Optional.empty();
 
         private JsonNullable<? extends CancelSubscriptionMandate> mandate = JsonNullable.undefined();
 
-        private JsonNullable<? extends CancelSubscriptionProfile> profile = JsonNullable.undefined();
+        private Optional<? extends CancelSubscriptionProfile> profile = Optional.empty();
 
         private JsonNullable<? extends CancelSubscriptionPayments> payments = JsonNullable.undefined();
 
-        private Optional<? extends CancelSubscriptionDocumentation> documentation = Optional.empty();
+        private CancelSubscriptionDocumentation documentation;
 
         private Builder() {
           // force use of static builder() method
@@ -324,15 +304,6 @@ public class CancelSubscriptionLinks {
          */
         public Builder self(CancelSubscriptionSelf self) {
             Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder self(Optional<? extends CancelSubscriptionSelf> self) {
-            Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
         }
@@ -343,14 +314,14 @@ public class CancelSubscriptionLinks {
          */
         public Builder customer(CancelSubscriptionCustomer customer) {
             Utils.checkNotNull(customer, "customer");
-            this.customer = JsonNullable.of(customer);
+            this.customer = Optional.ofNullable(customer);
             return this;
         }
 
         /**
          * The API resource URL of the [customer](get-customer) this subscription was created for.
          */
-        public Builder customer(JsonNullable<? extends CancelSubscriptionCustomer> customer) {
+        public Builder customer(Optional<? extends CancelSubscriptionCustomer> customer) {
             Utils.checkNotNull(customer, "customer");
             this.customer = customer;
             return this;
@@ -381,14 +352,14 @@ public class CancelSubscriptionLinks {
          */
         public Builder profile(CancelSubscriptionProfile profile) {
             Utils.checkNotNull(profile, "profile");
-            this.profile = JsonNullable.of(profile);
+            this.profile = Optional.ofNullable(profile);
             return this;
         }
 
         /**
          * The API resource URL of the [profile](get-profile) this subscription was created for.
          */
-        public Builder profile(JsonNullable<? extends CancelSubscriptionProfile> profile) {
+        public Builder profile(Optional<? extends CancelSubscriptionProfile> profile) {
             Utils.checkNotNull(profile, "profile");
             this.profile = profile;
             return this;
@@ -420,15 +391,6 @@ public class CancelSubscriptionLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(CancelSubscriptionDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends CancelSubscriptionDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

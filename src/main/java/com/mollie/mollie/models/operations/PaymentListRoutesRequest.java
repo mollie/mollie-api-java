@@ -7,8 +7,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class PaymentListRoutesRequest {
@@ -18,11 +20,29 @@ public class PaymentListRoutesRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=paymentId")
     private String paymentId;
 
+    /**
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting the `testmode` query parameter to `true`.
+     * 
+     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=testmode")
+    private JsonNullable<Boolean> testmode;
+
     @JsonCreator
     public PaymentListRoutesRequest(
-            String paymentId) {
+            String paymentId,
+            JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(paymentId, "paymentId");
+        Utils.checkNotNull(testmode, "testmode");
         this.paymentId = paymentId;
+        this.testmode = testmode;
+    }
+    
+    public PaymentListRoutesRequest(
+            String paymentId) {
+        this(paymentId, JsonNullable.undefined());
     }
 
     /**
@@ -31,6 +51,18 @@ public class PaymentListRoutesRequest {
     @JsonIgnore
     public String paymentId() {
         return paymentId;
+    }
+
+    /**
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting the `testmode` query parameter to `true`.
+     * 
+     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     */
+    @JsonIgnore
+    public JsonNullable<Boolean> testmode() {
+        return testmode;
     }
 
     public static Builder builder() {
@@ -47,6 +79,32 @@ public class PaymentListRoutesRequest {
         return this;
     }
 
+    /**
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting the `testmode` query parameter to `true`.
+     * 
+     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     */
+    public PaymentListRoutesRequest withTestmode(boolean testmode) {
+        Utils.checkNotNull(testmode, "testmode");
+        this.testmode = JsonNullable.of(testmode);
+        return this;
+    }
+
+    /**
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting the `testmode` query parameter to `true`.
+     * 
+     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     */
+    public PaymentListRoutesRequest withTestmode(JsonNullable<Boolean> testmode) {
+        Utils.checkNotNull(testmode, "testmode");
+        this.testmode = testmode;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -57,25 +115,29 @@ public class PaymentListRoutesRequest {
         }
         PaymentListRoutesRequest other = (PaymentListRoutesRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.paymentId, other.paymentId);
+            Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
+            Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentId);
+            paymentId, testmode);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PaymentListRoutesRequest.class,
-                "paymentId", paymentId);
+                "paymentId", paymentId,
+                "testmode", testmode);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
         private String paymentId;
+
+        private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -91,10 +153,37 @@ public class PaymentListRoutesRequest {
             return this;
         }
 
+
+        /**
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting the `testmode` query parameter to `true`.
+         * 
+         * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+         */
+        public Builder testmode(boolean testmode) {
+            Utils.checkNotNull(testmode, "testmode");
+            this.testmode = JsonNullable.of(testmode);
+            return this;
+        }
+
+        /**
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting the `testmode` query parameter to `true`.
+         * 
+         * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+         */
+        public Builder testmode(JsonNullable<Boolean> testmode) {
+            Utils.checkNotNull(testmode, "testmode");
+            this.testmode = testmode;
+            return this;
+        }
+
         public PaymentListRoutesRequest build() {
 
             return new PaymentListRoutesRequest(
-                paymentId);
+                paymentId, testmode);
         }
 
     }

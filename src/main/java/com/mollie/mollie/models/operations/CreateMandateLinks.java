@@ -5,14 +5,10 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Optional;
 
 /**
  * CreateMandateLinks
@@ -23,29 +19,26 @@ public class CreateMandateLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends CreateMandateSelf> self;
+    private CreateMandateSelf self;
 
     /**
      * The API resource URL of the [customer](get-customer) that this mandate belongs to.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("customer")
-    private Optional<? extends CreateMandateCustomer> customer;
+    private CreateMandateCustomer customer;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends CreateMandateDocumentation> documentation;
+    private CreateMandateDocumentation documentation;
 
     @JsonCreator
     public CreateMandateLinks(
-            @JsonProperty("self") Optional<? extends CreateMandateSelf> self,
-            @JsonProperty("customer") Optional<? extends CreateMandateCustomer> customer,
-            @JsonProperty("documentation") Optional<? extends CreateMandateDocumentation> documentation) {
+            @JsonProperty("self") CreateMandateSelf self,
+            @JsonProperty("customer") CreateMandateCustomer customer,
+            @JsonProperty("documentation") CreateMandateDocumentation documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(customer, "customer");
         Utils.checkNotNull(documentation, "documentation");
@@ -53,36 +46,29 @@ public class CreateMandateLinks {
         this.customer = customer;
         this.documentation = documentation;
     }
-    
-    public CreateMandateLinks() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
-    }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateMandateSelf> self() {
-        return (Optional<CreateMandateSelf>) self;
+    public CreateMandateSelf self() {
+        return self;
     }
 
     /**
      * The API resource URL of the [customer](get-customer) that this mandate belongs to.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateMandateCustomer> customer() {
-        return (Optional<CreateMandateCustomer>) customer;
+    public CreateMandateCustomer customer() {
+        return customer;
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateMandateDocumentation> documentation() {
-        return (Optional<CreateMandateDocumentation>) documentation;
+    public CreateMandateDocumentation documentation() {
+        return documentation;
     }
 
     public static Builder builder() {
@@ -95,16 +81,6 @@ public class CreateMandateLinks {
      */
     public CreateMandateLinks withSelf(CreateMandateSelf self) {
         Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public CreateMandateLinks withSelf(Optional<? extends CreateMandateSelf> self) {
-        Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
@@ -114,16 +90,6 @@ public class CreateMandateLinks {
      */
     public CreateMandateLinks withCustomer(CreateMandateCustomer customer) {
         Utils.checkNotNull(customer, "customer");
-        this.customer = Optional.ofNullable(customer);
-        return this;
-    }
-
-
-    /**
-     * The API resource URL of the [customer](get-customer) that this mandate belongs to.
-     */
-    public CreateMandateLinks withCustomer(Optional<? extends CreateMandateCustomer> customer) {
-        Utils.checkNotNull(customer, "customer");
         this.customer = customer;
         return this;
     }
@@ -132,16 +98,6 @@ public class CreateMandateLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public CreateMandateLinks withDocumentation(CreateMandateDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public CreateMandateLinks withDocumentation(Optional<? extends CreateMandateDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -179,11 +135,11 @@ public class CreateMandateLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends CreateMandateSelf> self = Optional.empty();
+        private CreateMandateSelf self;
 
-        private Optional<? extends CreateMandateCustomer> customer = Optional.empty();
+        private CreateMandateCustomer customer;
 
-        private Optional<? extends CreateMandateDocumentation> documentation = Optional.empty();
+        private CreateMandateDocumentation documentation;
 
         private Builder() {
           // force use of static builder() method
@@ -195,15 +151,6 @@ public class CreateMandateLinks {
          */
         public Builder self(CreateMandateSelf self) {
             Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder self(Optional<? extends CreateMandateSelf> self) {
-            Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
         }
@@ -214,15 +161,6 @@ public class CreateMandateLinks {
          */
         public Builder customer(CreateMandateCustomer customer) {
             Utils.checkNotNull(customer, "customer");
-            this.customer = Optional.ofNullable(customer);
-            return this;
-        }
-
-        /**
-         * The API resource URL of the [customer](get-customer) that this mandate belongs to.
-         */
-        public Builder customer(Optional<? extends CreateMandateCustomer> customer) {
-            Utils.checkNotNull(customer, "customer");
             this.customer = customer;
             return this;
         }
@@ -232,15 +170,6 @@ public class CreateMandateLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(CreateMandateDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends CreateMandateDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

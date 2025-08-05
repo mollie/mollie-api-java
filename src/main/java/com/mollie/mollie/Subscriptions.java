@@ -39,6 +39,7 @@ import com.mollie.mollie.operations.UpdateSubscriptionOperation;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -395,12 +396,12 @@ public class Subscriptions {
      * 
      * <p>The results are paginated.
      * 
-     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListAllSubscriptionsResponse all(ListAllSubscriptionsRequest request) throws Exception {
-        return all(request, Optional.empty());
+    public ListAllSubscriptionsResponse allDirect() throws Exception {
+        return all(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -410,12 +411,36 @@ public class Subscriptions {
      * 
      * <p>The results are paginated.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     *         result set.
+     * @param limit The maximum number of items to return. Defaults to 50 items.
+     * @param profileId The identifier referring to the [profile](get-profile) you wish to retrieve subscriptions for.
+     *         
+     *         Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
+     *         
+     *         To retrieve all subscriptions across the organization, use an organization-level API credential and omit the
+     *         `profileId` parameter.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     *         setting the `testmode` query parameter to `true`.
+     *         
+     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListAllSubscriptionsResponse all(ListAllSubscriptionsRequest request, Optional<Options> options) throws Exception {
+    public ListAllSubscriptionsResponse all(
+            Optional<String> from, JsonNullable<Long> limit,
+            JsonNullable<String> profileId, JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception {
+        ListAllSubscriptionsRequest request =
+            ListAllSubscriptionsRequest
+                .builder()
+                .from(from)
+                .limit(limit)
+                .profileId(profileId)
+                .testmode(testmode)
+                .build();
         RequestOperation<ListAllSubscriptionsRequest, ListAllSubscriptionsResponse> operation
               = new ListAllSubscriptionsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));

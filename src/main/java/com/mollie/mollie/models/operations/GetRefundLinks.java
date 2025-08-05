@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -24,16 +23,14 @@ public class GetRefundLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends GetRefundSelf> self;
+    private GetRefundSelf self;
 
     /**
      * The API resource URL of the [payment](get-payment) that this refund belongs to.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment")
-    private Optional<? extends GetRefundPayment> payment;
+    private GetRefundPayment payment;
 
     /**
      * The API resource URL of the [settlement](get-settlement) this refund has been settled with. Not present if not
@@ -46,16 +43,15 @@ public class GetRefundLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends GetRefundDocumentation> documentation;
+    private GetRefundDocumentation documentation;
 
     @JsonCreator
     public GetRefundLinks(
-            @JsonProperty("self") Optional<? extends GetRefundSelf> self,
-            @JsonProperty("payment") Optional<? extends GetRefundPayment> payment,
+            @JsonProperty("self") GetRefundSelf self,
+            @JsonProperty("payment") GetRefundPayment payment,
             @JsonProperty("settlement") JsonNullable<? extends GetRefundSettlement> settlement,
-            @JsonProperty("documentation") Optional<? extends GetRefundDocumentation> documentation) {
+            @JsonProperty("documentation") GetRefundDocumentation documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(payment, "payment");
         Utils.checkNotNull(settlement, "settlement");
@@ -66,27 +62,28 @@ public class GetRefundLinks {
         this.documentation = documentation;
     }
     
-    public GetRefundLinks() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty());
+    public GetRefundLinks(
+            GetRefundSelf self,
+            GetRefundPayment payment,
+            GetRefundDocumentation documentation) {
+        this(self, payment, JsonNullable.undefined(),
+            documentation);
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetRefundSelf> self() {
-        return (Optional<GetRefundSelf>) self;
+    public GetRefundSelf self() {
+        return self;
     }
 
     /**
      * The API resource URL of the [payment](get-payment) that this refund belongs to.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetRefundPayment> payment() {
-        return (Optional<GetRefundPayment>) payment;
+    public GetRefundPayment payment() {
+        return payment;
     }
 
     /**
@@ -102,10 +99,9 @@ public class GetRefundLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetRefundDocumentation> documentation() {
-        return (Optional<GetRefundDocumentation>) documentation;
+    public GetRefundDocumentation documentation() {
+        return documentation;
     }
 
     public static Builder builder() {
@@ -118,16 +114,6 @@ public class GetRefundLinks {
      */
     public GetRefundLinks withSelf(GetRefundSelf self) {
         Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public GetRefundLinks withSelf(Optional<? extends GetRefundSelf> self) {
-        Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
@@ -136,16 +122,6 @@ public class GetRefundLinks {
      * The API resource URL of the [payment](get-payment) that this refund belongs to.
      */
     public GetRefundLinks withPayment(GetRefundPayment payment) {
-        Utils.checkNotNull(payment, "payment");
-        this.payment = Optional.ofNullable(payment);
-        return this;
-    }
-
-
-    /**
-     * The API resource URL of the [payment](get-payment) that this refund belongs to.
-     */
-    public GetRefundLinks withPayment(Optional<? extends GetRefundPayment> payment) {
         Utils.checkNotNull(payment, "payment");
         this.payment = payment;
         return this;
@@ -175,16 +151,6 @@ public class GetRefundLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public GetRefundLinks withDocumentation(GetRefundDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public GetRefundLinks withDocumentation(Optional<? extends GetRefundDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -225,13 +191,13 @@ public class GetRefundLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends GetRefundSelf> self = Optional.empty();
+        private GetRefundSelf self;
 
-        private Optional<? extends GetRefundPayment> payment = Optional.empty();
+        private GetRefundPayment payment;
 
         private JsonNullable<? extends GetRefundSettlement> settlement = JsonNullable.undefined();
 
-        private Optional<? extends GetRefundDocumentation> documentation = Optional.empty();
+        private GetRefundDocumentation documentation;
 
         private Builder() {
           // force use of static builder() method
@@ -243,15 +209,6 @@ public class GetRefundLinks {
          */
         public Builder self(GetRefundSelf self) {
             Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder self(Optional<? extends GetRefundSelf> self) {
-            Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
         }
@@ -261,15 +218,6 @@ public class GetRefundLinks {
          * The API resource URL of the [payment](get-payment) that this refund belongs to.
          */
         public Builder payment(GetRefundPayment payment) {
-            Utils.checkNotNull(payment, "payment");
-            this.payment = Optional.ofNullable(payment);
-            return this;
-        }
-
-        /**
-         * The API resource URL of the [payment](get-payment) that this refund belongs to.
-         */
-        public Builder payment(Optional<? extends GetRefundPayment> payment) {
             Utils.checkNotNull(payment, "payment");
             this.payment = payment;
             return this;
@@ -301,15 +249,6 @@ public class GetRefundLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(GetRefundDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends GetRefundDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

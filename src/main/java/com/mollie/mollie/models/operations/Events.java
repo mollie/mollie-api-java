@@ -25,21 +25,18 @@ public class Events {
     private Optional<String> resource;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<Long> type;
+    private long type;
 
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
-    private Optional<String> createdAt;
+    private String createdAt;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("message")
-    private Optional<String> message;
+    private String message;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -51,9 +48,9 @@ public class Events {
     @JsonCreator
     public Events(
             @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("type") Optional<Long> type,
-            @JsonProperty("createdAt") Optional<String> createdAt,
-            @JsonProperty("message") Optional<String> message,
+            @JsonProperty("type") long type,
+            @JsonProperty("createdAt") String createdAt,
+            @JsonProperty("message") String message,
             @JsonProperty("_links") Optional<? extends GetCustomerCustomersLinks> links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(type, "type");
@@ -67,9 +64,12 @@ public class Events {
         this.links = links;
     }
     
-    public Events() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+    public Events(
+            long type,
+            String createdAt,
+            String message) {
+        this(Optional.empty(), type, createdAt,
+            message, Optional.empty());
     }
 
     @JsonIgnore
@@ -78,7 +78,7 @@ public class Events {
     }
 
     @JsonIgnore
-    public Optional<Long> type() {
+    public long type() {
         return type;
     }
 
@@ -86,12 +86,12 @@ public class Events {
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
      */
     @JsonIgnore
-    public Optional<String> createdAt() {
+    public String createdAt() {
         return createdAt;
     }
 
     @JsonIgnore
-    public Optional<String> message() {
+    public String message() {
         return message;
     }
 
@@ -124,13 +124,6 @@ public class Events {
 
     public Events withType(long type) {
         Utils.checkNotNull(type, "type");
-        this.type = Optional.ofNullable(type);
-        return this;
-    }
-
-
-    public Events withType(Optional<Long> type) {
-        Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
     }
@@ -140,28 +133,11 @@ public class Events {
      */
     public Events withCreatedAt(String createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = Optional.ofNullable(createdAt);
-        return this;
-    }
-
-
-    /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-     */
-    public Events withCreatedAt(Optional<String> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
     public Events withMessage(String message) {
-        Utils.checkNotNull(message, "message");
-        this.message = Optional.ofNullable(message);
-        return this;
-    }
-
-
-    public Events withMessage(Optional<String> message) {
         Utils.checkNotNull(message, "message");
         this.message = message;
         return this;
@@ -225,11 +201,11 @@ public class Events {
 
         private Optional<String> resource;
 
-        private Optional<Long> type = Optional.empty();
+        private Long type;
 
-        private Optional<String> createdAt = Optional.empty();
+        private String createdAt;
 
-        private Optional<String> message = Optional.empty();
+        private String message;
 
         private Optional<? extends GetCustomerCustomersLinks> links = Optional.empty();
 
@@ -253,12 +229,6 @@ public class Events {
 
         public Builder type(long type) {
             Utils.checkNotNull(type, "type");
-            this.type = Optional.ofNullable(type);
-            return this;
-        }
-
-        public Builder type(Optional<Long> type) {
-            Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
         }
@@ -269,27 +239,12 @@ public class Events {
          */
         public Builder createdAt(String createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = Optional.ofNullable(createdAt);
-            return this;
-        }
-
-        /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-         */
-        public Builder createdAt(Optional<String> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
 
 
         public Builder message(String message) {
-            Utils.checkNotNull(message, "message");
-            this.message = Optional.ofNullable(message);
-            return this;
-        }
-
-        public Builder message(Optional<String> message) {
             Utils.checkNotNull(message, "message");
             this.message = message;
             return this;

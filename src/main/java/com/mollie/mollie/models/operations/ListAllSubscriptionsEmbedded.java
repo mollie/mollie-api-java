@@ -18,17 +18,17 @@ import java.util.Optional;
 
 public class ListAllSubscriptionsEmbedded {
     /**
-     * An array of payment objects.
+     * A list of subscription objects.
      */
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("payments")
-    private Optional<? extends List<ListAllSubscriptionsPayments>> payments;
+    @JsonProperty("subscriptions")
+    private Optional<? extends List<ListAllSubscriptionsSubscriptions>> subscriptions;
 
     @JsonCreator
     public ListAllSubscriptionsEmbedded(
-            @JsonProperty("payments") Optional<? extends List<ListAllSubscriptionsPayments>> payments) {
-        Utils.checkNotNull(payments, "payments");
-        this.payments = payments;
+            @JsonProperty("subscriptions") Optional<? extends List<ListAllSubscriptionsSubscriptions>> subscriptions) {
+        Utils.checkNotNull(subscriptions, "subscriptions");
+        this.subscriptions = subscriptions;
     }
     
     public ListAllSubscriptionsEmbedded() {
@@ -36,12 +36,12 @@ public class ListAllSubscriptionsEmbedded {
     }
 
     /**
-     * An array of payment objects.
+     * A list of subscription objects.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<ListAllSubscriptionsPayments>> payments() {
-        return (Optional<List<ListAllSubscriptionsPayments>>) payments;
+    public Optional<List<ListAllSubscriptionsSubscriptions>> subscriptions() {
+        return (Optional<List<ListAllSubscriptionsSubscriptions>>) subscriptions;
     }
 
     public static Builder builder() {
@@ -50,21 +50,21 @@ public class ListAllSubscriptionsEmbedded {
 
 
     /**
-     * An array of payment objects.
+     * A list of subscription objects.
      */
-    public ListAllSubscriptionsEmbedded withPayments(List<ListAllSubscriptionsPayments> payments) {
-        Utils.checkNotNull(payments, "payments");
-        this.payments = Optional.ofNullable(payments);
+    public ListAllSubscriptionsEmbedded withSubscriptions(List<ListAllSubscriptionsSubscriptions> subscriptions) {
+        Utils.checkNotNull(subscriptions, "subscriptions");
+        this.subscriptions = Optional.ofNullable(subscriptions);
         return this;
     }
 
 
     /**
-     * An array of payment objects.
+     * A list of subscription objects.
      */
-    public ListAllSubscriptionsEmbedded withPayments(Optional<? extends List<ListAllSubscriptionsPayments>> payments) {
-        Utils.checkNotNull(payments, "payments");
-        this.payments = payments;
+    public ListAllSubscriptionsEmbedded withSubscriptions(Optional<? extends List<ListAllSubscriptionsSubscriptions>> subscriptions) {
+        Utils.checkNotNull(subscriptions, "subscriptions");
+        this.subscriptions = subscriptions;
         return this;
     }
 
@@ -78,25 +78,25 @@ public class ListAllSubscriptionsEmbedded {
         }
         ListAllSubscriptionsEmbedded other = (ListAllSubscriptionsEmbedded) o;
         return 
-            Utils.enhancedDeepEquals(this.payments, other.payments);
+            Utils.enhancedDeepEquals(this.subscriptions, other.subscriptions);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            payments);
+            subscriptions);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ListAllSubscriptionsEmbedded.class,
-                "payments", payments);
+                "subscriptions", subscriptions);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends List<ListAllSubscriptionsPayments>> payments = Optional.empty();
+        private Optional<? extends List<ListAllSubscriptionsSubscriptions>> subscriptions = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -104,27 +104,27 @@ public class ListAllSubscriptionsEmbedded {
 
 
         /**
-         * An array of payment objects.
+         * A list of subscription objects.
          */
-        public Builder payments(List<ListAllSubscriptionsPayments> payments) {
-            Utils.checkNotNull(payments, "payments");
-            this.payments = Optional.ofNullable(payments);
+        public Builder subscriptions(List<ListAllSubscriptionsSubscriptions> subscriptions) {
+            Utils.checkNotNull(subscriptions, "subscriptions");
+            this.subscriptions = Optional.ofNullable(subscriptions);
             return this;
         }
 
         /**
-         * An array of payment objects.
+         * A list of subscription objects.
          */
-        public Builder payments(Optional<? extends List<ListAllSubscriptionsPayments>> payments) {
-            Utils.checkNotNull(payments, "payments");
-            this.payments = payments;
+        public Builder subscriptions(Optional<? extends List<ListAllSubscriptionsSubscriptions>> subscriptions) {
+            Utils.checkNotNull(subscriptions, "subscriptions");
+            this.subscriptions = subscriptions;
             return this;
         }
 
         public ListAllSubscriptionsEmbedded build() {
 
             return new ListAllSubscriptionsEmbedded(
-                payments);
+                subscriptions);
         }
 
     }
