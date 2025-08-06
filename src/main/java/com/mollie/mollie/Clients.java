@@ -11,8 +11,8 @@ import com.mollie.mollie.models.operations.GetClientResponse;
 import com.mollie.mollie.models.operations.ListClientsRequest;
 import com.mollie.mollie.models.operations.ListClientsRequestBuilder;
 import com.mollie.mollie.models.operations.ListClientsResponse;
-import com.mollie.mollie.operations.GetClientOperation;
-import com.mollie.mollie.operations.ListClientsOperation;
+import com.mollie.mollie.operations.GetClient;
+import com.mollie.mollie.operations.ListClients;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
 import java.lang.Long;
@@ -90,7 +90,7 @@ public class Clients {
                 .limit(limit)
                 .build();
         RequestOperation<ListClientsRequest, ListClientsResponse> operation
-              = new ListClientsOperation(sdkConfiguration, options);
+              = new ListClients.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -147,7 +147,7 @@ public class Clients {
                 .embed(embed)
                 .build();
         RequestOperation<GetClientRequest, GetClientResponse> operation
-              = new GetClientOperation(sdkConfiguration, options);
+              = new GetClient.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

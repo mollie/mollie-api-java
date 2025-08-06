@@ -12,8 +12,8 @@ import com.mollie.mollie.models.operations.ListTerminalsQueryParamSort;
 import com.mollie.mollie.models.operations.ListTerminalsRequest;
 import com.mollie.mollie.models.operations.ListTerminalsRequestBuilder;
 import com.mollie.mollie.models.operations.ListTerminalsResponse;
-import com.mollie.mollie.operations.GetTerminalOperation;
-import com.mollie.mollie.operations.ListTerminalsOperation;
+import com.mollie.mollie.operations.GetTerminal;
+import com.mollie.mollie.operations.ListTerminals;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -92,7 +92,7 @@ public class Terminals {
                 .testmode(testmode)
                 .build();
         RequestOperation<ListTerminalsRequest, ListTerminalsResponse> operation
-              = new ListTerminalsOperation(sdkConfiguration, options);
+              = new ListTerminals.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -145,7 +145,7 @@ public class Terminals {
                 .testmode(testmode)
                 .build();
         RequestOperation<GetTerminalRequest, GetTerminalResponse> operation
-              = new GetTerminalOperation(sdkConfiguration, options);
+              = new GetTerminal.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

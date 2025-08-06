@@ -7,7 +7,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.ListBalanceTransactionsOperation;
+import com.mollie.mollie.operations.ListBalanceTransactions;
 import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
@@ -109,7 +109,7 @@ public class ListBalanceTransactionsRequestBuilder {
             .build());
 
         RequestOperation<ListBalanceTransactionsRequest, ListBalanceTransactionsResponse> operation
-              = new ListBalanceTransactionsOperation(sdkConfiguration, options);
+              = new ListBalanceTransactions.Sync(sdkConfiguration, options);
         ListBalanceTransactionsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

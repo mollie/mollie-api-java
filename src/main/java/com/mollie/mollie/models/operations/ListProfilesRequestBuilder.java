@@ -7,7 +7,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.ListProfilesOperation;
+import com.mollie.mollie.operations.ListProfiles;
 import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
@@ -86,7 +86,7 @@ public class ListProfilesRequestBuilder {
             .build());
 
         RequestOperation<ListProfilesRequest, ListProfilesResponse> operation
-              = new ListProfilesOperation(sdkConfiguration, options);
+              = new ListProfiles.Sync(sdkConfiguration, options);
         ListProfilesRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -7,7 +7,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.ListClientsOperation;
+import com.mollie.mollie.operations.ListClients;
 import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
@@ -100,7 +100,7 @@ public class ListClientsRequestBuilder {
             .build());
 
         RequestOperation<ListClientsRequest, ListClientsResponse> operation
-              = new ListClientsOperation(sdkConfiguration, options);
+              = new ListClients.Sync(sdkConfiguration, options);
         ListClientsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

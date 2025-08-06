@@ -39,10 +39,11 @@ public class ListSettlementRefundsRequest {
     private JsonNullable<Long> limit;
 
     /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=include")
-    private JsonNullable<? extends ListSettlementRefundsQueryParamInclude> include;
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=embed")
+    private Optional<? extends ListSettlementRefundsQueryParamEmbed> embed;
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -59,24 +60,24 @@ public class ListSettlementRefundsRequest {
             String settlementId,
             Optional<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<? extends ListSettlementRefundsQueryParamInclude> include,
+            Optional<? extends ListSettlementRefundsQueryParamEmbed> embed,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(settlementId, "settlementId");
         Utils.checkNotNull(from, "from");
         Utils.checkNotNull(limit, "limit");
-        Utils.checkNotNull(include, "include");
+        Utils.checkNotNull(embed, "embed");
         Utils.checkNotNull(testmode, "testmode");
         this.settlementId = settlementId;
         this.from = from;
         this.limit = limit;
-        this.include = include;
+        this.embed = embed;
         this.testmode = testmode;
     }
     
     public ListSettlementRefundsRequest(
             String settlementId) {
         this(settlementId, Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -105,12 +106,13 @@ public class ListSettlementRefundsRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListSettlementRefundsQueryParamInclude> include() {
-        return (JsonNullable<ListSettlementRefundsQueryParamInclude>) include;
+    public Optional<ListSettlementRefundsQueryParamEmbed> embed() {
+        return (Optional<ListSettlementRefundsQueryParamEmbed>) embed;
     }
 
     /**
@@ -179,20 +181,23 @@ public class ListSettlementRefundsRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
-    public ListSettlementRefundsRequest withInclude(ListSettlementRefundsQueryParamInclude include) {
-        Utils.checkNotNull(include, "include");
-        this.include = JsonNullable.of(include);
+    public ListSettlementRefundsRequest withEmbed(ListSettlementRefundsQueryParamEmbed embed) {
+        Utils.checkNotNull(embed, "embed");
+        this.embed = Optional.ofNullable(embed);
         return this;
     }
 
+
     /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
-    public ListSettlementRefundsRequest withInclude(JsonNullable<? extends ListSettlementRefundsQueryParamInclude> include) {
-        Utils.checkNotNull(include, "include");
-        this.include = include;
+    public ListSettlementRefundsRequest withEmbed(Optional<? extends ListSettlementRefundsQueryParamEmbed> embed) {
+        Utils.checkNotNull(embed, "embed");
+        this.embed = embed;
         return this;
     }
 
@@ -235,7 +240,7 @@ public class ListSettlementRefundsRequest {
             Utils.enhancedDeepEquals(this.settlementId, other.settlementId) &&
             Utils.enhancedDeepEquals(this.from, other.from) &&
             Utils.enhancedDeepEquals(this.limit, other.limit) &&
-            Utils.enhancedDeepEquals(this.include, other.include) &&
+            Utils.enhancedDeepEquals(this.embed, other.embed) &&
             Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
     
@@ -243,7 +248,7 @@ public class ListSettlementRefundsRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             settlementId, from, limit,
-            include, testmode);
+            embed, testmode);
     }
     
     @Override
@@ -252,7 +257,7 @@ public class ListSettlementRefundsRequest {
                 "settlementId", settlementId,
                 "from", from,
                 "limit", limit,
-                "include", include,
+                "embed", embed,
                 "testmode", testmode);
     }
 
@@ -265,7 +270,7 @@ public class ListSettlementRefundsRequest {
 
         private JsonNullable<Long> limit;
 
-        private JsonNullable<? extends ListSettlementRefundsQueryParamInclude> include = JsonNullable.undefined();
+        private Optional<? extends ListSettlementRefundsQueryParamEmbed> embed = Optional.empty();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -325,20 +330,22 @@ public class ListSettlementRefundsRequest {
 
 
         /**
-         * This endpoint allows you to include additional information via the `include` query string parameter.
+         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+         * parameter.
          */
-        public Builder include(ListSettlementRefundsQueryParamInclude include) {
-            Utils.checkNotNull(include, "include");
-            this.include = JsonNullable.of(include);
+        public Builder embed(ListSettlementRefundsQueryParamEmbed embed) {
+            Utils.checkNotNull(embed, "embed");
+            this.embed = Optional.ofNullable(embed);
             return this;
         }
 
         /**
-         * This endpoint allows you to include additional information via the `include` query string parameter.
+         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+         * parameter.
          */
-        public Builder include(JsonNullable<? extends ListSettlementRefundsQueryParamInclude> include) {
-            Utils.checkNotNull(include, "include");
-            this.include = include;
+        public Builder embed(Optional<? extends ListSettlementRefundsQueryParamEmbed> embed) {
+            Utils.checkNotNull(embed, "embed");
+            this.embed = embed;
             return this;
         }
 
@@ -376,7 +383,7 @@ public class ListSettlementRefundsRequest {
 
             return new ListSettlementRefundsRequest(
                 settlementId, from, limit,
-                include, testmode);
+                embed, testmode);
         }
 
 

@@ -15,9 +15,9 @@ import com.mollie.mollie.models.operations.ListAllChargebacksResponse;
 import com.mollie.mollie.models.operations.ListChargebacksRequest;
 import com.mollie.mollie.models.operations.ListChargebacksRequestBuilder;
 import com.mollie.mollie.models.operations.ListChargebacksResponse;
-import com.mollie.mollie.operations.GetChargebackOperation;
-import com.mollie.mollie.operations.ListAllChargebacksOperation;
-import com.mollie.mollie.operations.ListChargebacksOperation;
+import com.mollie.mollie.operations.GetChargeback;
+import com.mollie.mollie.operations.ListAllChargebacks;
+import com.mollie.mollie.operations.ListChargebacks;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -75,7 +75,7 @@ public class Chargebacks {
      */
     public ListChargebacksResponse list(ListChargebacksRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListChargebacksRequest, ListChargebacksResponse> operation
-              = new ListChargebacksOperation(sdkConfiguration, options);
+              = new ListChargebacks.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -135,7 +135,7 @@ public class Chargebacks {
                 .testmode(testmode)
                 .build();
         RequestOperation<GetChargebackRequest, GetChargebackResponse> operation
-              = new GetChargebackOperation(sdkConfiguration, options);
+              = new GetChargeback.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -181,7 +181,7 @@ public class Chargebacks {
      */
     public ListAllChargebacksResponse all(ListAllChargebacksRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListAllChargebacksRequest, ListAllChargebacksResponse> operation
-              = new ListAllChargebacksOperation(sdkConfiguration, options);
+              = new ListAllChargebacks.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

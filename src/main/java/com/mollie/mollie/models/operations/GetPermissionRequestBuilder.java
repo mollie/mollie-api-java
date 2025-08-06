@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.GetPermissionOperation;
+import com.mollie.mollie.operations.GetPermission;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -72,7 +72,7 @@ public class GetPermissionRequestBuilder {
             .build());
 
         RequestOperation<GetPermissionRequest, GetPermissionResponse> operation
-              = new GetPermissionOperation(sdkConfiguration, options);
+              = new GetPermission.Sync(sdkConfiguration, options);
         GetPermissionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

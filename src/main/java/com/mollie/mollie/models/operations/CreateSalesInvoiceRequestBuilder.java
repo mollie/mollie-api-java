@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.CreateSalesInvoiceOperation;
+import com.mollie.mollie.operations.CreateSalesInvoice;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -53,7 +53,7 @@ public class CreateSalesInvoiceRequestBuilder {
             .build());
 
         RequestOperation<Optional<? extends CreateSalesInvoiceRequestBody>, CreateSalesInvoiceResponse> operation
-              = new CreateSalesInvoiceOperation(sdkConfiguration, options);
+              = new CreateSalesInvoice.Sync(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

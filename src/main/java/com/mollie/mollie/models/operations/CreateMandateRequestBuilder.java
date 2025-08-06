@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.CreateMandateOperation;
+import com.mollie.mollie.operations.CreateMandate;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -70,7 +70,7 @@ public class CreateMandateRequestBuilder {
             .build());
 
         RequestOperation<CreateMandateRequest, CreateMandateResponse> operation
-              = new CreateMandateOperation(sdkConfiguration, options);
+              = new CreateMandate.Sync(sdkConfiguration, options);
         CreateMandateRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

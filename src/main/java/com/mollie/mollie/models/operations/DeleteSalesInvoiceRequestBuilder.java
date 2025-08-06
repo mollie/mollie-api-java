@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.DeleteSalesInvoiceOperation;
+import com.mollie.mollie.operations.DeleteSalesInvoice;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -70,7 +70,7 @@ public class DeleteSalesInvoiceRequestBuilder {
             .build());
 
         RequestOperation<DeleteSalesInvoiceRequest, DeleteSalesInvoiceResponse> operation
-              = new DeleteSalesInvoiceOperation(sdkConfiguration, options);
+              = new DeleteSalesInvoice.Sync(sdkConfiguration, options);
         DeleteSalesInvoiceRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

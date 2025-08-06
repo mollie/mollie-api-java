@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestlessOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.GetCurrentProfileOperation;
+import com.mollie.mollie.operations.GetCurrentProfile;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -40,7 +40,7 @@ public class GetCurrentProfileRequestBuilder {
             .build());
 
         RequestlessOperation<GetCurrentProfileResponse> operation
-            = new GetCurrentProfileOperation(sdkConfiguration, options);
+            = new GetCurrentProfile.Sync(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest());
     }

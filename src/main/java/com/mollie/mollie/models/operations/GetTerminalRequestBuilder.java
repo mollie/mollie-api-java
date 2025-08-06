@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.GetTerminalOperation;
+import com.mollie.mollie.operations.GetTerminal;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -72,7 +72,7 @@ public class GetTerminalRequestBuilder {
             .build());
 
         RequestOperation<GetTerminalRequest, GetTerminalResponse> operation
-              = new GetTerminalOperation(sdkConfiguration, options);
+              = new GetTerminal.Sync(sdkConfiguration, options);
         GetTerminalRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

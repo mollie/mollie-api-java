@@ -13,9 +13,9 @@ import com.mollie.mollie.models.operations.GetOrganizationRequestBuilder;
 import com.mollie.mollie.models.operations.GetOrganizationResponse;
 import com.mollie.mollie.models.operations.GetPartnerStatusRequestBuilder;
 import com.mollie.mollie.models.operations.GetPartnerStatusResponse;
-import com.mollie.mollie.operations.GetCurrentOrganizationOperation;
-import com.mollie.mollie.operations.GetOrganizationOperation;
-import com.mollie.mollie.operations.GetPartnerStatusOperation;
+import com.mollie.mollie.operations.GetCurrentOrganization;
+import com.mollie.mollie.operations.GetOrganization;
+import com.mollie.mollie.operations.GetPartnerStatus;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -95,7 +95,7 @@ public class Organizations {
                 .testmode(testmode)
                 .build();
         RequestOperation<GetOrganizationRequest, GetOrganizationResponse> operation
-              = new GetOrganizationOperation(sdkConfiguration, options);
+              = new GetOrganization.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -145,7 +145,7 @@ public class Organizations {
      */
     public GetCurrentOrganizationResponse getCurrent(Optional<Options> options) throws Exception {
         RequestlessOperation<GetCurrentOrganizationResponse> operation
-            = new GetCurrentOrganizationOperation(sdkConfiguration, options);
+            = new GetCurrentOrganization.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -186,7 +186,7 @@ public class Organizations {
      */
     public GetPartnerStatusResponse getPartner(Optional<Options> options) throws Exception {
         RequestlessOperation<GetPartnerStatusResponse> operation
-            = new GetPartnerStatusOperation(sdkConfiguration, options);
+            = new GetPartnerStatus.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest());
     }
 

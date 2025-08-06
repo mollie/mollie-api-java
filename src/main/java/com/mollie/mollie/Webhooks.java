@@ -25,12 +25,12 @@ import com.mollie.mollie.models.operations.UpdateWebhookRequest;
 import com.mollie.mollie.models.operations.UpdateWebhookRequestBody;
 import com.mollie.mollie.models.operations.UpdateWebhookRequestBuilder;
 import com.mollie.mollie.models.operations.UpdateWebhookResponse;
-import com.mollie.mollie.operations.CreateWebhookOperation;
-import com.mollie.mollie.operations.DeleteWebhookOperation;
-import com.mollie.mollie.operations.GetWebhookOperation;
-import com.mollie.mollie.operations.ListWebhooksOperation;
-import com.mollie.mollie.operations.TestWebhookOperation;
-import com.mollie.mollie.operations.UpdateWebhookOperation;
+import com.mollie.mollie.operations.CreateWebhook;
+import com.mollie.mollie.operations.DeleteWebhook;
+import com.mollie.mollie.operations.GetWebhook;
+import com.mollie.mollie.operations.ListWebhooks;
+import com.mollie.mollie.operations.TestWebhook;
+import com.mollie.mollie.operations.UpdateWebhook;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -81,7 +81,7 @@ public class Webhooks {
      */
     public CreateWebhookResponse create(Optional<? extends CreateWebhookRequestBody> request, Optional<Options> options) throws Exception {
         RequestOperation<Optional<? extends CreateWebhookRequestBody>, CreateWebhookResponse> operation
-              = new CreateWebhookOperation(sdkConfiguration, options);
+              = new CreateWebhook.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -121,7 +121,7 @@ public class Webhooks {
      */
     public ListWebhooksResponse list(ListWebhooksRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListWebhooksRequest, ListWebhooksResponse> operation
-              = new ListWebhooksOperation(sdkConfiguration, options);
+              = new ListWebhooks.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -170,7 +170,7 @@ public class Webhooks {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<UpdateWebhookRequest, UpdateWebhookResponse> operation
-              = new UpdateWebhookOperation(sdkConfiguration, options);
+              = new UpdateWebhook.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -223,7 +223,7 @@ public class Webhooks {
                 .testmode(testmode)
                 .build();
         RequestOperation<GetWebhookRequest, GetWebhookResponse> operation
-              = new GetWebhookOperation(sdkConfiguration, options);
+              = new GetWebhook.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -276,7 +276,7 @@ public class Webhooks {
                 .testmode(testmode)
                 .build();
         RequestOperation<DeleteWebhookRequest, DeleteWebhookResponse> operation
-              = new DeleteWebhookOperation(sdkConfiguration, options);
+              = new DeleteWebhook.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -325,7 +325,7 @@ public class Webhooks {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<TestWebhookRequest, TestWebhookResponse> operation
-              = new TestWebhookOperation(sdkConfiguration, options);
+              = new TestWebhook.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

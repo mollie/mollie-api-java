@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.DeleteWebhookOperation;
+import com.mollie.mollie.operations.DeleteWebhook;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -72,7 +72,7 @@ public class DeleteWebhookRequestBuilder {
             .build());
 
         RequestOperation<DeleteWebhookRequest, DeleteWebhookResponse> operation
-              = new DeleteWebhookOperation(sdkConfiguration, options);
+              = new DeleteWebhook.Sync(sdkConfiguration, options);
         DeleteWebhookRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

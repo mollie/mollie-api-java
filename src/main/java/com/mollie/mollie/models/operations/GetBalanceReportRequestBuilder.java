@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.GetBalanceReportOperation;
+import com.mollie.mollie.operations.GetBalanceReport;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -47,7 +47,7 @@ public class GetBalanceReportRequestBuilder {
             .build());
 
         RequestOperation<GetBalanceReportRequest, GetBalanceReportResponse> operation
-              = new GetBalanceReportOperation(sdkConfiguration, options);
+              = new GetBalanceReport.Sync(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

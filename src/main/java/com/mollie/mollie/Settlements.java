@@ -28,14 +28,14 @@ import com.mollie.mollie.models.operations.ListSettlementRefundsResponse;
 import com.mollie.mollie.models.operations.ListSettlementsRequest;
 import com.mollie.mollie.models.operations.ListSettlementsRequestBuilder;
 import com.mollie.mollie.models.operations.ListSettlementsResponse;
-import com.mollie.mollie.operations.GetNextSettlementOperation;
-import com.mollie.mollie.operations.GetOpenSettlementOperation;
-import com.mollie.mollie.operations.GetSettlementOperation;
-import com.mollie.mollie.operations.ListSettlementCapturesOperation;
-import com.mollie.mollie.operations.ListSettlementChargebacksOperation;
-import com.mollie.mollie.operations.ListSettlementPaymentsOperation;
-import com.mollie.mollie.operations.ListSettlementRefundsOperation;
-import com.mollie.mollie.operations.ListSettlementsOperation;
+import com.mollie.mollie.operations.GetNextSettlement;
+import com.mollie.mollie.operations.GetOpenSettlement;
+import com.mollie.mollie.operations.GetSettlement;
+import com.mollie.mollie.operations.ListSettlementCaptures;
+import com.mollie.mollie.operations.ListSettlementChargebacks;
+import com.mollie.mollie.operations.ListSettlementPayments;
+import com.mollie.mollie.operations.ListSettlementRefunds;
+import com.mollie.mollie.operations.ListSettlements;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -91,7 +91,7 @@ public class Settlements {
      */
     public ListSettlementsResponse list(ListSettlementsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListSettlementsRequest, ListSettlementsResponse> operation
-              = new ListSettlementsOperation(sdkConfiguration, options);
+              = new ListSettlements.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -169,7 +169,7 @@ public class Settlements {
                 .id(id)
                 .build();
         RequestOperation<GetSettlementRequest, GetSettlementResponse> operation
-              = new GetSettlementOperation(sdkConfiguration, options);
+              = new GetSettlement.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -228,7 +228,7 @@ public class Settlements {
      */
     public GetOpenSettlementResponse getOpen(Optional<Options> options) throws Exception {
         RequestlessOperation<GetOpenSettlementResponse> operation
-            = new GetOpenSettlementOperation(sdkConfiguration, options);
+            = new GetOpenSettlement.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -284,7 +284,7 @@ public class Settlements {
      */
     public GetNextSettlementResponse getNext(Optional<Options> options) throws Exception {
         RequestlessOperation<GetNextSettlementResponse> operation
-            = new GetNextSettlementOperation(sdkConfiguration, options);
+            = new GetNextSettlement.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -339,7 +339,7 @@ public class Settlements {
      */
     public ListSettlementPaymentsResponse listPayments(ListSettlementPaymentsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListSettlementPaymentsRequest, ListSettlementPaymentsResponse> operation
-              = new ListSettlementPaymentsOperation(sdkConfiguration, options);
+              = new ListSettlementPayments.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -385,7 +385,7 @@ public class Settlements {
      */
     public ListSettlementCapturesResponse listCaptures(ListSettlementCapturesRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListSettlementCapturesRequest, ListSettlementCapturesResponse> operation
-              = new ListSettlementCapturesOperation(sdkConfiguration, options);
+              = new ListSettlementCaptures.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -431,7 +431,7 @@ public class Settlements {
      */
     public ListSettlementRefundsResponse listRefunds(ListSettlementRefundsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListSettlementRefundsRequest, ListSettlementRefundsResponse> operation
-              = new ListSettlementRefundsOperation(sdkConfiguration, options);
+              = new ListSettlementRefunds.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -477,7 +477,7 @@ public class Settlements {
      */
     public ListSettlementChargebacksResponse listChargebacks(ListSettlementChargebacksRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListSettlementChargebacksRequest, ListSettlementChargebacksResponse> operation
-              = new ListSettlementChargebacksOperation(sdkConfiguration, options);
+              = new ListSettlementChargebacks.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

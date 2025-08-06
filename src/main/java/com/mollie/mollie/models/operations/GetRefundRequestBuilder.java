@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.GetRefundOperation;
+import com.mollie.mollie.operations.GetRefund;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -20,7 +20,7 @@ public class GetRefundRequestBuilder {
 
     private String paymentId;
     private String refundId;
-    private JsonNullable<? extends GetRefundQueryParamInclude> include = JsonNullable.undefined();
+    private Optional<? extends GetRefundQueryParamEmbed> embed = Optional.empty();
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -40,16 +40,16 @@ public class GetRefundRequestBuilder {
         this.refundId = refundId;
         return this;
     }
-
-    public GetRefundRequestBuilder include(GetRefundQueryParamInclude include) {
-        Utils.checkNotNull(include, "include");
-        this.include = JsonNullable.of(include);
+                
+    public GetRefundRequestBuilder embed(GetRefundQueryParamEmbed embed) {
+        Utils.checkNotNull(embed, "embed");
+        this.embed = Optional.of(embed);
         return this;
     }
 
-    public GetRefundRequestBuilder include(JsonNullable<? extends GetRefundQueryParamInclude> include) {
-        Utils.checkNotNull(include, "include");
-        this.include = include;
+    public GetRefundRequestBuilder embed(Optional<? extends GetRefundQueryParamEmbed> embed) {
+        Utils.checkNotNull(embed, "embed");
+        this.embed = embed;
         return this;
     }
 
@@ -82,7 +82,7 @@ public class GetRefundRequestBuilder {
 
         GetRefundRequest request = new GetRefundRequest(paymentId,
             refundId,
-            include,
+            embed,
             testmode);
 
         return request;
@@ -94,7 +94,7 @@ public class GetRefundRequestBuilder {
             .build());
 
         RequestOperation<GetRefundRequest, GetRefundResponse> operation
-              = new GetRefundOperation(sdkConfiguration, options);
+              = new GetRefund.Sync(sdkConfiguration, options);
         GetRefundRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

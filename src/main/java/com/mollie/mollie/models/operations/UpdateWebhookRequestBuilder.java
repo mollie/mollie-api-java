@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.UpdateWebhookOperation;
+import com.mollie.mollie.operations.UpdateWebhook;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -70,7 +70,7 @@ public class UpdateWebhookRequestBuilder {
             .build());
 
         RequestOperation<UpdateWebhookRequest, UpdateWebhookResponse> operation
-              = new UpdateWebhookOperation(sdkConfiguration, options);
+              = new UpdateWebhook.Sync(sdkConfiguration, options);
         UpdateWebhookRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

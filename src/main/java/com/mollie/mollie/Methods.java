@@ -14,9 +14,9 @@ import com.mollie.mollie.models.operations.ListAllMethodsResponse;
 import com.mollie.mollie.models.operations.ListMethodsRequest;
 import com.mollie.mollie.models.operations.ListMethodsRequestBuilder;
 import com.mollie.mollie.models.operations.ListMethodsResponse;
-import com.mollie.mollie.operations.GetMethodOperation;
-import com.mollie.mollie.operations.ListAllMethodsOperation;
-import com.mollie.mollie.operations.ListMethodsOperation;
+import com.mollie.mollie.operations.GetMethod;
+import com.mollie.mollie.operations.ListAllMethods;
+import com.mollie.mollie.operations.ListMethods;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -110,7 +110,7 @@ public class Methods {
      */
     public ListMethodsResponse list(ListMethodsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListMethodsRequest, ListMethodsResponse> operation
-              = new ListMethodsOperation(sdkConfiguration, options);
+              = new ListMethods.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,7 +159,7 @@ public class Methods {
      */
     public ListAllMethodsResponse all(ListAllMethodsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListAllMethodsRequest, ListAllMethodsResponse> operation
-              = new ListAllMethodsOperation(sdkConfiguration, options);
+              = new ListAllMethods.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -232,7 +232,7 @@ public class Methods {
      */
     public GetMethodResponse get(GetMethodRequest request, Optional<Options> options) throws Exception {
         RequestOperation<GetMethodRequest, GetMethodResponse> operation
-              = new GetMethodOperation(sdkConfiguration, options);
+              = new GetMethod.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

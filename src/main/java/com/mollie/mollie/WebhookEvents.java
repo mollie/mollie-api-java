@@ -8,7 +8,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 import com.mollie.mollie.models.operations.GetWebhookEventRequest;
 import com.mollie.mollie.models.operations.GetWebhookEventRequestBuilder;
 import com.mollie.mollie.models.operations.GetWebhookEventResponse;
-import com.mollie.mollie.operations.GetWebhookEventOperation;
+import com.mollie.mollie.operations.GetWebhookEvent;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -63,7 +63,7 @@ public class WebhookEvents {
                 .id(id)
                 .build();
         RequestOperation<GetWebhookEventRequest, GetWebhookEventResponse> operation
-              = new GetWebhookEventOperation(sdkConfiguration, options);
+              = new GetWebhookEvent.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

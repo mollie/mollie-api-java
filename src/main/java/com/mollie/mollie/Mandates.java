@@ -19,10 +19,10 @@ import com.mollie.mollie.models.operations.RevokeMandateRequest;
 import com.mollie.mollie.models.operations.RevokeMandateRequestBody;
 import com.mollie.mollie.models.operations.RevokeMandateRequestBuilder;
 import com.mollie.mollie.models.operations.RevokeMandateResponse;
-import com.mollie.mollie.operations.CreateMandateOperation;
-import com.mollie.mollie.operations.GetMandateOperation;
-import com.mollie.mollie.operations.ListMandatesOperation;
-import com.mollie.mollie.operations.RevokeMandateOperation;
+import com.mollie.mollie.operations.CreateMandate;
+import com.mollie.mollie.operations.GetMandate;
+import com.mollie.mollie.operations.ListMandates;
+import com.mollie.mollie.operations.RevokeMandate;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -95,7 +95,7 @@ public class Mandates {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CreateMandateRequest, CreateMandateResponse> operation
-              = new CreateMandateOperation(sdkConfiguration, options);
+              = new CreateMandate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -141,7 +141,7 @@ public class Mandates {
      */
     public ListMandatesResponse list(ListMandatesRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListMandatesRequest, ListMandatesResponse> operation
-              = new ListMandatesOperation(sdkConfiguration, options);
+              = new ListMandates.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -201,7 +201,7 @@ public class Mandates {
                 .testmode(testmode)
                 .build();
         RequestOperation<GetMandateRequest, GetMandateResponse> operation
-              = new GetMandateOperation(sdkConfiguration, options);
+              = new GetMandate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -257,7 +257,7 @@ public class Mandates {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<RevokeMandateRequest, RevokeMandateResponse> operation
-              = new RevokeMandateOperation(sdkConfiguration, options);
+              = new RevokeMandate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

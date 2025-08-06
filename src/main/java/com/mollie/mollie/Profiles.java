@@ -24,12 +24,12 @@ import com.mollie.mollie.models.operations.UpdateProfileRequest;
 import com.mollie.mollie.models.operations.UpdateProfileRequestBody;
 import com.mollie.mollie.models.operations.UpdateProfileRequestBuilder;
 import com.mollie.mollie.models.operations.UpdateProfileResponse;
-import com.mollie.mollie.operations.CreateProfileOperation;
-import com.mollie.mollie.operations.DeleteProfileOperation;
-import com.mollie.mollie.operations.GetCurrentProfileOperation;
-import com.mollie.mollie.operations.GetProfileOperation;
-import com.mollie.mollie.operations.ListProfilesOperation;
-import com.mollie.mollie.operations.UpdateProfileOperation;
+import com.mollie.mollie.operations.CreateProfile;
+import com.mollie.mollie.operations.DeleteProfile;
+import com.mollie.mollie.operations.GetCurrentProfile;
+import com.mollie.mollie.operations.GetProfile;
+import com.mollie.mollie.operations.ListProfiles;
+import com.mollie.mollie.operations.UpdateProfile;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -91,7 +91,7 @@ public class Profiles {
      */
     public CreateProfileResponse create(CreateProfileRequestBody request, Optional<Options> options) throws Exception {
         RequestOperation<CreateProfileRequestBody, CreateProfileResponse> operation
-              = new CreateProfileOperation(sdkConfiguration, options);
+              = new CreateProfile.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -146,7 +146,7 @@ public class Profiles {
                 .limit(limit)
                 .build();
         RequestOperation<ListProfilesRequest, ListProfilesResponse> operation
-              = new ListProfilesOperation(sdkConfiguration, options);
+              = new ListProfiles.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -199,7 +199,7 @@ public class Profiles {
                 .testmode(testmode)
                 .build();
         RequestOperation<GetProfileRequest, GetProfileResponse> operation
-              = new GetProfileOperation(sdkConfiguration, options);
+              = new GetProfile.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -258,7 +258,7 @@ public class Profiles {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<UpdateProfileRequest, UpdateProfileResponse> operation
-              = new UpdateProfileOperation(sdkConfiguration, options);
+              = new UpdateProfile.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -303,7 +303,7 @@ public class Profiles {
                 .id(id)
                 .build();
         RequestOperation<DeleteProfileRequest, DeleteProfileResponse> operation
-              = new DeleteProfileOperation(sdkConfiguration, options);
+              = new DeleteProfile.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -353,7 +353,7 @@ public class Profiles {
      */
     public GetCurrentProfileResponse getCurrent(Optional<Options> options) throws Exception {
         RequestlessOperation<GetCurrentProfileResponse> operation
-            = new GetCurrentProfileOperation(sdkConfiguration, options);
+            = new GetCurrentProfile.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest());
     }
 

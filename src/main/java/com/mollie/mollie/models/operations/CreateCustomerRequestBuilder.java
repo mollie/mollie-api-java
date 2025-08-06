@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.CreateCustomerOperation;
+import com.mollie.mollie.operations.CreateCustomer;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -53,7 +53,7 @@ public class CreateCustomerRequestBuilder {
             .build());
 
         RequestOperation<Optional<? extends CreateCustomerRequestBody>, CreateCustomerResponse> operation
-              = new CreateCustomerOperation(sdkConfiguration, options);
+              = new CreateCustomer.Sync(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.GetPaymentOperation;
+import com.mollie.mollie.operations.GetPayment;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -100,7 +100,7 @@ public class GetPaymentRequestBuilder {
             .build());
 
         RequestOperation<GetPaymentRequest, GetPaymentResponse> operation
-              = new GetPaymentOperation(sdkConfiguration, options);
+              = new GetPayment.Sync(sdkConfiguration, options);
         GetPaymentRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

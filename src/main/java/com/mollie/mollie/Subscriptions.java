@@ -29,13 +29,13 @@ import com.mollie.mollie.models.operations.UpdateSubscriptionRequest;
 import com.mollie.mollie.models.operations.UpdateSubscriptionRequestBody;
 import com.mollie.mollie.models.operations.UpdateSubscriptionRequestBuilder;
 import com.mollie.mollie.models.operations.UpdateSubscriptionResponse;
-import com.mollie.mollie.operations.CancelSubscriptionOperation;
-import com.mollie.mollie.operations.CreateSubscriptionOperation;
-import com.mollie.mollie.operations.GetSubscriptionOperation;
-import com.mollie.mollie.operations.ListAllSubscriptionsOperation;
-import com.mollie.mollie.operations.ListSubscriptionPaymentsOperation;
-import com.mollie.mollie.operations.ListSubscriptionsOperation;
-import com.mollie.mollie.operations.UpdateSubscriptionOperation;
+import com.mollie.mollie.operations.CancelSubscription;
+import com.mollie.mollie.operations.CreateSubscription;
+import com.mollie.mollie.operations.GetSubscription;
+import com.mollie.mollie.operations.ListAllSubscriptions;
+import com.mollie.mollie.operations.ListSubscriptionPayments;
+import com.mollie.mollie.operations.ListSubscriptions;
+import com.mollie.mollie.operations.UpdateSubscription;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -151,7 +151,7 @@ public class Subscriptions {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CreateSubscriptionRequest, CreateSubscriptionResponse> operation
-              = new CreateSubscriptionOperation(sdkConfiguration, options);
+              = new CreateSubscription.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -197,7 +197,7 @@ public class Subscriptions {
      */
     public ListSubscriptionsResponse list(ListSubscriptionsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListSubscriptionsRequest, ListSubscriptionsResponse> operation
-              = new ListSubscriptionsOperation(sdkConfiguration, options);
+              = new ListSubscriptions.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -254,7 +254,7 @@ public class Subscriptions {
                 .testmode(testmode)
                 .build();
         RequestOperation<GetSubscriptionRequest, GetSubscriptionResponse> operation
-              = new GetSubscriptionOperation(sdkConfiguration, options);
+              = new GetSubscription.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -319,7 +319,7 @@ public class Subscriptions {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<UpdateSubscriptionRequest, UpdateSubscriptionResponse> operation
-              = new UpdateSubscriptionOperation(sdkConfiguration, options);
+              = new UpdateSubscription.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -372,7 +372,7 @@ public class Subscriptions {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CancelSubscriptionRequest, CancelSubscriptionResponse> operation
-              = new CancelSubscriptionOperation(sdkConfiguration, options);
+              = new CancelSubscription.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -442,7 +442,7 @@ public class Subscriptions {
                 .testmode(testmode)
                 .build();
         RequestOperation<ListAllSubscriptionsRequest, ListAllSubscriptionsResponse> operation
-              = new ListAllSubscriptionsOperation(sdkConfiguration, options);
+              = new ListAllSubscriptions.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -488,7 +488,7 @@ public class Subscriptions {
      */
     public ListSubscriptionPaymentsResponse listPayments(ListSubscriptionPaymentsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListSubscriptionPaymentsRequest, ListSubscriptionPaymentsResponse> operation
-              = new ListSubscriptionPaymentsOperation(sdkConfiguration, options);
+              = new ListSubscriptionPayments.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

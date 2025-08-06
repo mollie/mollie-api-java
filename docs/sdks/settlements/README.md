@@ -412,7 +412,7 @@ public class Application {
         ListSettlementRefundsRequest req = ListSettlementRefundsRequest.builder()
                 .settlementId("stl_jDk30akdN")
                 .from("re_5B8cwPMGnU")
-                .include(ListSettlementRefundsQueryParamInclude.PAYMENT)
+                .embed(ListSettlementRefundsQueryParamEmbed.PAYMENT)
                 .testmode(false)
                 .build();
 

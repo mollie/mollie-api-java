@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.GetBalanceOperation;
+import com.mollie.mollie.operations.GetBalance;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -72,7 +72,7 @@ public class GetBalanceRequestBuilder {
             .build());
 
         RequestOperation<GetBalanceRequest, GetBalanceResponse> operation
-              = new GetBalanceOperation(sdkConfiguration, options);
+              = new GetBalance.Sync(sdkConfiguration, options);
         GetBalanceRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

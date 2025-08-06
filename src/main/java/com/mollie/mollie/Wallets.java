@@ -8,7 +8,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 import com.mollie.mollie.models.operations.RequestApplePayPaymentSessionRequestBody;
 import com.mollie.mollie.models.operations.RequestApplePayPaymentSessionRequestBuilder;
 import com.mollie.mollie.models.operations.RequestApplePayPaymentSessionResponse;
-import com.mollie.mollie.operations.RequestApplePayPaymentSessionOperation;
+import com.mollie.mollie.operations.RequestApplePayPaymentSession;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -110,7 +110,7 @@ public class Wallets {
      */
     public RequestApplePayPaymentSessionResponse requestApplePaySession(Optional<? extends RequestApplePayPaymentSessionRequestBody> request, Optional<Options> options) throws Exception {
         RequestOperation<Optional<? extends RequestApplePayPaymentSessionRequestBody>, RequestApplePayPaymentSessionResponse> operation
-              = new RequestApplePayPaymentSessionOperation(sdkConfiguration, options);
+              = new RequestApplePayPaymentSession.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

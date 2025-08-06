@@ -11,8 +11,8 @@ import com.mollie.mollie.models.operations.GetPermissionRequestBuilder;
 import com.mollie.mollie.models.operations.GetPermissionResponse;
 import com.mollie.mollie.models.operations.ListPermissionsRequestBuilder;
 import com.mollie.mollie.models.operations.ListPermissionsResponse;
-import com.mollie.mollie.operations.GetPermissionOperation;
-import com.mollie.mollie.operations.ListPermissionsOperation;
+import com.mollie.mollie.operations.GetPermission;
+import com.mollie.mollie.operations.ListPermissions;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -68,7 +68,7 @@ public class Permissions {
      */
     public ListPermissionsResponse list(Optional<Options> options) throws Exception {
         RequestlessOperation<ListPermissionsResponse> operation
-            = new ListPermissionsOperation(sdkConfiguration, options);
+            = new ListPermissions.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -121,7 +121,7 @@ public class Permissions {
                 .testmode(testmode)
                 .build();
         RequestOperation<GetPermissionRequest, GetPermissionResponse> operation
-              = new GetPermissionOperation(sdkConfiguration, options);
+              = new GetPermission.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

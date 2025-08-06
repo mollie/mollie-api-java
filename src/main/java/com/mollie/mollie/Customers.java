@@ -31,13 +31,13 @@ import com.mollie.mollie.models.operations.UpdateCustomerRequest;
 import com.mollie.mollie.models.operations.UpdateCustomerRequestBody;
 import com.mollie.mollie.models.operations.UpdateCustomerRequestBuilder;
 import com.mollie.mollie.models.operations.UpdateCustomerResponse;
-import com.mollie.mollie.operations.CreateCustomerOperation;
-import com.mollie.mollie.operations.CreateCustomerPaymentOperation;
-import com.mollie.mollie.operations.DeleteCustomerOperation;
-import com.mollie.mollie.operations.GetCustomerOperation;
-import com.mollie.mollie.operations.ListCustomerPaymentsOperation;
-import com.mollie.mollie.operations.ListCustomersOperation;
-import com.mollie.mollie.operations.UpdateCustomerOperation;
+import com.mollie.mollie.operations.CreateCustomer;
+import com.mollie.mollie.operations.CreateCustomerPayment;
+import com.mollie.mollie.operations.DeleteCustomer;
+import com.mollie.mollie.operations.GetCustomer;
+import com.mollie.mollie.operations.ListCustomerPayments;
+import com.mollie.mollie.operations.ListCustomers;
+import com.mollie.mollie.operations.UpdateCustomer;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -98,7 +98,7 @@ public class Customers {
      */
     public CreateCustomerResponse create(Optional<? extends CreateCustomerRequestBody> request, Optional<Options> options) throws Exception {
         RequestOperation<Optional<? extends CreateCustomerRequestBody>, CreateCustomerResponse> operation
-              = new CreateCustomerOperation(sdkConfiguration, options);
+              = new CreateCustomer.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,7 +164,7 @@ public class Customers {
                 .testmode(testmode)
                 .build();
         RequestOperation<ListCustomersRequest, ListCustomersResponse> operation
-              = new ListCustomersOperation(sdkConfiguration, options);
+              = new ListCustomers.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -220,7 +220,7 @@ public class Customers {
                 .testmode(testmode)
                 .build();
         RequestOperation<GetCustomerRequest, GetCustomerResponse> operation
-              = new GetCustomerOperation(sdkConfiguration, options);
+              = new GetCustomer.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -275,7 +275,7 @@ public class Customers {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<UpdateCustomerRequest, UpdateCustomerResponse> operation
-              = new UpdateCustomerOperation(sdkConfiguration, options);
+              = new UpdateCustomer.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -324,7 +324,7 @@ public class Customers {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<DeleteCustomerRequest, DeleteCustomerResponse> operation
-              = new DeleteCustomerOperation(sdkConfiguration, options);
+              = new DeleteCustomer.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -403,7 +403,7 @@ public class Customers {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CreateCustomerPaymentRequest, CreateCustomerPaymentResponse> operation
-              = new CreateCustomerPaymentOperation(sdkConfiguration, options);
+              = new CreateCustomerPayment.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -443,7 +443,7 @@ public class Customers {
      */
     public ListCustomerPaymentsResponse listPayments(ListCustomerPaymentsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListCustomerPaymentsRequest, ListCustomerPaymentsResponse> operation
-              = new ListCustomerPaymentsOperation(sdkConfiguration, options);
+              = new ListCustomerPayments.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

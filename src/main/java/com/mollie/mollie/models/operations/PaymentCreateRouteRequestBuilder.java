@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.PaymentCreateRouteOperation;
+import com.mollie.mollie.operations.PaymentCreateRoute;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -70,7 +70,7 @@ public class PaymentCreateRouteRequestBuilder {
             .build());
 
         RequestOperation<PaymentCreateRouteRequest, PaymentCreateRouteResponse> operation
-              = new PaymentCreateRouteOperation(sdkConfiguration, options);
+              = new PaymentCreateRoute.Sync(sdkConfiguration, options);
         PaymentCreateRouteRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

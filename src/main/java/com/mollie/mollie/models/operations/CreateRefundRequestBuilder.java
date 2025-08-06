@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.CreateRefundOperation;
+import com.mollie.mollie.operations.CreateRefund;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -70,7 +70,7 @@ public class CreateRefundRequestBuilder {
             .build());
 
         RequestOperation<CreateRefundRequest, CreateRefundResponse> operation
-              = new CreateRefundOperation(sdkConfiguration, options);
+              = new CreateRefund.Sync(sdkConfiguration, options);
         CreateRefundRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

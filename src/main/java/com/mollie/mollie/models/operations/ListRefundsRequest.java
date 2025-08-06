@@ -39,10 +39,11 @@ public class ListRefundsRequest {
     private JsonNullable<Long> limit;
 
     /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=include")
-    private JsonNullable<? extends ListRefundsQueryParamInclude> include;
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=embed")
+    private Optional<? extends QueryParamEmbed> embed;
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -59,24 +60,24 @@ public class ListRefundsRequest {
             String paymentId,
             Optional<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<? extends ListRefundsQueryParamInclude> include,
+            Optional<? extends QueryParamEmbed> embed,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(paymentId, "paymentId");
         Utils.checkNotNull(from, "from");
         Utils.checkNotNull(limit, "limit");
-        Utils.checkNotNull(include, "include");
+        Utils.checkNotNull(embed, "embed");
         Utils.checkNotNull(testmode, "testmode");
         this.paymentId = paymentId;
         this.from = from;
         this.limit = limit;
-        this.include = include;
+        this.embed = embed;
         this.testmode = testmode;
     }
     
     public ListRefundsRequest(
             String paymentId) {
         this(paymentId, Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -105,12 +106,13 @@ public class ListRefundsRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListRefundsQueryParamInclude> include() {
-        return (JsonNullable<ListRefundsQueryParamInclude>) include;
+    public Optional<QueryParamEmbed> embed() {
+        return (Optional<QueryParamEmbed>) embed;
     }
 
     /**
@@ -179,20 +181,23 @@ public class ListRefundsRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
-    public ListRefundsRequest withInclude(ListRefundsQueryParamInclude include) {
-        Utils.checkNotNull(include, "include");
-        this.include = JsonNullable.of(include);
+    public ListRefundsRequest withEmbed(QueryParamEmbed embed) {
+        Utils.checkNotNull(embed, "embed");
+        this.embed = Optional.ofNullable(embed);
         return this;
     }
 
+
     /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
-    public ListRefundsRequest withInclude(JsonNullable<? extends ListRefundsQueryParamInclude> include) {
-        Utils.checkNotNull(include, "include");
-        this.include = include;
+    public ListRefundsRequest withEmbed(Optional<? extends QueryParamEmbed> embed) {
+        Utils.checkNotNull(embed, "embed");
+        this.embed = embed;
         return this;
     }
 
@@ -235,7 +240,7 @@ public class ListRefundsRequest {
             Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
             Utils.enhancedDeepEquals(this.from, other.from) &&
             Utils.enhancedDeepEquals(this.limit, other.limit) &&
-            Utils.enhancedDeepEquals(this.include, other.include) &&
+            Utils.enhancedDeepEquals(this.embed, other.embed) &&
             Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
     
@@ -243,7 +248,7 @@ public class ListRefundsRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             paymentId, from, limit,
-            include, testmode);
+            embed, testmode);
     }
     
     @Override
@@ -252,7 +257,7 @@ public class ListRefundsRequest {
                 "paymentId", paymentId,
                 "from", from,
                 "limit", limit,
-                "include", include,
+                "embed", embed,
                 "testmode", testmode);
     }
 
@@ -265,7 +270,7 @@ public class ListRefundsRequest {
 
         private JsonNullable<Long> limit;
 
-        private JsonNullable<? extends ListRefundsQueryParamInclude> include = JsonNullable.undefined();
+        private Optional<? extends QueryParamEmbed> embed = Optional.empty();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -325,20 +330,22 @@ public class ListRefundsRequest {
 
 
         /**
-         * This endpoint allows you to include additional information via the `include` query string parameter.
+         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+         * parameter.
          */
-        public Builder include(ListRefundsQueryParamInclude include) {
-            Utils.checkNotNull(include, "include");
-            this.include = JsonNullable.of(include);
+        public Builder embed(QueryParamEmbed embed) {
+            Utils.checkNotNull(embed, "embed");
+            this.embed = Optional.ofNullable(embed);
             return this;
         }
 
         /**
-         * This endpoint allows you to include additional information via the `include` query string parameter.
+         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+         * parameter.
          */
-        public Builder include(JsonNullable<? extends ListRefundsQueryParamInclude> include) {
-            Utils.checkNotNull(include, "include");
-            this.include = include;
+        public Builder embed(Optional<? extends QueryParamEmbed> embed) {
+            Utils.checkNotNull(embed, "embed");
+            this.embed = embed;
             return this;
         }
 
@@ -376,7 +383,7 @@ public class ListRefundsRequest {
 
             return new ListRefundsRequest(
                 paymentId, from, limit,
-                include, testmode);
+                embed, testmode);
         }
 
 

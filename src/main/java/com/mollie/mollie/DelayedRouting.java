@@ -12,8 +12,8 @@ import com.mollie.mollie.models.operations.PaymentCreateRouteResponse;
 import com.mollie.mollie.models.operations.PaymentListRoutesRequest;
 import com.mollie.mollie.models.operations.PaymentListRoutesRequestBuilder;
 import com.mollie.mollie.models.operations.PaymentListRoutesResponse;
-import com.mollie.mollie.operations.PaymentCreateRouteOperation;
-import com.mollie.mollie.operations.PaymentListRoutesOperation;
+import com.mollie.mollie.operations.PaymentCreateRoute;
+import com.mollie.mollie.operations.PaymentListRoutes;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -77,7 +77,7 @@ public class DelayedRouting {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<PaymentCreateRouteRequest, PaymentCreateRouteResponse> operation
-              = new PaymentCreateRouteOperation(sdkConfiguration, options);
+              = new PaymentCreateRoute.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -130,7 +130,7 @@ public class DelayedRouting {
                 .testmode(testmode)
                 .build();
         RequestOperation<PaymentListRoutesRequest, PaymentListRoutesResponse> operation
-              = new PaymentListRoutesOperation(sdkConfiguration, options);
+              = new PaymentListRoutes.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

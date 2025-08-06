@@ -12,7 +12,7 @@ import com.mollie.mollie.models.operations.CreateRefundRequest;
 import com.mollie.mollie.models.operations.CreateRefundRequestBody;
 import com.mollie.mollie.models.operations.CreateRefundRequestBuilder;
 import com.mollie.mollie.models.operations.CreateRefundResponse;
-import com.mollie.mollie.models.operations.GetRefundQueryParamInclude;
+import com.mollie.mollie.models.operations.GetRefundQueryParamEmbed;
 import com.mollie.mollie.models.operations.GetRefundRequest;
 import com.mollie.mollie.models.operations.GetRefundRequestBuilder;
 import com.mollie.mollie.models.operations.GetRefundResponse;
@@ -22,11 +22,11 @@ import com.mollie.mollie.models.operations.ListAllRefundsResponse;
 import com.mollie.mollie.models.operations.ListRefundsRequest;
 import com.mollie.mollie.models.operations.ListRefundsRequestBuilder;
 import com.mollie.mollie.models.operations.ListRefundsResponse;
-import com.mollie.mollie.operations.CancelRefundOperation;
-import com.mollie.mollie.operations.CreateRefundOperation;
-import com.mollie.mollie.operations.GetRefundOperation;
-import com.mollie.mollie.operations.ListAllRefundsOperation;
-import com.mollie.mollie.operations.ListRefundsOperation;
+import com.mollie.mollie.operations.CancelRefund;
+import com.mollie.mollie.operations.CreateRefund;
+import com.mollie.mollie.operations.GetRefund;
+import com.mollie.mollie.operations.ListAllRefunds;
+import com.mollie.mollie.operations.ListRefunds;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -90,7 +90,7 @@ public class Refunds {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CreateRefundRequest, CreateRefundResponse> operation
-              = new CreateRefundOperation(sdkConfiguration, options);
+              = new CreateRefund.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -136,7 +136,7 @@ public class Refunds {
      */
     public ListRefundsResponse list(ListRefundsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListRefundsRequest, ListRefundsResponse> operation
-              = new ListRefundsOperation(sdkConfiguration, options);
+              = new ListRefunds.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -162,7 +162,7 @@ public class Refunds {
      * @throws Exception if the API call fails
      */
     public GetRefundResponse get(String paymentId, String refundId) throws Exception {
-        return get(paymentId, refundId, JsonNullable.undefined(),
+        return get(paymentId, refundId, Optional.empty(),
             JsonNullable.undefined(), Optional.empty());
     }
 
@@ -173,7 +173,8 @@ public class Refunds {
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param refundId Provide the ID of the related refund.
-     * @param include This endpoint allows you to include additional information via the `include` query string parameter.
+     * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     *         parameter.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
      *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
      *         setting the `testmode` query parameter to `true`.
@@ -185,18 +186,18 @@ public class Refunds {
      */
     public GetRefundResponse get(
             String paymentId, String refundId,
-            JsonNullable<? extends GetRefundQueryParamInclude> include, JsonNullable<Boolean> testmode,
+            Optional<? extends GetRefundQueryParamEmbed> embed, JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
         GetRefundRequest request =
             GetRefundRequest
                 .builder()
                 .paymentId(paymentId)
                 .refundId(refundId)
-                .include(include)
+                .embed(embed)
                 .testmode(testmode)
                 .build();
         RequestOperation<GetRefundRequest, GetRefundResponse> operation
-              = new GetRefundOperation(sdkConfiguration, options);
+              = new GetRefund.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -265,7 +266,7 @@ public class Refunds {
                 .testmode(testmode)
                 .build();
         RequestOperation<CancelRefundRequest, CancelRefundResponse> operation
-              = new CancelRefundOperation(sdkConfiguration, options);
+              = new CancelRefund.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -311,7 +312,7 @@ public class Refunds {
      */
     public ListAllRefundsResponse all(ListAllRefundsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListAllRefundsRequest, ListAllRefundsResponse> operation
-              = new ListAllRefundsOperation(sdkConfiguration, options);
+              = new ListAllRefunds.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.DeleteProfileOperation;
+import com.mollie.mollie.operations.DeleteProfile;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -56,7 +56,7 @@ public class DeleteProfileRequestBuilder {
             .build());
 
         RequestOperation<DeleteProfileRequest, DeleteProfileResponse> operation
-              = new DeleteProfileOperation(sdkConfiguration, options);
+              = new DeleteProfile.Sync(sdkConfiguration, options);
         DeleteProfileRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

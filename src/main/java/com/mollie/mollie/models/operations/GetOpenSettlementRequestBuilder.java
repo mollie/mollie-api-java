@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestlessOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.GetOpenSettlementOperation;
+import com.mollie.mollie.operations.GetOpenSettlement;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -40,7 +40,7 @@ public class GetOpenSettlementRequestBuilder {
             .build());
 
         RequestlessOperation<GetOpenSettlementResponse> operation
-            = new GetOpenSettlementOperation(sdkConfiguration, options);
+            = new GetOpenSettlement.Sync(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest());
     }

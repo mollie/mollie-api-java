@@ -7,7 +7,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.ListBalancesOperation;
+import com.mollie.mollie.operations.ListBalances;
 import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
@@ -115,7 +115,7 @@ public class ListBalancesRequestBuilder {
             .build());
 
         RequestOperation<ListBalancesRequest, ListBalancesResponse> operation
-              = new ListBalancesOperation(sdkConfiguration, options);
+              = new ListBalances.Sync(sdkConfiguration, options);
         ListBalancesRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

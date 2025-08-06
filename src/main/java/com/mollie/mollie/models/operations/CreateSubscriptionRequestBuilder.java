@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.CreateSubscriptionOperation;
+import com.mollie.mollie.operations.CreateSubscription;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -70,7 +70,7 @@ public class CreateSubscriptionRequestBuilder {
             .build());
 
         RequestOperation<CreateSubscriptionRequest, CreateSubscriptionResponse> operation
-              = new CreateSubscriptionOperation(sdkConfiguration, options);
+              = new CreateSubscription.Sync(sdkConfiguration, options);
         CreateSubscriptionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

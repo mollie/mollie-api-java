@@ -44,7 +44,7 @@ public class ListAllRefundsRequest {
      * parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=embed")
-    private Optional<? extends QueryParamEmbed> embed;
+    private Optional<? extends ListAllRefundsQueryParamEmbed> embed;
 
     /**
      * The identifier referring to the [profile](get-profile) you wish to
@@ -71,7 +71,7 @@ public class ListAllRefundsRequest {
             Optional<String> from,
             JsonNullable<Long> limit,
             JsonNullable<? extends QueryParamSort> sort,
-            Optional<? extends QueryParamEmbed> embed,
+            Optional<? extends ListAllRefundsQueryParamEmbed> embed,
             Optional<String> profileId,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(from, "from");
@@ -126,8 +126,8 @@ public class ListAllRefundsRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<QueryParamEmbed> embed() {
-        return (Optional<QueryParamEmbed>) embed;
+    public Optional<ListAllRefundsQueryParamEmbed> embed() {
+        return (Optional<ListAllRefundsQueryParamEmbed>) embed;
     }
 
     /**
@@ -222,7 +222,7 @@ public class ListAllRefundsRequest {
      * This endpoint allows embedding related API items by appending the following values via the `embed` query string
      * parameter.
      */
-    public ListAllRefundsRequest withEmbed(QueryParamEmbed embed) {
+    public ListAllRefundsRequest withEmbed(ListAllRefundsQueryParamEmbed embed) {
         Utils.checkNotNull(embed, "embed");
         this.embed = Optional.ofNullable(embed);
         return this;
@@ -233,7 +233,7 @@ public class ListAllRefundsRequest {
      * This endpoint allows embedding related API items by appending the following values via the `embed` query string
      * parameter.
      */
-    public ListAllRefundsRequest withEmbed(Optional<? extends QueryParamEmbed> embed) {
+    public ListAllRefundsRequest withEmbed(Optional<? extends ListAllRefundsQueryParamEmbed> embed) {
         Utils.checkNotNull(embed, "embed");
         this.embed = embed;
         return this;
@@ -337,7 +337,7 @@ public class ListAllRefundsRequest {
 
         private JsonNullable<? extends QueryParamSort> sort;
 
-        private Optional<? extends QueryParamEmbed> embed = Optional.empty();
+        private Optional<? extends ListAllRefundsQueryParamEmbed> embed = Optional.empty();
 
         private Optional<String> profileId = Optional.empty();
 
@@ -413,7 +413,7 @@ public class ListAllRefundsRequest {
          * This endpoint allows embedding related API items by appending the following values via the `embed` query string
          * parameter.
          */
-        public Builder embed(QueryParamEmbed embed) {
+        public Builder embed(ListAllRefundsQueryParamEmbed embed) {
             Utils.checkNotNull(embed, "embed");
             this.embed = Optional.ofNullable(embed);
             return this;
@@ -423,7 +423,7 @@ public class ListAllRefundsRequest {
          * This endpoint allows embedding related API items by appending the following values via the `embed` query string
          * parameter.
          */
-        public Builder embed(Optional<? extends QueryParamEmbed> embed) {
+        public Builder embed(Optional<? extends ListAllRefundsQueryParamEmbed> embed) {
             Utils.checkNotNull(embed, "embed");
             this.embed = embed;
             return this;

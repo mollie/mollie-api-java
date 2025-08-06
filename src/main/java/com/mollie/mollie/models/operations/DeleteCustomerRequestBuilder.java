@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.DeleteCustomerOperation;
+import com.mollie.mollie.operations.DeleteCustomer;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -70,7 +70,7 @@ public class DeleteCustomerRequestBuilder {
             .build());
 
         RequestOperation<DeleteCustomerRequest, DeleteCustomerResponse> operation
-              = new DeleteCustomerOperation(sdkConfiguration, options);
+              = new DeleteCustomer.Sync(sdkConfiguration, options);
         DeleteCustomerRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

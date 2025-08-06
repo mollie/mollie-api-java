@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.GetOrganizationOperation;
+import com.mollie.mollie.operations.GetOrganization;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -72,7 +72,7 @@ public class GetOrganizationRequestBuilder {
             .build());
 
         RequestOperation<GetOrganizationRequest, GetOrganizationResponse> operation
-              = new GetOrganizationOperation(sdkConfiguration, options);
+              = new GetOrganization.Sync(sdkConfiguration, options);
         GetOrganizationRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.ListSettlementPaymentsOperation;
+import com.mollie.mollie.operations.ListSettlementPayments;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -47,7 +47,7 @@ public class ListSettlementPaymentsRequestBuilder {
             .build());
 
         RequestOperation<ListSettlementPaymentsRequest, ListSettlementPaymentsResponse> operation
-              = new ListSettlementPaymentsOperation(sdkConfiguration, options);
+              = new ListSettlementPayments.Sync(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

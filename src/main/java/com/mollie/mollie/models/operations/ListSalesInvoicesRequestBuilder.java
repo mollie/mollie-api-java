@@ -7,7 +7,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.ListSalesInvoicesOperation;
+import com.mollie.mollie.operations.ListSalesInvoices;
 import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
@@ -101,7 +101,7 @@ public class ListSalesInvoicesRequestBuilder {
             .build());
 
         RequestOperation<ListSalesInvoicesRequest, ListSalesInvoicesResponse> operation
-              = new ListSalesInvoicesOperation(sdkConfiguration, options);
+              = new ListSalesInvoices.Sync(sdkConfiguration, options);
         ListSalesInvoicesRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

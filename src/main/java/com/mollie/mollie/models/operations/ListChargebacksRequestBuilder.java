@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.ListChargebacksOperation;
+import com.mollie.mollie.operations.ListChargebacks;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -47,7 +47,7 @@ public class ListChargebacksRequestBuilder {
             .build());
 
         RequestOperation<ListChargebacksRequest, ListChargebacksResponse> operation
-              = new ListChargebacksOperation(sdkConfiguration, options);
+              = new ListChargebacks.Sync(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

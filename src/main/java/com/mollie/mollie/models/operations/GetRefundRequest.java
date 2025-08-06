@@ -11,6 +11,7 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -28,10 +29,11 @@ public class GetRefundRequest {
     private String refundId;
 
     /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=include")
-    private JsonNullable<? extends GetRefundQueryParamInclude> include;
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=embed")
+    private Optional<? extends GetRefundQueryParamEmbed> embed;
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -47,22 +49,22 @@ public class GetRefundRequest {
     public GetRefundRequest(
             String paymentId,
             String refundId,
-            JsonNullable<? extends GetRefundQueryParamInclude> include,
+            Optional<? extends GetRefundQueryParamEmbed> embed,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(paymentId, "paymentId");
         Utils.checkNotNull(refundId, "refundId");
-        Utils.checkNotNull(include, "include");
+        Utils.checkNotNull(embed, "embed");
         Utils.checkNotNull(testmode, "testmode");
         this.paymentId = paymentId;
         this.refundId = refundId;
-        this.include = include;
+        this.embed = embed;
         this.testmode = testmode;
     }
     
     public GetRefundRequest(
             String paymentId,
             String refundId) {
-        this(paymentId, refundId, JsonNullable.undefined(),
+        this(paymentId, refundId, Optional.empty(),
             JsonNullable.undefined());
     }
 
@@ -83,12 +85,13 @@ public class GetRefundRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<GetRefundQueryParamInclude> include() {
-        return (JsonNullable<GetRefundQueryParamInclude>) include;
+    public Optional<GetRefundQueryParamEmbed> embed() {
+        return (Optional<GetRefundQueryParamEmbed>) embed;
     }
 
     /**
@@ -127,20 +130,23 @@ public class GetRefundRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
-    public GetRefundRequest withInclude(GetRefundQueryParamInclude include) {
-        Utils.checkNotNull(include, "include");
-        this.include = JsonNullable.of(include);
+    public GetRefundRequest withEmbed(GetRefundQueryParamEmbed embed) {
+        Utils.checkNotNull(embed, "embed");
+        this.embed = Optional.ofNullable(embed);
         return this;
     }
 
+
     /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
-    public GetRefundRequest withInclude(JsonNullable<? extends GetRefundQueryParamInclude> include) {
-        Utils.checkNotNull(include, "include");
-        this.include = include;
+    public GetRefundRequest withEmbed(Optional<? extends GetRefundQueryParamEmbed> embed) {
+        Utils.checkNotNull(embed, "embed");
+        this.embed = embed;
         return this;
     }
 
@@ -182,14 +188,14 @@ public class GetRefundRequest {
         return 
             Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
             Utils.enhancedDeepEquals(this.refundId, other.refundId) &&
-            Utils.enhancedDeepEquals(this.include, other.include) &&
+            Utils.enhancedDeepEquals(this.embed, other.embed) &&
             Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentId, refundId, include,
+            paymentId, refundId, embed,
             testmode);
     }
     
@@ -198,7 +204,7 @@ public class GetRefundRequest {
         return Utils.toString(GetRefundRequest.class,
                 "paymentId", paymentId,
                 "refundId", refundId,
-                "include", include,
+                "embed", embed,
                 "testmode", testmode);
     }
 
@@ -209,7 +215,7 @@ public class GetRefundRequest {
 
         private String refundId;
 
-        private JsonNullable<? extends GetRefundQueryParamInclude> include = JsonNullable.undefined();
+        private Optional<? extends GetRefundQueryParamEmbed> embed = Optional.empty();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -239,20 +245,22 @@ public class GetRefundRequest {
 
 
         /**
-         * This endpoint allows you to include additional information via the `include` query string parameter.
+         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+         * parameter.
          */
-        public Builder include(GetRefundQueryParamInclude include) {
-            Utils.checkNotNull(include, "include");
-            this.include = JsonNullable.of(include);
+        public Builder embed(GetRefundQueryParamEmbed embed) {
+            Utils.checkNotNull(embed, "embed");
+            this.embed = Optional.ofNullable(embed);
             return this;
         }
 
         /**
-         * This endpoint allows you to include additional information via the `include` query string parameter.
+         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+         * parameter.
          */
-        public Builder include(JsonNullable<? extends GetRefundQueryParamInclude> include) {
-            Utils.checkNotNull(include, "include");
-            this.include = include;
+        public Builder embed(Optional<? extends GetRefundQueryParamEmbed> embed) {
+            Utils.checkNotNull(embed, "embed");
+            this.embed = embed;
             return this;
         }
 
@@ -286,7 +294,7 @@ public class GetRefundRequest {
         public GetRefundRequest build() {
 
             return new GetRefundRequest(
-                paymentId, refundId, include,
+                paymentId, refundId, embed,
                 testmode);
         }
 

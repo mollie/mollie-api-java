@@ -7,7 +7,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.ListTerminalsOperation;
+import com.mollie.mollie.operations.ListTerminals;
 import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
@@ -121,7 +121,7 @@ public class ListTerminalsRequestBuilder {
             .build());
 
         RequestOperation<ListTerminalsRequest, ListTerminalsResponse> operation
-              = new ListTerminalsOperation(sdkConfiguration, options);
+              = new ListTerminals.Sync(sdkConfiguration, options);
         ListTerminalsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

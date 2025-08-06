@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestlessOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.ListCapabilitiesOperation;
+import com.mollie.mollie.operations.ListCapabilities;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -40,7 +40,7 @@ public class ListCapabilitiesRequestBuilder {
             .build());
 
         RequestlessOperation<ListCapabilitiesResponse> operation
-            = new ListCapabilitiesOperation(sdkConfiguration, options);
+            = new ListCapabilities.Sync(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest());
     }

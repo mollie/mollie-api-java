@@ -20,11 +20,11 @@ import com.mollie.mollie.models.operations.ListBalanceTransactionsResponse;
 import com.mollie.mollie.models.operations.ListBalancesRequest;
 import com.mollie.mollie.models.operations.ListBalancesRequestBuilder;
 import com.mollie.mollie.models.operations.ListBalancesResponse;
-import com.mollie.mollie.operations.GetBalanceOperation;
-import com.mollie.mollie.operations.GetBalanceReportOperation;
-import com.mollie.mollie.operations.GetPrimaryBalanceOperation;
-import com.mollie.mollie.operations.ListBalanceTransactionsOperation;
-import com.mollie.mollie.operations.ListBalancesOperation;
+import com.mollie.mollie.operations.GetBalance;
+import com.mollie.mollie.operations.GetBalanceReport;
+import com.mollie.mollie.operations.GetPrimaryBalance;
+import com.mollie.mollie.operations.ListBalanceTransactions;
+import com.mollie.mollie.operations.ListBalances;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -102,7 +102,7 @@ public class Balances {
                 .testmode(testmode)
                 .build();
         RequestOperation<ListBalancesRequest, ListBalancesResponse> operation
-              = new ListBalancesOperation(sdkConfiguration, options);
+              = new ListBalances.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -197,7 +197,7 @@ public class Balances {
                 .testmode(testmode)
                 .build();
         RequestOperation<GetBalanceRequest, GetBalanceResponse> operation
-              = new GetBalanceOperation(sdkConfiguration, options);
+              = new GetBalance.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,7 +247,7 @@ public class Balances {
      */
     public GetPrimaryBalanceResponse getPrimary(Optional<Options> options) throws Exception {
         RequestlessOperation<GetPrimaryBalanceResponse> operation
-            = new GetPrimaryBalanceOperation(sdkConfiguration, options);
+            = new GetPrimaryBalance.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -305,7 +305,7 @@ public class Balances {
      */
     public GetBalanceReportResponse getReport(GetBalanceReportRequest request, Optional<Options> options) throws Exception {
         RequestOperation<GetBalanceReportRequest, GetBalanceReportResponse> operation
-              = new GetBalanceReportOperation(sdkConfiguration, options);
+              = new GetBalanceReport.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -392,7 +392,7 @@ public class Balances {
                 .testmode(testmode)
                 .build();
         RequestOperation<ListBalanceTransactionsRequest, ListBalanceTransactionsResponse> operation
-              = new ListBalanceTransactionsOperation(sdkConfiguration, options);
+              = new ListBalanceTransactions.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

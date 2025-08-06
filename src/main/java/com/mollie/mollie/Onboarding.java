@@ -11,8 +11,8 @@ import com.mollie.mollie.models.operations.GetOnboardingStatusResponse;
 import com.mollie.mollie.models.operations.SubmitOnboardingDataRequestBody;
 import com.mollie.mollie.models.operations.SubmitOnboardingDataRequestBuilder;
 import com.mollie.mollie.models.operations.SubmitOnboardingDataResponse;
-import com.mollie.mollie.operations.GetOnboardingStatusOperation;
-import com.mollie.mollie.operations.SubmitOnboardingDataOperation;
+import com.mollie.mollie.operations.GetOnboardingStatus;
+import com.mollie.mollie.operations.SubmitOnboardingData;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -59,7 +59,7 @@ public class Onboarding {
      */
     public GetOnboardingStatusResponse get(Optional<Options> options) throws Exception {
         RequestlessOperation<GetOnboardingStatusResponse> operation
-            = new GetOnboardingStatusOperation(sdkConfiguration, options);
+            = new GetOnboardingStatus.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -113,7 +113,7 @@ public class Onboarding {
      */
     public SubmitOnboardingDataResponse submit(Optional<? extends SubmitOnboardingDataRequestBody> request, Optional<Options> options) throws Exception {
         RequestOperation<Optional<? extends SubmitOnboardingDataRequestBody>, SubmitOnboardingDataResponse> operation
-              = new SubmitOnboardingDataOperation(sdkConfiguration, options);
+              = new SubmitOnboardingData.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

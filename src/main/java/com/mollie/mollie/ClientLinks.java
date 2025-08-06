@@ -8,7 +8,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 import com.mollie.mollie.models.operations.CreateClientLinkRequestBody;
 import com.mollie.mollie.models.operations.CreateClientLinkRequestBuilder;
 import com.mollie.mollie.models.operations.CreateClientLinkResponse;
-import com.mollie.mollie.operations.CreateClientLinkOperation;
+import com.mollie.mollie.operations.CreateClientLink;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -212,7 +212,7 @@ public class ClientLinks {
      */
     public CreateClientLinkResponse create(Optional<? extends CreateClientLinkRequestBody> request, Optional<Options> options) throws Exception {
         RequestOperation<Optional<? extends CreateClientLinkRequestBody>, CreateClientLinkResponse> operation
-              = new CreateClientLinkOperation(sdkConfiguration, options);
+              = new CreateClientLink.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

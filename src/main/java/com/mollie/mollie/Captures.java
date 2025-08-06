@@ -16,9 +16,9 @@ import com.mollie.mollie.models.operations.GetCaptureResponse;
 import com.mollie.mollie.models.operations.ListCapturesRequest;
 import com.mollie.mollie.models.operations.ListCapturesRequestBuilder;
 import com.mollie.mollie.models.operations.ListCapturesResponse;
-import com.mollie.mollie.operations.CreateCaptureOperation;
-import com.mollie.mollie.operations.GetCaptureOperation;
-import com.mollie.mollie.operations.ListCapturesOperation;
+import com.mollie.mollie.operations.CreateCapture;
+import com.mollie.mollie.operations.GetCapture;
+import com.mollie.mollie.operations.ListCaptures;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -100,7 +100,7 @@ public class Captures {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CreateCaptureRequest, CreateCaptureResponse> operation
-              = new CreateCaptureOperation(sdkConfiguration, options);
+              = new CreateCapture.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -146,7 +146,7 @@ public class Captures {
      */
     public ListCapturesResponse list(ListCapturesRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListCapturesRequest, ListCapturesResponse> operation
-              = new ListCapturesOperation(sdkConfiguration, options);
+              = new ListCaptures.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -210,7 +210,7 @@ public class Captures {
                 .testmode(testmode)
                 .build();
         RequestOperation<GetCaptureRequest, GetCaptureResponse> operation
-              = new GetCaptureOperation(sdkConfiguration, options);
+              = new GetCapture.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

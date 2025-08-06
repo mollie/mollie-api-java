@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestlessOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.GetPartnerStatusOperation;
+import com.mollie.mollie.operations.GetPartnerStatus;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -40,7 +40,7 @@ public class GetPartnerStatusRequestBuilder {
             .build());
 
         RequestlessOperation<GetPartnerStatusResponse> operation
-            = new GetPartnerStatusOperation(sdkConfiguration, options);
+            = new GetPartnerStatus.Sync(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest());
     }

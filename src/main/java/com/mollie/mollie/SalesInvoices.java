@@ -22,11 +22,11 @@ import com.mollie.mollie.models.operations.UpdateSalesInvoiceRequest;
 import com.mollie.mollie.models.operations.UpdateSalesInvoiceRequestBody;
 import com.mollie.mollie.models.operations.UpdateSalesInvoiceRequestBuilder;
 import com.mollie.mollie.models.operations.UpdateSalesInvoiceResponse;
-import com.mollie.mollie.operations.CreateSalesInvoiceOperation;
-import com.mollie.mollie.operations.DeleteSalesInvoiceOperation;
-import com.mollie.mollie.operations.GetSalesInvoiceOperation;
-import com.mollie.mollie.operations.ListSalesInvoicesOperation;
-import com.mollie.mollie.operations.UpdateSalesInvoiceOperation;
+import com.mollie.mollie.operations.CreateSalesInvoice;
+import com.mollie.mollie.operations.DeleteSalesInvoice;
+import com.mollie.mollie.operations.GetSalesInvoice;
+import com.mollie.mollie.operations.ListSalesInvoices;
+import com.mollie.mollie.operations.UpdateSalesInvoice;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -90,7 +90,7 @@ public class SalesInvoices {
      */
     public CreateSalesInvoiceResponse create(Optional<? extends CreateSalesInvoiceRequestBody> request, Optional<Options> options) throws Exception {
         RequestOperation<Optional<? extends CreateSalesInvoiceRequestBody>, CreateSalesInvoiceResponse> operation
-              = new CreateSalesInvoiceOperation(sdkConfiguration, options);
+              = new CreateSalesInvoice.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,7 +164,7 @@ public class SalesInvoices {
                 .testmode(testmode)
                 .build();
         RequestOperation<ListSalesInvoicesRequest, ListSalesInvoicesResponse> operation
-              = new ListSalesInvoicesOperation(sdkConfiguration, options);
+              = new ListSalesInvoices.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -229,7 +229,7 @@ public class SalesInvoices {
                 .testmode(testmode)
                 .build();
         RequestOperation<GetSalesInvoiceRequest, GetSalesInvoiceResponse> operation
-              = new GetSalesInvoiceOperation(sdkConfiguration, options);
+              = new GetSalesInvoice.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -296,7 +296,7 @@ public class SalesInvoices {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<UpdateSalesInvoiceRequest, UpdateSalesInvoiceResponse> operation
-              = new UpdateSalesInvoiceOperation(sdkConfiguration, options);
+              = new UpdateSalesInvoice.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -360,7 +360,7 @@ public class SalesInvoices {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<DeleteSalesInvoiceRequest, DeleteSalesInvoiceResponse> operation
-              = new DeleteSalesInvoiceOperation(sdkConfiguration, options);
+              = new DeleteSalesInvoice.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -11,8 +11,8 @@ import com.mollie.mollie.models.operations.GetInvoiceResponse;
 import com.mollie.mollie.models.operations.ListInvoicesRequest;
 import com.mollie.mollie.models.operations.ListInvoicesRequestBuilder;
 import com.mollie.mollie.models.operations.ListInvoicesResponse;
-import com.mollie.mollie.operations.GetInvoiceOperation;
-import com.mollie.mollie.operations.ListInvoicesOperation;
+import com.mollie.mollie.operations.GetInvoice;
+import com.mollie.mollie.operations.ListInvoices;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -71,7 +71,7 @@ public class Invoices {
      */
     public ListInvoicesResponse list(ListInvoicesRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListInvoicesRequest, ListInvoicesResponse> operation
-              = new ListInvoicesOperation(sdkConfiguration, options);
+              = new ListInvoices.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -125,7 +125,7 @@ public class Invoices {
                 .id(id)
                 .build();
         RequestOperation<GetInvoiceRequest, GetInvoiceResponse> operation
-              = new GetInvoiceOperation(sdkConfiguration, options);
+              = new GetInvoice.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

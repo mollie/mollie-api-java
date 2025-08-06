@@ -30,12 +30,12 @@ import com.mollie.mollie.models.operations.UpdatePaymentRequest;
 import com.mollie.mollie.models.operations.UpdatePaymentRequestBody;
 import com.mollie.mollie.models.operations.UpdatePaymentRequestBuilder;
 import com.mollie.mollie.models.operations.UpdatePaymentResponse;
-import com.mollie.mollie.operations.CancelPaymentOperation;
-import com.mollie.mollie.operations.CreatePaymentOperation;
-import com.mollie.mollie.operations.GetPaymentOperation;
-import com.mollie.mollie.operations.ListPaymentsOperation;
-import com.mollie.mollie.operations.ReleaseAuthorizationOperation;
-import com.mollie.mollie.operations.UpdatePaymentOperation;
+import com.mollie.mollie.operations.CancelPayment;
+import com.mollie.mollie.operations.CreatePayment;
+import com.mollie.mollie.operations.GetPayment;
+import com.mollie.mollie.operations.ListPayments;
+import com.mollie.mollie.operations.ReleaseAuthorization;
+import com.mollie.mollie.operations.UpdatePayment;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -128,7 +128,7 @@ public class Payments {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CreatePaymentRequest, CreatePaymentResponse> operation
-              = new CreatePaymentOperation(sdkConfiguration, options);
+              = new CreatePayment.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -174,7 +174,7 @@ public class Payments {
      */
     public ListPaymentsResponse list(ListPaymentsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListPaymentsRequest, ListPaymentsResponse> operation
-              = new ListPaymentsOperation(sdkConfiguration, options);
+              = new ListPayments.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -234,7 +234,7 @@ public class Payments {
                 .testmode(testmode)
                 .build();
         RequestOperation<GetPaymentRequest, GetPaymentResponse> operation
-              = new GetPaymentOperation(sdkConfiguration, options);
+              = new GetPayment.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -289,7 +289,7 @@ public class Payments {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<UpdatePaymentRequest, UpdatePaymentResponse> operation
-              = new UpdatePaymentOperation(sdkConfiguration, options);
+              = new UpdatePayment.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -353,7 +353,7 @@ public class Payments {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CancelPaymentRequest, CancelPaymentResponse> operation
-              = new CancelPaymentOperation(sdkConfiguration, options);
+              = new CancelPayment.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -423,7 +423,7 @@ public class Payments {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<ReleaseAuthorizationRequest, ReleaseAuthorizationResponse> operation
-              = new ReleaseAuthorizationOperation(sdkConfiguration, options);
+              = new ReleaseAuthorization.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

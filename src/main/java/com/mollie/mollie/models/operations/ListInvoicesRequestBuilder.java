@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.ListInvoicesOperation;
+import com.mollie.mollie.operations.ListInvoices;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -47,7 +47,7 @@ public class ListInvoicesRequestBuilder {
             .build());
 
         RequestOperation<ListInvoicesRequest, ListInvoicesResponse> operation
-              = new ListInvoicesOperation(sdkConfiguration, options);
+              = new ListInvoices.Sync(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

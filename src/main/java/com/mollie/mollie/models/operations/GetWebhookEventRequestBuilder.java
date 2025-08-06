@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.GetWebhookEventOperation;
+import com.mollie.mollie.operations.GetWebhookEvent;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -56,7 +56,7 @@ public class GetWebhookEventRequestBuilder {
             .build());
 
         RequestOperation<GetWebhookEventRequest, GetWebhookEventResponse> operation
-              = new GetWebhookEventOperation(sdkConfiguration, options);
+              = new GetWebhookEvent.Sync(sdkConfiguration, options);
         GetWebhookEventRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

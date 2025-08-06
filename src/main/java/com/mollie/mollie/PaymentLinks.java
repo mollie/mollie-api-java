@@ -25,12 +25,12 @@ import com.mollie.mollie.models.operations.UpdatePaymentLinkRequest;
 import com.mollie.mollie.models.operations.UpdatePaymentLinkRequestBody;
 import com.mollie.mollie.models.operations.UpdatePaymentLinkRequestBuilder;
 import com.mollie.mollie.models.operations.UpdatePaymentLinkResponse;
-import com.mollie.mollie.operations.CreatePaymentLinkOperation;
-import com.mollie.mollie.operations.DeletePaymentLinkOperation;
-import com.mollie.mollie.operations.GetPaymentLinkOperation;
-import com.mollie.mollie.operations.GetPaymentLinkPaymentsOperation;
-import com.mollie.mollie.operations.ListPaymentLinksOperation;
-import com.mollie.mollie.operations.UpdatePaymentLinkOperation;
+import com.mollie.mollie.operations.CreatePaymentLink;
+import com.mollie.mollie.operations.DeletePaymentLink;
+import com.mollie.mollie.operations.GetPaymentLink;
+import com.mollie.mollie.operations.GetPaymentLinkPayments;
+import com.mollie.mollie.operations.ListPaymentLinks;
+import com.mollie.mollie.operations.UpdatePaymentLink;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -88,7 +88,7 @@ public class PaymentLinks {
      */
     public CreatePaymentLinkResponse create(Optional<? extends CreatePaymentLinkRequestBody> request, Optional<Options> options) throws Exception {
         RequestOperation<Optional<? extends CreatePaymentLinkRequestBody>, CreatePaymentLinkResponse> operation
-              = new CreatePaymentLinkOperation(sdkConfiguration, options);
+              = new CreatePaymentLink.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -150,7 +150,7 @@ public class PaymentLinks {
                 .testmode(testmode)
                 .build();
         RequestOperation<ListPaymentLinksRequest, ListPaymentLinksResponse> operation
-              = new ListPaymentLinksOperation(sdkConfiguration, options);
+              = new ListPaymentLinks.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,7 +203,7 @@ public class PaymentLinks {
                 .testmode(testmode)
                 .build();
         RequestOperation<GetPaymentLinkRequest, GetPaymentLinkResponse> operation
-              = new GetPaymentLinkOperation(sdkConfiguration, options);
+              = new GetPaymentLink.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -252,7 +252,7 @@ public class PaymentLinks {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<UpdatePaymentLinkRequest, UpdatePaymentLinkResponse> operation
-              = new UpdatePaymentLinkOperation(sdkConfiguration, options);
+              = new UpdatePaymentLink.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -319,7 +319,7 @@ public class PaymentLinks {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<DeletePaymentLinkRequest, DeletePaymentLinkResponse> operation
-              = new DeletePaymentLinkOperation(sdkConfiguration, options);
+              = new DeletePaymentLink.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -365,7 +365,7 @@ public class PaymentLinks {
      */
     public GetPaymentLinkPaymentsResponse listPayments(GetPaymentLinkPaymentsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<GetPaymentLinkPaymentsRequest, GetPaymentLinkPaymentsResponse> operation
-              = new GetPaymentLinkPaymentsOperation(sdkConfiguration, options);
+              = new GetPaymentLinkPayments.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

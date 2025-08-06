@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.operations.RevokeMandateOperation;
+import com.mollie.mollie.operations.RevokeMandate;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -78,7 +78,7 @@ public class RevokeMandateRequestBuilder {
             .build());
 
         RequestOperation<RevokeMandateRequest, RevokeMandateResponse> operation
-              = new RevokeMandateOperation(sdkConfiguration, options);
+              = new RevokeMandate.Sync(sdkConfiguration, options);
         RevokeMandateRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
