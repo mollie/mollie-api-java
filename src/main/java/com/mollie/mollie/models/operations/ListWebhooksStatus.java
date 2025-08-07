@@ -16,7 +16,8 @@ import java.util.Optional;
 public enum ListWebhooksStatus {
     ENABLED("enabled"),
     BLOCKED("blocked"),
-    DISABLED("disabled");
+    DISABLED("disabled"),
+    DELETED("deleted");
 
     @JsonValue
     private final String value;

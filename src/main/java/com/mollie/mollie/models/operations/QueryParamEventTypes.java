@@ -15,6 +15,7 @@ import java.util.Optional;
  */
 public enum QueryParamEventTypes {
     PAYMENT_LINK_PAID("payment-link.paid"),
+    BALANCE_TRANSACTION_CREATED("balance-transaction.created"),
     SALES_INVOICE_CREATED("sales-invoice.created"),
     SALES_INVOICE_ISSUED("sales-invoice.issued"),
     SALES_INVOICE_CANCELED("sales-invoice.canceled"),

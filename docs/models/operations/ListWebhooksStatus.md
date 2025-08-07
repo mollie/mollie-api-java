@@ -10,3 +10,4 @@ The subscription's current status.
 | `ENABLED`  | enabled    |
 | `BLOCKED`  | blocked    |
 | `DISABLED` | disabled   |
+| `DELETED`  | deleted    |
