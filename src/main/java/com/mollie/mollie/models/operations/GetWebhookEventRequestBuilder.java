@@ -10,13 +10,16 @@ import com.mollie.mollie.operations.GetWebhookEvent;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetWebhookEventRequestBuilder {
 
     private String id;
+    private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -27,6 +30,18 @@ public class GetWebhookEventRequestBuilder {
     public GetWebhookEventRequestBuilder id(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
+        return this;
+    }
+
+    public GetWebhookEventRequestBuilder testmode(boolean testmode) {
+        Utils.checkNotNull(testmode, "testmode");
+        this.testmode = JsonNullable.of(testmode);
+        return this;
+    }
+
+    public GetWebhookEventRequestBuilder testmode(JsonNullable<Boolean> testmode) {
+        Utils.checkNotNull(testmode, "testmode");
+        this.testmode = testmode;
         return this;
     }
                 
@@ -45,7 +60,8 @@ public class GetWebhookEventRequestBuilder {
 
     private GetWebhookEventRequest buildRequest() {
 
-        GetWebhookEventRequest request = new GetWebhookEventRequest(id);
+        GetWebhookEventRequest request = new GetWebhookEventRequest(id,
+            testmode);
 
         return request;
     }

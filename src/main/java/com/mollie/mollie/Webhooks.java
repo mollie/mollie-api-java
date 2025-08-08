@@ -9,6 +9,7 @@ import com.mollie.mollie.models.operations.CreateWebhookRequestBody;
 import com.mollie.mollie.models.operations.CreateWebhookRequestBuilder;
 import com.mollie.mollie.models.operations.CreateWebhookResponse;
 import com.mollie.mollie.models.operations.DeleteWebhookRequest;
+import com.mollie.mollie.models.operations.DeleteWebhookRequestBody;
 import com.mollie.mollie.models.operations.DeleteWebhookRequestBuilder;
 import com.mollie.mollie.models.operations.DeleteWebhookResponse;
 import com.mollie.mollie.models.operations.GetWebhookRequest;
@@ -248,7 +249,7 @@ public class Webhooks {
      * @throws Exception if the API call fails
      */
     public DeleteWebhookResponse delete(String id) throws Exception {
-        return delete(id, JsonNullable.undefined(), Optional.empty());
+        return delete(id, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -257,23 +258,19 @@ public class Webhooks {
      * <p>Delete a single webhook object by its webhook ID.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param requestBody 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeleteWebhookResponse delete(
-            String id, JsonNullable<Boolean> testmode,
+            String id, Optional<? extends DeleteWebhookRequestBody> requestBody,
             Optional<Options> options) throws Exception {
         DeleteWebhookRequest request =
             DeleteWebhookRequest
                 .builder()
                 .id(id)
-                .testmode(testmode)
+                .requestBody(requestBody)
                 .build();
         RequestOperation<DeleteWebhookRequest, DeleteWebhookResponse> operation
               = new DeleteWebhook.Sync(sdkConfiguration, options);

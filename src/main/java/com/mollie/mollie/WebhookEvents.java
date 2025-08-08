@@ -10,9 +10,11 @@ import com.mollie.mollie.models.operations.GetWebhookEventRequestBuilder;
 import com.mollie.mollie.models.operations.GetWebhookEventResponse;
 import com.mollie.mollie.operations.GetWebhookEvent;
 import com.mollie.mollie.utils.Options;
+import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class WebhookEvents {
@@ -43,7 +45,7 @@ public class WebhookEvents {
      * @throws Exception if the API call fails
      */
     public GetWebhookEventResponse get(String id) throws Exception {
-        return get(id, Optional.empty());
+        return get(id, JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -52,15 +54,23 @@ public class WebhookEvents {
      * <p>Retrieve a single webhook event object by its event ID.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
+     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
+     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     *         setting the `testmode` query parameter to `true`.
+     *         
+     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetWebhookEventResponse get(String id, Optional<Options> options) throws Exception {
+    public GetWebhookEventResponse get(
+            String id, JsonNullable<Boolean> testmode,
+            Optional<Options> options) throws Exception {
         GetWebhookEventRequest request =
             GetWebhookEventRequest
                 .builder()
                 .id(id)
+                .testmode(testmode)
                 .build();
         RequestOperation<GetWebhookEventRequest, GetWebhookEventResponse> operation
               = new GetWebhookEvent.Sync(sdkConfiguration, options);

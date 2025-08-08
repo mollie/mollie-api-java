@@ -7,10 +7,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.lang.SuppressWarnings;
+import java.util.Optional;
 
 
 public class DeleteWebhookRequest {
@@ -20,29 +20,23 @@ public class DeleteWebhookRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
     private String id;
 
-    /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
-     * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     */
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=testmode")
-    private JsonNullable<Boolean> testmode;
+
+    @SpeakeasyMetadata("request:mediaType=application/json")
+    private Optional<? extends DeleteWebhookRequestBody> requestBody;
 
     @JsonCreator
     public DeleteWebhookRequest(
             String id,
-            JsonNullable<Boolean> testmode) {
+            Optional<? extends DeleteWebhookRequestBody> requestBody) {
         Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(testmode, "testmode");
+        Utils.checkNotNull(requestBody, "requestBody");
         this.id = id;
-        this.testmode = testmode;
+        this.requestBody = requestBody;
     }
     
     public DeleteWebhookRequest(
             String id) {
-        this(id, JsonNullable.undefined());
+        this(id, Optional.empty());
     }
 
     /**
@@ -53,16 +47,10 @@ public class DeleteWebhookRequest {
         return id;
     }
 
-    /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
-     * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Boolean> testmode() {
-        return testmode;
+    public Optional<DeleteWebhookRequestBody> requestBody() {
+        return (Optional<DeleteWebhookRequestBody>) requestBody;
     }
 
     public static Builder builder() {
@@ -79,29 +67,16 @@ public class DeleteWebhookRequest {
         return this;
     }
 
-    /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
-     * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     */
-    public DeleteWebhookRequest withTestmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
+    public DeleteWebhookRequest withRequestBody(DeleteWebhookRequestBody requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = Optional.ofNullable(requestBody);
         return this;
     }
 
-    /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting the `testmode` query parameter to `true`.
-     * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     */
-    public DeleteWebhookRequest withTestmode(JsonNullable<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
+
+    public DeleteWebhookRequest withRequestBody(Optional<? extends DeleteWebhookRequestBody> requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
         return this;
     }
 
@@ -116,20 +91,20 @@ public class DeleteWebhookRequest {
         DeleteWebhookRequest other = (DeleteWebhookRequest) o;
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
-            Utils.enhancedDeepEquals(this.testmode, other.testmode);
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, testmode);
+            id, requestBody);
     }
     
     @Override
     public String toString() {
         return Utils.toString(DeleteWebhookRequest.class,
                 "id", id,
-                "testmode", testmode);
+                "requestBody", requestBody);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -137,7 +112,7 @@ public class DeleteWebhookRequest {
 
         private String id;
 
-        private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+        private Optional<? extends DeleteWebhookRequestBody> requestBody = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -154,36 +129,22 @@ public class DeleteWebhookRequest {
         }
 
 
-        /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-         * setting the `testmode` query parameter to `true`.
-         * 
-         * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-         */
-        public Builder testmode(boolean testmode) {
-            Utils.checkNotNull(testmode, "testmode");
-            this.testmode = JsonNullable.of(testmode);
+        public Builder requestBody(DeleteWebhookRequestBody requestBody) {
+            Utils.checkNotNull(requestBody, "requestBody");
+            this.requestBody = Optional.ofNullable(requestBody);
             return this;
         }
 
-        /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-         * setting the `testmode` query parameter to `true`.
-         * 
-         * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-         */
-        public Builder testmode(JsonNullable<Boolean> testmode) {
-            Utils.checkNotNull(testmode, "testmode");
-            this.testmode = testmode;
+        public Builder requestBody(Optional<? extends DeleteWebhookRequestBody> requestBody) {
+            Utils.checkNotNull(requestBody, "requestBody");
+            this.requestBody = requestBody;
             return this;
         }
 
         public DeleteWebhookRequest build() {
 
             return new DeleteWebhookRequest(
-                id, testmode);
+                id, requestBody);
         }
 
     }

@@ -23,6 +23,8 @@ import com.mollie.mollie.utils.Hook.BeforeRequestContextImpl;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.Retries;
 import com.mollie.mollie.utils.RetryConfig;
+import com.mollie.mollie.utils.SerializedBody;
+import com.mollie.mollie.utils.Utils.JsonShape;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
 import java.lang.Exception;
@@ -78,13 +80,19 @@ public class DeleteWebhook {
                     "/webhooks/{id}",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "DELETE");
+            Object convertedRequest = Utils.convertToShape(
+                    request,
+                    JsonShape.DEFAULT,
+                    new TypeReference<Object>() {
+                    });
+            SerializedBody serializedRequestBody = Utils.serializeRequestBody(
+                    convertedRequest,
+                    "requestBody",
+                    "json",
+                    false);
+            req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/hal+json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
-
-            req.addQueryParams(Utils.getQueryParams(
-                    DeleteWebhookRequest.class,
-                    request,
-                    null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return sdkConfiguration.hooks().beforeRequest(
