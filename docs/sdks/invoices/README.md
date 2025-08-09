@@ -25,8 +25,7 @@ import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ListInvoicesInvoicesResponseBody;
 import com.mollie.mollie.models.errors.ListInvoicesResponseBody;
-import com.mollie.mollie.models.operations.ListInvoicesRequest;
-import com.mollie.mollie.models.operations.ListInvoicesResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -44,6 +43,8 @@ public class Application {
                 .year("2024")
                 .month("01")
                 .from("inv_xBEbP9rvAq")
+                .limit(50L)
+                .sort(ListInvoicesQueryParamSort.DESC)
                 .build();
 
         ListInvoicesResponse res = sdk.invoices().list()

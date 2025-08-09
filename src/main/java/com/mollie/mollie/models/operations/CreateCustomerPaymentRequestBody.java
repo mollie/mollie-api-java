@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
@@ -1561,7 +1559,7 @@ public class CreateCustomerPaymentRequestBody {
 
         private JsonNullable<? extends List<CreateCustomerPaymentRouting>> routing = JsonNullable.undefined();
 
-        private JsonNullable<? extends CreateCustomerPaymentSequenceType> sequenceType;
+        private JsonNullable<? extends CreateCustomerPaymentSequenceType> sequenceType = JsonNullable.undefined();
 
         private JsonNullable<String> mandateId = JsonNullable.undefined();
 
@@ -2281,9 +2279,6 @@ public class CreateCustomerPaymentRequestBody {
         }
 
         public CreateCustomerPaymentRequestBody build() {
-            if (sequenceType == null) {
-                sequenceType = _SINGLETON_VALUE_SequenceType.value();
-            }
 
             return new CreateCustomerPaymentRequestBody(
                 description, amount, redirectUrl,
@@ -2296,11 +2291,5 @@ public class CreateCustomerPaymentRequestBody {
                 dueDate, testmode);
         }
 
-
-        private static final LazySingletonValue<JsonNullable<? extends CreateCustomerPaymentSequenceType>> _SINGLETON_VALUE_SequenceType =
-                new LazySingletonValue<>(
-                        "sequenceType",
-                        "\"oneoff\"",
-                        new TypeReference<JsonNullable<? extends CreateCustomerPaymentSequenceType>>() {});
     }
 }

@@ -5,22 +5,16 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Optional;
 
 
 public class ListMethodsIssuers {
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
 
     @JsonProperty("id")
@@ -44,7 +38,7 @@ public class ListMethodsIssuers {
 
     @JsonCreator
     public ListMethodsIssuers(
-            @JsonProperty("resource") Optional<String> resource,
+            @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
             @JsonProperty("name") String name,
             @JsonProperty("image") ListMethodsMethodsImage image) {
@@ -57,17 +51,9 @@ public class ListMethodsIssuers {
         this.name = name;
         this.image = image;
     }
-    
-    public ListMethodsIssuers(
-            String id,
-            String name,
-            ListMethodsMethodsImage image) {
-        this(Optional.empty(), id, name,
-            image);
-    }
 
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
@@ -102,13 +88,6 @@ public class ListMethodsIssuers {
 
 
     public ListMethodsIssuers withResource(String resource) {
-        Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    public ListMethodsIssuers withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
@@ -177,7 +156,7 @@ public class ListMethodsIssuers {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource;
+        private String resource;
 
         private String id;
 
@@ -191,12 +170,6 @@ public class ListMethodsIssuers {
 
 
         public Builder resource(String resource) {
-            Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
@@ -234,20 +207,11 @@ public class ListMethodsIssuers {
         }
 
         public ListMethodsIssuers build() {
-            if (resource == null) {
-                resource = _SINGLETON_VALUE_Resource.value();
-            }
 
             return new ListMethodsIssuers(
                 resource, id, name,
                 image);
         }
 
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
-                new LazySingletonValue<>(
-                        "resource",
-                        "\"issuer\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

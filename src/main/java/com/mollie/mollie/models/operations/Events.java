@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
@@ -20,9 +18,8 @@ import java.util.Optional;
 
 public class Events {
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
 
     @JsonProperty("type")
@@ -47,7 +44,7 @@ public class Events {
 
     @JsonCreator
     public Events(
-            @JsonProperty("resource") Optional<String> resource,
+            @JsonProperty("resource") String resource,
             @JsonProperty("type") long type,
             @JsonProperty("createdAt") String createdAt,
             @JsonProperty("message") String message,
@@ -65,15 +62,16 @@ public class Events {
     }
     
     public Events(
+            String resource,
             long type,
             String createdAt,
             String message) {
-        this(Optional.empty(), type, createdAt,
+        this(resource, type, createdAt,
             message, Optional.empty());
     }
 
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
@@ -110,13 +108,6 @@ public class Events {
 
 
     public Events withResource(String resource) {
-        Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    public Events withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
@@ -199,7 +190,7 @@ public class Events {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource;
+        private String resource;
 
         private Long type;
 
@@ -215,12 +206,6 @@ public class Events {
 
 
         public Builder resource(String resource) {
-            Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
@@ -270,20 +255,11 @@ public class Events {
         }
 
         public Events build() {
-            if (resource == null) {
-                resource = _SINGLETON_VALUE_Resource.value();
-            }
 
             return new Events(
                 resource, type, createdAt,
                 message, links);
         }
 
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
-                new LazySingletonValue<>(
-                        "resource",
-                        "\"event\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

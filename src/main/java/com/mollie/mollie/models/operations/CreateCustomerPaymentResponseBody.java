@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Object;
@@ -335,9 +333,9 @@ public class CreateCustomerPaymentResponseBody {
      * [Methods API](list-methods) with parameter `sequenceType: first` to discover which payment methods on your account
      * are set up correctly for recurring payments.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("sequenceType")
-    private JsonNullable<? extends CreateCustomerPaymentCustomersSequenceType> sequenceType;
+    private Optional<? extends CreateCustomerPaymentCustomersSequenceType> sequenceType;
 
     /**
      * If the payment was automatically created via a subscription, the ID of the [subscription](get-subscription) will
@@ -514,7 +512,7 @@ public class CreateCustomerPaymentResponseBody {
             @JsonProperty("captureBefore") JsonNullable<String> captureBefore,
             @JsonProperty("applicationFee") JsonNullable<? extends CreateCustomerPaymentCustomersApplicationFee> applicationFee,
             @JsonProperty("routing") JsonNullable<? extends List<CreateCustomerPaymentCustomersRouting>> routing,
-            @JsonProperty("sequenceType") JsonNullable<? extends CreateCustomerPaymentCustomersSequenceType> sequenceType,
+            @JsonProperty("sequenceType") Optional<? extends CreateCustomerPaymentCustomersSequenceType> sequenceType,
             @JsonProperty("subscriptionId") JsonNullable<String> subscriptionId,
             @JsonProperty("mandateId") JsonNullable<String> mandateId,
             @JsonProperty("customerId") JsonNullable<String> customerId,
@@ -643,7 +641,7 @@ public class CreateCustomerPaymentResponseBody {
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             profileId, JsonNullable.undefined(), JsonNullable.undefined(),
             status, JsonNullable.undefined(), JsonNullable.undefined(),
@@ -1007,8 +1005,8 @@ public class CreateCustomerPaymentResponseBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CreateCustomerPaymentCustomersSequenceType> sequenceType() {
-        return (JsonNullable<CreateCustomerPaymentCustomersSequenceType>) sequenceType;
+    public Optional<CreateCustomerPaymentCustomersSequenceType> sequenceType() {
+        return (Optional<CreateCustomerPaymentCustomersSequenceType>) sequenceType;
     }
 
     /**
@@ -1849,9 +1847,10 @@ public class CreateCustomerPaymentResponseBody {
      */
     public CreateCustomerPaymentResponseBody withSequenceType(CreateCustomerPaymentCustomersSequenceType sequenceType) {
         Utils.checkNotNull(sequenceType, "sequenceType");
-        this.sequenceType = JsonNullable.of(sequenceType);
+        this.sequenceType = Optional.ofNullable(sequenceType);
         return this;
     }
+
 
     /**
      * **Only relevant for recurring payments.**
@@ -1870,7 +1869,7 @@ public class CreateCustomerPaymentResponseBody {
      * [Methods API](list-methods) with parameter `sequenceType: first` to discover which payment methods on your account
      * are set up correctly for recurring payments.
      */
-    public CreateCustomerPaymentResponseBody withSequenceType(JsonNullable<? extends CreateCustomerPaymentCustomersSequenceType> sequenceType) {
+    public CreateCustomerPaymentResponseBody withSequenceType(Optional<? extends CreateCustomerPaymentCustomersSequenceType> sequenceType) {
         Utils.checkNotNull(sequenceType, "sequenceType");
         this.sequenceType = sequenceType;
         return this;
@@ -2390,7 +2389,7 @@ public class CreateCustomerPaymentResponseBody {
 
         private JsonNullable<? extends List<CreateCustomerPaymentCustomersRouting>> routing = JsonNullable.undefined();
 
-        private JsonNullable<? extends CreateCustomerPaymentCustomersSequenceType> sequenceType;
+        private Optional<? extends CreateCustomerPaymentCustomersSequenceType> sequenceType = Optional.empty();
 
         private JsonNullable<String> subscriptionId = JsonNullable.undefined();
 
@@ -3114,7 +3113,7 @@ public class CreateCustomerPaymentResponseBody {
          */
         public Builder sequenceType(CreateCustomerPaymentCustomersSequenceType sequenceType) {
             Utils.checkNotNull(sequenceType, "sequenceType");
-            this.sequenceType = JsonNullable.of(sequenceType);
+            this.sequenceType = Optional.ofNullable(sequenceType);
             return this;
         }
 
@@ -3135,7 +3134,7 @@ public class CreateCustomerPaymentResponseBody {
          * [Methods API](list-methods) with parameter `sequenceType: first` to discover which payment methods on your account
          * are set up correctly for recurring payments.
          */
-        public Builder sequenceType(JsonNullable<? extends CreateCustomerPaymentCustomersSequenceType> sequenceType) {
+        public Builder sequenceType(Optional<? extends CreateCustomerPaymentCustomersSequenceType> sequenceType) {
             Utils.checkNotNull(sequenceType, "sequenceType");
             this.sequenceType = sequenceType;
             return this;
@@ -3492,9 +3491,6 @@ public class CreateCustomerPaymentResponseBody {
         }
 
         public CreateCustomerPaymentResponseBody build() {
-            if (sequenceType == null) {
-                sequenceType = _SINGLETON_VALUE_SequenceType.value();
-            }
 
             return new CreateCustomerPaymentResponseBody(
                 resource, id, mode,
@@ -3514,11 +3510,5 @@ public class CreateCustomerPaymentResponseBody {
                 expiredAt, failedAt, links);
         }
 
-
-        private static final LazySingletonValue<JsonNullable<? extends CreateCustomerPaymentCustomersSequenceType>> _SINGLETON_VALUE_SequenceType =
-                new LazySingletonValue<>(
-                        "sequenceType",
-                        "\"oneoff\"",
-                        new TypeReference<JsonNullable<? extends CreateCustomerPaymentCustomersSequenceType>>() {});
     }
 }

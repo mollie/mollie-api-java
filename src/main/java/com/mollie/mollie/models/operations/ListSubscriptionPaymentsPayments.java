@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Object;
@@ -331,9 +329,9 @@ public class ListSubscriptionPaymentsPayments {
      * [Methods API](list-methods) with parameter `sequenceType: first` to discover which payment methods on your account
      * are set up correctly for recurring payments.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("sequenceType")
-    private JsonNullable<? extends ListSubscriptionPaymentsSequenceType> sequenceType;
+    private Optional<? extends ListSubscriptionPaymentsSequenceType> sequenceType;
 
     /**
      * If the payment was automatically created via a subscription, the ID of the [subscription](get-subscription) will
@@ -510,7 +508,7 @@ public class ListSubscriptionPaymentsPayments {
             @JsonProperty("captureBefore") JsonNullable<String> captureBefore,
             @JsonProperty("applicationFee") JsonNullable<? extends ListSubscriptionPaymentsApplicationFee> applicationFee,
             @JsonProperty("routing") JsonNullable<? extends List<ListSubscriptionPaymentsRouting>> routing,
-            @JsonProperty("sequenceType") JsonNullable<? extends ListSubscriptionPaymentsSequenceType> sequenceType,
+            @JsonProperty("sequenceType") Optional<? extends ListSubscriptionPaymentsSequenceType> sequenceType,
             @JsonProperty("subscriptionId") JsonNullable<String> subscriptionId,
             @JsonProperty("mandateId") JsonNullable<String> mandateId,
             @JsonProperty("customerId") JsonNullable<String> customerId,
@@ -639,7 +637,7 @@ public class ListSubscriptionPaymentsPayments {
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             profileId, JsonNullable.undefined(), JsonNullable.undefined(),
             status, JsonNullable.undefined(), JsonNullable.undefined(),
@@ -1003,8 +1001,8 @@ public class ListSubscriptionPaymentsPayments {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListSubscriptionPaymentsSequenceType> sequenceType() {
-        return (JsonNullable<ListSubscriptionPaymentsSequenceType>) sequenceType;
+    public Optional<ListSubscriptionPaymentsSequenceType> sequenceType() {
+        return (Optional<ListSubscriptionPaymentsSequenceType>) sequenceType;
     }
 
     /**
@@ -1845,9 +1843,10 @@ public class ListSubscriptionPaymentsPayments {
      */
     public ListSubscriptionPaymentsPayments withSequenceType(ListSubscriptionPaymentsSequenceType sequenceType) {
         Utils.checkNotNull(sequenceType, "sequenceType");
-        this.sequenceType = JsonNullable.of(sequenceType);
+        this.sequenceType = Optional.ofNullable(sequenceType);
         return this;
     }
+
 
     /**
      * **Only relevant for recurring payments.**
@@ -1866,7 +1865,7 @@ public class ListSubscriptionPaymentsPayments {
      * [Methods API](list-methods) with parameter `sequenceType: first` to discover which payment methods on your account
      * are set up correctly for recurring payments.
      */
-    public ListSubscriptionPaymentsPayments withSequenceType(JsonNullable<? extends ListSubscriptionPaymentsSequenceType> sequenceType) {
+    public ListSubscriptionPaymentsPayments withSequenceType(Optional<? extends ListSubscriptionPaymentsSequenceType> sequenceType) {
         Utils.checkNotNull(sequenceType, "sequenceType");
         this.sequenceType = sequenceType;
         return this;
@@ -2386,7 +2385,7 @@ public class ListSubscriptionPaymentsPayments {
 
         private JsonNullable<? extends List<ListSubscriptionPaymentsRouting>> routing = JsonNullable.undefined();
 
-        private JsonNullable<? extends ListSubscriptionPaymentsSequenceType> sequenceType;
+        private Optional<? extends ListSubscriptionPaymentsSequenceType> sequenceType = Optional.empty();
 
         private JsonNullable<String> subscriptionId = JsonNullable.undefined();
 
@@ -3110,7 +3109,7 @@ public class ListSubscriptionPaymentsPayments {
          */
         public Builder sequenceType(ListSubscriptionPaymentsSequenceType sequenceType) {
             Utils.checkNotNull(sequenceType, "sequenceType");
-            this.sequenceType = JsonNullable.of(sequenceType);
+            this.sequenceType = Optional.ofNullable(sequenceType);
             return this;
         }
 
@@ -3131,7 +3130,7 @@ public class ListSubscriptionPaymentsPayments {
          * [Methods API](list-methods) with parameter `sequenceType: first` to discover which payment methods on your account
          * are set up correctly for recurring payments.
          */
-        public Builder sequenceType(JsonNullable<? extends ListSubscriptionPaymentsSequenceType> sequenceType) {
+        public Builder sequenceType(Optional<? extends ListSubscriptionPaymentsSequenceType> sequenceType) {
             Utils.checkNotNull(sequenceType, "sequenceType");
             this.sequenceType = sequenceType;
             return this;
@@ -3488,9 +3487,6 @@ public class ListSubscriptionPaymentsPayments {
         }
 
         public ListSubscriptionPaymentsPayments build() {
-            if (sequenceType == null) {
-                sequenceType = _SINGLETON_VALUE_SequenceType.value();
-            }
 
             return new ListSubscriptionPaymentsPayments(
                 resource, id, mode,
@@ -3510,11 +3506,5 @@ public class ListSubscriptionPaymentsPayments {
                 expiredAt, failedAt, links);
         }
 
-
-        private static final LazySingletonValue<JsonNullable<? extends ListSubscriptionPaymentsSequenceType>> _SINGLETON_VALUE_SequenceType =
-                new LazySingletonValue<>(
-                        "sequenceType",
-                        "\"oneoff\"",
-                        new TypeReference<JsonNullable<? extends ListSubscriptionPaymentsSequenceType>>() {});
     }
 }

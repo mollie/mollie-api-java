@@ -98,8 +98,7 @@ import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ListMandatesMandatesResponseBody;
 import com.mollie.mollie.models.errors.ListMandatesResponseBody;
-import com.mollie.mollie.models.operations.ListMandatesRequest;
-import com.mollie.mollie.models.operations.ListMandatesResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -115,6 +114,8 @@ public class Application {
         ListMandatesRequest req = ListMandatesRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .from("mdt_5B8cwPMGnU")
+                .limit(50L)
+                .sort(ListMandatesQueryParamSort.DESC)
                 .testmode(false)
                 .build();
 

@@ -5,10 +5,8 @@ package com.mollie.mollie.models.operations;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.operations.ListBalanceTransactions;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -23,10 +21,7 @@ public class ListBalanceTransactionsRequestBuilder {
 
     private String balanceId;
     private Optional<String> from = Optional.empty();
-    private JsonNullable<Long> limit = Utils.readDefaultOrConstValue(
-                            "limit",
-                            "50",
-                            new TypeReference<JsonNullable<Long>>() {});
+    private JsonNullable<Long> limit = JsonNullable.undefined();
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -91,9 +86,6 @@ public class ListBalanceTransactionsRequestBuilder {
 
 
     private ListBalanceTransactionsRequest buildRequest() {
-        if (limit == null) {
-            limit = _SINGLETON_VALUE_Limit.value();
-        }
 
         ListBalanceTransactionsRequest request = new ListBalanceTransactionsRequest(balanceId,
             from,
@@ -114,10 +106,4 @@ public class ListBalanceTransactionsRequestBuilder {
 
         return operation.handleResponse(operation.doRequest(request));
     }
-
-    private static final LazySingletonValue<JsonNullable<Long>> _SINGLETON_VALUE_Limit =
-            new LazySingletonValue<>(
-                    "limit",
-                    "50",
-                    new TypeReference<JsonNullable<Long>>() {});
 }

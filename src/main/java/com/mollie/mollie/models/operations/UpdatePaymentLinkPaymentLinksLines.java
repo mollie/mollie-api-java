@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
@@ -612,7 +610,7 @@ public class UpdatePaymentLinkPaymentLinksLines {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends UpdatePaymentLinkPaymentLinksType> type;
+        private Optional<? extends UpdatePaymentLinkPaymentLinksType> type = Optional.empty();
 
         private String description;
 
@@ -886,9 +884,6 @@ public class UpdatePaymentLinkPaymentLinksLines {
         }
 
         public UpdatePaymentLinkPaymentLinksLines build() {
-            if (type == null) {
-                type = _SINGLETON_VALUE_Type.value();
-            }
 
             return new UpdatePaymentLinkPaymentLinksLines(
                 type, description, quantity,
@@ -898,11 +893,5 @@ public class UpdatePaymentLinkPaymentLinksLines {
                 productUrl);
         }
 
-
-        private static final LazySingletonValue<Optional<? extends UpdatePaymentLinkPaymentLinksType>> _SINGLETON_VALUE_Type =
-                new LazySingletonValue<>(
-                        "type",
-                        "\"physical\"",
-                        new TypeReference<Optional<? extends UpdatePaymentLinkPaymentLinksType>>() {});
     }
 }

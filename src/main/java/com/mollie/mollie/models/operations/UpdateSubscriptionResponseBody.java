@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
@@ -28,9 +26,8 @@ public class UpdateSubscriptionResponseBody {
      * Indicates the response contains a subscription object. Will always contain the string `subscription` for this
      * endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
     /**
      * The identifier uniquely referring to this subscription. Example: `sub_rVKGtNd6s3`.
@@ -181,7 +178,7 @@ public class UpdateSubscriptionResponseBody {
 
     @JsonCreator
     public UpdateSubscriptionResponseBody(
-            @JsonProperty("resource") Optional<String> resource,
+            @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
             @JsonProperty("mode") UpdateSubscriptionMode mode,
             @JsonProperty("status") UpdateSubscriptionStatus status,
@@ -244,6 +241,7 @@ public class UpdateSubscriptionResponseBody {
     }
     
     public UpdateSubscriptionResponseBody(
+            String resource,
             String id,
             UpdateSubscriptionMode mode,
             UpdateSubscriptionStatus status,
@@ -255,7 +253,7 @@ public class UpdateSubscriptionResponseBody {
             String webhookUrl,
             String customerId,
             String createdAt) {
-        this(Optional.empty(), id, mode,
+        this(resource, id, mode,
             status, amount, Optional.empty(),
             timesRemaining, interval, startDate,
             JsonNullable.undefined(), description, Optional.empty(),
@@ -269,7 +267,7 @@ public class UpdateSubscriptionResponseBody {
      * endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
@@ -464,17 +462,6 @@ public class UpdateSubscriptionResponseBody {
      * endpoint.
      */
     public UpdateSubscriptionResponseBody withResource(String resource) {
-        Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains a subscription object. Will always contain the string `subscription` for this
-     * endpoint.
-     */
-    public UpdateSubscriptionResponseBody withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
@@ -840,7 +827,7 @@ public class UpdateSubscriptionResponseBody {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource;
+        private String resource;
 
         private String id;
 
@@ -890,16 +877,6 @@ public class UpdateSubscriptionResponseBody {
          * endpoint.
          */
         public Builder resource(String resource) {
-            Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a subscription object. Will always contain the string `subscription` for this
-         * endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
@@ -1208,9 +1185,6 @@ public class UpdateSubscriptionResponseBody {
         }
 
         public UpdateSubscriptionResponseBody build() {
-            if (resource == null) {
-                resource = _SINGLETON_VALUE_Resource.value();
-            }
 
             return new UpdateSubscriptionResponseBody(
                 resource, id, mode,
@@ -1222,11 +1196,5 @@ public class UpdateSubscriptionResponseBody {
                 canceledAt, links);
         }
 
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
-                new LazySingletonValue<>(
-                        "resource",
-                        "\"subscription\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

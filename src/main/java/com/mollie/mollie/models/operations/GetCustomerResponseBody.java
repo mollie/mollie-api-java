@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -26,9 +24,8 @@ public class GetCustomerResponseBody {
     /**
      * Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
     /**
      * The identifier uniquely referring to this customer. Example: `cst_vsKJpSsabw`.
@@ -91,7 +88,7 @@ public class GetCustomerResponseBody {
 
     @JsonCreator
     public GetCustomerResponseBody(
-            @JsonProperty("resource") Optional<String> resource,
+            @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
             @JsonProperty("mode") GetCustomerMode mode,
             @JsonProperty("name") Optional<String> name,
@@ -124,11 +121,12 @@ public class GetCustomerResponseBody {
     }
     
     public GetCustomerResponseBody(
+            String resource,
             String id,
             GetCustomerMode mode,
             String createdAt,
             GetCustomerLinks links) {
-        this(Optional.empty(), id, mode,
+        this(resource, id, mode,
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), createdAt, links,
             Optional.empty());
@@ -138,7 +136,7 @@ public class GetCustomerResponseBody {
      * Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
@@ -225,16 +223,6 @@ public class GetCustomerResponseBody {
      * Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
      */
     public GetCustomerResponseBody withResource(String resource) {
-        Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
-     */
-    public GetCustomerResponseBody withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
@@ -418,7 +406,7 @@ public class GetCustomerResponseBody {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource;
+        private String resource;
 
         private String id;
 
@@ -447,15 +435,6 @@ public class GetCustomerResponseBody {
          * Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
          */
         public Builder resource(String resource) {
-            Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
@@ -595,9 +574,6 @@ public class GetCustomerResponseBody {
         }
 
         public GetCustomerResponseBody build() {
-            if (resource == null) {
-                resource = _SINGLETON_VALUE_Resource.value();
-            }
 
             return new GetCustomerResponseBody(
                 resource, id, mode,
@@ -606,11 +582,5 @@ public class GetCustomerResponseBody {
                 events);
         }
 
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
-                new LazySingletonValue<>(
-                        "resource",
-                        "\"customer\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

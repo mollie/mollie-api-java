@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
@@ -780,15 +778,15 @@ public class CreateSalesInvoiceRequestBody {
 
         private Status status;
 
-        private Optional<? extends VatScheme> vatScheme;
+        private Optional<? extends VatScheme> vatScheme = Optional.empty();
 
-        private Optional<? extends VatMode> vatMode;
+        private Optional<? extends VatMode> vatMode = Optional.empty();
 
         private JsonNullable<String> memo = JsonNullable.undefined();
 
         private JsonNullable<? extends CreateSalesInvoiceMetadata> metadata = JsonNullable.undefined();
 
-        private JsonNullable<? extends PaymentTerm> paymentTerm;
+        private JsonNullable<? extends PaymentTerm> paymentTerm = JsonNullable.undefined();
 
         private JsonNullable<? extends PaymentDetails> paymentDetails = JsonNullable.undefined();
 
@@ -1139,15 +1137,6 @@ public class CreateSalesInvoiceRequestBody {
         }
 
         public CreateSalesInvoiceRequestBody build() {
-            if (vatScheme == null) {
-                vatScheme = _SINGLETON_VALUE_VatScheme.value();
-            }
-            if (vatMode == null) {
-                vatMode = _SINGLETON_VALUE_VatMode.value();
-            }
-            if (paymentTerm == null) {
-                paymentTerm = _SINGLETON_VALUE_PaymentTerm.value();
-            }
 
             return new CreateSalesInvoiceRequestBody(
                 testmode, profileId, status,
@@ -1158,23 +1147,5 @@ public class CreateSalesInvoiceRequestBody {
                 discount);
         }
 
-
-        private static final LazySingletonValue<Optional<? extends VatScheme>> _SINGLETON_VALUE_VatScheme =
-                new LazySingletonValue<>(
-                        "vatScheme",
-                        "\"standard\"",
-                        new TypeReference<Optional<? extends VatScheme>>() {});
-
-        private static final LazySingletonValue<Optional<? extends VatMode>> _SINGLETON_VALUE_VatMode =
-                new LazySingletonValue<>(
-                        "vatMode",
-                        "\"exclusive\"",
-                        new TypeReference<Optional<? extends VatMode>>() {});
-
-        private static final LazySingletonValue<JsonNullable<? extends PaymentTerm>> _SINGLETON_VALUE_PaymentTerm =
-                new LazySingletonValue<>(
-                        "paymentTerm",
-                        "\"30 days\"",
-                        new TypeReference<JsonNullable<? extends PaymentTerm>>() {});
     }
 }

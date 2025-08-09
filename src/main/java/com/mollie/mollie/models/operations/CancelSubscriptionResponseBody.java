@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
@@ -29,9 +27,8 @@ public class CancelSubscriptionResponseBody {
      * Indicates the response contains a subscription object. Will always contain the string `subscription` for this
      * endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
     /**
      * The identifier uniquely referring to this subscription. Example: `sub_rVKGtNd6s3`.
@@ -182,7 +179,7 @@ public class CancelSubscriptionResponseBody {
 
     @JsonCreator
     public CancelSubscriptionResponseBody(
-            @JsonProperty("resource") Optional<String> resource,
+            @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
             @JsonProperty("mode") CancelSubscriptionMode mode,
             @JsonProperty("status") CancelSubscriptionStatus status,
@@ -245,6 +242,7 @@ public class CancelSubscriptionResponseBody {
     }
     
     public CancelSubscriptionResponseBody(
+            String resource,
             String id,
             CancelSubscriptionMode mode,
             CancelSubscriptionStatus status,
@@ -256,7 +254,7 @@ public class CancelSubscriptionResponseBody {
             String webhookUrl,
             String customerId,
             String createdAt) {
-        this(Optional.empty(), id, mode,
+        this(resource, id, mode,
             status, amount, Optional.empty(),
             timesRemaining, interval, startDate,
             JsonNullable.undefined(), description, Optional.empty(),
@@ -270,7 +268,7 @@ public class CancelSubscriptionResponseBody {
      * endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
@@ -465,17 +463,6 @@ public class CancelSubscriptionResponseBody {
      * endpoint.
      */
     public CancelSubscriptionResponseBody withResource(String resource) {
-        Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains a subscription object. Will always contain the string `subscription` for this
-     * endpoint.
-     */
-    public CancelSubscriptionResponseBody withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
@@ -841,7 +828,7 @@ public class CancelSubscriptionResponseBody {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource;
+        private String resource;
 
         private String id;
 
@@ -891,16 +878,6 @@ public class CancelSubscriptionResponseBody {
          * endpoint.
          */
         public Builder resource(String resource) {
-            Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a subscription object. Will always contain the string `subscription` for this
-         * endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
@@ -1209,9 +1186,6 @@ public class CancelSubscriptionResponseBody {
         }
 
         public CancelSubscriptionResponseBody build() {
-            if (resource == null) {
-                resource = _SINGLETON_VALUE_Resource.value();
-            }
 
             return new CancelSubscriptionResponseBody(
                 resource, id, mode,
@@ -1223,11 +1197,5 @@ public class CancelSubscriptionResponseBody {
                 canceledAt, links);
         }
 
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
-                new LazySingletonValue<>(
-                        "resource",
-                        "\"subscription\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

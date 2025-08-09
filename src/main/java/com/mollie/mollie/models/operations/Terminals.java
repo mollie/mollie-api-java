@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -21,9 +19,8 @@ public class Terminals {
     /**
      * Indicates the response contains a terminal object. Will always contain the string `terminal` for this endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
     /**
      * The identifier uniquely referring to this terminal. Example: `term_7MgL4wea46qkRcoTZjWEH`.
@@ -109,7 +106,7 @@ public class Terminals {
 
     @JsonCreator
     public Terminals(
-            @JsonProperty("resource") Optional<String> resource,
+            @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
             @JsonProperty("mode") ListTerminalsMode mode,
             @JsonProperty("description") String description,
@@ -151,6 +148,7 @@ public class Terminals {
     }
     
     public Terminals(
+            String resource,
             String id,
             ListTerminalsMode mode,
             String description,
@@ -160,7 +158,7 @@ public class Terminals {
             String createdAt,
             String updatedAt,
             ListTerminalsTerminalsLinks links) {
-        this(Optional.empty(), id, mode,
+        this(resource, id, mode,
             description, status, Optional.empty(),
             Optional.empty(), Optional.empty(), currency,
             profileId, createdAt, updatedAt,
@@ -171,7 +169,7 @@ public class Terminals {
      * Indicates the response contains a terminal object. Will always contain the string `terminal` for this endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
@@ -289,16 +287,6 @@ public class Terminals {
      * Indicates the response contains a terminal object. Will always contain the string `terminal` for this endpoint.
      */
     public Terminals withResource(String resource) {
-        Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains a terminal object. Will always contain the string `terminal` for this endpoint.
-     */
-    public Terminals withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
@@ -505,7 +493,7 @@ public class Terminals {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource;
+        private String resource;
 
         private String id;
 
@@ -540,15 +528,6 @@ public class Terminals {
          * Indicates the response contains a terminal object. Will always contain the string `terminal` for this endpoint.
          */
         public Builder resource(String resource) {
-            Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a terminal object. Will always contain the string `terminal` for this endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
@@ -709,9 +688,6 @@ public class Terminals {
         }
 
         public Terminals build() {
-            if (resource == null) {
-                resource = _SINGLETON_VALUE_Resource.value();
-            }
 
             return new Terminals(
                 resource, id, mode,
@@ -721,11 +697,5 @@ public class Terminals {
                 links);
         }
 
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
-                new LazySingletonValue<>(
-                        "resource",
-                        "\"terminal\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

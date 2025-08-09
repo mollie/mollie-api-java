@@ -66,6 +66,7 @@ public class Application {
                             .currency("EUR")
                             .value("10.00")
                             .build())
+                        .type(CreatePaymentLinkType.PHYSICAL)
                         .quantityUnit("pcs")
                         .discountAmount(CreatePaymentLinkDiscountAmount.builder()
                             .currency("EUR")
@@ -112,6 +113,7 @@ public class Application {
                     .country("NL")
                     .build())
                 .profileId("pfl_QkEhN94Ba")
+                .reusable(false)
                 .expiresAt("2025-12-24T11:00:16+00:00")
                 .allowedMethods(List.of(
                     "ideal"))
@@ -322,6 +324,7 @@ public class Application {
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
+                            .type(UpdatePaymentLinkType.PHYSICAL)
                             .quantityUnit("pcs")
                             .discountAmount(UpdatePaymentLinkDiscountAmount.builder()
                                 .currency("EUR")
@@ -479,8 +482,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.GetPaymentLinkPaymentsResponseBody;
-import com.mollie.mollie.models.operations.GetPaymentLinkPaymentsRequest;
-import com.mollie.mollie.models.operations.GetPaymentLinkPaymentsResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -496,6 +498,8 @@ public class Application {
         GetPaymentLinkPaymentsRequest req = GetPaymentLinkPaymentsRequest.builder()
                 .paymentLinkId("pl_d9fQur83kFdhH8hIhaZfq")
                 .from("tr_5B8cwPMGnU")
+                .limit(50L)
+                .sort(GetPaymentLinkPaymentsQueryParamSort.DESC)
                 .testmode(false)
                 .build();
 

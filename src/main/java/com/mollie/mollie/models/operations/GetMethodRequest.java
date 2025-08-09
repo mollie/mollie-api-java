@@ -5,8 +5,6 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
@@ -385,7 +383,7 @@ public class GetMethodRequest {
 
         private JsonNullable<? extends GetMethodQueryParamInclude> include = JsonNullable.undefined();
 
-        private Optional<? extends GetMethodQueryParamSequenceType> sequenceType;
+        private Optional<? extends GetMethodQueryParamSequenceType> sequenceType = Optional.empty();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -546,9 +544,6 @@ public class GetMethodRequest {
         }
 
         public GetMethodRequest build() {
-            if (sequenceType == null) {
-                sequenceType = _SINGLETON_VALUE_SequenceType.value();
-            }
 
             return new GetMethodRequest(
                 id, locale, currency,
@@ -556,11 +551,5 @@ public class GetMethodRequest {
                 testmode);
         }
 
-
-        private static final LazySingletonValue<Optional<? extends GetMethodQueryParamSequenceType>> _SINGLETON_VALUE_SequenceType =
-                new LazySingletonValue<>(
-                        "sequenceType",
-                        "\"oneoff\"",
-                        new TypeReference<Optional<? extends GetMethodQueryParamSequenceType>>() {});
     }
 }

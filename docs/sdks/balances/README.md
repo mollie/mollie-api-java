@@ -214,8 +214,7 @@ import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.GetBalanceReportBalancesResponseBody;
 import com.mollie.mollie.models.errors.GetBalanceReportResponseBody;
-import com.mollie.mollie.models.operations.GetBalanceReportRequest;
-import com.mollie.mollie.models.operations.GetBalanceReportResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -232,6 +231,7 @@ public class Application {
                 .balanceId("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .from("2024-01-01")
                 .until("2024-02-01")
+                .grouping(Grouping.STATUS_BALANCES)
                 .testmode(false)
                 .build();
 

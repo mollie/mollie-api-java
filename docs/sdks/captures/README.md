@@ -112,6 +112,7 @@ public class Application {
         ListCapturesRequest req = ListCapturesRequest.builder()
                 .paymentId("tr_5B8cwPMGnU")
                 .from("cpt_vytxeTZskVKR7C7WgdSP3d")
+                .limit(50L)
                 .embed(ListCapturesQueryParamEmbed.PAYMENT)
                 .testmode(false)
                 .build();

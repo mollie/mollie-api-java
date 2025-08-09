@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -25,9 +23,8 @@ public class UpdateCustomerResponseBody {
     /**
      * Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
     /**
      * The identifier uniquely referring to this customer. Example: `cst_vsKJpSsabw`.
@@ -85,7 +82,7 @@ public class UpdateCustomerResponseBody {
 
     @JsonCreator
     public UpdateCustomerResponseBody(
-            @JsonProperty("resource") Optional<String> resource,
+            @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
             @JsonProperty("mode") UpdateCustomerMode mode,
             @JsonProperty("name") Optional<String> name,
@@ -115,11 +112,12 @@ public class UpdateCustomerResponseBody {
     }
     
     public UpdateCustomerResponseBody(
+            String resource,
             String id,
             UpdateCustomerMode mode,
             String createdAt,
             UpdateCustomerLinks links) {
-        this(Optional.empty(), id, mode,
+        this(resource, id, mode,
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), createdAt, links);
     }
@@ -128,7 +126,7 @@ public class UpdateCustomerResponseBody {
      * Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
@@ -209,16 +207,6 @@ public class UpdateCustomerResponseBody {
      * Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
      */
     public UpdateCustomerResponseBody withResource(String resource) {
-        Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
-     */
-    public UpdateCustomerResponseBody withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
@@ -386,7 +374,7 @@ public class UpdateCustomerResponseBody {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource;
+        private String resource;
 
         private String id;
 
@@ -413,15 +401,6 @@ public class UpdateCustomerResponseBody {
          * Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
          */
         public Builder resource(String resource) {
-            Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
@@ -548,9 +527,6 @@ public class UpdateCustomerResponseBody {
         }
 
         public UpdateCustomerResponseBody build() {
-            if (resource == null) {
-                resource = _SINGLETON_VALUE_Resource.value();
-            }
 
             return new UpdateCustomerResponseBody(
                 resource, id, mode,
@@ -558,11 +534,5 @@ public class UpdateCustomerResponseBody {
                 metadata, createdAt, links);
         }
 
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
-                new LazySingletonValue<>(
-                        "resource",
-                        "\"customer\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

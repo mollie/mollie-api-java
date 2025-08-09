@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
@@ -25,9 +23,8 @@ public class EntityPaymentLink {
      * Indicates the response contains a payment link object. Will always contain the string `payment-link` for this
      * endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
     /**
      * The identifier uniquely referring to this payment link. Example: `pl_4Y0eZitmBnQ6IDoMqZQKh`.
@@ -145,9 +142,9 @@ public class EntityPaymentLink {
      * 
      * <p>If no value is specified, the field defaults to `false`, allowing only a single payment per link.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("reusable")
-    private JsonNullable<Boolean> reusable;
+    private Optional<Boolean> reusable;
 
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -225,7 +222,7 @@ public class EntityPaymentLink {
 
     @JsonCreator
     public EntityPaymentLink(
-            @JsonProperty("resource") Optional<String> resource,
+            @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
             @JsonProperty("mode") EntityMode mode,
             @JsonProperty("description") String description,
@@ -238,7 +235,7 @@ public class EntityPaymentLink {
             @JsonProperty("billingAddress") Optional<? extends EntityBillingAddress> billingAddress,
             @JsonProperty("shippingAddress") Optional<? extends EntityShippingAddress> shippingAddress,
             @JsonProperty("profileId") Optional<String> profileId,
-            @JsonProperty("reusable") JsonNullable<Boolean> reusable,
+            @JsonProperty("reusable") Optional<Boolean> reusable,
             @JsonProperty("createdAt") String createdAt,
             @JsonProperty("paidAt") Optional<String> paidAt,
             @JsonProperty("expiresAt") Optional<String> expiresAt,
@@ -294,17 +291,18 @@ public class EntityPaymentLink {
     }
     
     public EntityPaymentLink(
+            String resource,
             String id,
             EntityMode mode,
             String description,
             boolean archived,
             String createdAt,
             EntityLinks links) {
-        this(Optional.empty(), id, mode,
+        this(resource, id, mode,
             description, Optional.empty(), JsonNullable.undefined(),
             archived, Optional.empty(), Optional.empty(),
             JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), createdAt,
+            Optional.empty(), Optional.empty(), createdAt,
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             links);
@@ -315,7 +313,7 @@ public class EntityPaymentLink {
      * endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
@@ -457,7 +455,7 @@ public class EntityPaymentLink {
      * <p>If no value is specified, the field defaults to `false`, allowing only a single payment per link.
      */
     @JsonIgnore
-    public JsonNullable<Boolean> reusable() {
+    public Optional<Boolean> reusable() {
         return reusable;
     }
 
@@ -558,17 +556,6 @@ public class EntityPaymentLink {
      * endpoint.
      */
     public EntityPaymentLink withResource(String resource) {
-        Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains a payment link object. Will always contain the string `payment-link` for this
-     * endpoint.
-     */
-    public EntityPaymentLink withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
@@ -827,9 +814,10 @@ public class EntityPaymentLink {
      */
     public EntityPaymentLink withReusable(boolean reusable) {
         Utils.checkNotNull(reusable, "reusable");
-        this.reusable = JsonNullable.of(reusable);
+        this.reusable = Optional.ofNullable(reusable);
         return this;
     }
+
 
     /**
      * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make multiple
@@ -837,7 +825,7 @@ public class EntityPaymentLink {
      * 
      * <p>If no value is specified, the field defaults to `false`, allowing only a single payment per link.
      */
-    public EntityPaymentLink withReusable(JsonNullable<Boolean> reusable) {
+    public EntityPaymentLink withReusable(Optional<Boolean> reusable) {
         Utils.checkNotNull(reusable, "reusable");
         this.reusable = reusable;
         return this;
@@ -1090,7 +1078,7 @@ public class EntityPaymentLink {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource;
+        private String resource;
 
         private String id;
 
@@ -1116,7 +1104,7 @@ public class EntityPaymentLink {
 
         private Optional<String> profileId = Optional.empty();
 
-        private JsonNullable<Boolean> reusable;
+        private Optional<Boolean> reusable = Optional.empty();
 
         private String createdAt;
 
@@ -1144,16 +1132,6 @@ public class EntityPaymentLink {
          * endpoint.
          */
         public Builder resource(String resource) {
-            Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a payment link object. Will always contain the string `payment-link` for this
-         * endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
@@ -1419,7 +1397,7 @@ public class EntityPaymentLink {
          */
         public Builder reusable(boolean reusable) {
             Utils.checkNotNull(reusable, "reusable");
-            this.reusable = JsonNullable.of(reusable);
+            this.reusable = Optional.ofNullable(reusable);
             return this;
         }
 
@@ -1429,7 +1407,7 @@ public class EntityPaymentLink {
          * 
          * <p>If no value is specified, the field defaults to `false`, allowing only a single payment per link.
          */
-        public Builder reusable(JsonNullable<Boolean> reusable) {
+        public Builder reusable(Optional<Boolean> reusable) {
             Utils.checkNotNull(reusable, "reusable");
             this.reusable = reusable;
             return this;
@@ -1610,12 +1588,6 @@ public class EntityPaymentLink {
         }
 
         public EntityPaymentLink build() {
-            if (resource == null) {
-                resource = _SINGLETON_VALUE_Resource.value();
-            }
-            if (reusable == null) {
-                reusable = _SINGLETON_VALUE_Reusable.value();
-            }
 
             return new EntityPaymentLink(
                 resource, id, mode,
@@ -1628,17 +1600,5 @@ public class EntityPaymentLink {
                 links);
         }
 
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
-                new LazySingletonValue<>(
-                        "resource",
-                        "\"payment-link\"",
-                        new TypeReference<Optional<String>>() {});
-
-        private static final LazySingletonValue<JsonNullable<Boolean>> _SINGLETON_VALUE_Reusable =
-                new LazySingletonValue<>(
-                        "reusable",
-                        "false",
-                        new TypeReference<JsonNullable<Boolean>>() {});
     }
 }

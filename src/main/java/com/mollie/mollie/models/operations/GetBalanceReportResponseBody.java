@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -504,7 +502,7 @@ public class GetBalanceReportResponseBody {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource;
+        private Optional<String> resource = Optional.empty();
 
         private Optional<String> balanceId = Optional.empty();
 
@@ -514,7 +512,7 @@ public class GetBalanceReportResponseBody {
 
         private Optional<String> until = Optional.empty();
 
-        private Optional<? extends GetBalanceReportGrouping> grouping;
+        private Optional<? extends GetBalanceReportGrouping> grouping = Optional.empty();
 
         private Optional<? extends Totals> totals = Optional.empty();
 
@@ -739,12 +737,6 @@ public class GetBalanceReportResponseBody {
         }
 
         public GetBalanceReportResponseBody build() {
-            if (resource == null) {
-                resource = _SINGLETON_VALUE_Resource.value();
-            }
-            if (grouping == null) {
-                grouping = _SINGLETON_VALUE_Grouping.value();
-            }
 
             return new GetBalanceReportResponseBody(
                 resource, balanceId, timeZone,
@@ -752,17 +744,5 @@ public class GetBalanceReportResponseBody {
                 totals, links);
         }
 
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
-                new LazySingletonValue<>(
-                        "resource",
-                        "\"balance-report\"",
-                        new TypeReference<Optional<String>>() {});
-
-        private static final LazySingletonValue<Optional<? extends GetBalanceReportGrouping>> _SINGLETON_VALUE_Grouping =
-                new LazySingletonValue<>(
-                        "grouping",
-                        "\"status-balances\"",
-                        new TypeReference<Optional<? extends GetBalanceReportGrouping>>() {});
     }
 }

@@ -384,6 +384,7 @@ public class Application {
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
+                            .type(CreateCustomerPaymentType.PHYSICAL)
                             .quantityUnit("pcs")
                             .discountAmount(CreateCustomerPaymentDiscountAmount.builder()
                                 .currency("EUR")
@@ -495,6 +496,7 @@ public class Application {
                                 .build())
                             .releaseDate("2024-12-12")
                             .build()))
+                    .sequenceType(CreateCustomerPaymentSequenceType.ONEOFF)
                     .mandateId("mdt_5B8cwPMGnU")
                     .customerId("cst_5B8cwPMGnU")
                     .profileId("pfl_5B8cwPMGnU")
@@ -542,8 +544,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ListCustomerPaymentsResponseBody;
-import com.mollie.mollie.models.operations.ListCustomerPaymentsRequest;
-import com.mollie.mollie.models.operations.ListCustomerPaymentsResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -559,6 +560,8 @@ public class Application {
         ListCustomerPaymentsRequest req = ListCustomerPaymentsRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .from("tr_5B8cwPMGnU")
+                .limit(50L)
+                .sort(ListCustomerPaymentsQueryParamSort.DESC)
                 .profileId("pfl_5B8cwPMGnU")
                 .testmode(false)
                 .build();

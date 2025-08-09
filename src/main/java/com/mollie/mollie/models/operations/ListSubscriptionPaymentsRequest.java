@@ -5,8 +5,6 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
@@ -354,9 +352,9 @@ public class ListSubscriptionPaymentsRequest {
 
         private Optional<String> from = Optional.empty();
 
-        private JsonNullable<Long> limit;
+        private JsonNullable<Long> limit = JsonNullable.undefined();
 
-        private JsonNullable<? extends ListSubscriptionPaymentsQueryParamSort> sort;
+        private JsonNullable<? extends ListSubscriptionPaymentsQueryParamSort> sort = JsonNullable.undefined();
 
         private Optional<String> profileId = Optional.empty();
 
@@ -502,12 +500,6 @@ public class ListSubscriptionPaymentsRequest {
         }
 
         public ListSubscriptionPaymentsRequest build() {
-            if (limit == null) {
-                limit = _SINGLETON_VALUE_Limit.value();
-            }
-            if (sort == null) {
-                sort = _SINGLETON_VALUE_Sort.value();
-            }
 
             return new ListSubscriptionPaymentsRequest(
                 customerId, subscriptionId, from,
@@ -515,17 +507,5 @@ public class ListSubscriptionPaymentsRequest {
                 testmode);
         }
 
-
-        private static final LazySingletonValue<JsonNullable<Long>> _SINGLETON_VALUE_Limit =
-                new LazySingletonValue<>(
-                        "limit",
-                        "50",
-                        new TypeReference<JsonNullable<Long>>() {});
-
-        private static final LazySingletonValue<JsonNullable<? extends ListSubscriptionPaymentsQueryParamSort>> _SINGLETON_VALUE_Sort =
-                new LazySingletonValue<>(
-                        "sort",
-                        "\"desc\"",
-                        new TypeReference<JsonNullable<? extends ListSubscriptionPaymentsQueryParamSort>>() {});
     }
 }

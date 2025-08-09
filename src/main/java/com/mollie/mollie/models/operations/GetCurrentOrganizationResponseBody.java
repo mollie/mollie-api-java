@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -488,7 +486,7 @@ public class GetCurrentOrganizationResponseBody {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource;
+        private Optional<String> resource = Optional.empty();
 
         private Optional<String> id = Optional.empty();
 
@@ -717,9 +715,6 @@ public class GetCurrentOrganizationResponseBody {
         }
 
         public GetCurrentOrganizationResponseBody build() {
-            if (resource == null) {
-                resource = _SINGLETON_VALUE_Resource.value();
-            }
 
             return new GetCurrentOrganizationResponseBody(
                 resource, id, name,
@@ -728,11 +723,5 @@ public class GetCurrentOrganizationResponseBody {
                 links);
         }
 
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
-                new LazySingletonValue<>(
-                        "resource",
-                        "\"organization\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -24,9 +22,8 @@ public class CreateMandateResponseBody {
     /**
      * Indicates the response contains a mandate object. Will always contain the string `mandate` for this endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
     /**
      * The identifier uniquely referring to this mandate. Example: `mdt_pWUnw6pkBN`.
@@ -94,7 +91,7 @@ public class CreateMandateResponseBody {
 
     @JsonCreator
     public CreateMandateResponseBody(
-            @JsonProperty("resource") Optional<String> resource,
+            @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
             @JsonProperty("mode") CreateMandateMode mode,
             @JsonProperty("method") CreateMandateMandatesMethod method,
@@ -130,6 +127,7 @@ public class CreateMandateResponseBody {
     }
     
     public CreateMandateResponseBody(
+            String resource,
             String id,
             CreateMandateMode mode,
             CreateMandateMandatesMethod method,
@@ -138,7 +136,7 @@ public class CreateMandateResponseBody {
             String customerId,
             String createdAt,
             CreateMandateLinks links) {
-        this(Optional.empty(), id, mode,
+        this(resource, id, mode,
             method, details, Optional.empty(),
             Optional.empty(), status, customerId,
             createdAt, links);
@@ -148,7 +146,7 @@ public class CreateMandateResponseBody {
      * Indicates the response contains a mandate object. Will always contain the string `mandate` for this endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
@@ -242,16 +240,6 @@ public class CreateMandateResponseBody {
      * Indicates the response contains a mandate object. Will always contain the string `mandate` for this endpoint.
      */
     public CreateMandateResponseBody withResource(String resource) {
-        Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains a mandate object. Will always contain the string `mandate` for this endpoint.
-     */
-    public CreateMandateResponseBody withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
@@ -420,7 +408,7 @@ public class CreateMandateResponseBody {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource;
+        private String resource;
 
         private String id;
 
@@ -451,15 +439,6 @@ public class CreateMandateResponseBody {
          * Indicates the response contains a mandate object. Will always contain the string `mandate` for this endpoint.
          */
         public Builder resource(String resource) {
-            Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a mandate object. Will always contain the string `mandate` for this endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
@@ -586,9 +565,6 @@ public class CreateMandateResponseBody {
         }
 
         public CreateMandateResponseBody build() {
-            if (resource == null) {
-                resource = _SINGLETON_VALUE_Resource.value();
-            }
 
             return new CreateMandateResponseBody(
                 resource, id, mode,
@@ -597,11 +573,5 @@ public class CreateMandateResponseBody {
                 createdAt, links);
         }
 
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
-                new LazySingletonValue<>(
-                        "resource",
-                        "\"mandate\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

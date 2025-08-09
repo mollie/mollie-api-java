@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -21,9 +19,8 @@ public class Customers {
     /**
      * Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
     /**
      * The identifier uniquely referring to this customer. Example: `cst_vsKJpSsabw`.
@@ -81,7 +78,7 @@ public class Customers {
 
     @JsonCreator
     public Customers(
-            @JsonProperty("resource") Optional<String> resource,
+            @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
             @JsonProperty("mode") ListCustomersMode mode,
             @JsonProperty("name") Optional<String> name,
@@ -111,11 +108,12 @@ public class Customers {
     }
     
     public Customers(
+            String resource,
             String id,
             ListCustomersMode mode,
             String createdAt,
             ListCustomersCustomersLinks links) {
-        this(Optional.empty(), id, mode,
+        this(resource, id, mode,
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), createdAt, links);
     }
@@ -124,7 +122,7 @@ public class Customers {
      * Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
@@ -205,16 +203,6 @@ public class Customers {
      * Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
      */
     public Customers withResource(String resource) {
-        Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
-     */
-    public Customers withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
@@ -382,7 +370,7 @@ public class Customers {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource;
+        private String resource;
 
         private String id;
 
@@ -409,15 +397,6 @@ public class Customers {
          * Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
          */
         public Builder resource(String resource) {
-            Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
@@ -544,9 +523,6 @@ public class Customers {
         }
 
         public Customers build() {
-            if (resource == null) {
-                resource = _SINGLETON_VALUE_Resource.value();
-            }
 
             return new Customers(
                 resource, id, mode,
@@ -554,11 +530,5 @@ public class Customers {
                 metadata, createdAt, links);
         }
 
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
-                new LazySingletonValue<>(
-                        "resource",
-                        "\"customer\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

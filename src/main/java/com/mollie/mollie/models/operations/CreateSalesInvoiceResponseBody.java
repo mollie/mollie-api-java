@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -1234,7 +1232,7 @@ public class CreateSalesInvoiceResponseBody {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource;
+        private Optional<String> resource = Optional.empty();
 
         private Optional<String> id = Optional.empty();
 
@@ -1242,15 +1240,15 @@ public class CreateSalesInvoiceResponseBody {
 
         private Optional<? extends CreateSalesInvoiceStatus> status = Optional.empty();
 
-        private Optional<? extends CreateSalesInvoiceVatScheme> vatScheme;
+        private Optional<? extends CreateSalesInvoiceVatScheme> vatScheme = Optional.empty();
 
-        private Optional<? extends CreateSalesInvoiceVatMode> vatMode;
+        private Optional<? extends CreateSalesInvoiceVatMode> vatMode = Optional.empty();
 
         private JsonNullable<String> memo = JsonNullable.undefined();
 
         private JsonNullable<? extends CreateSalesInvoiceSalesInvoicesMetadata> metadata = JsonNullable.undefined();
 
-        private JsonNullable<? extends CreateSalesInvoicePaymentTerm> paymentTerm;
+        private JsonNullable<? extends CreateSalesInvoicePaymentTerm> paymentTerm = JsonNullable.undefined();
 
         private JsonNullable<? extends CreateSalesInvoicePaymentDetails> paymentDetails = JsonNullable.undefined();
 
@@ -1854,18 +1852,6 @@ public class CreateSalesInvoiceResponseBody {
         }
 
         public CreateSalesInvoiceResponseBody build() {
-            if (resource == null) {
-                resource = _SINGLETON_VALUE_Resource.value();
-            }
-            if (vatScheme == null) {
-                vatScheme = _SINGLETON_VALUE_VatScheme.value();
-            }
-            if (vatMode == null) {
-                vatMode = _SINGLETON_VALUE_VatMode.value();
-            }
-            if (paymentTerm == null) {
-                paymentTerm = _SINGLETON_VALUE_PaymentTerm.value();
-            }
 
             return new CreateSalesInvoiceResponseBody(
                 resource, id, invoiceNumber,
@@ -1879,29 +1865,5 @@ public class CreateSalesInvoiceResponseBody {
                 paidAt, dueAt, links);
         }
 
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
-                new LazySingletonValue<>(
-                        "resource",
-                        "\"sales-invoice\"",
-                        new TypeReference<Optional<String>>() {});
-
-        private static final LazySingletonValue<Optional<? extends CreateSalesInvoiceVatScheme>> _SINGLETON_VALUE_VatScheme =
-                new LazySingletonValue<>(
-                        "vatScheme",
-                        "\"standard\"",
-                        new TypeReference<Optional<? extends CreateSalesInvoiceVatScheme>>() {});
-
-        private static final LazySingletonValue<Optional<? extends CreateSalesInvoiceVatMode>> _SINGLETON_VALUE_VatMode =
-                new LazySingletonValue<>(
-                        "vatMode",
-                        "\"exclusive\"",
-                        new TypeReference<Optional<? extends CreateSalesInvoiceVatMode>>() {});
-
-        private static final LazySingletonValue<JsonNullable<? extends CreateSalesInvoicePaymentTerm>> _SINGLETON_VALUE_PaymentTerm =
-                new LazySingletonValue<>(
-                        "paymentTerm",
-                        "\"30 days\"",
-                        new TypeReference<JsonNullable<? extends CreateSalesInvoicePaymentTerm>>() {});
     }
 }

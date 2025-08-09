@@ -5,8 +5,6 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
@@ -359,7 +357,7 @@ public class ListAllMethodsRequest {
 
         private JsonNullable<? extends ListAllMethodsQueryParamInclude> include = JsonNullable.undefined();
 
-        private Optional<? extends ListAllMethodsQueryParamSequenceType> sequenceType;
+        private Optional<? extends ListAllMethodsQueryParamSequenceType> sequenceType = Optional.empty();
 
         private Optional<String> profileId = Optional.empty();
 
@@ -516,20 +514,11 @@ public class ListAllMethodsRequest {
         }
 
         public ListAllMethodsRequest build() {
-            if (sequenceType == null) {
-                sequenceType = _SINGLETON_VALUE_SequenceType.value();
-            }
 
             return new ListAllMethodsRequest(
                 locale, amount, include,
                 sequenceType, profileId, testmode);
         }
 
-
-        private static final LazySingletonValue<Optional<? extends ListAllMethodsQueryParamSequenceType>> _SINGLETON_VALUE_SequenceType =
-                new LazySingletonValue<>(
-                        "sequenceType",
-                        "\"oneoff\"",
-                        new TypeReference<Optional<? extends ListAllMethodsQueryParamSequenceType>>() {});
     }
 }

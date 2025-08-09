@@ -5,8 +5,6 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
@@ -293,7 +291,7 @@ public class ListSettlementsRequest {
 
         private Optional<String> from = Optional.empty();
 
-        private JsonNullable<Long> limit;
+        private JsonNullable<Long> limit = JsonNullable.undefined();
 
         private JsonNullable<String> balanceId = JsonNullable.undefined();
 
@@ -426,20 +424,11 @@ public class ListSettlementsRequest {
         }
 
         public ListSettlementsRequest build() {
-            if (limit == null) {
-                limit = _SINGLETON_VALUE_Limit.value();
-            }
 
             return new ListSettlementsRequest(
                 from, limit, balanceId,
                 year, month, currencies);
         }
 
-
-        private static final LazySingletonValue<JsonNullable<Long>> _SINGLETON_VALUE_Limit =
-                new LazySingletonValue<>(
-                        "limit",
-                        "50",
-                        new TypeReference<JsonNullable<Long>>() {});
     }
 }

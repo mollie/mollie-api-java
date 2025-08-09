@@ -123,8 +123,7 @@ import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ListSubscriptionsResponseBody;
 import com.mollie.mollie.models.errors.ListSubscriptionsSubscriptionsResponseBody;
-import com.mollie.mollie.models.operations.ListSubscriptionsRequest;
-import com.mollie.mollie.models.operations.ListSubscriptionsResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -140,6 +139,8 @@ public class Application {
         ListSubscriptionsRequest req = ListSubscriptionsRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .from("sub_5B8cwPMGnU")
+                .limit(50L)
+                .sort(ListSubscriptionsQueryParamSort.DESC)
                 .testmode(false)
                 .build();
 
@@ -444,8 +445,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ListSubscriptionPaymentsResponseBody;
-import com.mollie.mollie.models.operations.ListSubscriptionPaymentsRequest;
-import com.mollie.mollie.models.operations.ListSubscriptionPaymentsResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -462,6 +462,8 @@ public class Application {
                 .customerId("cst_5B8cwPMGnU")
                 .subscriptionId("sub_5B8cwPMGnU")
                 .from("tr_5B8cwPMGnU")
+                .limit(50L)
+                .sort(ListSubscriptionPaymentsQueryParamSort.DESC)
                 .profileId("pfl_5B8cwPMGnU")
                 .testmode(false)
                 .build();

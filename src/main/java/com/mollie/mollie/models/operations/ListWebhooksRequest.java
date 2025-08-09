@@ -5,8 +5,6 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
@@ -275,9 +273,9 @@ public class ListWebhooksRequest {
 
         private Optional<String> from = Optional.empty();
 
-        private JsonNullable<Long> limit;
+        private JsonNullable<Long> limit = JsonNullable.undefined();
 
-        private JsonNullable<? extends ListWebhooksQueryParamSort> sort;
+        private JsonNullable<? extends ListWebhooksQueryParamSort> sort = JsonNullable.undefined();
 
         private Optional<? extends QueryParamEventTypes> eventTypes = Optional.empty();
 
@@ -395,29 +393,11 @@ public class ListWebhooksRequest {
         }
 
         public ListWebhooksRequest build() {
-            if (limit == null) {
-                limit = _SINGLETON_VALUE_Limit.value();
-            }
-            if (sort == null) {
-                sort = _SINGLETON_VALUE_Sort.value();
-            }
 
             return new ListWebhooksRequest(
                 from, limit, sort,
                 eventTypes, testmode);
         }
 
-
-        private static final LazySingletonValue<JsonNullable<Long>> _SINGLETON_VALUE_Limit =
-                new LazySingletonValue<>(
-                        "limit",
-                        "50",
-                        new TypeReference<JsonNullable<Long>>() {});
-
-        private static final LazySingletonValue<JsonNullable<? extends ListWebhooksQueryParamSort>> _SINGLETON_VALUE_Sort =
-                new LazySingletonValue<>(
-                        "sort",
-                        "\"desc\"",
-                        new TypeReference<JsonNullable<? extends ListWebhooksQueryParamSort>>() {});
     }
 }

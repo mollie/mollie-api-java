@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
@@ -24,9 +22,8 @@ public class ListAllSubscriptionsSubscriptions {
      * Indicates the response contains a subscription object. Will always contain the string `subscription` for this
      * endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
     /**
      * The identifier uniquely referring to this subscription. Example: `sub_rVKGtNd6s3`.
@@ -177,7 +174,7 @@ public class ListAllSubscriptionsSubscriptions {
 
     @JsonCreator
     public ListAllSubscriptionsSubscriptions(
-            @JsonProperty("resource") Optional<String> resource,
+            @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
             @JsonProperty("mode") ListAllSubscriptionsMode mode,
             @JsonProperty("status") ListAllSubscriptionsStatus status,
@@ -240,6 +237,7 @@ public class ListAllSubscriptionsSubscriptions {
     }
     
     public ListAllSubscriptionsSubscriptions(
+            String resource,
             String id,
             ListAllSubscriptionsMode mode,
             ListAllSubscriptionsStatus status,
@@ -251,7 +249,7 @@ public class ListAllSubscriptionsSubscriptions {
             String webhookUrl,
             String customerId,
             String createdAt) {
-        this(Optional.empty(), id, mode,
+        this(resource, id, mode,
             status, amount, Optional.empty(),
             timesRemaining, interval, startDate,
             JsonNullable.undefined(), description, Optional.empty(),
@@ -265,7 +263,7 @@ public class ListAllSubscriptionsSubscriptions {
      * endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
@@ -460,17 +458,6 @@ public class ListAllSubscriptionsSubscriptions {
      * endpoint.
      */
     public ListAllSubscriptionsSubscriptions withResource(String resource) {
-        Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains a subscription object. Will always contain the string `subscription` for this
-     * endpoint.
-     */
-    public ListAllSubscriptionsSubscriptions withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
@@ -836,7 +823,7 @@ public class ListAllSubscriptionsSubscriptions {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource;
+        private String resource;
 
         private String id;
 
@@ -886,16 +873,6 @@ public class ListAllSubscriptionsSubscriptions {
          * endpoint.
          */
         public Builder resource(String resource) {
-            Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a subscription object. Will always contain the string `subscription` for this
-         * endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
@@ -1204,9 +1181,6 @@ public class ListAllSubscriptionsSubscriptions {
         }
 
         public ListAllSubscriptionsSubscriptions build() {
-            if (resource == null) {
-                resource = _SINGLETON_VALUE_Resource.value();
-            }
 
             return new ListAllSubscriptionsSubscriptions(
                 resource, id, mode,
@@ -1218,11 +1192,5 @@ public class ListAllSubscriptionsSubscriptions {
                 canceledAt, links);
         }
 
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
-                new LazySingletonValue<>(
-                        "resource",
-                        "\"subscription\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

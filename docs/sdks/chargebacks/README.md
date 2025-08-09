@@ -41,6 +41,7 @@ public class Application {
         ListChargebacksRequest req = ListChargebacksRequest.builder()
                 .paymentId("tr_5B8cwPMGnU")
                 .from("chb_xFzwUN4ci8HAmSGUACS4J")
+                .limit(50L)
                 .embed(ListChargebacksQueryParamEmbed.PAYMENT)
                 .testmode(false)
                 .build();
@@ -166,7 +167,9 @@ public class Application {
 
         ListAllChargebacksRequest req = ListAllChargebacksRequest.builder()
                 .from("chb_xFzwUN4ci8HAmSGUACS4J")
+                .limit(50L)
                 .embed(ListAllChargebacksQueryParamEmbed.PAYMENT)
+                .sort(ListAllChargebacksQueryParamSort.DESC)
                 .profileId("pfl_5B8cwPMGnU")
                 .testmode(false)
                 .build();

@@ -5,8 +5,6 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
@@ -137,7 +135,7 @@ public class ListProfilesRequest {
 
         private Optional<String> from = Optional.empty();
 
-        private JsonNullable<Long> limit;
+        private JsonNullable<Long> limit = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -184,19 +182,10 @@ public class ListProfilesRequest {
         }
 
         public ListProfilesRequest build() {
-            if (limit == null) {
-                limit = _SINGLETON_VALUE_Limit.value();
-            }
 
             return new ListProfilesRequest(
                 from, limit);
         }
 
-
-        private static final LazySingletonValue<JsonNullable<Long>> _SINGLETON_VALUE_Limit =
-                new LazySingletonValue<>(
-                        "limit",
-                        "50",
-                        new TypeReference<JsonNullable<Long>>() {});
     }
 }

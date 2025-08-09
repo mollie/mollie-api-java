@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -20,9 +18,8 @@ public class ListMandatesMandates {
     /**
      * Indicates the response contains a mandate object. Will always contain the string `mandate` for this endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
     /**
      * The identifier uniquely referring to this mandate. Example: `mdt_pWUnw6pkBN`.
@@ -90,7 +87,7 @@ public class ListMandatesMandates {
 
     @JsonCreator
     public ListMandatesMandates(
-            @JsonProperty("resource") Optional<String> resource,
+            @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
             @JsonProperty("mode") ListMandatesMode mode,
             @JsonProperty("method") ListMandatesMethod method,
@@ -126,6 +123,7 @@ public class ListMandatesMandates {
     }
     
     public ListMandatesMandates(
+            String resource,
             String id,
             ListMandatesMode mode,
             ListMandatesMethod method,
@@ -134,7 +132,7 @@ public class ListMandatesMandates {
             String customerId,
             String createdAt,
             ListMandatesMandatesLinks links) {
-        this(Optional.empty(), id, mode,
+        this(resource, id, mode,
             method, details, Optional.empty(),
             Optional.empty(), status, customerId,
             createdAt, links);
@@ -144,7 +142,7 @@ public class ListMandatesMandates {
      * Indicates the response contains a mandate object. Will always contain the string `mandate` for this endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
@@ -238,16 +236,6 @@ public class ListMandatesMandates {
      * Indicates the response contains a mandate object. Will always contain the string `mandate` for this endpoint.
      */
     public ListMandatesMandates withResource(String resource) {
-        Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains a mandate object. Will always contain the string `mandate` for this endpoint.
-     */
-    public ListMandatesMandates withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
@@ -416,7 +404,7 @@ public class ListMandatesMandates {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource;
+        private String resource;
 
         private String id;
 
@@ -447,15 +435,6 @@ public class ListMandatesMandates {
          * Indicates the response contains a mandate object. Will always contain the string `mandate` for this endpoint.
          */
         public Builder resource(String resource) {
-            Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a mandate object. Will always contain the string `mandate` for this endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
@@ -582,9 +561,6 @@ public class ListMandatesMandates {
         }
 
         public ListMandatesMandates build() {
-            if (resource == null) {
-                resource = _SINGLETON_VALUE_Resource.value();
-            }
 
             return new ListMandatesMandates(
                 resource, id, mode,
@@ -593,11 +569,5 @@ public class ListMandatesMandates {
                 createdAt, links);
         }
 
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
-                new LazySingletonValue<>(
-                        "resource",
-                        "\"mandate\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

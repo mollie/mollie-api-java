@@ -5,8 +5,6 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
@@ -301,9 +299,9 @@ public class ListInvoicesRequest {
 
         private JsonNullable<String> from = JsonNullable.undefined();
 
-        private JsonNullable<Long> limit;
+        private JsonNullable<Long> limit = JsonNullable.undefined();
 
-        private JsonNullable<? extends ListInvoicesQueryParamSort> sort;
+        private JsonNullable<? extends ListInvoicesQueryParamSort> sort = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -430,29 +428,11 @@ public class ListInvoicesRequest {
         }
 
         public ListInvoicesRequest build() {
-            if (limit == null) {
-                limit = _SINGLETON_VALUE_Limit.value();
-            }
-            if (sort == null) {
-                sort = _SINGLETON_VALUE_Sort.value();
-            }
 
             return new ListInvoicesRequest(
                 reference, year, month,
                 from, limit, sort);
         }
 
-
-        private static final LazySingletonValue<JsonNullable<Long>> _SINGLETON_VALUE_Limit =
-                new LazySingletonValue<>(
-                        "limit",
-                        "50",
-                        new TypeReference<JsonNullable<Long>>() {});
-
-        private static final LazySingletonValue<JsonNullable<? extends ListInvoicesQueryParamSort>> _SINGLETON_VALUE_Sort =
-                new LazySingletonValue<>(
-                        "sort",
-                        "\"desc\"",
-                        new TypeReference<JsonNullable<? extends ListInvoicesQueryParamSort>>() {});
     }
 }

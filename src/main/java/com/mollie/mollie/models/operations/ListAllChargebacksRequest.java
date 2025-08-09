@@ -5,8 +5,6 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
@@ -344,11 +342,11 @@ public class ListAllChargebacksRequest {
 
         private Optional<String> from = Optional.empty();
 
-        private JsonNullable<Long> limit;
+        private JsonNullable<Long> limit = JsonNullable.undefined();
 
         private Optional<? extends ListAllChargebacksQueryParamEmbed> embed = Optional.empty();
 
-        private JsonNullable<? extends ListAllChargebacksQueryParamSort> sort;
+        private JsonNullable<? extends ListAllChargebacksQueryParamSort> sort = JsonNullable.undefined();
 
         private JsonNullable<String> profileId = JsonNullable.undefined();
 
@@ -501,29 +499,11 @@ public class ListAllChargebacksRequest {
         }
 
         public ListAllChargebacksRequest build() {
-            if (limit == null) {
-                limit = _SINGLETON_VALUE_Limit.value();
-            }
-            if (sort == null) {
-                sort = _SINGLETON_VALUE_Sort.value();
-            }
 
             return new ListAllChargebacksRequest(
                 from, limit, embed,
                 sort, profileId, testmode);
         }
 
-
-        private static final LazySingletonValue<JsonNullable<Long>> _SINGLETON_VALUE_Limit =
-                new LazySingletonValue<>(
-                        "limit",
-                        "50",
-                        new TypeReference<JsonNullable<Long>>() {});
-
-        private static final LazySingletonValue<JsonNullable<? extends ListAllChargebacksQueryParamSort>> _SINGLETON_VALUE_Sort =
-                new LazySingletonValue<>(
-                        "sort",
-                        "\"desc\"",
-                        new TypeReference<JsonNullable<? extends ListAllChargebacksQueryParamSort>>() {});
     }
 }

@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
@@ -869,7 +867,7 @@ public class CreatePaymentLinkRequestBody {
 
         private JsonNullable<String> profileId = JsonNullable.undefined();
 
-        private JsonNullable<Boolean> reusable;
+        private JsonNullable<Boolean> reusable = JsonNullable.undefined();
 
         private JsonNullable<String> expiresAt = JsonNullable.undefined();
 
@@ -1267,9 +1265,6 @@ public class CreatePaymentLinkRequestBody {
         }
 
         public CreatePaymentLinkRequestBody build() {
-            if (reusable == null) {
-                reusable = _SINGLETON_VALUE_Reusable.value();
-            }
 
             return new CreatePaymentLinkRequestBody(
                 description, amount, minimumAmount,
@@ -1279,11 +1274,5 @@ public class CreatePaymentLinkRequestBody {
                 applicationFee, sequenceType, customerId);
         }
 
-
-        private static final LazySingletonValue<JsonNullable<Boolean>> _SINGLETON_VALUE_Reusable =
-                new LazySingletonValue<>(
-                        "reusable",
-                        "false",
-                        new TypeReference<JsonNullable<Boolean>>() {});
     }
 }

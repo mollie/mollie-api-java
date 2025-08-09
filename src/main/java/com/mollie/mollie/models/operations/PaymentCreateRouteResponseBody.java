@@ -5,15 +5,10 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Optional;
 
 /**
  * PaymentCreateRouteResponseBody
@@ -24,9 +19,8 @@ public class PaymentCreateRouteResponseBody {
     /**
      * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
     /**
      * The identifier uniquely referring to this route. Mollie assigns this identifier at route creation time. Mollie
@@ -69,7 +63,7 @@ public class PaymentCreateRouteResponseBody {
 
     @JsonCreator
     public PaymentCreateRouteResponseBody(
-            @JsonProperty("resource") Optional<String> resource,
+            @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
             @JsonProperty("paymentId") String paymentId,
             @JsonProperty("amount") PaymentCreateRouteDelayedRoutingAmount amount,
@@ -91,24 +85,12 @@ public class PaymentCreateRouteResponseBody {
         this.destination = destination;
         this.links = links;
     }
-    
-    public PaymentCreateRouteResponseBody(
-            String id,
-            String paymentId,
-            PaymentCreateRouteDelayedRoutingAmount amount,
-            String description,
-            PaymentCreateRouteDelayedRoutingDestination destination,
-            PaymentCreateRouteLinks links) {
-        this(Optional.empty(), id, paymentId,
-            amount, description, destination,
-            links);
-    }
 
     /**
      * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
@@ -172,16 +154,6 @@ public class PaymentCreateRouteResponseBody {
      * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
      */
     public PaymentCreateRouteResponseBody withResource(String resource) {
-        Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
-     */
-    public PaymentCreateRouteResponseBody withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
@@ -286,7 +258,7 @@ public class PaymentCreateRouteResponseBody {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource;
+        private String resource;
 
         private String id;
 
@@ -309,15 +281,6 @@ public class PaymentCreateRouteResponseBody {
          * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
          */
         public Builder resource(String resource) {
-            Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
@@ -387,9 +350,6 @@ public class PaymentCreateRouteResponseBody {
         }
 
         public PaymentCreateRouteResponseBody build() {
-            if (resource == null) {
-                resource = _SINGLETON_VALUE_Resource.value();
-            }
 
             return new PaymentCreateRouteResponseBody(
                 resource, id, paymentId,
@@ -397,11 +357,5 @@ public class PaymentCreateRouteResponseBody {
                 links);
         }
 
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
-                new LazySingletonValue<>(
-                        "resource",
-                        "\"route\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

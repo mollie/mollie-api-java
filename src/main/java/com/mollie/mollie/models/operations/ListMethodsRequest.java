@@ -5,8 +5,6 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
@@ -573,14 +571,14 @@ public class ListMethodsRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends QueryParamSequenceType> sequenceType;
+        private Optional<? extends QueryParamSequenceType> sequenceType = Optional.empty();
 
         private Optional<? extends QueryParamLocale> locale = Optional.empty();
 
         private Optional<? extends QueryParamAmount> amount = Optional.empty();
 
         @Deprecated
-        private Optional<? extends Resource> resource;
+        private Optional<? extends Resource> resource = Optional.empty();
 
         private Optional<String> billingCountry = Optional.empty();
 
@@ -851,12 +849,6 @@ public class ListMethodsRequest {
         }
 
         public ListMethodsRequest build() {
-            if (sequenceType == null) {
-                sequenceType = _SINGLETON_VALUE_SequenceType.value();
-            }
-            if (resource == null) {
-                resource = _SINGLETON_VALUE_Resource.value();
-            }
 
             return new ListMethodsRequest(
                 sequenceType, locale, amount,
@@ -865,17 +857,5 @@ public class ListMethodsRequest {
                 testmode);
         }
 
-
-        private static final LazySingletonValue<Optional<? extends QueryParamSequenceType>> _SINGLETON_VALUE_SequenceType =
-                new LazySingletonValue<>(
-                        "sequenceType",
-                        "\"oneoff\"",
-                        new TypeReference<Optional<? extends QueryParamSequenceType>>() {});
-
-        private static final LazySingletonValue<Optional<? extends Resource>> _SINGLETON_VALUE_Resource =
-                new LazySingletonValue<>(
-                        "resource",
-                        "\"payments\"",
-                        new TypeReference<Optional<? extends Resource>>() {});
     }
 }

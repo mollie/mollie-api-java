@@ -101,6 +101,8 @@ public class Application {
 
         ListWebhooksRequest req = ListWebhooksRequest.builder()
                 .from("hook_B2EyhTH5N4KWUnoYPcgiH")
+                .limit(50L)
+                .sort(ListWebhooksQueryParamSort.DESC)
                 .eventTypes(QueryParamEventTypes.PAYMENT_LINK_PAID)
                 .testmode(false)
                 .build();

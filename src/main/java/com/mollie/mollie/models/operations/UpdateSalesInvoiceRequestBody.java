@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
@@ -513,7 +511,7 @@ public class UpdateSalesInvoiceRequestBody {
 
         private JsonNullable<String> memo = JsonNullable.undefined();
 
-        private JsonNullable<? extends UpdateSalesInvoicePaymentTerm> paymentTerm;
+        private JsonNullable<? extends UpdateSalesInvoicePaymentTerm> paymentTerm = JsonNullable.undefined();
 
         private JsonNullable<? extends UpdateSalesInvoicePaymentDetails> paymentDetails = JsonNullable.undefined();
 
@@ -748,9 +746,6 @@ public class UpdateSalesInvoiceRequestBody {
         }
 
         public UpdateSalesInvoiceRequestBody build() {
-            if (paymentTerm == null) {
-                paymentTerm = _SINGLETON_VALUE_PaymentTerm.value();
-            }
 
             return new UpdateSalesInvoiceRequestBody(
                 testmode, status, memo,
@@ -759,11 +754,5 @@ public class UpdateSalesInvoiceRequestBody {
                 discount);
         }
 
-
-        private static final LazySingletonValue<JsonNullable<? extends UpdateSalesInvoicePaymentTerm>> _SINGLETON_VALUE_PaymentTerm =
-                new LazySingletonValue<>(
-                        "paymentTerm",
-                        "\"30 days\"",
-                        new TypeReference<JsonNullable<? extends UpdateSalesInvoicePaymentTerm>>() {});
     }
 }

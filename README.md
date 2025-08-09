@@ -48,7 +48,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:0.14.6'
+implementation 'com.mollie:mollie:0.15.0'
 ```
 
 Maven:
@@ -56,7 +56,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>0.14.6</version>
+    <version>0.15.0</version>
 </dependency>
 ```
 
@@ -124,6 +124,7 @@ public class Application {
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
+                            .type(Type.PHYSICAL)
                             .quantityUnit("pcs")
                             .discountAmount(DiscountAmount.builder()
                                 .currency("EUR")
@@ -162,6 +163,7 @@ public class Application {
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
+                            .type(Type.PHYSICAL)
                             .quantityUnit("pcs")
                             .discountAmount(DiscountAmount.builder()
                                 .currency("EUR")
@@ -200,6 +202,7 @@ public class Application {
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
+                            .type(Type.PHYSICAL)
                             .quantityUnit("pcs")
                             .discountAmount(DiscountAmount.builder()
                                 .currency("EUR")
@@ -311,6 +314,7 @@ public class Application {
                                 .build())
                             .releaseDate("2024-12-12")
                             .build()))
+                    .sequenceType(SequenceType.ONEOFF)
                     .mandateId("mdt_5B8cwPMGnU")
                     .customerId("cst_5B8cwPMGnU")
                     .profileId("pfl_5B8cwPMGnU")
@@ -384,6 +388,7 @@ public class Application {
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
+                            .type(Type.PHYSICAL)
                             .quantityUnit("pcs")
                             .discountAmount(DiscountAmount.builder()
                                 .currency("EUR")
@@ -422,6 +427,7 @@ public class Application {
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
+                            .type(Type.PHYSICAL)
                             .quantityUnit("pcs")
                             .discountAmount(DiscountAmount.builder()
                                 .currency("EUR")
@@ -460,6 +466,7 @@ public class Application {
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
+                            .type(Type.PHYSICAL)
                             .quantityUnit("pcs")
                             .discountAmount(DiscountAmount.builder()
                                 .currency("EUR")
@@ -571,6 +578,7 @@ public class Application {
                                 .build())
                             .releaseDate("2024-12-12")
                             .build()))
+                    .sequenceType(SequenceType.ONEOFF)
                     .mandateId("mdt_5B8cwPMGnU")
                     .customerId("cst_5B8cwPMGnU")
                     .profileId("pfl_5B8cwPMGnU")
@@ -828,6 +836,7 @@ public class Application {
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
+                            .type(Type.PHYSICAL)
                             .quantityUnit("pcs")
                             .discountAmount(DiscountAmount.builder()
                                 .currency("EUR")
@@ -866,6 +875,7 @@ public class Application {
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
+                            .type(Type.PHYSICAL)
                             .quantityUnit("pcs")
                             .discountAmount(DiscountAmount.builder()
                                 .currency("EUR")
@@ -904,6 +914,7 @@ public class Application {
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
+                            .type(Type.PHYSICAL)
                             .quantityUnit("pcs")
                             .discountAmount(DiscountAmount.builder()
                                 .currency("EUR")
@@ -1015,6 +1026,7 @@ public class Application {
                                 .build())
                             .releaseDate("2024-12-12")
                             .build()))
+                    .sequenceType(SequenceType.ONEOFF)
                     .mandateId("mdt_5B8cwPMGnU")
                     .customerId("cst_5B8cwPMGnU")
                     .profileId("pfl_5B8cwPMGnU")
@@ -1088,6 +1100,7 @@ public class Application {
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
+                            .type(Type.PHYSICAL)
                             .quantityUnit("pcs")
                             .discountAmount(DiscountAmount.builder()
                                 .currency("EUR")
@@ -1126,6 +1139,7 @@ public class Application {
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
+                            .type(Type.PHYSICAL)
                             .quantityUnit("pcs")
                             .discountAmount(DiscountAmount.builder()
                                 .currency("EUR")
@@ -1164,6 +1178,7 @@ public class Application {
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
+                            .type(Type.PHYSICAL)
                             .quantityUnit("pcs")
                             .discountAmount(DiscountAmount.builder()
                                 .currency("EUR")
@@ -1275,6 +1290,7 @@ public class Application {
                                 .build())
                             .releaseDate("2024-12-12")
                             .build()))
+                    .sequenceType(SequenceType.ONEOFF)
                     .mandateId("mdt_5B8cwPMGnU")
                     .customerId("cst_5B8cwPMGnU")
                     .profileId("pfl_5B8cwPMGnU")
@@ -1350,6 +1366,7 @@ public class Application {
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
+                            .type(Type.PHYSICAL)
                             .quantityUnit("pcs")
                             .discountAmount(DiscountAmount.builder()
                                 .currency("EUR")
@@ -1388,6 +1405,7 @@ public class Application {
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
+                            .type(Type.PHYSICAL)
                             .quantityUnit("pcs")
                             .discountAmount(DiscountAmount.builder()
                                 .currency("EUR")
@@ -1426,6 +1444,7 @@ public class Application {
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
+                            .type(Type.PHYSICAL)
                             .quantityUnit("pcs")
                             .discountAmount(DiscountAmount.builder()
                                 .currency("EUR")
@@ -1537,6 +1556,7 @@ public class Application {
                                 .build())
                             .releaseDate("2024-12-12")
                             .build()))
+                    .sequenceType(SequenceType.ONEOFF)
                     .mandateId("mdt_5B8cwPMGnU")
                     .customerId("cst_5B8cwPMGnU")
                     .profileId("pfl_5B8cwPMGnU")
@@ -1604,6 +1624,7 @@ public class Application {
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
+                            .type(Type.PHYSICAL)
                             .quantityUnit("pcs")
                             .discountAmount(DiscountAmount.builder()
                                 .currency("EUR")
@@ -1642,6 +1663,7 @@ public class Application {
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
+                            .type(Type.PHYSICAL)
                             .quantityUnit("pcs")
                             .discountAmount(DiscountAmount.builder()
                                 .currency("EUR")
@@ -1680,6 +1702,7 @@ public class Application {
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
+                            .type(Type.PHYSICAL)
                             .quantityUnit("pcs")
                             .discountAmount(DiscountAmount.builder()
                                 .currency("EUR")
@@ -1791,6 +1814,7 @@ public class Application {
                                 .build())
                             .releaseDate("2024-12-12")
                             .build()))
+                    .sequenceType(SequenceType.ONEOFF)
                     .mandateId("mdt_5B8cwPMGnU")
                     .customerId("cst_5B8cwPMGnU")
                     .profileId("pfl_5B8cwPMGnU")

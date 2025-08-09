@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mollie.mollie.utils.LazySingletonValue;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
@@ -29,9 +27,8 @@ public class GetPartnerStatusResponseBody {
      * Indicates the response contains a partner status object. Will always contain the string `partner` for
      * this endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
     /**
      * Indicates the type of partner. Will be `null` if the currently authenticated organization is not
@@ -88,7 +85,7 @@ public class GetPartnerStatusResponseBody {
 
     @JsonCreator
     public GetPartnerStatusResponseBody(
-            @JsonProperty("resource") Optional<String> resource,
+            @JsonProperty("resource") String resource,
             @JsonProperty("partnerType") Optional<? extends PartnerType> partnerType,
             @JsonProperty("isCommissionPartner") Optional<Boolean> isCommissionPartner,
             @JsonProperty("userAgentTokens") Optional<? extends List<UserAgentTokens>> userAgentTokens,
@@ -114,8 +111,9 @@ public class GetPartnerStatusResponseBody {
         this.links = links;
     }
     
-    public GetPartnerStatusResponseBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
+    public GetPartnerStatusResponseBody(
+            String resource) {
+        this(resource, Optional.empty(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), Optional.empty());
     }
@@ -125,7 +123,7 @@ public class GetPartnerStatusResponseBody {
      * this endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
@@ -202,17 +200,6 @@ public class GetPartnerStatusResponseBody {
      * this endpoint.
      */
     public GetPartnerStatusResponseBody withResource(String resource) {
-        Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains a partner status object. Will always contain the string `partner` for
-     * this endpoint.
-     */
-    public GetPartnerStatusResponseBody withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
@@ -402,7 +389,7 @@ public class GetPartnerStatusResponseBody {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource;
+        private String resource;
 
         private Optional<? extends PartnerType> partnerType = Optional.empty();
 
@@ -428,16 +415,6 @@ public class GetPartnerStatusResponseBody {
          * this endpoint.
          */
         public Builder resource(String resource) {
-            Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a partner status object. Will always contain the string `partner` for
-         * this endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
@@ -585,9 +562,6 @@ public class GetPartnerStatusResponseBody {
         }
 
         public GetPartnerStatusResponseBody build() {
-            if (resource == null) {
-                resource = _SINGLETON_VALUE_Resource.value();
-            }
 
             return new GetPartnerStatusResponseBody(
                 resource, partnerType, isCommissionPartner,
@@ -595,11 +569,5 @@ public class GetPartnerStatusResponseBody {
                 partnerContractExpiresAt, links);
         }
 
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Resource =
-                new LazySingletonValue<>(
-                        "resource",
-                        "\"partner\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

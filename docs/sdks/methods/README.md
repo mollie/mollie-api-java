@@ -51,11 +51,13 @@ public class Application {
             .build();
 
         ListMethodsRequest req = ListMethodsRequest.builder()
+                .sequenceType(QueryParamSequenceType.ONEOFF)
                 .locale(QueryParamLocale.EN_US)
                 .amount(QueryParamAmount.builder()
                     .currency("EUR")
                     .value("10.00")
                     .build())
+                .resource(Resource.PAYMENTS)
                 .billingCountry("DE")
                 .includeWallets(IncludeWallets.APPLEPAY)
                 .orderLineCategories(OrderLineCategories.ECO)
@@ -128,6 +130,7 @@ public class Application {
                     .value("10.00")
                     .build())
                 .include(ListAllMethodsQueryParamInclude.ISSUERS)
+                .sequenceType(ListAllMethodsQueryParamSequenceType.ONEOFF)
                 .profileId("pfl_5B8cwPMGnU")
                 .testmode(false)
                 .build();
@@ -204,6 +207,7 @@ public class Application {
                 .currency("EUR")
                 .profileId("pfl_5B8cwPMGnU")
                 .include(GetMethodQueryParamInclude.ISSUERS)
+                .sequenceType(GetMethodQueryParamSequenceType.ONEOFF)
                 .testmode(false)
                 .build();
 

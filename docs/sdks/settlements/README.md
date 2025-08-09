@@ -45,6 +45,7 @@ public class Application {
 
         ListSettlementsRequest req = ListSettlementsRequest.builder()
                 .from("stl_jDk30akdN")
+                .limit(50L)
                 .balanceId("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .year("2025")
                 .month("1")
@@ -266,8 +267,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ListSettlementPaymentsResponseBody;
-import com.mollie.mollie.models.operations.ListSettlementPaymentsRequest;
-import com.mollie.mollie.models.operations.ListSettlementPaymentsResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -283,6 +283,8 @@ public class Application {
         ListSettlementPaymentsRequest req = ListSettlementPaymentsRequest.builder()
                 .settlementId("stl_jDk30akdN")
                 .from("tr_5B8cwPMGnU")
+                .limit(50L)
+                .sort(ListSettlementPaymentsQueryParamSort.DESC)
                 .profileId("pfl_5B8cwPMGnU")
                 .testmode(false)
                 .build();
@@ -347,6 +349,7 @@ public class Application {
         ListSettlementCapturesRequest req = ListSettlementCapturesRequest.builder()
                 .settlementId("stl_jDk30akdN")
                 .from("cpt_vytxeTZskVKR7C7WgdSP3d")
+                .limit(50L)
                 .embed(ListSettlementCapturesQueryParamEmbed.PAYMENT)
                 .testmode(false)
                 .build();
@@ -412,6 +415,7 @@ public class Application {
         ListSettlementRefundsRequest req = ListSettlementRefundsRequest.builder()
                 .settlementId("stl_jDk30akdN")
                 .from("re_5B8cwPMGnU")
+                .limit(50L)
                 .embed(ListSettlementRefundsQueryParamEmbed.PAYMENT)
                 .testmode(false)
                 .build();
@@ -477,6 +481,7 @@ public class Application {
         ListSettlementChargebacksRequest req = ListSettlementChargebacksRequest.builder()
                 .settlementId("stl_jDk30akdN")
                 .from("chb_xFzwUN4ci8HAmSGUACS4J")
+                .limit(50L)
                 .embed(ListSettlementChargebacksQueryParamEmbed.PAYMENT)
                 .testmode(false)
                 .build();

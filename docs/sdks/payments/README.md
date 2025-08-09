@@ -74,6 +74,7 @@ public class Application {
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
+                            .type(Type.PHYSICAL)
                             .quantityUnit("pcs")
                             .discountAmount(DiscountAmount.builder()
                                 .currency("EUR")
@@ -112,6 +113,7 @@ public class Application {
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
+                            .type(Type.PHYSICAL)
                             .quantityUnit("pcs")
                             .discountAmount(DiscountAmount.builder()
                                 .currency("EUR")
@@ -150,6 +152,7 @@ public class Application {
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
+                            .type(Type.PHYSICAL)
                             .quantityUnit("pcs")
                             .discountAmount(DiscountAmount.builder()
                                 .currency("EUR")
@@ -261,6 +264,7 @@ public class Application {
                                 .build())
                             .releaseDate("2024-12-12")
                             .build()))
+                    .sequenceType(SequenceType.ONEOFF)
                     .mandateId("mdt_5B8cwPMGnU")
                     .customerId("cst_5B8cwPMGnU")
                     .profileId("pfl_5B8cwPMGnU")
@@ -310,8 +314,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ListPaymentsResponseBody;
-import com.mollie.mollie.models.operations.ListPaymentsRequest;
-import com.mollie.mollie.models.operations.ListPaymentsResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -326,6 +329,8 @@ public class Application {
 
         ListPaymentsRequest req = ListPaymentsRequest.builder()
                 .from("tr_5B8cwPMGnU")
+                .limit(50L)
+                .sort(Sort.DESC)
                 .profileId("pfl_5B8cwPMGnU")
                 .testmode(false)
                 .build();
