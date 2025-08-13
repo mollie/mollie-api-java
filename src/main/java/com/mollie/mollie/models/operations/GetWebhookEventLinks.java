@@ -39,13 +39,13 @@ public class GetWebhookEventLinks {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("entity")
-    private Optional<? extends GetWebhookEventEntity> entity;
+    private Optional<? extends Entity> entity;
 
     @JsonCreator
     public GetWebhookEventLinks(
             @JsonProperty("self") Optional<? extends GetWebhookEventSelf> self,
             @JsonProperty("documentation") Optional<? extends GetWebhookEventDocumentation> documentation,
-            @JsonProperty("entity") Optional<? extends GetWebhookEventEntity> entity) {
+            @JsonProperty("entity") Optional<? extends Entity> entity) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(documentation, "documentation");
         Utils.checkNotNull(entity, "entity");
@@ -81,8 +81,8 @@ public class GetWebhookEventLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetWebhookEventEntity> entity() {
-        return (Optional<GetWebhookEventEntity>) entity;
+    public Optional<Entity> entity() {
+        return (Optional<Entity>) entity;
     }
 
     public static Builder builder() {
@@ -131,7 +131,7 @@ public class GetWebhookEventLinks {
     /**
      * The API resource URL of the entity that this event belongs to.
      */
-    public GetWebhookEventLinks withEntity(GetWebhookEventEntity entity) {
+    public GetWebhookEventLinks withEntity(Entity entity) {
         Utils.checkNotNull(entity, "entity");
         this.entity = Optional.ofNullable(entity);
         return this;
@@ -141,7 +141,7 @@ public class GetWebhookEventLinks {
     /**
      * The API resource URL of the entity that this event belongs to.
      */
-    public GetWebhookEventLinks withEntity(Optional<? extends GetWebhookEventEntity> entity) {
+    public GetWebhookEventLinks withEntity(Optional<? extends Entity> entity) {
         Utils.checkNotNull(entity, "entity");
         this.entity = entity;
         return this;
@@ -183,7 +183,7 @@ public class GetWebhookEventLinks {
 
         private Optional<? extends GetWebhookEventDocumentation> documentation = Optional.empty();
 
-        private Optional<? extends GetWebhookEventEntity> entity = Optional.empty();
+        private Optional<? extends Entity> entity = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -231,7 +231,7 @@ public class GetWebhookEventLinks {
         /**
          * The API resource URL of the entity that this event belongs to.
          */
-        public Builder entity(GetWebhookEventEntity entity) {
+        public Builder entity(Entity entity) {
             Utils.checkNotNull(entity, "entity");
             this.entity = Optional.ofNullable(entity);
             return this;
@@ -240,7 +240,7 @@ public class GetWebhookEventLinks {
         /**
          * The API resource URL of the entity that this event belongs to.
          */
-        public Builder entity(Optional<? extends GetWebhookEventEntity> entity) {
+        public Builder entity(Optional<? extends Entity> entity) {
             Utils.checkNotNull(entity, "entity");
             this.entity = entity;
             return this;

@@ -3,60 +3,80 @@
  */
 package com.mollie.mollie.models.operations;
 
-import com.fasterxml.jackson.annotation.JsonValue;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.mollie.mollie.utils.OneOfDeserializer;
-import com.mollie.mollie.utils.TypedObject;
-import com.mollie.mollie.utils.Utils.JsonShape;
-import com.mollie.mollie.utils.Utils.TypeReferenceWithShape;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 
-@JsonDeserialize(using = Entity._Deserializer.class)
+/**
+ * Entity
+ * 
+ * <p>The API resource URL of the entity that this event belongs to.
+ */
 public class Entity {
-
-    @JsonValue
-    private TypedObject value;
-    
-    private Entity(TypedObject value) {
-        this.value = value;
-    }
-
-    public static Entity of(EntityPaymentLink value) {
-        Utils.checkNotNull(value, "value");
-        return new Entity(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<EntityPaymentLink>(){}));
-    }
-
-    public static Entity of(EntityProfile value) {
-        Utils.checkNotNull(value, "value");
-        return new Entity(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<EntityProfile>(){}));
-    }
-    
     /**
-     * Returns an instance of one of these types:
-     * <ul>
-     * <li>{@code com.mollie.mollie.models.operations.EntityPaymentLink}</li>
-     * <li>{@code com.mollie.mollie.models.operations.EntityProfile}</li>
-     * </ul>
-     * 
-     * <p>Use {@code instanceof} to determine what type is returned. For example:
-     * 
-     * <pre>
-     * if (obj.value() instanceof String) {
-     *     String answer = (String) obj.value();
-     *     System.out.println("answer=" + answer);
-     * }
-     * </pre>
-     * 
-     * @return value of oneOf type
-     **/ 
-    public java.lang.Object value() {
-        return value.value();
-    }    
-    
+     * The actual URL string.
+     */
+    @JsonProperty("href")
+    private String href;
+
+    /**
+     * The content type of the page or endpoint the URL points to.
+     */
+    @JsonProperty("type")
+    private String type;
+
+    @JsonCreator
+    public Entity(
+            @JsonProperty("href") String href,
+            @JsonProperty("type") String type) {
+        Utils.checkNotNull(href, "href");
+        Utils.checkNotNull(type, "type");
+        this.href = href;
+        this.type = type;
+    }
+
+    /**
+     * The actual URL string.
+     */
+    @JsonIgnore
+    public String href() {
+        return href;
+    }
+
+    /**
+     * The content type of the page or endpoint the URL points to.
+     */
+    @JsonIgnore
+    public String type() {
+        return type;
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+
+    /**
+     * The actual URL string.
+     */
+    public Entity withHref(String href) {
+        Utils.checkNotNull(href, "href");
+        this.href = href;
+        return this;
+    }
+
+    /**
+     * The content type of the page or endpoint the URL points to.
+     */
+    public Entity withType(String type) {
+        Utils.checkNotNull(type, "type");
+        this.type = type;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -66,29 +86,60 @@ public class Entity {
             return false;
         }
         Entity other = (Entity) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return 
+            Utils.enhancedDeepEquals(this.href, other.href) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return Utils.enhancedHash(value.value());
-    }
-    
-    @SuppressWarnings("serial")
-    public static final class _Deserializer extends OneOfDeserializer<Entity> {
-
-        public _Deserializer() {
-            super(Entity.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<EntityPaymentLink>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<EntityProfile>() {}, JsonShape.DEFAULT));
-        }
+        return Utils.enhancedHash(
+            href, type);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Entity.class,
-                "value", value);
+                "href", href,
+                "type", type);
     }
- 
-}
 
+    @SuppressWarnings("UnusedReturnValue")
+    public final static class Builder {
+
+        private String href;
+
+        private String type;
+
+        private Builder() {
+          // force use of static builder() method
+        }
+
+
+        /**
+         * The actual URL string.
+         */
+        public Builder href(String href) {
+            Utils.checkNotNull(href, "href");
+            this.href = href;
+            return this;
+        }
+
+
+        /**
+         * The content type of the page or endpoint the URL points to.
+         */
+        public Builder type(String type) {
+            Utils.checkNotNull(type, "type");
+            this.type = type;
+            return this;
+        }
+
+        public Entity build() {
+
+            return new Entity(
+                href, type);
+        }
+
+    }
+}

@@ -23,11 +23,11 @@ public class GetWebhookEventEmbedded {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("entity")
-    private Optional<? extends Entity> entity;
+    private Optional<? extends GetWebhookEventEntity> entity;
 
     @JsonCreator
     public GetWebhookEventEmbedded(
-            @JsonProperty("entity") Optional<? extends Entity> entity) {
+            @JsonProperty("entity") Optional<? extends GetWebhookEventEntity> entity) {
         Utils.checkNotNull(entity, "entity");
         this.entity = entity;
     }
@@ -38,8 +38,8 @@ public class GetWebhookEventEmbedded {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Entity> entity() {
-        return (Optional<Entity>) entity;
+    public Optional<GetWebhookEventEntity> entity() {
+        return (Optional<GetWebhookEventEntity>) entity;
     }
 
     public static Builder builder() {
@@ -47,14 +47,14 @@ public class GetWebhookEventEmbedded {
     }
 
 
-    public GetWebhookEventEmbedded withEntity(Entity entity) {
+    public GetWebhookEventEmbedded withEntity(GetWebhookEventEntity entity) {
         Utils.checkNotNull(entity, "entity");
         this.entity = Optional.ofNullable(entity);
         return this;
     }
 
 
-    public GetWebhookEventEmbedded withEntity(Optional<? extends Entity> entity) {
+    public GetWebhookEventEmbedded withEntity(Optional<? extends GetWebhookEventEntity> entity) {
         Utils.checkNotNull(entity, "entity");
         this.entity = entity;
         return this;
@@ -88,20 +88,20 @@ public class GetWebhookEventEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends Entity> entity = Optional.empty();
+        private Optional<? extends GetWebhookEventEntity> entity = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder entity(Entity entity) {
+        public Builder entity(GetWebhookEventEntity entity) {
             Utils.checkNotNull(entity, "entity");
             this.entity = Optional.ofNullable(entity);
             return this;
         }
 
-        public Builder entity(Optional<? extends Entity> entity) {
+        public Builder entity(Optional<? extends GetWebhookEventEntity> entity) {
             Utils.checkNotNull(entity, "entity");
             this.entity = entity;
             return this;

@@ -126,6 +126,7 @@ public class Application {
                     .build())
                 .sequenceType(CreatePaymentLinkSequenceType.ONEOFF)
                 .customerId("cst_XimFHuaEzd")
+                .testmode(false)
                 .build();
 
         CreatePaymentLinkResponse res = sdk.paymentLinks().create()

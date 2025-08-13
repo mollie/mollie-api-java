@@ -26,12 +26,12 @@ public class EntityLinks {
      * The URL your customer should visit to make the payment. This is where you should redirect the customer to.
      */
     @JsonProperty("paymentLink")
-    private GetWebhookEventEntityPaymentLink paymentLink;
+    private EntityPaymentLink paymentLink;
 
     @JsonCreator
     public EntityLinks(
             @JsonProperty("self") EntitySelf self,
-            @JsonProperty("paymentLink") GetWebhookEventEntityPaymentLink paymentLink) {
+            @JsonProperty("paymentLink") EntityPaymentLink paymentLink) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(paymentLink, "paymentLink");
         this.self = self;
@@ -50,7 +50,7 @@ public class EntityLinks {
      * The URL your customer should visit to make the payment. This is where you should redirect the customer to.
      */
     @JsonIgnore
-    public GetWebhookEventEntityPaymentLink paymentLink() {
+    public EntityPaymentLink paymentLink() {
         return paymentLink;
     }
 
@@ -71,7 +71,7 @@ public class EntityLinks {
     /**
      * The URL your customer should visit to make the payment. This is where you should redirect the customer to.
      */
-    public EntityLinks withPaymentLink(GetWebhookEventEntityPaymentLink paymentLink) {
+    public EntityLinks withPaymentLink(EntityPaymentLink paymentLink) {
         Utils.checkNotNull(paymentLink, "paymentLink");
         this.paymentLink = paymentLink;
         return this;
@@ -109,7 +109,7 @@ public class EntityLinks {
 
         private EntitySelf self;
 
-        private GetWebhookEventEntityPaymentLink paymentLink;
+        private EntityPaymentLink paymentLink;
 
         private Builder() {
           // force use of static builder() method
@@ -129,7 +129,7 @@ public class EntityLinks {
         /**
          * The URL your customer should visit to make the payment. This is where you should redirect the customer to.
          */
-        public Builder paymentLink(GetWebhookEventEntityPaymentLink paymentLink) {
+        public Builder paymentLink(EntityPaymentLink paymentLink) {
             Utils.checkNotNull(paymentLink, "paymentLink");
             this.paymentLink = paymentLink;
             return this;

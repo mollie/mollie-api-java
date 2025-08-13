@@ -5,53 +5,545 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
+import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
-/**
- * GetWebhookEventEntityPaymentLink
- * 
- * <p>The URL your customer should visit to make the payment. This is where you should redirect the customer to.
- */
+
 public class GetWebhookEventEntityPaymentLink {
     /**
-     * The actual URL string.
+     * Indicates the response contains a payment link object. Will always contain the string `payment-link` for this
+     * endpoint.
      */
-    @JsonProperty("href")
-    private String href;
+    @JsonProperty("resource")
+    private String resource;
 
     /**
-     * The content type of the page or endpoint the URL points to.
+     * The identifier uniquely referring to this payment link. Example: `pl_4Y0eZitmBnQ6IDoMqZQKh`.
      */
-    @JsonProperty("type")
-    private String type;
+    @JsonProperty("id")
+    private String id;
+
+    /**
+     * Whether this entity was created in live mode or in test mode.
+     */
+    @JsonProperty("mode")
+    private EntityMode mode;
+
+    /**
+     * A short description of the payment link. The description is visible in the Dashboard and will be shown on the
+     * customer's bank or card statement when possible.
+     */
+    @JsonProperty("description")
+    private String description;
+
+    /**
+     * The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an
+     * amount.
+     */
+    @JsonInclude(Include.ALWAYS)
+    @JsonProperty("amount")
+    private Optional<? extends EntityAmount> amount;
+
+    /**
+     * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The
+     * customer will be prompted to enter a value greater than or equal to the minimum amount.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("minimumAmount")
+    private JsonNullable<? extends EntityMinimumAmount> minimumAmount;
+
+    /**
+     * Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
+     */
+    @JsonProperty("archived")
+    private boolean archived;
+
+    /**
+     * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided,
+     * the customer will be shown a generic message after completing the payment.
+     */
+    @JsonInclude(Include.ALWAYS)
+    @JsonProperty("redirectUrl")
+    private Optional<String> redirectUrl;
+
+    /**
+     * The webhook URL where we will send payment status updates to.
+     * 
+     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to any payments
+     * resulting from the payment link.
+     * 
+     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
+     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+     * local machine.
+     */
+    @JsonInclude(Include.ALWAYS)
+    @JsonProperty("webhookUrl")
+    private Optional<String> webhookUrl;
+
+    /**
+     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+     * ordered and its price.
+     * 
+     * <p>All lines must have the same currency as the payment.
+     * 
+     * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("lines")
+    private JsonNullable<? extends List<EntityLines>> lines;
+
+    /**
+     * The customer's billing address details. We advise to provide these details to improve fraud protection and
+     * conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
+     * 
+     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("billingAddress")
+    private Optional<? extends EntityBillingAddress> billingAddress;
+
+    /**
+     * The customer's shipping address details. We advise to provide these details to improve fraud protection and
+     * conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("shippingAddress")
+    private Optional<? extends EntityShippingAddress> shippingAddress;
+
+    /**
+     * The identifier referring to the [profile](get-profile) this entity belongs to.
+     * 
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
+     */
+    @JsonInclude(Include.ALWAYS)
+    @JsonProperty("profileId")
+    private Optional<String> profileId;
+
+    /**
+     * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make multiple
+     * payments using the same link.
+     * 
+     * <p>If no value is specified, the field defaults to `false`, allowing only a single payment per link.
+     */
+    @JsonInclude(Include.ALWAYS)
+    @JsonProperty("reusable")
+    private Optional<Boolean> reusable;
+
+    /**
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     */
+    @JsonProperty("createdAt")
+    private String createdAt;
+
+    /**
+     * The date and time the payment link became paid, in ISO 8601 format.
+     */
+    @JsonInclude(Include.ALWAYS)
+    @JsonProperty("paidAt")
+    private Optional<String> paidAt;
+
+    /**
+     * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front,
+     * the payment link will not expire automatically.
+     */
+    @JsonInclude(Include.ALWAYS)
+    @JsonProperty("expiresAt")
+    private Optional<String> expiresAt;
+
+    /**
+     * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+     * not provided or is an empty array, all enabled payment methods will be available.
+     * 
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
+     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+     * 'in3', 'riverty', 'klarna', 'billie'.
+     */
+    @JsonInclude(Include.ALWAYS)
+    @JsonProperty("allowedMethods")
+    private Optional<? extends List<String>> allowedMethods;
+
+    /**
+     * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie
+     * merchants.
+     * 
+     * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this
+     * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent
+     * to your own account balance.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("applicationFee")
+    private Optional<? extends EntityApplicationFee> applicationFee;
+
+    /**
+     * If set to `first`, a payment mandate is established right after a payment is made by the customer.
+     * 
+     * <p>Defaults to `oneoff`, which is a regular payment link and will not establish a mandate after payment.
+     * 
+     * <p>The mandate ID can be retrieved by making a call to the
+     * [Payment Link Payments Endpoint](get-payment-link-payments).
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("sequenceType")
+    private JsonNullable<? extends EntitySequenceType> sequenceType;
+
+    /**
+     * **Only relevant when `sequenceType` is set to `first`**
+     * 
+     * <p>The ID of the [customer](get-customer) the payment link is being created for. If a value is not provided,
+     * the customer will be required to input relevant information which will be used to establish a mandate after
+     * the payment is made.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("customerId")
+    private JsonNullable<String> customerId;
+
+    /**
+     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+     */
+    @JsonProperty("_links")
+    private EntityLinks links;
 
     @JsonCreator
     public GetWebhookEventEntityPaymentLink(
-            @JsonProperty("href") String href,
-            @JsonProperty("type") String type) {
-        Utils.checkNotNull(href, "href");
-        Utils.checkNotNull(type, "type");
-        this.href = href;
-        this.type = type;
+            @JsonProperty("resource") String resource,
+            @JsonProperty("id") String id,
+            @JsonProperty("mode") EntityMode mode,
+            @JsonProperty("description") String description,
+            @JsonProperty("amount") Optional<? extends EntityAmount> amount,
+            @JsonProperty("minimumAmount") JsonNullable<? extends EntityMinimumAmount> minimumAmount,
+            @JsonProperty("archived") boolean archived,
+            @JsonProperty("redirectUrl") Optional<String> redirectUrl,
+            @JsonProperty("webhookUrl") Optional<String> webhookUrl,
+            @JsonProperty("lines") JsonNullable<? extends List<EntityLines>> lines,
+            @JsonProperty("billingAddress") Optional<? extends EntityBillingAddress> billingAddress,
+            @JsonProperty("shippingAddress") Optional<? extends EntityShippingAddress> shippingAddress,
+            @JsonProperty("profileId") Optional<String> profileId,
+            @JsonProperty("reusable") Optional<Boolean> reusable,
+            @JsonProperty("createdAt") String createdAt,
+            @JsonProperty("paidAt") Optional<String> paidAt,
+            @JsonProperty("expiresAt") Optional<String> expiresAt,
+            @JsonProperty("allowedMethods") Optional<? extends List<String>> allowedMethods,
+            @JsonProperty("applicationFee") Optional<? extends EntityApplicationFee> applicationFee,
+            @JsonProperty("sequenceType") JsonNullable<? extends EntitySequenceType> sequenceType,
+            @JsonProperty("customerId") JsonNullable<String> customerId,
+            @JsonProperty("_links") EntityLinks links) {
+        Utils.checkNotNull(resource, "resource");
+        Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(mode, "mode");
+        Utils.checkNotNull(description, "description");
+        Utils.checkNotNull(amount, "amount");
+        Utils.checkNotNull(minimumAmount, "minimumAmount");
+        Utils.checkNotNull(archived, "archived");
+        Utils.checkNotNull(redirectUrl, "redirectUrl");
+        Utils.checkNotNull(webhookUrl, "webhookUrl");
+        Utils.checkNotNull(lines, "lines");
+        Utils.checkNotNull(billingAddress, "billingAddress");
+        Utils.checkNotNull(shippingAddress, "shippingAddress");
+        Utils.checkNotNull(profileId, "profileId");
+        Utils.checkNotNull(reusable, "reusable");
+        Utils.checkNotNull(createdAt, "createdAt");
+        Utils.checkNotNull(paidAt, "paidAt");
+        Utils.checkNotNull(expiresAt, "expiresAt");
+        Utils.checkNotNull(allowedMethods, "allowedMethods");
+        Utils.checkNotNull(applicationFee, "applicationFee");
+        Utils.checkNotNull(sequenceType, "sequenceType");
+        Utils.checkNotNull(customerId, "customerId");
+        Utils.checkNotNull(links, "links");
+        this.resource = resource;
+        this.id = id;
+        this.mode = mode;
+        this.description = description;
+        this.amount = amount;
+        this.minimumAmount = minimumAmount;
+        this.archived = archived;
+        this.redirectUrl = redirectUrl;
+        this.webhookUrl = webhookUrl;
+        this.lines = lines;
+        this.billingAddress = billingAddress;
+        this.shippingAddress = shippingAddress;
+        this.profileId = profileId;
+        this.reusable = reusable;
+        this.createdAt = createdAt;
+        this.paidAt = paidAt;
+        this.expiresAt = expiresAt;
+        this.allowedMethods = allowedMethods;
+        this.applicationFee = applicationFee;
+        this.sequenceType = sequenceType;
+        this.customerId = customerId;
+        this.links = links;
+    }
+    
+    public GetWebhookEventEntityPaymentLink(
+            String resource,
+            String id,
+            EntityMode mode,
+            String description,
+            boolean archived,
+            String createdAt,
+            EntityLinks links) {
+        this(resource, id, mode,
+            description, Optional.empty(), JsonNullable.undefined(),
+            archived, Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), createdAt,
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            links);
     }
 
     /**
-     * The actual URL string.
+     * Indicates the response contains a payment link object. Will always contain the string `payment-link` for this
+     * endpoint.
      */
     @JsonIgnore
-    public String href() {
-        return href;
+    public String resource() {
+        return resource;
     }
 
     /**
-     * The content type of the page or endpoint the URL points to.
+     * The identifier uniquely referring to this payment link. Example: `pl_4Y0eZitmBnQ6IDoMqZQKh`.
      */
     @JsonIgnore
-    public String type() {
-        return type;
+    public String id() {
+        return id;
+    }
+
+    /**
+     * Whether this entity was created in live mode or in test mode.
+     */
+    @JsonIgnore
+    public EntityMode mode() {
+        return mode;
+    }
+
+    /**
+     * A short description of the payment link. The description is visible in the Dashboard and will be shown on the
+     * customer's bank or card statement when possible.
+     */
+    @JsonIgnore
+    public String description() {
+        return description;
+    }
+
+    /**
+     * The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an
+     * amount.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<EntityAmount> amount() {
+        return (Optional<EntityAmount>) amount;
+    }
+
+    /**
+     * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The
+     * customer will be prompted to enter a value greater than or equal to the minimum amount.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<EntityMinimumAmount> minimumAmount() {
+        return (JsonNullable<EntityMinimumAmount>) minimumAmount;
+    }
+
+    /**
+     * Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
+     */
+    @JsonIgnore
+    public boolean archived() {
+        return archived;
+    }
+
+    /**
+     * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided,
+     * the customer will be shown a generic message after completing the payment.
+     */
+    @JsonIgnore
+    public Optional<String> redirectUrl() {
+        return redirectUrl;
+    }
+
+    /**
+     * The webhook URL where we will send payment status updates to.
+     * 
+     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to any payments
+     * resulting from the payment link.
+     * 
+     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
+     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+     * local machine.
+     */
+    @JsonIgnore
+    public Optional<String> webhookUrl() {
+        return webhookUrl;
+    }
+
+    /**
+     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+     * ordered and its price.
+     * 
+     * <p>All lines must have the same currency as the payment.
+     * 
+     * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<List<EntityLines>> lines() {
+        return (JsonNullable<List<EntityLines>>) lines;
+    }
+
+    /**
+     * The customer's billing address details. We advise to provide these details to improve fraud protection and
+     * conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
+     * 
+     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<EntityBillingAddress> billingAddress() {
+        return (Optional<EntityBillingAddress>) billingAddress;
+    }
+
+    /**
+     * The customer's shipping address details. We advise to provide these details to improve fraud protection and
+     * conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<EntityShippingAddress> shippingAddress() {
+        return (Optional<EntityShippingAddress>) shippingAddress;
+    }
+
+    /**
+     * The identifier referring to the [profile](get-profile) this entity belongs to.
+     * 
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
+     */
+    @JsonIgnore
+    public Optional<String> profileId() {
+        return profileId;
+    }
+
+    /**
+     * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make multiple
+     * payments using the same link.
+     * 
+     * <p>If no value is specified, the field defaults to `false`, allowing only a single payment per link.
+     */
+    @JsonIgnore
+    public Optional<Boolean> reusable() {
+        return reusable;
+    }
+
+    /**
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     */
+    @JsonIgnore
+    public String createdAt() {
+        return createdAt;
+    }
+
+    /**
+     * The date and time the payment link became paid, in ISO 8601 format.
+     */
+    @JsonIgnore
+    public Optional<String> paidAt() {
+        return paidAt;
+    }
+
+    /**
+     * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front,
+     * the payment link will not expire automatically.
+     */
+    @JsonIgnore
+    public Optional<String> expiresAt() {
+        return expiresAt;
+    }
+
+    /**
+     * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+     * not provided or is an empty array, all enabled payment methods will be available.
+     * 
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
+     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+     * 'in3', 'riverty', 'klarna', 'billie'.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<String>> allowedMethods() {
+        return (Optional<List<String>>) allowedMethods;
+    }
+
+    /**
+     * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie
+     * merchants.
+     * 
+     * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this
+     * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent
+     * to your own account balance.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<EntityApplicationFee> applicationFee() {
+        return (Optional<EntityApplicationFee>) applicationFee;
+    }
+
+    /**
+     * If set to `first`, a payment mandate is established right after a payment is made by the customer.
+     * 
+     * <p>Defaults to `oneoff`, which is a regular payment link and will not establish a mandate after payment.
+     * 
+     * <p>The mandate ID can be retrieved by making a call to the
+     * [Payment Link Payments Endpoint](get-payment-link-payments).
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<EntitySequenceType> sequenceType() {
+        return (JsonNullable<EntitySequenceType>) sequenceType;
+    }
+
+    /**
+     * **Only relevant when `sequenceType` is set to `first`**
+     * 
+     * <p>The ID of the [customer](get-customer) the payment link is being created for. If a value is not provided,
+     * the customer will be required to input relevant information which will be used to establish a mandate after
+     * the payment is made.
+     */
+    @JsonIgnore
+    public JsonNullable<String> customerId() {
+        return customerId;
+    }
+
+    /**
+     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+     */
+    @JsonIgnore
+    public EntityLinks links() {
+        return links;
     }
 
     public static Builder builder() {
@@ -60,20 +552,452 @@ public class GetWebhookEventEntityPaymentLink {
 
 
     /**
-     * The actual URL string.
+     * Indicates the response contains a payment link object. Will always contain the string `payment-link` for this
+     * endpoint.
      */
-    public GetWebhookEventEntityPaymentLink withHref(String href) {
-        Utils.checkNotNull(href, "href");
-        this.href = href;
+    public GetWebhookEventEntityPaymentLink withResource(String resource) {
+        Utils.checkNotNull(resource, "resource");
+        this.resource = resource;
         return this;
     }
 
     /**
-     * The content type of the page or endpoint the URL points to.
+     * The identifier uniquely referring to this payment link. Example: `pl_4Y0eZitmBnQ6IDoMqZQKh`.
      */
-    public GetWebhookEventEntityPaymentLink withType(String type) {
-        Utils.checkNotNull(type, "type");
-        this.type = type;
+    public GetWebhookEventEntityPaymentLink withId(String id) {
+        Utils.checkNotNull(id, "id");
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Whether this entity was created in live mode or in test mode.
+     */
+    public GetWebhookEventEntityPaymentLink withMode(EntityMode mode) {
+        Utils.checkNotNull(mode, "mode");
+        this.mode = mode;
+        return this;
+    }
+
+    /**
+     * A short description of the payment link. The description is visible in the Dashboard and will be shown on the
+     * customer's bank or card statement when possible.
+     */
+    public GetWebhookEventEntityPaymentLink withDescription(String description) {
+        Utils.checkNotNull(description, "description");
+        this.description = description;
+        return this;
+    }
+
+    /**
+     * The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an
+     * amount.
+     */
+    public GetWebhookEventEntityPaymentLink withAmount(EntityAmount amount) {
+        Utils.checkNotNull(amount, "amount");
+        this.amount = Optional.ofNullable(amount);
+        return this;
+    }
+
+
+    /**
+     * The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an
+     * amount.
+     */
+    public GetWebhookEventEntityPaymentLink withAmount(Optional<? extends EntityAmount> amount) {
+        Utils.checkNotNull(amount, "amount");
+        this.amount = amount;
+        return this;
+    }
+
+    /**
+     * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The
+     * customer will be prompted to enter a value greater than or equal to the minimum amount.
+     */
+    public GetWebhookEventEntityPaymentLink withMinimumAmount(EntityMinimumAmount minimumAmount) {
+        Utils.checkNotNull(minimumAmount, "minimumAmount");
+        this.minimumAmount = JsonNullable.of(minimumAmount);
+        return this;
+    }
+
+    /**
+     * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The
+     * customer will be prompted to enter a value greater than or equal to the minimum amount.
+     */
+    public GetWebhookEventEntityPaymentLink withMinimumAmount(JsonNullable<? extends EntityMinimumAmount> minimumAmount) {
+        Utils.checkNotNull(minimumAmount, "minimumAmount");
+        this.minimumAmount = minimumAmount;
+        return this;
+    }
+
+    /**
+     * Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
+     */
+    public GetWebhookEventEntityPaymentLink withArchived(boolean archived) {
+        Utils.checkNotNull(archived, "archived");
+        this.archived = archived;
+        return this;
+    }
+
+    /**
+     * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided,
+     * the customer will be shown a generic message after completing the payment.
+     */
+    public GetWebhookEventEntityPaymentLink withRedirectUrl(String redirectUrl) {
+        Utils.checkNotNull(redirectUrl, "redirectUrl");
+        this.redirectUrl = Optional.ofNullable(redirectUrl);
+        return this;
+    }
+
+
+    /**
+     * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided,
+     * the customer will be shown a generic message after completing the payment.
+     */
+    public GetWebhookEventEntityPaymentLink withRedirectUrl(Optional<String> redirectUrl) {
+        Utils.checkNotNull(redirectUrl, "redirectUrl");
+        this.redirectUrl = redirectUrl;
+        return this;
+    }
+
+    /**
+     * The webhook URL where we will send payment status updates to.
+     * 
+     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to any payments
+     * resulting from the payment link.
+     * 
+     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
+     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+     * local machine.
+     */
+    public GetWebhookEventEntityPaymentLink withWebhookUrl(String webhookUrl) {
+        Utils.checkNotNull(webhookUrl, "webhookUrl");
+        this.webhookUrl = Optional.ofNullable(webhookUrl);
+        return this;
+    }
+
+
+    /**
+     * The webhook URL where we will send payment status updates to.
+     * 
+     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to any payments
+     * resulting from the payment link.
+     * 
+     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
+     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+     * local machine.
+     */
+    public GetWebhookEventEntityPaymentLink withWebhookUrl(Optional<String> webhookUrl) {
+        Utils.checkNotNull(webhookUrl, "webhookUrl");
+        this.webhookUrl = webhookUrl;
+        return this;
+    }
+
+    /**
+     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+     * ordered and its price.
+     * 
+     * <p>All lines must have the same currency as the payment.
+     * 
+     * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
+     */
+    public GetWebhookEventEntityPaymentLink withLines(List<EntityLines> lines) {
+        Utils.checkNotNull(lines, "lines");
+        this.lines = JsonNullable.of(lines);
+        return this;
+    }
+
+    /**
+     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+     * ordered and its price.
+     * 
+     * <p>All lines must have the same currency as the payment.
+     * 
+     * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
+     */
+    public GetWebhookEventEntityPaymentLink withLines(JsonNullable<? extends List<EntityLines>> lines) {
+        Utils.checkNotNull(lines, "lines");
+        this.lines = lines;
+        return this;
+    }
+
+    /**
+     * The customer's billing address details. We advise to provide these details to improve fraud protection and
+     * conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
+     * 
+     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+     */
+    public GetWebhookEventEntityPaymentLink withBillingAddress(EntityBillingAddress billingAddress) {
+        Utils.checkNotNull(billingAddress, "billingAddress");
+        this.billingAddress = Optional.ofNullable(billingAddress);
+        return this;
+    }
+
+
+    /**
+     * The customer's billing address details. We advise to provide these details to improve fraud protection and
+     * conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
+     * 
+     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+     */
+    public GetWebhookEventEntityPaymentLink withBillingAddress(Optional<? extends EntityBillingAddress> billingAddress) {
+        Utils.checkNotNull(billingAddress, "billingAddress");
+        this.billingAddress = billingAddress;
+        return this;
+    }
+
+    /**
+     * The customer's shipping address details. We advise to provide these details to improve fraud protection and
+     * conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
+     */
+    public GetWebhookEventEntityPaymentLink withShippingAddress(EntityShippingAddress shippingAddress) {
+        Utils.checkNotNull(shippingAddress, "shippingAddress");
+        this.shippingAddress = Optional.ofNullable(shippingAddress);
+        return this;
+    }
+
+
+    /**
+     * The customer's shipping address details. We advise to provide these details to improve fraud protection and
+     * conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+     * `country`.
+     */
+    public GetWebhookEventEntityPaymentLink withShippingAddress(Optional<? extends EntityShippingAddress> shippingAddress) {
+        Utils.checkNotNull(shippingAddress, "shippingAddress");
+        this.shippingAddress = shippingAddress;
+        return this;
+    }
+
+    /**
+     * The identifier referring to the [profile](get-profile) this entity belongs to.
+     * 
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
+     */
+    public GetWebhookEventEntityPaymentLink withProfileId(String profileId) {
+        Utils.checkNotNull(profileId, "profileId");
+        this.profileId = Optional.ofNullable(profileId);
+        return this;
+    }
+
+
+    /**
+     * The identifier referring to the [profile](get-profile) this entity belongs to.
+     * 
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
+     */
+    public GetWebhookEventEntityPaymentLink withProfileId(Optional<String> profileId) {
+        Utils.checkNotNull(profileId, "profileId");
+        this.profileId = profileId;
+        return this;
+    }
+
+    /**
+     * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make multiple
+     * payments using the same link.
+     * 
+     * <p>If no value is specified, the field defaults to `false`, allowing only a single payment per link.
+     */
+    public GetWebhookEventEntityPaymentLink withReusable(boolean reusable) {
+        Utils.checkNotNull(reusable, "reusable");
+        this.reusable = Optional.ofNullable(reusable);
+        return this;
+    }
+
+
+    /**
+     * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make multiple
+     * payments using the same link.
+     * 
+     * <p>If no value is specified, the field defaults to `false`, allowing only a single payment per link.
+     */
+    public GetWebhookEventEntityPaymentLink withReusable(Optional<Boolean> reusable) {
+        Utils.checkNotNull(reusable, "reusable");
+        this.reusable = reusable;
+        return this;
+    }
+
+    /**
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     */
+    public GetWebhookEventEntityPaymentLink withCreatedAt(String createdAt) {
+        Utils.checkNotNull(createdAt, "createdAt");
+        this.createdAt = createdAt;
+        return this;
+    }
+
+    /**
+     * The date and time the payment link became paid, in ISO 8601 format.
+     */
+    public GetWebhookEventEntityPaymentLink withPaidAt(String paidAt) {
+        Utils.checkNotNull(paidAt, "paidAt");
+        this.paidAt = Optional.ofNullable(paidAt);
+        return this;
+    }
+
+
+    /**
+     * The date and time the payment link became paid, in ISO 8601 format.
+     */
+    public GetWebhookEventEntityPaymentLink withPaidAt(Optional<String> paidAt) {
+        Utils.checkNotNull(paidAt, "paidAt");
+        this.paidAt = paidAt;
+        return this;
+    }
+
+    /**
+     * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front,
+     * the payment link will not expire automatically.
+     */
+    public GetWebhookEventEntityPaymentLink withExpiresAt(String expiresAt) {
+        Utils.checkNotNull(expiresAt, "expiresAt");
+        this.expiresAt = Optional.ofNullable(expiresAt);
+        return this;
+    }
+
+
+    /**
+     * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front,
+     * the payment link will not expire automatically.
+     */
+    public GetWebhookEventEntityPaymentLink withExpiresAt(Optional<String> expiresAt) {
+        Utils.checkNotNull(expiresAt, "expiresAt");
+        this.expiresAt = expiresAt;
+        return this;
+    }
+
+    /**
+     * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+     * not provided or is an empty array, all enabled payment methods will be available.
+     * 
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
+     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+     * 'in3', 'riverty', 'klarna', 'billie'.
+     */
+    public GetWebhookEventEntityPaymentLink withAllowedMethods(List<String> allowedMethods) {
+        Utils.checkNotNull(allowedMethods, "allowedMethods");
+        this.allowedMethods = Optional.ofNullable(allowedMethods);
+        return this;
+    }
+
+
+    /**
+     * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+     * not provided or is an empty array, all enabled payment methods will be available.
+     * 
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
+     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+     * 'in3', 'riverty', 'klarna', 'billie'.
+     */
+    public GetWebhookEventEntityPaymentLink withAllowedMethods(Optional<? extends List<String>> allowedMethods) {
+        Utils.checkNotNull(allowedMethods, "allowedMethods");
+        this.allowedMethods = allowedMethods;
+        return this;
+    }
+
+    /**
+     * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie
+     * merchants.
+     * 
+     * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this
+     * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent
+     * to your own account balance.
+     */
+    public GetWebhookEventEntityPaymentLink withApplicationFee(EntityApplicationFee applicationFee) {
+        Utils.checkNotNull(applicationFee, "applicationFee");
+        this.applicationFee = Optional.ofNullable(applicationFee);
+        return this;
+    }
+
+
+    /**
+     * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie
+     * merchants.
+     * 
+     * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this
+     * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent
+     * to your own account balance.
+     */
+    public GetWebhookEventEntityPaymentLink withApplicationFee(Optional<? extends EntityApplicationFee> applicationFee) {
+        Utils.checkNotNull(applicationFee, "applicationFee");
+        this.applicationFee = applicationFee;
+        return this;
+    }
+
+    /**
+     * If set to `first`, a payment mandate is established right after a payment is made by the customer.
+     * 
+     * <p>Defaults to `oneoff`, which is a regular payment link and will not establish a mandate after payment.
+     * 
+     * <p>The mandate ID can be retrieved by making a call to the
+     * [Payment Link Payments Endpoint](get-payment-link-payments).
+     */
+    public GetWebhookEventEntityPaymentLink withSequenceType(EntitySequenceType sequenceType) {
+        Utils.checkNotNull(sequenceType, "sequenceType");
+        this.sequenceType = JsonNullable.of(sequenceType);
+        return this;
+    }
+
+    /**
+     * If set to `first`, a payment mandate is established right after a payment is made by the customer.
+     * 
+     * <p>Defaults to `oneoff`, which is a regular payment link and will not establish a mandate after payment.
+     * 
+     * <p>The mandate ID can be retrieved by making a call to the
+     * [Payment Link Payments Endpoint](get-payment-link-payments).
+     */
+    public GetWebhookEventEntityPaymentLink withSequenceType(JsonNullable<? extends EntitySequenceType> sequenceType) {
+        Utils.checkNotNull(sequenceType, "sequenceType");
+        this.sequenceType = sequenceType;
+        return this;
+    }
+
+    /**
+     * **Only relevant when `sequenceType` is set to `first`**
+     * 
+     * <p>The ID of the [customer](get-customer) the payment link is being created for. If a value is not provided,
+     * the customer will be required to input relevant information which will be used to establish a mandate after
+     * the payment is made.
+     */
+    public GetWebhookEventEntityPaymentLink withCustomerId(String customerId) {
+        Utils.checkNotNull(customerId, "customerId");
+        this.customerId = JsonNullable.of(customerId);
+        return this;
+    }
+
+    /**
+     * **Only relevant when `sequenceType` is set to `first`**
+     * 
+     * <p>The ID of the [customer](get-customer) the payment link is being created for. If a value is not provided,
+     * the customer will be required to input relevant information which will be used to establish a mandate after
+     * the payment is made.
+     */
+    public GetWebhookEventEntityPaymentLink withCustomerId(JsonNullable<String> customerId) {
+        Utils.checkNotNull(customerId, "customerId");
+        this.customerId = customerId;
+        return this;
+    }
+
+    /**
+     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+     */
+    public GetWebhookEventEntityPaymentLink withLinks(EntityLinks links) {
+        Utils.checkNotNull(links, "links");
+        this.links = links;
         return this;
     }
 
@@ -87,29 +1011,116 @@ public class GetWebhookEventEntityPaymentLink {
         }
         GetWebhookEventEntityPaymentLink other = (GetWebhookEventEntityPaymentLink) o;
         return 
-            Utils.enhancedDeepEquals(this.href, other.href) &&
-            Utils.enhancedDeepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.mode, other.mode) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.minimumAmount, other.minimumAmount) &&
+            Utils.enhancedDeepEquals(this.archived, other.archived) &&
+            Utils.enhancedDeepEquals(this.redirectUrl, other.redirectUrl) &&
+            Utils.enhancedDeepEquals(this.webhookUrl, other.webhookUrl) &&
+            Utils.enhancedDeepEquals(this.lines, other.lines) &&
+            Utils.enhancedDeepEquals(this.billingAddress, other.billingAddress) &&
+            Utils.enhancedDeepEquals(this.shippingAddress, other.shippingAddress) &&
+            Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
+            Utils.enhancedDeepEquals(this.reusable, other.reusable) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.paidAt, other.paidAt) &&
+            Utils.enhancedDeepEquals(this.expiresAt, other.expiresAt) &&
+            Utils.enhancedDeepEquals(this.allowedMethods, other.allowedMethods) &&
+            Utils.enhancedDeepEquals(this.applicationFee, other.applicationFee) &&
+            Utils.enhancedDeepEquals(this.sequenceType, other.sequenceType) &&
+            Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
+            Utils.enhancedDeepEquals(this.links, other.links);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            href, type);
+            resource, id, mode,
+            description, amount, minimumAmount,
+            archived, redirectUrl, webhookUrl,
+            lines, billingAddress, shippingAddress,
+            profileId, reusable, createdAt,
+            paidAt, expiresAt, allowedMethods,
+            applicationFee, sequenceType, customerId,
+            links);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetWebhookEventEntityPaymentLink.class,
-                "href", href,
-                "type", type);
+                "resource", resource,
+                "id", id,
+                "mode", mode,
+                "description", description,
+                "amount", amount,
+                "minimumAmount", minimumAmount,
+                "archived", archived,
+                "redirectUrl", redirectUrl,
+                "webhookUrl", webhookUrl,
+                "lines", lines,
+                "billingAddress", billingAddress,
+                "shippingAddress", shippingAddress,
+                "profileId", profileId,
+                "reusable", reusable,
+                "createdAt", createdAt,
+                "paidAt", paidAt,
+                "expiresAt", expiresAt,
+                "allowedMethods", allowedMethods,
+                "applicationFee", applicationFee,
+                "sequenceType", sequenceType,
+                "customerId", customerId,
+                "links", links);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String href;
+        private String resource;
 
-        private String type;
+        private String id;
+
+        private EntityMode mode;
+
+        private String description;
+
+        private Optional<? extends EntityAmount> amount = Optional.empty();
+
+        private JsonNullable<? extends EntityMinimumAmount> minimumAmount = JsonNullable.undefined();
+
+        private Boolean archived;
+
+        private Optional<String> redirectUrl = Optional.empty();
+
+        private Optional<String> webhookUrl = Optional.empty();
+
+        private JsonNullable<? extends List<EntityLines>> lines = JsonNullable.undefined();
+
+        private Optional<? extends EntityBillingAddress> billingAddress = Optional.empty();
+
+        private Optional<? extends EntityShippingAddress> shippingAddress = Optional.empty();
+
+        private Optional<String> profileId = Optional.empty();
+
+        private Optional<Boolean> reusable = Optional.empty();
+
+        private String createdAt;
+
+        private Optional<String> paidAt = Optional.empty();
+
+        private Optional<String> expiresAt = Optional.empty();
+
+        private Optional<? extends List<String>> allowedMethods = Optional.empty();
+
+        private Optional<? extends EntityApplicationFee> applicationFee = Optional.empty();
+
+        private JsonNullable<? extends EntitySequenceType> sequenceType = JsonNullable.undefined();
+
+        private JsonNullable<String> customerId = JsonNullable.undefined();
+
+        private EntityLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -117,28 +1128,476 @@ public class GetWebhookEventEntityPaymentLink {
 
 
         /**
-         * The actual URL string.
+         * Indicates the response contains a payment link object. Will always contain the string `payment-link` for this
+         * endpoint.
          */
-        public Builder href(String href) {
-            Utils.checkNotNull(href, "href");
-            this.href = href;
+        public Builder resource(String resource) {
+            Utils.checkNotNull(resource, "resource");
+            this.resource = resource;
             return this;
         }
 
 
         /**
-         * The content type of the page or endpoint the URL points to.
+         * The identifier uniquely referring to this payment link. Example: `pl_4Y0eZitmBnQ6IDoMqZQKh`.
          */
-        public Builder type(String type) {
-            Utils.checkNotNull(type, "type");
-            this.type = type;
+        public Builder id(String id) {
+            Utils.checkNotNull(id, "id");
+            this.id = id;
+            return this;
+        }
+
+
+        /**
+         * Whether this entity was created in live mode or in test mode.
+         */
+        public Builder mode(EntityMode mode) {
+            Utils.checkNotNull(mode, "mode");
+            this.mode = mode;
+            return this;
+        }
+
+
+        /**
+         * A short description of the payment link. The description is visible in the Dashboard and will be shown on the
+         * customer's bank or card statement when possible.
+         */
+        public Builder description(String description) {
+            Utils.checkNotNull(description, "description");
+            this.description = description;
+            return this;
+        }
+
+
+        /**
+         * The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an
+         * amount.
+         */
+        public Builder amount(EntityAmount amount) {
+            Utils.checkNotNull(amount, "amount");
+            this.amount = Optional.ofNullable(amount);
+            return this;
+        }
+
+        /**
+         * The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an
+         * amount.
+         */
+        public Builder amount(Optional<? extends EntityAmount> amount) {
+            Utils.checkNotNull(amount, "amount");
+            this.amount = amount;
+            return this;
+        }
+
+
+        /**
+         * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The
+         * customer will be prompted to enter a value greater than or equal to the minimum amount.
+         */
+        public Builder minimumAmount(EntityMinimumAmount minimumAmount) {
+            Utils.checkNotNull(minimumAmount, "minimumAmount");
+            this.minimumAmount = JsonNullable.of(minimumAmount);
+            return this;
+        }
+
+        /**
+         * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The
+         * customer will be prompted to enter a value greater than or equal to the minimum amount.
+         */
+        public Builder minimumAmount(JsonNullable<? extends EntityMinimumAmount> minimumAmount) {
+            Utils.checkNotNull(minimumAmount, "minimumAmount");
+            this.minimumAmount = minimumAmount;
+            return this;
+        }
+
+
+        /**
+         * Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
+         */
+        public Builder archived(boolean archived) {
+            Utils.checkNotNull(archived, "archived");
+            this.archived = archived;
+            return this;
+        }
+
+
+        /**
+         * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided,
+         * the customer will be shown a generic message after completing the payment.
+         */
+        public Builder redirectUrl(String redirectUrl) {
+            Utils.checkNotNull(redirectUrl, "redirectUrl");
+            this.redirectUrl = Optional.ofNullable(redirectUrl);
+            return this;
+        }
+
+        /**
+         * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided,
+         * the customer will be shown a generic message after completing the payment.
+         */
+        public Builder redirectUrl(Optional<String> redirectUrl) {
+            Utils.checkNotNull(redirectUrl, "redirectUrl");
+            this.redirectUrl = redirectUrl;
+            return this;
+        }
+
+
+        /**
+         * The webhook URL where we will send payment status updates to.
+         * 
+         * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to any payments
+         * resulting from the payment link.
+         * 
+         * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
+         * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+         * local machine.
+         */
+        public Builder webhookUrl(String webhookUrl) {
+            Utils.checkNotNull(webhookUrl, "webhookUrl");
+            this.webhookUrl = Optional.ofNullable(webhookUrl);
+            return this;
+        }
+
+        /**
+         * The webhook URL where we will send payment status updates to.
+         * 
+         * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to any payments
+         * resulting from the payment link.
+         * 
+         * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
+         * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+         * local machine.
+         */
+        public Builder webhookUrl(Optional<String> webhookUrl) {
+            Utils.checkNotNull(webhookUrl, "webhookUrl");
+            this.webhookUrl = webhookUrl;
+            return this;
+        }
+
+
+        /**
+         * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+         * ordered and its price.
+         * 
+         * <p>All lines must have the same currency as the payment.
+         * 
+         * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
+         */
+        public Builder lines(List<EntityLines> lines) {
+            Utils.checkNotNull(lines, "lines");
+            this.lines = JsonNullable.of(lines);
+            return this;
+        }
+
+        /**
+         * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+         * ordered and its price.
+         * 
+         * <p>All lines must have the same currency as the payment.
+         * 
+         * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
+         */
+        public Builder lines(JsonNullable<? extends List<EntityLines>> lines) {
+            Utils.checkNotNull(lines, "lines");
+            this.lines = lines;
+            return this;
+        }
+
+
+        /**
+         * The customer's billing address details. We advise to provide these details to improve fraud protection and
+         * conversion.
+         * 
+         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+         * `country`.
+         * 
+         * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+         */
+        public Builder billingAddress(EntityBillingAddress billingAddress) {
+            Utils.checkNotNull(billingAddress, "billingAddress");
+            this.billingAddress = Optional.ofNullable(billingAddress);
+            return this;
+        }
+
+        /**
+         * The customer's billing address details. We advise to provide these details to improve fraud protection and
+         * conversion.
+         * 
+         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+         * `country`.
+         * 
+         * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+         */
+        public Builder billingAddress(Optional<? extends EntityBillingAddress> billingAddress) {
+            Utils.checkNotNull(billingAddress, "billingAddress");
+            this.billingAddress = billingAddress;
+            return this;
+        }
+
+
+        /**
+         * The customer's shipping address details. We advise to provide these details to improve fraud protection and
+         * conversion.
+         * 
+         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+         * `country`.
+         */
+        public Builder shippingAddress(EntityShippingAddress shippingAddress) {
+            Utils.checkNotNull(shippingAddress, "shippingAddress");
+            this.shippingAddress = Optional.ofNullable(shippingAddress);
+            return this;
+        }
+
+        /**
+         * The customer's shipping address details. We advise to provide these details to improve fraud protection and
+         * conversion.
+         * 
+         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
+         * `country`.
+         */
+        public Builder shippingAddress(Optional<? extends EntityShippingAddress> shippingAddress) {
+            Utils.checkNotNull(shippingAddress, "shippingAddress");
+            this.shippingAddress = shippingAddress;
+            return this;
+        }
+
+
+        /**
+         * The identifier referring to the [profile](get-profile) this entity belongs to.
+         * 
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+         * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+         * required.
+         */
+        public Builder profileId(String profileId) {
+            Utils.checkNotNull(profileId, "profileId");
+            this.profileId = Optional.ofNullable(profileId);
+            return this;
+        }
+
+        /**
+         * The identifier referring to the [profile](get-profile) this entity belongs to.
+         * 
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+         * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+         * required.
+         */
+        public Builder profileId(Optional<String> profileId) {
+            Utils.checkNotNull(profileId, "profileId");
+            this.profileId = profileId;
+            return this;
+        }
+
+
+        /**
+         * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make multiple
+         * payments using the same link.
+         * 
+         * <p>If no value is specified, the field defaults to `false`, allowing only a single payment per link.
+         */
+        public Builder reusable(boolean reusable) {
+            Utils.checkNotNull(reusable, "reusable");
+            this.reusable = Optional.ofNullable(reusable);
+            return this;
+        }
+
+        /**
+         * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make multiple
+         * payments using the same link.
+         * 
+         * <p>If no value is specified, the field defaults to `false`, allowing only a single payment per link.
+         */
+        public Builder reusable(Optional<Boolean> reusable) {
+            Utils.checkNotNull(reusable, "reusable");
+            this.reusable = reusable;
+            return this;
+        }
+
+
+        /**
+         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         */
+        public Builder createdAt(String createdAt) {
+            Utils.checkNotNull(createdAt, "createdAt");
+            this.createdAt = createdAt;
+            return this;
+        }
+
+
+        /**
+         * The date and time the payment link became paid, in ISO 8601 format.
+         */
+        public Builder paidAt(String paidAt) {
+            Utils.checkNotNull(paidAt, "paidAt");
+            this.paidAt = Optional.ofNullable(paidAt);
+            return this;
+        }
+
+        /**
+         * The date and time the payment link became paid, in ISO 8601 format.
+         */
+        public Builder paidAt(Optional<String> paidAt) {
+            Utils.checkNotNull(paidAt, "paidAt");
+            this.paidAt = paidAt;
+            return this;
+        }
+
+
+        /**
+         * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front,
+         * the payment link will not expire automatically.
+         */
+        public Builder expiresAt(String expiresAt) {
+            Utils.checkNotNull(expiresAt, "expiresAt");
+            this.expiresAt = Optional.ofNullable(expiresAt);
+            return this;
+        }
+
+        /**
+         * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front,
+         * the payment link will not expire automatically.
+         */
+        public Builder expiresAt(Optional<String> expiresAt) {
+            Utils.checkNotNull(expiresAt, "expiresAt");
+            this.expiresAt = expiresAt;
+            return this;
+        }
+
+
+        /**
+         * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+         * not provided or is an empty array, all enabled payment methods will be available.
+         * 
+         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
+         * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+         * 'in3', 'riverty', 'klarna', 'billie'.
+         */
+        public Builder allowedMethods(List<String> allowedMethods) {
+            Utils.checkNotNull(allowedMethods, "allowedMethods");
+            this.allowedMethods = Optional.ofNullable(allowedMethods);
+            return this;
+        }
+
+        /**
+         * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+         * not provided or is an empty array, all enabled payment methods will be available.
+         * 
+         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
+         * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+         * 'in3', 'riverty', 'klarna', 'billie'.
+         */
+        public Builder allowedMethods(Optional<? extends List<String>> allowedMethods) {
+            Utils.checkNotNull(allowedMethods, "allowedMethods");
+            this.allowedMethods = allowedMethods;
+            return this;
+        }
+
+
+        /**
+         * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie
+         * merchants.
+         * 
+         * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this
+         * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent
+         * to your own account balance.
+         */
+        public Builder applicationFee(EntityApplicationFee applicationFee) {
+            Utils.checkNotNull(applicationFee, "applicationFee");
+            this.applicationFee = Optional.ofNullable(applicationFee);
+            return this;
+        }
+
+        /**
+         * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie
+         * merchants.
+         * 
+         * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this
+         * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent
+         * to your own account balance.
+         */
+        public Builder applicationFee(Optional<? extends EntityApplicationFee> applicationFee) {
+            Utils.checkNotNull(applicationFee, "applicationFee");
+            this.applicationFee = applicationFee;
+            return this;
+        }
+
+
+        /**
+         * If set to `first`, a payment mandate is established right after a payment is made by the customer.
+         * 
+         * <p>Defaults to `oneoff`, which is a regular payment link and will not establish a mandate after payment.
+         * 
+         * <p>The mandate ID can be retrieved by making a call to the
+         * [Payment Link Payments Endpoint](get-payment-link-payments).
+         */
+        public Builder sequenceType(EntitySequenceType sequenceType) {
+            Utils.checkNotNull(sequenceType, "sequenceType");
+            this.sequenceType = JsonNullable.of(sequenceType);
+            return this;
+        }
+
+        /**
+         * If set to `first`, a payment mandate is established right after a payment is made by the customer.
+         * 
+         * <p>Defaults to `oneoff`, which is a regular payment link and will not establish a mandate after payment.
+         * 
+         * <p>The mandate ID can be retrieved by making a call to the
+         * [Payment Link Payments Endpoint](get-payment-link-payments).
+         */
+        public Builder sequenceType(JsonNullable<? extends EntitySequenceType> sequenceType) {
+            Utils.checkNotNull(sequenceType, "sequenceType");
+            this.sequenceType = sequenceType;
+            return this;
+        }
+
+
+        /**
+         * **Only relevant when `sequenceType` is set to `first`**
+         * 
+         * <p>The ID of the [customer](get-customer) the payment link is being created for. If a value is not provided,
+         * the customer will be required to input relevant information which will be used to establish a mandate after
+         * the payment is made.
+         */
+        public Builder customerId(String customerId) {
+            Utils.checkNotNull(customerId, "customerId");
+            this.customerId = JsonNullable.of(customerId);
+            return this;
+        }
+
+        /**
+         * **Only relevant when `sequenceType` is set to `first`**
+         * 
+         * <p>The ID of the [customer](get-customer) the payment link is being created for. If a value is not provided,
+         * the customer will be required to input relevant information which will be used to establish a mandate after
+         * the payment is made.
+         */
+        public Builder customerId(JsonNullable<String> customerId) {
+            Utils.checkNotNull(customerId, "customerId");
+            this.customerId = customerId;
+            return this;
+        }
+
+
+        /**
+         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+         */
+        public Builder links(EntityLinks links) {
+            Utils.checkNotNull(links, "links");
+            this.links = links;
             return this;
         }
 
         public GetWebhookEventEntityPaymentLink build() {
 
             return new GetWebhookEventEntityPaymentLink(
-                href, type);
+                resource, id, mode,
+                description, amount, minimumAmount,
+                archived, redirectUrl, webhookUrl,
+                lines, billingAddress, shippingAddress,
+                profileId, reusable, createdAt,
+                paidAt, expiresAt, allowedMethods,
+                applicationFee, sequenceType, customerId,
+                links);
         }
 
     }

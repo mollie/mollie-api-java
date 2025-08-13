@@ -176,6 +176,17 @@ public class CreatePaymentLinkRequestBody {
     @JsonProperty("customerId")
     private JsonNullable<String> customerId;
 
+    /**
+     * Whether to create the entity in test mode or live mode.
+     * 
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * `testmode` to `true`.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("testmode")
+    private JsonNullable<Boolean> testmode;
+
     @JsonCreator
     public CreatePaymentLinkRequestBody(
             @JsonProperty("description") String description,
@@ -192,7 +203,8 @@ public class CreatePaymentLinkRequestBody {
             @JsonProperty("allowedMethods") JsonNullable<? extends List<String>> allowedMethods,
             @JsonProperty("applicationFee") Optional<? extends CreatePaymentLinkApplicationFee> applicationFee,
             @JsonProperty("sequenceType") JsonNullable<? extends CreatePaymentLinkSequenceType> sequenceType,
-            @JsonProperty("customerId") JsonNullable<String> customerId) {
+            @JsonProperty("customerId") JsonNullable<String> customerId,
+            @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(minimumAmount, "minimumAmount");
@@ -208,6 +220,7 @@ public class CreatePaymentLinkRequestBody {
         Utils.checkNotNull(applicationFee, "applicationFee");
         Utils.checkNotNull(sequenceType, "sequenceType");
         Utils.checkNotNull(customerId, "customerId");
+        Utils.checkNotNull(testmode, "testmode");
         this.description = description;
         this.amount = amount;
         this.minimumAmount = minimumAmount;
@@ -223,6 +236,7 @@ public class CreatePaymentLinkRequestBody {
         this.applicationFee = applicationFee;
         this.sequenceType = sequenceType;
         this.customerId = customerId;
+        this.testmode = testmode;
     }
     
     public CreatePaymentLinkRequestBody(
@@ -231,7 +245,8 @@ public class CreatePaymentLinkRequestBody {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -413,6 +428,18 @@ public class CreatePaymentLinkRequestBody {
     @JsonIgnore
     public JsonNullable<String> customerId() {
         return customerId;
+    }
+
+    /**
+     * Whether to create the entity in test mode or live mode.
+     * 
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * `testmode` to `true`.
+     */
+    @JsonIgnore
+    public JsonNullable<Boolean> testmode() {
+        return testmode;
     }
 
     public static Builder builder() {
@@ -789,6 +816,32 @@ public class CreatePaymentLinkRequestBody {
         return this;
     }
 
+    /**
+     * Whether to create the entity in test mode or live mode.
+     * 
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * `testmode` to `true`.
+     */
+    public CreatePaymentLinkRequestBody withTestmode(boolean testmode) {
+        Utils.checkNotNull(testmode, "testmode");
+        this.testmode = JsonNullable.of(testmode);
+        return this;
+    }
+
+    /**
+     * Whether to create the entity in test mode or live mode.
+     * 
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * `testmode` to `true`.
+     */
+    public CreatePaymentLinkRequestBody withTestmode(JsonNullable<Boolean> testmode) {
+        Utils.checkNotNull(testmode, "testmode");
+        this.testmode = testmode;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -813,7 +866,8 @@ public class CreatePaymentLinkRequestBody {
             Utils.enhancedDeepEquals(this.allowedMethods, other.allowedMethods) &&
             Utils.enhancedDeepEquals(this.applicationFee, other.applicationFee) &&
             Utils.enhancedDeepEquals(this.sequenceType, other.sequenceType) &&
-            Utils.enhancedDeepEquals(this.customerId, other.customerId);
+            Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
+            Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
     
     @Override
@@ -823,7 +877,8 @@ public class CreatePaymentLinkRequestBody {
             redirectUrl, webhookUrl, lines,
             billingAddress, shippingAddress, profileId,
             reusable, expiresAt, allowedMethods,
-            applicationFee, sequenceType, customerId);
+            applicationFee, sequenceType, customerId,
+            testmode);
     }
     
     @Override
@@ -843,7 +898,8 @@ public class CreatePaymentLinkRequestBody {
                 "allowedMethods", allowedMethods,
                 "applicationFee", applicationFee,
                 "sequenceType", sequenceType,
-                "customerId", customerId);
+                "customerId", customerId,
+                "testmode", testmode);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -878,6 +934,8 @@ public class CreatePaymentLinkRequestBody {
         private JsonNullable<? extends CreatePaymentLinkSequenceType> sequenceType = JsonNullable.undefined();
 
         private JsonNullable<String> customerId = JsonNullable.undefined();
+
+        private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -1264,6 +1322,33 @@ public class CreatePaymentLinkRequestBody {
             return this;
         }
 
+
+        /**
+         * Whether to create the entity in test mode or live mode.
+         * 
+         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+         * `testmode` to `true`.
+         */
+        public Builder testmode(boolean testmode) {
+            Utils.checkNotNull(testmode, "testmode");
+            this.testmode = JsonNullable.of(testmode);
+            return this;
+        }
+
+        /**
+         * Whether to create the entity in test mode or live mode.
+         * 
+         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
+         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+         * `testmode` to `true`.
+         */
+        public Builder testmode(JsonNullable<Boolean> testmode) {
+            Utils.checkNotNull(testmode, "testmode");
+            this.testmode = testmode;
+            return this;
+        }
+
         public CreatePaymentLinkRequestBody build() {
 
             return new CreatePaymentLinkRequestBody(
@@ -1271,7 +1356,8 @@ public class CreatePaymentLinkRequestBody {
                 redirectUrl, webhookUrl, lines,
                 billingAddress, shippingAddress, profileId,
                 reusable, expiresAt, allowedMethods,
-                applicationFee, sequenceType, customerId);
+                applicationFee, sequenceType, customerId,
+                testmode);
         }
 
     }

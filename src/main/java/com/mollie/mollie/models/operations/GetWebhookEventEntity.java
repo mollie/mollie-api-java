@@ -3,80 +3,60 @@
  */
 package com.mollie.mollie.models.operations;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.mollie.mollie.utils.OneOfDeserializer;
+import com.mollie.mollie.utils.TypedObject;
+import com.mollie.mollie.utils.Utils.JsonShape;
+import com.mollie.mollie.utils.Utils.TypeReferenceWithShape;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 
-/**
- * GetWebhookEventEntity
- * 
- * <p>The API resource URL of the entity that this event belongs to.
- */
+@JsonDeserialize(using = GetWebhookEventEntity._Deserializer.class)
 public class GetWebhookEventEntity {
-    /**
-     * The actual URL string.
-     */
-    @JsonProperty("href")
-    private String href;
 
-    /**
-     * The content type of the page or endpoint the URL points to.
-     */
-    @JsonProperty("type")
-    private String type;
-
-    @JsonCreator
-    public GetWebhookEventEntity(
-            @JsonProperty("href") String href,
-            @JsonProperty("type") String type) {
-        Utils.checkNotNull(href, "href");
-        Utils.checkNotNull(type, "type");
-        this.href = href;
-        this.type = type;
+    @JsonValue
+    private TypedObject value;
+    
+    private GetWebhookEventEntity(TypedObject value) {
+        this.value = value;
     }
 
+    public static GetWebhookEventEntity of(GetWebhookEventEntityPaymentLink value) {
+        Utils.checkNotNull(value, "value");
+        return new GetWebhookEventEntity(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<GetWebhookEventEntityPaymentLink>(){}));
+    }
+
+    public static GetWebhookEventEntity of(EntityProfile value) {
+        Utils.checkNotNull(value, "value");
+        return new GetWebhookEventEntity(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<EntityProfile>(){}));
+    }
+    
     /**
-     * The actual URL string.
-     */
-    @JsonIgnore
-    public String href() {
-        return href;
-    }
-
-    /**
-     * The content type of the page or endpoint the URL points to.
-     */
-    @JsonIgnore
-    public String type() {
-        return type;
-    }
-
-    public static Builder builder() {
-        return new Builder();
-    }
-
-
-    /**
-     * The actual URL string.
-     */
-    public GetWebhookEventEntity withHref(String href) {
-        Utils.checkNotNull(href, "href");
-        this.href = href;
-        return this;
-    }
-
-    /**
-     * The content type of the page or endpoint the URL points to.
-     */
-    public GetWebhookEventEntity withType(String type) {
-        Utils.checkNotNull(type, "type");
-        this.type = type;
-        return this;
-    }
-
+     * Returns an instance of one of these types:
+     * <ul>
+     * <li>{@code com.mollie.mollie.models.operations.GetWebhookEventEntityPaymentLink}</li>
+     * <li>{@code com.mollie.mollie.models.operations.EntityProfile}</li>
+     * </ul>
+     * 
+     * <p>Use {@code instanceof} to determine what type is returned. For example:
+     * 
+     * <pre>
+     * if (obj.value() instanceof String) {
+     *     String answer = (String) obj.value();
+     *     System.out.println("answer=" + answer);
+     * }
+     * </pre>
+     * 
+     * @return value of oneOf type
+     **/ 
+    public java.lang.Object value() {
+        return value.value();
+    }    
+    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -86,60 +66,29 @@ public class GetWebhookEventEntity {
             return false;
         }
         GetWebhookEventEntity other = (GetWebhookEventEntity) o;
-        return 
-            Utils.enhancedDeepEquals(this.href, other.href) &&
-            Utils.enhancedDeepEquals(this.type, other.type);
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
     }
     
     @Override
     public int hashCode() {
-        return Utils.enhancedHash(
-            href, type);
+        return Utils.enhancedHash(value.value());
+    }
+    
+    @SuppressWarnings("serial")
+    public static final class _Deserializer extends OneOfDeserializer<GetWebhookEventEntity> {
+
+        public _Deserializer() {
+            super(GetWebhookEventEntity.class, false,
+                  TypeReferenceWithShape.of(new TypeReference<GetWebhookEventEntityPaymentLink>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<EntityProfile>() {}, JsonShape.DEFAULT));
+        }
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetWebhookEventEntity.class,
-                "href", href,
-                "type", type);
+                "value", value);
     }
-
-    @SuppressWarnings("UnusedReturnValue")
-    public final static class Builder {
-
-        private String href;
-
-        private String type;
-
-        private Builder() {
-          // force use of static builder() method
-        }
-
-
-        /**
-         * The actual URL string.
-         */
-        public Builder href(String href) {
-            Utils.checkNotNull(href, "href");
-            this.href = href;
-            return this;
-        }
-
-
-        /**
-         * The content type of the page or endpoint the URL points to.
-         */
-        public Builder type(String type) {
-            Utils.checkNotNull(type, "type");
-            this.type = type;
-            return this;
-        }
-
-        public GetWebhookEventEntity build() {
-
-            return new GetWebhookEventEntity(
-                href, type);
-        }
-
-    }
+ 
 }
+
