@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * ListSubscriptionsLinks
@@ -24,37 +23,35 @@ public class ListSubscriptionsLinks {
     /**
      * The URL to the current set of items.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends ListSubscriptionsSelf> self;
+    private ListSubscriptionsSelf self;
 
     /**
      * The previous set of items, if available.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("previous")
-    private JsonNullable<? extends ListSubscriptionsPrevious> previous;
+    private Optional<? extends ListSubscriptionsPrevious> previous;
 
     /**
      * The next set of items, if available.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("next")
-    private JsonNullable<? extends ListSubscriptionsNext> next;
+    private Optional<? extends ListSubscriptionsNext> next;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends ListSubscriptionsDocumentation> documentation;
+    private ListSubscriptionsDocumentation documentation;
 
     @JsonCreator
     public ListSubscriptionsLinks(
-            @JsonProperty("self") Optional<? extends ListSubscriptionsSelf> self,
-            @JsonProperty("previous") JsonNullable<? extends ListSubscriptionsPrevious> previous,
-            @JsonProperty("next") JsonNullable<? extends ListSubscriptionsNext> next,
-            @JsonProperty("documentation") Optional<? extends ListSubscriptionsDocumentation> documentation) {
+            @JsonProperty("self") ListSubscriptionsSelf self,
+            @JsonProperty("previous") Optional<? extends ListSubscriptionsPrevious> previous,
+            @JsonProperty("next") Optional<? extends ListSubscriptionsNext> next,
+            @JsonProperty("documentation") ListSubscriptionsDocumentation documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(previous, "previous");
         Utils.checkNotNull(next, "next");
@@ -65,18 +62,19 @@ public class ListSubscriptionsLinks {
         this.documentation = documentation;
     }
     
-    public ListSubscriptionsLinks() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+    public ListSubscriptionsLinks(
+            ListSubscriptionsSelf self,
+            ListSubscriptionsDocumentation documentation) {
+        this(self, Optional.empty(), Optional.empty(),
+            documentation);
     }
 
     /**
      * The URL to the current set of items.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListSubscriptionsSelf> self() {
-        return (Optional<ListSubscriptionsSelf>) self;
+    public ListSubscriptionsSelf self() {
+        return self;
     }
 
     /**
@@ -84,8 +82,8 @@ public class ListSubscriptionsLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListSubscriptionsPrevious> previous() {
-        return (JsonNullable<ListSubscriptionsPrevious>) previous;
+    public Optional<ListSubscriptionsPrevious> previous() {
+        return (Optional<ListSubscriptionsPrevious>) previous;
     }
 
     /**
@@ -93,17 +91,16 @@ public class ListSubscriptionsLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListSubscriptionsNext> next() {
-        return (JsonNullable<ListSubscriptionsNext>) next;
+    public Optional<ListSubscriptionsNext> next() {
+        return (Optional<ListSubscriptionsNext>) next;
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListSubscriptionsDocumentation> documentation() {
-        return (Optional<ListSubscriptionsDocumentation>) documentation;
+    public ListSubscriptionsDocumentation documentation() {
+        return documentation;
     }
 
     public static Builder builder() {
@@ -116,16 +113,6 @@ public class ListSubscriptionsLinks {
      */
     public ListSubscriptionsLinks withSelf(ListSubscriptionsSelf self) {
         Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-
-    /**
-     * The URL to the current set of items.
-     */
-    public ListSubscriptionsLinks withSelf(Optional<? extends ListSubscriptionsSelf> self) {
-        Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
@@ -135,14 +122,15 @@ public class ListSubscriptionsLinks {
      */
     public ListSubscriptionsLinks withPrevious(ListSubscriptionsPrevious previous) {
         Utils.checkNotNull(previous, "previous");
-        this.previous = JsonNullable.of(previous);
+        this.previous = Optional.ofNullable(previous);
         return this;
     }
+
 
     /**
      * The previous set of items, if available.
      */
-    public ListSubscriptionsLinks withPrevious(JsonNullable<? extends ListSubscriptionsPrevious> previous) {
+    public ListSubscriptionsLinks withPrevious(Optional<? extends ListSubscriptionsPrevious> previous) {
         Utils.checkNotNull(previous, "previous");
         this.previous = previous;
         return this;
@@ -153,14 +141,15 @@ public class ListSubscriptionsLinks {
      */
     public ListSubscriptionsLinks withNext(ListSubscriptionsNext next) {
         Utils.checkNotNull(next, "next");
-        this.next = JsonNullable.of(next);
+        this.next = Optional.ofNullable(next);
         return this;
     }
+
 
     /**
      * The next set of items, if available.
      */
-    public ListSubscriptionsLinks withNext(JsonNullable<? extends ListSubscriptionsNext> next) {
+    public ListSubscriptionsLinks withNext(Optional<? extends ListSubscriptionsNext> next) {
         Utils.checkNotNull(next, "next");
         this.next = next;
         return this;
@@ -170,16 +159,6 @@ public class ListSubscriptionsLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public ListSubscriptionsLinks withDocumentation(ListSubscriptionsDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListSubscriptionsLinks withDocumentation(Optional<? extends ListSubscriptionsDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -220,13 +199,13 @@ public class ListSubscriptionsLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends ListSubscriptionsSelf> self = Optional.empty();
+        private ListSubscriptionsSelf self;
 
-        private JsonNullable<? extends ListSubscriptionsPrevious> previous = JsonNullable.undefined();
+        private Optional<? extends ListSubscriptionsPrevious> previous = Optional.empty();
 
-        private JsonNullable<? extends ListSubscriptionsNext> next = JsonNullable.undefined();
+        private Optional<? extends ListSubscriptionsNext> next = Optional.empty();
 
-        private Optional<? extends ListSubscriptionsDocumentation> documentation = Optional.empty();
+        private ListSubscriptionsDocumentation documentation;
 
         private Builder() {
           // force use of static builder() method
@@ -238,15 +217,6 @@ public class ListSubscriptionsLinks {
          */
         public Builder self(ListSubscriptionsSelf self) {
             Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * The URL to the current set of items.
-         */
-        public Builder self(Optional<? extends ListSubscriptionsSelf> self) {
-            Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
         }
@@ -257,14 +227,14 @@ public class ListSubscriptionsLinks {
          */
         public Builder previous(ListSubscriptionsPrevious previous) {
             Utils.checkNotNull(previous, "previous");
-            this.previous = JsonNullable.of(previous);
+            this.previous = Optional.ofNullable(previous);
             return this;
         }
 
         /**
          * The previous set of items, if available.
          */
-        public Builder previous(JsonNullable<? extends ListSubscriptionsPrevious> previous) {
+        public Builder previous(Optional<? extends ListSubscriptionsPrevious> previous) {
             Utils.checkNotNull(previous, "previous");
             this.previous = previous;
             return this;
@@ -276,14 +246,14 @@ public class ListSubscriptionsLinks {
          */
         public Builder next(ListSubscriptionsNext next) {
             Utils.checkNotNull(next, "next");
-            this.next = JsonNullable.of(next);
+            this.next = Optional.ofNullable(next);
             return this;
         }
 
         /**
          * The next set of items, if available.
          */
-        public Builder next(JsonNullable<? extends ListSubscriptionsNext> next) {
+        public Builder next(Optional<? extends ListSubscriptionsNext> next) {
             Utils.checkNotNull(next, "next");
             this.next = next;
             return this;
@@ -294,15 +264,6 @@ public class ListSubscriptionsLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(ListSubscriptionsDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends ListSubscriptionsDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

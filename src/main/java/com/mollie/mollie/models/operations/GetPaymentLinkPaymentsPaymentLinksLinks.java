@@ -134,6 +134,22 @@ public class GetPaymentLinkPaymentsPaymentLinksLinks {
     @JsonProperty("documentation")
     private Optional<? extends GetPaymentLinkPaymentsPaymentLinksDocumentation> documentation;
 
+    /**
+     * Link to customer-facing page showing the status of the bank transfer (to verify if the transaction was
+     * successful).
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("status")
+    private Optional<? extends GetPaymentLinkPaymentsPaymentLinksStatus> status;
+
+    /**
+     * Link to Mollie Checkout page allowing customers to select a different payment method instead of legacy
+     * bank transfer.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("payOnline")
+    private Optional<? extends GetPaymentLinkPaymentsPayOnline> payOnline;
+
     @JsonCreator
     public GetPaymentLinkPaymentsPaymentLinksLinks(
             @JsonProperty("self") GetPaymentLinkPaymentsPaymentLinksSelf self,
@@ -150,7 +166,9 @@ public class GetPaymentLinkPaymentsPaymentLinksLinks {
             @JsonProperty("subscription") Optional<? extends GetPaymentLinkPaymentsSubscription> subscription,
             @JsonProperty("order") Optional<? extends GetPaymentLinkPaymentsOrder> order,
             @JsonProperty("terminal") Optional<? extends GetPaymentLinkPaymentsTerminal> terminal,
-            @JsonProperty("documentation") Optional<? extends GetPaymentLinkPaymentsPaymentLinksDocumentation> documentation) {
+            @JsonProperty("documentation") Optional<? extends GetPaymentLinkPaymentsPaymentLinksDocumentation> documentation,
+            @JsonProperty("status") Optional<? extends GetPaymentLinkPaymentsPaymentLinksStatus> status,
+            @JsonProperty("payOnline") Optional<? extends GetPaymentLinkPaymentsPayOnline> payOnline) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(checkout, "checkout");
         Utils.checkNotNull(mobileAppCheckout, "mobileAppCheckout");
@@ -166,6 +184,8 @@ public class GetPaymentLinkPaymentsPaymentLinksLinks {
         Utils.checkNotNull(order, "order");
         Utils.checkNotNull(terminal, "terminal");
         Utils.checkNotNull(documentation, "documentation");
+        Utils.checkNotNull(status, "status");
+        Utils.checkNotNull(payOnline, "payOnline");
         this.self = self;
         this.checkout = checkout;
         this.mobileAppCheckout = mobileAppCheckout;
@@ -181,6 +201,8 @@ public class GetPaymentLinkPaymentsPaymentLinksLinks {
         this.order = order;
         this.terminal = terminal;
         this.documentation = documentation;
+        this.status = status;
+        this.payOnline = payOnline;
     }
     
     public GetPaymentLinkPaymentsPaymentLinksLinks(
@@ -190,7 +212,8 @@ public class GetPaymentLinkPaymentsPaymentLinksLinks {
             Optional.empty(), dashboard, Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -335,6 +358,26 @@ public class GetPaymentLinkPaymentsPaymentLinksLinks {
     @JsonIgnore
     public Optional<GetPaymentLinkPaymentsPaymentLinksDocumentation> documentation() {
         return (Optional<GetPaymentLinkPaymentsPaymentLinksDocumentation>) documentation;
+    }
+
+    /**
+     * Link to customer-facing page showing the status of the bank transfer (to verify if the transaction was
+     * successful).
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<GetPaymentLinkPaymentsPaymentLinksStatus> status() {
+        return (Optional<GetPaymentLinkPaymentsPaymentLinksStatus>) status;
+    }
+
+    /**
+     * Link to Mollie Checkout page allowing customers to select a different payment method instead of legacy
+     * bank transfer.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<GetPaymentLinkPaymentsPayOnline> payOnline() {
+        return (Optional<GetPaymentLinkPaymentsPayOnline>) payOnline;
     }
 
     public static Builder builder() {
@@ -629,6 +672,48 @@ public class GetPaymentLinkPaymentsPaymentLinksLinks {
         return this;
     }
 
+    /**
+     * Link to customer-facing page showing the status of the bank transfer (to verify if the transaction was
+     * successful).
+     */
+    public GetPaymentLinkPaymentsPaymentLinksLinks withStatus(GetPaymentLinkPaymentsPaymentLinksStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = Optional.ofNullable(status);
+        return this;
+    }
+
+
+    /**
+     * Link to customer-facing page showing the status of the bank transfer (to verify if the transaction was
+     * successful).
+     */
+    public GetPaymentLinkPaymentsPaymentLinksLinks withStatus(Optional<? extends GetPaymentLinkPaymentsPaymentLinksStatus> status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
+    /**
+     * Link to Mollie Checkout page allowing customers to select a different payment method instead of legacy
+     * bank transfer.
+     */
+    public GetPaymentLinkPaymentsPaymentLinksLinks withPayOnline(GetPaymentLinkPaymentsPayOnline payOnline) {
+        Utils.checkNotNull(payOnline, "payOnline");
+        this.payOnline = Optional.ofNullable(payOnline);
+        return this;
+    }
+
+
+    /**
+     * Link to Mollie Checkout page allowing customers to select a different payment method instead of legacy
+     * bank transfer.
+     */
+    public GetPaymentLinkPaymentsPaymentLinksLinks withPayOnline(Optional<? extends GetPaymentLinkPaymentsPayOnline> payOnline) {
+        Utils.checkNotNull(payOnline, "payOnline");
+        this.payOnline = payOnline;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -653,7 +738,9 @@ public class GetPaymentLinkPaymentsPaymentLinksLinks {
             Utils.enhancedDeepEquals(this.subscription, other.subscription) &&
             Utils.enhancedDeepEquals(this.order, other.order) &&
             Utils.enhancedDeepEquals(this.terminal, other.terminal) &&
-            Utils.enhancedDeepEquals(this.documentation, other.documentation);
+            Utils.enhancedDeepEquals(this.documentation, other.documentation) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.payOnline, other.payOnline);
     }
     
     @Override
@@ -663,7 +750,8 @@ public class GetPaymentLinkPaymentsPaymentLinksLinks {
             changePaymentState, dashboard, refunds,
             chargebacks, captures, settlement,
             customer, mandate, subscription,
-            order, terminal, documentation);
+            order, terminal, documentation,
+            status, payOnline);
     }
     
     @Override
@@ -683,7 +771,9 @@ public class GetPaymentLinkPaymentsPaymentLinksLinks {
                 "subscription", subscription,
                 "order", order,
                 "terminal", terminal,
-                "documentation", documentation);
+                "documentation", documentation,
+                "status", status,
+                "payOnline", payOnline);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -718,6 +808,10 @@ public class GetPaymentLinkPaymentsPaymentLinksLinks {
         private Optional<? extends GetPaymentLinkPaymentsTerminal> terminal = Optional.empty();
 
         private Optional<? extends GetPaymentLinkPaymentsPaymentLinksDocumentation> documentation = Optional.empty();
+
+        private Optional<? extends GetPaymentLinkPaymentsPaymentLinksStatus> status = Optional.empty();
+
+        private Optional<? extends GetPaymentLinkPaymentsPayOnline> payOnline = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -1012,6 +1106,48 @@ public class GetPaymentLinkPaymentsPaymentLinksLinks {
             return this;
         }
 
+
+        /**
+         * Link to customer-facing page showing the status of the bank transfer (to verify if the transaction was
+         * successful).
+         */
+        public Builder status(GetPaymentLinkPaymentsPaymentLinksStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        /**
+         * Link to customer-facing page showing the status of the bank transfer (to verify if the transaction was
+         * successful).
+         */
+        public Builder status(Optional<? extends GetPaymentLinkPaymentsPaymentLinksStatus> status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
+
+        /**
+         * Link to Mollie Checkout page allowing customers to select a different payment method instead of legacy
+         * bank transfer.
+         */
+        public Builder payOnline(GetPaymentLinkPaymentsPayOnline payOnline) {
+            Utils.checkNotNull(payOnline, "payOnline");
+            this.payOnline = Optional.ofNullable(payOnline);
+            return this;
+        }
+
+        /**
+         * Link to Mollie Checkout page allowing customers to select a different payment method instead of legacy
+         * bank transfer.
+         */
+        public Builder payOnline(Optional<? extends GetPaymentLinkPaymentsPayOnline> payOnline) {
+            Utils.checkNotNull(payOnline, "payOnline");
+            this.payOnline = payOnline;
+            return this;
+        }
+
         public GetPaymentLinkPaymentsPaymentLinksLinks build() {
 
             return new GetPaymentLinkPaymentsPaymentLinksLinks(
@@ -1019,7 +1155,8 @@ public class GetPaymentLinkPaymentsPaymentLinksLinks {
                 changePaymentState, dashboard, refunds,
                 chargebacks, captures, settlement,
                 customer, mandate, subscription,
-                order, terminal, documentation);
+                order, terminal, documentation,
+                status, payOnline);
         }
 
     }

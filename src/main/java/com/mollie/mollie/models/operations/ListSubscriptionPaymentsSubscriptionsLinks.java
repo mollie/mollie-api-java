@@ -134,6 +134,22 @@ public class ListSubscriptionPaymentsSubscriptionsLinks {
     @JsonProperty("documentation")
     private Optional<? extends ListSubscriptionPaymentsSubscriptionsDocumentation> documentation;
 
+    /**
+     * Link to customer-facing page showing the status of the bank transfer (to verify if the transaction was
+     * successful).
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("status")
+    private Optional<? extends ListSubscriptionPaymentsSubscriptionsStatus> status;
+
+    /**
+     * Link to Mollie Checkout page allowing customers to select a different payment method instead of legacy
+     * bank transfer.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("payOnline")
+    private Optional<? extends ListSubscriptionPaymentsPayOnline> payOnline;
+
     @JsonCreator
     public ListSubscriptionPaymentsSubscriptionsLinks(
             @JsonProperty("self") ListSubscriptionPaymentsSubscriptionsSelf self,
@@ -150,7 +166,9 @@ public class ListSubscriptionPaymentsSubscriptionsLinks {
             @JsonProperty("subscription") Optional<? extends ListSubscriptionPaymentsSubscription> subscription,
             @JsonProperty("order") Optional<? extends ListSubscriptionPaymentsOrder> order,
             @JsonProperty("terminal") Optional<? extends ListSubscriptionPaymentsTerminal> terminal,
-            @JsonProperty("documentation") Optional<? extends ListSubscriptionPaymentsSubscriptionsDocumentation> documentation) {
+            @JsonProperty("documentation") Optional<? extends ListSubscriptionPaymentsSubscriptionsDocumentation> documentation,
+            @JsonProperty("status") Optional<? extends ListSubscriptionPaymentsSubscriptionsStatus> status,
+            @JsonProperty("payOnline") Optional<? extends ListSubscriptionPaymentsPayOnline> payOnline) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(checkout, "checkout");
         Utils.checkNotNull(mobileAppCheckout, "mobileAppCheckout");
@@ -166,6 +184,8 @@ public class ListSubscriptionPaymentsSubscriptionsLinks {
         Utils.checkNotNull(order, "order");
         Utils.checkNotNull(terminal, "terminal");
         Utils.checkNotNull(documentation, "documentation");
+        Utils.checkNotNull(status, "status");
+        Utils.checkNotNull(payOnline, "payOnline");
         this.self = self;
         this.checkout = checkout;
         this.mobileAppCheckout = mobileAppCheckout;
@@ -181,6 +201,8 @@ public class ListSubscriptionPaymentsSubscriptionsLinks {
         this.order = order;
         this.terminal = terminal;
         this.documentation = documentation;
+        this.status = status;
+        this.payOnline = payOnline;
     }
     
     public ListSubscriptionPaymentsSubscriptionsLinks(
@@ -190,7 +212,8 @@ public class ListSubscriptionPaymentsSubscriptionsLinks {
             Optional.empty(), dashboard, Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -335,6 +358,26 @@ public class ListSubscriptionPaymentsSubscriptionsLinks {
     @JsonIgnore
     public Optional<ListSubscriptionPaymentsSubscriptionsDocumentation> documentation() {
         return (Optional<ListSubscriptionPaymentsSubscriptionsDocumentation>) documentation;
+    }
+
+    /**
+     * Link to customer-facing page showing the status of the bank transfer (to verify if the transaction was
+     * successful).
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ListSubscriptionPaymentsSubscriptionsStatus> status() {
+        return (Optional<ListSubscriptionPaymentsSubscriptionsStatus>) status;
+    }
+
+    /**
+     * Link to Mollie Checkout page allowing customers to select a different payment method instead of legacy
+     * bank transfer.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ListSubscriptionPaymentsPayOnline> payOnline() {
+        return (Optional<ListSubscriptionPaymentsPayOnline>) payOnline;
     }
 
     public static Builder builder() {
@@ -629,6 +672,48 @@ public class ListSubscriptionPaymentsSubscriptionsLinks {
         return this;
     }
 
+    /**
+     * Link to customer-facing page showing the status of the bank transfer (to verify if the transaction was
+     * successful).
+     */
+    public ListSubscriptionPaymentsSubscriptionsLinks withStatus(ListSubscriptionPaymentsSubscriptionsStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = Optional.ofNullable(status);
+        return this;
+    }
+
+
+    /**
+     * Link to customer-facing page showing the status of the bank transfer (to verify if the transaction was
+     * successful).
+     */
+    public ListSubscriptionPaymentsSubscriptionsLinks withStatus(Optional<? extends ListSubscriptionPaymentsSubscriptionsStatus> status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
+    /**
+     * Link to Mollie Checkout page allowing customers to select a different payment method instead of legacy
+     * bank transfer.
+     */
+    public ListSubscriptionPaymentsSubscriptionsLinks withPayOnline(ListSubscriptionPaymentsPayOnline payOnline) {
+        Utils.checkNotNull(payOnline, "payOnline");
+        this.payOnline = Optional.ofNullable(payOnline);
+        return this;
+    }
+
+
+    /**
+     * Link to Mollie Checkout page allowing customers to select a different payment method instead of legacy
+     * bank transfer.
+     */
+    public ListSubscriptionPaymentsSubscriptionsLinks withPayOnline(Optional<? extends ListSubscriptionPaymentsPayOnline> payOnline) {
+        Utils.checkNotNull(payOnline, "payOnline");
+        this.payOnline = payOnline;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -653,7 +738,9 @@ public class ListSubscriptionPaymentsSubscriptionsLinks {
             Utils.enhancedDeepEquals(this.subscription, other.subscription) &&
             Utils.enhancedDeepEquals(this.order, other.order) &&
             Utils.enhancedDeepEquals(this.terminal, other.terminal) &&
-            Utils.enhancedDeepEquals(this.documentation, other.documentation);
+            Utils.enhancedDeepEquals(this.documentation, other.documentation) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.payOnline, other.payOnline);
     }
     
     @Override
@@ -663,7 +750,8 @@ public class ListSubscriptionPaymentsSubscriptionsLinks {
             changePaymentState, dashboard, refunds,
             chargebacks, captures, settlement,
             customer, mandate, subscription,
-            order, terminal, documentation);
+            order, terminal, documentation,
+            status, payOnline);
     }
     
     @Override
@@ -683,7 +771,9 @@ public class ListSubscriptionPaymentsSubscriptionsLinks {
                 "subscription", subscription,
                 "order", order,
                 "terminal", terminal,
-                "documentation", documentation);
+                "documentation", documentation,
+                "status", status,
+                "payOnline", payOnline);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -718,6 +808,10 @@ public class ListSubscriptionPaymentsSubscriptionsLinks {
         private Optional<? extends ListSubscriptionPaymentsTerminal> terminal = Optional.empty();
 
         private Optional<? extends ListSubscriptionPaymentsSubscriptionsDocumentation> documentation = Optional.empty();
+
+        private Optional<? extends ListSubscriptionPaymentsSubscriptionsStatus> status = Optional.empty();
+
+        private Optional<? extends ListSubscriptionPaymentsPayOnline> payOnline = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -1012,6 +1106,48 @@ public class ListSubscriptionPaymentsSubscriptionsLinks {
             return this;
         }
 
+
+        /**
+         * Link to customer-facing page showing the status of the bank transfer (to verify if the transaction was
+         * successful).
+         */
+        public Builder status(ListSubscriptionPaymentsSubscriptionsStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        /**
+         * Link to customer-facing page showing the status of the bank transfer (to verify if the transaction was
+         * successful).
+         */
+        public Builder status(Optional<? extends ListSubscriptionPaymentsSubscriptionsStatus> status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
+
+        /**
+         * Link to Mollie Checkout page allowing customers to select a different payment method instead of legacy
+         * bank transfer.
+         */
+        public Builder payOnline(ListSubscriptionPaymentsPayOnline payOnline) {
+            Utils.checkNotNull(payOnline, "payOnline");
+            this.payOnline = Optional.ofNullable(payOnline);
+            return this;
+        }
+
+        /**
+         * Link to Mollie Checkout page allowing customers to select a different payment method instead of legacy
+         * bank transfer.
+         */
+        public Builder payOnline(Optional<? extends ListSubscriptionPaymentsPayOnline> payOnline) {
+            Utils.checkNotNull(payOnline, "payOnline");
+            this.payOnline = payOnline;
+            return this;
+        }
+
         public ListSubscriptionPaymentsSubscriptionsLinks build() {
 
             return new ListSubscriptionPaymentsSubscriptionsLinks(
@@ -1019,7 +1155,8 @@ public class ListSubscriptionPaymentsSubscriptionsLinks {
                 changePaymentState, dashboard, refunds,
                 chargebacks, captures, settlement,
                 customer, mandate, subscription,
-                order, terminal, documentation);
+                order, terminal, documentation,
+                status, payOnline);
         }
 
     }

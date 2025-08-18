@@ -9,9 +9,11 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -98,7 +100,7 @@ public class Settlements {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("periods")
-    private Optional<? extends ListSettlementsPeriods> periods;
+    private Optional<? extends Map<String, Object>> periods;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -118,7 +120,7 @@ public class Settlements {
             @JsonProperty("amount") Optional<? extends ListSettlementsAmount> amount,
             @JsonProperty("balanceId") Optional<String> balanceId,
             @JsonProperty("invoiceId") JsonNullable<String> invoiceId,
-            @JsonProperty("periods") Optional<? extends ListSettlementsPeriods> periods,
+            @JsonProperty("periods") Optional<? extends Map<String, Object>> periods,
             @JsonProperty("_links") Optional<? extends ListSettlementsSettlementsLinks> links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
@@ -243,8 +245,8 @@ public class Settlements {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListSettlementsPeriods> periods() {
-        return (Optional<ListSettlementsPeriods>) periods;
+    public Optional<Map<String, Object>> periods() {
+        return (Optional<Map<String, Object>>) periods;
     }
 
     /**
@@ -449,7 +451,7 @@ public class Settlements {
      * 
      * <p>The example response should give a good idea of what this looks like in practise.
      */
-    public Settlements withPeriods(ListSettlementsPeriods periods) {
+    public Settlements withPeriods(Map<String, Object> periods) {
         Utils.checkNotNull(periods, "periods");
         this.periods = Optional.ofNullable(periods);
         return this;
@@ -468,7 +470,7 @@ public class Settlements {
      * 
      * <p>The example response should give a good idea of what this looks like in practise.
      */
-    public Settlements withPeriods(Optional<? extends ListSettlementsPeriods> periods) {
+    public Settlements withPeriods(Optional<? extends Map<String, Object>> periods) {
         Utils.checkNotNull(periods, "periods");
         this.periods = periods;
         return this;
@@ -562,7 +564,7 @@ public class Settlements {
 
         private JsonNullable<String> invoiceId = JsonNullable.undefined();
 
-        private Optional<? extends ListSettlementsPeriods> periods = Optional.empty();
+        private Optional<? extends Map<String, Object>> periods = Optional.empty();
 
         private Optional<? extends ListSettlementsSettlementsLinks> links = Optional.empty();
 
@@ -762,7 +764,7 @@ public class Settlements {
          * 
          * <p>The example response should give a good idea of what this looks like in practise.
          */
-        public Builder periods(ListSettlementsPeriods periods) {
+        public Builder periods(Map<String, Object> periods) {
             Utils.checkNotNull(periods, "periods");
             this.periods = Optional.ofNullable(periods);
             return this;
@@ -780,7 +782,7 @@ public class Settlements {
          * 
          * <p>The example response should give a good idea of what this looks like in practise.
          */
-        public Builder periods(Optional<? extends ListSettlementsPeriods> periods) {
+        public Builder periods(Optional<? extends Map<String, Object>> periods) {
             Utils.checkNotNull(periods, "periods");
             this.periods = periods;
             return this;

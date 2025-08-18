@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * ListWebhooksLinks
@@ -24,37 +23,35 @@ public class ListWebhooksLinks {
     /**
      * The URL to the current set of items.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends ListWebhooksSelf> self;
+    private ListWebhooksSelf self;
 
     /**
      * The previous set of items, if available.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("previous")
-    private JsonNullable<? extends ListWebhooksPrevious> previous;
+    private Optional<? extends ListWebhooksPrevious> previous;
 
     /**
      * The next set of items, if available.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("next")
-    private JsonNullable<? extends ListWebhooksNext> next;
+    private Optional<? extends ListWebhooksNext> next;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends ListWebhooksDocumentation> documentation;
+    private ListWebhooksDocumentation documentation;
 
     @JsonCreator
     public ListWebhooksLinks(
-            @JsonProperty("self") Optional<? extends ListWebhooksSelf> self,
-            @JsonProperty("previous") JsonNullable<? extends ListWebhooksPrevious> previous,
-            @JsonProperty("next") JsonNullable<? extends ListWebhooksNext> next,
-            @JsonProperty("documentation") Optional<? extends ListWebhooksDocumentation> documentation) {
+            @JsonProperty("self") ListWebhooksSelf self,
+            @JsonProperty("previous") Optional<? extends ListWebhooksPrevious> previous,
+            @JsonProperty("next") Optional<? extends ListWebhooksNext> next,
+            @JsonProperty("documentation") ListWebhooksDocumentation documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(previous, "previous");
         Utils.checkNotNull(next, "next");
@@ -65,18 +62,19 @@ public class ListWebhooksLinks {
         this.documentation = documentation;
     }
     
-    public ListWebhooksLinks() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+    public ListWebhooksLinks(
+            ListWebhooksSelf self,
+            ListWebhooksDocumentation documentation) {
+        this(self, Optional.empty(), Optional.empty(),
+            documentation);
     }
 
     /**
      * The URL to the current set of items.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListWebhooksSelf> self() {
-        return (Optional<ListWebhooksSelf>) self;
+    public ListWebhooksSelf self() {
+        return self;
     }
 
     /**
@@ -84,8 +82,8 @@ public class ListWebhooksLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListWebhooksPrevious> previous() {
-        return (JsonNullable<ListWebhooksPrevious>) previous;
+    public Optional<ListWebhooksPrevious> previous() {
+        return (Optional<ListWebhooksPrevious>) previous;
     }
 
     /**
@@ -93,17 +91,16 @@ public class ListWebhooksLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListWebhooksNext> next() {
-        return (JsonNullable<ListWebhooksNext>) next;
+    public Optional<ListWebhooksNext> next() {
+        return (Optional<ListWebhooksNext>) next;
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListWebhooksDocumentation> documentation() {
-        return (Optional<ListWebhooksDocumentation>) documentation;
+    public ListWebhooksDocumentation documentation() {
+        return documentation;
     }
 
     public static Builder builder() {
@@ -116,16 +113,6 @@ public class ListWebhooksLinks {
      */
     public ListWebhooksLinks withSelf(ListWebhooksSelf self) {
         Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-
-    /**
-     * The URL to the current set of items.
-     */
-    public ListWebhooksLinks withSelf(Optional<? extends ListWebhooksSelf> self) {
-        Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
@@ -135,14 +122,15 @@ public class ListWebhooksLinks {
      */
     public ListWebhooksLinks withPrevious(ListWebhooksPrevious previous) {
         Utils.checkNotNull(previous, "previous");
-        this.previous = JsonNullable.of(previous);
+        this.previous = Optional.ofNullable(previous);
         return this;
     }
+
 
     /**
      * The previous set of items, if available.
      */
-    public ListWebhooksLinks withPrevious(JsonNullable<? extends ListWebhooksPrevious> previous) {
+    public ListWebhooksLinks withPrevious(Optional<? extends ListWebhooksPrevious> previous) {
         Utils.checkNotNull(previous, "previous");
         this.previous = previous;
         return this;
@@ -153,14 +141,15 @@ public class ListWebhooksLinks {
      */
     public ListWebhooksLinks withNext(ListWebhooksNext next) {
         Utils.checkNotNull(next, "next");
-        this.next = JsonNullable.of(next);
+        this.next = Optional.ofNullable(next);
         return this;
     }
+
 
     /**
      * The next set of items, if available.
      */
-    public ListWebhooksLinks withNext(JsonNullable<? extends ListWebhooksNext> next) {
+    public ListWebhooksLinks withNext(Optional<? extends ListWebhooksNext> next) {
         Utils.checkNotNull(next, "next");
         this.next = next;
         return this;
@@ -170,16 +159,6 @@ public class ListWebhooksLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public ListWebhooksLinks withDocumentation(ListWebhooksDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListWebhooksLinks withDocumentation(Optional<? extends ListWebhooksDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -220,13 +199,13 @@ public class ListWebhooksLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends ListWebhooksSelf> self = Optional.empty();
+        private ListWebhooksSelf self;
 
-        private JsonNullable<? extends ListWebhooksPrevious> previous = JsonNullable.undefined();
+        private Optional<? extends ListWebhooksPrevious> previous = Optional.empty();
 
-        private JsonNullable<? extends ListWebhooksNext> next = JsonNullable.undefined();
+        private Optional<? extends ListWebhooksNext> next = Optional.empty();
 
-        private Optional<? extends ListWebhooksDocumentation> documentation = Optional.empty();
+        private ListWebhooksDocumentation documentation;
 
         private Builder() {
           // force use of static builder() method
@@ -238,15 +217,6 @@ public class ListWebhooksLinks {
          */
         public Builder self(ListWebhooksSelf self) {
             Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * The URL to the current set of items.
-         */
-        public Builder self(Optional<? extends ListWebhooksSelf> self) {
-            Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
         }
@@ -257,14 +227,14 @@ public class ListWebhooksLinks {
          */
         public Builder previous(ListWebhooksPrevious previous) {
             Utils.checkNotNull(previous, "previous");
-            this.previous = JsonNullable.of(previous);
+            this.previous = Optional.ofNullable(previous);
             return this;
         }
 
         /**
          * The previous set of items, if available.
          */
-        public Builder previous(JsonNullable<? extends ListWebhooksPrevious> previous) {
+        public Builder previous(Optional<? extends ListWebhooksPrevious> previous) {
             Utils.checkNotNull(previous, "previous");
             this.previous = previous;
             return this;
@@ -276,14 +246,14 @@ public class ListWebhooksLinks {
          */
         public Builder next(ListWebhooksNext next) {
             Utils.checkNotNull(next, "next");
-            this.next = JsonNullable.of(next);
+            this.next = Optional.ofNullable(next);
             return this;
         }
 
         /**
          * The next set of items, if available.
          */
-        public Builder next(JsonNullable<? extends ListWebhooksNext> next) {
+        public Builder next(Optional<? extends ListWebhooksNext> next) {
             Utils.checkNotNull(next, "next");
             this.next = next;
             return this;
@@ -294,15 +264,6 @@ public class ListWebhooksLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(ListWebhooksDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends ListWebhooksDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

@@ -9,106 +9,574 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-
+/**
+ * Details
+ * 
+ * <p>An object containing payment details collected during the payment process. For example, details may include the
+ * customer's card or bank details and a payment reference. For the full list of details, please refer to the
+ * [method-specific parameters](extra-payment-parameters) guide.
+ */
 public class Details {
     /**
-     * The customer's name. Available for SEPA Direct Debit and PayPal mandates.
+     * The customer's name, if made available by the payment method. For card payments, refer to details.cardHolder.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("consumerName")
     private JsonNullable<String> consumerName;
 
     /**
-     * The customer's IBAN or email address. Available for SEPA Direct Debit and PayPal mandates.
+     * The customer's account reference.
+     * 
+     * <p>For banking-based payment methods — such as iDEAL — this is normally either an IBAN or a domestic bank account
+     * number.
+     * 
+     * <p>For PayPal, the account reference is an email address.
+     * 
+     * <p>For card and Bancontact payments, refer to details.cardNumber.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("consumerAccount")
     private JsonNullable<String> consumerAccount;
 
     /**
-     * The BIC of the customer's bank. Available for SEPA Direct Debit mandates.
+     * The BIC of the customer's bank account, if applicable.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("consumerBic")
     private JsonNullable<String> consumerBic;
 
     /**
-     * The card holder's name. Available for card mandates.
+     * For wallet payment methods — such as Apple Pay and PayPal — the shipping address is often already known by the
+     * wallet provider. In these cases the shipping address may be available as a payment detail.
      */
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("cardHolder")
-    private JsonNullable<String> cardHolder;
+    @JsonProperty("shippingAddress")
+    private JsonNullable<? extends Map<String, Object>> shippingAddress;
 
     /**
-     * The last four digits of the card number. Available for card mandates.
+     * For bancontact, it will be the customer's masked card number. For cards, it will be the last 4-digit of the
+     * PAN. For Point-of-sale, it will be the the last 4 digits of the customer's masked card number.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cardNumber")
     private JsonNullable<String> cardNumber;
 
     /**
-     * The card's expiry date in `YYYY-MM-DD` format. Available for card mandates.
+     * The name of the bank that the customer will need to make the bank transfer payment towards.
      */
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("cardExpiryDate")
-    private JsonNullable<String> cardExpiryDate;
+    @JsonProperty("bankName")
+    private Optional<String> bankName;
 
     /**
-     * The card's label. Available for card mandates, if the card label could be detected.
+     * The bank account number the customer will need to make the bank transfer payment towards.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("bankAccount")
+    private Optional<String> bankAccount;
+
+    /**
+     * The BIC of the bank the customer will need to make the bank transfer payment towards.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("bankBic")
+    private Optional<String> bankBic;
+
+    /**
+     * The Mollie-generated reference the customer needs to use when transfering the amount. Do not apply any
+     * formatting here; show it to the customer as-is.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("transferReference")
+    private JsonNullable<String> transferReference;
+
+    /**
+     * A unique fingerprint for a specific card. Can be used to identify returning customers.
+     * 
+     * <p>In the case of Point-of-sale payments, it's a unique identifier assigned to a cardholder's payment account,
+     * linking multiple transactions from wallets and physical card to a single account, also across payment methods
+     * or when the card is reissued.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("cardFingerprint")
+    private JsonNullable<String> cardFingerprint;
+
+    /**
+     * The customer's name as shown on their card.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("cardHolder")
+    private JsonNullable<String> cardHolder;
+
+    /**
+     * The card's target audience, if known.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("cardAudition")
+    private JsonNullable<? extends CardAudition> cardAudition;
+
+    /**
+     * The card's label, if known.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cardLabel")
     private JsonNullable<? extends CardLabel> cardLabel;
 
     /**
-     * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used to identify
-     * returning customers.
+     * The ISO 3166-1 alpha-2 country code of the country the card was issued in.
      */
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("cardFingerprint")
-    private JsonNullable<String> cardFingerprint;
+    @JsonProperty("cardCountryCode")
+    private JsonNullable<String> cardCountryCode;
+
+    /**
+     * The expiry date (MM/YY) of the card as displayed on the card.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("cardExpiryDate")
+    private JsonNullable<String> cardExpiryDate;
+
+    /**
+     * The card type.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("cardFunding")
+    private JsonNullable<? extends CardFunding> cardFunding;
+
+    /**
+     * The level of security applied during card processing.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("cardSecurity")
+    private JsonNullable<? extends CardSecurity> cardSecurity;
+
+    /**
+     * The applicable card fee region.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("feeRegion")
+    private JsonNullable<? extends FeeRegion> feeRegion;
+
+    /**
+     * The first 6 and last 4 digits of the card number.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("cardMaskedNumber")
+    private JsonNullable<String> cardMaskedNumber;
+
+    /**
+     * The outcome of authentication attempted on transactions enforced by 3DS (ie valid only for oneoff and first).
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("card3dsEci")
+    private JsonNullable<String> card3dsEci;
+
+    /**
+     * The first 6 digit of the card bank identification number.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("cardBin")
+    private JsonNullable<String> cardBin;
+
+    /**
+     * The issuer of the Card.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("cardIssuer")
+    private JsonNullable<String> cardIssuer;
+
+    /**
+     * A failure code to help understand why the payment failed.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("failureReason")
+    private JsonNullable<? extends FailureReason> failureReason;
+
+    /**
+     * A human-friendly failure message that can be shown to the customer. The message is translated in accordance
+     * with the payment's locale setting.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("failureMessage")
+    private JsonNullable<String> failureMessage;
+
+    /**
+     * The wallet used when creating the payment.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("wallet")
+    private JsonNullable<? extends Wallet> wallet;
+
+    /**
+     * PayPal's reference for the payment.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("paypalReference")
+    private JsonNullable<String> paypalReference;
+
+    /**
+     * ID of the customer's PayPal account.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("paypalPayerId")
+    private JsonNullable<String> paypalPayerId;
+
+    /**
+     * Indicates to what extent the payment is eligible for PayPal's Seller Protection. Only available for PayPal
+     * payments, and if the information is made available by PayPal.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("sellerProtection")
+    private JsonNullable<? extends SellerProtection> sellerProtection;
+
+    /**
+     * An amount object containing the fee PayPal will charge for this transaction. The field may be omitted if
+     * PayPal will not charge a fee for this transaction.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("paypalFee")
+    private JsonNullable<? extends PaypalFee> paypalFee;
+
+    /**
+     * The paysafecard customer reference either provided via the API or otherwise auto-generated by Mollie.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("customerReference")
+    private Optional<String> customerReference;
+
+    /**
+     * The ID of the terminal device where the payment took place on.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("terminalId")
+    private Optional<String> terminalId;
+
+    /**
+     * The first 6 digits &amp; last 4 digits of the customer's masked card number.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("maskedNumber")
+    private JsonNullable<String> maskedNumber;
+
+    /**
+     * The Point of sale receipt object.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("receipt")
+    private Optional<? extends Receipt> receipt;
+
+    /**
+     * The creditor identifier indicates who is authorized to execute the payment. In this case, it is a
+     * reference to Mollie.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("creditorIdentifier")
+    private JsonNullable<String> creditorIdentifier;
+
+    /**
+     * Estimated date the payment is debited from the customer's bank account, in YYYY-MM-DD format.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("dueDate")
+    private JsonNullable<LocalDate> dueDate;
+
+    /**
+     * Date the payment has been signed by the customer, in YYYY-MM-DD format. Only available if the payment
+     * has been signed.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("signatureDate")
+    private JsonNullable<LocalDate> signatureDate;
+
+    /**
+     * The official reason why this payment has failed. A detailed description of each reason is available on the
+     * website of the European Payments Council.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("bankReasonCode")
+    private JsonNullable<String> bankReasonCode;
+
+    /**
+     * A human-friendly description of the failure reason.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("bankReason")
+    private JsonNullable<String> bankReason;
+
+    /**
+     * The end-to-end identifier you provided in the batch file.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("endToEndIdentifier")
+    private JsonNullable<String> endToEndIdentifier;
+
+    /**
+     * The mandate reference you provided in the batch file.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("mandateReference")
+    private JsonNullable<String> mandateReference;
+
+    /**
+     * The batch reference you provided in the batch file.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("batchReference")
+    private JsonNullable<String> batchReference;
+
+    /**
+     * The file reference you provided in the batch file.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("fileReference")
+    private JsonNullable<String> fileReference;
+
+    /**
+     * Optional include. If a QR code was requested during payment creation for a QR-compatible payment method,
+     * the QR code details will be available in this object.
+     * 
+     * <p>The QR code can be scanned by the customer to complete the payment on their mobile device. For example,
+     * Bancontact QR payments can be completed by the customer using the Bancontact app.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("qrCode")
+    private Optional<? extends QrCode> qrCode;
+
+    /**
+     * For payments with gift cards: the masked gift card number of the first gift card applied to the payment.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("voucherNumber")
+    private Optional<String> voucherNumber;
+
+    /**
+     * An array of detail objects for each gift card that was used on this payment, if any.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("giftcards")
+    private Optional<? extends List<Map<String, Object>>> giftcards;
+
+    /**
+     * For payments with vouchers: the brand name of the first voucher applied.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("issuer")
+    private Optional<String> issuer;
+
+    /**
+     * An array of detail objects for each voucher that was used on this payment, if any.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("vouchers")
+    private Optional<? extends List<Map<String, Object>>> vouchers;
+
+    /**
+     * An amount object for the amount that remained after all gift cards or vouchers were applied.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("remainderAmount")
+    private Optional<? extends RemainderAmount> remainderAmount;
+
+    /**
+     * The payment method used to pay the remainder amount, after all gift cards or vouchers were applied.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("remainderMethod")
+    private Optional<String> remainderMethod;
+
+    /**
+     * Optional include. The full payment method details of the remainder payment.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("remainderDetails")
+    private Optional<? extends Map<String, Object>> remainderDetails;
 
     @JsonCreator
     public Details(
             @JsonProperty("consumerName") JsonNullable<String> consumerName,
             @JsonProperty("consumerAccount") JsonNullable<String> consumerAccount,
             @JsonProperty("consumerBic") JsonNullable<String> consumerBic,
-            @JsonProperty("cardHolder") JsonNullable<String> cardHolder,
+            @JsonProperty("shippingAddress") JsonNullable<? extends Map<String, Object>> shippingAddress,
             @JsonProperty("cardNumber") JsonNullable<String> cardNumber,
-            @JsonProperty("cardExpiryDate") JsonNullable<String> cardExpiryDate,
+            @JsonProperty("bankName") Optional<String> bankName,
+            @JsonProperty("bankAccount") Optional<String> bankAccount,
+            @JsonProperty("bankBic") Optional<String> bankBic,
+            @JsonProperty("transferReference") JsonNullable<String> transferReference,
+            @JsonProperty("cardFingerprint") JsonNullable<String> cardFingerprint,
+            @JsonProperty("cardHolder") JsonNullable<String> cardHolder,
+            @JsonProperty("cardAudition") JsonNullable<? extends CardAudition> cardAudition,
             @JsonProperty("cardLabel") JsonNullable<? extends CardLabel> cardLabel,
-            @JsonProperty("cardFingerprint") JsonNullable<String> cardFingerprint) {
+            @JsonProperty("cardCountryCode") JsonNullable<String> cardCountryCode,
+            @JsonProperty("cardExpiryDate") JsonNullable<String> cardExpiryDate,
+            @JsonProperty("cardFunding") JsonNullable<? extends CardFunding> cardFunding,
+            @JsonProperty("cardSecurity") JsonNullable<? extends CardSecurity> cardSecurity,
+            @JsonProperty("feeRegion") JsonNullable<? extends FeeRegion> feeRegion,
+            @JsonProperty("cardMaskedNumber") JsonNullable<String> cardMaskedNumber,
+            @JsonProperty("card3dsEci") JsonNullable<String> card3dsEci,
+            @JsonProperty("cardBin") JsonNullable<String> cardBin,
+            @JsonProperty("cardIssuer") JsonNullable<String> cardIssuer,
+            @JsonProperty("failureReason") JsonNullable<? extends FailureReason> failureReason,
+            @JsonProperty("failureMessage") JsonNullable<String> failureMessage,
+            @JsonProperty("wallet") JsonNullable<? extends Wallet> wallet,
+            @JsonProperty("paypalReference") JsonNullable<String> paypalReference,
+            @JsonProperty("paypalPayerId") JsonNullable<String> paypalPayerId,
+            @JsonProperty("sellerProtection") JsonNullable<? extends SellerProtection> sellerProtection,
+            @JsonProperty("paypalFee") JsonNullable<? extends PaypalFee> paypalFee,
+            @JsonProperty("customerReference") Optional<String> customerReference,
+            @JsonProperty("terminalId") Optional<String> terminalId,
+            @JsonProperty("maskedNumber") JsonNullable<String> maskedNumber,
+            @JsonProperty("receipt") Optional<? extends Receipt> receipt,
+            @JsonProperty("creditorIdentifier") JsonNullable<String> creditorIdentifier,
+            @JsonProperty("dueDate") JsonNullable<LocalDate> dueDate,
+            @JsonProperty("signatureDate") JsonNullable<LocalDate> signatureDate,
+            @JsonProperty("bankReasonCode") JsonNullable<String> bankReasonCode,
+            @JsonProperty("bankReason") JsonNullable<String> bankReason,
+            @JsonProperty("endToEndIdentifier") JsonNullable<String> endToEndIdentifier,
+            @JsonProperty("mandateReference") JsonNullable<String> mandateReference,
+            @JsonProperty("batchReference") JsonNullable<String> batchReference,
+            @JsonProperty("fileReference") JsonNullable<String> fileReference,
+            @JsonProperty("qrCode") Optional<? extends QrCode> qrCode,
+            @JsonProperty("voucherNumber") Optional<String> voucherNumber,
+            @JsonProperty("giftcards") Optional<? extends List<Map<String, Object>>> giftcards,
+            @JsonProperty("issuer") Optional<String> issuer,
+            @JsonProperty("vouchers") Optional<? extends List<Map<String, Object>>> vouchers,
+            @JsonProperty("remainderAmount") Optional<? extends RemainderAmount> remainderAmount,
+            @JsonProperty("remainderMethod") Optional<String> remainderMethod,
+            @JsonProperty("remainderDetails") Optional<? extends Map<String, Object>> remainderDetails) {
         Utils.checkNotNull(consumerName, "consumerName");
         Utils.checkNotNull(consumerAccount, "consumerAccount");
         Utils.checkNotNull(consumerBic, "consumerBic");
-        Utils.checkNotNull(cardHolder, "cardHolder");
+        Utils.checkNotNull(shippingAddress, "shippingAddress");
         Utils.checkNotNull(cardNumber, "cardNumber");
-        Utils.checkNotNull(cardExpiryDate, "cardExpiryDate");
-        Utils.checkNotNull(cardLabel, "cardLabel");
+        Utils.checkNotNull(bankName, "bankName");
+        Utils.checkNotNull(bankAccount, "bankAccount");
+        Utils.checkNotNull(bankBic, "bankBic");
+        Utils.checkNotNull(transferReference, "transferReference");
         Utils.checkNotNull(cardFingerprint, "cardFingerprint");
+        Utils.checkNotNull(cardHolder, "cardHolder");
+        Utils.checkNotNull(cardAudition, "cardAudition");
+        Utils.checkNotNull(cardLabel, "cardLabel");
+        Utils.checkNotNull(cardCountryCode, "cardCountryCode");
+        Utils.checkNotNull(cardExpiryDate, "cardExpiryDate");
+        Utils.checkNotNull(cardFunding, "cardFunding");
+        Utils.checkNotNull(cardSecurity, "cardSecurity");
+        Utils.checkNotNull(feeRegion, "feeRegion");
+        Utils.checkNotNull(cardMaskedNumber, "cardMaskedNumber");
+        Utils.checkNotNull(card3dsEci, "card3dsEci");
+        Utils.checkNotNull(cardBin, "cardBin");
+        Utils.checkNotNull(cardIssuer, "cardIssuer");
+        Utils.checkNotNull(failureReason, "failureReason");
+        Utils.checkNotNull(failureMessage, "failureMessage");
+        Utils.checkNotNull(wallet, "wallet");
+        Utils.checkNotNull(paypalReference, "paypalReference");
+        Utils.checkNotNull(paypalPayerId, "paypalPayerId");
+        Utils.checkNotNull(sellerProtection, "sellerProtection");
+        Utils.checkNotNull(paypalFee, "paypalFee");
+        Utils.checkNotNull(customerReference, "customerReference");
+        Utils.checkNotNull(terminalId, "terminalId");
+        Utils.checkNotNull(maskedNumber, "maskedNumber");
+        Utils.checkNotNull(receipt, "receipt");
+        Utils.checkNotNull(creditorIdentifier, "creditorIdentifier");
+        Utils.checkNotNull(dueDate, "dueDate");
+        Utils.checkNotNull(signatureDate, "signatureDate");
+        Utils.checkNotNull(bankReasonCode, "bankReasonCode");
+        Utils.checkNotNull(bankReason, "bankReason");
+        Utils.checkNotNull(endToEndIdentifier, "endToEndIdentifier");
+        Utils.checkNotNull(mandateReference, "mandateReference");
+        Utils.checkNotNull(batchReference, "batchReference");
+        Utils.checkNotNull(fileReference, "fileReference");
+        Utils.checkNotNull(qrCode, "qrCode");
+        Utils.checkNotNull(voucherNumber, "voucherNumber");
+        Utils.checkNotNull(giftcards, "giftcards");
+        Utils.checkNotNull(issuer, "issuer");
+        Utils.checkNotNull(vouchers, "vouchers");
+        Utils.checkNotNull(remainderAmount, "remainderAmount");
+        Utils.checkNotNull(remainderMethod, "remainderMethod");
+        Utils.checkNotNull(remainderDetails, "remainderDetails");
         this.consumerName = consumerName;
         this.consumerAccount = consumerAccount;
         this.consumerBic = consumerBic;
-        this.cardHolder = cardHolder;
+        this.shippingAddress = shippingAddress;
         this.cardNumber = cardNumber;
-        this.cardExpiryDate = cardExpiryDate;
-        this.cardLabel = cardLabel;
+        this.bankName = bankName;
+        this.bankAccount = bankAccount;
+        this.bankBic = bankBic;
+        this.transferReference = transferReference;
         this.cardFingerprint = cardFingerprint;
+        this.cardHolder = cardHolder;
+        this.cardAudition = cardAudition;
+        this.cardLabel = cardLabel;
+        this.cardCountryCode = cardCountryCode;
+        this.cardExpiryDate = cardExpiryDate;
+        this.cardFunding = cardFunding;
+        this.cardSecurity = cardSecurity;
+        this.feeRegion = feeRegion;
+        this.cardMaskedNumber = cardMaskedNumber;
+        this.card3dsEci = card3dsEci;
+        this.cardBin = cardBin;
+        this.cardIssuer = cardIssuer;
+        this.failureReason = failureReason;
+        this.failureMessage = failureMessage;
+        this.wallet = wallet;
+        this.paypalReference = paypalReference;
+        this.paypalPayerId = paypalPayerId;
+        this.sellerProtection = sellerProtection;
+        this.paypalFee = paypalFee;
+        this.customerReference = customerReference;
+        this.terminalId = terminalId;
+        this.maskedNumber = maskedNumber;
+        this.receipt = receipt;
+        this.creditorIdentifier = creditorIdentifier;
+        this.dueDate = dueDate;
+        this.signatureDate = signatureDate;
+        this.bankReasonCode = bankReasonCode;
+        this.bankReason = bankReason;
+        this.endToEndIdentifier = endToEndIdentifier;
+        this.mandateReference = mandateReference;
+        this.batchReference = batchReference;
+        this.fileReference = fileReference;
+        this.qrCode = qrCode;
+        this.voucherNumber = voucherNumber;
+        this.giftcards = giftcards;
+        this.issuer = issuer;
+        this.vouchers = vouchers;
+        this.remainderAmount = remainderAmount;
+        this.remainderMethod = remainderMethod;
+        this.remainderDetails = remainderDetails;
     }
     
     public Details() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
-     * The customer's name. Available for SEPA Direct Debit and PayPal mandates.
+     * The customer's name, if made available by the payment method. For card payments, refer to details.cardHolder.
      */
     @JsonIgnore
     public JsonNullable<String> consumerName() {
@@ -116,7 +584,14 @@ public class Details {
     }
 
     /**
-     * The customer's IBAN or email address. Available for SEPA Direct Debit and PayPal mandates.
+     * The customer's account reference.
+     * 
+     * <p>For banking-based payment methods — such as iDEAL — this is normally either an IBAN or a domestic bank account
+     * number.
+     * 
+     * <p>For PayPal, the account reference is an email address.
+     * 
+     * <p>For card and Bancontact payments, refer to details.cardNumber.
      */
     @JsonIgnore
     public JsonNullable<String> consumerAccount() {
@@ -124,7 +599,7 @@ public class Details {
     }
 
     /**
-     * The BIC of the customer's bank. Available for SEPA Direct Debit mandates.
+     * The BIC of the customer's bank account, if applicable.
      */
     @JsonIgnore
     public JsonNullable<String> consumerBic() {
@@ -132,15 +607,18 @@ public class Details {
     }
 
     /**
-     * The card holder's name. Available for card mandates.
+     * For wallet payment methods — such as Apple Pay and PayPal — the shipping address is often already known by the
+     * wallet provider. In these cases the shipping address may be available as a payment detail.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> cardHolder() {
-        return cardHolder;
+    public JsonNullable<Map<String, Object>> shippingAddress() {
+        return (JsonNullable<Map<String, Object>>) shippingAddress;
     }
 
     /**
-     * The last four digits of the card number. Available for card mandates.
+     * For bancontact, it will be the customer's masked card number. For cards, it will be the last 4-digit of the
+     * PAN. For Point-of-sale, it will be the the last 4 digits of the customer's masked card number.
      */
     @JsonIgnore
     public JsonNullable<String> cardNumber() {
@@ -148,15 +626,69 @@ public class Details {
     }
 
     /**
-     * The card's expiry date in `YYYY-MM-DD` format. Available for card mandates.
+     * The name of the bank that the customer will need to make the bank transfer payment towards.
      */
     @JsonIgnore
-    public JsonNullable<String> cardExpiryDate() {
-        return cardExpiryDate;
+    public Optional<String> bankName() {
+        return bankName;
     }
 
     /**
-     * The card's label. Available for card mandates, if the card label could be detected.
+     * The bank account number the customer will need to make the bank transfer payment towards.
+     */
+    @JsonIgnore
+    public Optional<String> bankAccount() {
+        return bankAccount;
+    }
+
+    /**
+     * The BIC of the bank the customer will need to make the bank transfer payment towards.
+     */
+    @JsonIgnore
+    public Optional<String> bankBic() {
+        return bankBic;
+    }
+
+    /**
+     * The Mollie-generated reference the customer needs to use when transfering the amount. Do not apply any
+     * formatting here; show it to the customer as-is.
+     */
+    @JsonIgnore
+    public JsonNullable<String> transferReference() {
+        return transferReference;
+    }
+
+    /**
+     * A unique fingerprint for a specific card. Can be used to identify returning customers.
+     * 
+     * <p>In the case of Point-of-sale payments, it's a unique identifier assigned to a cardholder's payment account,
+     * linking multiple transactions from wallets and physical card to a single account, also across payment methods
+     * or when the card is reissued.
+     */
+    @JsonIgnore
+    public JsonNullable<String> cardFingerprint() {
+        return cardFingerprint;
+    }
+
+    /**
+     * The customer's name as shown on their card.
+     */
+    @JsonIgnore
+    public JsonNullable<String> cardHolder() {
+        return cardHolder;
+    }
+
+    /**
+     * The card's target audience, if known.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<CardAudition> cardAudition() {
+        return (JsonNullable<CardAudition>) cardAudition;
+    }
+
+    /**
+     * The card's label, if known.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -165,12 +697,322 @@ public class Details {
     }
 
     /**
-     * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used to identify
-     * returning customers.
+     * The ISO 3166-1 alpha-2 country code of the country the card was issued in.
      */
     @JsonIgnore
-    public JsonNullable<String> cardFingerprint() {
-        return cardFingerprint;
+    public JsonNullable<String> cardCountryCode() {
+        return cardCountryCode;
+    }
+
+    /**
+     * The expiry date (MM/YY) of the card as displayed on the card.
+     */
+    @JsonIgnore
+    public JsonNullable<String> cardExpiryDate() {
+        return cardExpiryDate;
+    }
+
+    /**
+     * The card type.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<CardFunding> cardFunding() {
+        return (JsonNullable<CardFunding>) cardFunding;
+    }
+
+    /**
+     * The level of security applied during card processing.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<CardSecurity> cardSecurity() {
+        return (JsonNullable<CardSecurity>) cardSecurity;
+    }
+
+    /**
+     * The applicable card fee region.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<FeeRegion> feeRegion() {
+        return (JsonNullable<FeeRegion>) feeRegion;
+    }
+
+    /**
+     * The first 6 and last 4 digits of the card number.
+     */
+    @JsonIgnore
+    public JsonNullable<String> cardMaskedNumber() {
+        return cardMaskedNumber;
+    }
+
+    /**
+     * The outcome of authentication attempted on transactions enforced by 3DS (ie valid only for oneoff and first).
+     */
+    @JsonIgnore
+    public JsonNullable<String> card3dsEci() {
+        return card3dsEci;
+    }
+
+    /**
+     * The first 6 digit of the card bank identification number.
+     */
+    @JsonIgnore
+    public JsonNullable<String> cardBin() {
+        return cardBin;
+    }
+
+    /**
+     * The issuer of the Card.
+     */
+    @JsonIgnore
+    public JsonNullable<String> cardIssuer() {
+        return cardIssuer;
+    }
+
+    /**
+     * A failure code to help understand why the payment failed.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<FailureReason> failureReason() {
+        return (JsonNullable<FailureReason>) failureReason;
+    }
+
+    /**
+     * A human-friendly failure message that can be shown to the customer. The message is translated in accordance
+     * with the payment's locale setting.
+     */
+    @JsonIgnore
+    public JsonNullable<String> failureMessage() {
+        return failureMessage;
+    }
+
+    /**
+     * The wallet used when creating the payment.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Wallet> wallet() {
+        return (JsonNullable<Wallet>) wallet;
+    }
+
+    /**
+     * PayPal's reference for the payment.
+     */
+    @JsonIgnore
+    public JsonNullable<String> paypalReference() {
+        return paypalReference;
+    }
+
+    /**
+     * ID of the customer's PayPal account.
+     */
+    @JsonIgnore
+    public JsonNullable<String> paypalPayerId() {
+        return paypalPayerId;
+    }
+
+    /**
+     * Indicates to what extent the payment is eligible for PayPal's Seller Protection. Only available for PayPal
+     * payments, and if the information is made available by PayPal.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<SellerProtection> sellerProtection() {
+        return (JsonNullable<SellerProtection>) sellerProtection;
+    }
+
+    /**
+     * An amount object containing the fee PayPal will charge for this transaction. The field may be omitted if
+     * PayPal will not charge a fee for this transaction.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<PaypalFee> paypalFee() {
+        return (JsonNullable<PaypalFee>) paypalFee;
+    }
+
+    /**
+     * The paysafecard customer reference either provided via the API or otherwise auto-generated by Mollie.
+     */
+    @JsonIgnore
+    public Optional<String> customerReference() {
+        return customerReference;
+    }
+
+    /**
+     * The ID of the terminal device where the payment took place on.
+     */
+    @JsonIgnore
+    public Optional<String> terminalId() {
+        return terminalId;
+    }
+
+    /**
+     * The first 6 digits &amp; last 4 digits of the customer's masked card number.
+     */
+    @JsonIgnore
+    public JsonNullable<String> maskedNumber() {
+        return maskedNumber;
+    }
+
+    /**
+     * The Point of sale receipt object.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Receipt> receipt() {
+        return (Optional<Receipt>) receipt;
+    }
+
+    /**
+     * The creditor identifier indicates who is authorized to execute the payment. In this case, it is a
+     * reference to Mollie.
+     */
+    @JsonIgnore
+    public JsonNullable<String> creditorIdentifier() {
+        return creditorIdentifier;
+    }
+
+    /**
+     * Estimated date the payment is debited from the customer's bank account, in YYYY-MM-DD format.
+     */
+    @JsonIgnore
+    public JsonNullable<LocalDate> dueDate() {
+        return dueDate;
+    }
+
+    /**
+     * Date the payment has been signed by the customer, in YYYY-MM-DD format. Only available if the payment
+     * has been signed.
+     */
+    @JsonIgnore
+    public JsonNullable<LocalDate> signatureDate() {
+        return signatureDate;
+    }
+
+    /**
+     * The official reason why this payment has failed. A detailed description of each reason is available on the
+     * website of the European Payments Council.
+     */
+    @JsonIgnore
+    public JsonNullable<String> bankReasonCode() {
+        return bankReasonCode;
+    }
+
+    /**
+     * A human-friendly description of the failure reason.
+     */
+    @JsonIgnore
+    public JsonNullable<String> bankReason() {
+        return bankReason;
+    }
+
+    /**
+     * The end-to-end identifier you provided in the batch file.
+     */
+    @JsonIgnore
+    public JsonNullable<String> endToEndIdentifier() {
+        return endToEndIdentifier;
+    }
+
+    /**
+     * The mandate reference you provided in the batch file.
+     */
+    @JsonIgnore
+    public JsonNullable<String> mandateReference() {
+        return mandateReference;
+    }
+
+    /**
+     * The batch reference you provided in the batch file.
+     */
+    @JsonIgnore
+    public JsonNullable<String> batchReference() {
+        return batchReference;
+    }
+
+    /**
+     * The file reference you provided in the batch file.
+     */
+    @JsonIgnore
+    public JsonNullable<String> fileReference() {
+        return fileReference;
+    }
+
+    /**
+     * Optional include. If a QR code was requested during payment creation for a QR-compatible payment method,
+     * the QR code details will be available in this object.
+     * 
+     * <p>The QR code can be scanned by the customer to complete the payment on their mobile device. For example,
+     * Bancontact QR payments can be completed by the customer using the Bancontact app.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<QrCode> qrCode() {
+        return (Optional<QrCode>) qrCode;
+    }
+
+    /**
+     * For payments with gift cards: the masked gift card number of the first gift card applied to the payment.
+     */
+    @JsonIgnore
+    public Optional<String> voucherNumber() {
+        return voucherNumber;
+    }
+
+    /**
+     * An array of detail objects for each gift card that was used on this payment, if any.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<Map<String, Object>>> giftcards() {
+        return (Optional<List<Map<String, Object>>>) giftcards;
+    }
+
+    /**
+     * For payments with vouchers: the brand name of the first voucher applied.
+     */
+    @JsonIgnore
+    public Optional<String> issuer() {
+        return issuer;
+    }
+
+    /**
+     * An array of detail objects for each voucher that was used on this payment, if any.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<Map<String, Object>>> vouchers() {
+        return (Optional<List<Map<String, Object>>>) vouchers;
+    }
+
+    /**
+     * An amount object for the amount that remained after all gift cards or vouchers were applied.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<RemainderAmount> remainderAmount() {
+        return (Optional<RemainderAmount>) remainderAmount;
+    }
+
+    /**
+     * The payment method used to pay the remainder amount, after all gift cards or vouchers were applied.
+     */
+    @JsonIgnore
+    public Optional<String> remainderMethod() {
+        return remainderMethod;
+    }
+
+    /**
+     * Optional include. The full payment method details of the remainder payment.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, Object>> remainderDetails() {
+        return (Optional<Map<String, Object>>) remainderDetails;
     }
 
     public static Builder builder() {
@@ -179,7 +1021,7 @@ public class Details {
 
 
     /**
-     * The customer's name. Available for SEPA Direct Debit and PayPal mandates.
+     * The customer's name, if made available by the payment method. For card payments, refer to details.cardHolder.
      */
     public Details withConsumerName(String consumerName) {
         Utils.checkNotNull(consumerName, "consumerName");
@@ -188,7 +1030,7 @@ public class Details {
     }
 
     /**
-     * The customer's name. Available for SEPA Direct Debit and PayPal mandates.
+     * The customer's name, if made available by the payment method. For card payments, refer to details.cardHolder.
      */
     public Details withConsumerName(JsonNullable<String> consumerName) {
         Utils.checkNotNull(consumerName, "consumerName");
@@ -197,7 +1039,14 @@ public class Details {
     }
 
     /**
-     * The customer's IBAN or email address. Available for SEPA Direct Debit and PayPal mandates.
+     * The customer's account reference.
+     * 
+     * <p>For banking-based payment methods — such as iDEAL — this is normally either an IBAN or a domestic bank account
+     * number.
+     * 
+     * <p>For PayPal, the account reference is an email address.
+     * 
+     * <p>For card and Bancontact payments, refer to details.cardNumber.
      */
     public Details withConsumerAccount(String consumerAccount) {
         Utils.checkNotNull(consumerAccount, "consumerAccount");
@@ -206,7 +1055,14 @@ public class Details {
     }
 
     /**
-     * The customer's IBAN or email address. Available for SEPA Direct Debit and PayPal mandates.
+     * The customer's account reference.
+     * 
+     * <p>For banking-based payment methods — such as iDEAL — this is normally either an IBAN or a domestic bank account
+     * number.
+     * 
+     * <p>For PayPal, the account reference is an email address.
+     * 
+     * <p>For card and Bancontact payments, refer to details.cardNumber.
      */
     public Details withConsumerAccount(JsonNullable<String> consumerAccount) {
         Utils.checkNotNull(consumerAccount, "consumerAccount");
@@ -215,7 +1071,7 @@ public class Details {
     }
 
     /**
-     * The BIC of the customer's bank. Available for SEPA Direct Debit mandates.
+     * The BIC of the customer's bank account, if applicable.
      */
     public Details withConsumerBic(String consumerBic) {
         Utils.checkNotNull(consumerBic, "consumerBic");
@@ -224,7 +1080,7 @@ public class Details {
     }
 
     /**
-     * The BIC of the customer's bank. Available for SEPA Direct Debit mandates.
+     * The BIC of the customer's bank account, if applicable.
      */
     public Details withConsumerBic(JsonNullable<String> consumerBic) {
         Utils.checkNotNull(consumerBic, "consumerBic");
@@ -233,25 +1089,28 @@ public class Details {
     }
 
     /**
-     * The card holder's name. Available for card mandates.
+     * For wallet payment methods — such as Apple Pay and PayPal — the shipping address is often already known by the
+     * wallet provider. In these cases the shipping address may be available as a payment detail.
      */
-    public Details withCardHolder(String cardHolder) {
-        Utils.checkNotNull(cardHolder, "cardHolder");
-        this.cardHolder = JsonNullable.of(cardHolder);
+    public Details withShippingAddress(Map<String, Object> shippingAddress) {
+        Utils.checkNotNull(shippingAddress, "shippingAddress");
+        this.shippingAddress = JsonNullable.of(shippingAddress);
         return this;
     }
 
     /**
-     * The card holder's name. Available for card mandates.
+     * For wallet payment methods — such as Apple Pay and PayPal — the shipping address is often already known by the
+     * wallet provider. In these cases the shipping address may be available as a payment detail.
      */
-    public Details withCardHolder(JsonNullable<String> cardHolder) {
-        Utils.checkNotNull(cardHolder, "cardHolder");
-        this.cardHolder = cardHolder;
+    public Details withShippingAddress(JsonNullable<? extends Map<String, Object>> shippingAddress) {
+        Utils.checkNotNull(shippingAddress, "shippingAddress");
+        this.shippingAddress = shippingAddress;
         return this;
     }
 
     /**
-     * The last four digits of the card number. Available for card mandates.
+     * For bancontact, it will be the customer's masked card number. For cards, it will be the last 4-digit of the
+     * PAN. For Point-of-sale, it will be the the last 4 digits of the customer's masked card number.
      */
     public Details withCardNumber(String cardNumber) {
         Utils.checkNotNull(cardNumber, "cardNumber");
@@ -260,7 +1119,8 @@ public class Details {
     }
 
     /**
-     * The last four digits of the card number. Available for card mandates.
+     * For bancontact, it will be the customer's masked card number. For cards, it will be the last 4-digit of the
+     * PAN. For Point-of-sale, it will be the the last 4 digits of the customer's masked card number.
      */
     public Details withCardNumber(JsonNullable<String> cardNumber) {
         Utils.checkNotNull(cardNumber, "cardNumber");
@@ -269,44 +1129,88 @@ public class Details {
     }
 
     /**
-     * The card's expiry date in `YYYY-MM-DD` format. Available for card mandates.
+     * The name of the bank that the customer will need to make the bank transfer payment towards.
      */
-    public Details withCardExpiryDate(String cardExpiryDate) {
-        Utils.checkNotNull(cardExpiryDate, "cardExpiryDate");
-        this.cardExpiryDate = JsonNullable.of(cardExpiryDate);
+    public Details withBankName(String bankName) {
+        Utils.checkNotNull(bankName, "bankName");
+        this.bankName = Optional.ofNullable(bankName);
+        return this;
+    }
+
+
+    /**
+     * The name of the bank that the customer will need to make the bank transfer payment towards.
+     */
+    public Details withBankName(Optional<String> bankName) {
+        Utils.checkNotNull(bankName, "bankName");
+        this.bankName = bankName;
         return this;
     }
 
     /**
-     * The card's expiry date in `YYYY-MM-DD` format. Available for card mandates.
+     * The bank account number the customer will need to make the bank transfer payment towards.
      */
-    public Details withCardExpiryDate(JsonNullable<String> cardExpiryDate) {
-        Utils.checkNotNull(cardExpiryDate, "cardExpiryDate");
-        this.cardExpiryDate = cardExpiryDate;
+    public Details withBankAccount(String bankAccount) {
+        Utils.checkNotNull(bankAccount, "bankAccount");
+        this.bankAccount = Optional.ofNullable(bankAccount);
+        return this;
+    }
+
+
+    /**
+     * The bank account number the customer will need to make the bank transfer payment towards.
+     */
+    public Details withBankAccount(Optional<String> bankAccount) {
+        Utils.checkNotNull(bankAccount, "bankAccount");
+        this.bankAccount = bankAccount;
         return this;
     }
 
     /**
-     * The card's label. Available for card mandates, if the card label could be detected.
+     * The BIC of the bank the customer will need to make the bank transfer payment towards.
      */
-    public Details withCardLabel(CardLabel cardLabel) {
-        Utils.checkNotNull(cardLabel, "cardLabel");
-        this.cardLabel = JsonNullable.of(cardLabel);
+    public Details withBankBic(String bankBic) {
+        Utils.checkNotNull(bankBic, "bankBic");
+        this.bankBic = Optional.ofNullable(bankBic);
+        return this;
+    }
+
+
+    /**
+     * The BIC of the bank the customer will need to make the bank transfer payment towards.
+     */
+    public Details withBankBic(Optional<String> bankBic) {
+        Utils.checkNotNull(bankBic, "bankBic");
+        this.bankBic = bankBic;
         return this;
     }
 
     /**
-     * The card's label. Available for card mandates, if the card label could be detected.
+     * The Mollie-generated reference the customer needs to use when transfering the amount. Do not apply any
+     * formatting here; show it to the customer as-is.
      */
-    public Details withCardLabel(JsonNullable<? extends CardLabel> cardLabel) {
-        Utils.checkNotNull(cardLabel, "cardLabel");
-        this.cardLabel = cardLabel;
+    public Details withTransferReference(String transferReference) {
+        Utils.checkNotNull(transferReference, "transferReference");
+        this.transferReference = JsonNullable.of(transferReference);
         return this;
     }
 
     /**
-     * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used to identify
-     * returning customers.
+     * The Mollie-generated reference the customer needs to use when transfering the amount. Do not apply any
+     * formatting here; show it to the customer as-is.
+     */
+    public Details withTransferReference(JsonNullable<String> transferReference) {
+        Utils.checkNotNull(transferReference, "transferReference");
+        this.transferReference = transferReference;
+        return this;
+    }
+
+    /**
+     * A unique fingerprint for a specific card. Can be used to identify returning customers.
+     * 
+     * <p>In the case of Point-of-sale payments, it's a unique identifier assigned to a cardholder's payment account,
+     * linking multiple transactions from wallets and physical card to a single account, also across payment methods
+     * or when the card is reissued.
      */
     public Details withCardFingerprint(String cardFingerprint) {
         Utils.checkNotNull(cardFingerprint, "cardFingerprint");
@@ -315,12 +1219,766 @@ public class Details {
     }
 
     /**
-     * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used to identify
-     * returning customers.
+     * A unique fingerprint for a specific card. Can be used to identify returning customers.
+     * 
+     * <p>In the case of Point-of-sale payments, it's a unique identifier assigned to a cardholder's payment account,
+     * linking multiple transactions from wallets and physical card to a single account, also across payment methods
+     * or when the card is reissued.
      */
     public Details withCardFingerprint(JsonNullable<String> cardFingerprint) {
         Utils.checkNotNull(cardFingerprint, "cardFingerprint");
         this.cardFingerprint = cardFingerprint;
+        return this;
+    }
+
+    /**
+     * The customer's name as shown on their card.
+     */
+    public Details withCardHolder(String cardHolder) {
+        Utils.checkNotNull(cardHolder, "cardHolder");
+        this.cardHolder = JsonNullable.of(cardHolder);
+        return this;
+    }
+
+    /**
+     * The customer's name as shown on their card.
+     */
+    public Details withCardHolder(JsonNullable<String> cardHolder) {
+        Utils.checkNotNull(cardHolder, "cardHolder");
+        this.cardHolder = cardHolder;
+        return this;
+    }
+
+    /**
+     * The card's target audience, if known.
+     */
+    public Details withCardAudition(CardAudition cardAudition) {
+        Utils.checkNotNull(cardAudition, "cardAudition");
+        this.cardAudition = JsonNullable.of(cardAudition);
+        return this;
+    }
+
+    /**
+     * The card's target audience, if known.
+     */
+    public Details withCardAudition(JsonNullable<? extends CardAudition> cardAudition) {
+        Utils.checkNotNull(cardAudition, "cardAudition");
+        this.cardAudition = cardAudition;
+        return this;
+    }
+
+    /**
+     * The card's label, if known.
+     */
+    public Details withCardLabel(CardLabel cardLabel) {
+        Utils.checkNotNull(cardLabel, "cardLabel");
+        this.cardLabel = JsonNullable.of(cardLabel);
+        return this;
+    }
+
+    /**
+     * The card's label, if known.
+     */
+    public Details withCardLabel(JsonNullable<? extends CardLabel> cardLabel) {
+        Utils.checkNotNull(cardLabel, "cardLabel");
+        this.cardLabel = cardLabel;
+        return this;
+    }
+
+    /**
+     * The ISO 3166-1 alpha-2 country code of the country the card was issued in.
+     */
+    public Details withCardCountryCode(String cardCountryCode) {
+        Utils.checkNotNull(cardCountryCode, "cardCountryCode");
+        this.cardCountryCode = JsonNullable.of(cardCountryCode);
+        return this;
+    }
+
+    /**
+     * The ISO 3166-1 alpha-2 country code of the country the card was issued in.
+     */
+    public Details withCardCountryCode(JsonNullable<String> cardCountryCode) {
+        Utils.checkNotNull(cardCountryCode, "cardCountryCode");
+        this.cardCountryCode = cardCountryCode;
+        return this;
+    }
+
+    /**
+     * The expiry date (MM/YY) of the card as displayed on the card.
+     */
+    public Details withCardExpiryDate(String cardExpiryDate) {
+        Utils.checkNotNull(cardExpiryDate, "cardExpiryDate");
+        this.cardExpiryDate = JsonNullable.of(cardExpiryDate);
+        return this;
+    }
+
+    /**
+     * The expiry date (MM/YY) of the card as displayed on the card.
+     */
+    public Details withCardExpiryDate(JsonNullable<String> cardExpiryDate) {
+        Utils.checkNotNull(cardExpiryDate, "cardExpiryDate");
+        this.cardExpiryDate = cardExpiryDate;
+        return this;
+    }
+
+    /**
+     * The card type.
+     */
+    public Details withCardFunding(CardFunding cardFunding) {
+        Utils.checkNotNull(cardFunding, "cardFunding");
+        this.cardFunding = JsonNullable.of(cardFunding);
+        return this;
+    }
+
+    /**
+     * The card type.
+     */
+    public Details withCardFunding(JsonNullable<? extends CardFunding> cardFunding) {
+        Utils.checkNotNull(cardFunding, "cardFunding");
+        this.cardFunding = cardFunding;
+        return this;
+    }
+
+    /**
+     * The level of security applied during card processing.
+     */
+    public Details withCardSecurity(CardSecurity cardSecurity) {
+        Utils.checkNotNull(cardSecurity, "cardSecurity");
+        this.cardSecurity = JsonNullable.of(cardSecurity);
+        return this;
+    }
+
+    /**
+     * The level of security applied during card processing.
+     */
+    public Details withCardSecurity(JsonNullable<? extends CardSecurity> cardSecurity) {
+        Utils.checkNotNull(cardSecurity, "cardSecurity");
+        this.cardSecurity = cardSecurity;
+        return this;
+    }
+
+    /**
+     * The applicable card fee region.
+     */
+    public Details withFeeRegion(FeeRegion feeRegion) {
+        Utils.checkNotNull(feeRegion, "feeRegion");
+        this.feeRegion = JsonNullable.of(feeRegion);
+        return this;
+    }
+
+    /**
+     * The applicable card fee region.
+     */
+    public Details withFeeRegion(JsonNullable<? extends FeeRegion> feeRegion) {
+        Utils.checkNotNull(feeRegion, "feeRegion");
+        this.feeRegion = feeRegion;
+        return this;
+    }
+
+    /**
+     * The first 6 and last 4 digits of the card number.
+     */
+    public Details withCardMaskedNumber(String cardMaskedNumber) {
+        Utils.checkNotNull(cardMaskedNumber, "cardMaskedNumber");
+        this.cardMaskedNumber = JsonNullable.of(cardMaskedNumber);
+        return this;
+    }
+
+    /**
+     * The first 6 and last 4 digits of the card number.
+     */
+    public Details withCardMaskedNumber(JsonNullable<String> cardMaskedNumber) {
+        Utils.checkNotNull(cardMaskedNumber, "cardMaskedNumber");
+        this.cardMaskedNumber = cardMaskedNumber;
+        return this;
+    }
+
+    /**
+     * The outcome of authentication attempted on transactions enforced by 3DS (ie valid only for oneoff and first).
+     */
+    public Details withCard3dsEci(String card3dsEci) {
+        Utils.checkNotNull(card3dsEci, "card3dsEci");
+        this.card3dsEci = JsonNullable.of(card3dsEci);
+        return this;
+    }
+
+    /**
+     * The outcome of authentication attempted on transactions enforced by 3DS (ie valid only for oneoff and first).
+     */
+    public Details withCard3dsEci(JsonNullable<String> card3dsEci) {
+        Utils.checkNotNull(card3dsEci, "card3dsEci");
+        this.card3dsEci = card3dsEci;
+        return this;
+    }
+
+    /**
+     * The first 6 digit of the card bank identification number.
+     */
+    public Details withCardBin(String cardBin) {
+        Utils.checkNotNull(cardBin, "cardBin");
+        this.cardBin = JsonNullable.of(cardBin);
+        return this;
+    }
+
+    /**
+     * The first 6 digit of the card bank identification number.
+     */
+    public Details withCardBin(JsonNullable<String> cardBin) {
+        Utils.checkNotNull(cardBin, "cardBin");
+        this.cardBin = cardBin;
+        return this;
+    }
+
+    /**
+     * The issuer of the Card.
+     */
+    public Details withCardIssuer(String cardIssuer) {
+        Utils.checkNotNull(cardIssuer, "cardIssuer");
+        this.cardIssuer = JsonNullable.of(cardIssuer);
+        return this;
+    }
+
+    /**
+     * The issuer of the Card.
+     */
+    public Details withCardIssuer(JsonNullable<String> cardIssuer) {
+        Utils.checkNotNull(cardIssuer, "cardIssuer");
+        this.cardIssuer = cardIssuer;
+        return this;
+    }
+
+    /**
+     * A failure code to help understand why the payment failed.
+     */
+    public Details withFailureReason(FailureReason failureReason) {
+        Utils.checkNotNull(failureReason, "failureReason");
+        this.failureReason = JsonNullable.of(failureReason);
+        return this;
+    }
+
+    /**
+     * A failure code to help understand why the payment failed.
+     */
+    public Details withFailureReason(JsonNullable<? extends FailureReason> failureReason) {
+        Utils.checkNotNull(failureReason, "failureReason");
+        this.failureReason = failureReason;
+        return this;
+    }
+
+    /**
+     * A human-friendly failure message that can be shown to the customer. The message is translated in accordance
+     * with the payment's locale setting.
+     */
+    public Details withFailureMessage(String failureMessage) {
+        Utils.checkNotNull(failureMessage, "failureMessage");
+        this.failureMessage = JsonNullable.of(failureMessage);
+        return this;
+    }
+
+    /**
+     * A human-friendly failure message that can be shown to the customer. The message is translated in accordance
+     * with the payment's locale setting.
+     */
+    public Details withFailureMessage(JsonNullable<String> failureMessage) {
+        Utils.checkNotNull(failureMessage, "failureMessage");
+        this.failureMessage = failureMessage;
+        return this;
+    }
+
+    /**
+     * The wallet used when creating the payment.
+     */
+    public Details withWallet(Wallet wallet) {
+        Utils.checkNotNull(wallet, "wallet");
+        this.wallet = JsonNullable.of(wallet);
+        return this;
+    }
+
+    /**
+     * The wallet used when creating the payment.
+     */
+    public Details withWallet(JsonNullable<? extends Wallet> wallet) {
+        Utils.checkNotNull(wallet, "wallet");
+        this.wallet = wallet;
+        return this;
+    }
+
+    /**
+     * PayPal's reference for the payment.
+     */
+    public Details withPaypalReference(String paypalReference) {
+        Utils.checkNotNull(paypalReference, "paypalReference");
+        this.paypalReference = JsonNullable.of(paypalReference);
+        return this;
+    }
+
+    /**
+     * PayPal's reference for the payment.
+     */
+    public Details withPaypalReference(JsonNullable<String> paypalReference) {
+        Utils.checkNotNull(paypalReference, "paypalReference");
+        this.paypalReference = paypalReference;
+        return this;
+    }
+
+    /**
+     * ID of the customer's PayPal account.
+     */
+    public Details withPaypalPayerId(String paypalPayerId) {
+        Utils.checkNotNull(paypalPayerId, "paypalPayerId");
+        this.paypalPayerId = JsonNullable.of(paypalPayerId);
+        return this;
+    }
+
+    /**
+     * ID of the customer's PayPal account.
+     */
+    public Details withPaypalPayerId(JsonNullable<String> paypalPayerId) {
+        Utils.checkNotNull(paypalPayerId, "paypalPayerId");
+        this.paypalPayerId = paypalPayerId;
+        return this;
+    }
+
+    /**
+     * Indicates to what extent the payment is eligible for PayPal's Seller Protection. Only available for PayPal
+     * payments, and if the information is made available by PayPal.
+     */
+    public Details withSellerProtection(SellerProtection sellerProtection) {
+        Utils.checkNotNull(sellerProtection, "sellerProtection");
+        this.sellerProtection = JsonNullable.of(sellerProtection);
+        return this;
+    }
+
+    /**
+     * Indicates to what extent the payment is eligible for PayPal's Seller Protection. Only available for PayPal
+     * payments, and if the information is made available by PayPal.
+     */
+    public Details withSellerProtection(JsonNullable<? extends SellerProtection> sellerProtection) {
+        Utils.checkNotNull(sellerProtection, "sellerProtection");
+        this.sellerProtection = sellerProtection;
+        return this;
+    }
+
+    /**
+     * An amount object containing the fee PayPal will charge for this transaction. The field may be omitted if
+     * PayPal will not charge a fee for this transaction.
+     */
+    public Details withPaypalFee(PaypalFee paypalFee) {
+        Utils.checkNotNull(paypalFee, "paypalFee");
+        this.paypalFee = JsonNullable.of(paypalFee);
+        return this;
+    }
+
+    /**
+     * An amount object containing the fee PayPal will charge for this transaction. The field may be omitted if
+     * PayPal will not charge a fee for this transaction.
+     */
+    public Details withPaypalFee(JsonNullable<? extends PaypalFee> paypalFee) {
+        Utils.checkNotNull(paypalFee, "paypalFee");
+        this.paypalFee = paypalFee;
+        return this;
+    }
+
+    /**
+     * The paysafecard customer reference either provided via the API or otherwise auto-generated by Mollie.
+     */
+    public Details withCustomerReference(String customerReference) {
+        Utils.checkNotNull(customerReference, "customerReference");
+        this.customerReference = Optional.ofNullable(customerReference);
+        return this;
+    }
+
+
+    /**
+     * The paysafecard customer reference either provided via the API or otherwise auto-generated by Mollie.
+     */
+    public Details withCustomerReference(Optional<String> customerReference) {
+        Utils.checkNotNull(customerReference, "customerReference");
+        this.customerReference = customerReference;
+        return this;
+    }
+
+    /**
+     * The ID of the terminal device where the payment took place on.
+     */
+    public Details withTerminalId(String terminalId) {
+        Utils.checkNotNull(terminalId, "terminalId");
+        this.terminalId = Optional.ofNullable(terminalId);
+        return this;
+    }
+
+
+    /**
+     * The ID of the terminal device where the payment took place on.
+     */
+    public Details withTerminalId(Optional<String> terminalId) {
+        Utils.checkNotNull(terminalId, "terminalId");
+        this.terminalId = terminalId;
+        return this;
+    }
+
+    /**
+     * The first 6 digits &amp; last 4 digits of the customer's masked card number.
+     */
+    public Details withMaskedNumber(String maskedNumber) {
+        Utils.checkNotNull(maskedNumber, "maskedNumber");
+        this.maskedNumber = JsonNullable.of(maskedNumber);
+        return this;
+    }
+
+    /**
+     * The first 6 digits &amp; last 4 digits of the customer's masked card number.
+     */
+    public Details withMaskedNumber(JsonNullable<String> maskedNumber) {
+        Utils.checkNotNull(maskedNumber, "maskedNumber");
+        this.maskedNumber = maskedNumber;
+        return this;
+    }
+
+    /**
+     * The Point of sale receipt object.
+     */
+    public Details withReceipt(Receipt receipt) {
+        Utils.checkNotNull(receipt, "receipt");
+        this.receipt = Optional.ofNullable(receipt);
+        return this;
+    }
+
+
+    /**
+     * The Point of sale receipt object.
+     */
+    public Details withReceipt(Optional<? extends Receipt> receipt) {
+        Utils.checkNotNull(receipt, "receipt");
+        this.receipt = receipt;
+        return this;
+    }
+
+    /**
+     * The creditor identifier indicates who is authorized to execute the payment. In this case, it is a
+     * reference to Mollie.
+     */
+    public Details withCreditorIdentifier(String creditorIdentifier) {
+        Utils.checkNotNull(creditorIdentifier, "creditorIdentifier");
+        this.creditorIdentifier = JsonNullable.of(creditorIdentifier);
+        return this;
+    }
+
+    /**
+     * The creditor identifier indicates who is authorized to execute the payment. In this case, it is a
+     * reference to Mollie.
+     */
+    public Details withCreditorIdentifier(JsonNullable<String> creditorIdentifier) {
+        Utils.checkNotNull(creditorIdentifier, "creditorIdentifier");
+        this.creditorIdentifier = creditorIdentifier;
+        return this;
+    }
+
+    /**
+     * Estimated date the payment is debited from the customer's bank account, in YYYY-MM-DD format.
+     */
+    public Details withDueDate(LocalDate dueDate) {
+        Utils.checkNotNull(dueDate, "dueDate");
+        this.dueDate = JsonNullable.of(dueDate);
+        return this;
+    }
+
+    /**
+     * Estimated date the payment is debited from the customer's bank account, in YYYY-MM-DD format.
+     */
+    public Details withDueDate(JsonNullable<LocalDate> dueDate) {
+        Utils.checkNotNull(dueDate, "dueDate");
+        this.dueDate = dueDate;
+        return this;
+    }
+
+    /**
+     * Date the payment has been signed by the customer, in YYYY-MM-DD format. Only available if the payment
+     * has been signed.
+     */
+    public Details withSignatureDate(LocalDate signatureDate) {
+        Utils.checkNotNull(signatureDate, "signatureDate");
+        this.signatureDate = JsonNullable.of(signatureDate);
+        return this;
+    }
+
+    /**
+     * Date the payment has been signed by the customer, in YYYY-MM-DD format. Only available if the payment
+     * has been signed.
+     */
+    public Details withSignatureDate(JsonNullable<LocalDate> signatureDate) {
+        Utils.checkNotNull(signatureDate, "signatureDate");
+        this.signatureDate = signatureDate;
+        return this;
+    }
+
+    /**
+     * The official reason why this payment has failed. A detailed description of each reason is available on the
+     * website of the European Payments Council.
+     */
+    public Details withBankReasonCode(String bankReasonCode) {
+        Utils.checkNotNull(bankReasonCode, "bankReasonCode");
+        this.bankReasonCode = JsonNullable.of(bankReasonCode);
+        return this;
+    }
+
+    /**
+     * The official reason why this payment has failed. A detailed description of each reason is available on the
+     * website of the European Payments Council.
+     */
+    public Details withBankReasonCode(JsonNullable<String> bankReasonCode) {
+        Utils.checkNotNull(bankReasonCode, "bankReasonCode");
+        this.bankReasonCode = bankReasonCode;
+        return this;
+    }
+
+    /**
+     * A human-friendly description of the failure reason.
+     */
+    public Details withBankReason(String bankReason) {
+        Utils.checkNotNull(bankReason, "bankReason");
+        this.bankReason = JsonNullable.of(bankReason);
+        return this;
+    }
+
+    /**
+     * A human-friendly description of the failure reason.
+     */
+    public Details withBankReason(JsonNullable<String> bankReason) {
+        Utils.checkNotNull(bankReason, "bankReason");
+        this.bankReason = bankReason;
+        return this;
+    }
+
+    /**
+     * The end-to-end identifier you provided in the batch file.
+     */
+    public Details withEndToEndIdentifier(String endToEndIdentifier) {
+        Utils.checkNotNull(endToEndIdentifier, "endToEndIdentifier");
+        this.endToEndIdentifier = JsonNullable.of(endToEndIdentifier);
+        return this;
+    }
+
+    /**
+     * The end-to-end identifier you provided in the batch file.
+     */
+    public Details withEndToEndIdentifier(JsonNullable<String> endToEndIdentifier) {
+        Utils.checkNotNull(endToEndIdentifier, "endToEndIdentifier");
+        this.endToEndIdentifier = endToEndIdentifier;
+        return this;
+    }
+
+    /**
+     * The mandate reference you provided in the batch file.
+     */
+    public Details withMandateReference(String mandateReference) {
+        Utils.checkNotNull(mandateReference, "mandateReference");
+        this.mandateReference = JsonNullable.of(mandateReference);
+        return this;
+    }
+
+    /**
+     * The mandate reference you provided in the batch file.
+     */
+    public Details withMandateReference(JsonNullable<String> mandateReference) {
+        Utils.checkNotNull(mandateReference, "mandateReference");
+        this.mandateReference = mandateReference;
+        return this;
+    }
+
+    /**
+     * The batch reference you provided in the batch file.
+     */
+    public Details withBatchReference(String batchReference) {
+        Utils.checkNotNull(batchReference, "batchReference");
+        this.batchReference = JsonNullable.of(batchReference);
+        return this;
+    }
+
+    /**
+     * The batch reference you provided in the batch file.
+     */
+    public Details withBatchReference(JsonNullable<String> batchReference) {
+        Utils.checkNotNull(batchReference, "batchReference");
+        this.batchReference = batchReference;
+        return this;
+    }
+
+    /**
+     * The file reference you provided in the batch file.
+     */
+    public Details withFileReference(String fileReference) {
+        Utils.checkNotNull(fileReference, "fileReference");
+        this.fileReference = JsonNullable.of(fileReference);
+        return this;
+    }
+
+    /**
+     * The file reference you provided in the batch file.
+     */
+    public Details withFileReference(JsonNullable<String> fileReference) {
+        Utils.checkNotNull(fileReference, "fileReference");
+        this.fileReference = fileReference;
+        return this;
+    }
+
+    /**
+     * Optional include. If a QR code was requested during payment creation for a QR-compatible payment method,
+     * the QR code details will be available in this object.
+     * 
+     * <p>The QR code can be scanned by the customer to complete the payment on their mobile device. For example,
+     * Bancontact QR payments can be completed by the customer using the Bancontact app.
+     */
+    public Details withQrCode(QrCode qrCode) {
+        Utils.checkNotNull(qrCode, "qrCode");
+        this.qrCode = Optional.ofNullable(qrCode);
+        return this;
+    }
+
+
+    /**
+     * Optional include. If a QR code was requested during payment creation for a QR-compatible payment method,
+     * the QR code details will be available in this object.
+     * 
+     * <p>The QR code can be scanned by the customer to complete the payment on their mobile device. For example,
+     * Bancontact QR payments can be completed by the customer using the Bancontact app.
+     */
+    public Details withQrCode(Optional<? extends QrCode> qrCode) {
+        Utils.checkNotNull(qrCode, "qrCode");
+        this.qrCode = qrCode;
+        return this;
+    }
+
+    /**
+     * For payments with gift cards: the masked gift card number of the first gift card applied to the payment.
+     */
+    public Details withVoucherNumber(String voucherNumber) {
+        Utils.checkNotNull(voucherNumber, "voucherNumber");
+        this.voucherNumber = Optional.ofNullable(voucherNumber);
+        return this;
+    }
+
+
+    /**
+     * For payments with gift cards: the masked gift card number of the first gift card applied to the payment.
+     */
+    public Details withVoucherNumber(Optional<String> voucherNumber) {
+        Utils.checkNotNull(voucherNumber, "voucherNumber");
+        this.voucherNumber = voucherNumber;
+        return this;
+    }
+
+    /**
+     * An array of detail objects for each gift card that was used on this payment, if any.
+     */
+    public Details withGiftcards(List<Map<String, Object>> giftcards) {
+        Utils.checkNotNull(giftcards, "giftcards");
+        this.giftcards = Optional.ofNullable(giftcards);
+        return this;
+    }
+
+
+    /**
+     * An array of detail objects for each gift card that was used on this payment, if any.
+     */
+    public Details withGiftcards(Optional<? extends List<Map<String, Object>>> giftcards) {
+        Utils.checkNotNull(giftcards, "giftcards");
+        this.giftcards = giftcards;
+        return this;
+    }
+
+    /**
+     * For payments with vouchers: the brand name of the first voucher applied.
+     */
+    public Details withIssuer(String issuer) {
+        Utils.checkNotNull(issuer, "issuer");
+        this.issuer = Optional.ofNullable(issuer);
+        return this;
+    }
+
+
+    /**
+     * For payments with vouchers: the brand name of the first voucher applied.
+     */
+    public Details withIssuer(Optional<String> issuer) {
+        Utils.checkNotNull(issuer, "issuer");
+        this.issuer = issuer;
+        return this;
+    }
+
+    /**
+     * An array of detail objects for each voucher that was used on this payment, if any.
+     */
+    public Details withVouchers(List<Map<String, Object>> vouchers) {
+        Utils.checkNotNull(vouchers, "vouchers");
+        this.vouchers = Optional.ofNullable(vouchers);
+        return this;
+    }
+
+
+    /**
+     * An array of detail objects for each voucher that was used on this payment, if any.
+     */
+    public Details withVouchers(Optional<? extends List<Map<String, Object>>> vouchers) {
+        Utils.checkNotNull(vouchers, "vouchers");
+        this.vouchers = vouchers;
+        return this;
+    }
+
+    /**
+     * An amount object for the amount that remained after all gift cards or vouchers were applied.
+     */
+    public Details withRemainderAmount(RemainderAmount remainderAmount) {
+        Utils.checkNotNull(remainderAmount, "remainderAmount");
+        this.remainderAmount = Optional.ofNullable(remainderAmount);
+        return this;
+    }
+
+
+    /**
+     * An amount object for the amount that remained after all gift cards or vouchers were applied.
+     */
+    public Details withRemainderAmount(Optional<? extends RemainderAmount> remainderAmount) {
+        Utils.checkNotNull(remainderAmount, "remainderAmount");
+        this.remainderAmount = remainderAmount;
+        return this;
+    }
+
+    /**
+     * The payment method used to pay the remainder amount, after all gift cards or vouchers were applied.
+     */
+    public Details withRemainderMethod(String remainderMethod) {
+        Utils.checkNotNull(remainderMethod, "remainderMethod");
+        this.remainderMethod = Optional.ofNullable(remainderMethod);
+        return this;
+    }
+
+
+    /**
+     * The payment method used to pay the remainder amount, after all gift cards or vouchers were applied.
+     */
+    public Details withRemainderMethod(Optional<String> remainderMethod) {
+        Utils.checkNotNull(remainderMethod, "remainderMethod");
+        this.remainderMethod = remainderMethod;
+        return this;
+    }
+
+    /**
+     * Optional include. The full payment method details of the remainder payment.
+     */
+    public Details withRemainderDetails(Map<String, Object> remainderDetails) {
+        Utils.checkNotNull(remainderDetails, "remainderDetails");
+        this.remainderDetails = Optional.ofNullable(remainderDetails);
+        return this;
+    }
+
+
+    /**
+     * Optional include. The full payment method details of the remainder payment.
+     */
+    public Details withRemainderDetails(Optional<? extends Map<String, Object>> remainderDetails) {
+        Utils.checkNotNull(remainderDetails, "remainderDetails");
+        this.remainderDetails = remainderDetails;
         return this;
     }
 
@@ -337,19 +1995,75 @@ public class Details {
             Utils.enhancedDeepEquals(this.consumerName, other.consumerName) &&
             Utils.enhancedDeepEquals(this.consumerAccount, other.consumerAccount) &&
             Utils.enhancedDeepEquals(this.consumerBic, other.consumerBic) &&
-            Utils.enhancedDeepEquals(this.cardHolder, other.cardHolder) &&
+            Utils.enhancedDeepEquals(this.shippingAddress, other.shippingAddress) &&
             Utils.enhancedDeepEquals(this.cardNumber, other.cardNumber) &&
-            Utils.enhancedDeepEquals(this.cardExpiryDate, other.cardExpiryDate) &&
+            Utils.enhancedDeepEquals(this.bankName, other.bankName) &&
+            Utils.enhancedDeepEquals(this.bankAccount, other.bankAccount) &&
+            Utils.enhancedDeepEquals(this.bankBic, other.bankBic) &&
+            Utils.enhancedDeepEquals(this.transferReference, other.transferReference) &&
+            Utils.enhancedDeepEquals(this.cardFingerprint, other.cardFingerprint) &&
+            Utils.enhancedDeepEquals(this.cardHolder, other.cardHolder) &&
+            Utils.enhancedDeepEquals(this.cardAudition, other.cardAudition) &&
             Utils.enhancedDeepEquals(this.cardLabel, other.cardLabel) &&
-            Utils.enhancedDeepEquals(this.cardFingerprint, other.cardFingerprint);
+            Utils.enhancedDeepEquals(this.cardCountryCode, other.cardCountryCode) &&
+            Utils.enhancedDeepEquals(this.cardExpiryDate, other.cardExpiryDate) &&
+            Utils.enhancedDeepEquals(this.cardFunding, other.cardFunding) &&
+            Utils.enhancedDeepEquals(this.cardSecurity, other.cardSecurity) &&
+            Utils.enhancedDeepEquals(this.feeRegion, other.feeRegion) &&
+            Utils.enhancedDeepEquals(this.cardMaskedNumber, other.cardMaskedNumber) &&
+            Utils.enhancedDeepEquals(this.card3dsEci, other.card3dsEci) &&
+            Utils.enhancedDeepEquals(this.cardBin, other.cardBin) &&
+            Utils.enhancedDeepEquals(this.cardIssuer, other.cardIssuer) &&
+            Utils.enhancedDeepEquals(this.failureReason, other.failureReason) &&
+            Utils.enhancedDeepEquals(this.failureMessage, other.failureMessage) &&
+            Utils.enhancedDeepEquals(this.wallet, other.wallet) &&
+            Utils.enhancedDeepEquals(this.paypalReference, other.paypalReference) &&
+            Utils.enhancedDeepEquals(this.paypalPayerId, other.paypalPayerId) &&
+            Utils.enhancedDeepEquals(this.sellerProtection, other.sellerProtection) &&
+            Utils.enhancedDeepEquals(this.paypalFee, other.paypalFee) &&
+            Utils.enhancedDeepEquals(this.customerReference, other.customerReference) &&
+            Utils.enhancedDeepEquals(this.terminalId, other.terminalId) &&
+            Utils.enhancedDeepEquals(this.maskedNumber, other.maskedNumber) &&
+            Utils.enhancedDeepEquals(this.receipt, other.receipt) &&
+            Utils.enhancedDeepEquals(this.creditorIdentifier, other.creditorIdentifier) &&
+            Utils.enhancedDeepEquals(this.dueDate, other.dueDate) &&
+            Utils.enhancedDeepEquals(this.signatureDate, other.signatureDate) &&
+            Utils.enhancedDeepEquals(this.bankReasonCode, other.bankReasonCode) &&
+            Utils.enhancedDeepEquals(this.bankReason, other.bankReason) &&
+            Utils.enhancedDeepEquals(this.endToEndIdentifier, other.endToEndIdentifier) &&
+            Utils.enhancedDeepEquals(this.mandateReference, other.mandateReference) &&
+            Utils.enhancedDeepEquals(this.batchReference, other.batchReference) &&
+            Utils.enhancedDeepEquals(this.fileReference, other.fileReference) &&
+            Utils.enhancedDeepEquals(this.qrCode, other.qrCode) &&
+            Utils.enhancedDeepEquals(this.voucherNumber, other.voucherNumber) &&
+            Utils.enhancedDeepEquals(this.giftcards, other.giftcards) &&
+            Utils.enhancedDeepEquals(this.issuer, other.issuer) &&
+            Utils.enhancedDeepEquals(this.vouchers, other.vouchers) &&
+            Utils.enhancedDeepEquals(this.remainderAmount, other.remainderAmount) &&
+            Utils.enhancedDeepEquals(this.remainderMethod, other.remainderMethod) &&
+            Utils.enhancedDeepEquals(this.remainderDetails, other.remainderDetails);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             consumerName, consumerAccount, consumerBic,
-            cardHolder, cardNumber, cardExpiryDate,
-            cardLabel, cardFingerprint);
+            shippingAddress, cardNumber, bankName,
+            bankAccount, bankBic, transferReference,
+            cardFingerprint, cardHolder, cardAudition,
+            cardLabel, cardCountryCode, cardExpiryDate,
+            cardFunding, cardSecurity, feeRegion,
+            cardMaskedNumber, card3dsEci, cardBin,
+            cardIssuer, failureReason, failureMessage,
+            wallet, paypalReference, paypalPayerId,
+            sellerProtection, paypalFee, customerReference,
+            terminalId, maskedNumber, receipt,
+            creditorIdentifier, dueDate, signatureDate,
+            bankReasonCode, bankReason, endToEndIdentifier,
+            mandateReference, batchReference, fileReference,
+            qrCode, voucherNumber, giftcards,
+            issuer, vouchers, remainderAmount,
+            remainderMethod, remainderDetails);
     }
     
     @Override
@@ -358,11 +2072,53 @@ public class Details {
                 "consumerName", consumerName,
                 "consumerAccount", consumerAccount,
                 "consumerBic", consumerBic,
-                "cardHolder", cardHolder,
+                "shippingAddress", shippingAddress,
                 "cardNumber", cardNumber,
-                "cardExpiryDate", cardExpiryDate,
+                "bankName", bankName,
+                "bankAccount", bankAccount,
+                "bankBic", bankBic,
+                "transferReference", transferReference,
+                "cardFingerprint", cardFingerprint,
+                "cardHolder", cardHolder,
+                "cardAudition", cardAudition,
                 "cardLabel", cardLabel,
-                "cardFingerprint", cardFingerprint);
+                "cardCountryCode", cardCountryCode,
+                "cardExpiryDate", cardExpiryDate,
+                "cardFunding", cardFunding,
+                "cardSecurity", cardSecurity,
+                "feeRegion", feeRegion,
+                "cardMaskedNumber", cardMaskedNumber,
+                "card3dsEci", card3dsEci,
+                "cardBin", cardBin,
+                "cardIssuer", cardIssuer,
+                "failureReason", failureReason,
+                "failureMessage", failureMessage,
+                "wallet", wallet,
+                "paypalReference", paypalReference,
+                "paypalPayerId", paypalPayerId,
+                "sellerProtection", sellerProtection,
+                "paypalFee", paypalFee,
+                "customerReference", customerReference,
+                "terminalId", terminalId,
+                "maskedNumber", maskedNumber,
+                "receipt", receipt,
+                "creditorIdentifier", creditorIdentifier,
+                "dueDate", dueDate,
+                "signatureDate", signatureDate,
+                "bankReasonCode", bankReasonCode,
+                "bankReason", bankReason,
+                "endToEndIdentifier", endToEndIdentifier,
+                "mandateReference", mandateReference,
+                "batchReference", batchReference,
+                "fileReference", fileReference,
+                "qrCode", qrCode,
+                "voucherNumber", voucherNumber,
+                "giftcards", giftcards,
+                "issuer", issuer,
+                "vouchers", vouchers,
+                "remainderAmount", remainderAmount,
+                "remainderMethod", remainderMethod,
+                "remainderDetails", remainderDetails);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -374,15 +2130,99 @@ public class Details {
 
         private JsonNullable<String> consumerBic = JsonNullable.undefined();
 
-        private JsonNullable<String> cardHolder = JsonNullable.undefined();
+        private JsonNullable<? extends Map<String, Object>> shippingAddress = JsonNullable.undefined();
 
         private JsonNullable<String> cardNumber = JsonNullable.undefined();
 
-        private JsonNullable<String> cardExpiryDate = JsonNullable.undefined();
+        private Optional<String> bankName = Optional.empty();
+
+        private Optional<String> bankAccount = Optional.empty();
+
+        private Optional<String> bankBic = Optional.empty();
+
+        private JsonNullable<String> transferReference = JsonNullable.undefined();
+
+        private JsonNullable<String> cardFingerprint = JsonNullable.undefined();
+
+        private JsonNullable<String> cardHolder = JsonNullable.undefined();
+
+        private JsonNullable<? extends CardAudition> cardAudition = JsonNullable.undefined();
 
         private JsonNullable<? extends CardLabel> cardLabel = JsonNullable.undefined();
 
-        private JsonNullable<String> cardFingerprint = JsonNullable.undefined();
+        private JsonNullable<String> cardCountryCode = JsonNullable.undefined();
+
+        private JsonNullable<String> cardExpiryDate = JsonNullable.undefined();
+
+        private JsonNullable<? extends CardFunding> cardFunding = JsonNullable.undefined();
+
+        private JsonNullable<? extends CardSecurity> cardSecurity = JsonNullable.undefined();
+
+        private JsonNullable<? extends FeeRegion> feeRegion = JsonNullable.undefined();
+
+        private JsonNullable<String> cardMaskedNumber = JsonNullable.undefined();
+
+        private JsonNullable<String> card3dsEci = JsonNullable.undefined();
+
+        private JsonNullable<String> cardBin = JsonNullable.undefined();
+
+        private JsonNullable<String> cardIssuer = JsonNullable.undefined();
+
+        private JsonNullable<? extends FailureReason> failureReason = JsonNullable.undefined();
+
+        private JsonNullable<String> failureMessage = JsonNullable.undefined();
+
+        private JsonNullable<? extends Wallet> wallet = JsonNullable.undefined();
+
+        private JsonNullable<String> paypalReference = JsonNullable.undefined();
+
+        private JsonNullable<String> paypalPayerId = JsonNullable.undefined();
+
+        private JsonNullable<? extends SellerProtection> sellerProtection = JsonNullable.undefined();
+
+        private JsonNullable<? extends PaypalFee> paypalFee = JsonNullable.undefined();
+
+        private Optional<String> customerReference = Optional.empty();
+
+        private Optional<String> terminalId = Optional.empty();
+
+        private JsonNullable<String> maskedNumber = JsonNullable.undefined();
+
+        private Optional<? extends Receipt> receipt = Optional.empty();
+
+        private JsonNullable<String> creditorIdentifier = JsonNullable.undefined();
+
+        private JsonNullable<LocalDate> dueDate = JsonNullable.undefined();
+
+        private JsonNullable<LocalDate> signatureDate = JsonNullable.undefined();
+
+        private JsonNullable<String> bankReasonCode = JsonNullable.undefined();
+
+        private JsonNullable<String> bankReason = JsonNullable.undefined();
+
+        private JsonNullable<String> endToEndIdentifier = JsonNullable.undefined();
+
+        private JsonNullable<String> mandateReference = JsonNullable.undefined();
+
+        private JsonNullable<String> batchReference = JsonNullable.undefined();
+
+        private JsonNullable<String> fileReference = JsonNullable.undefined();
+
+        private Optional<? extends QrCode> qrCode = Optional.empty();
+
+        private Optional<String> voucherNumber = Optional.empty();
+
+        private Optional<? extends List<Map<String, Object>>> giftcards = Optional.empty();
+
+        private Optional<String> issuer = Optional.empty();
+
+        private Optional<? extends List<Map<String, Object>>> vouchers = Optional.empty();
+
+        private Optional<? extends RemainderAmount> remainderAmount = Optional.empty();
+
+        private Optional<String> remainderMethod = Optional.empty();
+
+        private Optional<? extends Map<String, Object>> remainderDetails = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -390,7 +2230,7 @@ public class Details {
 
 
         /**
-         * The customer's name. Available for SEPA Direct Debit and PayPal mandates.
+         * The customer's name, if made available by the payment method. For card payments, refer to details.cardHolder.
          */
         public Builder consumerName(String consumerName) {
             Utils.checkNotNull(consumerName, "consumerName");
@@ -399,7 +2239,7 @@ public class Details {
         }
 
         /**
-         * The customer's name. Available for SEPA Direct Debit and PayPal mandates.
+         * The customer's name, if made available by the payment method. For card payments, refer to details.cardHolder.
          */
         public Builder consumerName(JsonNullable<String> consumerName) {
             Utils.checkNotNull(consumerName, "consumerName");
@@ -409,7 +2249,14 @@ public class Details {
 
 
         /**
-         * The customer's IBAN or email address. Available for SEPA Direct Debit and PayPal mandates.
+         * The customer's account reference.
+         * 
+         * <p>For banking-based payment methods — such as iDEAL — this is normally either an IBAN or a domestic bank account
+         * number.
+         * 
+         * <p>For PayPal, the account reference is an email address.
+         * 
+         * <p>For card and Bancontact payments, refer to details.cardNumber.
          */
         public Builder consumerAccount(String consumerAccount) {
             Utils.checkNotNull(consumerAccount, "consumerAccount");
@@ -418,7 +2265,14 @@ public class Details {
         }
 
         /**
-         * The customer's IBAN or email address. Available for SEPA Direct Debit and PayPal mandates.
+         * The customer's account reference.
+         * 
+         * <p>For banking-based payment methods — such as iDEAL — this is normally either an IBAN or a domestic bank account
+         * number.
+         * 
+         * <p>For PayPal, the account reference is an email address.
+         * 
+         * <p>For card and Bancontact payments, refer to details.cardNumber.
          */
         public Builder consumerAccount(JsonNullable<String> consumerAccount) {
             Utils.checkNotNull(consumerAccount, "consumerAccount");
@@ -428,7 +2282,7 @@ public class Details {
 
 
         /**
-         * The BIC of the customer's bank. Available for SEPA Direct Debit mandates.
+         * The BIC of the customer's bank account, if applicable.
          */
         public Builder consumerBic(String consumerBic) {
             Utils.checkNotNull(consumerBic, "consumerBic");
@@ -437,7 +2291,7 @@ public class Details {
         }
 
         /**
-         * The BIC of the customer's bank. Available for SEPA Direct Debit mandates.
+         * The BIC of the customer's bank account, if applicable.
          */
         public Builder consumerBic(JsonNullable<String> consumerBic) {
             Utils.checkNotNull(consumerBic, "consumerBic");
@@ -447,26 +2301,29 @@ public class Details {
 
 
         /**
-         * The card holder's name. Available for card mandates.
+         * For wallet payment methods — such as Apple Pay and PayPal — the shipping address is often already known by the
+         * wallet provider. In these cases the shipping address may be available as a payment detail.
          */
-        public Builder cardHolder(String cardHolder) {
-            Utils.checkNotNull(cardHolder, "cardHolder");
-            this.cardHolder = JsonNullable.of(cardHolder);
+        public Builder shippingAddress(Map<String, Object> shippingAddress) {
+            Utils.checkNotNull(shippingAddress, "shippingAddress");
+            this.shippingAddress = JsonNullable.of(shippingAddress);
             return this;
         }
 
         /**
-         * The card holder's name. Available for card mandates.
+         * For wallet payment methods — such as Apple Pay and PayPal — the shipping address is often already known by the
+         * wallet provider. In these cases the shipping address may be available as a payment detail.
          */
-        public Builder cardHolder(JsonNullable<String> cardHolder) {
-            Utils.checkNotNull(cardHolder, "cardHolder");
-            this.cardHolder = cardHolder;
+        public Builder shippingAddress(JsonNullable<? extends Map<String, Object>> shippingAddress) {
+            Utils.checkNotNull(shippingAddress, "shippingAddress");
+            this.shippingAddress = shippingAddress;
             return this;
         }
 
 
         /**
-         * The last four digits of the card number. Available for card mandates.
+         * For bancontact, it will be the customer's masked card number. For cards, it will be the last 4-digit of the
+         * PAN. For Point-of-sale, it will be the the last 4 digits of the customer's masked card number.
          */
         public Builder cardNumber(String cardNumber) {
             Utils.checkNotNull(cardNumber, "cardNumber");
@@ -475,7 +2332,8 @@ public class Details {
         }
 
         /**
-         * The last four digits of the card number. Available for card mandates.
+         * For bancontact, it will be the customer's masked card number. For cards, it will be the last 4-digit of the
+         * PAN. For Point-of-sale, it will be the the last 4 digits of the customer's masked card number.
          */
         public Builder cardNumber(JsonNullable<String> cardNumber) {
             Utils.checkNotNull(cardNumber, "cardNumber");
@@ -485,26 +2343,150 @@ public class Details {
 
 
         /**
-         * The card's expiry date in `YYYY-MM-DD` format. Available for card mandates.
+         * The name of the bank that the customer will need to make the bank transfer payment towards.
          */
-        public Builder cardExpiryDate(String cardExpiryDate) {
-            Utils.checkNotNull(cardExpiryDate, "cardExpiryDate");
-            this.cardExpiryDate = JsonNullable.of(cardExpiryDate);
+        public Builder bankName(String bankName) {
+            Utils.checkNotNull(bankName, "bankName");
+            this.bankName = Optional.ofNullable(bankName);
             return this;
         }
 
         /**
-         * The card's expiry date in `YYYY-MM-DD` format. Available for card mandates.
+         * The name of the bank that the customer will need to make the bank transfer payment towards.
          */
-        public Builder cardExpiryDate(JsonNullable<String> cardExpiryDate) {
-            Utils.checkNotNull(cardExpiryDate, "cardExpiryDate");
-            this.cardExpiryDate = cardExpiryDate;
+        public Builder bankName(Optional<String> bankName) {
+            Utils.checkNotNull(bankName, "bankName");
+            this.bankName = bankName;
             return this;
         }
 
 
         /**
-         * The card's label. Available for card mandates, if the card label could be detected.
+         * The bank account number the customer will need to make the bank transfer payment towards.
+         */
+        public Builder bankAccount(String bankAccount) {
+            Utils.checkNotNull(bankAccount, "bankAccount");
+            this.bankAccount = Optional.ofNullable(bankAccount);
+            return this;
+        }
+
+        /**
+         * The bank account number the customer will need to make the bank transfer payment towards.
+         */
+        public Builder bankAccount(Optional<String> bankAccount) {
+            Utils.checkNotNull(bankAccount, "bankAccount");
+            this.bankAccount = bankAccount;
+            return this;
+        }
+
+
+        /**
+         * The BIC of the bank the customer will need to make the bank transfer payment towards.
+         */
+        public Builder bankBic(String bankBic) {
+            Utils.checkNotNull(bankBic, "bankBic");
+            this.bankBic = Optional.ofNullable(bankBic);
+            return this;
+        }
+
+        /**
+         * The BIC of the bank the customer will need to make the bank transfer payment towards.
+         */
+        public Builder bankBic(Optional<String> bankBic) {
+            Utils.checkNotNull(bankBic, "bankBic");
+            this.bankBic = bankBic;
+            return this;
+        }
+
+
+        /**
+         * The Mollie-generated reference the customer needs to use when transfering the amount. Do not apply any
+         * formatting here; show it to the customer as-is.
+         */
+        public Builder transferReference(String transferReference) {
+            Utils.checkNotNull(transferReference, "transferReference");
+            this.transferReference = JsonNullable.of(transferReference);
+            return this;
+        }
+
+        /**
+         * The Mollie-generated reference the customer needs to use when transfering the amount. Do not apply any
+         * formatting here; show it to the customer as-is.
+         */
+        public Builder transferReference(JsonNullable<String> transferReference) {
+            Utils.checkNotNull(transferReference, "transferReference");
+            this.transferReference = transferReference;
+            return this;
+        }
+
+
+        /**
+         * A unique fingerprint for a specific card. Can be used to identify returning customers.
+         * 
+         * <p>In the case of Point-of-sale payments, it's a unique identifier assigned to a cardholder's payment account,
+         * linking multiple transactions from wallets and physical card to a single account, also across payment methods
+         * or when the card is reissued.
+         */
+        public Builder cardFingerprint(String cardFingerprint) {
+            Utils.checkNotNull(cardFingerprint, "cardFingerprint");
+            this.cardFingerprint = JsonNullable.of(cardFingerprint);
+            return this;
+        }
+
+        /**
+         * A unique fingerprint for a specific card. Can be used to identify returning customers.
+         * 
+         * <p>In the case of Point-of-sale payments, it's a unique identifier assigned to a cardholder's payment account,
+         * linking multiple transactions from wallets and physical card to a single account, also across payment methods
+         * or when the card is reissued.
+         */
+        public Builder cardFingerprint(JsonNullable<String> cardFingerprint) {
+            Utils.checkNotNull(cardFingerprint, "cardFingerprint");
+            this.cardFingerprint = cardFingerprint;
+            return this;
+        }
+
+
+        /**
+         * The customer's name as shown on their card.
+         */
+        public Builder cardHolder(String cardHolder) {
+            Utils.checkNotNull(cardHolder, "cardHolder");
+            this.cardHolder = JsonNullable.of(cardHolder);
+            return this;
+        }
+
+        /**
+         * The customer's name as shown on their card.
+         */
+        public Builder cardHolder(JsonNullable<String> cardHolder) {
+            Utils.checkNotNull(cardHolder, "cardHolder");
+            this.cardHolder = cardHolder;
+            return this;
+        }
+
+
+        /**
+         * The card's target audience, if known.
+         */
+        public Builder cardAudition(CardAudition cardAudition) {
+            Utils.checkNotNull(cardAudition, "cardAudition");
+            this.cardAudition = JsonNullable.of(cardAudition);
+            return this;
+        }
+
+        /**
+         * The card's target audience, if known.
+         */
+        public Builder cardAudition(JsonNullable<? extends CardAudition> cardAudition) {
+            Utils.checkNotNull(cardAudition, "cardAudition");
+            this.cardAudition = cardAudition;
+            return this;
+        }
+
+
+        /**
+         * The card's label, if known.
          */
         public Builder cardLabel(CardLabel cardLabel) {
             Utils.checkNotNull(cardLabel, "cardLabel");
@@ -513,7 +2495,7 @@ public class Details {
         }
 
         /**
-         * The card's label. Available for card mandates, if the card label could be detected.
+         * The card's label, if known.
          */
         public Builder cardLabel(JsonNullable<? extends CardLabel> cardLabel) {
             Utils.checkNotNull(cardLabel, "cardLabel");
@@ -523,22 +2505,724 @@ public class Details {
 
 
         /**
-         * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used to identify
-         * returning customers.
+         * The ISO 3166-1 alpha-2 country code of the country the card was issued in.
          */
-        public Builder cardFingerprint(String cardFingerprint) {
-            Utils.checkNotNull(cardFingerprint, "cardFingerprint");
-            this.cardFingerprint = JsonNullable.of(cardFingerprint);
+        public Builder cardCountryCode(String cardCountryCode) {
+            Utils.checkNotNull(cardCountryCode, "cardCountryCode");
+            this.cardCountryCode = JsonNullable.of(cardCountryCode);
             return this;
         }
 
         /**
-         * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used to identify
-         * returning customers.
+         * The ISO 3166-1 alpha-2 country code of the country the card was issued in.
          */
-        public Builder cardFingerprint(JsonNullable<String> cardFingerprint) {
-            Utils.checkNotNull(cardFingerprint, "cardFingerprint");
-            this.cardFingerprint = cardFingerprint;
+        public Builder cardCountryCode(JsonNullable<String> cardCountryCode) {
+            Utils.checkNotNull(cardCountryCode, "cardCountryCode");
+            this.cardCountryCode = cardCountryCode;
+            return this;
+        }
+
+
+        /**
+         * The expiry date (MM/YY) of the card as displayed on the card.
+         */
+        public Builder cardExpiryDate(String cardExpiryDate) {
+            Utils.checkNotNull(cardExpiryDate, "cardExpiryDate");
+            this.cardExpiryDate = JsonNullable.of(cardExpiryDate);
+            return this;
+        }
+
+        /**
+         * The expiry date (MM/YY) of the card as displayed on the card.
+         */
+        public Builder cardExpiryDate(JsonNullable<String> cardExpiryDate) {
+            Utils.checkNotNull(cardExpiryDate, "cardExpiryDate");
+            this.cardExpiryDate = cardExpiryDate;
+            return this;
+        }
+
+
+        /**
+         * The card type.
+         */
+        public Builder cardFunding(CardFunding cardFunding) {
+            Utils.checkNotNull(cardFunding, "cardFunding");
+            this.cardFunding = JsonNullable.of(cardFunding);
+            return this;
+        }
+
+        /**
+         * The card type.
+         */
+        public Builder cardFunding(JsonNullable<? extends CardFunding> cardFunding) {
+            Utils.checkNotNull(cardFunding, "cardFunding");
+            this.cardFunding = cardFunding;
+            return this;
+        }
+
+
+        /**
+         * The level of security applied during card processing.
+         */
+        public Builder cardSecurity(CardSecurity cardSecurity) {
+            Utils.checkNotNull(cardSecurity, "cardSecurity");
+            this.cardSecurity = JsonNullable.of(cardSecurity);
+            return this;
+        }
+
+        /**
+         * The level of security applied during card processing.
+         */
+        public Builder cardSecurity(JsonNullable<? extends CardSecurity> cardSecurity) {
+            Utils.checkNotNull(cardSecurity, "cardSecurity");
+            this.cardSecurity = cardSecurity;
+            return this;
+        }
+
+
+        /**
+         * The applicable card fee region.
+         */
+        public Builder feeRegion(FeeRegion feeRegion) {
+            Utils.checkNotNull(feeRegion, "feeRegion");
+            this.feeRegion = JsonNullable.of(feeRegion);
+            return this;
+        }
+
+        /**
+         * The applicable card fee region.
+         */
+        public Builder feeRegion(JsonNullable<? extends FeeRegion> feeRegion) {
+            Utils.checkNotNull(feeRegion, "feeRegion");
+            this.feeRegion = feeRegion;
+            return this;
+        }
+
+
+        /**
+         * The first 6 and last 4 digits of the card number.
+         */
+        public Builder cardMaskedNumber(String cardMaskedNumber) {
+            Utils.checkNotNull(cardMaskedNumber, "cardMaskedNumber");
+            this.cardMaskedNumber = JsonNullable.of(cardMaskedNumber);
+            return this;
+        }
+
+        /**
+         * The first 6 and last 4 digits of the card number.
+         */
+        public Builder cardMaskedNumber(JsonNullable<String> cardMaskedNumber) {
+            Utils.checkNotNull(cardMaskedNumber, "cardMaskedNumber");
+            this.cardMaskedNumber = cardMaskedNumber;
+            return this;
+        }
+
+
+        /**
+         * The outcome of authentication attempted on transactions enforced by 3DS (ie valid only for oneoff and first).
+         */
+        public Builder card3dsEci(String card3dsEci) {
+            Utils.checkNotNull(card3dsEci, "card3dsEci");
+            this.card3dsEci = JsonNullable.of(card3dsEci);
+            return this;
+        }
+
+        /**
+         * The outcome of authentication attempted on transactions enforced by 3DS (ie valid only for oneoff and first).
+         */
+        public Builder card3dsEci(JsonNullable<String> card3dsEci) {
+            Utils.checkNotNull(card3dsEci, "card3dsEci");
+            this.card3dsEci = card3dsEci;
+            return this;
+        }
+
+
+        /**
+         * The first 6 digit of the card bank identification number.
+         */
+        public Builder cardBin(String cardBin) {
+            Utils.checkNotNull(cardBin, "cardBin");
+            this.cardBin = JsonNullable.of(cardBin);
+            return this;
+        }
+
+        /**
+         * The first 6 digit of the card bank identification number.
+         */
+        public Builder cardBin(JsonNullable<String> cardBin) {
+            Utils.checkNotNull(cardBin, "cardBin");
+            this.cardBin = cardBin;
+            return this;
+        }
+
+
+        /**
+         * The issuer of the Card.
+         */
+        public Builder cardIssuer(String cardIssuer) {
+            Utils.checkNotNull(cardIssuer, "cardIssuer");
+            this.cardIssuer = JsonNullable.of(cardIssuer);
+            return this;
+        }
+
+        /**
+         * The issuer of the Card.
+         */
+        public Builder cardIssuer(JsonNullable<String> cardIssuer) {
+            Utils.checkNotNull(cardIssuer, "cardIssuer");
+            this.cardIssuer = cardIssuer;
+            return this;
+        }
+
+
+        /**
+         * A failure code to help understand why the payment failed.
+         */
+        public Builder failureReason(FailureReason failureReason) {
+            Utils.checkNotNull(failureReason, "failureReason");
+            this.failureReason = JsonNullable.of(failureReason);
+            return this;
+        }
+
+        /**
+         * A failure code to help understand why the payment failed.
+         */
+        public Builder failureReason(JsonNullable<? extends FailureReason> failureReason) {
+            Utils.checkNotNull(failureReason, "failureReason");
+            this.failureReason = failureReason;
+            return this;
+        }
+
+
+        /**
+         * A human-friendly failure message that can be shown to the customer. The message is translated in accordance
+         * with the payment's locale setting.
+         */
+        public Builder failureMessage(String failureMessage) {
+            Utils.checkNotNull(failureMessage, "failureMessage");
+            this.failureMessage = JsonNullable.of(failureMessage);
+            return this;
+        }
+
+        /**
+         * A human-friendly failure message that can be shown to the customer. The message is translated in accordance
+         * with the payment's locale setting.
+         */
+        public Builder failureMessage(JsonNullable<String> failureMessage) {
+            Utils.checkNotNull(failureMessage, "failureMessage");
+            this.failureMessage = failureMessage;
+            return this;
+        }
+
+
+        /**
+         * The wallet used when creating the payment.
+         */
+        public Builder wallet(Wallet wallet) {
+            Utils.checkNotNull(wallet, "wallet");
+            this.wallet = JsonNullable.of(wallet);
+            return this;
+        }
+
+        /**
+         * The wallet used when creating the payment.
+         */
+        public Builder wallet(JsonNullable<? extends Wallet> wallet) {
+            Utils.checkNotNull(wallet, "wallet");
+            this.wallet = wallet;
+            return this;
+        }
+
+
+        /**
+         * PayPal's reference for the payment.
+         */
+        public Builder paypalReference(String paypalReference) {
+            Utils.checkNotNull(paypalReference, "paypalReference");
+            this.paypalReference = JsonNullable.of(paypalReference);
+            return this;
+        }
+
+        /**
+         * PayPal's reference for the payment.
+         */
+        public Builder paypalReference(JsonNullable<String> paypalReference) {
+            Utils.checkNotNull(paypalReference, "paypalReference");
+            this.paypalReference = paypalReference;
+            return this;
+        }
+
+
+        /**
+         * ID of the customer's PayPal account.
+         */
+        public Builder paypalPayerId(String paypalPayerId) {
+            Utils.checkNotNull(paypalPayerId, "paypalPayerId");
+            this.paypalPayerId = JsonNullable.of(paypalPayerId);
+            return this;
+        }
+
+        /**
+         * ID of the customer's PayPal account.
+         */
+        public Builder paypalPayerId(JsonNullable<String> paypalPayerId) {
+            Utils.checkNotNull(paypalPayerId, "paypalPayerId");
+            this.paypalPayerId = paypalPayerId;
+            return this;
+        }
+
+
+        /**
+         * Indicates to what extent the payment is eligible for PayPal's Seller Protection. Only available for PayPal
+         * payments, and if the information is made available by PayPal.
+         */
+        public Builder sellerProtection(SellerProtection sellerProtection) {
+            Utils.checkNotNull(sellerProtection, "sellerProtection");
+            this.sellerProtection = JsonNullable.of(sellerProtection);
+            return this;
+        }
+
+        /**
+         * Indicates to what extent the payment is eligible for PayPal's Seller Protection. Only available for PayPal
+         * payments, and if the information is made available by PayPal.
+         */
+        public Builder sellerProtection(JsonNullable<? extends SellerProtection> sellerProtection) {
+            Utils.checkNotNull(sellerProtection, "sellerProtection");
+            this.sellerProtection = sellerProtection;
+            return this;
+        }
+
+
+        /**
+         * An amount object containing the fee PayPal will charge for this transaction. The field may be omitted if
+         * PayPal will not charge a fee for this transaction.
+         */
+        public Builder paypalFee(PaypalFee paypalFee) {
+            Utils.checkNotNull(paypalFee, "paypalFee");
+            this.paypalFee = JsonNullable.of(paypalFee);
+            return this;
+        }
+
+        /**
+         * An amount object containing the fee PayPal will charge for this transaction. The field may be omitted if
+         * PayPal will not charge a fee for this transaction.
+         */
+        public Builder paypalFee(JsonNullable<? extends PaypalFee> paypalFee) {
+            Utils.checkNotNull(paypalFee, "paypalFee");
+            this.paypalFee = paypalFee;
+            return this;
+        }
+
+
+        /**
+         * The paysafecard customer reference either provided via the API or otherwise auto-generated by Mollie.
+         */
+        public Builder customerReference(String customerReference) {
+            Utils.checkNotNull(customerReference, "customerReference");
+            this.customerReference = Optional.ofNullable(customerReference);
+            return this;
+        }
+
+        /**
+         * The paysafecard customer reference either provided via the API or otherwise auto-generated by Mollie.
+         */
+        public Builder customerReference(Optional<String> customerReference) {
+            Utils.checkNotNull(customerReference, "customerReference");
+            this.customerReference = customerReference;
+            return this;
+        }
+
+
+        /**
+         * The ID of the terminal device where the payment took place on.
+         */
+        public Builder terminalId(String terminalId) {
+            Utils.checkNotNull(terminalId, "terminalId");
+            this.terminalId = Optional.ofNullable(terminalId);
+            return this;
+        }
+
+        /**
+         * The ID of the terminal device where the payment took place on.
+         */
+        public Builder terminalId(Optional<String> terminalId) {
+            Utils.checkNotNull(terminalId, "terminalId");
+            this.terminalId = terminalId;
+            return this;
+        }
+
+
+        /**
+         * The first 6 digits &amp; last 4 digits of the customer's masked card number.
+         */
+        public Builder maskedNumber(String maskedNumber) {
+            Utils.checkNotNull(maskedNumber, "maskedNumber");
+            this.maskedNumber = JsonNullable.of(maskedNumber);
+            return this;
+        }
+
+        /**
+         * The first 6 digits &amp; last 4 digits of the customer's masked card number.
+         */
+        public Builder maskedNumber(JsonNullable<String> maskedNumber) {
+            Utils.checkNotNull(maskedNumber, "maskedNumber");
+            this.maskedNumber = maskedNumber;
+            return this;
+        }
+
+
+        /**
+         * The Point of sale receipt object.
+         */
+        public Builder receipt(Receipt receipt) {
+            Utils.checkNotNull(receipt, "receipt");
+            this.receipt = Optional.ofNullable(receipt);
+            return this;
+        }
+
+        /**
+         * The Point of sale receipt object.
+         */
+        public Builder receipt(Optional<? extends Receipt> receipt) {
+            Utils.checkNotNull(receipt, "receipt");
+            this.receipt = receipt;
+            return this;
+        }
+
+
+        /**
+         * The creditor identifier indicates who is authorized to execute the payment. In this case, it is a
+         * reference to Mollie.
+         */
+        public Builder creditorIdentifier(String creditorIdentifier) {
+            Utils.checkNotNull(creditorIdentifier, "creditorIdentifier");
+            this.creditorIdentifier = JsonNullable.of(creditorIdentifier);
+            return this;
+        }
+
+        /**
+         * The creditor identifier indicates who is authorized to execute the payment. In this case, it is a
+         * reference to Mollie.
+         */
+        public Builder creditorIdentifier(JsonNullable<String> creditorIdentifier) {
+            Utils.checkNotNull(creditorIdentifier, "creditorIdentifier");
+            this.creditorIdentifier = creditorIdentifier;
+            return this;
+        }
+
+
+        /**
+         * Estimated date the payment is debited from the customer's bank account, in YYYY-MM-DD format.
+         */
+        public Builder dueDate(LocalDate dueDate) {
+            Utils.checkNotNull(dueDate, "dueDate");
+            this.dueDate = JsonNullable.of(dueDate);
+            return this;
+        }
+
+        /**
+         * Estimated date the payment is debited from the customer's bank account, in YYYY-MM-DD format.
+         */
+        public Builder dueDate(JsonNullable<LocalDate> dueDate) {
+            Utils.checkNotNull(dueDate, "dueDate");
+            this.dueDate = dueDate;
+            return this;
+        }
+
+
+        /**
+         * Date the payment has been signed by the customer, in YYYY-MM-DD format. Only available if the payment
+         * has been signed.
+         */
+        public Builder signatureDate(LocalDate signatureDate) {
+            Utils.checkNotNull(signatureDate, "signatureDate");
+            this.signatureDate = JsonNullable.of(signatureDate);
+            return this;
+        }
+
+        /**
+         * Date the payment has been signed by the customer, in YYYY-MM-DD format. Only available if the payment
+         * has been signed.
+         */
+        public Builder signatureDate(JsonNullable<LocalDate> signatureDate) {
+            Utils.checkNotNull(signatureDate, "signatureDate");
+            this.signatureDate = signatureDate;
+            return this;
+        }
+
+
+        /**
+         * The official reason why this payment has failed. A detailed description of each reason is available on the
+         * website of the European Payments Council.
+         */
+        public Builder bankReasonCode(String bankReasonCode) {
+            Utils.checkNotNull(bankReasonCode, "bankReasonCode");
+            this.bankReasonCode = JsonNullable.of(bankReasonCode);
+            return this;
+        }
+
+        /**
+         * The official reason why this payment has failed. A detailed description of each reason is available on the
+         * website of the European Payments Council.
+         */
+        public Builder bankReasonCode(JsonNullable<String> bankReasonCode) {
+            Utils.checkNotNull(bankReasonCode, "bankReasonCode");
+            this.bankReasonCode = bankReasonCode;
+            return this;
+        }
+
+
+        /**
+         * A human-friendly description of the failure reason.
+         */
+        public Builder bankReason(String bankReason) {
+            Utils.checkNotNull(bankReason, "bankReason");
+            this.bankReason = JsonNullable.of(bankReason);
+            return this;
+        }
+
+        /**
+         * A human-friendly description of the failure reason.
+         */
+        public Builder bankReason(JsonNullable<String> bankReason) {
+            Utils.checkNotNull(bankReason, "bankReason");
+            this.bankReason = bankReason;
+            return this;
+        }
+
+
+        /**
+         * The end-to-end identifier you provided in the batch file.
+         */
+        public Builder endToEndIdentifier(String endToEndIdentifier) {
+            Utils.checkNotNull(endToEndIdentifier, "endToEndIdentifier");
+            this.endToEndIdentifier = JsonNullable.of(endToEndIdentifier);
+            return this;
+        }
+
+        /**
+         * The end-to-end identifier you provided in the batch file.
+         */
+        public Builder endToEndIdentifier(JsonNullable<String> endToEndIdentifier) {
+            Utils.checkNotNull(endToEndIdentifier, "endToEndIdentifier");
+            this.endToEndIdentifier = endToEndIdentifier;
+            return this;
+        }
+
+
+        /**
+         * The mandate reference you provided in the batch file.
+         */
+        public Builder mandateReference(String mandateReference) {
+            Utils.checkNotNull(mandateReference, "mandateReference");
+            this.mandateReference = JsonNullable.of(mandateReference);
+            return this;
+        }
+
+        /**
+         * The mandate reference you provided in the batch file.
+         */
+        public Builder mandateReference(JsonNullable<String> mandateReference) {
+            Utils.checkNotNull(mandateReference, "mandateReference");
+            this.mandateReference = mandateReference;
+            return this;
+        }
+
+
+        /**
+         * The batch reference you provided in the batch file.
+         */
+        public Builder batchReference(String batchReference) {
+            Utils.checkNotNull(batchReference, "batchReference");
+            this.batchReference = JsonNullable.of(batchReference);
+            return this;
+        }
+
+        /**
+         * The batch reference you provided in the batch file.
+         */
+        public Builder batchReference(JsonNullable<String> batchReference) {
+            Utils.checkNotNull(batchReference, "batchReference");
+            this.batchReference = batchReference;
+            return this;
+        }
+
+
+        /**
+         * The file reference you provided in the batch file.
+         */
+        public Builder fileReference(String fileReference) {
+            Utils.checkNotNull(fileReference, "fileReference");
+            this.fileReference = JsonNullable.of(fileReference);
+            return this;
+        }
+
+        /**
+         * The file reference you provided in the batch file.
+         */
+        public Builder fileReference(JsonNullable<String> fileReference) {
+            Utils.checkNotNull(fileReference, "fileReference");
+            this.fileReference = fileReference;
+            return this;
+        }
+
+
+        /**
+         * Optional include. If a QR code was requested during payment creation for a QR-compatible payment method,
+         * the QR code details will be available in this object.
+         * 
+         * <p>The QR code can be scanned by the customer to complete the payment on their mobile device. For example,
+         * Bancontact QR payments can be completed by the customer using the Bancontact app.
+         */
+        public Builder qrCode(QrCode qrCode) {
+            Utils.checkNotNull(qrCode, "qrCode");
+            this.qrCode = Optional.ofNullable(qrCode);
+            return this;
+        }
+
+        /**
+         * Optional include. If a QR code was requested during payment creation for a QR-compatible payment method,
+         * the QR code details will be available in this object.
+         * 
+         * <p>The QR code can be scanned by the customer to complete the payment on their mobile device. For example,
+         * Bancontact QR payments can be completed by the customer using the Bancontact app.
+         */
+        public Builder qrCode(Optional<? extends QrCode> qrCode) {
+            Utils.checkNotNull(qrCode, "qrCode");
+            this.qrCode = qrCode;
+            return this;
+        }
+
+
+        /**
+         * For payments with gift cards: the masked gift card number of the first gift card applied to the payment.
+         */
+        public Builder voucherNumber(String voucherNumber) {
+            Utils.checkNotNull(voucherNumber, "voucherNumber");
+            this.voucherNumber = Optional.ofNullable(voucherNumber);
+            return this;
+        }
+
+        /**
+         * For payments with gift cards: the masked gift card number of the first gift card applied to the payment.
+         */
+        public Builder voucherNumber(Optional<String> voucherNumber) {
+            Utils.checkNotNull(voucherNumber, "voucherNumber");
+            this.voucherNumber = voucherNumber;
+            return this;
+        }
+
+
+        /**
+         * An array of detail objects for each gift card that was used on this payment, if any.
+         */
+        public Builder giftcards(List<Map<String, Object>> giftcards) {
+            Utils.checkNotNull(giftcards, "giftcards");
+            this.giftcards = Optional.ofNullable(giftcards);
+            return this;
+        }
+
+        /**
+         * An array of detail objects for each gift card that was used on this payment, if any.
+         */
+        public Builder giftcards(Optional<? extends List<Map<String, Object>>> giftcards) {
+            Utils.checkNotNull(giftcards, "giftcards");
+            this.giftcards = giftcards;
+            return this;
+        }
+
+
+        /**
+         * For payments with vouchers: the brand name of the first voucher applied.
+         */
+        public Builder issuer(String issuer) {
+            Utils.checkNotNull(issuer, "issuer");
+            this.issuer = Optional.ofNullable(issuer);
+            return this;
+        }
+
+        /**
+         * For payments with vouchers: the brand name of the first voucher applied.
+         */
+        public Builder issuer(Optional<String> issuer) {
+            Utils.checkNotNull(issuer, "issuer");
+            this.issuer = issuer;
+            return this;
+        }
+
+
+        /**
+         * An array of detail objects for each voucher that was used on this payment, if any.
+         */
+        public Builder vouchers(List<Map<String, Object>> vouchers) {
+            Utils.checkNotNull(vouchers, "vouchers");
+            this.vouchers = Optional.ofNullable(vouchers);
+            return this;
+        }
+
+        /**
+         * An array of detail objects for each voucher that was used on this payment, if any.
+         */
+        public Builder vouchers(Optional<? extends List<Map<String, Object>>> vouchers) {
+            Utils.checkNotNull(vouchers, "vouchers");
+            this.vouchers = vouchers;
+            return this;
+        }
+
+
+        /**
+         * An amount object for the amount that remained after all gift cards or vouchers were applied.
+         */
+        public Builder remainderAmount(RemainderAmount remainderAmount) {
+            Utils.checkNotNull(remainderAmount, "remainderAmount");
+            this.remainderAmount = Optional.ofNullable(remainderAmount);
+            return this;
+        }
+
+        /**
+         * An amount object for the amount that remained after all gift cards or vouchers were applied.
+         */
+        public Builder remainderAmount(Optional<? extends RemainderAmount> remainderAmount) {
+            Utils.checkNotNull(remainderAmount, "remainderAmount");
+            this.remainderAmount = remainderAmount;
+            return this;
+        }
+
+
+        /**
+         * The payment method used to pay the remainder amount, after all gift cards or vouchers were applied.
+         */
+        public Builder remainderMethod(String remainderMethod) {
+            Utils.checkNotNull(remainderMethod, "remainderMethod");
+            this.remainderMethod = Optional.ofNullable(remainderMethod);
+            return this;
+        }
+
+        /**
+         * The payment method used to pay the remainder amount, after all gift cards or vouchers were applied.
+         */
+        public Builder remainderMethod(Optional<String> remainderMethod) {
+            Utils.checkNotNull(remainderMethod, "remainderMethod");
+            this.remainderMethod = remainderMethod;
+            return this;
+        }
+
+
+        /**
+         * Optional include. The full payment method details of the remainder payment.
+         */
+        public Builder remainderDetails(Map<String, Object> remainderDetails) {
+            Utils.checkNotNull(remainderDetails, "remainderDetails");
+            this.remainderDetails = Optional.ofNullable(remainderDetails);
+            return this;
+        }
+
+        /**
+         * Optional include. The full payment method details of the remainder payment.
+         */
+        public Builder remainderDetails(Optional<? extends Map<String, Object>> remainderDetails) {
+            Utils.checkNotNull(remainderDetails, "remainderDetails");
+            this.remainderDetails = remainderDetails;
             return this;
         }
 
@@ -546,8 +3230,22 @@ public class Details {
 
             return new Details(
                 consumerName, consumerAccount, consumerBic,
-                cardHolder, cardNumber, cardExpiryDate,
-                cardLabel, cardFingerprint);
+                shippingAddress, cardNumber, bankName,
+                bankAccount, bankBic, transferReference,
+                cardFingerprint, cardHolder, cardAudition,
+                cardLabel, cardCountryCode, cardExpiryDate,
+                cardFunding, cardSecurity, feeRegion,
+                cardMaskedNumber, card3dsEci, cardBin,
+                cardIssuer, failureReason, failureMessage,
+                wallet, paypalReference, paypalPayerId,
+                sellerProtection, paypalFee, customerReference,
+                terminalId, maskedNumber, receipt,
+                creditorIdentifier, dueDate, signatureDate,
+                bankReasonCode, bankReason, endToEndIdentifier,
+                mandateReference, batchReference, fileReference,
+                qrCode, voucherNumber, giftcards,
+                issuer, vouchers, remainderAmount,
+                remainderMethod, remainderDetails);
         }
 
     }

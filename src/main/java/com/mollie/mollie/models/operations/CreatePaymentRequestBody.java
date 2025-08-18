@@ -10,10 +10,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -327,6 +330,98 @@ public class CreatePaymentRequestBody {
     @JsonProperty("testmode")
     private JsonNullable<Boolean> testmode;
 
+    /**
+     * The Apple Pay Payment token object (encoded as JSON) that is part of the result of authorizing a payment request.
+     * The token contains the payment information needed to authorize the payment.
+     * 
+     * <p>The object should be passed encoded in a JSON string.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("applePayPaymentToken")
+    private Optional<String> applePayPaymentToken;
+
+    /**
+     * Billie is a business-to-business (B2B) payment method. It requires extra information to identify the organization
+     * that is completing the payment. It is recommended to include these parameters up front for a seamless flow.
+     * Otherwise, Billie will ask the customer to complete the missing fields during checkout.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("company")
+    private Optional<? extends Company> company;
+
+    /**
+     * When creating credit card payments using Mollie Components, you need to provide the card token you received from
+     * the card component in this field. The token represents the customer's card information needed to complete the
+     * payment. Note: field only valid for oneoff and first payments. For recurring payments, the customerId alone is
+     * enough.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("cardToken")
+    private Optional<String> cardToken;
+
+    /**
+     * The card token you received from the card component of Mollie Components. The token represents the customer's card
+     * information needed to complete the payment.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("voucherNumber")
+    private Optional<String> voucherNumber;
+
+    /**
+     * The PIN on the gift card. You can supply this to prefill the PIN, if the card has any.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("voucherPin")
+    private Optional<String> voucherPin;
+
+    /**
+     * The customer's date of birth. If not provided via the API, iDeal in3 will ask the customer to provide it during
+     * the payment process.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("consumerDateOfBirth")
+    private Optional<LocalDate> consumerDateOfBirth;
+
+    /**
+     * For some industries, additional purchase information can be sent to Klarna to increase the authorization rate.
+     * You can submit your extra data in this field if you have agreed upon this with Klarna. This field should be an
+     * object containing any of the allowed keys and sub-objects described at the Klarna Developer Documentation.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("extraMerchantData")
+    private Optional<? extends Map<String, Object>> extraMerchantData;
+
+    /**
+     * The unique ID you have used for the PayPal fraud library. You should include this if you use PayPal for an
+     * on-demand payment.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("sessionId")
+    private Optional<String> sessionId;
+
+    /**
+     * Indicate if you are about to deliver digital goods, such as for example a software license. Setting this parameter
+     * can have consequences for your PayPal Seller Protection. Refer to PayPal's documentation for more information.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("digitalGoods")
+    private Optional<Boolean> digitalGoods;
+
+    /**
+     * Used by paysafecard for customer identification across payments. When you generate a customer reference yourself,
+     * make sure not to put personal identifiable information or IP addresses in the customer reference directly.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("customerReference")
+    private Optional<String> customerReference;
+
+    /**
+     * The ID of the terminal device where you want to initiate the payment on.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("terminalId")
+    private Optional<String> terminalId;
+
     @JsonCreator
     public CreatePaymentRequestBody(
             @JsonProperty("description") String description,
@@ -351,7 +446,18 @@ public class CreatePaymentRequestBody {
             @JsonProperty("customerId") JsonNullable<String> customerId,
             @JsonProperty("profileId") Optional<String> profileId,
             @JsonProperty("dueDate") Optional<String> dueDate,
-            @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
+            @JsonProperty("testmode") JsonNullable<Boolean> testmode,
+            @JsonProperty("applePayPaymentToken") Optional<String> applePayPaymentToken,
+            @JsonProperty("company") Optional<? extends Company> company,
+            @JsonProperty("cardToken") Optional<String> cardToken,
+            @JsonProperty("voucherNumber") Optional<String> voucherNumber,
+            @JsonProperty("voucherPin") Optional<String> voucherPin,
+            @JsonProperty("consumerDateOfBirth") Optional<LocalDate> consumerDateOfBirth,
+            @JsonProperty("extraMerchantData") Optional<? extends Map<String, Object>> extraMerchantData,
+            @JsonProperty("sessionId") Optional<String> sessionId,
+            @JsonProperty("digitalGoods") Optional<Boolean> digitalGoods,
+            @JsonProperty("customerReference") Optional<String> customerReference,
+            @JsonProperty("terminalId") Optional<String> terminalId) {
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(redirectUrl, "redirectUrl");
@@ -375,6 +481,17 @@ public class CreatePaymentRequestBody {
         Utils.checkNotNull(profileId, "profileId");
         Utils.checkNotNull(dueDate, "dueDate");
         Utils.checkNotNull(testmode, "testmode");
+        Utils.checkNotNull(applePayPaymentToken, "applePayPaymentToken");
+        Utils.checkNotNull(company, "company");
+        Utils.checkNotNull(cardToken, "cardToken");
+        Utils.checkNotNull(voucherNumber, "voucherNumber");
+        Utils.checkNotNull(voucherPin, "voucherPin");
+        Utils.checkNotNull(consumerDateOfBirth, "consumerDateOfBirth");
+        Utils.checkNotNull(extraMerchantData, "extraMerchantData");
+        Utils.checkNotNull(sessionId, "sessionId");
+        Utils.checkNotNull(digitalGoods, "digitalGoods");
+        Utils.checkNotNull(customerReference, "customerReference");
+        Utils.checkNotNull(terminalId, "terminalId");
         this.description = description;
         this.amount = amount;
         this.redirectUrl = redirectUrl;
@@ -398,6 +515,17 @@ public class CreatePaymentRequestBody {
         this.profileId = profileId;
         this.dueDate = dueDate;
         this.testmode = testmode;
+        this.applePayPaymentToken = applePayPaymentToken;
+        this.company = company;
+        this.cardToken = cardToken;
+        this.voucherNumber = voucherNumber;
+        this.voucherPin = voucherPin;
+        this.consumerDateOfBirth = consumerDateOfBirth;
+        this.extraMerchantData = extraMerchantData;
+        this.sessionId = sessionId;
+        this.digitalGoods = digitalGoods;
+        this.customerReference = customerReference;
+        this.terminalId = terminalId;
     }
     
     public CreatePaymentRequestBody(
@@ -410,7 +538,11 @@ public class CreatePaymentRequestBody {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined());
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -754,6 +886,111 @@ public class CreatePaymentRequestBody {
     @JsonIgnore
     public JsonNullable<Boolean> testmode() {
         return testmode;
+    }
+
+    /**
+     * The Apple Pay Payment token object (encoded as JSON) that is part of the result of authorizing a payment request.
+     * The token contains the payment information needed to authorize the payment.
+     * 
+     * <p>The object should be passed encoded in a JSON string.
+     */
+    @JsonIgnore
+    public Optional<String> applePayPaymentToken() {
+        return applePayPaymentToken;
+    }
+
+    /**
+     * Billie is a business-to-business (B2B) payment method. It requires extra information to identify the organization
+     * that is completing the payment. It is recommended to include these parameters up front for a seamless flow.
+     * Otherwise, Billie will ask the customer to complete the missing fields during checkout.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Company> company() {
+        return (Optional<Company>) company;
+    }
+
+    /**
+     * When creating credit card payments using Mollie Components, you need to provide the card token you received from
+     * the card component in this field. The token represents the customer's card information needed to complete the
+     * payment. Note: field only valid for oneoff and first payments. For recurring payments, the customerId alone is
+     * enough.
+     */
+    @JsonIgnore
+    public Optional<String> cardToken() {
+        return cardToken;
+    }
+
+    /**
+     * The card token you received from the card component of Mollie Components. The token represents the customer's card
+     * information needed to complete the payment.
+     */
+    @JsonIgnore
+    public Optional<String> voucherNumber() {
+        return voucherNumber;
+    }
+
+    /**
+     * The PIN on the gift card. You can supply this to prefill the PIN, if the card has any.
+     */
+    @JsonIgnore
+    public Optional<String> voucherPin() {
+        return voucherPin;
+    }
+
+    /**
+     * The customer's date of birth. If not provided via the API, iDeal in3 will ask the customer to provide it during
+     * the payment process.
+     */
+    @JsonIgnore
+    public Optional<LocalDate> consumerDateOfBirth() {
+        return consumerDateOfBirth;
+    }
+
+    /**
+     * For some industries, additional purchase information can be sent to Klarna to increase the authorization rate.
+     * You can submit your extra data in this field if you have agreed upon this with Klarna. This field should be an
+     * object containing any of the allowed keys and sub-objects described at the Klarna Developer Documentation.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, Object>> extraMerchantData() {
+        return (Optional<Map<String, Object>>) extraMerchantData;
+    }
+
+    /**
+     * The unique ID you have used for the PayPal fraud library. You should include this if you use PayPal for an
+     * on-demand payment.
+     */
+    @JsonIgnore
+    public Optional<String> sessionId() {
+        return sessionId;
+    }
+
+    /**
+     * Indicate if you are about to deliver digital goods, such as for example a software license. Setting this parameter
+     * can have consequences for your PayPal Seller Protection. Refer to PayPal's documentation for more information.
+     */
+    @JsonIgnore
+    public Optional<Boolean> digitalGoods() {
+        return digitalGoods;
+    }
+
+    /**
+     * Used by paysafecard for customer identification across payments. When you generate a customer reference yourself,
+     * make sure not to put personal identifiable information or IP addresses in the customer reference directly.
+     */
+    @JsonIgnore
+    public Optional<String> customerReference() {
+        return customerReference;
+    }
+
+    /**
+     * The ID of the terminal device where you want to initiate the payment on.
+     */
+    @JsonIgnore
+    public Optional<String> terminalId() {
+        return terminalId;
     }
 
     public static Builder builder() {
@@ -1446,6 +1683,245 @@ public class CreatePaymentRequestBody {
         return this;
     }
 
+    /**
+     * The Apple Pay Payment token object (encoded as JSON) that is part of the result of authorizing a payment request.
+     * The token contains the payment information needed to authorize the payment.
+     * 
+     * <p>The object should be passed encoded in a JSON string.
+     */
+    public CreatePaymentRequestBody withApplePayPaymentToken(String applePayPaymentToken) {
+        Utils.checkNotNull(applePayPaymentToken, "applePayPaymentToken");
+        this.applePayPaymentToken = Optional.ofNullable(applePayPaymentToken);
+        return this;
+    }
+
+
+    /**
+     * The Apple Pay Payment token object (encoded as JSON) that is part of the result of authorizing a payment request.
+     * The token contains the payment information needed to authorize the payment.
+     * 
+     * <p>The object should be passed encoded in a JSON string.
+     */
+    public CreatePaymentRequestBody withApplePayPaymentToken(Optional<String> applePayPaymentToken) {
+        Utils.checkNotNull(applePayPaymentToken, "applePayPaymentToken");
+        this.applePayPaymentToken = applePayPaymentToken;
+        return this;
+    }
+
+    /**
+     * Billie is a business-to-business (B2B) payment method. It requires extra information to identify the organization
+     * that is completing the payment. It is recommended to include these parameters up front for a seamless flow.
+     * Otherwise, Billie will ask the customer to complete the missing fields during checkout.
+     */
+    public CreatePaymentRequestBody withCompany(Company company) {
+        Utils.checkNotNull(company, "company");
+        this.company = Optional.ofNullable(company);
+        return this;
+    }
+
+
+    /**
+     * Billie is a business-to-business (B2B) payment method. It requires extra information to identify the organization
+     * that is completing the payment. It is recommended to include these parameters up front for a seamless flow.
+     * Otherwise, Billie will ask the customer to complete the missing fields during checkout.
+     */
+    public CreatePaymentRequestBody withCompany(Optional<? extends Company> company) {
+        Utils.checkNotNull(company, "company");
+        this.company = company;
+        return this;
+    }
+
+    /**
+     * When creating credit card payments using Mollie Components, you need to provide the card token you received from
+     * the card component in this field. The token represents the customer's card information needed to complete the
+     * payment. Note: field only valid for oneoff and first payments. For recurring payments, the customerId alone is
+     * enough.
+     */
+    public CreatePaymentRequestBody withCardToken(String cardToken) {
+        Utils.checkNotNull(cardToken, "cardToken");
+        this.cardToken = Optional.ofNullable(cardToken);
+        return this;
+    }
+
+
+    /**
+     * When creating credit card payments using Mollie Components, you need to provide the card token you received from
+     * the card component in this field. The token represents the customer's card information needed to complete the
+     * payment. Note: field only valid for oneoff and first payments. For recurring payments, the customerId alone is
+     * enough.
+     */
+    public CreatePaymentRequestBody withCardToken(Optional<String> cardToken) {
+        Utils.checkNotNull(cardToken, "cardToken");
+        this.cardToken = cardToken;
+        return this;
+    }
+
+    /**
+     * The card token you received from the card component of Mollie Components. The token represents the customer's card
+     * information needed to complete the payment.
+     */
+    public CreatePaymentRequestBody withVoucherNumber(String voucherNumber) {
+        Utils.checkNotNull(voucherNumber, "voucherNumber");
+        this.voucherNumber = Optional.ofNullable(voucherNumber);
+        return this;
+    }
+
+
+    /**
+     * The card token you received from the card component of Mollie Components. The token represents the customer's card
+     * information needed to complete the payment.
+     */
+    public CreatePaymentRequestBody withVoucherNumber(Optional<String> voucherNumber) {
+        Utils.checkNotNull(voucherNumber, "voucherNumber");
+        this.voucherNumber = voucherNumber;
+        return this;
+    }
+
+    /**
+     * The PIN on the gift card. You can supply this to prefill the PIN, if the card has any.
+     */
+    public CreatePaymentRequestBody withVoucherPin(String voucherPin) {
+        Utils.checkNotNull(voucherPin, "voucherPin");
+        this.voucherPin = Optional.ofNullable(voucherPin);
+        return this;
+    }
+
+
+    /**
+     * The PIN on the gift card. You can supply this to prefill the PIN, if the card has any.
+     */
+    public CreatePaymentRequestBody withVoucherPin(Optional<String> voucherPin) {
+        Utils.checkNotNull(voucherPin, "voucherPin");
+        this.voucherPin = voucherPin;
+        return this;
+    }
+
+    /**
+     * The customer's date of birth. If not provided via the API, iDeal in3 will ask the customer to provide it during
+     * the payment process.
+     */
+    public CreatePaymentRequestBody withConsumerDateOfBirth(LocalDate consumerDateOfBirth) {
+        Utils.checkNotNull(consumerDateOfBirth, "consumerDateOfBirth");
+        this.consumerDateOfBirth = Optional.ofNullable(consumerDateOfBirth);
+        return this;
+    }
+
+
+    /**
+     * The customer's date of birth. If not provided via the API, iDeal in3 will ask the customer to provide it during
+     * the payment process.
+     */
+    public CreatePaymentRequestBody withConsumerDateOfBirth(Optional<LocalDate> consumerDateOfBirth) {
+        Utils.checkNotNull(consumerDateOfBirth, "consumerDateOfBirth");
+        this.consumerDateOfBirth = consumerDateOfBirth;
+        return this;
+    }
+
+    /**
+     * For some industries, additional purchase information can be sent to Klarna to increase the authorization rate.
+     * You can submit your extra data in this field if you have agreed upon this with Klarna. This field should be an
+     * object containing any of the allowed keys and sub-objects described at the Klarna Developer Documentation.
+     */
+    public CreatePaymentRequestBody withExtraMerchantData(Map<String, Object> extraMerchantData) {
+        Utils.checkNotNull(extraMerchantData, "extraMerchantData");
+        this.extraMerchantData = Optional.ofNullable(extraMerchantData);
+        return this;
+    }
+
+
+    /**
+     * For some industries, additional purchase information can be sent to Klarna to increase the authorization rate.
+     * You can submit your extra data in this field if you have agreed upon this with Klarna. This field should be an
+     * object containing any of the allowed keys and sub-objects described at the Klarna Developer Documentation.
+     */
+    public CreatePaymentRequestBody withExtraMerchantData(Optional<? extends Map<String, Object>> extraMerchantData) {
+        Utils.checkNotNull(extraMerchantData, "extraMerchantData");
+        this.extraMerchantData = extraMerchantData;
+        return this;
+    }
+
+    /**
+     * The unique ID you have used for the PayPal fraud library. You should include this if you use PayPal for an
+     * on-demand payment.
+     */
+    public CreatePaymentRequestBody withSessionId(String sessionId) {
+        Utils.checkNotNull(sessionId, "sessionId");
+        this.sessionId = Optional.ofNullable(sessionId);
+        return this;
+    }
+
+
+    /**
+     * The unique ID you have used for the PayPal fraud library. You should include this if you use PayPal for an
+     * on-demand payment.
+     */
+    public CreatePaymentRequestBody withSessionId(Optional<String> sessionId) {
+        Utils.checkNotNull(sessionId, "sessionId");
+        this.sessionId = sessionId;
+        return this;
+    }
+
+    /**
+     * Indicate if you are about to deliver digital goods, such as for example a software license. Setting this parameter
+     * can have consequences for your PayPal Seller Protection. Refer to PayPal's documentation for more information.
+     */
+    public CreatePaymentRequestBody withDigitalGoods(boolean digitalGoods) {
+        Utils.checkNotNull(digitalGoods, "digitalGoods");
+        this.digitalGoods = Optional.ofNullable(digitalGoods);
+        return this;
+    }
+
+
+    /**
+     * Indicate if you are about to deliver digital goods, such as for example a software license. Setting this parameter
+     * can have consequences for your PayPal Seller Protection. Refer to PayPal's documentation for more information.
+     */
+    public CreatePaymentRequestBody withDigitalGoods(Optional<Boolean> digitalGoods) {
+        Utils.checkNotNull(digitalGoods, "digitalGoods");
+        this.digitalGoods = digitalGoods;
+        return this;
+    }
+
+    /**
+     * Used by paysafecard for customer identification across payments. When you generate a customer reference yourself,
+     * make sure not to put personal identifiable information or IP addresses in the customer reference directly.
+     */
+    public CreatePaymentRequestBody withCustomerReference(String customerReference) {
+        Utils.checkNotNull(customerReference, "customerReference");
+        this.customerReference = Optional.ofNullable(customerReference);
+        return this;
+    }
+
+
+    /**
+     * Used by paysafecard for customer identification across payments. When you generate a customer reference yourself,
+     * make sure not to put personal identifiable information or IP addresses in the customer reference directly.
+     */
+    public CreatePaymentRequestBody withCustomerReference(Optional<String> customerReference) {
+        Utils.checkNotNull(customerReference, "customerReference");
+        this.customerReference = customerReference;
+        return this;
+    }
+
+    /**
+     * The ID of the terminal device where you want to initiate the payment on.
+     */
+    public CreatePaymentRequestBody withTerminalId(String terminalId) {
+        Utils.checkNotNull(terminalId, "terminalId");
+        this.terminalId = Optional.ofNullable(terminalId);
+        return this;
+    }
+
+
+    /**
+     * The ID of the terminal device where you want to initiate the payment on.
+     */
+    public CreatePaymentRequestBody withTerminalId(Optional<String> terminalId) {
+        Utils.checkNotNull(terminalId, "terminalId");
+        this.terminalId = terminalId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1478,7 +1954,18 @@ public class CreatePaymentRequestBody {
             Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
             Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
             Utils.enhancedDeepEquals(this.dueDate, other.dueDate) &&
-            Utils.enhancedDeepEquals(this.testmode, other.testmode);
+            Utils.enhancedDeepEquals(this.testmode, other.testmode) &&
+            Utils.enhancedDeepEquals(this.applePayPaymentToken, other.applePayPaymentToken) &&
+            Utils.enhancedDeepEquals(this.company, other.company) &&
+            Utils.enhancedDeepEquals(this.cardToken, other.cardToken) &&
+            Utils.enhancedDeepEquals(this.voucherNumber, other.voucherNumber) &&
+            Utils.enhancedDeepEquals(this.voucherPin, other.voucherPin) &&
+            Utils.enhancedDeepEquals(this.consumerDateOfBirth, other.consumerDateOfBirth) &&
+            Utils.enhancedDeepEquals(this.extraMerchantData, other.extraMerchantData) &&
+            Utils.enhancedDeepEquals(this.sessionId, other.sessionId) &&
+            Utils.enhancedDeepEquals(this.digitalGoods, other.digitalGoods) &&
+            Utils.enhancedDeepEquals(this.customerReference, other.customerReference) &&
+            Utils.enhancedDeepEquals(this.terminalId, other.terminalId);
     }
     
     @Override
@@ -1491,7 +1978,11 @@ public class CreatePaymentRequestBody {
             metadata, captureMode, captureDelay,
             applicationFee, routing, sequenceType,
             mandateId, customerId, profileId,
-            dueDate, testmode);
+            dueDate, testmode, applePayPaymentToken,
+            company, cardToken, voucherNumber,
+            voucherPin, consumerDateOfBirth, extraMerchantData,
+            sessionId, digitalGoods, customerReference,
+            terminalId);
     }
     
     @Override
@@ -1519,7 +2010,18 @@ public class CreatePaymentRequestBody {
                 "customerId", customerId,
                 "profileId", profileId,
                 "dueDate", dueDate,
-                "testmode", testmode);
+                "testmode", testmode,
+                "applePayPaymentToken", applePayPaymentToken,
+                "company", company,
+                "cardToken", cardToken,
+                "voucherNumber", voucherNumber,
+                "voucherPin", voucherPin,
+                "consumerDateOfBirth", consumerDateOfBirth,
+                "extraMerchantData", extraMerchantData,
+                "sessionId", sessionId,
+                "digitalGoods", digitalGoods,
+                "customerReference", customerReference,
+                "terminalId", terminalId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -1570,6 +2072,28 @@ public class CreatePaymentRequestBody {
         private Optional<String> dueDate = Optional.empty();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+
+        private Optional<String> applePayPaymentToken = Optional.empty();
+
+        private Optional<? extends Company> company = Optional.empty();
+
+        private Optional<String> cardToken = Optional.empty();
+
+        private Optional<String> voucherNumber = Optional.empty();
+
+        private Optional<String> voucherPin = Optional.empty();
+
+        private Optional<LocalDate> consumerDateOfBirth = Optional.empty();
+
+        private Optional<? extends Map<String, Object>> extraMerchantData = Optional.empty();
+
+        private Optional<String> sessionId = Optional.empty();
+
+        private Optional<Boolean> digitalGoods = Optional.empty();
+
+        private Optional<String> customerReference = Optional.empty();
+
+        private Optional<String> terminalId = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -2278,6 +2802,245 @@ public class CreatePaymentRequestBody {
             return this;
         }
 
+
+        /**
+         * The Apple Pay Payment token object (encoded as JSON) that is part of the result of authorizing a payment request.
+         * The token contains the payment information needed to authorize the payment.
+         * 
+         * <p>The object should be passed encoded in a JSON string.
+         */
+        public Builder applePayPaymentToken(String applePayPaymentToken) {
+            Utils.checkNotNull(applePayPaymentToken, "applePayPaymentToken");
+            this.applePayPaymentToken = Optional.ofNullable(applePayPaymentToken);
+            return this;
+        }
+
+        /**
+         * The Apple Pay Payment token object (encoded as JSON) that is part of the result of authorizing a payment request.
+         * The token contains the payment information needed to authorize the payment.
+         * 
+         * <p>The object should be passed encoded in a JSON string.
+         */
+        public Builder applePayPaymentToken(Optional<String> applePayPaymentToken) {
+            Utils.checkNotNull(applePayPaymentToken, "applePayPaymentToken");
+            this.applePayPaymentToken = applePayPaymentToken;
+            return this;
+        }
+
+
+        /**
+         * Billie is a business-to-business (B2B) payment method. It requires extra information to identify the organization
+         * that is completing the payment. It is recommended to include these parameters up front for a seamless flow.
+         * Otherwise, Billie will ask the customer to complete the missing fields during checkout.
+         */
+        public Builder company(Company company) {
+            Utils.checkNotNull(company, "company");
+            this.company = Optional.ofNullable(company);
+            return this;
+        }
+
+        /**
+         * Billie is a business-to-business (B2B) payment method. It requires extra information to identify the organization
+         * that is completing the payment. It is recommended to include these parameters up front for a seamless flow.
+         * Otherwise, Billie will ask the customer to complete the missing fields during checkout.
+         */
+        public Builder company(Optional<? extends Company> company) {
+            Utils.checkNotNull(company, "company");
+            this.company = company;
+            return this;
+        }
+
+
+        /**
+         * When creating credit card payments using Mollie Components, you need to provide the card token you received from
+         * the card component in this field. The token represents the customer's card information needed to complete the
+         * payment. Note: field only valid for oneoff and first payments. For recurring payments, the customerId alone is
+         * enough.
+         */
+        public Builder cardToken(String cardToken) {
+            Utils.checkNotNull(cardToken, "cardToken");
+            this.cardToken = Optional.ofNullable(cardToken);
+            return this;
+        }
+
+        /**
+         * When creating credit card payments using Mollie Components, you need to provide the card token you received from
+         * the card component in this field. The token represents the customer's card information needed to complete the
+         * payment. Note: field only valid for oneoff and first payments. For recurring payments, the customerId alone is
+         * enough.
+         */
+        public Builder cardToken(Optional<String> cardToken) {
+            Utils.checkNotNull(cardToken, "cardToken");
+            this.cardToken = cardToken;
+            return this;
+        }
+
+
+        /**
+         * The card token you received from the card component of Mollie Components. The token represents the customer's card
+         * information needed to complete the payment.
+         */
+        public Builder voucherNumber(String voucherNumber) {
+            Utils.checkNotNull(voucherNumber, "voucherNumber");
+            this.voucherNumber = Optional.ofNullable(voucherNumber);
+            return this;
+        }
+
+        /**
+         * The card token you received from the card component of Mollie Components. The token represents the customer's card
+         * information needed to complete the payment.
+         */
+        public Builder voucherNumber(Optional<String> voucherNumber) {
+            Utils.checkNotNull(voucherNumber, "voucherNumber");
+            this.voucherNumber = voucherNumber;
+            return this;
+        }
+
+
+        /**
+         * The PIN on the gift card. You can supply this to prefill the PIN, if the card has any.
+         */
+        public Builder voucherPin(String voucherPin) {
+            Utils.checkNotNull(voucherPin, "voucherPin");
+            this.voucherPin = Optional.ofNullable(voucherPin);
+            return this;
+        }
+
+        /**
+         * The PIN on the gift card. You can supply this to prefill the PIN, if the card has any.
+         */
+        public Builder voucherPin(Optional<String> voucherPin) {
+            Utils.checkNotNull(voucherPin, "voucherPin");
+            this.voucherPin = voucherPin;
+            return this;
+        }
+
+
+        /**
+         * The customer's date of birth. If not provided via the API, iDeal in3 will ask the customer to provide it during
+         * the payment process.
+         */
+        public Builder consumerDateOfBirth(LocalDate consumerDateOfBirth) {
+            Utils.checkNotNull(consumerDateOfBirth, "consumerDateOfBirth");
+            this.consumerDateOfBirth = Optional.ofNullable(consumerDateOfBirth);
+            return this;
+        }
+
+        /**
+         * The customer's date of birth. If not provided via the API, iDeal in3 will ask the customer to provide it during
+         * the payment process.
+         */
+        public Builder consumerDateOfBirth(Optional<LocalDate> consumerDateOfBirth) {
+            Utils.checkNotNull(consumerDateOfBirth, "consumerDateOfBirth");
+            this.consumerDateOfBirth = consumerDateOfBirth;
+            return this;
+        }
+
+
+        /**
+         * For some industries, additional purchase information can be sent to Klarna to increase the authorization rate.
+         * You can submit your extra data in this field if you have agreed upon this with Klarna. This field should be an
+         * object containing any of the allowed keys and sub-objects described at the Klarna Developer Documentation.
+         */
+        public Builder extraMerchantData(Map<String, Object> extraMerchantData) {
+            Utils.checkNotNull(extraMerchantData, "extraMerchantData");
+            this.extraMerchantData = Optional.ofNullable(extraMerchantData);
+            return this;
+        }
+
+        /**
+         * For some industries, additional purchase information can be sent to Klarna to increase the authorization rate.
+         * You can submit your extra data in this field if you have agreed upon this with Klarna. This field should be an
+         * object containing any of the allowed keys and sub-objects described at the Klarna Developer Documentation.
+         */
+        public Builder extraMerchantData(Optional<? extends Map<String, Object>> extraMerchantData) {
+            Utils.checkNotNull(extraMerchantData, "extraMerchantData");
+            this.extraMerchantData = extraMerchantData;
+            return this;
+        }
+
+
+        /**
+         * The unique ID you have used for the PayPal fraud library. You should include this if you use PayPal for an
+         * on-demand payment.
+         */
+        public Builder sessionId(String sessionId) {
+            Utils.checkNotNull(sessionId, "sessionId");
+            this.sessionId = Optional.ofNullable(sessionId);
+            return this;
+        }
+
+        /**
+         * The unique ID you have used for the PayPal fraud library. You should include this if you use PayPal for an
+         * on-demand payment.
+         */
+        public Builder sessionId(Optional<String> sessionId) {
+            Utils.checkNotNull(sessionId, "sessionId");
+            this.sessionId = sessionId;
+            return this;
+        }
+
+
+        /**
+         * Indicate if you are about to deliver digital goods, such as for example a software license. Setting this parameter
+         * can have consequences for your PayPal Seller Protection. Refer to PayPal's documentation for more information.
+         */
+        public Builder digitalGoods(boolean digitalGoods) {
+            Utils.checkNotNull(digitalGoods, "digitalGoods");
+            this.digitalGoods = Optional.ofNullable(digitalGoods);
+            return this;
+        }
+
+        /**
+         * Indicate if you are about to deliver digital goods, such as for example a software license. Setting this parameter
+         * can have consequences for your PayPal Seller Protection. Refer to PayPal's documentation for more information.
+         */
+        public Builder digitalGoods(Optional<Boolean> digitalGoods) {
+            Utils.checkNotNull(digitalGoods, "digitalGoods");
+            this.digitalGoods = digitalGoods;
+            return this;
+        }
+
+
+        /**
+         * Used by paysafecard for customer identification across payments. When you generate a customer reference yourself,
+         * make sure not to put personal identifiable information or IP addresses in the customer reference directly.
+         */
+        public Builder customerReference(String customerReference) {
+            Utils.checkNotNull(customerReference, "customerReference");
+            this.customerReference = Optional.ofNullable(customerReference);
+            return this;
+        }
+
+        /**
+         * Used by paysafecard for customer identification across payments. When you generate a customer reference yourself,
+         * make sure not to put personal identifiable information or IP addresses in the customer reference directly.
+         */
+        public Builder customerReference(Optional<String> customerReference) {
+            Utils.checkNotNull(customerReference, "customerReference");
+            this.customerReference = customerReference;
+            return this;
+        }
+
+
+        /**
+         * The ID of the terminal device where you want to initiate the payment on.
+         */
+        public Builder terminalId(String terminalId) {
+            Utils.checkNotNull(terminalId, "terminalId");
+            this.terminalId = Optional.ofNullable(terminalId);
+            return this;
+        }
+
+        /**
+         * The ID of the terminal device where you want to initiate the payment on.
+         */
+        public Builder terminalId(Optional<String> terminalId) {
+            Utils.checkNotNull(terminalId, "terminalId");
+            this.terminalId = terminalId;
+            return this;
+        }
+
         public CreatePaymentRequestBody build() {
 
             return new CreatePaymentRequestBody(
@@ -2288,7 +3051,11 @@ public class CreatePaymentRequestBody {
                 metadata, captureMode, captureDelay,
                 applicationFee, routing, sequenceType,
                 mandateId, customerId, profileId,
-                dueDate, testmode);
+                dueDate, testmode, applePayPaymentToken,
+                company, cardToken, voucherNumber,
+                voucherPin, consumerDateOfBirth, extraMerchantData,
+                sessionId, digitalGoods, customerReference,
+                terminalId);
         }
 
     }

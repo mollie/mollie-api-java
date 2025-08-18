@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * ListSettlementRefundsLinks
@@ -24,37 +23,35 @@ public class ListSettlementRefundsLinks {
     /**
      * The URL to the current set of items.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends ListSettlementRefundsSelf> self;
+    private ListSettlementRefundsSelf self;
 
     /**
      * The previous set of items, if available.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("previous")
-    private JsonNullable<? extends ListSettlementRefundsPrevious> previous;
+    private Optional<? extends ListSettlementRefundsPrevious> previous;
 
     /**
      * The next set of items, if available.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("next")
-    private JsonNullable<? extends ListSettlementRefundsNext> next;
+    private Optional<? extends ListSettlementRefundsNext> next;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends ListSettlementRefundsDocumentation> documentation;
+    private ListSettlementRefundsDocumentation documentation;
 
     @JsonCreator
     public ListSettlementRefundsLinks(
-            @JsonProperty("self") Optional<? extends ListSettlementRefundsSelf> self,
-            @JsonProperty("previous") JsonNullable<? extends ListSettlementRefundsPrevious> previous,
-            @JsonProperty("next") JsonNullable<? extends ListSettlementRefundsNext> next,
-            @JsonProperty("documentation") Optional<? extends ListSettlementRefundsDocumentation> documentation) {
+            @JsonProperty("self") ListSettlementRefundsSelf self,
+            @JsonProperty("previous") Optional<? extends ListSettlementRefundsPrevious> previous,
+            @JsonProperty("next") Optional<? extends ListSettlementRefundsNext> next,
+            @JsonProperty("documentation") ListSettlementRefundsDocumentation documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(previous, "previous");
         Utils.checkNotNull(next, "next");
@@ -65,18 +62,19 @@ public class ListSettlementRefundsLinks {
         this.documentation = documentation;
     }
     
-    public ListSettlementRefundsLinks() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+    public ListSettlementRefundsLinks(
+            ListSettlementRefundsSelf self,
+            ListSettlementRefundsDocumentation documentation) {
+        this(self, Optional.empty(), Optional.empty(),
+            documentation);
     }
 
     /**
      * The URL to the current set of items.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListSettlementRefundsSelf> self() {
-        return (Optional<ListSettlementRefundsSelf>) self;
+    public ListSettlementRefundsSelf self() {
+        return self;
     }
 
     /**
@@ -84,8 +82,8 @@ public class ListSettlementRefundsLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListSettlementRefundsPrevious> previous() {
-        return (JsonNullable<ListSettlementRefundsPrevious>) previous;
+    public Optional<ListSettlementRefundsPrevious> previous() {
+        return (Optional<ListSettlementRefundsPrevious>) previous;
     }
 
     /**
@@ -93,17 +91,16 @@ public class ListSettlementRefundsLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListSettlementRefundsNext> next() {
-        return (JsonNullable<ListSettlementRefundsNext>) next;
+    public Optional<ListSettlementRefundsNext> next() {
+        return (Optional<ListSettlementRefundsNext>) next;
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListSettlementRefundsDocumentation> documentation() {
-        return (Optional<ListSettlementRefundsDocumentation>) documentation;
+    public ListSettlementRefundsDocumentation documentation() {
+        return documentation;
     }
 
     public static Builder builder() {
@@ -116,16 +113,6 @@ public class ListSettlementRefundsLinks {
      */
     public ListSettlementRefundsLinks withSelf(ListSettlementRefundsSelf self) {
         Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-
-    /**
-     * The URL to the current set of items.
-     */
-    public ListSettlementRefundsLinks withSelf(Optional<? extends ListSettlementRefundsSelf> self) {
-        Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
@@ -135,14 +122,15 @@ public class ListSettlementRefundsLinks {
      */
     public ListSettlementRefundsLinks withPrevious(ListSettlementRefundsPrevious previous) {
         Utils.checkNotNull(previous, "previous");
-        this.previous = JsonNullable.of(previous);
+        this.previous = Optional.ofNullable(previous);
         return this;
     }
+
 
     /**
      * The previous set of items, if available.
      */
-    public ListSettlementRefundsLinks withPrevious(JsonNullable<? extends ListSettlementRefundsPrevious> previous) {
+    public ListSettlementRefundsLinks withPrevious(Optional<? extends ListSettlementRefundsPrevious> previous) {
         Utils.checkNotNull(previous, "previous");
         this.previous = previous;
         return this;
@@ -153,14 +141,15 @@ public class ListSettlementRefundsLinks {
      */
     public ListSettlementRefundsLinks withNext(ListSettlementRefundsNext next) {
         Utils.checkNotNull(next, "next");
-        this.next = JsonNullable.of(next);
+        this.next = Optional.ofNullable(next);
         return this;
     }
+
 
     /**
      * The next set of items, if available.
      */
-    public ListSettlementRefundsLinks withNext(JsonNullable<? extends ListSettlementRefundsNext> next) {
+    public ListSettlementRefundsLinks withNext(Optional<? extends ListSettlementRefundsNext> next) {
         Utils.checkNotNull(next, "next");
         this.next = next;
         return this;
@@ -170,16 +159,6 @@ public class ListSettlementRefundsLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public ListSettlementRefundsLinks withDocumentation(ListSettlementRefundsDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListSettlementRefundsLinks withDocumentation(Optional<? extends ListSettlementRefundsDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -220,13 +199,13 @@ public class ListSettlementRefundsLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends ListSettlementRefundsSelf> self = Optional.empty();
+        private ListSettlementRefundsSelf self;
 
-        private JsonNullable<? extends ListSettlementRefundsPrevious> previous = JsonNullable.undefined();
+        private Optional<? extends ListSettlementRefundsPrevious> previous = Optional.empty();
 
-        private JsonNullable<? extends ListSettlementRefundsNext> next = JsonNullable.undefined();
+        private Optional<? extends ListSettlementRefundsNext> next = Optional.empty();
 
-        private Optional<? extends ListSettlementRefundsDocumentation> documentation = Optional.empty();
+        private ListSettlementRefundsDocumentation documentation;
 
         private Builder() {
           // force use of static builder() method
@@ -238,15 +217,6 @@ public class ListSettlementRefundsLinks {
          */
         public Builder self(ListSettlementRefundsSelf self) {
             Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * The URL to the current set of items.
-         */
-        public Builder self(Optional<? extends ListSettlementRefundsSelf> self) {
-            Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
         }
@@ -257,14 +227,14 @@ public class ListSettlementRefundsLinks {
          */
         public Builder previous(ListSettlementRefundsPrevious previous) {
             Utils.checkNotNull(previous, "previous");
-            this.previous = JsonNullable.of(previous);
+            this.previous = Optional.ofNullable(previous);
             return this;
         }
 
         /**
          * The previous set of items, if available.
          */
-        public Builder previous(JsonNullable<? extends ListSettlementRefundsPrevious> previous) {
+        public Builder previous(Optional<? extends ListSettlementRefundsPrevious> previous) {
             Utils.checkNotNull(previous, "previous");
             this.previous = previous;
             return this;
@@ -276,14 +246,14 @@ public class ListSettlementRefundsLinks {
          */
         public Builder next(ListSettlementRefundsNext next) {
             Utils.checkNotNull(next, "next");
-            this.next = JsonNullable.of(next);
+            this.next = Optional.ofNullable(next);
             return this;
         }
 
         /**
          * The next set of items, if available.
          */
-        public Builder next(JsonNullable<? extends ListSettlementRefundsNext> next) {
+        public Builder next(Optional<? extends ListSettlementRefundsNext> next) {
             Utils.checkNotNull(next, "next");
             this.next = next;
             return this;
@@ -294,15 +264,6 @@ public class ListSettlementRefundsLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(ListSettlementRefundsDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends ListSettlementRefundsDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

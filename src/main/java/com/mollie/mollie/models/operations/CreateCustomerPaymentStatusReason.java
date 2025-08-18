@@ -20,11 +20,9 @@ import java.lang.String;
  * [this page](status-reasons).**
  */
 public class CreateCustomerPaymentStatusReason {
-    /**
-     * A machine-readable code that indicates the reason for the payment's status.
-     */
+
     @JsonProperty("code")
-    private String code;
+    private CreateCustomerPaymentCode code;
 
     /**
      * A description of the status reason, localized according to the payment `locale`.
@@ -34,7 +32,7 @@ public class CreateCustomerPaymentStatusReason {
 
     @JsonCreator
     public CreateCustomerPaymentStatusReason(
-            @JsonProperty("code") String code,
+            @JsonProperty("code") CreateCustomerPaymentCode code,
             @JsonProperty("message") String message) {
         Utils.checkNotNull(code, "code");
         Utils.checkNotNull(message, "message");
@@ -42,11 +40,8 @@ public class CreateCustomerPaymentStatusReason {
         this.message = message;
     }
 
-    /**
-     * A machine-readable code that indicates the reason for the payment's status.
-     */
     @JsonIgnore
-    public String code() {
+    public CreateCustomerPaymentCode code() {
         return code;
     }
 
@@ -63,10 +58,7 @@ public class CreateCustomerPaymentStatusReason {
     }
 
 
-    /**
-     * A machine-readable code that indicates the reason for the payment's status.
-     */
-    public CreateCustomerPaymentStatusReason withCode(String code) {
+    public CreateCustomerPaymentStatusReason withCode(CreateCustomerPaymentCode code) {
         Utils.checkNotNull(code, "code");
         this.code = code;
         return this;
@@ -111,7 +103,7 @@ public class CreateCustomerPaymentStatusReason {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String code;
+        private CreateCustomerPaymentCode code;
 
         private String message;
 
@@ -120,10 +112,7 @@ public class CreateCustomerPaymentStatusReason {
         }
 
 
-        /**
-         * A machine-readable code that indicates the reason for the payment's status.
-         */
-        public Builder code(String code) {
+        public Builder code(CreateCustomerPaymentCode code) {
             Utils.checkNotNull(code, "code");
             this.code = code;
             return this;

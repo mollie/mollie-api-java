@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * ListSettlementsLinks
@@ -24,37 +23,35 @@ public class ListSettlementsLinks {
     /**
      * The URL to the current set of items.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends ListSettlementsSelf> self;
+    private ListSettlementsSelf self;
 
     /**
      * The previous set of items, if available.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("previous")
-    private JsonNullable<? extends ListSettlementsPrevious> previous;
+    private Optional<? extends ListSettlementsPrevious> previous;
 
     /**
      * The next set of items, if available.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("next")
-    private JsonNullable<? extends ListSettlementsNext> next;
+    private Optional<? extends ListSettlementsNext> next;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends ListSettlementsDocumentation> documentation;
+    private ListSettlementsDocumentation documentation;
 
     @JsonCreator
     public ListSettlementsLinks(
-            @JsonProperty("self") Optional<? extends ListSettlementsSelf> self,
-            @JsonProperty("previous") JsonNullable<? extends ListSettlementsPrevious> previous,
-            @JsonProperty("next") JsonNullable<? extends ListSettlementsNext> next,
-            @JsonProperty("documentation") Optional<? extends ListSettlementsDocumentation> documentation) {
+            @JsonProperty("self") ListSettlementsSelf self,
+            @JsonProperty("previous") Optional<? extends ListSettlementsPrevious> previous,
+            @JsonProperty("next") Optional<? extends ListSettlementsNext> next,
+            @JsonProperty("documentation") ListSettlementsDocumentation documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(previous, "previous");
         Utils.checkNotNull(next, "next");
@@ -65,18 +62,19 @@ public class ListSettlementsLinks {
         this.documentation = documentation;
     }
     
-    public ListSettlementsLinks() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+    public ListSettlementsLinks(
+            ListSettlementsSelf self,
+            ListSettlementsDocumentation documentation) {
+        this(self, Optional.empty(), Optional.empty(),
+            documentation);
     }
 
     /**
      * The URL to the current set of items.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListSettlementsSelf> self() {
-        return (Optional<ListSettlementsSelf>) self;
+    public ListSettlementsSelf self() {
+        return self;
     }
 
     /**
@@ -84,8 +82,8 @@ public class ListSettlementsLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListSettlementsPrevious> previous() {
-        return (JsonNullable<ListSettlementsPrevious>) previous;
+    public Optional<ListSettlementsPrevious> previous() {
+        return (Optional<ListSettlementsPrevious>) previous;
     }
 
     /**
@@ -93,17 +91,16 @@ public class ListSettlementsLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListSettlementsNext> next() {
-        return (JsonNullable<ListSettlementsNext>) next;
+    public Optional<ListSettlementsNext> next() {
+        return (Optional<ListSettlementsNext>) next;
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListSettlementsDocumentation> documentation() {
-        return (Optional<ListSettlementsDocumentation>) documentation;
+    public ListSettlementsDocumentation documentation() {
+        return documentation;
     }
 
     public static Builder builder() {
@@ -116,16 +113,6 @@ public class ListSettlementsLinks {
      */
     public ListSettlementsLinks withSelf(ListSettlementsSelf self) {
         Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-
-    /**
-     * The URL to the current set of items.
-     */
-    public ListSettlementsLinks withSelf(Optional<? extends ListSettlementsSelf> self) {
-        Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
@@ -135,14 +122,15 @@ public class ListSettlementsLinks {
      */
     public ListSettlementsLinks withPrevious(ListSettlementsPrevious previous) {
         Utils.checkNotNull(previous, "previous");
-        this.previous = JsonNullable.of(previous);
+        this.previous = Optional.ofNullable(previous);
         return this;
     }
+
 
     /**
      * The previous set of items, if available.
      */
-    public ListSettlementsLinks withPrevious(JsonNullable<? extends ListSettlementsPrevious> previous) {
+    public ListSettlementsLinks withPrevious(Optional<? extends ListSettlementsPrevious> previous) {
         Utils.checkNotNull(previous, "previous");
         this.previous = previous;
         return this;
@@ -153,14 +141,15 @@ public class ListSettlementsLinks {
      */
     public ListSettlementsLinks withNext(ListSettlementsNext next) {
         Utils.checkNotNull(next, "next");
-        this.next = JsonNullable.of(next);
+        this.next = Optional.ofNullable(next);
         return this;
     }
+
 
     /**
      * The next set of items, if available.
      */
-    public ListSettlementsLinks withNext(JsonNullable<? extends ListSettlementsNext> next) {
+    public ListSettlementsLinks withNext(Optional<? extends ListSettlementsNext> next) {
         Utils.checkNotNull(next, "next");
         this.next = next;
         return this;
@@ -170,16 +159,6 @@ public class ListSettlementsLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public ListSettlementsLinks withDocumentation(ListSettlementsDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListSettlementsLinks withDocumentation(Optional<? extends ListSettlementsDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -220,13 +199,13 @@ public class ListSettlementsLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends ListSettlementsSelf> self = Optional.empty();
+        private ListSettlementsSelf self;
 
-        private JsonNullable<? extends ListSettlementsPrevious> previous = JsonNullable.undefined();
+        private Optional<? extends ListSettlementsPrevious> previous = Optional.empty();
 
-        private JsonNullable<? extends ListSettlementsNext> next = JsonNullable.undefined();
+        private Optional<? extends ListSettlementsNext> next = Optional.empty();
 
-        private Optional<? extends ListSettlementsDocumentation> documentation = Optional.empty();
+        private ListSettlementsDocumentation documentation;
 
         private Builder() {
           // force use of static builder() method
@@ -238,15 +217,6 @@ public class ListSettlementsLinks {
          */
         public Builder self(ListSettlementsSelf self) {
             Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * The URL to the current set of items.
-         */
-        public Builder self(Optional<? extends ListSettlementsSelf> self) {
-            Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
         }
@@ -257,14 +227,14 @@ public class ListSettlementsLinks {
          */
         public Builder previous(ListSettlementsPrevious previous) {
             Utils.checkNotNull(previous, "previous");
-            this.previous = JsonNullable.of(previous);
+            this.previous = Optional.ofNullable(previous);
             return this;
         }
 
         /**
          * The previous set of items, if available.
          */
-        public Builder previous(JsonNullable<? extends ListSettlementsPrevious> previous) {
+        public Builder previous(Optional<? extends ListSettlementsPrevious> previous) {
             Utils.checkNotNull(previous, "previous");
             this.previous = previous;
             return this;
@@ -276,14 +246,14 @@ public class ListSettlementsLinks {
          */
         public Builder next(ListSettlementsNext next) {
             Utils.checkNotNull(next, "next");
-            this.next = JsonNullable.of(next);
+            this.next = Optional.ofNullable(next);
             return this;
         }
 
         /**
          * The next set of items, if available.
          */
-        public Builder next(JsonNullable<? extends ListSettlementsNext> next) {
+        public Builder next(Optional<? extends ListSettlementsNext> next) {
             Utils.checkNotNull(next, "next");
             this.next = next;
             return this;
@@ -294,15 +264,6 @@ public class ListSettlementsLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(ListSettlementsDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends ListSettlementsDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

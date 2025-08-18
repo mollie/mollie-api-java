@@ -1,6 +1,6 @@
 # CardLabel
 
-The card's label. Available for card mandates, if the card label could be detected.
+The card's label, if known.
 
 
 ## Values
@@ -19,3 +19,4 @@ The card's label. Available for card mandates, if the card label could be detect
 | `MASTERCARD`       | Mastercard         |
 | `UNIONPAY`         | Unionpay           |
 | `VISA`             | Visa               |
+| `VPAY`             | Vpay               |

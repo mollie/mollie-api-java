@@ -1,0 +1,16 @@
+# UpdatePaymentQrCode
+
+Optional include. If a QR code was requested during payment creation for a QR-compatible payment method,
+the QR code details will be available in this object.
+
+The QR code can be scanned by the customer to complete the payment on their mobile device. For example,
+Bancontact QR payments can be completed by the customer using the Bancontact app.
+
+
+## Fields
+
+| Field                                                                                                              | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        | Example                                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| `height`                                                                                                           | *Optional\<Long>*                                                                                                  | :heavy_minus_sign:                                                                                                 | The height of the QR code image in pixels.                                                                         | 300                                                                                                                |
+| `width`                                                                                                            | *Optional\<Long>*                                                                                                  | :heavy_minus_sign:                                                                                                 | The width of the QR code image in pixels.                                                                          | 300                                                                                                                |
+| `src`                                                                                                              | *Optional\<String>*                                                                                                | :heavy_minus_sign:                                                                                                 | The URL to the QR code image. The image is a PNG file, and can be displayed directly in the browser or<br/>downloaded. | https://www.mollie.com/images/qr-code.png                                                                          |

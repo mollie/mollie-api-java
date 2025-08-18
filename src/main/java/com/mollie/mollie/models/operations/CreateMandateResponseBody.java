@@ -47,7 +47,7 @@ public class CreateMandateResponseBody {
 
 
     @JsonProperty("details")
-    private Details details;
+    private CreateMandateDetails details;
 
     /**
      * The date when the mandate was signed in `YYYY-MM-DD` format.
@@ -95,7 +95,7 @@ public class CreateMandateResponseBody {
             @JsonProperty("id") String id,
             @JsonProperty("mode") CreateMandateMode mode,
             @JsonProperty("method") CreateMandateMandatesMethod method,
-            @JsonProperty("details") Details details,
+            @JsonProperty("details") CreateMandateDetails details,
             @JsonProperty("signatureDate") Optional<String> signatureDate,
             @JsonProperty("mandateReference") Optional<String> mandateReference,
             @JsonProperty("status") CreateMandateStatus status,
@@ -131,7 +131,7 @@ public class CreateMandateResponseBody {
             String id,
             CreateMandateMode mode,
             CreateMandateMandatesMethod method,
-            Details details,
+            CreateMandateDetails details,
             CreateMandateStatus status,
             String customerId,
             String createdAt,
@@ -177,7 +177,7 @@ public class CreateMandateResponseBody {
     }
 
     @JsonIgnore
-    public Details details() {
+    public CreateMandateDetails details() {
         return details;
     }
 
@@ -274,7 +274,7 @@ public class CreateMandateResponseBody {
         return this;
     }
 
-    public CreateMandateResponseBody withDetails(Details details) {
+    public CreateMandateResponseBody withDetails(CreateMandateDetails details) {
         Utils.checkNotNull(details, "details");
         this.details = details;
         return this;
@@ -416,7 +416,7 @@ public class CreateMandateResponseBody {
 
         private CreateMandateMandatesMethod method;
 
-        private Details details;
+        private CreateMandateDetails details;
 
         private Optional<String> signatureDate = Optional.empty();
 
@@ -477,7 +477,7 @@ public class CreateMandateResponseBody {
         }
 
 
-        public Builder details(Details details) {
+        public Builder details(CreateMandateDetails details) {
             Utils.checkNotNull(details, "details");
             this.details = details;
             return this;

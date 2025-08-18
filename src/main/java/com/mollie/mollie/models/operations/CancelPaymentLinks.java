@@ -134,6 +134,22 @@ public class CancelPaymentLinks {
     @JsonProperty("documentation")
     private Optional<? extends CancelPaymentDocumentation> documentation;
 
+    /**
+     * Link to customer-facing page showing the status of the bank transfer (to verify if the transaction was
+     * successful).
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("status")
+    private Optional<? extends CancelPaymentPaymentsStatus> status;
+
+    /**
+     * Link to Mollie Checkout page allowing customers to select a different payment method instead of legacy
+     * bank transfer.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("payOnline")
+    private Optional<? extends CancelPaymentPayOnline> payOnline;
+
     @JsonCreator
     public CancelPaymentLinks(
             @JsonProperty("self") CancelPaymentSelf self,
@@ -150,7 +166,9 @@ public class CancelPaymentLinks {
             @JsonProperty("subscription") Optional<? extends CancelPaymentSubscription> subscription,
             @JsonProperty("order") Optional<? extends CancelPaymentOrder> order,
             @JsonProperty("terminal") Optional<? extends CancelPaymentTerminal> terminal,
-            @JsonProperty("documentation") Optional<? extends CancelPaymentDocumentation> documentation) {
+            @JsonProperty("documentation") Optional<? extends CancelPaymentDocumentation> documentation,
+            @JsonProperty("status") Optional<? extends CancelPaymentPaymentsStatus> status,
+            @JsonProperty("payOnline") Optional<? extends CancelPaymentPayOnline> payOnline) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(checkout, "checkout");
         Utils.checkNotNull(mobileAppCheckout, "mobileAppCheckout");
@@ -166,6 +184,8 @@ public class CancelPaymentLinks {
         Utils.checkNotNull(order, "order");
         Utils.checkNotNull(terminal, "terminal");
         Utils.checkNotNull(documentation, "documentation");
+        Utils.checkNotNull(status, "status");
+        Utils.checkNotNull(payOnline, "payOnline");
         this.self = self;
         this.checkout = checkout;
         this.mobileAppCheckout = mobileAppCheckout;
@@ -181,6 +201,8 @@ public class CancelPaymentLinks {
         this.order = order;
         this.terminal = terminal;
         this.documentation = documentation;
+        this.status = status;
+        this.payOnline = payOnline;
     }
     
     public CancelPaymentLinks(
@@ -190,7 +212,8 @@ public class CancelPaymentLinks {
             Optional.empty(), dashboard, Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -335,6 +358,26 @@ public class CancelPaymentLinks {
     @JsonIgnore
     public Optional<CancelPaymentDocumentation> documentation() {
         return (Optional<CancelPaymentDocumentation>) documentation;
+    }
+
+    /**
+     * Link to customer-facing page showing the status of the bank transfer (to verify if the transaction was
+     * successful).
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<CancelPaymentPaymentsStatus> status() {
+        return (Optional<CancelPaymentPaymentsStatus>) status;
+    }
+
+    /**
+     * Link to Mollie Checkout page allowing customers to select a different payment method instead of legacy
+     * bank transfer.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<CancelPaymentPayOnline> payOnline() {
+        return (Optional<CancelPaymentPayOnline>) payOnline;
     }
 
     public static Builder builder() {
@@ -629,6 +672,48 @@ public class CancelPaymentLinks {
         return this;
     }
 
+    /**
+     * Link to customer-facing page showing the status of the bank transfer (to verify if the transaction was
+     * successful).
+     */
+    public CancelPaymentLinks withStatus(CancelPaymentPaymentsStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = Optional.ofNullable(status);
+        return this;
+    }
+
+
+    /**
+     * Link to customer-facing page showing the status of the bank transfer (to verify if the transaction was
+     * successful).
+     */
+    public CancelPaymentLinks withStatus(Optional<? extends CancelPaymentPaymentsStatus> status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
+    /**
+     * Link to Mollie Checkout page allowing customers to select a different payment method instead of legacy
+     * bank transfer.
+     */
+    public CancelPaymentLinks withPayOnline(CancelPaymentPayOnline payOnline) {
+        Utils.checkNotNull(payOnline, "payOnline");
+        this.payOnline = Optional.ofNullable(payOnline);
+        return this;
+    }
+
+
+    /**
+     * Link to Mollie Checkout page allowing customers to select a different payment method instead of legacy
+     * bank transfer.
+     */
+    public CancelPaymentLinks withPayOnline(Optional<? extends CancelPaymentPayOnline> payOnline) {
+        Utils.checkNotNull(payOnline, "payOnline");
+        this.payOnline = payOnline;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -653,7 +738,9 @@ public class CancelPaymentLinks {
             Utils.enhancedDeepEquals(this.subscription, other.subscription) &&
             Utils.enhancedDeepEquals(this.order, other.order) &&
             Utils.enhancedDeepEquals(this.terminal, other.terminal) &&
-            Utils.enhancedDeepEquals(this.documentation, other.documentation);
+            Utils.enhancedDeepEquals(this.documentation, other.documentation) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.payOnline, other.payOnline);
     }
     
     @Override
@@ -663,7 +750,8 @@ public class CancelPaymentLinks {
             changePaymentState, dashboard, refunds,
             chargebacks, captures, settlement,
             customer, mandate, subscription,
-            order, terminal, documentation);
+            order, terminal, documentation,
+            status, payOnline);
     }
     
     @Override
@@ -683,7 +771,9 @@ public class CancelPaymentLinks {
                 "subscription", subscription,
                 "order", order,
                 "terminal", terminal,
-                "documentation", documentation);
+                "documentation", documentation,
+                "status", status,
+                "payOnline", payOnline);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -718,6 +808,10 @@ public class CancelPaymentLinks {
         private Optional<? extends CancelPaymentTerminal> terminal = Optional.empty();
 
         private Optional<? extends CancelPaymentDocumentation> documentation = Optional.empty();
+
+        private Optional<? extends CancelPaymentPaymentsStatus> status = Optional.empty();
+
+        private Optional<? extends CancelPaymentPayOnline> payOnline = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -1012,6 +1106,48 @@ public class CancelPaymentLinks {
             return this;
         }
 
+
+        /**
+         * Link to customer-facing page showing the status of the bank transfer (to verify if the transaction was
+         * successful).
+         */
+        public Builder status(CancelPaymentPaymentsStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        /**
+         * Link to customer-facing page showing the status of the bank transfer (to verify if the transaction was
+         * successful).
+         */
+        public Builder status(Optional<? extends CancelPaymentPaymentsStatus> status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
+
+        /**
+         * Link to Mollie Checkout page allowing customers to select a different payment method instead of legacy
+         * bank transfer.
+         */
+        public Builder payOnline(CancelPaymentPayOnline payOnline) {
+            Utils.checkNotNull(payOnline, "payOnline");
+            this.payOnline = Optional.ofNullable(payOnline);
+            return this;
+        }
+
+        /**
+         * Link to Mollie Checkout page allowing customers to select a different payment method instead of legacy
+         * bank transfer.
+         */
+        public Builder payOnline(Optional<? extends CancelPaymentPayOnline> payOnline) {
+            Utils.checkNotNull(payOnline, "payOnline");
+            this.payOnline = payOnline;
+            return this;
+        }
+
         public CancelPaymentLinks build() {
 
             return new CancelPaymentLinks(
@@ -1019,7 +1155,8 @@ public class CancelPaymentLinks {
                 changePaymentState, dashboard, refunds,
                 chargebacks, captures, settlement,
                 customer, mandate, subscription,
-                order, terminal, documentation);
+                order, terminal, documentation,
+                status, payOnline);
         }
 
     }

@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * ListCapturesLinks
@@ -24,37 +23,35 @@ public class ListCapturesLinks {
     /**
      * The URL to the current set of items.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends ListCapturesSelf> self;
+    private ListCapturesSelf self;
 
     /**
      * The previous set of items, if available.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("previous")
-    private JsonNullable<? extends ListCapturesPrevious> previous;
+    private Optional<? extends ListCapturesPrevious> previous;
 
     /**
      * The next set of items, if available.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("next")
-    private JsonNullable<? extends ListCapturesNext> next;
+    private Optional<? extends ListCapturesNext> next;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends ListCapturesDocumentation> documentation;
+    private ListCapturesDocumentation documentation;
 
     @JsonCreator
     public ListCapturesLinks(
-            @JsonProperty("self") Optional<? extends ListCapturesSelf> self,
-            @JsonProperty("previous") JsonNullable<? extends ListCapturesPrevious> previous,
-            @JsonProperty("next") JsonNullable<? extends ListCapturesNext> next,
-            @JsonProperty("documentation") Optional<? extends ListCapturesDocumentation> documentation) {
+            @JsonProperty("self") ListCapturesSelf self,
+            @JsonProperty("previous") Optional<? extends ListCapturesPrevious> previous,
+            @JsonProperty("next") Optional<? extends ListCapturesNext> next,
+            @JsonProperty("documentation") ListCapturesDocumentation documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(previous, "previous");
         Utils.checkNotNull(next, "next");
@@ -65,18 +62,19 @@ public class ListCapturesLinks {
         this.documentation = documentation;
     }
     
-    public ListCapturesLinks() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+    public ListCapturesLinks(
+            ListCapturesSelf self,
+            ListCapturesDocumentation documentation) {
+        this(self, Optional.empty(), Optional.empty(),
+            documentation);
     }
 
     /**
      * The URL to the current set of items.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListCapturesSelf> self() {
-        return (Optional<ListCapturesSelf>) self;
+    public ListCapturesSelf self() {
+        return self;
     }
 
     /**
@@ -84,8 +82,8 @@ public class ListCapturesLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListCapturesPrevious> previous() {
-        return (JsonNullable<ListCapturesPrevious>) previous;
+    public Optional<ListCapturesPrevious> previous() {
+        return (Optional<ListCapturesPrevious>) previous;
     }
 
     /**
@@ -93,17 +91,16 @@ public class ListCapturesLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListCapturesNext> next() {
-        return (JsonNullable<ListCapturesNext>) next;
+    public Optional<ListCapturesNext> next() {
+        return (Optional<ListCapturesNext>) next;
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListCapturesDocumentation> documentation() {
-        return (Optional<ListCapturesDocumentation>) documentation;
+    public ListCapturesDocumentation documentation() {
+        return documentation;
     }
 
     public static Builder builder() {
@@ -116,16 +113,6 @@ public class ListCapturesLinks {
      */
     public ListCapturesLinks withSelf(ListCapturesSelf self) {
         Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-
-    /**
-     * The URL to the current set of items.
-     */
-    public ListCapturesLinks withSelf(Optional<? extends ListCapturesSelf> self) {
-        Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
@@ -135,14 +122,15 @@ public class ListCapturesLinks {
      */
     public ListCapturesLinks withPrevious(ListCapturesPrevious previous) {
         Utils.checkNotNull(previous, "previous");
-        this.previous = JsonNullable.of(previous);
+        this.previous = Optional.ofNullable(previous);
         return this;
     }
+
 
     /**
      * The previous set of items, if available.
      */
-    public ListCapturesLinks withPrevious(JsonNullable<? extends ListCapturesPrevious> previous) {
+    public ListCapturesLinks withPrevious(Optional<? extends ListCapturesPrevious> previous) {
         Utils.checkNotNull(previous, "previous");
         this.previous = previous;
         return this;
@@ -153,14 +141,15 @@ public class ListCapturesLinks {
      */
     public ListCapturesLinks withNext(ListCapturesNext next) {
         Utils.checkNotNull(next, "next");
-        this.next = JsonNullable.of(next);
+        this.next = Optional.ofNullable(next);
         return this;
     }
+
 
     /**
      * The next set of items, if available.
      */
-    public ListCapturesLinks withNext(JsonNullable<? extends ListCapturesNext> next) {
+    public ListCapturesLinks withNext(Optional<? extends ListCapturesNext> next) {
         Utils.checkNotNull(next, "next");
         this.next = next;
         return this;
@@ -170,16 +159,6 @@ public class ListCapturesLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public ListCapturesLinks withDocumentation(ListCapturesDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListCapturesLinks withDocumentation(Optional<? extends ListCapturesDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -220,13 +199,13 @@ public class ListCapturesLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends ListCapturesSelf> self = Optional.empty();
+        private ListCapturesSelf self;
 
-        private JsonNullable<? extends ListCapturesPrevious> previous = JsonNullable.undefined();
+        private Optional<? extends ListCapturesPrevious> previous = Optional.empty();
 
-        private JsonNullable<? extends ListCapturesNext> next = JsonNullable.undefined();
+        private Optional<? extends ListCapturesNext> next = Optional.empty();
 
-        private Optional<? extends ListCapturesDocumentation> documentation = Optional.empty();
+        private ListCapturesDocumentation documentation;
 
         private Builder() {
           // force use of static builder() method
@@ -238,15 +217,6 @@ public class ListCapturesLinks {
          */
         public Builder self(ListCapturesSelf self) {
             Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * The URL to the current set of items.
-         */
-        public Builder self(Optional<? extends ListCapturesSelf> self) {
-            Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
         }
@@ -257,14 +227,14 @@ public class ListCapturesLinks {
          */
         public Builder previous(ListCapturesPrevious previous) {
             Utils.checkNotNull(previous, "previous");
-            this.previous = JsonNullable.of(previous);
+            this.previous = Optional.ofNullable(previous);
             return this;
         }
 
         /**
          * The previous set of items, if available.
          */
-        public Builder previous(JsonNullable<? extends ListCapturesPrevious> previous) {
+        public Builder previous(Optional<? extends ListCapturesPrevious> previous) {
             Utils.checkNotNull(previous, "previous");
             this.previous = previous;
             return this;
@@ -276,14 +246,14 @@ public class ListCapturesLinks {
          */
         public Builder next(ListCapturesNext next) {
             Utils.checkNotNull(next, "next");
-            this.next = JsonNullable.of(next);
+            this.next = Optional.ofNullable(next);
             return this;
         }
 
         /**
          * The next set of items, if available.
          */
-        public Builder next(JsonNullable<? extends ListCapturesNext> next) {
+        public Builder next(Optional<? extends ListCapturesNext> next) {
             Utils.checkNotNull(next, "next");
             this.next = next;
             return this;
@@ -294,15 +264,6 @@ public class ListCapturesLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(ListCapturesDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends ListCapturesDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

@@ -11,7 +11,7 @@ import java.util.Optional;
 /**
  * CardLabel
  * 
- * <p>The card's label. Available for card mandates, if the card label could be detected.
+ * <p>The card's label, if known.
  */
 public enum CardLabel {
     AMERICAN_EXPRESS("American Express"),
@@ -25,7 +25,8 @@ public enum CardLabel {
     MAESTRO("Maestro"),
     MASTERCARD("Mastercard"),
     UNIONPAY("Unionpay"),
-    VISA("Visa");
+    VISA("Visa"),
+    VPAY("Vpay");
 
     @JsonValue
     private final String value;

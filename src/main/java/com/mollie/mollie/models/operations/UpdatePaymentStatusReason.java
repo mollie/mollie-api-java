@@ -20,11 +20,9 @@ import java.lang.String;
  * [this page](status-reasons).**
  */
 public class UpdatePaymentStatusReason {
-    /**
-     * A machine-readable code that indicates the reason for the payment's status.
-     */
+
     @JsonProperty("code")
-    private String code;
+    private UpdatePaymentCode code;
 
     /**
      * A description of the status reason, localized according to the payment `locale`.
@@ -34,7 +32,7 @@ public class UpdatePaymentStatusReason {
 
     @JsonCreator
     public UpdatePaymentStatusReason(
-            @JsonProperty("code") String code,
+            @JsonProperty("code") UpdatePaymentCode code,
             @JsonProperty("message") String message) {
         Utils.checkNotNull(code, "code");
         Utils.checkNotNull(message, "message");
@@ -42,11 +40,8 @@ public class UpdatePaymentStatusReason {
         this.message = message;
     }
 
-    /**
-     * A machine-readable code that indicates the reason for the payment's status.
-     */
     @JsonIgnore
-    public String code() {
+    public UpdatePaymentCode code() {
         return code;
     }
 
@@ -63,10 +58,7 @@ public class UpdatePaymentStatusReason {
     }
 
 
-    /**
-     * A machine-readable code that indicates the reason for the payment's status.
-     */
-    public UpdatePaymentStatusReason withCode(String code) {
+    public UpdatePaymentStatusReason withCode(UpdatePaymentCode code) {
         Utils.checkNotNull(code, "code");
         this.code = code;
         return this;
@@ -111,7 +103,7 @@ public class UpdatePaymentStatusReason {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String code;
+        private UpdatePaymentCode code;
 
         private String message;
 
@@ -120,10 +112,7 @@ public class UpdatePaymentStatusReason {
         }
 
 
-        /**
-         * A machine-readable code that indicates the reason for the payment's status.
-         */
-        public Builder code(String code) {
+        public Builder code(UpdatePaymentCode code) {
             Utils.checkNotNull(code, "code");
             this.code = code;
             return this;

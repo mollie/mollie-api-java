@@ -20,11 +20,9 @@ import java.lang.String;
  * [this page](status-reasons).**
  */
 public class ListSubscriptionPaymentsStatusReason {
-    /**
-     * A machine-readable code that indicates the reason for the payment's status.
-     */
+
     @JsonProperty("code")
-    private String code;
+    private ListSubscriptionPaymentsCode code;
 
     /**
      * A description of the status reason, localized according to the payment `locale`.
@@ -34,7 +32,7 @@ public class ListSubscriptionPaymentsStatusReason {
 
     @JsonCreator
     public ListSubscriptionPaymentsStatusReason(
-            @JsonProperty("code") String code,
+            @JsonProperty("code") ListSubscriptionPaymentsCode code,
             @JsonProperty("message") String message) {
         Utils.checkNotNull(code, "code");
         Utils.checkNotNull(message, "message");
@@ -42,11 +40,8 @@ public class ListSubscriptionPaymentsStatusReason {
         this.message = message;
     }
 
-    /**
-     * A machine-readable code that indicates the reason for the payment's status.
-     */
     @JsonIgnore
-    public String code() {
+    public ListSubscriptionPaymentsCode code() {
         return code;
     }
 
@@ -63,10 +58,7 @@ public class ListSubscriptionPaymentsStatusReason {
     }
 
 
-    /**
-     * A machine-readable code that indicates the reason for the payment's status.
-     */
-    public ListSubscriptionPaymentsStatusReason withCode(String code) {
+    public ListSubscriptionPaymentsStatusReason withCode(ListSubscriptionPaymentsCode code) {
         Utils.checkNotNull(code, "code");
         this.code = code;
         return this;
@@ -111,7 +103,7 @@ public class ListSubscriptionPaymentsStatusReason {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String code;
+        private ListSubscriptionPaymentsCode code;
 
         private String message;
 
@@ -120,10 +112,7 @@ public class ListSubscriptionPaymentsStatusReason {
         }
 
 
-        /**
-         * A machine-readable code that indicates the reason for the payment's status.
-         */
-        public Builder code(String code) {
+        public Builder code(ListSubscriptionPaymentsCode code) {
             Utils.checkNotNull(code, "code");
             this.code = code;
             return this;

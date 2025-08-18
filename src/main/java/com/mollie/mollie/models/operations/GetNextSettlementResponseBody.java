@@ -9,9 +9,11 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -103,7 +105,7 @@ public class GetNextSettlementResponseBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("periods")
-    private Optional<? extends GetNextSettlementPeriods> periods;
+    private Optional<? extends Map<String, Object>> periods;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -123,7 +125,7 @@ public class GetNextSettlementResponseBody {
             @JsonProperty("amount") Optional<? extends GetNextSettlementAmount> amount,
             @JsonProperty("balanceId") Optional<String> balanceId,
             @JsonProperty("invoiceId") JsonNullable<String> invoiceId,
-            @JsonProperty("periods") Optional<? extends GetNextSettlementPeriods> periods,
+            @JsonProperty("periods") Optional<? extends Map<String, Object>> periods,
             @JsonProperty("_links") Optional<? extends GetNextSettlementLinks> links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
@@ -248,8 +250,8 @@ public class GetNextSettlementResponseBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetNextSettlementPeriods> periods() {
-        return (Optional<GetNextSettlementPeriods>) periods;
+    public Optional<Map<String, Object>> periods() {
+        return (Optional<Map<String, Object>>) periods;
     }
 
     /**
@@ -454,7 +456,7 @@ public class GetNextSettlementResponseBody {
      * 
      * <p>The example response should give a good idea of what this looks like in practise.
      */
-    public GetNextSettlementResponseBody withPeriods(GetNextSettlementPeriods periods) {
+    public GetNextSettlementResponseBody withPeriods(Map<String, Object> periods) {
         Utils.checkNotNull(periods, "periods");
         this.periods = Optional.ofNullable(periods);
         return this;
@@ -473,7 +475,7 @@ public class GetNextSettlementResponseBody {
      * 
      * <p>The example response should give a good idea of what this looks like in practise.
      */
-    public GetNextSettlementResponseBody withPeriods(Optional<? extends GetNextSettlementPeriods> periods) {
+    public GetNextSettlementResponseBody withPeriods(Optional<? extends Map<String, Object>> periods) {
         Utils.checkNotNull(periods, "periods");
         this.periods = periods;
         return this;
@@ -567,7 +569,7 @@ public class GetNextSettlementResponseBody {
 
         private JsonNullable<String> invoiceId = JsonNullable.undefined();
 
-        private Optional<? extends GetNextSettlementPeriods> periods = Optional.empty();
+        private Optional<? extends Map<String, Object>> periods = Optional.empty();
 
         private Optional<? extends GetNextSettlementLinks> links = Optional.empty();
 
@@ -767,7 +769,7 @@ public class GetNextSettlementResponseBody {
          * 
          * <p>The example response should give a good idea of what this looks like in practise.
          */
-        public Builder periods(GetNextSettlementPeriods periods) {
+        public Builder periods(Map<String, Object> periods) {
             Utils.checkNotNull(periods, "periods");
             this.periods = Optional.ofNullable(periods);
             return this;
@@ -785,7 +787,7 @@ public class GetNextSettlementResponseBody {
          * 
          * <p>The example response should give a good idea of what this looks like in practise.
          */
-        public Builder periods(Optional<? extends GetNextSettlementPeriods> periods) {
+        public Builder periods(Optional<? extends Map<String, Object>> periods) {
             Utils.checkNotNull(periods, "periods");
             this.periods = periods;
             return this;

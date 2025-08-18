@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * ListSalesInvoicesLinks
@@ -24,37 +23,35 @@ public class ListSalesInvoicesLinks {
     /**
      * The URL to the current set of items.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends ListSalesInvoicesSelf> self;
+    private ListSalesInvoicesSelf self;
 
     /**
      * The previous set of items, if available.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("previous")
-    private JsonNullable<? extends ListSalesInvoicesPrevious> previous;
+    private Optional<? extends ListSalesInvoicesPrevious> previous;
 
     /**
      * The next set of items, if available.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("next")
-    private JsonNullable<? extends ListSalesInvoicesNext> next;
+    private Optional<? extends ListSalesInvoicesNext> next;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends ListSalesInvoicesDocumentation> documentation;
+    private ListSalesInvoicesDocumentation documentation;
 
     @JsonCreator
     public ListSalesInvoicesLinks(
-            @JsonProperty("self") Optional<? extends ListSalesInvoicesSelf> self,
-            @JsonProperty("previous") JsonNullable<? extends ListSalesInvoicesPrevious> previous,
-            @JsonProperty("next") JsonNullable<? extends ListSalesInvoicesNext> next,
-            @JsonProperty("documentation") Optional<? extends ListSalesInvoicesDocumentation> documentation) {
+            @JsonProperty("self") ListSalesInvoicesSelf self,
+            @JsonProperty("previous") Optional<? extends ListSalesInvoicesPrevious> previous,
+            @JsonProperty("next") Optional<? extends ListSalesInvoicesNext> next,
+            @JsonProperty("documentation") ListSalesInvoicesDocumentation documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(previous, "previous");
         Utils.checkNotNull(next, "next");
@@ -65,18 +62,19 @@ public class ListSalesInvoicesLinks {
         this.documentation = documentation;
     }
     
-    public ListSalesInvoicesLinks() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+    public ListSalesInvoicesLinks(
+            ListSalesInvoicesSelf self,
+            ListSalesInvoicesDocumentation documentation) {
+        this(self, Optional.empty(), Optional.empty(),
+            documentation);
     }
 
     /**
      * The URL to the current set of items.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListSalesInvoicesSelf> self() {
-        return (Optional<ListSalesInvoicesSelf>) self;
+    public ListSalesInvoicesSelf self() {
+        return self;
     }
 
     /**
@@ -84,8 +82,8 @@ public class ListSalesInvoicesLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListSalesInvoicesPrevious> previous() {
-        return (JsonNullable<ListSalesInvoicesPrevious>) previous;
+    public Optional<ListSalesInvoicesPrevious> previous() {
+        return (Optional<ListSalesInvoicesPrevious>) previous;
     }
 
     /**
@@ -93,17 +91,16 @@ public class ListSalesInvoicesLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListSalesInvoicesNext> next() {
-        return (JsonNullable<ListSalesInvoicesNext>) next;
+    public Optional<ListSalesInvoicesNext> next() {
+        return (Optional<ListSalesInvoicesNext>) next;
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListSalesInvoicesDocumentation> documentation() {
-        return (Optional<ListSalesInvoicesDocumentation>) documentation;
+    public ListSalesInvoicesDocumentation documentation() {
+        return documentation;
     }
 
     public static Builder builder() {
@@ -116,16 +113,6 @@ public class ListSalesInvoicesLinks {
      */
     public ListSalesInvoicesLinks withSelf(ListSalesInvoicesSelf self) {
         Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-
-    /**
-     * The URL to the current set of items.
-     */
-    public ListSalesInvoicesLinks withSelf(Optional<? extends ListSalesInvoicesSelf> self) {
-        Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
@@ -135,14 +122,15 @@ public class ListSalesInvoicesLinks {
      */
     public ListSalesInvoicesLinks withPrevious(ListSalesInvoicesPrevious previous) {
         Utils.checkNotNull(previous, "previous");
-        this.previous = JsonNullable.of(previous);
+        this.previous = Optional.ofNullable(previous);
         return this;
     }
+
 
     /**
      * The previous set of items, if available.
      */
-    public ListSalesInvoicesLinks withPrevious(JsonNullable<? extends ListSalesInvoicesPrevious> previous) {
+    public ListSalesInvoicesLinks withPrevious(Optional<? extends ListSalesInvoicesPrevious> previous) {
         Utils.checkNotNull(previous, "previous");
         this.previous = previous;
         return this;
@@ -153,14 +141,15 @@ public class ListSalesInvoicesLinks {
      */
     public ListSalesInvoicesLinks withNext(ListSalesInvoicesNext next) {
         Utils.checkNotNull(next, "next");
-        this.next = JsonNullable.of(next);
+        this.next = Optional.ofNullable(next);
         return this;
     }
+
 
     /**
      * The next set of items, if available.
      */
-    public ListSalesInvoicesLinks withNext(JsonNullable<? extends ListSalesInvoicesNext> next) {
+    public ListSalesInvoicesLinks withNext(Optional<? extends ListSalesInvoicesNext> next) {
         Utils.checkNotNull(next, "next");
         this.next = next;
         return this;
@@ -170,16 +159,6 @@ public class ListSalesInvoicesLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public ListSalesInvoicesLinks withDocumentation(ListSalesInvoicesDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListSalesInvoicesLinks withDocumentation(Optional<? extends ListSalesInvoicesDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -220,13 +199,13 @@ public class ListSalesInvoicesLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends ListSalesInvoicesSelf> self = Optional.empty();
+        private ListSalesInvoicesSelf self;
 
-        private JsonNullable<? extends ListSalesInvoicesPrevious> previous = JsonNullable.undefined();
+        private Optional<? extends ListSalesInvoicesPrevious> previous = Optional.empty();
 
-        private JsonNullable<? extends ListSalesInvoicesNext> next = JsonNullable.undefined();
+        private Optional<? extends ListSalesInvoicesNext> next = Optional.empty();
 
-        private Optional<? extends ListSalesInvoicesDocumentation> documentation = Optional.empty();
+        private ListSalesInvoicesDocumentation documentation;
 
         private Builder() {
           // force use of static builder() method
@@ -238,15 +217,6 @@ public class ListSalesInvoicesLinks {
          */
         public Builder self(ListSalesInvoicesSelf self) {
             Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * The URL to the current set of items.
-         */
-        public Builder self(Optional<? extends ListSalesInvoicesSelf> self) {
-            Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
         }
@@ -257,14 +227,14 @@ public class ListSalesInvoicesLinks {
          */
         public Builder previous(ListSalesInvoicesPrevious previous) {
             Utils.checkNotNull(previous, "previous");
-            this.previous = JsonNullable.of(previous);
+            this.previous = Optional.ofNullable(previous);
             return this;
         }
 
         /**
          * The previous set of items, if available.
          */
-        public Builder previous(JsonNullable<? extends ListSalesInvoicesPrevious> previous) {
+        public Builder previous(Optional<? extends ListSalesInvoicesPrevious> previous) {
             Utils.checkNotNull(previous, "previous");
             this.previous = previous;
             return this;
@@ -276,14 +246,14 @@ public class ListSalesInvoicesLinks {
          */
         public Builder next(ListSalesInvoicesNext next) {
             Utils.checkNotNull(next, "next");
-            this.next = JsonNullable.of(next);
+            this.next = Optional.ofNullable(next);
             return this;
         }
 
         /**
          * The next set of items, if available.
          */
-        public Builder next(JsonNullable<? extends ListSalesInvoicesNext> next) {
+        public Builder next(Optional<? extends ListSalesInvoicesNext> next) {
             Utils.checkNotNull(next, "next");
             this.next = next;
             return this;
@@ -294,15 +264,6 @@ public class ListSalesInvoicesLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(ListSalesInvoicesDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends ListSalesInvoicesDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

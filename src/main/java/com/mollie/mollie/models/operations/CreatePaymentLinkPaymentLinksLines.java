@@ -106,7 +106,7 @@ public class CreatePaymentLinkPaymentLinksLines {
 
     /**
      * An array with the voucher categories, in case of a line eligible for a voucher. See the
-     * [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more information.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("categories")
@@ -286,7 +286,7 @@ public class CreatePaymentLinkPaymentLinksLines {
 
     /**
      * An array with the voucher categories, in case of a line eligible for a voucher. See the
-     * [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more information.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -497,7 +497,7 @@ public class CreatePaymentLinkPaymentLinksLines {
 
     /**
      * An array with the voucher categories, in case of a line eligible for a voucher. See the
-     * [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more information.
      */
     public CreatePaymentLinkPaymentLinksLines withCategories(List<CreatePaymentLinkPaymentLinksCategories> categories) {
         Utils.checkNotNull(categories, "categories");
@@ -508,7 +508,7 @@ public class CreatePaymentLinkPaymentLinksLines {
 
     /**
      * An array with the voucher categories, in case of a line eligible for a voucher. See the
-     * [Integrating Vouchers](integrating-vouchers) guide for more information.
+     * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more information.
      */
     public CreatePaymentLinkPaymentLinksLines withCategories(Optional<? extends List<CreatePaymentLinkPaymentLinksCategories>> categories) {
         Utils.checkNotNull(categories, "categories");
@@ -827,7 +827,7 @@ public class CreatePaymentLinkPaymentLinksLines {
 
         /**
          * An array with the voucher categories, in case of a line eligible for a voucher. See the
-         * [Integrating Vouchers](integrating-vouchers) guide for more information.
+         * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more information.
          */
         public Builder categories(List<CreatePaymentLinkPaymentLinksCategories> categories) {
             Utils.checkNotNull(categories, "categories");
@@ -837,7 +837,7 @@ public class CreatePaymentLinkPaymentLinksLines {
 
         /**
          * An array with the voucher categories, in case of a line eligible for a voucher. See the
-         * [Integrating Vouchers](integrating-vouchers) guide for more information.
+         * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more information.
          */
         public Builder categories(Optional<? extends List<CreatePaymentLinkPaymentLinksCategories>> categories) {
             Utils.checkNotNull(categories, "categories");

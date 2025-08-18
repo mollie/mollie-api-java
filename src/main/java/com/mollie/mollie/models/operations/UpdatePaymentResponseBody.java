@@ -10,12 +10,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -422,7 +420,7 @@ public class UpdatePaymentResponseBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("details")
-    private JsonNullable<? extends Map<String, Object>> details;
+    private JsonNullable<? extends UpdatePaymentDetails> details;
 
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -522,7 +520,7 @@ public class UpdatePaymentResponseBody {
             @JsonProperty("status") UpdatePaymentStatus status,
             @JsonProperty("statusReason") JsonNullable<? extends UpdatePaymentStatusReason> statusReason,
             @JsonProperty("isCancelable") JsonNullable<Boolean> isCancelable,
-            @JsonProperty("details") JsonNullable<? extends Map<String, Object>> details,
+            @JsonProperty("details") JsonNullable<? extends UpdatePaymentDetails> details,
             @JsonProperty("createdAt") String createdAt,
             @JsonProperty("authorizedAt") JsonNullable<String> authorizedAt,
             @JsonProperty("paidAt") JsonNullable<String> paidAt,
@@ -1106,8 +1104,8 @@ public class UpdatePaymentResponseBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Map<String, Object>> details() {
-        return (JsonNullable<Map<String, Object>>) details;
+    public JsonNullable<UpdatePaymentDetails> details() {
+        return (JsonNullable<UpdatePaymentDetails>) details;
     }
 
     /**
@@ -2052,7 +2050,7 @@ public class UpdatePaymentResponseBody {
      * customer's card or bank details and a payment reference. For the full list of details, please refer to the
      * [method-specific parameters](extra-payment-parameters) guide.
      */
-    public UpdatePaymentResponseBody withDetails(Map<String, Object> details) {
+    public UpdatePaymentResponseBody withDetails(UpdatePaymentDetails details) {
         Utils.checkNotNull(details, "details");
         this.details = JsonNullable.of(details);
         return this;
@@ -2063,7 +2061,7 @@ public class UpdatePaymentResponseBody {
      * customer's card or bank details and a payment reference. For the full list of details, please refer to the
      * [method-specific parameters](extra-payment-parameters) guide.
      */
-    public UpdatePaymentResponseBody withDetails(JsonNullable<? extends Map<String, Object>> details) {
+    public UpdatePaymentResponseBody withDetails(JsonNullable<? extends UpdatePaymentDetails> details) {
         Utils.checkNotNull(details, "details");
         this.details = details;
         return this;
@@ -2409,7 +2407,7 @@ public class UpdatePaymentResponseBody {
 
         private JsonNullable<Boolean> isCancelable = JsonNullable.undefined();
 
-        private JsonNullable<? extends Map<String, Object>> details = JsonNullable.undefined();
+        private JsonNullable<? extends UpdatePaymentDetails> details = JsonNullable.undefined();
 
         private String createdAt;
 
@@ -3327,7 +3325,7 @@ public class UpdatePaymentResponseBody {
          * customer's card or bank details and a payment reference. For the full list of details, please refer to the
          * [method-specific parameters](extra-payment-parameters) guide.
          */
-        public Builder details(Map<String, Object> details) {
+        public Builder details(UpdatePaymentDetails details) {
             Utils.checkNotNull(details, "details");
             this.details = JsonNullable.of(details);
             return this;
@@ -3338,7 +3336,7 @@ public class UpdatePaymentResponseBody {
          * customer's card or bank details and a payment reference. For the full list of details, please refer to the
          * [method-specific parameters](extra-payment-parameters) guide.
          */
-        public Builder details(JsonNullable<? extends Map<String, Object>> details) {
+        public Builder details(JsonNullable<? extends UpdatePaymentDetails> details) {
             Utils.checkNotNull(details, "details");
             this.details = details;
             return this;

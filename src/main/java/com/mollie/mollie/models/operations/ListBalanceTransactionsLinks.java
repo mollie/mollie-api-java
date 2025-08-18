@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * ListBalanceTransactionsLinks
@@ -24,37 +23,35 @@ public class ListBalanceTransactionsLinks {
     /**
      * The URL to the current set of items.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends ListBalanceTransactionsSelf> self;
+    private ListBalanceTransactionsSelf self;
 
     /**
      * The previous set of items, if available.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("previous")
-    private JsonNullable<? extends ListBalanceTransactionsPrevious> previous;
+    private Optional<? extends ListBalanceTransactionsPrevious> previous;
 
     /**
      * The next set of items, if available.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("next")
-    private JsonNullable<? extends ListBalanceTransactionsNext> next;
+    private Optional<? extends ListBalanceTransactionsNext> next;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends ListBalanceTransactionsDocumentation> documentation;
+    private ListBalanceTransactionsDocumentation documentation;
 
     @JsonCreator
     public ListBalanceTransactionsLinks(
-            @JsonProperty("self") Optional<? extends ListBalanceTransactionsSelf> self,
-            @JsonProperty("previous") JsonNullable<? extends ListBalanceTransactionsPrevious> previous,
-            @JsonProperty("next") JsonNullable<? extends ListBalanceTransactionsNext> next,
-            @JsonProperty("documentation") Optional<? extends ListBalanceTransactionsDocumentation> documentation) {
+            @JsonProperty("self") ListBalanceTransactionsSelf self,
+            @JsonProperty("previous") Optional<? extends ListBalanceTransactionsPrevious> previous,
+            @JsonProperty("next") Optional<? extends ListBalanceTransactionsNext> next,
+            @JsonProperty("documentation") ListBalanceTransactionsDocumentation documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(previous, "previous");
         Utils.checkNotNull(next, "next");
@@ -65,18 +62,19 @@ public class ListBalanceTransactionsLinks {
         this.documentation = documentation;
     }
     
-    public ListBalanceTransactionsLinks() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+    public ListBalanceTransactionsLinks(
+            ListBalanceTransactionsSelf self,
+            ListBalanceTransactionsDocumentation documentation) {
+        this(self, Optional.empty(), Optional.empty(),
+            documentation);
     }
 
     /**
      * The URL to the current set of items.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListBalanceTransactionsSelf> self() {
-        return (Optional<ListBalanceTransactionsSelf>) self;
+    public ListBalanceTransactionsSelf self() {
+        return self;
     }
 
     /**
@@ -84,8 +82,8 @@ public class ListBalanceTransactionsLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListBalanceTransactionsPrevious> previous() {
-        return (JsonNullable<ListBalanceTransactionsPrevious>) previous;
+    public Optional<ListBalanceTransactionsPrevious> previous() {
+        return (Optional<ListBalanceTransactionsPrevious>) previous;
     }
 
     /**
@@ -93,17 +91,16 @@ public class ListBalanceTransactionsLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListBalanceTransactionsNext> next() {
-        return (JsonNullable<ListBalanceTransactionsNext>) next;
+    public Optional<ListBalanceTransactionsNext> next() {
+        return (Optional<ListBalanceTransactionsNext>) next;
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListBalanceTransactionsDocumentation> documentation() {
-        return (Optional<ListBalanceTransactionsDocumentation>) documentation;
+    public ListBalanceTransactionsDocumentation documentation() {
+        return documentation;
     }
 
     public static Builder builder() {
@@ -116,16 +113,6 @@ public class ListBalanceTransactionsLinks {
      */
     public ListBalanceTransactionsLinks withSelf(ListBalanceTransactionsSelf self) {
         Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-
-    /**
-     * The URL to the current set of items.
-     */
-    public ListBalanceTransactionsLinks withSelf(Optional<? extends ListBalanceTransactionsSelf> self) {
-        Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
@@ -135,14 +122,15 @@ public class ListBalanceTransactionsLinks {
      */
     public ListBalanceTransactionsLinks withPrevious(ListBalanceTransactionsPrevious previous) {
         Utils.checkNotNull(previous, "previous");
-        this.previous = JsonNullable.of(previous);
+        this.previous = Optional.ofNullable(previous);
         return this;
     }
+
 
     /**
      * The previous set of items, if available.
      */
-    public ListBalanceTransactionsLinks withPrevious(JsonNullable<? extends ListBalanceTransactionsPrevious> previous) {
+    public ListBalanceTransactionsLinks withPrevious(Optional<? extends ListBalanceTransactionsPrevious> previous) {
         Utils.checkNotNull(previous, "previous");
         this.previous = previous;
         return this;
@@ -153,14 +141,15 @@ public class ListBalanceTransactionsLinks {
      */
     public ListBalanceTransactionsLinks withNext(ListBalanceTransactionsNext next) {
         Utils.checkNotNull(next, "next");
-        this.next = JsonNullable.of(next);
+        this.next = Optional.ofNullable(next);
         return this;
     }
+
 
     /**
      * The next set of items, if available.
      */
-    public ListBalanceTransactionsLinks withNext(JsonNullable<? extends ListBalanceTransactionsNext> next) {
+    public ListBalanceTransactionsLinks withNext(Optional<? extends ListBalanceTransactionsNext> next) {
         Utils.checkNotNull(next, "next");
         this.next = next;
         return this;
@@ -170,16 +159,6 @@ public class ListBalanceTransactionsLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public ListBalanceTransactionsLinks withDocumentation(ListBalanceTransactionsDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListBalanceTransactionsLinks withDocumentation(Optional<? extends ListBalanceTransactionsDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -220,13 +199,13 @@ public class ListBalanceTransactionsLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends ListBalanceTransactionsSelf> self = Optional.empty();
+        private ListBalanceTransactionsSelf self;
 
-        private JsonNullable<? extends ListBalanceTransactionsPrevious> previous = JsonNullable.undefined();
+        private Optional<? extends ListBalanceTransactionsPrevious> previous = Optional.empty();
 
-        private JsonNullable<? extends ListBalanceTransactionsNext> next = JsonNullable.undefined();
+        private Optional<? extends ListBalanceTransactionsNext> next = Optional.empty();
 
-        private Optional<? extends ListBalanceTransactionsDocumentation> documentation = Optional.empty();
+        private ListBalanceTransactionsDocumentation documentation;
 
         private Builder() {
           // force use of static builder() method
@@ -238,15 +217,6 @@ public class ListBalanceTransactionsLinks {
          */
         public Builder self(ListBalanceTransactionsSelf self) {
             Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * The URL to the current set of items.
-         */
-        public Builder self(Optional<? extends ListBalanceTransactionsSelf> self) {
-            Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
         }
@@ -257,14 +227,14 @@ public class ListBalanceTransactionsLinks {
          */
         public Builder previous(ListBalanceTransactionsPrevious previous) {
             Utils.checkNotNull(previous, "previous");
-            this.previous = JsonNullable.of(previous);
+            this.previous = Optional.ofNullable(previous);
             return this;
         }
 
         /**
          * The previous set of items, if available.
          */
-        public Builder previous(JsonNullable<? extends ListBalanceTransactionsPrevious> previous) {
+        public Builder previous(Optional<? extends ListBalanceTransactionsPrevious> previous) {
             Utils.checkNotNull(previous, "previous");
             this.previous = previous;
             return this;
@@ -276,14 +246,14 @@ public class ListBalanceTransactionsLinks {
          */
         public Builder next(ListBalanceTransactionsNext next) {
             Utils.checkNotNull(next, "next");
-            this.next = JsonNullable.of(next);
+            this.next = Optional.ofNullable(next);
             return this;
         }
 
         /**
          * The next set of items, if available.
          */
-        public Builder next(JsonNullable<? extends ListBalanceTransactionsNext> next) {
+        public Builder next(Optional<? extends ListBalanceTransactionsNext> next) {
             Utils.checkNotNull(next, "next");
             this.next = next;
             return this;
@@ -294,15 +264,6 @@ public class ListBalanceTransactionsLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(ListBalanceTransactionsDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends ListBalanceTransactionsDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

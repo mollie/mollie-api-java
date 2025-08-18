@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * ListClientsLinks
@@ -24,37 +23,35 @@ public class ListClientsLinks {
     /**
      * The URL to the current set of items.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends ListClientsSelf> self;
+    private ListClientsSelf self;
 
     /**
      * The previous set of items, if available.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("previous")
-    private JsonNullable<? extends ListClientsPrevious> previous;
+    private Optional<? extends ListClientsPrevious> previous;
 
     /**
      * The next set of items, if available.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("next")
-    private JsonNullable<? extends ListClientsNext> next;
+    private Optional<? extends ListClientsNext> next;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends ListClientsDocumentation> documentation;
+    private ListClientsDocumentation documentation;
 
     @JsonCreator
     public ListClientsLinks(
-            @JsonProperty("self") Optional<? extends ListClientsSelf> self,
-            @JsonProperty("previous") JsonNullable<? extends ListClientsPrevious> previous,
-            @JsonProperty("next") JsonNullable<? extends ListClientsNext> next,
-            @JsonProperty("documentation") Optional<? extends ListClientsDocumentation> documentation) {
+            @JsonProperty("self") ListClientsSelf self,
+            @JsonProperty("previous") Optional<? extends ListClientsPrevious> previous,
+            @JsonProperty("next") Optional<? extends ListClientsNext> next,
+            @JsonProperty("documentation") ListClientsDocumentation documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(previous, "previous");
         Utils.checkNotNull(next, "next");
@@ -65,18 +62,19 @@ public class ListClientsLinks {
         this.documentation = documentation;
     }
     
-    public ListClientsLinks() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+    public ListClientsLinks(
+            ListClientsSelf self,
+            ListClientsDocumentation documentation) {
+        this(self, Optional.empty(), Optional.empty(),
+            documentation);
     }
 
     /**
      * The URL to the current set of items.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListClientsSelf> self() {
-        return (Optional<ListClientsSelf>) self;
+    public ListClientsSelf self() {
+        return self;
     }
 
     /**
@@ -84,8 +82,8 @@ public class ListClientsLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListClientsPrevious> previous() {
-        return (JsonNullable<ListClientsPrevious>) previous;
+    public Optional<ListClientsPrevious> previous() {
+        return (Optional<ListClientsPrevious>) previous;
     }
 
     /**
@@ -93,17 +91,16 @@ public class ListClientsLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListClientsNext> next() {
-        return (JsonNullable<ListClientsNext>) next;
+    public Optional<ListClientsNext> next() {
+        return (Optional<ListClientsNext>) next;
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListClientsDocumentation> documentation() {
-        return (Optional<ListClientsDocumentation>) documentation;
+    public ListClientsDocumentation documentation() {
+        return documentation;
     }
 
     public static Builder builder() {
@@ -116,16 +113,6 @@ public class ListClientsLinks {
      */
     public ListClientsLinks withSelf(ListClientsSelf self) {
         Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-
-    /**
-     * The URL to the current set of items.
-     */
-    public ListClientsLinks withSelf(Optional<? extends ListClientsSelf> self) {
-        Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
@@ -135,14 +122,15 @@ public class ListClientsLinks {
      */
     public ListClientsLinks withPrevious(ListClientsPrevious previous) {
         Utils.checkNotNull(previous, "previous");
-        this.previous = JsonNullable.of(previous);
+        this.previous = Optional.ofNullable(previous);
         return this;
     }
+
 
     /**
      * The previous set of items, if available.
      */
-    public ListClientsLinks withPrevious(JsonNullable<? extends ListClientsPrevious> previous) {
+    public ListClientsLinks withPrevious(Optional<? extends ListClientsPrevious> previous) {
         Utils.checkNotNull(previous, "previous");
         this.previous = previous;
         return this;
@@ -153,14 +141,15 @@ public class ListClientsLinks {
      */
     public ListClientsLinks withNext(ListClientsNext next) {
         Utils.checkNotNull(next, "next");
-        this.next = JsonNullable.of(next);
+        this.next = Optional.ofNullable(next);
         return this;
     }
+
 
     /**
      * The next set of items, if available.
      */
-    public ListClientsLinks withNext(JsonNullable<? extends ListClientsNext> next) {
+    public ListClientsLinks withNext(Optional<? extends ListClientsNext> next) {
         Utils.checkNotNull(next, "next");
         this.next = next;
         return this;
@@ -170,16 +159,6 @@ public class ListClientsLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public ListClientsLinks withDocumentation(ListClientsDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListClientsLinks withDocumentation(Optional<? extends ListClientsDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -220,13 +199,13 @@ public class ListClientsLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends ListClientsSelf> self = Optional.empty();
+        private ListClientsSelf self;
 
-        private JsonNullable<? extends ListClientsPrevious> previous = JsonNullable.undefined();
+        private Optional<? extends ListClientsPrevious> previous = Optional.empty();
 
-        private JsonNullable<? extends ListClientsNext> next = JsonNullable.undefined();
+        private Optional<? extends ListClientsNext> next = Optional.empty();
 
-        private Optional<? extends ListClientsDocumentation> documentation = Optional.empty();
+        private ListClientsDocumentation documentation;
 
         private Builder() {
           // force use of static builder() method
@@ -238,15 +217,6 @@ public class ListClientsLinks {
          */
         public Builder self(ListClientsSelf self) {
             Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * The URL to the current set of items.
-         */
-        public Builder self(Optional<? extends ListClientsSelf> self) {
-            Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
         }
@@ -257,14 +227,14 @@ public class ListClientsLinks {
          */
         public Builder previous(ListClientsPrevious previous) {
             Utils.checkNotNull(previous, "previous");
-            this.previous = JsonNullable.of(previous);
+            this.previous = Optional.ofNullable(previous);
             return this;
         }
 
         /**
          * The previous set of items, if available.
          */
-        public Builder previous(JsonNullable<? extends ListClientsPrevious> previous) {
+        public Builder previous(Optional<? extends ListClientsPrevious> previous) {
             Utils.checkNotNull(previous, "previous");
             this.previous = previous;
             return this;
@@ -276,14 +246,14 @@ public class ListClientsLinks {
          */
         public Builder next(ListClientsNext next) {
             Utils.checkNotNull(next, "next");
-            this.next = JsonNullable.of(next);
+            this.next = Optional.ofNullable(next);
             return this;
         }
 
         /**
          * The next set of items, if available.
          */
-        public Builder next(JsonNullable<? extends ListClientsNext> next) {
+        public Builder next(Optional<? extends ListClientsNext> next) {
             Utils.checkNotNull(next, "next");
             this.next = next;
             return this;
@@ -294,15 +264,6 @@ public class ListClientsLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(ListClientsDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends ListClientsDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

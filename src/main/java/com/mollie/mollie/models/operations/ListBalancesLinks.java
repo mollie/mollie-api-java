@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * ListBalancesLinks
@@ -24,37 +23,35 @@ public class ListBalancesLinks {
     /**
      * The URL to the current set of items.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends ListBalancesSelf> self;
+    private ListBalancesSelf self;
 
     /**
      * The previous set of items, if available.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("previous")
-    private JsonNullable<? extends ListBalancesPrevious> previous;
+    private Optional<? extends ListBalancesPrevious> previous;
 
     /**
      * The next set of items, if available.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("next")
-    private JsonNullable<? extends ListBalancesNext> next;
+    private Optional<? extends ListBalancesNext> next;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends ListBalancesDocumentation> documentation;
+    private ListBalancesDocumentation documentation;
 
     @JsonCreator
     public ListBalancesLinks(
-            @JsonProperty("self") Optional<? extends ListBalancesSelf> self,
-            @JsonProperty("previous") JsonNullable<? extends ListBalancesPrevious> previous,
-            @JsonProperty("next") JsonNullable<? extends ListBalancesNext> next,
-            @JsonProperty("documentation") Optional<? extends ListBalancesDocumentation> documentation) {
+            @JsonProperty("self") ListBalancesSelf self,
+            @JsonProperty("previous") Optional<? extends ListBalancesPrevious> previous,
+            @JsonProperty("next") Optional<? extends ListBalancesNext> next,
+            @JsonProperty("documentation") ListBalancesDocumentation documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(previous, "previous");
         Utils.checkNotNull(next, "next");
@@ -65,18 +62,19 @@ public class ListBalancesLinks {
         this.documentation = documentation;
     }
     
-    public ListBalancesLinks() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+    public ListBalancesLinks(
+            ListBalancesSelf self,
+            ListBalancesDocumentation documentation) {
+        this(self, Optional.empty(), Optional.empty(),
+            documentation);
     }
 
     /**
      * The URL to the current set of items.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListBalancesSelf> self() {
-        return (Optional<ListBalancesSelf>) self;
+    public ListBalancesSelf self() {
+        return self;
     }
 
     /**
@@ -84,8 +82,8 @@ public class ListBalancesLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListBalancesPrevious> previous() {
-        return (JsonNullable<ListBalancesPrevious>) previous;
+    public Optional<ListBalancesPrevious> previous() {
+        return (Optional<ListBalancesPrevious>) previous;
     }
 
     /**
@@ -93,17 +91,16 @@ public class ListBalancesLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListBalancesNext> next() {
-        return (JsonNullable<ListBalancesNext>) next;
+    public Optional<ListBalancesNext> next() {
+        return (Optional<ListBalancesNext>) next;
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListBalancesDocumentation> documentation() {
-        return (Optional<ListBalancesDocumentation>) documentation;
+    public ListBalancesDocumentation documentation() {
+        return documentation;
     }
 
     public static Builder builder() {
@@ -116,16 +113,6 @@ public class ListBalancesLinks {
      */
     public ListBalancesLinks withSelf(ListBalancesSelf self) {
         Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-
-    /**
-     * The URL to the current set of items.
-     */
-    public ListBalancesLinks withSelf(Optional<? extends ListBalancesSelf> self) {
-        Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
@@ -135,14 +122,15 @@ public class ListBalancesLinks {
      */
     public ListBalancesLinks withPrevious(ListBalancesPrevious previous) {
         Utils.checkNotNull(previous, "previous");
-        this.previous = JsonNullable.of(previous);
+        this.previous = Optional.ofNullable(previous);
         return this;
     }
+
 
     /**
      * The previous set of items, if available.
      */
-    public ListBalancesLinks withPrevious(JsonNullable<? extends ListBalancesPrevious> previous) {
+    public ListBalancesLinks withPrevious(Optional<? extends ListBalancesPrevious> previous) {
         Utils.checkNotNull(previous, "previous");
         this.previous = previous;
         return this;
@@ -153,14 +141,15 @@ public class ListBalancesLinks {
      */
     public ListBalancesLinks withNext(ListBalancesNext next) {
         Utils.checkNotNull(next, "next");
-        this.next = JsonNullable.of(next);
+        this.next = Optional.ofNullable(next);
         return this;
     }
+
 
     /**
      * The next set of items, if available.
      */
-    public ListBalancesLinks withNext(JsonNullable<? extends ListBalancesNext> next) {
+    public ListBalancesLinks withNext(Optional<? extends ListBalancesNext> next) {
         Utils.checkNotNull(next, "next");
         this.next = next;
         return this;
@@ -170,16 +159,6 @@ public class ListBalancesLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public ListBalancesLinks withDocumentation(ListBalancesDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListBalancesLinks withDocumentation(Optional<? extends ListBalancesDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -220,13 +199,13 @@ public class ListBalancesLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends ListBalancesSelf> self = Optional.empty();
+        private ListBalancesSelf self;
 
-        private JsonNullable<? extends ListBalancesPrevious> previous = JsonNullable.undefined();
+        private Optional<? extends ListBalancesPrevious> previous = Optional.empty();
 
-        private JsonNullable<? extends ListBalancesNext> next = JsonNullable.undefined();
+        private Optional<? extends ListBalancesNext> next = Optional.empty();
 
-        private Optional<? extends ListBalancesDocumentation> documentation = Optional.empty();
+        private ListBalancesDocumentation documentation;
 
         private Builder() {
           // force use of static builder() method
@@ -238,15 +217,6 @@ public class ListBalancesLinks {
          */
         public Builder self(ListBalancesSelf self) {
             Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * The URL to the current set of items.
-         */
-        public Builder self(Optional<? extends ListBalancesSelf> self) {
-            Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
         }
@@ -257,14 +227,14 @@ public class ListBalancesLinks {
          */
         public Builder previous(ListBalancesPrevious previous) {
             Utils.checkNotNull(previous, "previous");
-            this.previous = JsonNullable.of(previous);
+            this.previous = Optional.ofNullable(previous);
             return this;
         }
 
         /**
          * The previous set of items, if available.
          */
-        public Builder previous(JsonNullable<? extends ListBalancesPrevious> previous) {
+        public Builder previous(Optional<? extends ListBalancesPrevious> previous) {
             Utils.checkNotNull(previous, "previous");
             this.previous = previous;
             return this;
@@ -276,14 +246,14 @@ public class ListBalancesLinks {
          */
         public Builder next(ListBalancesNext next) {
             Utils.checkNotNull(next, "next");
-            this.next = JsonNullable.of(next);
+            this.next = Optional.ofNullable(next);
             return this;
         }
 
         /**
          * The next set of items, if available.
          */
-        public Builder next(JsonNullable<? extends ListBalancesNext> next) {
+        public Builder next(Optional<? extends ListBalancesNext> next) {
             Utils.checkNotNull(next, "next");
             this.next = next;
             return this;
@@ -294,15 +264,6 @@ public class ListBalancesLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(ListBalancesDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends ListBalancesDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

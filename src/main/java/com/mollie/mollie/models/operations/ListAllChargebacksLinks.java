@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * ListAllChargebacksLinks
@@ -24,37 +23,35 @@ public class ListAllChargebacksLinks {
     /**
      * The URL to the current set of items.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends ListAllChargebacksSelf> self;
+    private ListAllChargebacksSelf self;
 
     /**
      * The previous set of items, if available.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("previous")
-    private JsonNullable<? extends ListAllChargebacksPrevious> previous;
+    private Optional<? extends ListAllChargebacksPrevious> previous;
 
     /**
      * The next set of items, if available.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("next")
-    private JsonNullable<? extends ListAllChargebacksNext> next;
+    private Optional<? extends ListAllChargebacksNext> next;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends ListAllChargebacksDocumentation> documentation;
+    private ListAllChargebacksDocumentation documentation;
 
     @JsonCreator
     public ListAllChargebacksLinks(
-            @JsonProperty("self") Optional<? extends ListAllChargebacksSelf> self,
-            @JsonProperty("previous") JsonNullable<? extends ListAllChargebacksPrevious> previous,
-            @JsonProperty("next") JsonNullable<? extends ListAllChargebacksNext> next,
-            @JsonProperty("documentation") Optional<? extends ListAllChargebacksDocumentation> documentation) {
+            @JsonProperty("self") ListAllChargebacksSelf self,
+            @JsonProperty("previous") Optional<? extends ListAllChargebacksPrevious> previous,
+            @JsonProperty("next") Optional<? extends ListAllChargebacksNext> next,
+            @JsonProperty("documentation") ListAllChargebacksDocumentation documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(previous, "previous");
         Utils.checkNotNull(next, "next");
@@ -65,18 +62,19 @@ public class ListAllChargebacksLinks {
         this.documentation = documentation;
     }
     
-    public ListAllChargebacksLinks() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+    public ListAllChargebacksLinks(
+            ListAllChargebacksSelf self,
+            ListAllChargebacksDocumentation documentation) {
+        this(self, Optional.empty(), Optional.empty(),
+            documentation);
     }
 
     /**
      * The URL to the current set of items.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListAllChargebacksSelf> self() {
-        return (Optional<ListAllChargebacksSelf>) self;
+    public ListAllChargebacksSelf self() {
+        return self;
     }
 
     /**
@@ -84,8 +82,8 @@ public class ListAllChargebacksLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListAllChargebacksPrevious> previous() {
-        return (JsonNullable<ListAllChargebacksPrevious>) previous;
+    public Optional<ListAllChargebacksPrevious> previous() {
+        return (Optional<ListAllChargebacksPrevious>) previous;
     }
 
     /**
@@ -93,17 +91,16 @@ public class ListAllChargebacksLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListAllChargebacksNext> next() {
-        return (JsonNullable<ListAllChargebacksNext>) next;
+    public Optional<ListAllChargebacksNext> next() {
+        return (Optional<ListAllChargebacksNext>) next;
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListAllChargebacksDocumentation> documentation() {
-        return (Optional<ListAllChargebacksDocumentation>) documentation;
+    public ListAllChargebacksDocumentation documentation() {
+        return documentation;
     }
 
     public static Builder builder() {
@@ -116,16 +113,6 @@ public class ListAllChargebacksLinks {
      */
     public ListAllChargebacksLinks withSelf(ListAllChargebacksSelf self) {
         Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-
-    /**
-     * The URL to the current set of items.
-     */
-    public ListAllChargebacksLinks withSelf(Optional<? extends ListAllChargebacksSelf> self) {
-        Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
@@ -135,14 +122,15 @@ public class ListAllChargebacksLinks {
      */
     public ListAllChargebacksLinks withPrevious(ListAllChargebacksPrevious previous) {
         Utils.checkNotNull(previous, "previous");
-        this.previous = JsonNullable.of(previous);
+        this.previous = Optional.ofNullable(previous);
         return this;
     }
+
 
     /**
      * The previous set of items, if available.
      */
-    public ListAllChargebacksLinks withPrevious(JsonNullable<? extends ListAllChargebacksPrevious> previous) {
+    public ListAllChargebacksLinks withPrevious(Optional<? extends ListAllChargebacksPrevious> previous) {
         Utils.checkNotNull(previous, "previous");
         this.previous = previous;
         return this;
@@ -153,14 +141,15 @@ public class ListAllChargebacksLinks {
      */
     public ListAllChargebacksLinks withNext(ListAllChargebacksNext next) {
         Utils.checkNotNull(next, "next");
-        this.next = JsonNullable.of(next);
+        this.next = Optional.ofNullable(next);
         return this;
     }
+
 
     /**
      * The next set of items, if available.
      */
-    public ListAllChargebacksLinks withNext(JsonNullable<? extends ListAllChargebacksNext> next) {
+    public ListAllChargebacksLinks withNext(Optional<? extends ListAllChargebacksNext> next) {
         Utils.checkNotNull(next, "next");
         this.next = next;
         return this;
@@ -170,16 +159,6 @@ public class ListAllChargebacksLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public ListAllChargebacksLinks withDocumentation(ListAllChargebacksDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListAllChargebacksLinks withDocumentation(Optional<? extends ListAllChargebacksDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -220,13 +199,13 @@ public class ListAllChargebacksLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends ListAllChargebacksSelf> self = Optional.empty();
+        private ListAllChargebacksSelf self;
 
-        private JsonNullable<? extends ListAllChargebacksPrevious> previous = JsonNullable.undefined();
+        private Optional<? extends ListAllChargebacksPrevious> previous = Optional.empty();
 
-        private JsonNullable<? extends ListAllChargebacksNext> next = JsonNullable.undefined();
+        private Optional<? extends ListAllChargebacksNext> next = Optional.empty();
 
-        private Optional<? extends ListAllChargebacksDocumentation> documentation = Optional.empty();
+        private ListAllChargebacksDocumentation documentation;
 
         private Builder() {
           // force use of static builder() method
@@ -238,15 +217,6 @@ public class ListAllChargebacksLinks {
          */
         public Builder self(ListAllChargebacksSelf self) {
             Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * The URL to the current set of items.
-         */
-        public Builder self(Optional<? extends ListAllChargebacksSelf> self) {
-            Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
         }
@@ -257,14 +227,14 @@ public class ListAllChargebacksLinks {
          */
         public Builder previous(ListAllChargebacksPrevious previous) {
             Utils.checkNotNull(previous, "previous");
-            this.previous = JsonNullable.of(previous);
+            this.previous = Optional.ofNullable(previous);
             return this;
         }
 
         /**
          * The previous set of items, if available.
          */
-        public Builder previous(JsonNullable<? extends ListAllChargebacksPrevious> previous) {
+        public Builder previous(Optional<? extends ListAllChargebacksPrevious> previous) {
             Utils.checkNotNull(previous, "previous");
             this.previous = previous;
             return this;
@@ -276,14 +246,14 @@ public class ListAllChargebacksLinks {
          */
         public Builder next(ListAllChargebacksNext next) {
             Utils.checkNotNull(next, "next");
-            this.next = JsonNullable.of(next);
+            this.next = Optional.ofNullable(next);
             return this;
         }
 
         /**
          * The next set of items, if available.
          */
-        public Builder next(JsonNullable<? extends ListAllChargebacksNext> next) {
+        public Builder next(Optional<? extends ListAllChargebacksNext> next) {
             Utils.checkNotNull(next, "next");
             this.next = next;
             return this;
@@ -294,15 +264,6 @@ public class ListAllChargebacksLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(ListAllChargebacksDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends ListAllChargebacksDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

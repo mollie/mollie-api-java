@@ -48,7 +48,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:0.15.2'
+implementation 'com.mollie:mollie:0.15.3'
 ```
 
 Maven:
@@ -56,7 +56,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>0.15.2</version>
+    <version>0.15.3</version>
 </dependency>
 ```
 
@@ -89,6 +89,7 @@ import com.mollie.mollie.models.errors.CreatePaymentPaymentsResponseBody;
 import com.mollie.mollie.models.errors.CreatePaymentResponseBody;
 import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Application {
@@ -320,6 +321,18 @@ public class Application {
                     .profileId("pfl_5B8cwPMGnU")
                     .dueDate("2025-01-01")
                     .testmode(false)
+                    .applePayPaymentToken("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}")
+                    .company(Company.builder()
+                        .registrationNumber("12345678")
+                        .vatNumber("NL123456789B01")
+                        .build())
+                    .cardToken("tkn_12345")
+                    .voucherNumber("1234567890")
+                    .voucherPin("1234")
+                    .consumerDateOfBirth(LocalDate.parse("2000-01-01"))
+                    .digitalGoods(true)
+                    .customerReference("1234567890")
+                    .terminalId("term_1234567890")
                     .build())
                 .call();
 
@@ -353,6 +366,7 @@ import com.mollie.mollie.models.errors.CreatePaymentPaymentsResponseBody;
 import com.mollie.mollie.models.errors.CreatePaymentResponseBody;
 import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Application {
@@ -584,6 +598,18 @@ public class Application {
                     .profileId("pfl_5B8cwPMGnU")
                     .dueDate("2025-01-01")
                     .testmode(false)
+                    .applePayPaymentToken("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}")
+                    .company(Company.builder()
+                        .registrationNumber("12345678")
+                        .vatNumber("NL123456789B01")
+                        .build())
+                    .cardToken("tkn_12345")
+                    .voucherNumber("1234567890")
+                    .voucherPin("1234")
+                    .consumerDateOfBirth(LocalDate.parse("2000-01-01"))
+                    .digitalGoods(true)
+                    .customerReference("1234567890")
+                    .terminalId("term_1234567890")
                     .build())
                 .call();
 
@@ -790,6 +816,7 @@ import com.mollie.mollie.models.operations.*;
 import com.mollie.mollie.utils.BackoffStrategy;
 import com.mollie.mollie.utils.RetryConfig;
 import java.lang.Exception;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -1032,6 +1059,18 @@ public class Application {
                     .profileId("pfl_5B8cwPMGnU")
                     .dueDate("2025-01-01")
                     .testmode(false)
+                    .applePayPaymentToken("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}")
+                    .company(Company.builder()
+                        .registrationNumber("12345678")
+                        .vatNumber("NL123456789B01")
+                        .build())
+                    .cardToken("tkn_12345")
+                    .voucherNumber("1234567890")
+                    .voucherPin("1234")
+                    .consumerDateOfBirth(LocalDate.parse("2000-01-01"))
+                    .digitalGoods(true)
+                    .customerReference("1234567890")
+                    .terminalId("term_1234567890")
                     .build())
                 .call();
 
@@ -1054,6 +1093,7 @@ import com.mollie.mollie.models.operations.*;
 import com.mollie.mollie.utils.BackoffStrategy;
 import com.mollie.mollie.utils.RetryConfig;
 import java.lang.Exception;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -1296,6 +1336,18 @@ public class Application {
                     .profileId("pfl_5B8cwPMGnU")
                     .dueDate("2025-01-01")
                     .testmode(false)
+                    .applePayPaymentToken("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}")
+                    .company(Company.builder()
+                        .registrationNumber("12345678")
+                        .vatNumber("NL123456789B01")
+                        .build())
+                    .cardToken("tkn_12345")
+                    .voucherNumber("1234567890")
+                    .voucherPin("1234")
+                    .consumerDateOfBirth(LocalDate.parse("2000-01-01"))
+                    .digitalGoods(true)
+                    .customerReference("1234567890")
+                    .terminalId("term_1234567890")
                     .build())
                 .call();
 
@@ -1331,6 +1383,7 @@ import com.mollie.mollie.models.errors.CreatePaymentPaymentsResponseBody;
 import com.mollie.mollie.models.errors.CreatePaymentResponseBody;
 import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Application {
@@ -1562,6 +1615,18 @@ public class Application {
                     .profileId("pfl_5B8cwPMGnU")
                     .dueDate("2025-01-01")
                     .testmode(false)
+                    .applePayPaymentToken("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}")
+                    .company(Company.builder()
+                        .registrationNumber("12345678")
+                        .vatNumber("NL123456789B01")
+                        .build())
+                    .cardToken("tkn_12345")
+                    .voucherNumber("1234567890")
+                    .voucherPin("1234")
+                    .consumerDateOfBirth(LocalDate.parse("2000-01-01"))
+                    .digitalGoods(true)
+                    .customerReference("1234567890")
+                    .terminalId("term_1234567890")
                     .build())
                 .call();
 
@@ -1588,6 +1653,7 @@ import com.mollie.mollie.models.errors.CreatePaymentPaymentsResponseBody;
 import com.mollie.mollie.models.errors.CreatePaymentResponseBody;
 import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Application {
@@ -1820,6 +1886,18 @@ public class Application {
                     .profileId("pfl_5B8cwPMGnU")
                     .dueDate("2025-01-01")
                     .testmode(false)
+                    .applePayPaymentToken("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}")
+                    .company(Company.builder()
+                        .registrationNumber("12345678")
+                        .vatNumber("NL123456789B01")
+                        .build())
+                    .cardToken("tkn_12345")
+                    .voucherNumber("1234567890")
+                    .voucherPin("1234")
+                    .consumerDateOfBirth(LocalDate.parse("2000-01-01"))
+                    .digitalGoods(true)
+                    .customerReference("1234567890")
+                    .terminalId("term_1234567890")
                     .build())
                 .call();
 

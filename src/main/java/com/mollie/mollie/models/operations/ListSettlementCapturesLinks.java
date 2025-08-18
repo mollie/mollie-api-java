@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * ListSettlementCapturesLinks
@@ -24,37 +23,35 @@ public class ListSettlementCapturesLinks {
     /**
      * The URL to the current set of items.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends ListSettlementCapturesSelf> self;
+    private ListSettlementCapturesSelf self;
 
     /**
      * The previous set of items, if available.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("previous")
-    private JsonNullable<? extends ListSettlementCapturesPrevious> previous;
+    private Optional<? extends ListSettlementCapturesPrevious> previous;
 
     /**
      * The next set of items, if available.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("next")
-    private JsonNullable<? extends ListSettlementCapturesNext> next;
+    private Optional<? extends ListSettlementCapturesNext> next;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends ListSettlementCapturesDocumentation> documentation;
+    private ListSettlementCapturesDocumentation documentation;
 
     @JsonCreator
     public ListSettlementCapturesLinks(
-            @JsonProperty("self") Optional<? extends ListSettlementCapturesSelf> self,
-            @JsonProperty("previous") JsonNullable<? extends ListSettlementCapturesPrevious> previous,
-            @JsonProperty("next") JsonNullable<? extends ListSettlementCapturesNext> next,
-            @JsonProperty("documentation") Optional<? extends ListSettlementCapturesDocumentation> documentation) {
+            @JsonProperty("self") ListSettlementCapturesSelf self,
+            @JsonProperty("previous") Optional<? extends ListSettlementCapturesPrevious> previous,
+            @JsonProperty("next") Optional<? extends ListSettlementCapturesNext> next,
+            @JsonProperty("documentation") ListSettlementCapturesDocumentation documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(previous, "previous");
         Utils.checkNotNull(next, "next");
@@ -65,18 +62,19 @@ public class ListSettlementCapturesLinks {
         this.documentation = documentation;
     }
     
-    public ListSettlementCapturesLinks() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+    public ListSettlementCapturesLinks(
+            ListSettlementCapturesSelf self,
+            ListSettlementCapturesDocumentation documentation) {
+        this(self, Optional.empty(), Optional.empty(),
+            documentation);
     }
 
     /**
      * The URL to the current set of items.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListSettlementCapturesSelf> self() {
-        return (Optional<ListSettlementCapturesSelf>) self;
+    public ListSettlementCapturesSelf self() {
+        return self;
     }
 
     /**
@@ -84,8 +82,8 @@ public class ListSettlementCapturesLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListSettlementCapturesPrevious> previous() {
-        return (JsonNullable<ListSettlementCapturesPrevious>) previous;
+    public Optional<ListSettlementCapturesPrevious> previous() {
+        return (Optional<ListSettlementCapturesPrevious>) previous;
     }
 
     /**
@@ -93,17 +91,16 @@ public class ListSettlementCapturesLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListSettlementCapturesNext> next() {
-        return (JsonNullable<ListSettlementCapturesNext>) next;
+    public Optional<ListSettlementCapturesNext> next() {
+        return (Optional<ListSettlementCapturesNext>) next;
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListSettlementCapturesDocumentation> documentation() {
-        return (Optional<ListSettlementCapturesDocumentation>) documentation;
+    public ListSettlementCapturesDocumentation documentation() {
+        return documentation;
     }
 
     public static Builder builder() {
@@ -116,16 +113,6 @@ public class ListSettlementCapturesLinks {
      */
     public ListSettlementCapturesLinks withSelf(ListSettlementCapturesSelf self) {
         Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-
-    /**
-     * The URL to the current set of items.
-     */
-    public ListSettlementCapturesLinks withSelf(Optional<? extends ListSettlementCapturesSelf> self) {
-        Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
@@ -135,14 +122,15 @@ public class ListSettlementCapturesLinks {
      */
     public ListSettlementCapturesLinks withPrevious(ListSettlementCapturesPrevious previous) {
         Utils.checkNotNull(previous, "previous");
-        this.previous = JsonNullable.of(previous);
+        this.previous = Optional.ofNullable(previous);
         return this;
     }
+
 
     /**
      * The previous set of items, if available.
      */
-    public ListSettlementCapturesLinks withPrevious(JsonNullable<? extends ListSettlementCapturesPrevious> previous) {
+    public ListSettlementCapturesLinks withPrevious(Optional<? extends ListSettlementCapturesPrevious> previous) {
         Utils.checkNotNull(previous, "previous");
         this.previous = previous;
         return this;
@@ -153,14 +141,15 @@ public class ListSettlementCapturesLinks {
      */
     public ListSettlementCapturesLinks withNext(ListSettlementCapturesNext next) {
         Utils.checkNotNull(next, "next");
-        this.next = JsonNullable.of(next);
+        this.next = Optional.ofNullable(next);
         return this;
     }
+
 
     /**
      * The next set of items, if available.
      */
-    public ListSettlementCapturesLinks withNext(JsonNullable<? extends ListSettlementCapturesNext> next) {
+    public ListSettlementCapturesLinks withNext(Optional<? extends ListSettlementCapturesNext> next) {
         Utils.checkNotNull(next, "next");
         this.next = next;
         return this;
@@ -170,16 +159,6 @@ public class ListSettlementCapturesLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public ListSettlementCapturesLinks withDocumentation(ListSettlementCapturesDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListSettlementCapturesLinks withDocumentation(Optional<? extends ListSettlementCapturesDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -220,13 +199,13 @@ public class ListSettlementCapturesLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends ListSettlementCapturesSelf> self = Optional.empty();
+        private ListSettlementCapturesSelf self;
 
-        private JsonNullable<? extends ListSettlementCapturesPrevious> previous = JsonNullable.undefined();
+        private Optional<? extends ListSettlementCapturesPrevious> previous = Optional.empty();
 
-        private JsonNullable<? extends ListSettlementCapturesNext> next = JsonNullable.undefined();
+        private Optional<? extends ListSettlementCapturesNext> next = Optional.empty();
 
-        private Optional<? extends ListSettlementCapturesDocumentation> documentation = Optional.empty();
+        private ListSettlementCapturesDocumentation documentation;
 
         private Builder() {
           // force use of static builder() method
@@ -238,15 +217,6 @@ public class ListSettlementCapturesLinks {
          */
         public Builder self(ListSettlementCapturesSelf self) {
             Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * The URL to the current set of items.
-         */
-        public Builder self(Optional<? extends ListSettlementCapturesSelf> self) {
-            Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
         }
@@ -257,14 +227,14 @@ public class ListSettlementCapturesLinks {
          */
         public Builder previous(ListSettlementCapturesPrevious previous) {
             Utils.checkNotNull(previous, "previous");
-            this.previous = JsonNullable.of(previous);
+            this.previous = Optional.ofNullable(previous);
             return this;
         }
 
         /**
          * The previous set of items, if available.
          */
-        public Builder previous(JsonNullable<? extends ListSettlementCapturesPrevious> previous) {
+        public Builder previous(Optional<? extends ListSettlementCapturesPrevious> previous) {
             Utils.checkNotNull(previous, "previous");
             this.previous = previous;
             return this;
@@ -276,14 +246,14 @@ public class ListSettlementCapturesLinks {
          */
         public Builder next(ListSettlementCapturesNext next) {
             Utils.checkNotNull(next, "next");
-            this.next = JsonNullable.of(next);
+            this.next = Optional.ofNullable(next);
             return this;
         }
 
         /**
          * The next set of items, if available.
          */
-        public Builder next(JsonNullable<? extends ListSettlementCapturesNext> next) {
+        public Builder next(Optional<? extends ListSettlementCapturesNext> next) {
             Utils.checkNotNull(next, "next");
             this.next = next;
             return this;
@@ -294,15 +264,6 @@ public class ListSettlementCapturesLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(ListSettlementCapturesDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends ListSettlementCapturesDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;
