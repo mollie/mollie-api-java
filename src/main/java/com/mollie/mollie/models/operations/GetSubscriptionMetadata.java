@@ -11,10 +11,12 @@ import com.mollie.mollie.utils.TypedObject;
 import com.mollie.mollie.utils.Utils.JsonShape;
 import com.mollie.mollie.utils.Utils.TypeReferenceWithShape;
 import com.mollie.mollie.utils.Utils;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
+import java.util.Map;
 
 /**
  * GetSubscriptionMetadata
@@ -40,9 +42,9 @@ public class GetSubscriptionMetadata {
         return new GetSubscriptionMetadata(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<String>(){}));
     }
 
-    public static GetSubscriptionMetadata of(GetSubscriptionMetadata2 value) {
+    public static GetSubscriptionMetadata of(Map<String, Object> value) {
         Utils.checkNotNull(value, "value");
-        return new GetSubscriptionMetadata(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<GetSubscriptionMetadata2>(){}));
+        return new GetSubscriptionMetadata(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Map<String, Object>>(){}));
     }
 
     public static GetSubscriptionMetadata of(List<String> value) {
@@ -54,7 +56,7 @@ public class GetSubscriptionMetadata {
      * Returns an instance of one of these types:
      * <ul>
      * <li>{@code java.lang.String}</li>
-     * <li>{@code com.mollie.mollie.models.operations.GetSubscriptionMetadata2}</li>
+     * <li>{@code java.util.Map<java.lang.String, java.lang.Object>}</li>
      * <li>{@code java.util.List<java.lang.String>}</li>
      * </ul>
      * 
@@ -96,8 +98,8 @@ public class GetSubscriptionMetadata {
         public _Deserializer() {
             super(GetSubscriptionMetadata.class, false,
                   TypeReferenceWithShape.of(new TypeReference<List<String>>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<GetSubscriptionMetadata2>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<Map<String, Object>>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT));
         }
     }
     

@@ -11,10 +11,12 @@ import com.mollie.mollie.utils.TypedObject;
 import com.mollie.mollie.utils.Utils.JsonShape;
 import com.mollie.mollie.utils.Utils.TypeReferenceWithShape;
 import com.mollie.mollie.utils.Utils;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Metadata
@@ -37,9 +39,9 @@ public class Metadata {
         return new Metadata(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<String>(){}));
     }
 
-    public static Metadata of(Two value) {
+    public static Metadata of(Map<String, Object> value) {
         Utils.checkNotNull(value, "value");
-        return new Metadata(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Two>(){}));
+        return new Metadata(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Map<String, Object>>(){}));
     }
 
     public static Metadata of(List<String> value) {
@@ -51,7 +53,7 @@ public class Metadata {
      * Returns an instance of one of these types:
      * <ul>
      * <li>{@code java.lang.String}</li>
-     * <li>{@code com.mollie.mollie.models.operations.Two}</li>
+     * <li>{@code java.util.Map<java.lang.String, java.lang.Object>}</li>
      * <li>{@code java.util.List<java.lang.String>}</li>
      * </ul>
      * 
@@ -93,8 +95,8 @@ public class Metadata {
         public _Deserializer() {
             super(Metadata.class, false,
                   TypeReferenceWithShape.of(new TypeReference<List<String>>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<Two>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<Map<String, Object>>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT));
         }
     }
     

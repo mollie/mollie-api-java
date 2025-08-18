@@ -11,10 +11,12 @@ import com.mollie.mollie.utils.TypedObject;
 import com.mollie.mollie.utils.Utils.JsonShape;
 import com.mollie.mollie.utils.Utils.TypeReferenceWithShape;
 import com.mollie.mollie.utils.Utils;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
+import java.util.Map;
 
 /**
  * CreateSubscriptionSubscriptionsMetadata
@@ -40,9 +42,9 @@ public class CreateSubscriptionSubscriptionsMetadata {
         return new CreateSubscriptionSubscriptionsMetadata(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<String>(){}));
     }
 
-    public static CreateSubscriptionSubscriptionsMetadata of(CreateSubscriptionMetadataSubscriptions2 value) {
+    public static CreateSubscriptionSubscriptionsMetadata of(Map<String, Object> value) {
         Utils.checkNotNull(value, "value");
-        return new CreateSubscriptionSubscriptionsMetadata(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<CreateSubscriptionMetadataSubscriptions2>(){}));
+        return new CreateSubscriptionSubscriptionsMetadata(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Map<String, Object>>(){}));
     }
 
     public static CreateSubscriptionSubscriptionsMetadata of(List<String> value) {
@@ -54,7 +56,7 @@ public class CreateSubscriptionSubscriptionsMetadata {
      * Returns an instance of one of these types:
      * <ul>
      * <li>{@code java.lang.String}</li>
-     * <li>{@code com.mollie.mollie.models.operations.CreateSubscriptionMetadataSubscriptions2}</li>
+     * <li>{@code java.util.Map<java.lang.String, java.lang.Object>}</li>
      * <li>{@code java.util.List<java.lang.String>}</li>
      * </ul>
      * 
@@ -96,8 +98,8 @@ public class CreateSubscriptionSubscriptionsMetadata {
         public _Deserializer() {
             super(CreateSubscriptionSubscriptionsMetadata.class, false,
                   TypeReferenceWithShape.of(new TypeReference<List<String>>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<CreateSubscriptionMetadataSubscriptions2>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<Map<String, Object>>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT));
         }
     }
     

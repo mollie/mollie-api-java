@@ -11,10 +11,12 @@ import com.mollie.mollie.utils.TypedObject;
 import com.mollie.mollie.utils.Utils.JsonShape;
 import com.mollie.mollie.utils.Utils.TypeReferenceWithShape;
 import com.mollie.mollie.utils.Utils;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
+import java.util.Map;
 
 /**
  * CreateRefundMetadata
@@ -37,9 +39,9 @@ public class CreateRefundMetadata {
         return new CreateRefundMetadata(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<String>(){}));
     }
 
-    public static CreateRefundMetadata of(CreateRefundMetadata2 value) {
+    public static CreateRefundMetadata of(Map<String, Object> value) {
         Utils.checkNotNull(value, "value");
-        return new CreateRefundMetadata(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<CreateRefundMetadata2>(){}));
+        return new CreateRefundMetadata(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Map<String, Object>>(){}));
     }
 
     public static CreateRefundMetadata of(List<String> value) {
@@ -51,7 +53,7 @@ public class CreateRefundMetadata {
      * Returns an instance of one of these types:
      * <ul>
      * <li>{@code java.lang.String}</li>
-     * <li>{@code com.mollie.mollie.models.operations.CreateRefundMetadata2}</li>
+     * <li>{@code java.util.Map<java.lang.String, java.lang.Object>}</li>
      * <li>{@code java.util.List<java.lang.String>}</li>
      * </ul>
      * 
@@ -93,8 +95,8 @@ public class CreateRefundMetadata {
         public _Deserializer() {
             super(CreateRefundMetadata.class, false,
                   TypeReferenceWithShape.of(new TypeReference<List<String>>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<CreateRefundMetadata2>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<Map<String, Object>>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT));
         }
     }
     

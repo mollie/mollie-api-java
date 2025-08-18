@@ -11,10 +11,12 @@ import com.mollie.mollie.utils.TypedObject;
 import com.mollie.mollie.utils.Utils.JsonShape;
 import com.mollie.mollie.utils.Utils.TypeReferenceWithShape;
 import com.mollie.mollie.utils.Utils;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
+import java.util.Map;
 
 /**
  * CreateCaptureCapturesMetadata
@@ -37,9 +39,9 @@ public class CreateCaptureCapturesMetadata {
         return new CreateCaptureCapturesMetadata(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<String>(){}));
     }
 
-    public static CreateCaptureCapturesMetadata of(CreateCaptureMetadataCaptures2 value) {
+    public static CreateCaptureCapturesMetadata of(Map<String, Object> value) {
         Utils.checkNotNull(value, "value");
-        return new CreateCaptureCapturesMetadata(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<CreateCaptureMetadataCaptures2>(){}));
+        return new CreateCaptureCapturesMetadata(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Map<String, Object>>(){}));
     }
 
     public static CreateCaptureCapturesMetadata of(List<String> value) {
@@ -51,7 +53,7 @@ public class CreateCaptureCapturesMetadata {
      * Returns an instance of one of these types:
      * <ul>
      * <li>{@code java.lang.String}</li>
-     * <li>{@code com.mollie.mollie.models.operations.CreateCaptureMetadataCaptures2}</li>
+     * <li>{@code java.util.Map<java.lang.String, java.lang.Object>}</li>
      * <li>{@code java.util.List<java.lang.String>}</li>
      * </ul>
      * 
@@ -93,8 +95,8 @@ public class CreateCaptureCapturesMetadata {
         public _Deserializer() {
             super(CreateCaptureCapturesMetadata.class, false,
                   TypeReferenceWithShape.of(new TypeReference<List<String>>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<CreateCaptureMetadataCaptures2>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<Map<String, Object>>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT));
         }
     }
     
