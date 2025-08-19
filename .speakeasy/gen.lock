@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: fb0dd5fb11ef0bbd07e435c3a680aed7
+  docChecksum: a34c108f836764f3a3b7fa219189d7b4
   docVersion: 1.0.0
-  speakeasyVersion: 1.605.5
-  generationVersion: 2.684.0
-  releaseVersion: 0.15.3
-  configChecksum: 77719c448632f6f41cc82738c1c94dc6
+  speakeasyVersion: 1.606.0
+  generationVersion: 2.686.7
+  releaseVersion: 0.15.4
+  configChecksum: 9ba86804b655dd34b0f6256ea5c2bc8c
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 features:
   java:
     additionalDependencies: 0.1.0
-    core: 3.45.3
+    core: 3.45.4
     deprecations: 2.81.1
     flattening: 2.81.1
     globalSecurity: 2.83.0
@@ -451,7 +451,6 @@ generatedFiles:
   - docs/models/operations/CancelPaymentDocumentation.md
   - docs/models/operations/CancelPaymentFailureReason.md
   - docs/models/operations/CancelPaymentFeeRegion.md
-  - docs/models/operations/CancelPaymentInterval.md
   - docs/models/operations/CancelPaymentLines.md
   - docs/models/operations/CancelPaymentLinks.md
   - docs/models/operations/CancelPaymentLocale.md
@@ -503,7 +502,6 @@ generatedFiles:
   - docs/models/operations/CancelSubscriptionApplicationFee.md
   - docs/models/operations/CancelSubscriptionCustomer.md
   - docs/models/operations/CancelSubscriptionDocumentation.md
-  - docs/models/operations/CancelSubscriptionInterval.md
   - docs/models/operations/CancelSubscriptionLinks.md
   - docs/models/operations/CancelSubscriptionMandate.md
   - docs/models/operations/CancelSubscriptionMetadata.md
@@ -612,7 +610,6 @@ generatedFiles:
   - docs/models/operations/CreateCustomerPaymentCustomersCategories.md
   - docs/models/operations/CreateCustomerPaymentCustomersDestination.md
   - docs/models/operations/CreateCustomerPaymentCustomersDiscountAmount.md
-  - docs/models/operations/CreateCustomerPaymentCustomersInterval.md
   - docs/models/operations/CreateCustomerPaymentCustomersLines.md
   - docs/models/operations/CreateCustomerPaymentCustomersLinks.md
   - docs/models/operations/CreateCustomerPaymentCustomersLocale.md
@@ -647,7 +644,6 @@ generatedFiles:
   - docs/models/operations/CreateCustomerPaymentDocumentation.md
   - docs/models/operations/CreateCustomerPaymentFailureReason.md
   - docs/models/operations/CreateCustomerPaymentFeeRegion.md
-  - docs/models/operations/CreateCustomerPaymentInterval.md
   - docs/models/operations/CreateCustomerPaymentLines.md
   - docs/models/operations/CreateCustomerPaymentLinks.md
   - docs/models/operations/CreateCustomerPaymentLocale.md
@@ -710,7 +706,6 @@ generatedFiles:
   - docs/models/operations/CreatePaymentCategories.md
   - docs/models/operations/CreatePaymentDestination.md
   - docs/models/operations/CreatePaymentDiscountAmount.md
-  - docs/models/operations/CreatePaymentInterval.md
   - docs/models/operations/CreatePaymentLines.md
   - docs/models/operations/CreatePaymentLinkAmount.md
   - docs/models/operations/CreatePaymentLinkApplicationFee.md
@@ -852,7 +847,6 @@ generatedFiles:
   - docs/models/operations/CreateSubscriptionApplicationFee.md
   - docs/models/operations/CreateSubscriptionCustomer.md
   - docs/models/operations/CreateSubscriptionDocumentation.md
-  - docs/models/operations/CreateSubscriptionInterval.md
   - docs/models/operations/CreateSubscriptionLinks.md
   - docs/models/operations/CreateSubscriptionMandate.md
   - docs/models/operations/CreateSubscriptionMetadata.md
@@ -868,7 +862,6 @@ generatedFiles:
   - docs/models/operations/CreateSubscriptionStatus.md
   - docs/models/operations/CreateSubscriptionSubscriptionsAmount.md
   - docs/models/operations/CreateSubscriptionSubscriptionsApplicationFee.md
-  - docs/models/operations/CreateSubscriptionSubscriptionsInterval.md
   - docs/models/operations/CreateSubscriptionSubscriptionsMetadata.md
   - docs/models/operations/CreateSubscriptionSubscriptionsMethod.md
   - docs/models/operations/CreateSubscriptionSubscriptionsResponse201Amount.md
@@ -1806,7 +1799,6 @@ generatedFiles:
   - docs/models/operations/GetPaymentDocumentation.md
   - docs/models/operations/GetPaymentFailureReason.md
   - docs/models/operations/GetPaymentFeeRegion.md
-  - docs/models/operations/GetPaymentInterval.md
   - docs/models/operations/GetPaymentLines.md
   - docs/models/operations/GetPaymentLinkAmount.md
   - docs/models/operations/GetPaymentLinkApplicationFee.md
@@ -1848,7 +1840,6 @@ generatedFiles:
   - docs/models/operations/GetPaymentLinkPaymentsEmbedded.md
   - docs/models/operations/GetPaymentLinkPaymentsFailureReason.md
   - docs/models/operations/GetPaymentLinkPaymentsFeeRegion.md
-  - docs/models/operations/GetPaymentLinkPaymentsInterval.md
   - docs/models/operations/GetPaymentLinkPaymentsLines.md
   - docs/models/operations/GetPaymentLinkPaymentsLinks.md
   - docs/models/operations/GetPaymentLinkPaymentsLocale.md
@@ -2054,7 +2045,6 @@ generatedFiles:
   - docs/models/operations/GetSubscriptionApplicationFee.md
   - docs/models/operations/GetSubscriptionCustomer.md
   - docs/models/operations/GetSubscriptionDocumentation.md
-  - docs/models/operations/GetSubscriptionInterval.md
   - docs/models/operations/GetSubscriptionLinks.md
   - docs/models/operations/GetSubscriptionMandate.md
   - docs/models/operations/GetSubscriptionMetadata.md
@@ -2103,7 +2093,6 @@ generatedFiles:
   - docs/models/operations/Include.md
   - docs/models/operations/IncludeWallets.md
   - docs/models/operations/InitialAmount.md
-  - docs/models/operations/Interval.md
   - docs/models/operations/Invoice.md
   - docs/models/operations/InvoiceCompensation.md
   - docs/models/operations/InvoicePayment.md
@@ -2184,7 +2173,6 @@ generatedFiles:
   - docs/models/operations/ListAllSubscriptionsCustomer.md
   - docs/models/operations/ListAllSubscriptionsDocumentation.md
   - docs/models/operations/ListAllSubscriptionsEmbedded.md
-  - docs/models/operations/ListAllSubscriptionsInterval.md
   - docs/models/operations/ListAllSubscriptionsLinks.md
   - docs/models/operations/ListAllSubscriptionsMandate.md
   - docs/models/operations/ListAllSubscriptionsMetadata.md
@@ -2366,7 +2354,6 @@ generatedFiles:
   - docs/models/operations/ListCustomerPaymentsEmbedded.md
   - docs/models/operations/ListCustomerPaymentsFailureReason.md
   - docs/models/operations/ListCustomerPaymentsFeeRegion.md
-  - docs/models/operations/ListCustomerPaymentsInterval.md
   - docs/models/operations/ListCustomerPaymentsLines.md
   - docs/models/operations/ListCustomerPaymentsLinks.md
   - docs/models/operations/ListCustomerPaymentsLocale.md
@@ -2530,7 +2517,6 @@ generatedFiles:
   - docs/models/operations/ListPaymentsEmbedded.md
   - docs/models/operations/ListPaymentsFailureReason.md
   - docs/models/operations/ListPaymentsFeeRegion.md
-  - docs/models/operations/ListPaymentsInterval.md
   - docs/models/operations/ListPaymentsLines.md
   - docs/models/operations/ListPaymentsLinks.md
   - docs/models/operations/ListPaymentsLocale.md
@@ -2741,7 +2727,6 @@ generatedFiles:
   - docs/models/operations/ListSettlementPaymentsEmbedded.md
   - docs/models/operations/ListSettlementPaymentsFailureReason.md
   - docs/models/operations/ListSettlementPaymentsFeeRegion.md
-  - docs/models/operations/ListSettlementPaymentsInterval.md
   - docs/models/operations/ListSettlementPaymentsLines.md
   - docs/models/operations/ListSettlementPaymentsLinks.md
   - docs/models/operations/ListSettlementPaymentsLocale.md
@@ -2867,7 +2852,6 @@ generatedFiles:
   - docs/models/operations/ListSubscriptionPaymentsEmbedded.md
   - docs/models/operations/ListSubscriptionPaymentsFailureReason.md
   - docs/models/operations/ListSubscriptionPaymentsFeeRegion.md
-  - docs/models/operations/ListSubscriptionPaymentsInterval.md
   - docs/models/operations/ListSubscriptionPaymentsLines.md
   - docs/models/operations/ListSubscriptionPaymentsLinks.md
   - docs/models/operations/ListSubscriptionPaymentsLocale.md
@@ -2924,7 +2908,6 @@ generatedFiles:
   - docs/models/operations/ListSubscriptionsCustomer.md
   - docs/models/operations/ListSubscriptionsDocumentation.md
   - docs/models/operations/ListSubscriptionsEmbedded.md
-  - docs/models/operations/ListSubscriptionsInterval.md
   - docs/models/operations/ListSubscriptionsLinks.md
   - docs/models/operations/ListSubscriptionsMandate.md
   - docs/models/operations/ListSubscriptionsMetadata.md
@@ -3169,7 +3152,6 @@ generatedFiles:
   - docs/models/operations/UpdatePaymentDocumentation.md
   - docs/models/operations/UpdatePaymentFailureReason.md
   - docs/models/operations/UpdatePaymentFeeRegion.md
-  - docs/models/operations/UpdatePaymentInterval.md
   - docs/models/operations/UpdatePaymentLines.md
   - docs/models/operations/UpdatePaymentLinkAmount.md
   - docs/models/operations/UpdatePaymentLinkApplicationFee.md
@@ -3318,7 +3300,6 @@ generatedFiles:
   - docs/models/operations/UpdateSubscriptionApplicationFee.md
   - docs/models/operations/UpdateSubscriptionCustomer.md
   - docs/models/operations/UpdateSubscriptionDocumentation.md
-  - docs/models/operations/UpdateSubscriptionInterval.md
   - docs/models/operations/UpdateSubscriptionLinks.md
   - docs/models/operations/UpdateSubscriptionMandate.md
   - docs/models/operations/UpdateSubscriptionMetadata.md
@@ -3333,7 +3314,6 @@ generatedFiles:
   - docs/models/operations/UpdateSubscriptionSelf.md
   - docs/models/operations/UpdateSubscriptionStatus.md
   - docs/models/operations/UpdateSubscriptionSubscriptionsAmount.md
-  - docs/models/operations/UpdateSubscriptionSubscriptionsInterval.md
   - docs/models/operations/UpdateSubscriptionSubscriptionsMetadata.md
   - docs/models/operations/UpdateSubscriptionSubscriptionsResponseAmount.md
   - docs/models/operations/UpdateWebhookEventTypes.md
@@ -3835,7 +3815,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/CancelPaymentDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/CancelPaymentFailureReason.java
   - src/main/java/com/mollie/mollie/models/operations/CancelPaymentFeeRegion.java
-  - src/main/java/com/mollie/mollie/models/operations/CancelPaymentInterval.java
   - src/main/java/com/mollie/mollie/models/operations/CancelPaymentLines.java
   - src/main/java/com/mollie/mollie/models/operations/CancelPaymentLinks.java
   - src/main/java/com/mollie/mollie/models/operations/CancelPaymentLocale.java
@@ -3889,7 +3868,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/CancelSubscriptionApplicationFee.java
   - src/main/java/com/mollie/mollie/models/operations/CancelSubscriptionCustomer.java
   - src/main/java/com/mollie/mollie/models/operations/CancelSubscriptionDocumentation.java
-  - src/main/java/com/mollie/mollie/models/operations/CancelSubscriptionInterval.java
   - src/main/java/com/mollie/mollie/models/operations/CancelSubscriptionLinks.java
   - src/main/java/com/mollie/mollie/models/operations/CancelSubscriptionMandate.java
   - src/main/java/com/mollie/mollie/models/operations/CancelSubscriptionMetadata.java
@@ -4001,7 +3979,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/CreateCustomerPaymentCustomersCategories.java
   - src/main/java/com/mollie/mollie/models/operations/CreateCustomerPaymentCustomersDestination.java
   - src/main/java/com/mollie/mollie/models/operations/CreateCustomerPaymentCustomersDiscountAmount.java
-  - src/main/java/com/mollie/mollie/models/operations/CreateCustomerPaymentCustomersInterval.java
   - src/main/java/com/mollie/mollie/models/operations/CreateCustomerPaymentCustomersLines.java
   - src/main/java/com/mollie/mollie/models/operations/CreateCustomerPaymentCustomersLinks.java
   - src/main/java/com/mollie/mollie/models/operations/CreateCustomerPaymentCustomersLocale.java
@@ -4036,7 +4013,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/CreateCustomerPaymentDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/CreateCustomerPaymentFailureReason.java
   - src/main/java/com/mollie/mollie/models/operations/CreateCustomerPaymentFeeRegion.java
-  - src/main/java/com/mollie/mollie/models/operations/CreateCustomerPaymentInterval.java
   - src/main/java/com/mollie/mollie/models/operations/CreateCustomerPaymentLines.java
   - src/main/java/com/mollie/mollie/models/operations/CreateCustomerPaymentLinks.java
   - src/main/java/com/mollie/mollie/models/operations/CreateCustomerPaymentLocale.java
@@ -4102,7 +4078,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentCategories.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentDestination.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentDiscountAmount.java
-  - src/main/java/com/mollie/mollie/models/operations/CreatePaymentInterval.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentLines.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentLinkAmount.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentLinkApplicationFee.java
@@ -4249,7 +4224,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionApplicationFee.java
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionCustomer.java
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionDocumentation.java
-  - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionInterval.java
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionLinks.java
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionMandate.java
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionMetadata.java
@@ -4266,7 +4240,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionStatus.java
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionSubscriptionsAmount.java
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionSubscriptionsApplicationFee.java
-  - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionSubscriptionsInterval.java
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionSubscriptionsMetadata.java
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionSubscriptionsMethod.java
   - src/main/java/com/mollie/mollie/models/operations/CreateSubscriptionSubscriptionsResponse201Amount.java
@@ -5226,7 +5199,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentFailureReason.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentFeeRegion.java
-  - src/main/java/com/mollie/mollie/models/operations/GetPaymentInterval.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLines.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkAmount.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkApplicationFee.java
@@ -5268,7 +5240,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkPaymentsEmbedded.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkPaymentsFailureReason.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkPaymentsFeeRegion.java
-  - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkPaymentsInterval.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkPaymentsLines.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkPaymentsLinks.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentLinkPaymentsLocale.java
@@ -5483,7 +5454,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionApplicationFee.java
   - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionCustomer.java
   - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionDocumentation.java
-  - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionInterval.java
   - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionLinks.java
   - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionMandate.java
   - src/main/java/com/mollie/mollie/models/operations/GetSubscriptionMetadata.java
@@ -5536,7 +5506,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/Include.java
   - src/main/java/com/mollie/mollie/models/operations/IncludeWallets.java
   - src/main/java/com/mollie/mollie/models/operations/InitialAmount.java
-  - src/main/java/com/mollie/mollie/models/operations/Interval.java
   - src/main/java/com/mollie/mollie/models/operations/Invoice.java
   - src/main/java/com/mollie/mollie/models/operations/InvoiceCompensation.java
   - src/main/java/com/mollie/mollie/models/operations/InvoicePayment.java
@@ -5620,7 +5589,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListAllSubscriptionsCustomer.java
   - src/main/java/com/mollie/mollie/models/operations/ListAllSubscriptionsDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/ListAllSubscriptionsEmbedded.java
-  - src/main/java/com/mollie/mollie/models/operations/ListAllSubscriptionsInterval.java
   - src/main/java/com/mollie/mollie/models/operations/ListAllSubscriptionsLinks.java
   - src/main/java/com/mollie/mollie/models/operations/ListAllSubscriptionsMandate.java
   - src/main/java/com/mollie/mollie/models/operations/ListAllSubscriptionsMetadata.java
@@ -5809,7 +5777,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListCustomerPaymentsEmbedded.java
   - src/main/java/com/mollie/mollie/models/operations/ListCustomerPaymentsFailureReason.java
   - src/main/java/com/mollie/mollie/models/operations/ListCustomerPaymentsFeeRegion.java
-  - src/main/java/com/mollie/mollie/models/operations/ListCustomerPaymentsInterval.java
   - src/main/java/com/mollie/mollie/models/operations/ListCustomerPaymentsLines.java
   - src/main/java/com/mollie/mollie/models/operations/ListCustomerPaymentsLinks.java
   - src/main/java/com/mollie/mollie/models/operations/ListCustomerPaymentsLocale.java
@@ -5979,7 +5946,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentsEmbedded.java
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentsFailureReason.java
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentsFeeRegion.java
-  - src/main/java/com/mollie/mollie/models/operations/ListPaymentsInterval.java
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentsLines.java
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentsLinks.java
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentsLocale.java
@@ -6197,7 +6163,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListSettlementPaymentsEmbedded.java
   - src/main/java/com/mollie/mollie/models/operations/ListSettlementPaymentsFailureReason.java
   - src/main/java/com/mollie/mollie/models/operations/ListSettlementPaymentsFeeRegion.java
-  - src/main/java/com/mollie/mollie/models/operations/ListSettlementPaymentsInterval.java
   - src/main/java/com/mollie/mollie/models/operations/ListSettlementPaymentsLines.java
   - src/main/java/com/mollie/mollie/models/operations/ListSettlementPaymentsLinks.java
   - src/main/java/com/mollie/mollie/models/operations/ListSettlementPaymentsLocale.java
@@ -6326,7 +6291,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListSubscriptionPaymentsEmbedded.java
   - src/main/java/com/mollie/mollie/models/operations/ListSubscriptionPaymentsFailureReason.java
   - src/main/java/com/mollie/mollie/models/operations/ListSubscriptionPaymentsFeeRegion.java
-  - src/main/java/com/mollie/mollie/models/operations/ListSubscriptionPaymentsInterval.java
   - src/main/java/com/mollie/mollie/models/operations/ListSubscriptionPaymentsLines.java
   - src/main/java/com/mollie/mollie/models/operations/ListSubscriptionPaymentsLinks.java
   - src/main/java/com/mollie/mollie/models/operations/ListSubscriptionPaymentsLocale.java
@@ -6384,7 +6348,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListSubscriptionsCustomer.java
   - src/main/java/com/mollie/mollie/models/operations/ListSubscriptionsDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/ListSubscriptionsEmbedded.java
-  - src/main/java/com/mollie/mollie/models/operations/ListSubscriptionsInterval.java
   - src/main/java/com/mollie/mollie/models/operations/ListSubscriptionsLinks.java
   - src/main/java/com/mollie/mollie/models/operations/ListSubscriptionsMandate.java
   - src/main/java/com/mollie/mollie/models/operations/ListSubscriptionsMetadata.java
@@ -6640,7 +6603,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentFailureReason.java
   - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentFeeRegion.java
-  - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentInterval.java
   - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLines.java
   - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLinkAmount.java
   - src/main/java/com/mollie/mollie/models/operations/UpdatePaymentLinkApplicationFee.java
@@ -6793,7 +6755,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionApplicationFee.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionCustomer.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionDocumentation.java
-  - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionInterval.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionLinks.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionMandate.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionMetadata.java
@@ -6809,7 +6770,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionSelf.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionStatus.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionSubscriptionsAmount.java
-  - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionSubscriptionsInterval.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionSubscriptionsMetadata.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionSubscriptionsResponseAmount.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateWebhookEventTypes.java
@@ -6925,13 +6885,12 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/utils/BackoffStrategy.java
   - src/main/java/com/mollie/mollie/utils/BigDecimalString.java
   - src/main/java/com/mollie/mollie/utils/BigIntegerString.java
+  - src/main/java/com/mollie/mollie/utils/BlockingParser.java
   - src/main/java/com/mollie/mollie/utils/Constants.java
   - src/main/java/com/mollie/mollie/utils/CopiableInputStream.java
   - src/main/java/com/mollie/mollie/utils/Deserializers.java
   - src/main/java/com/mollie/mollie/utils/EventStream.java
-  - src/main/java/com/mollie/mollie/utils/EventStreamLineReader.java
   - src/main/java/com/mollie/mollie/utils/EventStreamMessage.java
-  - src/main/java/com/mollie/mollie/utils/EventStreamReader.java
   - src/main/java/com/mollie/mollie/utils/Exceptions.java
   - src/main/java/com/mollie/mollie/utils/FormMetadata.java
   - src/main/java/com/mollie/mollie/utils/Globals.java
@@ -6968,6 +6927,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/utils/SessionManager.java
   - src/main/java/com/mollie/mollie/utils/SpeakeasyHTTPClient.java
   - src/main/java/com/mollie/mollie/utils/SpeakeasyMetadata.java
+  - src/main/java/com/mollie/mollie/utils/StreamingParser.java
   - src/main/java/com/mollie/mollie/utils/TypedObject.java
   - src/main/java/com/mollie/mollie/utils/Types.java
   - src/main/java/com/mollie/mollie/utils/Utf8UrlEncoder.java
@@ -9005,10 +8965,10 @@ examples:
         path:
           customerId: "cst_5B8cwPMGnU"
       requestBody:
-        application/json: {"amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "interval": "... months", "startDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "webhookUrl": "https://example.com/webhook", "mandateId": "mdt_5B8cwPMGnU", "testmode": false}
+        application/json: {"amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "interval": "2 days", "startDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "webhookUrl": "https://example.com/webhook", "mandateId": "mdt_5B8cwPMGnU", "testmode": false}
       responses:
         "201":
-          application/hal+json: {"resource": "subscription", "id": "sub_rVKGtNd6s3", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "25.00"}, "times": 4, "timesRemaining": 4, "interval": "... months", "startDate": "2023-06-01", "nextPaymentDate": "2023-09-01", "description": "Quarterly payment", "method": null, "metadata": null, "webhookUrl": "https://webshop.example.org/payments/webhook", "customerId": "cst_stTC2WHAuS", "mandateId": "mdt_38HS4fsS", "createdAt": "2023-04-06T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://api.mollie.com/v2/customers/cst_stTC2WHAuS", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "text/html"}, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"resource": "subscription", "id": "sub_rVKGtNd6s3", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "25.00"}, "times": 4, "timesRemaining": 4, "interval": "3 months", "startDate": "2023-06-01", "nextPaymentDate": "2023-09-01", "description": "Quarterly payment", "method": null, "metadata": null, "webhookUrl": "https://webshop.example.org/payments/webhook", "customerId": "cst_stTC2WHAuS", "mandateId": "mdt_38HS4fsS", "createdAt": "2023-04-06T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://api.mollie.com/v2/customers/cst_stTC2WHAuS", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "text/html"}, "documentation": {"href": "https://...", "type": "text/html"}}}
     "":
       parameters:
         path:
@@ -9023,10 +8983,10 @@ examples:
         path:
           customerId: "cst_5B8cwPMGnU"
       requestBody:
-        application/json: {"amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "interval": "... months", "startDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "webhookUrl": "https://example.com/webhook", "mandateId": "mdt_5B8cwPMGnU", "testmode": false}
+        application/json: {"amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "interval": "2 days", "startDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "webhookUrl": "https://example.com/webhook", "mandateId": "mdt_5B8cwPMGnU", "testmode": false}
       responses:
         "201":
-          application/hal+json: {"resource": "subscription", "id": "sub_5B8cwPMGnU", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "timesRemaining": 5, "interval": "... days", "startDate": "2025-01-01", "nextPaymentDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "metadata": {"0": "<value 1>"}, "webhookUrl": "https://example.com/webhook", "customerId": "cst_5B8cwPMGnU", "mandateId": "mdt_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "canceledAt": "2025-01-01T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://...", "type": "application/hal+json"}, "mandate": {"href": "https://...", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "application/hal+json"}, "payments": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"resource": "subscription", "id": "sub_5B8cwPMGnU", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "timesRemaining": 5, "interval": "2 days", "startDate": "2025-01-01", "nextPaymentDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "metadata": {"0": "<value 1>"}, "webhookUrl": "https://example.com/webhook", "customerId": "cst_5B8cwPMGnU", "mandateId": "mdt_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "canceledAt": "2025-01-01T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://...", "type": "application/hal+json"}, "mandate": {"href": "https://...", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "application/hal+json"}, "payments": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   list-subscriptions:
@@ -9041,7 +9001,7 @@ examples:
           testmode: false
       responses:
         "200":
-          application/hal+json: {"count": 1, "_embedded": {"subscriptions": [{"resource": "subscription", "id": "sub_rVKGtNd6s3", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "25.00"}, "times": 4, "timesRemaining": 4, "interval": "... days", "startDate": "2023-06-01", "nextPaymentDate": "2023-09-01", "description": "Quarterly payment", "method": null, "metadata": null, "webhookUrl": "https://webshop.example.org/payments/webhook", "customerId": "cst_stTC2WHAuS", "mandateId": "mdt_38HS4fsS", "createdAt": "2023-04-06T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://api.mollie.com/v2/customers/cst_stTC2WHAuS", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "text/html"}, "documentation": {"href": "https://...", "type": "text/html"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": {"href": "https://api.mollie.com/v2/subscriptions?from=sub_mnXbwhMfvo&limit=5", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"count": 1, "_embedded": {"subscriptions": [{"resource": "subscription", "id": "sub_rVKGtNd6s3", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "25.00"}, "times": 4, "timesRemaining": 4, "interval": "3 months", "startDate": "2023-06-01", "nextPaymentDate": "2023-09-01", "description": "Quarterly payment", "method": null, "metadata": null, "webhookUrl": "https://webshop.example.org/payments/webhook", "customerId": "cst_stTC2WHAuS", "mandateId": "mdt_38HS4fsS", "createdAt": "2023-04-06T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://api.mollie.com/v2/customers/cst_stTC2WHAuS", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "text/html"}, "documentation": {"href": "https://...", "type": "text/html"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": {"href": "https://api.mollie.com/v2/subscriptions?from=sub_mnXbwhMfvo&limit=5", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
     "":
       parameters:
         path:
@@ -9082,7 +9042,7 @@ examples:
           testmode: false
       responses:
         "200":
-          application/hal+json: {"resource": "subscription", "id": "sub_rVKGtNd6s3", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "25.00"}, "times": 4, "timesRemaining": 4, "interval": "... weeks", "startDate": "2023-06-01", "nextPaymentDate": "2023-09-01", "description": "Quarterly payment", "method": null, "metadata": null, "webhookUrl": "https://webshop.example.org/payments/webhook", "customerId": "cst_stTC2WHAuS", "mandateId": "mdt_38HS4fsS", "createdAt": "2023-04-06T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://api.mollie.com/v2/customers/cst_stTC2WHAuS", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "text/html"}, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"resource": "subscription", "id": "sub_rVKGtNd6s3", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "25.00"}, "times": 4, "timesRemaining": 4, "interval": "3 months", "startDate": "2023-06-01", "nextPaymentDate": "2023-09-01", "description": "Quarterly payment", "method": null, "metadata": null, "webhookUrl": "https://webshop.example.org/payments/webhook", "customerId": "cst_stTC2WHAuS", "mandateId": "mdt_38HS4fsS", "createdAt": "2023-04-06T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://api.mollie.com/v2/customers/cst_stTC2WHAuS", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "text/html"}, "documentation": {"href": "https://...", "type": "text/html"}}}
     "":
       parameters:
         path:
@@ -9102,7 +9062,7 @@ examples:
           testmode: false
       responses:
         "200":
-          application/hal+json: {"resource": "subscription", "id": "sub_5B8cwPMGnU", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "timesRemaining": 5, "interval": "... months", "startDate": "2025-01-01", "nextPaymentDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "metadata": {}, "webhookUrl": "https://example.com/webhook", "customerId": "cst_5B8cwPMGnU", "mandateId": "mdt_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "canceledAt": "2025-01-01T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://...", "type": "application/hal+json"}, "mandate": {"href": "https://...", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "application/hal+json"}, "payments": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"resource": "subscription", "id": "sub_5B8cwPMGnU", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "timesRemaining": 5, "interval": "2 days", "startDate": "2025-01-01", "nextPaymentDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "metadata": {}, "webhookUrl": "https://example.com/webhook", "customerId": "cst_5B8cwPMGnU", "mandateId": "mdt_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "canceledAt": "2025-01-01T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://...", "type": "application/hal+json"}, "mandate": {"href": "https://...", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "application/hal+json"}, "payments": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   update-subscription:
@@ -9114,10 +9074,10 @@ examples:
         query:
           testmode: false
       requestBody:
-        application/json: {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Subscription of streaming channel", "interval": "... weeks", "startDate": "2025-01-01", "times": 6, "webhookUrl": "https://example.com/webhook", "mandateId": "mdt_5B8cwPMGnU", "testmode": false}
+        application/json: {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Subscription of streaming channel", "interval": "1 months", "startDate": "2025-01-01", "times": 6, "webhookUrl": "https://example.com/webhook", "mandateId": "mdt_5B8cwPMGnU", "testmode": false}
       responses:
         "200":
-          application/hal+json: {"resource": "subscription", "id": "sub_rVKGtNd6s3", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "10.00"}, "times": 10, "timesRemaining": 10, "interval": "... months", "startDate": "2023-06-01", "nextPaymentDate": "2023-09-01", "description": "Quarterly payment", "method": null, "metadata": null, "webhookUrl": "https://webshop.example.org/payments/webhook", "customerId": "cst_stTC2WHAuS", "mandateId": "mdt_38HS4fsS", "createdAt": "2023-04-06T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://api.mollie.com/v2/customers/cst_stTC2WHAuS", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "text/html"}, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"resource": "subscription", "id": "sub_rVKGtNd6s3", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "10.00"}, "times": 10, "timesRemaining": 10, "interval": "3 months", "startDate": "2023-06-01", "nextPaymentDate": "2023-09-01", "description": "Quarterly payment", "method": null, "metadata": null, "webhookUrl": "https://webshop.example.org/payments/webhook", "customerId": "cst_stTC2WHAuS", "mandateId": "mdt_38HS4fsS", "createdAt": "2023-04-06T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://api.mollie.com/v2/customers/cst_stTC2WHAuS", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "text/html"}, "documentation": {"href": "https://...", "type": "text/html"}}}
     update-subscription-200-2:
       parameters:
         path:
@@ -9126,10 +9086,10 @@ examples:
         query:
           testmode: false
       requestBody:
-        application/json: {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Subscription of streaming channel", "interval": "... weeks", "startDate": "2025-01-01", "times": 6, "webhookUrl": "https://example.com/webhook", "mandateId": "mdt_5B8cwPMGnU", "testmode": false}
+        application/json: {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Subscription of streaming channel", "interval": "1 months", "startDate": "2025-01-01", "times": 6, "webhookUrl": "https://example.com/webhook", "mandateId": "mdt_5B8cwPMGnU", "testmode": false}
       responses:
         "200":
-          application/hal+json: {"resource": "subscription", "id": "sub_hjytgQpbzu", "mode": "test", "status": "active", "amount": {"currency": "EUR", "value": "12.00"}, "times": 12, "timesRemaining": 11, "interval": "... days", "startDate": "2022-01-04", "nextPaymentDate": "2022-02-04", "description": "This is a recurring payment for your subscription", "method": null, "metadata": {"someProperty": "someValue", "anotherProperty": "anotherValue"}, "webhookUrl": "https://example.com/redirect", "customerId": "cst_tKt44u85MM", "mandateId": "mdt_gDSN2rx3My", "createdAt": "2022-01-04T10:04:55+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://api.mollie.com/v2/customers/cst_tKt44u85MM", "type": "application/hal+json"}, "mandate": {"href": "https://api.mollie.com/v2/customers/cst_tKt44u85MM/mandates/mdt_gDSN2rx3My", "type": "application/hal+json"}, "profile": {"href": "https://api.mollie.com/v2/profiles/pfl_85dxyKqNHa", "type": "application/hal+json"}, "payments": {"href": "https://api.mollie.com/v2/customers/cst_tKt44u85MM/subscriptions/sub_hjytgQpbzu/payments", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"resource": "subscription", "id": "sub_hjytgQpbzu", "mode": "test", "status": "active", "amount": {"currency": "EUR", "value": "12.00"}, "times": 12, "timesRemaining": 11, "interval": "2 months", "startDate": "2022-01-04", "nextPaymentDate": "2022-02-04", "description": "This is a recurring payment for your subscription", "method": null, "metadata": {"someProperty": "someValue", "anotherProperty": "anotherValue"}, "webhookUrl": "https://example.com/redirect", "customerId": "cst_tKt44u85MM", "mandateId": "mdt_gDSN2rx3My", "createdAt": "2022-01-04T10:04:55+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://api.mollie.com/v2/customers/cst_tKt44u85MM", "type": "application/hal+json"}, "mandate": {"href": "https://api.mollie.com/v2/customers/cst_tKt44u85MM/mandates/mdt_gDSN2rx3My", "type": "application/hal+json"}, "profile": {"href": "https://api.mollie.com/v2/profiles/pfl_85dxyKqNHa", "type": "application/hal+json"}, "payments": {"href": "https://api.mollie.com/v2/customers/cst_tKt44u85MM/subscriptions/sub_hjytgQpbzu/payments", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
     "":
       parameters:
         path:
@@ -9148,10 +9108,10 @@ examples:
           customerId: "cst_5B8cwPMGnU"
           subscriptionId: "sub_5B8cwPMGnU"
       requestBody:
-        application/json: {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Subscription of streaming channel", "interval": "... weeks", "startDate": "2025-01-01", "times": 6, "webhookUrl": "https://example.com/webhook", "mandateId": "mdt_5B8cwPMGnU", "testmode": false}
+        application/json: {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Subscription of streaming channel", "interval": "1 months", "startDate": "2025-01-01", "times": 6, "webhookUrl": "https://example.com/webhook", "mandateId": "mdt_5B8cwPMGnU", "testmode": false}
       responses:
         "200":
-          application/hal+json: {"resource": "subscription", "id": "sub_5B8cwPMGnU", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "timesRemaining": 5, "interval": "... weeks", "startDate": "2025-01-01", "nextPaymentDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "metadata": {}, "webhookUrl": "https://example.com/webhook", "customerId": "cst_5B8cwPMGnU", "mandateId": "mdt_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "canceledAt": "2025-01-01T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://...", "type": "application/hal+json"}, "mandate": {"href": "https://...", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "application/hal+json"}, "payments": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"resource": "subscription", "id": "sub_5B8cwPMGnU", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "timesRemaining": 5, "interval": "2 days", "startDate": "2025-01-01", "nextPaymentDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "metadata": {}, "webhookUrl": "https://example.com/webhook", "customerId": "cst_5B8cwPMGnU", "mandateId": "mdt_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "canceledAt": "2025-01-01T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://...", "type": "application/hal+json"}, "mandate": {"href": "https://...", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "application/hal+json"}, "payments": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   cancel-subscription:
@@ -9166,7 +9126,7 @@ examples:
         application/json: {"testmode": false}
       responses:
         "200":
-          application/hal+json: {"resource": "subscription", "id": "sub_rVKGtNd6s3", "mode": "live", "status": "canceled", "amount": {"currency": "EUR", "value": "25.00"}, "times": 4, "timesRemaining": 4, "interval": "... months", "startDate": "2023-06-01", "nextPaymentDate": null, "description": "Quarterly payment", "method": null, "metadata": null, "webhookUrl": "https://webshop.example.org/payments/webhook", "customerId": "cst_stTC2WHAuS", "mandateId": "mdt_38HS4fsS", "createdAt": "2023-04-06T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://api.mollie.com/v2/customers/cst_stTC2WHAuS", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "text/html"}, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"resource": "subscription", "id": "sub_rVKGtNd6s3", "mode": "live", "status": "canceled", "amount": {"currency": "EUR", "value": "25.00"}, "times": 4, "timesRemaining": 4, "interval": "3 months", "startDate": "2023-06-01", "nextPaymentDate": null, "description": "Quarterly payment", "method": null, "metadata": null, "webhookUrl": "https://webshop.example.org/payments/webhook", "customerId": "cst_stTC2WHAuS", "mandateId": "mdt_38HS4fsS", "createdAt": "2023-04-06T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://api.mollie.com/v2/customers/cst_stTC2WHAuS", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "text/html"}, "documentation": {"href": "https://...", "type": "text/html"}}}
     "":
       parameters:
         path:
@@ -9188,7 +9148,7 @@ examples:
         application/json: {"testmode": false}
       responses:
         "200":
-          application/hal+json: {"resource": "subscription", "id": "sub_5B8cwPMGnU", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "timesRemaining": 5, "interval": "... months", "startDate": "2025-01-01", "nextPaymentDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "metadata": {}, "webhookUrl": "https://example.com/webhook", "customerId": "cst_5B8cwPMGnU", "mandateId": "mdt_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "canceledAt": "2025-01-01T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://...", "type": "application/hal+json"}, "mandate": {"href": "https://...", "type": "application/hal+json"}, "profile": null, "payments": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"resource": "subscription", "id": "sub_5B8cwPMGnU", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "timesRemaining": 5, "interval": "2 days", "startDate": "2025-01-01", "nextPaymentDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "metadata": {}, "webhookUrl": "https://example.com/webhook", "customerId": "cst_5B8cwPMGnU", "mandateId": "mdt_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "canceledAt": "2025-01-01T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://...", "type": "application/hal+json"}, "mandate": {"href": "https://...", "type": "application/hal+json"}, "profile": null, "payments": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   list-all-subscriptions:
@@ -9259,7 +9219,7 @@ examples:
           testmode: false
       responses:
         "200":
-          application/hal+json: {"count": 1, "_embedded": {"subscriptions": [{"resource": "subscription", "id": "sub_rVKGtNd6s3", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "25.00"}, "times": 4, "timesRemaining": 4, "interval": "... days", "startDate": "2023-06-01", "nextPaymentDate": "2023-09-01", "description": "Quarterly payment", "method": null, "metadata": null, "webhookUrl": "https://webshop.example.org/payments/webhook", "customerId": "cst_stTC2WHAuS", "mandateId": "mdt_38HS4fsS", "createdAt": "2023-04-06T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://api.mollie.com/v2/customers/cst_stTC2WHAuS", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "text/html"}, "documentation": {"href": "https://...", "type": "text/html"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": {"href": "https://api.mollie.com/v2/subscriptions?from=sub_mnXbwhMfvo&limit=5", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"count": 1, "_embedded": {"subscriptions": [{"resource": "subscription", "id": "sub_rVKGtNd6s3", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "25.00"}, "times": 4, "timesRemaining": 4, "interval": "3 months", "startDate": "2023-06-01", "nextPaymentDate": "2023-09-01", "description": "Quarterly payment", "method": null, "metadata": null, "webhookUrl": "https://webshop.example.org/payments/webhook", "customerId": "cst_stTC2WHAuS", "mandateId": "mdt_38HS4fsS", "createdAt": "2023-04-06T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://api.mollie.com/v2/customers/cst_stTC2WHAuS", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "text/html"}, "documentation": {"href": "https://...", "type": "text/html"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": null, "next": {"href": "https://api.mollie.com/v2/subscriptions?from=sub_mnXbwhMfvo&limit=5", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
   list-subscription-payments:
     list-payments-200-1:
       parameters:
@@ -10840,3 +10800,4 @@ examples:
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## SDK Changes Detected:\n* `client.payments.create()`: \n  *  `requestbody.lines.[].recurring.interval` **Changed** **Breaking** :warning:\n  *  `response.lines.[].recurring.interval` **Changed** **Breaking** :warning:\n* `client.payments.list()`:  `response._embedded.payments.[].lines.[].recurring.interval` **Changed** **Breaking** :warning:\n* `client.payments.get()`:  `response.lines.[].recurring.interval` **Changed** **Breaking** :warning:\n* `client.payments.update()`:  `response.lines.[].recurring.interval` **Changed** **Breaking** :warning:\n* `client.payments.cancel()`:  `response.lines.[].recurring.interval` **Changed** **Breaking** :warning:\n* `client.paymentLinks.listPayments()`:  `response._embedded.payments.[].lines.[].recurring.interval` **Changed** **Breaking** :warning:\n* `client.customers.createPayment()`: \n  *  `requestbody.lines.[].recurring.interval` **Changed** **Breaking** :warning:\n  *  `response.lines.[].recurring.interval` **Changed** **Breaking** :warning:\n* `client.customers.listPayments()`:  `response._embedded.payments.[].lines.[].recurring.interval` **Changed** **Breaking** :warning:\n* `client.subscriptions.create()`: \n  *  `requestbody.interval` **Changed** **Breaking** :warning:\n  *  `response` **Changed** **Breaking** :warning:\n* `client.subscriptions.list()`:  `response` **Changed** **Breaking** :warning:\n* `client.subscriptions.get()`:  `response` **Changed** **Breaking** :warning:\n* `client.subscriptions.update()`: \n  *  `requestbody.interval` **Changed** **Breaking** :warning:\n  *  `response` **Changed** **Breaking** :warning:\n* `client.subscriptions.cancel()`:  `response` **Changed** **Breaking** :warning:\n* `client.subscriptions.all()`:  `response` **Changed** **Breaking** :warning:\n* `client.subscriptions.listPayments()`:  `response._embedded.payments.[].lines.[].recurring.interval` **Changed** **Breaking** :warning:\n* `client.settlements.listPayments()`:  `response._embedded.payments.[].lines.[].recurring.interval` **Changed** **Breaking** :warning:\n"

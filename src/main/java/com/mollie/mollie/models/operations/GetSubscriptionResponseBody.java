@@ -68,16 +68,19 @@ public class GetSubscriptionResponseBody {
     /**
      * Number of payments left for the subscription.
      */
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("timesRemaining")
-    private long timesRemaining;
+    private Optional<Long> timesRemaining;
 
     /**
      * Interval to wait between payments, for example `1 month` or `14 days`.
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
+     * 
+     * <p>Possible values: `... days`, `... weeks`, `... months`.
      */
     @JsonProperty("interval")
-    private GetSubscriptionInterval interval;
+    private String interval;
 
     /**
      * The start date of the subscription in `YYYY-MM-DD` format.
@@ -172,9 +175,8 @@ public class GetSubscriptionResponseBody {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends GetSubscriptionLinks> links;
+    private GetSubscriptionLinks links;
 
     @JsonCreator
     public GetSubscriptionResponseBody(
@@ -184,8 +186,8 @@ public class GetSubscriptionResponseBody {
             @JsonProperty("status") GetSubscriptionStatus status,
             @JsonProperty("amount") GetSubscriptionAmount amount,
             @JsonProperty("times") Optional<Long> times,
-            @JsonProperty("timesRemaining") long timesRemaining,
-            @JsonProperty("interval") GetSubscriptionInterval interval,
+            @JsonProperty("timesRemaining") Optional<Long> timesRemaining,
+            @JsonProperty("interval") String interval,
             @JsonProperty("startDate") String startDate,
             @JsonProperty("nextPaymentDate") JsonNullable<String> nextPaymentDate,
             @JsonProperty("description") String description,
@@ -197,7 +199,7 @@ public class GetSubscriptionResponseBody {
             @JsonProperty("mandateId") JsonNullable<String> mandateId,
             @JsonProperty("createdAt") String createdAt,
             @JsonProperty("canceledAt") JsonNullable<String> canceledAt,
-            @JsonProperty("_links") Optional<? extends GetSubscriptionLinks> links) {
+            @JsonProperty("_links") GetSubscriptionLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(mode, "mode");
@@ -246,20 +248,20 @@ public class GetSubscriptionResponseBody {
             GetSubscriptionMode mode,
             GetSubscriptionStatus status,
             GetSubscriptionAmount amount,
-            long timesRemaining,
-            GetSubscriptionInterval interval,
+            String interval,
             String startDate,
             String description,
             String webhookUrl,
             String customerId,
-            String createdAt) {
+            String createdAt,
+            GetSubscriptionLinks links) {
         this(resource, id, mode,
             status, amount, Optional.empty(),
-            timesRemaining, interval, startDate,
+            Optional.empty(), interval, startDate,
             JsonNullable.undefined(), description, Optional.empty(),
             Optional.empty(), Optional.empty(), webhookUrl,
             customerId, JsonNullable.undefined(), createdAt,
-            JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), links);
     }
 
     /**
@@ -320,7 +322,7 @@ public class GetSubscriptionResponseBody {
      * Number of payments left for the subscription.
      */
     @JsonIgnore
-    public long timesRemaining() {
+    public Optional<Long> timesRemaining() {
         return timesRemaining;
     }
 
@@ -328,9 +330,11 @@ public class GetSubscriptionResponseBody {
      * Interval to wait between payments, for example `1 month` or `14 days`.
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
+     * 
+     * <p>Possible values: `... days`, `... weeks`, `... months`.
      */
     @JsonIgnore
-    public GetSubscriptionInterval interval() {
+    public String interval() {
         return interval;
     }
 
@@ -446,10 +450,9 @@ public class GetSubscriptionResponseBody {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetSubscriptionLinks> links() {
-        return (Optional<GetSubscriptionLinks>) links;
+    public GetSubscriptionLinks links() {
+        return links;
     }
 
     public static Builder builder() {
@@ -535,6 +538,16 @@ public class GetSubscriptionResponseBody {
      */
     public GetSubscriptionResponseBody withTimesRemaining(long timesRemaining) {
         Utils.checkNotNull(timesRemaining, "timesRemaining");
+        this.timesRemaining = Optional.ofNullable(timesRemaining);
+        return this;
+    }
+
+
+    /**
+     * Number of payments left for the subscription.
+     */
+    public GetSubscriptionResponseBody withTimesRemaining(Optional<Long> timesRemaining) {
+        Utils.checkNotNull(timesRemaining, "timesRemaining");
         this.timesRemaining = timesRemaining;
         return this;
     }
@@ -543,8 +556,10 @@ public class GetSubscriptionResponseBody {
      * Interval to wait between payments, for example `1 month` or `14 days`.
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
+     * 
+     * <p>Possible values: `... days`, `... weeks`, `... months`.
      */
-    public GetSubscriptionResponseBody withInterval(GetSubscriptionInterval interval) {
+    public GetSubscriptionResponseBody withInterval(String interval) {
         Utils.checkNotNull(interval, "interval");
         this.interval = interval;
         return this;
@@ -741,16 +756,6 @@ public class GetSubscriptionResponseBody {
      */
     public GetSubscriptionResponseBody withLinks(GetSubscriptionLinks links) {
         Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public GetSubscriptionResponseBody withLinks(Optional<? extends GetSubscriptionLinks> links) {
-        Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
     }
@@ -839,9 +844,9 @@ public class GetSubscriptionResponseBody {
 
         private Optional<Long> times = Optional.empty();
 
-        private Long timesRemaining;
+        private Optional<Long> timesRemaining = Optional.empty();
 
-        private GetSubscriptionInterval interval;
+        private String interval;
 
         private String startDate;
 
@@ -865,7 +870,7 @@ public class GetSubscriptionResponseBody {
 
         private JsonNullable<String> canceledAt = JsonNullable.undefined();
 
-        private Optional<? extends GetSubscriptionLinks> links = Optional.empty();
+        private GetSubscriptionLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -955,6 +960,15 @@ public class GetSubscriptionResponseBody {
          */
         public Builder timesRemaining(long timesRemaining) {
             Utils.checkNotNull(timesRemaining, "timesRemaining");
+            this.timesRemaining = Optional.ofNullable(timesRemaining);
+            return this;
+        }
+
+        /**
+         * Number of payments left for the subscription.
+         */
+        public Builder timesRemaining(Optional<Long> timesRemaining) {
+            Utils.checkNotNull(timesRemaining, "timesRemaining");
             this.timesRemaining = timesRemaining;
             return this;
         }
@@ -964,8 +978,10 @@ public class GetSubscriptionResponseBody {
          * Interval to wait between payments, for example `1 month` or `14 days`.
          * 
          * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
+         * 
+         * <p>Possible values: `... days`, `... weeks`, `... months`.
          */
-        public Builder interval(GetSubscriptionInterval interval) {
+        public Builder interval(String interval) {
             Utils.checkNotNull(interval, "interval");
             this.interval = interval;
             return this;
@@ -1170,15 +1186,6 @@ public class GetSubscriptionResponseBody {
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
         public Builder links(GetSubscriptionLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends GetSubscriptionLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

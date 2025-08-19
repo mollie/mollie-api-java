@@ -40,10 +40,12 @@ public class UpdateSubscriptionRequestBody {
      * Interval to wait between payments, for example `1 month` or `14 days`.
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
+     * 
+     * <p>Possible values: `... days`, `... weeks`, `... months`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("interval")
-    private Optional<? extends UpdateSubscriptionInterval> interval;
+    private Optional<String> interval;
 
     /**
      * The start date of the subscription in `YYYY-MM-DD` format.
@@ -104,7 +106,7 @@ public class UpdateSubscriptionRequestBody {
     public UpdateSubscriptionRequestBody(
             @JsonProperty("amount") Optional<? extends UpdateSubscriptionAmount> amount,
             @JsonProperty("description") Optional<String> description,
-            @JsonProperty("interval") Optional<? extends UpdateSubscriptionInterval> interval,
+            @JsonProperty("interval") Optional<String> interval,
             @JsonProperty("startDate") Optional<String> startDate,
             @JsonProperty("times") Optional<Long> times,
             @JsonProperty("metadata") JsonNullable<? extends UpdateSubscriptionMetadata> metadata,
@@ -161,11 +163,12 @@ public class UpdateSubscriptionRequestBody {
      * Interval to wait between payments, for example `1 month` or `14 days`.
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
+     * 
+     * <p>Possible values: `... days`, `... weeks`, `... months`.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<UpdateSubscriptionInterval> interval() {
-        return (Optional<UpdateSubscriptionInterval>) interval;
+    public Optional<String> interval() {
+        return interval;
     }
 
     /**
@@ -283,8 +286,10 @@ public class UpdateSubscriptionRequestBody {
      * Interval to wait between payments, for example `1 month` or `14 days`.
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
+     * 
+     * <p>Possible values: `... days`, `... weeks`, `... months`.
      */
-    public UpdateSubscriptionRequestBody withInterval(UpdateSubscriptionInterval interval) {
+    public UpdateSubscriptionRequestBody withInterval(String interval) {
         Utils.checkNotNull(interval, "interval");
         this.interval = Optional.ofNullable(interval);
         return this;
@@ -295,8 +300,10 @@ public class UpdateSubscriptionRequestBody {
      * Interval to wait between payments, for example `1 month` or `14 days`.
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
+     * 
+     * <p>Possible values: `... days`, `... weeks`, `... months`.
      */
-    public UpdateSubscriptionRequestBody withInterval(Optional<? extends UpdateSubscriptionInterval> interval) {
+    public UpdateSubscriptionRequestBody withInterval(Optional<String> interval) {
         Utils.checkNotNull(interval, "interval");
         this.interval = interval;
         return this;
@@ -490,7 +497,7 @@ public class UpdateSubscriptionRequestBody {
 
         private Optional<String> description = Optional.empty();
 
-        private Optional<? extends UpdateSubscriptionInterval> interval = Optional.empty();
+        private Optional<String> interval = Optional.empty();
 
         private Optional<String> startDate = Optional.empty();
 
@@ -557,8 +564,10 @@ public class UpdateSubscriptionRequestBody {
          * Interval to wait between payments, for example `1 month` or `14 days`.
          * 
          * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
+         * 
+         * <p>Possible values: `... days`, `... weeks`, `... months`.
          */
-        public Builder interval(UpdateSubscriptionInterval interval) {
+        public Builder interval(String interval) {
             Utils.checkNotNull(interval, "interval");
             this.interval = Optional.ofNullable(interval);
             return this;
@@ -568,8 +577,10 @@ public class UpdateSubscriptionRequestBody {
          * Interval to wait between payments, for example `1 month` or `14 days`.
          * 
          * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
+         * 
+         * <p>Possible values: `... days`, `... weeks`, `... months`.
          */
-        public Builder interval(Optional<? extends UpdateSubscriptionInterval> interval) {
+        public Builder interval(Optional<String> interval) {
             Utils.checkNotNull(interval, "interval");
             this.interval = interval;
             return this;

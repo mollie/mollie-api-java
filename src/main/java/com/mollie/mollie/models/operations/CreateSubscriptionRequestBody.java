@@ -40,9 +40,11 @@ public class CreateSubscriptionRequestBody {
      * Interval to wait between payments, for example `1 month` or `14 days`.
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
+     * 
+     * <p>Possible values: `... days`, `... weeks`, `... months`.
      */
     @JsonProperty("interval")
-    private CreateSubscriptionInterval interval;
+    private String interval;
 
     /**
      * The start date of the subscription in `YYYY-MM-DD` format.
@@ -123,7 +125,7 @@ public class CreateSubscriptionRequestBody {
     public CreateSubscriptionRequestBody(
             @JsonProperty("amount") CreateSubscriptionAmount amount,
             @JsonProperty("times") JsonNullable<Long> times,
-            @JsonProperty("interval") CreateSubscriptionInterval interval,
+            @JsonProperty("interval") String interval,
             @JsonProperty("startDate") Optional<String> startDate,
             @JsonProperty("description") String description,
             @JsonProperty("method") JsonNullable<? extends CreateSubscriptionMethod> method,
@@ -158,7 +160,7 @@ public class CreateSubscriptionRequestBody {
     
     public CreateSubscriptionRequestBody(
             CreateSubscriptionAmount amount,
-            CreateSubscriptionInterval interval,
+            String interval,
             String description) {
         this(amount, JsonNullable.undefined(), interval,
             Optional.empty(), description, JsonNullable.undefined(),
@@ -190,9 +192,11 @@ public class CreateSubscriptionRequestBody {
      * Interval to wait between payments, for example `1 month` or `14 days`.
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
+     * 
+     * <p>Possible values: `... days`, `... weeks`, `... months`.
      */
     @JsonIgnore
-    public CreateSubscriptionInterval interval() {
+    public String interval() {
         return interval;
     }
 
@@ -326,8 +330,10 @@ public class CreateSubscriptionRequestBody {
      * Interval to wait between payments, for example `1 month` or `14 days`.
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
+     * 
+     * <p>Possible values: `... days`, `... weeks`, `... months`.
      */
-    public CreateSubscriptionRequestBody withInterval(CreateSubscriptionInterval interval) {
+    public CreateSubscriptionRequestBody withInterval(String interval) {
         Utils.checkNotNull(interval, "interval");
         this.interval = interval;
         return this;
@@ -563,7 +569,7 @@ public class CreateSubscriptionRequestBody {
 
         private JsonNullable<Long> times = JsonNullable.undefined();
 
-        private CreateSubscriptionInterval interval;
+        private String interval;
 
         private Optional<String> startDate = Optional.empty();
 
@@ -626,8 +632,10 @@ public class CreateSubscriptionRequestBody {
          * Interval to wait between payments, for example `1 month` or `14 days`.
          * 
          * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
+         * 
+         * <p>Possible values: `... days`, `... weeks`, `... months`.
          */
-        public Builder interval(CreateSubscriptionInterval interval) {
+        public Builder interval(String interval) {
             Utils.checkNotNull(interval, "interval");
             this.interval = interval;
             return this;

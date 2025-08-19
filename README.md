@@ -48,7 +48,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:0.15.3'
+implementation 'com.mollie:mollie:0.15.4'
 ```
 
 Maven:
@@ -56,7 +56,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>0.15.3</version>
+    <version>0.15.4</version>
 </dependency>
 ```
 
@@ -143,7 +143,7 @@ public class Application {
                             .imageUrl("https://...")
                             .productUrl("https://...")
                             .recurring(Recurring.builder()
-                                .interval(Interval.DOT_DOT_DOT_DAYS)
+                                .interval("... days")
                                 .description("Gym subscription")
                                 .amount(CreatePaymentAmount.builder()
                                     .currency("EUR")
@@ -182,7 +182,7 @@ public class Application {
                             .imageUrl("https://...")
                             .productUrl("https://...")
                             .recurring(Recurring.builder()
-                                .interval(Interval.DOT_DOT_DOT_WEEKS)
+                                .interval("... weeks")
                                 .description("Gym subscription")
                                 .amount(CreatePaymentAmount.builder()
                                     .currency("EUR")
@@ -221,7 +221,7 @@ public class Application {
                             .imageUrl("https://...")
                             .productUrl("https://...")
                             .recurring(Recurring.builder()
-                                .interval(Interval.DOT_DOT_DOT_DAYS)
+                                .interval("... days")
                                 .description("Gym subscription")
                                 .amount(CreatePaymentAmount.builder()
                                     .currency("EUR")
@@ -420,7 +420,7 @@ public class Application {
                             .imageUrl("https://...")
                             .productUrl("https://...")
                             .recurring(Recurring.builder()
-                                .interval(Interval.DOT_DOT_DOT_DAYS)
+                                .interval("... days")
                                 .description("Gym subscription")
                                 .amount(CreatePaymentAmount.builder()
                                     .currency("EUR")
@@ -459,7 +459,7 @@ public class Application {
                             .imageUrl("https://...")
                             .productUrl("https://...")
                             .recurring(Recurring.builder()
-                                .interval(Interval.DOT_DOT_DOT_WEEKS)
+                                .interval("... weeks")
                                 .description("Gym subscription")
                                 .amount(CreatePaymentAmount.builder()
                                     .currency("EUR")
@@ -498,7 +498,7 @@ public class Application {
                             .imageUrl("https://...")
                             .productUrl("https://...")
                             .recurring(Recurring.builder()
-                                .interval(Interval.DOT_DOT_DOT_DAYS)
+                                .interval("... days")
                                 .description("Gym subscription")
                                 .amount(CreatePaymentAmount.builder()
                                     .currency("EUR")
@@ -881,7 +881,7 @@ public class Application {
                             .imageUrl("https://...")
                             .productUrl("https://...")
                             .recurring(Recurring.builder()
-                                .interval(Interval.DOT_DOT_DOT_DAYS)
+                                .interval("... days")
                                 .description("Gym subscription")
                                 .amount(CreatePaymentAmount.builder()
                                     .currency("EUR")
@@ -920,7 +920,7 @@ public class Application {
                             .imageUrl("https://...")
                             .productUrl("https://...")
                             .recurring(Recurring.builder()
-                                .interval(Interval.DOT_DOT_DOT_WEEKS)
+                                .interval("... weeks")
                                 .description("Gym subscription")
                                 .amount(CreatePaymentAmount.builder()
                                     .currency("EUR")
@@ -959,7 +959,7 @@ public class Application {
                             .imageUrl("https://...")
                             .productUrl("https://...")
                             .recurring(Recurring.builder()
-                                .interval(Interval.DOT_DOT_DOT_DAYS)
+                                .interval("... days")
                                 .description("Gym subscription")
                                 .amount(CreatePaymentAmount.builder()
                                     .currency("EUR")
@@ -1158,7 +1158,7 @@ public class Application {
                             .imageUrl("https://...")
                             .productUrl("https://...")
                             .recurring(Recurring.builder()
-                                .interval(Interval.DOT_DOT_DOT_DAYS)
+                                .interval("... days")
                                 .description("Gym subscription")
                                 .amount(CreatePaymentAmount.builder()
                                     .currency("EUR")
@@ -1197,7 +1197,7 @@ public class Application {
                             .imageUrl("https://...")
                             .productUrl("https://...")
                             .recurring(Recurring.builder()
-                                .interval(Interval.DOT_DOT_DOT_WEEKS)
+                                .interval("... weeks")
                                 .description("Gym subscription")
                                 .amount(CreatePaymentAmount.builder()
                                     .currency("EUR")
@@ -1236,7 +1236,7 @@ public class Application {
                             .imageUrl("https://...")
                             .productUrl("https://...")
                             .recurring(Recurring.builder()
-                                .interval(Interval.DOT_DOT_DOT_DAYS)
+                                .interval("... days")
                                 .description("Gym subscription")
                                 .amount(CreatePaymentAmount.builder()
                                     .currency("EUR")
@@ -1437,7 +1437,7 @@ public class Application {
                             .imageUrl("https://...")
                             .productUrl("https://...")
                             .recurring(Recurring.builder()
-                                .interval(Interval.DOT_DOT_DOT_DAYS)
+                                .interval("... days")
                                 .description("Gym subscription")
                                 .amount(CreatePaymentAmount.builder()
                                     .currency("EUR")
@@ -1476,7 +1476,7 @@ public class Application {
                             .imageUrl("https://...")
                             .productUrl("https://...")
                             .recurring(Recurring.builder()
-                                .interval(Interval.DOT_DOT_DOT_WEEKS)
+                                .interval("... weeks")
                                 .description("Gym subscription")
                                 .amount(CreatePaymentAmount.builder()
                                     .currency("EUR")
@@ -1515,7 +1515,7 @@ public class Application {
                             .imageUrl("https://...")
                             .productUrl("https://...")
                             .recurring(Recurring.builder()
-                                .interval(Interval.DOT_DOT_DOT_DAYS)
+                                .interval("... days")
                                 .description("Gym subscription")
                                 .amount(CreatePaymentAmount.builder()
                                     .currency("EUR")
@@ -1708,7 +1708,7 @@ public class Application {
                             .imageUrl("https://...")
                             .productUrl("https://...")
                             .recurring(Recurring.builder()
-                                .interval(Interval.DOT_DOT_DOT_DAYS)
+                                .interval("... days")
                                 .description("Gym subscription")
                                 .amount(CreatePaymentAmount.builder()
                                     .currency("EUR")
@@ -1747,7 +1747,7 @@ public class Application {
                             .imageUrl("https://...")
                             .productUrl("https://...")
                             .recurring(Recurring.builder()
-                                .interval(Interval.DOT_DOT_DOT_WEEKS)
+                                .interval("... weeks")
                                 .description("Gym subscription")
                                 .amount(CreatePaymentAmount.builder()
                                     .currency("EUR")
@@ -1786,7 +1786,7 @@ public class Application {
                             .imageUrl("https://...")
                             .productUrl("https://...")
                             .recurring(Recurring.builder()
-                                .interval(Interval.DOT_DOT_DOT_DAYS)
+                                .interval("... days")
                                 .description("Gym subscription")
                                 .amount(CreatePaymentAmount.builder()
                                     .currency("EUR")

@@ -403,7 +403,7 @@ public class Application {
                             .imageUrl("https://...")
                             .productUrl("https://...")
                             .recurring(CreateCustomerPaymentRecurring.builder()
-                                .interval(CreateCustomerPaymentInterval.DOT_DOT_DOT_MONTHS)
+                                .interval("... months")
                                 .description("Gym subscription")
                                 .amount(CreateCustomerPaymentCustomersAmount.builder()
                                     .currency("EUR")

@@ -32,9 +32,11 @@ public class UpdatePaymentRecurring {
 
     /**
      * Cadence unit of the recurring item. For example: `12 months`, `52 weeks` or `365 days`.
+     * 
+     * <p>Possible values: `... days`, `... weeks`, `... months`.
      */
     @JsonProperty("interval")
-    private UpdatePaymentInterval interval;
+    private String interval;
 
     /**
      * Total amount and currency of the recurring item.
@@ -60,7 +62,7 @@ public class UpdatePaymentRecurring {
     @JsonCreator
     public UpdatePaymentRecurring(
             @JsonProperty("description") Optional<String> description,
-            @JsonProperty("interval") UpdatePaymentInterval interval,
+            @JsonProperty("interval") String interval,
             @JsonProperty("amount") Optional<? extends UpdatePaymentPaymentsResponse200Amount> amount,
             @JsonProperty("times") Optional<Long> times,
             @JsonProperty("startDate") JsonNullable<String> startDate) {
@@ -77,7 +79,7 @@ public class UpdatePaymentRecurring {
     }
     
     public UpdatePaymentRecurring(
-            UpdatePaymentInterval interval) {
+            String interval) {
         this(Optional.empty(), interval, Optional.empty(),
             Optional.empty(), JsonNullable.undefined());
     }
@@ -92,9 +94,11 @@ public class UpdatePaymentRecurring {
 
     /**
      * Cadence unit of the recurring item. For example: `12 months`, `52 weeks` or `365 days`.
+     * 
+     * <p>Possible values: `... days`, `... weeks`, `... months`.
      */
     @JsonIgnore
-    public UpdatePaymentInterval interval() {
+    public String interval() {
         return interval;
     }
 
@@ -149,8 +153,10 @@ public class UpdatePaymentRecurring {
 
     /**
      * Cadence unit of the recurring item. For example: `12 months`, `52 weeks` or `365 days`.
+     * 
+     * <p>Possible values: `... days`, `... weeks`, `... months`.
      */
-    public UpdatePaymentRecurring withInterval(UpdatePaymentInterval interval) {
+    public UpdatePaymentRecurring withInterval(String interval) {
         Utils.checkNotNull(interval, "interval");
         this.interval = interval;
         return this;
@@ -251,7 +257,7 @@ public class UpdatePaymentRecurring {
 
         private Optional<String> description = Optional.empty();
 
-        private UpdatePaymentInterval interval;
+        private String interval;
 
         private Optional<? extends UpdatePaymentPaymentsResponse200Amount> amount = Optional.empty();
 
@@ -285,8 +291,10 @@ public class UpdatePaymentRecurring {
 
         /**
          * Cadence unit of the recurring item. For example: `12 months`, `52 weeks` or `365 days`.
+         * 
+         * <p>Possible values: `... days`, `... weeks`, `... months`.
          */
-        public Builder interval(UpdatePaymentInterval interval) {
+        public Builder interval(String interval) {
             Utils.checkNotNull(interval, "interval");
             this.interval = interval;
             return this;

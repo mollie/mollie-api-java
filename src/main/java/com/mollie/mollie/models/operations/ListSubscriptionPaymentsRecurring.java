@@ -32,9 +32,11 @@ public class ListSubscriptionPaymentsRecurring {
 
     /**
      * Cadence unit of the recurring item. For example: `12 months`, `52 weeks` or `365 days`.
+     * 
+     * <p>Possible values: `... days`, `... weeks`, `... months`.
      */
     @JsonProperty("interval")
-    private ListSubscriptionPaymentsInterval interval;
+    private String interval;
 
     /**
      * Total amount and currency of the recurring item.
@@ -60,7 +62,7 @@ public class ListSubscriptionPaymentsRecurring {
     @JsonCreator
     public ListSubscriptionPaymentsRecurring(
             @JsonProperty("description") Optional<String> description,
-            @JsonProperty("interval") ListSubscriptionPaymentsInterval interval,
+            @JsonProperty("interval") String interval,
             @JsonProperty("amount") Optional<? extends ListSubscriptionPaymentsSubscriptionsResponse200Amount> amount,
             @JsonProperty("times") Optional<Long> times,
             @JsonProperty("startDate") JsonNullable<String> startDate) {
@@ -77,7 +79,7 @@ public class ListSubscriptionPaymentsRecurring {
     }
     
     public ListSubscriptionPaymentsRecurring(
-            ListSubscriptionPaymentsInterval interval) {
+            String interval) {
         this(Optional.empty(), interval, Optional.empty(),
             Optional.empty(), JsonNullable.undefined());
     }
@@ -92,9 +94,11 @@ public class ListSubscriptionPaymentsRecurring {
 
     /**
      * Cadence unit of the recurring item. For example: `12 months`, `52 weeks` or `365 days`.
+     * 
+     * <p>Possible values: `... days`, `... weeks`, `... months`.
      */
     @JsonIgnore
-    public ListSubscriptionPaymentsInterval interval() {
+    public String interval() {
         return interval;
     }
 
@@ -149,8 +153,10 @@ public class ListSubscriptionPaymentsRecurring {
 
     /**
      * Cadence unit of the recurring item. For example: `12 months`, `52 weeks` or `365 days`.
+     * 
+     * <p>Possible values: `... days`, `... weeks`, `... months`.
      */
-    public ListSubscriptionPaymentsRecurring withInterval(ListSubscriptionPaymentsInterval interval) {
+    public ListSubscriptionPaymentsRecurring withInterval(String interval) {
         Utils.checkNotNull(interval, "interval");
         this.interval = interval;
         return this;
@@ -251,7 +257,7 @@ public class ListSubscriptionPaymentsRecurring {
 
         private Optional<String> description = Optional.empty();
 
-        private ListSubscriptionPaymentsInterval interval;
+        private String interval;
 
         private Optional<? extends ListSubscriptionPaymentsSubscriptionsResponse200Amount> amount = Optional.empty();
 
@@ -285,8 +291,10 @@ public class ListSubscriptionPaymentsRecurring {
 
         /**
          * Cadence unit of the recurring item. For example: `12 months`, `52 weeks` or `365 days`.
+         * 
+         * <p>Possible values: `... days`, `... weeks`, `... months`.
          */
-        public Builder interval(ListSubscriptionPaymentsInterval interval) {
+        public Builder interval(String interval) {
             Utils.checkNotNull(interval, "interval");
             this.interval = interval;
             return this;

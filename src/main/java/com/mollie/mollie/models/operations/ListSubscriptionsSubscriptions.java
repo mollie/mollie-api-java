@@ -64,16 +64,19 @@ public class ListSubscriptionsSubscriptions {
     /**
      * Number of payments left for the subscription.
      */
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("timesRemaining")
-    private long timesRemaining;
+    private Optional<Long> timesRemaining;
 
     /**
      * Interval to wait between payments, for example `1 month` or `14 days`.
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
+     * 
+     * <p>Possible values: `... days`, `... weeks`, `... months`.
      */
     @JsonProperty("interval")
-    private ListSubscriptionsInterval interval;
+    private String interval;
 
     /**
      * The start date of the subscription in `YYYY-MM-DD` format.
@@ -168,9 +171,8 @@ public class ListSubscriptionsSubscriptions {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends ListSubscriptionsSubscriptionsLinks> links;
+    private ListSubscriptionsSubscriptionsLinks links;
 
     @JsonCreator
     public ListSubscriptionsSubscriptions(
@@ -180,8 +182,8 @@ public class ListSubscriptionsSubscriptions {
             @JsonProperty("status") ListSubscriptionsStatus status,
             @JsonProperty("amount") ListSubscriptionsAmount amount,
             @JsonProperty("times") Optional<Long> times,
-            @JsonProperty("timesRemaining") long timesRemaining,
-            @JsonProperty("interval") ListSubscriptionsInterval interval,
+            @JsonProperty("timesRemaining") Optional<Long> timesRemaining,
+            @JsonProperty("interval") String interval,
             @JsonProperty("startDate") String startDate,
             @JsonProperty("nextPaymentDate") JsonNullable<String> nextPaymentDate,
             @JsonProperty("description") String description,
@@ -193,7 +195,7 @@ public class ListSubscriptionsSubscriptions {
             @JsonProperty("mandateId") JsonNullable<String> mandateId,
             @JsonProperty("createdAt") String createdAt,
             @JsonProperty("canceledAt") JsonNullable<String> canceledAt,
-            @JsonProperty("_links") Optional<? extends ListSubscriptionsSubscriptionsLinks> links) {
+            @JsonProperty("_links") ListSubscriptionsSubscriptionsLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(mode, "mode");
@@ -242,20 +244,20 @@ public class ListSubscriptionsSubscriptions {
             ListSubscriptionsMode mode,
             ListSubscriptionsStatus status,
             ListSubscriptionsAmount amount,
-            long timesRemaining,
-            ListSubscriptionsInterval interval,
+            String interval,
             String startDate,
             String description,
             String webhookUrl,
             String customerId,
-            String createdAt) {
+            String createdAt,
+            ListSubscriptionsSubscriptionsLinks links) {
         this(resource, id, mode,
             status, amount, Optional.empty(),
-            timesRemaining, interval, startDate,
+            Optional.empty(), interval, startDate,
             JsonNullable.undefined(), description, Optional.empty(),
             Optional.empty(), Optional.empty(), webhookUrl,
             customerId, JsonNullable.undefined(), createdAt,
-            JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), links);
     }
 
     /**
@@ -316,7 +318,7 @@ public class ListSubscriptionsSubscriptions {
      * Number of payments left for the subscription.
      */
     @JsonIgnore
-    public long timesRemaining() {
+    public Optional<Long> timesRemaining() {
         return timesRemaining;
     }
 
@@ -324,9 +326,11 @@ public class ListSubscriptionsSubscriptions {
      * Interval to wait between payments, for example `1 month` or `14 days`.
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
+     * 
+     * <p>Possible values: `... days`, `... weeks`, `... months`.
      */
     @JsonIgnore
-    public ListSubscriptionsInterval interval() {
+    public String interval() {
         return interval;
     }
 
@@ -442,10 +446,9 @@ public class ListSubscriptionsSubscriptions {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListSubscriptionsSubscriptionsLinks> links() {
-        return (Optional<ListSubscriptionsSubscriptionsLinks>) links;
+    public ListSubscriptionsSubscriptionsLinks links() {
+        return links;
     }
 
     public static Builder builder() {
@@ -531,6 +534,16 @@ public class ListSubscriptionsSubscriptions {
      */
     public ListSubscriptionsSubscriptions withTimesRemaining(long timesRemaining) {
         Utils.checkNotNull(timesRemaining, "timesRemaining");
+        this.timesRemaining = Optional.ofNullable(timesRemaining);
+        return this;
+    }
+
+
+    /**
+     * Number of payments left for the subscription.
+     */
+    public ListSubscriptionsSubscriptions withTimesRemaining(Optional<Long> timesRemaining) {
+        Utils.checkNotNull(timesRemaining, "timesRemaining");
         this.timesRemaining = timesRemaining;
         return this;
     }
@@ -539,8 +552,10 @@ public class ListSubscriptionsSubscriptions {
      * Interval to wait between payments, for example `1 month` or `14 days`.
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
+     * 
+     * <p>Possible values: `... days`, `... weeks`, `... months`.
      */
-    public ListSubscriptionsSubscriptions withInterval(ListSubscriptionsInterval interval) {
+    public ListSubscriptionsSubscriptions withInterval(String interval) {
         Utils.checkNotNull(interval, "interval");
         this.interval = interval;
         return this;
@@ -737,16 +752,6 @@ public class ListSubscriptionsSubscriptions {
      */
     public ListSubscriptionsSubscriptions withLinks(ListSubscriptionsSubscriptionsLinks links) {
         Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public ListSubscriptionsSubscriptions withLinks(Optional<? extends ListSubscriptionsSubscriptionsLinks> links) {
-        Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
     }
@@ -835,9 +840,9 @@ public class ListSubscriptionsSubscriptions {
 
         private Optional<Long> times = Optional.empty();
 
-        private Long timesRemaining;
+        private Optional<Long> timesRemaining = Optional.empty();
 
-        private ListSubscriptionsInterval interval;
+        private String interval;
 
         private String startDate;
 
@@ -861,7 +866,7 @@ public class ListSubscriptionsSubscriptions {
 
         private JsonNullable<String> canceledAt = JsonNullable.undefined();
 
-        private Optional<? extends ListSubscriptionsSubscriptionsLinks> links = Optional.empty();
+        private ListSubscriptionsSubscriptionsLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -951,6 +956,15 @@ public class ListSubscriptionsSubscriptions {
          */
         public Builder timesRemaining(long timesRemaining) {
             Utils.checkNotNull(timesRemaining, "timesRemaining");
+            this.timesRemaining = Optional.ofNullable(timesRemaining);
+            return this;
+        }
+
+        /**
+         * Number of payments left for the subscription.
+         */
+        public Builder timesRemaining(Optional<Long> timesRemaining) {
+            Utils.checkNotNull(timesRemaining, "timesRemaining");
             this.timesRemaining = timesRemaining;
             return this;
         }
@@ -960,8 +974,10 @@ public class ListSubscriptionsSubscriptions {
          * Interval to wait between payments, for example `1 month` or `14 days`.
          * 
          * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
+         * 
+         * <p>Possible values: `... days`, `... weeks`, `... months`.
          */
-        public Builder interval(ListSubscriptionsInterval interval) {
+        public Builder interval(String interval) {
             Utils.checkNotNull(interval, "interval");
             this.interval = interval;
             return this;
@@ -1166,15 +1182,6 @@ public class ListSubscriptionsSubscriptions {
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
         public Builder links(ListSubscriptionsSubscriptionsLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends ListSubscriptionsSubscriptionsLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;
