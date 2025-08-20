@@ -66,9 +66,8 @@ public class GetMethodResponseBody {
     /**
      * The payment method's activation status for this profile.
      */
-    @JsonInclude(Include.ALWAYS)
     @JsonProperty("status")
-    private Optional<? extends GetMethodStatus> status;
+    private GetMethodStatus status;
 
     /**
      * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
@@ -92,7 +91,7 @@ public class GetMethodResponseBody {
             @JsonProperty("minimumAmount") GetMethodMinimumAmount minimumAmount,
             @JsonProperty("maximumAmount") Optional<? extends MaximumAmount> maximumAmount,
             @JsonProperty("image") Image image,
-            @JsonProperty("status") Optional<? extends GetMethodStatus> status,
+            @JsonProperty("status") GetMethodStatus status,
             @JsonProperty("issuers") Optional<? extends List<Issuers>> issuers,
             @JsonProperty("_links") GetMethodLinks links) {
         Utils.checkNotNull(resource, "resource");
@@ -121,10 +120,11 @@ public class GetMethodResponseBody {
             String description,
             GetMethodMinimumAmount minimumAmount,
             Image image,
+            GetMethodStatus status,
             GetMethodLinks links) {
         this(resource, id, description,
             minimumAmount, Optional.empty(), image,
-            Optional.empty(), Optional.empty(), links);
+            status, Optional.empty(), links);
     }
 
     /**
@@ -184,10 +184,9 @@ public class GetMethodResponseBody {
     /**
      * The payment method's activation status for this profile.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetMethodStatus> status() {
-        return (Optional<GetMethodStatus>) status;
+    public GetMethodStatus status() {
+        return status;
     }
 
     /**
@@ -288,16 +287,6 @@ public class GetMethodResponseBody {
      */
     public GetMethodResponseBody withStatus(GetMethodStatus status) {
         Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-
-    /**
-     * The payment method's activation status for this profile.
-     */
-    public GetMethodResponseBody withStatus(Optional<? extends GetMethodStatus> status) {
-        Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
@@ -390,7 +379,7 @@ public class GetMethodResponseBody {
 
         private Image image;
 
-        private Optional<? extends GetMethodStatus> status = Optional.empty();
+        private GetMethodStatus status;
 
         private Optional<? extends List<Issuers>> issuers = Optional.empty();
 
@@ -480,15 +469,6 @@ public class GetMethodResponseBody {
          * The payment method's activation status for this profile.
          */
         public Builder status(GetMethodStatus status) {
-            Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * The payment method's activation status for this profile.
-         */
-        public Builder status(Optional<? extends GetMethodStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

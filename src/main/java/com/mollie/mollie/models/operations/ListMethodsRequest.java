@@ -39,7 +39,7 @@ public class ListMethodsRequest {
      * 
      * <p>Example: `/v2/methods?amount[value]=100.00&amp;amount[currency]=USD`
      */
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=amount")
+    @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=amount")
     private Optional<? extends QueryParamAmount> amount;
 
     /**

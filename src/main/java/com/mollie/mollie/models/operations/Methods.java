@@ -62,9 +62,8 @@ public class Methods {
     /**
      * The payment method's activation status for this profile.
      */
-    @JsonInclude(Include.ALWAYS)
     @JsonProperty("status")
-    private Optional<? extends ListMethodsStatus> status;
+    private ListMethodsStatus status;
 
     /**
      * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
@@ -88,7 +87,7 @@ public class Methods {
             @JsonProperty("minimumAmount") ListMethodsMinimumAmount minimumAmount,
             @JsonProperty("maximumAmount") Optional<? extends ListMethodsMaximumAmount> maximumAmount,
             @JsonProperty("image") ListMethodsImage image,
-            @JsonProperty("status") Optional<? extends ListMethodsStatus> status,
+            @JsonProperty("status") ListMethodsStatus status,
             @JsonProperty("issuers") Optional<? extends List<ListMethodsIssuers>> issuers,
             @JsonProperty("_links") ListMethodsMethodsLinks links) {
         Utils.checkNotNull(resource, "resource");
@@ -117,10 +116,11 @@ public class Methods {
             String description,
             ListMethodsMinimumAmount minimumAmount,
             ListMethodsImage image,
+            ListMethodsStatus status,
             ListMethodsMethodsLinks links) {
         this(resource, id, description,
             minimumAmount, Optional.empty(), image,
-            Optional.empty(), Optional.empty(), links);
+            status, Optional.empty(), links);
     }
 
     /**
@@ -180,10 +180,9 @@ public class Methods {
     /**
      * The payment method's activation status for this profile.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListMethodsStatus> status() {
-        return (Optional<ListMethodsStatus>) status;
+    public ListMethodsStatus status() {
+        return status;
     }
 
     /**
@@ -284,16 +283,6 @@ public class Methods {
      */
     public Methods withStatus(ListMethodsStatus status) {
         Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-
-    /**
-     * The payment method's activation status for this profile.
-     */
-    public Methods withStatus(Optional<? extends ListMethodsStatus> status) {
-        Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
@@ -386,7 +375,7 @@ public class Methods {
 
         private ListMethodsImage image;
 
-        private Optional<? extends ListMethodsStatus> status = Optional.empty();
+        private ListMethodsStatus status;
 
         private Optional<? extends List<ListMethodsIssuers>> issuers = Optional.empty();
 
@@ -476,15 +465,6 @@ public class Methods {
          * The payment method's activation status for this profile.
          */
         public Builder status(ListMethodsStatus status) {
-            Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * The payment method's activation status for this profile.
-         */
-        public Builder status(Optional<? extends ListMethodsStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
