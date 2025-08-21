@@ -17,8 +17,9 @@ public enum Model {
     A35("A35"),
     A77("A77"),
     A920("A920"),
-    A920_PRO("A920 Pro"),
-    IM30("IM30");
+    A920_PRO("A920Pro"),
+    IM30("IM30"),
+    TAP("Tap");
 
     @JsonValue
     private final String value;

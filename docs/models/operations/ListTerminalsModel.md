@@ -10,5 +10,6 @@ The model of the terminal. For example for a PAX A920, this field's value will b
 | `A35`      | A35        |
 | `A77`      | A77        |
 | `A920`     | A920       |
-| `A920_PRO` | A920 Pro   |
+| `A920_PRO` | A920Pro    |
 | `IM30`     | IM30       |
+| `TAP`      | Tap        |

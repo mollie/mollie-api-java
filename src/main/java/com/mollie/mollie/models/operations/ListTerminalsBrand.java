@@ -14,7 +14,8 @@ import java.util.Optional;
  * <p>The brand of the terminal.
  */
 public enum ListTerminalsBrand {
-    PAX("PAX");
+    PAX("PAX"),
+    TAP("Tap");
 
     @JsonValue
     private final String value;

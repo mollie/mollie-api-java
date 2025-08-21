@@ -5,15 +5,11 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Optional;
 
 /**
  * ListTerminalsResponseBody
@@ -28,37 +24,30 @@ public class ListTerminalsResponseBody {
      * <p>The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
      * limit is 50 items.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("count")
-    private Optional<Long> count;
+    private long count;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_embedded")
-    private Optional<? extends ListTerminalsEmbedded> embedded;
+    private ListTerminalsEmbedded embedded;
 
     /**
      * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends ListTerminalsLinks> links;
+    private ListTerminalsLinks links;
 
     @JsonCreator
     public ListTerminalsResponseBody(
-            @JsonProperty("count") Optional<Long> count,
-            @JsonProperty("_embedded") Optional<? extends ListTerminalsEmbedded> embedded,
-            @JsonProperty("_links") Optional<? extends ListTerminalsLinks> links) {
+            @JsonProperty("count") long count,
+            @JsonProperty("_embedded") ListTerminalsEmbedded embedded,
+            @JsonProperty("_links") ListTerminalsLinks links) {
         Utils.checkNotNull(count, "count");
         Utils.checkNotNull(embedded, "embedded");
         Utils.checkNotNull(links, "links");
         this.count = count;
         this.embedded = embedded;
         this.links = links;
-    }
-    
-    public ListTerminalsResponseBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -69,23 +58,21 @@ public class ListTerminalsResponseBody {
      * limit is 50 items.
      */
     @JsonIgnore
-    public Optional<Long> count() {
+    public long count() {
         return count;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListTerminalsEmbedded> embedded() {
-        return (Optional<ListTerminalsEmbedded>) embedded;
+    public ListTerminalsEmbedded embedded() {
+        return embedded;
     }
 
     /**
      * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListTerminalsLinks> links() {
-        return (Optional<ListTerminalsLinks>) links;
+    public ListTerminalsLinks links() {
+        return links;
     }
 
     public static Builder builder() {
@@ -102,32 +89,11 @@ public class ListTerminalsResponseBody {
      */
     public ListTerminalsResponseBody withCount(long count) {
         Utils.checkNotNull(count, "count");
-        this.count = Optional.ofNullable(count);
-        return this;
-    }
-
-
-    /**
-     * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result
-     * as well.
-     * 
-     * <p>The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
-     * limit is 50 items.
-     */
-    public ListTerminalsResponseBody withCount(Optional<Long> count) {
-        Utils.checkNotNull(count, "count");
         this.count = count;
         return this;
     }
 
     public ListTerminalsResponseBody withEmbedded(ListTerminalsEmbedded embedded) {
-        Utils.checkNotNull(embedded, "embedded");
-        this.embedded = Optional.ofNullable(embedded);
-        return this;
-    }
-
-
-    public ListTerminalsResponseBody withEmbedded(Optional<? extends ListTerminalsEmbedded> embedded) {
         Utils.checkNotNull(embedded, "embedded");
         this.embedded = embedded;
         return this;
@@ -137,16 +103,6 @@ public class ListTerminalsResponseBody {
      * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
      */
     public ListTerminalsResponseBody withLinks(ListTerminalsLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-
-    /**
-     * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
-     */
-    public ListTerminalsResponseBody withLinks(Optional<? extends ListTerminalsLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -184,11 +140,11 @@ public class ListTerminalsResponseBody {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<Long> count = Optional.empty();
+        private Long count;
 
-        private Optional<? extends ListTerminalsEmbedded> embedded = Optional.empty();
+        private ListTerminalsEmbedded embedded;
 
-        private Optional<? extends ListTerminalsLinks> links = Optional.empty();
+        private ListTerminalsLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -204,31 +160,12 @@ public class ListTerminalsResponseBody {
          */
         public Builder count(long count) {
             Utils.checkNotNull(count, "count");
-            this.count = Optional.ofNullable(count);
-            return this;
-        }
-
-        /**
-         * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result
-         * as well.
-         * 
-         * <p>The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
-         * limit is 50 items.
-         */
-        public Builder count(Optional<Long> count) {
-            Utils.checkNotNull(count, "count");
             this.count = count;
             return this;
         }
 
 
         public Builder embedded(ListTerminalsEmbedded embedded) {
-            Utils.checkNotNull(embedded, "embedded");
-            this.embedded = Optional.ofNullable(embedded);
-            return this;
-        }
-
-        public Builder embedded(Optional<? extends ListTerminalsEmbedded> embedded) {
             Utils.checkNotNull(embedded, "embedded");
             this.embedded = embedded;
             return this;
@@ -239,15 +176,6 @@ public class ListTerminalsResponseBody {
          * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
          */
         public Builder links(ListTerminalsLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends ListTerminalsLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

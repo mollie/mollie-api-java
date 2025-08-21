@@ -8,3 +8,4 @@ The brand of the terminal.
 | Name  | Value |
 | ----- | ----- |
 | `PAX` | PAX   |
+| `TAP` | Tap   |

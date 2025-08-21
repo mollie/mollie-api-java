@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 8acf17d3241327b1beafce478d9bc643
+  docChecksum: 48456f665cac7aa7053a6d2f11db0ec7
   docVersion: 1.0.0
   speakeasyVersion: 1.606.0
   generationVersion: 2.686.7
-  releaseVersion: 0.15.5
-  configChecksum: ed1248248df0112cba65e6ba1df143c1
+  releaseVersion: 0.15.6
+  configChecksum: 6736835be502125520763a39775546f9
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 features:
@@ -10800,4 +10800,6 @@ examples:
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## SDK Changes Detected:\n* `client.methods.list()`: \n  *  `request.amount` **Changed**\n  *  `response._embedded.methods.[].status` **Changed** **Breaking** :warning:\n* `client.methods.all()`: \n  *  `request.amount` **Changed**\n  *  `response._embedded.methods.[].status` **Changed** **Breaking** :warning:\n* `client.methods.get()`:  `response.status` **Changed** **Breaking** :warning:\n"
+releaseNotes: |
+  ## SDK Changes Detected:
+  * `client.terminals.list()`:  `response` **Changed**
