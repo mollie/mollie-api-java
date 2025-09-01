@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 48456f665cac7aa7053a6d2f11db0ec7
+  docChecksum: 2e188bbc6e98a12bd1b21fc2641a9361
   docVersion: 1.0.0
-  speakeasyVersion: 1.606.0
-  generationVersion: 2.686.7
-  releaseVersion: 0.15.6
-  configChecksum: 6736835be502125520763a39775546f9
+  speakeasyVersion: 1.606.9
+  generationVersion: 2.687.13
+  releaseVersion: 0.16.0
+  configChecksum: ace1c5635d0af96d4ca5c27910bae338
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 features:
   java:
     additionalDependencies: 0.1.0
-    core: 3.45.4
+    core: 3.46.0
     deprecations: 2.81.1
     flattening: 2.81.1
     globalSecurity: 2.83.0
@@ -6915,6 +6915,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/utils/QueryParameters.java
   - src/main/java/com/mollie/mollie/utils/QueryParamsMetadata.java
   - src/main/java/com/mollie/mollie/utils/RecordingClient.java
+  - src/main/java/com/mollie/mollie/utils/Reflections.java
   - src/main/java/com/mollie/mollie/utils/RequestBody.java
   - src/main/java/com/mollie/mollie/utils/RequestMetadata.java
   - src/main/java/com/mollie/mollie/utils/Response.java
@@ -10800,6 +10801,3 @@ examples:
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## SDK Changes Detected:
-  * `client.terminals.list()`:  `response` **Changed**

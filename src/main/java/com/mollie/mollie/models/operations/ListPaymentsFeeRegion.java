@@ -23,7 +23,7 @@ public enum ListPaymentsFeeRegion {
     MAESTRO("maestro"),
     OTHER("other"),
     INTER("inter"),
-    INTRA_EEA("intra-eea");
+    INTRA_EEA("intra_eea");
 
     @JsonValue
     private final String value;
