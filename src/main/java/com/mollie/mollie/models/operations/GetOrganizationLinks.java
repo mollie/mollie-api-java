@@ -32,7 +32,7 @@ public class GetOrganizationLinks {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("dashboard")
-    private Optional<? extends GetOrganizationDashboard> dashboard;
+    private Optional<? extends Dashboard> dashboard;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -44,7 +44,7 @@ public class GetOrganizationLinks {
     @JsonCreator
     public GetOrganizationLinks(
             @JsonProperty("self") Optional<? extends GetOrganizationSelf> self,
-            @JsonProperty("dashboard") Optional<? extends GetOrganizationDashboard> dashboard,
+            @JsonProperty("dashboard") Optional<? extends Dashboard> dashboard,
             @JsonProperty("documentation") Optional<? extends GetOrganizationDocumentation> documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(dashboard, "dashboard");
@@ -72,8 +72,8 @@ public class GetOrganizationLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetOrganizationDashboard> dashboard() {
-        return (Optional<GetOrganizationDashboard>) dashboard;
+    public Optional<Dashboard> dashboard() {
+        return (Optional<Dashboard>) dashboard;
     }
 
     /**
@@ -112,7 +112,7 @@ public class GetOrganizationLinks {
     /**
      * Direct link to the organization's Mollie dashboard.
      */
-    public GetOrganizationLinks withDashboard(GetOrganizationDashboard dashboard) {
+    public GetOrganizationLinks withDashboard(Dashboard dashboard) {
         Utils.checkNotNull(dashboard, "dashboard");
         this.dashboard = Optional.ofNullable(dashboard);
         return this;
@@ -122,7 +122,7 @@ public class GetOrganizationLinks {
     /**
      * Direct link to the organization's Mollie dashboard.
      */
-    public GetOrganizationLinks withDashboard(Optional<? extends GetOrganizationDashboard> dashboard) {
+    public GetOrganizationLinks withDashboard(Optional<? extends Dashboard> dashboard) {
         Utils.checkNotNull(dashboard, "dashboard");
         this.dashboard = dashboard;
         return this;
@@ -181,7 +181,7 @@ public class GetOrganizationLinks {
 
         private Optional<? extends GetOrganizationSelf> self = Optional.empty();
 
-        private Optional<? extends GetOrganizationDashboard> dashboard = Optional.empty();
+        private Optional<? extends Dashboard> dashboard = Optional.empty();
 
         private Optional<? extends GetOrganizationDocumentation> documentation = Optional.empty();
 
@@ -212,7 +212,7 @@ public class GetOrganizationLinks {
         /**
          * Direct link to the organization's Mollie dashboard.
          */
-        public Builder dashboard(GetOrganizationDashboard dashboard) {
+        public Builder dashboard(Dashboard dashboard) {
             Utils.checkNotNull(dashboard, "dashboard");
             this.dashboard = Optional.ofNullable(dashboard);
             return this;
@@ -221,7 +221,7 @@ public class GetOrganizationLinks {
         /**
          * Direct link to the organization's Mollie dashboard.
          */
-        public Builder dashboard(Optional<? extends GetOrganizationDashboard> dashboard) {
+        public Builder dashboard(Optional<? extends Dashboard> dashboard) {
             Utils.checkNotNull(dashboard, "dashboard");
             this.dashboard = dashboard;
             return this;

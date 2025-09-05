@@ -23,16 +23,14 @@ public class GetWebhookEventLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends GetWebhookEventSelf> self;
+    private GetWebhookEventSelf self;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends GetWebhookEventDocumentation> documentation;
+    private GetWebhookEventDocumentation documentation;
 
     /**
      * The API resource URL of the entity that this event belongs to.
@@ -43,8 +41,8 @@ public class GetWebhookEventLinks {
 
     @JsonCreator
     public GetWebhookEventLinks(
-            @JsonProperty("self") Optional<? extends GetWebhookEventSelf> self,
-            @JsonProperty("documentation") Optional<? extends GetWebhookEventDocumentation> documentation,
+            @JsonProperty("self") GetWebhookEventSelf self,
+            @JsonProperty("documentation") GetWebhookEventDocumentation documentation,
             @JsonProperty("entity") Optional<? extends Entity> entity) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(documentation, "documentation");
@@ -54,26 +52,26 @@ public class GetWebhookEventLinks {
         this.entity = entity;
     }
     
-    public GetWebhookEventLinks() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+    public GetWebhookEventLinks(
+            GetWebhookEventSelf self,
+            GetWebhookEventDocumentation documentation) {
+        this(self, documentation, Optional.empty());
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetWebhookEventSelf> self() {
-        return (Optional<GetWebhookEventSelf>) self;
+    public GetWebhookEventSelf self() {
+        return self;
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetWebhookEventDocumentation> documentation() {
-        return (Optional<GetWebhookEventDocumentation>) documentation;
+    public GetWebhookEventDocumentation documentation() {
+        return documentation;
     }
 
     /**
@@ -95,16 +93,6 @@ public class GetWebhookEventLinks {
      */
     public GetWebhookEventLinks withSelf(GetWebhookEventSelf self) {
         Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public GetWebhookEventLinks withSelf(Optional<? extends GetWebhookEventSelf> self) {
-        Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
@@ -113,16 +101,6 @@ public class GetWebhookEventLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public GetWebhookEventLinks withDocumentation(GetWebhookEventDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public GetWebhookEventLinks withDocumentation(Optional<? extends GetWebhookEventDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -179,9 +157,9 @@ public class GetWebhookEventLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends GetWebhookEventSelf> self = Optional.empty();
+        private GetWebhookEventSelf self;
 
-        private Optional<? extends GetWebhookEventDocumentation> documentation = Optional.empty();
+        private GetWebhookEventDocumentation documentation;
 
         private Optional<? extends Entity> entity = Optional.empty();
 
@@ -195,15 +173,6 @@ public class GetWebhookEventLinks {
          */
         public Builder self(GetWebhookEventSelf self) {
             Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder self(Optional<? extends GetWebhookEventSelf> self) {
-            Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
         }
@@ -213,15 +182,6 @@ public class GetWebhookEventLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(GetWebhookEventDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends GetWebhookEventDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

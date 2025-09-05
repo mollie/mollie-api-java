@@ -20,7 +20,7 @@ public class GetPaymentRequestBuilder {
 
     private String paymentId;
     private JsonNullable<? extends QueryParamInclude> include = JsonNullable.undefined();
-    private JsonNullable<? extends Embed> embed = JsonNullable.undefined();
+    private JsonNullable<? extends GetPaymentQueryParamEmbed> embed = JsonNullable.undefined();
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -47,13 +47,13 @@ public class GetPaymentRequestBuilder {
         return this;
     }
 
-    public GetPaymentRequestBuilder embed(Embed embed) {
+    public GetPaymentRequestBuilder embed(GetPaymentQueryParamEmbed embed) {
         Utils.checkNotNull(embed, "embed");
         this.embed = JsonNullable.of(embed);
         return this;
     }
 
-    public GetPaymentRequestBuilder embed(JsonNullable<? extends Embed> embed) {
+    public GetPaymentRequestBuilder embed(JsonNullable<? extends GetPaymentQueryParamEmbed> embed) {
         Utils.checkNotNull(embed, "embed");
         this.embed = embed;
         return this;

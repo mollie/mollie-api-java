@@ -5,54 +5,69 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Optional;
 
 /**
  * Chargebacks
  * 
- * <p>The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this
- * payment.
+ * <p>Only available on `transaction-categories` grouping.
  */
 public class Chargebacks {
-    /**
-     * The actual URL string.
-     */
-    @JsonProperty("href")
-    private String href;
 
-    /**
-     * The content type of the page or endpoint the URL points to.
-     */
-    @JsonProperty("type")
-    private String type;
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("pending")
+    private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonPending> pending;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("movedToAvailable")
+    private Optional<? extends GetBalanceReportBalancesResponseMovedToAvailable> movedToAvailable;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("immediatelyAvailable")
+    private Optional<? extends GetBalanceReportBalancesResponseImmediatelyAvailable> immediatelyAvailable;
 
     @JsonCreator
     public Chargebacks(
-            @JsonProperty("href") String href,
-            @JsonProperty("type") String type) {
-        Utils.checkNotNull(href, "href");
-        Utils.checkNotNull(type, "type");
-        this.href = href;
-        this.type = type;
+            @JsonProperty("pending") Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonPending> pending,
+            @JsonProperty("movedToAvailable") Optional<? extends GetBalanceReportBalancesResponseMovedToAvailable> movedToAvailable,
+            @JsonProperty("immediatelyAvailable") Optional<? extends GetBalanceReportBalancesResponseImmediatelyAvailable> immediatelyAvailable) {
+        Utils.checkNotNull(pending, "pending");
+        Utils.checkNotNull(movedToAvailable, "movedToAvailable");
+        Utils.checkNotNull(immediatelyAvailable, "immediatelyAvailable");
+        this.pending = pending;
+        this.movedToAvailable = movedToAvailable;
+        this.immediatelyAvailable = immediatelyAvailable;
+    }
+    
+    public Chargebacks() {
+        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
-    /**
-     * The actual URL string.
-     */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public String href() {
-        return href;
+    public Optional<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonPending> pending() {
+        return (Optional<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonPending>) pending;
     }
 
-    /**
-     * The content type of the page or endpoint the URL points to.
-     */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public String type() {
-        return type;
+    public Optional<GetBalanceReportBalancesResponseMovedToAvailable> movedToAvailable() {
+        return (Optional<GetBalanceReportBalancesResponseMovedToAvailable>) movedToAvailable;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<GetBalanceReportBalancesResponseImmediatelyAvailable> immediatelyAvailable() {
+        return (Optional<GetBalanceReportBalancesResponseImmediatelyAvailable>) immediatelyAvailable;
     }
 
     public static Builder builder() {
@@ -60,21 +75,42 @@ public class Chargebacks {
     }
 
 
-    /**
-     * The actual URL string.
-     */
-    public Chargebacks withHref(String href) {
-        Utils.checkNotNull(href, "href");
-        this.href = href;
+    public Chargebacks withPending(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonPending pending) {
+        Utils.checkNotNull(pending, "pending");
+        this.pending = Optional.ofNullable(pending);
         return this;
     }
 
-    /**
-     * The content type of the page or endpoint the URL points to.
-     */
-    public Chargebacks withType(String type) {
-        Utils.checkNotNull(type, "type");
-        this.type = type;
+
+    public Chargebacks withPending(Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonPending> pending) {
+        Utils.checkNotNull(pending, "pending");
+        this.pending = pending;
+        return this;
+    }
+
+    public Chargebacks withMovedToAvailable(GetBalanceReportBalancesResponseMovedToAvailable movedToAvailable) {
+        Utils.checkNotNull(movedToAvailable, "movedToAvailable");
+        this.movedToAvailable = Optional.ofNullable(movedToAvailable);
+        return this;
+    }
+
+
+    public Chargebacks withMovedToAvailable(Optional<? extends GetBalanceReportBalancesResponseMovedToAvailable> movedToAvailable) {
+        Utils.checkNotNull(movedToAvailable, "movedToAvailable");
+        this.movedToAvailable = movedToAvailable;
+        return this;
+    }
+
+    public Chargebacks withImmediatelyAvailable(GetBalanceReportBalancesResponseImmediatelyAvailable immediatelyAvailable) {
+        Utils.checkNotNull(immediatelyAvailable, "immediatelyAvailable");
+        this.immediatelyAvailable = Optional.ofNullable(immediatelyAvailable);
+        return this;
+    }
+
+
+    public Chargebacks withImmediatelyAvailable(Optional<? extends GetBalanceReportBalancesResponseImmediatelyAvailable> immediatelyAvailable) {
+        Utils.checkNotNull(immediatelyAvailable, "immediatelyAvailable");
+        this.immediatelyAvailable = immediatelyAvailable;
         return this;
     }
 
@@ -88,58 +124,81 @@ public class Chargebacks {
         }
         Chargebacks other = (Chargebacks) o;
         return 
-            Utils.enhancedDeepEquals(this.href, other.href) &&
-            Utils.enhancedDeepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.pending, other.pending) &&
+            Utils.enhancedDeepEquals(this.movedToAvailable, other.movedToAvailable) &&
+            Utils.enhancedDeepEquals(this.immediatelyAvailable, other.immediatelyAvailable);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            href, type);
+            pending, movedToAvailable, immediatelyAvailable);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Chargebacks.class,
-                "href", href,
-                "type", type);
+                "pending", pending,
+                "movedToAvailable", movedToAvailable,
+                "immediatelyAvailable", immediatelyAvailable);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String href;
+        private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonPending> pending = Optional.empty();
 
-        private String type;
+        private Optional<? extends GetBalanceReportBalancesResponseMovedToAvailable> movedToAvailable = Optional.empty();
+
+        private Optional<? extends GetBalanceReportBalancesResponseImmediatelyAvailable> immediatelyAvailable = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        /**
-         * The actual URL string.
-         */
-        public Builder href(String href) {
-            Utils.checkNotNull(href, "href");
-            this.href = href;
+        public Builder pending(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonPending pending) {
+            Utils.checkNotNull(pending, "pending");
+            this.pending = Optional.ofNullable(pending);
+            return this;
+        }
+
+        public Builder pending(Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonPending> pending) {
+            Utils.checkNotNull(pending, "pending");
+            this.pending = pending;
             return this;
         }
 
 
-        /**
-         * The content type of the page or endpoint the URL points to.
-         */
-        public Builder type(String type) {
-            Utils.checkNotNull(type, "type");
-            this.type = type;
+        public Builder movedToAvailable(GetBalanceReportBalancesResponseMovedToAvailable movedToAvailable) {
+            Utils.checkNotNull(movedToAvailable, "movedToAvailable");
+            this.movedToAvailable = Optional.ofNullable(movedToAvailable);
+            return this;
+        }
+
+        public Builder movedToAvailable(Optional<? extends GetBalanceReportBalancesResponseMovedToAvailable> movedToAvailable) {
+            Utils.checkNotNull(movedToAvailable, "movedToAvailable");
+            this.movedToAvailable = movedToAvailable;
+            return this;
+        }
+
+
+        public Builder immediatelyAvailable(GetBalanceReportBalancesResponseImmediatelyAvailable immediatelyAvailable) {
+            Utils.checkNotNull(immediatelyAvailable, "immediatelyAvailable");
+            this.immediatelyAvailable = Optional.ofNullable(immediatelyAvailable);
+            return this;
+        }
+
+        public Builder immediatelyAvailable(Optional<? extends GetBalanceReportBalancesResponseImmediatelyAvailable> immediatelyAvailable) {
+            Utils.checkNotNull(immediatelyAvailable, "immediatelyAvailable");
+            this.immediatelyAvailable = immediatelyAvailable;
             return this;
         }
 
         public Chargebacks build() {
 
             return new Chargebacks(
-                href, type);
+                pending, movedToAvailable, immediatelyAvailable);
         }
 
     }

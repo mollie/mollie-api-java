@@ -5,14 +5,10 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Optional;
 
 /**
  * CreateWebhookLinks
@@ -23,28 +19,22 @@ public class CreateWebhookLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends CreateWebhookDocumentation> documentation;
+    private CreateWebhookDocumentation documentation;
 
     @JsonCreator
     public CreateWebhookLinks(
-            @JsonProperty("documentation") Optional<? extends CreateWebhookDocumentation> documentation) {
+            @JsonProperty("documentation") CreateWebhookDocumentation documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
-    }
-    
-    public CreateWebhookLinks() {
-        this(Optional.empty());
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateWebhookDocumentation> documentation() {
-        return (Optional<CreateWebhookDocumentation>) documentation;
+    public CreateWebhookDocumentation documentation() {
+        return documentation;
     }
 
     public static Builder builder() {
@@ -56,16 +46,6 @@ public class CreateWebhookLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public CreateWebhookLinks withDocumentation(CreateWebhookDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public CreateWebhookLinks withDocumentation(Optional<? extends CreateWebhookDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -99,7 +79,7 @@ public class CreateWebhookLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends CreateWebhookDocumentation> documentation = Optional.empty();
+        private CreateWebhookDocumentation documentation;
 
         private Builder() {
           // force use of static builder() method
@@ -110,15 +90,6 @@ public class CreateWebhookLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(CreateWebhookDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends CreateWebhookDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

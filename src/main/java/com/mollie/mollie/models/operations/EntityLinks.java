@@ -26,12 +26,12 @@ public class EntityLinks {
      * The URL your customer should visit to make the payment. This is where you should redirect the customer to.
      */
     @JsonProperty("paymentLink")
-    private EntityPaymentLink paymentLink;
+    private GetWebhookEventEntityPaymentLink paymentLink;
 
     @JsonCreator
     public EntityLinks(
             @JsonProperty("self") EntitySelf self,
-            @JsonProperty("paymentLink") EntityPaymentLink paymentLink) {
+            @JsonProperty("paymentLink") GetWebhookEventEntityPaymentLink paymentLink) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(paymentLink, "paymentLink");
         this.self = self;
@@ -50,7 +50,7 @@ public class EntityLinks {
      * The URL your customer should visit to make the payment. This is where you should redirect the customer to.
      */
     @JsonIgnore
-    public EntityPaymentLink paymentLink() {
+    public GetWebhookEventEntityPaymentLink paymentLink() {
         return paymentLink;
     }
 
@@ -71,7 +71,7 @@ public class EntityLinks {
     /**
      * The URL your customer should visit to make the payment. This is where you should redirect the customer to.
      */
-    public EntityLinks withPaymentLink(EntityPaymentLink paymentLink) {
+    public EntityLinks withPaymentLink(GetWebhookEventEntityPaymentLink paymentLink) {
         Utils.checkNotNull(paymentLink, "paymentLink");
         this.paymentLink = paymentLink;
         return this;
@@ -109,7 +109,7 @@ public class EntityLinks {
 
         private EntitySelf self;
 
-        private EntityPaymentLink paymentLink;
+        private GetWebhookEventEntityPaymentLink paymentLink;
 
         private Builder() {
           // force use of static builder() method
@@ -129,7 +129,7 @@ public class EntityLinks {
         /**
          * The URL your customer should visit to make the payment. This is where you should redirect the customer to.
          */
-        public Builder paymentLink(EntityPaymentLink paymentLink) {
+        public Builder paymentLink(GetWebhookEventEntityPaymentLink paymentLink) {
             Utils.checkNotNull(paymentLink, "paymentLink");
             this.paymentLink = paymentLink;
             return this;

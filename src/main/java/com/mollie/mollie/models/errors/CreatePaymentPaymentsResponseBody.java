@@ -53,7 +53,7 @@ public class CreatePaymentPaymentsResponseBody extends RuntimeException {
 
 
     @JsonProperty("_links")
-    private CreatePaymentLinks links;
+    private CreatePaymentPaymentsLinks links;
 
     /**
      * Raw HTTP response; suitable for custom response parsing
@@ -68,7 +68,7 @@ public class CreatePaymentPaymentsResponseBody extends RuntimeException {
             @JsonProperty("title") String title,
             @JsonProperty("detail") String detail,
             @JsonProperty("field") Optional<String> field,
-            @JsonProperty("_links") CreatePaymentLinks links,
+            @JsonProperty("_links") CreatePaymentPaymentsLinks links,
             @JsonProperty("RawResponse") Optional<? extends HttpResponse<InputStream>> rawResponse) {
         super("API error occurred");
         Utils.checkNotNull(status, "status");
@@ -89,7 +89,7 @@ public class CreatePaymentPaymentsResponseBody extends RuntimeException {
             long status,
             String title,
             String detail,
-            CreatePaymentLinks links) {
+            CreatePaymentPaymentsLinks links) {
         this(status, title, detail,
             Optional.empty(), links, Optional.empty());
     }
@@ -128,7 +128,7 @@ public class CreatePaymentPaymentsResponseBody extends RuntimeException {
     }
 
     @JsonIgnore
-    public CreatePaymentLinks links() {
+    public CreatePaymentPaymentsLinks links() {
         return links;
     }
 
@@ -194,7 +194,7 @@ public class CreatePaymentPaymentsResponseBody extends RuntimeException {
         return this;
     }
 
-    public CreatePaymentPaymentsResponseBody withLinks(CreatePaymentLinks links) {
+    public CreatePaymentPaymentsResponseBody withLinks(CreatePaymentPaymentsLinks links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -266,7 +266,7 @@ public class CreatePaymentPaymentsResponseBody extends RuntimeException {
 
         private Optional<String> field = Optional.empty();
 
-        private CreatePaymentLinks links;
+        private CreatePaymentPaymentsLinks links;
 
         private Optional<? extends HttpResponse<InputStream>> rawResponse;
 
@@ -326,7 +326,7 @@ public class CreatePaymentPaymentsResponseBody extends RuntimeException {
         }
 
 
-        public Builder links(CreatePaymentLinks links) {
+        public Builder links(CreatePaymentPaymentsLinks links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

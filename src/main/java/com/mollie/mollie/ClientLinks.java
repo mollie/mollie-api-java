@@ -16,9 +16,20 @@ import java.util.Optional;
 
 public class ClientLinks {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncClientLinks asyncSDK;
 
     ClientLinks(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncClientLinks(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncClientLinks async() {
+        return asyncSDK;
     }
 
     /**

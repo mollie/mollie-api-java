@@ -284,7 +284,7 @@ public class Application {
                 .settlementId("stl_jDk30akdN")
                 .from("tr_5B8cwPMGnU")
                 .limit(50L)
-                .sort(ListSettlementPaymentsQueryParamSort.DESC)
+                .sort(Sort.DESC)
                 .profileId("pfl_5B8cwPMGnU")
                 .testmode(false)
                 .build();
@@ -350,7 +350,7 @@ public class Application {
                 .settlementId("stl_jDk30akdN")
                 .from("cpt_vytxeTZskVKR7C7WgdSP3d")
                 .limit(50L)
-                .embed(ListSettlementCapturesQueryParamEmbed.PAYMENT)
+                .embed(Embed.PAYMENT)
                 .testmode(false)
                 .build();
 
@@ -416,7 +416,7 @@ public class Application {
                 .settlementId("stl_jDk30akdN")
                 .from("re_5B8cwPMGnU")
                 .limit(50L)
-                .embed(ListSettlementRefundsQueryParamEmbed.PAYMENT)
+                .embed(QueryParamEmbed.PAYMENT)
                 .testmode(false)
                 .build();
 

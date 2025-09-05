@@ -46,14 +46,14 @@ public class Owner {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("locale")
-    private JsonNullable<? extends CreateClientLinkLocale> locale;
+    private JsonNullable<? extends Locale> locale;
 
     @JsonCreator
     public Owner(
             @JsonProperty("email") String email,
             @JsonProperty("givenName") String givenName,
             @JsonProperty("familyName") String familyName,
-            @JsonProperty("locale") JsonNullable<? extends CreateClientLinkLocale> locale) {
+            @JsonProperty("locale") JsonNullable<? extends Locale> locale) {
         Utils.checkNotNull(email, "email");
         Utils.checkNotNull(givenName, "givenName");
         Utils.checkNotNull(familyName, "familyName");
@@ -104,8 +104,8 @@ public class Owner {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CreateClientLinkLocale> locale() {
-        return (JsonNullable<CreateClientLinkLocale>) locale;
+    public JsonNullable<Locale> locale() {
+        return (JsonNullable<Locale>) locale;
     }
 
     public static Builder builder() {
@@ -146,7 +146,7 @@ public class Owner {
      * 
      * <p>When this parameter is omitted, the browser language will be used instead.
      */
-    public Owner withLocale(CreateClientLinkLocale locale) {
+    public Owner withLocale(Locale locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = JsonNullable.of(locale);
         return this;
@@ -158,7 +158,7 @@ public class Owner {
      * 
      * <p>When this parameter is omitted, the browser language will be used instead.
      */
-    public Owner withLocale(JsonNullable<? extends CreateClientLinkLocale> locale) {
+    public Owner withLocale(JsonNullable<? extends Locale> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
@@ -205,7 +205,7 @@ public class Owner {
 
         private String familyName;
 
-        private JsonNullable<? extends CreateClientLinkLocale> locale = JsonNullable.undefined();
+        private JsonNullable<? extends Locale> locale = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -248,7 +248,7 @@ public class Owner {
          * 
          * <p>When this parameter is omitted, the browser language will be used instead.
          */
-        public Builder locale(CreateClientLinkLocale locale) {
+        public Builder locale(Locale locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = JsonNullable.of(locale);
             return this;
@@ -260,7 +260,7 @@ public class Owner {
          * 
          * <p>When this parameter is omitted, the browser language will be used instead.
          */
-        public Builder locale(JsonNullable<? extends CreateClientLinkLocale> locale) {
+        public Builder locale(JsonNullable<? extends Locale> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;

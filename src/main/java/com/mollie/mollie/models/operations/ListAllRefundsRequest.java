@@ -35,7 +35,7 @@ public class ListAllRefundsRequest {
      * newest to oldest.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
-    private JsonNullable<? extends QueryParamSort> sort;
+    private JsonNullable<? extends ListAllRefundsQueryParamSort> sort;
 
     /**
      * This endpoint allows embedding related API items by appending the following values via the `embed` query string
@@ -68,7 +68,7 @@ public class ListAllRefundsRequest {
     public ListAllRefundsRequest(
             Optional<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<? extends QueryParamSort> sort,
+            JsonNullable<? extends ListAllRefundsQueryParamSort> sort,
             Optional<? extends ListAllRefundsQueryParamEmbed> embed,
             Optional<String> profileId,
             JsonNullable<Boolean> testmode) {
@@ -114,8 +114,8 @@ public class ListAllRefundsRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<QueryParamSort> sort() {
-        return (JsonNullable<QueryParamSort>) sort;
+    public JsonNullable<ListAllRefundsQueryParamSort> sort() {
+        return (JsonNullable<ListAllRefundsQueryParamSort>) sort;
     }
 
     /**
@@ -200,7 +200,7 @@ public class ListAllRefundsRequest {
      * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
      * newest to oldest.
      */
-    public ListAllRefundsRequest withSort(QueryParamSort sort) {
+    public ListAllRefundsRequest withSort(ListAllRefundsQueryParamSort sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = JsonNullable.of(sort);
         return this;
@@ -210,7 +210,7 @@ public class ListAllRefundsRequest {
      * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
      * newest to oldest.
      */
-    public ListAllRefundsRequest withSort(JsonNullable<? extends QueryParamSort> sort) {
+    public ListAllRefundsRequest withSort(JsonNullable<? extends ListAllRefundsQueryParamSort> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;
@@ -333,7 +333,7 @@ public class ListAllRefundsRequest {
 
         private JsonNullable<Long> limit = JsonNullable.undefined();
 
-        private JsonNullable<? extends QueryParamSort> sort = JsonNullable.undefined();
+        private JsonNullable<? extends ListAllRefundsQueryParamSort> sort = JsonNullable.undefined();
 
         private Optional<? extends ListAllRefundsQueryParamEmbed> embed = Optional.empty();
 
@@ -390,7 +390,7 @@ public class ListAllRefundsRequest {
          * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
          * newest to oldest.
          */
-        public Builder sort(QueryParamSort sort) {
+        public Builder sort(ListAllRefundsQueryParamSort sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = JsonNullable.of(sort);
             return this;
@@ -400,7 +400,7 @@ public class ListAllRefundsRequest {
          * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
          * newest to oldest.
          */
-        public Builder sort(JsonNullable<? extends QueryParamSort> sort) {
+        public Builder sort(JsonNullable<? extends ListAllRefundsQueryParamSort> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = sort;
             return this;

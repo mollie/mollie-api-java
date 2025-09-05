@@ -27,7 +27,7 @@ public class ListMethodsResponseBody {
 
 
     @JsonProperty("_embedded")
-    private Embedded embedded;
+    private ListMethodsEmbedded embedded;
 
 
     @JsonProperty("_links")
@@ -36,7 +36,7 @@ public class ListMethodsResponseBody {
     @JsonCreator
     public ListMethodsResponseBody(
             @JsonProperty("count") long count,
-            @JsonProperty("_embedded") Embedded embedded,
+            @JsonProperty("_embedded") ListMethodsEmbedded embedded,
             @JsonProperty("_links") ListMethodsLinks links) {
         Utils.checkNotNull(count, "count");
         Utils.checkNotNull(embedded, "embedded");
@@ -56,7 +56,7 @@ public class ListMethodsResponseBody {
     }
 
     @JsonIgnore
-    public Embedded embedded() {
+    public ListMethodsEmbedded embedded() {
         return embedded;
     }
 
@@ -80,7 +80,7 @@ public class ListMethodsResponseBody {
         return this;
     }
 
-    public ListMethodsResponseBody withEmbedded(Embedded embedded) {
+    public ListMethodsResponseBody withEmbedded(ListMethodsEmbedded embedded) {
         Utils.checkNotNull(embedded, "embedded");
         this.embedded = embedded;
         return this;
@@ -126,7 +126,7 @@ public class ListMethodsResponseBody {
 
         private Long count;
 
-        private Embedded embedded;
+        private ListMethodsEmbedded embedded;
 
         private ListMethodsLinks links;
 
@@ -146,7 +146,7 @@ public class ListMethodsResponseBody {
         }
 
 
-        public Builder embedded(Embedded embedded) {
+        public Builder embedded(ListMethodsEmbedded embedded) {
             Utils.checkNotNull(embedded, "embedded");
             this.embedded = embedded;
             return this;

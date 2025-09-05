@@ -73,21 +73,21 @@ public class Totals {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payments")
-    private Optional<? extends GetBalanceReportPayments> payments;
+    private Optional<? extends Payments> payments;
 
     /**
      * Only available on `transaction-categories` grouping.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("refunds")
-    private Optional<? extends GetBalanceReportRefunds> refunds;
+    private Optional<? extends Refunds> refunds;
 
     /**
      * Only available on `transaction-categories` grouping.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("chargebacks")
-    private Optional<? extends GetBalanceReportChargebacks> chargebacks;
+    private Optional<? extends Chargebacks> chargebacks;
 
     /**
      * Only available on `transaction-categories` grouping.
@@ -130,9 +130,9 @@ public class Totals {
             @JsonProperty("availableBalance") JsonNullable<? extends AvailableBalance> availableBalance,
             @JsonProperty("open") Optional<? extends Open> open,
             @JsonProperty("close") Optional<? extends Close> close,
-            @JsonProperty("payments") Optional<? extends GetBalanceReportPayments> payments,
-            @JsonProperty("refunds") Optional<? extends GetBalanceReportRefunds> refunds,
-            @JsonProperty("chargebacks") Optional<? extends GetBalanceReportChargebacks> chargebacks,
+            @JsonProperty("payments") Optional<? extends Payments> payments,
+            @JsonProperty("refunds") Optional<? extends Refunds> refunds,
+            @JsonProperty("chargebacks") Optional<? extends Chargebacks> chargebacks,
             @JsonProperty("capital") Optional<? extends Capital> capital,
             @JsonProperty("transfers") Optional<? extends Transfers> transfers,
             @JsonProperty("fee-prepayments") Optional<? extends FeePrepayments> feePrepayments,
@@ -212,8 +212,8 @@ public class Totals {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetBalanceReportPayments> payments() {
-        return (Optional<GetBalanceReportPayments>) payments;
+    public Optional<Payments> payments() {
+        return (Optional<Payments>) payments;
     }
 
     /**
@@ -221,8 +221,8 @@ public class Totals {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetBalanceReportRefunds> refunds() {
-        return (Optional<GetBalanceReportRefunds>) refunds;
+    public Optional<Refunds> refunds() {
+        return (Optional<Refunds>) refunds;
     }
 
     /**
@@ -230,8 +230,8 @@ public class Totals {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetBalanceReportChargebacks> chargebacks() {
-        return (Optional<GetBalanceReportChargebacks>) chargebacks;
+    public Optional<Chargebacks> chargebacks() {
+        return (Optional<Chargebacks>) chargebacks;
     }
 
     /**
@@ -361,7 +361,7 @@ public class Totals {
     /**
      * Only available on `transaction-categories` grouping.
      */
-    public Totals withPayments(GetBalanceReportPayments payments) {
+    public Totals withPayments(Payments payments) {
         Utils.checkNotNull(payments, "payments");
         this.payments = Optional.ofNullable(payments);
         return this;
@@ -371,7 +371,7 @@ public class Totals {
     /**
      * Only available on `transaction-categories` grouping.
      */
-    public Totals withPayments(Optional<? extends GetBalanceReportPayments> payments) {
+    public Totals withPayments(Optional<? extends Payments> payments) {
         Utils.checkNotNull(payments, "payments");
         this.payments = payments;
         return this;
@@ -380,7 +380,7 @@ public class Totals {
     /**
      * Only available on `transaction-categories` grouping.
      */
-    public Totals withRefunds(GetBalanceReportRefunds refunds) {
+    public Totals withRefunds(Refunds refunds) {
         Utils.checkNotNull(refunds, "refunds");
         this.refunds = Optional.ofNullable(refunds);
         return this;
@@ -390,7 +390,7 @@ public class Totals {
     /**
      * Only available on `transaction-categories` grouping.
      */
-    public Totals withRefunds(Optional<? extends GetBalanceReportRefunds> refunds) {
+    public Totals withRefunds(Optional<? extends Refunds> refunds) {
         Utils.checkNotNull(refunds, "refunds");
         this.refunds = refunds;
         return this;
@@ -399,7 +399,7 @@ public class Totals {
     /**
      * Only available on `transaction-categories` grouping.
      */
-    public Totals withChargebacks(GetBalanceReportChargebacks chargebacks) {
+    public Totals withChargebacks(Chargebacks chargebacks) {
         Utils.checkNotNull(chargebacks, "chargebacks");
         this.chargebacks = Optional.ofNullable(chargebacks);
         return this;
@@ -409,7 +409,7 @@ public class Totals {
     /**
      * Only available on `transaction-categories` grouping.
      */
-    public Totals withChargebacks(Optional<? extends GetBalanceReportChargebacks> chargebacks) {
+    public Totals withChargebacks(Optional<? extends Chargebacks> chargebacks) {
         Utils.checkNotNull(chargebacks, "chargebacks");
         this.chargebacks = chargebacks;
         return this;
@@ -571,11 +571,11 @@ public class Totals {
 
         private Optional<? extends Close> close = Optional.empty();
 
-        private Optional<? extends GetBalanceReportPayments> payments = Optional.empty();
+        private Optional<? extends Payments> payments = Optional.empty();
 
-        private Optional<? extends GetBalanceReportRefunds> refunds = Optional.empty();
+        private Optional<? extends Refunds> refunds = Optional.empty();
 
-        private Optional<? extends GetBalanceReportChargebacks> chargebacks = Optional.empty();
+        private Optional<? extends Chargebacks> chargebacks = Optional.empty();
 
         private Optional<? extends Capital> capital = Optional.empty();
 
@@ -671,7 +671,7 @@ public class Totals {
         /**
          * Only available on `transaction-categories` grouping.
          */
-        public Builder payments(GetBalanceReportPayments payments) {
+        public Builder payments(Payments payments) {
             Utils.checkNotNull(payments, "payments");
             this.payments = Optional.ofNullable(payments);
             return this;
@@ -680,7 +680,7 @@ public class Totals {
         /**
          * Only available on `transaction-categories` grouping.
          */
-        public Builder payments(Optional<? extends GetBalanceReportPayments> payments) {
+        public Builder payments(Optional<? extends Payments> payments) {
             Utils.checkNotNull(payments, "payments");
             this.payments = payments;
             return this;
@@ -690,7 +690,7 @@ public class Totals {
         /**
          * Only available on `transaction-categories` grouping.
          */
-        public Builder refunds(GetBalanceReportRefunds refunds) {
+        public Builder refunds(Refunds refunds) {
             Utils.checkNotNull(refunds, "refunds");
             this.refunds = Optional.ofNullable(refunds);
             return this;
@@ -699,7 +699,7 @@ public class Totals {
         /**
          * Only available on `transaction-categories` grouping.
          */
-        public Builder refunds(Optional<? extends GetBalanceReportRefunds> refunds) {
+        public Builder refunds(Optional<? extends Refunds> refunds) {
             Utils.checkNotNull(refunds, "refunds");
             this.refunds = refunds;
             return this;
@@ -709,7 +709,7 @@ public class Totals {
         /**
          * Only available on `transaction-categories` grouping.
          */
-        public Builder chargebacks(GetBalanceReportChargebacks chargebacks) {
+        public Builder chargebacks(Chargebacks chargebacks) {
             Utils.checkNotNull(chargebacks, "chargebacks");
             this.chargebacks = Optional.ofNullable(chargebacks);
             return this;
@@ -718,7 +718,7 @@ public class Totals {
         /**
          * Only available on `transaction-categories` grouping.
          */
-        public Builder chargebacks(Optional<? extends GetBalanceReportChargebacks> chargebacks) {
+        public Builder chargebacks(Optional<? extends Chargebacks> chargebacks) {
             Utils.checkNotNull(chargebacks, "chargebacks");
             this.chargebacks = chargebacks;
             return this;

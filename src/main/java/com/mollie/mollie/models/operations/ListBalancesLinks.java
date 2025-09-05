@@ -31,27 +31,27 @@ public class ListBalancesLinks {
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("previous")
-    private Optional<? extends ListBalancesPrevious> previous;
+    private Optional<? extends Previous> previous;
 
     /**
      * The next set of items, if available.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("next")
-    private Optional<? extends ListBalancesNext> next;
+    private Optional<? extends Next> next;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     @JsonProperty("documentation")
-    private ListBalancesDocumentation documentation;
+    private Documentation documentation;
 
     @JsonCreator
     public ListBalancesLinks(
             @JsonProperty("self") ListBalancesSelf self,
-            @JsonProperty("previous") Optional<? extends ListBalancesPrevious> previous,
-            @JsonProperty("next") Optional<? extends ListBalancesNext> next,
-            @JsonProperty("documentation") ListBalancesDocumentation documentation) {
+            @JsonProperty("previous") Optional<? extends Previous> previous,
+            @JsonProperty("next") Optional<? extends Next> next,
+            @JsonProperty("documentation") Documentation documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(previous, "previous");
         Utils.checkNotNull(next, "next");
@@ -64,7 +64,7 @@ public class ListBalancesLinks {
     
     public ListBalancesLinks(
             ListBalancesSelf self,
-            ListBalancesDocumentation documentation) {
+            Documentation documentation) {
         this(self, Optional.empty(), Optional.empty(),
             documentation);
     }
@@ -82,8 +82,8 @@ public class ListBalancesLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListBalancesPrevious> previous() {
-        return (Optional<ListBalancesPrevious>) previous;
+    public Optional<Previous> previous() {
+        return (Optional<Previous>) previous;
     }
 
     /**
@@ -91,15 +91,15 @@ public class ListBalancesLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListBalancesNext> next() {
-        return (Optional<ListBalancesNext>) next;
+    public Optional<Next> next() {
+        return (Optional<Next>) next;
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     @JsonIgnore
-    public ListBalancesDocumentation documentation() {
+    public Documentation documentation() {
         return documentation;
     }
 
@@ -120,7 +120,7 @@ public class ListBalancesLinks {
     /**
      * The previous set of items, if available.
      */
-    public ListBalancesLinks withPrevious(ListBalancesPrevious previous) {
+    public ListBalancesLinks withPrevious(Previous previous) {
         Utils.checkNotNull(previous, "previous");
         this.previous = Optional.ofNullable(previous);
         return this;
@@ -130,7 +130,7 @@ public class ListBalancesLinks {
     /**
      * The previous set of items, if available.
      */
-    public ListBalancesLinks withPrevious(Optional<? extends ListBalancesPrevious> previous) {
+    public ListBalancesLinks withPrevious(Optional<? extends Previous> previous) {
         Utils.checkNotNull(previous, "previous");
         this.previous = previous;
         return this;
@@ -139,7 +139,7 @@ public class ListBalancesLinks {
     /**
      * The next set of items, if available.
      */
-    public ListBalancesLinks withNext(ListBalancesNext next) {
+    public ListBalancesLinks withNext(Next next) {
         Utils.checkNotNull(next, "next");
         this.next = Optional.ofNullable(next);
         return this;
@@ -149,7 +149,7 @@ public class ListBalancesLinks {
     /**
      * The next set of items, if available.
      */
-    public ListBalancesLinks withNext(Optional<? extends ListBalancesNext> next) {
+    public ListBalancesLinks withNext(Optional<? extends Next> next) {
         Utils.checkNotNull(next, "next");
         this.next = next;
         return this;
@@ -158,7 +158,7 @@ public class ListBalancesLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public ListBalancesLinks withDocumentation(ListBalancesDocumentation documentation) {
+    public ListBalancesLinks withDocumentation(Documentation documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -201,11 +201,11 @@ public class ListBalancesLinks {
 
         private ListBalancesSelf self;
 
-        private Optional<? extends ListBalancesPrevious> previous = Optional.empty();
+        private Optional<? extends Previous> previous = Optional.empty();
 
-        private Optional<? extends ListBalancesNext> next = Optional.empty();
+        private Optional<? extends Next> next = Optional.empty();
 
-        private ListBalancesDocumentation documentation;
+        private Documentation documentation;
 
         private Builder() {
           // force use of static builder() method
@@ -225,7 +225,7 @@ public class ListBalancesLinks {
         /**
          * The previous set of items, if available.
          */
-        public Builder previous(ListBalancesPrevious previous) {
+        public Builder previous(Previous previous) {
             Utils.checkNotNull(previous, "previous");
             this.previous = Optional.ofNullable(previous);
             return this;
@@ -234,7 +234,7 @@ public class ListBalancesLinks {
         /**
          * The previous set of items, if available.
          */
-        public Builder previous(Optional<? extends ListBalancesPrevious> previous) {
+        public Builder previous(Optional<? extends Previous> previous) {
             Utils.checkNotNull(previous, "previous");
             this.previous = previous;
             return this;
@@ -244,7 +244,7 @@ public class ListBalancesLinks {
         /**
          * The next set of items, if available.
          */
-        public Builder next(ListBalancesNext next) {
+        public Builder next(Next next) {
             Utils.checkNotNull(next, "next");
             this.next = Optional.ofNullable(next);
             return this;
@@ -253,7 +253,7 @@ public class ListBalancesLinks {
         /**
          * The next set of items, if available.
          */
-        public Builder next(Optional<? extends ListBalancesNext> next) {
+        public Builder next(Optional<? extends Next> next) {
             Utils.checkNotNull(next, "next");
             this.next = next;
             return this;
@@ -263,7 +263,7 @@ public class ListBalancesLinks {
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder documentation(ListBalancesDocumentation documentation) {
+        public Builder documentation(Documentation documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

@@ -134,7 +134,7 @@ public class CreatePaymentRequestBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("locale")
-    private JsonNullable<? extends Locale> locale;
+    private JsonNullable<? extends CreatePaymentLocale> locale;
 
     /**
      * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
@@ -432,7 +432,7 @@ public class CreatePaymentRequestBody {
             @JsonProperty("lines") JsonNullable<? extends List<Lines>> lines,
             @JsonProperty("billingAddress") Optional<? extends BillingAddress> billingAddress,
             @JsonProperty("shippingAddress") Optional<? extends ShippingAddress> shippingAddress,
-            @JsonProperty("locale") JsonNullable<? extends Locale> locale,
+            @JsonProperty("locale") JsonNullable<? extends CreatePaymentLocale> locale,
             @JsonProperty("method") JsonNullable<? extends Method> method,
             @JsonProperty("issuer") JsonNullable<String> issuer,
             @JsonProperty("restrictPaymentMethodsToCountry") JsonNullable<String> restrictPaymentMethodsToCountry,
@@ -670,8 +670,8 @@ public class CreatePaymentRequestBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Locale> locale() {
-        return (JsonNullable<Locale>) locale;
+    public JsonNullable<CreatePaymentLocale> locale() {
+        return (JsonNullable<CreatePaymentLocale>) locale;
     }
 
     /**
@@ -1215,7 +1215,7 @@ public class CreatePaymentRequestBody {
      * transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the
      * customer use a local bank account greatly increases the conversion and speed of payment.
      */
-    public CreatePaymentRequestBody withLocale(Locale locale) {
+    public CreatePaymentRequestBody withLocale(CreatePaymentLocale locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = JsonNullable.of(locale);
         return this;
@@ -1231,7 +1231,7 @@ public class CreatePaymentRequestBody {
      * transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the
      * customer use a local bank account greatly increases the conversion and speed of payment.
      */
-    public CreatePaymentRequestBody withLocale(JsonNullable<? extends Locale> locale) {
+    public CreatePaymentRequestBody withLocale(JsonNullable<? extends CreatePaymentLocale> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
@@ -2043,7 +2043,7 @@ public class CreatePaymentRequestBody {
 
         private Optional<? extends ShippingAddress> shippingAddress = Optional.empty();
 
-        private JsonNullable<? extends Locale> locale = JsonNullable.undefined();
+        private JsonNullable<? extends CreatePaymentLocale> locale = JsonNullable.undefined();
 
         private JsonNullable<? extends Method> method = JsonNullable.undefined();
 
@@ -2322,7 +2322,7 @@ public class CreatePaymentRequestBody {
          * transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the
          * customer use a local bank account greatly increases the conversion and speed of payment.
          */
-        public Builder locale(Locale locale) {
+        public Builder locale(CreatePaymentLocale locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = JsonNullable.of(locale);
             return this;
@@ -2338,7 +2338,7 @@ public class CreatePaymentRequestBody {
          * transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the
          * customer use a local bank account greatly increases the conversion and speed of payment.
          */
-        public Builder locale(JsonNullable<? extends Locale> locale) {
+        public Builder locale(JsonNullable<? extends CreatePaymentLocale> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;

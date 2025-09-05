@@ -25,9 +25,9 @@ public class GetWebhookEventEntity {
         this.value = value;
     }
 
-    public static GetWebhookEventEntity of(GetWebhookEventEntityPaymentLink value) {
+    public static GetWebhookEventEntity of(EntityPaymentLink value) {
         Utils.checkNotNull(value, "value");
-        return new GetWebhookEventEntity(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<GetWebhookEventEntityPaymentLink>(){}));
+        return new GetWebhookEventEntity(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<EntityPaymentLink>(){}));
     }
 
     public static GetWebhookEventEntity of(EntityProfile value) {
@@ -38,7 +38,7 @@ public class GetWebhookEventEntity {
     /**
      * Returns an instance of one of these types:
      * <ul>
-     * <li>{@code com.mollie.mollie.models.operations.GetWebhookEventEntityPaymentLink}</li>
+     * <li>{@code com.mollie.mollie.models.operations.EntityPaymentLink}</li>
      * <li>{@code com.mollie.mollie.models.operations.EntityProfile}</li>
      * </ul>
      * 
@@ -79,7 +79,7 @@ public class GetWebhookEventEntity {
 
         public _Deserializer() {
             super(GetWebhookEventEntity.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<GetWebhookEventEntityPaymentLink>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<EntityPaymentLink>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<EntityProfile>() {}, JsonShape.DEFAULT));
         }
     }

@@ -3,6 +3,8 @@
  */
 package com.mollie.mollie.utils;
 
+import com.mollie.mollie.utils.Blob;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
@@ -96,6 +98,17 @@ public class SpeakeasyHTTPClient implements HTTPClient {
             response = logResponse(response);
         }
         return response;
+    }
+
+    @Override
+    public CompletableFuture<HttpResponse<Blob>> sendAsync(HttpRequest request) {
+        if (isDebugLoggingEnabled()) {
+            request = logRequest(request);
+        }
+        return client.sendAsync(request, HttpResponse.BodyHandlers.ofPublisher())
+                .thenApply(response ->
+                        // TODO: log responses when helper for Blob is setup
+                        new ResponseWithBody<>(response, Blob::from));
     }
 
     private HttpRequest logRequest(HttpRequest request) {

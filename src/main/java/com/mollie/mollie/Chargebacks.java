@@ -28,9 +28,20 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Chargebacks {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncChargebacks asyncSDK;
 
     Chargebacks(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncChargebacks(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncChargebacks async() {
+        return asyncSDK;
     }
 
     /**

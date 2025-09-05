@@ -5,39 +5,45 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.List;
+import java.util.Optional;
 
 
 public class Embedded {
     /**
-     * An array of payment method objects. For a complete
-     * reference of the payment method object, refer
-     * to the [Get payment method endpoint](get-method)
-     * documentation.
+     * An array of balance objects. For a complete reference of
+     * the balance object, refer to the [Get balance endpoint](get-balance) documentation.
      */
-    @JsonProperty("methods")
-    private List<Methods> methods;
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("balances")
+    private Optional<? extends List<Balances>> balances;
 
     @JsonCreator
     public Embedded(
-            @JsonProperty("methods") List<Methods> methods) {
-        Utils.checkNotNull(methods, "methods");
-        this.methods = methods;
+            @JsonProperty("balances") Optional<? extends List<Balances>> balances) {
+        Utils.checkNotNull(balances, "balances");
+        this.balances = balances;
+    }
+    
+    public Embedded() {
+        this(Optional.empty());
     }
 
     /**
-     * An array of payment method objects. For a complete
-     * reference of the payment method object, refer
-     * to the [Get payment method endpoint](get-method)
-     * documentation.
+     * An array of balance objects. For a complete reference of
+     * the balance object, refer to the [Get balance endpoint](get-balance) documentation.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public List<Methods> methods() {
-        return methods;
+    public Optional<List<Balances>> balances() {
+        return (Optional<List<Balances>>) balances;
     }
 
     public static Builder builder() {
@@ -46,14 +52,23 @@ public class Embedded {
 
 
     /**
-     * An array of payment method objects. For a complete
-     * reference of the payment method object, refer
-     * to the [Get payment method endpoint](get-method)
-     * documentation.
+     * An array of balance objects. For a complete reference of
+     * the balance object, refer to the [Get balance endpoint](get-balance) documentation.
      */
-    public Embedded withMethods(List<Methods> methods) {
-        Utils.checkNotNull(methods, "methods");
-        this.methods = methods;
+    public Embedded withBalances(List<Balances> balances) {
+        Utils.checkNotNull(balances, "balances");
+        this.balances = Optional.ofNullable(balances);
+        return this;
+    }
+
+
+    /**
+     * An array of balance objects. For a complete reference of
+     * the balance object, refer to the [Get balance endpoint](get-balance) documentation.
+     */
+    public Embedded withBalances(Optional<? extends List<Balances>> balances) {
+        Utils.checkNotNull(balances, "balances");
+        this.balances = balances;
         return this;
     }
 
@@ -67,25 +82,25 @@ public class Embedded {
         }
         Embedded other = (Embedded) o;
         return 
-            Utils.enhancedDeepEquals(this.methods, other.methods);
+            Utils.enhancedDeepEquals(this.balances, other.balances);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            methods);
+            balances);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Embedded.class,
-                "methods", methods);
+                "balances", balances);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<Methods> methods;
+        private Optional<? extends List<Balances>> balances = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -93,21 +108,29 @@ public class Embedded {
 
 
         /**
-         * An array of payment method objects. For a complete
-         * reference of the payment method object, refer
-         * to the [Get payment method endpoint](get-method)
-         * documentation.
+         * An array of balance objects. For a complete reference of
+         * the balance object, refer to the [Get balance endpoint](get-balance) documentation.
          */
-        public Builder methods(List<Methods> methods) {
-            Utils.checkNotNull(methods, "methods");
-            this.methods = methods;
+        public Builder balances(List<Balances> balances) {
+            Utils.checkNotNull(balances, "balances");
+            this.balances = Optional.ofNullable(balances);
+            return this;
+        }
+
+        /**
+         * An array of balance objects. For a complete reference of
+         * the balance object, refer to the [Get balance endpoint](get-balance) documentation.
+         */
+        public Builder balances(Optional<? extends List<Balances>> balances) {
+            Utils.checkNotNull(balances, "balances");
+            this.balances = balances;
             return this;
         }
 
         public Embedded build() {
 
             return new Embedded(
-                methods);
+                balances);
         }
 
     }

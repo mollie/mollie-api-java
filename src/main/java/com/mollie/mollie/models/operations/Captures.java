@@ -13,7 +13,7 @@ import java.lang.String;
 /**
  * Captures
  * 
- * <p>The API resource URL of the [captures](list-payment-captures) that belong to this payment.
+ * <p>The API resource URL of the [captures](list-captures) included in this settlement.
  */
 public class Captures {
     /**

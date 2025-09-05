@@ -42,9 +42,20 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Webhooks {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncWebhooks asyncSDK;
 
     Webhooks(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncWebhooks(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncWebhooks async() {
+        return asyncSDK;
     }
 
     /**

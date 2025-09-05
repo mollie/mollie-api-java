@@ -16,9 +16,20 @@ import java.util.Optional;
 
 public class Wallets {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncWallets asyncSDK;
 
     Wallets(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncWallets(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncWallets async() {
+        return asyncSDK;
     }
 
     /**

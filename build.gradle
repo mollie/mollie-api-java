@@ -105,7 +105,7 @@ publishing {
             // https://github.com/gradle/gradle/issues/18619
             groupId = "com.mollie"
             artifactId = "mollie"
-            version = "0.16.0"
+            version = "0.17.0"
 
             from components.java
 
@@ -161,6 +161,7 @@ dependencies {
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.18.2'
     api('org.openapitools:jackson-databind-nullable:0.2.6') {exclude group: 'com.fasterxml.jackson.core', module: 'jackson-databind'}
     implementation 'commons-io:commons-io:2.18.0'
+    api 'org.reactivestreams:reactive-streams:1.0.4'
 }
 
 apply from: 'build-extras.gradle'

@@ -21,18 +21,19 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 0.16.0
+  version: 0.17.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: mollie
+  asyncMode: enabled
   baseErrorName: ClientError
   clientServerStatusCodesAsErrors: true
   companyEmail: bit@mollie.com
   companyName: Mollie
   companyURL: https://www.mollie.com/
   defaultErrorName: APIException
-  enableAsync: false
   enableCustomCodeRegions: false
+  enableStreamingUploads: false
   flattenGlobalSecurity: true
   githubURL: https://github.com/mollie/mollie-api-java
   groupID: com.mollie

@@ -46,7 +46,7 @@ public class CreateProfileLinks {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("methods")
-    private Optional<? extends CreateProfileMethods> methods;
+    private Optional<? extends Methods> methods;
 
     /**
      * The API resource URL of the payments that belong to this profile.
@@ -81,7 +81,7 @@ public class CreateProfileLinks {
             @JsonProperty("self") Optional<? extends CreateProfileSelf> self,
             @JsonProperty("dashboard") Optional<? extends CreateProfileDashboard> dashboard,
             @JsonProperty("chargebacks") Optional<? extends CreateProfileChargebacks> chargebacks,
-            @JsonProperty("methods") Optional<? extends CreateProfileMethods> methods,
+            @JsonProperty("methods") Optional<? extends Methods> methods,
             @JsonProperty("payments") Optional<? extends CreateProfilePayments> payments,
             @JsonProperty("refunds") Optional<? extends CreateProfileRefunds> refunds,
             @JsonProperty("checkoutPreviewUrl") Optional<? extends CheckoutPreviewUrl> checkoutPreviewUrl,
@@ -142,8 +142,8 @@ public class CreateProfileLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateProfileMethods> methods() {
-        return (Optional<CreateProfileMethods>) methods;
+    public Optional<Methods> methods() {
+        return (Optional<Methods>) methods;
     }
 
     /**
@@ -247,7 +247,7 @@ public class CreateProfileLinks {
     /**
      * The API resource URL of the methods that are enabled for this profile.
      */
-    public CreateProfileLinks withMethods(CreateProfileMethods methods) {
+    public CreateProfileLinks withMethods(Methods methods) {
         Utils.checkNotNull(methods, "methods");
         this.methods = Optional.ofNullable(methods);
         return this;
@@ -257,7 +257,7 @@ public class CreateProfileLinks {
     /**
      * The API resource URL of the methods that are enabled for this profile.
      */
-    public CreateProfileLinks withMethods(Optional<? extends CreateProfileMethods> methods) {
+    public CreateProfileLinks withMethods(Optional<? extends Methods> methods) {
         Utils.checkNotNull(methods, "methods");
         this.methods = methods;
         return this;
@@ -389,7 +389,7 @@ public class CreateProfileLinks {
 
         private Optional<? extends CreateProfileChargebacks> chargebacks = Optional.empty();
 
-        private Optional<? extends CreateProfileMethods> methods = Optional.empty();
+        private Optional<? extends Methods> methods = Optional.empty();
 
         private Optional<? extends CreateProfilePayments> payments = Optional.empty();
 
@@ -464,7 +464,7 @@ public class CreateProfileLinks {
         /**
          * The API resource URL of the methods that are enabled for this profile.
          */
-        public Builder methods(CreateProfileMethods methods) {
+        public Builder methods(Methods methods) {
             Utils.checkNotNull(methods, "methods");
             this.methods = Optional.ofNullable(methods);
             return this;
@@ -473,7 +473,7 @@ public class CreateProfileLinks {
         /**
          * The API resource URL of the methods that are enabled for this profile.
          */
-        public Builder methods(Optional<? extends CreateProfileMethods> methods) {
+        public Builder methods(Optional<? extends Methods> methods) {
             Utils.checkNotNull(methods, "methods");
             this.methods = methods;
             return this;

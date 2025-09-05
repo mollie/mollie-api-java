@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 2e188bbc6e98a12bd1b21fc2641a9361
+  docChecksum: 30e66b28c2936672fec3dc4ec5e841f3
   docVersion: 1.0.0
-  speakeasyVersion: 1.606.9
-  generationVersion: 2.687.13
-  releaseVersion: 0.16.0
-  configChecksum: ace1c5635d0af96d4ca5c27910bae338
+  speakeasyVersion: 1.609.0
+  generationVersion: 2.692.0
+  releaseVersion: 0.17.0
+  configChecksum: c6c98625c92c3844a0941f1a06f17769
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 features:
   java:
     additionalDependencies: 0.1.0
-    core: 3.46.0
+    core: 3.47.0
     deprecations: 2.81.1
     flattening: 2.81.1
     globalSecurity: 2.83.0
@@ -74,6 +74,8 @@ generatedFiles:
   - docs/models/errors/CreatePaymentLinkPaymentLinksResponseBody.md
   - docs/models/errors/CreatePaymentLinkResponseBody.md
   - docs/models/errors/CreatePaymentLinks.md
+  - docs/models/errors/CreatePaymentPaymentsDocumentation.md
+  - docs/models/errors/CreatePaymentPaymentsLinks.md
   - docs/models/errors/CreatePaymentPaymentsResponseBody.md
   - docs/models/errors/CreatePaymentResponseBody.md
   - docs/models/errors/CreateProfileDocumentation.md
@@ -234,8 +236,6 @@ generatedFiles:
   - docs/models/errors/ListBalanceTransactionsDocumentation.md
   - docs/models/errors/ListBalanceTransactionsLinks.md
   - docs/models/errors/ListBalanceTransactionsResponseBody.md
-  - docs/models/errors/ListBalancesBalancesDocumentation.md
-  - docs/models/errors/ListBalancesBalancesLinks.md
   - docs/models/errors/ListBalancesBalancesResponseBody.md
   - docs/models/errors/ListBalancesDocumentation.md
   - docs/models/errors/ListBalancesLinks.md
@@ -568,7 +568,6 @@ generatedFiles:
   - docs/models/operations/CreateClientLinkAddress.md
   - docs/models/operations/CreateClientLinkDocumentation.md
   - docs/models/operations/CreateClientLinkLinks.md
-  - docs/models/operations/CreateClientLinkLocale.md
   - docs/models/operations/CreateClientLinkRequestBody.md
   - docs/models/operations/CreateClientLinkResponse.md
   - docs/models/operations/CreateClientLinkResponseBody.md
@@ -681,6 +680,7 @@ generatedFiles:
   - docs/models/operations/CreateCustomerPaymentUnitPrice.md
   - docs/models/operations/CreateCustomerPaymentVatAmount.md
   - docs/models/operations/CreateCustomerPaymentWallet.md
+  - docs/models/operations/CreateCustomerPayments.md
   - docs/models/operations/CreateCustomerRequestBody.md
   - docs/models/operations/CreateCustomerResponse.md
   - docs/models/operations/CreateCustomerResponseBody.md
@@ -703,9 +703,13 @@ generatedFiles:
   - docs/models/operations/CreatePaymentApplicationFee.md
   - docs/models/operations/CreatePaymentBillingAddress.md
   - docs/models/operations/CreatePaymentCaptureMode.md
+  - docs/models/operations/CreatePaymentCaptures.md
   - docs/models/operations/CreatePaymentCategories.md
+  - docs/models/operations/CreatePaymentChargebacks.md
+  - docs/models/operations/CreatePaymentDashboard.md
   - docs/models/operations/CreatePaymentDestination.md
   - docs/models/operations/CreatePaymentDiscountAmount.md
+  - docs/models/operations/CreatePaymentDocumentation.md
   - docs/models/operations/CreatePaymentLines.md
   - docs/models/operations/CreatePaymentLinkAmount.md
   - docs/models/operations/CreatePaymentLinkApplicationFee.md
@@ -748,6 +752,7 @@ generatedFiles:
   - docs/models/operations/CreatePaymentPayment.md
   - docs/models/operations/CreatePaymentPaymentsAmount.md
   - docs/models/operations/CreatePaymentPaymentsLinks.md
+  - docs/models/operations/CreatePaymentPaymentsLocale.md
   - docs/models/operations/CreatePaymentPaymentsMode.md
   - docs/models/operations/CreatePaymentPaymentsRequestAmount.md
   - docs/models/operations/CreatePaymentPaymentsResponse201Amount.md
@@ -759,6 +764,7 @@ generatedFiles:
   - docs/models/operations/CreatePaymentPaymentsStatus.md
   - docs/models/operations/CreatePaymentPaymentsType.md
   - docs/models/operations/CreatePaymentRecurring.md
+  - docs/models/operations/CreatePaymentRefunds.md
   - docs/models/operations/CreatePaymentRequest.md
   - docs/models/operations/CreatePaymentRequestBody.md
   - docs/models/operations/CreatePaymentResponse.md
@@ -776,7 +782,6 @@ generatedFiles:
   - docs/models/operations/CreateProfileDashboard.md
   - docs/models/operations/CreateProfileDocumentation.md
   - docs/models/operations/CreateProfileLinks.md
-  - docs/models/operations/CreateProfileMethods.md
   - docs/models/operations/CreateProfileMode.md
   - docs/models/operations/CreateProfilePayments.md
   - docs/models/operations/CreateProfileProfilesStatus.md
@@ -873,6 +878,7 @@ generatedFiles:
   - docs/models/operations/CreateWebhookResponse.md
   - docs/models/operations/CreateWebhookResponseBody.md
   - docs/models/operations/CreateWebhookStatus.md
+  - docs/models/operations/CreateWebhookWebhookEventTypes.md
   - docs/models/operations/Currencies.md
   - docs/models/operations/Currency.md
   - docs/models/operations/Customer.md
@@ -930,7 +936,6 @@ generatedFiles:
   - docs/models/operations/EntityType.md
   - docs/models/operations/EntityUnitPrice.md
   - docs/models/operations/EntityVatAmount.md
-  - docs/models/operations/EventTypes.md
   - docs/models/operations/Events.md
   - docs/models/operations/ExternalReference.md
   - docs/models/operations/FailedPayment.md
@@ -980,7 +985,6 @@ generatedFiles:
   - docs/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyPrepaymentPartType.md
   - docs/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodySubtotals.md
   - docs/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAmount.md
-  - docs/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceAmount.md
   - docs/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceCardAudience.md
   - docs/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceCardIssuer.md
   - docs/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceCardRegion.md
@@ -1010,7 +1014,6 @@ generatedFiles:
   - docs/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceMovedFromPendingPrepaymentPartType.md
   - docs/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceMovedFromPendingSubTotals.md
   - docs/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceMovedFromPendingTransactionType.md
-  - docs/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceOpenMethod.md
   - docs/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalancePrepaymentPartType.md
   - docs/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceSubTotals.md
   - docs/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceTransactionType.md
@@ -1347,6 +1350,7 @@ generatedFiles:
   - docs/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPaymentsSubtotals.md
   - docs/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPaymentsTransactionType.md
   - docs/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPending.md
+  - docs/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceAmount.md
   - docs/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceCardAudience.md
   - docs/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceCardIssuer.md
   - docs/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceCardRegion.md
@@ -1372,6 +1376,7 @@ generatedFiles:
   - docs/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceOpenCardIssuer.md
   - docs/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceOpenCardRegion.md
   - docs/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceOpenFeeType.md
+  - docs/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceOpenMethod.md
   - docs/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceOpenPrepaymentPartType.md
   - docs/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceOpenSubTotals.md
   - docs/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceOpenTransactionType.md
@@ -1569,7 +1574,6 @@ generatedFiles:
   - docs/models/operations/GetBalanceReportCardAudience.md
   - docs/models/operations/GetBalanceReportCardIssuer.md
   - docs/models/operations/GetBalanceReportCardRegion.md
-  - docs/models/operations/GetBalanceReportChargebacks.md
   - docs/models/operations/GetBalanceReportClose.md
   - docs/models/operations/GetBalanceReportDocumentation.md
   - docs/models/operations/GetBalanceReportFeeType.md
@@ -1579,10 +1583,8 @@ generatedFiles:
   - docs/models/operations/GetBalanceReportMethod.md
   - docs/models/operations/GetBalanceReportMovedToAvailable.md
   - docs/models/operations/GetBalanceReportOpen.md
-  - docs/models/operations/GetBalanceReportPayments.md
   - docs/models/operations/GetBalanceReportPending.md
   - docs/models/operations/GetBalanceReportPrepaymentPartType.md
-  - docs/models/operations/GetBalanceReportRefunds.md
   - docs/models/operations/GetBalanceReportRequest.md
   - docs/models/operations/GetBalanceReportResponse.md
   - docs/models/operations/GetBalanceReportResponseBody.md
@@ -1757,7 +1759,6 @@ generatedFiles:
   - docs/models/operations/GetOpenSettlementSelf.md
   - docs/models/operations/GetOpenSettlementStatus.md
   - docs/models/operations/GetOrganizationAddress.md
-  - docs/models/operations/GetOrganizationDashboard.md
   - docs/models/operations/GetOrganizationDocumentation.md
   - docs/models/operations/GetOrganizationLinks.md
   - docs/models/operations/GetOrganizationLocale.md
@@ -1921,6 +1922,7 @@ generatedFiles:
   - docs/models/operations/GetPaymentPaymentsType.md
   - docs/models/operations/GetPaymentPaypalFee.md
   - docs/models/operations/GetPaymentQrCode.md
+  - docs/models/operations/GetPaymentQueryParamEmbed.md
   - docs/models/operations/GetPaymentReceipt.md
   - docs/models/operations/GetPaymentRecurring.md
   - docs/models/operations/GetPaymentRefunds.md
@@ -2030,7 +2032,6 @@ generatedFiles:
   - docs/models/operations/GetSalesInvoiceVatMode.md
   - docs/models/operations/GetSalesInvoiceVatScheme.md
   - docs/models/operations/GetSettlementAmount.md
-  - docs/models/operations/GetSettlementCaptures.md
   - docs/models/operations/GetSettlementChargebacks.md
   - docs/models/operations/GetSettlementDocumentation.md
   - docs/models/operations/GetSettlementLinks.md
@@ -2066,6 +2067,7 @@ generatedFiles:
   - docs/models/operations/GetTerminalResponseBody.md
   - docs/models/operations/GetTerminalSelf.md
   - docs/models/operations/GetTerminalStatus.md
+  - docs/models/operations/GetWebhookDocumentation.md
   - docs/models/operations/GetWebhookEventDocumentation.md
   - docs/models/operations/GetWebhookEventEmbedded.md
   - docs/models/operations/GetWebhookEventEntity.md
@@ -2080,11 +2082,14 @@ generatedFiles:
   - docs/models/operations/GetWebhookEventResponse.md
   - docs/models/operations/GetWebhookEventResponseBody.md
   - docs/models/operations/GetWebhookEventSelf.md
+  - docs/models/operations/GetWebhookEventWebhookEventTypes.md
+  - docs/models/operations/GetWebhookLinks.md
   - docs/models/operations/GetWebhookMode.md
   - docs/models/operations/GetWebhookRequest.md
   - docs/models/operations/GetWebhookResponse.md
   - docs/models/operations/GetWebhookResponseBody.md
   - docs/models/operations/GetWebhookStatus.md
+  - docs/models/operations/GetWebhookWebhookEventTypes.md
   - docs/models/operations/GrossAmount.md
   - docs/models/operations/Grouping.md
   - docs/models/operations/Id.md
@@ -2153,6 +2158,7 @@ generatedFiles:
   - docs/models/operations/ListAllRefundsPayment.md
   - docs/models/operations/ListAllRefundsPrevious.md
   - docs/models/operations/ListAllRefundsQueryParamEmbed.md
+  - docs/models/operations/ListAllRefundsQueryParamSort.md
   - docs/models/operations/ListAllRefundsRefunds.md
   - docs/models/operations/ListAllRefundsRefundsAmount.md
   - docs/models/operations/ListAllRefundsRefundsDocumentation.md
@@ -2205,17 +2211,13 @@ generatedFiles:
   - docs/models/operations/ListBalanceTransactionsSelf.md
   - docs/models/operations/ListBalanceTransactionsType.md
   - docs/models/operations/ListBalancesAvailableAmount.md
-  - docs/models/operations/ListBalancesBalancesDocumentation.md
   - docs/models/operations/ListBalancesBalancesLinks.md
   - docs/models/operations/ListBalancesBalancesSelf.md
   - docs/models/operations/ListBalancesCurrency.md
   - docs/models/operations/ListBalancesDocumentation.md
-  - docs/models/operations/ListBalancesEmbedded.md
   - docs/models/operations/ListBalancesLinks.md
   - docs/models/operations/ListBalancesMode.md
-  - docs/models/operations/ListBalancesNext.md
   - docs/models/operations/ListBalancesPendingAmount.md
-  - docs/models/operations/ListBalancesPrevious.md
   - docs/models/operations/ListBalancesRequest.md
   - docs/models/operations/ListBalancesResponse.md
   - docs/models/operations/ListBalancesResponseBody.md
@@ -2419,7 +2421,6 @@ generatedFiles:
   - docs/models/operations/ListInvoicesLinks.md
   - docs/models/operations/ListInvoicesNext.md
   - docs/models/operations/ListInvoicesPrevious.md
-  - docs/models/operations/ListInvoicesQueryParamSort.md
   - docs/models/operations/ListInvoicesRequest.md
   - docs/models/operations/ListInvoicesResponse.md
   - docs/models/operations/ListInvoicesResponseBody.md
@@ -2445,11 +2446,13 @@ generatedFiles:
   - docs/models/operations/ListMandatesSelf.md
   - docs/models/operations/ListMandatesStatus.md
   - docs/models/operations/ListMethodsDocumentation.md
+  - docs/models/operations/ListMethodsEmbedded.md
   - docs/models/operations/ListMethodsId.md
   - docs/models/operations/ListMethodsImage.md
   - docs/models/operations/ListMethodsIssuers.md
   - docs/models/operations/ListMethodsLinks.md
   - docs/models/operations/ListMethodsMaximumAmount.md
+  - docs/models/operations/ListMethodsMethods.md
   - docs/models/operations/ListMethodsMethodsDocumentation.md
   - docs/models/operations/ListMethodsMethodsImage.md
   - docs/models/operations/ListMethodsMethodsLinks.md
@@ -2525,6 +2528,7 @@ generatedFiles:
   - docs/models/operations/ListPaymentsMethod.md
   - docs/models/operations/ListPaymentsMobileAppCheckout.md
   - docs/models/operations/ListPaymentsMode.md
+  - docs/models/operations/ListPaymentsNext.md
   - docs/models/operations/ListPaymentsOrder.md
   - docs/models/operations/ListPaymentsPayOnline.md
   - docs/models/operations/ListPaymentsPayment.md
@@ -2541,7 +2545,9 @@ generatedFiles:
   - docs/models/operations/ListPaymentsPaymentsStatus.md
   - docs/models/operations/ListPaymentsPaymentsType.md
   - docs/models/operations/ListPaymentsPaypalFee.md
+  - docs/models/operations/ListPaymentsPrevious.md
   - docs/models/operations/ListPaymentsQrCode.md
+  - docs/models/operations/ListPaymentsQueryParamSort.md
   - docs/models/operations/ListPaymentsReceipt.md
   - docs/models/operations/ListPaymentsRecurring.md
   - docs/models/operations/ListPaymentsRefunds.md
@@ -2606,6 +2612,7 @@ generatedFiles:
   - docs/models/operations/ListRefundsNext.md
   - docs/models/operations/ListRefundsPayment.md
   - docs/models/operations/ListRefundsPrevious.md
+  - docs/models/operations/ListRefundsQueryParamEmbed.md
   - docs/models/operations/ListRefundsRefunds.md
   - docs/models/operations/ListRefundsRefundsAmount.md
   - docs/models/operations/ListRefundsRefundsDocumentation.md
@@ -2667,7 +2674,6 @@ generatedFiles:
   - docs/models/operations/ListSettlementCapturesNext.md
   - docs/models/operations/ListSettlementCapturesPayment.md
   - docs/models/operations/ListSettlementCapturesPrevious.md
-  - docs/models/operations/ListSettlementCapturesQueryParamEmbed.md
   - docs/models/operations/ListSettlementCapturesRequest.md
   - docs/models/operations/ListSettlementCapturesResponse.md
   - docs/models/operations/ListSettlementCapturesResponseBody.md
@@ -2743,7 +2749,6 @@ generatedFiles:
   - docs/models/operations/ListSettlementPaymentsPaypalFee.md
   - docs/models/operations/ListSettlementPaymentsPrevious.md
   - docs/models/operations/ListSettlementPaymentsQrCode.md
-  - docs/models/operations/ListSettlementPaymentsQueryParamSort.md
   - docs/models/operations/ListSettlementPaymentsReceipt.md
   - docs/models/operations/ListSettlementPaymentsRecurring.md
   - docs/models/operations/ListSettlementPaymentsRefunds.md
@@ -2788,7 +2793,6 @@ generatedFiles:
   - docs/models/operations/ListSettlementRefundsNext.md
   - docs/models/operations/ListSettlementRefundsPayment.md
   - docs/models/operations/ListSettlementRefundsPrevious.md
-  - docs/models/operations/ListSettlementRefundsQueryParamEmbed.md
   - docs/models/operations/ListSettlementRefundsRefunds.md
   - docs/models/operations/ListSettlementRefundsRequest.md
   - docs/models/operations/ListSettlementRefundsResponse.md
@@ -2957,6 +2961,9 @@ generatedFiles:
   - docs/models/operations/ListWebhooksResponseBody.md
   - docs/models/operations/ListWebhooksSelf.md
   - docs/models/operations/ListWebhooksStatus.md
+  - docs/models/operations/ListWebhooksWebhookEventTypes.md
+  - docs/models/operations/ListWebhooksWebhooksDocumentation.md
+  - docs/models/operations/ListWebhooksWebhooksLinks.md
   - docs/models/operations/Locale.md
   - docs/models/operations/ManagedFee.md
   - docs/models/operations/Mandate.md
@@ -3034,11 +3041,11 @@ generatedFiles:
   - docs/models/operations/QrCode.md
   - docs/models/operations/QueryParamAmount.md
   - docs/models/operations/QueryParamEmbed.md
-  - docs/models/operations/QueryParamEventTypes.md
   - docs/models/operations/QueryParamInclude.md
   - docs/models/operations/QueryParamLocale.md
   - docs/models/operations/QueryParamSequenceType.md
   - docs/models/operations/QueryParamSort.md
+  - docs/models/operations/QueryParamWebhookEventTypes.md
   - docs/models/operations/Reason.md
   - docs/models/operations/Receipt.md
   - docs/models/operations/Recipient.md
@@ -3316,13 +3323,16 @@ generatedFiles:
   - docs/models/operations/UpdateSubscriptionSubscriptionsAmount.md
   - docs/models/operations/UpdateSubscriptionSubscriptionsMetadata.md
   - docs/models/operations/UpdateSubscriptionSubscriptionsResponseAmount.md
-  - docs/models/operations/UpdateWebhookEventTypes.md
+  - docs/models/operations/UpdateWebhookDocumentation.md
+  - docs/models/operations/UpdateWebhookLinks.md
   - docs/models/operations/UpdateWebhookMode.md
   - docs/models/operations/UpdateWebhookRequest.md
   - docs/models/operations/UpdateWebhookRequestBody.md
   - docs/models/operations/UpdateWebhookResponse.md
   - docs/models/operations/UpdateWebhookResponseBody.md
   - docs/models/operations/UpdateWebhookStatus.md
+  - docs/models/operations/UpdateWebhookWebhookEventTypes.md
+  - docs/models/operations/UpdateWebhookWebhooksWebhookEventTypes.md
   - docs/models/operations/Url.md
   - docs/models/operations/UserAgentTokens.md
   - docs/models/operations/VatAmount.md
@@ -3330,6 +3340,7 @@ generatedFiles:
   - docs/models/operations/VatRegulation.md
   - docs/models/operations/VatScheme.md
   - docs/models/operations/Wallet.md
+  - docs/models/operations/WebhookEventTypes.md
   - docs/models/operations/Webhooks.md
   - docs/sdks/balances/README.md
   - docs/sdks/capabilities/README.md
@@ -3357,12 +3368,39 @@ generatedFiles:
   - docs/sdks/wallets/README.md
   - docs/sdks/webhookevents/README.md
   - docs/sdks/webhooks/README.md
+  - docs/utils/Blob.md
   - gradle.properties
   - gradle/wrapper/gradle-wrapper.jar
   - gradle/wrapper/gradle-wrapper.properties
   - gradlew
   - gradlew.bat
   - settings.gradle
+  - src/main/java/com/mollie/mollie/AsyncBalances.java
+  - src/main/java/com/mollie/mollie/AsyncCapabilities.java
+  - src/main/java/com/mollie/mollie/AsyncCaptures.java
+  - src/main/java/com/mollie/mollie/AsyncChargebacks.java
+  - src/main/java/com/mollie/mollie/AsyncClient.java
+  - src/main/java/com/mollie/mollie/AsyncClientLinks.java
+  - src/main/java/com/mollie/mollie/AsyncClients.java
+  - src/main/java/com/mollie/mollie/AsyncCustomers.java
+  - src/main/java/com/mollie/mollie/AsyncDelayedRouting.java
+  - src/main/java/com/mollie/mollie/AsyncInvoices.java
+  - src/main/java/com/mollie/mollie/AsyncMandates.java
+  - src/main/java/com/mollie/mollie/AsyncMethods.java
+  - src/main/java/com/mollie/mollie/AsyncOnboarding.java
+  - src/main/java/com/mollie/mollie/AsyncOrganizations.java
+  - src/main/java/com/mollie/mollie/AsyncPaymentLinks.java
+  - src/main/java/com/mollie/mollie/AsyncPayments.java
+  - src/main/java/com/mollie/mollie/AsyncPermissions.java
+  - src/main/java/com/mollie/mollie/AsyncProfiles.java
+  - src/main/java/com/mollie/mollie/AsyncRefunds.java
+  - src/main/java/com/mollie/mollie/AsyncSalesInvoices.java
+  - src/main/java/com/mollie/mollie/AsyncSettlements.java
+  - src/main/java/com/mollie/mollie/AsyncSubscriptions.java
+  - src/main/java/com/mollie/mollie/AsyncTerminals.java
+  - src/main/java/com/mollie/mollie/AsyncWallets.java
+  - src/main/java/com/mollie/mollie/AsyncWebhookEvents.java
+  - src/main/java/com/mollie/mollie/AsyncWebhooks.java
   - src/main/java/com/mollie/mollie/Balances.java
   - src/main/java/com/mollie/mollie/Capabilities.java
   - src/main/java/com/mollie/mollie/Captures.java
@@ -3438,6 +3476,8 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/errors/CreatePaymentLinkPaymentLinksResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/CreatePaymentLinkResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/CreatePaymentLinks.java
+  - src/main/java/com/mollie/mollie/models/errors/CreatePaymentPaymentsDocumentation.java
+  - src/main/java/com/mollie/mollie/models/errors/CreatePaymentPaymentsLinks.java
   - src/main/java/com/mollie/mollie/models/errors/CreatePaymentPaymentsResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/CreatePaymentResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/CreateProfileDocumentation.java
@@ -3598,8 +3638,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/errors/ListBalanceTransactionsDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/ListBalanceTransactionsLinks.java
   - src/main/java/com/mollie/mollie/models/errors/ListBalanceTransactionsResponseBody.java
-  - src/main/java/com/mollie/mollie/models/errors/ListBalancesBalancesDocumentation.java
-  - src/main/java/com/mollie/mollie/models/errors/ListBalancesBalancesLinks.java
   - src/main/java/com/mollie/mollie/models/errors/ListBalancesBalancesResponseBody.java
   - src/main/java/com/mollie/mollie/models/errors/ListBalancesDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/ListBalancesLinks.java
@@ -3733,6 +3771,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/errors/TestWebhookWebhooksDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/TestWebhookWebhooksLinks.java
   - src/main/java/com/mollie/mollie/models/errors/TestWebhookWebhooksResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/UncheckedAPIException.java
   - src/main/java/com/mollie/mollie/models/errors/UpdateCustomerDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/UpdateCustomerLinks.java
   - src/main/java/com/mollie/mollie/models/errors/UpdateCustomerResponseBody.java
@@ -3772,6 +3811,225 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/errors/UpdateWebhookWebhooksDocumentation.java
   - src/main/java/com/mollie/mollie/models/errors/UpdateWebhookWebhooksLinks.java
   - src/main/java/com/mollie/mollie/models/errors/UpdateWebhookWebhooksResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/CancelPaymentPaymentsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/CancelPaymentResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/CancelRefundResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/CancelSubscriptionResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/CreateCaptureCapturesResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/CreateCaptureResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/CreateClientLinkClientLinksResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/CreateClientLinkResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/CreateCustomerPaymentCustomersResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/CreateCustomerPaymentResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/CreateCustomerResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/CreateMandateResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/CreatePaymentLinkPaymentLinksResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/CreatePaymentLinkResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/CreatePaymentPaymentsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/CreatePaymentResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/CreateProfileResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/CreateRefundRefundsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/CreateRefundRefundsResponseResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/CreateRefundResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/CreateSalesInvoiceResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/CreateSalesInvoiceSalesInvoicesResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/CreateSubscriptionResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/CreateWebhookResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/DeleteCustomerResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/DeletePaymentLinkPaymentLinksResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/DeletePaymentLinkResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/DeleteProfileProfilesResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/DeleteProfileResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/DeleteSalesInvoiceResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/DeleteSalesInvoiceSalesInvoicesResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/DeleteWebhookResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/DeleteWebhookWebhooksResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/GetBalanceReportBalancesResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/GetBalanceReportResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/GetBalanceResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/GetCaptureResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/GetChargebackResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/GetClientResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/GetCustomerResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/GetInvoiceResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/GetMandateResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/GetMethodMethodsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/GetMethodResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/GetOrganizationResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/GetPaymentLinkPaymentsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/GetPaymentLinkResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/GetPaymentResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/GetPermissionResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/GetProfileProfilesResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/GetProfileResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/GetRefundResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/GetSalesInvoiceResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/GetSettlementResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/GetSubscriptionResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/GetTerminalResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/GetWebhookEventResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/GetWebhookResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/GetWebhookWebhooksResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListAllChargebacksChargebacksResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListAllChargebacksResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListAllMethodsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListAllRefundsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListAllSubscriptionsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListAllSubscriptionsSubscriptionsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListBalanceTransactionsBalancesResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListBalanceTransactionsBalancesResponseResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListBalanceTransactionsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListBalancesBalancesResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListBalancesResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListCapturesCapturesResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListCapturesResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListChargebacksChargebacksResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListChargebacksResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListClientsClientsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListClientsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListCustomerPaymentsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListCustomersCustomersResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListCustomersResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListInvoicesInvoicesResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListInvoicesResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListMandatesMandatesResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListMandatesResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListMethodsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListPaymentLinksResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListPaymentsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListPermissionsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListProfilesResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListRefundsRefundsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListRefundsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListSalesInvoicesResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListSettlementCapturesResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListSettlementCapturesSettlementsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListSettlementChargebacksResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListSettlementChargebacksSettlementsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListSettlementPaymentsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListSettlementRefundsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListSettlementRefundsSettlementsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListSettlementsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListSettlementsSettlementsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListSubscriptionPaymentsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListSubscriptionsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListSubscriptionsSubscriptionsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListTerminalsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ListWebhooksResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/PaymentCreateRouteResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/PaymentListRoutesResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ReleaseAuthorizationPaymentsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/ReleaseAuthorizationResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/RequestApplePayPaymentSessionResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/RevokeMandateResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/TestWebhookResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/TestWebhookWebhooksResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/UpdateCustomerResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/UpdatePaymentLinkPaymentLinksResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/UpdatePaymentLinkResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/UpdatePaymentPaymentsResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/UpdatePaymentResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/UpdateProfileProfilesResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/UpdateProfileProfilesResponseResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/UpdateProfileResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/UpdateSalesInvoiceResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/UpdateSalesInvoiceSalesInvoicesResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/UpdateSubscriptionResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/UpdateWebhookResponseBody.java
+  - src/main/java/com/mollie/mollie/models/errors/async/UpdateWebhookWebhooksResponseBody.java
+  - src/main/java/com/mollie/mollie/models/operations//async/CancelPaymentRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/CancelRefundRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/CancelSubscriptionRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/CreateCaptureRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/CreateClientLinkRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/CreateCustomerPaymentRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/CreateCustomerRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/CreateMandateRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/CreatePaymentLinkRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/CreatePaymentRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/CreateProfileRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/CreateRefundRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/CreateSalesInvoiceRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/CreateSubscriptionRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/CreateWebhookRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/DeleteCustomerRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/DeletePaymentLinkRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/DeleteProfileRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/DeleteSalesInvoiceRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/DeleteWebhookRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/GetBalanceReportRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/GetBalanceRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/GetCaptureRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/GetChargebackRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/GetClientRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/GetCurrentOrganizationRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/GetCurrentProfileRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/GetCustomerRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/GetInvoiceRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/GetMandateRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/GetMethodRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/GetNextSettlementRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/GetOnboardingStatusRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/GetOpenSettlementRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/GetOrganizationRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/GetPartnerStatusRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/GetPaymentLinkPaymentsRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/GetPaymentLinkRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/GetPaymentRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/GetPermissionRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/GetPrimaryBalanceRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/GetProfileRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/GetRefundRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/GetSalesInvoiceRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/GetSettlementRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/GetSubscriptionRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/GetTerminalRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/GetWebhookEventRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/GetWebhookRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListAllChargebacksRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListAllMethodsRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListAllRefundsRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListAllSubscriptionsRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListBalanceTransactionsRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListBalancesRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListCapabilitiesRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListCapturesRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListChargebacksRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListClientsRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListCustomerPaymentsRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListCustomersRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListInvoicesRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListMandatesRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListMethodsRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListPaymentLinksRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListPaymentsRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListPermissionsRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListProfilesRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListRefundsRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListSalesInvoicesRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListSettlementCapturesRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListSettlementChargebacksRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListSettlementPaymentsRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListSettlementRefundsRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListSettlementsRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListSubscriptionPaymentsRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListSubscriptionsRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListTerminalsRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ListWebhooksRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/PaymentCreateRouteRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/PaymentListRoutesRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/ReleaseAuthorizationRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/RequestApplePayPaymentSessionRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/RevokeMandateRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/SubmitOnboardingDataRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/TestWebhookRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/UpdateCustomerRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/UpdatePaymentLinkRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/UpdatePaymentRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/UpdateProfileRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/UpdateSalesInvoiceRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/UpdateSubscriptionRequestBuilder.java
+  - src/main/java/com/mollie/mollie/models/operations//async/UpdateWebhookRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/Address.java
   - src/main/java/com/mollie/mollie/models/operations/Amount.java
   - src/main/java/com/mollie/mollie/models/operations/AmountCaptured.java
@@ -3936,7 +4194,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/CreateClientLinkAddress.java
   - src/main/java/com/mollie/mollie/models/operations/CreateClientLinkDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/CreateClientLinkLinks.java
-  - src/main/java/com/mollie/mollie/models/operations/CreateClientLinkLocale.java
   - src/main/java/com/mollie/mollie/models/operations/CreateClientLinkRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/CreateClientLinkRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/CreateClientLinkResponse.java
@@ -4051,6 +4308,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/CreateCustomerPaymentUnitPrice.java
   - src/main/java/com/mollie/mollie/models/operations/CreateCustomerPaymentVatAmount.java
   - src/main/java/com/mollie/mollie/models/operations/CreateCustomerPaymentWallet.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateCustomerPayments.java
   - src/main/java/com/mollie/mollie/models/operations/CreateCustomerRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/CreateCustomerRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/CreateCustomerResponse.java
@@ -4075,9 +4333,13 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentApplicationFee.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentBillingAddress.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentCaptureMode.java
+  - src/main/java/com/mollie/mollie/models/operations/CreatePaymentCaptures.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentCategories.java
+  - src/main/java/com/mollie/mollie/models/operations/CreatePaymentChargebacks.java
+  - src/main/java/com/mollie/mollie/models/operations/CreatePaymentDashboard.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentDestination.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentDiscountAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/CreatePaymentDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentLines.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentLinkAmount.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentLinkApplicationFee.java
@@ -4121,6 +4383,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentPayment.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentPaymentsAmount.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentPaymentsLinks.java
+  - src/main/java/com/mollie/mollie/models/operations/CreatePaymentPaymentsLocale.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentPaymentsMode.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentPaymentsRequestAmount.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentPaymentsResponse201Amount.java
@@ -4132,6 +4395,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentPaymentsStatus.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentPaymentsType.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentRecurring.java
+  - src/main/java/com/mollie/mollie/models/operations/CreatePaymentRefunds.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentRequest.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/CreatePaymentRequestBuilder.java
@@ -4150,7 +4414,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/CreateProfileDashboard.java
   - src/main/java/com/mollie/mollie/models/operations/CreateProfileDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/CreateProfileLinks.java
-  - src/main/java/com/mollie/mollie/models/operations/CreateProfileMethods.java
   - src/main/java/com/mollie/mollie/models/operations/CreateProfileMode.java
   - src/main/java/com/mollie/mollie/models/operations/CreateProfilePayments.java
   - src/main/java/com/mollie/mollie/models/operations/CreateProfileProfilesStatus.java
@@ -4252,6 +4515,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/CreateWebhookResponse.java
   - src/main/java/com/mollie/mollie/models/operations/CreateWebhookResponseBody.java
   - src/main/java/com/mollie/mollie/models/operations/CreateWebhookStatus.java
+  - src/main/java/com/mollie/mollie/models/operations/CreateWebhookWebhookEventTypes.java
   - src/main/java/com/mollie/mollie/models/operations/Currencies.java
   - src/main/java/com/mollie/mollie/models/operations/Currency.java
   - src/main/java/com/mollie/mollie/models/operations/Customer.java
@@ -4314,7 +4578,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/EntityType.java
   - src/main/java/com/mollie/mollie/models/operations/EntityUnitPrice.java
   - src/main/java/com/mollie/mollie/models/operations/EntityVatAmount.java
-  - src/main/java/com/mollie/mollie/models/operations/EventTypes.java
   - src/main/java/com/mollie/mollie/models/operations/Events.java
   - src/main/java/com/mollie/mollie/models/operations/ExternalReference.java
   - src/main/java/com/mollie/mollie/models/operations/FailedPayment.java
@@ -4364,7 +4627,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyPrepaymentPartType.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodySubtotals.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAmount.java
-  - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceAmount.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceCardAudience.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceCardIssuer.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceCardRegion.java
@@ -4394,7 +4656,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceMovedFromPendingPrepaymentPartType.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceMovedFromPendingSubTotals.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceMovedFromPendingTransactionType.java
-  - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceOpenMethod.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalancePrepaymentPartType.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceSubTotals.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceTransactionType.java
@@ -4731,6 +4992,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPaymentsSubtotals.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPaymentsTransactionType.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPending.java
+  - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceAmount.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceCardAudience.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceCardIssuer.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceCardRegion.java
@@ -4756,6 +5018,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceOpenCardIssuer.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceOpenCardRegion.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceOpenFeeType.java
+  - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceOpenMethod.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceOpenPrepaymentPartType.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceOpenSubTotals.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceOpenTransactionType.java
@@ -4953,7 +5216,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportCardAudience.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportCardIssuer.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportCardRegion.java
-  - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportChargebacks.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportClose.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportFeeType.java
@@ -4963,10 +5225,8 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportMethod.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportMovedToAvailable.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportOpen.java
-  - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportPayments.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportPending.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportPrepaymentPartType.java
-  - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportRefunds.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportRequest.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportResponse.java
@@ -5155,7 +5415,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetOpenSettlementSelf.java
   - src/main/java/com/mollie/mollie/models/operations/GetOpenSettlementStatus.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrganizationAddress.java
-  - src/main/java/com/mollie/mollie/models/operations/GetOrganizationDashboard.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrganizationDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrganizationLinks.java
   - src/main/java/com/mollie/mollie/models/operations/GetOrganizationLocale.java
@@ -5323,6 +5582,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentPaymentsType.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentPaypalFee.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentQrCode.java
+  - src/main/java/com/mollie/mollie/models/operations/GetPaymentQueryParamEmbed.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentReceipt.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentRecurring.java
   - src/main/java/com/mollie/mollie/models/operations/GetPaymentRefunds.java
@@ -5438,7 +5698,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetSalesInvoiceVatMode.java
   - src/main/java/com/mollie/mollie/models/operations/GetSalesInvoiceVatScheme.java
   - src/main/java/com/mollie/mollie/models/operations/GetSettlementAmount.java
-  - src/main/java/com/mollie/mollie/models/operations/GetSettlementCaptures.java
   - src/main/java/com/mollie/mollie/models/operations/GetSettlementChargebacks.java
   - src/main/java/com/mollie/mollie/models/operations/GetSettlementDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/GetSettlementLinks.java
@@ -5477,6 +5736,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetTerminalResponseBody.java
   - src/main/java/com/mollie/mollie/models/operations/GetTerminalSelf.java
   - src/main/java/com/mollie/mollie/models/operations/GetTerminalStatus.java
+  - src/main/java/com/mollie/mollie/models/operations/GetWebhookDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/GetWebhookEventDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/GetWebhookEventEmbedded.java
   - src/main/java/com/mollie/mollie/models/operations/GetWebhookEventEntity.java
@@ -5492,12 +5752,15 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/GetWebhookEventResponse.java
   - src/main/java/com/mollie/mollie/models/operations/GetWebhookEventResponseBody.java
   - src/main/java/com/mollie/mollie/models/operations/GetWebhookEventSelf.java
+  - src/main/java/com/mollie/mollie/models/operations/GetWebhookEventWebhookEventTypes.java
+  - src/main/java/com/mollie/mollie/models/operations/GetWebhookLinks.java
   - src/main/java/com/mollie/mollie/models/operations/GetWebhookMode.java
   - src/main/java/com/mollie/mollie/models/operations/GetWebhookRequest.java
   - src/main/java/com/mollie/mollie/models/operations/GetWebhookRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/GetWebhookResponse.java
   - src/main/java/com/mollie/mollie/models/operations/GetWebhookResponseBody.java
   - src/main/java/com/mollie/mollie/models/operations/GetWebhookStatus.java
+  - src/main/java/com/mollie/mollie/models/operations/GetWebhookWebhookEventTypes.java
   - src/main/java/com/mollie/mollie/models/operations/GrossAmount.java
   - src/main/java/com/mollie/mollie/models/operations/Grouping.java
   - src/main/java/com/mollie/mollie/models/operations/Id.java
@@ -5568,6 +5831,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListAllRefundsPayment.java
   - src/main/java/com/mollie/mollie/models/operations/ListAllRefundsPrevious.java
   - src/main/java/com/mollie/mollie/models/operations/ListAllRefundsQueryParamEmbed.java
+  - src/main/java/com/mollie/mollie/models/operations/ListAllRefundsQueryParamSort.java
   - src/main/java/com/mollie/mollie/models/operations/ListAllRefundsRefunds.java
   - src/main/java/com/mollie/mollie/models/operations/ListAllRefundsRefundsAmount.java
   - src/main/java/com/mollie/mollie/models/operations/ListAllRefundsRefundsDocumentation.java
@@ -5623,17 +5887,13 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListBalanceTransactionsSelf.java
   - src/main/java/com/mollie/mollie/models/operations/ListBalanceTransactionsType.java
   - src/main/java/com/mollie/mollie/models/operations/ListBalancesAvailableAmount.java
-  - src/main/java/com/mollie/mollie/models/operations/ListBalancesBalancesDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/ListBalancesBalancesLinks.java
   - src/main/java/com/mollie/mollie/models/operations/ListBalancesBalancesSelf.java
   - src/main/java/com/mollie/mollie/models/operations/ListBalancesCurrency.java
   - src/main/java/com/mollie/mollie/models/operations/ListBalancesDocumentation.java
-  - src/main/java/com/mollie/mollie/models/operations/ListBalancesEmbedded.java
   - src/main/java/com/mollie/mollie/models/operations/ListBalancesLinks.java
   - src/main/java/com/mollie/mollie/models/operations/ListBalancesMode.java
-  - src/main/java/com/mollie/mollie/models/operations/ListBalancesNext.java
   - src/main/java/com/mollie/mollie/models/operations/ListBalancesPendingAmount.java
-  - src/main/java/com/mollie/mollie/models/operations/ListBalancesPrevious.java
   - src/main/java/com/mollie/mollie/models/operations/ListBalancesRequest.java
   - src/main/java/com/mollie/mollie/models/operations/ListBalancesRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/ListBalancesResponse.java
@@ -5844,7 +6104,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListInvoicesLinks.java
   - src/main/java/com/mollie/mollie/models/operations/ListInvoicesNext.java
   - src/main/java/com/mollie/mollie/models/operations/ListInvoicesPrevious.java
-  - src/main/java/com/mollie/mollie/models/operations/ListInvoicesQueryParamSort.java
   - src/main/java/com/mollie/mollie/models/operations/ListInvoicesRequest.java
   - src/main/java/com/mollie/mollie/models/operations/ListInvoicesRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/ListInvoicesResponse.java
@@ -5872,11 +6131,13 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListMandatesSelf.java
   - src/main/java/com/mollie/mollie/models/operations/ListMandatesStatus.java
   - src/main/java/com/mollie/mollie/models/operations/ListMethodsDocumentation.java
+  - src/main/java/com/mollie/mollie/models/operations/ListMethodsEmbedded.java
   - src/main/java/com/mollie/mollie/models/operations/ListMethodsId.java
   - src/main/java/com/mollie/mollie/models/operations/ListMethodsImage.java
   - src/main/java/com/mollie/mollie/models/operations/ListMethodsIssuers.java
   - src/main/java/com/mollie/mollie/models/operations/ListMethodsLinks.java
   - src/main/java/com/mollie/mollie/models/operations/ListMethodsMaximumAmount.java
+  - src/main/java/com/mollie/mollie/models/operations/ListMethodsMethods.java
   - src/main/java/com/mollie/mollie/models/operations/ListMethodsMethodsDocumentation.java
   - src/main/java/com/mollie/mollie/models/operations/ListMethodsMethodsImage.java
   - src/main/java/com/mollie/mollie/models/operations/ListMethodsMethodsLinks.java
@@ -5954,6 +6215,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentsMethod.java
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentsMobileAppCheckout.java
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentsMode.java
+  - src/main/java/com/mollie/mollie/models/operations/ListPaymentsNext.java
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentsOrder.java
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentsPayOnline.java
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentsPayment.java
@@ -5970,7 +6232,9 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentsPaymentsStatus.java
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentsPaymentsType.java
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentsPaypalFee.java
+  - src/main/java/com/mollie/mollie/models/operations/ListPaymentsPrevious.java
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentsQrCode.java
+  - src/main/java/com/mollie/mollie/models/operations/ListPaymentsQueryParamSort.java
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentsReceipt.java
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentsRecurring.java
   - src/main/java/com/mollie/mollie/models/operations/ListPaymentsRefunds.java
@@ -6038,6 +6302,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListRefundsNext.java
   - src/main/java/com/mollie/mollie/models/operations/ListRefundsPayment.java
   - src/main/java/com/mollie/mollie/models/operations/ListRefundsPrevious.java
+  - src/main/java/com/mollie/mollie/models/operations/ListRefundsQueryParamEmbed.java
   - src/main/java/com/mollie/mollie/models/operations/ListRefundsRefunds.java
   - src/main/java/com/mollie/mollie/models/operations/ListRefundsRefundsAmount.java
   - src/main/java/com/mollie/mollie/models/operations/ListRefundsRefundsDocumentation.java
@@ -6101,7 +6366,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListSettlementCapturesNext.java
   - src/main/java/com/mollie/mollie/models/operations/ListSettlementCapturesPayment.java
   - src/main/java/com/mollie/mollie/models/operations/ListSettlementCapturesPrevious.java
-  - src/main/java/com/mollie/mollie/models/operations/ListSettlementCapturesQueryParamEmbed.java
   - src/main/java/com/mollie/mollie/models/operations/ListSettlementCapturesRequest.java
   - src/main/java/com/mollie/mollie/models/operations/ListSettlementCapturesRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/ListSettlementCapturesResponse.java
@@ -6179,7 +6443,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListSettlementPaymentsPaypalFee.java
   - src/main/java/com/mollie/mollie/models/operations/ListSettlementPaymentsPrevious.java
   - src/main/java/com/mollie/mollie/models/operations/ListSettlementPaymentsQrCode.java
-  - src/main/java/com/mollie/mollie/models/operations/ListSettlementPaymentsQueryParamSort.java
   - src/main/java/com/mollie/mollie/models/operations/ListSettlementPaymentsReceipt.java
   - src/main/java/com/mollie/mollie/models/operations/ListSettlementPaymentsRecurring.java
   - src/main/java/com/mollie/mollie/models/operations/ListSettlementPaymentsRefunds.java
@@ -6225,7 +6488,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListSettlementRefundsNext.java
   - src/main/java/com/mollie/mollie/models/operations/ListSettlementRefundsPayment.java
   - src/main/java/com/mollie/mollie/models/operations/ListSettlementRefundsPrevious.java
-  - src/main/java/com/mollie/mollie/models/operations/ListSettlementRefundsQueryParamEmbed.java
   - src/main/java/com/mollie/mollie/models/operations/ListSettlementRefundsRefunds.java
   - src/main/java/com/mollie/mollie/models/operations/ListSettlementRefundsRequest.java
   - src/main/java/com/mollie/mollie/models/operations/ListSettlementRefundsRequestBuilder.java
@@ -6400,6 +6662,9 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/ListWebhooksResponseBody.java
   - src/main/java/com/mollie/mollie/models/operations/ListWebhooksSelf.java
   - src/main/java/com/mollie/mollie/models/operations/ListWebhooksStatus.java
+  - src/main/java/com/mollie/mollie/models/operations/ListWebhooksWebhookEventTypes.java
+  - src/main/java/com/mollie/mollie/models/operations/ListWebhooksWebhooksDocumentation.java
+  - src/main/java/com/mollie/mollie/models/operations/ListWebhooksWebhooksLinks.java
   - src/main/java/com/mollie/mollie/models/operations/Locale.java
   - src/main/java/com/mollie/mollie/models/operations/ManagedFee.java
   - src/main/java/com/mollie/mollie/models/operations/Mandate.java
@@ -6479,11 +6744,11 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/QrCode.java
   - src/main/java/com/mollie/mollie/models/operations/QueryParamAmount.java
   - src/main/java/com/mollie/mollie/models/operations/QueryParamEmbed.java
-  - src/main/java/com/mollie/mollie/models/operations/QueryParamEventTypes.java
   - src/main/java/com/mollie/mollie/models/operations/QueryParamInclude.java
   - src/main/java/com/mollie/mollie/models/operations/QueryParamLocale.java
   - src/main/java/com/mollie/mollie/models/operations/QueryParamSequenceType.java
   - src/main/java/com/mollie/mollie/models/operations/QueryParamSort.java
+  - src/main/java/com/mollie/mollie/models/operations/QueryParamWebhookEventTypes.java
   - src/main/java/com/mollie/mollie/models/operations/Reason.java
   - src/main/java/com/mollie/mollie/models/operations/Receipt.java
   - src/main/java/com/mollie/mollie/models/operations/Recipient.java
@@ -6772,7 +7037,8 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionSubscriptionsAmount.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionSubscriptionsMetadata.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionSubscriptionsResponseAmount.java
-  - src/main/java/com/mollie/mollie/models/operations/UpdateWebhookEventTypes.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateWebhookDocumentation.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateWebhookLinks.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateWebhookMode.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateWebhookRequest.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateWebhookRequestBody.java
@@ -6780,6 +7046,8 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/UpdateWebhookResponse.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateWebhookResponseBody.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateWebhookStatus.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateWebhookWebhookEventTypes.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateWebhookWebhooksWebhookEventTypes.java
   - src/main/java/com/mollie/mollie/models/operations/Url.java
   - src/main/java/com/mollie/mollie/models/operations/UserAgentTokens.java
   - src/main/java/com/mollie/mollie/models/operations/VatAmount.java
@@ -6787,7 +7055,101 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/VatRegulation.java
   - src/main/java/com/mollie/mollie/models/operations/VatScheme.java
   - src/main/java/com/mollie/mollie/models/operations/Wallet.java
+  - src/main/java/com/mollie/mollie/models/operations/WebhookEventTypes.java
   - src/main/java/com/mollie/mollie/models/operations/Webhooks.java
+  - src/main/java/com/mollie/mollie/models/operations/async/CancelPaymentResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/CancelRefundResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/CancelSubscriptionResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/CreateCaptureResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/CreateClientLinkResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/CreateCustomerPaymentResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/CreateCustomerResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/CreateMandateResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/CreatePaymentLinkResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/CreatePaymentResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/CreateProfileResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/CreateRefundResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/CreateSalesInvoiceResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/CreateSubscriptionResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/CreateWebhookResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/DeleteCustomerResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/DeletePaymentLinkResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/DeleteProfileResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/DeleteSalesInvoiceResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/DeleteWebhookResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/GetBalanceReportResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/GetBalanceResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/GetCaptureResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/GetChargebackResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/GetClientResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/GetCurrentOrganizationResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/GetCurrentProfileResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/GetCustomerResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/GetInvoiceResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/GetMandateResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/GetMethodResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/GetNextSettlementResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/GetOnboardingStatusResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/GetOpenSettlementResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/GetOrganizationResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/GetPartnerStatusResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/GetPaymentLinkPaymentsResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/GetPaymentLinkResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/GetPaymentResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/GetPermissionResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/GetPrimaryBalanceResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/GetProfileResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/GetRefundResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/GetSalesInvoiceResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/GetSettlementResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/GetSubscriptionResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/GetTerminalResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/GetWebhookEventResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/GetWebhookResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListAllChargebacksResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListAllMethodsResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListAllRefundsResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListAllSubscriptionsResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListBalanceTransactionsResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListBalancesResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListCapabilitiesResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListCapturesResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListChargebacksResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListClientsResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListCustomerPaymentsResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListCustomersResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListInvoicesResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListMandatesResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListMethodsResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListPaymentLinksResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListPaymentsResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListPermissionsResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListProfilesResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListRefundsResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListSalesInvoicesResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListSettlementCapturesResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListSettlementChargebacksResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListSettlementPaymentsResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListSettlementRefundsResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListSettlementsResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListSubscriptionPaymentsResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListSubscriptionsResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListTerminalsResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ListWebhooksResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/PaymentCreateRouteResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/PaymentListRoutesResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/ReleaseAuthorizationResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/RequestApplePayPaymentSessionResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/RevokeMandateResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/SubmitOnboardingDataResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/TestWebhookResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/UpdateCustomerResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/UpdatePaymentLinkResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/UpdatePaymentResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/UpdateProfileResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/UpdateSalesInvoiceResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/UpdateSubscriptionResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/async/UpdateWebhookResponse.java
   - src/main/java/com/mollie/mollie/operations/CancelPayment.java
   - src/main/java/com/mollie/mollie/operations/CancelRefund.java
   - src/main/java/com/mollie/mollie/operations/CancelSubscription.java
@@ -6882,9 +7244,15 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/operations/UpdateSalesInvoice.java
   - src/main/java/com/mollie/mollie/operations/UpdateSubscription.java
   - src/main/java/com/mollie/mollie/operations/UpdateWebhook.java
+  - src/main/java/com/mollie/mollie/utils/AsyncHook.java
+  - src/main/java/com/mollie/mollie/utils/AsyncHooks.java
+  - src/main/java/com/mollie/mollie/utils/AsyncResponse.java
+  - src/main/java/com/mollie/mollie/utils/AsyncRetries.java
+  - src/main/java/com/mollie/mollie/utils/AsyncRetryableException.java
   - src/main/java/com/mollie/mollie/utils/BackoffStrategy.java
   - src/main/java/com/mollie/mollie/utils/BigDecimalString.java
   - src/main/java/com/mollie/mollie/utils/BigIntegerString.java
+  - src/main/java/com/mollie/mollie/utils/Blob.java
   - src/main/java/com/mollie/mollie/utils/BlockingParser.java
   - src/main/java/com/mollie/mollie/utils/Constants.java
   - src/main/java/com/mollie/mollie/utils/CopiableInputStream.java
@@ -6900,6 +7268,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/utils/HeaderMetadata.java
   - src/main/java/com/mollie/mollie/utils/Helpers.java
   - src/main/java/com/mollie/mollie/utils/Hook.java
+  - src/main/java/com/mollie/mollie/utils/HookAdapters.java
   - src/main/java/com/mollie/mollie/utils/Hooks.java
   - src/main/java/com/mollie/mollie/utils/JSON.java
   - src/main/java/com/mollie/mollie/utils/LazySingletonValue.java
@@ -6907,6 +7276,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/utils/Multipart.java
   - src/main/java/com/mollie/mollie/utils/MultipartFormMetadata.java
   - src/main/java/com/mollie/mollie/utils/NameValue.java
+  - src/main/java/com/mollie/mollie/utils/NonRetryableException.java
   - src/main/java/com/mollie/mollie/utils/OneOfDeserializer.java
   - src/main/java/com/mollie/mollie/utils/Options.java
   - src/main/java/com/mollie/mollie/utils/PathParamsMetadata.java
@@ -6922,6 +7292,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/utils/ResponseWithBody.java
   - src/main/java/com/mollie/mollie/utils/Retries.java
   - src/main/java/com/mollie/mollie/utils/RetryConfig.java
+  - src/main/java/com/mollie/mollie/utils/RetryableException.java
   - src/main/java/com/mollie/mollie/utils/Security.java
   - src/main/java/com/mollie/mollie/utils/SecurityMetadata.java
   - src/main/java/com/mollie/mollie/utils/SerializedBody.java
@@ -6933,6 +7304,8 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/utils/Types.java
   - src/main/java/com/mollie/mollie/utils/Utf8UrlEncoder.java
   - src/main/java/com/mollie/mollie/utils/Utils.java
+  - src/main/java/com/mollie/mollie/utils/reactive/EventStream.java
+  - src/main/java/com/mollie/mollie/utils/reactive/ReactiveUtils.java
 examples:
   create-payment:
     create-payment-201-1:
@@ -10356,7 +10729,7 @@ examples:
         application/json: {"name": "Webhook #1", "url": "https://mollie.com/", "eventTypes": "payment-link.paid", "testmode": false}
       responses:
         "201":
-          application/hal+json: {"resource": "webhook", "id": "hook_tNP6fpF9fLJpFWziRcgiH", "url": "https://example.com/webhook-endpoint", "profileId": "pfl_YyoaNFjtHc", "createdAt": "2023-01-01T12:00:00Z", "name": "Profile Updates Webhook", "eventTypes": ["sales-invoice.paid, sales-invoice.canceled"], "status": "enabled", "mode": "live", "webhookSecret": "secret", "_links": {"documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"resource": "webhook", "id": "hook_tNP6fpF9fLJpFWziRcgiH", "url": "https://example.com/webhook-endpoint", "profileId": "pfl_YyoaNFjtHc", "createdAt": "2023-01-01T12:00:00Z", "name": "Profile Updates Webhook", "eventTypes": ["payment-link.paid"], "status": "enabled", "mode": "live", "webhookSecret": "secret", "_links": {"documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "422":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   list-webhooks:
@@ -10370,7 +10743,7 @@ examples:
           testmode: false
       responses:
         "200":
-          application/hal+json: {"count": 2, "_embedded": {"webhooks": [{"resource": "webhook", "id": "hook_yjtBMWDCGw5YFSPQ3HPzH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:09:56+00:00", "name": "Webhook #2", "eventTypes": ["payment-link.paid", "payment.failed"], "status": "enabled", "mode": "live"}, {"resource": "webhook", "id": "hook_qHknfTxaDx6s8JNhuGPzH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:08:48+00:00", "name": "Webhook #1", "eventTypes": ["payment-link.paid"], "status": "blocked", "mode": "live"}]}, "_links": {"self": {"href": "https://api.mollie.localhost/v2/webhooks?from=hook_yjtBMWDCGw5YFSPQ3HPzH&limit=2", "type": "application/hal+json"}, "previous": {"href": "https://api.mollie.localhost/v2/webhooks?from=hook_5foxphpBru4xNPCDJJPzH&limit=2", "type": "application/hal+json"}, "next": {"href": "https://api.mollie.localhost/v2/webhooks?from=hook_fTqARmWsfs9oXvKbZEPzH&limit=2", "type": "application/hal+json"}, "documentation": {"href": "https://docs.mollie.com/reference/list-webhook", "type": "text/html"}}}
+          application/hal+json: {"count": 2, "_embedded": {"webhooks": [{"resource": "webhook", "id": "hook_yjtBMWDCGw5YFSPQ3HPzH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:09:56+00:00", "name": "Webhook #2", "eventTypes": ["payment-link.paid", "sales-invoice.created"], "status": "enabled", "mode": "live", "_links": {"documentation": {"href": "https://docs.mollie.com/reference/get-webhook", "type": "text/html"}}}, {"resource": "webhook", "id": "hook_qHknfTxaDx6s8JNhuGPzH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:08:48+00:00", "name": "Webhook #1", "eventTypes": ["payment-link.paid"], "status": "blocked", "mode": "live", "_links": {"documentation": {"href": "https://docs.mollie.com/reference/get-webhook", "type": "text/html"}}}]}, "_links": {"self": {"href": "https://api.mollie.localhost/v2/webhooks?from=hook_yjtBMWDCGw5YFSPQ3HPzH&limit=2", "type": "application/hal+json"}, "previous": {"href": "https://api.mollie.localhost/v2/webhooks?from=hook_5foxphpBru4xNPCDJJPzH&limit=2", "type": "application/hal+json"}, "next": {"href": "https://api.mollie.localhost/v2/webhooks?from=hook_fTqARmWsfs9oXvKbZEPzH&limit=2", "type": "application/hal+json"}, "documentation": {"href": "https://docs.mollie.com/reference/list-webhook", "type": "text/html"}}}
     "":
       parameters:
         query:
@@ -10392,7 +10765,7 @@ examples:
           testmode: false
       responses:
         "200":
-          application/hal+json: {"count": 5, "_embedded": {"webhooks": [{"resource": "webhook", "id": "hook_tNP6fpF9fLJpFWziRcgiH", "url": "https://example.com/webhook-endpoint", "profileId": "pfl_YyoaNFjtHc", "createdAt": "2023-03-15T10:00:00Z", "name": "Profile Updates Webhook", "eventTypes": ["profile.create profile.blocked"], "status": "enabled"}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"count": 5, "_embedded": {"webhooks": [{"resource": "webhook", "id": "hook_tNP6fpF9fLJpFWziRcgiH", "url": "https://example.com/webhook-endpoint", "profileId": "pfl_YyoaNFjtHc", "createdAt": "2023-03-15T10:00:00Z", "name": "Profile Updates Webhook", "eventTypes": ["balance-transaction.created"], "status": "enabled", "mode": "live", "_links": {"documentation": {"href": "https://...", "type": "application/hal+json"}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "400":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   update-webhook:
@@ -10404,7 +10777,7 @@ examples:
         application/json: {"name": "Webhook #1", "url": "https://mollie.com/", "eventTypes": "payment-link.paid", "testmode": false}
       responses:
         "200":
-          application/hal+json: {"resource": "webhook", "id": "hook_B2EyhTH5N4KWUnoYPcgiH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:09:56+00:00", "name": "Webhook #1", "eventTypes": ["payment-link.paid"], "status": "enabled", "mode": "live"}
+          application/hal+json: {"resource": "webhook", "id": "hook_B2EyhTH5N4KWUnoYPcgiH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:09:56+00:00", "name": "Webhook #1", "eventTypes": ["payment-link.paid"], "status": "enabled", "mode": "live", "_links": {"documentation": {"href": "https://docs.mollie.com/reference/create-webhook", "type": "text/html"}}}
     "":
       parameters:
         path:
@@ -10424,7 +10797,7 @@ examples:
         application/json: {"name": "Webhook #1", "url": "https://mollie.com/", "eventTypes": "payment-link.paid", "testmode": false}
       responses:
         "200":
-          application/hal+json: {"resource": "webhook", "id": "hook_tNP6fpF9fLJpFWziRcgiH", "url": "https://example.com/webhook-endpoint", "profileId": "pfl_YyoaNFjtHc", "createdAt": "2023-03-15T10:00:00Z", "name": "Profile Updates Webhook", "eventTypes": ["profile.create", "profile.blocked"], "status": "enabled", "mode": "live"}
+          application/hal+json: {"resource": "webhook", "id": "hook_tNP6fpF9fLJpFWziRcgiH", "url": "https://example.com/webhook-endpoint", "profileId": "pfl_YyoaNFjtHc", "createdAt": "2023-03-15T10:00:00Z", "name": "Profile Updates Webhook", "eventTypes": ["sales-invoice.canceled", "sales-invoice.created"], "status": "enabled", "mode": "live", "_links": {"documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
         "422":
@@ -10438,7 +10811,7 @@ examples:
           testmode: false
       responses:
         "200":
-          application/hal+json: {"resource": "webhook", "id": "hook_B2EyhTH5N4KWUnoYPcgiH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:09:56+00:00", "name": "Webhook #1", "eventTypes": ["payment-link.paid", "sales-invoice.paid"], "status": "enabled", "mode": "test"}
+          application/hal+json: {"resource": "webhook", "id": "hook_B2EyhTH5N4KWUnoYPcgiH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:09:56+00:00", "name": "Webhook #1", "eventTypes": ["payment-link.paid", "sales-invoice.paid"], "status": "enabled", "mode": "test", "_links": {"documentation": {"href": "https://docs.mollie.com/reference/get-webhook", "type": "text/html"}}}
     get-webhook-200-1:
       parameters:
         path:
@@ -10447,7 +10820,7 @@ examples:
           testmode: false
       responses:
         "200":
-          application/hal+json: {"resource": "webhook", "id": "hook_B2EyhTH5N4KWUnoYPcgiH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:09:56+00:00", "name": "Webhook #1", "eventTypes": ["payment-link.paid"], "status": "deleted", "mode": "test"}
+          application/hal+json: {"resource": "webhook", "id": "hook_B2EyhTH5N4KWUnoYPcgiH", "url": "https://mollie.com", "profileId": "pfl_8XcSdLtrNK", "createdAt": "2024-12-06T10:09:56+00:00", "name": "Webhook #1", "eventTypes": ["payment-link.paid"], "status": "deleted", "mode": "test", "_links": {"documentation": {"href": "https://docs.mollie.com/reference/get-webhook", "type": "text/html"}}}
     "":
       parameters:
         path:
@@ -10467,7 +10840,7 @@ examples:
           testmode: false
       responses:
         "200":
-          application/hal+json: {"resource": "webhook", "id": "hook_tNP6fpF9fLJpFWziRcgiH", "url": "https://example.com/webhook-endpoint", "profileId": "pfl_YyoaNFjtHc", "createdAt": "2023-03-15T10:00:00Z", "name": "Profile Updates Webhook", "eventTypes": ["profile.create", "profile.blocked"], "status": "enabled", "mode": "live"}
+          application/hal+json: {"resource": "webhook", "id": "hook_tNP6fpF9fLJpFWziRcgiH", "url": "https://example.com/webhook-endpoint", "profileId": "pfl_YyoaNFjtHc", "createdAt": "2023-03-15T10:00:00Z", "name": "Profile Updates Webhook", "eventTypes": ["sales-invoice.issued", "balance-transaction.created"], "status": "enabled", "mode": "live", "_links": {"documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
         "422":
@@ -10801,3 +11174,4 @@ examples:
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Java SDK Changes Detected:\n* `client.webhooks.create()`: \n  *  `request` **Changed** **Breaking** :warning:\n  *  `response` **Changed** **Breaking** :warning:\n* `client.webhooks.list()`: \n  *  `request.eventTypes` **Changed**\n  *  `response` **Changed** **Breaking** :warning:\n* `client.webhooks.update()`: \n  *  `requestbody` **Changed** **Breaking** :warning:\n  *  `response` **Changed** **Breaking** :warning:\n* `client.webhooks.get()`:  `response` **Changed** **Breaking** :warning:\n* `client.webhookEvents.get()`:  `response` **Changed** **Breaking** :warning:\n"

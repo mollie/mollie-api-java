@@ -41,7 +41,7 @@ public class ListWebhooksRequest {
      * Used to filter out only the webhooks that are subscribed to certain types of events.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=eventTypes")
-    private Optional<? extends QueryParamEventTypes> eventTypes;
+    private Optional<? extends QueryParamWebhookEventTypes> eventTypes;
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -58,7 +58,7 @@ public class ListWebhooksRequest {
             Optional<String> from,
             JsonNullable<Long> limit,
             JsonNullable<? extends ListWebhooksQueryParamSort> sort,
-            Optional<? extends QueryParamEventTypes> eventTypes,
+            Optional<? extends QueryParamWebhookEventTypes> eventTypes,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(from, "from");
         Utils.checkNotNull(limit, "limit");
@@ -109,8 +109,8 @@ public class ListWebhooksRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<QueryParamEventTypes> eventTypes() {
-        return (Optional<QueryParamEventTypes>) eventTypes;
+    public Optional<QueryParamWebhookEventTypes> eventTypes() {
+        return (Optional<QueryParamWebhookEventTypes>) eventTypes;
     }
 
     /**
@@ -192,7 +192,7 @@ public class ListWebhooksRequest {
     /**
      * Used to filter out only the webhooks that are subscribed to certain types of events.
      */
-    public ListWebhooksRequest withEventTypes(QueryParamEventTypes eventTypes) {
+    public ListWebhooksRequest withEventTypes(QueryParamWebhookEventTypes eventTypes) {
         Utils.checkNotNull(eventTypes, "eventTypes");
         this.eventTypes = Optional.ofNullable(eventTypes);
         return this;
@@ -202,7 +202,7 @@ public class ListWebhooksRequest {
     /**
      * Used to filter out only the webhooks that are subscribed to certain types of events.
      */
-    public ListWebhooksRequest withEventTypes(Optional<? extends QueryParamEventTypes> eventTypes) {
+    public ListWebhooksRequest withEventTypes(Optional<? extends QueryParamWebhookEventTypes> eventTypes) {
         Utils.checkNotNull(eventTypes, "eventTypes");
         this.eventTypes = eventTypes;
         return this;
@@ -277,7 +277,7 @@ public class ListWebhooksRequest {
 
         private JsonNullable<? extends ListWebhooksQueryParamSort> sort = JsonNullable.undefined();
 
-        private Optional<? extends QueryParamEventTypes> eventTypes = Optional.empty();
+        private Optional<? extends QueryParamWebhookEventTypes> eventTypes = Optional.empty();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -350,7 +350,7 @@ public class ListWebhooksRequest {
         /**
          * Used to filter out only the webhooks that are subscribed to certain types of events.
          */
-        public Builder eventTypes(QueryParamEventTypes eventTypes) {
+        public Builder eventTypes(QueryParamWebhookEventTypes eventTypes) {
             Utils.checkNotNull(eventTypes, "eventTypes");
             this.eventTypes = Optional.ofNullable(eventTypes);
             return this;
@@ -359,7 +359,7 @@ public class ListWebhooksRequest {
         /**
          * Used to filter out only the webhooks that are subscribed to certain types of events.
          */
-        public Builder eventTypes(Optional<? extends QueryParamEventTypes> eventTypes) {
+        public Builder eventTypes(Optional<? extends QueryParamWebhookEventTypes> eventTypes) {
             Utils.checkNotNull(eventTypes, "eventTypes");
             this.eventTypes = eventTypes;
             return this;

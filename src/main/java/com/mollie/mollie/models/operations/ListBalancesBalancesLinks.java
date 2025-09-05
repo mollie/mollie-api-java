@@ -32,12 +32,12 @@ public class ListBalancesBalancesLinks {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends ListBalancesBalancesDocumentation> documentation;
+    private Optional<? extends ListBalancesDocumentation> documentation;
 
     @JsonCreator
     public ListBalancesBalancesLinks(
             @JsonProperty("self") Optional<? extends ListBalancesBalancesSelf> self,
-            @JsonProperty("documentation") Optional<? extends ListBalancesBalancesDocumentation> documentation) {
+            @JsonProperty("documentation") Optional<? extends ListBalancesDocumentation> documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(documentation, "documentation");
         this.self = self;
@@ -62,8 +62,8 @@ public class ListBalancesBalancesLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListBalancesBalancesDocumentation> documentation() {
-        return (Optional<ListBalancesBalancesDocumentation>) documentation;
+    public Optional<ListBalancesDocumentation> documentation() {
+        return (Optional<ListBalancesDocumentation>) documentation;
     }
 
     public static Builder builder() {
@@ -93,7 +93,7 @@ public class ListBalancesBalancesLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public ListBalancesBalancesLinks withDocumentation(ListBalancesBalancesDocumentation documentation) {
+    public ListBalancesBalancesLinks withDocumentation(ListBalancesDocumentation documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = Optional.ofNullable(documentation);
         return this;
@@ -103,7 +103,7 @@ public class ListBalancesBalancesLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public ListBalancesBalancesLinks withDocumentation(Optional<? extends ListBalancesBalancesDocumentation> documentation) {
+    public ListBalancesBalancesLinks withDocumentation(Optional<? extends ListBalancesDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -141,7 +141,7 @@ public class ListBalancesBalancesLinks {
 
         private Optional<? extends ListBalancesBalancesSelf> self = Optional.empty();
 
-        private Optional<? extends ListBalancesBalancesDocumentation> documentation = Optional.empty();
+        private Optional<? extends ListBalancesDocumentation> documentation = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -170,7 +170,7 @@ public class ListBalancesBalancesLinks {
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder documentation(ListBalancesBalancesDocumentation documentation) {
+        public Builder documentation(ListBalancesDocumentation documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = Optional.ofNullable(documentation);
             return this;
@@ -179,7 +179,7 @@ public class ListBalancesBalancesLinks {
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder documentation(Optional<? extends ListBalancesBalancesDocumentation> documentation) {
+        public Builder documentation(Optional<? extends ListBalancesDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

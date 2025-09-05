@@ -5,43 +5,33 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Optional;
 
 
 public class ListWebhooksEmbedded {
     /**
      * A list of webhooks.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("webhooks")
-    private Optional<? extends List<Webhooks>> webhooks;
+    private List<Webhooks> webhooks;
 
     @JsonCreator
     public ListWebhooksEmbedded(
-            @JsonProperty("webhooks") Optional<? extends List<Webhooks>> webhooks) {
+            @JsonProperty("webhooks") List<Webhooks> webhooks) {
         Utils.checkNotNull(webhooks, "webhooks");
         this.webhooks = webhooks;
-    }
-    
-    public ListWebhooksEmbedded() {
-        this(Optional.empty());
     }
 
     /**
      * A list of webhooks.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<Webhooks>> webhooks() {
-        return (Optional<List<Webhooks>>) webhooks;
+    public List<Webhooks> webhooks() {
+        return webhooks;
     }
 
     public static Builder builder() {
@@ -53,16 +43,6 @@ public class ListWebhooksEmbedded {
      * A list of webhooks.
      */
     public ListWebhooksEmbedded withWebhooks(List<Webhooks> webhooks) {
-        Utils.checkNotNull(webhooks, "webhooks");
-        this.webhooks = Optional.ofNullable(webhooks);
-        return this;
-    }
-
-
-    /**
-     * A list of webhooks.
-     */
-    public ListWebhooksEmbedded withWebhooks(Optional<? extends List<Webhooks>> webhooks) {
         Utils.checkNotNull(webhooks, "webhooks");
         this.webhooks = webhooks;
         return this;
@@ -96,7 +76,7 @@ public class ListWebhooksEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends List<Webhooks>> webhooks = Optional.empty();
+        private List<Webhooks> webhooks;
 
         private Builder() {
           // force use of static builder() method
@@ -107,15 +87,6 @@ public class ListWebhooksEmbedded {
          * A list of webhooks.
          */
         public Builder webhooks(List<Webhooks> webhooks) {
-            Utils.checkNotNull(webhooks, "webhooks");
-            this.webhooks = Optional.ofNullable(webhooks);
-            return this;
-        }
-
-        /**
-         * A list of webhooks.
-         */
-        public Builder webhooks(Optional<? extends List<Webhooks>> webhooks) {
             Utils.checkNotNull(webhooks, "webhooks");
             this.webhooks = webhooks;
             return this;

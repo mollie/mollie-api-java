@@ -13,7 +13,7 @@ import java.lang.String;
 /**
  * Dashboard
  * 
- * <p>Direct link to the payment in the Mollie Dashboard.
+ * <p>Direct link to the organization's Mollie dashboard.
  */
 public class Dashboard {
     /**

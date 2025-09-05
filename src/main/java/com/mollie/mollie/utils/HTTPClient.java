@@ -3,12 +3,16 @@
  */
 package com.mollie.mollie.utils;
 
+import com.mollie.mollie.utils.Blob;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+
+import java.util.concurrent.CompletableFuture;
 
 public interface HTTPClient {
     HttpClient client = HttpClient.newHttpClient();
@@ -34,6 +38,30 @@ public interface HTTPClient {
             throws IOException, InterruptedException, URISyntaxException {
         return client.send(request, HttpResponse.BodyHandlers.ofInputStream());
     }
+
+    /**
+    * Sends an HTTP request asynchronously and returns a response whose body is
+    * exposed as a {@link Blob}.
+    * <p>
+    * This method uses the {@code HttpResponse.BodyHandlers.ofPublisher()} to
+    * obtain the response body as a {@code Flow.Publisher<List<ByteBuffer>>},
+    * which is then wrapped in a {@code Blob} for non-blocking,
+    * reactive consumption of the response data.
+    * <p>
+    * The returned {@code CompletableFuture} completes when the response is
+    * received, or completes exceptionally if an error occurs during the
+    * request or response processing.
+    *
+    * @param request the HTTP request to send
+    * @return a {@code CompletableFuture} containing the HTTP response with a
+    * {@code Blob} body
+    */
+   default CompletableFuture<HttpResponse<Blob>> sendAsync(
+           HttpRequest request) {
+       return client.sendAsync(request, HttpResponse.BodyHandlers.ofPublisher())
+               .thenApply(resp ->
+                       new ResponseWithBody<>(resp, Blob::from));
+   }
 
     /**
      * Controls the debug flag that can be used by clients to perform conditional

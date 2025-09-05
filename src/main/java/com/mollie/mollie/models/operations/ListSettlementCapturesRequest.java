@@ -41,7 +41,7 @@ public class ListSettlementCapturesRequest {
      * `embed` query string parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=embed")
-    private Optional<? extends ListSettlementCapturesQueryParamEmbed> embed;
+    private Optional<? extends Embed> embed;
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -58,7 +58,7 @@ public class ListSettlementCapturesRequest {
             String settlementId,
             Optional<String> from,
             JsonNullable<Long> limit,
-            Optional<? extends ListSettlementCapturesQueryParamEmbed> embed,
+            Optional<? extends Embed> embed,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(settlementId, "settlementId");
         Utils.checkNotNull(from, "from");
@@ -109,8 +109,8 @@ public class ListSettlementCapturesRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListSettlementCapturesQueryParamEmbed> embed() {
-        return (Optional<ListSettlementCapturesQueryParamEmbed>) embed;
+    public Optional<Embed> embed() {
+        return (Optional<Embed>) embed;
     }
 
     /**
@@ -182,7 +182,7 @@ public class ListSettlementCapturesRequest {
      * This endpoint allows you to embed additional resources via the
      * `embed` query string parameter.
      */
-    public ListSettlementCapturesRequest withEmbed(ListSettlementCapturesQueryParamEmbed embed) {
+    public ListSettlementCapturesRequest withEmbed(Embed embed) {
         Utils.checkNotNull(embed, "embed");
         this.embed = Optional.ofNullable(embed);
         return this;
@@ -193,7 +193,7 @@ public class ListSettlementCapturesRequest {
      * This endpoint allows you to embed additional resources via the
      * `embed` query string parameter.
      */
-    public ListSettlementCapturesRequest withEmbed(Optional<? extends ListSettlementCapturesQueryParamEmbed> embed) {
+    public ListSettlementCapturesRequest withEmbed(Optional<? extends Embed> embed) {
         Utils.checkNotNull(embed, "embed");
         this.embed = embed;
         return this;
@@ -268,7 +268,7 @@ public class ListSettlementCapturesRequest {
 
         private JsonNullable<Long> limit = JsonNullable.undefined();
 
-        private Optional<? extends ListSettlementCapturesQueryParamEmbed> embed = Optional.empty();
+        private Optional<? extends Embed> embed = Optional.empty();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -331,7 +331,7 @@ public class ListSettlementCapturesRequest {
          * This endpoint allows you to embed additional resources via the
          * `embed` query string parameter.
          */
-        public Builder embed(ListSettlementCapturesQueryParamEmbed embed) {
+        public Builder embed(Embed embed) {
             Utils.checkNotNull(embed, "embed");
             this.embed = Optional.ofNullable(embed);
             return this;
@@ -341,7 +341,7 @@ public class ListSettlementCapturesRequest {
          * This endpoint allows you to embed additional resources via the
          * `embed` query string parameter.
          */
-        public Builder embed(Optional<? extends ListSettlementCapturesQueryParamEmbed> embed) {
+        public Builder embed(Optional<? extends Embed> embed) {
             Utils.checkNotNull(embed, "embed");
             this.embed = embed;
             return this;

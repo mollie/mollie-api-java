@@ -40,7 +40,7 @@ public class GetSettlementLinks {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("captures")
-    private Optional<? extends GetSettlementCaptures> captures;
+    private Optional<? extends Captures> captures;
 
     /**
      * The API resource URL of the [refunds](list-refunds) deducted from this settlement.
@@ -74,7 +74,7 @@ public class GetSettlementLinks {
     public GetSettlementLinks(
             @JsonProperty("self") Optional<? extends GetSettlementSelf> self,
             @JsonProperty("payments") Optional<? extends GetSettlementPayments> payments,
-            @JsonProperty("captures") Optional<? extends GetSettlementCaptures> captures,
+            @JsonProperty("captures") Optional<? extends Captures> captures,
             @JsonProperty("refunds") Optional<? extends GetSettlementRefunds> refunds,
             @JsonProperty("chargebacks") Optional<? extends GetSettlementChargebacks> chargebacks,
             @JsonProperty("invoice") JsonNullable<? extends Invoice> invoice,
@@ -124,8 +124,8 @@ public class GetSettlementLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetSettlementCaptures> captures() {
-        return (Optional<GetSettlementCaptures>) captures;
+    public Optional<Captures> captures() {
+        return (Optional<Captures>) captures;
     }
 
     /**
@@ -210,7 +210,7 @@ public class GetSettlementLinks {
     /**
      * The API resource URL of the [captures](list-captures) included in this settlement.
      */
-    public GetSettlementLinks withCaptures(GetSettlementCaptures captures) {
+    public GetSettlementLinks withCaptures(Captures captures) {
         Utils.checkNotNull(captures, "captures");
         this.captures = Optional.ofNullable(captures);
         return this;
@@ -220,7 +220,7 @@ public class GetSettlementLinks {
     /**
      * The API resource URL of the [captures](list-captures) included in this settlement.
      */
-    public GetSettlementLinks withCaptures(Optional<? extends GetSettlementCaptures> captures) {
+    public GetSettlementLinks withCaptures(Optional<? extends Captures> captures) {
         Utils.checkNotNull(captures, "captures");
         this.captures = captures;
         return this;
@@ -347,7 +347,7 @@ public class GetSettlementLinks {
 
         private Optional<? extends GetSettlementPayments> payments = Optional.empty();
 
-        private Optional<? extends GetSettlementCaptures> captures = Optional.empty();
+        private Optional<? extends Captures> captures = Optional.empty();
 
         private Optional<? extends GetSettlementRefunds> refunds = Optional.empty();
 
@@ -403,7 +403,7 @@ public class GetSettlementLinks {
         /**
          * The API resource URL of the [captures](list-captures) included in this settlement.
          */
-        public Builder captures(GetSettlementCaptures captures) {
+        public Builder captures(Captures captures) {
             Utils.checkNotNull(captures, "captures");
             this.captures = Optional.ofNullable(captures);
             return this;
@@ -412,7 +412,7 @@ public class GetSettlementLinks {
         /**
          * The API resource URL of the [captures](list-captures) included in this settlement.
          */
-        public Builder captures(Optional<? extends GetSettlementCaptures> captures) {
+        public Builder captures(Optional<? extends Captures> captures) {
             Utils.checkNotNull(captures, "captures");
             this.captures = captures;
             return this;

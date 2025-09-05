@@ -29,9 +29,20 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Captures {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncCaptures asyncSDK;
 
     Captures(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncCaptures(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncCaptures async() {
+        return asyncSDK;
     }
 
     /**

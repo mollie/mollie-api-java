@@ -36,7 +36,7 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonSubtotals 
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("method")
-    private JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyMethod> method;
+    private JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonMethod> method;
 
     /**
      * In case of payments transactions with card, the card issuer will be available
@@ -84,7 +84,7 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonSubtotals 
     public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonSubtotals(
             @JsonProperty("sub-totals") JsonNullable<? extends List<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceMovedFromPendingSubTotals>> subTotals,
             @JsonProperty("count") Optional<Long> count,
-            @JsonProperty("method") JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyMethod> method,
+            @JsonProperty("method") JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonMethod> method,
             @JsonProperty("cardIssuer") JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonCardIssuer> cardIssuer,
             @JsonProperty("cardAudience") JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonCardAudience> cardAudience,
             @JsonProperty("cardRegion") JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonCardRegion> cardRegion,
@@ -136,8 +136,8 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonSubtotals 
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyMethod> method() {
-        return (JsonNullable<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyMethod>) method;
+    public JsonNullable<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonMethod> method() {
+        return (JsonNullable<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonMethod>) method;
     }
 
     /**
@@ -233,7 +233,7 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonSubtotals 
     /**
      * Payment type of the transactions
      */
-    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonSubtotals withMethod(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyMethod method) {
+    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonSubtotals withMethod(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonMethod method) {
         Utils.checkNotNull(method, "method");
         this.method = JsonNullable.of(method);
         return this;
@@ -242,7 +242,7 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonSubtotals 
     /**
      * Payment type of the transactions
      */
-    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonSubtotals withMethod(JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyMethod> method) {
+    public GetBalanceReportBalancesResponse200ApplicationHalPlusJsonSubtotals withMethod(JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonMethod> method) {
         Utils.checkNotNull(method, "method");
         this.method = method;
         return this;
@@ -406,7 +406,7 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonSubtotals 
 
         private Optional<Long> count = Optional.empty();
 
-        private JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyMethod> method = JsonNullable.undefined();
+        private JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonMethod> method = JsonNullable.undefined();
 
         private JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonCardIssuer> cardIssuer = JsonNullable.undefined();
 
@@ -460,7 +460,7 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonSubtotals 
         /**
          * Payment type of the transactions
          */
-        public Builder method(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyMethod method) {
+        public Builder method(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonMethod method) {
             Utils.checkNotNull(method, "method");
             this.method = JsonNullable.of(method);
             return this;
@@ -469,7 +469,7 @@ public class GetBalanceReportBalancesResponse200ApplicationHalPlusJsonSubtotals 
         /**
          * Payment type of the transactions
          */
-        public Builder method(JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyMethod> method) {
+        public Builder method(JsonNullable<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonMethod> method) {
             Utils.checkNotNull(method, "method");
             this.method = method;
             return this;

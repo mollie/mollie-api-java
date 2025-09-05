@@ -25,6 +25,7 @@ This documentation is for the new Mollie's SDK. You can find more details on how
   * [Migration](#migration)
   * [SDK Installation](#sdk-installation)
   * [SDK Example Usage](#sdk-example-usage)
+  * [Asynchronous Support](#asynchronous-support)
   * [Authentication](#authentication)
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Retries](#retries)
@@ -48,7 +49,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:0.16.0'
+implementation 'com.mollie:mollie:0.17.0'
 ```
 
 Maven:
@@ -56,7 +57,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>0.16.0</version>
+    <version>0.17.0</version>
 </dependency>
 ```
 
@@ -85,16 +86,14 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.CreatePaymentPaymentsResponseBody;
-import com.mollie.mollie.models.errors.CreatePaymentResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.errors.ListBalancesBalancesResponseBody;
+import com.mollie.mollie.models.errors.ListBalancesResponseBody;
+import com.mollie.mollie.models.operations.ListBalancesResponse;
 import java.lang.Exception;
-import java.time.LocalDate;
-import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws CreatePaymentResponseBody, CreatePaymentPaymentsResponseBody, Exception {
+    public static void main(String[] args) throws ListBalancesResponseBody, ListBalancesBalancesResponseBody, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -102,238 +101,11 @@ public class Application {
                     .build())
             .build();
 
-        CreatePaymentResponse res = sdk.payments().create()
-                .include(Include.DETAILS_QR_CODE)
-                .requestBody(CreatePaymentRequestBody.builder()
-                    .description("Chess Board")
-                    .amount(Amount.builder()
-                        .currency("EUR")
-                        .value("10.00")
-                        .build())
-                    .redirectUrl("https://example.org/redirect")
-                    .cancelUrl("https://example.org/cancel")
-                    .webhookUrl("https://example.org/webhooks")
-                    .lines(List.of(
-                        Lines.builder()
-                            .description("LEGO 4440 Forest Police Station")
-                            .quantity(1L)
-                            .unitPrice(UnitPrice.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .totalAmount(TotalAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .type(Type.PHYSICAL)
-                            .quantityUnit("pcs")
-                            .discountAmount(DiscountAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .vatRate("21.00")
-                            .vatAmount(VatAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .sku("9780241661628")
-                            .categories(List.of(
-                                Categories.MEAL,
-                                Categories.ECO))
-                            .imageUrl("https://...")
-                            .productUrl("https://...")
-                            .recurring(Recurring.builder()
-                                .interval("... days")
-                                .description("Gym subscription")
-                                .amount(CreatePaymentAmount.builder()
-                                    .currency("EUR")
-                                    .value("10.00")
-                                    .build())
-                                .times(1L)
-                                .startDate("2024-12-12")
-                                .build())
-                            .build(),
-                        Lines.builder()
-                            .description("LEGO 4440 Forest Police Station")
-                            .quantity(1L)
-                            .unitPrice(UnitPrice.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .totalAmount(TotalAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .type(Type.PHYSICAL)
-                            .quantityUnit("pcs")
-                            .discountAmount(DiscountAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .vatRate("21.00")
-                            .vatAmount(VatAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .sku("9780241661628")
-                            .categories(List.of(
-                                Categories.MEAL,
-                                Categories.ECO))
-                            .imageUrl("https://...")
-                            .productUrl("https://...")
-                            .recurring(Recurring.builder()
-                                .interval("... weeks")
-                                .description("Gym subscription")
-                                .amount(CreatePaymentAmount.builder()
-                                    .currency("EUR")
-                                    .value("10.00")
-                                    .build())
-                                .times(1L)
-                                .startDate("2024-12-12")
-                                .build())
-                            .build(),
-                        Lines.builder()
-                            .description("LEGO 4440 Forest Police Station")
-                            .quantity(1L)
-                            .unitPrice(UnitPrice.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .totalAmount(TotalAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .type(Type.PHYSICAL)
-                            .quantityUnit("pcs")
-                            .discountAmount(DiscountAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .vatRate("21.00")
-                            .vatAmount(VatAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .sku("9780241661628")
-                            .categories(List.of(
-                                Categories.MEAL,
-                                Categories.ECO))
-                            .imageUrl("https://...")
-                            .productUrl("https://...")
-                            .recurring(Recurring.builder()
-                                .interval("... days")
-                                .description("Gym subscription")
-                                .amount(CreatePaymentAmount.builder()
-                                    .currency("EUR")
-                                    .value("10.00")
-                                    .build())
-                                .times(1L)
-                                .startDate("2024-12-12")
-                                .build())
-                            .build()))
-                    .billingAddress(BillingAddress.builder()
-                        .title("Mr.")
-                        .givenName("Piet")
-                        .familyName("Mondriaan")
-                        .organizationName("Mollie B.V.")
-                        .streetAndNumber("Keizersgracht 126")
-                        .streetAdditional("Apt. 1")
-                        .postalCode("1234AB")
-                        .email("piet@example.org")
-                        .phone("31208202070")
-                        .city("Amsterdam")
-                        .region("Noord-Holland")
-                        .country("NL")
-                        .build())
-                    .shippingAddress(ShippingAddress.builder()
-                        .title("Mr.")
-                        .givenName("Piet")
-                        .familyName("Mondriaan")
-                        .organizationName("Mollie B.V.")
-                        .streetAndNumber("Keizersgracht 126")
-                        .streetAdditional("Apt. 1")
-                        .postalCode("1234AB")
-                        .email("piet@example.org")
-                        .phone("31208202070")
-                        .city("Amsterdam")
-                        .region("Noord-Holland")
-                        .country("NL")
-                        .build())
-                    .locale(Locale.EN_US)
-                    .method(Method.IDEAL)
-                    .issuer("ideal_INGBNL2A")
-                    .restrictPaymentMethodsToCountry("NL")
-                    .captureMode(CaptureMode.MANUAL)
-                    .captureDelay("8 hours")
-                    .applicationFee(ApplicationFee.builder()
-                        .amount(CreatePaymentPaymentsAmount.builder()
-                            .currency("EUR")
-                            .value("10.00")
-                            .build())
-                        .description("10")
-                        .build())
-                    .routing(List.of(
-                        Routing.builder()
-                            .amount(CreatePaymentPaymentsRequestAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .destination(Destination.builder()
-                                .type(CreatePaymentType.ORGANIZATION)
-                                .organizationId("org_1234567")
-                                .build())
-                            .links(Links.builder()
-                                .self(Self.builder()
-                                    .href("https://...")
-                                    .type("application/hal+json")
-                                    .build())
-                                .payment(Payment.builder()
-                                    .href("https://...")
-                                    .type("application/hal+json")
-                                    .build())
-                                .build())
-                            .releaseDate("2024-12-12")
-                            .build(),
-                        Routing.builder()
-                            .amount(CreatePaymentPaymentsRequestAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .destination(Destination.builder()
-                                .type(CreatePaymentType.ORGANIZATION)
-                                .organizationId("org_1234567")
-                                .build())
-                            .links(Links.builder()
-                                .self(Self.builder()
-                                    .href("https://...")
-                                    .type("application/hal+json")
-                                    .build())
-                                .payment(Payment.builder()
-                                    .href("https://...")
-                                    .type("application/hal+json")
-                                    .build())
-                                .build())
-                            .releaseDate("2024-12-12")
-                            .build()))
-                    .sequenceType(SequenceType.ONEOFF)
-                    .mandateId("mdt_5B8cwPMGnU")
-                    .customerId("cst_5B8cwPMGnU")
-                    .profileId("pfl_5B8cwPMGnU")
-                    .dueDate("2025-01-01")
-                    .testmode(false)
-                    .applePayPaymentToken("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}")
-                    .company(Company.builder()
-                        .registrationNumber("12345678")
-                        .vatNumber("NL123456789B01")
-                        .build())
-                    .cardToken("tkn_12345")
-                    .voucherNumber("1234567890")
-                    .voucherPin("1234")
-                    .consumerDateOfBirth(LocalDate.parse("2000-01-01"))
-                    .digitalGoods(true)
-                    .customerReference("1234567890")
-                    .terminalId("term_1234567890")
-                    .build())
+        ListBalancesResponse res = sdk.balances().list()
+                .currency("EUR")
+                .from("bal_gVMhHKqSSRYJyPsuoPNFH")
+                .limit(50L)
+                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {
@@ -342,7 +114,112 @@ public class Application {
     }
 }
 ```
+#### Asynchronous Call
+An asynchronous SDK client is also available that returns a [`CompletableFuture<T>`][comp-fut]. See [Asynchronous Support](#asynchronous-support) for more details on async benefits and reactive library integration.
+```java
+package hello.world;
+
+import com.mollie.mollie.AsyncClient;
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.operations.async.ListBalancesResponse;
+import java.util.concurrent.CompletableFuture;
+
+public class Application {
+
+    public static void main(String[] args) {
+
+        AsyncClient sdk = Client.builder()
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build()
+            .async();
+
+        CompletableFuture<ListBalancesResponse> resFut = sdk.balances().list()
+                .currency("EUR")
+                .from("bal_gVMhHKqSSRYJyPsuoPNFH")
+                .limit(50L)
+                .testmode(false)
+                .call();
+
+        resFut.thenAccept(res -> {
+            if (res.object().isPresent()) {
+            // handle response
+            }
+        });
+    }
+}
+```
+
+[comp-fut]: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html
 <!-- End SDK Example Usage [usage] -->
+
+<!-- Start Asynchronous Support [async-support] -->
+## Asynchronous Support
+
+The SDK provides comprehensive asynchronous support using Java's [`CompletableFuture<T>`][comp-fut] and [Reactive Streams `Publisher<T>`][reactive-streams] APIs. This design makes no assumptions about your choice of reactive toolkit, allowing seamless integration with any reactive library.
+
+<details>
+<summary>Why Use Async?</summary>
+
+Asynchronous operations provide several key benefits:
+
+- **Non-blocking I/O**: Your threads stay free for other work while operations are in flight
+- **Better resource utilization**: Handle more concurrent operations with fewer threads
+- **Improved scalability**: Build highly responsive applications that can handle thousands of concurrent requests
+- **Reactive integration**: Works seamlessly with reactive streams and backpressure handling
+
+</details>
+
+<details>
+<summary>Reactive Library Integration</summary>
+
+The SDK returns [Reactive Streams `Publisher<T>`][reactive-streams] instances for operations dealing with streams involving multiple I/O interactions. We use Reactive Streams instead of JDK Flow API to provide broader compatibility with the reactive ecosystem, as most reactive libraries natively support Reactive Streams.
+
+**Why Reactive Streams over JDK Flow?**
+- **Broader ecosystem compatibility**: Most reactive libraries (Project Reactor, RxJava, Akka Streams, etc.) natively support Reactive Streams
+- **Industry standard**: Reactive Streams is the de facto standard for reactive programming in Java
+- **Better interoperability**: Seamless integration without additional adapters for most use cases
+
+**Integration with Popular Libraries:**
+- **Project Reactor**: Use `Flux.from(publisher)` to convert to Reactor types
+- **RxJava**: Use `Flowable.fromPublisher(publisher)` for RxJava integration
+- **Akka Streams**: Use `Source.fromPublisher(publisher)` for Akka Streams integration
+- **Vert.x**: Use `ReadStream.fromPublisher(vertx, publisher)` for Vert.x reactive streams
+- **Mutiny**: Use `Multi.createFrom().publisher(publisher)` for Quarkus Mutiny integration
+
+**For JDK Flow API Integration:**
+If you need JDK Flow API compatibility (e.g., for Quarkus/Mutiny 2), you can use adapters:
+```java
+// Convert Reactive Streams Publisher to Flow Publisher
+Flow.Publisher<T> flowPublisher = FlowAdapters.toFlowPublisher(reactiveStreamsPublisher);
+
+// Convert Flow Publisher to Reactive Streams Publisher
+Publisher<T> reactiveStreamsPublisher = FlowAdapters.toPublisher(flowPublisher);
+```
+
+For standard single-response operations, the SDK returns `CompletableFuture<T>` for straightforward async execution.
+
+</details>
+
+<details>
+<summary>Supported Operations</summary>
+
+Async support is available for:
+
+- **[Server-sent Events](#server-sent-event-streaming)**: Stream real-time events with Reactive Streams `Publisher<T>`
+- **[JSONL Streaming](#jsonl-streaming)**: Process streaming JSON lines asynchronously
+- **[Pagination](#pagination)**: Iterate through paginated results using `callAsPublisher()` and `callAsPublisherUnwrapped()`
+- **[File Uploads](#file-uploads)**: Upload files asynchronously with progress tracking
+- **[File Downloads](#file-downloads)**: Download files asynchronously with streaming support
+- **[Standard Operations](#example)**: All regular API calls return `CompletableFuture<T>` for async execution
+
+</details>
+
+[comp-fut]: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html
+[reactive-streams]: https://www.reactive-streams.org/
+<!-- End Asynchronous Support [async-support] -->
 
 <!-- Start Authentication [security] -->
 ## Authentication
@@ -362,16 +239,14 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.CreatePaymentPaymentsResponseBody;
-import com.mollie.mollie.models.errors.CreatePaymentResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.errors.ListBalancesBalancesResponseBody;
+import com.mollie.mollie.models.errors.ListBalancesResponseBody;
+import com.mollie.mollie.models.operations.ListBalancesResponse;
 import java.lang.Exception;
-import java.time.LocalDate;
-import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws CreatePaymentResponseBody, CreatePaymentPaymentsResponseBody, Exception {
+    public static void main(String[] args) throws ListBalancesResponseBody, ListBalancesBalancesResponseBody, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -379,238 +254,11 @@ public class Application {
                     .build())
             .build();
 
-        CreatePaymentResponse res = sdk.payments().create()
-                .include(Include.DETAILS_QR_CODE)
-                .requestBody(CreatePaymentRequestBody.builder()
-                    .description("Chess Board")
-                    .amount(Amount.builder()
-                        .currency("EUR")
-                        .value("10.00")
-                        .build())
-                    .redirectUrl("https://example.org/redirect")
-                    .cancelUrl("https://example.org/cancel")
-                    .webhookUrl("https://example.org/webhooks")
-                    .lines(List.of(
-                        Lines.builder()
-                            .description("LEGO 4440 Forest Police Station")
-                            .quantity(1L)
-                            .unitPrice(UnitPrice.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .totalAmount(TotalAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .type(Type.PHYSICAL)
-                            .quantityUnit("pcs")
-                            .discountAmount(DiscountAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .vatRate("21.00")
-                            .vatAmount(VatAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .sku("9780241661628")
-                            .categories(List.of(
-                                Categories.MEAL,
-                                Categories.ECO))
-                            .imageUrl("https://...")
-                            .productUrl("https://...")
-                            .recurring(Recurring.builder()
-                                .interval("... days")
-                                .description("Gym subscription")
-                                .amount(CreatePaymentAmount.builder()
-                                    .currency("EUR")
-                                    .value("10.00")
-                                    .build())
-                                .times(1L)
-                                .startDate("2024-12-12")
-                                .build())
-                            .build(),
-                        Lines.builder()
-                            .description("LEGO 4440 Forest Police Station")
-                            .quantity(1L)
-                            .unitPrice(UnitPrice.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .totalAmount(TotalAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .type(Type.PHYSICAL)
-                            .quantityUnit("pcs")
-                            .discountAmount(DiscountAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .vatRate("21.00")
-                            .vatAmount(VatAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .sku("9780241661628")
-                            .categories(List.of(
-                                Categories.MEAL,
-                                Categories.ECO))
-                            .imageUrl("https://...")
-                            .productUrl("https://...")
-                            .recurring(Recurring.builder()
-                                .interval("... weeks")
-                                .description("Gym subscription")
-                                .amount(CreatePaymentAmount.builder()
-                                    .currency("EUR")
-                                    .value("10.00")
-                                    .build())
-                                .times(1L)
-                                .startDate("2024-12-12")
-                                .build())
-                            .build(),
-                        Lines.builder()
-                            .description("LEGO 4440 Forest Police Station")
-                            .quantity(1L)
-                            .unitPrice(UnitPrice.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .totalAmount(TotalAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .type(Type.PHYSICAL)
-                            .quantityUnit("pcs")
-                            .discountAmount(DiscountAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .vatRate("21.00")
-                            .vatAmount(VatAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .sku("9780241661628")
-                            .categories(List.of(
-                                Categories.MEAL,
-                                Categories.ECO))
-                            .imageUrl("https://...")
-                            .productUrl("https://...")
-                            .recurring(Recurring.builder()
-                                .interval("... days")
-                                .description("Gym subscription")
-                                .amount(CreatePaymentAmount.builder()
-                                    .currency("EUR")
-                                    .value("10.00")
-                                    .build())
-                                .times(1L)
-                                .startDate("2024-12-12")
-                                .build())
-                            .build()))
-                    .billingAddress(BillingAddress.builder()
-                        .title("Mr.")
-                        .givenName("Piet")
-                        .familyName("Mondriaan")
-                        .organizationName("Mollie B.V.")
-                        .streetAndNumber("Keizersgracht 126")
-                        .streetAdditional("Apt. 1")
-                        .postalCode("1234AB")
-                        .email("piet@example.org")
-                        .phone("31208202070")
-                        .city("Amsterdam")
-                        .region("Noord-Holland")
-                        .country("NL")
-                        .build())
-                    .shippingAddress(ShippingAddress.builder()
-                        .title("Mr.")
-                        .givenName("Piet")
-                        .familyName("Mondriaan")
-                        .organizationName("Mollie B.V.")
-                        .streetAndNumber("Keizersgracht 126")
-                        .streetAdditional("Apt. 1")
-                        .postalCode("1234AB")
-                        .email("piet@example.org")
-                        .phone("31208202070")
-                        .city("Amsterdam")
-                        .region("Noord-Holland")
-                        .country("NL")
-                        .build())
-                    .locale(Locale.EN_US)
-                    .method(Method.IDEAL)
-                    .issuer("ideal_INGBNL2A")
-                    .restrictPaymentMethodsToCountry("NL")
-                    .captureMode(CaptureMode.MANUAL)
-                    .captureDelay("8 hours")
-                    .applicationFee(ApplicationFee.builder()
-                        .amount(CreatePaymentPaymentsAmount.builder()
-                            .currency("EUR")
-                            .value("10.00")
-                            .build())
-                        .description("10")
-                        .build())
-                    .routing(List.of(
-                        Routing.builder()
-                            .amount(CreatePaymentPaymentsRequestAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .destination(Destination.builder()
-                                .type(CreatePaymentType.ORGANIZATION)
-                                .organizationId("org_1234567")
-                                .build())
-                            .links(Links.builder()
-                                .self(Self.builder()
-                                    .href("https://...")
-                                    .type("application/hal+json")
-                                    .build())
-                                .payment(Payment.builder()
-                                    .href("https://...")
-                                    .type("application/hal+json")
-                                    .build())
-                                .build())
-                            .releaseDate("2024-12-12")
-                            .build(),
-                        Routing.builder()
-                            .amount(CreatePaymentPaymentsRequestAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .destination(Destination.builder()
-                                .type(CreatePaymentType.ORGANIZATION)
-                                .organizationId("org_1234567")
-                                .build())
-                            .links(Links.builder()
-                                .self(Self.builder()
-                                    .href("https://...")
-                                    .type("application/hal+json")
-                                    .build())
-                                .payment(Payment.builder()
-                                    .href("https://...")
-                                    .type("application/hal+json")
-                                    .build())
-                                .build())
-                            .releaseDate("2024-12-12")
-                            .build()))
-                    .sequenceType(SequenceType.ONEOFF)
-                    .mandateId("mdt_5B8cwPMGnU")
-                    .customerId("cst_5B8cwPMGnU")
-                    .profileId("pfl_5B8cwPMGnU")
-                    .dueDate("2025-01-01")
-                    .testmode(false)
-                    .applePayPaymentToken("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}")
-                    .company(Company.builder()
-                        .registrationNumber("12345678")
-                        .vatNumber("NL123456789B01")
-                        .build())
-                    .cardToken("tkn_12345")
-                    .voucherNumber("1234567890")
-                    .voucherPin("1234")
-                    .consumerDateOfBirth(LocalDate.parse("2000-01-01"))
-                    .digitalGoods(true)
-                    .customerReference("1234567890")
-                    .terminalId("term_1234567890")
-                    .build())
+        ListBalancesResponse res = sdk.balances().list()
+                .currency("EUR")
+                .from("bal_gVMhHKqSSRYJyPsuoPNFH")
+                .limit(50L)
+                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {
@@ -810,19 +458,17 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.CreatePaymentPaymentsResponseBody;
-import com.mollie.mollie.models.errors.CreatePaymentResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.errors.ListBalancesBalancesResponseBody;
+import com.mollie.mollie.models.errors.ListBalancesResponseBody;
+import com.mollie.mollie.models.operations.ListBalancesResponse;
 import com.mollie.mollie.utils.BackoffStrategy;
 import com.mollie.mollie.utils.RetryConfig;
 import java.lang.Exception;
-import java.time.LocalDate;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Application {
 
-    public static void main(String[] args) throws CreatePaymentResponseBody, CreatePaymentPaymentsResponseBody, Exception {
+    public static void main(String[] args) throws ListBalancesResponseBody, ListBalancesBalancesResponseBody, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -830,7 +476,7 @@ public class Application {
                     .build())
             .build();
 
-        CreatePaymentResponse res = sdk.payments().create()
+        ListBalancesResponse res = sdk.balances().list()
                 .retryConfig(RetryConfig.builder()
                     .backoff(BackoffStrategy.builder()
                         .initialInterval(1L, TimeUnit.MILLISECONDS)
@@ -841,237 +487,10 @@ public class Application {
                         .retryConnectError(false)
                         .build())
                     .build())
-                .include(Include.DETAILS_QR_CODE)
-                .requestBody(CreatePaymentRequestBody.builder()
-                    .description("Chess Board")
-                    .amount(Amount.builder()
-                        .currency("EUR")
-                        .value("10.00")
-                        .build())
-                    .redirectUrl("https://example.org/redirect")
-                    .cancelUrl("https://example.org/cancel")
-                    .webhookUrl("https://example.org/webhooks")
-                    .lines(List.of(
-                        Lines.builder()
-                            .description("LEGO 4440 Forest Police Station")
-                            .quantity(1L)
-                            .unitPrice(UnitPrice.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .totalAmount(TotalAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .type(Type.PHYSICAL)
-                            .quantityUnit("pcs")
-                            .discountAmount(DiscountAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .vatRate("21.00")
-                            .vatAmount(VatAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .sku("9780241661628")
-                            .categories(List.of(
-                                Categories.MEAL,
-                                Categories.ECO))
-                            .imageUrl("https://...")
-                            .productUrl("https://...")
-                            .recurring(Recurring.builder()
-                                .interval("... days")
-                                .description("Gym subscription")
-                                .amount(CreatePaymentAmount.builder()
-                                    .currency("EUR")
-                                    .value("10.00")
-                                    .build())
-                                .times(1L)
-                                .startDate("2024-12-12")
-                                .build())
-                            .build(),
-                        Lines.builder()
-                            .description("LEGO 4440 Forest Police Station")
-                            .quantity(1L)
-                            .unitPrice(UnitPrice.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .totalAmount(TotalAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .type(Type.PHYSICAL)
-                            .quantityUnit("pcs")
-                            .discountAmount(DiscountAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .vatRate("21.00")
-                            .vatAmount(VatAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .sku("9780241661628")
-                            .categories(List.of(
-                                Categories.MEAL,
-                                Categories.ECO))
-                            .imageUrl("https://...")
-                            .productUrl("https://...")
-                            .recurring(Recurring.builder()
-                                .interval("... weeks")
-                                .description("Gym subscription")
-                                .amount(CreatePaymentAmount.builder()
-                                    .currency("EUR")
-                                    .value("10.00")
-                                    .build())
-                                .times(1L)
-                                .startDate("2024-12-12")
-                                .build())
-                            .build(),
-                        Lines.builder()
-                            .description("LEGO 4440 Forest Police Station")
-                            .quantity(1L)
-                            .unitPrice(UnitPrice.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .totalAmount(TotalAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .type(Type.PHYSICAL)
-                            .quantityUnit("pcs")
-                            .discountAmount(DiscountAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .vatRate("21.00")
-                            .vatAmount(VatAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .sku("9780241661628")
-                            .categories(List.of(
-                                Categories.MEAL,
-                                Categories.ECO))
-                            .imageUrl("https://...")
-                            .productUrl("https://...")
-                            .recurring(Recurring.builder()
-                                .interval("... days")
-                                .description("Gym subscription")
-                                .amount(CreatePaymentAmount.builder()
-                                    .currency("EUR")
-                                    .value("10.00")
-                                    .build())
-                                .times(1L)
-                                .startDate("2024-12-12")
-                                .build())
-                            .build()))
-                    .billingAddress(BillingAddress.builder()
-                        .title("Mr.")
-                        .givenName("Piet")
-                        .familyName("Mondriaan")
-                        .organizationName("Mollie B.V.")
-                        .streetAndNumber("Keizersgracht 126")
-                        .streetAdditional("Apt. 1")
-                        .postalCode("1234AB")
-                        .email("piet@example.org")
-                        .phone("31208202070")
-                        .city("Amsterdam")
-                        .region("Noord-Holland")
-                        .country("NL")
-                        .build())
-                    .shippingAddress(ShippingAddress.builder()
-                        .title("Mr.")
-                        .givenName("Piet")
-                        .familyName("Mondriaan")
-                        .organizationName("Mollie B.V.")
-                        .streetAndNumber("Keizersgracht 126")
-                        .streetAdditional("Apt. 1")
-                        .postalCode("1234AB")
-                        .email("piet@example.org")
-                        .phone("31208202070")
-                        .city("Amsterdam")
-                        .region("Noord-Holland")
-                        .country("NL")
-                        .build())
-                    .locale(Locale.EN_US)
-                    .method(Method.IDEAL)
-                    .issuer("ideal_INGBNL2A")
-                    .restrictPaymentMethodsToCountry("NL")
-                    .captureMode(CaptureMode.MANUAL)
-                    .captureDelay("8 hours")
-                    .applicationFee(ApplicationFee.builder()
-                        .amount(CreatePaymentPaymentsAmount.builder()
-                            .currency("EUR")
-                            .value("10.00")
-                            .build())
-                        .description("10")
-                        .build())
-                    .routing(List.of(
-                        Routing.builder()
-                            .amount(CreatePaymentPaymentsRequestAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .destination(Destination.builder()
-                                .type(CreatePaymentType.ORGANIZATION)
-                                .organizationId("org_1234567")
-                                .build())
-                            .links(Links.builder()
-                                .self(Self.builder()
-                                    .href("https://...")
-                                    .type("application/hal+json")
-                                    .build())
-                                .payment(Payment.builder()
-                                    .href("https://...")
-                                    .type("application/hal+json")
-                                    .build())
-                                .build())
-                            .releaseDate("2024-12-12")
-                            .build(),
-                        Routing.builder()
-                            .amount(CreatePaymentPaymentsRequestAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .destination(Destination.builder()
-                                .type(CreatePaymentType.ORGANIZATION)
-                                .organizationId("org_1234567")
-                                .build())
-                            .links(Links.builder()
-                                .self(Self.builder()
-                                    .href("https://...")
-                                    .type("application/hal+json")
-                                    .build())
-                                .payment(Payment.builder()
-                                    .href("https://...")
-                                    .type("application/hal+json")
-                                    .build())
-                                .build())
-                            .releaseDate("2024-12-12")
-                            .build()))
-                    .sequenceType(SequenceType.ONEOFF)
-                    .mandateId("mdt_5B8cwPMGnU")
-                    .customerId("cst_5B8cwPMGnU")
-                    .profileId("pfl_5B8cwPMGnU")
-                    .dueDate("2025-01-01")
-                    .testmode(false)
-                    .applePayPaymentToken("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}")
-                    .company(Company.builder()
-                        .registrationNumber("12345678")
-                        .vatNumber("NL123456789B01")
-                        .build())
-                    .cardToken("tkn_12345")
-                    .voucherNumber("1234567890")
-                    .voucherPin("1234")
-                    .consumerDateOfBirth(LocalDate.parse("2000-01-01"))
-                    .digitalGoods(true)
-                    .customerReference("1234567890")
-                    .terminalId("term_1234567890")
-                    .build())
+                .currency("EUR")
+                .from("bal_gVMhHKqSSRYJyPsuoPNFH")
+                .limit(50L)
+                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {
@@ -1087,19 +506,17 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.CreatePaymentPaymentsResponseBody;
-import com.mollie.mollie.models.errors.CreatePaymentResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.errors.ListBalancesBalancesResponseBody;
+import com.mollie.mollie.models.errors.ListBalancesResponseBody;
+import com.mollie.mollie.models.operations.ListBalancesResponse;
 import com.mollie.mollie.utils.BackoffStrategy;
 import com.mollie.mollie.utils.RetryConfig;
 import java.lang.Exception;
-import java.time.LocalDate;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Application {
 
-    public static void main(String[] args) throws CreatePaymentResponseBody, CreatePaymentPaymentsResponseBody, Exception {
+    public static void main(String[] args) throws ListBalancesResponseBody, ListBalancesBalancesResponseBody, Exception {
 
         Client sdk = Client.builder()
                 .retryConfig(RetryConfig.builder()
@@ -1117,238 +534,11 @@ public class Application {
                     .build())
             .build();
 
-        CreatePaymentResponse res = sdk.payments().create()
-                .include(Include.DETAILS_QR_CODE)
-                .requestBody(CreatePaymentRequestBody.builder()
-                    .description("Chess Board")
-                    .amount(Amount.builder()
-                        .currency("EUR")
-                        .value("10.00")
-                        .build())
-                    .redirectUrl("https://example.org/redirect")
-                    .cancelUrl("https://example.org/cancel")
-                    .webhookUrl("https://example.org/webhooks")
-                    .lines(List.of(
-                        Lines.builder()
-                            .description("LEGO 4440 Forest Police Station")
-                            .quantity(1L)
-                            .unitPrice(UnitPrice.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .totalAmount(TotalAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .type(Type.PHYSICAL)
-                            .quantityUnit("pcs")
-                            .discountAmount(DiscountAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .vatRate("21.00")
-                            .vatAmount(VatAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .sku("9780241661628")
-                            .categories(List.of(
-                                Categories.MEAL,
-                                Categories.ECO))
-                            .imageUrl("https://...")
-                            .productUrl("https://...")
-                            .recurring(Recurring.builder()
-                                .interval("... days")
-                                .description("Gym subscription")
-                                .amount(CreatePaymentAmount.builder()
-                                    .currency("EUR")
-                                    .value("10.00")
-                                    .build())
-                                .times(1L)
-                                .startDate("2024-12-12")
-                                .build())
-                            .build(),
-                        Lines.builder()
-                            .description("LEGO 4440 Forest Police Station")
-                            .quantity(1L)
-                            .unitPrice(UnitPrice.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .totalAmount(TotalAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .type(Type.PHYSICAL)
-                            .quantityUnit("pcs")
-                            .discountAmount(DiscountAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .vatRate("21.00")
-                            .vatAmount(VatAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .sku("9780241661628")
-                            .categories(List.of(
-                                Categories.MEAL,
-                                Categories.ECO))
-                            .imageUrl("https://...")
-                            .productUrl("https://...")
-                            .recurring(Recurring.builder()
-                                .interval("... weeks")
-                                .description("Gym subscription")
-                                .amount(CreatePaymentAmount.builder()
-                                    .currency("EUR")
-                                    .value("10.00")
-                                    .build())
-                                .times(1L)
-                                .startDate("2024-12-12")
-                                .build())
-                            .build(),
-                        Lines.builder()
-                            .description("LEGO 4440 Forest Police Station")
-                            .quantity(1L)
-                            .unitPrice(UnitPrice.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .totalAmount(TotalAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .type(Type.PHYSICAL)
-                            .quantityUnit("pcs")
-                            .discountAmount(DiscountAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .vatRate("21.00")
-                            .vatAmount(VatAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .sku("9780241661628")
-                            .categories(List.of(
-                                Categories.MEAL,
-                                Categories.ECO))
-                            .imageUrl("https://...")
-                            .productUrl("https://...")
-                            .recurring(Recurring.builder()
-                                .interval("... days")
-                                .description("Gym subscription")
-                                .amount(CreatePaymentAmount.builder()
-                                    .currency("EUR")
-                                    .value("10.00")
-                                    .build())
-                                .times(1L)
-                                .startDate("2024-12-12")
-                                .build())
-                            .build()))
-                    .billingAddress(BillingAddress.builder()
-                        .title("Mr.")
-                        .givenName("Piet")
-                        .familyName("Mondriaan")
-                        .organizationName("Mollie B.V.")
-                        .streetAndNumber("Keizersgracht 126")
-                        .streetAdditional("Apt. 1")
-                        .postalCode("1234AB")
-                        .email("piet@example.org")
-                        .phone("31208202070")
-                        .city("Amsterdam")
-                        .region("Noord-Holland")
-                        .country("NL")
-                        .build())
-                    .shippingAddress(ShippingAddress.builder()
-                        .title("Mr.")
-                        .givenName("Piet")
-                        .familyName("Mondriaan")
-                        .organizationName("Mollie B.V.")
-                        .streetAndNumber("Keizersgracht 126")
-                        .streetAdditional("Apt. 1")
-                        .postalCode("1234AB")
-                        .email("piet@example.org")
-                        .phone("31208202070")
-                        .city("Amsterdam")
-                        .region("Noord-Holland")
-                        .country("NL")
-                        .build())
-                    .locale(Locale.EN_US)
-                    .method(Method.IDEAL)
-                    .issuer("ideal_INGBNL2A")
-                    .restrictPaymentMethodsToCountry("NL")
-                    .captureMode(CaptureMode.MANUAL)
-                    .captureDelay("8 hours")
-                    .applicationFee(ApplicationFee.builder()
-                        .amount(CreatePaymentPaymentsAmount.builder()
-                            .currency("EUR")
-                            .value("10.00")
-                            .build())
-                        .description("10")
-                        .build())
-                    .routing(List.of(
-                        Routing.builder()
-                            .amount(CreatePaymentPaymentsRequestAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .destination(Destination.builder()
-                                .type(CreatePaymentType.ORGANIZATION)
-                                .organizationId("org_1234567")
-                                .build())
-                            .links(Links.builder()
-                                .self(Self.builder()
-                                    .href("https://...")
-                                    .type("application/hal+json")
-                                    .build())
-                                .payment(Payment.builder()
-                                    .href("https://...")
-                                    .type("application/hal+json")
-                                    .build())
-                                .build())
-                            .releaseDate("2024-12-12")
-                            .build(),
-                        Routing.builder()
-                            .amount(CreatePaymentPaymentsRequestAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .destination(Destination.builder()
-                                .type(CreatePaymentType.ORGANIZATION)
-                                .organizationId("org_1234567")
-                                .build())
-                            .links(Links.builder()
-                                .self(Self.builder()
-                                    .href("https://...")
-                                    .type("application/hal+json")
-                                    .build())
-                                .payment(Payment.builder()
-                                    .href("https://...")
-                                    .type("application/hal+json")
-                                    .build())
-                                .build())
-                            .releaseDate("2024-12-12")
-                            .build()))
-                    .sequenceType(SequenceType.ONEOFF)
-                    .mandateId("mdt_5B8cwPMGnU")
-                    .customerId("cst_5B8cwPMGnU")
-                    .profileId("pfl_5B8cwPMGnU")
-                    .dueDate("2025-01-01")
-                    .testmode(false)
-                    .applePayPaymentToken("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}")
-                    .company(Company.builder()
-                        .registrationNumber("12345678")
-                        .vatNumber("NL123456789B01")
-                        .build())
-                    .cardToken("tkn_12345")
-                    .voucherNumber("1234567890")
-                    .voucherPin("1234")
-                    .consumerDateOfBirth(LocalDate.parse("2000-01-01"))
-                    .digitalGoods(true)
-                    .customerReference("1234567890")
-                    .terminalId("term_1234567890")
-                    .build())
+        ListBalancesResponse res = sdk.balances().list()
+                .currency("EUR")
+                .from("bal_gVMhHKqSSRYJyPsuoPNFH")
+                .limit(50L)
+                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {
@@ -1364,13 +554,13 @@ public class Application {
 
 Handling errors in this SDK should largely match your expectations. All operations return a response object or raise an exception.
 
-By default, an API error will throw a `models/errors/APIException` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `create` method throws the following exceptions:
+By default, an API error will throw a `models/errors/APIException` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `list` method throws the following exceptions:
 
-| Error Type                                      | Status Code | Content Type         |
-| ----------------------------------------------- | ----------- | -------------------- |
-| models/errors/CreatePaymentResponseBody         | 422         | application/hal+json |
-| models/errors/CreatePaymentPaymentsResponseBody | 503         | application/hal+json |
-| models/errors/APIException                      | 4XX, 5XX    | \*/\*                |
+| Error Type                                     | Status Code | Content Type         |
+| ---------------------------------------------- | ----------- | -------------------- |
+| models/errors/ListBalancesResponseBody         | 400         | application/hal+json |
+| models/errors/ListBalancesBalancesResponseBody | 404         | application/hal+json |
+| models/errors/APIException                     | 4XX, 5XX    | \*/\*                |
 
 ### Example
 
@@ -1379,16 +569,14 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.CreatePaymentPaymentsResponseBody;
-import com.mollie.mollie.models.errors.CreatePaymentResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.errors.ListBalancesBalancesResponseBody;
+import com.mollie.mollie.models.errors.ListBalancesResponseBody;
+import com.mollie.mollie.models.operations.ListBalancesResponse;
 import java.lang.Exception;
-import java.time.LocalDate;
-import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws CreatePaymentResponseBody, CreatePaymentPaymentsResponseBody, Exception {
+    public static void main(String[] args) throws ListBalancesResponseBody, ListBalancesBalancesResponseBody, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -1396,238 +584,11 @@ public class Application {
                     .build())
             .build();
 
-        CreatePaymentResponse res = sdk.payments().create()
-                .include(Include.DETAILS_QR_CODE)
-                .requestBody(CreatePaymentRequestBody.builder()
-                    .description("Chess Board")
-                    .amount(Amount.builder()
-                        .currency("EUR")
-                        .value("10.00")
-                        .build())
-                    .redirectUrl("https://example.org/redirect")
-                    .cancelUrl("https://example.org/cancel")
-                    .webhookUrl("https://example.org/webhooks")
-                    .lines(List.of(
-                        Lines.builder()
-                            .description("LEGO 4440 Forest Police Station")
-                            .quantity(1L)
-                            .unitPrice(UnitPrice.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .totalAmount(TotalAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .type(Type.PHYSICAL)
-                            .quantityUnit("pcs")
-                            .discountAmount(DiscountAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .vatRate("21.00")
-                            .vatAmount(VatAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .sku("9780241661628")
-                            .categories(List.of(
-                                Categories.MEAL,
-                                Categories.ECO))
-                            .imageUrl("https://...")
-                            .productUrl("https://...")
-                            .recurring(Recurring.builder()
-                                .interval("... days")
-                                .description("Gym subscription")
-                                .amount(CreatePaymentAmount.builder()
-                                    .currency("EUR")
-                                    .value("10.00")
-                                    .build())
-                                .times(1L)
-                                .startDate("2024-12-12")
-                                .build())
-                            .build(),
-                        Lines.builder()
-                            .description("LEGO 4440 Forest Police Station")
-                            .quantity(1L)
-                            .unitPrice(UnitPrice.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .totalAmount(TotalAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .type(Type.PHYSICAL)
-                            .quantityUnit("pcs")
-                            .discountAmount(DiscountAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .vatRate("21.00")
-                            .vatAmount(VatAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .sku("9780241661628")
-                            .categories(List.of(
-                                Categories.MEAL,
-                                Categories.ECO))
-                            .imageUrl("https://...")
-                            .productUrl("https://...")
-                            .recurring(Recurring.builder()
-                                .interval("... weeks")
-                                .description("Gym subscription")
-                                .amount(CreatePaymentAmount.builder()
-                                    .currency("EUR")
-                                    .value("10.00")
-                                    .build())
-                                .times(1L)
-                                .startDate("2024-12-12")
-                                .build())
-                            .build(),
-                        Lines.builder()
-                            .description("LEGO 4440 Forest Police Station")
-                            .quantity(1L)
-                            .unitPrice(UnitPrice.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .totalAmount(TotalAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .type(Type.PHYSICAL)
-                            .quantityUnit("pcs")
-                            .discountAmount(DiscountAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .vatRate("21.00")
-                            .vatAmount(VatAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .sku("9780241661628")
-                            .categories(List.of(
-                                Categories.MEAL,
-                                Categories.ECO))
-                            .imageUrl("https://...")
-                            .productUrl("https://...")
-                            .recurring(Recurring.builder()
-                                .interval("... days")
-                                .description("Gym subscription")
-                                .amount(CreatePaymentAmount.builder()
-                                    .currency("EUR")
-                                    .value("10.00")
-                                    .build())
-                                .times(1L)
-                                .startDate("2024-12-12")
-                                .build())
-                            .build()))
-                    .billingAddress(BillingAddress.builder()
-                        .title("Mr.")
-                        .givenName("Piet")
-                        .familyName("Mondriaan")
-                        .organizationName("Mollie B.V.")
-                        .streetAndNumber("Keizersgracht 126")
-                        .streetAdditional("Apt. 1")
-                        .postalCode("1234AB")
-                        .email("piet@example.org")
-                        .phone("31208202070")
-                        .city("Amsterdam")
-                        .region("Noord-Holland")
-                        .country("NL")
-                        .build())
-                    .shippingAddress(ShippingAddress.builder()
-                        .title("Mr.")
-                        .givenName("Piet")
-                        .familyName("Mondriaan")
-                        .organizationName("Mollie B.V.")
-                        .streetAndNumber("Keizersgracht 126")
-                        .streetAdditional("Apt. 1")
-                        .postalCode("1234AB")
-                        .email("piet@example.org")
-                        .phone("31208202070")
-                        .city("Amsterdam")
-                        .region("Noord-Holland")
-                        .country("NL")
-                        .build())
-                    .locale(Locale.EN_US)
-                    .method(Method.IDEAL)
-                    .issuer("ideal_INGBNL2A")
-                    .restrictPaymentMethodsToCountry("NL")
-                    .captureMode(CaptureMode.MANUAL)
-                    .captureDelay("8 hours")
-                    .applicationFee(ApplicationFee.builder()
-                        .amount(CreatePaymentPaymentsAmount.builder()
-                            .currency("EUR")
-                            .value("10.00")
-                            .build())
-                        .description("10")
-                        .build())
-                    .routing(List.of(
-                        Routing.builder()
-                            .amount(CreatePaymentPaymentsRequestAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .destination(Destination.builder()
-                                .type(CreatePaymentType.ORGANIZATION)
-                                .organizationId("org_1234567")
-                                .build())
-                            .links(Links.builder()
-                                .self(Self.builder()
-                                    .href("https://...")
-                                    .type("application/hal+json")
-                                    .build())
-                                .payment(Payment.builder()
-                                    .href("https://...")
-                                    .type("application/hal+json")
-                                    .build())
-                                .build())
-                            .releaseDate("2024-12-12")
-                            .build(),
-                        Routing.builder()
-                            .amount(CreatePaymentPaymentsRequestAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .destination(Destination.builder()
-                                .type(CreatePaymentType.ORGANIZATION)
-                                .organizationId("org_1234567")
-                                .build())
-                            .links(Links.builder()
-                                .self(Self.builder()
-                                    .href("https://...")
-                                    .type("application/hal+json")
-                                    .build())
-                                .payment(Payment.builder()
-                                    .href("https://...")
-                                    .type("application/hal+json")
-                                    .build())
-                                .build())
-                            .releaseDate("2024-12-12")
-                            .build()))
-                    .sequenceType(SequenceType.ONEOFF)
-                    .mandateId("mdt_5B8cwPMGnU")
-                    .customerId("cst_5B8cwPMGnU")
-                    .profileId("pfl_5B8cwPMGnU")
-                    .dueDate("2025-01-01")
-                    .testmode(false)
-                    .applePayPaymentToken("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}")
-                    .company(Company.builder()
-                        .registrationNumber("12345678")
-                        .vatNumber("NL123456789B01")
-                        .build())
-                    .cardToken("tkn_12345")
-                    .voucherNumber("1234567890")
-                    .voucherPin("1234")
-                    .consumerDateOfBirth(LocalDate.parse("2000-01-01"))
-                    .digitalGoods(true)
-                    .customerReference("1234567890")
-                    .terminalId("term_1234567890")
-                    .build())
+        ListBalancesResponse res = sdk.balances().list()
+                .currency("EUR")
+                .from("bal_gVMhHKqSSRYJyPsuoPNFH")
+                .limit(50L)
+                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {
@@ -1649,16 +610,14 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.CreatePaymentPaymentsResponseBody;
-import com.mollie.mollie.models.errors.CreatePaymentResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.errors.ListBalancesBalancesResponseBody;
+import com.mollie.mollie.models.errors.ListBalancesResponseBody;
+import com.mollie.mollie.models.operations.ListBalancesResponse;
 import java.lang.Exception;
-import java.time.LocalDate;
-import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws CreatePaymentResponseBody, CreatePaymentPaymentsResponseBody, Exception {
+    public static void main(String[] args) throws ListBalancesResponseBody, ListBalancesBalancesResponseBody, Exception {
 
         Client sdk = Client.builder()
                 .serverURL("https://api.mollie.com/v2")
@@ -1667,238 +626,11 @@ public class Application {
                     .build())
             .build();
 
-        CreatePaymentResponse res = sdk.payments().create()
-                .include(Include.DETAILS_QR_CODE)
-                .requestBody(CreatePaymentRequestBody.builder()
-                    .description("Chess Board")
-                    .amount(Amount.builder()
-                        .currency("EUR")
-                        .value("10.00")
-                        .build())
-                    .redirectUrl("https://example.org/redirect")
-                    .cancelUrl("https://example.org/cancel")
-                    .webhookUrl("https://example.org/webhooks")
-                    .lines(List.of(
-                        Lines.builder()
-                            .description("LEGO 4440 Forest Police Station")
-                            .quantity(1L)
-                            .unitPrice(UnitPrice.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .totalAmount(TotalAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .type(Type.PHYSICAL)
-                            .quantityUnit("pcs")
-                            .discountAmount(DiscountAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .vatRate("21.00")
-                            .vatAmount(VatAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .sku("9780241661628")
-                            .categories(List.of(
-                                Categories.MEAL,
-                                Categories.ECO))
-                            .imageUrl("https://...")
-                            .productUrl("https://...")
-                            .recurring(Recurring.builder()
-                                .interval("... days")
-                                .description("Gym subscription")
-                                .amount(CreatePaymentAmount.builder()
-                                    .currency("EUR")
-                                    .value("10.00")
-                                    .build())
-                                .times(1L)
-                                .startDate("2024-12-12")
-                                .build())
-                            .build(),
-                        Lines.builder()
-                            .description("LEGO 4440 Forest Police Station")
-                            .quantity(1L)
-                            .unitPrice(UnitPrice.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .totalAmount(TotalAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .type(Type.PHYSICAL)
-                            .quantityUnit("pcs")
-                            .discountAmount(DiscountAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .vatRate("21.00")
-                            .vatAmount(VatAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .sku("9780241661628")
-                            .categories(List.of(
-                                Categories.MEAL,
-                                Categories.ECO))
-                            .imageUrl("https://...")
-                            .productUrl("https://...")
-                            .recurring(Recurring.builder()
-                                .interval("... weeks")
-                                .description("Gym subscription")
-                                .amount(CreatePaymentAmount.builder()
-                                    .currency("EUR")
-                                    .value("10.00")
-                                    .build())
-                                .times(1L)
-                                .startDate("2024-12-12")
-                                .build())
-                            .build(),
-                        Lines.builder()
-                            .description("LEGO 4440 Forest Police Station")
-                            .quantity(1L)
-                            .unitPrice(UnitPrice.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .totalAmount(TotalAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .type(Type.PHYSICAL)
-                            .quantityUnit("pcs")
-                            .discountAmount(DiscountAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .vatRate("21.00")
-                            .vatAmount(VatAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .sku("9780241661628")
-                            .categories(List.of(
-                                Categories.MEAL,
-                                Categories.ECO))
-                            .imageUrl("https://...")
-                            .productUrl("https://...")
-                            .recurring(Recurring.builder()
-                                .interval("... days")
-                                .description("Gym subscription")
-                                .amount(CreatePaymentAmount.builder()
-                                    .currency("EUR")
-                                    .value("10.00")
-                                    .build())
-                                .times(1L)
-                                .startDate("2024-12-12")
-                                .build())
-                            .build()))
-                    .billingAddress(BillingAddress.builder()
-                        .title("Mr.")
-                        .givenName("Piet")
-                        .familyName("Mondriaan")
-                        .organizationName("Mollie B.V.")
-                        .streetAndNumber("Keizersgracht 126")
-                        .streetAdditional("Apt. 1")
-                        .postalCode("1234AB")
-                        .email("piet@example.org")
-                        .phone("31208202070")
-                        .city("Amsterdam")
-                        .region("Noord-Holland")
-                        .country("NL")
-                        .build())
-                    .shippingAddress(ShippingAddress.builder()
-                        .title("Mr.")
-                        .givenName("Piet")
-                        .familyName("Mondriaan")
-                        .organizationName("Mollie B.V.")
-                        .streetAndNumber("Keizersgracht 126")
-                        .streetAdditional("Apt. 1")
-                        .postalCode("1234AB")
-                        .email("piet@example.org")
-                        .phone("31208202070")
-                        .city("Amsterdam")
-                        .region("Noord-Holland")
-                        .country("NL")
-                        .build())
-                    .locale(Locale.EN_US)
-                    .method(Method.IDEAL)
-                    .issuer("ideal_INGBNL2A")
-                    .restrictPaymentMethodsToCountry("NL")
-                    .captureMode(CaptureMode.MANUAL)
-                    .captureDelay("8 hours")
-                    .applicationFee(ApplicationFee.builder()
-                        .amount(CreatePaymentPaymentsAmount.builder()
-                            .currency("EUR")
-                            .value("10.00")
-                            .build())
-                        .description("10")
-                        .build())
-                    .routing(List.of(
-                        Routing.builder()
-                            .amount(CreatePaymentPaymentsRequestAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .destination(Destination.builder()
-                                .type(CreatePaymentType.ORGANIZATION)
-                                .organizationId("org_1234567")
-                                .build())
-                            .links(Links.builder()
-                                .self(Self.builder()
-                                    .href("https://...")
-                                    .type("application/hal+json")
-                                    .build())
-                                .payment(Payment.builder()
-                                    .href("https://...")
-                                    .type("application/hal+json")
-                                    .build())
-                                .build())
-                            .releaseDate("2024-12-12")
-                            .build(),
-                        Routing.builder()
-                            .amount(CreatePaymentPaymentsRequestAmount.builder()
-                                .currency("EUR")
-                                .value("10.00")
-                                .build())
-                            .destination(Destination.builder()
-                                .type(CreatePaymentType.ORGANIZATION)
-                                .organizationId("org_1234567")
-                                .build())
-                            .links(Links.builder()
-                                .self(Self.builder()
-                                    .href("https://...")
-                                    .type("application/hal+json")
-                                    .build())
-                                .payment(Payment.builder()
-                                    .href("https://...")
-                                    .type("application/hal+json")
-                                    .build())
-                                .build())
-                            .releaseDate("2024-12-12")
-                            .build()))
-                    .sequenceType(SequenceType.ONEOFF)
-                    .mandateId("mdt_5B8cwPMGnU")
-                    .customerId("cst_5B8cwPMGnU")
-                    .profileId("pfl_5B8cwPMGnU")
-                    .dueDate("2025-01-01")
-                    .testmode(false)
-                    .applePayPaymentToken("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}")
-                    .company(Company.builder()
-                        .registrationNumber("12345678")
-                        .vatNumber("NL123456789B01")
-                        .build())
-                    .cardToken("tkn_12345")
-                    .voucherNumber("1234567890")
-                    .voucherPin("1234")
-                    .consumerDateOfBirth(LocalDate.parse("2000-01-01"))
-                    .digitalGoods(true)
-                    .customerReference("1234567890")
-                    .terminalId("term_1234567890")
-                    .build())
+        ListBalancesResponse res = sdk.balances().list()
+                .currency("EUR")
+                .from("bal_gVMhHKqSSRYJyPsuoPNFH")
+                .limit(50L)
+                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {

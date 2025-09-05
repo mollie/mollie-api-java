@@ -38,7 +38,7 @@ public class CreateCustomerLinks {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payments")
-    private JsonNullable<? extends Payments> payments;
+    private JsonNullable<? extends CreateCustomerPayments> payments;
 
     /**
      * The API resource URL of the [mandates](list-mandates) linked to this customer. Omitted if no such mandates
@@ -66,7 +66,7 @@ public class CreateCustomerLinks {
     public CreateCustomerLinks(
             @JsonProperty("self") CreateCustomerSelf self,
             @JsonProperty("dashboard") CreateCustomerDashboard dashboard,
-            @JsonProperty("payments") JsonNullable<? extends Payments> payments,
+            @JsonProperty("payments") JsonNullable<? extends CreateCustomerPayments> payments,
             @JsonProperty("mandates") JsonNullable<? extends Mandates> mandates,
             @JsonProperty("subscriptions") JsonNullable<? extends Subscriptions> subscriptions,
             @JsonProperty("documentation") CreateCustomerDocumentation documentation) {
@@ -114,8 +114,8 @@ public class CreateCustomerLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Payments> payments() {
-        return (JsonNullable<Payments>) payments;
+    public JsonNullable<CreateCustomerPayments> payments() {
+        return (JsonNullable<CreateCustomerPayments>) payments;
     }
 
     /**
@@ -173,7 +173,7 @@ public class CreateCustomerLinks {
      * The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments
      * exist (yet).
      */
-    public CreateCustomerLinks withPayments(Payments payments) {
+    public CreateCustomerLinks withPayments(CreateCustomerPayments payments) {
         Utils.checkNotNull(payments, "payments");
         this.payments = JsonNullable.of(payments);
         return this;
@@ -183,7 +183,7 @@ public class CreateCustomerLinks {
      * The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments
      * exist (yet).
      */
-    public CreateCustomerLinks withPayments(JsonNullable<? extends Payments> payments) {
+    public CreateCustomerLinks withPayments(JsonNullable<? extends CreateCustomerPayments> payments) {
         Utils.checkNotNull(payments, "payments");
         this.payments = payments;
         return this;
@@ -281,7 +281,7 @@ public class CreateCustomerLinks {
 
         private CreateCustomerDashboard dashboard;
 
-        private JsonNullable<? extends Payments> payments = JsonNullable.undefined();
+        private JsonNullable<? extends CreateCustomerPayments> payments = JsonNullable.undefined();
 
         private JsonNullable<? extends Mandates> mandates = JsonNullable.undefined();
 
@@ -318,7 +318,7 @@ public class CreateCustomerLinks {
          * The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments
          * exist (yet).
          */
-        public Builder payments(Payments payments) {
+        public Builder payments(CreateCustomerPayments payments) {
             Utils.checkNotNull(payments, "payments");
             this.payments = JsonNullable.of(payments);
             return this;
@@ -328,7 +328,7 @@ public class CreateCustomerLinks {
          * The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments
          * exist (yet).
          */
-        public Builder payments(JsonNullable<? extends Payments> payments) {
+        public Builder payments(JsonNullable<? extends CreateCustomerPayments> payments) {
             Utils.checkNotNull(payments, "payments");
             this.payments = payments;
             return this;

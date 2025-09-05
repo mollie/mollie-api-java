@@ -13,7 +13,7 @@ import com.mollie.mollie.models.operations.CreatePaymentRequest;
 import com.mollie.mollie.models.operations.CreatePaymentRequestBody;
 import com.mollie.mollie.models.operations.CreatePaymentRequestBuilder;
 import com.mollie.mollie.models.operations.CreatePaymentResponse;
-import com.mollie.mollie.models.operations.Embed;
+import com.mollie.mollie.models.operations.GetPaymentQueryParamEmbed;
 import com.mollie.mollie.models.operations.GetPaymentRequest;
 import com.mollie.mollie.models.operations.GetPaymentRequestBuilder;
 import com.mollie.mollie.models.operations.GetPaymentResponse;
@@ -46,9 +46,20 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Payments {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncPayments asyncSDK;
 
     Payments(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncPayments(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncPayments async() {
+        return asyncSDK;
     }
 
     /**
@@ -223,7 +234,7 @@ public class Payments {
      */
     public GetPaymentResponse get(
             String paymentId, JsonNullable<? extends QueryParamInclude> include,
-            JsonNullable<? extends Embed> embed, JsonNullable<Boolean> testmode,
+            JsonNullable<? extends GetPaymentQueryParamEmbed> embed, JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
         GetPaymentRequest request =
             GetPaymentRequest

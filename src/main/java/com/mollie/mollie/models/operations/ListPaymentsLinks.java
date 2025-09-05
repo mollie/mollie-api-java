@@ -31,14 +31,14 @@ public class ListPaymentsLinks {
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("previous")
-    private Optional<? extends Previous> previous;
+    private Optional<? extends ListPaymentsPrevious> previous;
 
     /**
      * The next set of items, if available.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("next")
-    private Optional<? extends Next> next;
+    private Optional<? extends ListPaymentsNext> next;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -49,8 +49,8 @@ public class ListPaymentsLinks {
     @JsonCreator
     public ListPaymentsLinks(
             @JsonProperty("self") ListPaymentsSelf self,
-            @JsonProperty("previous") Optional<? extends Previous> previous,
-            @JsonProperty("next") Optional<? extends Next> next,
+            @JsonProperty("previous") Optional<? extends ListPaymentsPrevious> previous,
+            @JsonProperty("next") Optional<? extends ListPaymentsNext> next,
             @JsonProperty("documentation") ListPaymentsDocumentation documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(previous, "previous");
@@ -82,8 +82,8 @@ public class ListPaymentsLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Previous> previous() {
-        return (Optional<Previous>) previous;
+    public Optional<ListPaymentsPrevious> previous() {
+        return (Optional<ListPaymentsPrevious>) previous;
     }
 
     /**
@@ -91,8 +91,8 @@ public class ListPaymentsLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Next> next() {
-        return (Optional<Next>) next;
+    public Optional<ListPaymentsNext> next() {
+        return (Optional<ListPaymentsNext>) next;
     }
 
     /**
@@ -120,7 +120,7 @@ public class ListPaymentsLinks {
     /**
      * The previous set of items, if available.
      */
-    public ListPaymentsLinks withPrevious(Previous previous) {
+    public ListPaymentsLinks withPrevious(ListPaymentsPrevious previous) {
         Utils.checkNotNull(previous, "previous");
         this.previous = Optional.ofNullable(previous);
         return this;
@@ -130,7 +130,7 @@ public class ListPaymentsLinks {
     /**
      * The previous set of items, if available.
      */
-    public ListPaymentsLinks withPrevious(Optional<? extends Previous> previous) {
+    public ListPaymentsLinks withPrevious(Optional<? extends ListPaymentsPrevious> previous) {
         Utils.checkNotNull(previous, "previous");
         this.previous = previous;
         return this;
@@ -139,7 +139,7 @@ public class ListPaymentsLinks {
     /**
      * The next set of items, if available.
      */
-    public ListPaymentsLinks withNext(Next next) {
+    public ListPaymentsLinks withNext(ListPaymentsNext next) {
         Utils.checkNotNull(next, "next");
         this.next = Optional.ofNullable(next);
         return this;
@@ -149,7 +149,7 @@ public class ListPaymentsLinks {
     /**
      * The next set of items, if available.
      */
-    public ListPaymentsLinks withNext(Optional<? extends Next> next) {
+    public ListPaymentsLinks withNext(Optional<? extends ListPaymentsNext> next) {
         Utils.checkNotNull(next, "next");
         this.next = next;
         return this;
@@ -201,9 +201,9 @@ public class ListPaymentsLinks {
 
         private ListPaymentsSelf self;
 
-        private Optional<? extends Previous> previous = Optional.empty();
+        private Optional<? extends ListPaymentsPrevious> previous = Optional.empty();
 
-        private Optional<? extends Next> next = Optional.empty();
+        private Optional<? extends ListPaymentsNext> next = Optional.empty();
 
         private ListPaymentsDocumentation documentation;
 
@@ -225,7 +225,7 @@ public class ListPaymentsLinks {
         /**
          * The previous set of items, if available.
          */
-        public Builder previous(Previous previous) {
+        public Builder previous(ListPaymentsPrevious previous) {
             Utils.checkNotNull(previous, "previous");
             this.previous = Optional.ofNullable(previous);
             return this;
@@ -234,7 +234,7 @@ public class ListPaymentsLinks {
         /**
          * The previous set of items, if available.
          */
-        public Builder previous(Optional<? extends Previous> previous) {
+        public Builder previous(Optional<? extends ListPaymentsPrevious> previous) {
             Utils.checkNotNull(previous, "previous");
             this.previous = previous;
             return this;
@@ -244,7 +244,7 @@ public class ListPaymentsLinks {
         /**
          * The next set of items, if available.
          */
-        public Builder next(Next next) {
+        public Builder next(ListPaymentsNext next) {
             Utils.checkNotNull(next, "next");
             this.next = Optional.ofNullable(next);
             return this;
@@ -253,7 +253,7 @@ public class ListPaymentsLinks {
         /**
          * The next set of items, if available.
          */
-        public Builder next(Optional<? extends Next> next) {
+        public Builder next(Optional<? extends ListPaymentsNext> next) {
             Utils.checkNotNull(next, "next");
             this.next = next;
             return this;

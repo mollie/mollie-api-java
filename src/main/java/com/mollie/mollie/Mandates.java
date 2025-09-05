@@ -33,9 +33,20 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Mandates {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncMandates asyncSDK;
 
     Mandates(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncMandates(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncMandates async() {
+        return asyncSDK;
     }
 
     /**

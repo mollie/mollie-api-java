@@ -4,7 +4,7 @@
 package com.mollie.mollie.operations;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
-import static com.mollie.mollie.utils.Retries.NonRetryableException;
+import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
@@ -14,25 +14,33 @@ import com.mollie.mollie.models.errors.ListClientsClientsResponseBody;
 import com.mollie.mollie.models.operations.ListClientsRequest;
 import com.mollie.mollie.models.operations.ListClientsResponse;
 import com.mollie.mollie.models.operations.ListClientsResponseBody;
+import com.mollie.mollie.utils.AsyncRetries;
 import com.mollie.mollie.utils.BackoffStrategy;
+import com.mollie.mollie.utils.Blob;
+import com.mollie.mollie.utils.Exceptions;
 import com.mollie.mollie.utils.HTTPClient;
 import com.mollie.mollie.utils.HTTPRequest;
 import com.mollie.mollie.utils.Hook.AfterErrorContextImpl;
 import com.mollie.mollie.utils.Hook.AfterSuccessContextImpl;
 import com.mollie.mollie.utils.Hook.BeforeRequestContextImpl;
+import com.mollie.mollie.utils.NonRetryableException;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.Retries;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
 import java.lang.Exception;
+import java.lang.RuntimeException;
 import java.lang.String;
+import java.lang.Throwable;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
+import java.util.function.Function;
 
 
 public class ListClients {
@@ -96,8 +104,7 @@ public class ListClients {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(ListClientsRequest request) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/clients");
@@ -106,7 +113,7 @@ public class ListClients {
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
 
             req.addQueryParams(Utils.getQueryParams(
-                    ListClientsRequest.class,
+                    klass,
                     request,
                     null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
@@ -122,7 +129,7 @@ public class ListClients {
         }
 
         private HttpRequest onBuildRequest(ListClientsRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, ListClientsRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -255,6 +262,139 @@ public class ListClients {
                     response.statusCode(),
                     "Unexpected status code received: " + response.statusCode(),
                     Utils.extractByteArrayFromBody(response));
+        }
+    }
+    public static class Async extends Base
+            implements AsyncRequestOperation<ListClientsRequest, com.mollie.mollie.models.operations.async.ListClientsResponse> {
+        private final ScheduledExecutorService retryScheduler;
+
+        public Async(
+                SDKConfiguration sdkConfiguration, Optional<Options> options,
+                ScheduledExecutorService retryScheduler) {
+            super(sdkConfiguration, options);
+            this.retryScheduler = retryScheduler;
+        }
+
+        private CompletableFuture<HttpRequest> onBuildRequest(ListClientsRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, ListClientsRequest.class);
+            return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
+        }
+
+        private CompletableFuture<HttpResponse<Blob>> onError(HttpResponse<Blob> response, Throwable error) {
+            return this.sdkConfiguration.asyncHooks().afterError(createAfterErrorContext(), response, error);
+        }
+
+        private CompletableFuture<HttpResponse<Blob>> onSuccess(HttpResponse<Blob> response) {
+            return this.sdkConfiguration.asyncHooks().afterSuccess(createAfterSuccessContext(), response);
+        }
+
+        @Override
+        public CompletableFuture<HttpResponse<Blob>> doRequest(ListClientsRequest request) {
+            AsyncRetries retries = AsyncRetries.builder()
+                    .retryConfig(retryConfig)
+                    .statusCodes(retryStatusCodes)
+                    .scheduler(retryScheduler)
+                    .build();
+            return retries.retry(() -> Exceptions.unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
+                            .handle((resp, err) -> {
+                                if (err != null) {
+                                    return onError(null, err);
+                                }
+                                if (Utils.statusCodeMatches(resp.statusCode(), "400", "404", "4XX", "5XX")) {
+                                    return onError(resp, null);
+                                }
+                                return CompletableFuture.completedFuture(resp);
+                            })
+                            .thenCompose(Function.identity()))
+                    .thenCompose(this::onSuccess);
+        }
+
+        @Override
+        public CompletableFuture<com.mollie.mollie.models.operations.async.ListClientsResponse> handleResponse(
+                HttpResponse<Blob> response) {
+            String contentType = response
+                    .headers()
+                    .firstValue("Content-Type")
+                    .orElse("application/octet-stream");
+            com.mollie.mollie.models.operations.async.ListClientsResponse.Builder resBuilder =
+                    com.mollie.mollie.models.operations.async.ListClientsResponse
+                            .builder()
+                            .contentType(contentType)
+                            .statusCode(response.statusCode())
+                            .rawResponse(response);
+
+            com.mollie.mollie.models.operations.async.ListClientsResponse res = resBuilder.build();
+            
+            if (Utils.statusCodeMatches(response.statusCode(), "200")) {
+                if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
+                    return response.body().toByteArray().thenApply(bodyBytes -> {
+                        try {
+                            ListClientsResponseBody out = Utils.mapper().readValue(
+                                    bodyBytes,
+                                    new TypeReference<>() {
+                                    });
+                            res.withObject(out);
+                            return res;
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
+                } else {
+                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
+                }
+            }
+            
+            if (Utils.statusCodeMatches(response.statusCode(), "400")) {
+                if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
+                    return response.body().toByteArray().thenApply(bodyBytes -> {
+                        com.mollie.mollie.models.errors.async.ListClientsResponseBody out;
+                        try {
+                            out = Utils.mapper().readValue(
+                                    bodyBytes,
+                                    new TypeReference<>() {
+                                    });
+                            out.withRawResponse(response);
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                        throw out;
+                    });
+                } else {
+                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
+                }
+            }
+            
+            if (Utils.statusCodeMatches(response.statusCode(), "404")) {
+                if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
+                    return response.body().toByteArray().thenApply(bodyBytes -> {
+                        com.mollie.mollie.models.errors.async.ListClientsClientsResponseBody out;
+                        try {
+                            out = Utils.mapper().readValue(
+                                    bodyBytes,
+                                    new TypeReference<>() {
+                                    });
+                            out.withRawResponse(response);
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                        throw out;
+                    });
+                } else {
+                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
+                }
+            }
+            
+            if (Utils.statusCodeMatches(response.statusCode(), "4XX")) {
+                // no content
+                return Utils.createAsyncApiError(response, "API error occurred");
+            }
+            
+            if (Utils.statusCodeMatches(response.statusCode(), "5XX")) {
+                // no content
+                return Utils.createAsyncApiError(response, "API error occurred");
+            }
+            
+            return Utils.createAsyncApiError(response, "Unexpected status code received: " + response.statusCode());
         }
     }
 }

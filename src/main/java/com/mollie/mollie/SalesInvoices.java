@@ -38,9 +38,20 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class SalesInvoices {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncSalesInvoices asyncSDK;
 
     SalesInvoices(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncSalesInvoices(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncSalesInvoices async() {
+        return asyncSDK;
     }
 
     /**

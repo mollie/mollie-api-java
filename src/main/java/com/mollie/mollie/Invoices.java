@@ -21,9 +21,20 @@ import java.util.Optional;
 
 public class Invoices {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncInvoices asyncSDK;
 
     Invoices(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncInvoices(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncInvoices async() {
+        return asyncSDK;
     }
 
     /**

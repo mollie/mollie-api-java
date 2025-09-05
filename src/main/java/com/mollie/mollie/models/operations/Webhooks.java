@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,77 +20,76 @@ public class Webhooks {
      * Indicates the response contains a webhook subscription object.
      * Will always contain the string `webhook` for this endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
     /**
      * The identifier uniquely referring to this subscription.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The subscription's events destination.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("url")
-    private Optional<String> url;
+    private String url;
 
     /**
      * The identifier uniquely referring to the profile that created the subscription.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("profileId")
     private Optional<String> profileId;
 
     /**
      * The subscription's date time of creation.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
-    private Optional<String> createdAt;
+    private String createdAt;
 
     /**
      * The subscription's name.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
     /**
      * The events types that are subscribed.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("eventTypes")
-    private Optional<? extends List<String>> eventTypes;
+    private List<ListWebhooksWebhookEventTypes> eventTypes;
 
     /**
      * The subscription's current status.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends ListWebhooksStatus> status;
+    private ListWebhooksStatus status;
 
     /**
-     * The subscription's mode.
+     * Whether this entity was created in live mode or in test mode.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<? extends ListWebhooksMode> mode;
+    private ListWebhooksMode mode;
+
+    /**
+     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+     */
+    @JsonProperty("_links")
+    private ListWebhooksWebhooksLinks links;
 
     @JsonCreator
     public Webhooks(
-            @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("url") Optional<String> url,
+            @JsonProperty("resource") String resource,
+            @JsonProperty("id") String id,
+            @JsonProperty("url") String url,
             @JsonProperty("profileId") Optional<String> profileId,
-            @JsonProperty("createdAt") Optional<String> createdAt,
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("eventTypes") Optional<? extends List<String>> eventTypes,
-            @JsonProperty("status") Optional<? extends ListWebhooksStatus> status,
-            @JsonProperty("mode") Optional<? extends ListWebhooksMode> mode) {
+            @JsonProperty("createdAt") String createdAt,
+            @JsonProperty("name") String name,
+            @JsonProperty("eventTypes") List<ListWebhooksWebhookEventTypes> eventTypes,
+            @JsonProperty("status") ListWebhooksStatus status,
+            @JsonProperty("mode") ListWebhooksMode mode,
+            @JsonProperty("_links") ListWebhooksWebhooksLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(url, "url");
@@ -101,6 +99,7 @@ public class Webhooks {
         Utils.checkNotNull(eventTypes, "eventTypes");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(mode, "mode");
+        Utils.checkNotNull(links, "links");
         this.resource = resource;
         this.id = id;
         this.url = url;
@@ -110,12 +109,23 @@ public class Webhooks {
         this.eventTypes = eventTypes;
         this.status = status;
         this.mode = mode;
+        this.links = links;
     }
     
-    public Webhooks() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+    public Webhooks(
+            String resource,
+            String id,
+            String url,
+            String createdAt,
+            String name,
+            List<ListWebhooksWebhookEventTypes> eventTypes,
+            ListWebhooksStatus status,
+            ListWebhooksMode mode,
+            ListWebhooksWebhooksLinks links) {
+        this(resource, id, url,
+            Optional.empty(), createdAt, name,
+            eventTypes, status, mode,
+            links);
     }
 
     /**
@@ -123,7 +133,7 @@ public class Webhooks {
      * Will always contain the string `webhook` for this endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
@@ -131,7 +141,7 @@ public class Webhooks {
      * The identifier uniquely referring to this subscription.
      */
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
@@ -139,7 +149,7 @@ public class Webhooks {
      * The subscription's events destination.
      */
     @JsonIgnore
-    public Optional<String> url() {
+    public String url() {
         return url;
     }
 
@@ -155,7 +165,7 @@ public class Webhooks {
      * The subscription's date time of creation.
      */
     @JsonIgnore
-    public Optional<String> createdAt() {
+    public String createdAt() {
         return createdAt;
     }
 
@@ -163,35 +173,40 @@ public class Webhooks {
      * The subscription's name.
      */
     @JsonIgnore
-    public Optional<String> name() {
+    public String name() {
         return name;
     }
 
     /**
      * The events types that are subscribed.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<String>> eventTypes() {
-        return (Optional<List<String>>) eventTypes;
+    public List<ListWebhooksWebhookEventTypes> eventTypes() {
+        return eventTypes;
     }
 
     /**
      * The subscription's current status.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListWebhooksStatus> status() {
-        return (Optional<ListWebhooksStatus>) status;
+    public ListWebhooksStatus status() {
+        return status;
     }
 
     /**
-     * The subscription's mode.
+     * Whether this entity was created in live mode or in test mode.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListWebhooksMode> mode() {
-        return (Optional<ListWebhooksMode>) mode;
+    public ListWebhooksMode mode() {
+        return mode;
+    }
+
+    /**
+     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+     */
+    @JsonIgnore
+    public ListWebhooksWebhooksLinks links() {
+        return links;
     }
 
     public static Builder builder() {
@@ -205,17 +220,6 @@ public class Webhooks {
      */
     public Webhooks withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains a webhook subscription object.
-     * Will always contain the string `webhook` for this endpoint.
-     */
-    public Webhooks withResource(Optional<String> resource) {
-        Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
     }
@@ -225,16 +229,6 @@ public class Webhooks {
      */
     public Webhooks withId(String id) {
         Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * The identifier uniquely referring to this subscription.
-     */
-    public Webhooks withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
@@ -243,16 +237,6 @@ public class Webhooks {
      * The subscription's events destination.
      */
     public Webhooks withUrl(String url) {
-        Utils.checkNotNull(url, "url");
-        this.url = Optional.ofNullable(url);
-        return this;
-    }
-
-
-    /**
-     * The subscription's events destination.
-     */
-    public Webhooks withUrl(Optional<String> url) {
         Utils.checkNotNull(url, "url");
         this.url = url;
         return this;
@@ -282,16 +266,6 @@ public class Webhooks {
      */
     public Webhooks withCreatedAt(String createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = Optional.ofNullable(createdAt);
-        return this;
-    }
-
-
-    /**
-     * The subscription's date time of creation.
-     */
-    public Webhooks withCreatedAt(Optional<String> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
@@ -301,16 +275,6 @@ public class Webhooks {
      */
     public Webhooks withName(String name) {
         Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
-
-    /**
-     * The subscription's name.
-     */
-    public Webhooks withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
@@ -318,17 +282,7 @@ public class Webhooks {
     /**
      * The events types that are subscribed.
      */
-    public Webhooks withEventTypes(List<String> eventTypes) {
-        Utils.checkNotNull(eventTypes, "eventTypes");
-        this.eventTypes = Optional.ofNullable(eventTypes);
-        return this;
-    }
-
-
-    /**
-     * The events types that are subscribed.
-     */
-    public Webhooks withEventTypes(Optional<? extends List<String>> eventTypes) {
+    public Webhooks withEventTypes(List<ListWebhooksWebhookEventTypes> eventTypes) {
         Utils.checkNotNull(eventTypes, "eventTypes");
         this.eventTypes = eventTypes;
         return this;
@@ -339,36 +293,25 @@ public class Webhooks {
      */
     public Webhooks withStatus(ListWebhooksStatus status) {
         Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-
-    /**
-     * The subscription's current status.
-     */
-    public Webhooks withStatus(Optional<? extends ListWebhooksStatus> status) {
-        Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
     /**
-     * The subscription's mode.
+     * Whether this entity was created in live mode or in test mode.
      */
     public Webhooks withMode(ListWebhooksMode mode) {
         Utils.checkNotNull(mode, "mode");
-        this.mode = Optional.ofNullable(mode);
+        this.mode = mode;
         return this;
     }
 
-
     /**
-     * The subscription's mode.
+     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    public Webhooks withMode(Optional<? extends ListWebhooksMode> mode) {
-        Utils.checkNotNull(mode, "mode");
-        this.mode = mode;
+    public Webhooks withLinks(ListWebhooksWebhooksLinks links) {
+        Utils.checkNotNull(links, "links");
+        this.links = links;
         return this;
     }
 
@@ -390,7 +333,8 @@ public class Webhooks {
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.eventTypes, other.eventTypes) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
-            Utils.enhancedDeepEquals(this.mode, other.mode);
+            Utils.enhancedDeepEquals(this.mode, other.mode) &&
+            Utils.enhancedDeepEquals(this.links, other.links);
     }
     
     @Override
@@ -398,7 +342,8 @@ public class Webhooks {
         return Utils.enhancedHash(
             resource, id, url,
             profileId, createdAt, name,
-            eventTypes, status, mode);
+            eventTypes, status, mode,
+            links);
     }
     
     @Override
@@ -412,29 +357,32 @@ public class Webhooks {
                 "name", name,
                 "eventTypes", eventTypes,
                 "status", status,
-                "mode", mode);
+                "mode", mode,
+                "links", links);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource = Optional.empty();
+        private String resource;
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<String> url = Optional.empty();
+        private String url;
 
         private Optional<String> profileId = Optional.empty();
 
-        private Optional<String> createdAt = Optional.empty();
+        private String createdAt;
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private Optional<? extends List<String>> eventTypes = Optional.empty();
+        private List<ListWebhooksWebhookEventTypes> eventTypes;
 
-        private Optional<? extends ListWebhooksStatus> status = Optional.empty();
+        private ListWebhooksStatus status;
 
-        private Optional<? extends ListWebhooksMode> mode = Optional.empty();
+        private ListWebhooksMode mode;
+
+        private ListWebhooksWebhooksLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -447,16 +395,6 @@ public class Webhooks {
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a webhook subscription object.
-         * Will always contain the string `webhook` for this endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
-            Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
         }
@@ -467,15 +405,6 @@ public class Webhooks {
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The identifier uniquely referring to this subscription.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
@@ -485,15 +414,6 @@ public class Webhooks {
          * The subscription's events destination.
          */
         public Builder url(String url) {
-            Utils.checkNotNull(url, "url");
-            this.url = Optional.ofNullable(url);
-            return this;
-        }
-
-        /**
-         * The subscription's events destination.
-         */
-        public Builder url(Optional<String> url) {
             Utils.checkNotNull(url, "url");
             this.url = url;
             return this;
@@ -524,15 +444,6 @@ public class Webhooks {
          */
         public Builder createdAt(String createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = Optional.ofNullable(createdAt);
-            return this;
-        }
-
-        /**
-         * The subscription's date time of creation.
-         */
-        public Builder createdAt(Optional<String> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
@@ -543,15 +454,6 @@ public class Webhooks {
          */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * The subscription's name.
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
@@ -560,16 +462,7 @@ public class Webhooks {
         /**
          * The events types that are subscribed.
          */
-        public Builder eventTypes(List<String> eventTypes) {
-            Utils.checkNotNull(eventTypes, "eventTypes");
-            this.eventTypes = Optional.ofNullable(eventTypes);
-            return this;
-        }
-
-        /**
-         * The events types that are subscribed.
-         */
-        public Builder eventTypes(Optional<? extends List<String>> eventTypes) {
+        public Builder eventTypes(List<ListWebhooksWebhookEventTypes> eventTypes) {
             Utils.checkNotNull(eventTypes, "eventTypes");
             this.eventTypes = eventTypes;
             return this;
@@ -581,35 +474,27 @@ public class Webhooks {
          */
         public Builder status(ListWebhooksStatus status) {
             Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * The subscription's current status.
-         */
-        public Builder status(Optional<? extends ListWebhooksStatus> status) {
-            Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
 
 
         /**
-         * The subscription's mode.
+         * Whether this entity was created in live mode or in test mode.
          */
         public Builder mode(ListWebhooksMode mode) {
             Utils.checkNotNull(mode, "mode");
-            this.mode = Optional.ofNullable(mode);
+            this.mode = mode;
             return this;
         }
 
+
         /**
-         * The subscription's mode.
+         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
-        public Builder mode(Optional<? extends ListWebhooksMode> mode) {
-            Utils.checkNotNull(mode, "mode");
-            this.mode = mode;
+        public Builder links(ListWebhooksWebhooksLinks links) {
+            Utils.checkNotNull(links, "links");
+            this.links = links;
             return this;
         }
 
@@ -618,7 +503,8 @@ public class Webhooks {
             return new Webhooks(
                 resource, id, url,
                 profileId, createdAt, name,
-                eventTypes, status, mode);
+                eventTypes, status, mode,
+                links);
         }
 
     }

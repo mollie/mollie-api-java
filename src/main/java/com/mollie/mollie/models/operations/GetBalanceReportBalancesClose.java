@@ -23,7 +23,7 @@ public class GetBalanceReportBalancesClose {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private Optional<? extends GetBalanceReportBalancesAmount> amount;
+    private Optional<? extends GetBalanceReportAmount> amount;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -32,7 +32,7 @@ public class GetBalanceReportBalancesClose {
 
     @JsonCreator
     public GetBalanceReportBalancesClose(
-            @JsonProperty("amount") Optional<? extends GetBalanceReportBalancesAmount> amount,
+            @JsonProperty("amount") Optional<? extends GetBalanceReportAmount> amount,
             @JsonProperty("subtotals") JsonNullable<? extends List<GetBalanceReportSubtotals>> subtotals) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(subtotals, "subtotals");
@@ -49,8 +49,8 @@ public class GetBalanceReportBalancesClose {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetBalanceReportBalancesAmount> amount() {
-        return (Optional<GetBalanceReportBalancesAmount>) amount;
+    public Optional<GetBalanceReportAmount> amount() {
+        return (Optional<GetBalanceReportAmount>) amount;
     }
 
     @SuppressWarnings("unchecked")
@@ -67,7 +67,7 @@ public class GetBalanceReportBalancesClose {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public GetBalanceReportBalancesClose withAmount(GetBalanceReportBalancesAmount amount) {
+    public GetBalanceReportBalancesClose withAmount(GetBalanceReportAmount amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = Optional.ofNullable(amount);
         return this;
@@ -77,7 +77,7 @@ public class GetBalanceReportBalancesClose {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public GetBalanceReportBalancesClose withAmount(Optional<? extends GetBalanceReportBalancesAmount> amount) {
+    public GetBalanceReportBalancesClose withAmount(Optional<? extends GetBalanceReportAmount> amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
@@ -125,7 +125,7 @@ public class GetBalanceReportBalancesClose {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends GetBalanceReportBalancesAmount> amount = Optional.empty();
+        private Optional<? extends GetBalanceReportAmount> amount = Optional.empty();
 
         private JsonNullable<? extends List<GetBalanceReportSubtotals>> subtotals = JsonNullable.undefined();
 
@@ -137,7 +137,7 @@ public class GetBalanceReportBalancesClose {
         /**
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
-        public Builder amount(GetBalanceReportBalancesAmount amount) {
+        public Builder amount(GetBalanceReportAmount amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = Optional.ofNullable(amount);
             return this;
@@ -146,7 +146,7 @@ public class GetBalanceReportBalancesClose {
         /**
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
-        public Builder amount(Optional<? extends GetBalanceReportBalancesAmount> amount) {
+        public Builder amount(Optional<? extends GetBalanceReportAmount> amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;

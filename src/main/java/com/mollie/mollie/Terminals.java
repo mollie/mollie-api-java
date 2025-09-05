@@ -25,9 +25,20 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Terminals {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncTerminals asyncSDK;
 
     Terminals(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncTerminals(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncTerminals async() {
+        return asyncSDK;
     }
 
     /**

@@ -199,7 +199,7 @@ public class CreatePaymentResponseBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("locale")
-    private JsonNullable<? extends CreatePaymentLocale> locale;
+    private JsonNullable<? extends CreatePaymentPaymentsLocale> locale;
 
     /**
      * This optional field contains your customer's ISO 3166-1 alpha-2 country code, detected by us during checkout. This
@@ -500,7 +500,7 @@ public class CreatePaymentResponseBody {
             @JsonProperty("lines") JsonNullable<? extends List<CreatePaymentLines>> lines,
             @JsonProperty("billingAddress") Optional<? extends CreatePaymentBillingAddress> billingAddress,
             @JsonProperty("shippingAddress") Optional<? extends CreatePaymentShippingAddress> shippingAddress,
-            @JsonProperty("locale") JsonNullable<? extends CreatePaymentLocale> locale,
+            @JsonProperty("locale") JsonNullable<? extends CreatePaymentPaymentsLocale> locale,
             @JsonProperty("countryCode") JsonNullable<String> countryCode,
             @JsonProperty("method") JsonNullable<? extends CreatePaymentMethod> method,
             @JsonProperty("restrictPaymentMethodsToCountry") JsonNullable<String> restrictPaymentMethodsToCountry,
@@ -853,8 +853,8 @@ public class CreatePaymentResponseBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CreatePaymentLocale> locale() {
-        return (JsonNullable<CreatePaymentLocale>) locale;
+    public JsonNullable<CreatePaymentPaymentsLocale> locale() {
+        return (JsonNullable<CreatePaymentPaymentsLocale>) locale;
     }
 
     /**
@@ -1542,7 +1542,7 @@ public class CreatePaymentResponseBody {
      * transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the
      * customer use a local bank account greatly increases the conversion and speed of payment.
      */
-    public CreatePaymentResponseBody withLocale(CreatePaymentLocale locale) {
+    public CreatePaymentResponseBody withLocale(CreatePaymentPaymentsLocale locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = JsonNullable.of(locale);
         return this;
@@ -1558,7 +1558,7 @@ public class CreatePaymentResponseBody {
      * transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the
      * customer use a local bank account greatly increases the conversion and speed of payment.
      */
-    public CreatePaymentResponseBody withLocale(JsonNullable<? extends CreatePaymentLocale> locale) {
+    public CreatePaymentResponseBody withLocale(JsonNullable<? extends CreatePaymentPaymentsLocale> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
@@ -2367,7 +2367,7 @@ public class CreatePaymentResponseBody {
 
         private Optional<? extends CreatePaymentShippingAddress> shippingAddress = Optional.empty();
 
-        private JsonNullable<? extends CreatePaymentLocale> locale = JsonNullable.undefined();
+        private JsonNullable<? extends CreatePaymentPaymentsLocale> locale = JsonNullable.undefined();
 
         private JsonNullable<String> countryCode = JsonNullable.undefined();
 
@@ -2798,7 +2798,7 @@ public class CreatePaymentResponseBody {
          * transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the
          * customer use a local bank account greatly increases the conversion and speed of payment.
          */
-        public Builder locale(CreatePaymentLocale locale) {
+        public Builder locale(CreatePaymentPaymentsLocale locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = JsonNullable.of(locale);
             return this;
@@ -2814,7 +2814,7 @@ public class CreatePaymentResponseBody {
          * transfer the money to. We have dedicated bank accounts for Belgium, Germany, and The Netherlands. Having the
          * customer use a local bank account greatly increases the conversion and speed of payment.
          */
-        public Builder locale(JsonNullable<? extends CreatePaymentLocale> locale) {
+        public Builder locale(JsonNullable<? extends CreatePaymentPaymentsLocale> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;

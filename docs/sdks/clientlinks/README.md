@@ -91,7 +91,7 @@ public class Application {
                     .email("john@example.org")
                     .givenName("John")
                     .familyName("Doe")
-                    .locale(CreateClientLinkLocale.EN_US)
+                    .locale(Locale.EN_US)
                     .build())
                 .name("Acme Corporation")
                 .address(CreateClientLinkAddress.builder()

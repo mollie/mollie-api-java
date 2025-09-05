@@ -52,7 +52,7 @@ public class ListInvoicesRequest {
      * newest to oldest.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
-    private JsonNullable<? extends ListInvoicesQueryParamSort> sort;
+    private JsonNullable<? extends QueryParamSort> sort;
 
     @JsonCreator
     public ListInvoicesRequest(
@@ -61,7 +61,7 @@ public class ListInvoicesRequest {
             JsonNullable<String> month,
             JsonNullable<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<? extends ListInvoicesQueryParamSort> sort) {
+            JsonNullable<? extends QueryParamSort> sort) {
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(year, "year");
         Utils.checkNotNull(month, "month");
@@ -129,8 +129,8 @@ public class ListInvoicesRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListInvoicesQueryParamSort> sort() {
-        return (JsonNullable<ListInvoicesQueryParamSort>) sort;
+    public JsonNullable<QueryParamSort> sort() {
+        return (JsonNullable<QueryParamSort>) sort;
     }
 
     public static Builder builder() {
@@ -236,7 +236,7 @@ public class ListInvoicesRequest {
      * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
      * newest to oldest.
      */
-    public ListInvoicesRequest withSort(ListInvoicesQueryParamSort sort) {
+    public ListInvoicesRequest withSort(QueryParamSort sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = JsonNullable.of(sort);
         return this;
@@ -246,7 +246,7 @@ public class ListInvoicesRequest {
      * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
      * newest to oldest.
      */
-    public ListInvoicesRequest withSort(JsonNullable<? extends ListInvoicesQueryParamSort> sort) {
+    public ListInvoicesRequest withSort(JsonNullable<? extends QueryParamSort> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;
@@ -301,7 +301,7 @@ public class ListInvoicesRequest {
 
         private JsonNullable<Long> limit = JsonNullable.undefined();
 
-        private JsonNullable<? extends ListInvoicesQueryParamSort> sort = JsonNullable.undefined();
+        private JsonNullable<? extends QueryParamSort> sort = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -411,7 +411,7 @@ public class ListInvoicesRequest {
          * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
          * newest to oldest.
          */
-        public Builder sort(ListInvoicesQueryParamSort sort) {
+        public Builder sort(QueryParamSort sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = JsonNullable.of(sort);
             return this;
@@ -421,7 +421,7 @@ public class ListInvoicesRequest {
          * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
          * newest to oldest.
          */
-        public Builder sort(JsonNullable<? extends ListInvoicesQueryParamSort> sort) {
+        public Builder sort(JsonNullable<? extends QueryParamSort> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = sort;
             return this;

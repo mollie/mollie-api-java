@@ -20,9 +20,20 @@ import java.util.Optional;
 
 public class Onboarding {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncOnboarding asyncSDK;
 
     Onboarding(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncOnboarding(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncOnboarding async() {
+        return asyncSDK;
     }
 
     /**

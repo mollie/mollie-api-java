@@ -29,10 +29,11 @@ public class CreateWebhookRequestBody {
     private String url;
 
     /**
-     * The list of events to enable for this webhook. You may specify `'*'` to add all events, except those that require explicit selection. Separate multiple event types with a comma.
+     * The list of events to enable for this webhook. You may specify `'*'` to add all events, except those
+     * that require explicit selection. Separate multiple event types with a comma.
      */
     @JsonProperty("eventTypes")
-    private EventTypes eventTypes;
+    private WebhookEventTypes webhookEventTypes;
 
     /**
      * Whether to create the entity in test mode or live mode.
@@ -49,23 +50,23 @@ public class CreateWebhookRequestBody {
     public CreateWebhookRequestBody(
             @JsonProperty("name") String name,
             @JsonProperty("url") String url,
-            @JsonProperty("eventTypes") EventTypes eventTypes,
+            @JsonProperty("eventTypes") WebhookEventTypes webhookEventTypes,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(url, "url");
-        Utils.checkNotNull(eventTypes, "eventTypes");
+        Utils.checkNotNull(webhookEventTypes, "webhookEventTypes");
         Utils.checkNotNull(testmode, "testmode");
         this.name = name;
         this.url = url;
-        this.eventTypes = eventTypes;
+        this.webhookEventTypes = webhookEventTypes;
         this.testmode = testmode;
     }
     
     public CreateWebhookRequestBody(
             String name,
             String url,
-            EventTypes eventTypes) {
-        this(name, url, eventTypes,
+            WebhookEventTypes webhookEventTypes) {
+        this(name, url, webhookEventTypes,
             JsonNullable.undefined());
     }
 
@@ -86,11 +87,12 @@ public class CreateWebhookRequestBody {
     }
 
     /**
-     * The list of events to enable for this webhook. You may specify `'*'` to add all events, except those that require explicit selection. Separate multiple event types with a comma.
+     * The list of events to enable for this webhook. You may specify `'*'` to add all events, except those
+     * that require explicit selection. Separate multiple event types with a comma.
      */
     @JsonIgnore
-    public EventTypes eventTypes() {
-        return eventTypes;
+    public WebhookEventTypes webhookEventTypes() {
+        return webhookEventTypes;
     }
 
     /**
@@ -129,11 +131,12 @@ public class CreateWebhookRequestBody {
     }
 
     /**
-     * The list of events to enable for this webhook. You may specify `'*'` to add all events, except those that require explicit selection. Separate multiple event types with a comma.
+     * The list of events to enable for this webhook. You may specify `'*'` to add all events, except those
+     * that require explicit selection. Separate multiple event types with a comma.
      */
-    public CreateWebhookRequestBody withEventTypes(EventTypes eventTypes) {
-        Utils.checkNotNull(eventTypes, "eventTypes");
-        this.eventTypes = eventTypes;
+    public CreateWebhookRequestBody withWebhookEventTypes(WebhookEventTypes webhookEventTypes) {
+        Utils.checkNotNull(webhookEventTypes, "webhookEventTypes");
+        this.webhookEventTypes = webhookEventTypes;
         return this;
     }
 
@@ -175,14 +178,14 @@ public class CreateWebhookRequestBody {
         return 
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.url, other.url) &&
-            Utils.enhancedDeepEquals(this.eventTypes, other.eventTypes) &&
+            Utils.enhancedDeepEquals(this.webhookEventTypes, other.webhookEventTypes) &&
             Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name, url, eventTypes,
+            name, url, webhookEventTypes,
             testmode);
     }
     
@@ -191,7 +194,7 @@ public class CreateWebhookRequestBody {
         return Utils.toString(CreateWebhookRequestBody.class,
                 "name", name,
                 "url", url,
-                "eventTypes", eventTypes,
+                "webhookEventTypes", webhookEventTypes,
                 "testmode", testmode);
     }
 
@@ -202,7 +205,7 @@ public class CreateWebhookRequestBody {
 
         private String url;
 
-        private EventTypes eventTypes;
+        private WebhookEventTypes webhookEventTypes;
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -232,11 +235,12 @@ public class CreateWebhookRequestBody {
 
 
         /**
-         * The list of events to enable for this webhook. You may specify `'*'` to add all events, except those that require explicit selection. Separate multiple event types with a comma.
+         * The list of events to enable for this webhook. You may specify `'*'` to add all events, except those
+         * that require explicit selection. Separate multiple event types with a comma.
          */
-        public Builder eventTypes(EventTypes eventTypes) {
-            Utils.checkNotNull(eventTypes, "eventTypes");
-            this.eventTypes = eventTypes;
+        public Builder webhookEventTypes(WebhookEventTypes webhookEventTypes) {
+            Utils.checkNotNull(webhookEventTypes, "webhookEventTypes");
+            this.webhookEventTypes = webhookEventTypes;
             return this;
         }
 
@@ -270,7 +274,7 @@ public class CreateWebhookRequestBody {
         public CreateWebhookRequestBody build() {
 
             return new CreateWebhookRequestBody(
-                name, url, eventTypes,
+                name, url, webhookEventTypes,
                 testmode);
         }
 

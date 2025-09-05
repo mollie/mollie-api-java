@@ -23,7 +23,7 @@ public class GetBalanceReportClose {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceAmount> amount;
+    private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAmount> amount;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -32,7 +32,7 @@ public class GetBalanceReportClose {
 
     @JsonCreator
     public GetBalanceReportClose(
-            @JsonProperty("amount") Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceAmount> amount,
+            @JsonProperty("amount") Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAmount> amount,
             @JsonProperty("subtotals") JsonNullable<? extends List<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsSubtotals>> subtotals) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(subtotals, "subtotals");
@@ -49,8 +49,8 @@ public class GetBalanceReportClose {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceAmount> amount() {
-        return (Optional<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceAmount>) amount;
+    public Optional<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAmount> amount() {
+        return (Optional<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAmount>) amount;
     }
 
     @SuppressWarnings("unchecked")
@@ -67,7 +67,7 @@ public class GetBalanceReportClose {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public GetBalanceReportClose withAmount(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceAmount amount) {
+    public GetBalanceReportClose withAmount(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAmount amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = Optional.ofNullable(amount);
         return this;
@@ -77,7 +77,7 @@ public class GetBalanceReportClose {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public GetBalanceReportClose withAmount(Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceAmount> amount) {
+    public GetBalanceReportClose withAmount(Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAmount> amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
@@ -125,7 +125,7 @@ public class GetBalanceReportClose {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceAmount> amount = Optional.empty();
+        private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAmount> amount = Optional.empty();
 
         private JsonNullable<? extends List<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsSubtotals>> subtotals = JsonNullable.undefined();
 
@@ -137,7 +137,7 @@ public class GetBalanceReportClose {
         /**
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
-        public Builder amount(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceAmount amount) {
+        public Builder amount(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAmount amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = Optional.ofNullable(amount);
             return this;
@@ -146,7 +146,7 @@ public class GetBalanceReportClose {
         /**
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
-        public Builder amount(Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAvailableBalanceAmount> amount) {
+        public Builder amount(Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAmount> amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;

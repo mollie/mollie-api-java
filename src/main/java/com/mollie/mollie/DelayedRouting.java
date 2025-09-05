@@ -24,9 +24,20 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class DelayedRouting {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncDelayedRouting asyncSDK;
 
     DelayedRouting(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncDelayedRouting(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncDelayedRouting async() {
+        return asyncSDK;
     }
 
     /**

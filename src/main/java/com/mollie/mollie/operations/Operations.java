@@ -3,8 +3,11 @@
  */
 package com.mollie.mollie.operations;
 
+import com.mollie.mollie.utils.Blob;
+
 import java.io.InputStream;
 import java.net.http.HttpResponse;
+import java.util.concurrent.CompletableFuture;
 
 // Internal API only
 
@@ -28,5 +31,26 @@ public class Operations {
     */
     public interface RequestlessOperation<ResT> extends Operation<ResT> {
         HttpResponse<InputStream> doRequest() throws Exception;
+    }
+
+    /**
+    * Base interface for all async operations
+    */
+    public interface AsyncOperation<ResT> {
+        CompletableFuture<ResT> handleResponse(HttpResponse<Blob> response);
+    }
+
+    /**
+    * Interface for async operations that require a request parameter
+    */
+    public interface AsyncRequestOperation<ReqT, ResT> extends AsyncOperation<ResT> {
+        CompletableFuture<HttpResponse<Blob>> doRequest(ReqT request);
+    }
+
+    /**
+    * Interface for async operations that don't require a request parameter
+    */
+    public interface AsyncRequestlessOperation<ResT> extends AsyncOperation<ResT> {
+        CompletableFuture<HttpResponse<Blob>> doRequest();
     }
 }

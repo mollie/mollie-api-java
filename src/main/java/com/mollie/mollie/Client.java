@@ -25,6 +25,42 @@ public class Client {
     };
 
 
+    private final Balances balances;
+
+
+    private final Settlements settlements;
+
+
+    private final Invoices invoices;
+
+
+    private final Permissions permissions;
+
+
+    private final Organizations organizations;
+
+
+    private final Profiles profiles;
+
+
+    private final Onboarding onboarding;
+
+
+    private final Capabilities capabilities;
+
+
+    private final Clients clients;
+
+
+    private final ClientLinks clientLinks;
+
+
+    private final Webhooks webhooks;
+
+
+    private final WebhookEvents webhookEvents;
+
+
     private final Payments payments;
 
 
@@ -61,43 +97,67 @@ public class Client {
     private final Subscriptions subscriptions;
 
 
-    private final Permissions permissions;
-
-
-    private final Organizations organizations;
-
-
-    private final Profiles profiles;
-
-
-    private final Onboarding onboarding;
-
-
-    private final Capabilities capabilities;
-
-
-    private final Clients clients;
-
-
-    private final ClientLinks clientLinks;
-
-
-    private final Webhooks webhooks;
-
-
-    private final WebhookEvents webhookEvents;
-
-
-    private final Balances balances;
-
-
-    private final Settlements settlements;
-
-
-    private final Invoices invoices;
-
-
     private final SalesInvoices salesInvoices;
+
+
+    public Balances balances() {
+        return balances;
+    }
+
+
+    public Settlements settlements() {
+        return settlements;
+    }
+
+
+    public Invoices invoices() {
+        return invoices;
+    }
+
+
+    public Permissions permissions() {
+        return permissions;
+    }
+
+
+    public Organizations organizations() {
+        return organizations;
+    }
+
+
+    public Profiles profiles() {
+        return profiles;
+    }
+
+
+    public Onboarding onboarding() {
+        return onboarding;
+    }
+
+
+    public Capabilities capabilities() {
+        return capabilities;
+    }
+
+
+    public Clients clients() {
+        return clients;
+    }
+
+
+    public ClientLinks clientLinks() {
+        return clientLinks;
+    }
+
+
+    public Webhooks webhooks() {
+        return webhooks;
+    }
+
+
+    public WebhookEvents webhookEvents() {
+        return webhookEvents;
+    }
 
 
     public Payments payments() {
@@ -160,71 +220,12 @@ public class Client {
     }
 
 
-    public Permissions permissions() {
-        return permissions;
-    }
-
-
-    public Organizations organizations() {
-        return organizations;
-    }
-
-
-    public Profiles profiles() {
-        return profiles;
-    }
-
-
-    public Onboarding onboarding() {
-        return onboarding;
-    }
-
-
-    public Capabilities capabilities() {
-        return capabilities;
-    }
-
-
-    public Clients clients() {
-        return clients;
-    }
-
-
-    public ClientLinks clientLinks() {
-        return clientLinks;
-    }
-
-
-    public Webhooks webhooks() {
-        return webhooks;
-    }
-
-
-    public WebhookEvents webhookEvents() {
-        return webhookEvents;
-    }
-
-
-    public Balances balances() {
-        return balances;
-    }
-
-
-    public Settlements settlements() {
-        return settlements;
-    }
-
-
-    public Invoices invoices() {
-        return invoices;
-    }
-
-
     public SalesInvoices salesInvoices() {
         return salesInvoices;
     }
 
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncClient asyncSDK;
 
     /**
      * The Builder class allows the configuration of a new instance of the SDK.
@@ -374,6 +375,18 @@ public class Client {
     private Client(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.sdkConfiguration.initialize();
+        this.balances = new Balances(sdkConfiguration);
+        this.settlements = new Settlements(sdkConfiguration);
+        this.invoices = new Invoices(sdkConfiguration);
+        this.permissions = new Permissions(sdkConfiguration);
+        this.organizations = new Organizations(sdkConfiguration);
+        this.profiles = new Profiles(sdkConfiguration);
+        this.onboarding = new Onboarding(sdkConfiguration);
+        this.capabilities = new Capabilities(sdkConfiguration);
+        this.clients = new Clients(sdkConfiguration);
+        this.clientLinks = new ClientLinks(sdkConfiguration);
+        this.webhooks = new Webhooks(sdkConfiguration);
+        this.webhookEvents = new WebhookEvents(sdkConfiguration);
         this.payments = new Payments(sdkConfiguration);
         this.methods = new Methods(sdkConfiguration);
         this.refunds = new Refunds(sdkConfiguration);
@@ -386,18 +399,6 @@ public class Client {
         this.customers = new Customers(sdkConfiguration);
         this.mandates = new Mandates(sdkConfiguration);
         this.subscriptions = new Subscriptions(sdkConfiguration);
-        this.permissions = new Permissions(sdkConfiguration);
-        this.organizations = new Organizations(sdkConfiguration);
-        this.profiles = new Profiles(sdkConfiguration);
-        this.onboarding = new Onboarding(sdkConfiguration);
-        this.capabilities = new Capabilities(sdkConfiguration);
-        this.clients = new Clients(sdkConfiguration);
-        this.clientLinks = new ClientLinks(sdkConfiguration);
-        this.webhooks = new Webhooks(sdkConfiguration);
-        this.webhookEvents = new WebhookEvents(sdkConfiguration);
-        this.balances = new Balances(sdkConfiguration);
-        this.settlements = new Settlements(sdkConfiguration);
-        this.invoices = new Invoices(sdkConfiguration);
         this.salesInvoices = new SalesInvoices(sdkConfiguration);
         SdkInitData data = this.sdkConfiguration.hooks().sdkInit(
                 new SdkInitData(
@@ -405,5 +406,16 @@ public class Client {
                         this.sdkConfiguration.client()));
         this.sdkConfiguration.setServerUrl(data.baseUrl());
         this.sdkConfiguration.setClient(data.client());
+        this.asyncSDK = new AsyncClient(this, sdkConfiguration);
     }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncClient async() {
+        return asyncSDK;
+    }
+
 }

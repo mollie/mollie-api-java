@@ -44,7 +44,7 @@ public class Application {
                 .month("01")
                 .from("inv_xBEbP9rvAq")
                 .limit(50L)
-                .sort(ListInvoicesQueryParamSort.DESC)
+                .sort(QueryParamSort.DESC)
                 .build();
 
         ListInvoicesResponse res = sdk.invoices().list()

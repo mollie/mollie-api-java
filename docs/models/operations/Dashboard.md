@@ -1,6 +1,6 @@
 # Dashboard
 
-Direct link to the payment in the Mollie Dashboard.
+Direct link to the organization's Mollie dashboard.
 
 
 ## Fields

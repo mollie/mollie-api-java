@@ -37,9 +37,20 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Refunds {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncRefunds asyncSDK;
 
     Refunds(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncRefunds(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncRefunds async() {
+        return asyncSDK;
     }
 
     /**

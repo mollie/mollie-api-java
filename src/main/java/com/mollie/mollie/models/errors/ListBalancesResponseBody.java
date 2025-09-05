@@ -53,7 +53,7 @@ public class ListBalancesResponseBody extends RuntimeException {
 
 
     @JsonProperty("_links")
-    private ListBalancesLinks links;
+    private Links links;
 
     /**
      * Raw HTTP response; suitable for custom response parsing
@@ -68,7 +68,7 @@ public class ListBalancesResponseBody extends RuntimeException {
             @JsonProperty("title") String title,
             @JsonProperty("detail") String detail,
             @JsonProperty("field") Optional<String> field,
-            @JsonProperty("_links") ListBalancesLinks links,
+            @JsonProperty("_links") Links links,
             @JsonProperty("RawResponse") Optional<? extends HttpResponse<InputStream>> rawResponse) {
         super("API error occurred");
         Utils.checkNotNull(status, "status");
@@ -89,7 +89,7 @@ public class ListBalancesResponseBody extends RuntimeException {
             long status,
             String title,
             String detail,
-            ListBalancesLinks links) {
+            Links links) {
         this(status, title, detail,
             Optional.empty(), links, Optional.empty());
     }
@@ -128,7 +128,7 @@ public class ListBalancesResponseBody extends RuntimeException {
     }
 
     @JsonIgnore
-    public ListBalancesLinks links() {
+    public Links links() {
         return links;
     }
 
@@ -194,7 +194,7 @@ public class ListBalancesResponseBody extends RuntimeException {
         return this;
     }
 
-    public ListBalancesResponseBody withLinks(ListBalancesLinks links) {
+    public ListBalancesResponseBody withLinks(Links links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -266,7 +266,7 @@ public class ListBalancesResponseBody extends RuntimeException {
 
         private Optional<String> field = Optional.empty();
 
-        private ListBalancesLinks links;
+        private Links links;
 
         private Optional<? extends HttpResponse<InputStream>> rawResponse;
 
@@ -326,7 +326,7 @@ public class ListBalancesResponseBody extends RuntimeException {
         }
 
 
-        public Builder links(ListBalancesLinks links) {
+        public Builder links(Links links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

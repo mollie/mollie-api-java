@@ -5,202 +5,53 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.List;
-import java.util.Optional;
 
-
+/**
+ * Methods
+ * 
+ * <p>The API resource URL of the methods that are enabled for this profile.
+ */
 public class Methods {
     /**
-     * Indicates the response contains a payment method object. Will always contain the string `method` for this
-     * endpoint.
+     * The actual URL string.
      */
-    @JsonProperty("resource")
-    private String resource;
+    @JsonProperty("href")
+    private String href;
 
     /**
-     * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment
-     * method selection screen will be skipped.
+     * The content type of the page or endpoint the URL points to.
      */
-    @JsonProperty("id")
-    private ListMethodsId id;
-
-    /**
-     * The full name of the payment method.
-     * 
-     * <p>If a `locale` parameter is provided, the name is translated to the given locale if possible.
-     */
-    @JsonProperty("description")
-    private String description;
-
-    /**
-     * The minimum payment amount required to use this payment method.
-     */
-    @JsonProperty("minimumAmount")
-    private ListMethodsMinimumAmount minimumAmount;
-
-    /**
-     * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
-     * is returned instead.
-     */
-    @JsonInclude(Include.ALWAYS)
-    @JsonProperty("maximumAmount")
-    private Optional<? extends ListMethodsMaximumAmount> maximumAmount;
-
-    /**
-     * URLs of images representing the payment method.
-     */
-    @JsonProperty("image")
-    private ListMethodsImage image;
-
-    /**
-     * The payment method's activation status for this profile.
-     */
-    @JsonProperty("status")
-    private ListMethodsStatus status;
-
-    /**
-     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
-     * for iDEAL, KBC/CBC, gift cards, and vouchers.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("issuers")
-    private Optional<? extends List<ListMethodsIssuers>> issuers;
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    @JsonProperty("_links")
-    private ListMethodsMethodsLinks links;
+    @JsonProperty("type")
+    private String type;
 
     @JsonCreator
     public Methods(
-            @JsonProperty("resource") String resource,
-            @JsonProperty("id") ListMethodsId id,
-            @JsonProperty("description") String description,
-            @JsonProperty("minimumAmount") ListMethodsMinimumAmount minimumAmount,
-            @JsonProperty("maximumAmount") Optional<? extends ListMethodsMaximumAmount> maximumAmount,
-            @JsonProperty("image") ListMethodsImage image,
-            @JsonProperty("status") ListMethodsStatus status,
-            @JsonProperty("issuers") Optional<? extends List<ListMethodsIssuers>> issuers,
-            @JsonProperty("_links") ListMethodsMethodsLinks links) {
-        Utils.checkNotNull(resource, "resource");
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(minimumAmount, "minimumAmount");
-        Utils.checkNotNull(maximumAmount, "maximumAmount");
-        Utils.checkNotNull(image, "image");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(issuers, "issuers");
-        Utils.checkNotNull(links, "links");
-        this.resource = resource;
-        this.id = id;
-        this.description = description;
-        this.minimumAmount = minimumAmount;
-        this.maximumAmount = maximumAmount;
-        this.image = image;
-        this.status = status;
-        this.issuers = issuers;
-        this.links = links;
-    }
-    
-    public Methods(
-            String resource,
-            ListMethodsId id,
-            String description,
-            ListMethodsMinimumAmount minimumAmount,
-            ListMethodsImage image,
-            ListMethodsStatus status,
-            ListMethodsMethodsLinks links) {
-        this(resource, id, description,
-            minimumAmount, Optional.empty(), image,
-            status, Optional.empty(), links);
+            @JsonProperty("href") String href,
+            @JsonProperty("type") String type) {
+        Utils.checkNotNull(href, "href");
+        Utils.checkNotNull(type, "type");
+        this.href = href;
+        this.type = type;
     }
 
     /**
-     * Indicates the response contains a payment method object. Will always contain the string `method` for this
-     * endpoint.
+     * The actual URL string.
      */
     @JsonIgnore
-    public String resource() {
-        return resource;
+    public String href() {
+        return href;
     }
 
     /**
-     * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment
-     * method selection screen will be skipped.
+     * The content type of the page or endpoint the URL points to.
      */
     @JsonIgnore
-    public ListMethodsId id() {
-        return id;
-    }
-
-    /**
-     * The full name of the payment method.
-     * 
-     * <p>If a `locale` parameter is provided, the name is translated to the given locale if possible.
-     */
-    @JsonIgnore
-    public String description() {
-        return description;
-    }
-
-    /**
-     * The minimum payment amount required to use this payment method.
-     */
-    @JsonIgnore
-    public ListMethodsMinimumAmount minimumAmount() {
-        return minimumAmount;
-    }
-
-    /**
-     * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
-     * is returned instead.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<ListMethodsMaximumAmount> maximumAmount() {
-        return (Optional<ListMethodsMaximumAmount>) maximumAmount;
-    }
-
-    /**
-     * URLs of images representing the payment method.
-     */
-    @JsonIgnore
-    public ListMethodsImage image() {
-        return image;
-    }
-
-    /**
-     * The payment method's activation status for this profile.
-     */
-    @JsonIgnore
-    public ListMethodsStatus status() {
-        return status;
-    }
-
-    /**
-     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
-     * for iDEAL, KBC/CBC, gift cards, and vouchers.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<List<ListMethodsIssuers>> issuers() {
-        return (Optional<List<ListMethodsIssuers>>) issuers;
-    }
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    @JsonIgnore
-    public ListMethodsMethodsLinks links() {
-        return links;
+    public String type() {
+        return type;
     }
 
     public static Builder builder() {
@@ -209,111 +60,20 @@ public class Methods {
 
 
     /**
-     * Indicates the response contains a payment method object. Will always contain the string `method` for this
-     * endpoint.
+     * The actual URL string.
      */
-    public Methods withResource(String resource) {
-        Utils.checkNotNull(resource, "resource");
-        this.resource = resource;
+    public Methods withHref(String href) {
+        Utils.checkNotNull(href, "href");
+        this.href = href;
         return this;
     }
 
     /**
-     * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment
-     * method selection screen will be skipped.
+     * The content type of the page or endpoint the URL points to.
      */
-    public Methods withId(ListMethodsId id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
-
-    /**
-     * The full name of the payment method.
-     * 
-     * <p>If a `locale` parameter is provided, the name is translated to the given locale if possible.
-     */
-    public Methods withDescription(String description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
-
-    /**
-     * The minimum payment amount required to use this payment method.
-     */
-    public Methods withMinimumAmount(ListMethodsMinimumAmount minimumAmount) {
-        Utils.checkNotNull(minimumAmount, "minimumAmount");
-        this.minimumAmount = minimumAmount;
-        return this;
-    }
-
-    /**
-     * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
-     * is returned instead.
-     */
-    public Methods withMaximumAmount(ListMethodsMaximumAmount maximumAmount) {
-        Utils.checkNotNull(maximumAmount, "maximumAmount");
-        this.maximumAmount = Optional.ofNullable(maximumAmount);
-        return this;
-    }
-
-
-    /**
-     * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
-     * is returned instead.
-     */
-    public Methods withMaximumAmount(Optional<? extends ListMethodsMaximumAmount> maximumAmount) {
-        Utils.checkNotNull(maximumAmount, "maximumAmount");
-        this.maximumAmount = maximumAmount;
-        return this;
-    }
-
-    /**
-     * URLs of images representing the payment method.
-     */
-    public Methods withImage(ListMethodsImage image) {
-        Utils.checkNotNull(image, "image");
-        this.image = image;
-        return this;
-    }
-
-    /**
-     * The payment method's activation status for this profile.
-     */
-    public Methods withStatus(ListMethodsStatus status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
-        return this;
-    }
-
-    /**
-     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
-     * for iDEAL, KBC/CBC, gift cards, and vouchers.
-     */
-    public Methods withIssuers(List<ListMethodsIssuers> issuers) {
-        Utils.checkNotNull(issuers, "issuers");
-        this.issuers = Optional.ofNullable(issuers);
-        return this;
-    }
-
-
-    /**
-     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
-     * for iDEAL, KBC/CBC, gift cards, and vouchers.
-     */
-    public Methods withIssuers(Optional<? extends List<ListMethodsIssuers>> issuers) {
-        Utils.checkNotNull(issuers, "issuers");
-        this.issuers = issuers;
-        return this;
-    }
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public Methods withLinks(ListMethodsMethodsLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = links;
+    public Methods withType(String type) {
+        Utils.checkNotNull(type, "type");
+        this.type = type;
         return this;
     }
 
@@ -327,59 +87,29 @@ public class Methods {
         }
         Methods other = (Methods) o;
         return 
-            Utils.enhancedDeepEquals(this.resource, other.resource) &&
-            Utils.enhancedDeepEquals(this.id, other.id) &&
-            Utils.enhancedDeepEquals(this.description, other.description) &&
-            Utils.enhancedDeepEquals(this.minimumAmount, other.minimumAmount) &&
-            Utils.enhancedDeepEquals(this.maximumAmount, other.maximumAmount) &&
-            Utils.enhancedDeepEquals(this.image, other.image) &&
-            Utils.enhancedDeepEquals(this.status, other.status) &&
-            Utils.enhancedDeepEquals(this.issuers, other.issuers) &&
-            Utils.enhancedDeepEquals(this.links, other.links);
+            Utils.enhancedDeepEquals(this.href, other.href) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource, id, description,
-            minimumAmount, maximumAmount, image,
-            status, issuers, links);
+            href, type);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Methods.class,
-                "resource", resource,
-                "id", id,
-                "description", description,
-                "minimumAmount", minimumAmount,
-                "maximumAmount", maximumAmount,
-                "image", image,
-                "status", status,
-                "issuers", issuers,
-                "links", links);
+                "href", href,
+                "type", type);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String resource;
+        private String href;
 
-        private ListMethodsId id;
-
-        private String description;
-
-        private ListMethodsMinimumAmount minimumAmount;
-
-        private Optional<? extends ListMethodsMaximumAmount> maximumAmount = Optional.empty();
-
-        private ListMethodsImage image;
-
-        private ListMethodsStatus status;
-
-        private Optional<? extends List<ListMethodsIssuers>> issuers = Optional.empty();
-
-        private ListMethodsMethodsLinks links;
+        private String type;
 
         private Builder() {
           // force use of static builder() method
@@ -387,126 +117,28 @@ public class Methods {
 
 
         /**
-         * Indicates the response contains a payment method object. Will always contain the string `method` for this
-         * endpoint.
+         * The actual URL string.
          */
-        public Builder resource(String resource) {
-            Utils.checkNotNull(resource, "resource");
-            this.resource = resource;
+        public Builder href(String href) {
+            Utils.checkNotNull(href, "href");
+            this.href = href;
             return this;
         }
 
 
         /**
-         * The unique identifier of the payment method. When used during [payment creation](create-payment), the payment
-         * method selection screen will be skipped.
+         * The content type of the page or endpoint the URL points to.
          */
-        public Builder id(ListMethodsId id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        /**
-         * The full name of the payment method.
-         * 
-         * <p>If a `locale` parameter is provided, the name is translated to the given locale if possible.
-         */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        /**
-         * The minimum payment amount required to use this payment method.
-         */
-        public Builder minimumAmount(ListMethodsMinimumAmount minimumAmount) {
-            Utils.checkNotNull(minimumAmount, "minimumAmount");
-            this.minimumAmount = minimumAmount;
-            return this;
-        }
-
-
-        /**
-         * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
-         * is returned instead.
-         */
-        public Builder maximumAmount(ListMethodsMaximumAmount maximumAmount) {
-            Utils.checkNotNull(maximumAmount, "maximumAmount");
-            this.maximumAmount = Optional.ofNullable(maximumAmount);
-            return this;
-        }
-
-        /**
-         * The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
-         * is returned instead.
-         */
-        public Builder maximumAmount(Optional<? extends ListMethodsMaximumAmount> maximumAmount) {
-            Utils.checkNotNull(maximumAmount, "maximumAmount");
-            this.maximumAmount = maximumAmount;
-            return this;
-        }
-
-
-        /**
-         * URLs of images representing the payment method.
-         */
-        public Builder image(ListMethodsImage image) {
-            Utils.checkNotNull(image, "image");
-            this.image = image;
-            return this;
-        }
-
-
-        /**
-         * The payment method's activation status for this profile.
-         */
-        public Builder status(ListMethodsStatus status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
-            return this;
-        }
-
-
-        /**
-         * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
-         * for iDEAL, KBC/CBC, gift cards, and vouchers.
-         */
-        public Builder issuers(List<ListMethodsIssuers> issuers) {
-            Utils.checkNotNull(issuers, "issuers");
-            this.issuers = Optional.ofNullable(issuers);
-            return this;
-        }
-
-        /**
-         * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
-         * for iDEAL, KBC/CBC, gift cards, and vouchers.
-         */
-        public Builder issuers(Optional<? extends List<ListMethodsIssuers>> issuers) {
-            Utils.checkNotNull(issuers, "issuers");
-            this.issuers = issuers;
-            return this;
-        }
-
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(ListMethodsMethodsLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = links;
+        public Builder type(String type) {
+            Utils.checkNotNull(type, "type");
+            this.type = type;
             return this;
         }
 
         public Methods build() {
 
             return new Methods(
-                resource, id, description,
-                minimumAmount, maximumAmount, image,
-                status, issuers, links);
+                href, type);
         }
 
     }

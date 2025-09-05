@@ -15,9 +15,20 @@ import java.util.Optional;
 
 public class Capabilities {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncCapabilities asyncSDK;
 
     Capabilities(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncCapabilities(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncCapabilities async() {
+        return asyncSDK;
     }
 
     /**

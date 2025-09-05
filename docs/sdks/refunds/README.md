@@ -127,7 +127,7 @@ public class Application {
                 .paymentId("tr_5B8cwPMGnU")
                 .from("re_5B8cwPMGnU")
                 .limit(50L)
-                .embed(QueryParamEmbed.PAYMENT)
+                .embed(ListRefundsQueryParamEmbed.PAYMENT)
                 .testmode(false)
                 .build();
 
@@ -314,7 +314,7 @@ public class Application {
         ListAllRefundsRequest req = ListAllRefundsRequest.builder()
                 .from("re_5B8cwPMGnU")
                 .limit(50L)
-                .sort(QueryParamSort.DESC)
+                .sort(ListAllRefundsQueryParamSort.DESC)
                 .embed(ListAllRefundsQueryParamEmbed.PAYMENT)
                 .profileId("pfl_5B8cwPMGnU")
                 .testmode(false)

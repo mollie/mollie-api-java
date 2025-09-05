@@ -23,7 +23,7 @@ public class GetBalanceReportBalancesOpen {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private Optional<? extends GetBalanceReportAmount> amount;
+    private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceAmount> amount;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -32,7 +32,7 @@ public class GetBalanceReportBalancesOpen {
 
     @JsonCreator
     public GetBalanceReportBalancesOpen(
-            @JsonProperty("amount") Optional<? extends GetBalanceReportAmount> amount,
+            @JsonProperty("amount") Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceAmount> amount,
             @JsonProperty("subtotals") JsonNullable<? extends List<Subtotals>> subtotals) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(subtotals, "subtotals");
@@ -49,8 +49,8 @@ public class GetBalanceReportBalancesOpen {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetBalanceReportAmount> amount() {
-        return (Optional<GetBalanceReportAmount>) amount;
+    public Optional<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceAmount> amount() {
+        return (Optional<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceAmount>) amount;
     }
 
     @SuppressWarnings("unchecked")
@@ -67,7 +67,7 @@ public class GetBalanceReportBalancesOpen {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public GetBalanceReportBalancesOpen withAmount(GetBalanceReportAmount amount) {
+    public GetBalanceReportBalancesOpen withAmount(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceAmount amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = Optional.ofNullable(amount);
         return this;
@@ -77,7 +77,7 @@ public class GetBalanceReportBalancesOpen {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public GetBalanceReportBalancesOpen withAmount(Optional<? extends GetBalanceReportAmount> amount) {
+    public GetBalanceReportBalancesOpen withAmount(Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceAmount> amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
@@ -125,7 +125,7 @@ public class GetBalanceReportBalancesOpen {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends GetBalanceReportAmount> amount = Optional.empty();
+        private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceAmount> amount = Optional.empty();
 
         private JsonNullable<? extends List<Subtotals>> subtotals = JsonNullable.undefined();
 
@@ -137,7 +137,7 @@ public class GetBalanceReportBalancesOpen {
         /**
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
-        public Builder amount(GetBalanceReportAmount amount) {
+        public Builder amount(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceAmount amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = Optional.ofNullable(amount);
             return this;
@@ -146,7 +146,7 @@ public class GetBalanceReportBalancesOpen {
         /**
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
-        public Builder amount(Optional<? extends GetBalanceReportAmount> amount) {
+        public Builder amount(Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsPendingBalanceAmount> amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;

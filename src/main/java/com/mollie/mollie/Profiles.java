@@ -41,9 +41,20 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Profiles {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncProfiles asyncSDK;
 
     Profiles(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncProfiles(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncProfiles async() {
+        return asyncSDK;
     }
 
     /**

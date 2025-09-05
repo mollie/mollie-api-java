@@ -11,57 +11,63 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 /**
  * Payments
  * 
- * <p>The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments
- * exist (yet).
+ * <p>Only available on `transaction-categories` grouping.
  */
 public class Payments {
-    /**
-     * The actual URL string.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("href")
-    private Optional<String> href;
 
-    /**
-     * The content type of the page or endpoint the URL points to.
-     */
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("type")
-    private Optional<String> type;
+    @JsonProperty("pending")
+    private Optional<? extends GetBalanceReportBalancesResponsePending> pending;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("movedToAvailable")
+    private Optional<? extends GetBalanceReportMovedToAvailable> movedToAvailable;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("immediatelyAvailable")
+    private Optional<? extends GetBalanceReportImmediatelyAvailable> immediatelyAvailable;
 
     @JsonCreator
     public Payments(
-            @JsonProperty("href") Optional<String> href,
-            @JsonProperty("type") Optional<String> type) {
-        Utils.checkNotNull(href, "href");
-        Utils.checkNotNull(type, "type");
-        this.href = href;
-        this.type = type;
+            @JsonProperty("pending") Optional<? extends GetBalanceReportBalancesResponsePending> pending,
+            @JsonProperty("movedToAvailable") Optional<? extends GetBalanceReportMovedToAvailable> movedToAvailable,
+            @JsonProperty("immediatelyAvailable") Optional<? extends GetBalanceReportImmediatelyAvailable> immediatelyAvailable) {
+        Utils.checkNotNull(pending, "pending");
+        Utils.checkNotNull(movedToAvailable, "movedToAvailable");
+        Utils.checkNotNull(immediatelyAvailable, "immediatelyAvailable");
+        this.pending = pending;
+        this.movedToAvailable = movedToAvailable;
+        this.immediatelyAvailable = immediatelyAvailable;
     }
     
     public Payments() {
-        this(Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
-    /**
-     * The actual URL string.
-     */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> href() {
-        return href;
+    public Optional<GetBalanceReportBalancesResponsePending> pending() {
+        return (Optional<GetBalanceReportBalancesResponsePending>) pending;
     }
 
-    /**
-     * The content type of the page or endpoint the URL points to.
-     */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> type() {
-        return type;
+    public Optional<GetBalanceReportMovedToAvailable> movedToAvailable() {
+        return (Optional<GetBalanceReportMovedToAvailable>) movedToAvailable;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<GetBalanceReportImmediatelyAvailable> immediatelyAvailable() {
+        return (Optional<GetBalanceReportImmediatelyAvailable>) immediatelyAvailable;
     }
 
     public static Builder builder() {
@@ -69,41 +75,42 @@ public class Payments {
     }
 
 
-    /**
-     * The actual URL string.
-     */
-    public Payments withHref(String href) {
-        Utils.checkNotNull(href, "href");
-        this.href = Optional.ofNullable(href);
+    public Payments withPending(GetBalanceReportBalancesResponsePending pending) {
+        Utils.checkNotNull(pending, "pending");
+        this.pending = Optional.ofNullable(pending);
         return this;
     }
 
 
-    /**
-     * The actual URL string.
-     */
-    public Payments withHref(Optional<String> href) {
-        Utils.checkNotNull(href, "href");
-        this.href = href;
+    public Payments withPending(Optional<? extends GetBalanceReportBalancesResponsePending> pending) {
+        Utils.checkNotNull(pending, "pending");
+        this.pending = pending;
         return this;
     }
 
-    /**
-     * The content type of the page or endpoint the URL points to.
-     */
-    public Payments withType(String type) {
-        Utils.checkNotNull(type, "type");
-        this.type = Optional.ofNullable(type);
+    public Payments withMovedToAvailable(GetBalanceReportMovedToAvailable movedToAvailable) {
+        Utils.checkNotNull(movedToAvailable, "movedToAvailable");
+        this.movedToAvailable = Optional.ofNullable(movedToAvailable);
         return this;
     }
 
 
-    /**
-     * The content type of the page or endpoint the URL points to.
-     */
-    public Payments withType(Optional<String> type) {
-        Utils.checkNotNull(type, "type");
-        this.type = type;
+    public Payments withMovedToAvailable(Optional<? extends GetBalanceReportMovedToAvailable> movedToAvailable) {
+        Utils.checkNotNull(movedToAvailable, "movedToAvailable");
+        this.movedToAvailable = movedToAvailable;
+        return this;
+    }
+
+    public Payments withImmediatelyAvailable(GetBalanceReportImmediatelyAvailable immediatelyAvailable) {
+        Utils.checkNotNull(immediatelyAvailable, "immediatelyAvailable");
+        this.immediatelyAvailable = Optional.ofNullable(immediatelyAvailable);
+        return this;
+    }
+
+
+    public Payments withImmediatelyAvailable(Optional<? extends GetBalanceReportImmediatelyAvailable> immediatelyAvailable) {
+        Utils.checkNotNull(immediatelyAvailable, "immediatelyAvailable");
+        this.immediatelyAvailable = immediatelyAvailable;
         return this;
     }
 
@@ -117,76 +124,81 @@ public class Payments {
         }
         Payments other = (Payments) o;
         return 
-            Utils.enhancedDeepEquals(this.href, other.href) &&
-            Utils.enhancedDeepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.pending, other.pending) &&
+            Utils.enhancedDeepEquals(this.movedToAvailable, other.movedToAvailable) &&
+            Utils.enhancedDeepEquals(this.immediatelyAvailable, other.immediatelyAvailable);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            href, type);
+            pending, movedToAvailable, immediatelyAvailable);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Payments.class,
-                "href", href,
-                "type", type);
+                "pending", pending,
+                "movedToAvailable", movedToAvailable,
+                "immediatelyAvailable", immediatelyAvailable);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> href = Optional.empty();
+        private Optional<? extends GetBalanceReportBalancesResponsePending> pending = Optional.empty();
 
-        private Optional<String> type = Optional.empty();
+        private Optional<? extends GetBalanceReportMovedToAvailable> movedToAvailable = Optional.empty();
+
+        private Optional<? extends GetBalanceReportImmediatelyAvailable> immediatelyAvailable = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        /**
-         * The actual URL string.
-         */
-        public Builder href(String href) {
-            Utils.checkNotNull(href, "href");
-            this.href = Optional.ofNullable(href);
+        public Builder pending(GetBalanceReportBalancesResponsePending pending) {
+            Utils.checkNotNull(pending, "pending");
+            this.pending = Optional.ofNullable(pending);
             return this;
         }
 
-        /**
-         * The actual URL string.
-         */
-        public Builder href(Optional<String> href) {
-            Utils.checkNotNull(href, "href");
-            this.href = href;
+        public Builder pending(Optional<? extends GetBalanceReportBalancesResponsePending> pending) {
+            Utils.checkNotNull(pending, "pending");
+            this.pending = pending;
             return this;
         }
 
 
-        /**
-         * The content type of the page or endpoint the URL points to.
-         */
-        public Builder type(String type) {
-            Utils.checkNotNull(type, "type");
-            this.type = Optional.ofNullable(type);
+        public Builder movedToAvailable(GetBalanceReportMovedToAvailable movedToAvailable) {
+            Utils.checkNotNull(movedToAvailable, "movedToAvailable");
+            this.movedToAvailable = Optional.ofNullable(movedToAvailable);
             return this;
         }
 
-        /**
-         * The content type of the page or endpoint the URL points to.
-         */
-        public Builder type(Optional<String> type) {
-            Utils.checkNotNull(type, "type");
-            this.type = type;
+        public Builder movedToAvailable(Optional<? extends GetBalanceReportMovedToAvailable> movedToAvailable) {
+            Utils.checkNotNull(movedToAvailable, "movedToAvailable");
+            this.movedToAvailable = movedToAvailable;
+            return this;
+        }
+
+
+        public Builder immediatelyAvailable(GetBalanceReportImmediatelyAvailable immediatelyAvailable) {
+            Utils.checkNotNull(immediatelyAvailable, "immediatelyAvailable");
+            this.immediatelyAvailable = Optional.ofNullable(immediatelyAvailable);
+            return this;
+        }
+
+        public Builder immediatelyAvailable(Optional<? extends GetBalanceReportImmediatelyAvailable> immediatelyAvailable) {
+            Utils.checkNotNull(immediatelyAvailable, "immediatelyAvailable");
+            this.immediatelyAvailable = immediatelyAvailable;
             return this;
         }
 
         public Payments build() {
 
             return new Payments(
-                href, type);
+                pending, movedToAvailable, immediatelyAvailable);
         }
 
     }

@@ -47,9 +47,20 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Subscriptions {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncSubscriptions asyncSDK;
 
     Subscriptions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncSubscriptions(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncSubscriptions async() {
+        return asyncSDK;
     }
 
     /**

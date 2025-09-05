@@ -58,14 +58,14 @@ public class CreatePaymentLinks {
      * Direct link to the payment in the Mollie Dashboard.
      */
     @JsonProperty("dashboard")
-    private Dashboard dashboard;
+    private CreatePaymentDashboard dashboard;
 
     /**
      * The API resource URL of the [refunds](list-payment-refunds) that belong to this payment.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("refunds")
-    private Optional<? extends Refunds> refunds;
+    private Optional<? extends CreatePaymentRefunds> refunds;
 
     /**
      * The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this
@@ -73,14 +73,14 @@ public class CreatePaymentLinks {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("chargebacks")
-    private Optional<? extends Chargebacks> chargebacks;
+    private Optional<? extends CreatePaymentChargebacks> chargebacks;
 
     /**
      * The API resource URL of the [captures](list-payment-captures) that belong to this payment.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("captures")
-    private Optional<? extends Captures> captures;
+    private Optional<? extends CreatePaymentCaptures> captures;
 
     /**
      * The API resource URL of the [settlement](get-settlement) this payment has been settled with.
@@ -132,7 +132,7 @@ public class CreatePaymentLinks {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends Documentation> documentation;
+    private Optional<? extends CreatePaymentDocumentation> documentation;
 
     /**
      * Link to customer-facing page showing the status of the bank transfer (to verify if the transaction was
@@ -156,17 +156,17 @@ public class CreatePaymentLinks {
             @JsonProperty("checkout") Optional<? extends Checkout> checkout,
             @JsonProperty("mobileAppCheckout") Optional<? extends MobileAppCheckout> mobileAppCheckout,
             @JsonProperty("changePaymentState") Optional<? extends ChangePaymentState> changePaymentState,
-            @JsonProperty("dashboard") Dashboard dashboard,
-            @JsonProperty("refunds") Optional<? extends Refunds> refunds,
-            @JsonProperty("chargebacks") Optional<? extends Chargebacks> chargebacks,
-            @JsonProperty("captures") Optional<? extends Captures> captures,
+            @JsonProperty("dashboard") CreatePaymentDashboard dashboard,
+            @JsonProperty("refunds") Optional<? extends CreatePaymentRefunds> refunds,
+            @JsonProperty("chargebacks") Optional<? extends CreatePaymentChargebacks> chargebacks,
+            @JsonProperty("captures") Optional<? extends CreatePaymentCaptures> captures,
             @JsonProperty("settlement") Optional<? extends Settlement> settlement,
             @JsonProperty("customer") Optional<? extends Customer> customer,
             @JsonProperty("mandate") Optional<? extends Mandate> mandate,
             @JsonProperty("subscription") Optional<? extends Subscription> subscription,
             @JsonProperty("order") Optional<? extends Order> order,
             @JsonProperty("terminal") Optional<? extends Terminal> terminal,
-            @JsonProperty("documentation") Optional<? extends Documentation> documentation,
+            @JsonProperty("documentation") Optional<? extends CreatePaymentDocumentation> documentation,
             @JsonProperty("status") Optional<? extends CreatePaymentPaymentsStatus> status,
             @JsonProperty("payOnline") Optional<? extends PayOnline> payOnline) {
         Utils.checkNotNull(self, "self");
@@ -207,7 +207,7 @@ public class CreatePaymentLinks {
     
     public CreatePaymentLinks(
             CreatePaymentSelf self,
-            Dashboard dashboard) {
+            CreatePaymentDashboard dashboard) {
         this(self, Optional.empty(), Optional.empty(),
             Optional.empty(), dashboard, Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
@@ -262,7 +262,7 @@ public class CreatePaymentLinks {
      * Direct link to the payment in the Mollie Dashboard.
      */
     @JsonIgnore
-    public Dashboard dashboard() {
+    public CreatePaymentDashboard dashboard() {
         return dashboard;
     }
 
@@ -271,8 +271,8 @@ public class CreatePaymentLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Refunds> refunds() {
-        return (Optional<Refunds>) refunds;
+    public Optional<CreatePaymentRefunds> refunds() {
+        return (Optional<CreatePaymentRefunds>) refunds;
     }
 
     /**
@@ -281,8 +281,8 @@ public class CreatePaymentLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Chargebacks> chargebacks() {
-        return (Optional<Chargebacks>) chargebacks;
+    public Optional<CreatePaymentChargebacks> chargebacks() {
+        return (Optional<CreatePaymentChargebacks>) chargebacks;
     }
 
     /**
@@ -290,8 +290,8 @@ public class CreatePaymentLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Captures> captures() {
-        return (Optional<Captures>) captures;
+    public Optional<CreatePaymentCaptures> captures() {
+        return (Optional<CreatePaymentCaptures>) captures;
     }
 
     /**
@@ -356,8 +356,8 @@ public class CreatePaymentLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Documentation> documentation() {
-        return (Optional<Documentation>) documentation;
+    public Optional<CreatePaymentDocumentation> documentation() {
+        return (Optional<CreatePaymentDocumentation>) documentation;
     }
 
     /**
@@ -468,7 +468,7 @@ public class CreatePaymentLinks {
     /**
      * Direct link to the payment in the Mollie Dashboard.
      */
-    public CreatePaymentLinks withDashboard(Dashboard dashboard) {
+    public CreatePaymentLinks withDashboard(CreatePaymentDashboard dashboard) {
         Utils.checkNotNull(dashboard, "dashboard");
         this.dashboard = dashboard;
         return this;
@@ -477,7 +477,7 @@ public class CreatePaymentLinks {
     /**
      * The API resource URL of the [refunds](list-payment-refunds) that belong to this payment.
      */
-    public CreatePaymentLinks withRefunds(Refunds refunds) {
+    public CreatePaymentLinks withRefunds(CreatePaymentRefunds refunds) {
         Utils.checkNotNull(refunds, "refunds");
         this.refunds = Optional.ofNullable(refunds);
         return this;
@@ -487,7 +487,7 @@ public class CreatePaymentLinks {
     /**
      * The API resource URL of the [refunds](list-payment-refunds) that belong to this payment.
      */
-    public CreatePaymentLinks withRefunds(Optional<? extends Refunds> refunds) {
+    public CreatePaymentLinks withRefunds(Optional<? extends CreatePaymentRefunds> refunds) {
         Utils.checkNotNull(refunds, "refunds");
         this.refunds = refunds;
         return this;
@@ -497,7 +497,7 @@ public class CreatePaymentLinks {
      * The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this
      * payment.
      */
-    public CreatePaymentLinks withChargebacks(Chargebacks chargebacks) {
+    public CreatePaymentLinks withChargebacks(CreatePaymentChargebacks chargebacks) {
         Utils.checkNotNull(chargebacks, "chargebacks");
         this.chargebacks = Optional.ofNullable(chargebacks);
         return this;
@@ -508,7 +508,7 @@ public class CreatePaymentLinks {
      * The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this
      * payment.
      */
-    public CreatePaymentLinks withChargebacks(Optional<? extends Chargebacks> chargebacks) {
+    public CreatePaymentLinks withChargebacks(Optional<? extends CreatePaymentChargebacks> chargebacks) {
         Utils.checkNotNull(chargebacks, "chargebacks");
         this.chargebacks = chargebacks;
         return this;
@@ -517,7 +517,7 @@ public class CreatePaymentLinks {
     /**
      * The API resource URL of the [captures](list-payment-captures) that belong to this payment.
      */
-    public CreatePaymentLinks withCaptures(Captures captures) {
+    public CreatePaymentLinks withCaptures(CreatePaymentCaptures captures) {
         Utils.checkNotNull(captures, "captures");
         this.captures = Optional.ofNullable(captures);
         return this;
@@ -527,7 +527,7 @@ public class CreatePaymentLinks {
     /**
      * The API resource URL of the [captures](list-payment-captures) that belong to this payment.
      */
-    public CreatePaymentLinks withCaptures(Optional<? extends Captures> captures) {
+    public CreatePaymentLinks withCaptures(Optional<? extends CreatePaymentCaptures> captures) {
         Utils.checkNotNull(captures, "captures");
         this.captures = captures;
         return this;
@@ -656,7 +656,7 @@ public class CreatePaymentLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public CreatePaymentLinks withDocumentation(Documentation documentation) {
+    public CreatePaymentLinks withDocumentation(CreatePaymentDocumentation documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = Optional.ofNullable(documentation);
         return this;
@@ -666,7 +666,7 @@ public class CreatePaymentLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public CreatePaymentLinks withDocumentation(Optional<? extends Documentation> documentation) {
+    public CreatePaymentLinks withDocumentation(Optional<? extends CreatePaymentDocumentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -787,13 +787,13 @@ public class CreatePaymentLinks {
 
         private Optional<? extends ChangePaymentState> changePaymentState = Optional.empty();
 
-        private Dashboard dashboard;
+        private CreatePaymentDashboard dashboard;
 
-        private Optional<? extends Refunds> refunds = Optional.empty();
+        private Optional<? extends CreatePaymentRefunds> refunds = Optional.empty();
 
-        private Optional<? extends Chargebacks> chargebacks = Optional.empty();
+        private Optional<? extends CreatePaymentChargebacks> chargebacks = Optional.empty();
 
-        private Optional<? extends Captures> captures = Optional.empty();
+        private Optional<? extends CreatePaymentCaptures> captures = Optional.empty();
 
         private Optional<? extends Settlement> settlement = Optional.empty();
 
@@ -807,7 +807,7 @@ public class CreatePaymentLinks {
 
         private Optional<? extends Terminal> terminal = Optional.empty();
 
-        private Optional<? extends Documentation> documentation = Optional.empty();
+        private Optional<? extends CreatePaymentDocumentation> documentation = Optional.empty();
 
         private Optional<? extends CreatePaymentPaymentsStatus> status = Optional.empty();
 
@@ -902,7 +902,7 @@ public class CreatePaymentLinks {
         /**
          * Direct link to the payment in the Mollie Dashboard.
          */
-        public Builder dashboard(Dashboard dashboard) {
+        public Builder dashboard(CreatePaymentDashboard dashboard) {
             Utils.checkNotNull(dashboard, "dashboard");
             this.dashboard = dashboard;
             return this;
@@ -912,7 +912,7 @@ public class CreatePaymentLinks {
         /**
          * The API resource URL of the [refunds](list-payment-refunds) that belong to this payment.
          */
-        public Builder refunds(Refunds refunds) {
+        public Builder refunds(CreatePaymentRefunds refunds) {
             Utils.checkNotNull(refunds, "refunds");
             this.refunds = Optional.ofNullable(refunds);
             return this;
@@ -921,7 +921,7 @@ public class CreatePaymentLinks {
         /**
          * The API resource URL of the [refunds](list-payment-refunds) that belong to this payment.
          */
-        public Builder refunds(Optional<? extends Refunds> refunds) {
+        public Builder refunds(Optional<? extends CreatePaymentRefunds> refunds) {
             Utils.checkNotNull(refunds, "refunds");
             this.refunds = refunds;
             return this;
@@ -932,7 +932,7 @@ public class CreatePaymentLinks {
          * The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this
          * payment.
          */
-        public Builder chargebacks(Chargebacks chargebacks) {
+        public Builder chargebacks(CreatePaymentChargebacks chargebacks) {
             Utils.checkNotNull(chargebacks, "chargebacks");
             this.chargebacks = Optional.ofNullable(chargebacks);
             return this;
@@ -942,7 +942,7 @@ public class CreatePaymentLinks {
          * The API resource URL of the [chargebacks](list-payment-chargebacks) that belong to this
          * payment.
          */
-        public Builder chargebacks(Optional<? extends Chargebacks> chargebacks) {
+        public Builder chargebacks(Optional<? extends CreatePaymentChargebacks> chargebacks) {
             Utils.checkNotNull(chargebacks, "chargebacks");
             this.chargebacks = chargebacks;
             return this;
@@ -952,7 +952,7 @@ public class CreatePaymentLinks {
         /**
          * The API resource URL of the [captures](list-payment-captures) that belong to this payment.
          */
-        public Builder captures(Captures captures) {
+        public Builder captures(CreatePaymentCaptures captures) {
             Utils.checkNotNull(captures, "captures");
             this.captures = Optional.ofNullable(captures);
             return this;
@@ -961,7 +961,7 @@ public class CreatePaymentLinks {
         /**
          * The API resource URL of the [captures](list-payment-captures) that belong to this payment.
          */
-        public Builder captures(Optional<? extends Captures> captures) {
+        public Builder captures(Optional<? extends CreatePaymentCaptures> captures) {
             Utils.checkNotNull(captures, "captures");
             this.captures = captures;
             return this;
@@ -1091,7 +1091,7 @@ public class CreatePaymentLinks {
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder documentation(Documentation documentation) {
+        public Builder documentation(CreatePaymentDocumentation documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = Optional.ofNullable(documentation);
             return this;
@@ -1100,7 +1100,7 @@ public class CreatePaymentLinks {
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder documentation(Optional<? extends Documentation> documentation) {
+        public Builder documentation(Optional<? extends CreatePaymentDocumentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

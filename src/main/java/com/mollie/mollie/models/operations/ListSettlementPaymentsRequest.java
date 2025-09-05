@@ -41,7 +41,7 @@ public class ListSettlementPaymentsRequest {
      * newest to oldest.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
-    private JsonNullable<? extends ListSettlementPaymentsQueryParamSort> sort;
+    private JsonNullable<? extends Sort> sort;
 
     /**
      * The identifier referring to the [profile](get-profile) you wish to
@@ -68,7 +68,7 @@ public class ListSettlementPaymentsRequest {
             String settlementId,
             Optional<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<? extends ListSettlementPaymentsQueryParamSort> sort,
+            JsonNullable<? extends Sort> sort,
             Optional<String> profileId,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(settlementId, "settlementId");
@@ -122,8 +122,8 @@ public class ListSettlementPaymentsRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListSettlementPaymentsQueryParamSort> sort() {
-        return (JsonNullable<ListSettlementPaymentsQueryParamSort>) sort;
+    public JsonNullable<Sort> sort() {
+        return (JsonNullable<Sort>) sort;
     }
 
     /**
@@ -207,7 +207,7 @@ public class ListSettlementPaymentsRequest {
      * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
      * newest to oldest.
      */
-    public ListSettlementPaymentsRequest withSort(ListSettlementPaymentsQueryParamSort sort) {
+    public ListSettlementPaymentsRequest withSort(Sort sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = JsonNullable.of(sort);
         return this;
@@ -217,7 +217,7 @@ public class ListSettlementPaymentsRequest {
      * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
      * newest to oldest.
      */
-    public ListSettlementPaymentsRequest withSort(JsonNullable<? extends ListSettlementPaymentsQueryParamSort> sort) {
+    public ListSettlementPaymentsRequest withSort(JsonNullable<? extends Sort> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;
@@ -321,7 +321,7 @@ public class ListSettlementPaymentsRequest {
 
         private JsonNullable<Long> limit = JsonNullable.undefined();
 
-        private JsonNullable<? extends ListSettlementPaymentsQueryParamSort> sort = JsonNullable.undefined();
+        private JsonNullable<? extends Sort> sort = JsonNullable.undefined();
 
         private Optional<String> profileId = Optional.empty();
 
@@ -386,7 +386,7 @@ public class ListSettlementPaymentsRequest {
          * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
          * newest to oldest.
          */
-        public Builder sort(ListSettlementPaymentsQueryParamSort sort) {
+        public Builder sort(Sort sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = JsonNullable.of(sort);
             return this;
@@ -396,7 +396,7 @@ public class ListSettlementPaymentsRequest {
          * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
          * newest to oldest.
          */
-        public Builder sort(JsonNullable<? extends ListSettlementPaymentsQueryParamSort> sort) {
+        public Builder sort(JsonNullable<? extends Sort> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = sort;
             return this;

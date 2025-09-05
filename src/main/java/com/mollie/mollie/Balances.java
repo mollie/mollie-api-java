@@ -36,9 +36,20 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Balances {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncBalances asyncSDK;
 
     Balances(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncBalances(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncBalances async() {
+        return asyncSDK;
     }
 
     /**

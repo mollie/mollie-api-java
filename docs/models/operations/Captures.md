@@ -1,6 +1,6 @@
 # Captures
 
-The API resource URL of the [captures](list-payment-captures) that belong to this payment.
+The API resource URL of the [captures](list-captures) included in this settlement.
 
 
 ## Fields

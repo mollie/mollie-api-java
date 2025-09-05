@@ -41,7 +41,7 @@ public class ListRefundsRequest {
      * parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=embed")
-    private Optional<? extends QueryParamEmbed> embed;
+    private Optional<? extends ListRefundsQueryParamEmbed> embed;
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -58,7 +58,7 @@ public class ListRefundsRequest {
             String paymentId,
             Optional<String> from,
             JsonNullable<Long> limit,
-            Optional<? extends QueryParamEmbed> embed,
+            Optional<? extends ListRefundsQueryParamEmbed> embed,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(paymentId, "paymentId");
         Utils.checkNotNull(from, "from");
@@ -109,8 +109,8 @@ public class ListRefundsRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<QueryParamEmbed> embed() {
-        return (Optional<QueryParamEmbed>) embed;
+    public Optional<ListRefundsQueryParamEmbed> embed() {
+        return (Optional<ListRefundsQueryParamEmbed>) embed;
     }
 
     /**
@@ -182,7 +182,7 @@ public class ListRefundsRequest {
      * This endpoint allows embedding related API items by appending the following values via the `embed` query string
      * parameter.
      */
-    public ListRefundsRequest withEmbed(QueryParamEmbed embed) {
+    public ListRefundsRequest withEmbed(ListRefundsQueryParamEmbed embed) {
         Utils.checkNotNull(embed, "embed");
         this.embed = Optional.ofNullable(embed);
         return this;
@@ -193,7 +193,7 @@ public class ListRefundsRequest {
      * This endpoint allows embedding related API items by appending the following values via the `embed` query string
      * parameter.
      */
-    public ListRefundsRequest withEmbed(Optional<? extends QueryParamEmbed> embed) {
+    public ListRefundsRequest withEmbed(Optional<? extends ListRefundsQueryParamEmbed> embed) {
         Utils.checkNotNull(embed, "embed");
         this.embed = embed;
         return this;
@@ -268,7 +268,7 @@ public class ListRefundsRequest {
 
         private JsonNullable<Long> limit = JsonNullable.undefined();
 
-        private Optional<? extends QueryParamEmbed> embed = Optional.empty();
+        private Optional<? extends ListRefundsQueryParamEmbed> embed = Optional.empty();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -331,7 +331,7 @@ public class ListRefundsRequest {
          * This endpoint allows embedding related API items by appending the following values via the `embed` query string
          * parameter.
          */
-        public Builder embed(QueryParamEmbed embed) {
+        public Builder embed(ListRefundsQueryParamEmbed embed) {
             Utils.checkNotNull(embed, "embed");
             this.embed = Optional.ofNullable(embed);
             return this;
@@ -341,7 +341,7 @@ public class ListRefundsRequest {
          * This endpoint allows embedding related API items by appending the following values via the `embed` query string
          * parameter.
          */
-        public Builder embed(Optional<? extends QueryParamEmbed> embed) {
+        public Builder embed(Optional<? extends ListRefundsQueryParamEmbed> embed) {
             Utils.checkNotNull(embed, "embed");
             this.embed = embed;
             return this;

@@ -41,7 +41,7 @@ public class Application {
         CreateWebhookRequestBody req = CreateWebhookRequestBody.builder()
                 .name("Webhook #1")
                 .url("https://mollie.com/")
-                .eventTypes(EventTypes.PAYMENT_LINK_PAID)
+                .webhookEventTypes(WebhookEventTypes.PAYMENT_LINK_PAID)
                 .testmode(false)
                 .build();
 
@@ -103,7 +103,7 @@ public class Application {
                 .from("hook_B2EyhTH5N4KWUnoYPcgiH")
                 .limit(50L)
                 .sort(ListWebhooksQueryParamSort.DESC)
-                .eventTypes(QueryParamEventTypes.PAYMENT_LINK_PAID)
+                .eventTypes(QueryParamWebhookEventTypes.PAYMENT_LINK_PAID)
                 .testmode(false)
                 .build();
 
@@ -167,7 +167,7 @@ public class Application {
                 .requestBody(UpdateWebhookRequestBody.builder()
                     .name("Webhook #1")
                     .url("https://mollie.com/")
-                    .eventTypes(UpdateWebhookEventTypes.PAYMENT_LINK_PAID)
+                    .webhookEventTypes(UpdateWebhookWebhookEventTypes.PAYMENT_LINK_PAID)
                     .testmode(false)
                     .build())
                 .call();

@@ -23,7 +23,7 @@ public class Pending {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private Optional<? extends GetBalanceReportBalancesResponseAmount> amount;
+    private Optional<? extends GetBalanceReportBalancesAmount> amount;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -32,7 +32,7 @@ public class Pending {
 
     @JsonCreator
     public Pending(
-            @JsonProperty("amount") Optional<? extends GetBalanceReportBalancesResponseAmount> amount,
+            @JsonProperty("amount") Optional<? extends GetBalanceReportBalancesAmount> amount,
             @JsonProperty("subtotals") JsonNullable<? extends List<GetBalanceReportBalancesSubtotals>> subtotals) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(subtotals, "subtotals");
@@ -49,8 +49,8 @@ public class Pending {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetBalanceReportBalancesResponseAmount> amount() {
-        return (Optional<GetBalanceReportBalancesResponseAmount>) amount;
+    public Optional<GetBalanceReportBalancesAmount> amount() {
+        return (Optional<GetBalanceReportBalancesAmount>) amount;
     }
 
     @SuppressWarnings("unchecked")
@@ -67,7 +67,7 @@ public class Pending {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public Pending withAmount(GetBalanceReportBalancesResponseAmount amount) {
+    public Pending withAmount(GetBalanceReportBalancesAmount amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = Optional.ofNullable(amount);
         return this;
@@ -77,7 +77,7 @@ public class Pending {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public Pending withAmount(Optional<? extends GetBalanceReportBalancesResponseAmount> amount) {
+    public Pending withAmount(Optional<? extends GetBalanceReportBalancesAmount> amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
@@ -125,7 +125,7 @@ public class Pending {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends GetBalanceReportBalancesResponseAmount> amount = Optional.empty();
+        private Optional<? extends GetBalanceReportBalancesAmount> amount = Optional.empty();
 
         private JsonNullable<? extends List<GetBalanceReportBalancesSubtotals>> subtotals = JsonNullable.undefined();
 
@@ -137,7 +137,7 @@ public class Pending {
         /**
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
-        public Builder amount(GetBalanceReportBalancesResponseAmount amount) {
+        public Builder amount(GetBalanceReportBalancesAmount amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = Optional.ofNullable(amount);
             return this;
@@ -146,7 +146,7 @@ public class Pending {
         /**
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
-        public Builder amount(Optional<? extends GetBalanceReportBalancesResponseAmount> amount) {
+        public Builder amount(Optional<? extends GetBalanceReportBalancesAmount> amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;

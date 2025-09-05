@@ -11,7 +11,7 @@ import java.util.Optional;
 /**
  * CreateWebhookMode
  * 
- * <p>The subscription's mode.
+ * <p>Whether this entity was created in live mode or in test mode.
  */
 public enum CreateWebhookMode {
     LIVE("live"),

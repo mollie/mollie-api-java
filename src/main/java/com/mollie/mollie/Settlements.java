@@ -44,9 +44,20 @@ import java.util.Optional;
 
 public class Settlements {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncSettlements asyncSDK;
 
     Settlements(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncSettlements(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncSettlements async() {
+        return asyncSDK;
     }
 
     /**

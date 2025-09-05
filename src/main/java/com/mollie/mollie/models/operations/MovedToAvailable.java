@@ -23,7 +23,7 @@ public class MovedToAvailable {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private Optional<? extends GetBalanceReportBalancesResponse200Amount> amount;
+    private Optional<? extends GetBalanceReportBalancesResponseAmount> amount;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -32,7 +32,7 @@ public class MovedToAvailable {
 
     @JsonCreator
     public MovedToAvailable(
-            @JsonProperty("amount") Optional<? extends GetBalanceReportBalancesResponse200Amount> amount,
+            @JsonProperty("amount") Optional<? extends GetBalanceReportBalancesResponseAmount> amount,
             @JsonProperty("subtotals") JsonNullable<? extends List<GetBalanceReportBalancesResponseSubtotals>> subtotals) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(subtotals, "subtotals");
@@ -49,8 +49,8 @@ public class MovedToAvailable {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetBalanceReportBalancesResponse200Amount> amount() {
-        return (Optional<GetBalanceReportBalancesResponse200Amount>) amount;
+    public Optional<GetBalanceReportBalancesResponseAmount> amount() {
+        return (Optional<GetBalanceReportBalancesResponseAmount>) amount;
     }
 
     @SuppressWarnings("unchecked")
@@ -67,7 +67,7 @@ public class MovedToAvailable {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public MovedToAvailable withAmount(GetBalanceReportBalancesResponse200Amount amount) {
+    public MovedToAvailable withAmount(GetBalanceReportBalancesResponseAmount amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = Optional.ofNullable(amount);
         return this;
@@ -77,7 +77,7 @@ public class MovedToAvailable {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public MovedToAvailable withAmount(Optional<? extends GetBalanceReportBalancesResponse200Amount> amount) {
+    public MovedToAvailable withAmount(Optional<? extends GetBalanceReportBalancesResponseAmount> amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
@@ -125,7 +125,7 @@ public class MovedToAvailable {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends GetBalanceReportBalancesResponse200Amount> amount = Optional.empty();
+        private Optional<? extends GetBalanceReportBalancesResponseAmount> amount = Optional.empty();
 
         private JsonNullable<? extends List<GetBalanceReportBalancesResponseSubtotals>> subtotals = JsonNullable.undefined();
 
@@ -137,7 +137,7 @@ public class MovedToAvailable {
         /**
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
-        public Builder amount(GetBalanceReportBalancesResponse200Amount amount) {
+        public Builder amount(GetBalanceReportBalancesResponseAmount amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = Optional.ofNullable(amount);
             return this;
@@ -146,7 +146,7 @@ public class MovedToAvailable {
         /**
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
-        public Builder amount(Optional<? extends GetBalanceReportBalancesResponse200Amount> amount) {
+        public Builder amount(Optional<? extends GetBalanceReportBalancesResponseAmount> amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;

@@ -5,15 +5,11 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * CreateWebhookResponseBody
@@ -24,93 +20,82 @@ public class CreateWebhookResponseBody {
     /**
      * Indicates the response contains a webhook subscription object. Will always contain the string `webhook` for this endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
     /**
      * The identifier uniquely referring to this subscription.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The subscription's events destination.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("url")
-    private Optional<String> url;
+    private String url;
 
     /**
      * The identifier uniquely referring to the profile that created the subscription.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("profileId")
-    private Optional<String> profileId;
+    private String profileId;
 
     /**
      * The subscription's date time of creation.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
-    private Optional<String> createdAt;
+    private String createdAt;
 
     /**
      * The subscription's name.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
     /**
      * The events types that are subscribed.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("eventTypes")
-    private Optional<? extends List<String>> eventTypes;
+    private List<CreateWebhookWebhookEventTypes> eventTypes;
 
     /**
      * The subscription's current status.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends CreateWebhookStatus> status;
+    private CreateWebhookStatus status;
 
     /**
-     * The subscription's mode.
+     * Whether this entity was created in live mode or in test mode.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<? extends CreateWebhookMode> mode;
+    private CreateWebhookMode mode;
 
     /**
      * The subscription's secret.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("webhookSecret")
-    private Optional<String> webhookSecret;
+    private String webhookSecret;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends CreateWebhookLinks> links;
+    private CreateWebhookLinks links;
 
     @JsonCreator
     public CreateWebhookResponseBody(
-            @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("url") Optional<String> url,
-            @JsonProperty("profileId") Optional<String> profileId,
-            @JsonProperty("createdAt") Optional<String> createdAt,
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("eventTypes") Optional<? extends List<String>> eventTypes,
-            @JsonProperty("status") Optional<? extends CreateWebhookStatus> status,
-            @JsonProperty("mode") Optional<? extends CreateWebhookMode> mode,
-            @JsonProperty("webhookSecret") Optional<String> webhookSecret,
-            @JsonProperty("_links") Optional<? extends CreateWebhookLinks> links) {
+            @JsonProperty("resource") String resource,
+            @JsonProperty("id") String id,
+            @JsonProperty("url") String url,
+            @JsonProperty("profileId") String profileId,
+            @JsonProperty("createdAt") String createdAt,
+            @JsonProperty("name") String name,
+            @JsonProperty("eventTypes") List<CreateWebhookWebhookEventTypes> eventTypes,
+            @JsonProperty("status") CreateWebhookStatus status,
+            @JsonProperty("mode") CreateWebhookMode mode,
+            @JsonProperty("webhookSecret") String webhookSecret,
+            @JsonProperty("_links") CreateWebhookLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(url, "url");
@@ -134,19 +119,12 @@ public class CreateWebhookResponseBody {
         this.webhookSecret = webhookSecret;
         this.links = links;
     }
-    
-    public CreateWebhookResponseBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
-    }
 
     /**
      * Indicates the response contains a webhook subscription object. Will always contain the string `webhook` for this endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
@@ -154,7 +132,7 @@ public class CreateWebhookResponseBody {
      * The identifier uniquely referring to this subscription.
      */
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
@@ -162,7 +140,7 @@ public class CreateWebhookResponseBody {
      * The subscription's events destination.
      */
     @JsonIgnore
-    public Optional<String> url() {
+    public String url() {
         return url;
     }
 
@@ -170,7 +148,7 @@ public class CreateWebhookResponseBody {
      * The identifier uniquely referring to the profile that created the subscription.
      */
     @JsonIgnore
-    public Optional<String> profileId() {
+    public String profileId() {
         return profileId;
     }
 
@@ -178,7 +156,7 @@ public class CreateWebhookResponseBody {
      * The subscription's date time of creation.
      */
     @JsonIgnore
-    public Optional<String> createdAt() {
+    public String createdAt() {
         return createdAt;
     }
 
@@ -186,52 +164,48 @@ public class CreateWebhookResponseBody {
      * The subscription's name.
      */
     @JsonIgnore
-    public Optional<String> name() {
+    public String name() {
         return name;
     }
 
     /**
      * The events types that are subscribed.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<String>> eventTypes() {
-        return (Optional<List<String>>) eventTypes;
+    public List<CreateWebhookWebhookEventTypes> eventTypes() {
+        return eventTypes;
     }
 
     /**
      * The subscription's current status.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateWebhookStatus> status() {
-        return (Optional<CreateWebhookStatus>) status;
+    public CreateWebhookStatus status() {
+        return status;
     }
 
     /**
-     * The subscription's mode.
+     * Whether this entity was created in live mode or in test mode.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateWebhookMode> mode() {
-        return (Optional<CreateWebhookMode>) mode;
+    public CreateWebhookMode mode() {
+        return mode;
     }
 
     /**
      * The subscription's secret.
      */
     @JsonIgnore
-    public Optional<String> webhookSecret() {
+    public String webhookSecret() {
         return webhookSecret;
     }
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateWebhookLinks> links() {
-        return (Optional<CreateWebhookLinks>) links;
+    public CreateWebhookLinks links() {
+        return links;
     }
 
     public static Builder builder() {
@@ -244,16 +218,6 @@ public class CreateWebhookResponseBody {
      */
     public CreateWebhookResponseBody withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains a webhook subscription object. Will always contain the string `webhook` for this endpoint.
-     */
-    public CreateWebhookResponseBody withResource(Optional<String> resource) {
-        Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
     }
@@ -262,16 +226,6 @@ public class CreateWebhookResponseBody {
      * The identifier uniquely referring to this subscription.
      */
     public CreateWebhookResponseBody withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * The identifier uniquely referring to this subscription.
-     */
-    public CreateWebhookResponseBody withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -282,16 +236,6 @@ public class CreateWebhookResponseBody {
      */
     public CreateWebhookResponseBody withUrl(String url) {
         Utils.checkNotNull(url, "url");
-        this.url = Optional.ofNullable(url);
-        return this;
-    }
-
-
-    /**
-     * The subscription's events destination.
-     */
-    public CreateWebhookResponseBody withUrl(Optional<String> url) {
-        Utils.checkNotNull(url, "url");
         this.url = url;
         return this;
     }
@@ -300,16 +244,6 @@ public class CreateWebhookResponseBody {
      * The identifier uniquely referring to the profile that created the subscription.
      */
     public CreateWebhookResponseBody withProfileId(String profileId) {
-        Utils.checkNotNull(profileId, "profileId");
-        this.profileId = Optional.ofNullable(profileId);
-        return this;
-    }
-
-
-    /**
-     * The identifier uniquely referring to the profile that created the subscription.
-     */
-    public CreateWebhookResponseBody withProfileId(Optional<String> profileId) {
         Utils.checkNotNull(profileId, "profileId");
         this.profileId = profileId;
         return this;
@@ -320,16 +254,6 @@ public class CreateWebhookResponseBody {
      */
     public CreateWebhookResponseBody withCreatedAt(String createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = Optional.ofNullable(createdAt);
-        return this;
-    }
-
-
-    /**
-     * The subscription's date time of creation.
-     */
-    public CreateWebhookResponseBody withCreatedAt(Optional<String> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
@@ -339,16 +263,6 @@ public class CreateWebhookResponseBody {
      */
     public CreateWebhookResponseBody withName(String name) {
         Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
-
-    /**
-     * The subscription's name.
-     */
-    public CreateWebhookResponseBody withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
@@ -356,17 +270,7 @@ public class CreateWebhookResponseBody {
     /**
      * The events types that are subscribed.
      */
-    public CreateWebhookResponseBody withEventTypes(List<String> eventTypes) {
-        Utils.checkNotNull(eventTypes, "eventTypes");
-        this.eventTypes = Optional.ofNullable(eventTypes);
-        return this;
-    }
-
-
-    /**
-     * The events types that are subscribed.
-     */
-    public CreateWebhookResponseBody withEventTypes(Optional<? extends List<String>> eventTypes) {
+    public CreateWebhookResponseBody withEventTypes(List<CreateWebhookWebhookEventTypes> eventTypes) {
         Utils.checkNotNull(eventTypes, "eventTypes");
         this.eventTypes = eventTypes;
         return this;
@@ -377,34 +281,14 @@ public class CreateWebhookResponseBody {
      */
     public CreateWebhookResponseBody withStatus(CreateWebhookStatus status) {
         Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-
-    /**
-     * The subscription's current status.
-     */
-    public CreateWebhookResponseBody withStatus(Optional<? extends CreateWebhookStatus> status) {
-        Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
     /**
-     * The subscription's mode.
+     * Whether this entity was created in live mode or in test mode.
      */
     public CreateWebhookResponseBody withMode(CreateWebhookMode mode) {
-        Utils.checkNotNull(mode, "mode");
-        this.mode = Optional.ofNullable(mode);
-        return this;
-    }
-
-
-    /**
-     * The subscription's mode.
-     */
-    public CreateWebhookResponseBody withMode(Optional<? extends CreateWebhookMode> mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
@@ -415,16 +299,6 @@ public class CreateWebhookResponseBody {
      */
     public CreateWebhookResponseBody withWebhookSecret(String webhookSecret) {
         Utils.checkNotNull(webhookSecret, "webhookSecret");
-        this.webhookSecret = Optional.ofNullable(webhookSecret);
-        return this;
-    }
-
-
-    /**
-     * The subscription's secret.
-     */
-    public CreateWebhookResponseBody withWebhookSecret(Optional<String> webhookSecret) {
-        Utils.checkNotNull(webhookSecret, "webhookSecret");
         this.webhookSecret = webhookSecret;
         return this;
     }
@@ -433,16 +307,6 @@ public class CreateWebhookResponseBody {
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
     public CreateWebhookResponseBody withLinks(CreateWebhookLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public CreateWebhookResponseBody withLinks(Optional<? extends CreateWebhookLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -499,27 +363,27 @@ public class CreateWebhookResponseBody {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource = Optional.empty();
+        private String resource;
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<String> url = Optional.empty();
+        private String url;
 
-        private Optional<String> profileId = Optional.empty();
+        private String profileId;
 
-        private Optional<String> createdAt = Optional.empty();
+        private String createdAt;
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private Optional<? extends List<String>> eventTypes = Optional.empty();
+        private List<CreateWebhookWebhookEventTypes> eventTypes;
 
-        private Optional<? extends CreateWebhookStatus> status = Optional.empty();
+        private CreateWebhookStatus status;
 
-        private Optional<? extends CreateWebhookMode> mode = Optional.empty();
+        private CreateWebhookMode mode;
 
-        private Optional<String> webhookSecret = Optional.empty();
+        private String webhookSecret;
 
-        private Optional<? extends CreateWebhookLinks> links = Optional.empty();
+        private CreateWebhookLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -531,15 +395,6 @@ public class CreateWebhookResponseBody {
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a webhook subscription object. Will always contain the string `webhook` for this endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
-            Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
         }
@@ -549,15 +404,6 @@ public class CreateWebhookResponseBody {
          * The identifier uniquely referring to this subscription.
          */
         public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The identifier uniquely referring to this subscription.
-         */
-        public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -569,15 +415,6 @@ public class CreateWebhookResponseBody {
          */
         public Builder url(String url) {
             Utils.checkNotNull(url, "url");
-            this.url = Optional.ofNullable(url);
-            return this;
-        }
-
-        /**
-         * The subscription's events destination.
-         */
-        public Builder url(Optional<String> url) {
-            Utils.checkNotNull(url, "url");
             this.url = url;
             return this;
         }
@@ -587,15 +424,6 @@ public class CreateWebhookResponseBody {
          * The identifier uniquely referring to the profile that created the subscription.
          */
         public Builder profileId(String profileId) {
-            Utils.checkNotNull(profileId, "profileId");
-            this.profileId = Optional.ofNullable(profileId);
-            return this;
-        }
-
-        /**
-         * The identifier uniquely referring to the profile that created the subscription.
-         */
-        public Builder profileId(Optional<String> profileId) {
             Utils.checkNotNull(profileId, "profileId");
             this.profileId = profileId;
             return this;
@@ -607,15 +435,6 @@ public class CreateWebhookResponseBody {
          */
         public Builder createdAt(String createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = Optional.ofNullable(createdAt);
-            return this;
-        }
-
-        /**
-         * The subscription's date time of creation.
-         */
-        public Builder createdAt(Optional<String> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
@@ -626,15 +445,6 @@ public class CreateWebhookResponseBody {
          */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * The subscription's name.
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
@@ -643,16 +453,7 @@ public class CreateWebhookResponseBody {
         /**
          * The events types that are subscribed.
          */
-        public Builder eventTypes(List<String> eventTypes) {
-            Utils.checkNotNull(eventTypes, "eventTypes");
-            this.eventTypes = Optional.ofNullable(eventTypes);
-            return this;
-        }
-
-        /**
-         * The events types that are subscribed.
-         */
-        public Builder eventTypes(Optional<? extends List<String>> eventTypes) {
+        public Builder eventTypes(List<CreateWebhookWebhookEventTypes> eventTypes) {
             Utils.checkNotNull(eventTypes, "eventTypes");
             this.eventTypes = eventTypes;
             return this;
@@ -664,33 +465,15 @@ public class CreateWebhookResponseBody {
          */
         public Builder status(CreateWebhookStatus status) {
             Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * The subscription's current status.
-         */
-        public Builder status(Optional<? extends CreateWebhookStatus> status) {
-            Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
 
 
         /**
-         * The subscription's mode.
+         * Whether this entity was created in live mode or in test mode.
          */
         public Builder mode(CreateWebhookMode mode) {
-            Utils.checkNotNull(mode, "mode");
-            this.mode = Optional.ofNullable(mode);
-            return this;
-        }
-
-        /**
-         * The subscription's mode.
-         */
-        public Builder mode(Optional<? extends CreateWebhookMode> mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
@@ -702,15 +485,6 @@ public class CreateWebhookResponseBody {
          */
         public Builder webhookSecret(String webhookSecret) {
             Utils.checkNotNull(webhookSecret, "webhookSecret");
-            this.webhookSecret = Optional.ofNullable(webhookSecret);
-            return this;
-        }
-
-        /**
-         * The subscription's secret.
-         */
-        public Builder webhookSecret(Optional<String> webhookSecret) {
-            Utils.checkNotNull(webhookSecret, "webhookSecret");
             this.webhookSecret = webhookSecret;
             return this;
         }
@@ -720,15 +494,6 @@ public class CreateWebhookResponseBody {
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
         public Builder links(CreateWebhookLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends CreateWebhookLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

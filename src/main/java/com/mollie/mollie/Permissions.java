@@ -23,9 +23,20 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Permissions {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncPermissions asyncSDK;
 
     Permissions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncPermissions(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncPermissions async() {
+        return asyncSDK;
     }
 
     /**

@@ -23,7 +23,7 @@ public class ImmediatelyAvailable {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAmount> amount;
+    private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyAmount> amount;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -32,7 +32,7 @@ public class ImmediatelyAvailable {
 
     @JsonCreator
     public ImmediatelyAvailable(
-            @JsonProperty("amount") Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAmount> amount,
+            @JsonProperty("amount") Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyAmount> amount,
             @JsonProperty("subtotals") JsonNullable<? extends List<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodySubtotals>> subtotals) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(subtotals, "subtotals");
@@ -49,8 +49,8 @@ public class ImmediatelyAvailable {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAmount> amount() {
-        return (Optional<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAmount>) amount;
+    public Optional<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyAmount> amount() {
+        return (Optional<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyAmount>) amount;
     }
 
     @SuppressWarnings("unchecked")
@@ -67,7 +67,7 @@ public class ImmediatelyAvailable {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public ImmediatelyAvailable withAmount(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAmount amount) {
+    public ImmediatelyAvailable withAmount(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyAmount amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = Optional.ofNullable(amount);
         return this;
@@ -77,7 +77,7 @@ public class ImmediatelyAvailable {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public ImmediatelyAvailable withAmount(Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAmount> amount) {
+    public ImmediatelyAvailable withAmount(Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyAmount> amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
@@ -125,7 +125,7 @@ public class ImmediatelyAvailable {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAmount> amount = Optional.empty();
+        private Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyAmount> amount = Optional.empty();
 
         private JsonNullable<? extends List<GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodySubtotals>> subtotals = JsonNullable.undefined();
 
@@ -137,7 +137,7 @@ public class ImmediatelyAvailable {
         /**
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
-        public Builder amount(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAmount amount) {
+        public Builder amount(GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyAmount amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = Optional.ofNullable(amount);
             return this;
@@ -146,7 +146,7 @@ public class ImmediatelyAvailable {
         /**
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
-        public Builder amount(Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyTotalsAmount> amount) {
+        public Builder amount(Optional<? extends GetBalanceReportBalancesResponse200ApplicationHalPlusJsonResponseBodyAmount> amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;

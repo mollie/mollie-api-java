@@ -36,7 +36,7 @@ public class ListBalancesResponseBody {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_embedded")
-    private Optional<? extends ListBalancesEmbedded> embedded;
+    private Optional<? extends Embedded> embedded;
 
     /**
      * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
@@ -48,7 +48,7 @@ public class ListBalancesResponseBody {
     @JsonCreator
     public ListBalancesResponseBody(
             @JsonProperty("count") Optional<Long> count,
-            @JsonProperty("_embedded") Optional<? extends ListBalancesEmbedded> embedded,
+            @JsonProperty("_embedded") Optional<? extends Embedded> embedded,
             @JsonProperty("_links") Optional<? extends ListBalancesLinks> links) {
         Utils.checkNotNull(count, "count");
         Utils.checkNotNull(embedded, "embedded");
@@ -76,8 +76,8 @@ public class ListBalancesResponseBody {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListBalancesEmbedded> embedded() {
-        return (Optional<ListBalancesEmbedded>) embedded;
+    public Optional<Embedded> embedded() {
+        return (Optional<Embedded>) embedded;
     }
 
     /**
@@ -121,14 +121,14 @@ public class ListBalancesResponseBody {
         return this;
     }
 
-    public ListBalancesResponseBody withEmbedded(ListBalancesEmbedded embedded) {
+    public ListBalancesResponseBody withEmbedded(Embedded embedded) {
         Utils.checkNotNull(embedded, "embedded");
         this.embedded = Optional.ofNullable(embedded);
         return this;
     }
 
 
-    public ListBalancesResponseBody withEmbedded(Optional<? extends ListBalancesEmbedded> embedded) {
+    public ListBalancesResponseBody withEmbedded(Optional<? extends Embedded> embedded) {
         Utils.checkNotNull(embedded, "embedded");
         this.embedded = embedded;
         return this;
@@ -187,7 +187,7 @@ public class ListBalancesResponseBody {
 
         private Optional<Long> count = Optional.empty();
 
-        private Optional<? extends ListBalancesEmbedded> embedded = Optional.empty();
+        private Optional<? extends Embedded> embedded = Optional.empty();
 
         private Optional<? extends ListBalancesLinks> links = Optional.empty();
 
@@ -223,13 +223,13 @@ public class ListBalancesResponseBody {
         }
 
 
-        public Builder embedded(ListBalancesEmbedded embedded) {
+        public Builder embedded(Embedded embedded) {
             Utils.checkNotNull(embedded, "embedded");
             this.embedded = Optional.ofNullable(embedded);
             return this;
         }
 
-        public Builder embedded(Optional<? extends ListBalancesEmbedded> embedded) {
+        public Builder embedded(Optional<? extends Embedded> embedded) {
             Utils.checkNotNull(embedded, "embedded");
             this.embedded = embedded;
             return this;

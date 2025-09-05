@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -24,37 +23,32 @@ public class GetWebhookEventResponseBody {
     /**
      * Indicates the response contains a webhook event object. Will always contain the string `event` for this endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
     /**
      * The identifier uniquely referring to this event.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
-     * The event's type.
+     * The event's type
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<String> type;
+    private GetWebhookEventWebhookEventTypes webhookEventTypes;
 
     /**
      * The entity token that triggered the event
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("entityId")
-    private Optional<String> entityId;
+    private String entityId;
 
     /**
      * The event's date time of creation.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
-    private Optional<String> createdAt;
+    private String createdAt;
 
     /**
      * Full payload of the event.
@@ -66,46 +60,51 @@ public class GetWebhookEventResponseBody {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends GetWebhookEventLinks> links;
+    private GetWebhookEventLinks links;
 
     @JsonCreator
     public GetWebhookEventResponseBody(
-            @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("type") Optional<String> type,
-            @JsonProperty("entityId") Optional<String> entityId,
-            @JsonProperty("createdAt") Optional<String> createdAt,
+            @JsonProperty("resource") String resource,
+            @JsonProperty("id") String id,
+            @JsonProperty("type") GetWebhookEventWebhookEventTypes webhookEventTypes,
+            @JsonProperty("entityId") String entityId,
+            @JsonProperty("createdAt") String createdAt,
             @JsonProperty("_embedded") JsonNullable<? extends GetWebhookEventEmbedded> embedded,
-            @JsonProperty("_links") Optional<? extends GetWebhookEventLinks> links) {
+            @JsonProperty("_links") GetWebhookEventLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(type, "type");
+        Utils.checkNotNull(webhookEventTypes, "webhookEventTypes");
         Utils.checkNotNull(entityId, "entityId");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(embedded, "embedded");
         Utils.checkNotNull(links, "links");
         this.resource = resource;
         this.id = id;
-        this.type = type;
+        this.webhookEventTypes = webhookEventTypes;
         this.entityId = entityId;
         this.createdAt = createdAt;
         this.embedded = embedded;
         this.links = links;
     }
     
-    public GetWebhookEventResponseBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty());
+    public GetWebhookEventResponseBody(
+            String resource,
+            String id,
+            GetWebhookEventWebhookEventTypes webhookEventTypes,
+            String entityId,
+            String createdAt,
+            GetWebhookEventLinks links) {
+        this(resource, id, webhookEventTypes,
+            entityId, createdAt, JsonNullable.undefined(),
+            links);
     }
 
     /**
      * Indicates the response contains a webhook event object. Will always contain the string `event` for this endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
@@ -113,23 +112,23 @@ public class GetWebhookEventResponseBody {
      * The identifier uniquely referring to this event.
      */
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
     /**
-     * The event's type.
+     * The event's type
      */
     @JsonIgnore
-    public Optional<String> type() {
-        return type;
+    public GetWebhookEventWebhookEventTypes webhookEventTypes() {
+        return webhookEventTypes;
     }
 
     /**
      * The entity token that triggered the event
      */
     @JsonIgnore
-    public Optional<String> entityId() {
+    public String entityId() {
         return entityId;
     }
 
@@ -137,7 +136,7 @@ public class GetWebhookEventResponseBody {
      * The event's date time of creation.
      */
     @JsonIgnore
-    public Optional<String> createdAt() {
+    public String createdAt() {
         return createdAt;
     }
 
@@ -153,10 +152,9 @@ public class GetWebhookEventResponseBody {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetWebhookEventLinks> links() {
-        return (Optional<GetWebhookEventLinks>) links;
+    public GetWebhookEventLinks links() {
+        return links;
     }
 
     public static Builder builder() {
@@ -169,16 +167,6 @@ public class GetWebhookEventResponseBody {
      */
     public GetWebhookEventResponseBody withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains a webhook event object. Will always contain the string `event` for this endpoint.
-     */
-    public GetWebhookEventResponseBody withResource(Optional<String> resource) {
-        Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
     }
@@ -188,36 +176,16 @@ public class GetWebhookEventResponseBody {
      */
     public GetWebhookEventResponseBody withId(String id) {
         Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * The identifier uniquely referring to this event.
-     */
-    public GetWebhookEventResponseBody withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
     /**
-     * The event's type.
+     * The event's type
      */
-    public GetWebhookEventResponseBody withType(String type) {
-        Utils.checkNotNull(type, "type");
-        this.type = Optional.ofNullable(type);
-        return this;
-    }
-
-
-    /**
-     * The event's type.
-     */
-    public GetWebhookEventResponseBody withType(Optional<String> type) {
-        Utils.checkNotNull(type, "type");
-        this.type = type;
+    public GetWebhookEventResponseBody withWebhookEventTypes(GetWebhookEventWebhookEventTypes webhookEventTypes) {
+        Utils.checkNotNull(webhookEventTypes, "webhookEventTypes");
+        this.webhookEventTypes = webhookEventTypes;
         return this;
     }
 
@@ -225,16 +193,6 @@ public class GetWebhookEventResponseBody {
      * The entity token that triggered the event
      */
     public GetWebhookEventResponseBody withEntityId(String entityId) {
-        Utils.checkNotNull(entityId, "entityId");
-        this.entityId = Optional.ofNullable(entityId);
-        return this;
-    }
-
-
-    /**
-     * The entity token that triggered the event
-     */
-    public GetWebhookEventResponseBody withEntityId(Optional<String> entityId) {
         Utils.checkNotNull(entityId, "entityId");
         this.entityId = entityId;
         return this;
@@ -244,16 +202,6 @@ public class GetWebhookEventResponseBody {
      * The event's date time of creation.
      */
     public GetWebhookEventResponseBody withCreatedAt(String createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = Optional.ofNullable(createdAt);
-        return this;
-    }
-
-
-    /**
-     * The event's date time of creation.
-     */
-    public GetWebhookEventResponseBody withCreatedAt(Optional<String> createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
@@ -282,16 +230,6 @@ public class GetWebhookEventResponseBody {
      */
     public GetWebhookEventResponseBody withLinks(GetWebhookEventLinks links) {
         Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public GetWebhookEventResponseBody withLinks(Optional<? extends GetWebhookEventLinks> links) {
-        Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
     }
@@ -308,7 +246,7 @@ public class GetWebhookEventResponseBody {
         return 
             Utils.enhancedDeepEquals(this.resource, other.resource) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
-            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.webhookEventTypes, other.webhookEventTypes) &&
             Utils.enhancedDeepEquals(this.entityId, other.entityId) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.embedded, other.embedded) &&
@@ -318,7 +256,7 @@ public class GetWebhookEventResponseBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource, id, type,
+            resource, id, webhookEventTypes,
             entityId, createdAt, embedded,
             links);
     }
@@ -328,7 +266,7 @@ public class GetWebhookEventResponseBody {
         return Utils.toString(GetWebhookEventResponseBody.class,
                 "resource", resource,
                 "id", id,
-                "type", type,
+                "webhookEventTypes", webhookEventTypes,
                 "entityId", entityId,
                 "createdAt", createdAt,
                 "embedded", embedded,
@@ -338,19 +276,19 @@ public class GetWebhookEventResponseBody {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource = Optional.empty();
+        private String resource;
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<String> type = Optional.empty();
+        private GetWebhookEventWebhookEventTypes webhookEventTypes;
 
-        private Optional<String> entityId = Optional.empty();
+        private String entityId;
 
-        private Optional<String> createdAt = Optional.empty();
+        private String createdAt;
 
         private JsonNullable<? extends GetWebhookEventEmbedded> embedded = JsonNullable.undefined();
 
-        private Optional<? extends GetWebhookEventLinks> links = Optional.empty();
+        private GetWebhookEventLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -362,15 +300,6 @@ public class GetWebhookEventResponseBody {
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a webhook event object. Will always contain the string `event` for this endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
-            Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
         }
@@ -381,35 +310,17 @@ public class GetWebhookEventResponseBody {
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The identifier uniquely referring to this event.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
 
 
         /**
-         * The event's type.
+         * The event's type
          */
-        public Builder type(String type) {
-            Utils.checkNotNull(type, "type");
-            this.type = Optional.ofNullable(type);
-            return this;
-        }
-
-        /**
-         * The event's type.
-         */
-        public Builder type(Optional<String> type) {
-            Utils.checkNotNull(type, "type");
-            this.type = type;
+        public Builder webhookEventTypes(GetWebhookEventWebhookEventTypes webhookEventTypes) {
+            Utils.checkNotNull(webhookEventTypes, "webhookEventTypes");
+            this.webhookEventTypes = webhookEventTypes;
             return this;
         }
 
@@ -418,15 +329,6 @@ public class GetWebhookEventResponseBody {
          * The entity token that triggered the event
          */
         public Builder entityId(String entityId) {
-            Utils.checkNotNull(entityId, "entityId");
-            this.entityId = Optional.ofNullable(entityId);
-            return this;
-        }
-
-        /**
-         * The entity token that triggered the event
-         */
-        public Builder entityId(Optional<String> entityId) {
             Utils.checkNotNull(entityId, "entityId");
             this.entityId = entityId;
             return this;
@@ -437,15 +339,6 @@ public class GetWebhookEventResponseBody {
          * The event's date time of creation.
          */
         public Builder createdAt(String createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = Optional.ofNullable(createdAt);
-            return this;
-        }
-
-        /**
-         * The event's date time of creation.
-         */
-        public Builder createdAt(Optional<String> createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
@@ -476,15 +369,6 @@ public class GetWebhookEventResponseBody {
          */
         public Builder links(GetWebhookEventLinks links) {
             Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends GetWebhookEventLinks> links) {
-            Utils.checkNotNull(links, "links");
             this.links = links;
             return this;
         }
@@ -492,7 +376,7 @@ public class GetWebhookEventResponseBody {
         public GetWebhookEventResponseBody build() {
 
             return new GetWebhookEventResponseBody(
-                resource, id, type,
+                resource, id, webhookEventTypes,
                 entityId, createdAt, embedded,
                 links);
         }

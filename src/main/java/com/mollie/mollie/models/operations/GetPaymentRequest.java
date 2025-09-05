@@ -32,7 +32,7 @@ public class GetPaymentRequest {
      * following values via the `embed` query string parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=embed")
-    private JsonNullable<? extends Embed> embed;
+    private JsonNullable<? extends GetPaymentQueryParamEmbed> embed;
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -48,7 +48,7 @@ public class GetPaymentRequest {
     public GetPaymentRequest(
             String paymentId,
             JsonNullable<? extends QueryParamInclude> include,
-            JsonNullable<? extends Embed> embed,
+            JsonNullable<? extends GetPaymentQueryParamEmbed> embed,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(paymentId, "paymentId");
         Utils.checkNotNull(include, "include");
@@ -89,8 +89,8 @@ public class GetPaymentRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Embed> embed() {
-        return (JsonNullable<Embed>) embed;
+    public JsonNullable<GetPaymentQueryParamEmbed> embed() {
+        return (JsonNullable<GetPaymentQueryParamEmbed>) embed;
     }
 
     /**
@@ -141,7 +141,7 @@ public class GetPaymentRequest {
      * This endpoint allows embedding related API items by appending the
      * following values via the `embed` query string parameter.
      */
-    public GetPaymentRequest withEmbed(Embed embed) {
+    public GetPaymentRequest withEmbed(GetPaymentQueryParamEmbed embed) {
         Utils.checkNotNull(embed, "embed");
         this.embed = JsonNullable.of(embed);
         return this;
@@ -151,7 +151,7 @@ public class GetPaymentRequest {
      * This endpoint allows embedding related API items by appending the
      * following values via the `embed` query string parameter.
      */
-    public GetPaymentRequest withEmbed(JsonNullable<? extends Embed> embed) {
+    public GetPaymentRequest withEmbed(JsonNullable<? extends GetPaymentQueryParamEmbed> embed) {
         Utils.checkNotNull(embed, "embed");
         this.embed = embed;
         return this;
@@ -222,7 +222,7 @@ public class GetPaymentRequest {
 
         private JsonNullable<? extends QueryParamInclude> include = JsonNullable.undefined();
 
-        private JsonNullable<? extends Embed> embed = JsonNullable.undefined();
+        private JsonNullable<? extends GetPaymentQueryParamEmbed> embed = JsonNullable.undefined();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -264,7 +264,7 @@ public class GetPaymentRequest {
          * This endpoint allows embedding related API items by appending the
          * following values via the `embed` query string parameter.
          */
-        public Builder embed(Embed embed) {
+        public Builder embed(GetPaymentQueryParamEmbed embed) {
             Utils.checkNotNull(embed, "embed");
             this.embed = JsonNullable.of(embed);
             return this;
@@ -274,7 +274,7 @@ public class GetPaymentRequest {
          * This endpoint allows embedding related API items by appending the
          * following values via the `embed` query string parameter.
          */
-        public Builder embed(JsonNullable<? extends Embed> embed) {
+        public Builder embed(JsonNullable<? extends GetPaymentQueryParamEmbed> embed) {
             Utils.checkNotNull(embed, "embed");
             this.embed = embed;
             return this;
